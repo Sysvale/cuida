@@ -8,9 +8,18 @@ addons.setConfig({
   showPanel: true,
   panelPosition: 'right',
   sidebarAnimations: true,
-  enableShortcuts: true,
+  enableShortcuts: false,
   isToolshown: true,
-  selectedPanel: undefined,
+  selectedPanel: 'controls',
   initialActive: 'sidebar',
   showRoots: true,
+  previewTabs: {
+    'storybook/docs/panel': {
+        index: -1,
+        title: 'Dox'
+    },
+    'canvas': {
+      hidden: true,
+    },
+  },
 });
