@@ -43,7 +43,7 @@ export default {
     },
     showText: {
       type: Boolean,
-      default: false,
+      default: true,
       description: 'Defines if the text will be displayed',
       required: false,
     },
