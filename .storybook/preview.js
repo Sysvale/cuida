@@ -12,7 +12,13 @@ Object.defineProperty(Vue.prototype, '_', { value: _ });
 
 Vue.config.productionTip = false;
 
+import {
+  ProgressBar,
+} from '../src/components';
+
 Vue.use(BootstrapVue);
+
+Vue.component('progress-bar', ProgressBar);
 
 addParameters({
 	options: {
