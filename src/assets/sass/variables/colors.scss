@@ -1,0 +1,178 @@
+$white: #FFFFFF;
+$gray-1: #FAFBFE;
+$gray-2: #F0F3FA;
+$gray-3: #DDE2E7;
+$gray-4: #CED4DA;
+$gray-5: #ABB5BF;
+$gray-6: #697580;
+$gray-7: #44505C;
+$gray-8: #303A44;
+$gray-9: #182532;
+
+$turquesa-perry-light-2: #F0FCFF;
+$turquesa-perry-light-1: #7DD9E8;
+$turquesa-perry-base: #23B1C7;
+$turquesa-perry-dark-1: #1F9EB2;
+$turquesa-perry-dark-2: #16707E;
+
+$verde-piccolo-light-2: #F0FFFA;
+$verde-piccolo-light-1: #85E0C4;
+$verde-piccolo-base: #2EB88D;
+$verde-piccolo-dark-1: #29A37D;
+$verde-piccolo-dark-2: #1C6E54;
+
+$azul-sonic-light-2: #EFF8FF;
+$azul-sonic-light-1: #77BAEE;
+$azul-sonic-base: #399AE7;
+$azul-sonic-dark-1: #1B88DF;
+$azul-sonic-dark-2: #125C96;
+
+$azul-bidu-light-2: #F0F5FF;
+$azul-bidu-light-1: #84AFEB;
+$azul-bidu-base: #3A7EDF;
+$azul-bidu-dark-1: #206ED9;
+$azul-bidu-dark-2: #164A92;
+
+$roxo-thanos-light-2: #F8F0FF;
+$roxo-thanos-light-1: #CDB0E8;
+$roxo-thanos-base: #AB79D8;
+$roxo-thanos-dark-1: #9759CF;
+$roxo-thanos-dark-2: #692E9E;
+
+$pantera-cor-de-rosa-light-2: #FFEFFC;
+$pantera-cor-de-rosa-light-1: #ECA7D9;
+$pantera-cor-de-rosa-base: #E06EC0;
+$pantera-cor-de-rosa-dark-1: #D94AB1;
+$pantera-cor-de-rosa-dark-2: #A82483;
+
+$vermelho-mario-light-2: #FFF0F1;
+$vermelho-mario-light-1: #F69DA8;
+$vermelho-mario-base: #F05F71;
+$vermelho-mario-dark-1: #ED3B51;
+$vermelho-mario-dark-2: #B61125;
+
+$laranja-naruto-light-2: #FFF3F0;
+$laranja-naruto-light-1: #FDAF9B;
+$laranja-naruto-base: #FB876B;
+$laranja-naruto-dark-1: #FA6642;
+$laranja-naruto-dark-2: #CB3510;
+
+$amarelo-pikachu-light-2: #FFF9F0;
+$amarelo-pikachu-light-1: #FDD291;
+$amarelo-pikachu-base: #FCBB5A;
+$amarelo-pikachu-dark-1: #FBAA32;
+$amarelo-pikachu-dark-2: #C37604;
+
+$grays: map-merge(
+	(
+		"1": $gray-1,
+		"2": $gray-2,
+		"3": $gray-3,
+		"4": $gray-4,
+		"5": $gray-5,
+		"6": $gray-6,
+		"7": $gray-7,
+		"8": $gray-8,
+		"9": $gray-9
+	),
+	$grays
+);
+
+$turquesa-perry: map-merge(
+	(
+		"light-2": $turquesa-perry-light-2,
+		"light-1": $turquesa-perry-light-1,
+		"base": $turquesa-perry-base,
+		"dark-1": $turquesa-perry-dark-1,
+		"dark-2": $turquesa-perry-dark-2,
+	),
+	$turquesa-perry
+);
+
+$verde-piccolo: map-merge(
+	(
+		"light-2": $verde-piccolo-light-2,
+		"light-1": $verde-piccolo-light-1,
+		"base": $verde-piccolo-base,
+		"dark-1": $verde-piccolo-dark-1,
+		"dark-2": $verde-piccolo-dark-2,
+	),
+	$verde-piccolo
+);
+
+$azul-sonic: map-merge(
+	(
+		"light-2": $azul-sonic-light-2,
+		"light-1": $azul-sonic-light-1,
+		"base": $azul-sonic-base,
+		"dark-1": $azul-sonic-dark-1,
+		"dark-2": $azul-sonic-dark-2,
+	),
+	$azul-sonic
+);
+
+$azul-bidu: map-merge(
+	(
+		"light-2": $azul-bidu-light-2,
+		"light-1": $azul-bidu-light-1,
+		"base": $azul-bidu-base,
+		"dark-1": $azul-bidu-dark-1,
+		"dark-2": $azul-bidu-dark-2,
+	),
+	$azul-bidu
+);
+
+$roxo-thanos: map-merge(
+	(
+		"light-2": $roxo-thanos-light-2,
+		"light-1": $roxo-thanos-light-1,
+		"base": $roxo-thanos-base,
+		"dark-1": $roxo-thanos-dark-1,
+		"dark-2": $roxo-thanos-dark-2,
+	),
+	$roxo-thanos
+);
+
+$pantera-cor-de-rosa: map-merge(
+	(
+		"light-2": $pantera-cor-de-rosa-light-2,
+		"light-1": $pantera-cor-de-rosa-light-1,
+		"base": $pantera-cor-de-rosa-base,
+		"dark-1": $pantera-cor-de-rosa-dark-1,
+		"dark-2": $pantera-cor-de-rosa-dark-2,
+	),
+	$pantera-cor-de-rosa
+);
+
+$vermelho-mario: map-merge(
+	(
+		"light-2": $vermelho-mario-light-2,
+		"light-1": $vermelho-mario-light-1,
+		"base": $vermelho-mario-base,
+		"dark-1": $vermelho-mario-dark-1,
+		"dark-2": $vermelho-mario-dark-2,
+	),
+	$vermelho-mario
+);
+
+$laranja-naruto: map-merge(
+	(
+		"light-2": $laranja-naruto-light-2,
+		"light-1": $laranja-naruto-light-1,
+		"base": $laranja-naruto-base,
+		"dark-1": $laranja-naruto-dark-1,
+		"dark-2": $laranja-naruto-dark-2,
+	),
+	$laranja-naruto
+);
+
+$amarelo-pikachu: map-merge(
+	(
+		"light-2": $amarelo-pikachu-light-2,
+		"light-1": $amarelo-pikachu-light-1,
+		"base": $amarelo-pikachu-base,
+		"dark-1": $amarelo-pikachu-dark-1,
+		"dark-2": $amarelo-pikachu-dark-2,
+	),
+	$amarelo-pikachu
+);
