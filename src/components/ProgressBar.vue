@@ -1,27 +1,23 @@
 <template>
-    <span
-        id="progress-bar"
+    <div
+        class="progress-bar-container"
     >
-        <div
-            class="progress-bar-container"
+        <span
+            v-if="showText"
+            class="text-style ser"
         >
-            <span
-                v-if="showText"
-                class="text-style ser"
-            >
-                {{ formatedPercentage }}
-            </span>
+            {{ formatedPercentage }}
+        </span>
+        <div
+            class="progress-bar-background"
+            :style="backgroundColorStyle"
+        >
             <div
-                class="progress-bar-background"
-                :style="backgroundColorStyle"
-            >
-                <div
-                    class="progress-indicator"
-                    :style="progressIndicatorStyle"
-                />
-            </div>
+                class="progress-indicator"
+                :style="progressIndicatorStyle"
+            />
         </div>
-    </span>
+    </div>
 </template>
 
 <script>
@@ -74,28 +70,28 @@ export default {
 };
 </script>
 
-<style>
-#progress-bar .progress-indicator {
+<style scoped>
+.progress-indicator {
     border-radius: 80px;
     height: 7px;
     background-color: var(--color);
     width: var(--width);
 }
 
-#progress-bar .progress-bar-background {
+.progress-bar-background {
     background-color: var(--backgroundColor);
     border-radius: 80px;
     width: 100%;
     height: 7px;
 }
 
-#progress-bar .progress-bar-container {
+.progress-bar-container {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
-#progress-bar .text-style {
+.text-style {
     font-weight: 600;
 }
 </style>
