@@ -63,6 +63,8 @@ $amarelo-pikachu-base: #FCBB5A;
 $amarelo-pikachu-dark-1: #FBAA32;
 $amarelo-pikachu-dark-2: #C37604;
 
+$grays: ();
+
 $grays: map-merge(
 	(
 		"1": $gray-1,
@@ -78,6 +80,8 @@ $grays: map-merge(
 	$grays
 );
 
+$turquesa-perry: ();
+
 $turquesa-perry: map-merge(
 	(
 		"light-2": $turquesa-perry-light-2,
@@ -88,6 +92,8 @@ $turquesa-perry: map-merge(
 	),
 	$turquesa-perry
 );
+
+$verde-piccolo: ();
 
 $verde-piccolo: map-merge(
 	(
@@ -100,6 +106,8 @@ $verde-piccolo: map-merge(
 	$verde-piccolo
 );
 
+$azul-sonic: ();
+
 $azul-sonic: map-merge(
 	(
 		"light-2": $azul-sonic-light-2,
@@ -110,6 +118,8 @@ $azul-sonic: map-merge(
 	),
 	$azul-sonic
 );
+
+$azul-bidu: ();
 
 $azul-bidu: map-merge(
 	(
@@ -122,6 +132,8 @@ $azul-bidu: map-merge(
 	$azul-bidu
 );
 
+$roxo-thanos: ();
+
 $roxo-thanos: map-merge(
 	(
 		"light-2": $roxo-thanos-light-2,
@@ -132,6 +144,8 @@ $roxo-thanos: map-merge(
 	),
 	$roxo-thanos
 );
+
+$pantera-cor-de-rosa: ();
 
 $pantera-cor-de-rosa: map-merge(
 	(
@@ -144,6 +158,8 @@ $pantera-cor-de-rosa: map-merge(
 	$pantera-cor-de-rosa
 );
 
+$vermelho-mario: ();
+
 $vermelho-mario: map-merge(
 	(
 		"light-2": $vermelho-mario-light-2,
@@ -155,6 +171,8 @@ $vermelho-mario: map-merge(
 	$vermelho-mario
 );
 
+$laranja-naruto: ();
+
 $laranja-naruto: map-merge(
 	(
 		"light-2": $laranja-naruto-light-2,
@@ -165,6 +183,8 @@ $laranja-naruto: map-merge(
 	),
 	$laranja-naruto
 );
+
+$amarelo-pikachu: ();
 
 $amarelo-pikachu: map-merge(
 	(
