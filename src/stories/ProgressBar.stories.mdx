@@ -2,7 +2,7 @@ import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon
 import ProgressBar from '../components/ProgressBar.vue';
 
 <Meta
-  title="ProgressBar"
+  title="Componentes/ProgressBar"
   component={ ProgressBar }
   argTypes={{
     color: { control: 'color' },
@@ -28,7 +28,22 @@ export const Template = (args, { argTypes }) => ({
 
 # ProgressBar
 
-##### Progress bars are components used to indicate the status of something to the user
+### Progress bars are components used to indicate the status of something to the user
+---
+
+#### Use Progress bar when:
+- You need to convey the idea of progress of something.
+- You need to convey the idea of status of something.
+- You need to draw attention to an specific information.
+
+#### Don't use Progress bar when:
+- To create loaders.
+- You need a lot of precision
+- To create steppers.
+
+<br />
+
+### Preview
 
 <Canvas>
   <Story
