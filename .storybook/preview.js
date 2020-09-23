@@ -14,11 +14,13 @@ Vue.config.productionTip = false;
 
 import {
   ProgressBar,
+  Palete,
 } from '../src/components';
 
 Vue.use(BootstrapVue);
 
 Vue.component('progress-bar', ProgressBar);
+Vue.component('palete', Palete);
 
 addParameters({
 	options: {
