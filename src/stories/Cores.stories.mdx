@@ -1,6 +1,7 @@
 import { Meta, Canvas, Story } from '@storybook/addon-docs/blocks';
+import Palete from '../components/Palete.vue';
 
-<Meta title="Fundação/Cores"/>
+<Meta title="Fundação/Cores" component={ Palete } />
 
 # Cores
 
@@ -34,3 +35,15 @@ recomendamos a utilização de cores de maneira consistente para a representaç�
 de status, mensagens de feedback e convenções. 
 
 Ex.: links azuis, mensagens de validação vermelhas, mensagens de sucesso azuis ou verdes.
+
+
+<br />
+
+### Paleta de cores
+export const Template = () => ({
+  template:`<palete />`,
+});
+
+<Story name="Color palete">
+    { Template.bind({}) }
+</Story>
