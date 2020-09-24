@@ -1,6 +1,6 @@
 {
   "name": "@sysvale/cuida",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "description": "A design system built by Sysvale, using storybook and Vue components",
   "main": "dist/@sysvale/cuida.ssr.js",
   "module": "dist/@sysvale/cuida.esm.js",
@@ -14,7 +14,7 @@
     "test": "jest",
     "lint": "vue-cli-service lint",
     "storybook": "start-storybook -p 6006 --docs",
-    "build-storybook": "build-storybook -s public",
+    "build-storybook": "build-storybook -s public --docs",
     "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
     "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
