@@ -1,15 +1,24 @@
 {
-  "name": "cuida",
-  "version": "0.13.0",
-  "private": true,
+  "name": "@sysvale/cuida",
+  "version": "0.14.0",
+  "description": "A design system built by Sysvale, using storybook and Vue components",
+  "main": "dist/@sysvale/cuida.ssr.js",
+  "module": "dist/@sysvale/cuida.esm.js",
+  "unpkg": "dist/@sysvale/cuida.min.js",
+  "files": [
+    "dist/*"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test": "jest",
     "lint": "vue-cli-service lint",
     "storybook": "start-storybook -p 6006 --docs",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
+    "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
+    "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
+    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
   },
   "dependencies": {
     "bootstrap": "^4.5.2",
@@ -40,7 +49,15 @@
     "react-is": "^16.13.1",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "@rollup/plugin-alias": "^2.2.0",
+    "@rollup/plugin-buble": "^0.20.0",
+    "@rollup/plugin-replace": "^2.3.0",
+    "rollup": "^1.29.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-terser": "^5.2.0",
+    "rollup-plugin-vue": "5.1.1",
+    "cross-env": "^6.0.3"
   },
   "eslintConfig": {
     "root": true,
