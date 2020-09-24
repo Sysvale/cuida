@@ -4,7 +4,7 @@
     >
         <span
             v-if="showText"
-            class="text-style ser"
+            class="text-style"
         >
             {{ formatedPercentage }}
         </span>
