@@ -9,7 +9,7 @@
     "test": "jest",
     "lint": "vue-cli-service lint",
     "storybook": "start-storybook -p 6006 --docs",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
     "bootstrap": "^4.5.2",
