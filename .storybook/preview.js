@@ -20,9 +20,9 @@ import {
 
 Vue.use(BootstrapVue);
 
-Vue.component('progress-bar', ProgressBar);
+Vue.component('cds-progress-bar', ProgressBar);
 Vue.component('palete', Palete);
-Vue.component('actions-list', ActionsList);
+Vue.component('cds-actions-list', ActionsList);
 
 addParameters({
 	options: {
