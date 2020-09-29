@@ -15,14 +15,14 @@ Vue.config.productionTip = false;
 import {
 	ProgressBar,
 	Palete,
-	ActionList,
+	ActionsList,
 } from '../src/components';
 
 Vue.use(BootstrapVue);
 
 Vue.component('progress-bar', ProgressBar);
 Vue.component('palete', Palete);
-Vue.component('action-list', ActionList);
+Vue.component('actions-list', ActionsList);
 
 addParameters({
 	options: {

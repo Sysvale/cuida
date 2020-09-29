@@ -1,9 +1,9 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
-import ActionList from '../components/ActionList.vue';
+import ActionsList from '../components/ActionsList.vue';
 
 <Meta
-	title="Componentes/ActionList"
-	component={ ActionList }
+	title="Componentes/ActionsList"
+	component={ ActionsList }
 	argTypes={{
 		position: { control: { type: 'select', options: ['right', 'left'] } },
 	}
@@ -12,9 +12,9 @@ import ActionList from '../components/ActionList.vue';
 
 export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
-	components: { ActionList },
+	components: { ActionsList },
 	template: /*html*/ `
-		<action-list
+		<actions-list
 			v-bind="$props" 
 		>
 			<template
@@ -23,13 +23,13 @@ export const Template = (args, { argTypes }) => ({
 			>
 				{{ item.title }}
 			</template>
-		</action-list>
+		</actions-list>
 	`,
 });
 
-# ActionList
+# ActionsList
 
-### Action lists são componentes usados para mostrar uma lista de ações em linha, podendo algumas delas serem ocultas.
+### Actions lists são componentes usados para mostrar uma lista de ações em linha, podendo algumas delas serem ocultas.
 ---
 
 #### Recomendamos o uso de ActionsLists quando:
@@ -66,7 +66,7 @@ export const actions = [
 
 <Canvas>
 	<Story
-		name="Action list"
+		name="Actions list"
 		args={{
 			actions: actions,
 			numberOfExpandedActions: 2,
@@ -79,4 +79,4 @@ export const actions = [
 	</Story>
 </Canvas>
 
-<ArgsTable story="Action list" />
+<ArgsTable story="Actions list" />
