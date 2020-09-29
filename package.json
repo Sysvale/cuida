@@ -1,6 +1,6 @@
 {
   "name": "@sysvale/cuida",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "description": "A design system built by Sysvale, using storybook and Vue components",
   "main": "dist/@sysvale/cuida.ssr.js",
   "module": "dist/@sysvale/cuida.esm.js",
@@ -71,7 +71,21 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {},
+    "rules": {
+      "vue/html-indent": [
+        "error",
+        "tab",
+        {
+          "attribute": 1,
+          "closeBracket": 0,
+          "alignAttributesVertically": true,
+          "ignores": []
+        }
+      ],
+      "no-tabs": "off",
+      "indent": ["error", "tab", {"SwitchCase": 1}],
+      "quotes": ["error", "single", { "allowTemplateLiterals": true }]
+    },
     "overrides": [
       {
         "files": [
