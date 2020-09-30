@@ -12,7 +12,7 @@ export default create({
     appBorderRadius: 4,
   
     // Tipografia
-    fontBase: '"Muli", sans-serif',
+    fontBase: '"Inter", sans-serif',
     fontCode: 'monospace',
   
     // Cores de texto
