@@ -14,7 +14,7 @@ export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { ActionsList },
 	template: /*html*/ `
-		<cds-actions-list
+		<actions-list
 			v-bind="$props" 
 		>
 			<template
@@ -23,7 +23,7 @@ export const Template = (args, { argTypes }) => ({
 			>
 				{{ item.title }}
 			</template>
-		</cds-actions-list>
+		</actions-list>
 	`,
 });
 
@@ -31,19 +31,22 @@ export const Template = (args, { argTypes }) => ({
 
 ### Actions lists são componentes usados para mostrar uma lista de ações em linha, podendo algumas delas serem ocultas.
 ---
+<br />
 
-#### Recomendamos o uso de ActionsLists quando:
+## Recomendamos o uso de ActionsLists quando:
 - Você possuir ações associadas a um item de uma lista ou linha de tabela.
 - Houverem várias ações possíveis em determinada situação, mas algumas delas puderem ser colapsadas.
 
-#### Não recomendamos o uso de ActionsLists quando:
+<br />
+
+## Não recomendamos o uso de ActionsLists quando:
 - Você estiver procurando por botões.
 - Você quiser construir componentes de navegação (Menu, navbar, etc).
 - As ações listadas afetam toda a view ou mais que um conjunto de dados relacionados.
 
 <br />
 
-### Preview
+## Preview
 
 export const actions = [
 	{

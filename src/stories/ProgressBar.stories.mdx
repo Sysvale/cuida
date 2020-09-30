@@ -23,27 +23,30 @@ import ProgressBar from '../components/ProgressBar.vue';
 export const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ProgressBar },
-  template: /*html*/ `<cds-progress-bar v-bind="$props"/>`,
+  template: /*html*/ `<progress-bar v-bind="$props"/>`,
 });
 
 # ProgressBar
 
 ### Progress bars are components used to indicate the status of something to the user
 ---
+<br />
 
-#### Use Progress bar when:
+## Use Progress bar when:
 - You need to convey the idea of progress of something.
 - You need to convey the idea of status of something.
 - You need to draw attention to an specific information.
 
-#### Don't use Progress bar when:
+<br />
+
+## Don't use Progress bar when:
 - To create loaders.
 - You need a lot of precision
 - To create steppers.
 
 <br />
 
-### Preview
+## Preview
 
 <Canvas>
   <Story
