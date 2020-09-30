@@ -17,6 +17,7 @@ import {
 	Palete,
 	ActionsList,
 	RadioButtonGroup,
+	Timeline,
 } from '../src/components';
 
 Vue.use(BootstrapVue);
@@ -25,6 +26,7 @@ Vue.component('palete', Palete);
 Vue.component('cds-progress-bar', ProgressBar);
 Vue.component('cds-actions-list', ActionsList);
 Vue.component('cds-radio-button-group', RadioButtonGroup);
+Vue.component('cds-timeline', Timeline);
 
 addParameters({
 	options: {
