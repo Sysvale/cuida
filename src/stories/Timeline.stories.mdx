@@ -1,0 +1,75 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Timeline from '../components/Timeline.vue';
+
+<Meta
+	title="Componentes/Timeline"
+	component={ Timeline }
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { Timeline },
+	template: /*html*/ `
+		<cds-timeline
+			v-bind="$props" 
+		/>
+	`,
+});
+
+# Timeline
+
+### Timelines são componentes utilizados para apresentar informações em ordem cronológica.
+---
+<br />
+
+## Recomendamos o uso de Timelines quando:
+- Você tem uma série de informações que podem ser categorizadas por data.
+
+## Não recomendamos o uso de Timelines quando:
+- Você precisar de um componente de stepper.
+- A ordem das informações que você está apresentando é irrelevante.
+
+<br />
+
+## Preview
+
+export const history = [
+	{
+		date: '22/09/2020',
+		title: 'Bloqueio nível 1',
+		text: 'Usuário: Uncle Bob',
+	},
+	{
+		date: '22/09/2020',
+		title: 'Bloqueio nível 1',
+		text: 'Usuário: Uncle Bob',
+	},
+	{
+		date: '22/09/2020',
+		title: 'Bloqueio nível 1',
+		text: 'Usuário: Uncle Bob',
+	},
+	{
+		date: '22/09/2020',
+		title: 'Bloqueio nível 1',
+		text: 'Usuário: Uncle Bob',
+	},
+	{
+		date: '22/09/2020',
+		title: 'Bloqueio nível 1',
+		text: 'Usuário: Uncle Bob',
+	},
+];
+
+<Canvas>
+	<Story
+		name="Timeline"
+		args={{
+			history,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Timeline" />
