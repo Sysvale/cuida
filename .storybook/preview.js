@@ -16,6 +16,8 @@ import {
 	ProgressBar,
 	Palete,
 	ActionsList,
+	StatusList,
+	StatusItem,
 } from '../src/components';
 
 Vue.use(BootstrapVue);
@@ -23,6 +25,8 @@ Vue.use(BootstrapVue);
 Vue.component('cds-progress-bar', ProgressBar);
 Vue.component('palete', Palete);
 Vue.component('cds-actions-list', ActionsList);
+Vue.component('cds-status-list', StatusList);
+Vue.component('cds-status-item', StatusItem);
 
 addParameters({
 	options: {
