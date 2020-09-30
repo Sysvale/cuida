@@ -1,0 +1,78 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import StatusList from '../components/StatusList.vue';
+
+<Meta
+	title="Componentes/StatusList"
+	component={ StatusList }
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { StatusList },
+	template: /*html*/ `
+		<cds-status-list
+			v-bind="$props" 
+		>
+		</cds-status-list>
+	`,
+});
+
+# StatusList
+
+### Actions lists são componelistntes usados para mostrar uma lista de ações em linha, podendo algumas delas serem ocultas.
+---
+
+#### Recomendamos o uso de StatusLists quando:
+- Você possuir ações associadas a um item de uma lista ou linha de tabela.
+- Houverem várias ações possíveis em determinada situação, mas algumas delas puderem ser colapsadas.
+
+#### Não recomendamos o uso de StatusLists quando:
+- Você estiver procurando por botões.
+- Você quiser construir componentes de navegação (Menu, navbar, etc).
+- As ações listadas afetam toda a view ou mais que um conjunto de dados relacionados.
+
+<br />
+
+### Preview
+
+export const items = [
+	{
+		"id": 1,
+		"title": "Success title",
+		"subtitle": "Succes subtitle",
+		"variant": "success",
+		"clickableAction": true,
+		"actionText": "Download",
+	},
+	{
+		"id": 2,
+		"title": "Error title",
+		"subtitle": "Error subtitle",
+		"variant": "error",
+	},
+	{
+		"id": 3,
+		"title": "Processing title",
+		"subtitle": "Processing subtitle",
+		"variant": "processing",
+	},
+	{
+		"id": 4,
+		"title": "Warning title",
+		"subtitle": "Warning subtitle",
+		"variant": "warning",
+	},
+];
+
+<Canvas>
+	<Story
+		name="Status list"
+		args={{
+			items: items,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Status list" />
