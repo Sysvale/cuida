@@ -27,17 +27,15 @@ export const Template = (args, { argTypes }) => ({
 
 # StatusItem
 
-### Actions lists são componelistntes usados para mostrar uma lista de ações em linha, podendo algumas delas serem ocultas.
+### Status items são componentes usados para mostrar um conjunto de informações sobre o estado em que determinada atividade se encontra, podendo exibir ações possíveis de acordo com a necessidade.
 ---
 
 #### Recomendamos o uso de StatusItems quando:
-- Você possuir ações associadas a um item de uma lista ou linha de tabela.
-- Houverem várias ações possíveis em determinada situação, mas algumas delas puderem ser colapsadas.
+- Você precisar exibir o estado de uma tarefa.
+- Houverem ações que possam ser realizadas a partir destes estados.
 
 #### Não recomendamos o uso de StatusItems quando:
-- Você estiver procurando por botões.
-- Você quiser construir componentes de navegação (Menu, navbar, etc).
-- As ações listadas afetam toda a view ou mais que um conjunto de dados relacionados.
+- As ações a serem realizadas a partir dos estados sejam muito complexas.
 
 <br />
 
