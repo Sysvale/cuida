@@ -23,10 +23,10 @@ import {
 Vue.use(BootstrapVue);
 
 Vue.component('palete', Palete);
-Vue.component('cds-progress-bar', ProgressBar);
-Vue.component('cds-actions-list', ActionsList);
-Vue.component('cds-radio-button-group', RadioButtonGroup);
-Vue.component('cds-timeline', Timeline);
+Vue.component('progress-bar', ProgressBar);
+Vue.component('actions-list', ActionsList);
+Vue.component('radio-button-group', RadioButtonGroup);
+Vue.component('timeline', Timeline);
 
 addParameters({
 	options: {

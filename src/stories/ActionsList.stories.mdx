@@ -14,7 +14,7 @@ export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { ActionsList },
 	template: /*html*/ `
-		<cds-actions-list
+		<actions-list
 			v-bind="$props" 
 		>
 			<template
@@ -23,7 +23,7 @@ export const Template = (args, { argTypes }) => ({
 			>
 				{{ item.title }}
 			</template>
-		</cds-actions-list>
+		</actions-list>
 	`,
 });
 

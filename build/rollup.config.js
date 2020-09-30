@@ -13,117 +13,117 @@ const argv = minimist(process.argv.slice(2));
 const projectRoot = path.resolve(__dirname, '..');
 
 const baseConfig = {
-  input: 'src/entry.js',
-  plugins: {
-    preVue: [
-      replace({
-        'process.env.NODE_ENV': JSON.stringify('production'),
-      }),
-      commonjs(),
-      alias({
-        resolve: ['.jsx', '.js', '.vue'],
-        entries: {
-          '@': path.resolve(projectRoot, 'src'),
-        },
-      }),
-    ],
-    vue: {
-      css: true,
-      template: {
-        isProduction: true,
-      },
-    },
-    postVue: [
-      buble({objectAssign: true}),
-    ],
-  },
+	input: 'src/entry.js',
+	plugins: {
+		preVue: [
+			replace({
+				'process.env.NODE_ENV': JSON.stringify('production'),
+			}),
+			commonjs(),
+			alias({
+				resolve: ['.jsx', '.js', '.vue'],
+				entries: {
+					'@': path.resolve(projectRoot, 'src'),
+				},
+			}),
+		],
+		vue: {
+			css: true,
+			template: {
+				isProduction: true,
+			},
+		},
+		postVue: [
+			buble({objectAssign: true}),
+		],
+	},
 };
 
 // ESM/UMD/IIFE shared settings: externals
 // Refer to https://rollupjs.org/guide/en/#warning-treating-module-as-external-dependency
 const external = [
-  // list external dependencies, exactly the way it is written in the import statement.
-  // eg. 'jquery'
+	// list external dependencies, exactly the way it is written in the import statement.
+	// eg. 'jquery'
 ];
 
 // UMD/IIFE shared settings: output.globals
 // Refer to https://rollupjs.org/guide/en#output-globals for details
 const globals = {
-  // Provide global variable names to replace your external imports
-  // eg. jquery: '$'
+	// Provide global variable names to replace your external imports
+	// eg. jquery: '$'
 };
 
 // Customize configs for individual targets
 const buildFormats = [];
 if (!argv.format || argv.format === 'es') {
-  const esConfig = {
-    ...baseConfig,
-    external,
-    output: {
-      file: 'dist/@sysvale/cuida.esm.js',
-      format: 'esm',
-      exports: 'named',
-    },
-    plugins: [
-      ...baseConfig.plugins.preVue,
-      vue(baseConfig.plugins.vue),
-      ...baseConfig.plugins.postVue,
-    ],
-  };
-  buildFormats.push(esConfig);
+	const esConfig = {
+		...baseConfig,
+		external,
+		output: {
+			file: 'dist/@sysvale/cuida.esm.js',
+			format: 'esm',
+			exports: 'named',
+		},
+		plugins: [
+			...baseConfig.plugins.preVue,
+			vue(baseConfig.plugins.vue),
+			...baseConfig.plugins.postVue,
+		],
+	};
+	buildFormats.push(esConfig);
 }
 
 if (!argv.format || argv.format === 'cjs') {
-  const umdConfig = {
-    ...baseConfig,
-    external,
-    output: {
-      compact: true,
-      file: 'dist/@sysvale/cuida.ssr.js',
-      format: 'cjs',
-      name: 'Cuida',
-      exports: 'named',
-      globals,
-    },
-    plugins: [
-      ...baseConfig.plugins.preVue,
-      vue({
-        ...baseConfig.plugins.vue,
-        template: {
-          ...baseConfig.plugins.vue.template,
-          optimizeSSR: true,
-        },
-      }),
-      ...baseConfig.plugins.postVue,
-    ],
-  };
-  buildFormats.push(umdConfig);
+	const umdConfig = {
+		...baseConfig,
+		external,
+		output: {
+			compact: true,
+			file: 'dist/@sysvale/cuida.ssr.js',
+			format: 'cjs',
+			name: 'Cuida',
+			exports: 'named',
+			globals,
+		},
+		plugins: [
+			...baseConfig.plugins.preVue,
+			vue({
+				...baseConfig.plugins.vue,
+				template: {
+					...baseConfig.plugins.vue.template,
+					optimizeSSR: true,
+				},
+			}),
+			...baseConfig.plugins.postVue,
+		],
+	};
+	buildFormats.push(umdConfig);
 }
 
 if (!argv.format || argv.format === 'iife') {
-  const unpkgConfig = {
-    ...baseConfig,
-    external,
-    output: {
-      compact: true,
-      file: 'dist/@sysvale/cuida.min.js',
-      format: 'iife',
-      name: 'Cuida',
-      exports: 'named',
-      globals,
-    },
-    plugins: [
-      ...baseConfig.plugins.preVue,
-      vue(baseConfig.plugins.vue),
-      ...baseConfig.plugins.postVue,
-      terser({
-        output: {
-          ecma: 5,
-        },
-      }),
-    ],
-  };
-  buildFormats.push(unpkgConfig);
+	const unpkgConfig = {
+		...baseConfig,
+		external,
+		output: {
+			compact: true,
+			file: 'dist/@sysvale/cuida.min.js',
+			format: 'iife',
+			name: 'Cuida',
+			exports: 'named',
+			globals,
+		},
+		plugins: [
+			...baseConfig.plugins.preVue,
+			vue(baseConfig.plugins.vue),
+			...baseConfig.plugins.postVue,
+			terser({
+				output: {
+					ecma: 5,
+				},
+			}),
+		],
+	};
+	buildFormats.push(unpkgConfig);
 }
 
 // Export config
