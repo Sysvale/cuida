@@ -16,13 +16,15 @@ import {
 	ProgressBar,
 	Palete,
 	ActionsList,
+	RadioButtonGroup,
 } from '../src/components';
 
 Vue.use(BootstrapVue);
 
-Vue.component('cds-progress-bar', ProgressBar);
 Vue.component('palete', Palete);
+Vue.component('cds-progress-bar', ProgressBar);
 Vue.component('cds-actions-list', ActionsList);
+Vue.component('cds-radio-button-group', RadioButtonGroup);
 
 addParameters({
 	options: {
