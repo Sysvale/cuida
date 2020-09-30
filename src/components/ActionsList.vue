@@ -75,7 +75,7 @@
 export default {
 	props: {
 		/**
-		* A lsita de actions a ser renderizada.
+		* A lista de actions a ser renderizada.
 		*/
 		actions: {
 			type: Array,

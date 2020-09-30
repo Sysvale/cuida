@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component is mounted properly 1`] = `
+<span id="timeline"><div class="panel-body-content"><div><div class="event-row"><div><p class="regular fs-14 text-secondary date-text">
+						22/09/2020
+					</p></div> <div class="timeline-container"><span class="event-pin"></span>
+<div class="timeline"></div>
+</div>
+<div class="event-info-container">
+  <div>
+    <p class="mb-0 event-title regular">
+      Bloqueio nível 1
+    </p>
+  </div>
+  <div class="text-muted fs-14 mt-1">
+    Usuário: Uncle Bob
+  </div>
+  <hr class="event-row-divider">
+</div>
+</div>
+</div>
+<div>
+  <div class="event-row">
+    <div>
+      <p class="regular fs-14 text-secondary date-text">
+        22/09/2020
+      </p>
+    </div>
+    <div class="timeline-container"><span class="event-pin"></span>
+      <div class="timeline"></div>
+    </div>
+    <div class="event-info-container">
+      <div>
+        <p class="mb-0 event-title regular">
+          Bloqueio nível 1
+        </p>
+      </div>
+      <div class="text-muted fs-14 mt-1">
+        Usuário: Uncle Bob
+      </div>
+      <hr class="event-row-divider">
+    </div>
+  </div>
+</div>
+<div>
+  <div class="event-row">
+    <div>
+      <p class="regular fs-14 text-secondary date-text">
+        22/09/2020
+      </p>
+    </div>
+    <div class="timeline-container"><span class="event-pin"></span>
+      <!---->
+    </div>
+    <div class="event-info-container">
+      <div>
+        <p class="mb-0 event-title regular">
+          Bloqueio nível 1
+        </p>
+      </div>
+      <div class="text-muted fs-14 mt-1">
+        Usuário: Uncle Bob
+      </div>
+      <!---->
+    </div>
+  </div>
+</div>
+</div>
+</span>
+`;
