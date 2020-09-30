@@ -24,6 +24,7 @@
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.17.1",
     "core-js": "^3.6.5",
+    "material-design-icons": "^3.0.1",
     "vue": "^2.6.12"
   },
   "devDependencies": {
@@ -83,8 +84,20 @@
         }
       ],
       "no-tabs": "off",
-      "indent": ["error", "tab", {"SwitchCase": 1}],
-      "quotes": ["error", "single", { "allowTemplateLiterals": true }]
+      "indent": [
+        "error",
+        "tab",
+        {
+          "SwitchCase": 1
+        }
+      ],
+      "quotes": [
+        "error",
+        "single",
+        {
+          "allowTemplateLiterals": true
+        }
+      ]
     },
     "overrides": [
       {
