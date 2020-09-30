@@ -1,0 +1,64 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import StatusItem from '../components/StatusItem.vue';
+
+<Meta
+	title="Componentes/StatusItem"
+	component={ StatusItem }
+	argTypes={{
+		variant: {
+			control: {
+				type: 'select',
+				options: ['success', 'error', 'warning', 'processing']
+			}
+		},
+	}}
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { StatusItem },
+	template: /*html*/ `
+		<cds-status-item
+			v-bind="$props" 
+		>
+		</cds-status-item>
+	`,
+});
+
+# StatusItem
+
+### Actions lists são componelistntes usados para mostrar uma lista de ações em linha, podendo algumas delas serem ocultas.
+---
+
+#### Recomendamos o uso de StatusItems quando:
+- Você possuir ações associadas a um item de uma lista ou linha de tabela.
+- Houverem várias ações possíveis em determinada situação, mas algumas delas puderem ser colapsadas.
+
+#### Não recomendamos o uso de StatusItems quando:
+- Você estiver procurando por botões.
+- Você quiser construir componentes de navegação (Menu, navbar, etc).
+- As ações listadas afetam toda a view ou mais que um conjunto de dados relacionados.
+
+<br />
+
+### Preview
+
+<Canvas>
+	<Story
+		name="Status item"
+		args={{
+			title: 'Lote nº 235',
+			subtitle: '<strong>1840</strong> fichas analisadas no <strong>PEC</strong> 3.2.31 - Lote criado em 00/00/0000 00:00',
+			variant: 'success',
+			clickableAction: true,
+			actionText: 'Download',
+			actionSubtitle: 'Último download em 00/00/0000 00:00',
+			showAlert: false,
+			alertText: 'Lote inconsistente, <strong>clique aqui</strong> para saber como resolver.',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Status item" />
