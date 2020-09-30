@@ -12,14 +12,7 @@ export const Template = (args, { argTypes }) => ({
 	template: /*html*/ `
 		<cds-radio-button-group
 			v-bind="$props" 
-		>
-			<template
-				slot="action"
-				slot-scope="{list: item}"
-			>
-				{{ item.title }}
-			</template>
-		</cds-radio-button-group>
+		/>
 	`,
 });
 
@@ -66,8 +59,8 @@ export const options = [
 	<Story
 		name="Radio button group"
 		args={{
-			options: options,
-			value: value,
+			options,
+			value,
 			disabled: false,
 			inline: false,
 		}}
