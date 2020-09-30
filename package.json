@@ -1,6 +1,6 @@
 {
   "name": "@sysvale/cuida",
-  "version": "0.18.0",
+  "version": "0.17.0",
   "description": "A design system built by Sysvale, using storybook and Vue components",
   "main": "dist/@sysvale/cuida.ssr.js",
   "module": "dist/@sysvale/cuida.esm.js",
