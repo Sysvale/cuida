@@ -5,7 +5,7 @@ function install(Vue) {
 	if (install.installed) return;
 	install.installed = true;
 	Object.keys(components).forEach((componentName) => {
-		Vue.component(componentName, components[componentName]);
+		Vue.component(componentName, `cds-${components[componentName]}`);
 	});
 }
 
