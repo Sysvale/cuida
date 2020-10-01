@@ -16,7 +16,6 @@ import {
 	ProgressBar,
 	Palete,
 	ActionsList,
-	StatusList,
 	StatusItem,
 	RadioButtonGroup,
 	Timeline,
@@ -26,7 +25,6 @@ Vue.use(BootstrapVue);
 
 Vue.component('palete', Palete);
 Vue.component('cds-actions-list', ActionsList);
-Vue.component('cds-status-list', StatusList);
 Vue.component('cds-status-item', StatusItem);
 Vue.component('progress-bar', ProgressBar);
 Vue.component('actions-list', ActionsList);
