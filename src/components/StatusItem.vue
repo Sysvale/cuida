@@ -15,8 +15,8 @@
 					error
 				</i>
 				<i
-					v-else-if="variant === 'info'"
-					class="material-icons info-icon"
+					v-else-if="variant === 'processing'"
+					class="material-icons processing-icon"
 				>
 					autorenew
 				</i>
@@ -109,7 +109,7 @@ export default {
 		/**
 		* Altera o ícone exibido, além de alterar o estilo das mensagens de alerta (caso existam).
 		*
-		* Opções são: success, error, warning e info.
+		* Opções são: success, error, warning e processing.
 		*/
 		variant: {
 			type: String,
@@ -185,7 +185,7 @@ export default {
 	color: $verde-piccolo-base;
 }
 
-#statusItem .info-icon {
+#statusItem .processing-icon {
 	color: $azul-bidu-base;
 }
 
@@ -231,7 +231,7 @@ export default {
 		background-color: $amarelo-pikachu-light-2;
 		border-color: $amarelo-pikachu-light-2;
 	}
-	&-info {
+	&-processing {
 		color: $azul-bidu-dark-2;
 		background-color: $azul-bidu-light-2;
 		border-color: $azul-bidu-light-2;
