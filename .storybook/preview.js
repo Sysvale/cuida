@@ -18,6 +18,7 @@ import {
 	ActionsList,
 	RadioButtonGroup,
 	Timeline,
+	NavBar,
 } from '../src/components';
 
 Vue.use(BootstrapVue);
@@ -27,6 +28,7 @@ Vue.component('progress-bar', ProgressBar);
 Vue.component('actions-list', ActionsList);
 Vue.component('radio-button-group', RadioButtonGroup);
 Vue.component('timeline', Timeline);
+Vue.component('nav-bar', NavBar);
 
 addParameters({
 	options: {
