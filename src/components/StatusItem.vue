@@ -64,17 +64,17 @@
 					v-else-if="showAlert"
 					class="py-2 w-100"
 				>
-					<!--
-						Evento emitido quando ocorre o clique no alerta.
-						Como se trata de uma ação customizável, nenhum dado específico é emitido.
-						@event alert-clicked
-						@type {Event}
-					-->
 					<b-alert
 						show
 						class="w-75 fs-14"
 						:class="`alert-${variant}`"
 					>
+						<!--
+							Evento emitido quando ocorre o clique no alerta.
+							Como se trata de uma ação customizável, nenhum dado específico é emitido.
+							@event alert-clicked
+							@type {Event}
+						-->
 						<span
 							:class="clickableAlert ? 'clickable clickable-alert' : ''"
 							v-html="alertText"
@@ -173,7 +173,7 @@ export default {
 };
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 @import '../../node_modules/material-design-icons/iconfont/material-icons.css';
 
