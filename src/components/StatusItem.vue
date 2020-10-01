@@ -15,8 +15,8 @@
 					error
 				</i>
 				<i
-					v-else-if="variant === 'processing'"
-					class="material-icons processing-icon"
+					v-else-if="variant === 'info'"
+					class="material-icons info-icon"
 				>
 					autorenew
 				</i>
@@ -28,7 +28,7 @@
 				</i>
 			</div>
 			<div class="w-100">
-				<div class="font-weight-bold title">
+				<div class="font-weight-bold fs-18">
 					{{ title }}
 				</div>
 				<div
@@ -44,39 +44,43 @@
 					<!--
 						Evento emitido quando ocorre o clique no link da ação.
 						Como se trata de uma ação customizável, nenhum dado específico é emitido.
-						@event action-click
+						@event action-clicked
 						@type {Event}
 					-->
-					<div
-						@click="$emit('action-click')"
-						class="action"
+					<span
+						@click="$emit('action-clicked')"
+						class="action clickable"
 					>
 						{{ actionText }}
-					</div>
+					</span>
 					<div
 						v-if="actionSubtitle"
-						class="action-subtitle"
+						class="action-subtitle fs-14"
 					>
 						{{ actionSubtitle }}
 					</div>
 				</div>
 				<div
-					v-else-if="showAlert && variant !== 'success'"
+					v-else-if="showAlert"
 					class="py-2 w-100"
 				>
 					<!--
 						Evento emitido quando ocorre o clique no alerta.
 						Como se trata de uma ação customizável, nenhum dado específico é emitido.
-						@event alert-click
+						@event alert-clicked
 						@type {Event}
 					-->
 					<b-alert
 						show
-						class="w-75"
-						:class="clickableAlert ? `alert-${variant} clickable-alert` : `alert-${variant}`"
-						v-html="alertText"
-						@click="$emit('alert-click')"
-					/>
+						class="w-75 fs-14"
+						:class="`alert-${variant}`"
+					>
+						<span
+							:class="clickableAlert ? 'clickable clickable-alert' : ''"
+							v-html="alertText"
+							@click="clickableAlert ? $emit('alert-clicked') : ''"
+						/>
+					</b-alert>
 				</div>
 			</div>
 		</div>
@@ -105,7 +109,7 @@ export default {
 		/**
 		* Altera o ícone exibido, além de alterar o estilo das mensagens de alerta (caso existam).
 		*
-		* Opções são: success, error, warning e processing.
+		* Opções são: success, error, warning e info.
 		*/
 		variant: {
 			type: String,
@@ -140,7 +144,7 @@ export default {
 			required: false,
 		},
 		/**
-		* Exibe uma mensagem de alerta, exceto na variante de sucesso.
+		* Exibe uma mensagem de alerta, com o tema variando de acordo com a variante escolhida.
 		*
 		* Seu uso pode ser sobreposto pelo uso da ação clicável.
 		*/
@@ -181,7 +185,7 @@ export default {
 	color: $verde-piccolo-base;
 }
 
-#statusItem .processing-icon {
+#statusItem .info-icon {
 	color: $azul-bidu-base;
 }
 
@@ -189,19 +193,9 @@ export default {
 	color: $amarelo-pikachu-base;
 }
 
-#statusItem .title {
-	font-size: 18px;
-}
-
-#statusItem .subtitle {
-	font-size: 14px;
-}
-
 #statusItem .action {
-	font-size: 16px;
 	font-weight: 400;
 	color: $azul-bidu-dark-2;
-	cursor: pointer;
 }
 
 #statusItem .action-subtitle {
@@ -209,8 +203,24 @@ export default {
 	color: $gray-6;
 }
 
-#statusItem .alert {
+#statusItem .fs-18 {
+	font-size: 18px;
+}
+
+#statusItem .fs-14 {
 	font-size: 14px;
+}
+
+#statusItem .clickable {
+	cursor: pointer;
+}
+
+#statusItem .alert {
+	&-success {
+		color: $verde-piccolo-dark-2;
+		background-color: $verde-piccolo-light-2;
+		border-color: $verde-piccolo-light-2;
+	}
 	&-error {
 		color: $vermelho-mario-dark-2;
 		background-color: $vermelho-mario-light-2;
@@ -221,7 +231,7 @@ export default {
 		background-color: $amarelo-pikachu-light-2;
 		border-color: $amarelo-pikachu-light-2;
 	}
-	&-processing {
+	&-info {
 		color: $azul-bidu-dark-2;
 		background-color: $azul-bidu-light-2;
 		border-color: $azul-bidu-light-2;
@@ -229,7 +239,6 @@ export default {
 }
 
 #statusItem .clickable-alert {
-	cursor: pointer;
 	&:hover {
 		text-decoration: underline;
 	}
