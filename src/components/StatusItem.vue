@@ -44,11 +44,11 @@
 					<!--
 						Evento emitido quando ocorre o clique no link da ação.
 						Como se trata de uma ação customizável, nenhum dado específico é emitido.
-						@event action-clicked
+						@event action-click
 						@type {Event}
 					-->
 					<div
-						@click="$emit('action-clicked')"
+						@click="$emit('action-click')"
 						class="action"
 					>
 						{{ actionText }}
@@ -64,11 +64,18 @@
 					v-else-if="showAlert && variant !== 'success'"
 					class="py-2 w-100"
 				>
+					<!--
+						Evento emitido quando ocorre o clique no alerta.
+						Como se trata de uma ação customizável, nenhum dado específico é emitido.
+						@event alert-click
+						@type {Event}
+					-->
 					<b-alert
 						show
 						class="w-75"
-						:class="`alert-${variant}`"
+						:class="clickableAlert ? `alert-${variant} clickable-alert` : `alert-${variant}`"
 						v-html="alertText"
+						@click="$emit('alert-click')"
 					/>
 				</div>
 			</div>
@@ -150,6 +157,14 @@ export default {
 			default: '',
 			required: false,
 		},
+		/**
+		* Define se o alerta será clicável, implicando na emissão de um evento.
+		*/
+		clickableAlert: {
+			type: Boolean,
+			default: false,
+			required: false,
+		},
 	},
 };
 </script>
@@ -210,6 +225,13 @@ export default {
 		color: $azul-bidu-dark-2;
 		background-color: $azul-bidu-light-2;
 		border-color: $azul-bidu-light-2;
+	}
+}
+
+#statusItem .clickable-alert {
+	cursor: pointer;
+	&:hover {
+		text-decoration: underline;
 	}
 }
 </style>
