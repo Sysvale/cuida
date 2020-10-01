@@ -16,6 +16,7 @@ import {
 	ProgressBar,
 	Palete,
 	ActionsList,
+	StatusItem,
 	RadioButtonGroup,
 	Timeline,
 } from '../src/components';
@@ -23,6 +24,8 @@ import {
 Vue.use(BootstrapVue);
 
 Vue.component('palete', Palete);
+Vue.component('cds-actions-list', ActionsList);
+Vue.component('cds-status-item', StatusItem);
 Vue.component('progress-bar', ProgressBar);
 Vue.component('actions-list', ActionsList);
 Vue.component('radio-button-group', RadioButtonGroup);
