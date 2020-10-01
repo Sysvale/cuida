@@ -1,6 +1,6 @@
 import { mount, createLocalVue } from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
-import Nav from '../../src/components/Nav.vue';
+import NavBar from '../../src/components/NavBar.vue';
 import lodash from 'lodash';
 
 const localVue = createLocalVue();
@@ -31,7 +31,7 @@ const mockedData = [
 
 test('Component is mounted properly', () => {
 	window._ = lodash;
-	const wrapper = mount(Nav, {
+	const wrapper = mount(NavBar, {
 		localVue,
 		propsData: {
 			items: mockedData,
@@ -44,7 +44,7 @@ test('Component is mounted properly', () => {
 describe("Items styles test", () => {
 	test('if has one item set as active', () => {
 		window._ = lodash;
-		const wrapper = mount(Nav, {
+		const wrapper = mount(NavBar, {
 			localVue,
 			propsData: {
 				items: mockedData,
@@ -56,7 +56,7 @@ describe("Items styles test", () => {
 
 	test('if has one subitem set as active', () => {
 		window._ = lodash;
-		const wrapper = mount(Nav, {
+		const wrapper = mount(NavBar, {
 			localVue,
 			propsData: {
 				items: mockedData,
@@ -68,7 +68,7 @@ describe("Items styles test", () => {
 
 	test('if the dropdown parent is set as active', () => {
 		window._ = lodash;
-		const wrapper = mount(Nav, {
+		const wrapper = mount(NavBar, {
 			localVue,
 			propsData: {
 				items: mockedData,
@@ -80,7 +80,7 @@ describe("Items styles test", () => {
 
 	test('if oldschool mode is setted properly', () => {
 		window._ = lodash;
-		const wrapper = mount(Nav, {
+		const wrapper = mount(NavBar, {
 			localVue,
 			propsData: {
 				items: mockedData,
@@ -97,7 +97,7 @@ describe("Items styles test", () => {
 describe("Change active item event tests", () => {
 	test('if a event is emited when the item is clicked', () => {
 		window._ = lodash;
-		const wrapper = mount(Nav, {
+		const wrapper = mount(NavBar, {
 			localVue,
 			propsData: {
 				items: mockedData,
@@ -121,7 +121,7 @@ describe("Change active item event tests", () => {
 
 	test('if a event is emited when the subitem is clicked', () => {
 		window._ = lodash;
-		const wrapper = mount(Nav, {
+		const wrapper = mount(NavBar, {
 			localVue,
 			propsData: {
 				items: mockedData,
