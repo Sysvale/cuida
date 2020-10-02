@@ -21,6 +21,7 @@ import {
 	Timeline,
 	NavBar,
 	Popover,
+	SideSheet,
 } from '../src/components';
 
 Vue.use(BootstrapVue);
@@ -34,6 +35,7 @@ Vue.component('radio-button-group', RadioButtonGroup);
 Vue.component('timeline', Timeline);
 Vue.component('nav-bar', NavBar);
 Vue.component('popover', Popover);
+Vue.component('side-sheet', SideSheet);
 
 addParameters({
 	options: {
