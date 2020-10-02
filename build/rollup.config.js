@@ -8,6 +8,10 @@ import replace from '@rollup/plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 import minimist from 'minimist';
 
+const concat = require('concat');
+
+concat(['src/assets/sass/variables/colors.scss'], 'dist/@sysvale/tokens.scss');
+
 const argv = minimist(process.argv.slice(2));
 
 const projectRoot = path.resolve(__dirname, '..');
