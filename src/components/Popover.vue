@@ -34,7 +34,7 @@ export default {
 				lg: 360,
 				xl: 520,
 			},
-		}
+		};
 	},
 
 	props: {
@@ -113,10 +113,12 @@ export default {
 			this.alignment = newValue;
 			this.calcOffset();
 		},
+
 		offset(newValue) {
 			this.offset = newValue;
 			this.calcOffset();
 		},
+
 		value(newValue) {
 			if (!newValue) {
 				this.detachKeyupEvent();
