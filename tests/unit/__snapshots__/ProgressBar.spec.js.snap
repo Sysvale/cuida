@@ -2,8 +2,8 @@
 
 exports[`Component is mounted properly 1`] = `
 <div class="progress-bar-container"><span class="text-style">
-        67%
-    </span>
+		67%
+	</span>
   <div class="progress-bar-background" style="--backgroundColor: #DDE2E7;">
     <div class="progress-indicator" style="--width: 67%; --color: #2EB88D;"></div>
   </div>
