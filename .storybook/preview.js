@@ -6,6 +6,7 @@ import Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+import Multiselect from 'vue-multiselect';
 
 import _ from 'lodash';
 Object.defineProperty(Vue.prototype, '_', { value: _ });
@@ -22,10 +23,12 @@ import {
 	NavBar,
 	Popover,
 	SideSheet,
+	DropDown,
 } from '../src/components';
 
 Vue.use(BootstrapVue);
 
+Vue.component('multiselect', Multiselect);
 Vue.component('palete', Palete);
 Vue.component('cds-actions-list', ActionsList);
 Vue.component('cds-status-item', StatusItem);
@@ -36,6 +39,7 @@ Vue.component('timeline', Timeline);
 Vue.component('nav-bar', NavBar);
 Vue.component('popover', Popover);
 Vue.component('side-sheet', SideSheet);
+Vue.component('dropdown', DropDown);
 
 addParameters({
 	options: {
