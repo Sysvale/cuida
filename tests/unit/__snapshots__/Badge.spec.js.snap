@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component is mounted properly 1`] = `
+<div class="badge-container gray">
+  <div><small class="badge-content">
+      Test
+    </small></div>
+</div>
+`;
