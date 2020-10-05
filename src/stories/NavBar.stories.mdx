@@ -17,21 +17,20 @@ export const Template = (args, { argTypes }) => ({
 });
 
 # NavBar
-You have too many items to be displayed in the menu.
-You want to show the links vertically.
-### NavBars são componentes utilizadas para criar soluções de navegação e menus.
+
+### NavBars são componentes utilizados para criar soluções de navegação e menus.
 ---
 <br />
 
 ## Recomendamos o uso de NavBars quando:
-- Você precisa separar conteúdo por páginas.
-- Não for apropriado dividir conteúdo usando tabs, sidebars ou usando cards e links para navegar entre páginas.
+- Você precisar separar conteúdo por páginas e navergar por elas.
+- Não for o caso de utilizar soluções como tabs, sidebars, cards ou links como navegação.
 
 <br />
 
 ## Não recomendamos o uso de NavBars quando:
-- Você quiser construir componentes de navBaregação (Menu, navBarbar, etc).
-- As ações listadas afetam toda a view ou mais que um conjunto de dados relacionados.
+- Você tiver muitos itens a serem mostrados no menu.
+- Você precisar mostrar os links verticalmente.
 
 <br />
 
@@ -74,7 +73,7 @@ export const items = [
 		name="NavBar"
 		args={{
 			items,
-			oldSchool: false,
+			isLightThemed: false,
 			activeItem: items[1],
 		}}
 	>
