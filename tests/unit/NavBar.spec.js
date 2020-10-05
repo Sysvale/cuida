@@ -78,13 +78,13 @@ describe("Items styles test", () => {
 		expect(wrapper.findAll('.active-parent').length).toBe(1);
 	});
 
-	test('if oldschool mode is setted properly', () => {
+	test('if light mode is setted properly', () => {
 		window._ = lodash;
 		const wrapper = mount(NavBar, {
 			localVue,
 			propsData: {
 				items: mockedData,
-				oldSchool: true,
+				isLightThemed: true,
 				activeItem: mockedData[0],
 			},
 		});
