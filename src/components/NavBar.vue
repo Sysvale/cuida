@@ -1,7 +1,7 @@
 <template>
 	<b-nav
 		class="px-2"
-		:class="oldSchool ? 'bg-cs' : 'bg-liga'"
+		:class="isLightThemed ? 'bg-cs' : 'bg-liga'"
 	>
 		<component
 			v-for="(item, i) in computedItems"
@@ -44,21 +44,28 @@
 <script>
 export default {
 	props: {
+		/**
+		 * A lista dos itens do NavBar a serem mostrados
+		 */
 		items: {
 			type: Array,
-			default: () => [],
-			description: 'A list of the menu itens to be displayed',
+			default: () => ([]),
 			required: true,
 		},
-		oldSchool: {
+		/**
+		 * Define o estilo da NavBar. Quando setado para true,
+		 * a NavBar passa a ter um tema claro, quando false, tem o tema padrão, escuro.
+		 */
+		isLightThemed: {
 			type: Boolean,
 			default: true,
-			description: 'Defines the style of the menu. The new one is light themed and the old one follows the style used by the "Cidade Saudável"',
 		},
+		/**
+		 * O item ativo da NavBar
+		 */
 		activeItem: {
 			type: Object,
-			default: () => {},
-			description: 'The currently active menu item',
+			default: () => ({}),
 			required: true,
 		},
 	},
@@ -117,6 +124,11 @@ export default {
 		handleClick(item, parent) {
 			this.internalActiveItem = item;
 			this.internalActiveParent = parent;
+			/**
+			 * Evento emitido quando um dos itens da NavBar é clicado
+			* @event click
+			* @type {Event}
+				*/
 			this.$emit('click', this.internalActiveItem);
 		},
 
@@ -144,7 +156,7 @@ export default {
 		},
 
 		getClass(item) {
-			let accClass = this.oldSchool ? 'cs-mode' : 'liga-mode';
+			let accClass = this.isLightThemed ? 'cs-mode' : 'liga-mode';
 
 			if (
 				this.isDropdown(item)
