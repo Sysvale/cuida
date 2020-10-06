@@ -131,7 +131,7 @@ export default {
 		padding: 8px 12px;
 
 		&:hover {
-			background-color: #3ABB6D;
+			background-color: $verde-piccolo-dark-1;
 		}
 
 		&:focus {
