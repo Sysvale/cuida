@@ -25,6 +25,7 @@ import {
 	SideSheet,
 	DropDown,
 	EmptyState,
+	Badge,
 } from '../src/components';
 
 Vue.use(BootstrapVue);
@@ -42,6 +43,7 @@ Vue.component('popover', Popover);
 Vue.component('side-sheet', SideSheet);
 Vue.component('dropdown', DropDown);
 Vue.component('empty-state', EmptyState);
+Vue.component('badge', Badge);
 
 addParameters({
 	options: {
