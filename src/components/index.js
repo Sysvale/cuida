@@ -9,3 +9,4 @@ export { default as NavBar } from './NavBar.vue';
 export { default as Popover } from './Popover.vue';
 export { default as SideSheet } from './SideSheet.vue';
 export { default as DropDown } from './DropDown.vue';
+export { default as EmptyState } from './EmptyState.vue';
