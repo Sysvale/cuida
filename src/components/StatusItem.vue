@@ -200,7 +200,7 @@ export default {
 
 #statusItem .action-subtitle {
 	font-size: 14px;
-	color: $gray-6;
+	color: $cinza-6;
 }
 
 #statusItem .fs-18 {
