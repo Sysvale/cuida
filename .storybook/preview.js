@@ -24,6 +24,7 @@ import {
 	Popover,
 	SideSheet,
 	DropDown,
+	Badge,
 } from '../src/components';
 
 Vue.use(BootstrapVue);
@@ -40,6 +41,7 @@ Vue.component('nav-bar', NavBar);
 Vue.component('popover', Popover);
 Vue.component('side-sheet', SideSheet);
 Vue.component('dropdown', DropDown);
+Vue.component('badge', Badge);
 
 addParameters({
 	options: {
