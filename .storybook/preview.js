@@ -24,14 +24,15 @@ import {
 	Popover,
 	SideSheet,
 	DropDown,
+	EmptyState,
 } from '../src/components';
 
 Vue.use(BootstrapVue);
 
 Vue.component('multiselect', Multiselect);
 Vue.component('palete', Palete);
-Vue.component('cds-actions-list', ActionsList);
-Vue.component('cds-status-item', StatusItem);
+Vue.component('actions-list', ActionsList);
+Vue.component('status-item', StatusItem);
 Vue.component('progress-bar', ProgressBar);
 Vue.component('actions-list', ActionsList);
 Vue.component('radio-button-group', RadioButtonGroup);
@@ -40,6 +41,7 @@ Vue.component('nav-bar', NavBar);
 Vue.component('popover', Popover);
 Vue.component('side-sheet', SideSheet);
 Vue.component('dropdown', DropDown);
+Vue.component('empty-state', EmptyState);
 
 addParameters({
 	options: {
