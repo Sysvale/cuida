@@ -143,8 +143,8 @@ export default {
 }
 
 .gray {
-	color: $gray-9;
-	background-color: $gray-2;
-	border: 1px solid $gray-5;
+	color: $cinza-9;
+	background-color: $cinza-2;
+	border: 1px solid $cinza-5;
 }
 </style>

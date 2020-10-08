@@ -1,13 +1,13 @@
-$white: #FFFFFF;
-$gray-1: #FAFBFE;
-$gray-2: #F0F3FA;
-$gray-3: #DDE2E7;
-$gray-4: #CED4DA;
-$gray-5: #ABB5BF;
-$gray-6: #697580;
-$gray-7: #44505C;
-$gray-8: #303A44;
-$gray-9: #182532;
+$branco: #FFFFFF;
+$cinza-1: #FAFBFE;
+$cinza-2: #F0F3FA;
+$cinza-3: #DDE2E7;
+$cinza-4: #CED4DA;
+$cinza-5: #ABB5BF;
+$cinza-6: #697580;
+$cinza-7: #44505C;
+$cinza-8: #303A44;
+$cinza-9: #182532;
 
 $turquesa-perry-light-2: #F0FCFF;
 $turquesa-perry-light-1: #7DD9E8;
@@ -63,21 +63,21 @@ $amarelo-pikachu-base: #FCBB5A;
 $amarelo-pikachu-dark-1: #FBAA32;
 $amarelo-pikachu-dark-2: #C37604;
 
-$grays: ();
+$cinzas: ();
 
-$grays: map-merge(
+$cinzas: map-merge(
 	(
-		"1": $gray-1,
-		"2": $gray-2,
-		"3": $gray-3,
-		"4": $gray-4,
-		"5": $gray-5,
-		"6": $gray-6,
-		"7": $gray-7,
-		"8": $gray-8,
-		"9": $gray-9
+		"1": $cinza-1,
+		"2": $cinza-2,
+		"3": $cinza-3,
+		"4": $cinza-4,
+		"5": $cinza-5,
+		"6": $cinza-6,
+		"7": $cinza-7,
+		"8": $cinza-8,
+		"9": $cinza-9
 	),
-	$grays
+	$cinzas
 );
 
 $turquesa-perry: ();
