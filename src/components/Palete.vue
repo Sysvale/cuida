@@ -116,6 +116,6 @@ export default {
 }
 
 .low-contrast-color-names {
-  color: $gray-9 !important;
+  color: $cinza-9 !important;
 }
 </style>

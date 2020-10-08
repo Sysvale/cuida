@@ -94,7 +94,7 @@ export default {
 			description: `
 				Defines if the element won't be dismissed when esc is pressed.
 			`,
-		}
+		},
 	},
 
 	computed: {
