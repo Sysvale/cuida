@@ -1,7 +1,11 @@
 {
   "name": "@sysvale/cuida",
-  "version": "0.24.0",
+  "version": "0.24.1",
   "description": "A design system built by Sysvale, using storybook and Vue components",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sysvale/cuida"
+  },
   "main": "dist/@sysvale/cuida.ssr.js",
   "module": "dist/@sysvale/cuida.esm.js",
   "unpkg": "dist/@sysvale/cuida.min.js",
