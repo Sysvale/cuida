@@ -9,7 +9,7 @@
 			>
 				<div
 					class="container px-0"
-					:class="floatClass"
+					:class="position"
 					@click.stop
 				>
 					<!-- @slot Slot usado para customizar o botão de fechamento do SideSheet. -->
@@ -48,21 +48,14 @@ export default {
 			type: Boolean,
 			default: false,
 			required: true,
-		},
-		/**
-		 * Define se o SideSheet vai ser mostrado no canto direito. Situação padrão.
+    },
+    /**
+		 * Define a posição ao qual o SideSheet será mostrado.
 		 */
-		right: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Define se o SideSheet vai ser mostrado no canto esquerdo.
-		 */
-		left: {
-			type: Boolean,
-			default: false,
-		},
+    position: {
+      type: String,
+      default: 'right',
+    },
 		/**
 		 * Define se o SideSheet vai ser fechado com o click no backdrop.
 		 */
@@ -80,20 +73,8 @@ export default {
 	},
 
 	computed: {
-		floatClass() {
-			if (this.left) {
-				return 'left';
-			}
-
-			return 'right';
-		},
-
 		floatTransition() {
-			if (this.left) {
-				return 'slide-fade-left';
-			}
-
-			return 'slide-fade-right';
+			return `slide-fade-${this.position}`;
 		},
 	},
 

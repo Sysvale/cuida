@@ -4,6 +4,14 @@ import SideSheet from '../components/SideSheet.vue';
 <Meta
 	title="Componentes/SideSheet"
 	component={ SideSheet }
+	argTypes={{
+		position: {
+			control: {
+				type: 'select',
+				options: ['right', 'left']
+			}
+		},
+	}}
 />
 
 export const Template = (args, { argTypes }) => ({
@@ -26,11 +34,11 @@ export const Template = (args, { argTypes }) => ({
 				v-bind="$props"
 			>
 				<p class="p-3">
-					Mussum Ipsum, cacilds vidis litro abertis. Todo mundo 
+					Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
 					vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
 					Atirei o pau no gatis, per gatis num morreus. Pra lá , depois
 					divoltis porris, paradis. Leite de capivaris, leite de mula
-					manquis sem cabeça. Viva Forevis aptent taciti sociosqu ad 
+					manquis sem cabeça. Viva Forevis aptent taciti sociosqu ad
 					litora torquent. Per aumento de cachacis, eu reclamis. Nec
 					orci ornare consequat. Praesent lacinia ultrices consectetur.
 					Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
@@ -66,8 +74,7 @@ export const Template = (args, { argTypes }) => ({
 	<Story
 		name="SideSheet"
 		args={{
-			right: false,
-			left: false,
+			position: right,
 			noCloseOnBackdrop: false,
 			noCloseOnEsc: false,
 		}}
