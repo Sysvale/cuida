@@ -26,6 +26,7 @@ import {
 	DropDown,
 	EmptyState,
 	Badge,
+	TypographyList
 } from '../src/components';
 
 Vue.use(BootstrapVue);
@@ -44,6 +45,7 @@ Vue.component('side-sheet', SideSheet);
 Vue.component('dropdown', DropDown);
 Vue.component('empty-state', EmptyState);
 Vue.component('badge', Badge);
+Vue.component('typography-list', TypographyList);
 
 addParameters({
 	options: {
