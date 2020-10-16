@@ -10,7 +10,7 @@ test('Component is mounted properly', () => {
 		localVue,
 		propsData: {
 			value: true,
-			right: true,
+			position: 'right',
 		},
 	});
 	expect(wrapper).toMatchSnapshot();
@@ -22,7 +22,7 @@ describe("Items styles test", () => {
 			localVue,
 			propsData: {
 				value: true,
-				left: true,
+				position: 'left',
 			},
 		});
 		expect(wrapper.findAll('.left').length).toBe(1);
@@ -33,11 +33,21 @@ describe("Items styles test", () => {
 			localVue,
 			propsData: {
 				value: true,
-				right: true,
+				position: 'right',
 			},
 		});
 		expect(wrapper.findAll('.right').length).toBe(1);
-	});
+  });
+
+  test('if content is right aligned by default', () => {
+    const wrapper = mount(SideSheet, {
+      localVue,
+      propsData: {
+        value: true,
+      },
+    });
+    expect(wrapper.findAll('.right').length).toBe(1);
+  });
 });
 
 describe("Behavior tests", () => {
@@ -47,7 +57,7 @@ describe("Behavior tests", () => {
 			localVue,
 			propsData: {
 				value: true,
-				right: true,
+				position: 'right',
 				noCloseOnBackdrop: true,
 			},
 		});
@@ -64,7 +74,7 @@ describe("Behavior tests", () => {
 			localVue,
 			propsData: {
 				value: true,
-				right: true,
+				position: 'right',
 				noCloseOnEsc: true,
 			},
 		});
