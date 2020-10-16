@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://sysvale.github.io/component-library">
-    <img src="https://sysvale.github.io/cuida/static/media/CuidaTempLogo.f4adb1cc.png" alt="SysvaleComponentLibraryLogo" width="350" />
+  <a href="https://sysvale.github.io/cuida">
+    <img src="https://sysvale.github.io/cuida/static/media/CuidaTempLogo.f4adb1cc.png" alt="Cuida logo" width="350" />
   </a>
 </p>
 
@@ -10,12 +10,12 @@
 </div>
 
 <p align="center">
-  <a href="https://www.codefactor.io/repository/github/sysvale/component-library">
-    <img src="https://www.codefactor.io/repository/github/sysvale/component-library/badge" alt="CodeFactor" />
+  <a href="https://www.codefactor.io/repository/github/sysvale/cuida">
+    <img src="https://www.codefactor.io/repository/github/sysvale/cuida/badge" alt="CodeFactor" />
   </a>
   
-  <a href="https://travis-ci.com/Sysvale/component-library">
-    <img src="https://travis-ci.com/Sysvale/component-library.svg?branch=master" alt="CodeFactor" />
+  <a href="https://travis-ci.com/Sysvale/cuida">
+    <img src="https://travis-ci.com/Sysvale/cuida.svg?branch=master" alt="CodeFactor" />
   </a>
 </p>
 
