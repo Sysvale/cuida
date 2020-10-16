@@ -1,18 +1,18 @@
 import { mount, createLocalVue } from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
-import StepperCounter from '../../src/components/StepperCounter.vue';
+import Stepper from '../../src/components/Stepper.vue';
 
 const localVue = createLocalVue();
 localVue.use(BootstrapVue);
 
 test('Component is mounted properly', () => {
 	let mocked_data = [
-		{ label: 'Dummy label 1', concluded: true, active: false },
-		{ label: 'Dummy label 3', concluded: false, active: true },
-		{ label: 'Dummy label 2', concluded: false, active: false },
+		{ label: 'Dummy label 1', completed: true, active: false },
+		{ label: 'Dummy label 3', completed: false, active: true },
+		{ label: 'Dummy label 2', completed: false, active: false },
 	];
 
-	const wrapper = mount(StepperCounter, {
+	const wrapper = mount(Stepper, {
 		localVue,
 		propsData: {
 			steps: mocked_data,
@@ -22,66 +22,68 @@ test('Component is mounted properly', () => {
 });
 
 describe("Divider styles test", () => {
-	test('if all the stepper dividers are rendered as common dividers', () => {
+	test('if all the stepper dividers are rendered as default dividers', () => {
 		let mocked_data = [
-			{ label: 'Dummy label 1', concluded: false, active: true },
-			{ label: 'Dummy label 2', concluded: false, active: false },
-			{ label: 'Dummy label 3', concluded: false, active: false },
+			{ label: 'Dummy label 1', completed: false, active: true },
+			{ label: 'Dummy label 2', completed: false, active: false },
+			{ label: 'Dummy label 3', completed: false, active: false },
 		];
 
-		const wrapper = mount(StepperCounter, {
+		const wrapper = mount(Stepper, {
 			localVue,
 			propsData: {
 				steps: mocked_data,
 			},
 		});
-		expect(wrapper.findAll('.common-stepper-divider').length).toBe(2);
+		const numberOfEdges = 3;
+		expect(wrapper.findAll('.stepper__divider--default').length).toBe(2+numberOfEdges);
 	});
 
-	test('if one of the stepper divider is rendered as an in_progress divider and others are rendered as common dividers', () => {
+	test('if one of the stepper divider is rendered as an in_progress divider and others are rendered as default dividers', () => {
 		let mocked_data = [
-			{ label: 'Dummy label 1', concluded: true, active: false },
-			{ label: 'Dummy label 2', concluded: false, active: true },
-			{ label: 'Dummy label 3', concluded: false, active: false },
+			{ label: 'Dummy label 1', completed: true, active: false },
+			{ label: 'Dummy label 2', completed: false, active: true },
+			{ label: 'Dummy label 3', completed: false, active: false },
 		];
 
-		const wrapper = mount(StepperCounter, {
+		const wrapper = mount(Stepper, {
 			localVue,
 			propsData: {
 				steps: mocked_data,
 			},
 		});
-		expect(wrapper.findAll('.in-progress-stepper-divider').length).toBe(1);
-		expect(wrapper.findAll('.common-stepper-divider').length).toBe(1);
+		expect(wrapper.findAll('.stepper__divider--in-progress').length).toBe(1);
+		const numberOfEdges = 3;
+		expect(wrapper.findAll('.stepper__divider--default').length).toBe(1+numberOfEdges);
 	});
 
-	test('if one of the stepper divider is rendered as a concluded divider and the other is rendered as an in_progress divider', () => {
+	test('if one of the stepper divider is rendered as a completed divider and the other is rendered as an in_progress divider', () => {
 		let mocked_data = [
-			{ label: 'Dummy label 1', concluded: true, active: false },
-			{ label: 'Dummy label 2', concluded: true, active: false },
-			{ label: 'Dummy label 3', concluded: false, active: true },
+			{ label: 'Dummy label 1', completed: true, active: false },
+			{ label: 'Dummy label 2', completed: true, active: false },
+			{ label: 'Dummy label 3', completed: false, active: true },
 		];
 
-		const wrapper = mount(StepperCounter, {
+		const wrapper = mount(Stepper, {
 			localVue,
 			propsData: {
 				steps: mocked_data,
 			},
 		});
-		expect(wrapper.findAll('.concluded-stepper-divider').length).toBe(1);
-		expect(wrapper.findAll('.in-progress-stepper-divider').length).toBe(1);
+		expect(wrapper.findAll('.stepper__divider--completed').length).toBe(1);
+		expect(wrapper.findAll('.stepper__divider--in-progress').length).toBe(1);
 	});
 });
 
 describe("Change step event tests", () => {
 	test('if a event is emited when the stepper is clicked', () => {
 		let mocked_data = [
-			{ label: 'Dummy label 1', concluded: false, active: true },
-			{ label: 'Dummy label 2', concluded: false, active: false },
-			{ label: 'Dummy label 3', concluded: false, active: false },
+			{ label: 'Dummy label 1', completed: false, active: true },
+			{ label: 'Dummy label 2', completed: false, active: false },
+			{ label: 'Dummy label 3', completed: false, active: false },
 		];
 
-		const wrapper = mount(StepperCounter, {
+		const wrapper = mount(Stepper, {
 			localVue,
 			propsData: {
 				steps: mocked_data,
@@ -94,7 +96,7 @@ describe("Change step event tests", () => {
 		expect(wrapper.emitted().step_changed).toEqual([
 			[
 				1,
-				{"active": true, "concluded": false, "label": "Dummy label 2"},
+				{"active": true, "completed": false, "label": "Dummy label 2"},
 			]
 		]);
 	});

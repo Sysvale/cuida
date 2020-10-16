@@ -20,7 +20,7 @@
 					:class="circleStyle(step)"
 				>
 					<span
-						v-if="!step.concluded"
+						v-if="!step.completed"
 						class="fs-14"
 					>
 						{{ index + 1 }}
@@ -61,9 +61,9 @@ export default {
 			default: () => [],
 			required: true,
 			description:
-				`Um objeto com as propriedades 'label' e 'concluded',
+				`Um objeto com as propriedades 'label' e 'completed',
 				'label' é o texto que descreve o passo,
-				e 'concluded' é o status (booleano) do passo.`,
+				e 'completed' é o status (booleano) do passo.`,
 		},
 		vertical: {
 			type: Boolean,
@@ -74,7 +74,7 @@ export default {
 
 	methods: {
 		circleStyle(step) {
-			if (step.concluded) {
+			if (step.completed) {
 				return 'stepper__step--completed';
 			} 
 			
@@ -102,19 +102,19 @@ export default {
 			console.log('hello');
 
 			if (!lastStep
-				&& this.steps[index].concluded
-				&& this.steps[nextStep].concluded
+				&& this.steps[index].completed
+				&& this.steps[nextStep].completed
 			) {
 				return 'stepper__divider--completed';
 			}
 			
 			if((!lastStep
 				&& index > 0
-				&& this.steps[index].concluded
-				&& this.steps[prevStep].concluded)
+				&& this.steps[index].completed
+				&& this.steps[prevStep].completed)
 				|| (!lastStep
 				&& firstStep
-				&& this.steps[index].concluded)
+				&& this.steps[index].completed)
 			) {
 				return 'stepper__divider--in-progress';
 			}
