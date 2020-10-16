@@ -12,3 +12,4 @@ export { default as DropDown } from './DropDown.vue';
 export { default as EmptyState } from './EmptyState.vue';
 export { default as Badge } from './Badge.vue';
 export { default as TypographyList } from './TypographyList.vue';
+export { default as Stepper } from './Stepper.vue';
