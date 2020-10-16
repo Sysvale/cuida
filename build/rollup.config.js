@@ -10,7 +10,15 @@ import minimist from 'minimist';
 
 const concat = require('concat');
 
-concat(['src/assets/sass/variables/colors.scss'], 'dist/@sysvale/tokens.scss');
+/* Cada arquivo de token que precisar ser exportado,
+deve ser incluído no array abaixo. */
+concat(
+	[
+		'src/assets/sass/variables/colors.scss',
+		'src/assets/sass/variables/typography.scss',
+	],
+	'dist/@sysvale/tokens.scss',
+);
 
 const argv = minimist(process.argv.slice(2));
 
@@ -38,7 +46,7 @@ const baseConfig = {
 			},
 		},
 		postVue: [
-			buble({objectAssign: true}),
+			buble({ objectAssign: true }),
 		],
 	},
 };
