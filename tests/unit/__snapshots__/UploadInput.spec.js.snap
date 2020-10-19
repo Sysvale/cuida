@@ -4,11 +4,11 @@ exports[`Component is mounted properly 1`] = `
 <div>
   <div class="image-upload-wrap text-center py-3 px-5">
     <div class="custom-file b-form-file" style="display: none;"><input type="file" class="custom-file-input" style="z-index: -5;"><label data-browse="Browse" class="custom-file-label"><span class="d-block form-file-text" style="pointer-events: none;">No file chosen</span></label></div>
-    <div class="drag-text px-3 py-5"><span><img src="../assets/images/upload-icon.svg"> <div class="mt-3 titulo-3"><span>
+    <div class="drag-text px-3 py-5"><span><img src="../assets/images/upload-icon.svg"> <div class="mt-3 title"><span>
 						Arraste o arquivo aqui ou
-							<a href="javascript:void(0)" class="search-link font-weight-bold">
-								pesquise no seu computador
-							</a></span></div></span>
+						<a href="javascript:void(0)" class="search-link font-weight-bold">
+							pesquise no seu computador
+						</a></span></div></span>
   </div>
 </div>
 </div>
