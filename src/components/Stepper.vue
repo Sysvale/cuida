@@ -41,7 +41,7 @@
 						size="1x"
 					/>
 					<img
-						v-else-if="step.in_processing"
+						v-else-if="step.inProcessing"
 						class="ml-n-1px"
 						src="../assets/images/in-processing.svg"
 					/>
@@ -88,7 +88,7 @@ export default {
 			default: () => [],
 			required: true,
 			description:
-				`Um objeto com as propriedades 'label', 'active', 'in_processing',
+				`Um objeto com as propriedades 'label', 'active', 'inProcessing',
 				'error' e 'completed', 'label' é o texto que descreve o passo,
 				e as demais props são booleanas e representam o status do passo.`,
 		},
@@ -101,7 +101,7 @@ export default {
 
 	methods: {
 		circleStyle(step) {
-			if (step.in_processing) {
+			if (step.inProcessing) {
 				return 'stepper__step--in-processing';
 			}
 
