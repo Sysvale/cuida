@@ -7,9 +7,9 @@ localVue.use(BootstrapVue);
 
 test('Component is mounted properly', () => {
 	let mocked_data = [
-		{ label: 'Dummy label 1', completed: true, active: false },
-		{ label: 'Dummy label 3', completed: false, active: true },
-		{ label: 'Dummy label 2', completed: false, active: false },
+		{ label: 'Dummy label 1', completed: true, in_processing: false, active: false },
+		{ label: 'Dummy label 3', completed: false, in_processing: true, active: false },
+		{ label: 'Dummy label 2', completed: false, in_processing: false, active: true },
 	];
 
 	const wrapper = mount(Stepper, {
@@ -24,9 +24,9 @@ test('Component is mounted properly', () => {
 describe("Divider styles test", () => {
 	test('if all the stepper dividers are rendered as default dividers', () => {
 		let mocked_data = [
-			{ label: 'Dummy label 1', completed: false, active: true },
-			{ label: 'Dummy label 2', completed: false, active: false },
-			{ label: 'Dummy label 3', completed: false, active: false },
+			{ label: 'Dummy label 1', completed: false, in_processing: false, active: true },
+			{ label: 'Dummy label 2', completed: false, in_processing: false, active: false },
+			{ label: 'Dummy label 3', completed: false, in_processing: false, active: false },
 		];
 
 		const wrapper = mount(Stepper, {
@@ -41,9 +41,9 @@ describe("Divider styles test", () => {
 
 	test('if one of the stepper divider is rendered as an in_progress divider and others are rendered as default dividers', () => {
 		let mocked_data = [
-			{ label: 'Dummy label 1', completed: true, active: false },
-			{ label: 'Dummy label 2', completed: false, active: true },
-			{ label: 'Dummy label 3', completed: false, active: false },
+			{ label: 'Dummy label 1', completed: true, in_processing: false, active: false },
+			{ label: 'Dummy label 2', completed: false, in_processing: false, active: true },
+			{ label: 'Dummy label 3', completed: false, in_processing: false, active: false },
 		];
 
 		const wrapper = mount(Stepper, {
@@ -59,9 +59,9 @@ describe("Divider styles test", () => {
 
 	test('if one of the stepper divider is rendered as a completed divider and the other is rendered as an in_progress divider', () => {
 		let mocked_data = [
-			{ label: 'Dummy label 1', completed: true, active: false },
-			{ label: 'Dummy label 2', completed: true, active: false },
-			{ label: 'Dummy label 3', completed: false, active: true },
+			{ label: 'Dummy label 1', completed: true, in_processing: false, active: false },
+			{ label: 'Dummy label 2', completed: true, in_processing: false, active: false },
+			{ label: 'Dummy label 3', completed: false, in_processing: false, active: true },
 		];
 
 		const wrapper = mount(Stepper, {
@@ -78,9 +78,9 @@ describe("Divider styles test", () => {
 describe("Change step event tests", () => {
 	test('if a event is emited when the stepper is clicked', () => {
 		let mocked_data = [
-			{ label: 'Dummy label 1', completed: false, active: true },
-			{ label: 'Dummy label 2', completed: false, active: false },
-			{ label: 'Dummy label 3', completed: false, active: false },
+			{ label: 'Dummy label 1', completed: false, in_processing: false, active: true },
+			{ label: 'Dummy label 2', completed: false, in_processing: false, active: false },
+			{ label: 'Dummy label 3', completed: false, in_processing: false, active: false },
 		];
 
 		const wrapper = mount(Stepper, {
@@ -92,12 +92,33 @@ describe("Change step event tests", () => {
 
 		wrapper.find('#step-2').trigger('click');
 
-		expect(wrapper.emitted().step_changed).toBeTruthy();
-		expect(wrapper.emitted().step_changed).toEqual([
+		expect(wrapper.emitted().stepChanged).toBeTruthy();
+		expect(wrapper.emitted().stepChanged).toEqual([
 			[
 				1,
-				{"active": true, "completed": false, "label": "Dummy label 2"},
+				{"active": true, "completed": false, "in_processing": false, "label": "Dummy label 2"},
 			]
 		]);
+	});
+});
+
+describe("Component is mounted properly when is vertical", () => {
+	test('if dividers are shown as vertical', () => {
+		let mocked_data = [
+			{ label: 'Dummy label 1', completed: false, in_processing: false, active: true },
+			{ label: 'Dummy label 2', completed: false, in_processing: false, active: false },
+			{ label: 'Dummy label 3', completed: false, in_processing: false, active: false },
+		];
+
+		const wrapper = mount(Stepper, {
+			localVue,
+			propsData: {
+				steps: mocked_data,
+				vertical: true,
+			},
+		});
+
+		const numberOfEdges = 2;
+		expect(wrapper.findAll('.stepper__vertical-divider--default').length).toBe(2+numberOfEdges);
 	});
 });

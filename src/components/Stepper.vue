@@ -1,17 +1,30 @@
 <template>
-	<div class="stepper d-flex justify-content-between">
-		<div class="w-50">
-			<div class="stepper__edge d-flex align-items-center">
-				<div class="stepper__divider--default" />
+	<div
+		class="stepper d-flex justify-content-between"
+		:class="vertical ? 'flex-column' : ''"
+	>
+		<div
+			:class="vertical ? 'd-flex justify-content-end' : 'w-50'"
+		>
+			<div class="stepper__edge d-flex align-items-center justify-content-center">
+				<div :class="dividerStyle(-1)" />
 			</div>
 		</div>
 		<div
 			v-for="(step, index) in steps"
 			:key="index"
-			:class="index !== steps.length - 1 ? 'w-100' : ''"
+			:class="stepSectionStyle(index)"
 		>
 			<div
+				v-if="vertical"
+				class="stepper__step-label mr-2 text-right"
+				:class="labelStyle(step)"
+			>
+				<small>{{ step.label }}</small>
+			</div>
+			<div
 				class="d-flex align-items-center"
+				:class="vertical ? 'flex-column' : ''"
 				:id="`step-${index + 1}`"
 				@click="changeStep(index)"
 			>
@@ -19,30 +32,39 @@
 					class="d-flex justify-content-center align-items-center cursor-pointer"
 					:class="circleStyle(step)"
 				>
+					<check-icon
+						v-if="step.completed"
+						size="1x"
+					/>
+					<img
+						v-else-if="step.in_processing"
+						class="ml-n-1px"
+						src="../assets/images/in-processing.svg"
+					/>
 					<span
-						v-if="!step.completed"
+						v-else
 						class="fs-14"
 					>
 						{{ index + 1 }}
 					</span>
-					<check-icon
-						v-else
-						size="1x"
-					/>
 				</div>
 
 				<div :class="dividerStyle(index)" />
 			</div>
 			<div
-				class="stepper__step-label mt-2"
-				:class="!step.active ? 'stepper__step-label--muted' : ''"
+				v-if="!vertical"
+				class="stepper__step-label"
+				:class="labelStyle(step)"
 			>
 				<small>{{ step.label }}</small>
 			</div>
 		</div>
-		<div class="w-50">
-			<div class="d-flex align-items-center stepper__edge">
-				<div class="stepper__divider--default" />
+		<div
+			v-if="!vertical"
+			class="w-50"
+		>
+			<div class="stepper__edge d-flex align-items-center justify-content-center">
+				<div :class="dividerStyle(-1)" />
 			</div>
 		</div>
 	</div>
@@ -61,7 +83,7 @@ export default {
 			default: () => [],
 			required: true,
 			description:
-				`Um objeto com as propriedades 'label' e 'completed',
+				`Um objeto com as propriedades 'label', 'in_processing' e 'completed',
 				'label' é o texto que descreve o passo,
 				e 'completed' é o status (booleano) do passo.`,
 		},
@@ -74,9 +96,13 @@ export default {
 
 	methods: {
 		circleStyle(step) {
+			if (step.in_processing) {
+				return 'stepper__step--in-processing';
+			}
+
 			if (step.completed) {
 				return 'stepper__step--completed';
-			} 
+			}
 			
 			if (step.active){
 				return 'stepper__step--active';
@@ -91,21 +117,25 @@ export default {
 				item.active = i === index ? true : false;
 			});
 
-			this.$emit('step_changed', index, this.steps[index]);
+			this.$emit('stepChanged', index, this.steps[index]);
 		},
 
 		dividerStyle(index) {
+			const vertical = this.vertical ? 'vertical-' : '';
+			if (index < 0) {
+				return `stepper__${vertical}divider--default`;
+			}
+
 			const lastStep = index === this.steps.length - 1;
 			const firstStep = index === 0;
 			const prevStep = index - 1;
 			const nextStep = index + 1;
-			console.log('hello');
 
 			if (!lastStep
 				&& this.steps[index].completed
 				&& this.steps[nextStep].completed
 			) {
-				return 'stepper__divider--completed';
+				return `stepper__${vertical}divider--completed`;
 			}
 			
 			if((!lastStep
@@ -116,10 +146,26 @@ export default {
 				&& firstStep
 				&& this.steps[index].completed)
 			) {
-				return 'stepper__divider--in-progress';
+				return `stepper__${vertical}divider--in-progress`;
 			}
 
-			return 'stepper__divider--default';
+			return `stepper__${vertical}divider--default`;
+		},
+		
+		stepSectionStyle(index) {
+			let classes = '';
+			classes += index !== this.steps.length - 1 ? 'w-100 ' : '';
+			classes += this.vertical ? 'd-flex justify-content-end' : '';
+			return classes;
+		},
+
+		labelStyle(step) {
+			let classes = '';
+
+			classes += step.active ? 'stepper__step-label--active' : 'stepper__step-label--muted';
+			classes += !this.vertical ? ' label-max-width' : '';
+			
+			return classes;
 		},
 	}
 }
@@ -131,6 +177,7 @@ export default {
 .stepper {
 	&__step--active,
 	&__step--muted,
+	&__step--in-processing,
 	&__step--completed {
 		min-width: 30px;
 		min-height: 30px;
@@ -141,12 +188,20 @@ export default {
 	
 	&__step--active {
 		color: $cinza-6;
+		border: 2px;
+		border-style: solid;
 		border-color: $verde-piccolo-base;
 	}
 
 	&__step--muted {
 		color: $cinza-5;
 		border-color: $cinza-5;
+	}
+
+	&__step--in-processing {
+		border: 2px;
+		border-style: solid;
+		border-color: $azul-sonic-base;
 	}
 	
 	&__step--completed { 
@@ -156,13 +211,18 @@ export default {
 	}
 
 	&__step-label {
-		max-width: 70px;
 		margin-left: -10px;
+		margin-top: 6px;
 		line-height: 1.0;
 		display: block;
 
 		&--muted {
 			color: $cinza-6;
+		}
+
+		&--active small {
+			color: $cinza-9;
+			font-weight: 600;
 		}
 	}
 	
@@ -189,6 +249,25 @@ export default {
 	&__divider--completed {
 		background: $verde-piccolo-base;
 	}
+
+	&__vertical-divider--default,
+	&__vertical-divider--in-progress,
+	&__vertical-divider--completed {
+		height: 30px;
+		width: 1px;
+	}
+
+	&__vertical-divider--default {
+		background-color: $cinza-4;
+	}
+	
+	&__vertical-divider--in-progress {
+		background: linear-gradient(180deg, #43E4CC 0%, $cinza-4 67.57%);
+	}
+	
+	&__vertical-divider--completed {
+		background: $verde-piccolo-base;
+	}
 }
 
 .fs-14 {
@@ -197,5 +276,13 @@ export default {
 
 .cursor-pointer {
 	cursor: pointer;
+}
+
+.label-max-width {
+	max-width: 70px;
+}
+
+.ml-n-1px {
+	margin-left: -1px;
 }
 </style>
