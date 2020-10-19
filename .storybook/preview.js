@@ -26,7 +26,8 @@ import {
 	DropDown,
 	EmptyState,
 	Badge,
-	TypographyList
+	TypographyList,
+	UploadInput,
 } from '../src/components';
 
 Vue.use(BootstrapVue);
@@ -46,6 +47,7 @@ Vue.component('dropdown', DropDown);
 Vue.component('empty-state', EmptyState);
 Vue.component('badge', Badge);
 Vue.component('typography-list', TypographyList);
+Vue.component('upload-input', UploadInput);
 
 addParameters({
 	options: {
