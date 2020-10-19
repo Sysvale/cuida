@@ -1,0 +1,53 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import UploadInput from '../components/UploadInput.vue';
+
+<Meta
+	title="Componentes/UploadInput"
+	component={ UploadInput }
+	argTypes={{
+		accept: '*'
+	}
+}
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { UploadInput },
+	template: /*html*/ `
+		<UploadInput
+			v-bind="$props" 
+		/>
+	`,
+});
+
+# UploadInput
+
+### UploadInput é um input customizado de arquivos.
+---
+<br />
+
+## Recomendamos o uso de UploadInputs quando:
+- Você precisar que o usuário faça uploads do seu computador para a plataforma.
+- Você quiser prover uma experiência de arrasta e solta para upload de arquivos.
+
+<br />
+
+## Não recomendamos o uso de UploadInputs quando:
+- A sua experiência for mobile-first
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="UploadInput"
+		args={{
+			accept: '*',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="UploadInput" />
