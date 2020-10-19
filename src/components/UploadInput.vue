@@ -21,13 +21,13 @@
 					<div class="mt-3 title">
 						<span v-if="!isOnDragEnterState">
 							Arraste o arquivo aqui ou
-								<a
-									href="javascript:void(0)"
-									class="search-link font-weight-bold"
-									@click="linkClick"
-								>
-									pesquise no seu computador
-								</a>
+							<a
+								href="javascript:void(0)"
+								class="search-link font-weight-bold"
+								@click="linkClick"
+							>
+								pesquise no seu computador
+							</a>
 						</span>
 						<span v-else>
 							Solte aqui o seu arquivo
