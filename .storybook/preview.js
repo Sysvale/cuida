@@ -15,7 +15,6 @@ Vue.config.productionTip = false;
 
 import {
 	ProgressBar,
-	Palete,
 	ActionsList,
 	StatusItem,
 	RadioButtonGroup,
@@ -26,9 +25,11 @@ import {
 	DropDown,
 	EmptyState,
 	Badge,
-	TypographyList,
 	UploadInput,
 } from '../src/components';
+
+import Palete from '../src/Palete.vue';
+import TypographyList from '../src/TypographyList.vue';
 
 Vue.use(BootstrapVue);
 
