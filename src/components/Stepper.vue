@@ -36,6 +36,10 @@
 						v-if="step.completed"
 						size="1x"
 					/>
+					<x-icon
+						v-else-if="step.error"
+						size="1x"
+					/>
 					<img
 						v-else-if="step.in_processing"
 						class="ml-n-1px"
@@ -70,11 +74,12 @@
 	</div>
 </template>
 <script>
-import { CheckIcon } from 'vue-feather-icons'
+import { CheckIcon, XIcon } from 'vue-feather-icons'
 
 export default {
 	components: {
 		CheckIcon,
+		XIcon,
 	},
 
 	props: {
@@ -83,9 +88,9 @@ export default {
 			default: () => [],
 			required: true,
 			description:
-				`Um objeto com as propriedades 'label', 'in_processing' e 'completed',
-				'label' é o texto que descreve o passo,
-				e 'completed' é o status (booleano) do passo.`,
+				`Um objeto com as propriedades 'label', 'active', 'in_processing',
+				'error' e 'completed', 'label' é o texto que descreve o passo,
+				e as demais props são booleanas e representam o status do passo.`,
 		},
 		vertical: {
 			type: Boolean,
@@ -98,6 +103,10 @@ export default {
 		circleStyle(step) {
 			if (step.in_processing) {
 				return 'stepper__step--in-processing';
+			}
+
+			if (step.error) {
+				return 'stepper__step--error';
 			}
 
 			if (step.completed) {
@@ -178,6 +187,7 @@ export default {
 	&__step--active,
 	&__step--muted,
 	&__step--in-processing,
+	&__step--error,
 	&__step--completed {
 		min-width: 30px;
 		min-height: 30px;
@@ -202,6 +212,12 @@ export default {
 		border: 2px;
 		border-style: solid;
 		border-color: $azul-sonic-base;
+	}
+
+	&__step--error {
+		background-color: $vermelho-mario-base;
+		border-color: $vermelho-mario-base;
+		color: $branco;
 	}
 	
 	&__step--completed { 
