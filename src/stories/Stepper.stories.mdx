@@ -1,0 +1,60 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Stepper from '../components/Stepper.vue';
+
+<Meta
+	title="Componentes/Stepper"
+	component={ Stepper }
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { Stepper },
+	template: /*html*/ `
+		<stepper
+			v-bind="$props" 
+		/>
+	`,
+});
+
+# Stepper
+
+### Steppers são componentes que controlam e exibem tarefas divididas em etapas
+
+---
+<br />
+
+## Recomendamos o uso de Steppers quando:
+- Necessário mostrar, de forma visual, o estado e a etapa atual de um stepper.
+- Houver um modal com várias etapas.
+- Se tem uma série de entradas ou ações que deseja mostrar o progresso do preenchimento e, hora e data dos estados ou as ações não são necessárias.
+
+<br />
+
+## Não recomendamos o uso de Steppers quando:
+- Precisa da cronologia (data, hora) dos steps, para isso utilize componente Timeline.
+- A ordem das etapas, eventos ou ações são relevantes.
+
+<br />
+
+## Preview
+
+export const steps = [
+    { label: 'Dados da operadora', completed: true, inProcessing: false, error: false, active: false },
+    { label: 'Bandeira 2', completed: false, inProcessing: true, error: false, active: false },
+    { label: 'Bandeira 3', completed: false, inProcessing: false, error: true, active: false },
+    { label: 'Bandeira 4', completed: false, inProcessing: false, error: false, active: true },
+    { label: 'Bandeira 5', completed: false, inProcessing: false, error: false, active: false },
+];
+
+<Canvas>
+	<Story
+		name="Stepper"
+		args={{
+			steps,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Stepper" />
