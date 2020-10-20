@@ -25,6 +25,7 @@ import {
 	DropDown,
 	EmptyState,
 	Badge,
+	Stepper,
 } from '../src/components';
 
 import Palete from '../src/Palete.vue';
@@ -47,6 +48,7 @@ Vue.component('dropdown', DropDown);
 Vue.component('empty-state', EmptyState);
 Vue.component('badge', Badge);
 Vue.component('typography-list', TypographyList);
+Vue.component('stepper', Stepper);
 
 addParameters({
 	options: {
