@@ -1,61 +1,61 @@
 <template>
-	<div>
-		<div
-			class="image-upload-wrap text-center py-3 px-5"
-			:class="{
-				'drag-enter': isOnDragEnterState,
-			}"
-			@dragenter="dragEnterHandler"
-			@drop="dropHandler"
-			@dragover="dragOverHandler"
-		>
+	<div
+		class="upload-input text-center py-3 px-5"
+		:class="{
+			'upload-input--drag-state': isOnDragEnterState,
+		}"
+		@dragover.prevent.stop="isOnDragEnterState = true"
+		@dragenter.prevent.stop="isOnDragEnterState = true"
+		@dragleave.prevent.stop="isOnDragEnterState = false"
+		@dragend.prevent.stop="isOnDragEnterState = false"
+		@drop="dropHandler"
+	>
+		<div class="text-center px-3 py-5" >
 			<b-form-file
 				v-show="false"
 				v-model="file"
 				:accept="accept"
 				ref="fileInput"
 			/>
-			<div class="drag-text px-3 py-5">
-				<span v-if="!file">
-					<img src="../assets/images/upload-icon.svg"/>
-					<div class="mt-3 title">
-						<span v-if="!isOnDragEnterState">
-							Arraste o arquivo aqui ou
-							<a
-								href="javascript:void(0)"
-								class="search-link font-weight-bold"
-								@click="linkClick"
-							>
-								pesquise no seu computador
-							</a>
-						</span>
-						<span v-else>
-							Solte aqui o seu arquivo
-						</span>
+			<div v-if="!file">
+				<img src="../assets/images/upload-icon.svg"/>
+				<div class="mt-3 upload-input__title">
+					<div v-if="!isOnDragEnterState">
+						Arraste o arquivo aqui ou
+						<a
+							href="javascript:void(0)"
+							class="upload-input__search-link font-weight-bold"
+							@click="linkClick"
+						>
+							pesquise no seu computador
+						</a>
 					</div>
-				</span>
-				<span v-else>
-					<img src="../assets/images/file-icon.svg"/>
-					<div class="mt-3 title">
-						<span v-if="!isOnDragEnterState">
-							<span>{{ file.name }}</span>
+					<div v-else>
+						Solte aqui o seu arquivo
+					</div>
+				</div>
+			</div>
+			<div v-else>
+				<img src="../assets/images/file-icon.svg"/>
+				<div class="mt-3 upload-input__title">
+					<div v-if="!isOnDragEnterState">
+						<div>{{ file.name }}</div>
+						<div>
 							<div>
-								<small>
-									<a
-										href="javascript:void(0)"
-										class="search-link font-weight-bold"
-										@click="file = null"
-									>
-										Remover
-									</a>
-								</small>
+								<a
+									href="javascript:void(0)"
+									class="upload-input__search-link font-weight-bold"
+									@click="file = null"
+								>
+									Remover
+								</a>
 							</div>
-						</span>
-						<span v-else>
-							Solte aqui o seu arquivo
-						</span>
+						</div>
 					</div>
-				</span>
+					<div v-else>
+						Solte aqui o seu arquivo
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -117,12 +117,6 @@ export default {
 				}
 			}
 		},
-		dragOverHandler(ev) {
-			ev.preventDefault();
-		},
-		dragEnterHandler() {
-			this.isOnDragEnterState = true;
-		},
 		linkClick() {
 			// A lot of nested operations are needed because b-form-file wraps the input tag with a div
 			this.$refs['fileInput'].$el.childNodes[0].click();
@@ -133,42 +127,27 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
-.upload-input__title {
-	@include titulo-3;
-}
 
-.upload-input__search-link {
-	color: $azul-sonic-base;
-}
-
-.search-link:hover {
-	text-decoration: underline;
-}
-
-.file-upload {
-  background-color: white;
-  width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.image-upload-wrap {
-  margin-top: 20px;
+.upload-input {
   border: 2px dashed $cinza-4;
-  position: relative;
 	border-radius: 16px;
-}
+	box-sizing: border-box;
 
-.drag-text {
-  text-align: center;
-}
+	&__title {
+		@include titulo-3;
+	}
 
-.drag-text h3 {
-  color: $cinza-6;
-}
+	&__search-link {
+		color: $azul-sonic-base;
 
-.drag-enter {
-	background-color: $azul-sonic-light-2;
-  border: 3px dashed $cinza-4;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	&--drag-state {
+		background-color: $azul-sonic-light-2;
+		border: 3px dashed $cinza-4;
+	}
 }
 </style>
