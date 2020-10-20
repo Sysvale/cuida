@@ -10,4 +10,5 @@ export { default as SideSheet } from './SideSheet.vue';
 export { default as DropDown } from './DropDown.vue';
 export { default as EmptyState } from './EmptyState.vue';
 export { default as Badge } from './Badge.vue';
+export { default as UploadInput } from './UploadInput.vue';
 export { default as Stepper } from './Stepper.vue';

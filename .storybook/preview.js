@@ -25,6 +25,7 @@ import {
 	DropDown,
 	EmptyState,
 	Badge,
+	UploadInput,
 	Stepper,
 } from '../src/components';
 
@@ -48,6 +49,7 @@ Vue.component('dropdown', DropDown);
 Vue.component('empty-state', EmptyState);
 Vue.component('badge', Badge);
 Vue.component('typography-list', TypographyList);
+Vue.component('upload-input', UploadInput);
 Vue.component('stepper', Stepper);
 
 addParameters({
