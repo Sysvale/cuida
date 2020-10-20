@@ -137,7 +137,7 @@ export default {
 	@include titulo-3;
 }
 
-.search-link {
+.upload-input__search-link {
 	color: $azul-sonic-base;
 }
 
