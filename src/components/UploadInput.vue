@@ -133,7 +133,7 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
-.title {
+.upload-input__title {
 	@include titulo-3;
 }
 
