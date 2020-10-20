@@ -70,7 +70,7 @@ export default {
 		value: {
 			type: Object,
 			default: () => ({}),
-			description: 'The value that represents the uploaded file.',
+			description: 'Armazena o valor do arquivo upado (acessível via v-model)',
 			required: true,
 		},
 		/**
@@ -79,9 +79,8 @@ export default {
 		accept: {
 			type: String,
 			default: null,
-			description: `The accept prop defines what kind of file is accepted by
-				the current instance of UploadInput.
-				Reference to valid options: https://www.iana.org/assignments/media-types/
+			description: `Define quais tipos de arquivos são permitidos nessa instância do UploadInput.
+				Referência para opções válidas: https://www.iana.org/assignments/media-types/
 			`,
 		},
 	},
