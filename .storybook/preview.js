@@ -27,6 +27,7 @@ import {
 	Badge,
 	UploadInput,
 	Stepper,
+	ProgressCircular,
 } from '../src/components';
 
 import Palete from '../src/Palete.vue';
@@ -51,6 +52,7 @@ Vue.component('badge', Badge);
 Vue.component('typography-list', TypographyList);
 Vue.component('upload-input', UploadInput);
 Vue.component('stepper', Stepper);
+Vue.component('progress-circular', ProgressCircular);
 
 addParameters({
 	options: {

@@ -1,0 +1,72 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import ProgressCircular from '../components/ProgressCircular.vue';
+
+<Meta
+  title="Componentes/ProgressCircular"
+  component={ ProgressCircular }
+  argTypes={{
+    color: { control: 'color' },
+    backgroundColor: { control: 'color' },
+    labelColor: { control: 'color' },
+    size: { control: 
+      {
+        type: 'range',
+        min: 24,
+        max: 100,
+        step: 6,
+      },
+    },
+    stroke: { control: 
+      {
+        type: 'range',
+        min: 1.6,
+        max: 4.2,
+        step: 0.2,
+      },
+    },
+  }
+}
+/>
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { ProgressCircular },
+  template: /*html*/ `<progress-circular v-bind="$props"/>`,
+});
+
+# ProgressCircular
+
+### ProgressCirculars são componentes utilizados para indicar o status e progresso de algo aos usuários.
+---
+<br />
+
+## Recomendamos o uso de ProgressCirculars quando:
+- Você precisar transmitir a ideia do progresso de algo.
+- Você precisar transmitir a ideia do status de algo.
+- Você desejar chamar a atenção do usuário para uma informação específica de maneira gráfica.
+
+<br />
+
+## Não Recomendamos o uso de ProgressCirculars quando:
+- Para criar loaders.
+- Você precisar de muita precisão ao mostrar os números ou progresso.
+- Para criar steppers.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story
+    name="Progress circular"
+    args={{
+      size: 60,
+      value: 10,
+      stroke: 3.8,
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="Progress circular" />
