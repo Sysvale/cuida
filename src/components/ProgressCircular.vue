@@ -7,6 +7,7 @@
 	>
 		<path
 			class="progress-circular__ring-background"
+			:stroke="backgroundColor"
 			:stroke-width="stroke"
 			d="M18 2.0845
 			a 15.9155 15.9155 0 0 1 0 31.831
@@ -106,8 +107,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/app.scss';
-
 .progress-circular {
 	display: block;
 	margin: 0 auto;
@@ -116,7 +115,6 @@ export default {
 
 	&__ring-background {
 		fill: none;
-		stroke: $cinza-4;
 	}
 
 	&__ring-progress {
