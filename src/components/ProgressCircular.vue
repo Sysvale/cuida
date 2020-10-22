@@ -90,7 +90,8 @@ export default {
 	computed: {
 		label() {
 			if (this.maxValue >= 100) {
-				return `${this.value}%`;
+				const normalizedValue = Math.round(100 * this.value / this.maxValue);
+				return `${normalizedValue}%`;
 			}
 
 			return `${this.value}/${this.maxValue}`;
