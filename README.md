@@ -23,37 +23,42 @@
 
 - Clone o repositório:
 
-```
-git clone https://github.com/Sysvale/cuida.git
+```bash 
+$ git clone https://github.com/Sysvale/cuida.git
 ```
 
 - Instale as dependências e suba o container docker:
 
+```bash
+$ docker-compose up -d
 ```
-docker-compose up -d
-```
-
+A aplicação estará disponível na porta `6006`.  
+  
 - Caso não queira usar docker, instale as dependências com:
 
-```
-npm i
+```bash
+$ npm i
 ```
 
 ### Executando o Cuida
-- Inicie o cuida:
 
-```
-docker-compose exec npm run storybook
-```
-
+- Após a execução do comando `docker-composer up -d` a aplicação já estará rodando no `localhost:6006`
+.
 - Ou alternativamente, sem o docker, rode apenas:
 
-```
-npm run storybook
+```bash
+$ npm run storybook
 ```
 
 ### Para executar os testes
 
+- Utilizando o docker:
+```bash
+$ docker-compose exec cuida npm run test
 ```
-npm run test
+
+- Sem o docker:
+
+```bash
+$ npm run test
 ```
