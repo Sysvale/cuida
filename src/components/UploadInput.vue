@@ -92,8 +92,7 @@ export default {
 		 * O conteúdo do arquivo upado.
 		 */
 		value: {
-			type: [Object, File, null],
-			default: () => ({}),
+			default: null,
 			description: 'Armazena o valor do arquivo upado (acessível via v-model)',
 			required: true,
 		},
@@ -120,7 +119,7 @@ export default {
 
 	data() {
 		return {
-			file: _.isEmpty(this.value) ? null : this.value,
+			file: !!this.value && !_.isEmpty(this.value) ? this.value : null,
 			isOnDragEnterState: false,
 		};
 	},
