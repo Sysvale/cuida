@@ -92,7 +92,7 @@ export default {
 		 * O conteúdo do arquivo upado.
 		 */
 		value: {
-			type: Object,
+			type: [Object, File, null],
 			default: () => ({}),
 			description: 'Armazena o valor do arquivo upado (acessível via v-model)',
 			required: true,
@@ -129,6 +129,10 @@ export default {
 		sizeClass() {
 			const classesObject = {
 				inputTitle: `upload-input__title-${this.size}`,
+				holderPadding: 'px-3',
+				wrapperPadding: 'px-2 py-4',
+				contentPadding: 'mt-3',
+				svgScale: 1,
 			};
 
 			switch (this.size) {
@@ -149,13 +153,7 @@ export default {
 						svgScale: 0.8,
 					};
 				default: // md
-					return {
-						...classesObject,
-						holderPadding: 'px-3',
-						wrapperPadding: 'px-2 py-4',
-						contentPadding: 'mt-3',
-						svgScale: 1,
-					};
+					return classesObject;
 			}
 		},
 	},
