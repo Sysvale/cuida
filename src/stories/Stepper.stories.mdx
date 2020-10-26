@@ -4,6 +4,15 @@ import Stepper from '../components/Stepper.vue';
 <Meta
 	title="Componentes/Stepper"
 	component={ Stepper }
+	argTypes={{
+		value: {
+			value: {
+				type: 'numeric',
+				min: 0,
+				step: 1,
+			},
+		},
+	}}
 />
 
 export const Template = (args, { argTypes }) => ({
@@ -39,11 +48,11 @@ export const Template = (args, { argTypes }) => ({
 ## Preview
 
 export const steps = [
-    { label: 'Dados da operadora', completed: true, inProcessing: false, error: false, active: false },
-    { label: 'Bandeira 2', completed: false, inProcessing: true, error: false, active: false },
-    { label: 'Bandeira 3', completed: false, inProcessing: false, error: true, active: false },
-    { label: 'Bandeira 4', completed: false, inProcessing: false, error: false, active: true },
-    { label: 'Bandeira 5', completed: false, inProcessing: false, error: false, active: false },
+    { label: 'Dados da operadora', completed: true, inProcessing: false, error: false },
+    { label: 'Bandeira 2', completed: false, inProcessing: true, error: false },
+    { label: 'Bandeira 3', completed: false, inProcessing: false, error: true },
+    { label: 'Bandeira 4', completed: false, inProcessing: false, error: false },
+    { label: 'Bandeira 5', completed: false, inProcessing: false, error: false },
 ];
 
 <Canvas>
@@ -51,6 +60,7 @@ export const steps = [
 		name="Stepper"
 		args={{
 			steps,
+			value: 4,
 		}}
 	>
 		{ Template.bind({}) }
