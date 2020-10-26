@@ -86,23 +86,34 @@ export default {
 	},
 
 	props: {
+		/**
+		 * Um array com objetos com as propriedades 'label', 'inProcessing',
+		 * 'error' e 'completed'. A 'label' é o texto que descreve o passo,
+		 * e as demais props são booleanas e representam o status do passo.
+		 */
 		steps: {
 			type: Array,
 			default: () => [],
 			required: true,
 			description:
-				`Um objeto com as propriedades 'label', 'inProcessing',
-				'error' e 'completed', 'label' é o texto que descreve o passo,
+				`Um array com objetos com as propriedades 'label', 'inProcessing',
+				'error' e 'completed'. A 'label' é o texto que descreve o passo,
 				e as demais props são booleanas e representam o status do passo.`,
 		},
+		/**
+		 * Define direção do stepper como vertical, por padrão a direção é horizontal (vertical = false).
+		 */
 		vertical: {
 			type: Boolean,
 			default: false,
 			required: false,
 		},
+		/**
+		* Controla qual step está ativo variando de 1 até o número de steps.
+		*/
 		value: {
 			type: Number,
-			default: 0,
+			default: 1,
 			required: true,
 		}
 	},

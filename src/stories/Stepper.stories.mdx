@@ -4,6 +4,15 @@ import Stepper from '../components/Stepper.vue';
 <Meta
 	title="Componentes/Stepper"
 	component={ Stepper }
+	argTypes={{
+		value: {
+			value: {
+				type: 'numeric',
+				min: 0,
+				step: 1,
+			},
+		},
+	}}
 />
 
 export const Template = (args, { argTypes }) => ({
