@@ -1,10 +1,10 @@
 <template>
 	<div
 		class="stepper d-flex justify-content-between"
-		:class="vertical ? 'flex-column' : ''"
+		:class="vertical ? 'flex-column h-100' : ''"
 	>
 		<div
-			:class="vertical ? 'd-flex justify-content-end' : 'w-50'"
+			:class="vertical ? 'd-flex justify-content-end h-50' : 'w-50'"
 		>
 			<div class="stepper__edge d-flex align-items-center justify-content-center">
 				<div :class="dividerStyle(-1)" />
@@ -175,7 +175,7 @@ export default {
 		stepSectionStyle(index) {
 			let classes = '';
 			classes += index !== this.steps.length - 1 ? 'w-100 ' : '';
-			classes += this.vertical ? 'd-flex justify-content-end' : '';
+			classes += this.vertical ? 'd-flex justify-content-end h-100' : '';
 			return classes;
 		},
 
@@ -280,7 +280,8 @@ export default {
 	&__vertical-divider--default,
 	&__vertical-divider--in-progress,
 	&__vertical-divider--completed {
-		height: 30px;
+		min-height: 30px;
+		height: 100%;
 		width: 1px;
 	}
 
