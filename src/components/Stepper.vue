@@ -18,7 +18,7 @@
 			<div
 				v-if="vertical"
 				class="stepper__step-label mr-2 text-right"
-				:class="labelStyle(step)"
+				:class="labelStyle(index)"
 			>
 				<small>{{ step.label }}</small>
 			</div>
@@ -30,7 +30,7 @@
 			>
 				<div
 					class="d-flex justify-content-center align-items-center cursor-pointer"
-					:class="circleStyle(step)"
+					:class="circleStyle(step, index)"
 				>
 					<check-icon
 						v-if="step.completed"
@@ -61,7 +61,7 @@
 			<div
 				v-if="!vertical"
 				class="stepper__step-label"
-				:class="labelStyle(step)"
+				:class="labelStyle(index)"
 			>
 				<small>{{ step.label }}</small>
 			</div>
@@ -91,7 +91,7 @@ export default {
 			default: () => [],
 			required: true,
 			description:
-				`Um objeto com as propriedades 'label', 'active', 'inProcessing',
+				`Um objeto com as propriedades 'label', 'inProcessing',
 				'error' e 'completed', 'label' é o texto que descreve o passo,
 				e as demais props são booleanas e representam o status do passo.`,
 		},
@@ -99,11 +99,22 @@ export default {
 			type: Boolean,
 			default: false,
 			required: false,
+		},
+		value: {
+			type: Number,
+			default: 0,
+			required: true,
+		}
+	},
+
+	data() {
+		return {
+			internalValue: this.value - 1,
 		}
 	},
 
 	methods: {
-		circleStyle(step) {
+		circleStyle(step, index) {
 			if (step.inProcessing) {
 				return 'stepper__step--in-processing';
 			}
@@ -116,20 +127,17 @@ export default {
 				return 'stepper__step--completed';
 			}
 			
-			if (step.active){
+			if (index === this.internalValue) {
 				return 'stepper__step--active';
 			}
 
 			return ' stepper__step--muted';
 		},
 
-		changeStep(index) {
-			this.steps[index].active = true;
-			this.steps.forEach((item, i) => {
-				item.active = i === index ? true : false;
-			});
+		changeStep(value) {
+			this.internalValue = value;
 
-			this.$emit('stepChanged', index, this.steps[index]);
+			this.$emit('input', this.internalValue + 1);
 		},
 
 		dividerStyle(index) {
@@ -171,10 +179,10 @@ export default {
 			return classes;
 		},
 
-		labelStyle(step) {
+		labelStyle(index) {
 			let classes = '';
 
-			classes += step.active ? 'stepper__step-label--active' : 'stepper__step-label--muted';
+			classes += index === this.internalValue ? 'stepper__step-label--active' : 'stepper__step-label--muted';
 			classes += !this.vertical ? ' label-max-width' : '';
 			
 			return classes;
