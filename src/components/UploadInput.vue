@@ -15,7 +15,7 @@
 			<b-form-file
 				v-show="false"
 				v-model="file"
-				:accept="accept"
+				:accept="acceptString"
 				ref="fileInput"
 			/>
 			<div v-if="!file">
@@ -32,6 +32,13 @@
 					}"
 				>
 					<div v-if="!isOnDragEnterState">
+						<div v-if="isValid === false" class="upload-input__alert py-2 mb-3">
+							<div class="d-flex align-items-center justify-content-center">
+								<alert-triangle-icon
+									class="mr-2"
+								/> {{ computedAllowedMessage }}
+							</div>
+						</div>
 						Arraste o arquivo aqui ou
 						<a
 							href="javascript:void(0)"
@@ -86,7 +93,12 @@
 </template>
 
 <script>
+import { AlertTriangleIcon } from 'vue-feather-icons';
+
 export default {
+	components: {
+		AlertTriangleIcon,
+	},
 	props: {
 		/**
 		 * O conteúdo do arquivo upado.
@@ -97,13 +109,13 @@ export default {
 			required: true,
 		},
 		/**
-		 * Tipo de arquivos aceitos (Ref.: https://cutt.ly/fgkC0nU)
+		 * Lista com extensões de arquivos (separadas por vírgula) as quais o usuário pode selecionar.
+		 * Ex.: jpg,png
 		 */
-		accept: {
+		allowedExtensions: {
 			type: String,
 			default: null,
 			description: `Define quais tipos de arquivos são permitidos nessa instância do UploadInput.
-				Referência para opções válidas: https://www.iana.org/assignments/media-types/
 			`,
 		},
 
@@ -121,6 +133,7 @@ export default {
 		return {
 			file: !!this.value && !_.isEmpty(this.value) ? this.value : null,
 			isOnDragEnterState: false,
+			isValid: null,
 		};
 	},
 
@@ -155,6 +168,28 @@ export default {
 					return classesObject;
 			}
 		},
+
+		acceptString() {
+			if (this.allowedExtensions === null) return null;
+			let formated = '';
+			const splited = this.allowedExtensions.split(',');
+			splited.forEach((item, index, arr) => {
+				if (item && item.trim().length > 0) {
+					formated += `.${item.trim()}${index !== arr.length - 1 ? ', ' : ''}`;
+				}
+			});
+			return formated;
+		},
+
+		computedAllowedMessage() {
+			if (this.allowedExtensions) {
+				const splited = this.allowedExtensions.split(',');
+				const s = splited.length === 1 ? '' : 's';
+				const initial = `São aceitos apenas arquivo${s} do${s} seguinte${s} tipo${s}:`;
+				return `${initial} ${this.acceptString}.`;
+			}
+			return null;
+		},
 	},
 
 	watch: {
@@ -177,13 +212,29 @@ export default {
 
 			if (ev.dataTransfer.items) {
 				if (ev.dataTransfer.items[0].kind === 'file') {
-					this.file = ev.dataTransfer.items[0].getAsFile();
+					const internalFile = ev.dataTransfer.items[0].getAsFile();
+					if (this.isAValidExtension(internalFile.name)) {
+						this.file = internalFile;
+						this.isValid = true;
+						return;
+					}
+					this.isValid = false;
+					this.file = null;
 				}
 			}
 		},
 		linkClick() {
 			// A lot of nested operations are needed because b-form-file wraps the input tag with a div
 			this.$refs.fileInput.$el.childNodes[0].click();
+		},
+		isAValidExtension(fileName) {
+			if (this.allowedExtensions !== null) {
+				const alloweds = this.allowedExtensions.split(',');
+				let uploaded = fileName.split('.');
+				uploaded = uploaded[uploaded.length - 1].trim();
+				return alloweds.filter((item) => item === uploaded).length > 0;
+			}
+			return true;
 		},
 	},
 };
@@ -195,6 +246,13 @@ export default {
 	border: 2px dashed $cinza-4;
 	border-radius: 16px;
 	box-sizing: border-box;
+
+	&__alert {
+		background: $amarelo-pikachu-light-2;
+		border: 1px solid $amarelo-pikachu-light-1;
+		color: $amarelo-pikachu-dark-2;
+		border-radius: 5px;
+	}
 
 	&__title-lg {
 		@include subtitulo-1;
