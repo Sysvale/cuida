@@ -5,7 +5,8 @@ import UploadInput from '../components/UploadInput.vue';
 	title="Componentes/UploadInput"
 	component={ UploadInput }
 	argTypes={{
-		accept: '*'
+		accept: '*',
+		size: { control: { type: 'select', options: ['md', 'lg', 'sm'] } },
 	}
 }
 />
