@@ -12,6 +12,7 @@ exports[`Component is mounted properly 1`] = `
       </svg>
       <div class="upload-input__title-md mt-3">
         <div>
+          <!---->
           Arraste o arquivo aqui ou
           <a href="javascript:void(0)" class="upload-input__search-link font-weight-bold">
             pesquise no seu computador
