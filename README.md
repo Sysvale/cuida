@@ -56,6 +56,10 @@ $ npm run storybook
 ```bash
 $ docker-compose exec cuida npm run test
 ```
+ou 
+```bash
+$ ./on-server.sh npm run test
+```
 
 - Sem o docker:
 
