@@ -108,7 +108,7 @@ export default {
 		},
 
 		/**
-		 * Define o tamanho do input
+		 * Define o tamanho do input [lg, md, sm]
 		 */
 		size: {
 			type: String,
@@ -147,7 +147,7 @@ export default {
 					return {
 						...classesObject,
 						wrapperPadding: 'py-2',
-						holderPadding: 'px-3',
+						holderPadding: 'px-3 pb-2',
 						contentPadding: 'mt-1',
 						svgScale: 0.8,
 					};
