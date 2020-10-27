@@ -124,6 +124,19 @@ export default {
 		}
 	},
 
+	watch: {
+		internalValue(value) {
+			this.$emit('input', value + 1);
+		},
+
+		value: {
+			handler(newValue) {
+				this.internalValue = newValue - 1;
+			},
+			immediate: true,
+		},
+	},
+
 	methods: {
 		circleStyle(step, index) {
 			if (step.inProcessing) {
@@ -147,8 +160,6 @@ export default {
 
 		changeStep(value) {
 			this.internalValue = value;
-
-			this.$emit('input', this.internalValue + 1);
 		},
 
 		dividerStyle(index) {

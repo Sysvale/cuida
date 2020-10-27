@@ -98,8 +98,10 @@ describe("Change step event tests", () => {
 
 		wrapper.find('#step-2').trigger('click');
 
-		expect(wrapper.emitted().input).toBeTruthy();
-		expect(wrapper.emitted().input).toEqual([[2]]);
+		wrapper.vm.$nextTick(() => {
+			expect(wrapper.emitted().input).toBeTruthy();
+			expect(wrapper.emitted().input).toEqual([[2]]);
+		});
 	});
 });
 
