@@ -229,13 +229,12 @@ export default {
 			this.$refs.fileInput.$el.childNodes[0].click();
 		},
 		isAValidExtension(fileName) {
-			if (this.allowedExtensions !== null) {
-				const alloweds = this.allowedExtensions.split(',');
-				let uploaded = fileName.split('.');
-				uploaded = uploaded[uploaded.length - 1].trim();
-				return alloweds.filter((item) => item === uploaded).length > 0;
-			}
-			return true;
+			if (this.allowedExtensions === null) return true;
+			
+			const alloweds = this.allowedExtensions.split(',');
+			let uploaded = fileName.split('.');
+			uploaded = uploaded[uploaded.length - 1].trim();
+			return alloweds.filter((item) => item === uploaded).length > 0;
 		},
 		handleFormFileChange(ev) {
 			this.isValid = null;
