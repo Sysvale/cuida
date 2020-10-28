@@ -215,16 +215,14 @@ export default {
 			ev.preventDefault();
 
 			if (!ev.dataTransfer.items || ev.dataTransfer.items[0].kind !== 'file') return;
-					const internalFile = ev.dataTransfer.items[0].getAsFile();
-					if (this.isAValidExtension(internalFile.name)) {
-						this.file = internalFile;
-						this.isValid = true;
-						return;
-					}
-					this.isValid = false;
-					this.file = null;
-				}
+			const internalFile = ev.dataTransfer.items[0].getAsFile();
+			if (this.isAValidExtension(internalFile.name)) {
+				this.file = internalFile;
+				this.isValid = true;
+				return;
 			}
+			this.isValid = false;
+			this.file = null;
 		},
 		linkClick() {
 			// A lot of nested operations are needed because b-form-file wraps the input tag with a div
