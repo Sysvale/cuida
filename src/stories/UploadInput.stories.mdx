@@ -5,7 +5,6 @@ import UploadInput from '../components/UploadInput.vue';
 	title="Componentes/UploadInput"
 	component={ UploadInput }
 	argTypes={{
-		accept: '*',
 		size: { control: { type: 'select', options: ['md', 'lg', 'sm'] } },
 	}
 }
@@ -43,9 +42,6 @@ export const Template = (args, { argTypes }) => ({
 <Canvas>
 	<Story
 		name="UploadInput"
-		args={{
-			accept: '*',
-		}}
 	>
 		{ Template.bind({}) }
 	</Story>
