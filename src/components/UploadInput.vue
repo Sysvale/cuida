@@ -33,21 +33,23 @@
 					}"
 				>
 					<div v-if="!isOnDragEnterState">
-						<div v-if="isValid === false" class="upload-input__alert py-2 mb-3">
+						<div>
+							Arraste o arquivo aqui ou
+							<a
+								href="javascript:void(0)"
+								class="upload-input__search-link font-weight-bold"
+								@click="linkClick"
+							>
+								pesquise no seu computador
+							</a>
+						</div>
+						<div v-if="isValid === false" class="upload-input__alert py-2 mt-3">
 							<div class="d-flex align-items-center justify-content-center">
 								<alert-triangle-icon
 									class="mr-2"
 								/> {{ computedAllowedMessage }}
 							</div>
 						</div>
-						Arraste o arquivo aqui ou
-						<a
-							href="javascript:void(0)"
-							class="upload-input__search-link font-weight-bold"
-							@click="linkClick"
-						>
-							pesquise no seu computador
-						</a>
 					</div>
 					<div v-else>
 						Solte aqui o seu arquivo
