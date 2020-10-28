@@ -17,6 +17,7 @@
 				v-model="file"
 				:accept="acceptString"
 				ref="fileInput"
+				@change="handleFormFileChange"
 			/>
 			<div v-if="!file">
 				<svg :style="`transform: scale(${sizeClass.svgScale})`" width="103" height="96" viewBox="0 0 103 96" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -76,7 +77,7 @@
 								<a
 									href="javascript:void(0)"
 									class="upload-input__search-link font-weight-bold"
-									@click="file = null"
+									@click="handleRemove"
 								>
 									Remover
 								</a>
@@ -205,6 +206,7 @@ export default {
 
 	methods: {
 		dropHandler(ev) {
+			this.isValid = null;
 			this.isOnDragEnterState = false;
 
 			// Prevent the browser default behavior (open the file)
@@ -235,6 +237,23 @@ export default {
 				return alloweds.filter((item) => item === uploaded).length > 0;
 			}
 			return true;
+		},
+		handleFormFileChange(ev) {
+			this.isValid = null;
+			const [file] = ev.target.files || {};
+			if (this.isAValidExtension(file.name)) {
+				this.file = file;
+				this.isValid = true;
+				return;
+			}
+			this.isValid = false;
+			this.$nextTick().then(() => {
+				this.file = null;
+			});
+		},
+		handleRemove() {
+			this.isValid = null;
+			this.file = null;
 		},
 	},
 };
