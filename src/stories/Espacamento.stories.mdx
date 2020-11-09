@@ -1,6 +1,7 @@
 import { Meta, Canvas, Story } from '@storybook/addon-docs/blocks';
+import Space from '../Space.vue';
 
-<Meta title="Fundação/Espaçamento" />
+<Meta title="Fundação/Espaçamento" component={ Space } />
 
 # Espaçamento
 
@@ -16,8 +17,8 @@ de consistência".
 
 ## Recomendações
 
--  Para definição das margens e espaçamentos recomendamos a utilização da escala exponencial
-de base 2 (padrão do Bootstrap), que já vem sendo utilizado pelos designers, com adicional de
+-  Para definição das margens e espaçamentos recomendamos a utilização da escala linear
+de razão 2 (padrão do Bootstrap), que já vem sendo utilizado pelos designers, com adicional de
 mais opções de espaçamento além do definido do Bootstrap, seguindo a escala.
 
 -  Não sendo a margem negativa um padrão raramente utilizado no Cidade Saudável, não foram
@@ -39,7 +40,13 @@ menores em detrimento de usar uma margem ou padding muito grande e fora da faixa
 ## Escala de espaçamento
 <br />
 
-[...]
+export const Template = () => ({
+    template:`<space />`,
+});
+
+<Story name="escala">
+    { Template.bind({}) }
+</Story>
 
 ## Tipos de espaçamento
 <br />

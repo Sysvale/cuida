@@ -32,11 +32,13 @@ import {
 
 import Palete from '../src/Palete.vue';
 import TypographyList from '../src/TypographyList.vue';
+import Space from '../src/Space.vue';
 
 Vue.use(BootstrapVue);
 
 Vue.component('multiselect', Multiselect);
 Vue.component('palete', Palete);
+Vue.component('space', Space);
 Vue.component('actions-list', ActionsList);
 Vue.component('status-item', StatusItem);
 Vue.component('progress-bar', ProgressBar);
