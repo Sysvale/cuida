@@ -1,0 +1,47 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs/blocks';
+
+<Meta title="Fundação/Espaçamento" />
+
+# Espaçamento
+
+O CSS nos permite espaçar elementos usando `padding` e `margin`,
+além dos posicionamentos absolutos. O espaçamento muitas vezes se perde do design
+da tela para a implementação, para resolver esse problema e ter uma padrão consistente
+no sistema definiu-se esse fundamento do Design System. As definições aqui não estão
+escritas em pedra, até porque um dos principios do nossso Design System é "Contexto acima
+de consistência". 
+
+<hr />
+<br />
+
+## Recomendações
+
+-  Para definição das margens e espaçamentos recomendamos a utilização da escala exponencial
+de base 2 (padrão do Bootstrap), que já vem sendo utilizado pelos designers, com adicional de
+mais opções de espaçamento além do definido do Bootstrap, seguindo a escala.
+
+-  Não sendo a margem negativa um padrão raramente utilizado no Cidade Saudável, não foram
+definidos tokens. É passível o uso de margem negativa em componentes específicos, mas recomenda-se
+que se use adequadamente como extrapolação de um elemento e não para compor/atingir um espaçamento
+desejado.
+
+-  Para melhor consistência e facilidade na manutenção de códigos deve-se evitar a utilização de 
+espaçamentos combinados, como combinar alguns `margin` e `padding` de elementos para atingir
+determinado espaçamento não definido na escala. Caso seja realmente necessário tal espaçamento
+é preferível adicionar classe específica para o elemento em questão com o tal espaçamento.
+
+- É preferível combinar posicionamentos (`left`,`right`,`top` e `bottom`) com margens ou padding
+menores em detrimento de usar uma margem ou padding muito grande e fora da faixa definida na escala.
+
+
+<br />
+
+## Escala de espaçamento
+<br />
+
+[...]
+
+## Tipos de espaçamento
+<br />
+
+[...]
