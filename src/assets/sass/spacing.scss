@@ -1,0 +1,66 @@
+$spacer: 1rem !default;
+
+$sides: t b l r x y a;
+
+$factors: ();
+$factors: map-merge(
+	(
+        '6': 6,
+        '7': 12,
+	),
+	$factors
+);
+
+@each $side in $sides {
+    @each $size, $factor in $factors {
+        @if ($side == 'x' or $side == 'l') {
+            .px-#{$size} {
+                padding-left: ($spacer * $factor) !important;
+            }
+
+            .mx-#{$size} {
+                margin-left: ($spacer * $factor) !important;
+            }
+        } 
+        
+        @if ($side == 'x' or $side == 'r') {
+            .px-#{$size} {
+                padding-right: ($spacer * $factor) !important;
+            }
+
+            .mx-#{$size} {
+                margin-right: ($spacer * $factor) !important;
+            }
+        }
+
+        @if ($side == 'y' or $side == 't') {
+            .py-#{$size} {
+                padding-top: ($spacer * $factor) !important;
+            }
+
+            .my-#{$size} {
+                margin-top: ($spacer * $factor) !important;
+            }
+        } 
+        
+        @if ($side == 'y' or $side == 'b') {
+            .py-#{$size} {
+                padding-bottom: ($spacer * $factor) !important;
+            }
+
+            .my-#{$size} {
+                margin-bottom: ($spacer * $factor) !important;
+            }
+        }
+
+        @if ($side == 'a') {
+            .p-#{$size} {
+                padding: ($spacer * $factor) !important;
+            }
+
+            .m-#{$size} {
+                margin: ($spacer * $factor) !important;
+            }
+        }
+    }
+}

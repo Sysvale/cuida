@@ -1,11 +1,2 @@
 @import "variables";
-
-$spacer: 1rem !default;
-
-.p-6 {
-    padding: ($spacer * 6) !important;
-}
-
-.p-7 {
-    padding: ($spacer * 12) !important;
-}
+@import "spacing";
