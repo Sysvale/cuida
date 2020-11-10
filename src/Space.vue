@@ -6,6 +6,7 @@
           v-for="n in 8"
           :key="n"
         >
+          <span class="d-flex justify-content-center mb-2">{{n-1}}</span>
           <div
             class="mx-1 space-card"
           >
@@ -19,8 +20,17 @@
 export default {
   data() {
     return {
-      //
+      factor: 1/4,
     };
+  },
+  methods: {
+    size(n) {
+      if (n<=1) {
+        return (n * this.factor).toFixed(2);
+      }
+      this.factor *= 2;
+      return this.factor.toFixed(2);
+    }
   },
 };
 </script>
