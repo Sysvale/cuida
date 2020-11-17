@@ -19,6 +19,7 @@
 				v-if="vertical"
 				class="stepper__step-label mr-2 text-right"
 				:class="labelStyle(index)"
+				@click="changeStep(index)"
 			>
 				<small>{{ step.label }}</small>
 			</div>
@@ -29,7 +30,7 @@
 				@click="changeStep(index)"
 			>
 				<div
-					class="d-flex justify-content-center align-items-center cursor-pointer"
+					class="d-flex justify-content-center align-items-center"
 					:class="circleStyle(step, index)"
 				>
 					<check-icon
@@ -115,7 +116,14 @@ export default {
 			type: Number,
 			default: 1,
 			required: true,
-		}
+		},
+		/**
+		* Desabilita navegação pelos steps quando setado como `true`.
+		*/
+		disableOnClick: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -139,27 +147,31 @@ export default {
 
 	methods: {
 		circleStyle(step, index) {
+			const classCursor = !this.disableOnClick ? 'cursor-pointer' : '';
+
 			if (step.inProcessing) {
-				return 'stepper__step--in-processing';
+				return `stepper__step--in-processing ${classCursor}`;
 			}
 
 			if (step.error) {
-				return 'stepper__step--error';
+				return `stepper__step--error ${classCursor}`;
 			}
 
 			if (step.completed) {
-				return 'stepper__step--completed';
+				return `stepper__step--completed ${classCursor}`;
 			}
 			
 			if (index === this.internalValue) {
-				return 'stepper__step--active';
+				return `stepper__step--active ${classCursor}`;
 			}
 
-			return ' stepper__step--muted';
+			return ` stepper__step--muted ${classCursor}`;
 		},
 
 		changeStep(value) {
-			this.internalValue = value;
+			if (!this.disableOnClick) {
+				this.internalValue = value;
+			}
 		},
 
 		dividerStyle(index) {
@@ -206,6 +218,7 @@ export default {
 
 			classes += index === this.internalValue ? 'stepper__step-label--active' : 'stepper__step-label--muted';
 			classes += !this.vertical ? ' label-max-width' : '';
+			classes += !this.disableOnClick ? ' cursor-pointer' : '';
 			
 			return classes;
 		},
