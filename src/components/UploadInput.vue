@@ -143,7 +143,7 @@ export default {
 	computed: {
 		sizeClass() {
 			const classesObject = {
-				inputTitle: `upload-input__title-${this.size}`,
+				inputTitle: `upload-input__title--${this.size}`,
 				holderPadding: 'px-3',
 				wrapperPadding: 'px-2 py-4',
 				contentPadding: 'mt-3',
@@ -271,16 +271,18 @@ export default {
 		border-radius: 5px;
 	}
 
-	&__title-lg {
-		@include subtitulo-1;
-	}
+	&__title {
+		&--lg {
+			@include subtitulo-1;
+		}
 
-	&__title-md {
-		@include subtitulo-2;
-	}
+		&--md {
+			@include subtitulo-2;
+		}
 
-	&__title-sm {
-		@include subtitulo-3;
+		&--sm {
+			@include subtitulo-3;
+		}
 	}
 
 	&__search-link {
