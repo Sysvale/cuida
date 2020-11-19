@@ -1,39 +1,20 @@
 <template>
-	<span id="statusItem">
-		<div class="d-flex pt-2">
-			<div class="p-3">
+	<span id="status-item">
+		<div class="item__container">
+			<div class="icon__container">
 				<i
-					v-if="variant === 'success'"
-					class="material-icons success-icon"
+					:class="`material-icons icon--${variant}`"
 				>
-					check_circle
-				</i>
-				<i
-					v-else-if="variant === 'error'"
-					class="material-icons error-icon"
-				>
-					error
-				</i>
-				<i
-					v-else-if="variant === 'processing'"
-					class="material-icons processing-icon"
-				>
-					autorenew
-				</i>
-				<i
-					v-else-if="variant === 'warning'"
-					class="material-icons warning-icon"
-				>
-					warning
+					{{ resolveIcon(variant) }}
 				</i>
 			</div>
-			<div class="w-100">
-				<div class="font-weight-bold fs-18">
+			<div class="content__container">
+				<div class="content__title">
 					{{ title }}
 				</div>
 				<div
 					v-if="subtitle"
-					class="py-1 subtitle"
+					class="content__subtitle"
 				>
 					<span v-html="subtitle" />
 				</div>
@@ -49,25 +30,24 @@
 					-->
 					<span
 						@click="$emit('action-clicked')"
-						class="action clickable"
+						class="action--clickable"
 					>
 						{{ actionText }}
 					</span>
 					<div
 						v-if="actionSubtitle"
-						class="action-subtitle fs-14"
+						class="action__subtitle"
 					>
 						{{ actionSubtitle }}
 					</div>
 				</div>
 				<div
 					v-else-if="showAlert"
-					class="py-2 w-100"
+					class="alert__container"
 				>
 					<b-alert
 						show
-						class="w-75 fs-14"
-						:class="`alert-${variant}`"
+						:class="`alert--${variant}`"
 					>
 						<!--
 							Evento emitido quando ocorre o clique no alerta.
@@ -76,7 +56,7 @@
 							@type {Event}
 						-->
 						<span
-							:class="clickableAlert ? 'clickable clickable-alert' : ''"
+							:class="clickableAlert ? 'alert--clickable' : ''"
 							v-html="alertText"
 							@click="clickableAlert ? $emit('alert-clicked') : ''"
 						/>
@@ -170,6 +150,19 @@ export default {
 			required: false,
 		},
 	},
+
+	methods: {
+		resolveIcon(variant) {
+			switch (variant) {
+				case 'success':
+					return 'check_circle';
+				case 'processing':
+					return 'autorenew';
+				default:
+					return variant;
+			}
+		},
+	},
 };
 </script>
 
@@ -177,70 +170,103 @@ export default {
 @import '../assets/sass/app.scss';
 @import '../../node_modules/material-design-icons/iconfont/material-icons.css';
 
-#statusItem .error-icon {
-	color: $vermelho-mario-base;
+#status-item .item__container {
+	display: flex;
+	padding-top: 8px;
 }
 
-#statusItem .success-icon {
-	color: $verde-piccolo-base;
+#status-item .icon__container {
+	padding: 16px;
 }
 
-#statusItem .processing-icon {
-	color: $azul-bidu-base;
+#status-item .icon {
+	&--error {
+		color: $vermelho-mario-base;
+	}
+
+	&--success {
+		color: $verde-piccolo-base;
+	}
+
+	&--processing {
+		color: $azul-bidu-base;
+	}
+
+	&--warning {
+		color: $amarelo-pikachu-base;
+	}
 }
 
-#statusItem .warning-icon {
-	color: $amarelo-pikachu-base;
+#status-item .content__container {
+	width: 100%;
 }
 
-#statusItem .action {
+#status-item .content__title {
+	font-size: 18px;
+	font-weight: 700;
+}
+
+#status-item .content__subtitle {
+	padding: 4px 0;
+}
+
+#status-item .action {
 	font-weight: 400;
 	color: $azul-bidu-dark-2;
+
+	&--clickable {
+		@extend .action;
+		cursor: pointer;
+	}
 }
 
-#statusItem .action-subtitle {
+#status-item .action__subtitle {
 	font-size: 14px;
 	color: $cinza-6;
 }
 
-#statusItem .fs-18 {
-	font-size: 18px;
+#status-item .alert__container {
+	width: 100%;
+	padding: 16px 0;
 }
 
-#statusItem .fs-14 {
+#status-item .alert {
+	width: 75%;
 	font-size: 14px;
-}
 
-#statusItem .clickable {
-	cursor: pointer;
-}
-
-#statusItem .alert {
-	&-success {
+	&--success {
+		@extend .alert;
 		color: $verde-piccolo-dark-2;
 		background-color: $verde-piccolo-light-2;
 		border-color: $verde-piccolo-light-2;
 	}
-	&-error {
+
+	&--error {
+		@extend .alert;
 		color: $vermelho-mario-dark-2;
 		background-color: $vermelho-mario-light-2;
 		border-color: $vermelho-mario-light-2;
 	}
-	&-warning {
+
+	&--warning {
+		@extend .alert;
 		color: $amarelo-pikachu-dark-2;
 		background-color: $amarelo-pikachu-light-2;
 		border-color: $amarelo-pikachu-light-2;
 	}
-	&-processing {
+
+	&--processing {
+		@extend .alert;
 		color: $azul-bidu-dark-2;
 		background-color: $azul-bidu-light-2;
 		border-color: $azul-bidu-light-2;
 	}
-}
 
-#statusItem .clickable-alert {
-	&:hover {
-		text-decoration: underline;
+	&--clickable {
+		&:hover {
+			text-decoration: underline;
+			cursor: pointer;
+		}
 	}
 }
 </style>
