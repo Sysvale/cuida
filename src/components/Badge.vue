@@ -1,11 +1,10 @@
 <template>
 	<div
-		class="badge-container"
-		:style="colorCodeMode ? styleVariables : ''"
-		:class="!colorCodeMode ? predefinedStyle : ''"
+		class="badge__container"
+		:class="predefinedStyle"
 	>
 		<div>
-			<small class="badge-content">
+			<small class="badge__content">
 				{{ content }}
 			</small>
 		</div>
@@ -43,34 +42,34 @@ export default {
 			let computedStyle = '';
 			switch (this.variant) {
 				case 'turquoise':
-					computedStyle = 'turquoise';
+					computedStyle = 'badge--turquoise';
 					break;
 				case 'green':
-					computedStyle = 'green';
+					computedStyle = 'badge--green';
 					break;
 				case 'blue':
-					computedStyle = 'blue';
+					computedStyle = 'badge--blue';
 					break;
 				case 'purple':
-					computedStyle = 'purple';
+					computedStyle = 'badge--purple';
 					break;
 				case 'pink':
-					computedStyle = 'pink';
+					computedStyle = 'badge--pink';
 					break;
 				case 'red':
-					computedStyle = 'red';
+					computedStyle = 'badge--red';
 					break;
 				case 'orange':
-					computedStyle = 'orange';
+					computedStyle = 'badge--orange';
 					break;
 				case 'yellow':
-					computedStyle = 'yellow';
+					computedStyle = 'badge--yellow';
 					break;
 				case 'gray':
-					computedStyle = 'gray';
+					computedStyle = 'badge--gray';
 					break;
 				default:
-					computedStyle = 'gray';
+					computedStyle = 'badge--gray';
 					break;
 			}
 
@@ -82,7 +81,7 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
-.badge-container {
+.badge__container {
 	border-radius: 50px !important;
 	width: fit-content;
 	background-color: var(--bg-color);
@@ -90,61 +89,64 @@ export default {
 	padding: 0px 8px;
 }
 
-.badge-content {
+.badge__content {
 	font-weight: 600 !important;
 }
 
-.turquoise {
-	color: $turquesa-perry-dark-2;
-	background-color: $turquesa-perry-light-2;
-	border: 1px solid $turquesa-perry-light-1;
-}
+.badge {
 
-.green {
-	color: $verde-piccolo-dark-2;
-	background-color: $verde-piccolo-light-2;
-	border: 1px solid $verde-piccolo-light-1;
-}
+	&--turquoise {
+		color: $turquesa-perry-dark-2;
+		background-color: $turquesa-perry-light-2;
+		border: 1px solid $turquesa-perry-light-1;
+	}
 
-.blue {
-	color: $azul-sonic-dark-2;
-	background-color: $azul-sonic-light-2;
-	border: 1px solid $azul-sonic-light-1;
-}
+	&--green {
+		color: $verde-piccolo-dark-2;
+		background-color: $verde-piccolo-light-2;
+		border: 1px solid $verde-piccolo-light-1;
+	}
 
-.purple {
-	color: $roxo-thanos-dark-2;
-	background-color: $roxo-thanos-light-2;
-	border: 1px solid $roxo-thanos-light-1;
-}
+	&--blue {
+		color: $azul-sonic-dark-2;
+		background-color: $azul-sonic-light-2;
+		border: 1px solid $azul-sonic-light-1;
+	}
 
-.pink {
-	color: $pantera-cor-de-rosa-dark-2;
-	background-color: $pantera-cor-de-rosa-light-2;
-	border: 1px solid $pantera-cor-de-rosa-light-1;
-}
+	&--purple {
+		color: $roxo-thanos-dark-2;
+		background-color: $roxo-thanos-light-2;
+		border: 1px solid $roxo-thanos-light-1;
+	}
 
-.red {
-	color: $vermelho-mario-dark-2;
-	background-color: $vermelho-mario-light-2;
-	border: 1px solid $vermelho-mario-light-1;
-}
+	&--pink {
+		color: $pantera-cor-de-rosa-dark-2;
+		background-color: $pantera-cor-de-rosa-light-2;
+		border: 1px solid $pantera-cor-de-rosa-light-1;
+	}
 
-.orange {
-	color: $laranja-naruto-dark-2;
-	background-color: $laranja-naruto-light-2;
-	border: 1px solid $laranja-naruto-light-1;
-}
+	&--red {
+		color: $vermelho-mario-dark-2;
+		background-color: $vermelho-mario-light-2;
+		border: 1px solid $vermelho-mario-light-1;
+	}
 
-.yellow {
-	color: $amarelo-pikachu-dark-2;
-	background-color: $amarelo-pikachu-light-2;
-	border: 1px solid $amarelo-pikachu-light-1;
-}
+	&--orange {
+		color: $laranja-naruto-dark-2;
+		background-color: $laranja-naruto-light-2;
+		border: 1px solid $laranja-naruto-light-1;
+	}
 
-.gray {
-	color: $cinza-9;
-	background-color: $cinza-2;
-	border: 1px solid $cinza-5;
+	&--yellow {
+		color: $amarelo-pikachu-dark-2;
+		background-color: $amarelo-pikachu-light-2;
+		border: 1px solid $amarelo-pikachu-light-1;
+	}
+
+	&--gray {
+		color: $cinza-9;
+		background-color: $cinza-2;
+		border: 1px solid $cinza-5;
+	}
 }
 </style>
