@@ -23,28 +23,22 @@
 					class="option__desc"
 				>
 					<span class="option__title">
-						<span class="d-flex align-items-center">
-							<span class="checkbox-container">
-								<div class="customCheckbox mr-4">
-									<input
-										v-model="internalOptions.option.is_selected"
-										type="checkbox"
-										:id="`input-${internalOptions.option.title}`"
-										:name="`input-${internalOptions.option.title}`"
-										:value="true"
-									/>
-									<label
-										:id="`checkbox-${internalOptions.option.title}`"
-										:for="`input-${internalOptions.option.title}`"
-										@click="addItemViaCustomCheckbox(internalOptions.option)"
-										:class="{ checkedCheckboxColor: internalOptions.option.is_selected }"
-									/>
-								</div>
-							</span>
-
-							{{ internalOptions.option.title }}
-
-						</span>
+						<div class="option__checkbox mr-4">
+							<input
+								v-model="internalOptions.option.is_selected"
+								type="checkbox"
+								:id="`input-${internalOptions.option.title}`"
+								:name="`input-${internalOptions.option.title}`"
+								:value="true"
+							/>
+							<label
+								:id="`checkbox-${internalOptions.option.title}`"
+								:for="`input-${internalOptions.option.title}`"
+								@click="addItemViaCustomCheckbox(internalOptions.option)"
+								:class="{ 'option__checkbox--checked': internalOptions.option.is_selected }"
+							/>
+						</div>
+						{{ internalOptions.option.title }}
 					</span>
 				</div>
 			</template>
@@ -110,92 +104,99 @@ export default {
 };
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css" />
-<style>
+<style lang="scss">
+@import '../assets/sass/app.scss';
+
 #dropdown .multiselect__option--highlight {
-	background: #F5F6F8;
+	background: $cinza-2;
 	outline: none;
-	color: #142032;
+	color: $cinza-8;
 }
 
 input[type=checkbox] {
 	visibility: hidden;
 }
 
-.customCheckbox {
+.option__title {
+	display: flex;
+	align-items: center;
+}
+
+.option__checkbox {
 	width: 15px;
 	position: relative;
 	margin-left: -12px;
+
+	label {
+		cursor: pointer;
+		position: absolute;
+		width: 15px;
+		height: 15px;
+		top: 0;
+		border-radius: 4px;
+		border: 0.5px solid $cinza-5;
+
+		&:after {
+			border: 1.5px solid $branco;
+			border-top: none;
+			border-right: none;
+			content: "";
+			height: 5px;
+			left: 3.1px;
+			opacity: 0;
+			position: absolute;
+			top: 4.4px;
+			transform: rotate(-45deg);
+			width: 8px;
+			border-radius: 0.4px;
+		}
+	}
+
+	input[type=checkbox]:checked + label:after {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+		filter: alpha(opacity=100);
+		opacity: 1;
+	}
 }
 
-.checkedCheckboxColor {
-	background-color: #2959b8 !important;
+.option__checkbox--checked {
+	background-color: $azul-bidu-dark-2 !important;
 	border: none !important;
 }
 
-.customCheckbox label {
-	cursor: pointer;
-	position: absolute;
-	width: 15px;
-	height: 15px;
-	top: 0;
-	border-radius: 4px;
-	border: 0.5px solid #ced4da;
-}
-
-.customCheckbox label:after {
-	border: 1.5px solid #fff;
-	border-top: none;
-	border-right: none;
-	content: "";
-	height: 5px;
-	left: 3.1px;
-	opacity: 0;
-	position: absolute;
-	top: 4.4px;
-	transform: rotate(-45deg);
-	width: 8px;
-	border-radius: 0.4px;
-}
-
-.customCheckbox input[type=checkbox]:checked + label:after {
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-	filter: alpha(opacity=100);
-	opacity: 1;
-}
-
 #dropdown .multiselect__tag {
-	background: #e9eef1;
-	color: #142032;
-	border: 1px solid #ced4da;
+	background: $cinza-2;
+	color: $cinza-8;
+	border: 1px solid $cinza-5;
 }
 
 #dropdown .multiselect__tag-icon:after{
-	color: #4F606F;
+	color: $cinza-8;
 }
 
 #dropdown .multiselect__tag-icon:focus,
 #dropdown .multiselect__tag-icon:hover {
-	background: #d1d9e9;
-	color: #4F606F;
+	background: $cinza-4;
+	color: $cinza-8;
 }
 
 #dropdown .multiselect__tag-icon:focus:after,
 #dropdown .multiselect__tag-icon:hover:after {
-	color: #4F606F;
+	color: $cinza-8;
 }
 
 #dropdown .multiselect__option--selected.multiselect__option--highlight {
-	background: #ffffff;
-	color: #142032;
+	background: $branco;
+	color: $cinza-8;
 }
 #dropdown .multiselect__option--selected.multiselect__option--highlight:after {
-	background: #ffffff;
-	color: #142032;
+	background: $branco;
+	color: $cinza-8;
 }
 
 #dropdown .multiselect__option--selected {
-	background: #ffffff;
-	color: #142032;
+	background: $branco;
+	color: $cinza-8;
 	font-weight: 600;
 }
 
@@ -204,10 +205,10 @@ input[type=checkbox] {
 }
 
 #dropdown .multiselect--disabled .multiselect__tags {
-	background: #e9eef1 !important;
+	background: $cinza-3 !important;
 }
 
 #dropdown .multiselect__placeholder {
-	color: #6A7580;
+	color: $cinza-6;
 }
 </style>
