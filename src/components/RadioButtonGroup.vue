@@ -9,7 +9,7 @@
 				:class="{'ml-3': inline && i > 0}"
 			>
 				<label
-					class="radio-button-container"
+					class="radio-button__container"
 					:disabled="option.disabled || disabled"
 					:for="option.value"
 				>
@@ -89,7 +89,9 @@ export default {
 	},
 };
 </script>
-<style>
+<style lang="scss">
+@import '../assets/sass/app.scss';
+
 #radioButton [type="radio"]:checked,
 #radioButton [type="radio"]:not(:checked) {
 	position: absolute;
@@ -104,7 +106,7 @@ export default {
 	cursor: pointer;
 	line-height: 20px;
 	display: inline-block;
-	color: #4F6070;
+	color: $cinza-7;
 }
 
 #radioButton [type="radio"]:checked + label:before,
@@ -115,9 +117,9 @@ export default {
 	top: 0;
 	width: 20px;
 	height: 20px;
-	border: 1px solid #6A7580;
+	border: 1px solid $cinza-8;
 	border-radius: 100%;
-	background: #fff;
+	background: $branco;
 }
 
 #radioButton [type="radio"]:checked + label:after,
@@ -125,7 +127,7 @@ export default {
 	content: '';
 	width: 12px;
 	height: 12px;
-	background: #285ab9;
+	background: $azul-bidu-dark-1;
 	position: absolute;
 	top: 4px;
 	left: 4px;
@@ -146,29 +148,29 @@ export default {
 	transform: scale(1);
 }
 
-#radioButton .radio-button-container {
-	border: 1px solid #CED4DA;
+#radioButton .radio-button__container {
+	border: 1px solid $cinza-4;
 	padding: 12px 16px;
 	border-radius: 0.5rem;
 	cursor: pointer;
 	display: inline-block;
 }
 
-#radioButton .radio-button-container:hover {
-	background-color: rgba(235, 242, 249, 0.5);
+#radioButton .radio-button__container:hover {
+	background-color: $cinza-2;
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 }
 
-#radioButton .radio-button-container[disabled="disabled"] {
-	background-color: #E9ECEF;
+#radioButton .radio-button__container[disabled="disabled"] {
+	background-color: $cinza-3;
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 }
 
-#radioButton .radio-button-container[disabled="disabled"]
+#radioButton .radio-button__container[disabled="disabled"]
 	[type="radio"]:checked + label:before,
-#radioButton .radio-button-container[disabled="disabled"]
+#radioButton .radio-button__container[disabled="disabled"]
 	[type="radio"]:not(:checked) + label:before {
 	background: transparent;
 }
