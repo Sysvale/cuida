@@ -3,19 +3,18 @@
 		<transition :name="floatTransition">
 			<div
 				v-if="value"
-				class="overlay"
+				class="side-sheet__overlay"
 				tabindex="0"
 				@click="shouldCloseOnBackdrop"
 			>
 				<div
-					class="container px-0"
-					:class="position"
+					:class="`side-sheet__container--${position}`"
 					@click.stop
 				>
 					<!-- @slot Slot usado para customizar o botão de fechamento do SideSheet. -->
 					<slot name="close-icon">
 						<div
-							class="text-right p-3"
+							class="close-icon__container"
 						>
 							<x-icon
 								id="close-icon"
@@ -48,14 +47,14 @@ export default {
 			type: Boolean,
 			default: false,
 			required: true,
-    },
-    /**
+		},
+		/**
 		 * Define a posição ao qual o SideSheet será mostrado.
-		 */
-    position: {
-      type: String,
-      default: 'right',
-    },
+		*/
+		position: {
+			type: String,
+			default: 'right',
+		},
 		/**
 		 * Define se o SideSheet vai ser fechado com o click no backdrop.
 		 */
@@ -125,12 +124,15 @@ export default {
 
 		dettachKeyupEvent() {
 			window.removeEventListener('keyup', this.keyupListener);
-		}
+		},
 	},
 };
 </script>
-<style>
-#side-sheet .overlay {
+<style lang="scss" scoped>
+@import '../assets/sass/app.scss';
+
+#side-sheet .side-sheet__overlay {
+	padding: 0;
 	position: fixed;
 	width: 100%;
 	height: 100%;
@@ -143,27 +145,34 @@ export default {
 	cursor: pointer;
 }
 
-#side-sheet .container {
-	background: #fff;
+#side-sheet .side-sheet__container {
+	background: $branco;
 	width: 328px;
 	height: 100%;
 	border-radius: 0px 0px 0px 0px;
+
+	&--right {
+		@extend .side-sheet__container;
+		float: right;
+	}
+
+	&--left {
+		@extend .side-sheet__container;
+		float: left;
+	}
 }
 
 #close-icon {
-	color: rgb(106, 117, 128, 0.75);
+	color: $cinza-6;
+
+	&:hover {
+		color: $cinza-7;
+	}
 }
 
-#close-icon:hover {
-	color: rgb(106, 117, 128, 1);
-}
-
-.right {
-	float: right;
-}
-
-.left {
-	float: left;
+.close-icon__container {
+	text-align: right;
+	padding: 16px;
 }
 
 .slide-fade-right-enter-active {
