@@ -18,6 +18,7 @@
 				v-if="vertical"
 				class="stepper__step-label--vertical"
 				:class="labelStyle(index)"
+				@click="changeStep(index)"
 			>
 				<small>{{ step.label }}</small>
 			</div>
@@ -114,6 +115,13 @@ export default {
 			default: 1,
 			required: true,
 		},
+		/**
+		* Desabilita navegação pelos steps quando setado como `true`.
+		*/
+		disableOnClick: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -137,27 +145,31 @@ export default {
 
 	methods: {
 		circleStyle(step, index) {
+			const classCursor = !this.disableOnClick ? 'stepper__step--clickable' : '';
+
 			if (step.inProcessing) {
-				return 'stepper__step--in-processing';
+				return `stepper__step--in-processing ${classCursor}`;
 			}
 
 			if (step.error) {
-				return 'stepper__step--error';
+				return `stepper__step--error ${classCursor}`;
 			}
 
 			if (step.completed) {
-				return 'stepper__step--completed';
+				return `stepper__step--completed ${classCursor}`;
 			}
 
 			if (index === this.internalValue) {
-				return 'stepper__step--active';
+				return `stepper__step--active ${classCursor}`;
 			}
 
-			return ' stepper__step--muted';
+			return ` stepper__step--muted ${classCursor}`;
 		},
 
 		changeStep(value) {
-			this.internalValue = value;
+			if (!this.disableOnClick) {
+				this.internalValue = value;
+			}
 		},
 
 		dividerStyle(index) {
@@ -204,6 +216,7 @@ export default {
 
 			classes += index === this.internalValue ? 'stepper__step-label--active' : 'stepper__step-label--muted';
 			classes += !this.vertical ? ' stepper__step-label--horizontal' : '';
+			classes += !this.disableOnClick ? ' stepper__step--clickable' : '';
 
 			return classes;
 		},
@@ -264,6 +277,10 @@ export default {
 		background-color: $verde-piccolo-base;
 		border-color: $verde-piccolo-base;
 		color: $branco;
+	}
+
+	&__step--clickable {
+		cursor: pointer;
 	}
 
 	&__step-label {
@@ -343,7 +360,6 @@ export default {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		cursor: pointer;
 	}
 
 	&__icon-text {
