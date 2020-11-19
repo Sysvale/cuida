@@ -78,7 +78,7 @@ describe("Items styles test", () => {
 		expect(wrapper.findAll('.active-parent').length).toBe(1);
 	});
 
-	test('if light mode is setted properly', () => {
+	test('if light mode is set properly', () => {
 		window._ = lodash;
 		const wrapper = mount(NavBar, {
 			localVue,
@@ -89,8 +89,8 @@ describe("Items styles test", () => {
 			},
 		});
 
-		expect(wrapper.findAll('.bg-cs').length).toBe(1);
-		expect(wrapper.findAll('.cs-mode').length).toBe(mockedData.length);
+		expect(wrapper.findAll('.nav-bar__background--light').length).toBe(1);
+		expect(wrapper.findAll('.nav-bar__item--light').length).toBe(mockedData.length);
 	});
 });
 

@@ -1,6 +1,6 @@
 import { mount, createLocalVue } from '@vue/test-utils';
 import lodash from 'lodash';
-import BootstrapVue from 'bootstrap-vue';
+import { BootstrapVue, BAlert } from 'bootstrap-vue';
 import StatusItem from '../../src/components/StatusItem.vue';
 
 const localVue = createLocalVue();
@@ -39,8 +39,8 @@ describe('Action functioning', () => {
 			},
 		});
 
-		expect(wrapper.findAll('.action').length).toBe(1);
-		expect(wrapper.findAll('.action-subtitle').length).toBe(1);
+		expect(wrapper.findAll('.action--clickable').length).toBe(1);
+		expect(wrapper.findAll('.action__subtitle').length).toBe(1);
 	});
 
 	test('If the action is not shown when clickableAction is false', () => {
@@ -57,7 +57,7 @@ describe('Action functioning', () => {
 			},
 		});
 
-		expect(wrapper.findAll('.action').length).toBe(0);
+		expect(wrapper.findAll('.action--clickable').length).toBe(0);
 	});
 
 	test('If an event is emitted when the action is clicked', () => {
@@ -75,7 +75,7 @@ describe('Action functioning', () => {
 			},
 		});
 
-		wrapper.find('.action').trigger('click');
+		wrapper.find('.action--clickable').trigger('click');
 		expect(wrapper.emitted()['action-clicked']).toBeTruthy();
 	});
 });
@@ -96,7 +96,7 @@ describe('Alert functioning', () => {
 			},
 		});
 
-		expect(wrapper.findAll('.alert').length).toBe(1);
+		expect(wrapper.findAllComponents(BAlert).length).toBe(1);
 	});
 
 	test('If the action is not shown when showAlert is false', () => {
@@ -113,7 +113,7 @@ describe('Alert functioning', () => {
 			},
 		});
 
-		expect(wrapper.findAll('.alert').length).toBe(0);
+		expect(wrapper.findAllComponents(BAlert).length).toBe(0);
 	});
 
 	test('If an event is emitted when clickableAction is true and the alert is clicked', () => {
@@ -132,7 +132,7 @@ describe('Alert functioning', () => {
 			},
 		});
 
-		wrapper.find('.clickable-alert').trigger('click');
+		wrapper.find('.alert--clickable').trigger('click');
 		expect(wrapper.emitted()['alert-clicked']).toBeTruthy();
 	});
 });

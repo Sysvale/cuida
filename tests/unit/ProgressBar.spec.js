@@ -66,5 +66,5 @@ test("If the text is shown properly", () => {
 		}
 	});
 
-	expect(wrapper.findAll('.text-style').length).toBe(1);
+	expect(wrapper.findAll('.bar__text').length).toBe(1);
 });

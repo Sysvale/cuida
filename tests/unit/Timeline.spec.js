@@ -27,7 +27,7 @@ test('Component is mounted properly', () => {
 	const wrapper = mount(Timeline, {
 		localVue,
 		propsData: {
-			history: history,
+			history,
 		},
 	});
 
@@ -38,22 +38,22 @@ test('If the number of rows are the same of the length of the array', () => {
 	const wrapper = mount(Timeline, {
 		localVue,
 		propsData: {
-			history: history,
+			history,
 		},
 	});
-	
-	expect(wrapper.findAll('.event-row').length).toBe(history.length);
+
+	expect(wrapper.findAll('.event__row').length).toBe(history.length);
 });
 
 test('If the UI elements of the timeline are displayed properly', () => {
 	const wrapper = mount(Timeline, {
 		localVue,
 		propsData: {
-			history: history,
+			history,
 		},
 	});
 
-	expect(wrapper.findAll('.event-pin').length).toBe(history.length);
+	expect(wrapper.findAll('.event__pin').length).toBe(history.length);
 	expect(wrapper.findAll('.timeline').length).toBe(history.length - 1);
 	expect(wrapper.findAll('.event-row-divider').length).toBe(history.length - 1);
 });
