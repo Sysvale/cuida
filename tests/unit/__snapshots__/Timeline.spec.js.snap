@@ -1,18 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component is mounted properly 1`] = `
-<span id="timeline"><div class="panel-body-content"><div><div class="event-row"><div><p class="regular fs-14 text-secondary date-text">
+<span id="timeline"><div class="container"><div><div class="event__row"><div><p class="event__date">
 						22/09/2020
-					</p></div> <div class="timeline-container"><span class="event-pin"></span>
+					</p></div> <div class="timeline__container"><span class="event__pin"></span>
 <div class="timeline"></div>
 </div>
-<div class="event-info-container">
+<div class="content__container">
   <div>
-    <p class="mb-0 event-title regular">
+    <p class="content__title">
       Bloqueio nível 1
     </p>
   </div>
-  <div class="text-muted fs-14 mt-1">
+  <div class="content__text">
     Usuário: Uncle Bob
   </div>
   <hr class="event-row-divider">
@@ -20,22 +20,22 @@ exports[`Component is mounted properly 1`] = `
 </div>
 </div>
 <div>
-  <div class="event-row">
+  <div class="event__row">
     <div>
-      <p class="regular fs-14 text-secondary date-text">
+      <p class="event__date">
         22/09/2020
       </p>
     </div>
-    <div class="timeline-container"><span class="event-pin"></span>
+    <div class="timeline__container"><span class="event__pin"></span>
       <div class="timeline"></div>
     </div>
-    <div class="event-info-container">
+    <div class="content__container">
       <div>
-        <p class="mb-0 event-title regular">
+        <p class="content__title">
           Bloqueio nível 1
         </p>
       </div>
-      <div class="text-muted fs-14 mt-1">
+      <div class="content__text">
         Usuário: Uncle Bob
       </div>
       <hr class="event-row-divider">
@@ -43,22 +43,22 @@ exports[`Component is mounted properly 1`] = `
   </div>
 </div>
 <div>
-  <div class="event-row">
+  <div class="event__row">
     <div>
-      <p class="regular fs-14 text-secondary date-text">
+      <p class="event__date">
         22/09/2020
       </p>
     </div>
-    <div class="timeline-container"><span class="event-pin"></span>
+    <div class="timeline__container"><span class="event__pin"></span>
       <!---->
     </div>
-    <div class="event-info-container">
+    <div class="content__container">
       <div>
-        <p class="mb-0 event-title regular">
+        <p class="content__title">
           Bloqueio nível 1
         </p>
       </div>
-      <div class="text-muted fs-14 mt-1">
+      <div class="content__text">
         Usuário: Uncle Bob
       </div>
       <!---->

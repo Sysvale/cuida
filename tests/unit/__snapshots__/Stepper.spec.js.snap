@@ -1,57 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component is mounted properly 1`] = `
-<div class="stepper d-flex justify-content-between">
-  <div class="w-50">
-    <div class="stepper__edge d-flex align-items-center justify-content-center">
+<div class="stepper">
+  <div class="stepper__edge-container">
+    <div class="stepper__edge">
       <div class="stepper__divider--default"></div>
     </div>
   </div>
-  <div class="w-100 ">
+  <div class="stepper__step-section ">
     <!---->
-    <div id="step-1" class="d-flex align-items-center">
-      <div class="d-flex justify-content-center align-items-center cursor-pointer stepper__step--completed"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check">
+    <div id="step-1" class="stepper__icon-container">
+      <div class="stepper__icon-circle stepper__step--completed"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check">
           <polyline points="20 6 9 17 4 12"></polyline>
         </svg></div>
       <div class="stepper__divider--in-progress"></div>
     </div>
-    <div class="stepper__step-label stepper__step-label--muted label-max-width"><small>Dummy label 1</small></div>
+    <div class="stepper__step-label stepper__step-label--muted stepper__step-label--horizontal"><small>Dummy label 1</small></div>
   </div>
-  <div class="w-100 ">
+  <div class="stepper__step-section ">
     <!---->
-    <div id="step-2" class="d-flex align-items-center">
-      <div class="d-flex justify-content-center align-items-center cursor-pointer stepper__step--in-processing">
-        <div class="ml-n-1px d-flex align-items-center"><svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div id="step-2" class="stepper__icon-container">
+      <div class="stepper__icon-circle stepper__step--in-processing">
+        <div class="stepper__processing-icon"><svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18.78 16.6325C17.738 18.0472 16.3457 19.1664 14.7402 19.8799C13.1346 20.5935 11.3709 20.8769 9.62259 20.7023C7.87428 20.5276 6.20151 19.901 4.76877 18.884C3.33604 17.867 2.19266 16.4945 1.45107 14.9017C0.709475 13.3089 0.395207 11.5504 0.539162 9.79934C0.683116 8.04824 1.28034 6.36474 2.2721 4.9144C3.26387 3.46406 4.61603 2.2968 6.19562 1.52741C7.77522 0.758019 9.52787 0.412981 11.2812 0.526225L10.6287 10.6288L18.78 16.6325Z" fill="#3A7EDF"></path>
           </svg></div>
       </div>
       <div class="stepper__divider--default"></div>
     </div>
-    <div class="stepper__step-label stepper__step-label--muted label-max-width"><small>Dummy label 3</small></div>
+    <div class="stepper__step-label stepper__step-label--muted stepper__step-label--horizontal"><small>Dummy label 3</small></div>
   </div>
-  <div class="w-100 ">
+  <div class="stepper__step-section ">
     <!---->
-    <div id="step-3" class="d-flex align-items-center">
-      <div class="d-flex justify-content-center align-items-center cursor-pointer stepper__step--error"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+    <div id="step-3" class="stepper__icon-container">
+      <div class="stepper__icon-circle stepper__step--error"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg></div>
       <div class="stepper__divider--default"></div>
     </div>
-    <div class="stepper__step-label stepper__step-label--muted label-max-width"><small>Dummy label 2</small></div>
+    <div class="stepper__step-label stepper__step-label--muted stepper__step-label--horizontal"><small>Dummy label 2</small></div>
   </div>
   <div class="">
     <!---->
-    <div id="step-4" class="d-flex align-items-center">
-      <div class="d-flex justify-content-center align-items-center cursor-pointer stepper__step--active"><span class="fs-14">
+    <div id="step-4" class="stepper__icon-container">
+      <div class="stepper__icon-circle stepper__step--active"><span class="stepper__icon-text">
 					4
 				</span></div>
       <div class="stepper__divider--default"></div>
     </div>
-    <div class="stepper__step-label stepper__step-label--active label-max-width"><small>Dummy label X</small></div>
+    <div class="stepper__step-label stepper__step-label--active stepper__step-label--horizontal"><small>Dummy label X</small></div>
   </div>
-  <div class="w-50">
-    <div class="stepper__edge d-flex align-items-center justify-content-center">
+  <div class="stepper__edge-container">
+    <div class="stepper__edge">
       <div class="stepper__divider--default"></div>
     </div>
   </div>

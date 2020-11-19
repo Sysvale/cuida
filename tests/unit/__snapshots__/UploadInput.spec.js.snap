@@ -10,7 +10,7 @@ exports[`Component is mounted properly 1`] = `
         <path d="M74.0675 49.6196L56.6196 32.1718L39.1718 49.6196" stroke="#3A7EDF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
         <path d="M56.6196 67.0675V32.1718" stroke="#3A7EDF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
-      <div class="upload-input__title-md mt-3">
+      <div class="upload-input__title--md mt-3">
         <div>
           <div>
             Arraste o arquivo aqui ou

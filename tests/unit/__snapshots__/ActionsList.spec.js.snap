@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component is mounted properly 1`] = `
-<span id="actionList"><div class="d-flex actionStyle justify-content-end"><!----> <div><transition-stub name="slide-fade"><div class="action p-4"></div></transition-stub></div><div><transition-stub name="slide-fade"><div class="action p-4 actionLeftBorder"></div></transition-stub></div><div><transition-stub name="slide-fade"><!----></transition-stub></div><div><transition-stub name="slide-fade"><!----></transition-stub></div> <div><div class="actionLeftBorder action p-4">
+<span id="actionList"><div class="action-list--right"><!----> <div><transition-stub name="action-list__slide-fade"><div class="action-list__item"></div></transition-stub></div><div><transition-stub name="action-list__slide-fade"><div class="action-list__item--left-border"></div></transition-stub></div><div><transition-stub name="action-list__slide-fade"><!----></transition-stub></div><div><transition-stub name="action-list__slide-fade"><!----></transition-stub></div> <div><div class="action-list__item--left-border">
 				Mais ações
 			</div> <!----></div></div></span>
 `;
