@@ -3,22 +3,21 @@
 		id="actionList"
 	>
 		<div
-			class="d-flex actionStyle"
-			:class="position === 'right' ? 'justify-content-end' : 'justify-content-start'"
+			:class="position === 'right' ? 'action-list--right' : 'action-list--left'"
 		>
 			<div
 				v-if="position === 'left'"
 			>
 				<div
 					v-if="!itsBeignShown && actions.length > numberOfExpandedActions"
-					class="actionRightBorder action p-4"
+					class="action-list__item--right-border"
 					@click="expandList"
 				>
 					{{ collapsedActionName }}
 				</div>
 				<div
 					v-if="actions.length > numberOfExpandedActions && itsBeignShown"
-					class="actionRightBorder action p-4"
+					class="action-list__item--right-border"
 					@click="collapseList"
 				>
 					{{ expandedActionName }}
@@ -28,7 +27,7 @@
 				v-for="(action, i) in actions"
 				:key="action.title"
 			>
-				<transition name="slide-fade">
+				<transition name="action-list__slide-fade">
 					<!--
 						Evento emitido quando uma das ações é clicada.
 						O dado associado à ação vai ser enviada ao componente pai.
@@ -37,8 +36,7 @@
 					-->
 					<div
 						v-if="i <= internalnumberOfExpandedActions - 1"
-						class="action p-4"
-						:class="{ actionLeftBorder: i > 0 }"
+						:class="i === 0 ? 'action-list__item' : 'action-list__item--left-border'"
 						@click="$emit('action-clicked', action)"
 					>
 						<!-- @slot Scoped slot para renderização customizada das 'actions'.
@@ -54,14 +52,14 @@
 			>
 				<div
 					v-if="!itsBeignShown && actions.length > numberOfExpandedActions"
-					class="actionLeftBorder action p-4"
+					class="action-list__item--left-border"
 					@click="expandList"
 				>
 					{{ collapsedActionName }}
 				</div>
 				<div
 					v-if="actions.length > numberOfExpandedActions && itsBeignShown"
-					class="actionLeftBorder action p-4"
+					class="action-list__item--left-border"
 					@click="collapseList"
 				>
 					{{ expandedActionName }}
@@ -87,7 +85,7 @@ export default {
 		 */
 		numberOfExpandedActions: {
 			type: Number,
-			default: 2,	
+			default: 2,
 			required: false,
 		},
 		/**
@@ -136,41 +134,56 @@ export default {
 			this.itsBeignShown = !this.itsBeignShown;
 		},
 	},
-}
+};
 </script>
-<style>
-#actionList .actionLeftBorder {
-	border-left: 1px solid #CED4DA;
+<style lang="scss" scoped>
+@import '../assets/sass/app.scss';
+
+#actionList .action-list {
+	color: $cinza-6;
+	font-weight: 600;
+	display: flex;
+
+	&--right {
+		@extend .action-list;
+		justify-content: flex-end;
+	}
+
+	&--left {
+		@extend .action-list;
+		justify-content: flex-start;
+	}
 }
 
-#actionList .actionRightBorder {
-	border-right: 1px solid #CED4DA;
-}
-
-#actionList .action {
-	padding: 4px;
+#actionList .action-list__item {
+	padding: 24px;
 	cursor: pointer;
 	border-radius: 1px;
+
+	&:hover {
+		background-color: $cinza-2;
+	}
+
+	&--right-border {
+		@extend .action-list__item;
+		border-right: 1px solid $cinza-4;
+	}
+
+	&--left-border {
+		@extend .action-list__item;
+		border-left: 1px solid $cinza-4;
+	}
 }
 
-#actionList .actionStyle {
-	color: #6A7580;
-	font-weight: 600;
-}
-
-#actionList .action:hover {
-	background-color: #F8FAFD;
-}
-
-#actionList .slide-fade-enter-active {
+#actionList .action-list__slide-fade-enter-active {
 	transition: all .3s ease;
 }
 
-#actionList .slide-fade-leave-active {
+#actionList .action-list__slide-fade-leave-active {
 	transition: all .1s ease;
 }
 
-#actionList .slide-fade-enter, .slide-fade-leave-to {
+#actionList .action-list__slide-fade-enter, .action-list__slide-fade-leave-to {
 	transform: translateX(10px);
 	opacity: 0;
 }
