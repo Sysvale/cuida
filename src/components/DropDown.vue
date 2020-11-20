@@ -20,25 +20,24 @@
 				slot-scope="internalOptions"
 			>
 				<div
-					class="option__desc"
+					class="dropdown__option"
 				>
-					<span class="option__title">
-						<div class="option__checkbox mr-4">
-							<input
-								v-model="internalOptions.option.is_selected"
-								type="checkbox"
-								:id="`input-${internalOptions.option.title}`"
-								:name="`input-${internalOptions.option.title}`"
-								:value="true"
-							/>
-							<label
-								:id="`checkbox-${internalOptions.option.title}`"
-								:for="`input-${internalOptions.option.title}`"
-								@click="addItemViaCustomCheckbox(internalOptions.option)"
-								:class="{ 'option__checkbox--checked': internalOptions.option.is_selected }"
-							/>
-						</div>
-						{{ internalOptions.option.title }}
+					<div class="option__checkbox">
+						<input
+							v-model="internalOptions.option.is_selected"
+							type="checkbox"
+							:id="`input-${internalOptions.option.title}`"
+							:name="`input-${internalOptions.option.title}`"
+							:value="true"
+						/>
+						<label
+							:id="`checkbox-${internalOptions.option.title}`"
+							:for="`input-${internalOptions.option.title}`"
+							@click="addItemViaCustomCheckbox(internalOptions.option)"
+							:class="{ 'option__checkbox--checked': internalOptions.option.is_selected }"
+						/>
+					</div>
+					{{ internalOptions.option.title }}
 					</span>
 				</div>
 			</template>
