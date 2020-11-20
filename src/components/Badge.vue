@@ -81,19 +81,16 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
-.badge__container {
-	border-radius: 50px !important;
-	width: fit-content;
-	background-color: var(--bg-color);
-	color: var(--color);
-	padding: 0px 8px;
-}
-
-.badge__content {
-	font-weight: 600 !important;
-}
-
 .badge {
+	&__container {
+		border-radius: 50px !important;
+		width: fit-content;
+		padding: 0px 8px;
+	}
+
+	&__content {
+		font-weight: 600 !important;
+	}
 
 	&--turquoise {
 		color: $turquesa-perry-dark-2;
