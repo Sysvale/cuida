@@ -38,7 +38,6 @@
 						/>
 					</div>
 					{{ internalOptions.option.title }}
-					</span>
 				</div>
 			</template>
 		</multiselect>
@@ -122,6 +121,7 @@ input[type=checkbox] {
 }
 
 .option__checkbox {
+	margin-right: 24px;
 	width: 15px;
 	position: relative;
 	margin-left: -12px;
