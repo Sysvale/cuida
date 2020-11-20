@@ -116,7 +116,7 @@ input[type=checkbox] {
 	visibility: hidden;
 }
 
-.option__title {
+.dropdown__option {
 	display: flex;
 	align-items: center;
 }
