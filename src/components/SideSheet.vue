@@ -162,17 +162,14 @@ export default {
 	}
 }
 
-#close-icon {
+.close-icon__container {
 	color: $cinza-6;
+	text-align: right;
+	padding: 16px;
 
 	&:hover {
 		color: $cinza-7;
 	}
-}
-
-.close-icon__container {
-	text-align: right;
-	padding: 16px;
 }
 
 .slide-fade-right-enter-active {
