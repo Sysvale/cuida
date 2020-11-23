@@ -14,7 +14,7 @@ exports[`Component is mounted properly 1`] = `
         <div>
           <div>
             Arraste o arquivo aqui ou
-            <a href="javascript:void(0)" class="upload-input__search-link font-weight-bold">
+            <a href="javascript:void(0)" class="upload-input__search-link">
               pesquise no seu computador
             </a>
           </div>
