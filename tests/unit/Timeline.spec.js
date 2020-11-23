@@ -55,5 +55,4 @@ test('If the UI elements of the timeline are displayed properly', () => {
 
 	expect(wrapper.findAll('.event__pin').length).toBe(history.length);
 	expect(wrapper.findAll('.timeline').length).toBe(history.length - 1);
-	expect(wrapper.findAll('.event-row-divider').length).toBe(history.length - 1);
 });
