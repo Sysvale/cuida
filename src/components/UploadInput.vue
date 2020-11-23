@@ -43,9 +43,9 @@
 								pesquise no seu computador
 							</a>
 						</div>
-						<div v-if="isValid === false" class="upload-input__alert">
+						<div v-if="isValid === false" class="upload-input__alert-container">
 							<alert-triangle-icon
-								class="mr-2"
+								class="upload-input__alert"
 							/> {{ computedAllowedMessage }}
 						</div>
 					</div>
@@ -263,15 +263,19 @@ export default {
 	box-sizing: border-box;
 
 	&__alert {
-		background: $amarelo-pikachu-light-2;
-		border: 1px solid $amarelo-pikachu-light-1;
-		color: $amarelo-pikachu-dark-2;
-		border-radius: 5px;
-		padding: 8px 0;
-		margin-top: 16px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		margin-right: 8px;
+
+		&-container {
+			background: $amarelo-pikachu-light-2;
+			border: 1px solid $amarelo-pikachu-light-1;
+			color: $amarelo-pikachu-dark-2;
+			border-radius: 5px;
+			padding: 8px 0;
+			margin-top: 16px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
 	}
 
 	&__title {
