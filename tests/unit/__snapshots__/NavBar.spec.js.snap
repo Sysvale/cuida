@@ -1,28 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component is mounted properly 1`] = `
-<ul class="nav px-2 bg-cs">
-  <li id="Dummylabel10" text="Dummy label 1" menu-class="py-1" class="nav-item mr-4 mt-2 cs-mode"><a href="#" target="_self" class="nav-link active">
-      Dummy label 1
+<span id="nav-bar"><ul class="nav nav-bar--light"><li id="Dummylabel10" text="Dummy label 1" class="nav-item nav-bar__item-container nav-bar__item--light"><a href="#" target="_self" class="nav-link active">
+				Dummy label 1
+			</a></li><li id="Dummylabel21" text="Dummy label 2" class="nav-item nav-bar__item-container nav-bar__item--light"><a href="#" target="_self" class="nav-link">
+				Dummy label 2
+			</a></li><li id="Dummylabel32" text="Dummy label 3" class="nav-item nav-bar__item-container nav-bar__item--light"><a href="#" target="_self" class="nav-link">
+				Dummy label 3
+			</a></li><li id="Dummyoptionwithsubitems3" class="nav-item b-nav-dropdown dropdown nav-bar__item-container nav-bar__item--light" to="[object Object]"><a id="Dummyoptionwithsubitems3__BV_toggle_" role="button" aria-haspopup="true" aria-expanded="false" href="#Dummyoptionwithsubitems3" target="_self" class="nav-link dropdown-toggle"><span>Dummy option with subitems</span></a>
+<ul tabindex="-1" aria-labelledby="Dummyoptionwithsubitems3__BV_toggle_" class="dropdown-menu">
+  <li role="presentation"><a id="Dummyitem10-subitem" role="menuitem" href="#" target="_self" class="dropdown-item">
+      Dummy item 1
     </a></li>
-  <li id="Dummylabel21" text="Dummy label 2" menu-class="py-1" class="nav-item mr-4 mt-2 cs-mode"><a href="#" target="_self" class="nav-link">
-      Dummy label 2
+  <li role="presentation"><a id="Dummyitem21-subitem" role="menuitem" href="#" target="_self" class="dropdown-item">
+      Dummy item 2
     </a></li>
-  <li id="Dummylabel32" text="Dummy label 3" menu-class="py-1" class="nav-item mr-4 mt-2 cs-mode"><a href="#" target="_self" class="nav-link">
-      Dummy label 3
+  <li role="presentation"><a id="Dummyitem32-subitem" role="menuitem" href="#" target="_self" class="dropdown-item">
+      Dummy item 3
     </a></li>
-  <li id="Dummyoptionwithsubitems3" class="nav-item b-nav-dropdown dropdown mr-4 mt-2 cs-mode" to="[object Object]"><a id="Dummyoptionwithsubitems3__BV_toggle_" role="button" aria-haspopup="true" aria-expanded="false" href="#Dummyoptionwithsubitems3" target="_self" class="nav-link dropdown-toggle"><span>Dummy option with subitems</span></a>
-    <ul tabindex="-1" aria-labelledby="Dummyoptionwithsubitems3__BV_toggle_" class="dropdown-menu py-1">
-      <li role="presentation" class="py-1"><a id="Dummyitem10-subitem" role="menuitem" href="#" target="_self" class="dropdown-item py-2">
-          Dummy item 1
-        </a></li>
-      <li role="presentation" class="py-1"><a id="Dummyitem21-subitem" role="menuitem" href="#" target="_self" class="dropdown-item py-2">
-          Dummy item 2
-        </a></li>
-      <li role="presentation" class="py-1"><a id="Dummyitem32-subitem" role="menuitem" href="#" target="_self" class="dropdown-item py-2">
-          Dummy item 3
-        </a></li>
-    </ul>
-  </li>
 </ul>
+</li>
+</ul>
+</span>
 `;
