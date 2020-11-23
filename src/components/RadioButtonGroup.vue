@@ -1,15 +1,15 @@
 <template>
 	<span id="radioButton">
 		<div
-			:class="{'d-flex': inline }"
+			:class="{'button-group': inline }"
 		>
 			<div
 				v-for="(option, i) in options"
 				:key="option.value"
-				:class="{'ml-3': inline && i > 0}"
+				:class="{'radio-button__container--vertical': inline && i > 0}"
 			>
 				<label
-					class="radio-button__container"
+					class="radio-button"
 					:disabled="option.disabled || disabled"
 					:for="option.value"
 				>
@@ -21,7 +21,7 @@
 						:disabled="option.disabled || disabled"
 					>
 					<label
-						class="m-0"
+						class="radio-button__content"
 						:for="option.value"
 					>
 						{{ option.text }}
@@ -148,29 +148,41 @@ export default {
 	transform: scale(1);
 }
 
-#radioButton .radio-button__container {
+#radioButton .button-group {
+	display: flex;
+}
+
+#radioButton .radio-button {
 	border: 1px solid $cinza-4;
 	padding: 12px 16px;
 	border-radius: 0.5rem;
 	cursor: pointer;
 	display: inline-block;
+
+	&__container--vertical {
+		margin-left: 16px;
+	}
+
+	&__content {
+		margin: 0;
+	}
 }
 
-#radioButton .radio-button__container:hover {
+#radioButton .radio-button:hover {
 	background-color: $cinza-2;
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 }
 
-#radioButton .radio-button__container[disabled="disabled"] {
+#radioButton .radio-button[disabled="disabled"] {
 	background-color: $cinza-3;
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 }
 
-#radioButton .radio-button__container[disabled="disabled"]
+#radioButton .radio-button[disabled="disabled"]
 	[type="radio"]:checked + label:before,
-#radioButton .radio-button__container[disabled="disabled"]
+#radioButton .radio-button[disabled="disabled"]
 	[type="radio"]:not(:checked) + label:before {
 	background: transparent;
 }
