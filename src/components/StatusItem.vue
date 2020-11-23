@@ -20,7 +20,7 @@
 				</div>
 				<div
 					v-if="clickableAction"
-					class="py-2"
+					class="action-container"
 				>
 					<!--
 						Evento emitido quando ocorre o clique no link da ação.
@@ -213,6 +213,10 @@ export default {
 #status-item .action {
 	font-weight: 400;
 	color: $azul-bidu-dark-2;
+
+	&-container {
+		padding: 8px 0;
+	}
 
 	&--clickable {
 		@extend .action;
