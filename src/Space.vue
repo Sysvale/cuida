@@ -38,6 +38,12 @@ export default {
 <style lang="scss" scoped>
 @import './assets/sass/app.scss';
 
+@each $size, $factor in $factors {
+  .p-#{$size} {
+    @include padding('a', $size);
+  }
+}
+
 .space-card {
   background-color: $turquesa-perry-light-1;
   color: $turquesa-perry-dark-2;
