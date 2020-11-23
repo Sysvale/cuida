@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component is mounted properly 1`] = `
-<span id="radioButton"><div class=""><div class=""><label disabled="disabled" for="value1" class="radio-button__container"><input type="radio" id="value1" disabled="disabled" value="value1"> <label for="value1" class="m-0">
+<span id="radioButton"><div class=""><div class=""><label disabled="disabled" for="value1" class="radio-button"><input type="radio" id="value1" disabled="disabled" value="value1"> <label for="value1" class="radio-button__content">
 					Component1
-				</label></label></div><div class=""><label for="value2" class="radio-button__container"><input type="radio" id="value2" value="value2"> <label for="value2" class="m-0">
+				</label></label></div><div class=""><label for="value2" class="radio-button"><input type="radio" id="value2" value="value2"> <label for="value2" class="radio-button__content">
 					Component2
-				</label></label></div><div class=""><label for="value3" class="radio-button__container"><input type="radio" id="value3" value="value3"> <label for="value3" class="m-0">
+				</label></label></div><div class=""><label for="value3" class="radio-button"><input type="radio" id="value3" value="value3"> <label for="value3" class="radio-button__content">
 					Component3
 				</label></label></div></div></span>
 `;
