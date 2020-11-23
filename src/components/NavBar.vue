@@ -1,7 +1,6 @@
 <template>
 	<span id="nav-bar">
 		<b-nav
-			class="px-2"
 			:class="isLightThemed ? 'nav-bar--light' : 'nav-bar--dark'"
 		>
 			<component
