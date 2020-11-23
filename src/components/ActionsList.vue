@@ -10,14 +10,14 @@
 			>
 				<div
 					v-if="!itsBeignShown && actions.length > numberOfExpandedActions"
-					class="action-list__item--right-border"
+					class="action-list__item--right-bordered"
 					@click="expandList"
 				>
 					{{ collapsedActionName }}
 				</div>
 				<div
 					v-if="actions.length > numberOfExpandedActions && itsBeignShown"
-					class="action-list__item--right-border"
+					class="action-list__item--right-bordered"
 					@click="collapseList"
 				>
 					{{ expandedActionName }}
@@ -36,7 +36,7 @@
 					-->
 					<div
 						v-if="i <= internalnumberOfExpandedActions - 1"
-						:class="i === 0 ? 'action-list__item' : 'action-list__item--left-border'"
+						:class="i === 0 ? 'action-list__item' : 'action-list__item--left-bordered'"
 						@click="$emit('action-clicked', action)"
 					>
 						<!-- @slot Scoped slot para renderização customizada das 'actions'.
@@ -52,14 +52,14 @@
 			>
 				<div
 					v-if="!itsBeignShown && actions.length > numberOfExpandedActions"
-					class="action-list__item--left-border"
+					class="action-list__item--left-bordered"
 					@click="expandList"
 				>
 					{{ collapsedActionName }}
 				</div>
 				<div
 					v-if="actions.length > numberOfExpandedActions && itsBeignShown"
-					class="action-list__item--left-border"
+					class="action-list__item--left-bordered"
 					@click="collapseList"
 				>
 					{{ expandedActionName }}
@@ -164,12 +164,12 @@ export default {
 		background-color: $cinza-2;
 	}
 
-	&--right-border {
+	&--right-bordered {
 		@extend .action-list__item;
 		border-right: 1px solid $cinza-4;
 	}
 
-	&--left-border {
+	&--left-bordered {
 		@extend .action-list__item;
 		border-left: 1px solid $cinza-4;
 	}
