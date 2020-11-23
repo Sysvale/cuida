@@ -13,8 +13,7 @@
 				:text="item.label"
 				:active="isActive(item)"
 				:to="{name: item.path}"
-				class="mr-4 mt-2"
-				menu-class="py-1"
+				class="nav-bar__item-container"
 				@click="handleClick(item)"
 			>
 				<template
@@ -202,6 +201,11 @@ a {
 #nav-bar .nav-bar__item {
 	margin-top: 8px;
 	margin-right: 24px;
+
+	&-container {
+		margin-right: 24px;
+		margin-top: 8px;
+	}
 
 	&--dark {
 		@extend .nav-bar__item;
