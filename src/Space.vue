@@ -1,17 +1,13 @@
 <template>
-    <div
-      class="grid"
-    >
+    <div class="grid">
         <div
-          v-for="n in 8"
-          :key="n"
+            v-for="n in 8"
+            :key="n"
         >
-          <span class="d-flex justify-content-center mb-2">{{n-1}}</span>
-          <div
-            class="mx-1 space-card"
-          >
-            <span :class="`p-${n-1}`">| |</span>
-          </div>
+            <span class="d-flex justify-content-center mb-2">{{n-1}}</span>
+            <div class="mx-1 space-card">
+                <span :class="`p-${n-1}`">| |</span>
+            </div>
         </div>
     </div>
 </template>
