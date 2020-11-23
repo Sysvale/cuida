@@ -2,7 +2,7 @@
 	<span id="nav-bar">
 		<b-nav
 			class="px-2"
-			:class="isLightThemed ? 'nav-bar__background--light' : 'nav-bar__background--dark'"
+			:class="isLightThemed ? 'nav-bar--light' : 'nav-bar--dark'"
 		>
 			<component
 				v-for="(item, i) in computedItems"
@@ -177,7 +177,7 @@ a {
 	outline: none;
 }
 
-#nav-bar .nav-bar__background {
+#nav-bar .nav-bar {
 	padding: 8px 0;
 
 	&--dark {
