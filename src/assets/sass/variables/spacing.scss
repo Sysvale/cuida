@@ -1,0 +1,60 @@
+$spacer: 1rem !default;
+
+$factors: ();
+$factors: map-merge(
+	(
+		0: 0,
+		1: .25,
+		2: .5,
+		3: 1,
+		4: 1.5,
+		5: 3,
+		6: 6,
+		7: 12,
+	),
+	$factors
+);
+
+@mixin padding($side, $index) {
+    @if ($side == 'x' or $side == 'l') {
+		padding-left: ($spacer * map-get($factors, $index)) !important;
+	}
+
+	@if ($side == 'x' or $side == 'r') {
+		padding-right: ($spacer * map-get($factors, $index)) !important;
+	}
+
+	@if ($side == 'y' or $side == 't') {
+		padding-top: ($spacer * map-get($factors, $index)) !important;
+	}
+
+	@if ($side == 'y' or $side == 'b') {
+		padding-bottom: ($spacer * map-get($factors, $index)) !important;
+	}
+
+	@if ($side == 'a') {
+		padding: ($spacer * map-get($factors, $index)) !important;
+	}
+}
+
+@mixin margin($side, $index) {
+    @if ($side == 'x' or $side == 'l') {
+		margin-left: ($spacer * map-get($factors, $index)) !important;
+	}
+
+	@if ($side == 'x' or $side == 'r') {
+		margin-right: ($spacer * map-get($factors, $index)) !important;
+	}
+
+	@if ($side == 'y' or $side == 't') {
+		margin-top: ($spacer * map-get($factors, $index)) !important;
+	}
+
+	@if ($side == 'y' or $side == 'b') {
+		margin-bottom: ($spacer * map-get($factors, $index)) !important;
+	}
+
+	@if ($side == 'a') {
+		margin: ($spacer * map-get($factors, $index)) !important;
+	}
+}
