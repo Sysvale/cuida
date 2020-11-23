@@ -37,18 +37,16 @@
 							Arraste o arquivo aqui ou
 							<a
 								href="javascript:void(0)"
-								class="upload-input__search-link font-weight-bold"
+								class="upload-input__search-link"
 								@click="linkClick"
 							>
 								pesquise no seu computador
 							</a>
 						</div>
-						<div v-if="isValid === false" class="upload-input__alert py-2 mt-3">
-							<div class="d-flex align-items-center justify-content-center">
-								<alert-triangle-icon
-									class="mr-2"
-								/> {{ computedAllowedMessage }}
-							</div>
+						<div v-if="isValid === false" class="upload-input__alert">
+							<alert-triangle-icon
+								class="mr-2"
+							/> {{ computedAllowedMessage }}
 						</div>
 					</div>
 					<div v-else>
@@ -78,7 +76,7 @@
 							<div>
 								<a
 									href="javascript:void(0)"
-									class="upload-input__search-link font-weight-bold"
+									class="upload-input__search-link"
 									@click="handleRemove"
 								>
 									Remover
@@ -269,6 +267,11 @@ export default {
 		border: 1px solid $amarelo-pikachu-light-1;
 		color: $amarelo-pikachu-dark-2;
 		border-radius: 5px;
+		padding: 8px 0;
+		margin-top: 16px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	&__title {
@@ -287,6 +290,7 @@ export default {
 
 	&__search-link {
 		color: $azul-sonic-base;
+		font-weight: 700;
 
 		&:hover {
 			text-decoration: underline;
