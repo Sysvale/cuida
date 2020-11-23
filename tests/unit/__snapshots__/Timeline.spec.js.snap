@@ -15,7 +15,7 @@ exports[`Component is mounted properly 1`] = `
   <div class="content__text">
     Usuário: Uncle Bob
   </div>
-  <hr class="event-row-divider">
+  <hr>
 </div>
 </div>
 </div>
@@ -38,7 +38,7 @@ exports[`Component is mounted properly 1`] = `
       <div class="content__text">
         Usuário: Uncle Bob
       </div>
-      <hr class="event-row-divider">
+      <hr>
     </div>
   </div>
 </div>
