@@ -190,9 +190,9 @@ a {
 		background: linear-gradient(0.93deg, $branco 16.45%, $cinza-2 105.67%);
 
 		.dropdown-menu {
-				background: $branco;
-				box-shadow: 2px 2px 4px $cinza-5;
-				border-radius: 2px;
+			background: $branco;
+			box-shadow: 2px 2px 4px $cinza-5;
+			border-radius: 2px;
 		}
 	}
 }
