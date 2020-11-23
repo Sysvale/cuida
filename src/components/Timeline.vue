@@ -37,7 +37,6 @@
 							{{ event.text }}
 						</div>
 						<hr
-							class="event-row-divider"
 							v-if="(index + 1) < history.length"
 						>
 					</div>
