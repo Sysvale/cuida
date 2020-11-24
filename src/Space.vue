@@ -4,9 +4,9 @@
             v-for="n in 7"
             :key="n"
         >
-            <span class="d-flex justify-content-center mb-2">{{n-1}}</span>
-            <div class="mx-1 space-card">
-                <span :class="`padding-${n-1}`">| |</span>
+            <span class="grid__index-label">{{n-1}}</span>
+            <div class="grid__space-card">
+                <span :class="`grid__space-card--padding-${n-1}`">| |</span>
             </div>
         </div>
     </div>
@@ -34,21 +34,28 @@ export default {
 <style lang="scss" scoped>
 @import './assets/sass/app.scss';
 
-@each $tamanho, $fator in $fatores {
-  .padding-#{$tamanho} {
-    @include padding('onidirecional', $tamanho);
-  }
-}
-
-.space-card {
-  background-color: $turquesa-perry-light-1;
-  color: $turquesa-perry-dark-2;
-  display: flex;
-}
-
 .grid {
   display: flex;
   flex-direction: row;
   justify-content: center;
+
+  &__index-label {
+    display: flex;
+    justify-content: center;
+    @include margin('inferior', 2);
+  }
+
+  &__space-card {
+    display: flex;
+    background-color: $turquesa-perry-light-1;
+    color: $turquesa-perry-dark-2;
+    @include margin('horizontal', 1);
+
+    @each $tamanho, $fator in $fatores {
+      &--padding-#{$tamanho} {
+        @include padding('onidirecional', $tamanho);
+      }
+    }
+  }
 }
 </style>
