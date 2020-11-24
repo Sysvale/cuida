@@ -1,14 +1,17 @@
 <template>
     <div class="grid">
-        <div
-            v-for="n in 7"
-            :key="n"
+        <b-table
+            :items="items"
+            :fields="fields"
         >
-            <span class="grid__index-label">{{n-1}}</span>
-            <div class="grid__space-card">
-                <span :class="`grid__space-card--padding-${n-1}`">| |</span>
-            </div>
-        </div>
+            <template #cell(sample)="row">
+                <div class="grid__table-row">
+                    <div class="grid__space-card">
+                        <span :class="`grid__space-card--padding-${row.index}`">| |</span>
+                    </div>
+                </div>
+            </template>
+        </b-table>
     </div>
 </template>
 
@@ -16,18 +19,40 @@
 export default {
   data() {
     return {
-      factor: 1/4,
+      fields: [
+        {
+          key: 'index',
+          label: 'Índice',
+        },
+        {
+          key: 'rem',
+          label: '[rem]',
+        },
+        {
+          key: 'px',
+          label: '[px]',
+        },
+        {
+          key: 'sample',
+          label: 'Exemplo',
+        },
+      ],
     };
   },
-  methods: {
-    size(n) {
-      if (n<=1) {
-        return (n * this.factor).toFixed(2);
+  computed: {
+    items() {
+      const factors = [0, .25, .5, 1, 1.5, 3, 6];
+      let items = [];
+      for (let n = 0; n < 7; n++) {
+        items.push({
+          index: n,
+          rem: factors[n],
+          px: 16 * factors[n],
+        });
       }
-      this.factor *= 2;
-      return this.factor.toFixed(2);
-    }
-  },
+      return items;
+    },
+  }
 };
 </script>
 
@@ -39,10 +64,9 @@ export default {
   flex-direction: row;
   justify-content: center;
 
-  &__index-label {
+  &__table-row {
     display: flex;
-    justify-content: center;
-    @include margin('inferior', 2);
+    @include margin('esquerda', 2);
   }
 
   &__space-card {
