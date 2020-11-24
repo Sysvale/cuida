@@ -1,12 +1,11 @@
 <template>
 	<div
-		class="stepper d-flex justify-content-between"
-		:class="vertical ? 'flex-column h-100' : ''"
+		:class="vertical ? 'stepper--vertical' : 'stepper'"
 	>
 		<div
-			:class="vertical ? 'd-flex justify-content-end h-50' : 'w-50'"
+			:class="vertical ? 'stepper__edge-container--vertical' : 'stepper__edge-container'"
 		>
-			<div class="stepper__edge d-flex align-items-center justify-content-center">
+			<div class="stepper__edge">
 				<div :class="dividerStyle(-1)" />
 			</div>
 		</div>
@@ -17,20 +16,19 @@
 		>
 			<div
 				v-if="vertical"
-				class="stepper__step-label mr-2 text-right"
+				class="stepper__step-label--vertical"
 				:class="labelStyle(index)"
 				@click="changeStep(index)"
 			>
 				<small>{{ step.label }}</small>
 			</div>
 			<div
-				class="d-flex align-items-center"
-				:class="vertical ? 'flex-column' : ''"
+				:class="vertical ? 'stepper__icon-container--vertical' : 'stepper__icon-container'"
 				:id="`step-${index + 1}`"
 				@click="changeStep(index)"
 			>
 				<div
-					class="d-flex justify-content-center align-items-center"
+					class="stepper__icon-circle"
 					:class="circleStyle(step, index)"
 				>
 					<check-icon
@@ -43,7 +41,7 @@
 					/>
 					<div
 						v-else-if="step.inProcessing"
-						class="ml-n-1px d-flex align-items-center"
+						class="stepper__processing-icon"
 					>
 						<svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M18.78 16.6325C17.738 18.0472 16.3457 19.1664 14.7402 19.8799C13.1346 20.5935 11.3709 20.8769 9.62259 20.7023C7.87428 20.5276 6.20151 19.901 4.76877 18.884C3.33604 17.867 2.19266 16.4945 1.45107 14.9017C0.709475 13.3089 0.395207 11.5504 0.539162 9.79934C0.683116 8.04824 1.28034 6.36474 2.2721 4.9144C3.26387 3.46406 4.61603 2.2968 6.19562 1.52741C7.77522 0.758019 9.52787 0.412981 11.2812 0.526225L10.6287 10.6288L18.78 16.6325Z" fill="#3A7EDF"/>
@@ -51,7 +49,7 @@
 					</div>
 					<span
 						v-else
-						class="fs-14"
+						class="stepper__icon-text"
 					>
 						{{ index + 1 }}
 					</span>
@@ -69,9 +67,9 @@
 		</div>
 		<div
 			v-if="!vertical"
-			class="w-50"
+			class="stepper__edge-container"
 		>
-			<div class="stepper__edge d-flex align-items-center justify-content-center">
+			<div class="stepper__edge">
 				<div :class="dividerStyle(-1)" />
 			</div>
 		</div>
@@ -129,7 +127,7 @@ export default {
 	data() {
 		return {
 			internalValue: this.value - 1,
-		}
+		};
 	},
 
 	watch: {
@@ -147,7 +145,7 @@ export default {
 
 	methods: {
 		circleStyle(step, index) {
-			const classCursor = !this.disableOnClick ? 'cursor-pointer' : '';
+			const classCursor = !this.disableOnClick ? 'stepper__step--clickable' : '';
 
 			if (step.inProcessing) {
 				return `stepper__step--in-processing ${classCursor}`;
@@ -160,7 +158,7 @@ export default {
 			if (step.completed) {
 				return `stepper__step--completed ${classCursor}`;
 			}
-			
+
 			if (index === this.internalValue) {
 				return `stepper__step--active ${classCursor}`;
 			}
@@ -191,8 +189,8 @@ export default {
 			) {
 				return `stepper__${vertical}divider--completed`;
 			}
-			
-			if((!lastStep
+
+			if ((!lastStep
 				&& index > 0
 				&& this.steps[index].completed
 				&& this.steps[prevStep].completed)
@@ -205,11 +203,11 @@ export default {
 
 			return `stepper__${vertical}divider--default`;
 		},
-		
+
 		stepSectionStyle(index) {
 			let classes = '';
-			classes += index !== this.steps.length - 1 ? 'w-100 ' : '';
-			classes += this.vertical ? 'd-flex justify-content-end h-100' : '';
+			classes += index !== this.steps.length - 1 ? 'stepper__step-section ' : '';
+			classes += this.vertical ? 'stepper__step-section--vertical' : '';
 			return classes;
 		},
 
@@ -217,19 +215,28 @@ export default {
 			let classes = '';
 
 			classes += index === this.internalValue ? 'stepper__step-label--active' : 'stepper__step-label--muted';
-			classes += !this.vertical ? ' label-max-width' : '';
-			classes += !this.disableOnClick ? ' cursor-pointer' : '';
-			
+			classes += !this.vertical ? ' stepper__step-label--horizontal' : '';
+			classes += !this.disableOnClick ? ' stepper__step--clickable' : '';
+
 			return classes;
 		},
-	}
-}
+	},
+};
 </script>
 
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
 .stepper {
+	display: flex;
+	justify-content: space-between;
+
+	&--vertical {
+		@extend .stepper;
+		flex-direction: column;
+		height: 100%;
+	}
+
 	&__step--active,
 	&__step--muted,
 	&__step--in-processing,
@@ -241,7 +248,7 @@ export default {
 		border: 1px;
 		border-style: solid;
 	}
-	
+
 	&__step--active {
 		color: $cinza-6;
 		border: 2px;
@@ -265,11 +272,15 @@ export default {
 		border-color: $vermelho-mario-base;
 		color: $branco;
 	}
-	
-	&__step--completed { 
+
+	&__step--completed {
 		background-color: $verde-piccolo-base;
 		border-color: $verde-piccolo-base;
 		color: $branco;
+	}
+
+	&__step--clickable {
+		cursor: pointer;
 	}
 
 	&__step-label {
@@ -286,30 +297,89 @@ export default {
 			color: $cinza-9;
 			font-weight: 600;
 		}
+
+		&--horizontal {
+			max-width: 70px;
+		}
+
+		&--vertical {
+			@extend .stepper__step-label;
+			margin-right: 8px;
+			text-align: right;
+		}
 	}
-	
+
 	&__edge {
 		min-width: 30px;
 		min-height: 30px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
-	
+
+	&__edge-container {
+		width: 50%;
+
+		&--vertical {
+			display: flex;
+			justify-content: flex-end;
+			height: 50%;
+		}
+	}
+
 	&__divider--default,
 	&__divider--in-progress,
 	&__divider--completed {
 		height: 1px;
 		width: 100%;
 	}
-	
+
 	&__divider--default {
 		background-color: $cinza-4;
 	}
-	
+
 	&__divider--in-progress {
 		background: linear-gradient(90deg, #43E4CC 0%, $cinza-4 67.57%);
 	}
-	
+
 	&__divider--completed {
 		background: $verde-piccolo-base;
+	}
+
+	&__icon-container {
+		display: flex;
+		align-items: center;
+
+		&--vertical {
+			@extend .stepper__icon-container;
+			flex-direction: column;
+		}
+	}
+
+	&__icon-circle {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__icon-text {
+		font-size: 14px;
+	}
+
+	&__processing-icon {
+		margin-left: -1px;
+		display: flex;
+		align-items: center;
+	}
+
+	&__step-section {
+		width: 100%;
+
+		&--vertical {
+			display: flex;
+			justify-content: flex-end;
+			height: 100%;
+		}
 	}
 
 	&__vertical-divider--default,
@@ -323,29 +393,13 @@ export default {
 	&__vertical-divider--default {
 		background-color: $cinza-4;
 	}
-	
+
 	&__vertical-divider--in-progress {
 		background: linear-gradient(180deg, #43E4CC 0%, $cinza-4 67.57%);
 	}
-	
+
 	&__vertical-divider--completed {
 		background: $verde-piccolo-base;
 	}
-}
-
-.fs-14 {
-	font-size: 14px;
-}
-
-.cursor-pointer {
-	cursor: pointer;
-}
-
-.label-max-width {
-	max-width: 70px;
-}
-
-.ml-n-1px {
-	margin-left: -1px;
 }
 </style>

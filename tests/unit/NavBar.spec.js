@@ -25,8 +25,8 @@ const mockedData = [
 				label: 'Dummy item 3',
 				path: '/dummy/sub/item/3',
 			},
-		]
-	}
+		],
+	},
 ];
 
 test('Component is mounted properly', () => {
@@ -41,7 +41,7 @@ test('Component is mounted properly', () => {
 	expect(wrapper).toMatchSnapshot();
 });
 
-describe("Items styles test", () => {
+describe('Items styles test', () => {
 	test('if has one item set as active', () => {
 		window._ = lodash;
 		const wrapper = mount(NavBar, {
@@ -78,7 +78,7 @@ describe("Items styles test", () => {
 		expect(wrapper.findAll('.active-parent').length).toBe(1);
 	});
 
-	test('if light mode is setted properly', () => {
+	test('if light mode is set properly', () => {
 		window._ = lodash;
 		const wrapper = mount(NavBar, {
 			localVue,
@@ -89,12 +89,12 @@ describe("Items styles test", () => {
 			},
 		});
 
-		expect(wrapper.findAll('.bg-cs').length).toBe(1);
-		expect(wrapper.findAll('.cs-mode').length).toBe(mockedData.length);
+		expect(wrapper.findAll('.nav-bar--light').length).toBe(1);
+		expect(wrapper.findAll('.nav-bar__item--light').length).toBe(mockedData.length);
 	});
 });
 
-describe("Change active item event tests", () => {
+describe('Change active item event tests', () => {
 	test('if a event is emited when the item is clicked', () => {
 		window._ = lodash;
 		const wrapper = mount(NavBar, {
@@ -115,7 +115,7 @@ describe("Change active item event tests", () => {
 		expect(wrapper.emitted().click).toEqual([
 			[
 				mockedData[elementIndex],
-			]
+			],
 		]);
 	});
 
@@ -137,7 +137,7 @@ describe("Change active item event tests", () => {
 		expect(wrapper.emitted().click).toEqual([
 			[
 				mockedData[3].items[0],
-			]
+			],
 		]);
 	});
 });

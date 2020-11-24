@@ -37,8 +37,8 @@ describe('Action list functioning', () => {
 			},
 		});
 
-		expect(wrapper.findAll('.action').length).toBe(2);
-		expect(wrapper.findAll('.actionLeftBorder').length).toBe(1);
+		expect(wrapper.findAll('.action-list__item').length).toBe(1);
+		expect(wrapper.findAll('.action-list__item--left-bordered').length).toBe(1);
 	});
 
 	test('If when the number of expanded actions to be shown is 4 and there is an array of length 4, are rendered 4 actions', () => {
@@ -51,7 +51,8 @@ describe('Action list functioning', () => {
 			},
 		});
 
-		expect(wrapper.findAll('.action').length).toBe(4);
+		expect(wrapper.findAll('.action-list__item').length).toBe(1);
+		expect(wrapper.findAll('.action-list__item--left-bordered').length).toBe(3);
 	});
 
 	test('If the list is expanded when the "more actions" button is clicked', async () => {
@@ -65,15 +66,17 @@ describe('Action list functioning', () => {
 			},
 		});
 
-		expect(wrapper.findAll('.action').length).toBe(2);
+		expect(wrapper.findAll('.action-list__item').length).toBe(1);
+		expect(wrapper.findAll('.action-list__item--left-bordered').length).toBe(1);
 
 		wrapper
-			.find('.actionLeftBorder')
+			.find('.action-list__item--left-bordered')
 			.trigger('click');
 
 		await localVue.nextTick();
 
-		expect(wrapper.findAll('.action').length).toBe(5);
+		expect(wrapper.findAll('.action-list__item').length).toBe(1);
+		expect(wrapper.findAll('.action-list__item--left-bordered').length).toBe(4);
 	});
 
 	test('If a event is emited when the action is clicked', () => {
@@ -85,7 +88,7 @@ describe('Action list functioning', () => {
 				numberOfExpandedActions: 4,
 			},
 		});
-		wrapper.find('.action').trigger('click');
+		wrapper.find('.action-list__item').trigger('click');
 
 		expect(wrapper.emitted()['action-clicked']).toBeTruthy();
 		expect(wrapper.emitted()['action-clicked']).toEqual([

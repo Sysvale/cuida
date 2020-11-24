@@ -191,7 +191,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import '../assets/sass/app.scss';
+
 #s-popover .overlay {
 	position: fixed;
 	width: 100%;
@@ -218,7 +220,7 @@ export default {
 }
 
 .s-popover {
-	border: 1px solid #CED4DA;
+	border: 1px solid $cinza-4;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 8px;
 }

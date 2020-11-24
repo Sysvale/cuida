@@ -1,11 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component is mounted properly 1`] = `
-<div class="progress-bar-container"><span class="text-style">
-		67%
-	</span>
-  <div class="progress-bar-background" style="--backgroundColor: #DDE2E7;">
-    <div class="progress-indicator" style="--width: 67%; --color: #2EB88D;"></div>
-  </div>
+<span id="progressBar"><div class="bar"><span class="bar__text">
+			67%
+		</span>
+<div class="bar__content" style="--backgroundColor: #DDE2E7;">
+  <div class="bar__indicator" style="--width: 67%; --color: #2EB88D;"></div>
 </div>
+</div>
+</span>
 `;

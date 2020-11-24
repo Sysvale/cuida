@@ -37,18 +37,16 @@
 							Arraste o arquivo aqui ou
 							<a
 								href="javascript:void(0)"
-								class="upload-input__search-link font-weight-bold"
+								class="upload-input__search-link"
 								@click="linkClick"
 							>
 								pesquise no seu computador
 							</a>
 						</div>
-						<div v-if="isValid === false" class="upload-input__alert py-2 mt-3">
-							<div class="d-flex align-items-center justify-content-center">
-								<alert-triangle-icon
-									class="mr-2"
-								/> {{ computedAllowedMessage }}
-							</div>
+						<div v-if="isValid === false" class="upload-input__alert-container">
+							<alert-triangle-icon
+								class="upload-input__alert"
+							/> {{ computedAllowedMessage }}
 						</div>
 					</div>
 					<div v-else>
@@ -78,7 +76,7 @@
 							<div>
 								<a
 									href="javascript:void(0)"
-									class="upload-input__search-link font-weight-bold"
+									class="upload-input__search-link"
 									@click="handleRemove"
 								>
 									Remover
@@ -143,7 +141,7 @@ export default {
 	computed: {
 		sizeClass() {
 			const classesObject = {
-				inputTitle: `upload-input__title-${this.size}`,
+				inputTitle: `upload-input__title--${this.size}`,
 				holderPadding: 'px-3',
 				wrapperPadding: 'px-2 py-4',
 				contentPadding: 'mt-3',
@@ -265,26 +263,38 @@ export default {
 	box-sizing: border-box;
 
 	&__alert {
-		background: $amarelo-pikachu-light-2;
-		border: 1px solid $amarelo-pikachu-light-1;
-		color: $amarelo-pikachu-dark-2;
-		border-radius: 5px;
+		margin-right: 8px;
+
+		&-container {
+			background: $amarelo-pikachu-light-2;
+			border: 1px solid $amarelo-pikachu-light-1;
+			color: $amarelo-pikachu-dark-2;
+			border-radius: 5px;
+			padding: 8px 0;
+			margin-top: 16px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
 	}
 
-	&__title-lg {
-		@include subtitulo-1;
-	}
+	&__title {
+		&--lg {
+			@include subtitulo-1;
+		}
 
-	&__title-md {
-		@include subtitulo-2;
-	}
+		&--md {
+			@include subtitulo-2;
+		}
 
-	&__title-sm {
-		@include subtitulo-3;
+		&--sm {
+			@include subtitulo-3;
+		}
 	}
 
 	&__search-link {
 		color: $azul-sonic-base;
+		font-weight: 700;
 
 		&:hover {
 			text-decoration: underline;

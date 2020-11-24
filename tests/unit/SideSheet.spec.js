@@ -25,7 +25,7 @@ describe("Items styles test", () => {
 				position: 'left',
 			},
 		});
-		expect(wrapper.findAll('.left').length).toBe(1);
+		expect(wrapper.findAll('.side-sheet__container--left').length).toBe(1);
 	});
 
 	test('if content is right aligned', () => {
@@ -36,7 +36,7 @@ describe("Items styles test", () => {
 				position: 'right',
 			},
 		});
-		expect(wrapper.findAll('.right').length).toBe(1);
+		expect(wrapper.findAll('.side-sheet__container--right').length).toBe(1);
   });
 
   test('if content is right aligned by default', () => {
@@ -46,7 +46,7 @@ describe("Items styles test", () => {
         value: true,
       },
     });
-    expect(wrapper.findAll('.right').length).toBe(1);
+    expect(wrapper.findAll('.side-sheet__container--right').length).toBe(1);
   });
 });
 
@@ -62,7 +62,7 @@ describe("Behavior tests", () => {
 			},
 		});
 
-		const overlay = wrapper.find('.overlay');
+		const overlay = wrapper.find('.side-sheet__overlay');
 		overlay.trigger('click');
 		await wrapper.vm.$nextTick();
 		expect(wrapper.emitted().input).toBeFalsy();

@@ -25,7 +25,7 @@ describe("Prop 'variant' tests", () => {
 			},
 		});
 
-		expect(wrapper.vm.predefinedStyle).toBe('turquoise');
+		expect(wrapper.vm.predefinedStyle).toBe('badge--turquoise');
 	});
 
 	test("if the computed property changes when the prop variant is setted to 'green'", () => {
@@ -37,7 +37,7 @@ describe("Prop 'variant' tests", () => {
 			},
 		});
 
-		expect(wrapper.vm.predefinedStyle).toBe('green');
+		expect(wrapper.vm.predefinedStyle).toBe('badge--green');
 	});
 
 	test("if the computed property changes when the prop variant is setted to 'blue'", () => {
@@ -49,7 +49,7 @@ describe("Prop 'variant' tests", () => {
 			},
 		});
 
-		expect(wrapper.vm.predefinedStyle).toBe('blue');
+		expect(wrapper.vm.predefinedStyle).toBe('badge--blue');
 	});
 
 	test("if the computed property changes when the prop variant is setted to 'purple'", () => {
@@ -61,7 +61,7 @@ describe("Prop 'variant' tests", () => {
 			},
 		});
 
-		expect(wrapper.vm.predefinedStyle).toBe('purple');
+		expect(wrapper.vm.predefinedStyle).toBe('badge--purple');
 	});
 
 	test("if the computed property changes when the prop variant is setted to 'pink'", () => {
@@ -73,7 +73,7 @@ describe("Prop 'variant' tests", () => {
 			},
 		});
 
-		expect(wrapper.vm.predefinedStyle).toBe('pink');
+		expect(wrapper.vm.predefinedStyle).toBe('badge--pink');
 	});
 
 	test("if the computed property changes when the prop variant is setted to 'red'", () => {
@@ -85,7 +85,7 @@ describe("Prop 'variant' tests", () => {
 			},
 		});
 
-		expect(wrapper.vm.predefinedStyle).toBe('red');
+		expect(wrapper.vm.predefinedStyle).toBe('badge--red');
 	});
 
 	test("if the computed property changes when the prop variant is setted to 'orange'", () => {
@@ -97,7 +97,7 @@ describe("Prop 'variant' tests", () => {
 			},
 		});
 
-		expect(wrapper.vm.predefinedStyle).toBe('orange');
+		expect(wrapper.vm.predefinedStyle).toBe('badge--orange');
 	});
 
 	test("if the computed property changes when the prop variant is setted to 'yellow'", () => {
@@ -109,7 +109,7 @@ describe("Prop 'variant' tests", () => {
 			},
 		});
 
-		expect(wrapper.vm.predefinedStyle).toBe('yellow');
+		expect(wrapper.vm.predefinedStyle).toBe('badge--yellow');
 	});
 
 	test("if the computed property changes when the prop variant is setted to 'gray'", () => {
@@ -121,6 +121,6 @@ describe("Prop 'variant' tests", () => {
 			},
 		});
 
-		expect(wrapper.vm.predefinedStyle).toBe('gray');
+		expect(wrapper.vm.predefinedStyle).toBe('badge--gray');
 	});
 });
