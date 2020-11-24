@@ -1,7 +1,7 @@
 <template>
     <div class="grid">
         <div
-            v-for="n in 8"
+            v-for="n in 7"
             :key="n"
         >
             <span class="d-flex justify-content-center mb-2">{{n-1}}</span>
@@ -49,5 +49,6 @@ export default {
 .grid {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 </style>
