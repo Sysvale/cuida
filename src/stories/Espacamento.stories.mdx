@@ -31,7 +31,7 @@ espaçamentos combinados, como combinar alguns `margin` e `padding` de elementos
 determinado espaçamento não definido na escala. Caso seja realmente necessário tal espaçamento
 é preferível adicionar classe específica para o elemento em questão com o tal espaçamento.
 
-- É preferível combinar posicionamentos (`left`,`right`,`top` e `bottom`) com margens ou padding
+- É preferível combinar posicionamentos (`esquerda`,`direita`,`superior` e `inferior`) com margens ou padding
 menores em detrimento de usar uma margem ou padding muito grande e fora da faixa definida na escala.
 
 
@@ -40,7 +40,7 @@ menores em detrimento de usar uma margem ou padding muito grande e fora da faixa
 ## Escala de espaçamento
 <br />
 
-A notação utilizada é a mesma do Bootstrap sendo os tamanhos (`size`) um dos valores da escala abaixo.
+A escala utilizada é baseada no Bootstrap sendo os tamanhos um dos valores da escala abaixo.
 
 export const Template = () => ({
     template:`<space />`,
@@ -50,6 +50,6 @@ export const Template = () => ({
     { Template.bind({}) }
 </Story>
 
-Para usar os tokens de espaçamento utilize `@include padding($side, $size);` ou `@include margin($side, $size);`
-onde `$side` é um dos valores: `t`(top), `b`(bottom), `l`(left), `r`(right), `x`(right/left), `y`(top/bottom)
-ou `a`(all, todas as direções).
+Para usar os tokens de espaçamento utilize `@include padding($direcao, $tamanho);` ou `@include margin($direcao, $tamanho);`
+onde `$direcao` é um dos valores: `esquerda`, `direita`, `superior`, `inferior`, `horizontal`,
+`vertical` ou `onidirecional`.

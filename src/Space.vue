@@ -6,7 +6,7 @@
         >
             <span class="d-flex justify-content-center mb-2">{{n-1}}</span>
             <div class="mx-1 space-card">
-                <span :class="`p-${n-1}`">| |</span>
+                <span :class="`padding-${n-1}`">| |</span>
             </div>
         </div>
     </div>
@@ -34,9 +34,9 @@ export default {
 <style lang="scss" scoped>
 @import './assets/sass/app.scss';
 
-@each $size, $factor in $factors {
-  .p-#{$size} {
-    @include padding('a', $size);
+@each $tamanho, $fator in $fatores {
+  .padding-#{$tamanho} {
+    @include padding('onidirecional', $tamanho);
   }
 }
 
