@@ -1,0 +1,59 @@
+$spacer: 1rem !default;
+
+$fatores: ();
+$fatores: map-merge(
+	(
+		0: 0,
+		1: .25,
+		2: .5,
+		3: 1,
+		4: 1.5,
+		5: 3,
+		6: 6,
+	),
+	$fatores
+);
+
+@mixin padding($direcao, $indice) {
+    @if ($direcao == 'horizontal' or $direcao == 'esquerda') {
+		padding-left: ($spacer * map-get($fatores, $indice)) !important;
+	}
+
+	@if ($direcao == 'horizontal' or $direcao == 'direita') {
+		padding-right: ($spacer * map-get($fatores, $indice)) !important;
+	}
+
+	@if ($direcao == 'vertical' or $direcao == 'superior') {
+		padding-top: ($spacer * map-get($fatores, $indice)) !important;
+	}
+
+	@if ($direcao == 'vertical' or $direcao == 'inferior') {
+		padding-bottom: ($spacer * map-get($fatores, $indice)) !important;
+	}
+
+	@if ($direcao == 'onidirecional') {
+		padding: ($spacer * map-get($fatores, $indice)) !important;
+	}
+}
+
+@mixin margin($direcao, $indice) {
+    @if ($direcao == 'horizontal' or $direcao == 'esquerda') {
+		margin-left: ($spacer * map-get($fatores, $indice)) !important;
+	}
+
+	@if ($direcao == 'horizontal' or $direcao == 'direita') {
+		margin-right: ($spacer * map-get($fatores, $indice)) !important;
+	}
+
+	@if ($direcao == 'vertical' or $direcao == 'superior') {
+		margin-top: ($spacer * map-get($fatores, $indice)) !important;
+	}
+
+	@if ($direcao == 'vertical' or $direcao == 'inferior') {
+		margin-bottom: ($spacer * map-get($fatores, $indice)) !important;
+	}
+
+	@if ($direcao == 'onidirecional') {
+		margin: ($spacer * map-get($fatores, $indice)) !important;
+	}
+}
