@@ -72,5 +72,8 @@ addParameters({
 		initialActive: 'sidebar',
 		selectedPanel: 'controls',
 		showCanvas: false,
+		storySort: {
+			order: ['Fundação', 'Componentes'],
+		},
 	},
 });
