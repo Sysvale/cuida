@@ -13,10 +13,16 @@
 					{{ title }}
 				</div>
 				<div
-					v-if="subtitle"
 					class="content__subtitle"
 				>
-					<span v-html="subtitle" />
+					<!--
+						@slot Slot para renderização customizada do subtítulo do item.
+						Caso o subtítulo seja texto simples, é recomendado que, ao invés do slot,
+						seja utilizada a prop de mesmo nome.
+					-->
+					<slot name="subtitle">
+						{{ subtitle }}
+					</slot>
 				</div>
 				<div
 					v-if="clickableAction"
@@ -79,7 +85,7 @@ export default {
 			required: true,
 		},
 		/**
-		* Texto descritivo exibido abaixo do título (reconhece marcações HTML).
+		* Texto descritivo exibido abaixo do título.
 		*/
 		subtitle: {
 			type: String,
