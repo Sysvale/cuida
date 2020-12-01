@@ -1,6 +1,7 @@
 <template>
 	<div
 		class="alert-card__container"
+		:class="alertCardContainerSelected"
 	>
 		<div
 			v-if="selectable"
@@ -126,6 +127,12 @@ export default {
 					return 'info-icon';
 			}
 		},
+
+		alertCardContainerSelected() {
+			if (this.isSelected) {
+				return `alert-card__container--selected-${this.variant}`
+			}
+		}
 	},
 
 	methods: {
@@ -145,12 +152,32 @@ export default {
 @import '../assets/sass/app.scss';
 
 .alert-card {
+	display: flex;
+	align-items: center;
+	@include padding(onidirecional, 3);
+	border-radius: 16px;
+
 	&__container {
-		display: flex;
-		align-items: center;
-		@include padding(onidirecional, 3);
+		@extend .alert-card;	
 		border: 1px solid $cinza-3;
-		border-radius: 16px;
+	}
+
+	&__container--selected-info {
+		@extend .alert-card;
+		border: 2px solid $azul-sonic-light-1;
+		box-shadow: 1px 1px 4px rgba(32, 110, 217, 0.5);
+	}
+
+	&__container--selected-warning {
+		@extend .alert-card;
+		border: 2px solid $amarelo-pikachu-light-1;
+		box-shadow: 1px 1px 4px rgba(253, 210, 145, 0.5);
+	}
+
+	&__container--selected-danger {
+		@extend .alert-card;
+		border: 2px solid $vermelho-mario-light-1;
+		box-shadow: 1px 1px 4px rgba(237, 59, 81, 0.5);
 	}
 
 	&__title {
