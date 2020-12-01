@@ -1,0 +1,80 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import AlertCard from '../components/AlertCard.vue';
+
+<Meta
+	title="Componentes/AlertCard"
+	component={ AlertCard }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'info',
+					'warning',
+					'danger',
+				],
+			}
+		},
+	}
+}
+/>
+
+export const Template = (args, { argTypes }) => ({
+	data() {
+		return {
+			isSelected: false,
+		};
+	},
+	props: Object.keys(argTypes),
+	components: { AlertCard },
+	template: /*html*/ `
+		<alert-card
+			v-model="isSelected"
+			v-bind="$props" 
+		/>
+	`,
+});
+
+# AlertCard
+
+### AlertCard são indicadores de status utilizados para tornar evidentes metadados importates.
+---
+<br />
+
+## Recomendamos o uso de AlertCards quando:
+- Você quiser mostrar status associados com a lógica de negócio ou açoes do usuário.
+- O conteúdo a ser mostrado for *readonly*
+- For preciso categorizar algo
+
+<br />
+
+## Não recomendamos o uso de AlertCards quando:
+- O conteúdo que a AlertCard representa puder ser setado ou removido pelo usuário.
+- O click no componente precisar executar uma ação ou funcionalidade.
+
+<br />
+
+## Preview
+
+export const title = 'Título do AlertCard';
+
+export const subTitle =  `Existe uma teoria que diz que, se um dia alguém descobrir 
+				exatamente para que serve o Universo e por que ele está aqui, ele 
+				desaparecerá instantaneamente e será substituídopor al go ainda 
+				mais estranho e inexplicável. Existe uma segunda teoria que diz 
+				que isso já aconteceu.`;
+
+<Canvas>
+	<Story
+		name="AlertCard"
+		args={{
+			title,
+			subTitle,
+			variant: 'info',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="AlertCard" />
