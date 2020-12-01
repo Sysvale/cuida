@@ -37,20 +37,21 @@ export const Template = (args, { argTypes }) => ({
 
 # AlertCard
 
-### AlertCard são indicadores de status utilizados para tornar evidentes metadados importates.
+### AlertCard são componentes utilizados para transmitir mensagens contextuais importantes e apresentar possíveis ações a serem tomadas em cima delas.
 ---
 <br />
 
 ## Recomendamos o uso de AlertCards quando:
-- Você quiser mostrar status associados com a lógica de negócio ou açoes do usuário.
-- O conteúdo a ser mostrado for *readonly*
-- For preciso categorizar algo
+- Você precisar mostrar informações contextuais extensas
+- Você precisar mostrar informações contextuais que requerem ações do usuário sobre elas
+- AlertCards funcionam bem quando utilizados em seguência / empilhados como em um v-for
 
 <br />
 
 ## Não recomendamos o uso de AlertCards quando:
-- O conteúdo que a AlertCard representa puder ser setado ou removido pelo usuário.
-- O click no componente precisar executar uma ação ou funcionalidade.
+- Você precisar mostrar informações de maneira discreta ou que pode ser ocultada.
+Para esse caso, recomendamos o uso de b-toasts
+- Você precisar mostrar informações contextuais curtas
 
 <br />
 
