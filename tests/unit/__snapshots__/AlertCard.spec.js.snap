@@ -9,7 +9,7 @@ exports[`Component is mounted properly 1`] = `
       <line x1="12" y1="8" x2="12.01" y2="8"></line>
     </svg></div>
   <div><span class="alert-card__title--info"></span> <span class="alert-card__subtitle">
-			Subtítulo do AlertCard
-		</span> </div>
+				Subtítulo do AlertCard
+			</span> </div>
 </div>
 `;
