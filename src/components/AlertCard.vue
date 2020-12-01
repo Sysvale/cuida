@@ -9,13 +9,13 @@
 		>
 			<input
 				type="checkbox"
-				:id="`input`"
-				:name="`input`"
+				id="checkbox-input"
+				name="checkbox-input"
 				:value="true"
 			/>
 			<label
-				:id="`checkbox`"
-				:for="`input`"
+				id="custom-checkbox"
+				for="checkbox-input"
 				@click="selectCheckbox"
 				:class="{ 'custom-checkbox--checked': isSelected }"
 			/>
@@ -34,6 +34,7 @@
 
 		<div>
 			<span :class="`alert-card__title--${variant}`">{{ title }}</span>
+
 			<span
 				v-if="!$slots['subTitle']"
 				class="alert-card__subtitle"
@@ -42,11 +43,11 @@
 			</span>
 
 			<!-- @slot Slot usado para inserção de conteúdo customizado no subtítulo. -->
-			<slot name="subTitle" class="alert-card__subtitle" />
+			<slot name="subTitle-slot" class="alert-card__subtitle" />
 
 			<!-- @slot Slot usado para inserção de conteúdo adicional no AlertCard
 				abaixo do subtítulo. -->
-			<slot name="content" class="alert-card__content" />
+			<slot name="content-slot" class="alert-card__content" />
 		</div>
 	</div>
 </template>
