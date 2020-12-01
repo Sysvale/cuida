@@ -13,3 +13,4 @@ export { default as Badge } from './Badge.vue';
 export { default as UploadInput } from './UploadInput.vue';
 export { default as Stepper } from './Stepper.vue';
 export { default as ProgressCircular } from './ProgressCircular.vue';
+export { default as AlertCard } from './AlertCard.vue';
