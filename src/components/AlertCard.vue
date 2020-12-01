@@ -70,6 +70,7 @@ export default {
 		title: {
 			type: String,
 			default: 'Título do AlertCard',
+			required: true,
 		},
 		/**
 		 * O subtítulo do alerta. O subtítulo também pode ser usado com o slot.
@@ -98,7 +99,6 @@ export default {
 		value: {
 			type: Boolean,
 			default: false,
-			required: true,
 		},
 	},
 
