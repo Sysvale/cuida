@@ -5,7 +5,7 @@
 	>
 		<div
 			v-if="selectable"
-			class="rcheckbox"
+			class="custom-checkbox"
 		>
 			<input
 				type="checkbox"
@@ -17,7 +17,7 @@
 				:id="`checkbox`"
 				:for="`input`"
 				@click="selectCheckbox"
-				:class="{ 'rcheckbox--checked': isSelected }"
+				:class="{ 'custom-checkbox--checked': isSelected }"
 			/>
 		</div>
 
@@ -255,7 +255,7 @@ export default {
 	}
 }
 
-.rcheckbox {
+.custom-checkbox {
 	@include margin(superior, 3);
 	align-self: flex-start;
 	margin-right: 32px;
@@ -295,7 +295,7 @@ export default {
 	}
 }
 
-.rcheckbox--checked {
+.custom-checkbox--checked {
 	background-color: $azul-bidu-dark-1 !important;
 	border: none !important;
 }
