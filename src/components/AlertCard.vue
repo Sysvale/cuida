@@ -35,15 +35,12 @@
 		<div>
 			<span :class="`alert-card__title--${variant}`">{{ title }}</span>
 
-			<span
-				v-if="!$slots['subTitle']"
-				class="alert-card__subtitle"
-			>
-				{{ subTitle }}
-			</span>
-
 			<!-- @slot Slot usado para inserção de conteúdo customizado no subtítulo. -->
-			<slot name="subTitle-slot" class="alert-card__subtitle" />
+			<span class="alert-card__subtitle">
+				<slot name="subTitle-slot">
+					{{ subTitle }}
+				</slot>
+			</span>
 
 			<!-- @slot Slot usado para inserção de conteúdo adicional no AlertCard
 				abaixo do subtítulo. -->
