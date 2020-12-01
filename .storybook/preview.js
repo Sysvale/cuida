@@ -28,6 +28,7 @@ import {
 	UploadInput,
 	Stepper,
 	ProgressCircular,
+	AlertCard,
 } from '../src/components';
 
 import Palete from '../src/Palete.vue';
@@ -55,6 +56,7 @@ Vue.component('typography-list', TypographyList);
 Vue.component('upload-input', UploadInput);
 Vue.component('stepper', Stepper);
 Vue.component('progress-circular', ProgressCircular);
+Vue.component('alert-card', AlertCard);
 
 addParameters({
 	options: {
