@@ -14,22 +14,60 @@ test('Component is mounted properly', () => {
 	expect(wrapper).toMatchSnapshot();
 });
 
-test("if a event is emited when the checkbox is clicked", () => {
-	const wrapper = shallowMount(AlertCard, {
-		localVue,
-		propsData: {
-			withIcon: true,
-			variant: 'danger',
-			title: 'Test',
-			selectable: true,
-		},
+describe('Click tests', () => {
+	test("if an event is emited when the checkbox is clicked", () => {
+		const wrapper = shallowMount(AlertCard, {
+			localVue,
+			propsData: {
+				withIcon: true,
+				variant: 'danger',
+				title: 'Test',
+				selectable: true,
+			},
+		});
+
+		expect(wrapper.find('#custom-checkbox').exists()).toBe(true);
+		wrapper.find('#custom-checkbox').trigger('click');
+
+		expect(wrapper.emitted().input).toBeTruthy();
+		expect(wrapper.emitted().input).toEqual([[true]]);
 	});
 
-	expect(wrapper.find('#custom-checkbox').exists()).toBe(true);
-	wrapper.find('#custom-checkbox').trigger('click');
+	test("if an event is emited when the card is clicked", () => {
+		const wrapper = shallowMount(AlertCard, {
+			localVue,
+			propsData: {
+				withIcon: true,
+				variant: 'danger',
+				title: 'Test',
+				selectable: true,
+			},
+		});
 
-	expect(wrapper.emitted().input).toBeTruthy();
-	expect(wrapper.emitted().input).toEqual([[true]]);
+		expect(wrapper.find('.alert-card__container').exists()).toBe(true);
+		wrapper.find('.alert-card__container').trigger('click');
+
+		expect(wrapper.emitted().input).toBeTruthy();
+		expect(wrapper.emitted().input).toEqual([[true]]);
+	});
+
+	test("if an event is not emited when the card is clicked when disabled", () => {
+		const wrapper = shallowMount(AlertCard, {
+			localVue,
+			propsData: {
+				withIcon: true,
+				variant: 'danger',
+				title: 'Test',
+				selectable: true,
+				disabled: true,
+			},
+		});
+
+		expect(wrapper.find('.alert-card__container').exists()).toBe(true);
+		wrapper.find('.alert-card__container').trigger('click');
+
+		expect(wrapper.emitted().input).toBeFalsy();
+	});
 });
 
 describe("Styles based on the variants tests", () => {
