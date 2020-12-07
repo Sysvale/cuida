@@ -2,7 +2,11 @@
 	<div>
 		<label v-if="label" for="stepper-input-number">{{ label }}</label>
 		<div
-			:class="isBeignFocused ? 'stepper-input--focused' : 'stepper-input'"
+			:class="{
+				'stepper-input': !isBeignFocused,
+				'stepper-input--focused': isBeignFocused,
+				'stepper-input--disabled': disabled,
+			}"
 		>
 			<input
 				:disabled="disabled"
@@ -25,6 +29,7 @@
 				>
 					<plus-icon size="1x" class="custom-class" />
 				</button>
+
 				<button
 					:disabled="disabled"
 					@focus="isBeignFocused = true"
@@ -128,6 +133,11 @@ export default {
 	border-radius: 0px 3px 3px 0px;
 }
 
+.stepper-input--disabled {
+	background-color: $cinza-1;
+	pointer-events: none;
+}
+
 .stepper-input__icon--plus {
 	background: none;
 	color: inherit;
@@ -223,5 +233,9 @@ input[type=number] {
 
 input[type=number]{
 	width: 68px;
+}
+
+input:disabled {
+	background: none !important;
 }
 </style>
