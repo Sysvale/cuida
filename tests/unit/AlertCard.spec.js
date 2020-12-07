@@ -105,3 +105,19 @@ describe("Styles based on the variants tests", () => {
 		});
 	});
 });
+
+
+test("if the the styles are applied properly when the variant is 'danger'", () => {
+	const wrapper = mount(AlertCard, {
+		localVue,
+		propsData: {
+			withIcon: true,
+			variant: 'danger',
+			title: 'Test',
+			selectable: true,
+			disabled: true,
+		},
+	});
+
+	expect(wrapper.findAll('.alert-card__container--disabled').length).toBe(1);
+});
