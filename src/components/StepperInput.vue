@@ -4,7 +4,11 @@
 		<div
 			:class="{
 				'stepper-input': !isBeignFocused,
-				'stepper-input--focused': isBeignFocused,
+				'stepper-input--focused': (state === 'default') && isBeignFocused,
+				'stepper-input--valid': (state === 'valid') && !disabled,
+				'stepper-input--invalid': (state === 'invalid') && !disabled,
+				'stepper-input--focused-valid': (state === 'valid') && !disabled && isBeignFocused,
+				'stepper-input--focused-invalid': (state === 'invalid') && !disabled && isBeignFocused,
 				'stepper-input--disabled': disabled,
 			}"
 		>
@@ -202,7 +206,28 @@ export default {
 
 	&--focused {
 		@extend .stepper-input;
-		outline: 1px auto $azul-bidu-light-1;
+		border: 1px solid $azul-bidu-light-1;
+		box-shadow: 0 0 0 0.2rem rgba($azul-bidu-light-1, .45);
+	}
+
+	&--valid {
+		@extend .stepper-input;
+		border: 1px solid $verde-piccolo-dark-1;
+	}
+
+	&--invalid {
+		@extend .stepper-input;
+		border: 1px solid $vermelho-mario-dark-1;
+	}
+
+	&--focused-valid {
+		@extend .stepper-input--valid;
+		box-shadow: 0 0 0 0.2rem rgba($verde-piccolo-light-1, .45);
+	}
+
+	&--focused-invalid {
+		@extend .stepper-input--invalid;
+		box-shadow: 0 0 0 0.2rem rgba($vermelho-mario-light-1, .45);
 	}
 }
 
