@@ -113,12 +113,22 @@ export default {
 	watch: {
 		internalValue(value) {
 			if (value < this.min) {
+				/**
+				* Evento que indica que o valor informado está fora do intervalo aceito.
+				* @event invalid number
+				* @type {Event}
+				*/
 				this.$emit('invalid number', `'O campo não pode ser menor que ${this.min}.'`);
 				this.internalValue = this.min;
 			} else if (value > this.max) {
 				this.$emit('invalid number', `'O campo não pode ser maior que ${this.max}.'`);
 				this.internalValue = this.max;
 			} else {
+				/**
+				* Evento utilizado para implementar o v-model.
+				* @event input
+				* @type {Event}
+				*/
 				this.$emit('input', value);
 			}
 		},
