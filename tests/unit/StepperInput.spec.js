@@ -67,7 +67,6 @@ test("if the value is emited properly when the number is changed by input", () =
 		expect(wrapper.emitted().input).toBeTruthy();
 		expect(wrapper.emitted().input).toEqual([["50"]]);
 	});
-	
 });
 
 describe("Styles based on the state tests", () => {
@@ -91,5 +90,32 @@ describe("Styles based on the state tests", () => {
 		});
 
 		expect(wrapper.findAll('.stepper-input--invalid').length).toBe(1);
+	});
+});
+
+test("if the input is blocked when the prop disabled is true", () => {
+	const wrapper = mount(StepperInput, {
+		localVue,
+		propsData: {
+			disabled: true,
+		},
+	});
+
+	wrapper.find('#stepper-input-number').trigger('input');
+
+	wrapper.vm.$nextTick(() => {
+		expect(wrapper.emitted().input).toBeFalsy();
+	});
+
+	wrapper.find('.stepper-input__icon--plus').trigger('click');
+
+	wrapper.vm.$nextTick(() => {
+		expect(wrapper.emitted().input).toBeFalsy();
+	});
+
+	wrapper.find('.stepper-input__icon--minus').trigger('click');
+
+	wrapper.vm.$nextTick(() => {
+		expect(wrapper.emitted().input).toBeFalsy();
 	});
 });
