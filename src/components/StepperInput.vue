@@ -141,10 +141,10 @@ export default {
 				* @event invalid number
 				* @type {Event}
 				*/
-				this.$emit('invalid number', `'O campo não pode ser menor que ${this.min}.'`);
+				this.$emit('invalid-number', `'O campo não pode ser menor que ${this.min}.'`);
 				this.internalValue = this.min;
 			} else if (value > this.max) {
-				this.$emit('invalid number', `'O campo não pode ser maior que ${this.max}.'`);
+				this.$emit('invalid-number', `'O campo não pode ser maior que ${this.max}.'`);
 				this.internalValue = this.max;
 			} else {
 				/**

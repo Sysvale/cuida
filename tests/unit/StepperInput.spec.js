@@ -133,8 +133,8 @@ describe("Value boundaries test", () => {
 		wrapper.find('.stepper-input__icon--plus').trigger('click');
 	
 		wrapper.vm.$nextTick(() => {
-			expect(wrapper.emitted()['invalid number']).toBeTruthy();
-			expect(wrapper.emitted()['invalid number']).toEqual([[ "'O campo não pode ser maior que 10.'" ]]);
+			expect(wrapper.emitted()['invalid-number']).toBeTruthy();
+			expect(wrapper.emitted()['invalid-number']).toEqual([[ "'O campo não pode ser maior que 10.'" ]]);
 		});
 	});
 
@@ -150,8 +150,8 @@ describe("Value boundaries test", () => {
 		wrapper.find('.stepper-input__icon--minus').trigger('click');
 	
 		wrapper.vm.$nextTick(() => {
-			expect(wrapper.emitted()['invalid number']).toBeTruthy();
-			expect(wrapper.emitted()['invalid number']).toEqual([[ "'O campo não pode ser menor que 0.'" ]]);
+			expect(wrapper.emitted()['invalid-number']).toBeTruthy();
+			expect(wrapper.emitted()['invalid-number']).toEqual([[ "'O campo não pode ser menor que 0.'" ]]);
 		});
 	});
 });
