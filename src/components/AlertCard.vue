@@ -139,7 +139,7 @@ export default {
 
 			if (!this.disabled) {
 				if (this.selectable) {
-					 dynamicClass = 'alert-card__container--selectable';	
+					dynamicClass = 'alert-card__container--selectable';	
 				}
 				
 				if (this.isSelected) {
