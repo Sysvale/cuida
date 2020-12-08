@@ -113,7 +113,10 @@ export default {
 					} else if (this.state === 'invalid') {
 						stepperInputClass += ' stepper-input--invalid';
 					}
+				} else {
+					stepperInputClass += ' stepper-input--disabled';
 				}
+
 			} else {
 				if (!this.disabled) {
 					if (this.state === 'default') {
@@ -123,9 +126,6 @@ export default {
 					} else if (this.state === 'invalid') {
 						stepperInputClass += ' stepper-input--focused-invalid';
 					}
-
-				} else {
-					stepperInputClass += ' stepper-input--disabled';
 				}
 			}
 
