@@ -82,10 +82,16 @@ export default {
 			type: String,
 			default: 'Microarea',
 		},
+		/**
+		 * Desabilita o botão.
+		 */
 		disabled: {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Especifica o estado do StepperInput. As opçoes são 'default', 'valid'e 'invalid'.
+		 */
 		state: {
 			type: String,
 			default: 'default',
