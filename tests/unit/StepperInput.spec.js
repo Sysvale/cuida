@@ -69,3 +69,16 @@ test("if the value is emited properly when the number is changed by input", () =
 	});
 	
 });
+
+describe("Styles based on the state tests", () => {
+	test("if the the styles are applied properly when the state is 'valid' and the input is not focused", () => {
+		const wrapper = mount(StepperInput, {
+			localVue,
+			propsData: {
+				state: 'valid',
+			},
+		});
+
+		expect(wrapper.findAll('.stepper-input--valid').length).toBe(1);
+	});
+});
