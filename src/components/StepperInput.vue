@@ -105,7 +105,7 @@ export default {
 
 	data() {
 		return {
-			internalValue: 0,
+			internalValue: this.value,
 			isBeignFocused: false,
 		};
 	},
