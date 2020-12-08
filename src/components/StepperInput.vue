@@ -81,7 +81,6 @@ export default {
 		label: {
 			type: String,
 			default: 'Microarea',
-			required: true,
 		},
 		disabled: {
 			type: Boolean,
