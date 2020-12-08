@@ -51,7 +51,7 @@ describe('Click tests', () => {
 		expect(wrapper.emitted().input).toEqual([[true]]);
 	});
 
-	test("if an event is not emited when the card is clicked when disabled", () => {
+	test("if an event is not emited when the card is clicked when muted", () => {
 		const wrapper = shallowMount(AlertCard, {
 			localVue,
 			propsData: {
@@ -59,7 +59,7 @@ describe('Click tests', () => {
 				variant: 'danger',
 				title: 'Test',
 				selectable: true,
-				disabled: true,
+				muted: true,
 			},
 		});
 
@@ -153,9 +153,9 @@ test("if the the styles are applied properly when the variant is 'danger'", () =
 			variant: 'danger',
 			title: 'Test',
 			selectable: true,
-			disabled: true,
+			muted: true,
 		},
 	});
 
-	expect(wrapper.findAll('.alert-card__container--disabled').length).toBe(1);
+	expect(wrapper.findAll('.alert-card__container--muted').length).toBe(1);
 });

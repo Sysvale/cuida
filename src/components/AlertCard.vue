@@ -2,7 +2,7 @@
 	<div
 		class="alert-card__container"
 		:class="alertCardContainerSelected"
-		v-on="selectable && !disabled ? { click: selectCheckbox } : {}"
+		v-on="selectable && !muted ? { click: selectCheckbox } : {}"
 	>
 		<div
 			v-if="selectable"
@@ -102,7 +102,7 @@ export default {
 		/**
 		* Deixa o card com o estilo de card desabilitado.
 		*/
-		disabled: {
+		muted: {
 			type: Boolean,
 			default: false,
 		},
@@ -137,7 +137,7 @@ export default {
 		alertCardContainerSelected() {
 			let dynamicClass = '';
 
-			if (!this.disabled) {
+			if (!this.muted) {
 				if (this.selectable) {
 					dynamicClass = 'alert-card__container--selectable';	
 				}
@@ -146,7 +146,7 @@ export default {
 					return dynamicClass + ` alert-card__container--selected-${this.variant}`
 				}
 			} else {
-				dynamicClass = 'alert-card__container--disabled';
+				dynamicClass = 'alert-card__container--muted';
 			}
 
 			return dynamicClass;
@@ -183,7 +183,7 @@ export default {
 			cursor: pointer;
 		}
 
-		&--disabled {
+		&--muted {
 			background-color: $cinza-1;
 		}
 	}
