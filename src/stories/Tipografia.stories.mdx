@@ -24,13 +24,13 @@ a utilização de diferentes cores neutras representando hierarquias
 distintas na escala tipográfica.
 
 - Para facilitar o processo de escaneamento da interface, evitar utilizar títulos,
- lables, botões e demais elementos da interface com todas as letras maiúsculas, sendo
-	recomendado esse recurso apenas para criar diferenças na hierarquia tipográfica.
+lables, botões e demais elementos da interface com todas as letras maiúsculas, sendo
+recomendado esse recurso apenas para criar diferenças na hierarquia tipográfica.
 
 - Para evitar problemas de legibilidade, não é recomendável a utilização de textos itálicos.
 
 - Para evitar problemas de legibiliade e erros de interpretação da interface, recomendamos
- a utilização de textos sublinhados apenas quando necessário como recursos para realçar links.
+a utilização de textos sublinhados apenas quando necessário como recursos para realçar links.
 
 - Para facilitar o escaneamento e trabalhar a hierarquia de conteúdo, recomendamos a 
 utilização pontual de textos em negrito.
@@ -45,6 +45,51 @@ export const Template = (args, { argTypes }) => ({
 			v-bind="$props" 
 		/>`,
 });
+
+## Peso da Fonte
+<Story
+	name="PesoTokenRegular"
+	args={{
+		fontWeight: 400,
+		fontSize: 16,
+		TypographyTokenName: 'Regular',
+		sample: `AÀÃÂÁBCÇDẼÊÉFGHIÍJKLMNOÕÔÓPQRSTUÚÜV 
+			WXYZ aàãâábcçdeẽêéfghiíjklmnoõôópqrstuúüvwxyz
+			1234567890!@#$%*()_-+?/<>"'`,
+	}}
+>
+		{ Template.bind({}) }
+</Story>
+
+<Story
+	name="PesoTokenMedium"
+	args={{
+		fontWeight: 500,
+		fontSize: 16,
+		TypographyTokenName: 'Medium',
+		sample: `AÀÃÂÁBCÇDẼÊÉFGHIÍJKLMNOÕÔÓPQRSTUÚÜV 
+			WXYZ aàãâábcçdeẽêéfghiíjklmnoõôópqrstuúüvwxyz
+			1234567890!@#$%*()_-+?/<>"'`,
+	}}
+>
+		{ Template.bind({}) }
+</Story>
+
+<Story
+	name="PesoTokenSemiBold"
+	args={{
+		fontWeight: 600,
+		fontSize: 16,
+		TypographyTokenName: 'SemiBold',
+		sample: `AÀÃÂÁBCÇDẼÊÉFGHIÍJKLMNOÕÔÓPQRSTUÚÜV 
+			WXYZ aàãâábcçdeẽêéfghiíjklmnoõôópqrstuúüvwxyz
+			1234567890!@#$%*()_-+?/<>"'`,
+	}}
+>
+		{ Template.bind({}) }
+</Story>
+
+## Estilos Padrão
 
 ### Títulos
 ---
@@ -153,8 +198,8 @@ export const Template = (args, { argTypes }) => ({
 		letterSpacing: 0.5,
 		TypographyTokenName: 'Corpo-1',
 		sample: `Existe uma teoria que diz que, se um dia alguém descobrir exatamente para que serve o
-		 Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituídopor al
-		 go ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que 
+			Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituídopor al
+			go ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que 
 			isso já aconteceu.`,
 	}}
 >
@@ -171,8 +216,8 @@ export const Template = (args, { argTypes }) => ({
 		letterSpacing: 0.25,
 		TypographyTokenName: 'Corpo-2',
 		sample: `Existe uma teoria que diz que, se um dia alguém descobrir exatamente para que serve o
-		 Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituídopor al
-		 go ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que 
+			Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituídopor al
+			go ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que 
 			isso já aconteceu.`,
 	}}
 >
@@ -189,8 +234,8 @@ export const Template = (args, { argTypes }) => ({
 		letterSpacing: 0.4,
 		TypographyTokenName: 'Legenda',
 		sample: `Existe uma teoria que diz que, se um dia alguém descobrir exatamente para que serve o
-		 Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituídopor al
-		 go ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que 
+			Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituídopor al
+			go ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que 
 			isso já aconteceu.`,
 	}}
 >
