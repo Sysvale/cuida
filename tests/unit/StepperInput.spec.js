@@ -119,3 +119,39 @@ test("if the input is blocked when the prop disabled is true", () => {
 		expect(wrapper.emitted().input).toBeFalsy();
 	});
 });
+
+describe("Value boundaries test", () => {
+	test("if the error is emitted when the value is above the maximum", () => {
+		const wrapper = mount(StepperInput, {
+			localVue,
+			propsData: {
+				value: 10,
+				max: 10,
+			},
+		});
+	
+		wrapper.find('.stepper-input__icon--plus').trigger('click');
+	
+		wrapper.vm.$nextTick(() => {
+			expect(wrapper.emitted()['invalid number']).toBeTruthy();
+			expect(wrapper.emitted()['invalid number']).toEqual([[ "'O campo não pode ser maior que 10.'" ]]);
+		});
+	});
+
+	test("if the error is emitted when the value is above the maximum", () => {
+		const wrapper = mount(StepperInput, {
+			localVue,
+			propsData: {
+				value: 0,
+				min: 0,
+			},
+		});
+	
+		wrapper.find('.stepper-input__icon--minus').trigger('click');
+	
+		wrapper.vm.$nextTick(() => {
+			expect(wrapper.emitted()['invalid number']).toBeTruthy();
+			expect(wrapper.emitted()['invalid number']).toEqual([[ "'O campo não pode ser menor que 0.'" ]]);
+		});
+	});
+});
