@@ -1,17 +1,7 @@
 <template>
 	<div>
 		<label v-if="label" for="stepper-input-number">{{ label }}</label>
-		<div
-			:class="{
-				'stepper-input': !isBeingFocused,
-				'stepper-input--focused': (state === 'default') && isBeingFocused,
-				'stepper-input--valid': (state === 'valid') && !disabled,
-				'stepper-input--invalid': (state === 'invalid') && !disabled,
-				'stepper-input--focused-valid': (state === 'valid') && !disabled && isBeingFocused,
-				'stepper-input--focused-invalid': (state === 'invalid') && !disabled && isBeingFocused,
-				'stepper-input--disabled': disabled,
-			}"
-		>
+		<div :class="stepperInputDynamicClass">
 			<input
 				:disabled="disabled"
 				@focus="isBeingFocused = true"
@@ -108,6 +98,39 @@ export default {
 			internalValue: this.value,
 			isBeingFocused: false,
 		};
+	},
+
+	computed: {
+		stepperInputDynamicClass() {
+			let stepperInputClass = '';
+
+			if (!this.isBeingFocused) {
+				stepperInputClass = 'stepper-input';
+
+				if (!this.disabled) {
+					if (this.state === 'valid') {
+						stepperInputClass += ' stepper-input--valid';
+					} else if (this.state === 'invalid') {
+						stepperInputClass += ' stepper-input--invalid';
+					}
+				}
+			} else {
+				if (!this.disabled) {
+					if (this.state === 'default') {
+						stepperInputClass += ' stepper-input--focused';
+					} else if (this.state === 'valid') {
+						stepperInputClass += ' stepper-input--focused-valid';
+					} else if (this.state === 'invalid') {
+						stepperInputClass += ' stepper-input--focused-invalid';
+					}
+
+				} else {
+					stepperInputClass += ' stepper-input--disabled';
+				}
+			}
+
+			return stepperInputClass;
+		}
 	},
 
 	watch: {
