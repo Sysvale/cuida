@@ -83,14 +83,14 @@ export default {
 			default: 'Label',
 		},
 		/**
-		 * Desabilita o botão.
+		 * Desabilita o input.
 		 */
 		disabled: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		 * Especifica o estado do StepperInput. As opçoes são 'default', 'valid'e 'invalid'.
+		 * Especifica o estado do StepperInput. As opções são 'default', 'valid' e 'invalid'.
 		 */
 		state: {
 			type: String,
