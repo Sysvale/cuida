@@ -81,4 +81,15 @@ describe("Styles based on the state tests", () => {
 
 		expect(wrapper.findAll('.stepper-input--valid').length).toBe(1);
 	});
+
+	test("if the the styles are applied properly when the state is 'invalid' and the input is not focused", () => {
+		const wrapper = mount(StepperInput, {
+			localVue,
+			propsData: {
+				state: 'invalid',
+			},
+		});
+
+		expect(wrapper.findAll('.stepper-input--invalid').length).toBe(1);
+	});
 });
