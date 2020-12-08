@@ -80,7 +80,7 @@ export default {
 		 */
 		label: {
 			type: String,
-			default: 'Microarea',
+			default: 'Label',
 		},
 		/**
 		 * Desabilita o botão.
