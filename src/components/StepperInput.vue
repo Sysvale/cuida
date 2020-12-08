@@ -149,6 +149,7 @@ export default {
 	border: 1px solid $cinza-4;
 	border-radius: 4px;
 	width: fit-content;
+	width: -moz-fit-content;
 
 	&__icon-container {
 		background-color: $cinza-2;
