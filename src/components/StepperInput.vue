@@ -3,19 +3,19 @@
 		<label v-if="label" for="stepper-input-number">{{ label }}</label>
 		<div
 			:class="{
-				'stepper-input': !isBeignFocused,
-				'stepper-input--focused': (state === 'default') && isBeignFocused,
+				'stepper-input': !isBeingFocused,
+				'stepper-input--focused': (state === 'default') && isBeingFocused,
 				'stepper-input--valid': (state === 'valid') && !disabled,
 				'stepper-input--invalid': (state === 'invalid') && !disabled,
-				'stepper-input--focused-valid': (state === 'valid') && !disabled && isBeignFocused,
-				'stepper-input--focused-invalid': (state === 'invalid') && !disabled && isBeignFocused,
+				'stepper-input--focused-valid': (state === 'valid') && !disabled && isBeingFocused,
+				'stepper-input--focused-invalid': (state === 'invalid') && !disabled && isBeingFocused,
 				'stepper-input--disabled': disabled,
 			}"
 		>
 			<input
 				:disabled="disabled"
-				@focus="isBeignFocused = true"
-				@blur="isBeignFocused = false"
+				@focus="isBeingFocused = true"
+				@blur="isBeingFocused = false"
 				v-model="internalValue"
 				class="stepper-input__field"
 				id="stepper-input-number"
@@ -25,8 +25,8 @@
 			<div class="stepper-input__icon-container">
 				<button
 					:disabled="disabled"
-					@focus="isBeignFocused = true"
-					@blur="isBeignFocused = false"
+					@focus="isBeingFocused = true"
+					@blur="isBeingFocused = false"
 					@click="changeValue(1)"
 					v-longclick="() => changeValue(1)"
 					class="stepper-input__icon--plus"
@@ -36,8 +36,8 @@
 
 				<button
 					:disabled="disabled"
-					@focus="isBeignFocused = true"
-					@blur="isBeignFocused = false"
+					@focus="isBeingFocused = true"
+					@blur="isBeingFocused = false"
 					@click="changeValue(-1)"
 					v-longclick="() => changeValue(-1)"
 					class="stepper-input__icon--minus"
@@ -106,7 +106,7 @@ export default {
 	data() {
 		return {
 			internalValue: this.value,
-			isBeignFocused: false,
+			isBeingFocused: false,
 		};
 	},
 
