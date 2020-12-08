@@ -2,6 +2,7 @@
 	<div
 		class="alert-card__container"
 		:class="alertCardContainerSelected"
+		v-on="selectable && !muted ? { click: selectCheckbox } : {}"
 	>
 		<div
 			v-if="selectable"
@@ -11,12 +12,12 @@
 				type="checkbox"
 				id="checkbox-input"
 				name="checkbox-input"
-				:value="true"
+				:value="isSelected"
+				:checked="isSelected"
 			/>
 			<label
 				id="custom-checkbox"
-				for="checkbox-input"
-				@click="selectCheckbox"
+				@click.stop="selectCheckbox"
 				:class="{ 'custom-checkbox--checked': isSelected }"
 			/>
 		</div>
@@ -98,6 +99,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		* Deixa o card com o estilo de card desabilitado.
+		*/
+		muted: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	components: {
@@ -127,9 +135,21 @@ export default {
 		},
 
 		alertCardContainerSelected() {
-			if (this.isSelected) {
-				return `alert-card__container--selected-${this.variant}`
+			let dynamicClass = '';
+
+			if (!this.muted) {
+				if (this.selectable) {
+					dynamicClass = 'alert-card__container--selectable';	
+				}
+				
+				if (this.isSelected) {
+					return dynamicClass + ` alert-card__container--selected-${this.variant}`
+				}
+			} else {
+				dynamicClass = 'alert-card__container--muted';
 			}
+
+			return dynamicClass;
 		}
 	},
 
@@ -158,6 +178,14 @@ export default {
 	&__container {
 		@extend .alert-card;	
 		border: 1px solid $cinza-3;
+
+		&--selectable {
+			cursor: pointer;
+		}
+
+		&--muted {
+			background-color: $cinza-1;
+		}
 	}
 
 	&__container--selected-info {
