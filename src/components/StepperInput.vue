@@ -62,18 +62,18 @@ export default {
 			default: 0,
 		},
 		/**
-		 * Especifica o menor valor que o StepperInput deve aceitar.
-		 */
-		min: {
-			type: Number,
-			default: Number.MIN_SAFE_INTEGER,
-		},
-		/**
 		 * Especifica o maior valor que o StepperInput deve aceitar.
 		 */
 		max: {
 			type: Number,
 			default: Number.MAX_SAFE_INTEGER,
+		},
+		/**
+		 * Especifica o menor valor que o StepperInput deve aceitar.
+		 */
+		min: {
+			type: Number,
+			default: Number.MIN_SAFE_INTEGER,
 		},
 		/**
 		 * Especifica a label do input.
@@ -129,80 +129,33 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
-.stepper-input__icon-container {
-	background-color: $cinza-2;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	border-radius: 0px 3px 3px 0px;
-}
-
-.stepper-input--disabled {
-	background-color: $cinza-1;
-	pointer-events: none;
-}
-
-.stepper-input__icon--plus {
-	background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
-	padding-top: 2px;
-	display: flex;
-	cursor: pointer;
-	color: $cinza-6;
-	transition: all 0.2s ease-out;
-	height: 50%;
-}
-
-.stepper-input__icon--minus {
-	background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
-	padding-top: 2px;
-	display: flex;
-	cursor: pointer;
-	color: $cinza-6;
-	transition: all 0.2s ease-out;
-	height: 50%;
-}
-
-.stepper-input__icon--plus:hover {
-	background-color: $azul-bidu-base;
-	color: $branco;
-	border-radius: 0px 3px 0px 0px;
-}
-
-.stepper-input__icon--minus:hover {
-	background-color: $azul-bidu-base;
-	color: $branco;
-	border-radius: 0px 0px 3px 0px;
-}
-
-.stepper-input__icon--plus:active {
-	background-color: $azul-bidu-dark-1;
-	color: $branco;
-	border-radius: 0px 3px 0px 0px;
-}
-
-.stepper-input__icon--minus:active {
-	background-color: $azul-bidu-dark-1;
-	color: $branco;
-	border-radius: 0px 0px 3px 0px;
-}
-
 .stepper-input {
 	display: flex;
 	border: 1px solid $cinza-4;
 	border-radius: 4px;
 	width: fit-content;
+
+	&__icon-container {
+		background-color: $cinza-2;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		border-radius: 0px 3px 3px 0px;
+	}
+
+	&__field {
+		@include padding(onidirecional, 2);
+		@include margin(direita, 2);
+		border-radius: 4px;
+		height: 36px;
+		border: none;
+		text-align: end;
+		color: $cinza-6;
+
+		&:focus {
+			outline: 0;
+		}
+	}
 
 	&--focused {
 		@extend .stepper-input;
@@ -229,31 +182,67 @@ export default {
 		@extend .stepper-input--invalid;
 		box-shadow: 0 0 0 0.2rem rgba($vermelho-mario-light-1, .45);
 	}
-}
 
-.stepper-input__field {
-	@include padding(onidirecional, 2);
-	@include margin(direita, 2);
-	border-radius: 4px;
-	height: 36px;
-	border: none;
-	text-align: end;
-	color: $cinza-6;
+	&--disabled {
+		background-color: $cinza-1;
+		pointer-events: none;
+	}
 
-	&:focus {
-		outline: 0;
+	&__icon--plus {
+		background: none;
+		border: none;
+		padding: 0;
+		outline: none;
+		padding-top: 2px;
+		display: flex;
+		color: $cinza-6;
+		transition: all 0.2s ease-out;
+		height: 50%;
+
+		&:hover {
+			background-color: $azul-bidu-base;
+			color: $branco;
+			border-radius: 0px 3px 0px 0px;
+		}
+
+		&:active {
+			background-color: $azul-bidu-dark-1;
+			border-radius: 0px 3px 0px 0px;
+		}
+	}
+
+	&__icon--minus {
+		background: none;
+		border: none;
+		padding: 0;
+		outline: none;
+		padding-top: 2px;
+		display: flex;
+		color: $cinza-6;
+		transition: all 0.2s ease-out;
+		height: 50%;
+
+		&:hover {
+			background-color: $azul-bidu-base;
+			color: $branco;
+			border-radius: 0px 0px 3px 0px;
+		}
+
+		&:active {
+			background-color: $azul-bidu-dark-1;
+			border-radius: 0px 0px 3px 0px;
+		}
 	}
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+	-webkit-appearance: none;
+	margin: 0;
 }
 
-/* Firefox */
 input[type=number] {
-  -moz-appearance: textfield;
+	-moz-appearance: textfield;
 }
 
 input[type=number]{
