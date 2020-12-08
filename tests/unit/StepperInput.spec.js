@@ -14,3 +14,58 @@ test('Component is mounted properly', () => {
 
 	expect(wrapper).toMatchSnapshot();
 });
+
+describe("Click tests", () => {
+	test("if the increment button is working properly when clicked", () => {
+		const wrapper = mount(StepperInput, {
+			localVue,
+			propsData: {
+				value: 12,
+			},
+		});
+	
+		expect(wrapper.find('.stepper-input__icon--plus').exists()).toBe(true);
+		wrapper.find('.stepper-input__icon--plus').trigger('click');
+
+		wrapper.vm.$nextTick(() => {
+			expect(wrapper.emitted().input).toBeTruthy();
+			expect(wrapper.emitted().input).toEqual([[13]]);
+		});
+	
+	});
+
+	test("if the decrement button is working properly when clicked", () => {
+		const wrapper = mount(StepperInput, {
+			localVue,
+			propsData: {
+				value: 10,
+			},
+		});
+	
+		expect(wrapper.find('.stepper-input__icon--minus').exists()).toBe(true);
+		wrapper.find('.stepper-input__icon--minus').trigger('click');
+
+		wrapper.vm.$nextTick(() => {
+			expect(wrapper.emitted().input).toBeTruthy();
+			expect(wrapper.emitted().input).toEqual([[9]]);
+		});
+	});
+});
+
+test("if the value is emited properly when the number is changed by input", () => {
+	const wrapper = mount(StepperInput, {
+		localVue,
+		propsData: {
+			value: 10,
+		},
+	});
+
+	wrapper.find('#stepper-input-number').element.value = 50;
+	wrapper.find('#stepper-input-number').trigger('input');
+
+	wrapper.vm.$nextTick(() => {
+		expect(wrapper.emitted().input).toBeTruthy();
+		expect(wrapper.emitted().input).toEqual([["50"]]);
+	});
+	
+});
