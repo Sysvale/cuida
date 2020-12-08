@@ -83,7 +83,7 @@ export default {
 			default: 'Microarea',
 		},
 		/**
-		 * Desabilita o botão.
+		 * Desabilita o input.
 		 */
 		disabled: {
 			type: Boolean,
