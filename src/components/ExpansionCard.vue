@@ -34,7 +34,7 @@ import {
 export default {
 	props: {
 		/**
-		 * A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',
+		 * Variante do ExpansionCard. São 9 variantes: 'turquoise', 'green', 'blue',
 		 * 'purple', 'pink', 'red', 'orange', 'yellow' e 'gray'.
 		 */
 		variant: {
