@@ -37,7 +37,20 @@ export const Template = (args, { argTypes }) => ({
 		<expansion-card
 			v-model="isSelected"
 			v-bind="$props" 
-		/>
+		>
+			<template v-slot:content>
+				<p class="p-3">
+					Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
+					vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
+					Atirei o pau no gatis, per gatis num morreus. Pra lá , depois
+					divoltis porris, paradis. Leite de capivaris, leite de mula
+					manquis sem cabeça. Viva Forevis aptent taciti sociosqu ad
+					litora torquent. Per aumento de cachacis, eu reclamis. Nec
+					orci ornare consequat. Praesent lacinia ultrices consectetur.
+					Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
+				</p>
+			</template>
+		</expansion-card>
 	`,
 });
 
@@ -69,7 +82,7 @@ Para esse caso, recomendamos o uso de b-toasts
 		args={{
 			icon: 'house-fill',
 			mainValue: 32,
-			legend: 'UBSs tiveram dados atualizados',
+			legend: 'UBSs com dados atualizados',
 			variant: 'blue',
 		}}
 	>
