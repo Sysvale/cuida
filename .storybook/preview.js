@@ -28,11 +28,17 @@ import {
 	UploadInput,
 	Stepper,
 	ProgressCircular,
+	AlertCard,
+	StepperInput,
 } from '../src/components';
 
 import Palete from '../src/Palete.vue';
 import TypographyList from '../src/TypographyList.vue';
 import Space from '../src/Space.vue';
+import { longClickDirective } from 'vue-long-click'
+
+const longClickInstance = longClickDirective({delay: 400, interval: 50});
+Vue.directive('longclick', longClickInstance);
 
 Vue.use(BootstrapVue);
 
@@ -55,6 +61,8 @@ Vue.component('typography-list', TypographyList);
 Vue.component('upload-input', UploadInput);
 Vue.component('stepper', Stepper);
 Vue.component('progress-circular', ProgressCircular);
+Vue.component('alert-card', AlertCard);
+Vue.component('stepper-input', StepperInput);
 
 addParameters({
 	options: {
