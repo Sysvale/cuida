@@ -126,7 +126,7 @@ export default {
 	border-radius: 16px;
 
 	border: 1px solid $cinza-3;
-	min-height: 48px;
+	min-height: 130px;
 	width: 255px;
 	height: 130px;
 
