@@ -4,7 +4,7 @@
 		:class="expansionCardContainerStyle"
 		@mouseover="!isExpanded ? toggleCardStyle('hover') : null"
 		@mouseleave="!isExpanded ? toggleCardStyle() : null"
-		@click.self="isHovering ? toggleCardStyle('expand') : null"
+		@click.stop="isHovering ? toggleCardStyle('expand') : null"
 	>
 		<div
 			v-if="isHovering"
@@ -155,12 +155,12 @@ export default {
 	height: 130px;
 
 	&--hover {
-		transition: transform .2s;
+		transition: transform .2s, box-shadow .2s ease-in-out;
 		transform: scale(1.035);
 		cursor: pointer;
 
 		&.expansion-card {
-			transition: box-shadow .2s ease-in-out;
+			transition: transform .2s, box-shadow .2s ease-in-out;
 
 			&--blue {
 				@extend .expansion-card--hover.expansion-card;
