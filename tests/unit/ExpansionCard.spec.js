@@ -7,7 +7,7 @@ const localVue = createLocalVue();
 // 	const wrapper = mount(ExpansionCard, {
 // 		localVue,
 // 		propsData: {
-// 			title: '',
+// 			// 
 // 		},
 // 	});
 
@@ -23,16 +23,16 @@ describe('Hover tests', () => {
 			},
 		});
 
-		expect(wrapper.find('.expansion-card__container').exists()).toBe(true);
+		expect(wrapper.find('.expansion-card').exists()).toBe(true);
 
 		wrapper.trigger('mouseover');
 		await wrapper.vm.$nextTick();
-		expect(wrapper.find('.expansion-card__container--hover').exists()).toBe(true);
+		expect(wrapper.find('.expansion-card--hover').exists()).toBe(true);
 		expect(wrapper.find('.expansion-card__expand-icon').exists()).toBe(true);
 
 		wrapper.trigger('mouseleave');
 		await wrapper.vm.$nextTick();
-		expect(wrapper.find('.expansion-card__container--hover').exists()).toBe(false);
+		expect(wrapper.find('.expansion-card--hover').exists()).toBe(false);
 		expect(wrapper.find('.expansion-card__expand-icon').exists()).toBe(false);
 	});
 });
@@ -46,11 +46,34 @@ describe('Click tests', () => {
 			},
 		});
 
-		expect(wrapper.find('.expansion-card__container').exists()).toBe(true);
+		expect(wrapper.find('.expansion-card').exists()).toBe(true);
 
+		wrapper.trigger('mouseover');
 		wrapper.trigger('click');
 		await wrapper.vm.$nextTick();
-		expect(wrapper.find('.expansion-card__container--expanded').exists()).toBe(true);
+		expect(wrapper.find('.expansion-card--expanded').exists()).toBe(true);
+		expect(wrapper.find('.expansion-card__contract-icon').exists()).toBe(true);
+
+		expect(wrapper.emitted().expanded).toBeTruthy();
+		expect(wrapper.emitted().expanded).toEqual([[true]]);
+	});
+
+	test("if the card is contracted and an event is emitted when the expand icon is clicked", async () => {
+		const wrapper = shallowMount(ExpansionCard, {
+			localVue,
+			propsData: {
+				//
+			},
+		});
+
+		expect(wrapper.find('.expansion-card').exists()).toBe(true);
+		wrapper.trigger('mouseover');
+		await wrapper.vm.$nextTick();
+
+		wrapper.find('.expansion-card__expand-icon').trigger('click');
+		await wrapper.vm.$nextTick();
+
+		expect(wrapper.find('.expansion-card--expanded').exists()).toBe(true);
 		expect(wrapper.find('.expansion-card__contract-icon').exists()).toBe(true);
 
 		expect(wrapper.emitted().expanded).toBeTruthy();
@@ -65,16 +88,49 @@ describe('Click tests', () => {
 			},
 		});
 
-		expect(wrapper.find('.expansion-card__container').exists()).toBe(true);
+		expect(wrapper.find('.expansion-card').exists()).toBe(true);
+		wrapper.trigger('mouseover');
 		wrapper.trigger('click');
 		await wrapper.vm.$nextTick();
 
 		wrapper.find('.expansion-card__contract-icon').trigger('click');
 		await wrapper.vm.$nextTick();
-		expect(wrapper.find('.expansion-card__container--expanded').exists()).toBe(false);
+		expect(wrapper.find('.expansion-card--expanded').exists()).toBe(false);
 		expect(wrapper.find('.expansion-card__contract-icon').exists()).toBe(false);
 
 		expect(wrapper.emitted().expanded).toBeTruthy();
 		expect(wrapper.emitted().expanded).toEqual([[true], [false]]);
+	});
+});
+
+describe("Prop 'variant' tests", () => {
+	const variantStyles = {
+		turquoise: 'expansion-card--turquoise',
+		green: 'expansion-card--green',
+		blue: 'expansion-card--blue',
+		purple: 'expansion-card--purple',
+		pink: 'expansion-card--pink',
+		red: 'expansion-card--red',
+		orange: 'expansion-card--orange',
+		yellow: 'expansion-card--yellow',
+		gray: 'expansion-card--gray',
+	};
+	const variants = Object.keys(variantStyles);
+
+	variants.forEach(variant => {
+		let expectedStyle = variantStyles[variant];
+
+		test(`if the computed property changes when the prop variant is set to '${variant}'`, () => {
+			let wrapper = mount(ExpansionCard, {
+				localVue,
+				propsData: {
+					variant,
+				},
+			});
+	
+			expect(wrapper.find('.expansion-card').exists()).toBe(true);
+			
+			expect(wrapper.vm.variantStyle).toBe(expectedStyle);
+		});
 	});
 });
