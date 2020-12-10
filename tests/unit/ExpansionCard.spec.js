@@ -7,25 +7,24 @@ const localVue = createLocalVue();
 localVue.use(BootstrapVue);
 localVue.use(BootstrapVueIcons);
 
+test('Component is mounted properly', () => {
+	const wrapper = mount(ExpansionCard, {
+		localVue,
+		propsData: {
+			icon: 'house-fill',
+			mainValue: 32,
+			legend: 'UBSs com dados atualizados',
+			variant: 'blue',
+		},
+	});
 
-// test('Component is mounted properly', () => {
-// 	const wrapper = mount(ExpansionCard, {
-// 		localVue,
-// 		propsData: {
-// 			// 
-// 		},
-// 	});
-
-// 	expect(wrapper).toMatchSnapshot();
-// });
+	expect(wrapper).toMatchSnapshot();
+});
 
 describe('Hover tests', () => {
 	test("if hover style is applied when the card is hovered", async () => {
 		const wrapper = shallowMount(ExpansionCard, {
 			localVue,
-			propsData: {
-				//
-			},
 		});
 
 		expect(wrapper.find('.expansion-card').exists()).toBe(true);
@@ -46,9 +45,6 @@ describe('Click tests', () => {
 	test("if the card is expanded and an event is emitted when the card is clicked", async () => {
 		const wrapper = shallowMount(ExpansionCard, {
 			localVue,
-			propsData: {
-				//
-			},
 		});
 
 		expect(wrapper.find('.expansion-card').exists()).toBe(true);
@@ -66,9 +62,6 @@ describe('Click tests', () => {
 	test("if the card is contracted and an event is emitted when the expand icon is clicked", async () => {
 		const wrapper = shallowMount(ExpansionCard, {
 			localVue,
-			propsData: {
-				//
-			},
 		});
 
 		expect(wrapper.find('.expansion-card').exists()).toBe(true);
@@ -88,9 +81,6 @@ describe('Click tests', () => {
 	test("if the card is contracted and an event is emitted when the contract icon is clicked", async () => {
 		const wrapper = shallowMount(ExpansionCard, {
 			localVue,
-			propsData: {
-				//
-			},
 		});
 
 		expect(wrapper.find('.expansion-card').exists()).toBe(true);
