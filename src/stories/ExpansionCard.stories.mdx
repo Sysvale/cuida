@@ -63,21 +63,14 @@ Para esse caso, recomendamos o uso de b-toasts
 
 ## Preview
 
-export const title = 'Título do ExpansionCard';
-
-export const subTitle =  `Existe uma teoria que diz que, se um dia alguém descobrir 
-				exatamente para que serve o Universo e por que ele está aqui, ele 
-				desaparecerá instantaneamente e será substituídopor al go ainda 
-				mais estranho e inexplicável. Existe uma segunda teoria que diz 
-				que isso já aconteceu.`;
-
 <Canvas>
 	<Story
 		name="ExpansionCard"
 		args={{
-			title,
-			subTitle,
-			variant: 'info',
+			icon: 'house-fill',
+			mainValue: 32,
+			legend: 'UBSs tiveram dados atualizados',
+			variant: 'blue',
 		}}
 	>
 		{ Template.bind({}) }
