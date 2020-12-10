@@ -1,7 +1,12 @@
 import { mount, shallowMount, createLocalVue } from '@vue/test-utils';
 import ExpansionCard from '../../src/components/ExpansionCard.vue';
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
 
 const localVue = createLocalVue();
+
+localVue.use(BootstrapVue);
+localVue.use(BootstrapVueIcons);
+
 
 // test('Component is mounted properly', () => {
 // 	const wrapper = mount(ExpansionCard, {
