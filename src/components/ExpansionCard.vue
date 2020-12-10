@@ -4,20 +4,22 @@
 		:class="expansionCardContainerStyle"
 		@mouseover="!isExpanded ? toggleCardStyle('hover') : null"
 		@mouseleave="!isExpanded ? toggleCardStyle() : null"
-		@click.self="toggleCardStyle('expand')"
+		@click.self="isHovering ? toggleCardStyle('expand') : null"
 	>
 		<div
 			v-if="isHovering"
 			class="expansion-card__expand-icon"
+			@click="toggleCardStyle('expand')"
 		>
-			<!--  -->
+			<b-icon-arrows-angle-expand />
 		</div>
 		<div
 			v-if="isExpanded"
 			class="expansion-card__contract-icon"
-			@click="toggleCardStyle('contract')"
 		>
-			<!--  -->
+			<b-icon-arrows-angle-contract
+				@click="toggleCardStyle('contract')"
+			/>
 		</div>
 		<!--  -->
 	</div>
@@ -25,8 +27,10 @@
 
 <script>
 import {
-	// 
-} from 'vue-feather-icons';
+	BIcon,
+	BIconArrowsAngleExpand,
+	BIconArrowsAngleContract
+} from 'bootstrap-vue';
 
 export default {
 	props: {
@@ -34,7 +38,9 @@ export default {
 	},
 
 	components: {
-		//
+		BIcon,
+		BIconArrowsAngleContract,
+		BIconArrowsAngleExpand,
 	},
 
 	data() {
@@ -92,22 +98,29 @@ export default {
 	&__container {
 		@extend .expansion-card;
 		border: 1px solid $cinza-3;
+		min-height: 48px;
 
 		&--hover {
-			//
+			cursor: pointer;
 		}
 
 		&--expanded {
-			//
+			// 
 		}
 	}
 
-	&__contract-icon {
-		// 
+	&__expand-icon {
+		display: flex;
+		margin-left: auto;
+		color: $cinza-5;
 	}
 
-	&__expand-icon {
-		// 
+	&__contract-icon {
+		@extend .expansion-card__expand-icon;
+
+		& .b-icon {
+			cursor: pointer;
+		}
 	}
 }
 </style>
