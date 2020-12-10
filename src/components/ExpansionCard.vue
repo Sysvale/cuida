@@ -20,8 +20,13 @@
 		>
 			<b-icon-arrows-angle-contract />
 		</div>
+		<!-- @slot Slot usado para inserção de conteúdo customizado
+		(ignora props e slots do template padrão). -->
 		<slot>
-			<div class="expansion-card__body">
+			<div
+				v-if="!isExpanded"
+				class="expansion-card__body"
+			>
 				<div class="expansion-card__content">
 					<h1 class="expansion-card__main-value">
 						{{ mainValue }}
@@ -30,7 +35,6 @@
 						{{ legend }}
 					</p>
 				</div>
-
 				<div
 					v-if="!!icon"
 					class="expansion-card__icon"
@@ -39,6 +43,35 @@
 					<b-icon
 						:icon="icon"
 					/>
+				</div>
+			</div>
+			<div
+				v-else
+				class="expansion-card__expanded-body"
+			>
+				<div class="expansion-card__header">
+					<div
+						v-if="!!icon"
+						class="expansion-card__icon"
+						:class="`expansion-card__icon--${variant}`"
+					>
+						<b-icon
+							:icon="icon"
+						/>
+					</div>
+					<div class="expansion-card__content">
+						<p class="expansion-card__legend">
+							{{ legend }}
+						</p>
+						<span class="expansion-card__main-value">
+							{{ subtitle }}
+						</span>
+					</div>
+				</div>
+				<div class="expansion-card__expanded-content">
+					<!-- @slot Slot usado para inserção do conteúdo principal
+					na versão expandida do card (template padrão). -->
+					<slot name="content" />
 				</div>
 			</div>
 		</slot>
@@ -110,6 +143,11 @@ export default {
 			}
 			return `expansion-card--${this.variant}`;
 		},
+
+		subtitle() {
+			const s = this.mainValue !== 1 ? 's' : '';
+			return `${this.mainValue} resultado${s} encontrado${s}`;
+		}
 	},
 
 	methods: {
@@ -229,6 +267,39 @@ export default {
 		width: 100%;
 		margin-top: auto;
 		margin-bottom: auto;
+	}
+
+	&__expanded-body {
+		display: flex;
+		align-self: start;
+		flex-direction: column;
+
+		& .expansion-card {
+			&__header {
+				display: flex;
+				align-items: center;
+				@include margin(inferior, 2);
+			}
+
+			&__main-value {
+				@include legenda;
+				color: $cinza-6;
+				margin-bottom: 2px;
+				@include margin(onidirecional, 0);
+			}
+
+			&__legend {
+				@include subtitulo-3;
+				@include margin(onidirecional, 0);
+				color: $cinza-8;
+				max-width: 100%;
+				font-weight: 600;
+			}
+
+			&__icon {
+				@include margin(direita, 3);
+			}
+		}
 	}
 
 	&__content {
