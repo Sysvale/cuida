@@ -182,6 +182,17 @@ export default {
 @keyframes content-animation {
 	from { margin-top: 24px; opacity: 0; visibility: hidden; height: 0; } to { visibility: visible; opacity: 1; height: 100%;}
 }
+
+::v-deep .expansion-card__expand-icon path {
+	stroke: $cinza-3;
+	stroke-width: 1;
+}
+
+::v-deep .expansion-card__expand-icon:hover path {
+	transition: stroke ease-in-out;
+	stroke: $azul-sonic-light-1;
+}
+
 .expansion-card {
 	display: flex;
 	position: relative;
