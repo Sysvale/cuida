@@ -27,14 +27,6 @@
 				v-if="!isExpanded"
 				class="expansion-card__body"
 			>
-				<div class="expansion-card__content">
-					<h1 class="expansion-card__main-value">
-						{{ mainValue }}
-					</h1>
-					<p class="expansion-card__legend">
-						{{ legend }}
-					</p>
-				</div>
 				<div
 					v-if="!!icon"
 					class="expansion-card__icon"
@@ -43,6 +35,14 @@
 					<b-icon
 						:icon="icon"
 					/>
+				</div>
+				<div class="expansion-card__content">
+					<h1 class="expansion-card__main-value">
+						{{ mainValue }}
+					</h1>
+					<p class="expansion-card__legend">
+						{{ legend }}
+					</p>
 				</div>
 			</div>
 			<div
@@ -329,6 +329,7 @@ export default {
 		align-self: center;
 		align-items: center;
 		justify-content: center;
+		@include margin(direita, 3);
 
 		&--blue {
 			color: $azul-sonic-base;
