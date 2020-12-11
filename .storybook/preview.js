@@ -30,6 +30,7 @@ import {
 	ProgressCircular,
 	AlertCard,
 	StepperInput,
+	Highlight,
 } from '../src/components';
 
 import Palete from '../src/Palete.vue';
@@ -63,6 +64,7 @@ Vue.component('stepper', Stepper);
 Vue.component('progress-circular', ProgressCircular);
 Vue.component('alert-card', AlertCard);
 Vue.component('stepper-input', StepperInput);
+Vue.component('highlight', Highlight);
 
 addParameters({
 	options: {
