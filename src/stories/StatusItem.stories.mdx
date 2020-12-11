@@ -21,6 +21,12 @@ export const Template = (args, { argTypes }) => ({
 		<status-item
 			v-bind="$props" 
 		>
+			<template slot="subtitle">
+				<strong>1840</strong> fichas analisadas no <strong>PEC</strong> 3.2.31 - Lote criado em 00/00/0000 00:00
+			</template>
+			<template slot="alertText">
+				Lote inconsistente, <strong>clique aqui</strong> para saber como resolver.
+			</template>
 		</status-item>
 	`,
 });
@@ -46,7 +52,7 @@ export const Template = (args, { argTypes }) => ({
 		name="Status item"
 		args={{
 			title: 'Lote nº 235',
-			subtitle: '<strong>1840</strong> fichas analisadas no <strong>PEC</strong> 3.2.31 - Lote criado em 00/00/0000 00:00',
+			subtitle: 'Subtítulo',
 			variant: 'success',
 			clickableAction: true,
 			actionText: 'Download',
