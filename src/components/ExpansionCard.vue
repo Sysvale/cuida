@@ -179,6 +179,9 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
+@keyframes content-animation {
+	from { margin-top: 16px; opacity: 0 } to { margin-top: 0; opacity: 1 }
+}
 .expansion-card {
 	display: flex;
 	position: relative;
@@ -301,6 +304,13 @@ export default {
 		}
 	}
 
+	&__expanded-content {
+		opacity: 0;
+		margin-top: 16px;
+
+		animation: content-animation 1s ease-in 0.5s backwards;
+	}
+
 	&__content {
 		display: flex;
 		flex-direction: column;
@@ -386,6 +396,11 @@ export default {
 		top: 8px;
 		right: 12px;
 		color: $cinza-5;
+
+		&:hover {
+			transition: color ease-in-out;
+			color: $azul-sonic-light-1;
+		}
 	}
 
 	&__contract-icon {
