@@ -15,3 +15,4 @@ export { default as Stepper } from './Stepper.vue';
 export { default as ProgressCircular } from './ProgressCircular.vue';
 export { default as AlertCard } from './AlertCard.vue';
 export { default as StepperInput } from './StepperInput.vue';
+export { default as Highlight } from './Highlight.vue';
