@@ -3,7 +3,7 @@ import { addParameters } from "@storybook/vue";
 import CuidaTheme from './theme';
 
 import Vue from 'vue';
-import BootstrapVue from 'bootstrap-vue';
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import Multiselect from 'vue-multiselect';
@@ -30,6 +30,7 @@ import {
 	ProgressCircular,
 	AlertCard,
 	StepperInput,
+	ExpansionCard,
 	Highlight,
 } from '../src/components';
 
@@ -42,6 +43,7 @@ const longClickInstance = longClickDirective({delay: 400, interval: 50});
 Vue.directive('longclick', longClickInstance);
 
 Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons);
 
 Vue.component('multiselect', Multiselect);
 Vue.component('palete', Palete);
@@ -64,6 +66,7 @@ Vue.component('stepper', Stepper);
 Vue.component('progress-circular', ProgressCircular);
 Vue.component('alert-card', AlertCard);
 Vue.component('stepper-input', StepperInput);
+Vue.component('expansion-card', ExpansionCard);
 Vue.component('highlight', Highlight);
 
 addParameters({
