@@ -15,6 +15,22 @@ import Highlight from '../components/Highlight.vue';
 				],
 			}
 		},
+		duration: { 
+			control: {
+				type: 'range',
+				min: 0.5,
+				max: 5,
+				step: 0.1,
+			},
+		},
+		delay: {
+			control: {
+				type: 'range',
+				min: 0,
+				max: 5,
+				step: 0.1,
+			},
+		},
 	}
 }
 />
@@ -53,6 +69,10 @@ export const Template = (args, { argTypes }) => ({
 <Canvas>
 	<Story
 		name="Highlight"
+		args={{
+			duration: 1,
+			delay: 0,
+		}}
 	>
 		{ Template.bind({}) }
 	</Story>

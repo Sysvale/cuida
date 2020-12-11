@@ -2,6 +2,7 @@
 	<span
 		class="highlight__container"
 		:class="dynamicHighlightClass"
+		:style="dynamicStyle"
 	>
 		<!-- @slot Slot usado para especificar o texto que receberá o highlight. -->
 		<slot />
@@ -26,6 +27,20 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Especifica a duração da animação.
+		 */
+		duration: {
+			type: Number,
+			default: 1,
+		},
+		/**
+		 * O tempo de espera até a animação começar.
+		 */
+		delay: {
+			type: Number,
+			default: 0,
+		},
 	},
 
 	computed: {
@@ -47,6 +62,13 @@ export default {
 					return dynamicClass + ' highlight__container--info';
 			}
 		},
+
+		dynamicStyle() {
+			return {
+				'--duration': `${this.duration}s`,
+				'--delay': `${this.delay}s`,
+			};
+		},
 	}
 };
 </script>
@@ -59,7 +81,7 @@ export default {
 	background-size: 200%;
 
 	&--highlighted {
-		animation: highlight 1s ease-in backwards;
+		animation: highlight var(--duration) ease-in var(--delay) backwards;
 	}
 
 	&--info {
