@@ -1,0 +1,61 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Highlight from '../components/Highlight.vue';
+
+<Meta
+	title="Componentes/Highlight"
+	component={ Highlight }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'info',
+					'success',
+					'danger',
+				],
+			}
+		},
+	}
+}
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { Highlight },
+	template: /*html*/ `
+		<highlight v-bind="$props">
+			<span style="text-decoration-line: line-through;"> Testando algo top</span>
+		</highlight>
+	`,
+});
+
+# Highlight
+
+### Highlight são componentes utilizados destacar palavras ou frases importantes em um determinado contexto.
+---
+<br />
+
+## Recomendamos o uso de Highlights quando:
+- Você deseja guiar a atenção do usuário para palavras ou frases espefícias na interface (nesses cenários Highlights animados podem ser ainda mais efetivos que os comuns)
+- Você está implementando alguma feature de <i>diff</i> e precisa indicar elementos que foram substituídos por outros
+
+<br />
+
+## Não recomendamos o uso de Highlights quando:
+- A palavra ou sentença se repetir na interface como em títulos de card, headers, etc. Para esses casos, use mecanismos de hierarquia tipográfica como peso da fonte, tamaho ou cor
+- O elemento sobre do qual o Highlight será <i>wrapper</i> não for um elemento de texto.
+- Forem destacados trechos muito grandes de texto. Isso pode acabar resultando no oposto do que se espera com o uso de Highlights 
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Highlight"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Highlight" />
