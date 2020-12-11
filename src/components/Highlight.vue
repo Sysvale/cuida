@@ -1,7 +1,7 @@
 <template>
 	<span
 		class="highlight__container"
-		:class="{'highlight__container--highlighted': animated}"
+		:class="dynamicHighlightClass"
 	>
 		<!-- @slot Slot usado para especificar o texto que receberá o highlight. -->
 		<slot />
@@ -27,6 +27,27 @@ export default {
 			default: false,
 		},
 	},
+
+	computed: {
+		dynamicHighlightClass() {
+			let dynamicClass = '';
+
+			if (this.animated) {
+				dynamicClass = 'highlight__container--highlighted';
+			}
+
+			switch(this.variant) {
+				case 'info':
+					return dynamicClass + ' highlight__container--info';
+				case 'success':
+					return dynamicClass + ' highlight__container--success';
+				case 'danger':
+					return dynamicClass + ' highlight__container--danger';
+				default:
+					return dynamicClass + ' highlight__container--info';
+			}
+		},
+	}
 };
 </script>
 <style lang="scss" scoped>
@@ -35,11 +56,22 @@ export default {
 .highlight__container {
 	padding: 4px;
 	border-radius: 4px;
-	background-image: linear-gradient(to right, #4fa7e246 50%, transparent 50%);
 	background-size: 200%;
 
 	&--highlighted {
 		animation: highlight 1s ease-in backwards;
+	}
+
+	&--info {
+		background-image: linear-gradient(to right, rgba($azul-sonic-light-1, .45) 50%, transparent 50%);
+	}
+
+	&--success {
+		background-image: linear-gradient(to right, rgba($verde-piccolo-light-1, .45) 50%, transparent 50%);
+	}
+
+	&--danger {
+		background-image: linear-gradient(to right, rgba($vermelho-mario-light-1, .45) 50%, transparent 50%);
 	}
 }
 
