@@ -202,55 +202,56 @@ export default {
 
 			&--blue {
 				@extend .expansion-card--hover.expansion-card;
-				border: 1px solid $azul-sonic-light-2;
+				border: 2px solid $azul-sonic-light-2;
 				box-shadow: 0 0 2px $azul-sonic-base;
 			}
 
 			&--turquoise {
 				@extend .expansion-card--hover.expansion-card;
-				border: 1px solid $turquesa-perry-light-2;
+				border: 2px solid $turquesa-perry-light-2;
 				box-shadow: 0 0 2px $turquesa-perry-base;
 			}
 
 			&--green {
 				@extend .expansion-card--hover.expansion-card;
-				border: 1px solid $verde-piccolo-light-2;
+				border: 2px solid $verde-piccolo-light-2;
 				box-shadow: 0 0 2px $verde-piccolo-base;
 			}
 
 			&--purple {
 				@extend .expansion-card--hover.expansion-card;
-				border: 1px solid $roxo-thanos-light-2;
+				border: 2px solid $roxo-thanos-light-2;
 				box-shadow: 0 0 2px $roxo-thanos-base;
 			}
 
 			&--pink {
 				@extend .expansion-card--hover.expansion-card;
-				border: 1px solid $pantera-cor-de-rosa-light-2;
+				border: 2px solid $pantera-cor-de-rosa-light-2;
 				box-shadow: 0 0 2px $pantera-cor-de-rosa-base;
 			}
 
 			&--red {
 				@extend .expansion-card--hover.expansion-card;
-				border: 1px solid $vermelho-mario-light-2;
+				border: 2px solid $vermelho-mario-light-2;
 				box-shadow: 0 0 2px $vermelho-mario-base;
 			}
 
 			&--orange {
 				@extend .expansion-card--hover.expansion-card;
-				border: 1px solid $laranja-naruto-light-2;
+				border: 2px solid $laranja-naruto-light-2;
 				box-shadow: 0 0 2px $laranja-naruto-base;
 			}
 
 			&--yellow {
 				@extend .expansion-card--hover.expansion-card;
-				border: 1px solid $amarelo-pikachu-light-2;
+				border: 2px solid $amarelo-pikachu-light-2;
 				box-shadow: 0 0 2px $amarelo-pikachu-base;
 			}
 
 			&--gray {
 				@extend .expansion-card--hover.expansion-card;
 				box-shadow: 0 0 2px $cinza-5;
+				border: 2px solid $cinza-3;
 			}
 		}
 	}
@@ -263,7 +264,6 @@ export default {
 
 	&__body {
 		display: flex;
-		justify-content: space-between;
 		width: 100%;
 		margin-top: auto;
 		margin-bottom: auto;
@@ -278,7 +278,6 @@ export default {
 			&__header {
 				display: flex;
 				align-items: center;
-				@include margin(inferior, 2);
 			}
 
 			&__main-value {
@@ -310,7 +309,7 @@ export default {
 	&__main-value {
 		@include titulo-1;
 		color: $cinza-8;
-		margin-bottom: 2px;
+		@include margin(inferior, 0);
 	}
 
 	&__legend {
