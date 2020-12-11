@@ -386,7 +386,7 @@ export default {
 
 		&--gray {
 			color: $cinza-5;
-			background-color: $cinza-3;
+			background-color: $cinza-2;
 		}
 
 		& .b-icon {
