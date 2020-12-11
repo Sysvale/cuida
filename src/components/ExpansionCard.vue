@@ -180,7 +180,7 @@ export default {
 @import '../assets/sass/app.scss';
 
 @keyframes content-animation {
-	from { margin-top: 16px; opacity: 0 } to { margin-top: 0; opacity: 1 }
+	from { margin-top: 24px; opacity: 0; visibility: hidden; height: 0; } to { visibility: visible; opacity: 1; height: 100%;}
 }
 .expansion-card {
 	display: flex;
@@ -194,9 +194,10 @@ export default {
 	min-height: 130px;
 	width: 255px;
 	height: 130px;
+	transition: all .2s ease-out;
 
 	&--hover {
-		transition: transform .2s, box-shadow .2s ease-in-out;
+		transition: transform .5s, box-shadow .2s ease-out;
 		transform: scale(1.035);
 		cursor: pointer;
 
@@ -260,7 +261,7 @@ export default {
 	}
 
 	&--expanded {
-		transition: all .2s linear;
+		transition: all .8s ease-out;
 		width: 100%;
 		height: auto;
 	}
@@ -306,9 +307,12 @@ export default {
 
 	&__expanded-content {
 		opacity: 0;
-		margin-top: 16px;
+		visibility: hidden;
+		margin-top: 24px;
+		height: 0;
 
-		animation: content-animation 1s ease-in 0.5s backwards;
+		animation: content-animation 1.2s ease-out 0.8s;
+		animation-fill-mode: forwards;
 	}
 
 	&__content {
