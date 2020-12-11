@@ -13,7 +13,7 @@
 export default {
 	props: {
 		/**
-		 * A variante do Alert. São 3 variantes implementadas: 'info', 'success'
+		 * A variante do Highlight. São 3 variantes implementadas: 'info', 'success'
 		 * e 'danger'
 		 */
 		variant: {
