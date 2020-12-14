@@ -328,6 +328,10 @@ export default {
 		filter: alpha(opacity=100);
 		opacity: 1;
 	}
+
+	input[type=checkbox] {
+		visibility: hidden;
+	}
 }
 
 #alert-card .custom-checkbox--checked {
