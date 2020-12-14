@@ -121,7 +121,7 @@ export default {
 
 	data() {
 		return {
-			isSelected: false,
+			isSelected: this.value,
 		};
 	},
 
