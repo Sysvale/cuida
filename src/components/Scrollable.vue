@@ -37,7 +37,7 @@ export default {
 		overflow-y: auto;
 		/* width */
 		&::-webkit-scrollbar {
-			width: 4px;
+			width: 6px;
 			border-radius: 8px;
 		}
 
