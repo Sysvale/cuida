@@ -128,10 +128,10 @@ export default {
 			let dynamicClass = this.variantStyle;
 
 			if (this.isHovering) {
-				dynamicClass += ' expansion-card--hover';	
+				dynamicClass += ` expansion-card--hover-${this.variant}`;
 			}
 			if (this.isExpanded) {
-				dynamicClass += ' expansion-card--expanded';	
+				dynamicClass += ' expansion-card--expanded';
 			}
 
 			return dynamicClass;
@@ -212,62 +212,67 @@ export default {
 		transform: scale(1.035);
 		cursor: pointer;
 
-		&.expansion-card {
+		&-blue {
+			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
+			border: 2px solid $azul-sonic-light-2;
+			box-shadow: 0 0 2px $azul-sonic-base;
+		}
 
-			&--blue {
-				@extend .expansion-card--hover.expansion-card;
-				border: 2px solid $azul-sonic-light-2;
-				box-shadow: 0 0 2px $azul-sonic-base;
-			}
+		&-turquoise {
+			@extend .expansion-card--hover, .expansion-card;
+			transition: transform .2s, box-shadow .2s ease-in-out;
+			border: 2px solid $turquesa-perry-light-2;
+			box-shadow: 0 0 2px $turquesa-perry-base;
+		}
 
-			&--turquoise {
-				@extend .expansion-card--hover.expansion-card;
-				border: 2px solid $turquesa-perry-light-2;
-				box-shadow: 0 0 2px $turquesa-perry-base;
-			}
+		&-green {
+			@extend .expansion-card--hover, .expansion-card;
+			transition: transform .2s, box-shadow .2s ease-in-out;
+			border: 2px solid $verde-piccolo-light-2;
+			box-shadow: 0 0 2px $verde-piccolo-base;
+		}
 
-			&--green {
-				@extend .expansion-card--hover.expansion-card;
-				border: 2px solid $verde-piccolo-light-2;
-				box-shadow: 0 0 2px $verde-piccolo-base;
-			}
+		&-purple {
+			@extend .expansion-card--hover, .expansion-card;
+			transition: transform .2s, box-shadow .2s ease-in-out;
+			border: 2px solid $roxo-thanos-light-2;
+			box-shadow: 0 0 2px $roxo-thanos-base;
+		}
 
-			&--purple {
-				@extend .expansion-card--hover.expansion-card;
-				border: 2px solid $roxo-thanos-light-2;
-				box-shadow: 0 0 2px $roxo-thanos-base;
-			}
+		&-pink {
+			@extend .expansion-card--hover, .expansion-card;
+			transition: transform .2s, box-shadow .2s ease-in-out;
+			border: 2px solid $pantera-cor-de-rosa-light-2;
+			box-shadow: 0 0 2px $pantera-cor-de-rosa-base;
+		}
 
-			&--pink {
-				@extend .expansion-card--hover.expansion-card;
-				border: 2px solid $pantera-cor-de-rosa-light-2;
-				box-shadow: 0 0 2px $pantera-cor-de-rosa-base;
-			}
+		&-red {
+			@extend .expansion-card--hover, .expansion-card;
+			transition: transform .2s, box-shadow .2s ease-in-out;
+			border: 2px solid $vermelho-mario-light-2;
+			box-shadow: 0 0 2px $vermelho-mario-base;
+		}
 
-			&--red {
-				@extend .expansion-card--hover.expansion-card;
-				border: 2px solid $vermelho-mario-light-2;
-				box-shadow: 0 0 2px $vermelho-mario-base;
-			}
+		&-orange {
+			@extend .expansion-card--hover, .expansion-card;
+			transition: transform .2s, box-shadow .2s ease-in-out;
+			border: 2px solid $laranja-naruto-light-2;
+			box-shadow: 0 0 2px $laranja-naruto-base;
+		}
 
-			&--orange {
-				@extend .expansion-card--hover.expansion-card;
-				border: 2px solid $laranja-naruto-light-2;
-				box-shadow: 0 0 2px $laranja-naruto-base;
-			}
+		&-yellow {
+			@extend .expansion-card--hover, .expansion-card;
+			transition: transform .2s, box-shadow .2s ease-in-out;
+			border: 2px solid $amarelo-pikachu-light-2;
+			box-shadow: 0 0 2px $amarelo-pikachu-base;
+		}
 
-			&--yellow {
-				@extend .expansion-card--hover.expansion-card;
-				border: 2px solid $amarelo-pikachu-light-2;
-				box-shadow: 0 0 2px $amarelo-pikachu-base;
-			}
-
-			&--gray {
-				@extend .expansion-card--hover.expansion-card;
-				box-shadow: 0 0 2px $cinza-5;
-				border: 2px solid $cinza-3;
-			}
+		&-gray {
+			@extend .expansion-card--hover, .expansion-card;
+			transition: transform .2s, box-shadow .2s ease-in-out;
+			box-shadow: 0 0 2px $cinza-5;
+			border: 2px solid $cinza-3;
 		}
 	}
 
