@@ -20,16 +20,10 @@ import AlertCard from '../components/AlertCard.vue';
 />
 
 export const Template = (args, { argTypes }) => ({
-	data() {
-		return {
-			isSelected: false,
-		};
-	},
 	props: Object.keys(argTypes),
 	components: { AlertCard },
 	template: /*html*/ `
 		<alert-card
-			v-model="isSelected"
 			v-bind="$props" 
 		/>
 	`,
@@ -72,6 +66,7 @@ export const subTitle =  `Existe uma teoria que diz que, se um dia alguém desco
 			title,
 			subTitle,
 			variant: 'info',
+			value: false,
 		}}
 	>
 		{ Template.bind({}) }
