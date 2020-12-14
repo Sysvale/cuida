@@ -32,6 +32,7 @@ import {
 	StepperInput,
 	ExpansionCard,
 	Highlight,
+	Scrollable,
 } from '../src/components';
 
 import Palete from '../src/Palete.vue';
@@ -68,6 +69,7 @@ Vue.component('alert-card', AlertCard);
 Vue.component('stepper-input', StepperInput);
 Vue.component('expansion-card', ExpansionCard);
 Vue.component('highlight', Highlight);
+Vue.component('scrollable', Scrollable);
 
 addParameters({
 	options: {
