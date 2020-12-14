@@ -43,18 +43,18 @@ export default {
 
 		/* Track */
 		&::-webkit-scrollbar-track {
-			background: $cinza-4;
+			background: transparent;
 		}
 
 		/* Handle */
 		&::-webkit-scrollbar-thumb {
-			background: rgba(0, 0, 0, 0.15);
-			border-radius: 5px;
+			background: $cinza-4;
+			border-radius: 8px;
 		}
 
 		/* Handle on hover */
 		&::-webkit-scrollbar-thumb:hover {
-			background: rgba(0, 0, 0, 0.20);
+			background: $cinza-5;
 		}
 	}
 
