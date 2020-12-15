@@ -28,13 +28,11 @@
 				class="expansion-card__body"
 			>
 				<div
-					v-if="!!icon"
 					class="expansion-card__icon"
 					:class="`expansion-card__icon--${variant}`"
 				>
-					<b-icon
-						:icon="icon"
-					/>
+					<!-- @slot Slot para ícone para o template padrão. -->
+					<slot name="icon" />
 				</div>
 				<div class="expansion-card__content">
 					<h1 class="expansion-card__main-value">
@@ -51,13 +49,10 @@
 			>
 				<div class="expansion-card__header">
 					<div
-						v-if="!!icon"
 						class="expansion-card__icon"
 						:class="`expansion-card__icon--${variant}`"
 					>
-						<b-icon
-							:icon="icon"
-						/>
+						<slot name="icon" />
 					</div>
 					<div class="expansion-card__content">
 						<p class="expansion-card__legend">
@@ -79,7 +74,13 @@
 </template>
 
 <script>
+import { BIcon, BIconArrowsAngleExpand, BIconArrowsAngleContract } from 'bootstrap-vue';
+
 export default {
+	components: {
+		BIconArrowsAngleExpand,
+		BIconArrowsAngleContract,
+	},
 	props: {
 		/**
 		 * Variante do ExpansionCard. São 9 variantes: 'turquoise', 'green', 'blue',
@@ -88,15 +89,6 @@ export default {
 		variant: {
 			type: String,
 			default: 'gray',
-		},
-		/**
-		 * Ícone para o template padrão. O valor desse parâmetro deve ser um alias
-		 * de um ícone da biblioteca de ícones do bootstrap. Ex.: 'exclamation-circle'.
-		 * Veja os ícones disponíveis em https://icons.getbootstrap.com/.
-		 */
-		icon: {
-			type: String,
-			default: null,
 		},
 		/**
 		 * Legenda da informação principal do card (no template padrão). Torna-se
@@ -293,6 +285,7 @@ export default {
 		display: flex;
 		align-self: start;
 		flex-direction: column;
+		width: 100%;
 
 		& .expansion-card {
 			&__header {
