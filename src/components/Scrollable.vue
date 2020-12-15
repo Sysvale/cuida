@@ -35,6 +35,8 @@ export default {
 #scrollable .scrollable {
 	&__container {
 		overflow-y: auto;
+		overflow-x: hidden;
+
 		/* width */
 		&::-webkit-scrollbar {
 			width: 6px;
