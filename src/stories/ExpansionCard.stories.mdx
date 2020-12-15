@@ -1,5 +1,6 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
 import ExpansionCard from '../components/ExpansionCard.vue';
+import { BIconHouseFill } from 'bootstrap-vue';
 
 <Meta
 	title="Componentes/ExpansionCard"
@@ -26,18 +27,15 @@ import ExpansionCard from '../components/ExpansionCard.vue';
 />
 
 export const Template = (args, { argTypes }) => ({
-	data() {
-		return {
-			isSelected: false,
-		};
-	},
 	props: Object.keys(argTypes),
-	components: { ExpansionCard },
+	components: { ExpansionCard, BIconHouseFill },
 	template: /*html*/ `
 		<expansion-card
-			v-model="isSelected"
 			v-bind="$props" 
 		>
+			<template v-slot:icon>
+				<b-icon-house-fill />
+			</template>
 			<template v-slot:content>
 				<p class="p-3">
 					Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
