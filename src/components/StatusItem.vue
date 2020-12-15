@@ -63,7 +63,6 @@
 						-->
 						<span
 							:class="clickableAlert ? 'alert--clickable' : ''"
-							v-html="alertText"
 							@click="clickableAlert ? $emit('alert-clicked') : ''"
 						>
 							<!--
