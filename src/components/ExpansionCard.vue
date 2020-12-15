@@ -285,6 +285,7 @@ export default {
 		display: flex;
 		align-self: start;
 		flex-direction: column;
+		width: 100%;
 
 		& .expansion-card {
 			&__header {
