@@ -105,7 +105,7 @@ export default {
 		mainValue: {
 			type: Number,
 			default: null,
-		}
+		},
 	},
 
 	data() {
@@ -139,29 +139,31 @@ export default {
 		subtitle() {
 			const s = this.mainValue !== 1 ? 's' : '';
 			return `${this.mainValue} resultado${s} encontrado${s}`;
-		}
+		},
 	},
 
 	methods: {
 		toggleCardStyle(status) {
 			this.isHovering = false;
 
-			switch(status) {
-			case 'hover':
-				if (!this.isExpanded) {
-					this.isHovering = true;
-				}
-				break;
-			case 'expand':
-			case 'contract':
-				this.isExpanded = !this.isExpanded;
-				/**
-				* Evento emitido quando o card é expandido ('true') ou contraído ('false').
-				* @event expanded
-				* @type {Event}
-				*/
-				this.$emit('expanded', this.isExpanded);
-				break;
+			switch (status) {
+				case 'hover':
+					if (!this.isExpanded) {
+						this.isHovering = true;
+					}
+					break;
+				case 'expand':
+				case 'contract':
+					this.isExpanded = !this.isExpanded;
+					/**
+					* Evento emitido quando o card é expandido ('true') ou contraído ('false').
+					* @event expanded
+					* @type {Event}
+					*/
+					this.$emit('expanded', this.isExpanded);
+					break;
+				default:
+					break;
 			}
 		},
 	},
