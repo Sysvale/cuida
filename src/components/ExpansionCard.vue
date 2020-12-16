@@ -4,19 +4,19 @@
 		:class="expansionCardContainerStyle"
 		@mouseover="!isExpanded ? toggleCardStyle('hover') : null"
 		@mouseleave="!isExpanded ? toggleCardStyle() : null"
-		@click.stop="isHovering ? toggleCardStyle('expand') : null"
+		@click="isHovering ? toggleCardStyle('expand') : null"
 	>
 		<div
 			v-if="isHovering"
 			class="expansion-card__expand-icon"
-			@click="toggleCardStyle('expand')"
+			@click.stop="toggleCardStyle('expand')"
 		>
 			<b-icon-arrows-angle-expand />
 		</div>
 		<div
 			v-if="isExpanded"
 			class="expansion-card__contract-icon"
-			@click="toggleCardStyle('contract')"
+			@click.stop="toggleCardStyle('contract')"
 		>
 			<b-icon-arrows-angle-contract />
 		</div>
@@ -105,7 +105,7 @@ export default {
 		mainValue: {
 			type: Number,
 			default: null,
-		}
+		},
 	},
 
 	data() {
@@ -139,29 +139,31 @@ export default {
 		subtitle() {
 			const s = this.mainValue !== 1 ? 's' : '';
 			return `${this.mainValue} resultado${s} encontrado${s}`;
-		}
+		},
 	},
 
 	methods: {
 		toggleCardStyle(status) {
 			this.isHovering = false;
 
-			switch(status) {
-			case 'hover':
-				if (!this.isExpanded) {
-					this.isHovering = true;
-				}
-				break;
-			case 'expand':
-			case 'contract':
-				this.isExpanded = !this.isExpanded;
-				/**
-				* Evento emitido quando o card é expandido ('true') ou contraído ('false').
-				* @event expanded
-				* @type {Event}
-				*/
-				this.$emit('expanded', this.isExpanded);
-				break;
+			switch (status) {
+				case 'hover':
+					if (!this.isExpanded) {
+						this.isHovering = true;
+					}
+					break;
+				case 'expand':
+				case 'contract':
+					this.isExpanded = !this.isExpanded;
+					/**
+					* Evento emitido quando o card é expandido ('true') ou contraído ('false').
+					* @event expanded
+					* @type {Event}
+					*/
+					this.$emit('expanded', this.isExpanded);
+					break;
+				default:
+					break;
 			}
 		},
 	},
