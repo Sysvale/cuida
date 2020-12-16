@@ -4,19 +4,19 @@
 		:class="expansionCardContainerStyle"
 		@mouseover="!isExpanded ? toggleCardStyle('hover') : null"
 		@mouseleave="!isExpanded ? toggleCardStyle() : null"
-		@click.stop="isHovering ? toggleCardStyle('expand') : null"
+		@click="isHovering ? toggleCardStyle('expand') : null"
 	>
 		<div
 			v-if="isHovering"
 			class="expansion-card__expand-icon"
-			@click="toggleCardStyle('expand')"
+			@click.stop="toggleCardStyle('expand')"
 		>
 			<b-icon-arrows-angle-expand />
 		</div>
 		<div
 			v-if="isExpanded"
 			class="expansion-card__contract-icon"
-			@click="toggleCardStyle('contract')"
+			@click.stop="toggleCardStyle('contract')"
 		>
 			<b-icon-arrows-angle-contract />
 		</div>
