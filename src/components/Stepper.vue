@@ -284,10 +284,11 @@ export default {
 	}
 
 	&__step-label {
-		margin-left: -10px;
+		margin-left: -34px;
 		margin-top: 6px;
 		line-height: 1.0;
 		display: block;
+		text-align: center;
 
 		&--muted {
 			color: $cinza-6;
@@ -299,7 +300,7 @@ export default {
 		}
 
 		&--horizontal {
-			max-width: 70px;
+			width: 100px;
 		}
 
 		&--vertical {
