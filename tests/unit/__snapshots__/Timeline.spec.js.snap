@@ -11,10 +11,9 @@ exports[`Component is mounted properly 1`] = `
     <p class="content__title">
       Bloqueio nível 1
     </p>
-  </div>
-  <div class="content__text">
-    Usuário: Uncle Bob
-  </div>
+  </div> <span class="content__text">
+						Usuário: Uncle Bob
+					</span>
   <hr>
 </div>
 </div>
@@ -34,10 +33,9 @@ exports[`Component is mounted properly 1`] = `
         <p class="content__title">
           Bloqueio nível 1
         </p>
-      </div>
-      <div class="content__text">
-        Usuário: Uncle Bob
-      </div>
+      </div> <span class="content__text">
+						Usuário: Uncle Bob
+					</span>
       <hr>
     </div>
   </div>
@@ -57,10 +55,9 @@ exports[`Component is mounted properly 1`] = `
         <p class="content__title">
           Bloqueio nível 1
         </p>
-      </div>
-      <div class="content__text">
-        Usuário: Uncle Bob
-      </div>
+      </div> <span class="content__text">
+						Usuário: Uncle Bob
+					</span>
       <!---->
     </div>
   </div>
