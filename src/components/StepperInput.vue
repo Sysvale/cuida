@@ -20,6 +20,7 @@
 					@click="changeValue(1)"
 					v-longclick="() => changeValue(1)"
 					class="stepper-input__icon--plus"
+					tabindex="-1"
 				>
 					<plus-icon size="1x" class="custom-class" />
 				</button>
@@ -31,6 +32,7 @@
 					@click="changeValue(-1)"
 					v-longclick="() => changeValue(-1)"
 					class="stepper-input__icon--minus"
+					tabindex="-1"
 				>
 					<minus-icon size="1x" class="custom-class" />
 				</button>
