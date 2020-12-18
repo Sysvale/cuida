@@ -11,14 +11,14 @@
 			class="expansion-card__expand-icon"
 			@click.stop="toggleCardStyle('expand')"
 		>
-			<b-icon-arrows-angle-expand />
+			<span class="expansion-card__label-button">Maximizar</span>
 		</div>
 		<div
 			v-if="isExpanded"
 			class="expansion-card__contract-icon"
 			@click.stop="toggleCardStyle('contract')"
 		>
-			<b-icon-arrows-angle-contract />
+			<span class="expansion-card__label-button">Minimizar</span>
 		</div>
 		<!-- @slot Slot usado para inserção de conteúdo customizado
 		(ignora props e slots do template padrão). -->
@@ -174,7 +174,7 @@ export default {
 @import '../assets/sass/app.scss';
 
 @keyframes content-animation {
-	from { margin-top: 24px; opacity: 0; visibility: hidden; height: 0; } to { visibility: visible; opacity: 1; height: 100%;}
+	from { margin-top: 24px; opacity: 0; visibility: hidden; height: 50%; } to { visibility: visible; opacity: 1; height: 100%;}
 }
 
 ::v-deep .expansion-card__expand-icon path {
@@ -199,7 +199,16 @@ export default {
 	min-height: 130px;
 	width: 255px;
 	height: 130px;
-	transition: all .2s ease-out;
+	transition: all .3s ease-in-out;
+
+	&__label-button {
+		@include legenda;
+		cursor: pointer;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
 
 	&--hover {
 		transition: transform .5s, box-shadow .2s ease-out;
@@ -271,7 +280,6 @@ export default {
 	}
 
 	&--expanded {
-		transition: all .8s ease-out;
 		width: 100%;
 		height: auto;
 	}
@@ -322,7 +330,9 @@ export default {
 		margin-top: 24px;
 		height: 0;
 
-		animation: content-animation 1.2s ease-out 0.8s;
+		animation: content-animation;
+		animation-delay: 0.45s;
+		animation-duration: 0.4s;
 		animation-fill-mode: forwards;
 	}
 
