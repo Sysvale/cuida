@@ -57,7 +57,7 @@ export default {
 		 * Especifica o maior valor que o StepperInput deve aceitar.
 		 */
 		max: {
-			type: Number,
+			type: [Number, String],
 			default: Number.MAX_SAFE_INTEGER,
 		},
 		/**
@@ -137,17 +137,21 @@ export default {
 
 	watch: {
 		internalValue(value) {
+			if (!value) {
+				this.internalValue = 0;
+			}
+
 			if (value < this.min) {
 				/**
 				* Evento que indica que o valor informado está fora do intervalo aceito.
 				* @event invalid number
 				* @type {Event}
 				*/
-				this.$emit('invalid-number', `'O campo não pode ser menor que ${this.min}.'`);
 				this.internalValue = this.min;
+				this.$emit('invalid-number', `'O campo não pode ser menor que ${this.min}.'`);
 			} else if (value > this.max) {
-				this.$emit('invalid-number', `'O campo não pode ser maior que ${this.max}.'`);
 				this.internalValue = this.max;
+				this.$emit('invalid-number', `'O campo não pode ser maior que ${this.max}.'`);
 			} else {
 				/**
 				* Evento utilizado para implementar o v-model.
