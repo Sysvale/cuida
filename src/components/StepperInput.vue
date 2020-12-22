@@ -64,7 +64,7 @@ export default {
 		 * Especifica o menor valor que o StepperInput deve aceitar.
 		 */
 		min: {
-			type: Number,
+			type: [Number, String],
 			default: Number.MIN_SAFE_INTEGER,
 		},
 		/**
