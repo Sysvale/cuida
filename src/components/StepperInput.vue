@@ -50,7 +50,7 @@ export default {
 		* Prop utilizada como v-model. Controla a visibilidade do popover .
 		*/
 		value: {
-			type: Number,
+			type: [Number, String],
 			default: 0,
 		},
 		/**
@@ -148,17 +148,17 @@ export default {
 				* @type {Event}
 				*/
 				this.internalValue = this.min;
-				this.$emit('invalid-number', `'O campo não pode ser menor que ${this.min}.'`);
+				this.$emit('invalid-number', `'O campo não pode ser menor que ${parseInt(this.min, 10)}.'`);
 			} else if (value > this.max) {
 				this.internalValue = this.max;
-				this.$emit('invalid-number', `'O campo não pode ser maior que ${this.max}.'`);
+				this.$emit('invalid-number', `'O campo não pode ser maior que ${parseInt(this.max, 10)}.'`);
 			} else {
 				/**
 				* Evento utilizado para implementar o v-model.
 				* @event input
 				* @type {Event}
 				*/
-				this.$emit('input', value);
+				this.$emit('input', parseInt(value, 10));
 			}
 		},
 	},
