@@ -1,65 +1,77 @@
+@mixin peso-de-fonte-regular {
+	font-weight: 400;
+}
+
+@mixin peso-de-fonte-medium {
+	font-weight: 500;
+}
+
+@mixin peso-de-fonte-semibold {
+	font-weight: 600;
+}
+
 @mixin titulo-1 {
 	font-size: 47px !important;
 	letter-spacing: 0px !important;
-	font-weight: 400;
+	@include peso-de-fonte-regular;
 }
 
 @mixin titulo-2 {
 	font-size: 33px !important;
 	letter-spacing: 0.25px !important;
-	font-weight: 400;
+	@include peso-de-fonte-regular;
 }
 
 @mixin titulo-3 {
 	font-size: 23px !important;
 	letter-spacing: 0px !important;
-	font-weight: 400;
+	@include peso-de-fonte-regular;
 }
 
 @mixin subtitulo-1 {
 	font-size: 22px !important;
 	letter-spacing: 0.15px !important;
-	font-weight: 500;
+	@include peso-de-fonte-medium;
 }
 
 @mixin subtitulo-2 {
 	font-size: 16px !important;
 	letter-spacing: 0.1px !important;
-	font-weight: 500;
+	@include peso-de-fonte-medium;
 }
 
 @mixin subtitulo-3 {
 	font-size: 14px !important;
 	letter-spacing: 0.1px !important;
-	font-weight: 400;
+	@include peso-de-fonte-regular;
 }
 
 @mixin corpo-1 {
 	font-size: 16px !important;
 	letter-spacing: 0.5px !important;
-	font-weight: 400;
+	@include peso-de-fonte-regular;
 }
 
 @mixin corpo-2 {
 	font-size: 14px !important;
 	letter-spacing: 0.25px !important;
-	font-weight: 400;
+	@include peso-de-fonte-regular;
 }
 
 @mixin legenda {
 	font-size: 12px !important;
 	letter-spacing: 0.4px !important;
-	font-weight: 400;
+	@include peso-de-fonte-regular;
 }
 
 @mixin botao-1 {
 	font-size: 16px !important;
 	letter-spacing: 0.25px !important;
-	font-weight: 600;
+	@include peso-de-fonte-semibold;
 }
 
 @mixin botao-2 {
 	font-size: 14px !important;
 	letter-spacing: 0.15px !important;
-	font-weight: 600;
+	@include peso-de-fonte-semibold;
 }
