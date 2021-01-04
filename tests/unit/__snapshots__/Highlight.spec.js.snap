@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component is mounted properly 1`] = `<span class="highlight__container  highlight__container--info" style="--duration: 1s; --delay: 0s;"></span>`;

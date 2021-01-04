@@ -33,9 +33,9 @@
 								{{ event.title }}
 							</p>
 						</div>
-						<div class="content__text">
+						<span class="content__text">
 							{{ event.text }}
-						</div>
+						</span>
 						<hr
 							v-if="(index + 1) < history.length"
 						>
@@ -87,8 +87,8 @@ export default {
 }
 
 #timeline .content__text {
-	color: $cinza-5;
-	margin-top: 16px;
+	color: $cinza-6;
+	margin-top: 4px;
 }
 
 #timeline .event__date {
@@ -114,7 +114,7 @@ export default {
 	justify-content: space-between;
 }
 
-#timeline .event__title {
+#timeline .content__title {
 	color: $cinza-9;
 	font-weight: 600;
 	margin-bottom: 0;
@@ -123,7 +123,7 @@ export default {
 #timeline .timeline {
 	height: 100% !important;
 	width: 1px !important;
-	background-color: $cinza-3;
+	background-color: $cinza-4;
 }
 
 #timeline .timeline__container {

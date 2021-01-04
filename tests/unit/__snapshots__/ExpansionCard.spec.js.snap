@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component is mounted properly 1`] = `
+<div class="expansion-card expansion-card--blue" icon="house-fill">
+  <!---->
+  <!---->
+  <div class="expansion-card__body">
+    <div class="expansion-card__icon expansion-card__icon--blue"></div>
+    <div class="expansion-card__content">
+      <h1 class="expansion-card__main-value">
+        32
+      </h1>
+      <p class="expansion-card__legend">
+        UBSs com dados atualizados
+      </p>
+    </div>
+  </div>
+</div>
+`;

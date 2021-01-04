@@ -1,52 +1,58 @@
 <template>
-	<div
-		class="alert-card__container"
-		:class="alertCardContainerSelected"
-	>
+	<span id="alert-card">
 		<div
-			v-if="selectable"
-			class="custom-checkbox"
+			class="alert-card__container"
+			:class="alertCardContainerSelected"
+			v-on="selectable && !muted ? { click: selectCheckbox } : {}"
 		>
-			<input
-				type="checkbox"
-				id="checkbox-input"
-				name="checkbox-input"
-				:value="true"
-			/>
-			<label
-				id="custom-checkbox"
-				for="checkbox-input"
-				@click="selectCheckbox"
-				:class="{ 'custom-checkbox--checked': isSelected }"
-			/>
+			<div
+				v-if="selectable"
+				class="custom-checkbox"
+			>
+				<input
+					type="checkbox"
+					id="checkbox-input"
+					name="checkbox-input"
+					:value="isSelected"
+					:checked="isSelected"
+				/>
+				<label
+					id="custom-checkbox"
+					@click.stop="selectCheckbox"
+					:class="{ 'custom-checkbox--checked': isSelected }"
+				/>
+			</div>
+
+			<div
+				v-if="withIcon"
+				:class="`icon__container--${variant}`"
+			>
+				<component
+					:is="dynamicIcon"
+					size="1.4x"
+					:class="`icon--${variant}`"
+				/>
+			</div>
+
+			<div
+				class="alert-card__content-container"
+			>
+				<span :class="`alert-card__title--${variant}`">{{ title }}</span>
+
+				<!-- @slot Slot usado para inserção de conteúdo customizado no subtítulo. -->
+				<span class="alert-card__subtitle">
+					<slot name="subTitle-slot">
+						{{ subTitle }}
+					</slot>
+				</span>
+
+				<!-- @slot Slot usado para inserção de conteúdo adicional no AlertCard
+					abaixo do subtítulo. -->
+				<slot name="content-slot" class="alert-card__content" />
+			</div>
 		</div>
 
-		<div
-			v-if="withIcon"
-			:class="`icon__container--${variant}`"
-		>
-			<component
-				:is="dynamicIcon"
-				size="1.4x"
-				:class="`icon--${variant}`"
-			/>
-		</div>
-
-		<div>
-			<span :class="`alert-card__title--${variant}`">{{ title }}</span>
-
-			<!-- @slot Slot usado para inserção de conteúdo customizado no subtítulo. -->
-			<span class="alert-card__subtitle">
-				<slot name="subTitle-slot">
-					{{ subTitle }}
-				</slot>
-			</span>
-
-			<!-- @slot Slot usado para inserção de conteúdo adicional no AlertCard
-				abaixo do subtítulo. -->
-			<slot name="content-slot" class="alert-card__content" />
-		</div>
-	</div>
+	</span>
 </template>
 
 <script>
@@ -98,6 +104,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		* Deixa o card com o estilo de card desabilitado.
+		*/
+		muted: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	components: {
@@ -108,7 +121,7 @@ export default {
 
 	data() {
 		return {
-			isSelected: false,
+			isSelected: this.value,
 		};
 	},
 
@@ -127,9 +140,21 @@ export default {
 		},
 
 		alertCardContainerSelected() {
-			if (this.isSelected) {
-				return `alert-card__container--selected-${this.variant}`
+			let dynamicClass = '';
+
+			if (!this.muted) {
+				if (this.selectable) {
+					dynamicClass = 'alert-card__container--selectable';	
+				}
+				
+				if (this.isSelected) {
+					return dynamicClass + ` alert-card__container--selected-${this.variant}`
+				}
+			} else {
+				dynamicClass = 'alert-card__container--muted';
 			}
+
+			return dynamicClass;
 		}
 	},
 
@@ -149,7 +174,7 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
-.alert-card {
+#alert-card .alert-card {
 	display: flex;
 	align-items: center;
 	@include padding(onidirecional, 3);
@@ -158,6 +183,14 @@ export default {
 	&__container {
 		@extend .alert-card;	
 		border: 1px solid $cinza-3;
+
+		&--selectable {
+			cursor: pointer;
+		}
+
+		&--muted {
+			background-color: $cinza-1;
+		}
 	}
 
 	&__container--selected-info {
@@ -209,9 +242,13 @@ export default {
 	&__content {
 		@include margin(superior, 3);
 	}
+
+	&__content-container {
+		width: 100%;
+	}
 }
 
-.icon {
+#alert-card .icon {
 	stroke-width: 2.4;
 
 	&--info {
@@ -253,7 +290,7 @@ export default {
 	}
 }
 
-.custom-checkbox {
+#alert-card .custom-checkbox {
 	@include margin(superior, 3);
 	align-self: flex-start;
 	margin-right: 32px;
@@ -291,10 +328,15 @@ export default {
 		filter: alpha(opacity=100);
 		opacity: 1;
 	}
+
+	input[type=checkbox] {
+		visibility: hidden;
+	}
 }
 
-.custom-checkbox--checked {
+#alert-card .custom-checkbox--checked {
 	background-color: $azul-bidu-dark-1 !important;
 	border: none !important;
 }
+
 </style>
