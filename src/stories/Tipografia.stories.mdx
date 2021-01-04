@@ -8,7 +8,7 @@ import TypographyList from '../TypographyList.vue';
 A Tipografia padrão do Cuida e do Cidade Saudável é a Inter. A Inter é uma fonte especialmente projetada 
 para interfaces de usuário e tem foco em alta legibilidade de textos de tamanho pequeno a médio em telas de computador.
 A família apresenta uma boa “Altura-x”  (altura das letras minúsculas) o que auxilia na legibilidade de textos mistos e 
-minúsculos. Os pesos de fonte utilizados são principalmente o Regular(400) e Medium (500), com alguns usos de Semi Bold (600).
+minúsculos.
 
 <hr />
 <br />
@@ -29,7 +29,7 @@ recomendado esse recurso apenas para criar diferenças na hierarquia tipográfic
 
 - Para evitar problemas de legibilidade, não é recomendável a utilização de textos itálicos.
 
-- Para evitar problemas de legibiliade e erros de interpretação da interface, recomendamos
+- Para evitar problemas de legibilidade e erros de interpretação da interface, recomendamos
 a utilização de textos sublinhados apenas quando necessário como recursos para realçar links.
 
 - Para facilitar o escaneamento e trabalhar a hierarquia de conteúdo, recomendamos a 
@@ -45,49 +45,6 @@ export const Template = (args, { argTypes }) => ({
 			v-bind="$props" 
 		/>`,
 });
-
-## Peso da Fonte
-<Story
-	name="PesoTokenRegular"
-	args={{
-		fontWeight: 400,
-		fontSize: 16,
-		TypographyTokenName: 'Regular',
-		sample: `AÀÃÂÁBCÇDẼÊÉFGHIÍJKLMNOÕÔÓPQRSTUÚÜV 
-			WXYZ aàãâábcçdeẽêéfghiíjklmnoõôópqrstuúüvwxyz
-			1234567890!@#$%*()_-+?/<>"'`,
-	}}
->
-		{ Template.bind({}) }
-</Story>
-
-<Story
-	name="PesoTokenMedium"
-	args={{
-		fontWeight: 500,
-		fontSize: 16,
-		TypographyTokenName: 'Medium',
-		sample: `AÀÃÂÁBCÇDẼÊÉFGHIÍJKLMNOÕÔÓPQRSTUÚÜV 
-			WXYZ aàãâábcçdeẽêéfghiíjklmnoõôópqrstuúüvwxyz
-			1234567890!@#$%*()_-+?/<>"'`,
-	}}
->
-		{ Template.bind({}) }
-</Story>
-
-<Story
-	name="PesoTokenSemiBold"
-	args={{
-		fontWeight: 600,
-		fontSize: 16,
-		TypographyTokenName: 'SemiBold',
-		sample: `AÀÃÂÁBCÇDẼÊÉFGHIÍJKLMNOÕÔÓPQRSTUÚÜV 
-			WXYZ aàãâábcçdeẽêéfghiíjklmnoõôópqrstuúüvwxyz
-			1234567890!@#$%*()_-+?/<>"'`,
-	}}
->
-		{ Template.bind({}) }
-</Story>
 
 ## Estilos Padrão
 

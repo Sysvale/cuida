@@ -1,0 +1,77 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs/blocks';
+import FontWeightItem from '../FontWeightItem.vue';
+
+<Meta title="Fundação/Peso da Fonte" component={ FontWeightItem } />
+
+# Peso da Fonte
+
+Os pesos de fonte utilizados são principalmente o Regular(400) e Medium (500), com alguns usos de Semi Bold (600).
+
+<hr />
+<br />
+
+## Recomendações
+
+- Para facilitar o escaneamento e trabalhar a hierarquia de conteúdo, recomendamos a 
+utilização pontual de textos em negrito.
+
+<br />
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { FontWeightItem },
+	template: /*html*/ `
+		<font-weight-item 
+			v-bind="$props" 
+		/>`,
+});
+
+## Estilos Padrão
+
+<br />
+
+<Story
+	name="PesoTokenRegular"
+	args={{
+		fontWeight: 400,
+		title: 'Regular',
+		FontWeightTokenName: '--font-weight-regular',
+		sample: `AÀÃÂÁBCÇDẼÊÉFGHIÍJKLMNOÕÔÓPQRSTUÚÜV 
+			WXYZ aàãâábcçdeẽêéfghiíjklmnoõôópqrstuúüvwxyz
+			1234567890!@#$%*()_-+?/<>"'`,
+	}}
+>
+		{ Template.bind({}) }
+</Story>
+
+<br />
+
+<Story
+	name="PesoTokenMedium"
+	args={{
+		fontWeight: 500,
+		title: 'Medium',
+		FontWeightTokenName: '--font-weight-medium',
+		sample: `AÀÃÂÁBCÇDẼÊÉFGHIÍJKLMNOÕÔÓPQRSTUÚÜV 
+			WXYZ aàãâábcçdeẽêéfghiíjklmnoõôópqrstuúüvwxyz
+			1234567890!@#$%*()_-+?/<>"'`,
+	}}
+>
+		{ Template.bind({}) }
+</Story>
+
+<br />
+
+<Story
+	name="PesoTokenSemiBold"
+	args={{
+		fontWeight: 600,
+		title: 'SemiBold',
+		FontWeightTokenName: '--font-weight-semibold',
+		sample: `AÀÃÂÁBCÇDẼÊÉFGHIÍJKLMNOÕÔÓPQRSTUÚÜV 
+			WXYZ aàãâábcçdeẽêéfghiíjklmnoõôópqrstuúüvwxyz
+			1234567890!@#$%*()_-+?/<>"'`,
+	}}
+>
+		{ Template.bind({}) }
+</Story>
