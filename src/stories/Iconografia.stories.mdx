@@ -1,0 +1,36 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs/blocks';
+import Iconography from '../Iconography.vue';
+
+<Meta title="Fundação/Iconografia" component={ Iconography } />
+
+# Iconografia
+
+Simplifica a interação do usuário com o sistema, pois possibilita que elementos
+sejam mais facilmente identificados. A iconografia permite que os usuários compreendam
+com mais facilidade os componentes do layout, reduzindo a curva de aprendizado do usuário.
+
+<hr />
+<br />
+
+## Recomendações
+
+-  Para facilitar a identificação de elementos interativos, recomendamos que sejam utilizados ícones com bordas suavizadas e outlined.
+
+-  Para melhor representar ícones do sistema, recomendamos que sejam utilizados ícones com tamanho 18 x 18 pixels.
+
+-  Para trazer uma melhor experiência visual ao usuário, recomendamos que sejam utilizados ícones de forma consistente (ex.: utilizar sempre ícones da mesma família).
+
+-  Para melhor trazer a acessibilidade.
+
+<br />
+
+## Ícones
+<br />
+
+export const Template = () => ({
+  template:`<iconography />`,
+});
+
+<Story name="Iconography">
+    { Template.bind({}) }
+</Story>
