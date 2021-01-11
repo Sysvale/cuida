@@ -36,6 +36,7 @@ import {
 } from '../src/components';
 
 import Palete from '../src/Palete.vue';
+import Iconography from '../src/Iconography.vue';
 import TypographyList from '../src/TypographyList.vue';
 import Space from '../src/Space.vue';
 import { longClickDirective } from 'vue-long-click'
@@ -45,8 +46,11 @@ Vue.directive('longclick', longClickInstance);
 
 Vue.use(BootstrapVue);
 
+Vue.config.ignoredElements = [/^ion-/];
+
 Vue.component('multiselect', Multiselect);
 Vue.component('palete', Palete);
+Vue.component('iconography', Iconography);
 Vue.component('space', Space);
 Vue.component('actions-list', ActionsList);
 Vue.component('status-item', StatusItem);
