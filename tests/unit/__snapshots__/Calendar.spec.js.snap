@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component is mounted properly 1`] = `
+<div class="d-flex">
+  <v-date-picker-stub locale="pt-BR" maxdate="Tue Feb 02 2021 17:39:57 GMT+0000 (Coordinated Universal Time)" mode="date" modelconfig="[object Object]" popover="[object Object]" attributes="" is-inline="" from-date="Invalid Date"></v-date-picker-stub>
+  <div>
+    <div>
+      <div class="schedule__grid">
+        <div class="schedule__time-interval">
+          <div class="schedule__time-text">
+            <div class="schedule__available-hour">
+              08:00
+            </div> <span class="schedule__available-invertals">
+							6 horários disponíveis
+						</span>
+          </div>
+        </div>
+        <div class="schedule__time-interval">
+          <div class="schedule__time-text">
+            <div class="schedule__available-hour">
+              09:00
+            </div> <span class="schedule__available-invertals">
+							3 horários disponíveis
+						</span>
+          </div>
+        </div>
+        <div class="schedule__time-interval">
+          <div class="schedule__time-text schedule__unavailable-interval">
+            <div class="schedule__unavailable-hour">
+              10:00
+            </div> <span class="schedule__unavailable-invertals">
+							0 horários disponíveis
+						</span>
+          </div>
+        </div>
+        <div class="schedule__time-interval">
+          <div class="schedule__time-text schedule__unavailable-interval">
+            <div class="schedule__unavailable-hour">
+              11:00
+            </div> <span class="schedule__unavailable-invertals">
+							0 horários disponíveis
+						</span>
+          </div>
+        </div>
+        <div class="schedule__time-interval">
+          <div class="schedule__time-text schedule__unavailable-interval">
+            <div class="schedule__unavailable-hour">
+              12:00
+            </div> <span class="schedule__unavailable-invertals">
+							0 horários disponíveis
+						</span>
+          </div>
+        </div>
+        <div class="schedule__time-interval">
+          <div class="schedule__time-text schedule__unavailable-interval">
+            <div class="schedule__unavailable-hour">
+              13:00
+            </div> <span class="schedule__unavailable-invertals">
+							0 horários disponíveis
+						</span>
+          </div>
+        </div>
+        <div class="schedule__time-interval">
+          <div class="schedule__time-text">
+            <div class="schedule__available-hour">
+              14:00
+            </div> <span class="schedule__available-invertals">
+							1 horários disponíveis
+						</span>
+          </div>
+        </div>
+        <div class="schedule__time-interval">
+          <div class="schedule__time-text schedule__unavailable-interval">
+            <div class="schedule__unavailable-hour">
+              15:00
+            </div> <span class="schedule__unavailable-invertals">
+							0 horários disponíveis
+						</span>
+          </div>
+        </div>
+        <div class="schedule__time-interval">
+          <div class="schedule__time-text schedule__unavailable-interval">
+            <div class="schedule__unavailable-hour">
+              16:00
+            </div> <span class="schedule__unavailable-invertals">
+							0 horários disponíveis
+						</span>
+          </div>
+        </div>
+        <div class="schedule__time-interval">
+          <div class="schedule__time-text schedule__unavailable-interval">
+            <div class="schedule__unavailable-hour">
+              17:00
+            </div> <span class="schedule__unavailable-invertals">
+							0 horários disponíveis
+						</span>
+          </div>
+        </div>
+        <div class="schedule__time-interval">
+          <div class="schedule__time-text">
+            <div class="schedule__available-hour">
+              18:00
+            </div> <span class="schedule__available-invertals">
+							4 horários disponíveis
+						</span>
+          </div>
+        </div>
+        <div class="schedule__time-interval">
+          <div class="schedule__time-text schedule__unavailable-interval">
+            <div class="schedule__unavailable-hour">
+              19:00
+            </div> <span class="schedule__unavailable-invertals">
+							0 horários disponíveis
+						</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
