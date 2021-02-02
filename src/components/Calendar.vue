@@ -5,6 +5,7 @@
 			class="d-flex"
 		>
 			<v-date-picker
+				v-bind="$attrs"
 				v-model="notificationDateInterval"
 				mode="range"
 				color="gray"
@@ -18,29 +19,27 @@
 			/>
 
 			<div
-				v-if="selectedHour === ''"
+				v-if="selectedSchedule.hour === ''"
 				class="schedule__grid"
 			>
 				<div
-					v-for="(item, idx) in scheduleAttributes"
-					:key="idx"
+					v-for="(hours, index) in scheduleAttributes"
+					:key="index"
 					class="schedule__time-interval"
-					@click="selectHour(idx, item.length)"
+					@click="selectHour(index, availableHours(hours))"
 				>
 					<div
 						class="schedule__time-text"
-						:class="{'schedule__unavailable-interval': item.length === 0}"
+						:class="{'schedule__unavailable-interval': availableHours(hours) === 0}"
 					>
-						<div class="schedule__hour">{{ idx }}</div>
-						<span class="schedule__available-invertals">{{ item.length }} horários disponíveis</span>
+						<div class="schedule__hour">{{ index }}</div>
+						<span class="schedule__available-invertals">{{ availableHours(hours) }} horários disponíveis</span>
 					</div>
 				</div>
 			</div>
 
-
-
 			<div
-				v-if="selectedHour !== ''"
+				v-else
 			>
 				<div
 					class="schedule__minutes-container"
@@ -49,7 +48,7 @@
 						class="minutes-container__header"
 					>
 						<div
-							@click="selectedHour = ''"
+							@click="selectedSchedule.hour = ''"
 							class="minutes-container__back-buton"
 						>
 							Voltar
@@ -57,11 +56,15 @@
 						<div
 							class="minutes-container__header-text"
 						>
-							<div>
-								{{ selectedHour }} - {{ selectedHour.replace('00',  '') + '59' }}
+							<div
+								class="minutes-container__header-hours"
+							>
+								{{ selectedSchedule.hour }} - {{ selectedSchedule.hour.replace('00',  '') + '59' }}
 							</div>
-							<div>
-								{{ scheduleAttributes[selectedHour].length }} horários disponíveis
+							<div
+								class="minutes-container__header-available-hours"
+							>
+								{{ availableHours(scheduleAttributes[selectedSchedule.hour]) }} horários disponíveis
 							</div>
 						</div>
 					</div>
@@ -70,23 +73,19 @@
 						class="schedule__grid-hour"
 					>
 						<div
-							v-for="item in minutesInverval"
-							:key="item"
+							v-for="(availability, hour) in scheduleAttributes[selectedSchedule.hour]"
+							:key="hour"
 							class="schedule__time-interval"
 						>
 							<div
 								class="time-interval__minutes"
-								@click="selectedMinute =  !scheduleAttributes[selectedHour].some((s) => s === ((selectedHour.toString().replace('00',  '') + (item - 1) * 5) + (item < 3 ? '0' : ''))) ? '' : (selectedHour.toString().replace('00',  '') + (item - 1) * 5) + (item < 3 ? '0' : '')"
 								:class="{
-									'schedule__grid-hour--unavailable': !scheduleAttributes[selectedHour].some((s) => s === ((selectedHour.toString().replace('00',  '') + (item - 1) * 5) + (item < 3 ? '0' : ''))),
-									'schedule__grid-hour--selected': selectedMinute === (selectedHour.toString().replace('00',  '') + (item - 1) * 5) + (item < 3 ? '0' : ''),
+									'schedule__grid-hour--unavailable': !availability,
+									'schedule__grid-hour--selected': selectedSchedule.minute === hour,
 								}"
+								@click="selectMinute(hour, availability)"
 							>
-								<div>
-									{{
-										(selectedHour.toString().replace('00',  '') + (item - 1) * 5) + (item < 3 ? '0' : '')
-									}}
-								</div>
+								{{ hour }}
 							</div>
 						</div>
 					</div>
@@ -108,7 +107,6 @@ export default {
 			attributes: [],
 			selectedHour: '',
 			selectedMinute: '',
-			minutesInverval: 12,
 
 			selectedSchedule: {
 				dates: [],
@@ -153,23 +151,32 @@ export default {
 	},
 
 	methods: {
-		selectHour(idx, length) {
-			if (length > 0) {
-				this.selectedHour = idx;
+		selectHour(hour, availableHours) {
+			if (availableHours) {
+				this.selectedSchedule.hour = hour;
+			}
+		},
+
+		availableHours(hours) {
+			return Object.values(hours).filter(hour => hour === true).length;
+		},
+
+		selectMinute(minute, availability) {
+			if (availability) {
+				this.selectedSchedule.minute = minute;
 			}
 		},
 
 		onDayClick(day) {
-			console.log(this.days);
-		const idx = this.days.findIndex(d => d.id === day.id);
-		if (idx >= 0) {
-			this.days.splice(idx, 1);
-		} else {
-			this.days.push({
-			id: day.id,
-			date: day.date,
-			});
-		}
+			const idx = this.days.findIndex(d => d.id === day.id);
+			if (idx >= 0) {
+				this.days.splice(idx, 1);
+			} else {
+				this.days.push({
+				id: day.id,
+				date: day.date,
+				});
+			}
 		},
 	},
 };
@@ -193,12 +200,12 @@ export default {
 
 		&--selected {
 			background-color: $azul-sonic-base;
-			color: $branco;
+			color: $branco !important;
 			border: 1px solid $azul-sonic-base !important;
 		}
 
 		&--unavailable {
-			color: $cinza-4;
+			color: $cinza-4 !important;
 			@include botao-1;
 			border: 1px solid $cinza-4 !important;
 			cursor: default;
@@ -212,6 +219,12 @@ export default {
 		text-align: center;
 	}
 
+	&__hour {
+		@include botao-2;
+		color: $cinza-7;
+		margin-bottom: -4px;
+	}
+
 	&__unavailable-interval {
 		color: $cinza-3 !important;
 		@include botao-1;
@@ -219,14 +232,9 @@ export default {
 		cursor: default;
 	}
 
-	&__hour {
-		@include botao-2;
-		// color: $cinza-6;
-	}
-
 	&__available-invertals {
 		@include legenda;
-		// color: $cinza-6;
+		color: $cinza-7;
 	}
 
 	&__time-interval {
@@ -262,9 +270,20 @@ export default {
 	padding: 8px 24px;
 	border-radius: 8px;
 	border: 1px solid $cinza-6;
+	color: $cinza-7;
 }
 
 .minutes-container__header {
 	display: flex;
+}
+
+.minutes-container__header-hours {
+	@include botao-2;
+	color: $cinza-8;
+}
+
+.minutes-container__header-available-hours {
+	@include legenda;
+	color: $cinza-6;
 }
 </style>
