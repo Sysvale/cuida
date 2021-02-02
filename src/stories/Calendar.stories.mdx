@@ -1,0 +1,84 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Calendar from '../components/Calendar.vue';
+
+<Meta
+	title="Componentes/Calendar"
+	component={ Calendar }
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { Calendar },
+	template: /*html*/ `
+		<calendar
+			v-bind="$props" 
+		/>
+	`,
+});
+
+# Calendar
+
+### Calendar são componentes utilizados para se selecionar datas, horas e minutos.
+---
+<br />
+
+## Recomendamos o uso de Calendars quando:
+
+<br />
+
+## Não recomendamos o uso de Calendars quando:
+
+
+<br />
+
+## Preview
+
+export const scheduleAttributes = {
+	'08:00': [
+		'08:15',
+		'08:20',
+		'08:25',
+		'08:30',
+		'08:35',
+		'08:40',
+	],
+	'09:00': [
+		'09:15',
+		'09:20',
+		'09:25',
+	],
+	'10:00': [],
+	'11:00': [],
+	'12:00': [],
+	'13:00': [],
+	'14:00': [
+		'14:00',
+	],
+	'15:00': [],
+	'16:00': [],
+	'17:00': [],
+	'18:00': [
+		'18:20',
+		'18:25',
+		'18:30',
+		'18:35',
+	],
+	'19:00': [],
+};
+
+<Canvas>
+	<Story
+		name="Calendar"
+		args={{
+			content: 'Conteúdo da Calendar',
+			variant: 'gray',
+			startingHour: 8,
+			endingHour: 19,
+			scheduleAttributes: scheduleAttributes,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Calendar" />
