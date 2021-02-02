@@ -6,91 +6,93 @@
 		>
 			<v-date-picker
 				v-bind="$attrs"
-				v-model="notificationDateInterval"
-				mode="range"
-				color="gray"
+				v-model="date"
 				is-inline
 				locale="pt-BR"
-				:columns="1"
 				:attributes="computedAttributes"
 				:from-date="firstDate"
 				:max-date="new Date()"
-				is-range
+				@input="dayClicked()"
 			/>
 
 			<div
-				v-if="selectedSchedule.hour === ''"
-				class="schedule__grid"
+				v-if="timePicker"
 			>
 				<div
-					v-for="(hours, index) in scheduleAttributes"
-					:key="index"
-					class="schedule__time-interval"
-					@click="selectHour(index, availableHours(hours))"
+					v-if="selectedSchedule.hour === ''"
+					class="schedule__grid"
 				>
 					<div
-						class="schedule__time-text"
-						:class="{'schedule__unavailable-interval': availableHours(hours) === 0}"
+						v-for="(hours, index) in scheduleAttributes"
+						:key="index"
+						class="schedule__time-interval"
+						@click="selectHour(index, availableHours(hours))"
 					>
-						<div class="schedule__hour">{{ index }}</div>
-						<span class="schedule__available-invertals">{{ availableHours(hours) }} horários disponíveis</span>
+						<div
+							class="schedule__time-text"
+							:class="{'schedule__unavailable-interval': availableHours(hours) === 0}"
+						>
+							<div class="schedule__hour">{{ index }}</div>
+							<span class="schedule__available-invertals">{{ availableHours(hours) }} horários disponíveis</span>
+						</div>
+					</div>
+				</div>
+
+				<div
+					v-else
+				>
+					<div
+						class="schedule__minutes-container"
+					>
+						<div
+							class="minutes-container__header"
+						>
+							<div
+								@click="selectedSchedule.hour = ''"
+								class="minutes-container__back-buton"
+							>
+								Voltar
+							</div>
+							<div
+								class="minutes-container__header-text"
+							>
+								<div
+									class="minutes-container__header-hours"
+								>
+									{{ selectedSchedule.hour }} - {{ selectedSchedule.hour.replace('00',  '') + '59' }}
+								</div>
+								<div
+									class="minutes-container__header-available-hours"
+								>
+									{{ availableHours(scheduleAttributes[selectedSchedule.hour]) }} horários disponíveis
+								</div>
+							</div>
+						</div>
+
+						<div
+							class="schedule__grid-hour"
+						>
+							<div
+								v-for="(availability, hour) in scheduleAttributes[selectedSchedule.hour]"
+								:key="hour"
+								class="schedule__time-interval"
+							>
+								<div
+									class="time-interval__minutes"
+									:class="{
+										'schedule__grid-hour--unavailable': !availability,
+										'schedule__grid-hour--selected': selectedSchedule.minute === hour,
+									}"
+									@click="selectMinute(hour, availability)"
+								>
+									{{ hour }}
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<div
-				v-else
-			>
-				<div
-					class="schedule__minutes-container"
-				>
-					<div
-						class="minutes-container__header"
-					>
-						<div
-							@click="selectedSchedule.hour = ''"
-							class="minutes-container__back-buton"
-						>
-							Voltar
-						</div>
-						<div
-							class="minutes-container__header-text"
-						>
-							<div
-								class="minutes-container__header-hours"
-							>
-								{{ selectedSchedule.hour }} - {{ selectedSchedule.hour.replace('00',  '') + '59' }}
-							</div>
-							<div
-								class="minutes-container__header-available-hours"
-							>
-								{{ availableHours(scheduleAttributes[selectedSchedule.hour]) }} horários disponíveis
-							</div>
-						</div>
-					</div>
-
-					<div
-						class="schedule__grid-hour"
-					>
-						<div
-							v-for="(availability, hour) in scheduleAttributes[selectedSchedule.hour]"
-							:key="hour"
-							class="schedule__time-interval"
-						>
-							<div
-								class="time-interval__minutes"
-								:class="{
-									'schedule__grid-hour--unavailable': !availability,
-									'schedule__grid-hour--selected': selectedSchedule.minute === hour,
-								}"
-								@click="selectMinute(hour, availability)"
-							>
-								{{ hour }}
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 </template>
@@ -103,7 +105,7 @@ export default {
 	data() {
 		return {
 			days: [],
-			notificationDateInterval: null,
+			date: null,
 			attributes: [],
 			selectedHour: '',
 			selectedMinute: '',
@@ -112,16 +114,28 @@ export default {
 				dates: [],
 				hour: '',
 				minute: '',
+				fancySchedule: '',
 			}
 		}
 	},
 	props: {
+		/**
+		 * Objeto de configuração utilizado para construção do timepicker.
+		 */
 		scheduleAttributes : {
 			type: Object,
 			default: () => {},
-			description: 'The text that will be displayed inside the badge.',
 			required: true,
 		},
+		/**
+		 * Prop que especifica se o timepicker vai ser mostrado ou não.
+		 */
+		timePicker: {
+			type: Boolean,
+			default: false,
+			description: 'The text that will be displayed inside the badge.',
+		}
+
 	},
 
 	computed: {
@@ -151,6 +165,17 @@ export default {
 	},
 
 	methods: {
+		dayClicked() {
+			this.selectedSchedule.dates = this.date;
+
+			/**
+			 * Evento emitido quando a data é selecionada no calendário.
+			* @event daySelected
+			* @type {Event}
+			*/
+			this.$emit('daySelected', this.date);
+		},
+
 		selectHour(hour, availableHours) {
 			if (availableHours) {
 				this.selectedSchedule.hour = hour;
@@ -164,6 +189,13 @@ export default {
 		selectMinute(minute, availability) {
 			if (availability) {
 				this.selectedSchedule.minute = minute;
+				this.selectedSchedule.fancySchedule = `${moment(this.selectedSchedule.dates).format("MM-DD-YYYY")} ${minute}`
+				/**
+				 * Evento utilizado para emitir um objeto contendo a data e hora selecionados.
+				* @event scheduleSelected
+				* @type {Event}
+				*/
+				this.$emit('scheduleSelected', this.selectedSchedule);
 			}
 		},
 
