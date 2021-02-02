@@ -16,22 +16,16 @@ export const Template = (args, { argTypes }) => ({
 	`,
 });
 
-# calendar
+# Calendar
 
-### calendar são indicadores de status utilizados para tornar evidentes metadados importates.
+### O calendar é um componente de escolha de datas e horas.
 ---
 <br />
 
-## Recomendamos o uso de calendars quando:
-- Você quiser mostrar status associados com a lógica de negócio ou açoes do usuário.
-- O conteúdo a ser mostrado for *readonly*
-- For preciso categorizar algo
-
-<br />
-
-## Não recomendamos o uso de calendars quando:
-- O conteúdo que a calendar representa puder ser setado ou removido pelo usuário.
-- O click no componente precisar executar uma ação ou funcionalidade.
+## Observações:
+- O calendar do Cuida é um wrapper do <a href="https://vcalendar.io/">vcalendar</a>
+com adição da nossa solução de timepicking. Para uso dos recursos que são unicamente
+de calendário e não de timepicking, recomendamos ler a documentação do vcalendar.
 
 <br />
 
@@ -212,10 +206,7 @@ export const scheduleAttributes = {
 	<Story
 		name="Calendar"
 		args={{
-			content: 'Conteúdo da calendar',
-			variant: 'gray',
-			startingHour: 8,
-			endingHour: 19,
+			timePicker: true,
 			scheduleAttributes: scheduleAttributes,
 		}}
 	>
