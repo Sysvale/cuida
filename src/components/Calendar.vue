@@ -1,23 +1,23 @@
 <template>
 	<div
+		class="d-flex"
 	>
-		<div
-			class="d-flex"
-		>
-			<v-date-picker
-				v-bind="$attrs"
-				v-model="date"
-				is-inline
-				locale="pt-BR"
-				:attributes="computedAttributes"
-				:from-date="firstDate"
-				:max-date="new Date()"
-				@input="dayClicked()"
-			/>
+		<v-date-picker
+			v-bind="$attrs"
+			v-model="date"
+			is-inline
+			locale="pt-BR"
+			:attributes="attributes"
+			@input="dayClicked()"
+		/>
 
+		<div
+			v-if="timePicker"
+		>
 			<div
-				v-if="timePicker"
+				v-if="!_.isEmpty(scheduleAttributes)"
 			>
+
 				<div
 					v-if="selectedSchedule.hour === ''"
 					class="schedule__grid"
@@ -32,8 +32,17 @@
 							class="schedule__time-text"
 							:class="{'schedule__unavailable-interval': availableHours(hours) === 0}"
 						>
-							<div class="schedule__hour">{{ index }}</div>
-							<span class="schedule__available-invertals">{{ availableHours(hours) }} horários disponíveis</span>
+							<div
+								:class="availableHours(hours) === 0 ? 'schedule__unavailable-hour' : 'schedule__available-hour'"
+							>
+								{{ index }}
+							</div>
+
+							<span
+								:class="availableHours(hours) === 0 ? 'schedule__unavailable-invertals' : 'schedule__available-invertals'"
+							>
+								{{ availableHours(hours) }} horários disponíveis
+							</span>
 						</div>
 					</div>
 				</div>
@@ -91,9 +100,27 @@
 						</div>
 					</div>
 				</div>
+
 			</div>
 
+			<div
+				v-else
+			>
+				<div
+					class="schedule__grid"
+				>
+					<div
+						v-for="index in 12"
+						:key="index"
+						class="schedule__time-interval"
+					>
+						<div class="schedule-skeleton"></div>
+					</div>
+				</div>
+			</div>
+			
 		</div>
+
 	</div>
 </template>
 
@@ -104,12 +131,14 @@ moment.locale('pt-br');
 export default {
 	data() {
 		return {
-			days: [],
 			date: null,
-			attributes: [],
-			selectedHour: '',
-			selectedMinute: '',
-
+			attributes: [
+				{
+					key: 'today',
+					dot: true,
+					dates: new Date(),
+				},
+			],
 			selectedSchedule: {
 				dates: [],
 				hour: '',
@@ -138,42 +167,16 @@ export default {
 
 	},
 
-	computed: {
-		hourRange() {
-			return this.endingHour - this.startingHour + 1;
-		},
-
-		dates() {
-			return this.days.map(day => day.date);
-		},
-
-		computedAttributes() {
-			return this.attributes.map((date) => {
-				const day = moment(date, 'YYYY-MM-DD');
-				return {
-					key: date,
-					highlight: 'blue',
-					dates: day.toDate(),
-					order: 1,
-				};
-			});
-		},
-
-		firstDate() {
-			return moment(_.min(this.attributes), 'YYYY-MM-DD').toDate();
-		},
-	},
-
 	methods: {
 		dayClicked() {
 			this.selectedSchedule.dates = this.date;
-
 			/**
 			 * Evento emitido quando a data é selecionada no calendário.
 			* @event daySelected
 			* @type {Event}
 			*/
 			this.$emit('daySelected', this.date);
+			this.$emit('scheduleSelected', this.selectedSchedule);
 		},
 
 		selectHour(hour, availableHours) {
@@ -196,18 +199,6 @@ export default {
 				* @type {Event}
 				*/
 				this.$emit('scheduleSelected', this.selectedSchedule);
-			}
-		},
-
-		onDayClick(day) {
-			const idx = this.days.findIndex(d => d.id === day.id);
-			if (idx >= 0) {
-				this.days.splice(idx, 1);
-			} else {
-				this.days.push({
-				id: day.id,
-				date: day.date,
-				});
 			}
 		},
 	},
@@ -251,9 +242,15 @@ export default {
 		text-align: center;
 	}
 
-	&__hour {
+	&__available-hour {
 		@include botao-2;
 		color: $cinza-7;
+		margin-bottom: -4px;
+	}
+
+	&__unavailable-hour {
+		@include botao-2;
+		color: $cinza-4;
 		margin-bottom: -4px;
 	}
 
@@ -269,11 +266,15 @@ export default {
 		color: $cinza-7;
 	}
 
+	&__unavailable-invertals {
+		@include legenda;
+		color: $cinza-4;
+	}
+
 	&__time-interval {
 		text-align: center;
 		cursor: pointer;
 	}
-
 
 	&__minutes-container {
 		padding: 20px;
@@ -283,19 +284,59 @@ export default {
 	}
 }
 
-.minutes-container__back-buton {
-	cursor: pointer;
-	@include botao-2;
-	color: $azul-sonic-base;
+.minutes-container {
+	&__back-buton {
+		cursor: pointer;
+		@include botao-2;
+		color: $azul-sonic-base;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	&__header-text {
+		text-align: center;
+		width: -webkit-fill-available;
+	}
 }
 
-.minutes-container__back-buton:hover {
-	text-decoration: underline
+.minutes-container {
+	&__header {
+		display: flex;
+	}
+
+	&__header-hours {
+		@include botao-2;
+		color: $cinza-8;
+	}
+
+	&__header-available-hours {
+		@include legenda;
+		color: $cinza-6;
+	}
 }
 
-.minutes-container__header-text {
-	text-align: center;
-	width: -webkit-fill-available;
+.schedule-skeleton {
+	box-shadow: 0 4px 10px 0 rgba(33, 33, 33, 0.15);
+	border-radius: 4px;
+	position: relative;
+	overflow: hidden;
+	width: 182.89px;
+	height: 59px;
+	border-radius: 8px;
+
+	&::before {
+		content: '';
+		display: block;
+		position: absolute;
+		left: -150px;
+		top: 0;
+		height: 100%;
+		width: 150px;
+		background: linear-gradient(to right, transparent 0%, #E8E8E8 50%, transparent 100%);
+		animation: load 1.4s ease-in-out infinite;
+	}
 }
 
 .time-interval__minutes {
@@ -305,17 +346,11 @@ export default {
 	color: $cinza-7;
 }
 
-.minutes-container__header {
-	display: flex;
-}
-
-.minutes-container__header-hours {
-	@include botao-2;
-	color: $cinza-8;
-}
-
-.minutes-container__header-available-hours {
-	@include legenda;
-	color: $cinza-6;
+@keyframes load {
+	from {
+		left: -150px;
+	} to {
+		left: 100%;
+	}
 }
 </style>
