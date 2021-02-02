@@ -25,7 +25,7 @@
 
 			<div
 				v-if="withIcon"
-				:class="`icon__container--${variant}`"
+				:class="iconClass"
 			>
 				<component
 					:is="dynamicIcon"
@@ -37,7 +37,12 @@
 			<div
 				class="alert-card__content-container"
 			>
-				<span :class="`alert-card__title--${variant}`">{{ title }}</span>
+				<span
+					v-if="!!title"
+					:class="`alert-card__title--${variant}`"
+				>
+					{{ title }}
+				</span>
 
 				<!-- @slot Slot usado para inserção de conteúdo customizado no subtítulo. -->
 				<span class="alert-card__subtitle">
@@ -74,7 +79,6 @@ export default {
 		title: {
 			type: String,
 			default: 'Título do AlertCard',
-			required: true,
 		},
 		/**
 		 * O subtítulo do alerta. O subtítulo também pode ser usado com o slot.
@@ -155,6 +159,10 @@ export default {
 			}
 
 			return dynamicClass;
+		},
+
+		iconClass() {
+			return `icon__container--${this.variant} ${!this.title ? 'align-self-center' : ''}`
 		}
 	},
 
