@@ -2,7 +2,7 @@
 
 exports[`Component is mounted properly 1`] = `
 <div class="d-flex">
-  <v-date-picker-stub locale="pt-BR" maxdate="Tue Feb 02 2021 17:39:57 GMT+0000 (Coordinated Universal Time)" mode="date" modelconfig="[object Object]" popover="[object Object]" attributes="" is-inline="" from-date="Invalid Date"></v-date-picker-stub>
+  <v-date-picker-stub locale="pt-BR" mode="date" modelconfig="[object Object]" popover="[object Object]" attributes="[object Object]" is-inline=""></v-date-picker-stub>
   <div>
     <div>
       <div class="schedule__grid">
