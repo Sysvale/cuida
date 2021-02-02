@@ -8,18 +8,15 @@
 			:alt="imgDescription"
 		/>
 
-		<div
-			class="empty-state__title"
-			:style="headlineStyle"
-		>
+		<div class="empty-state__title">
 			{{ title }}
 		</div>
 
-		<div
-			class="empty-state__text"
-			:style="bodyTextStyle"
-		>
-			{{ text }}
+		<div class="empty-state__text">
+			<!-- @slot Slot usado para inserção de conteúdo customizado no texto do corpo do empty state. -->
+			<slot name="text">
+				{{ text }}
+			</slot>
 		</div>
 
 		<!--
