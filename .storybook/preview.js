@@ -7,6 +7,7 @@ import BootstrapVue from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import Multiselect from 'vue-multiselect';
+import VCalendar from 'v-calendar';
 
 import _ from 'lodash';
 Object.defineProperty(Vue.prototype, '_', { value: _ });
@@ -33,6 +34,7 @@ import {
 	ExpansionCard,
 	Highlight,
 	Scrollable,
+	Calendar,
 } from '../src/components';
 
 import Palete from '../src/Palete.vue';
@@ -44,6 +46,16 @@ const longClickInstance = longClickDirective({delay: 400, interval: 50});
 Vue.directive('longclick', longClickInstance);
 
 Vue.use(BootstrapVue);
+Vue.use(VCalendar, {
+	locales: {
+		'pt-BR': {
+			firstDayOfWeek: 1,
+			masks: {
+				L: 'YYYY-MM-DD',
+			},
+		},
+	},
+});
 
 Vue.component('multiselect', Multiselect);
 Vue.component('palete', Palete);
@@ -69,6 +81,7 @@ Vue.component('stepper-input', StepperInput);
 Vue.component('expansion-card', ExpansionCard);
 Vue.component('highlight', Highlight);
 Vue.component('scrollable', Scrollable);
+Vue.component('calendar', Calendar);
 
 addParameters({
 	options: {

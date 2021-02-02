@@ -18,3 +18,4 @@ export { default as StepperInput } from './StepperInput.vue';
 export { default as ExpansionCard } from './ExpansionCard.vue';
 export { default as Highlight } from './Highlight.vue';
 export { default as Scrollable } from './Scrollable.vue';
+export { default as Calendar } from './Calendar.vue';
