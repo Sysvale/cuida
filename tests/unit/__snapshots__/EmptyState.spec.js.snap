@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component is mounted properly 1`] = `
-<div class="empty-state"><img src="" alt="" class="empty-state__image">
+<div class="empty-state"><img src="" alt="Imagem de Empty State" class="empty-state__image">
   <div class="empty-state__title">
     EmptyState title
   </div>
