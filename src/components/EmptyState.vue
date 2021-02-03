@@ -51,14 +51,14 @@ export default {
 		 */
 		imgDescription: {
 			type: String,
-			default: 'Imagem de Empty State',
+			default: '',
 		},
 		/**
 		 * O título do Empty State.
 		 */
 		title: {
 			type: String,
-			default: 'Título do empty state',
+			default: '',
 			required: true,
 		},
 		/**
@@ -66,7 +66,7 @@ export default {
 		 */
 		text: {
 			type: String,
-			default: 'Para sair dessa situação de empty state, realize a ação abaixo.',
+			default: '',
 			required: true,
 		},
 		/**
@@ -81,7 +81,7 @@ export default {
 		 */
 		buttonText: {
 			type: String,
-			default: 'Add new content',
+			default: 'Finalizar',
 		},
 	},
 };

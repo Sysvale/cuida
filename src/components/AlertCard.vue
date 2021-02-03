@@ -78,14 +78,14 @@ export default {
 		 */
 		title: {
 			type: String,
-			default: 'Título do AlertCard',
+			default: null,
 		},
 		/**
 		 * O subtítulo do alerta. O subtítulo também pode ser usado com o slot.
 		 */
 		subTitle: {
 			type: String,
-			default: 'Subtítulo do AlertCard',
+			default: null,
 		},
 		/**
 		 * Determina se o Alert vai ter ícone ou não.

@@ -2,7 +2,7 @@
 
 exports[`Component is mounted properly 1`] = `
 <span id="alert-card"><div class="alert-card__container"><!----> <div class="icon__container--info align-self-center"><svg xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.4em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info icon--info"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div> <div class="alert-card__content-container"><!----> <span class="alert-card__subtitle">
-					Subtítulo do AlertCard
+					
 				</span> </div>
 </div></span>
 `;
