@@ -51,14 +51,14 @@ export default {
 		 */
 		imgDescription: {
 			type: String,
-			default: '',
+			default: 'Imagem de Empty State',
 		},
 		/**
 		 * O título do Empty State.
 		 */
 		title: {
 			type: String,
-			default: '',
+			default: 'Título do empty state',
 			required: true,
 		},
 		/**
@@ -66,8 +66,7 @@ export default {
 		 */
 		text: {
 			type: String,
-			default: '',
-			required: true,
+			default: 'Para sair dessa situação de empty state, realize a ação abaixo.',
 		},
 		/**
 		 * Prop utilizada para mostrar ou ocultar o botão de ação do Empty State.
