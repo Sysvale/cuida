@@ -38,14 +38,17 @@
 				class="alert-card__content-container"
 			>
 				<span
-					v-if="!!title"
+					v-if="!noTitle"
 					:class="`alert-card__title--${variant}`"
 				>
 					{{ title }}
 				</span>
 
 				<!-- @slot Slot usado para inserção de conteúdo customizado no subtítulo. -->
-				<span class="alert-card__subtitle">
+				<span
+					class="alert-card__subtitle"
+					:class="`${noTitle ? 'mt-0' : 'mt-2'}`"
+				>
 					<slot name="subTitle-slot">
 						{{ subTitle }}
 					</slot>
@@ -86,6 +89,13 @@ export default {
 		subTitle: {
 			type: String,
 			default: 'Subtítulo do AlertCard',
+		},
+		/**
+		 * Indica se a prop title deve ser exibida.
+		 */
+		noTitle: {
+			type: Boolean,
+			default: false,
 		},
 		/**
 		 * Determina se o Alert vai ter ícone ou não.
@@ -162,7 +172,7 @@ export default {
 		},
 
 		iconClass() {
-			return `icon__container--${this.variant} ${!this.title ? 'align-self-center' : ''}`
+			return `icon__container--${this.variant} ${this.noTitle ? 'align-self-center' : ''}`
 		}
 	},
 
@@ -242,7 +252,6 @@ export default {
 
 	&__subtitle {
 		@include subtitulo-3;
-		@include margin(superior, 2);
 		display: block;
 		color: $cinza-6;
 	}

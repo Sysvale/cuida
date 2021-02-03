@@ -67,7 +67,6 @@ export default {
 		text: {
 			type: String,
 			default: 'Para sair dessa situação de empty state, realize a ação abaixo.',
-			required: true,
 		},
 		/**
 		 * Prop utilizada para mostrar ou ocultar o botão de ação do Empty State.
@@ -81,7 +80,7 @@ export default {
 		 */
 		buttonText: {
 			type: String,
-			default: 'Add new content',
+			default: 'Finalizar',
 		},
 	},
 };
