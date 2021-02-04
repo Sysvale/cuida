@@ -35,6 +35,7 @@ import {
 	Highlight,
 	Scrollable,
 	Calendar,
+	FilterPill,
 } from '../src/components';
 
 import Palete from '../src/Palete.vue';
@@ -82,6 +83,7 @@ Vue.component('expansion-card', ExpansionCard);
 Vue.component('highlight', Highlight);
 Vue.component('scrollable', Scrollable);
 Vue.component('calendar', Calendar);
+Vue.component('filter-pill', FilterPill);
 
 addParameters({
 	options: {
