@@ -9,6 +9,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import Multiselect from 'vue-multiselect';
 import VCalendar from 'v-calendar';
 
+import vueSlider from 'vue-slider-component/src/vue2-slider.vue';
+
 import _ from 'lodash';
 Object.defineProperty(Vue.prototype, '_', { value: _ });
 
@@ -36,6 +38,7 @@ import {
 	Scrollable,
 	Calendar,
 	FilterPill,
+	Slider,
 } from '../src/components';
 
 import Palete from '../src/Palete.vue';
@@ -84,6 +87,9 @@ Vue.component('highlight', Highlight);
 Vue.component('scrollable', Scrollable);
 Vue.component('calendar', Calendar);
 Vue.component('filter-pill', FilterPill);
+Vue.component('slider', Slider);
+
+Vue.component('vueSlider', vueSlider);
 
 addParameters({
 	options: {

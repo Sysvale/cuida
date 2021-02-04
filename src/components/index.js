@@ -20,3 +20,4 @@ export { default as Highlight } from './Highlight.vue';
 export { default as Scrollable } from './Scrollable.vue';
 export { default as Calendar } from './Calendar.vue';
 export { default as FilterPill } from './FilterPill.vue';
+export { default as Slider } from './Slider.vue';

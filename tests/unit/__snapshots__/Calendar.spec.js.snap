@@ -10,7 +10,7 @@ exports[`Component is mounted properly 1`] = `
           <div class="schedule__time-text">
             <div class="schedule__available-hour">
               08:00
-            </div> <span class="schedule__available-invertals">
+            </div> <span class="schedule__available-intervals">
 							6 horários disponíveis
 						</span>
           </div>
@@ -19,7 +19,7 @@ exports[`Component is mounted properly 1`] = `
           <div class="schedule__time-text">
             <div class="schedule__available-hour">
               09:00
-            </div> <span class="schedule__available-invertals">
+            </div> <span class="schedule__available-intervals">
 							3 horários disponíveis
 						</span>
           </div>
@@ -28,8 +28,8 @@ exports[`Component is mounted properly 1`] = `
           <div class="schedule__time-text schedule__unavailable-interval">
             <div class="schedule__unavailable-hour">
               10:00
-            </div> <span class="schedule__unavailable-invertals">
-							0 horários disponíveis
+            </div> <span class="schedule__unavailable-intervals">
+							Indisponível
 						</span>
           </div>
         </div>
@@ -37,8 +37,8 @@ exports[`Component is mounted properly 1`] = `
           <div class="schedule__time-text schedule__unavailable-interval">
             <div class="schedule__unavailable-hour">
               11:00
-            </div> <span class="schedule__unavailable-invertals">
-							0 horários disponíveis
+            </div> <span class="schedule__unavailable-intervals">
+							Indisponível
 						</span>
           </div>
         </div>
@@ -46,8 +46,8 @@ exports[`Component is mounted properly 1`] = `
           <div class="schedule__time-text schedule__unavailable-interval">
             <div class="schedule__unavailable-hour">
               12:00
-            </div> <span class="schedule__unavailable-invertals">
-							0 horários disponíveis
+            </div> <span class="schedule__unavailable-intervals">
+							Indisponível
 						</span>
           </div>
         </div>
@@ -55,8 +55,8 @@ exports[`Component is mounted properly 1`] = `
           <div class="schedule__time-text schedule__unavailable-interval">
             <div class="schedule__unavailable-hour">
               13:00
-            </div> <span class="schedule__unavailable-invertals">
-							0 horários disponíveis
+            </div> <span class="schedule__unavailable-intervals">
+							Indisponível
 						</span>
           </div>
         </div>
@@ -64,8 +64,8 @@ exports[`Component is mounted properly 1`] = `
           <div class="schedule__time-text">
             <div class="schedule__available-hour">
               14:00
-            </div> <span class="schedule__available-invertals">
-							1 horários disponíveis
+            </div> <span class="schedule__available-intervals">
+							1 horário disponível
 						</span>
           </div>
         </div>
@@ -73,8 +73,8 @@ exports[`Component is mounted properly 1`] = `
           <div class="schedule__time-text schedule__unavailable-interval">
             <div class="schedule__unavailable-hour">
               15:00
-            </div> <span class="schedule__unavailable-invertals">
-							0 horários disponíveis
+            </div> <span class="schedule__unavailable-intervals">
+							Indisponível
 						</span>
           </div>
         </div>
@@ -82,8 +82,8 @@ exports[`Component is mounted properly 1`] = `
           <div class="schedule__time-text schedule__unavailable-interval">
             <div class="schedule__unavailable-hour">
               16:00
-            </div> <span class="schedule__unavailable-invertals">
-							0 horários disponíveis
+            </div> <span class="schedule__unavailable-intervals">
+							Indisponível
 						</span>
           </div>
         </div>
@@ -91,8 +91,8 @@ exports[`Component is mounted properly 1`] = `
           <div class="schedule__time-text schedule__unavailable-interval">
             <div class="schedule__unavailable-hour">
               17:00
-            </div> <span class="schedule__unavailable-invertals">
-							0 horários disponíveis
+            </div> <span class="schedule__unavailable-intervals">
+							Indisponível
 						</span>
           </div>
         </div>
@@ -100,7 +100,7 @@ exports[`Component is mounted properly 1`] = `
           <div class="schedule__time-text">
             <div class="schedule__available-hour">
               18:00
-            </div> <span class="schedule__available-invertals">
+            </div> <span class="schedule__available-intervals">
 							4 horários disponíveis
 						</span>
           </div>
@@ -109,8 +109,8 @@ exports[`Component is mounted properly 1`] = `
           <div class="schedule__time-text schedule__unavailable-interval">
             <div class="schedule__unavailable-hour">
               19:00
-            </div> <span class="schedule__unavailable-invertals">
-							0 horários disponíveis
+            </div> <span class="schedule__unavailable-intervals">
+							Indisponível
 						</span>
           </div>
         </div>
