@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component is mounted properly 1`] = `
+<div><span class="filter-pill__container"><span class="filter-pill__label">Idade: </span> <span class="filter-pill__content">0 a 120 anos </span> <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down filter-pill__chevron--down">
+    <polyline points="6 9 12 15 18 9"></polyline>
+  </svg></span></div>
+`;

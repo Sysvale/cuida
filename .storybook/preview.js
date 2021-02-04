@@ -37,6 +37,7 @@ import {
 	Highlight,
 	Scrollable,
 	Calendar,
+	FilterPill,
 	Slider,
 } from '../src/components';
 
@@ -85,6 +86,7 @@ Vue.component('expansion-card', ExpansionCard);
 Vue.component('highlight', Highlight);
 Vue.component('scrollable', Scrollable);
 Vue.component('calendar', Calendar);
+Vue.component('filter-pill', FilterPill);
 Vue.component('slider', Slider);
 
 Vue.component('vueSlider', vueSlider);
