@@ -245,7 +245,7 @@ export default {
 	}
 
 	&__time-text {
-		padding: 8px 20px;
+		padding: 8px 12px;
 		border-radius: 8px;
 		border: 1px solid $cinza-6;
 		text-align: center;
@@ -271,12 +271,12 @@ export default {
 	}
 
 	&__available-intervals {
-		font-size: 10px !important;
+		@include legenda;
 		color: $cinza-7;
 	}
 
 	&__unavailable-intervals {
-		font-size: 10px !important;
+		@include legenda;
 		color: $cinza-4;
 	}
 
