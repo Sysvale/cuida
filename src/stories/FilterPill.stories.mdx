@@ -4,25 +4,6 @@ import FilterPill from '../components/FilterPill.vue';
 <Meta
 	title="Componentes/FilterPill"
 	component={ FilterPill }
-	argTypes={{
-		variant: {
-			control: {
-				type: 'select',
-				options: [
-					'turquoise',
-					'green',
-					'blue',
-					'purple',
-					'pink',
-					'red',
-					'orange',
-					'yellow',
-					'gray',
-				],
-			}
-		},
-	}
-}
 />
 
 export const Template = (args, { argTypes }) => ({
@@ -37,20 +18,20 @@ export const Template = (args, { argTypes }) => ({
 
 # FilterPill
 
-### FilterPill são indicadores de status utilizados para tornar evidentes metadados importates.
+### FilterPills são componentes utilizados para ativar popovers contendo filtros para listas e views.
 ---
 <br />
 
 ## Recomendamos o uso de FilterPills quando:
-- Você quiser mostrar status associados com a lógica de negócio ou açoes do usuário.
-- O conteúdo a ser mostrado for *readonly*
-- For preciso categorizar algo
+- Você estiver trabalhando com filtros.
+- Recomendamos seu uso em conjunto com popovers contendo opções de filtragem.
 
 <br />
 
 ## Não recomendamos o uso de FilterPills quando:
-- O conteúdo que a FilterPill representa puder ser setado ou removido pelo usuário.
-- O click no componente precisar executar uma ação ou funcionalidade.
+- Você estiver procurando por um botão.
+- Você estiver procurando um dropdown.
+- Você estiver trabalhando com tabelas.
 
 <br />
 
@@ -60,8 +41,8 @@ export const Template = (args, { argTypes }) => ({
 	<Story
 		name="FilterPill"
 		args={{
-			content: 'Conteúdo da FilterPill',
-			variant: 'gray',
+			label: 'Idade',
+			content: '0 a 120 anos',
 		}}
 	>
 		{ Template.bind({}) }
