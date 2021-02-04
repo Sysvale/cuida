@@ -1,10 +1,13 @@
 import * as components from './components/index';
+import vueSlider from 'vue-slider-component/src/vue2-slider.vue';
 
 // install function executed by Vue.use()
 function install(Vue) {
 	if (install.installed) return;
 
 	install.installed = true;
+
+	Vue.component('vueSlider', vueSlider);
 
 	Object.keys(components).forEach((componentName) => {
 		Vue.component(
