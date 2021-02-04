@@ -10,12 +10,11 @@
 			:attributes="attributes"
 			@input="dayClicked()"
 		/>
-
 		<div
 			v-if="timePicker"
 		>
 			<div
-				v-if="!_.isEmpty(scheduleAttributes)"
+				v-if="!isEmpty(scheduleAttributes)"
 			>
 
 				<div
@@ -168,6 +167,10 @@ export default {
 	},
 
 	methods: {
+		isEmpty(object) {
+			return Object.entries(object).length === 0
+		},
+
 		dayClicked() {
 			this.selectedSchedule.dates = this.date;
 			/**
