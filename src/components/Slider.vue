@@ -3,9 +3,42 @@
 		<vue-slider
 			v-bind="$attrs"
 			:enable-cross="false"
+			:min="min"
+			:max="max"
+			:value="value"
 		/>
 	</div>
 </template>
+<script>
+export default {
+	props: {
+		/**
+		 * O valor mínimo do slider.
+		 */
+		min: {
+			type: Number,
+			default: 0,
+			required: true,
+		},
+		/**
+		 * O valor máximo do slider.
+		 */
+		max: {
+			type: Number,
+			default: 100,
+			required: true,
+		},
+		/**
+		* Prop utilizada como v-model. Retorna as posições selecionadas no slider.
+		*/
+		value: {
+			type: Array,
+			default: () => [],
+			required: true,
+		},
+	},
+}
+</script>
 <style lang="scss">
 @import '../assets/sass/app.scss';
 
