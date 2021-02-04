@@ -38,9 +38,9 @@
 							</div>
 
 							<span
-								:class="availableHours(hours) === 0 ? 'schedule__unavailable-invertals' : 'schedule__available-invertals'"
+								:class="availableHours(hours) === 0 ? 'schedule__unavailable-intervals' : 'schedule__available-intervals'"
 							>
-								{{ availableHours(hours) }} horários disponíveis
+								{{ availableHoursText(hours) }}
 							</span>
 						</div>
 					</div>
@@ -72,7 +72,7 @@
 								<div
 									class="minutes-container__header-available-hours"
 								>
-									{{ availableHours(scheduleAttributes[selectedSchedule.hour]) }} horários disponíveis
+									{{ availableHoursText(scheduleAttributes[selectedSchedule.hour]) }}
 								</div>
 							</div>
 						</div>
@@ -192,6 +192,12 @@ export default {
 			return Object.values(hours).filter(hour => hour === true).length;
 		},
 
+		availableHoursText(hours) {
+			const count = this.availableHours(hours);
+			const complementText = count === 1 ? 'horário disponível' : 'horários disponíveis';
+			return count === 0 ? 'Indisponível' : `${count} ${complementText}`;
+		},
+
 		selectMinute(minute, availability) {
 			if (availability) {
 				this.selectedSchedule.minute = minute;
@@ -239,7 +245,7 @@ export default {
 	}
 
 	&__time-text {
-		padding: 8px 24px;
+		padding: 8px 20px;
 		border-radius: 8px;
 		border: 1px solid $cinza-6;
 		text-align: center;
@@ -264,13 +270,13 @@ export default {
 		cursor: default;
 	}
 
-	&__available-invertals {
-		@include legenda;
+	&__available-intervals {
+		font-size: 10px !important;
 		color: $cinza-7;
 	}
 
-	&__unavailable-invertals {
-		@include legenda;
+	&__unavailable-intervals {
+		font-size: 10px !important;
 		color: $cinza-4;
 	}
 
@@ -301,6 +307,8 @@ export default {
 	&__header-text {
 		text-align: center;
 		width: -webkit-fill-available;
+		width: -moz-available;
+		width: fill-available;
 	}
 }
 
@@ -343,7 +351,7 @@ export default {
 }
 
 .time-interval__minutes {
-	padding: 8px 24px;
+	padding: 8px 20px;
 	border-radius: 8px;
 	border: 1px solid $cinza-6;
 	color: $cinza-7;
