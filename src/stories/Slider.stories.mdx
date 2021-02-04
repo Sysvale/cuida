@@ -1,0 +1,62 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Slider from '../components/Slider.vue';
+
+<Meta
+	title="Componentes/Slider"
+	component={ Slider }
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { Slider },
+	template: /*html*/ `
+		<slider
+			v-bind="$props" 
+		/>
+	`,
+});
+
+# Slider
+
+### Sliders são componentes utilizados para seleção de valores dentro de um intervalo.
+---
+<br />
+
+## Recomendamos o uso de Sliders quando:
+- Recomendamos o uso de sliders quando for preciso a seleção de valores dentro de um intervalo,
+sobretudo quando for preciso selecionar mais de um valor.
+- Recomendamos o uso de sliders quando a velocidade na seleção de valores em um intervalo for
+mais relevante que a precisão.
+
+<br />
+
+## Não recomendamos o uso de Sliders quando:
+- Não recomendamos o uso de sliders quando não houver necessidade de uma precisão muito grande na seleção dos valores.
+- Não recomendamos o uso de sliders em conjunto com inputs para que o usuário consiga editar
+o dado tanto pelo slider quanto pelos inputs.
+
+## Observações:
+- O slider do Cuida é um wrapper do <a href="https://nightcatsama.github.io/vue-slider-component/#//">Vue slider component</a>
+com a sua adequação aos nossos princípios e recomendações. Para informações detalhadas do componente, recomendamos
+leitura da documentação.
+
+<br />
+
+## Preview
+
+export const value = [0, 120];
+
+<Canvas>
+	<Story
+		name="Slider"
+		args={{
+			min: 0,
+			max: 120,
+			value,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Slider" />

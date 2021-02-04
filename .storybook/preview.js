@@ -9,6 +9,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import Multiselect from 'vue-multiselect';
 import VCalendar from 'v-calendar';
 
+import vueSlider from 'vue-slider-component/src/vue2-slider.vue';
+
 import _ from 'lodash';
 Object.defineProperty(Vue.prototype, '_', { value: _ });
 
@@ -35,6 +37,7 @@ import {
 	Highlight,
 	Scrollable,
 	Calendar,
+	Slider,
 } from '../src/components';
 
 import Palete from '../src/Palete.vue';
@@ -82,6 +85,9 @@ Vue.component('expansion-card', ExpansionCard);
 Vue.component('highlight', Highlight);
 Vue.component('scrollable', Scrollable);
 Vue.component('calendar', Calendar);
+Vue.component('slider', Slider);
+
+Vue.component('vueSlider', vueSlider);
 
 addParameters({
 	options: {
