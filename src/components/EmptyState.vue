@@ -8,18 +8,15 @@
 			:alt="imgDescription"
 		/>
 
-		<div
-			class="empty-state__title"
-			:style="headlineStyle"
-		>
+		<div class="empty-state__title">
 			{{ title }}
 		</div>
 
-		<div
-			class="empty-state__text"
-			:style="bodyTextStyle"
-		>
-			{{ text }}
+		<div class="empty-state__text">
+			<!-- @slot Slot usado para inserção de conteúdo customizado no texto do corpo do empty state. -->
+			<slot name="text">
+				{{ text }}
+			</slot>
 		</div>
 
 		<!--
@@ -70,7 +67,6 @@ export default {
 		text: {
 			type: String,
 			default: 'Para sair dessa situação de empty state, realize a ação abaixo.',
-			required: true,
 		},
 		/**
 		 * Prop utilizada para mostrar ou ocultar o botão de ação do Empty State.
@@ -84,7 +80,7 @@ export default {
 		 */
 		buttonText: {
 			type: String,
-			default: 'Add new content',
+			default: 'Finalizar',
 		},
 	},
 };
