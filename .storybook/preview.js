@@ -9,6 +9,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import Multiselect from 'vue-multiselect';
 import VCalendar from 'v-calendar';
 
+import { directive as onClickOutside } from 'vue-on-click-outside' 
+Vue.directive('on-click-outside', onClickOutside)
+
 import vueSlider from 'vue-slider-component/src/vue2-slider.vue';
 
 import _ from 'lodash';
@@ -39,6 +42,7 @@ import {
 	Calendar,
 	FilterPill,
 	Slider,
+	ModalWindow
 } from '../src/components';
 
 import Palete from '../src/Palete.vue';
@@ -88,6 +92,7 @@ Vue.component('scrollable', Scrollable);
 Vue.component('calendar', Calendar);
 Vue.component('filter-pill', FilterPill);
 Vue.component('slider', Slider);
+Vue.component('modal-window', ModalWindow);
 
 Vue.component('vueSlider', vueSlider);
 
