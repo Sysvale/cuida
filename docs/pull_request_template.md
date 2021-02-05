@@ -14,15 +14,17 @@
 - [ ] Modificação no build
 - [ ] Documentação
 
+### 3 - Ele fecha alguma issue? Favor referenciá-la
 
-### 3 - Passo para avaliar o pull request?
+
+### 4 - Passo para avaliar o pull request?
 Número da atividade ou issue:
 
 
-### 4 - Imagem ou exemplo de uso:
+### 5 - Imagem ou exemplo de uso:
 
 
-### 5 - Esse pull request adiciona *breaking changes*?
+### 6 - Esse pull request adiciona *breaking changes*?
 
 - [ ] Yes
 - [ ] No
