@@ -6,6 +6,7 @@
 			:min="min"
 			:max="max"
 			:value="value"
+			@input="valueChanged"
 		/>
 	</div>
 </template>
@@ -37,68 +38,34 @@ export default {
 			required: true,
 		},
 	},
+	methods: {
+		valueChanged(value) {
+			/**
+			 * Evento utilizado para implementar o v-model.
+			* @event input
+			* @type {Event}
+			*/
+			this.$emit('input', value);
+		}
+	},
 }
 </script>
 <style lang="scss">
 @import '../assets/sass/app.scss';
-
-.vue-slider-component .vue-slider {
-	background-color: $azul-sonic-light-2;
-}
-
-.vue-slider-component .vue-slider-process {
-	background-color: $azul-sonic-light-1;
-}
-
-.vue-slider-component .vue-slider-dot .vue-slider-dot-handle {
-	background-color: $azul-sonic-light-2;
-	border: 1px solid $azul-sonic-light-1;
-}
-
-.vue-slider-dot-handle {
-	box-shadow: none;
-}
-
-.vue-slider-component .vue-slider-dot .vue-slider-dot-handle {
-	box-shadow: none;
-}
-
-.vue-slider {
-	height: 3px !important;
-}
-
-.vue-slider-component .vue-slider-tooltip {
-	border: none;
-	background-color: transparent;
-	color: $cinza-6;
-	margin-bottom: -8px;
-	@include legenda;
-}
-
-.vue-slider-component .vue-slider-tooltip-wrap.vue-slider-tooltip-top
-.vue-slider-tooltip::before,
-.vue-slider-component .vue-slider-tooltip-top
-.vue-merged-tooltip .vue-slider-tooltip::before {
-	border: none;
-}
-
 /* component style */
 .vue-slider-disabled {
 	opacity: 0.5;
 	cursor: not-allowed;
 }
-
 /* rail style */
 .vue-slider-rail {
 	background-color: #ccc;
 	border-radius: 15px;
 }
-
 /* process style */
 .vue-slider-process {
 	border-radius: 15px;
 }
-
 /* mark style */
 .vue-slider-mark {
 	z-index: 4;
@@ -129,12 +96,10 @@ export default {
 .vue-slider-dot-handle-focus {
 	box-shadow: 0px 0px 1px 2px rgba(52, 152, 219, 0.36);
 }
-
 .vue-slider-dot-handle-disabled {
 	cursor: not-allowed;
 	background-color: #ccc;
 }
-
 .vue-slider-dot-tooltip-inner {
 	font-size: 14px;
 	white-space: nowrap;
@@ -195,7 +160,6 @@ export default {
 	border-width: 5px;
 	border-right-color: inherit;
 }
-
 .vue-slider-dot-tooltip-wrapper {
 	opacity: 0;
 	transition: all 0.3s;
@@ -203,5 +167,36 @@ export default {
 .vue-slider-dot-tooltip-wrapper-show {
 	opacity: 1;
 }
-
+.vue-slider-component .vue-slider {
+	background-color: $azul-sonic-light-2 !important;
+}
+.vue-slider-component .vue-slider-process {
+	background-color: $azul-sonic-light-1 !important;
+}
+.vue-slider-component .vue-slider-dot .vue-slider-dot-handle {
+	background-color: $azul-sonic-light-2 !important;
+	border: 1px solid $azul-sonic-light-1 !important;
+}
+.vue-slider-dot-handle {
+	box-shadow: none !important;
+}
+.vue-slider-component .vue-slider-dot .vue-slider-dot-handle {
+	box-shadow: none !important;
+}
+.vue-slider {
+	height: 3px !important;
+}
+.vue-slider-component .vue-slider-tooltip {
+	border: none !important;
+	background-color: transparent !important;
+	color: $cinza-6 !important;
+	margin-bottom: -8px !important;
+	@include legenda;
+}
+.vue-slider-component .vue-slider-tooltip-wrap.vue-slider-tooltip-top
+.vue-slider-tooltip::before,
+.vue-slider-component .vue-slider-tooltip-top
+.vue-merged-tooltip .vue-slider-tooltip::before {
+	border: none !important;
+}
 </style>
