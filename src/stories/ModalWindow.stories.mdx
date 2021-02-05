@@ -1,0 +1,76 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import ModalWindow from '../components/ModalWindow.vue';
+
+<Meta
+	title="Componentes/ModalWindow"
+	component={ ModalWindow }
+/>
+
+export const Template = (args, { argTypes }) => ({
+	data() {
+		return {
+			showM: false,
+		};
+	},
+	props: Object.keys(argTypes),
+	components: { ModalWindow },
+	template: /*html*/ `
+		<div class="d-flex justify-content-center" style="height: 250px;">
+			<b-button
+				class="btn-info"
+				id="trigger-popover"
+				style="height: 40px;"
+				@click="togglePopover"
+			>
+				Click
+			</b-button>
+			<modal-window
+				:show="showM"
+				v-bind="$props"
+				@hide="showM = false"
+			>
+				<span> Texto bem importante</span>
+			</modal-window>
+		</div>
+	`,
+	methods: {
+		togglePopover() {
+			this.showM = true;
+		},
+	},
+});
+
+# ModalWindow
+
+### ModalWindows são componentes utilizados para apresentar aos usuários ações ou informações importantes, como aplicação de filtros, e cofirmações, mas sem ser intrusivo e alterar completamente o contexto do usuário.
+---
+<br />
+
+## Recomendamos o uso de ModalWindows quando:
+- Você desejar implementar filtros não intrusivos.
+
+<br />
+
+## Não recomendamos o uso de ModalWindows quando:
+- Precisarem ser usados em conjunto com outros modais e popovers.
+- Forem utilizados em situações que precisem fazer o usuáro mudar de contexto e focar em determinado conteúdo, fluxo ou atividade.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="ModalWindow"
+		args={{
+			top: 20,
+			right: 20,
+			height: 293,
+			width: 313,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="ModalWindow" />
