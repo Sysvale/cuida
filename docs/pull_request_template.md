@@ -29,4 +29,4 @@ Número da atividade ou issue:
 - [ ] Yes
 - [ ] No
 
-### 6 - Informações adicionais:
+### 7 - Informações adicionais:
