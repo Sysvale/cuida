@@ -10,14 +10,14 @@
 - [ ] Bugfix
 - [ ] Feature
 - [ ] Melhoria no estilo de código (refatoração **sem** modificação na api)
-- [ ] Melhoria na escritá de métodos, componentes ou estilo (refatoração **com** modificação na api)
+- [ ] Melhoria na escrita de métodos ou componentes (refatoração **com** modificação na api)
 - [ ] Modificação no build
 - [ ] Documentação
 
-### 3 - Ele fecha alguma issue? Favor referenciá-la
+### 3 - Esse PR fecha alguma issue? Favor referenciá-la
 
 
-### 4 - Passo para avaliar o pull request?
+### 4 - Quais são os passos para avaliar o pull request?
 Número da atividade ou issue:
 
 
@@ -26,7 +26,7 @@ Número da atividade ou issue:
 
 ### 6 - Esse pull request adiciona *breaking changes*?
 
-- [ ] Yes
-- [ ] No
+- [ ] Sim
+- [ ] Não
 
 ### 7 - Informações adicionais:
