@@ -9,7 +9,7 @@ import ModalWindow from '../components/ModalWindow.vue';
 export const Template = (args, { argTypes }) => ({
 	data() {
 		return {
-			showM: false,
+			showModal: false,
 		};
 	},
 	props: Object.keys(argTypes),
@@ -25,9 +25,9 @@ export const Template = (args, { argTypes }) => ({
 				Click
 			</b-button>
 			<modal-window
-				:show="showM"
+				:show="showModal"
 				v-bind="$props"
-				@hide="showM = false"
+				@hide="showModal = false"
 			>
 				<span> Texto bem importante</span>
 			</modal-window>
@@ -35,7 +35,7 @@ export const Template = (args, { argTypes }) => ({
 	`,
 	methods: {
 		togglePopover() {
-			this.showM = true;
+			this.showModal = true;
 		},
 	},
 });
