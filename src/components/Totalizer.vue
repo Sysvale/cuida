@@ -50,8 +50,6 @@
 </template>
 
 <script>
-import { BIcon, BIconArrowsAngleExpand, BIconArrowsAngleContract } from 'bootstrap-vue';
-
 export default {
 	components: {
 		BIconArrowsAngleExpand,
