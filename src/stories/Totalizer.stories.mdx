@@ -1,0 +1,95 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Totalizer from '../components/Totalizer.vue';
+import { BIconHouseFill } from 'bootstrap-vue';
+
+<Meta
+	title="Componentes/Containers/Totalizer"
+	component={ Totalizer }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'turquoise',
+					'green',
+					'blue',
+					'purple',
+					'pink',
+					'red',
+					'orange',
+					'yellow',
+					'gray',
+				],
+			}
+		},
+		iconSide: {
+			control:{
+				type: 'select',
+				options: [
+					'left',
+					'right',
+				],
+			}
+		},
+	}
+}
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { Totalizer, BIconHouseFill },
+	template: /*html*/ `
+		<totalizer
+			v-bind="$props" 
+		>
+			<template v-slot:value>
+				<div class="">
+					1589
+				</div>
+			</template>
+			<template v-slot:subtitle>
+				<div class="">
+					Agendamentos realizados
+				</div>
+			</template>
+			<template v-slot:icon>
+				<b-icon-house-fill />
+			</template>
+		</totalizer>
+	`,
+});
+
+# Totalizer
+
+### Totalizer são componentes utilizados para mostrar informações com apelo gráfico de forma resumida e que podem se expandir para detalhar essas informações.
+---
+<br />
+
+## Recomendamos o uso de ExpansionCards quando:
+- Você precisar de cards que podem ser clicáveis
+- Você deseja mostrar informações resumidas
+- Você possuir uma informação principal e um texto descritivo a ser colocado no card
+
+<br />
+
+## Não recomendamos o uso de ExpansionCards quando:
+- O usuário não puder interagir com o card.
+- Só houver uma informação a ser mostrada no card em seu estado padrão (não expandido)
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Totalizer"
+		args={{
+			variant: 'red',
+			iconSide: 'left'
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Totalizer" />
