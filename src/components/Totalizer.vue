@@ -67,8 +67,7 @@ export default {
 			default: 'gray',
 		},
 		/**
-		 * Variante do totalizer. São 9 variantes: 'turquoise', 'green', 'blue',
-		 * 'purple', 'pink', 'red', 'orange', 'yellow' e 'gray'.
+		 * Prop que controla o posicionamento do ícone no totalizer.
 		 */
 		iconSide: {
 			type: String,
