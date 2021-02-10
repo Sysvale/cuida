@@ -42,7 +42,8 @@ import {
 	Calendar,
 	FilterPill,
 	Slider,
-	ModalWindow
+	Totalizer,
+	ModalWindow,
 } from '../src/components';
 
 import Palete from '../src/Palete.vue';
@@ -92,6 +93,7 @@ Vue.component('scrollable', Scrollable);
 Vue.component('calendar', Calendar);
 Vue.component('filter-pill', FilterPill);
 Vue.component('slider', Slider);
+Vue.component('totalizer', Totalizer);
 Vue.component('modal-window', ModalWindow);
 
 Vue.component('vueSlider', vueSlider);
