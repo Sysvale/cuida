@@ -39,6 +39,7 @@ import {
 	Calendar,
 	FilterPill,
 	Slider,
+	Totalizer
 } from '../src/components';
 
 import Palete from '../src/Palete.vue';
@@ -88,6 +89,7 @@ Vue.component('scrollable', Scrollable);
 Vue.component('calendar', Calendar);
 Vue.component('filter-pill', FilterPill);
 Vue.component('slider', Slider);
+Vue.component('totalizer', Totalizer);
 
 Vue.component('vueSlider', vueSlider);
 
