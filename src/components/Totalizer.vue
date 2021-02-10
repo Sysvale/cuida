@@ -51,10 +51,6 @@
 
 <script>
 export default {
-	components: {
-		BIconArrowsAngleExpand,
-		BIconArrowsAngleContract,
-	},
 	props: {
 		/**
 		 * Variante do totalizer. São 9 variantes: 'turquoise', 'green', 'blue',
