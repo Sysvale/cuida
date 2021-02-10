@@ -76,10 +76,10 @@ export default {
 
 .totalizer {
 	display: flex;
-    align-items: center;
-    padding: 1rem !important;
-    border-radius: 16px;
-    border: 1px solid #DDE2E7;
+	align-items: center;
+	padding: 1rem !important;
+	border-radius: 16px;
+	border: 1px solid #DDE2E7;
 	width: fit-content;
 
 	&__value {
