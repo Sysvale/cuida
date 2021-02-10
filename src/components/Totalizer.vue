@@ -68,13 +68,6 @@ export default {
 			default: 'right',
 		},
 	},
-
-	data() {
-		return {
-			isHovering: false,
-			isExpanded: false,
-		};
-	},
 };
 </script>
 
