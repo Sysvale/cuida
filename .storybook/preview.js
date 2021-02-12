@@ -38,6 +38,7 @@ import {
 import Palete from '../src/Palete.vue';
 import TypographyList from '../src/TypographyList.vue';
 import Space from '../src/Space.vue';
+import Border from '../src/BorderBuilder.vue';
 import { longClickDirective } from 'vue-long-click'
 
 const longClickInstance = longClickDirective({delay: 400, interval: 50});
@@ -69,6 +70,7 @@ Vue.component('stepper-input', StepperInput);
 Vue.component('expansion-card', ExpansionCard);
 Vue.component('highlight', Highlight);
 Vue.component('scrollable', Scrollable);
+Vue.component('border', Border);
 
 addParameters({
 	options: {
