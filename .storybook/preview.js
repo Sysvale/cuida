@@ -18,6 +18,7 @@ import _ from 'lodash';
 Object.defineProperty(Vue.prototype, '_', { value: _ });
 
 Vue.config.productionTip = false;
+Vue.config.ignoredElements = [/^ion-/];
 
 import {
 	ProgressBar,
@@ -66,8 +67,6 @@ Vue.use(VCalendar, {
 		},
 	},
 });
-
-Vue.config.ignoredElements = [/^ion-/];
 
 Vue.component('multiselect', Multiselect);
 Vue.component('palete', Palete);
