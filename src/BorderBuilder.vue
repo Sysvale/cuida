@@ -1,11 +1,11 @@
 <template>
 	<b-table
-			:items="items"
-			:fields="fields"
-		>
-			<template #cell(example)="row">
-				<div :class="borderRadiusClass(row.index)" />
-			</template>
+		:items="items"
+		:fields="fields"
+	>
+		<template #cell(example)="row">
+			<div :class="borderRadiusClass(row.index)" />
+		</template>
 	</b-table>
 </template>
 
