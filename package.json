@@ -30,10 +30,14 @@
     "concat": "^1.0.3",
     "core-js": "^3.6.5",
     "material-design-icons": "^3.0.1",
+    "moment": "^2.29.1",
+    "v-calendar": "^2.2.3",
     "vue": "^2.6.12",
     "vue-feather-icons": "^5.1.0",
     "vue-long-click": "0.0.4",
-    "vue-multiselect": "^2.1.6"
+    "vue-multiselect": "^2.1.6",
+    "vue-on-click-outside": "^1.0.3",
+    "vue-slider-component": "^2.8.16"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",

@@ -1,10 +1,16 @@
 import * as components from './components/index';
+import vueSlider from 'vue-slider-component/src/vue2-slider.vue';
+import { directive as onClickOutside } from 'vue-on-click-outside' 
 
 // install function executed by Vue.use()
 function install(Vue) {
 	if (install.installed) return;
 
 	install.installed = true;
+
+	Vue.directive('on-click-outside', onClickOutside)
+
+	Vue.component('vueSlider', vueSlider);
 
 	Object.keys(components).forEach((componentName) => {
 		Vue.component(
