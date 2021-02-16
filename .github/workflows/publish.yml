@@ -3,7 +3,7 @@ name: "Publisher 🚀"
 on:
     push:
         branches:
-          - main
+          - master
 
 jobs:
     release:
