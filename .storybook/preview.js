@@ -116,7 +116,7 @@ addParameters({
 		selectedPanel: 'controls',
 		showCanvas: false,
 		storySort: {
-			order: ['Fundação', 'Componentes'],
+			order: ['Fundação', ['Principios', 'Tipografia', 'Peso da Fonte', 'Cores', 'Espaçamento', 'Bordas'], 'Componentes'],
 		},
 	},
 });
