@@ -20,14 +20,14 @@
 </p>
 
 ## Instalando
----
+
 - O Cuida pode ser instalado com o npm:
 ```bash
 $ npm i @sysvale/cuida;
 ```
 
 ## Usando
----
+
 - Para usar o cuida, importe a biblioteca no seu entry point, provavelmente vai ser seu main.js ou app.js:
 ```js
 import Cuida from '@sysvale/cuida';
@@ -49,7 +49,7 @@ Vue.use(Cuida);
 ```
 
 ## Desenvolvendo
----
+
 ### Configurando o projeto
 
 - Clone o repositório:
