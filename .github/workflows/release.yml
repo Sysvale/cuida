@@ -1,4 +1,4 @@
-name: "Releaser 🏷️"
+name: "Releaser ✔️"
 on:
   push:
     branches:
