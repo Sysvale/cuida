@@ -1,8 +1,6 @@
 <template>
 	<div>
-		<tooltip :show="showTooltip" :target='target' @hide="showTooltip = false">
-			<span> ✅ Token copiado!</span>
-		</tooltip>
+		<copy-token :target="target" />
 
 		<b-table
 			:items="items"
@@ -11,7 +9,7 @@
 		>
 			<template class="align-middle" #cell(token)="row">
 				<div
-					@click="copyToken(row.item.token)"
+					@click="target = row.item.token"
 					:id="row.item.token"
 					class="copy-clip d-flex align-middle align-items-center"
 				>
@@ -28,13 +26,14 @@
 
 <script>
 import { CopyIcon } from 'vue-feather-icons'
+import CopyToken from './CopyToken.vue';
 export default {
 	components: {
 		CopyIcon,
+		CopyToken,
 	},
 	data() {
 		return {
-			showTooltip: false,
 			target: '',
 			fields: [
 				{
@@ -66,29 +65,6 @@ export default {
 		borderRadiusClass(index) {
 			return this.borderVariables[index].replace('$border-radius-', '');
 		},
-
-		copyToken(token) {
-			this.target = token;
-			this.showTooltip = true;
-
-			const el = document.createElement('textarea');
-
-			el.value = token;
-			el.setAttribute('readonly', '');
-			el.style.position = 'absolute';
-			el.style.left = '-9999px';
-			document.body.appendChild(el);
-			const selected = document.getSelection().rangeCount > 0
-				? document.getSelection().getRangeAt(0)
-				: false;
-			el.select();
-			document.execCommand('copy');
-			document.body.removeChild(el);
-			if (selected) {
-				document.getSelection().removeAllRanges();
-				document.getSelection().addRange(selected);
-			}
-		}
 	},
 
 	computed: {
