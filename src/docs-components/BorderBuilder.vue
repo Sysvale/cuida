@@ -20,7 +20,7 @@
 				</div>
 			</template>
 			<template class="align-middle" #cell(example)="row">
-					<div class="align-middle" :class="borderRadiusClass(row.index)" />
+				<div class="align-middle" :class="borderRadiusClass(row.index)" />
 			</template>
 		</b-table>
 	</div>
