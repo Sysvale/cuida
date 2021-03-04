@@ -1,0 +1,235 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs/blocks';
+import TypographyList from '../../docs-components/TypographyList.vue';
+
+<Meta title="Fundação/Tipografia" component={ TypographyList } />
+
+# Tipografia
+
+A Tipografia padrão do Cuida e do Cidade Saudável é a Inter. A Inter é uma fonte especialmente projetada 
+para interfaces de usuário e tem foco em alta legibilidade de textos de tamanho pequeno a médio em telas de computador.
+A família apresenta uma boa “Altura-x”  (altura das letras minúsculas) o que auxilia na legibilidade de textos mistos e 
+minúsculos.
+
+<hr />
+<br />
+
+## Recomendações
+
+- Para facilitar a leitura e deixar a interface mais leve é
+recomendável que as cores para tipografia, quando em backgrounds claros,
+sejam tons de azul, e nunca cores “chapadas”.
+
+- Para melhor compreender a hierarquia das informações, é recomendável
+a utilização de diferentes cores neutras representando hierarquias
+distintas na escala tipográfica.
+
+- Para facilitar o processo de escaneamento da interface, evitar utilizar títulos,
+lables, botões e demais elementos da interface com todas as letras maiúsculas, sendo
+recomendado esse recurso apenas para criar diferenças na hierarquia tipográfica.
+
+- Para evitar problemas de legibilidade, não é recomendável a utilização de textos itálicos.
+
+- Para evitar problemas de legibilidade e erros de interpretação da interface, recomendamos
+a utilização de textos sublinhados apenas quando necessário como recursos para realçar links.
+
+- Para facilitar o escaneamento e trabalhar a hierarquia de conteúdo, recomendamos a 
+utilização pontual de textos em negrito.
+
+<br />
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { TypographyList },
+	template: /*html*/ `
+		<typography-list 
+			v-bind="$props" 
+		/>`,
+});
+
+## Estilos Padrão
+
+### Títulos
+---
+
+<Story
+	name="TypeTokenTitulo-1"
+	args={{
+		fontSize: 47,
+		fontWeight: 400,
+		letterSpacing: 0,
+		TypographyTokenName: 'Título-1',
+		sample: 'Não entre em pânico',
+	}}
+>
+		{ Template.bind({}) }
+</Story>
+
+<br />
+
+<Story
+	name="TypeTokenTitulo-2"
+	args={{
+		fontSize: 33,
+		fontWeight: 400,
+		letterSpacing: 0.25,
+		TypographyTokenName: 'Título-2',
+		sample: 'Não entre em pânico',
+	}}
+>
+		{ Template.bind({}) }
+</Story>
+
+<br />
+
+<Story
+	name="TypeTokenTitulo-3"
+	args={{
+		fontSize: 23,
+		fontWeight: 400,
+		letterSpacing: 0,
+		TypographyTokenName: 'Título-3',
+		sample: 'Não entre em pânico',
+	}}
+>
+		{ Template.bind({}) }
+</Story>
+
+<br />
+
+### Subtítulos
+---
+
+<Story
+	name="TypeTokenSubtitulo-1"
+	args={{
+		fontSize: 22,
+		fontWeight: 500,
+		letterSpacing: 0.15,
+		TypographyTokenName: 'Subtítulo-1',
+		sample: 'Existe uma segunda teoria que diz que isso já aconteceu.',
+	}}
+>
+		{ Template.bind({}) }
+</Story>
+
+<br />
+
+<Story
+	name="TypeTokenSubtitulo-2"
+	args={{
+		fontSize: 16,
+		fontWeight: 500,
+		letterSpacing: 0.1,
+		TypographyTokenName: 'Subtítulo-2',
+		sample: 'Existe uma segunda teoria que diz que isso já aconteceu.',
+	}}
+>
+		{ Template.bind({}) }
+</Story>
+
+<br />
+
+<Story
+	name="TypeTokenSubtitulo-3"
+	args={{
+		fontSize: 14,
+		fontWeight: 400,
+		letterSpacing: 0.1,
+		TypographyTokenName: 'Subtítulo-3',
+		sample: 'Existe uma segunda teoria que diz que isso já aconteceu.',
+	}}
+>
+		{ Template.bind({}) }
+</Story>
+
+<br />
+
+### Corpo
+---
+
+<Story
+	name="Corpo-1"
+	args={{
+		fontSize: 16,
+		fontWeight: 400,
+		letterSpacing: 0.5,
+		TypographyTokenName: 'Corpo-1',
+		sample: `Existe uma teoria que diz que, se um dia alguém descobrir exatamente para que serve o
+			Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituídopor al
+			go ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que 
+			isso já aconteceu.`,
+	}}
+>
+		{ Template.bind({}) }
+</Story>
+
+<br />
+
+<Story
+	name="Corpo-2"
+	args={{
+		fontSize: 14,
+		fontWeight: 400,
+		letterSpacing: 0.25,
+		TypographyTokenName: 'Corpo-2',
+		sample: `Existe uma teoria que diz que, se um dia alguém descobrir exatamente para que serve o
+			Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituídopor al
+			go ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que 
+			isso já aconteceu.`,
+	}}
+>
+		{ Template.bind({}) }
+</Story>
+
+<br />
+
+<Story
+	name="Legenda"
+	args={{
+		fontSize: 12,
+		fontWeight: 400,
+		letterSpacing: 0.4,
+		TypographyTokenName: 'Legenda',
+		sample: `Existe uma teoria que diz que, se um dia alguém descobrir exatamente para que serve o
+			Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituídopor al
+			go ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que 
+			isso já aconteceu.`,
+	}}
+>
+		{ Template.bind({}) }
+</Story>
+
+<br />
+
+### Botões
+---
+
+<Story
+	name="Botao-1"
+	args={{
+		fontSize: 16,
+		fontWeight: 600,
+		letterSpacing: 0.25,
+		TypographyTokenName: 'Botao-1',
+		sample: `Botão.`,
+		isAButtonSample: true,
+	}}
+>
+		{ Template.bind({}) }
+</Story>
+
+<br />
+
+<Story
+	name="Botao-2"
+	args={{
+		fontSize: 14,
+		fontWeight: 600,
+		letterSpacing: 0.15,
+		TypographyTokenName: 'Botao-2',
+		sample: `Botão.`,
+		isAButtonSample: true,
+	}}
+>
+		{ Template.bind({}) }
+</Story>

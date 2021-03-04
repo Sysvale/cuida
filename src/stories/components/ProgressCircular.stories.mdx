@@ -1,0 +1,73 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import ProgressCircular from '../../components/ProgressCircular.vue';
+
+<Meta
+  title="Componentes/Display/ProgressCircular"
+  component={ ProgressCircular }
+  argTypes={{
+    color: { control: 'color' },
+    backgroundColor: { control: 'color' },
+    labelColor: { control: 'color' },
+    size: { control: 
+      {
+        type: 'range',
+        min: 24,
+        max: 100,
+        step: 6,
+      },
+    },
+    stroke: { control: 
+      {
+        type: 'range',
+        min: 1.6,
+        max: 4.2,
+        step: 0.2,
+      },
+    },
+  }
+}
+/>
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { ProgressCircular },
+  template: /*html*/ `<progress-circular v-bind="$props"/>`,
+});
+
+# ProgressCircular
+
+### ProgressCirculars são componentes quem indicam o status/progresso de uma operação em andamento, em formato circular.
+---
+<br />
+
+## Recomendamos o uso de ProgressCirculars quando:
+- Você precisa transmitir a ideia de progresso, percentual de uma operação em andamento.
+- Você precisa transmitir a ideia de status de uma operação em andamento, que fração dela já foi concluída.
+- Você deseja chamar a atenção do usuário para uma informação específica de maneira gráfica.
+
+<br />
+
+## Não Recomendamos o uso de ProgressCirculars quando:
+- Você precisa representar fração de um processo com muitas etapas.
+- Você precisa de um loader.
+- Você precisar de dígitos de precisão decimal ao mostrar os números ou progresso.
+- Você precisar representar steppers.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story
+    name="Progress circular"
+    args={{
+      size: 60,
+      value: 10,
+      stroke: 3.8,
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="Progress circular" />

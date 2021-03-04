@@ -1,0 +1,63 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import ProgressBar from '../../components/ProgressBar.vue';
+
+<Meta
+  title="Componentes/Display/ProgressBar"
+  component={ ProgressBar }
+  argTypes={{
+    color: { control: 'color' },
+    backgroundColor: { control: 'color' },
+    percentage: {
+      control: {
+        type: 'range',
+        min: 0,
+        max: 1,
+        step: 0.01,
+      },
+    },
+  }
+}
+/>
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { ProgressBar },
+  template: /*html*/ `<progress-bar v-bind="$props"/>`,
+});
+
+# ProgressBar
+
+### ProgressBars são componentes utilizados para indicar o status e progresso de algo aos usuários.
+---
+<br />
+
+## Recomendamos o uso de ProgressBrs quando:
+- Você precisar transmitir a ideia do progresso de algo.
+- Você precisar transmitir a ideia do status de algo.
+- Você desejar chamar a atenção do usuário para uma informação específica de maneira gráfica.
+
+<br />
+
+## Não Recomendamos o uso de ProgressBrs quando:
+- Para criar loaders.
+- Você precisar de muita precisão ao mostrar os números ou progresso.
+- Para criar steppers.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story
+    name="Progress bar"
+    args={{
+      percentage: 0.5,
+      backgroundColor: '#DDE2E7',
+      color: '#2EB88D',
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="Progress bar" />

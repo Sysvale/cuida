@@ -44,12 +44,16 @@ import {
 	Slider,
 	Totalizer,
 	ModalWindow,
+	Tooltip
 } from '../src/components';
 
-import Palete from '../src/Palete.vue';
-import TypographyList from '../src/TypographyList.vue';
-import Space from '../src/Space.vue';
-import Border from '../src/BorderBuilder.vue';
+import {
+	Palete,
+	TypographyList,
+	Space,
+	BorderBuilder,
+} from '../src/docs-components';
+
 import { longClickDirective } from 'vue-long-click'
 
 const longClickInstance = longClickDirective({delay: 400, interval: 50});
@@ -91,13 +95,14 @@ Vue.component('stepper-input', StepperInput);
 Vue.component('expansion-card', ExpansionCard);
 Vue.component('highlight', Highlight);
 Vue.component('scrollable', Scrollable);
-Vue.component('border', Border);
+Vue.component('border', BorderBuilder);
 Vue.component('calendar', Calendar);
 Vue.component('filter-pill', FilterPill);
 Vue.component('slider', Slider);
 Vue.component('totalizer', Totalizer);
 Vue.component('modal-window', ModalWindow);
 Vue.component('vueSlider', vueSlider);
+Vue.component('tooltip', Tooltip);
 
 addParameters({
 	options: {

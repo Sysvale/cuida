@@ -1,0 +1,90 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import ExpansionCard from '../../components/ExpansionCard.vue';
+import { BIconHouseFill } from 'bootstrap-vue';
+
+<Meta
+	title="Componentes/Containers/ExpansionCard"
+	component={ ExpansionCard }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'turquoise',
+					'green',
+					'blue',
+					'purple',
+					'pink',
+					'red',
+					'orange',
+					'yellow',
+					'gray',
+				],
+			}
+		},
+	}
+}
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { ExpansionCard, BIconHouseFill },
+	template: /*html*/ `
+		<expansion-card
+			v-bind="$props" 
+		>
+			<template v-slot:icon>
+				<b-icon-house-fill />
+			</template>
+			<template v-slot:content>
+				<p class="p-3">
+					Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
+					vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
+					Atirei o pau no gatis, per gatis num morreus. Pra lá , depois
+					divoltis porris, paradis. Leite de capivaris, leite de mula
+					manquis sem cabeça. Viva Forevis aptent taciti sociosqu ad
+					litora torquent. Per aumento de cachacis, eu reclamis. Nec
+					orci ornare consequat. Praesent lacinia ultrices consectetur.
+					Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
+				</p>
+			</template>
+		</expansion-card>
+	`,
+});
+
+# ExpansionCard
+
+### ExpansionCard são componentes utilizados para mostrar informações com apelo gráfico de forma resumida e que podem se expandir para detalhar essas informações.
+---
+<br />
+
+## Recomendamos o uso de ExpansionCards quando:
+- Você precisar de cards que podem ser clicáveis
+- Você deseja mostrar informações resumidas
+- Você possuir uma informação principal e um texto descritivo a ser colocado no card
+
+<br />
+
+## Não recomendamos o uso de ExpansionCards quando:
+- O usuário não puder interagir com o card.
+- Só houver uma informação a ser mostrada no card em seu estado padrão (não expandido)
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="ExpansionCard"
+		args={{
+			icon: 'house-fill',
+			mainValue: 32,
+			legend: 'UBSs com dados atualizados',
+			variant: 'blue',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="ExpansionCard" />
