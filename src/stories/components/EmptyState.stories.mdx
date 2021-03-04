@@ -1,0 +1,57 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import EmptyState from '../../components/EmptyState.vue';
+
+<Meta
+	title="Componentes/Display/EmptyState"
+	component={ EmptyState }
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { EmptyState },
+	template: /*html*/ `
+		<empty-state
+			v-bind="$props" 
+		/>
+	`,
+});
+
+# EmptyState
+
+### EmptyStates são componentes utilizados em momentos instrutivos aos usuários
+
+---
+<br />
+
+## Recomendamos o uso de EmptyStates quando:
+- Para instruir o usuário sobre o funcionamento de uma determinada página.
+- Uma página ou componente não possuir conteúdo padrão para ser mostrado.
+- Uma determinada ação resultar em erro.
+
+<br />
+
+## Não recomendamos o uso de EmptyStates quando:
+- Como um loader.
+- Quando utilizado apenas com título.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="EmptyState"
+		args={{
+			emptyStateImage: 'static/media/CuidaTempLogo.f4adb1cc.png',
+			imgDescription: 'Imagem de empty state',
+			title: 'Título do empty state',
+			text: 'Para sair dessa situação de empty state, realize a ação abaixo',
+			showActionButton: true,
+			buttonText: 'Adicionar novo recurso',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="EmptyState" />

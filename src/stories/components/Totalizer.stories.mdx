@@ -1,0 +1,93 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Totalizer from '../../components/Totalizer.vue';
+import { BIconHouseFill } from 'bootstrap-vue';
+
+<Meta
+	title="Componentes/Containers/Totalizer"
+	component={ Totalizer }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'turquoise',
+					'green',
+					'blue',
+					'purple',
+					'pink',
+					'red',
+					'orange',
+					'yellow',
+					'gray',
+				],
+			}
+		},
+		iconSide: {
+			control:{
+				type: 'select',
+				options: [
+					'left',
+					'right',
+				],
+			}
+		},
+	}
+}
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { Totalizer, BIconHouseFill },
+	template: /*html*/ `
+		<totalizer
+			v-bind="$props" 
+		>
+			<template v-slot:value>
+				<div> 1589 </div>
+			</template>
+			<template v-slot:subtitle>
+				<div> Agendamentos realizados </div>
+			</template>
+			<template v-slot:icon>
+				<b-icon-house-fill />
+			</template>
+		</totalizer>
+	`,
+});
+
+# Totalizer
+
+### Totalizers são componentes utilizados para consolidar dados importantes e que devem ser acessados rapidamente.
+---
+<br />
+
+## Recomendações de uso:
+- Use o totalizer quando for preciso evidenciar dados importantes para acompanhamento do usuário.
+- Utilize totalizers, preferencialmente com ícones, para ajudar na identificação da informação.
+- Utilize totalizers preferencialemente com números.
+- Utiliza o posicionamento do totalizer de maneira consistente na mesma view.
+
+<br />
+
+## O que evitar:
+- Utilizar totalizers em locais pouco acessíveis aos usuários.
+- Utilizar apenas texto nos totalizers.
+- Utilizar totalizers com informações pouco relevantes no contexto de uso.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Totalizer"
+		args={{
+			variant: 'red',
+			iconSide: 'left'
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Totalizer" />
