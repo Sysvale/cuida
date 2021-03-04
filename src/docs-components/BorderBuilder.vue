@@ -109,7 +109,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './assets/sass/app.scss';
+@import './../assets/sass/app.scss';
 
 @each $border-radius-name, $border-radius-token in $border-radius {
 	.#{$border-radius-name} {

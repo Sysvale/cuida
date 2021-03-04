@@ -51,7 +51,7 @@ import {
 	Palete,
 	TypographyList,
 	Space,
-	Border,
+	BorderBuilder,
 } from '../src/docs-components';
 
 import { longClickDirective } from 'vue-long-click'
@@ -95,7 +95,7 @@ Vue.component('stepper-input', StepperInput);
 Vue.component('expansion-card', ExpansionCard);
 Vue.component('highlight', Highlight);
 Vue.component('scrollable', Scrollable);
-Vue.component('border', Border);
+Vue.component('border', BorderBuilder);
 Vue.component('calendar', Calendar);
 Vue.component('filter-pill', FilterPill);
 Vue.component('slider', Slider);

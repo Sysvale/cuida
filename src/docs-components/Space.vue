@@ -57,7 +57,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './assets/sass/app.scss';
+@import './../assets/sass/app.scss';
 
 .grid {
   display: flex;

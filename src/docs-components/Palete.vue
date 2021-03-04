@@ -72,7 +72,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './assets/sass/app.scss';
+@import './../assets/sass/app.scss';
 
 @each $colorName, $color in $palete {
   @each $shadeName, $shade in $color {
