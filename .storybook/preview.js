@@ -44,6 +44,7 @@ import {
 	Slider,
 	Totalizer,
 	ModalWindow,
+	Tooltip
 } from '../src/components';
 
 import Palete from '../src/Palete.vue';
@@ -98,6 +99,7 @@ Vue.component('slider', Slider);
 Vue.component('totalizer', Totalizer);
 Vue.component('modal-window', ModalWindow);
 Vue.component('vueSlider', vueSlider);
+Vue.component('tooltip', Tooltip);
 
 addParameters({
 	options: {
