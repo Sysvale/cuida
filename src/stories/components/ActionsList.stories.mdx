@@ -1,13 +1,13 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview, Source } from '@storybook/addon-docs/blocks';
 import ActionsList from '../../components/ActionsList.vue';
+import DocsWrapper from '../../docs-components/DocsWrapper.vue';
 
 <Meta
 	title="Componentes/Display/ActionsList"
 	component={ ActionsList }
 	argTypes={{
 		position: { control: { type: 'select', options: ['right', 'left'] } },
-	}
-}
+	}}
 />
 
 export const Template = (args, { argTypes }) => ({
@@ -26,6 +26,41 @@ export const Template = (args, { argTypes }) => ({
 		</actions-list>
 	`,
 });
+
+export const template = `
+	<s-actions-list 
+		:actions="actions"
+		:numberOfExpandedActions="numberOfExpandedActions"
+		:collapsedActionName="collapsedActionName"
+		:expandedActionName="expandedActionName"
+		:position="position"
+		@actionClicked="handleClick"
+	>
+		<template
+			slot="action"
+			slot-scope="{list: item}"
+		>
+			{{ item.title }}
+		</template>
+	</s-actions-list>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				component: ActionsList,
+				template,
+			};
+		},
+		template:
+			`<docs-wrapper
+				:componentData="component"
+				:exampleSourceCode="template"				
+			>
+				<story slot="component-preview"/>
+			</docs-wrapper>`,
+	};
+};
 
 # ActionsList
 
@@ -66,6 +101,9 @@ export const actions = [
 <Canvas>
 	<Story
 		name="Actions list"
+		decorators={[
+			docsDecorator
+		]}
 		args={{
 			actions: actions,
 			numberOfExpandedActions: 2,
