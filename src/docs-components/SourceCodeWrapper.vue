@@ -1,54 +1,44 @@
 <template>
 	<div
-		class="storybook-canvas d-flex"
+		class="storybook-canvas"
 	>
 		<div
-			class="docs-container"
+			class="wrapper__container"
 		>
 			<div>
-				<div>
-					<div class="preview">
-						<slot name="component-preview" />
-					</div>
-					<div
-						class="button-container"
-						@click="showCode"
-					>
-						<button
-							id="showCode-button"
-							class="small m-0 copy-button"
-						>
-							{{ showCodeButtonText }}
-						</button>
-					</div>
+				<div class="preview__conainter">
+					<slot name="component-preview" />
 				</div>
 
-				<div
-					:class="isCodeBeignShown ? 'inactive' : 'active'"
-					class="info-body"
+				<button
+					id="show-code-button"
+					class="preview__button"
+					@click="showCode"
 				>
-					<div class="usage code">
-						<div v-highlight>
-							<pre
-								:class="isCodeBeignShown ? 'inactive' : 'active'"
-							>
-								<code class="html">
-									{{ exampleSourceCode }}
-								</code>
-							</pre>
-						</div>
+					{{ showCodeButtonText }}
+				</button>
+			</div>
 
-						<div class="copied-button d-flex justify-content-end align-self-end">
-							<button
-								class="small m-0 copy-code"
-								@click="copyCode"
-							>
-								{{ copyCodeButtonText }}
-							</button>
-						</div>
-					</div>
-
+			<div
+				:class="isCodeBeignShown ? 'inactive' : 'active'"
+				class="source-code__container"
+			>
+				<div v-highlight>
+					<pre
+						:class="isCodeBeignShown ? 'inactive' : 'active'"
+					>
+						<code class="html">
+							{{ exampleSourceCode }}
+						</code>
+					</pre>
 				</div>
+
+				<button
+					class="source-code__button"
+					@click="copyCode"
+				>
+					{{ copyCodeButtonText }}
+				</button>
 			</div>
 		</div>
 	</div>
@@ -84,6 +74,7 @@ export default {
 
 	beforeDestroy() {
 		const link = document.head.querySelector('link[data-savi-head]');
+
 		if (link) {
 			document.head.removeChild(link);
 		}
@@ -95,6 +86,7 @@ export default {
 				return;
 			}
 		},
+
 		copyCode() {
 			const el = document.createElement('textarea');
 			this.copyCodeButtonText = '✅ Código copiado';
@@ -124,10 +116,10 @@ export default {
 
 		showCode() {
 			if (!this.isCodeBeignShown) {
-				document.getElementById('showCode-button').style.borderRadius = '4px 4px 12px 4px';
+				document.getElementById('show-code-button').style.borderRadius = '4px 4px 12px 4px';
 				this.isCodeBeignShown = true;
 			} else {
-				document.getElementById('showCode-button').style.borderRadius = '4px';
+				document.getElementById('show-code-button').style.borderRadius = '4px';
 				this.isCodeBeignShown = false;
 			}
 
@@ -144,12 +136,37 @@ export default {
 <style lang="scss" scoped>
 @import './../assets/sass/app.scss';
 
-.copy-code {
-	background-color: $cinza-9;
-	color: $branco;
-	border: none;
-	border-radius: 4px 0px 12px 4px;
+.wrapper__container {
+	width: 100%;
+}
+
+.preview__conainter {
+	padding: 12px 0px;
+}
+
+.preview__button {
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 4px 4px 12px 4px;
+	background-color: $branco;
+	cursor: pointer;
+	@include legenda;
 	padding: 3px 10px;
+	transition: all .3s ease-in-out;
+	position: absolute;
+	right: 9px;
+	z-index: 9;
+}
+
+.preview__button:focus {
+	outline: none !important;
+	box-shadow: $verde-piccolo-light-1 0px -3px 0px -1px inset;
+}
+
+.source-code__container {
+	margin-top: 25px;
+	margin-left: -20px;
+	width: 998px;
+	transition: all .3s ease-in-out;
 }
 
 .active {
@@ -164,60 +181,28 @@ export default {
 	transition: all .5s ease-in-out;
 }
 
-.copy-button {
-	border: 1px solid rgba(0, 0, 0, 0.15);
-	border-radius: 4px 4px 12px 4px;
-	background-color: $branco;
-	cursor: pointer;
-	@include legenda;
+.source-code__button {
+	background-color: $cinza-9;
+	color: $branco;
+	border: none;
+	border-radius: 4px 0px 12px 4px;
 	padding: 3px 10px;
-	margin: 10px;
-	transform: all .3s ease-in-out;
-}
-
-.copy-button:focus {
-	outline: none !important;
-	box-shadow: $verde-piccolo-light-1 0px -3px 0px -1px inset;
-}
-
-.docs-container {
-	width: 100%;
-}
-
-.button-container {
-	position: absolute;
-    right: 9px;
-	z-index: 9;
-}
-
-.info-body {
-	margin-top: 26px;
-    margin-left: -20px;
-    width: 998px;
+	@include legenda;
 	transition: all .3s ease-in-out;
+	position: absolute;
+	right: 10px;
+	bottom: 9px;
 }
 
-pre {	
+pre {
 	margin: 0 !important;
-	font-size: 75%;
+	@include legenda;
 	display: flex;
 	border-radius: 0px 0px 12px 12px;
 	transition: all .3s ease-in-out;
-	font-weight: 400 !important;
 }
 
 code {
 	width: 100%;
-	font-weight: 400 !important;
-}
-
-.copied-button {
-	position: absolute;
-	right: 10px;
-    bottom: 9px;
-}
-
-.preview {
-	padding: 12px 0px;
 }
 </style>
