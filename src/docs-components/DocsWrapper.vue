@@ -5,17 +5,17 @@
 		<div
 			class="docs-container"
 		>
-			<b-container class="">
-				<div class="">
+			<div>
+				<div>
 					<div class="preview">
 						<slot name="component-preview" />
 					</div>
 					<div
-						class="w-100 d-flex justify-content-end"
+						class="button-container"
 						@click="showCode"
 					>
 						<button
-							v-b-toggle.exampleOfUse
+							id="showCode-button"
 							class="small m-0 copy-button"
 						>
 							{{ showCodeButtonText }}
@@ -23,41 +23,39 @@
 					</div>
 				</div>
 
-				<div class="info-body">
-					<div
-						class="summary"
-						:v-html="exampleSourceCode"
-					/>
-					<b-collapse id="exampleOfUse">
-						<div class="usage code">
-							<div v-highlight>
-								<pre>
-									<code class="html">
-										{{ exampleSourceCode }}
-									</code>
-								</pre>
-							</div>
-
-							<div class="d-flex justify-content-end align-self-end">
-								<button
-									class="small m-0 copy-code"
-									@click="copyCode"
-								>
-									{{ copyCodeButtonText }}
-								</button>
-							</div>
+				<div
+					:class="isCodeBeignShown ? 'inactive' : 'active'"
+					class="info-body"
+				>
+					<div class="usage code">
+						<div v-highlight>
+							<pre
+								:class="isCodeBeignShown ? 'inactive' : 'active'"
+							>
+								<code class="html">
+									{{ exampleSourceCode }}
+								</code>
+							</pre>
 						</div>
-					</b-collapse>
+
+						<div class="copied-button d-flex justify-content-end align-self-end">
+							<button
+								class="small m-0 copy-code"
+								@click="copyCode"
+							>
+								{{ copyCodeButtonText }}
+							</button>
+						</div>
+					</div>
 
 				</div>
-			</b-container>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
 import hljs from 'highlight.js';
-import marked from 'marked';
 export default {
 	props: {
 		componentData: {
@@ -73,42 +71,16 @@ export default {
 	},
 	data() {
 		return {
-			showCodeButtonText: 'Show code',
-			copyCodeButtonText: 'Copy code',
-			formattedProps: [],
-			formattedEvents: [],
-			formattedSlots: [],
-			activeSection: 'component-header',
-			navigationItems: [
-				'Component-header',
-				'Usage',
-				'Preview',
-			],
+			isCodeBeignShown: 'false',
+			showCodeButtonText: 'Mostrar código',
+			copyCodeButtonText: 'Copiar código',
 		};
-	},
-	computed: {
-		summary() {
-			if (!this.exampleSourceCode) {
-				return '';
-			}
-			const renderer = new marked.Renderer();
-			/* eslint-disable no-unused-expressions */
-			renderer.code = (code, lang) => {
-				`<pre>
-					<code class="html">
-						${hljs.highlightAuto(code, lang ? [lang] : undefined).value}
-					</code>
-				</pre>`;
-			};
-			marked.setOptions({ renderer });
-			return marked(this.exampleSourceCode);
-		},
 	},
 	mounted() {
 		this.highlight();
 		const link = document.createElement('link');
 		link.setAttribute('rel', 'stylesheet');
-		link.setAttribute('href', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/nord.min.css');
+		link.setAttribute('href', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/atom-one-light.min.css');
 		link.dataset.saviHead = 'true';
 		document.head.appendChild(link);
 	},
@@ -119,26 +91,17 @@ export default {
 		}
 	},
 	methods: {
-		scrollTo(id) {
-			document.getElementById(id).scrollIntoView({
-				behavior: 'smooth'
-			});
-			this.activeSection = id;
-		},
-		loweredCaseWord(word) {
-			return word.charAt(0).toLowerCase() + word.slice(1);
-		},
 		highlight() {
 			if (!this.$refs.usage) {
 				return;
 			}
-			hljs.highlightBlock(this.$refs.usage, {
-				languages: ['html'],
-			});
 		},
 		copyCode() {
 			const el = document.createElement('textarea');
-			this.copyCodeButtonText = 'Copied';
+			this.copyCodeButtonText = '✅ Código copiado';
+			setTimeout(() => {
+				this.copyCodeButtonText = 'Copiar código';
+			}, 1200);
 			el.value = this.exampleSourceCode;
 			el.setAttribute('readonly', '');
 			el.style.position = 'absolute';
@@ -156,23 +119,24 @@ export default {
 			}
 		},
 		showCode() {
+			if (!this.isCodeBeignShown) {
+				document.getElementById('showCode-button').style.borderRadius = '4px 4px 12px 4px';
+				this.isCodeBeignShown = true;
+			} else {
+				document.getElementById('showCode-button').style.borderRadius = '4px';
+				this.isCodeBeignShown = false;
+			}
 			setTimeout(() => {
-				this.copyCodeButtonText = 'Copy code';
+				this.copyCodeButtonText = 'Copiar código';
 			}, 100);
-			this.showCodeButtonText = this.showCodeButtonText === 'Hide Code' ? 'Show Code' : 'Hide Code';
+			this.showCodeButtonText = this.showCodeButtonText === 'Esconder código' ? 'Mostrar Código' : 'Esconder código';
 		},
 	},
 };
 </script>
 
-<style>
-.code {
-	background-color: #2e3440;
-	display: flex;
-	justify-content: space-between;
-	font-weight: 300 !important;
-}
-
+<style lang="scss" scoped>
+@import './../assets/sass/app.scss';
 .hljs-section, .hljs-strong, .hljs-tag {
 	font-weight: 400 !important;
 }
@@ -184,13 +148,74 @@ export default {
 	border-radius: 4px;
 }
 
+.active {
+	opacity: 1;
+	/* margin-top: 26px !important; */
+	height: 100%;
+	transition: all .5s ease-in-out;
+}
+
+.inactive {
+	opacity: 0;
+	/* margin-top: -140px !important; */
+	height: 0px;
+	transition: all .5s ease-in-out;
+}
+
 .copy-button {
 	border: 1px solid rgba(0, 0, 0, 0.15);
-	border-radius: 3px;
+	border-radius: 4px 4px 12px 4px;
 	background-color: #ffffff;
 	cursor: pointer;
 	font-size: 12.8px;
 	padding: 3px 10px;
 	margin: 10px;
+	transform: all .3s ease-in-out;
+}
+
+.copy-button:focus {
+	outline: none !important;
+	box-shadow: $verde-piccolo-light-1 0px -3px 0px -1px inset;
+}
+
+.docs-container {
+	width: 100%;
+}
+
+.button-container {
+	position: absolute;
+    right: 9px;
+	z-index: 9999999;
+}
+
+.info-body {
+	margin-top: 26px;
+    margin-left: -20px;
+    width: 998px;
+	transition: all .3s ease-in-out;
+}
+
+pre {	
+	margin: 0 !important;
+	font-size: 75%;
+	display: flex;
+	border-radius: 0px 0px 12px 12px;
+	transition: all .3s ease-in-out;
+	font-weight: 400 !important;
+}
+
+code {
+	width: 100%;
+	font-weight: 400 !important;
+}
+
+.copied-button {
+	position: absolute;
+	right: 10px;
+    bottom: 9px;
+}
+
+.preview {
+	padding: 12px 0px;
 }
 </style>
