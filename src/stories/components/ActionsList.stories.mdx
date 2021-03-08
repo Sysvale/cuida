@@ -1,6 +1,5 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview, Source } from '@storybook/addon-docs/blocks';
 import ActionsList from '../../components/ActionsList.vue';
-import DocsWrapper from '../../docs-components/DocsWrapper.vue';
 
 <Meta
 	title="Componentes/Display/ActionsList"
@@ -48,17 +47,15 @@ export const docsDecorator = () => {
 	return {
 		data() {
 			return {
-				component: ActionsList,
 				template,
 			};
 		},
 		template: /*html*/ `
-			<docs-wrapper
-				:componentData="component"
+			<source-code-wrapper
 				:exampleSourceCode="template"
 			>
 				<story slot="component-preview"/>
-			</docs-wrapper>`,
+			</source-code-wrapper>`,
 	};
 };
 

@@ -1,6 +1,5 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
 import Badge from '../../components/Badge.vue';
-import DocsWrapper from '../../docs-components/DocsWrapper.vue';
 
 <Meta
 	title="Componentes/Display/Badge"
@@ -45,17 +44,15 @@ export const docsDecorator = () => {
 	return {
 		data() {
 			return {
-				component: Badge,
 				template,
 			};
 		},
 		template: /*html*/ `
-			<docs-wrapper
-				:componentData="component"
+			<source-code-wrapper
 				:exampleSourceCode="template"
 			>
 				<story slot="component-preview"/>
-			</docs-wrapper>`,
+			</source-code-wrapper>`,
 	};
 };
 

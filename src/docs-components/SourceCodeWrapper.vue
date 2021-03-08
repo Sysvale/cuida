@@ -58,17 +58,13 @@
 import hljs from 'highlight.js';
 export default {
 	props: {
-		componentData: {
-			type: Object,
-			required: true,
-			default: () => {},
-		},
 		exampleSourceCode: {
 			type: String,
 			required: true,
 			default: '',
 		},
 	},
+
 	data() {
 		return {
 			isCodeBeignShown: 'false',
@@ -76,6 +72,7 @@ export default {
 			copyCodeButtonText: 'Copiar código',
 		};
 	},
+
 	mounted() {
 		this.highlight();
 		const link = document.createElement('link');
@@ -84,12 +81,14 @@ export default {
 		link.dataset.saviHead = 'true';
 		document.head.appendChild(link);
 	},
+
 	beforeDestroy() {
 		const link = document.head.querySelector('link[data-savi-head]');
 		if (link) {
 			document.head.removeChild(link);
 		}
 	},
+
 	methods: {
 		highlight() {
 			if (!this.$refs.usage) {
@@ -99,13 +98,16 @@ export default {
 		copyCode() {
 			const el = document.createElement('textarea');
 			this.copyCodeButtonText = '✅ Código copiado';
+
 			setTimeout(() => {
 				this.copyCodeButtonText = 'Copiar código';
 			}, 1200);
+
 			el.value = this.exampleSourceCode;
 			el.setAttribute('readonly', '');
 			el.style.position = 'absolute';
 			el.style.left = '-9999px';
+
 			document.body.appendChild(el);
 			const selected = document.getSelection().rangeCount > 0
 				? document.getSelection().getRangeAt(0)
@@ -113,11 +115,13 @@ export default {
 			el.select();
 			document.execCommand('copy');
 			document.body.removeChild(el);
+
 			if (selected) {
 				document.getSelection().removeAllRanges();
 				document.getSelection().addRange(selected);
 			}
 		},
+
 		showCode() {
 			if (!this.isCodeBeignShown) {
 				document.getElementById('showCode-button').style.borderRadius = '4px 4px 12px 4px';
@@ -126,9 +130,11 @@ export default {
 				document.getElementById('showCode-button').style.borderRadius = '4px';
 				this.isCodeBeignShown = false;
 			}
+
 			setTimeout(() => {
 				this.copyCodeButtonText = 'Copiar código';
-			}, 100);
+			}, 300);
+
 			this.showCodeButtonText = this.showCodeButtonText === 'Esconder código' ? 'Mostrar Código' : 'Esconder código';
 		},
 	},
@@ -137,27 +143,23 @@ export default {
 
 <style lang="scss" scoped>
 @import './../assets/sass/app.scss';
-.hljs-section, .hljs-strong, .hljs-tag {
-	font-weight: 400 !important;
-}
 
 .copy-code {
-	background-color: #20242d;
-	color: #f0f0f0;
+	background-color: $cinza-9;
+	color: $branco;
 	border: none;
-	border-radius: 4px;
+	border-radius: 4px 0px 12px 4px;
+	padding: 3px 10px;
 }
 
 .active {
 	opacity: 1;
-	/* margin-top: 26px !important; */
 	height: 100%;
 	transition: all .5s ease-in-out;
 }
 
 .inactive {
 	opacity: 0;
-	/* margin-top: -140px !important; */
 	height: 0px;
 	transition: all .5s ease-in-out;
 }
@@ -165,9 +167,9 @@ export default {
 .copy-button {
 	border: 1px solid rgba(0, 0, 0, 0.15);
 	border-radius: 4px 4px 12px 4px;
-	background-color: #ffffff;
+	background-color: $branco;
 	cursor: pointer;
-	font-size: 12.8px;
+	@include legenda;
 	padding: 3px 10px;
 	margin: 10px;
 	transform: all .3s ease-in-out;
@@ -185,7 +187,7 @@ export default {
 .button-container {
 	position: absolute;
     right: 9px;
-	z-index: 9999999;
+	z-index: 9;
 }
 
 .info-body {

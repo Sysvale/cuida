@@ -56,7 +56,7 @@ import {
 	TypographyList,
 	Space,
 	BorderBuilder,
-	DocsWrapper
+	SourceCodeWrapper
 } from '../src/docs-components';
 
 import { longClickDirective } from 'vue-long-click'
@@ -109,7 +109,7 @@ Vue.component('totalizer', Totalizer);
 Vue.component('modal-window', ModalWindow);
 Vue.component('vueSlider', vueSlider);
 Vue.component('tooltip', Tooltip);
-Vue.component('docs-wrapper', DocsWrapper);
+Vue.component('source-code-wrapper', SourceCodeWrapper);
 
 addParameters({
 	options: {

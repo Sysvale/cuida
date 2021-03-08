@@ -31,17 +31,15 @@ export const docsDecorator = () => {
 	return {
 		data() {
 			return {
-				component: EmptyState,
 				template,
 			};
 		},
 		template: /*html*/ `
-			<docs-wrapper
-				:componentData="component"
+			<source-code-wrapper
 				:exampleSourceCode="template"
 			>
 				<story slot="component-preview"/>
-			</docs-wrapper>`,
+			</source-code-wrapper>`,
 	};
 };
 
