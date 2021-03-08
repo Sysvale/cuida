@@ -2,34 +2,35 @@ import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon
 import ProgressBar from '../../components/ProgressBar.vue';
 
 <Meta
-  title="Componentes/Display/ProgressBar"
-  component={ ProgressBar }
-  argTypes={{
-    color: { control: 'color' },
-    backgroundColor: { control: 'color' },
-    percentage: {
-      control: {
-        type: 'range',
-        min: 0,
-        max: 1,
-        step: 0.01,
-      },
-    },
-  }
+	title="Componentes/Display/ProgressBar"
+	component={ ProgressBar }
+	argTypes={{
+		color: { control: 'color' },
+		backgroundColor: { control: 'color' },
+		percentage: {
+			control: {
+				type: 'range',
+				min: 0,
+				max: 1,
+				step: 0.01,
+			},
+		},
+	}
 }
 />
 
 export const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { ProgressBar },
-  template: /*html*/ `<progress-bar v-bind="$props"/>`,
+	props: Object.keys(argTypes),
+	components: { ProgressBar },
+	template: /*html*/ `<progress-bar v-bind="$props"/>`,
 });
 
 export const template = /*html*/ `
 	<cds-progress-bar 
+		color="#2EB88D"
 		background-color="#DDE2E7"
-		color="false"
-		:percentage="#2EB88D"
+		:show-text="true"
+		:percentage="0.5"
 	/>`;
 
 export const docsDecorator = () => {
@@ -73,17 +74,17 @@ export const docsDecorator = () => {
 ## Preview
 
 <Canvas>
-  <Story
-    name="Progress bar"
-    decorators={[docsDecorator]}
-    args={{
-      percentage: 0.5,
-      backgroundColor: '#DDE2E7',
-      color: '#2EB88D',
-    }}
-  >
-    { Template.bind({}) }
-  </Story>
+	<Story
+		name="Progress bar"
+		decorators={[docsDecorator]}
+		args={{
+			percentage: 0.5,
+			backgroundColor: '#DDE2E7',
+			color: '#2EB88D',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
 </Canvas>
 
 <ArgsTable story="Progress bar" />
