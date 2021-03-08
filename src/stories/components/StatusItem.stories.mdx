@@ -34,11 +34,12 @@ export const Template = (args, { argTypes }) => ({
 export const template = /*html*/ `
 	<cds-status-item
 		title="Lote nº 235"
-		subtitle="Subtítulo"
 		variant="success"
-		:clickableAction="true"
-		actionText="Download"
-		actionSubtitle="Último download em 00/00/0000 00:00"
+		action-text="Download"
+		action-subtitle="Último download em 00/00/0000 00:00"
+		:clickable-action="true"
+		@action-clicked="handleActionClick"
+		@alert-clicked="handleAlertClick"
 	>
 		<template slot="subtitle">
 			<strong>1840</strong> fichas analisadas no <strong>PEC</strong> 3.2.31 - Lote criado em 00/00/0000 00:00
