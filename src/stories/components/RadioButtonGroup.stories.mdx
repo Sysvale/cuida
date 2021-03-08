@@ -19,9 +19,9 @@ export const Template = (args, { argTypes }) => ({
 export const template = /*html*/ `
 	<cds-radio-button-group
 		v-model="value"
-		v-validate="'required'"
 		:options="options"
-		:disabled="individualFieldsDisabled"
+		:disabled="false"
+		:inline="false"
 	/>`;
 
 export const docsDecorator = () => {
