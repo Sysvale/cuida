@@ -16,6 +16,31 @@ export const Template = (args, { argTypes }) => ({
 	`,
 });
 
+export const template = /*html*/ `
+	<cds-slider
+		v-model="value"
+		:min="0"
+		:max="120"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				component: Slider,
+				template,
+			};
+		},
+		template:
+			`<docs-wrapper
+				:componentData="component"
+				:exampleSourceCode="template"				
+			>
+				<story slot="component-preview"/>
+			</docs-wrapper>`,
+	};
+};
+
 # Slider
 
 ### Sliders são componentes utilizados para seleção de valores dentro de um intervalo.
@@ -49,6 +74,7 @@ export const value = [0, 120];
 <Canvas>
 	<Story
 		name="Slider"
+		decorators={[docsDecorator]}
 		args={{
 			min: 0,
 			max: 120,

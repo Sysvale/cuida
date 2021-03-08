@@ -45,6 +45,33 @@ export const Template = (args, { argTypes }) => ({
 	`,
 });
 
+export const template = /*html*/ `
+	<cds-highlight
+		animated
+		:duration="1"
+		:delay="0"
+	>
+		<span> Texto bem importante</span>
+	</cds-highlight>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				component: Highlight,
+				template,
+			};
+		},
+		template: /*html*/ `
+			<docs-wrapper
+				:componentData="component"
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</docs-wrapper>`,
+	};
+};
+
 # Highlight
 
 ### Highlight são componentes utilizados destacar palavras ou frases importantes em um determinado contexto.
@@ -69,7 +96,9 @@ export const Template = (args, { argTypes }) => ({
 <Canvas>
 	<Story
 		name="Highlight"
+		decorators={[docsDecorator]}
 		args={{
+			animated: true,
 			duration: 1,
 			delay: 0,
 		}}

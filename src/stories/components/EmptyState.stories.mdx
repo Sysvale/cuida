@@ -16,6 +16,35 @@ export const Template = (args, { argTypes }) => ({
 	`,
 });
 
+export const template = /*html*/ `
+	<cds-empty-state
+		empty-state-image="static/media/CuidaTempLogo.f4adb1cc.png"
+		title="Título do empty state"
+		text="Para sair dessa situação de empty state, realize a ação abaixo"
+		show-action-button="true"
+		img-description="Imagem de empty state"
+		button-text="Adicionar novo recurso"
+		@action-button-click="handleClick"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				component: EmptyState,
+				template,
+			};
+		},
+		template: /*html*/ `
+			<docs-wrapper
+				:componentData="component"
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</docs-wrapper>`,
+	};
+};
+
 # EmptyState
 
 ### EmptyStates são componentes utilizados em momentos instrutivos aos usuários
@@ -41,6 +70,7 @@ export const Template = (args, { argTypes }) => ({
 <Canvas>
 	<Story
 		name="EmptyState"
+		decorators={[docsDecorator]}
 		args={{
 			emptyStateImage: 'static/media/CuidaTempLogo.f4adb1cc.png',
 			imgDescription: 'Imagem de empty state',

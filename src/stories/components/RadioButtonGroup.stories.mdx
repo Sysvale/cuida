@@ -16,6 +16,32 @@ export const Template = (args, { argTypes }) => ({
 	`,
 });
 
+export const template = /*html*/ `
+	<cds-radio-button-group
+		v-model="value"
+		v-validate="'required'"
+		:options="options"
+		:disabled="individualFieldsDisabled"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				component: RadioButtonGroup,
+				template,
+			};
+		},
+		template:
+			`<docs-wrapper
+				:componentData="component"
+				:exampleSourceCode="template"				
+			>
+				<story slot="component-preview"/>
+			</docs-wrapper>`,
+	};
+};
+
 # RadioButtonGroup
 
 ### RadioButtonsGroup são radio buttons customizados para facilitar a seleção e feedback
@@ -60,6 +86,7 @@ export const options = [
 <Canvas>
 	<Story
 		name="Radio button group"
+		decorators={[docsDecorator]}
 		args={{
 			options,
 			value,

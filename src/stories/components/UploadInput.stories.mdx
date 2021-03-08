@@ -20,6 +20,31 @@ export const Template = (args, { argTypes }) => ({
 	`,
 });
 
+export const template = `
+	<cds-upload-input
+		v-model="file"
+		size="md"
+		allowed-extensions="zip,ZIP"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				component: UploadInput,
+				template,
+			};
+		},
+		template:  /*html*/ `
+			<docs-wrapper
+				:componentData="component"
+				:exampleSourceCode="template"				
+			>
+				<story slot="component-preview"/>
+			</docs-wrapper>`,
+	};
+};
+
 # UploadInput
 
 ### UploadInput é um input customizado de arquivos.
@@ -42,6 +67,7 @@ export const Template = (args, { argTypes }) => ({
 <Canvas>
 	<Story
 		name="UploadInput"
+		decorators={[docsDecorator]}
 	>
 		{ Template.bind({}) }
 	</Story>

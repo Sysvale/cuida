@@ -16,6 +16,32 @@ export const Template = (args, { argTypes }) => ({
 	`,
 });
 
+export const template = /*html*/ `
+	<cds-nav-bar 
+		:items="items"
+		:isLight-themed="true"
+		:active-item="items[1]"
+		@click="handleItemClick"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				component: NavBar,
+				template,
+			};
+		},
+		template: /*html*/ `
+			<docs-wrapper
+				:componentData="component"
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</docs-wrapper>`,
+	};
+};
+
 # NavBar
 
 ### NavBars são componentes utilizados para criar soluções de navegação e menus.
@@ -71,6 +97,7 @@ export const items = [
 <Canvas>
 	<Story
 		name="NavBar"
+		decorators={[docsDecorator]}
 		args={{
 			items,
 			isLightThemed: true,

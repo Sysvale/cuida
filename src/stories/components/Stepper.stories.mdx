@@ -25,6 +25,30 @@ export const Template = (args, { argTypes }) => ({
 	`,
 });
 
+export const template = /*html*/ `
+	<cds-stepper
+		v-model="currentStepIndex"
+		:steps="steps"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				component: Stepper,
+				template,
+			};
+		},
+		template:
+			`<docs-wrapper
+				:componentData="component"
+				:exampleSourceCode="template"				
+			>
+				<story slot="component-preview"/>
+			</docs-wrapper>`,
+	};
+};
+
 # Stepper
 
 ### Steppers são componentes que controlam e exibem tarefas divididas em etapas
@@ -58,6 +82,7 @@ export const steps = [
 <Canvas>
 	<Story
 		name="Stepper"
+		decorators={[docsDecorator]}
 		args={{
 			steps,
 			value: 4,

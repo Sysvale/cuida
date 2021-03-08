@@ -27,14 +27,14 @@ export const Template = (args, { argTypes }) => ({
 	`,
 });
 
-export const template = `
-	<s-actions-list 
+export const template = /*html*/`
+	<cds-actions-list 
+		number-of-expanded-actions="2"
+		position="right"
 		:actions="actions"
-		:numberOfExpandedActions="numberOfExpandedActions"
-		:collapsedActionName="collapsedActionName"
-		:expandedActionName="expandedActionName"
-		:position="position"
-		@actionClicked="handleClick"
+		:collapsed-action-name="Mais ações"
+		:expanded-action-name="Menos ações"
+		@action-clicked="handleClick"
 	>
 		<template
 			slot="action"
@@ -42,7 +42,7 @@ export const template = `
 		>
 			{{ item.title }}
 		</template>
-	</s-actions-list>`;
+	</cds-actions-list>`;
 
 export const docsDecorator = () => {
 	return {
@@ -52,10 +52,10 @@ export const docsDecorator = () => {
 				template,
 			};
 		},
-		template:
-			`<docs-wrapper
+		template: /*html*/ `
+			<docs-wrapper
 				:componentData="component"
-				:exampleSourceCode="template"				
+				:exampleSourceCode="template"
 			>
 				<story slot="component-preview"/>
 			</docs-wrapper>`,

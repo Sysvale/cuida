@@ -16,6 +16,29 @@ export const Template = (args, { argTypes }) => ({
 	`,
 });
 
+export const template = /*html*/ `
+	<cds-timeline
+		:history="history"		
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				component: Timeline,
+				template,
+			};
+		},
+		template:
+			`<docs-wrapper
+				:componentData="component"
+				:exampleSourceCode="template"				
+			>
+				<story slot="component-preview"/>
+			</docs-wrapper>`,
+	};
+};
+
 # Timeline
 
 ### Timelines são componentes utilizados para apresentar informações em ordem cronológica.
@@ -66,6 +89,7 @@ export const history = [
 <Canvas>
 	<Story
 		name="Timeline"
+		decorators={[docsDecorator]}
 		args={{
 			history,
 		}}

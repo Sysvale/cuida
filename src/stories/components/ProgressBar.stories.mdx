@@ -25,6 +25,31 @@ export const Template = (args, { argTypes }) => ({
   template: /*html*/ `<progress-bar v-bind="$props"/>`,
 });
 
+export const template = /*html*/ `
+	<cds-progress-bar 
+		background-color="#DDE2E7"
+		color="false"
+		:percentage="#2EB88D"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				component: ProgressBar,
+				template,
+			};
+		},
+		template: /*html*/ `
+			<docs-wrapper
+				:componentData="component"
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</docs-wrapper>`,
+	};
+};
+
 # ProgressBar
 
 ### ProgressBars são componentes utilizados para indicar o status e progresso de algo aos usuários.
@@ -50,6 +75,7 @@ export const Template = (args, { argTypes }) => ({
 <Canvas>
   <Story
     name="Progress bar"
+    decorators={[docsDecorator]}
     args={{
       percentage: 0.5,
       backgroundColor: '#DDE2E7',

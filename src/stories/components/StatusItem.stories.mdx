@@ -31,6 +31,42 @@ export const Template = (args, { argTypes }) => ({
 	`,
 });
 
+export const template = /*html*/ `
+	<cds-status-item
+		title="Lote nº 235"
+		subtitle="Subtítulo"
+		variant="success"
+		:clickableAction="true"
+		actionText="Download"
+		actionSubtitle="Último download em 00/00/0000 00:00"
+	>
+		<template slot="subtitle">
+			<strong>1840</strong> fichas analisadas no <strong>PEC</strong> 3.2.31 - Lote criado em 00/00/0000 00:00
+		</template>
+		<template slot="alertText">
+			Lote inconsistente, <strong>clique aqui</strong> para saber como resolver.
+		</template>
+	</cds-status-item>
+	`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				component: StatusItem,
+				template,
+			};
+		},
+		template:
+			`<docs-wrapper
+				:componentData="component"
+				:exampleSourceCode="template"				
+			>
+				<story slot="component-preview"/>
+			</docs-wrapper>`,
+	};
+};
+
 # StatusItem
 
 ### Status items são componentes usados para mostrar um conjunto de informações sobre o estado em que determinada atividade se encontra, podendo exibir ações possíveis de acordo com a necessidade.
@@ -50,6 +86,7 @@ export const Template = (args, { argTypes }) => ({
 <Canvas>
 	<Story
 		name="Status item"
+		decorators={[docsDecorator]}
 		args={{
 			title: 'Lote nº 235',
 			subtitle: 'Subtítulo',
