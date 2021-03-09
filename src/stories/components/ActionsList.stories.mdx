@@ -1,4 +1,4 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview, Source } from '@storybook/addon-docs/blocks';
 import ActionsList from '../../components/ActionsList.vue';
 
 <Meta
@@ -6,8 +6,7 @@ import ActionsList from '../../components/ActionsList.vue';
 	component={ ActionsList }
 	argTypes={{
 		position: { control: { type: 'select', options: ['right', 'left'] } },
-	}
-}
+	}}
 />
 
 export const Template = (args, { argTypes }) => ({
@@ -26,6 +25,39 @@ export const Template = (args, { argTypes }) => ({
 		</actions-list>
 	`,
 });
+
+export const template = /*html*/`
+	<cds-actions-list 
+		number-of-expanded-actions="2"
+		position="right"
+		:actions="actions"
+		:collapsed-action-name="Mais ações"
+		:expanded-action-name="Menos ações"
+		@action-clicked="handleClick"
+	>
+		<template
+			slot="action"
+			slot-scope="{list: item}"
+		>
+			{{ item.title }}
+		</template>
+	</cds-actions-list>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
 
 # ActionsList
 
@@ -66,6 +98,9 @@ export const actions = [
 <Canvas>
 	<Story
 		name="Actions list"
+		decorators={[
+			docsDecorator
+		]}
 		args={{
 			actions: actions,
 			numberOfExpandedActions: 2,

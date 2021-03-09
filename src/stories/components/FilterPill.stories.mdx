@@ -16,6 +16,29 @@ export const Template = (args, { argTypes }) => ({
 	`,
 });
 
+export const template = /*html*/ `
+	<cds-filter-pill 
+		label="Idade"
+		content="0 a 120 anos"
+		@click="showSortingOptions"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
 # FilterPill
 
 ### FilterPills são componentes utilizados para ativar popovers contendo filtros para listas e views.
@@ -40,6 +63,7 @@ export const Template = (args, { argTypes }) => ({
 <Canvas>
 	<Story
 		name="FilterPill"
+		decorators={[docsDecorator]}
 		args={{
 			label: 'Idade',
 			content: '0 a 120 anos',

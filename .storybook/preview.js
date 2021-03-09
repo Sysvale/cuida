@@ -8,6 +8,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import Multiselect from 'vue-multiselect';
 import VCalendar from 'v-calendar';
+import vueHljs from "vue-hljs";
+import hljs from "highlight.js";
+import "vue-hljs/dist/style.css";
+
 
 import { directive as onClickOutside } from 'vue-on-click-outside' 
 Vue.directive('on-click-outside', onClickOutside)
@@ -52,6 +56,7 @@ import {
 	TypographyList,
 	Space,
 	BorderBuilder,
+	SourceCodeWrapper
 } from '../src/docs-components';
 
 import { longClickDirective } from 'vue-long-click'
@@ -59,6 +64,7 @@ import { longClickDirective } from 'vue-long-click'
 const longClickInstance = longClickDirective({delay: 400, interval: 50});
 Vue.directive('longclick', longClickInstance);
 
+Vue.use(vueHljs, { hljs });
 Vue.use(BootstrapVue);
 Vue.use(VCalendar, {
 	locales: {
@@ -103,6 +109,7 @@ Vue.component('totalizer', Totalizer);
 Vue.component('modal-window', ModalWindow);
 Vue.component('vueSlider', vueSlider);
 Vue.component('tooltip', Tooltip);
+Vue.component('source-code-wrapper', SourceCodeWrapper);
 
 addParameters({
 	options: {

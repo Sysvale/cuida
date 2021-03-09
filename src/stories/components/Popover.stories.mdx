@@ -56,6 +56,47 @@ export const Template = (args, { argTypes }) => ({
 	},
 });
 
+export const template = /*html*/ `
+	<cds-popover
+		v-model="show"
+		alignment="left"
+		size="lg"
+		no-close-on-backdrop="false"
+		no-close-on-esc="false"
+		target="trigger-popover"
+	>
+		<p class="p-3">
+			Mussum Ipsum, cacilds vidis litro abertis. Todo mundo vê os porris que eu tomo,
+			mas ninguém vê os tombis que eu levo! Atirei o pau no gatis, per gatis num
+			morreus. Pra lá, depois divoltis porris, paradis. Leite de capivaris,
+			leite de mula manquis sem cabeça. Viva Forevis aptent taciti sociosqu
+			ad litora torquent.
+		</p>
+		<b-button
+			class="m-3"
+			variant="success"
+			@click="show = false"
+		>
+			Confirmar
+		</b-button>
+	</cds-popover>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
 
 # Popover
 
@@ -82,6 +123,7 @@ export const Template = (args, { argTypes }) => ({
 <Canvas>
 	<Story
 		name="Popover"
+		decorators={[docsDecorator]}
 		args={{
 			alignment: 'left',
 			size: 'lg',

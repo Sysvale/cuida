@@ -31,9 +31,30 @@ export const Template = (args, { argTypes }) => ({
 	template: /*html*/ `
 		<badge
 			v-bind="$props" 
-		/>
-	`,
+		/>`,
 });
+
+export const template = /*html*/ `
+	<cds-badge 
+		content="Conteúdo da badge"
+		variant="gray"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
 
 # Badge
 
@@ -59,6 +80,7 @@ export const Template = (args, { argTypes }) => ({
 <Canvas>
 	<Story
 		name="Badge"
+		decorators={[docsDecorator]}
 		args={{
 			content: 'Conteúdo da badge',
 			variant: 'gray',

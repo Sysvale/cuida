@@ -40,6 +40,34 @@ export const Template = (args, { argTypes }) => ({
 	},
 });
 
+export const template = /*html*/ `
+	<cds-modal-window
+		:show="showAgeFilter"
+		:top="20"
+		:right="20"
+		:height="293"
+		:width="313"
+		@hide="showModal = false"
+	>
+		<span> Texto bem importante</span>
+	</cds-modal-window>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
 # ModalWindow
 
 ### ModalWindows são componentes utilizados para apresentar aos usuários ações ou informações importantes, como aplicação de filtros, e cofirmações, mas sem ser intrusivo e alterar completamente o contexto do usuário.
@@ -62,6 +90,7 @@ export const Template = (args, { argTypes }) => ({
 <Canvas>
 	<Story
 		name="ModalWindow"
+		decorators={[docsDecorator]}
 		args={{
 			top: 20,
 			right: 20,
