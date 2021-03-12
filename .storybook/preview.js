@@ -56,6 +56,7 @@ import {
 	Palete,
 	TypographyList,
 	Space,
+	Iconography,
 	BorderBuilder,
 	SourceCodeWrapper
 } from '../src/docs-components';
