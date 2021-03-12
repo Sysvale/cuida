@@ -8,6 +8,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import Multiselect from 'vue-multiselect';
 import VCalendar from 'v-calendar';
+import vueHljs from "vue-hljs";
+import hljs from "highlight.js";
+import "vue-hljs/dist/style.css";
+
 
 import { directive as onClickOutside } from 'vue-on-click-outside' 
 Vue.directive('on-click-outside', onClickOutside)
@@ -45,17 +49,23 @@ import {
 	Slider,
 	Totalizer,
 	ModalWindow,
+	Tooltip
 } from '../src/components';
 
-import Palete from '../src/Palete.vue';
-import Iconography from '../src/Iconography.vue';
-import TypographyList from '../src/TypographyList.vue';
-import Space from '../src/Space.vue';
+import {
+	Palete,
+	TypographyList,
+	Space,
+	BorderBuilder,
+	SourceCodeWrapper
+} from '../src/docs-components';
+
 import { longClickDirective } from 'vue-long-click'
 
 const longClickInstance = longClickDirective({delay: 400, interval: 50});
 Vue.directive('longclick', longClickInstance);
 
+Vue.use(vueHljs, { hljs });
 Vue.use(BootstrapVue);
 Vue.use(VCalendar, {
 	locales: {
@@ -93,13 +103,15 @@ Vue.component('stepper-input', StepperInput);
 Vue.component('expansion-card', ExpansionCard);
 Vue.component('highlight', Highlight);
 Vue.component('scrollable', Scrollable);
+Vue.component('border', BorderBuilder);
 Vue.component('calendar', Calendar);
 Vue.component('filter-pill', FilterPill);
 Vue.component('slider', Slider);
 Vue.component('totalizer', Totalizer);
 Vue.component('modal-window', ModalWindow);
-
 Vue.component('vueSlider', vueSlider);
+Vue.component('tooltip', Tooltip);
+Vue.component('source-code-wrapper', SourceCodeWrapper);
 
 addParameters({
 	options: {
@@ -118,7 +130,7 @@ addParameters({
 		selectedPanel: 'controls',
 		showCanvas: false,
 		storySort: {
-			order: ['Fundação', 'Componentes'],
+			order: ['Fundação', ['Principios', 'Tipografia', 'Peso da Fonte', 'Cores', 'Espaçamento', 'Bordas'], 'Componentes'],
 		},
 	},
 });

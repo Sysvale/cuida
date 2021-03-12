@@ -1,0 +1,122 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import SideSheet from '../../components/SideSheet.vue';
+
+<Meta
+	title="Componentes/Overlays/SideSheet"
+	component={ SideSheet }
+	argTypes={{
+		position: {
+			control: {
+				type: 'select',
+				options: ['right', 'left']
+			}
+		},
+	}}
+/>
+
+export const Template = (args, { argTypes }) => ({
+	data() {
+		return {
+			show: false,
+		};
+	},
+	props: Object.keys(argTypes),
+	components: { SideSheet },
+	template: /*html*/ `
+		<div>
+			<b-button
+				@click="show = true"
+			>
+				Toggle SideSheet
+			</b-button>
+			<side-sheet
+				v-model="show"
+				v-bind="$props"
+			>
+				<p class="p-3">
+					Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
+					vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
+					Atirei o pau no gatis, per gatis num morreus. Pra lá , depois
+					divoltis porris, paradis. Leite de capivaris, leite de mula
+					manquis sem cabeça. Viva Forevis aptent taciti sociosqu ad
+					litora torquent. Per aumento de cachacis, eu reclamis. Nec
+					orci ornare consequat. Praesent lacinia ultrices consectetur.
+					Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
+				</p>
+			</side-sheet>
+		</div>
+	`,
+});
+
+export const template = /*html*/ `
+	<cds-side-sheet
+		v-model="show"
+		:position="right"
+		:no-close-on-backdrop="false"
+		:no-close-on-esc="false"
+	>
+		<p class="p-3">
+			Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
+			vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
+			Atirei o pau no gatis, per gatis num morreus. Pra lá , depois
+			divoltis porris, paradis. Leite de capivaris, leite de mula
+			manquis sem cabeça. Viva Forevis aptent taciti sociosqu ad
+			litora torquent. Per aumento de cachacis, eu reclamis. Nec
+			orci ornare consequat. Praesent lacinia ultrices consectetur.
+			Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
+		</p>
+	</cds-side-sheet>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
+# SideSheet
+
+### SideSheets são componentes usados para mostrar conteúdo em uma estrutura de modal,
+### mas que é apresentada em um dos lados da página.
+---
+<br />
+
+
+## Recomendamos o uso de SideSheets quando:
+- Você deseja colocar filtros que vão ser mostrandos ao clique de algum componente.
+
+<br />
+
+## Não recomendamos o uso de SideSheets quando:
+- Você precisar de um modal convencional.
+- Você precisar de uma solução de navegação.
+- Você precisa de um form para registrar algo.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="SideSheet"
+		decorators={[docsDecorator]}
+		args={{
+			position: 'right',
+			noCloseOnBackdrop: false,
+			noCloseOnEsc: false,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="SideSheet" />

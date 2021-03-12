@@ -1,0 +1,93 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Badge from '../../components/Badge.vue';
+
+<Meta
+	title="Componentes/Display/Badge"
+	component={ Badge }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'turquoise',
+					'green',
+					'blue',
+					'purple',
+					'pink',
+					'red',
+					'orange',
+					'yellow',
+					'gray',
+				],
+			}
+		},
+	}
+}
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { Badge },
+	template: /*html*/ `
+		<badge
+			v-bind="$props" 
+		/>`,
+});
+
+export const template = /*html*/ `
+	<cds-badge 
+		content="Conteúdo da badge"
+		variant="gray"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
+# Badge
+
+### Badge são indicadores de status utilizados para tornar evidentes metadados importates.
+---
+<br />
+
+## Recomendamos o uso de Badges quando:
+- Você quiser mostrar status associados com a lógica de negócio ou açoes do usuário.
+- O conteúdo a ser mostrado for *readonly*
+- For preciso categorizar algo
+
+<br />
+
+## Não recomendamos o uso de Badges quando:
+- O conteúdo que a badge representa puder ser setado ou removido pelo usuário.
+- O click no componente precisar executar uma ação ou funcionalidade.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Badge"
+		decorators={[docsDecorator]}
+		args={{
+			content: 'Conteúdo da badge',
+			variant: 'gray',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Badge" />

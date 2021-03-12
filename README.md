@@ -19,7 +19,38 @@
   </a>
 </p>
 
-### Clonando o projeto e configurando-o
+## Instalando
+
+- O Cuida pode ser instalado com o npm:
+```bash
+$ npm i @sysvale/cuida;
+```
+
+## Usando
+
+- Para usar o cuida, importe a biblioteca no seu entry point, provavelmente vai ser seu main.js ou app.js:
+```js
+import Cuida from '@sysvale/cuida';
+```
+
+- E instale o Cuida:
+```js
+Vue.use(Cuida);
+```
+
+- Agora pra utilizar os componentes, basta usá-los no seu template. Como exemplo, para usar a 
+[Badge](https://sysvale.github.io/cuida/?path=/docs/componentes-display-badge--badge):
+```html
+<cds-badge
+  content="Equipe removida"
+  variant="red"
+  class="ml-2 badge-aligner"
+/>
+```
+
+## Desenvolvendo
+
+### Configurando o projeto
 
 - Clone o repositório:
 
@@ -32,7 +63,7 @@ $ git clone https://github.com/Sysvale/cuida.git
 ```bash
 $ docker-compose up -d
 ```
-A aplicação estará disponível na porta `6006`.  
+A aplicação estará disponível na porta `6006`, em [http://localhost:6006/](http://localhost:6006).  
   
 - Caso não queira usar docker, instale as dependências com:
 
@@ -42,7 +73,7 @@ $ npm i
 
 ### Executando o Cuida
 
-- Após a execução do comando `docker-composer up -d` a aplicação já estará rodando no `localhost:6006`
+- Após a execução do comando `docker-composer up -d` a aplicação já estará rodando no [http://localhost:6006/](http://localhost:6006)
 .
 - Ou alternativamente, sem o docker, rode apenas:
 
@@ -50,7 +81,7 @@ $ npm i
 $ npm run storybook
 ```
 
-### Para executar os testes
+### Testando-o
 
 - Utilizando o docker:
 ```bash

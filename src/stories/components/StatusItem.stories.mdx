@@ -1,0 +1,102 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import StatusItem from '../../components/StatusItem.vue';
+
+<Meta
+	title="Componentes/Display/StatusItem"
+	component={ StatusItem }
+	argTypes={{
+		variant: {
+			control: {
+				type: 'select',
+				options: ['success', 'error', 'warning', 'processing']
+			}
+		},
+	}}
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { StatusItem },
+	template: /*html*/ `
+		<status-item
+			v-bind="$props" 
+		>
+			<template slot="subtitle">
+				<strong>1840</strong> fichas analisadas no <strong>PEC</strong> 3.2.31 - Lote criado em 00/00/0000 00:00
+			</template>
+			<template slot="alertText">
+				Lote inconsistente, <strong>clique aqui</strong> para saber como resolver.
+			</template>
+		</status-item>
+	`,
+});
+
+export const template = /*html*/ `
+	<cds-status-item
+		title="Lote nº 235"
+		variant="success"
+		action-text="Download"
+		action-subtitle="Último download em 00/00/0000 00:00"
+		:clickable-action="true"
+		@action-clicked="handleActionClick"
+		@alert-clicked="handleAlertClick"
+	>
+		<template slot="subtitle">
+			<strong>1840</strong> fichas analisadas no <strong>PEC</strong> 3.2.31 - Lote criado em 00/00/0000 00:00
+		</template>
+		<template slot="alertText">
+			Lote inconsistente, <strong>clique aqui</strong> para saber como resolver.
+		</template>
+	</cds-status-item>
+	`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
+# StatusItem
+
+### Status items são componentes usados para mostrar um conjunto de informações sobre o estado em que determinada atividade se encontra, podendo exibir ações possíveis de acordo com a necessidade.
+---
+
+#### Recomendamos o uso de StatusItems quando:
+- Você precisar exibir o estado de uma tarefa.
+- Houverem ações que possam ser realizadas a partir destes estados.
+
+#### Não recomendamos o uso de StatusItems quando:
+- As ações a serem realizadas a partir dos estados sejam muito complexas.
+
+<br />
+
+### Preview
+
+<Canvas>
+	<Story
+		name="Status item"
+		decorators={[docsDecorator]}
+		args={{
+			title: 'Lote nº 235',
+			subtitle: 'Subtítulo',
+			variant: 'success',
+			clickableAction: true,
+			actionText: 'Download',
+			actionSubtitle: 'Último download em 00/00/0000 00:00',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Status item" />

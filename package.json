@@ -1,6 +1,6 @@
 {
   "name": "@sysvale/cuida",
-  "version": "1.16.0",
+  "version": "1.18.9",
   "description": "A design system built by Sysvale, using storybook and Vue components",
   "repository": {
     "type": "git",
@@ -41,6 +41,8 @@
     "vue-slider-component": "^2.8.16"
   },
   "devDependencies": {
+    "highlight.js": "^10.6.0",
+    "vue-hljs": "^2.0.0",
     "@babel/core": "^7.11.6",
     "@storybook/addon-actions": "^6.1.0-alpha.10",
     "@storybook/addon-essentials": "^6.1.0-alpha.10",
