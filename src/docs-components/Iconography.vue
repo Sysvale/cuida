@@ -1,13 +1,11 @@
 <template>
 	<span>
 		<div
-			class="source-code__container mt-3"
+			class="source-code__container"
 		>
-			<div class="pre-container" v-highlight>
-				<pre
-					class="active"
-				>
-					<code class="html code-h">
+			<div class="pre__container" v-highlight>
+				<pre>
+					<code class="html code__content">
 						{{ exampleSourceCode }}
 					</code>
 				</pre>
@@ -21,7 +19,7 @@
 			</button>
 		</div>
 
-		<p class="mt-4 lista">Lista de ícones:</p>
+		<p class="iframe__title">Lista de ícones:</p>
 
 		<div class="iframe__container">
 			<iframe class="iframe" src="https://ionicons.com/" scrolling="no" />
@@ -52,7 +50,7 @@ export default {
 			this.copyCodeButtonText = '✅ Código copiado';
 
 			setTimeout(() => {
-				this.	 = 'Copiar código';
+				this.copyCodeButtonText = 'Copiar código';
 			}, 1200);
 
 			el.value = this.exampleSourceCode;
@@ -94,6 +92,11 @@ export default {
 		position: relative;
 		margin: auto;
 	}
+
+	&__title {
+		font-size: 20px;
+		margin-top: 24px;
+	}
 }
 
 .code {
@@ -104,7 +107,7 @@ export default {
 pre {
 	display: flex;
 	justify-content: start;
-	margin-bottom: 2.5rem;
+	margin-bottom: 40px;
 	border-radius: $border-radius-pequeno;
 }
 
@@ -113,7 +116,7 @@ code {
 	width: 100%;
 	display: flex;
 	justify-content: flex-start;
-	padding: 2rem;
+	padding: 32px;
 }
 
 .source-code__container {
@@ -122,6 +125,7 @@ code {
 	display: flex;
 	background-color: #fafafa;
 	height: 80px;
+	margin-top: 16px;
 }
 
 .inactive {
@@ -142,15 +146,11 @@ code {
 	width: 150px;
 }
 
-.pre-container {
+.pre__container {
 	width: 100%;
 }
 
-.code-h {
+.code__content {
 	height: 70px;
-}
-
-.lista {
-	font-size: 20px;
 }
 </style>
