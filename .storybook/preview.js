@@ -123,7 +123,7 @@ addParameters({
 		addonPanelInRight: false,
 		sidebarAnimations: true,
 		isToolshown: true,
-		enableShortcuts: false,
+		enableShortcuts: true,
 		theme: CuidaTheme,
 		showRoots: true,
 		showNav: true,
