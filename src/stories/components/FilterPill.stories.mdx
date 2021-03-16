@@ -7,11 +7,18 @@ import FilterPill from '../../components/FilterPill.vue';
 />
 
 export const Template = (args, { argTypes }) => ({
+	data() {
+		return {
+			isActive: false,
+		};
+	},
 	props: Object.keys(argTypes),
 	components: { FilterPill },
 	template: /*html*/ `
 		<filter-pill
-			v-bind="$props" 
+			v-bind="$props"
+			:isActive="isActive"
+			@click="isActive = !isActive"
 		/>
 	`,
 });
@@ -67,6 +74,7 @@ export const docsDecorator = () => {
 		args={{
 			label: 'Idade',
 			content: '0 a 120 anos',
+			isActive: false,
 		}}
 	>
 		{ Template.bind({}) }

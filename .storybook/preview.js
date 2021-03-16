@@ -22,6 +22,7 @@ import _ from 'lodash';
 Object.defineProperty(Vue.prototype, '_', { value: _ });
 
 Vue.config.productionTip = false;
+Vue.config.ignoredElements = [/^ion-/];
 
 import {
 	ProgressBar,
@@ -55,6 +56,7 @@ import {
 	Palete,
 	TypographyList,
 	Space,
+	Iconography,
 	BorderBuilder,
 	SourceCodeWrapper
 } from '../src/docs-components';
@@ -79,6 +81,7 @@ Vue.use(VCalendar, {
 
 Vue.component('multiselect', Multiselect);
 Vue.component('palete', Palete);
+Vue.component('iconography', Iconography);
 Vue.component('space', Space);
 Vue.component('actions-list', ActionsList);
 Vue.component('status-item', StatusItem);
@@ -120,7 +123,7 @@ addParameters({
 		addonPanelInRight: false,
 		sidebarAnimations: true,
 		isToolshown: true,
-		enableShortcuts: false,
+		enableShortcuts: true,
 		theme: CuidaTheme,
 		showRoots: true,
 		showNav: true,
