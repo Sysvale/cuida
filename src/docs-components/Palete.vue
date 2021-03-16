@@ -35,7 +35,9 @@
 				</span>
 			</div>
 		</div>
-		<div>
+		<div
+			class="palete"
+		>
 			<div
 				v-for="index in 9"
 				:key="index"
