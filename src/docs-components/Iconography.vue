@@ -1,5 +1,7 @@
 <template>
 	<span>
+		<span class="source-code__title">Exemplo de uso:</span>
+
 		<div
 			class="source-code__container"
 		>
@@ -95,7 +97,8 @@ export default {
 
 	&__title {
 		font-size: 20px;
-		margin-top: 24px;
+		margin-top: 48px;
+		margin-bottom: 16px;
 	}
 }
 
@@ -119,13 +122,20 @@ code {
 	padding: 32px;
 }
 
-.source-code__container {
-	border: 1px solid $cinza-4;
-	border-radius: $border-radius-pequeno;
-	display: flex;
-	background-color: #fafafa;
-	height: 80px;
-	margin-top: 16px;
+.source-code {
+	&__container {
+		border: 1px solid $cinza-4;
+		border-radius: $border-radius-pequeno;
+		display: flex;
+		background-color: #fafafa;
+		height: 80px;
+		margin-top: 16px;
+	}
+
+	&__title {
+		font-size: 20px;
+		margin-top: 24px;
+	}
 }
 
 .inactive {
