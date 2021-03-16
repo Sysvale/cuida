@@ -1,41 +1,69 @@
 <template>
+	<div
+		class="grid"
+	>
 		<div
-			class="grid"
+			v-for="color in paleteColors"
+			:key="color"
+			class="palete"
 		>
-				<div
-					v-for="color in paleteColors"
-					:key="color"
-					class="palete"
+			<div
+				v-for="(shade, index) in shades"
+				:key="shade"
+				:class='{
+					"first-shade": index === 0,
+					"last-shade": index === shades.length - 1,
+					[`${colorShadeClass(color, shade)}`]: index >= 0,
+				}'
+			>
+				<span
+					v-if="index === 0"
+					class="colorNames"
+					:class="{ 'low-contrast-color-names': index === 0 || index === 1 || index === 2}"
 				>
-					<div
-						v-for="(shade, index) in shades"
-						:key="shade"
-						:class='{
-							"first-shade": index === 0,
-							"last-shade": index === shades.length - 1,
-							[`${colorShadeClass(color, shade)}`]: index >= 0,
-						}'
-					>
-						<span
-							v-if="index === 0"
-							class="colorNames"
-							:class="{ 'low-contrast-color-names': index === 0 || index === 1 || index === 2}"
-						>
-							<span> {{ color }} </span>
-							<br />
-							<span> {{ shade }} </span>
-						</span>
+					<span> {{ color }} </span>
+					<br />
+					<span> {{ shade }} </span>
+				</span>
 
-						<span
-							v-else
-							class="colorNames"
-							:class="{ 'low-contrast-color-names': index === 0 || index === 1 || index === 2}"
-						>
-							{{ shade }}
-						</span>
-				</div>
+				<span
+					v-else
+					class="colorNames"
+					:class="{ 'low-contrast-color-names': index === 0 || index === 1 || index === 2}"
+				>
+					{{ shade }}
+				</span>
 			</div>
 		</div>
+		<div>
+			<div
+				v-for="index in 9"
+				:key="index"
+				:class='{
+					"first-shade": index === 1,
+					"last-shade": index === 9,
+					[`${grayShadeClass(index)}`]: index >= 1,
+				}'
+			>
+				<span
+					v-if="index === 1"
+					class="colorNames low-contrast-color-names"
+				>
+					<span> Escala de cinza </span>
+					<br />
+					<span> cinza-{{ index }} </span>
+				</span>
+
+				<span
+					v-else
+					class="colorNames"
+					:class="{ 'low-contrast-color-names': index >= 1 && index <= 5}"
+				>
+					cinza-{{ index }}
+				</span>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -67,6 +95,9 @@ export default {
 		colorShadeClass(color, shade) {
 			return `${color}-${shade}`;
 		},
+		grayShadeClass(shade) {
+			return `cinza-${shade}`;
+		},
 	},
 };
 </script>
@@ -82,6 +113,15 @@ export default {
 			height: 50px;
 			padding: 14px 20px;
 		}
+	}
+}
+
+@each $shadeName, $shade in $cinzas {
+	.cinza-#{$shadeName} {
+		background-color: $shade;
+		width: 250px;
+		height: 50px;
+		padding: 14px 20px;
 	}
 }
 
