@@ -13,7 +13,7 @@
 				:class='{
 					"first-shade": index === 0,
 					"last-shade": index === shades.length - 1,
-					[`${colorShadeClass(color, shade)}`]: index >= 0,
+					[`${colorShadeClass(shade, color)}`]: index >= 0,
 				}'
 			>
 				<span
@@ -42,7 +42,7 @@
 				:class='{
 					"first-shade": index === 1,
 					"last-shade": index === 9,
-					[`${grayShadeClass(index)}`]: index >= 1,
+					[`${colorShadeClass(index)}`]: index >= 1,
 				}'
 			>
 				<span
@@ -92,10 +92,10 @@ export default {
 	},
 
 	methods: {
-		colorShadeClass(color, shade) {
-			return `${color}-${shade}`;
-		},
-		grayShadeClass(shade) {
+		colorShadeClass(shade, color = null) {
+			if (color) {
+				return `${color}-${shade}`;
+			}
 			return `cinza-${shade}`;
 		},
 	},
