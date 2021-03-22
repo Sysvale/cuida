@@ -7,14 +7,44 @@ import FilterPill from '../../components/FilterPill.vue';
 />
 
 export const Template = (args, { argTypes }) => ({
+	data() {
+		return {
+			isActive: false,
+		};
+	},
 	props: Object.keys(argTypes),
 	components: { FilterPill },
 	template: /*html*/ `
 		<filter-pill
-			v-bind="$props" 
+			v-bind="$props"
+			:isActive="isActive"
+			@click="isActive = !isActive"
 		/>
 	`,
 });
+
+export const template = /*html*/ `
+	<cds-filter-pill 
+		label="Idade"
+		content="0 a 120 anos"
+		@click="showSortingOptions"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
 
 # FilterPill
 
@@ -40,9 +70,11 @@ export const Template = (args, { argTypes }) => ({
 <Canvas>
 	<Story
 		name="FilterPill"
+		decorators={[docsDecorator]}
 		args={{
 			label: 'Idade',
 			content: '0 a 120 anos',
+			isActive: false,
 		}}
 	>
 		{ Template.bind({}) }

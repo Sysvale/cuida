@@ -29,6 +29,28 @@ export const Template = (args, { argTypes }) => ({
 	`,
 });
 
+export const template = /*html*/ `
+	<cds-stepper-input
+		v-model="value"
+		label="Label"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
 # StepperInput
 
 ### StepperInputs são inputs numéricos com botões de incremento e decremento sempre visíveis
@@ -53,6 +75,7 @@ export const Template = (args, { argTypes }) => ({
 <Canvas>
 	<Story
 		name="StepperInput"
+		decorators={[docsDecorator]}
 	>
 		{ Template.bind({}) }
 	</Story>

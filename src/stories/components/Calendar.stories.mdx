@@ -12,9 +12,32 @@ export const Template = (args, { argTypes }) => ({
 	template: /*html*/ `
 		<calendar
 			v-bind="$props" 
-		/>
-	`,
+		/>`,
 });
+
+export const template = /*html*/ `
+	<cds-calendar
+		:time-picker="true"
+		:schedule-attributes="dailySchedules"
+		@day-selected="handleDaySelected"
+		@schedule-selected="setSelectedSchedule"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
 
 # Calendar
 
@@ -205,6 +228,7 @@ export const scheduleAttributes = {
 <Canvas>
 	<Story
 		name="Calendar"
+		decorators={[docsDecorator]}
 		args={{
 			timePicker: true,
 			scheduleAttributes: scheduleAttributes,

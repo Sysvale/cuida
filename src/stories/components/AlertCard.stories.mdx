@@ -29,6 +29,29 @@ export const Template = (args, { argTypes }) => ({
 	`,
 });
 
+export const template = /*html*/ `
+	<cds-alert-card
+		title="Título do AlertCard"
+		variant="info"
+		:sub-title="subTitle"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
 # AlertCard
 
 ### AlertCard são componentes utilizados para transmitir mensagens contextuais importantes e apresentar possíveis ações a serem tomadas em cima delas.
@@ -62,6 +85,7 @@ export const subTitle =  `Existe uma teoria que diz que, se um dia alguém desco
 <Canvas>
 	<Story
 		name="AlertCard"
+		decorators={[docsDecorator]}
 		args={{
 			title,
 			subTitle,

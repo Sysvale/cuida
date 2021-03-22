@@ -31,6 +31,30 @@ export const Template = (args, { argTypes }) => ({
 	`,
 });
 
+export const template = /*html*/ `
+	<cds-dropdown
+		v-model="filteredOptions"
+		label="title"
+		track-by="title"
+		:options="options"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
 # DropDown
 
 ### DropDowns são componentes utilizados para criar soluções de navegação e menus.
@@ -46,6 +70,11 @@ export const Template = (args, { argTypes }) => ({
 ## Não recomendamos o uso de DropDowns quando:
 - Você tiver muitos itens a serem mostrados no menu.
 - Você precisar mostrar os links verticalmente.
+
+## Observações:
+- O Dropdown do Cuida é um wrapper do <a href="https://vue-multiselect.js.org/">Vue Multiselect</a>
+com a sua adequação aos nossos princípios e recomendações. Para informações detalhadas sobre o componente, recomendamos
+leitura da documentação.
 
 <br />
 
@@ -66,6 +95,7 @@ export const value = [
 <Canvas>
 	<Story
 		name="DropDown"
+		decorators={[docsDecorator]}
 		args={{
 			options,
 			value,

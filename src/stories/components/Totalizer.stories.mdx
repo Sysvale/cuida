@@ -43,10 +43,10 @@ export const Template = (args, { argTypes }) => ({
 			v-bind="$props" 
 		>
 			<template v-slot:value>
-				<div> 1589 </div>
+				1589
 			</template>
 			<template v-slot:subtitle>
-				<div> Agendamentos realizados </div>
+				Agendamentos realizados
 			</template>
 			<template v-slot:icon>
 				<b-icon-house-fill />
@@ -54,6 +54,38 @@ export const Template = (args, { argTypes }) => ({
 		</totalizer>
 	`,
 });
+
+export const template = /*html*/ `
+	<cds-totalizer
+		variant="red"
+		iconSide="left"
+	>
+		<template v-slot:value>
+			1589
+		</template>
+		<template v-slot:subtitle>
+			Agendamentos realizados
+		</template>
+		<template v-slot:icon>
+			<b-icon-house-fill />
+		</template>
+	</cds-totalizer>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
 
 # Totalizer
 
@@ -81,6 +113,7 @@ export const Template = (args, { argTypes }) => ({
 <Canvas>
 	<Story
 		name="Totalizer"
+		decorators={[docsDecorator]}
 		args={{
 			variant: 'red',
 			iconSide: 'left'

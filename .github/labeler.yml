@@ -1,17 +1,19 @@
 '🧱 Componente':
 - src/components/index.js
- 
+
 '🐛 Bug':
 - any: ['src/components/*.vue']
-  all: ['!src/stories/*']
+  all: ['!src/stories/**']
 
 '📃 Documentação':
-- any: ['src/stories/*.stories.mdx']
+- any: ['src/stories/**/*.stories.mdx']
   all: ['!src/components/index.js', '!src/components/*.vue']
 
 '🛠️ Build':
 - build/rollup.config.js
 - src/entry.js
+- .github/**/*
 
 '🧩 Token':
 - src/assets/sass/**/*
+- src/stories/tokens/*.stories.mdx

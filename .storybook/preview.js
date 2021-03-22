@@ -8,6 +8,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import Multiselect from 'vue-multiselect';
 import VCalendar from 'v-calendar';
+import vueHljs from "vue-hljs";
+import hljs from "highlight.js";
+import "vue-hljs/dist/style.css";
+
 
 import { directive as onClickOutside } from 'vue-on-click-outside' 
 Vue.directive('on-click-outside', onClickOutside)
@@ -18,6 +22,7 @@ import _ from 'lodash';
 Object.defineProperty(Vue.prototype, '_', { value: _ });
 
 Vue.config.productionTip = false;
+Vue.config.ignoredElements = [/^ion-/];
 
 import {
 	ProgressBar,
@@ -51,7 +56,9 @@ import {
 	Palete,
 	TypographyList,
 	Space,
+	Iconography,
 	BorderBuilder,
+	SourceCodeWrapper,
 	CopyToken,
 } from '../src/docs-components';
 
@@ -60,6 +67,7 @@ import { longClickDirective } from 'vue-long-click'
 const longClickInstance = longClickDirective({delay: 400, interval: 50});
 Vue.directive('longclick', longClickInstance);
 
+Vue.use(vueHljs, { hljs });
 Vue.use(BootstrapVue);
 Vue.use(VCalendar, {
 	locales: {
@@ -74,6 +82,7 @@ Vue.use(VCalendar, {
 
 Vue.component('multiselect', Multiselect);
 Vue.component('palete', Palete);
+Vue.component('iconography', Iconography);
 Vue.component('space', Space);
 Vue.component('actions-list', ActionsList);
 Vue.component('status-item', StatusItem);
@@ -105,6 +114,7 @@ Vue.component('totalizer', Totalizer);
 Vue.component('modal-window', ModalWindow);
 Vue.component('vueSlider', vueSlider);
 Vue.component('tooltip', Tooltip);
+Vue.component('source-code-wrapper', SourceCodeWrapper);
 
 addParameters({
 	options: {
@@ -115,7 +125,7 @@ addParameters({
 		addonPanelInRight: false,
 		sidebarAnimations: true,
 		isToolshown: true,
-		enableShortcuts: false,
+		enableShortcuts: true,
 		theme: CuidaTheme,
 		showRoots: true,
 		showNav: true,

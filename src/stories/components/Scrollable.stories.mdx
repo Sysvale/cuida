@@ -50,6 +50,56 @@ export const Template = (args, { argTypes }) => ({
 	`,
 });
 
+export const template = /*html*/ `
+	<cds-scrollable
+		max-height="150px"
+	>
+		<p>
+			Existe uma teoria que diz que, se um dia alguém descobrir 
+			exatamente para que serve o Universo e por que ele está aqui, ele 
+			desaparecerá instantaneamente e será substituídopor al go ainda 
+			mais estranho e inexplicável. Existe uma segunda teoria que diz 
+			que isso já aconteceu.
+		</p>
+		<p>
+			Existe uma teoria que diz que, se um dia alguém descobrir 
+			exatamente para que serve o Universo e por que ele está aqui, ele 
+			desaparecerá instantaneamente e será substituídopor al go ainda 
+			mais estranho e inexplicável. Existe uma segunda teoria que diz 
+			que isso já aconteceu.
+		</p>
+		<p>
+			Existe uma teoria que diz que, se um dia alguém descobrir 
+			exatamente para que serve o Universo e por que ele está aqui, ele 
+			desaparecerá instantaneamente e será substituídopor al go ainda 
+			mais estranho e inexplicável. Existe uma segunda teoria que diz 
+			que isso já aconteceu.
+		</p>
+		<p>
+			Existe uma teoria que diz que, se um dia alguém descobrir 
+			exatamente para que serve o Universo e por que ele está aqui, ele 
+			desaparecerá instantaneamente e será substituídopor al go ainda 
+			mais estranho e inexplicável. Existe uma segunda teoria que diz 
+			que isso já aconteceu.
+		</p>
+	</cds-scrollable>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
 # Scrollable
 
 ### Scrollable é um componente utilizado para o tornar o conteúdo envolvido "scrolável".
@@ -72,6 +122,7 @@ export const Template = (args, { argTypes }) => ({
 <Canvas>
 	<Story
 		name="Scrollable"
+		decorators={[docsDecorator]}
 		args={{
 			maxHeight: '150px',
 		}}

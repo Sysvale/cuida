@@ -52,6 +52,46 @@ export const Template = (args, { argTypes }) => ({
 	`,
 });
 
+export const template = /*html*/ `
+	<cds-expansion-card
+		icon="house-fill"
+		:main-value="32"
+		legend="UBSs com dados atualizados"
+		variant="blue"
+	>
+		<template v-slot:icon>
+			<b-icon-house-fill />
+		</template>
+		<template v-slot:content>
+			<p class="p-3">
+				Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
+				vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
+				Atirei o pau no gatis, per gatis num morreus. Pra lá , depois
+				divoltis porris, paradis. Leite de capivaris, leite de mula
+				manquis sem cabeça. Viva Forevis aptent taciti sociosqu ad
+				litora torquent. Per aumento de cachacis, eu reclamis. Nec
+				orci ornare consequat. Praesent lacinia ultrices consectetur.
+				Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
+			</p>
+		</template>
+	</cds-expansion-card>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
 # ExpansionCard
 
 ### ExpansionCard são componentes utilizados para mostrar informações com apelo gráfico de forma resumida e que podem se expandir para detalhar essas informações.
@@ -76,6 +116,7 @@ export const Template = (args, { argTypes }) => ({
 <Canvas>
 	<Story
 		name="ExpansionCard"
+		decorators={[docsDecorator]}
 		args={{
 			icon: 'house-fill',
 			mainValue: 32,
