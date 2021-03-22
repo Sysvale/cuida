@@ -50,7 +50,6 @@ import { CopyIcon } from 'vue-feather-icons';
 export default {
 	components: {
 		CopyIcon,
-		CopyToken,
 	},
 	data() {
 		return {

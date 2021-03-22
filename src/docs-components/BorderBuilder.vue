@@ -26,11 +26,9 @@
 
 <script>
 import { CopyIcon } from 'vue-feather-icons'
-import CopyToken from './CopyToken.vue';
 export default {
 	components: {
 		CopyIcon,
-		CopyToken,
 	},
 	data() {
 		return {
