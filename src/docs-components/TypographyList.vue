@@ -45,8 +45,8 @@
 </template>
 
 <script>
-import { CopyIcon } from 'vue-feather-icons'
-import CopyToken from './CopyToken.vue';
+import { CopyIcon } from 'vue-feather-icons';
+
 export default {
 	components: {
 		CopyIcon,
