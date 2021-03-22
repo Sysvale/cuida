@@ -58,7 +58,8 @@ import {
 	Space,
 	Iconography,
 	BorderBuilder,
-	SourceCodeWrapper
+	SourceCodeWrapper,
+	CopyToken,
 } from '../src/docs-components';
 
 import { longClickDirective } from 'vue-long-click'
@@ -105,6 +106,7 @@ Vue.component('expansion-card', ExpansionCard);
 Vue.component('highlight', Highlight);
 Vue.component('scrollable', Scrollable);
 Vue.component('border', BorderBuilder);
+Vue.component('copy-token', CopyToken);
 Vue.component('calendar', Calendar);
 Vue.component('filter-pill', FilterPill);
 Vue.component('slider', Slider);
