@@ -59,14 +59,17 @@ export default {
 				{
 					key: 'token',
 					label: 'Token',
+					tdClass: 'w-25',
 				},
 				{
 					key: 'value',
 					label: 'Características',
+					tdClass: 'w-25',
 				},
 				{
 					key: 'sample',
 					label: 'Exemplo',
+					tdClass: 'w-50',
 				},
 			],
 			items: [
@@ -180,7 +183,6 @@ export default {
 	font-size: var(--fontSize);
 	font-weight: var(--fontWeight);
 	letter-spacing: var(--letterSpacing);
-	width: 40%;
 }
 
 .button-sample {
