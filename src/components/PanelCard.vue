@@ -12,7 +12,7 @@
 			</div>
 		</div>
 		<hr class="panel-card__divider">
-		<div class="panel-card__content">
+		<div :class="contentClass">
 			<!-- @slot Slot usado para inserção de conteúdo customizado. -->
 			<slot />
 		</div>
@@ -38,6 +38,22 @@ export default {
 			default: 'Subtítulo',
 			required: true,
 		},
+		/**
+		 * Remove o padding padrão do corpo do card.
+		 */
+		noContentPadding: {
+			type: Boolean,
+			default: false,
+		},
+	},
+
+	computed: {
+		contentClass() {
+			if (this.noContentPadding) {
+				return 'panel-card__content--no-pading';
+			}
+			return 'panel-card__content';
+		},
 	},
 };
 </script>
@@ -61,6 +77,10 @@ export default {
 	}
 
 	&__content {
+		@include padding(onidirecional, 3);
+	}
+
+	&__content--no-padding {
 		@include padding(onidirecional, 3);
 	}
 
