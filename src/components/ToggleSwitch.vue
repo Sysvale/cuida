@@ -4,11 +4,18 @@
 			<input
 				v-model="isActive"
 				type="checkbox"
-				ref="toggleSwitchController"
 				:disabled="disabled"
 				@click="hadleClick"
 			>
-			<span class="switch__slider"></span>
+			<span
+				tabindex="0"
+				@focusout="internalFocus = 0"
+				class="switch__slider"
+				:class="{
+					'switch__slider--active-focused': internalFocus && isActive,
+					'switch__slider--inactive-focused': internalFocus && !isActive,
+				}"
+			/>
 		</label>
 	</div>
 </template>
@@ -18,6 +25,7 @@ export default {
 	data() {
 		return {
 			isActive: this.value,
+			internalFocus: this.focused,
 		};
 	},
 
@@ -56,14 +64,6 @@ export default {
 			this.$emit('input', !this.isActive);
 		},
 	},
-
-	watch: {
-		focused(value) {
-			if (value) {
-				this.$refs.toggleSwitchController.focus();
-			}
-		},
-	},
 };
 </script>
 <style lang="scss" scoped>
@@ -82,16 +82,6 @@ export default {
 
 		&:checked + .switch__slider {
 			background-color: $verde-piccolo-base;
-		}
-
-		&:focus + .switch__slider {
-			border: 1px solid $azul-bidu-light-1;
-			box-shadow: 0 0 0 0.2rem rgba($azul-bidu-light-1, .45);
-		}
-
-		&:focus:checked + .switch__slider {
-			box-shadow: 0 0 0 0.2rem rgba($verde-piccolo-light-1, .45);
-			border: 1px solid $verde-piccolo-light-1;
 		}
 
 		&:checked + .switch__slider:before {
@@ -122,6 +112,10 @@ export default {
 		transition: .35s;
 		border-radius: 80px;
 
+		&:focus {
+			outline: none;
+		}
+
 		&:before {
 			position: absolute;
 			content: "";
@@ -133,6 +127,16 @@ export default {
 			-webkit-transition: .35s;
 			border-radius: $border-radius-circulo;
 			transition: .35s;
+		}
+
+		&--active-focused {
+			box-shadow: 0 0 0 0.2rem rgba($verde-piccolo-light-1, .45);
+			border: 1px solid $verde-piccolo-light-1;
+		}
+
+		&--inactive-focused {
+			border: 1px solid $azul-bidu-light-1;
+			box-shadow: 0 0 0 0.2rem rgba($azul-bidu-light-1, .45);
 		}
 	}
 }
