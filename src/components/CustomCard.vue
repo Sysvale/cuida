@@ -7,19 +7,13 @@
 			</div>
 			<div class="ml-auto">
 				<!-- @slot Slot usado para inserção de componente à direita no header. -->
-				<slot name="header-right-container">
-					<div>X</div>
-				</slot>
+				<slot name="header-right-container" />
 			</div>
 		</div>
 		<hr class="custom-card__divider">
-		<!-- @slot Slot usado para inserção de conteúdo customizado. -->
 		<div class="custom-card__content">
-			<slot>
-				<div>
-					Content
-				</div>
-			</slot>
+			<!-- @slot Slot usado para inserção de conteúdo customizado. -->
+			<slot />
 		</div>
 	</div>
 </template>
