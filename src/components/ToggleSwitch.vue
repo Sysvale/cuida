@@ -6,7 +6,7 @@
 				type="checkbox"
 				ref="toggleSwitchController"
 				:disabled="disabled"
-				@click="selectCheckbox"
+				@click="hadleClick"
 			>
 			<span class="switch__slider"></span>
 		</label>
@@ -17,7 +17,7 @@
 export default {
 	data() {
 		return {
-			isActive: false,
+			isActive: this.value,
 		};
 	},
 
@@ -47,7 +47,7 @@ export default {
 	},
 
 	methods: {
-		selectCheckbox() {
+		hadleClick() {
 			/**
 			 * Evento utilizado para implementar o v-model.
 			* @event input
