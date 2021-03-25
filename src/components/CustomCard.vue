@@ -6,7 +6,7 @@
 				<span class="custom-card__subtitle">{{ subtitle }}</span>
 			</div>
 			<div class="ml-auto">
-				<!-- @slot Slot usado para inserção de componente à direita no header. -->
+				<!-- @slot Slot usado para inserção de elemento à direita no header. -->
 				<slot name="header-right-container" />
 			</div>
 		</div>
@@ -45,7 +45,7 @@ export default {
 @import '../assets/sass/app.scss';
 
 .custom-card {
-	background-color: #F5F5F5;
+	background-color: white;
 	border-radius: $border-radius-extra-pequeno;
 
 	&__divider {

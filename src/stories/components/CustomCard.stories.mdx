@@ -10,18 +10,23 @@ export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { CustomCard },
 	template: /*html*/ `
-		<custom-card
-			v-bind="$props"
-		>
-			Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
-			vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
-			Atirei o pau no gatis, per gatis num morreus. Pra lá , depois
-			divoltis porris, paradis. Leite de capivaris, leite de mula
-			manquis sem cabeça. Viva Forevis aptent taciti sociosqu ad
-			litora torquent. Per aumento de cachacis, eu reclamis. Nec
-			orci ornare consequat. Praesent lacinia ultrices consectetur.
-			Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
-		</custom-card>
+		<div style="background-color: #F5F5F5; padding: 24px;">
+			<custom-card
+				v-bind="$props"
+			>
+				<template v-slot:header-right-container>
+					<h2>#</h2>
+				</template>
+				Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
+				vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
+				Atirei o pau no gatis, per gatis num morreus. Pra lá , depois
+				divoltis porris, paradis. Leite de capivaris, leite de mula
+				manquis sem cabeça. Viva Forevis aptent taciti sociosqu ad
+				litora torquent. Per aumento de cachacis, eu reclamis. Nec
+				orci ornare consequat. Praesent lacinia ultrices consectetur.
+				Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
+			</custom-card>
+		</div>
 	`,
 });
 
@@ -30,6 +35,9 @@ export const template = /*html*/ `
 		title="Redes"
 		subtitle="Habilite as redes da regulação"
 	>
+		<template v-slot:header-right-container>
+			<h2>#</h2>
+		</template>
 		Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
 		vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
 		Atirei o pau no gatis, per gatis num morreus. Pra lá , depois
