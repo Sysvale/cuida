@@ -43,22 +43,22 @@ export const docsDecorator = () => {
 	};
 };
 
-# Switch
+# ToggleSwitch
 
-### Switchs são componentes utilizados para ativar popovers contendo filtros para listas e views.
+### ToggleSwitches são componentes utilizados para ativar ou desativar configurações ou opções específicas. 
+
 ---
 <br />
 
-## Recomendamos o uso de Switchs quando:
-- Você estiver trabalhando com filtros.
-- Recomendamos seu uso em conjunto com popovers contendo opções de filtragem.
+## Recomendações de uso:
+- A configuração controlada pelo ToggleSwitch deve aplicar mudanças automaticamente.
+- Ao ser usado em conjunto com labels, elas devem descrever dois estados, dependentes do estado do ToggleSwitch.
 
 <br />
 
-## Não recomendamos o uso de Switchs quando:
-- Você estiver procurando por um botão.
-- Você estiver procurando um dropdown.
-- Você estiver trabalhando com tabelas.
+## O que evitar:
+- Utilizar ToggleSwitch em formulários que possuem botão de submit.
+- Utilizar ToggleSwitches para controlar ações que dependam de requisições sem indicar o tempo de espera ao usuário.
 
 <br />
 
