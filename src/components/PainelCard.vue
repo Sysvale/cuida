@@ -1,17 +1,17 @@
 <template>
-	<div class="custom-card">
-		<div class="custom-card__header">
+	<div class="painel-card">
+		<div class="painel-card__header">
 			<div>
-				<p class="custom-card__title">{{ title }}</p>
-				<span class="custom-card__subtitle">{{ subtitle }}</span>
+				<p class="painel-card__title">{{ title }}</p>
+				<span class="painel-card__subtitle">{{ subtitle }}</span>
 			</div>
 			<div class="ml-auto">
 				<!-- @slot Slot usado para inserção de elemento à direita no header. -->
 				<slot name="header-right-container" />
 			</div>
 		</div>
-		<hr class="custom-card__divider">
-		<div class="custom-card__content">
+		<hr class="painel-card__divider">
+		<div class="painel-card__content">
 			<!-- @slot Slot usado para inserção de conteúdo customizado. -->
 			<slot />
 		</div>
@@ -44,7 +44,7 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
-.custom-card {
+.painel-card {
 	background-color: white;
 	border-radius: $border-radius-extra-pequeno;
 

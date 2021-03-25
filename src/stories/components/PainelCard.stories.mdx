@@ -1,17 +1,17 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
-import CustomCard from '../../components/CustomCard.vue';
+import PainelCard from '../../components/PainelCard.vue';
 
 <Meta
-	title="Componentes/Containers/CustomCard"
-	component={ CustomCard }
+	title="Componentes/Containers/PainelCard"
+	component={ PainelCard }
 />
 
 export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
-	components: { CustomCard },
+	components: { PainelCard },
 	template: /*html*/ `
 		<div style="background-color: #F5F5F5; padding: 24px;">
-			<custom-card
+			<painel-card
 				v-bind="$props"
 			>
 				<template v-slot:header-right-container>
@@ -25,13 +25,13 @@ export const Template = (args, { argTypes }) => ({
 				litora torquent. Per aumento de cachacis, eu reclamis. Nec
 				orci ornare consequat. Praesent lacinia ultrices consectetur.
 				Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
-			</custom-card>
+			</painel-card>
 		</div>
 	`,
 });
 
 export const template = /*html*/ `
-	<cds-custom-card
+	<cds-painel-card
 		title="Redes"
 		subtitle="Habilite as redes da regulação"
 	>
@@ -46,7 +46,7 @@ export const template = /*html*/ `
 		litora torquent. Per aumento de cachacis, eu reclamis. Nec
 		orci ornare consequat. Praesent lacinia ultrices consectetur.
 		Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
-	</cds-custom-card>`;
+	</cds-painel-card>`;
 
 export const docsDecorator = () => {
 	return {
@@ -64,19 +64,19 @@ export const docsDecorator = () => {
 	};
 };
 
-# CustomCard
+# PainelCard
 
-### CustomCards são componentes utilizados para ...
+### PainelCards são componentes utilizados para um estilo padrão de card com header com título, subtítulo e elemento opcional à direita e um slot padrão para conteúdo.
 ---
 <br />
 
-## Recomendamos o uso de CustomCards quando:
-- ...
+## Recomendamos o uso de PainelCards quando:
+- Pretende-se utilizar um card que use esse mesmo padrão de estilo descrito.
 
 <br />
 
-## Não recomendamos o uso de CustomCards quando:
-- ...
+## Não recomendamos o uso de PainelCards quando:
+- For necessário customizar o header do card de forma diferente da descrição.
 
 <br />
 
@@ -84,7 +84,7 @@ export const docsDecorator = () => {
 
 <Canvas>
 	<Story
-		name="CustomCard"
+		name="PainelCard"
 		decorators={[docsDecorator]}
 		args={{
 			title: 'Redes',
@@ -95,4 +95,4 @@ export const docsDecorator = () => {
 	</Story>
 </Canvas>
 
-<ArgsTable story="CustomCard" />
+<ArgsTable story="PainelCard" />

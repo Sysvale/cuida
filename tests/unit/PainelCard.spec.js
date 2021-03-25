@@ -1,5 +1,5 @@
 import { mount, shallowMount, createLocalVue } from '@vue/test-utils';
-import { CustomCard } from '../../src/components';
+import { PainelCard } from '../../src/components';
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
 
 const localVue = createLocalVue();
@@ -8,7 +8,7 @@ localVue.use(BootstrapVue);
 localVue.use(BootstrapVueIcons);
 
 test('Component is mounted properly', () => {
-	const wrapper = mount(CustomCard, {
+	const wrapper = mount(PainelCard, {
 		localVue,
 		propsData: {
 			title: 'Redes',
