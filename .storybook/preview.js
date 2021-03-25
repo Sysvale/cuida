@@ -50,7 +50,8 @@ import {
 	Slider,
 	Totalizer,
 	ModalWindow,
-	Tooltip
+	Tooltip,
+	ToggleSwitch,
 } from '../src/components';
 
 import {
@@ -117,6 +118,7 @@ Vue.component('modal-window', ModalWindow);
 Vue.component('vueSlider', vueSlider);
 Vue.component('tooltip', Tooltip);
 Vue.component('source-code-wrapper', SourceCodeWrapper);
+Vue.component('toggle-switch', ToggleSwitch);
 
 addParameters({
 	options: {
