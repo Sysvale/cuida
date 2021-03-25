@@ -41,6 +41,7 @@ import {
 	ProgressCircular,
 	AlertCard,
 	StepperInput,
+	PanelCard,
 	ExpansionCard,
 	Highlight,
 	Scrollable,
@@ -103,6 +104,7 @@ Vue.component('stepper', Stepper);
 Vue.component('progress-circular', ProgressCircular);
 Vue.component('alert-card', AlertCard);
 Vue.component('stepper-input', StepperInput);
+Vue.component('panel-card', PanelCard);
 Vue.component('expansion-card', ExpansionCard);
 Vue.component('highlight', Highlight);
 Vue.component('scrollable', Scrollable);

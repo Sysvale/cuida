@@ -140,7 +140,7 @@ export default {
 	width: 100%;
 }
 
-.preview__conainter {
+.preview__container {
 	padding: 12px 0px;
 }
 
