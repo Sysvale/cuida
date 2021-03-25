@@ -1,0 +1,90 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import CustomCard from '../../components/CustomCard.vue';
+
+<Meta
+	title="Componentes/Containers/CustomCard"
+	component={ CustomCard }
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { CustomCard },
+	template: /*html*/ `
+		<custom-card
+			v-bind="$props"
+		>
+			Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
+			vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
+			Atirei o pau no gatis, per gatis num morreus. Pra lá , depois
+			divoltis porris, paradis. Leite de capivaris, leite de mula
+			manquis sem cabeça. Viva Forevis aptent taciti sociosqu ad
+			litora torquent. Per aumento de cachacis, eu reclamis. Nec
+			orci ornare consequat. Praesent lacinia ultrices consectetur.
+			Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
+		</custom-card>
+	`,
+});
+
+export const template = /*html*/ `
+	<cds-custom-card
+		title="Redes"
+		subtitle="Habilite as redes da regulação"
+	>
+		Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
+		vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
+		Atirei o pau no gatis, per gatis num morreus. Pra lá , depois
+		divoltis porris, paradis. Leite de capivaris, leite de mula
+		manquis sem cabeça. Viva Forevis aptent taciti sociosqu ad
+		litora torquent. Per aumento de cachacis, eu reclamis. Nec
+		orci ornare consequat. Praesent lacinia ultrices consectetur.
+		Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
+	</cds-custom-card>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
+# CustomCard
+
+### CustomCards são componentes utilizados para ...
+---
+<br />
+
+## Recomendamos o uso de CustomCards quando:
+- ...
+
+<br />
+
+## Não recomendamos o uso de CustomCards quando:
+- ...
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="CustomCard"
+		decorators={[docsDecorator]}
+		args={{
+			title: 'Redes',
+			subtitle: 'Habilite as redes da regulação',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="CustomCard" />
