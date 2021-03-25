@@ -66,17 +66,19 @@ export const docsDecorator = () => {
 
 # PanelCard
 
-### PanelCards são componentes utilizados para um estilo padrão de card com header com título, subtítulo e elemento opcional à direita e um slot padrão para conteúdo.
+### PanelCards são o componentes utilizados para agrupar informação em containers com uma estrutura mínima formada por título, subtítulo, e conteúdo.
 ---
 <br />
 
-## Recomendamos o uso de PanelCards quando:
-- Pretende-se utilizar um card que use esse mesmo padrão de estilo descrito.
+## Recomendações de uso:
+- PanelCards são indicados para a construção de páginas e dashboards com cars em grid.
+- O slot de ações deve agrupar ícones ou botões que aplicam mudanças em todas as informações contidas no PainelCard.
 
 <br />
 
 ## Não recomendamos o uso de PanelCards quando:
-- For necessário customizar o header do card de forma diferente da descrição.
+- For preciso agrupar elementos fora da estrutura básica: título + subtítulo + conteúdo.
+- Ele for o único componente do seu tipo na página.
 
 <br />
 
