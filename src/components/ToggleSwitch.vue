@@ -9,7 +9,8 @@
 			>
 			<span
 				tabindex="0"
-				@focusout="internalFocus = 0"
+				@focusout="internalFocus = false"
+				@focusin="internalFocus = true"
 				class="switch__slider"
 				:class="{
 					'switch__slider--active-focused': internalFocus && isActive,
@@ -114,6 +115,10 @@ export default {
 
 		&:focus {
 			outline: none;
+		}
+
+		&:focus:before {
+			bottom: 2.5px;
 		}
 
 		&:before {
