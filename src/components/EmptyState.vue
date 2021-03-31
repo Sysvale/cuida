@@ -2,22 +2,18 @@
 	<div
 		class="empty-state"
 	>
-		<!-- @slot Slot usado para inserção de conteúdo customizado na imagem do empty-state. -->
-		<slot name="image">
+		<!-- @slot Slot usado para inserção de conteúdo gráfico
+			customizado como alternativa a imagem do empty-state. -->
+		<slot name="graphic-element">
 			<img
 				class="empty-state__image"
 				:src="image"
 				:alt="imageDescription"
 			/>
 		</slot>
-
-		<!-- @slot Slot usado para inserção de conteúdo customizado no título do
-				empty state. -->
-		<slot name="title">
-			<div class="empty-state__title">
-				{{ title }}
-			</div>
-		</slot>
+		<div class="empty-state__title">
+			{{ title }}
+		</div>
 
 		<div class="empty-state__text">
 			<!-- @slot Slot usado para inserção de conteúdo customizado no texto do corpo do
