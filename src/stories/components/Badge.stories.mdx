@@ -31,14 +31,17 @@ export const Template = (args, { argTypes }) => ({
 	template: /*html*/ `
 		<badge
 			v-bind="$props" 
-		/>`,
+		>
+			Conteúdo
+		</badge>`,
 });
 
 export const template = /*html*/ `
 	<cds-badge 
-		content="Conteúdo da badge"
 		variant="gray"
-	/>`;
+	>
+		Conteúdo
+	</cds-badge>`;
 
 export const docsDecorator = () => {
 	return {
@@ -82,7 +85,6 @@ export const docsDecorator = () => {
 		name="Badge"
 		decorators={[docsDecorator]}
 		args={{
-			content: 'Conteúdo da badge',
 			variant: 'gray',
 		}}
 	>
