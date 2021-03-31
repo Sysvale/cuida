@@ -96,13 +96,13 @@ export default {
 
 	&__label {
 		@include corpo-2;
-		@include peso-de-fonte-regular;
+		font-weight: $peso-de-fonte-regular;
 		color: $cinza-7;
 	}
 
 	&__content {
 		@include corpo-2;
-		@include peso-de-fonte-semibold;
+		font-weight: $peso-de-fonte-semibold;
 		color: $cinza-7;
 	}
 
