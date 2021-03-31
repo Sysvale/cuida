@@ -31,9 +31,8 @@ export const template = /*html*/`
 		number-of-expanded-actions="2"
 		position="right"
 		:actions="actions"
-		:collapsed-action-name="Mais ações"
-		:expanded-action-name="Menos ações"
 		@action-clicked="handleClick"
+		@expanded="toggleExpandState"
 	>
 		<template
 			slot="action"
