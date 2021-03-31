@@ -1,9 +1,9 @@
 <template>
 	<span class="action-list">
 		<div
-			:class="position === 'right' ? 'action-list--right' : 'action-list--left'"
+			:class="left ? 'action-list--left' : 'action-list--right'"
 		>
-			<div v-if="position === 'left'">
+			<div v-if="left">
 				<div
 					v-if="actions.length > numberOfExpandedActions"
 					class="action-list__item--right-bordered"
@@ -41,7 +41,7 @@
 					</div>
 				</transition>
 			</div>
-			<div v-if="position === 'right'">
+			<div v-if="!left">
 				<div
 					v-if="actions.length > numberOfExpandedActions"
 					class="action-list__item--left-bordered"
@@ -76,12 +76,11 @@ export default {
 			required: false,
 		},
 		/**
-		 * Especifica se o componente vai ser renderizado do lado direito ou do lado esquerdo.
+		 * Faz com que o componente seja renderizado do lado esquerdo.
 		 */
-		position: {
-			type: String,
-			default: 'right',
-			required: false,
+		left: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	data() {
