@@ -4,9 +4,6 @@ import ActionsList from '../../components/ActionsList.vue';
 <Meta
 	title="Componentes/Display/ActionsList"
 	component={ ActionsList }
-	argTypes={{
-		position: { control: { type: 'select', options: ['right', 'left'] } },
-	}}
 />
 
 export const Template = (args, { argTypes }) => ({
@@ -29,7 +26,6 @@ export const Template = (args, { argTypes }) => ({
 export const template = /*html*/`
 	<cds-actions-list 
 		number-of-expanded-actions="2"
-		position="right"
 		:actions="actions"
 		@action-clicked="handleClick"
 		@expanded="toggleExpandState"
@@ -103,9 +99,6 @@ export const actions = [
 		args={{
 			actions: actions,
 			numberOfExpandedActions: 2,
-			collapsedActionName: 'Mais ações',
-			expandedActionName: 'Menos ações',
-			position: 'right',
 		}}
 	>
 		{ Template.bind({}) }
