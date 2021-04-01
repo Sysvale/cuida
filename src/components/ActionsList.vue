@@ -1,26 +1,20 @@
 <template>
-	<span
-		id="actionList"
-	>
+	<span class="action-list">
 		<div
-			:class="position === 'right' ? 'action-list--right' : 'action-list--left'"
+			:class="left ? 'action-list--left' : 'action-list--right'"
 		>
-			<div
-				v-if="position === 'left'"
-			>
+			<div v-if="left">
 				<div
-					v-if="!itsBeignShown && actions.length > numberOfExpandedActions"
+					v-if="actions.length > numberOfExpandedActions"
 					class="action-list__item--right-bordered"
-					@click="expandList"
+					@click="toggleCollapseState"
 				>
-					{{ collapsedActionName }}
-				</div>
-				<div
-					v-if="actions.length > numberOfExpandedActions && itsBeignShown"
-					class="action-list__item--right-bordered"
-					@click="collapseList"
-				>
-					{{ expandedActionName }}
+					<!-- @slot Slot para renderização customizada do conteúdo do item
+						de expandir/colapsar a lista
+					-->
+					<slot name="action-trigger">
+						{{ itsBeingShown ? 'Menos ações' : 'Mais ações'}}
+					</slot>
 				</div>
 			</div>
 			<div
@@ -35,34 +29,27 @@
 						@type {Event}
 					-->
 					<div
-						v-if="i <= internalnumberOfExpandedActions - 1"
+						v-if="i <= internalNumberOfExpandedActions - 1"
 						:class="i === 0 ? 'action-list__item' : 'action-list__item--left-bordered'"
 						@click="$emit('action-clicked', action)"
 					>
 						<!-- @slot Scoped slot para renderização customizada das 'actions'.
-							A proprieade 'list', que pode ser acessada através do slot,
+							A propriedade 'list', que pode ser acessada através do slot,
 							representa o array de actions a ser exibido.
 						-->
 						<slot name="action" :list="action" />
 					</div>
 				</transition>
 			</div>
-			<div
-				v-if="position === 'right'"
-			>
+			<div v-if="!left">
 				<div
-					v-if="!itsBeignShown && actions.length > numberOfExpandedActions"
+					v-if="actions.length > numberOfExpandedActions"
 					class="action-list__item--left-bordered"
-					@click="expandList"
+					@click="toggleCollapseState"
 				>
-					{{ collapsedActionName }}
-				</div>
-				<div
-					v-if="actions.length > numberOfExpandedActions && itsBeignShown"
-					class="action-list__item--left-bordered"
-					@click="collapseList"
-				>
-					{{ expandedActionName }}
+					<slot name="action-trigger">
+						{{ itsBeingShown ? 'Menos ações' : 'Mais ações'}}
+					</slot>
 				</div>
 			</div>
 		</div>
@@ -89,49 +76,32 @@ export default {
 			required: false,
 		},
 		/**
-		 * O nome que vai ser mostrado no último item da lista de actions quando ela estiver colapsada.
+		 * Faz com que o componente seja renderizado do lado esquerdo.
 		 */
-		collapsedActionName: {
-			type: String,
-			default: 'Mais ações',
-			required: false,
-		},
-		/**
-		 * O nome que vai ser mostrado no último item da lista de actions quando ela estiver expandida.
-		 */
-		expandedActionName: {
-			type: String,
-			default: 'Menos ações',
-			description: `The name that will be displayed in the last item of the actions list when it's expanded.`,
-			required: false,
-		},
-		/**
-		 * Especifica se o componente vai ser renderizado do lado direito ou do lado esquerdo.
-		 */
-		position: {
-			type: String,
-			default: 'right',
-			description: `Speficies if the component will be rendered right side or left side.`,
-			required: false,
+		left: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	data() {
 		return {
 			action: _.cloneDeep(this.actions),
-			internalnumberOfExpandedActions: this.numberOfExpandedActions,
-			itsBeignShown: false,
+			internalNumberOfExpandedActions: this.numberOfExpandedActions,
+			itsBeingShown: false,
 		};
 	},
 
 	methods: {
-		expandList() {
-			this.internalnumberOfExpandedActions = this.action.length;
-			this.itsBeignShown = !this.itsBeignShown;
-		},
-
-		collapseList() {
-			this.internalnumberOfExpandedActions = this.numberOfExpandedActions;
-			this.itsBeignShown = !this.itsBeignShown;
+		toggleCollapseState() {
+			this.internalNumberOfExpandedActions = this.itsBeingShown
+				? this.numberOfExpandedActions : this.action.length;
+			this.itsBeingShown = !this.itsBeingShown;
+			/**
+			* Evento emitido quando a lista é expandida ('true') ou contraída ('false').
+			* @event expanded
+			* @type {Event}
+			*/
+			this.$emit('expanded', this.itsBeingShown);
 		},
 	},
 };
@@ -139,52 +109,51 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
-#actionList .action-list {
-	color: $cinza-6;
-	font-weight: 600;
-	display: flex;
-
+.action-list {
 	&--right {
-		@extend .action-list;
+		color: $cinza-6;
+		font-weight: 600;
+		display: flex;
 		justify-content: flex-end;
 	}
 
 	&--left {
-		@extend .action-list;
+		@extend .action-list--right;
 		justify-content: flex-start;
 	}
-}
 
-#actionList .action-list__item {
-	padding: 24px;
-	cursor: pointer;
-	border-radius: 1px;
+	&__item {
+		padding: 24px;
+		cursor: pointer;
+		border-radius: 1px;
 
-	&:hover {
-		background-color: $cinza-2;
+		&:hover {
+			background-color: $cinza-2;
+		}
+
+		&--right-bordered {
+			@extend .action-list__item;
+			border-right: 1px solid $cinza-4;
+		}
+
+		&--left-bordered {
+			@extend .action-list__item;
+			border-left: 1px solid $cinza-4;
+		}
 	}
 
-	&--right-bordered {
-		@extend .action-list__item;
-		border-right: 1px solid $cinza-4;
+	&__slide-fade-enter-active {
+		transition: all .3s ease;
 	}
 
-	&--left-bordered {
-		@extend .action-list__item;
-		border-left: 1px solid $cinza-4;
+	&__slide-fade-leave-active {
+		transition: all .1s ease;
 	}
-}
 
-#actionList .action-list__slide-fade-enter-active {
-	transition: all .3s ease;
-}
-
-#actionList .action-list__slide-fade-leave-active {
-	transition: all .1s ease;
-}
-
-#actionList .action-list__slide-fade-enter, .action-list__slide-fade-leave-to {
-	transform: translateX(10px);
-	opacity: 0;
+	&__slide-fade-enter,
+	&__slide-fade-leave-to {
+		transform: translateX(10px);
+		opacity: 0;
+	}
 }
 </style>

@@ -33,7 +33,6 @@ describe('Action list functioning', () => {
 			propsData: {
 				actions,
 				numberOfExpandedActions: 1,
-				position: 'right',
 			},
 		});
 
@@ -62,7 +61,6 @@ describe('Action list functioning', () => {
 			propsData: {
 				actions,
 				numberOfExpandedActions: 1,
-				position: 'right',
 			},
 		});
 
@@ -93,8 +91,38 @@ describe('Action list functioning', () => {
 		expect(wrapper.emitted()['action-clicked']).toBeTruthy();
 		expect(wrapper.emitted()['action-clicked']).toEqual([
 			[
-				{img: 'img1', title: 'Icon1'},
+				{
+					img: 'img1',
+					title: 'Icon1'
+				},
 			],
 		]);
+	});
+});
+
+describe('Action list side style', () => {
+	test('If the left side class are applied when left prop is true', () => {
+		window._ = lodash;
+		const wrapper = mount(ActionsList, {
+			localVue,
+			propsData: {
+				actions,
+				left: true,
+			},
+		});
+
+		expect(wrapper.findAll('.action-list--left').length).toBe(1);
+	});
+
+	test('If the right class are applied by default', () => {
+		window._ = lodash;
+		const wrapper = mount(ActionsList, {
+			localVue,
+			propsData: {
+				actions,
+			},
+		});
+
+		expect(wrapper.findAll('.action-list--right').length).toBe(1);
 	});
 });
