@@ -16,10 +16,10 @@
 				@focusin="internalFocus = true"
 				class="switch__slider"
 				:class="{
-					'switch__slider--active-focused': internalFocus && isActive,
-					'switch__slider--inactive-focused': internalFocus && !isActive,
-					'switch__slider--small': small,
-					'switch__slider--large': large,
+					'switch__slider--active-focused': (internalFocus && isActive) && !disabled,
+					'switch__slider--inactive-focused': (internalFocus && !isActive) && !disabled,
+					'switch__slider--small': small && small !== large,
+					'switch__slider--large': large && small !== large,
 					'switch__slider--medium': small === large,
 				}"
 			/>
@@ -78,18 +78,14 @@ export default {
 	computed: {
 		toggleSwitchSize() {
 			if (this.small === this.large) {
-				return 'switch--small';
+				return 'switch--medium';
 			}
 
 			if (this.small) {
 				return 'switch--small';
 			}
 
-			if (this.large) {
-				return 'switch--large';
-			}
-
-			return 'switch--medium';
+			return 'switch--large';
 		},
 	},
 
@@ -221,17 +217,15 @@ export default {
 			}
 		}
 
-		&:focus {
+		&--medium:focus {
 			outline: none;
 		}
 
 		&--active-focused {
 			box-shadow: 0 0 0 0.2rem rgba($verde-piccolo-light-1, .45);
-			outline: 1px solid $verde-piccolo-light-1;
 		}
 
 		&--inactive-focused {
-			outline: 1px solid $azul-bidu-light-1;
 			box-shadow: 0 0 0 0.2rem rgba($azul-bidu-light-1, .45);
 		}
 	}
