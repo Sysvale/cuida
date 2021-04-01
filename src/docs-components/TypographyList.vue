@@ -120,9 +120,8 @@ export default {
 					fontWeight: 400,
 					letterSpacing: 0.5,
 					sample: `Existe uma teoria que diz que, se um dia alguém descobrir exatamente para que serve o
-						Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituídopor al
-						go ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que 
-						isso já aconteceu.`,
+						Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituído por algo 
+						ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que isso já aconteceu.`,
 				},
 				{
 					name: 'corpo-2',
@@ -130,9 +129,8 @@ export default {
 					fontWeight: 400,
 					letterSpacing: 0.25,
 					sample: `Existe uma teoria que diz que, se um dia alguém descobrir exatamente para que serve o
-						Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituídopor al
-						go ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que 
-						isso já aconteceu.`,
+						Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituído por algo 
+						ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que isso já aconteceu.`,
 				},
 				{
 					name: 'legenda',
@@ -140,9 +138,8 @@ export default {
 					fontWeight: 400,
 					letterSpacing: 0.4,
 					sample: `Existe uma teoria que diz que, se um dia alguém descobrir exatamente para que serve o
-						Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituídopor al
-						go ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que 
-						isso já aconteceu.`,
+						Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituído por algo 
+						ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que isso já aconteceu.`,
 				},
 				{
 					name: 'botao-1',
