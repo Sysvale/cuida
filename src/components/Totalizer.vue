@@ -84,13 +84,13 @@ export default {
 
 	&__value {
 		@include titulo-2;
-		@include peso-de-fonte-medium;
+		font-weight: $peso-de-fonte-medium;
 		color: $cinza-8;
 	}
 
 	&__subtitle {
 		@include legenda;
-		@include peso-de-fonte-medium;
+		font-weight: $peso-de-fonte-medium;
 		color: $cinza-6;
 	}
 
