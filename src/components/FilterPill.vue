@@ -12,16 +12,17 @@
 			<span class="filter-pill__label">{{ this.label }}: </span>
 			<span class="filter-pill__content">{{ this.content }} </span>
 
-			<chevron-down-icon
-				size="1.2x"
+			<ion-icon
+				name="chevron-down-outline"
 				:class="(isActive && !disabled) ? 'filter-pill__chevron--up' : 'filter-pill__chevron--down'"
-			/>
+			>
+			</ion-icon>
 		</span>
 
 		<div
 			v-if="isActive"
 			:style="dynamicStyle"
-			class="cds-modal-window"
+			class="filter-pill__dropdown"
 			v-on-click-outside="hide"
 		>
 			<!-- @slot Slot usado para inserção de conteúdo dentro do Modal Window. -->
@@ -31,24 +32,12 @@
 </template>
 
 <script>
-import { ChevronDownIcon } from 'vue-feather-icons';
-
 export default {
 	data() {
 		return {
-			filterPillOffsets: null,
-			filterPillDomReference: null,
 			id: null,
 			isActive: false,
-			showAgeFilter: false,
-			showSortByFilter: false,
-			sortingModalXPosition: 260,
-			sortingModalWidth: 300,
 		};
-	},
-
-	components: {
-		ChevronDownIcon,
 	},
 
 	mounted() {
@@ -79,16 +68,29 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Controla o tamanho do popover do FilterPill.
+		 * O tamanho nunca é menor que a largura do FilterPill.
+		 */
+		dropdownWidth: {
+			type: Number,
+			default: 0,
+		},
 	},
 
 	computed: {
 		dynamicStyle() {
 			const filterPillDomReference = document.getElementById(this.id);
-			const sortingModalWidth = parseFloat(window.getComputedStyle(filterPillDomReference).width);
+			const filterWidth = parseFloat(window.getComputedStyle(filterPillDomReference).width);
+
+			if (filterWidth > this.dropdownWidth) {
+				return {
+					'--width': `${filterWidth}px`,
+				};
+			}
 
 			return {
-				'--height': `${this.height}px`,
-				'--width': `${sortingModalWidth}px`,
+				'--width': `${this.dropdownWidth}px`,
 			};
 		},
 	},
@@ -123,7 +125,7 @@ export default {
 		display: inline-block;
 		padding: 8px 16px;
 		border: 1px solid $cinza-4;
-		border-radius: 8px;
+		border-radius: $border-radius-extra-pequeno;
 		cursor: pointer;
 
 		&--disabled {
@@ -131,7 +133,7 @@ export default {
 			cursor: default;
 		}
 
-		&:hover,
+		&:hover:not(.filter-pill__container--disabled),
 		&--active {
 			border-color: transparent !important;
 			box-shadow: 0 0px 0px 4px rgba($azul-sonic-base, 0.16);
@@ -151,27 +153,35 @@ export default {
 	}
 
 	&__chevron--up {
+		margin-left: 8px;
+		margin-bottom: -4px;
 		color: $cinza-6;
 		transition: all 0.25s ease-in-out;
 		transform: rotate(180deg);
 	}
 
 	&__chevron--down {
+		margin-left: 8px;
+		margin-bottom: -4px;
 		color: $cinza-6;
 		transition: all 0.25s ease-in-out;
 	}
+
+	&__dropdown {
+		width: var(--width);
+		position: absolute;
+		background-color: white;
+		padding: 20px;
+		top: 94px;
+		border-radius: $border-radius-extra-pequeno;
+		box-shadow: 0px 0px 8px rgba($cinza-9, .08);
+		border: 1px solid $cinza-2;
+		z-index:999999999;
+	}
 }
 
-.cds-modal-window {
-	height: var(--height);
-	width: var(--width);
-	position: absolute;
-	background-color: white;
-	padding: 20px;
-	top: 94px;
-	border-radius: 8px;
-	box-shadow: 0px 0px 8px rgba($cinza-9, .08);
-	border: 1px solid $cinza-2;
-	z-index:999999999;
+ion-icon {
+    visibility: visible !important;
+	font-size: 18px !important;
 }
 </style>
