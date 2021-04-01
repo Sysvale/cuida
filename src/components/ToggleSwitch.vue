@@ -1,6 +1,9 @@
 <template>
 	<div>
-		<label class="switch">
+		<label
+			class="switch"
+			:class="toggleSwitchSize"
+		>
 			<input
 				v-model="isActive"
 				type="checkbox"
@@ -13,8 +16,11 @@
 				@focusin="internalFocus = true"
 				class="switch__slider"
 				:class="{
-					'switch__slider--active-focused': internalFocus && isActive,
-					'switch__slider--inactive-focused': internalFocus && !isActive,
+					'switch__slider--active-focused': (internalFocus && isActive) && !disabled,
+					'switch__slider--inactive-focused': (internalFocus && !isActive) && !disabled,
+					'switch__slider--small': small && small !== large,
+					'switch__slider--large': large && small !== large,
+					'switch__slider--medium': small === large,
 				}"
 			/>
 		</label>
@@ -40,6 +46,20 @@ export default {
 			required: true,
 		},
 		/**
+		* Torna o ToggleSwitch pequeno.
+		*/
+		small: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		* Torna o ToggleSwitch grande.
+		*/
+		large: {
+			type: Boolean,
+			default: false,
+		},
+		/**
 		 * Controla a disponibilidade do ToggleSwitch
 		 */
 		disabled: {
@@ -52,6 +72,20 @@ export default {
 		focused: {
 			type: Boolean,
 			default: false,
+		},
+	},
+
+	computed: {
+		toggleSwitchSize() {
+			if (this.small === this.large) {
+				return 'switch--medium';
+			}
+
+			if (this.small) {
+				return 'switch--small';
+			}
+
+			return 'switch--large';
 		},
 	},
 
@@ -73,8 +107,21 @@ export default {
 .switch {
 	position: relative;
 	display: inline-block;
-	width: 56px;
-	height: 30px;
+
+	&--small {
+		width: 28px;
+		height: 16px;
+	}
+
+	&--medium {
+		width: 40px;
+		height: 23px;
+	}
+
+	&--large {
+		width: 56px;
+		height: 30px;
+	}
 
 	input {
 		opacity: 0;
@@ -85,7 +132,19 @@ export default {
 			background-color: $verde-piccolo-base;
 		}
 
-		&:checked + .switch__slider:before {
+		&:checked + .switch__slider--small:before {
+			-webkit-transform: translateX(12px);
+			-ms-transform: translateX(12px);
+			transform: translateX(12px);
+		}
+
+		&:checked + .switch__slider--medium:before {
+			-webkit-transform: translateX(16px);
+			-ms-transform: translateX(16px);
+			transform: translateX(16px);
+		}
+
+		&:checked + .switch__slider--large:before {
 			-webkit-transform: translateX(24px);
 			-ms-transform: translateX(24px);
 			transform: translateX(24px);
@@ -113,34 +172,60 @@ export default {
 		transition: .35s;
 		border-radius: 80px;
 
-		&:focus {
+		&--small {
+			&:before {
+				position: absolute;
+				content: "";
+				height: 12px;
+				width: 12px;
+				left: 2px;
+				bottom: 2px;
+				background-color: $branco;
+				-webkit-transition: .35s;
+				border-radius: $border-radius-circulo;
+				transition: .35s;
+			}
+		}
+
+		&--medium {
+			&:before {
+				position: absolute;
+				content: "";
+				height: 18px;
+				width: 18px;
+				left: 3px;
+				bottom: 2.7px;
+				background-color: $branco;
+				-webkit-transition: .35s;
+				border-radius: $border-radius-circulo;
+				transition: .35s;
+			}
+		}
+
+		&--large {
+			&:before {
+				position: absolute;
+				content: "";
+				height: 24px;
+				width: 24px;
+				left: 4px;
+				bottom: 3px;
+				background-color: $branco;
+				-webkit-transition: .35s;
+				border-radius: $border-radius-circulo;
+				transition: .35s;
+			}
+		}
+
+		&--medium:focus {
 			outline: none;
-		}
-
-		&:focus:before {
-			bottom: 2.5px;
-		}
-
-		&:before {
-			position: absolute;
-			content: "";
-			height: 24px;
-			width: 24px;
-			left: 4px;
-			bottom: 3px;
-			background-color: $branco;
-			-webkit-transition: .35s;
-			border-radius: $border-radius-circulo;
-			transition: .35s;
 		}
 
 		&--active-focused {
 			box-shadow: 0 0 0 0.2rem rgba($verde-piccolo-light-1, .45);
-			border: 1px solid $verde-piccolo-light-1;
 		}
 
 		&--inactive-focused {
-			border: 1px solid $azul-bidu-light-1;
 			box-shadow: 0 0 0 0.2rem rgba($azul-bidu-light-1, .45);
 		}
 	}
