@@ -27,7 +27,6 @@ Vue.config.ignoredElements = [/^ion-/];
 import {
 	ProgressBar,
 	ActionsList,
-	StatusItem,
 	RadioButtonGroup,
 	Timeline,
 	NavBar,
@@ -87,7 +86,6 @@ Vue.component('palete', Palete);
 Vue.component('iconography', Iconography);
 Vue.component('space', Space);
 Vue.component('actions-list', ActionsList);
-Vue.component('status-item', StatusItem);
 Vue.component('progress-bar', ProgressBar);
 Vue.component('actions-list', ActionsList);
 Vue.component('radio-button-group', RadioButtonGroup);
