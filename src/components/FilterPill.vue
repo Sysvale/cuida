@@ -25,7 +25,7 @@
 			class="filter-pill__dropdown"
 			v-on-click-outside="hide"
 		>
-			<!-- @slot Slot usado para inserção de conteúdo dentro do Modal Window. -->
+			<!-- @slot Slot usado para inserção de conteúdo dentro do dropdown do FilterPill. -->
 			<slot />
 		</div>
 	</div>
