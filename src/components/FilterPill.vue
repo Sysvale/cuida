@@ -69,7 +69,7 @@ export default {
 			default: false,
 		},
 		/**
-		 * Controla o tamanho do popover do FilterPill.
+		 * Controla o tamanho do popover do FilterPill (em pixels).
 		 * O tamanho nunca é menor que a largura do FilterPill.
 		 */
 		dropdownWidth: {
