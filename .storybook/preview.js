@@ -48,7 +48,6 @@ import {
 	FilterPill,
 	Slider,
 	Totalizer,
-	ModalWindow,
 	Tooltip,
 	ToggleSwitch,
 } from '../src/components';
@@ -112,7 +111,6 @@ Vue.component('calendar', Calendar);
 Vue.component('filter-pill', FilterPill);
 Vue.component('slider', Slider);
 Vue.component('totalizer', Totalizer);
-Vue.component('modal-window', ModalWindow);
 Vue.component('vueSlider', vueSlider);
 Vue.component('tooltip', Tooltip);
 Vue.component('source-code-wrapper', SourceCodeWrapper);
