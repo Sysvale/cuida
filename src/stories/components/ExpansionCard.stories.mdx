@@ -34,7 +34,7 @@ export const Template = (args, { argTypes }) => ({
 			v-bind="$props" 
 		>
 			<template v-slot:icon>
-				<b-icon-house-fill />
+				<ion-icon name="home" />
 			</template>
 			<template v-slot:content>
 				<p class="p-3">
@@ -60,7 +60,7 @@ export const template = /*html*/ `
 		variant="blue"
 	>
 		<template v-slot:icon>
-			<b-icon-house-fill />
+			<ion-icon name="home" />
 		</template>
 		<template v-slot:content>
 			<p class="p-3">
@@ -122,6 +122,7 @@ export const docsDecorator = () => {
 			mainValue: 32,
 			legend: 'UBSs com dados atualizados',
 			variant: 'blue',
+			expansible: true,
 		}}
 	>
 		{ Template.bind({}) }
