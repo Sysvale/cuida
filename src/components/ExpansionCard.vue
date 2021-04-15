@@ -35,11 +35,18 @@
 					<slot name="icon" />
 				</div>
 				<div class="expansion-card__content">
-					<h1 class="expansion-card__main-value">
-						{{ mainValue }}
-					</h1>
+					<!-- @slot Slot para informação principal do card no template padrão. -->
+					<slot name="main-value">
+						<h1 class="expansion-card__main-value">
+							{{ mainValue }}
+						</h1>
+					</slot>
 					<p class="expansion-card__legend">
-						{{ legend }}
+						<!-- @slot Slot para legenda da informação principal do card recolhido,
+						no template padrão. Torna-se o título do card quando este é estendido.-->
+						<slot name="legend">
+							{{ legend }}
+						</slot>
 					</p>
 				</div>
 			</div>
@@ -56,7 +63,9 @@
 					</div>
 					<div class="expansion-card__content">
 						<p class="expansion-card__legend">
-							{{ legend }}
+							<slot name="legend">
+								{{ legend }}
+							</slot>
 						</p>
 						<span class="expansion-card__main-value">
 							{{ subtitle }}
@@ -74,13 +83,7 @@
 </template>
 
 <script>
-import { BIcon, BIconArrowsAngleExpand, BIconArrowsAngleContract } from 'bootstrap-vue';
-
 export default {
-	components: {
-		BIconArrowsAngleExpand,
-		BIconArrowsAngleContract,
-	},
 	props: {
 		/**
 		 * Variante do ExpansionCard. São 9 variantes: 'turquoise', 'green', 'blue',
@@ -99,12 +102,19 @@ export default {
 			default: null,
 		},
 		/**
-		 * Informação principal do card (no template padrão), pode ser a quantidade 
+		 * Informação principal do card (no template padrão), pode ser a quantidade
 		 * de resultados, por exemplo.
 		 */
 		mainValue: {
 			type: Number,
 			default: null,
+		},
+		/**
+		 * Indica se o card é expansível.
+		 */
+		expansible: {
+			type: Boolean,
+			default: true,
 		},
 	},
 
@@ -146,24 +156,26 @@ export default {
 		toggleCardStyle(status) {
 			this.isHovering = false;
 
-			switch (status) {
-				case 'hover':
-					if (!this.isExpanded) {
-						this.isHovering = true;
-					}
-					break;
-				case 'expand':
-				case 'contract':
-					this.isExpanded = !this.isExpanded;
-					/**
-					* Evento emitido quando o card é expandido ('true') ou contraído ('false').
-					* @event expanded
-					* @type {Event}
-					*/
-					this.$emit('expanded', this.isExpanded);
-					break;
-				default:
-					break;
+			if (this.expansible) {
+				switch (status) {
+					case 'hover':
+						if (!this.isExpanded) {
+							this.isHovering = true;
+						}
+						break;
+					case 'expand':
+					case 'contract':
+						this.isExpanded = !this.isExpanded;
+						/**
+						* Evento emitido quando o card é expandido ('true') ou contraído ('false').
+						* @event expanded
+						* @type {Event}
+						*/
+						this.$emit('expanded', this.isExpanded);
+						break;
+					default:
+						break;
+				}
 			}
 		},
 	},
@@ -174,7 +186,16 @@ export default {
 @import '../assets/sass/app.scss';
 
 @keyframes content-animation {
-	from { margin-top: 24px; opacity: 0; visibility: hidden; height: 50%; } to { visibility: visible; opacity: 1; height: 100%;}
+	from {
+		margin-top: 24px;
+		opacity: 0;
+		visibility: hidden;
+		height: 50%;
+	} to {
+		visibility: visible;
+		opacity: 1;
+		height: 100%;
+	}
 }
 
 ::v-deep .expansion-card__expand-icon path {
