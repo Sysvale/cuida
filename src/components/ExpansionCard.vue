@@ -192,7 +192,7 @@ export default {
 	position: relative;
 	flex-direction: column;
 	align-items: center;
-	@include padding(onidirecional, 3);
+	padding: pa(4);
 	border-radius: 16px;
 
 	border: 1px solid $cinza-3;
@@ -307,19 +307,19 @@ export default {
 				@include legenda;
 				color: $cinza-6;
 				margin-bottom: 2px;
-				@include margin(onidirecional, 0);
+				margin: ma(0);
 			}
 
 			&__legend {
 				@include subtitulo-3;
-				@include margin(onidirecional, 0);
+				margin: ma(0);
 				color: $cinza-8;
 				max-width: 100%;
 				font-weight: 600;
 			}
 
 			&__icon {
-				@include margin(direita, 3);
+				margin: mr(4);
 			}
 		}
 	}
@@ -344,12 +344,12 @@ export default {
 	&__main-value {
 		@include titulo-1;
 		color: $cinza-8;
-		@include margin(inferior, 0);
+		margin: mb(0);
 	}
 
 	&__legend {
 		@include legenda;
-		@include margin(onidirecional, 0);
+		margin: ma(0);
 		color: $cinza-6;
 		max-width: 155px;
 	}
@@ -363,7 +363,7 @@ export default {
 		align-self: center;
 		align-items: center;
 		justify-content: center;
-		@include margin(direita, 3);
+		margin: mr(4);
 
 		&--blue {
 			color: $azul-sonic-base;

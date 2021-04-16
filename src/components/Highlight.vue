@@ -76,7 +76,7 @@ export default {
 @import '../assets/sass/app.scss';
 
 .highlight__container {
-	@include padding(onidirecional, 1);
+	padding: pa(1);
 	border-radius: 4px;
 	background-size: 200%;
 

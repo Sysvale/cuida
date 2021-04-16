@@ -1,59 +1,100 @@
-$spacer: 1rem !default;
+$spacers: 0, .25, .5, .75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3;
+$rem: 16px;
 
-$fatores: ();
-$fatores: map-merge(
-	(
-		0: 0,
-		1: .25,
-		2: .5,
-		3: 1,
-		4: 1.5,
-		5: 3,
-		6: 6,
-	),
-	$fatores
-);
-
-@mixin padding($direcao, $indice) {
-    @if ($direcao == 'horizontal' or $direcao == 'esquerda') {
-		padding-left: ($spacer * map-get($fatores, $indice)) !important;
-	}
-
-	@if ($direcao == 'horizontal' or $direcao == 'direita') {
-		padding-right: ($spacer * map-get($fatores, $indice)) !important;
-	}
-
-	@if ($direcao == 'vertical' or $direcao == 'superior') {
-		padding-top: ($spacer * map-get($fatores, $indice)) !important;
-	}
-
-	@if ($direcao == 'vertical' or $direcao == 'inferior') {
-		padding-bottom: ($spacer * map-get($fatores, $indice)) !important;
-	}
-
-	@if ($direcao == 'onidirecional') {
-		padding: ($spacer * map-get($fatores, $indice)) !important;
-	}
+@function getSpacerValue($n) {
+	@return nth($spacers, $n + 1) * $rem;
 }
 
-@mixin margin($direcao, $indice) {
-    @if ($direcao == 'horizontal' or $direcao == 'esquerda') {
-		margin-left: ($spacer * map-get($fatores, $indice)) !important;
-	}
+@function getNegativeSpacerValue($n) {
+	@return nth($spacers, $n + 1) * -$rem;
+}
 
-	@if ($direcao == 'horizontal' or $direcao == 'direita') {
-		margin-right: ($spacer * map-get($fatores, $indice)) !important;
-	}
+//Padding functions
 
-	@if ($direcao == 'vertical' or $direcao == 'superior') {
-		margin-top: ($spacer * map-get($fatores, $indice)) !important;
-	}
+@function pa($n) {
+	@return getSpacerValue($n);
+}
 
-	@if ($direcao == 'vertical' or $direcao == 'inferior') {
-		margin-bottom: ($spacer * map-get($fatores, $indice)) !important;
-	}
+@function pt($n) {
+	@return getSpacerValue($n) 0px 0px 0px;
+}
 
-	@if ($direcao == 'onidirecional') {
-		margin: ($spacer * map-get($fatores, $indice)) !important;
-	}
+@function pr($n) {
+	@return 0px getSpacerValue($n) 0px 0px;
+}
+
+@function pb($n) {
+	@return 0px 0px getSpacerValue($n) 0px;
+}
+
+@function pl($n) {
+	@return 0px 0px 0px getSpacerValue($n);
+}
+
+@function py($n) {
+	@return getSpacerValue($n) 0px;
+}
+
+@function px($n) {
+	@return 0px getSpacerValue($n);
+}
+
+//Positive margin functions
+
+@function ma($n) {
+	@return getSpacerValue($n);
+}
+
+@function mt($n) {
+	@return getSpacerValue($n) 0px 0px 0px;
+}
+
+@function mr($n) {
+	@return 0px getSpacerValue($n) 0px 0px;
+}
+
+@function mb($n) {
+	@return 0px 0px getSpacerValue($n) 0px;
+}
+
+@function ml($n) {
+	@return 0px 0px 0px getSpacerValue($n);
+}
+
+@function my($n) {
+	@return getSpacerValue($n) 0px;
+}
+
+@function mx($n) {
+	@return 0px getSpacerValue($n);
+}
+
+//Negative margin functions
+
+@function ma-n($n) {
+	@return getNegativeSpacerValue($n);
+}
+
+@function mt-n($n) {
+	@return getNegativeSpacerValue($n) 0px 0px 0px;
+}
+
+@function mr-n($n) {
+	@return 0px getNegativeSpacerValue($n) 0px 0px;
+}
+
+@function mb-n($n) {
+	@return 0px 0px getNegativeSpacerValue($n) 0px;
+}
+
+@function ml-n($n) {
+	@return 0px 0px 0px getNegativeSpacerValue($n);
+}
+
+@function my-n($n) {
+	@return getNegativeSpacerValue($n) 0px;
+}
+
+@function mx-n($n) {
+	@return 0px getNegativeSpacerValue($n);
 }

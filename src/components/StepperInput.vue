@@ -189,8 +189,8 @@ export default {
 	}
 
 	&__field {
-		@include padding(onidirecional, 2);
-		@include margin(direita, 2);
+		padding: pa(2);
+		margin: mr(2);
 		border-radius: 4px;
 		height: 36px;
 		border: none;

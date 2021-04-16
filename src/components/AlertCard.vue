@@ -195,11 +195,11 @@ export default {
 #alert-card .alert-card {
 	display: flex;
 	align-items: center;
-	@include padding(onidirecional, 3);
+	padding: pa(4);
 	border-radius: 16px;
 
 	&__container {
-		@extend .alert-card;	
+		@extend .alert-card;
 		border: 1px solid $cinza-3;
 
 		&--selectable {
@@ -257,7 +257,7 @@ export default {
 	}
 
 	&__content {
-		@include margin(superior, 3);
+		margin: mt(4);
 	}
 
 	&__content-container {
@@ -308,7 +308,7 @@ export default {
 }
 
 #alert-card .custom-checkbox {
-	@include margin(superior, 3);
+	margin: mt(4);
 	align-self: flex-start;
 	margin-right: 32px;
 	width: 14px;
