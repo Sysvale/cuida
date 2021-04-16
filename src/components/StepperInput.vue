@@ -118,21 +118,18 @@ export default {
 				} else {
 					stepperInputClass += ' stepper-input--disabled';
 				}
-
-			} else {
-				if (!this.disabled) {
-					if (this.state === 'default') {
-						stepperInputClass += ' stepper-input--focused';
-					} else if (this.state === 'valid') {
-						stepperInputClass += ' stepper-input--focused-valid';
-					} else if (this.state === 'invalid') {
-						stepperInputClass += ' stepper-input--focused-invalid';
-					}
+			} else if (!this.disabled) {
+				if (this.state === 'default') {
+					stepperInputClass += ' stepper-input--focused';
+				} else if (this.state === 'valid') {
+					stepperInputClass += ' stepper-input--focused-valid';
+				} else if (this.state === 'invalid') {
+					stepperInputClass += ' stepper-input--focused-invalid';
 				}
 			}
 
 			return stepperInputClass;
-		}
+		},
 	},
 
 	watch: {
@@ -164,9 +161,9 @@ export default {
 	},
 
 	methods: {
-		changeValue (amount) {
+		changeValue(amount) {
 			this.internalValue = parseInt(this.internalValue) + amount;
-		}
+		},
 	},
 };
 </script>

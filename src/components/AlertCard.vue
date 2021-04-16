@@ -130,7 +130,7 @@ export default {
 	components: {
 		InfoIcon,
 		AlertTriangleIcon,
-		AlertCircleIcon
+		AlertCircleIcon,
 	},
 
 	data() {
@@ -143,7 +143,7 @@ export default {
 		dynamicIcon() {
 			switch (this.variant) {
 				case 'info':
-					return 'info-icon'
+					return 'info-icon';
 				case 'warning':
 					return 'alert-triangle-icon';
 				case 'danger':
@@ -158,11 +158,11 @@ export default {
 
 			if (!this.muted) {
 				if (this.selectable) {
-					dynamicClass = 'alert-card__container--selectable';	
+					dynamicClass = 'alert-card__container--selectable';
 				}
-				
+
 				if (this.isSelected) {
-					return dynamicClass + ` alert-card__container--selected-${this.variant}`
+					return `${dynamicClass} alert-card__container--selected-${this.variant}`;
 				}
 			} else {
 				dynamicClass = 'alert-card__container--muted';
@@ -172,8 +172,8 @@ export default {
 		},
 
 		iconClass() {
-			return `icon__container--${this.variant} ${this.noTitle ? 'align-self-center' : ''}`
-		}
+			return `icon__container--${this.variant} ${this.noTitle ? 'align-self-center' : ''}`;
+		},
 	},
 
 	methods: {

@@ -174,7 +174,11 @@ export default {
 @import '../assets/sass/app.scss';
 
 @keyframes content-animation {
-	from { margin-top: 24px; opacity: 0; visibility: hidden; height: 50%; } to { visibility: visible; opacity: 1; height: 100%;}
+	from {
+		margin-top: 24px; opacity: 0; visibility: hidden; height: 50%;
+	} to {
+		visibility: visible; opacity: 1; height: 100%;
+	}
 }
 
 ::v-deep .expansion-card__expand-icon path {
