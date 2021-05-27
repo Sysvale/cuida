@@ -7,8 +7,8 @@ exports[`Component is mounted properly 1`] = `
 				Dummy label 2
 			</a></li><li id="Dummylabel32" text="Dummy label 3" class="nav-item nav-bar__item-container nav-bar__item--light"><a href="#" target="_self" class="nav-link">
 				Dummy label 3
-			</a></li><li id="Dummyoptionwithsubitems3" class="nav-item b-nav-dropdown dropdown nav-bar__item-container nav-bar__item--light" to="[object Object]"><a id="Dummyoptionwithsubitems3__BV_toggle_" role="button" aria-haspopup="true" aria-expanded="false" href="#Dummyoptionwithsubitems3" target="_self" class="nav-link dropdown-toggle"><span>Dummy option with subitems</span></a>
-<ul tabindex="-1" aria-labelledby="Dummyoptionwithsubitems3__BV_toggle_" class="dropdown-menu">
+			</a></li><li id="Dummyoptionwithsubitems13" class="nav-item b-nav-dropdown dropdown nav-bar__item-container nav-bar__item--light" to="[object Object]"><a id="Dummyoptionwithsubitems13__BV_toggle_" role="button" aria-haspopup="true" aria-expanded="false" href="#Dummyoptionwithsubitems13" target="_self" class="nav-link dropdown-toggle"><span>Dummy option with subitems 1</span></a>
+<ul tabindex="-1" aria-labelledby="Dummyoptionwithsubitems13__BV_toggle_" class="dropdown-menu">
   <li role="presentation"><a id="Dummyitem10-subitem" role="menuitem" href="#" target="_self" class="dropdown-item">
       Dummy item 1
     </a></li>
@@ -19,6 +19,19 @@ exports[`Component is mounted properly 1`] = `
       Dummy item 3
     </a></li>
 </ul>
+</li>
+<li id="Dummyoptionwithsubitems24" class="nav-item b-nav-dropdown dropdown nav-bar__item-container nav-bar__item--light" to="[object Object]"><a id="Dummyoptionwithsubitems24__BV_toggle_" role="button" aria-haspopup="true" aria-expanded="false" href="#Dummyoptionwithsubitems24" target="_self" class="nav-link dropdown-toggle"><span>Dummy option with subitems 2</span></a>
+  <ul tabindex="-1" aria-labelledby="Dummyoptionwithsubitems24__BV_toggle_" class="dropdown-menu">
+    <li role="presentation"><a id="Dummyitem40-subitem" role="menuitem" href="#" target="_self" class="dropdown-item">
+        Dummy item 4
+      </a></li>
+    <li role="presentation"><a id="Dummyitem51-subitem" role="menuitem" href="#" target="_self" class="dropdown-item">
+        Dummy item 5
+      </a></li>
+    <li role="presentation"><a id="Dummyitem62-subitem" role="menuitem" href="#" target="_self" class="dropdown-item">
+        Dummy item 6
+      </a></li>
+  </ul>
 </li>
 </ul>
 </span>
