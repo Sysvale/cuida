@@ -159,7 +159,7 @@ export default {
 			if (
 				this.isDropdown(item)
 				&& this.internalActiveParent
-				&& this.internalActiveParent.path === item.path
+				&& this.internalActiveParent === item
 			) {
 				accClass = `${accClass} active-parent`;
 			}
