@@ -156,16 +156,12 @@
 
 <script>
 import moment from 'moment';
-import { ArrowRightIcon  } from 'vue-feather-icons';
 import { ChevronLeftIcon } from 'vue-feather-icons';
-import { ChevronRightIcon  } from 'vue-feather-icons';
 moment.locale('pt-br');
 
 export default {
 	components: {
-		ArrowRightIcon,
 		ChevronLeftIcon,
-		ChevronRightIcon 
 	},
 
 	data() {
