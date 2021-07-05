@@ -75,7 +75,7 @@ export default {
 		/**
 		 * Define a espessura do circulo da ProgressCircular.
 		 */
-		width: { // small (1.8 ou 2) e large (3.8 ou 4.2)
+		width: {
 			type: String,
 			default: 'default',
 			required: false,
