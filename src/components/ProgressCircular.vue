@@ -108,11 +108,11 @@ export default {
 		stroke() {
 			switch(this.width) {
 			case 'small':
-				return 1.8;
+				return 1.5;
 			case 'large':
-				return 3.8;
+				return 4.5;
 			default:
-				return 2.6;
+				return 3.5;
 			}
 		},
 
