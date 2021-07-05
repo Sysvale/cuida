@@ -205,37 +205,3 @@ test('Component is mounted properly', () => {
 
 	expect(wrapper).toMatchSnapshot();
 });
-
-test('If the invervals are shown when the hour is selected', async () => {
-	window._ = lodash;
-	const wrapper = shallowMount(Calendar, {
-		localVue,
-		propsData: {
-			timePicker: true,
-			scheduleAttributes,
-		},
-	});
-	
-	expect(wrapper.findAll('.schedule__time-interval').length).toBe(12);
-	expect(wrapper.findAll('.schedule-skeleton').length).toBe(0);
-	expect(wrapper.findAll('.schedule__minutes-container').length).toBe(0);
-
-	wrapper.find('.schedule__time-interval').trigger('click');
-
-	await localVue.nextTick();
-
-	expect(wrapper.findAll('.schedule__minutes-container').length).toBe(1);
-});
-
-test('If the skeleton are shown when there is no data in the configuration object', async () => {
-	window._ = lodash;
-	const wrapper = shallowMount(Calendar, {
-		localVue,
-		propsData: {
-			timePicker: true,
-			scheduleAttributes: {},
-		},
-	});
-	
-	expect(wrapper.findAll('.schedule-skeleton').length).toBe(12);
-});
