@@ -17,9 +17,10 @@ export const Template = (args, { argTypes }) => ({
 	template: /*html*/ `
 		<filter-pill
 			v-bind="$props"
-			:isActive="isActive"
 			@click="isActive = !isActive"
-		/>
+		>
+			<p>Slot do dropdown do FilterPill</p>
+		</filter-pill>
 	`,
 });
 
@@ -74,7 +75,6 @@ export const docsDecorator = () => {
 		args={{
 			label: 'Idade',
 			content: '0 a 120 anos',
-			isActive: false,
 		}}
 	>
 		{ Template.bind({}) }

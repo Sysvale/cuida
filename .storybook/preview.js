@@ -27,7 +27,6 @@ Vue.config.ignoredElements = [/^ion-/];
 import {
 	ProgressBar,
 	ActionsList,
-	StatusItem,
 	RadioButtonGroup,
 	Timeline,
 	NavBar,
@@ -49,7 +48,6 @@ import {
 	FilterPill,
 	Slider,
 	Totalizer,
-	ModalWindow,
 	Tooltip,
 	ToggleSwitch,
 } from '../src/components';
@@ -87,7 +85,6 @@ Vue.component('palete', Palete);
 Vue.component('iconography', Iconography);
 Vue.component('space', Space);
 Vue.component('actions-list', ActionsList);
-Vue.component('status-item', StatusItem);
 Vue.component('progress-bar', ProgressBar);
 Vue.component('actions-list', ActionsList);
 Vue.component('radio-button-group', RadioButtonGroup);
@@ -114,7 +111,6 @@ Vue.component('calendar', Calendar);
 Vue.component('filter-pill', FilterPill);
 Vue.component('slider', Slider);
 Vue.component('totalizer', Totalizer);
-Vue.component('modal-window', ModalWindow);
 Vue.component('vueSlider', vueSlider);
 Vue.component('tooltip', Tooltip);
 Vue.component('source-code-wrapper', SourceCodeWrapper);
