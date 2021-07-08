@@ -10,6 +10,7 @@
 		@dragleave.prevent.stop="isOnDragEnterState = false"
 		@dragend.prevent.stop="isOnDragEnterState = false"
 		@drop="dropHandler"
+		@click="linkClick"
 	>
 		<div class="text-center" :class="sizeClass.wrapperPadding">
 			<b-form-file
@@ -38,7 +39,6 @@
 							<a
 								href="javascript:void(0)"
 								class="upload-input__search-link"
-								@click="linkClick"
 							>
 								pesquise no seu dispositivo
 							</a>
