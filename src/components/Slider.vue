@@ -7,7 +7,20 @@
 			:max="max"
 			:value="value"
 			@input="valueChanged"
-		/>
+		>
+			<template v-slot:tooltip="tooltip">
+				<!-- @slot Scoped slot para renderização customizada dos tooltips.
+					A proprieade 'tooltip', que pode ser acessada através do slot,
+					contém pos (posição do componente em %), index (o índice do slider),
+					value (o valor do slider), focus (se o slider está no estado de focus ou não),
+					disabled (se o slider está disabilitado ou não)
+				-->
+				<slot
+					name="tooltip"
+					:tooltip="tooltip"
+				/>
+			</template>
+		</vue-slider>
 	</div>
 </template>
 <script>
