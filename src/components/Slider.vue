@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<vue-slider
-			v-bind="$attrs"
+			v-bind="attrs"
 			:enable-cross="false"
 			:min="min"
 			:max="max"
@@ -51,6 +51,18 @@ export default {
 			required: true,
 		},
 	},
+	computed: {
+		attrs() {
+			const {
+				min,
+				max,
+				value,
+				...attrs
+			} = this.$attrs;
+
+			return attrs;
+		},
+	},
 	methods: {
 		valueChanged(value) {
 			/**
@@ -59,9 +71,9 @@ export default {
 			* @type {Event}
 			*/
 			this.$emit('input', value);
-		}
+		},
 	},
-}
+};
 </script>
 <style lang="scss">
 @import '../assets/sass/app.scss';

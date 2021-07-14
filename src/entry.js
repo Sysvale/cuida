@@ -1,6 +1,7 @@
+import vueSlider from 'vue-slider-component';
+import 'vue-slider-component/theme/default.css';
+import { directive as onClickOutside } from 'vue-on-click-outside';
 import * as components from './components/index';
-import vueSlider from 'vue-slider-component/src/vue2-slider.vue';
-import { directive as onClickOutside } from 'vue-on-click-outside' 
 
 // install function executed by Vue.use()
 function install(Vue) {
@@ -8,7 +9,7 @@ function install(Vue) {
 
 	install.installed = true;
 
-	Vue.directive('on-click-outside', onClickOutside)
+	Vue.directive('on-click-outside', onClickOutside);
 
 	Vue.component('vueSlider', vueSlider);
 
