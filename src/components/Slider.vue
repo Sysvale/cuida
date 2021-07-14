@@ -2,11 +2,10 @@
 	<div>
 		<vue-slider
 			v-bind="attrs"
+			v-model="internalValue"
 			:enable-cross="false"
 			:min="min"
 			:max="max"
-			:value="value"
-			@input="valueChanged"
 		>
 			<template v-slot:tooltip="tooltip">
 				<!-- @slot Scoped slot para renderização customizada dos tooltips.
@@ -51,6 +50,11 @@ export default {
 			required: true,
 		},
 	},
+	data() {
+		return {
+			internalValue: this.value,
+		};
+	},
 	computed: {
 		attrs() {
 			const {
@@ -63,14 +67,9 @@ export default {
 			return attrs;
 		},
 	},
-	methods: {
-		valueChanged(value) {
-			/**
-			 * Evento utilizado para implementar o v-model.
-			* @event input
-			* @type {Event}
-			*/
-			this.$emit('input', value);
+	watch: {
+		internalValue(newValue) {
+			this.$emit('input', newValue);
 		},
 	},
 };
