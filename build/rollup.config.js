@@ -17,6 +17,7 @@ concat(
 		'src/assets/sass/variables/colors.scss',
 		'src/assets/sass/variables/typography.scss',
 		'src/assets/sass/variables/spacing.scss',
+		'src/assets/sass/variables/borders.scss',
 	],
 	'dist/@sysvale/tokens.scss',
 );
