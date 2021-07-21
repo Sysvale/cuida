@@ -1,13 +1,37 @@
 <template>
 	<div>
 		<vue-slider
-			v-bind="$attrs"
+			v-bind="attrs"
+			v-model="internalValue"
 			:enable-cross="false"
 			:min="min"
 			:max="max"
-			:value="value"
-			@input="valueChanged"
-		/>
+		>
+			<template v-slot:tooltip="tooltip">
+				<!-- @slot Scoped slot para renderização customizada dos tooltips.
+					A propriedade 'tooltip', que pode ser acessada através do slot,
+					contém pos (posição do componente em %), index (o índice do slider),
+					value (o valor do slider), focus (se o slider está no estado de focus ou não),
+					disabled (se o slider está disabilitado ou não)
+				-->
+				<slot
+					name="tooltip"
+					:tooltip="tooltip"
+				/>
+			</template>
+			<template v-slot:process="process">
+				<!-- @slot Scoped slot para renderização customizada do process.
+					A propriedade 'process', que pode ser acessada através do slot,
+					contém start (posição  inicial do slider), end (posição final do slider),
+					index (índice do slider - pode ser usado no multiprogress),
+					style (informações de estilo sobre o slider)
+				-->
+				<slot
+					name="process"
+					:process="process"
+				/>
+			</template>
+		</vue-slider>
 	</div>
 </template>
 <script>
@@ -38,17 +62,29 @@ export default {
 			required: true,
 		},
 	},
-	methods: {
-		valueChanged(value) {
-			/**
-			 * Evento utilizado para implementar o v-model.
-			* @event input
-			* @type {Event}
-			*/
-			this.$emit('input', value);
-		}
+	data() {
+		return {
+			internalValue: this.value,
+		};
 	},
-}
+	computed: {
+		attrs() {
+			const {
+				min,
+				max,
+				value,
+				...attrs
+			} = this.$attrs;
+
+			return attrs;
+		},
+	},
+	watch: {
+		internalValue(newValue) {
+			this.$emit('input', newValue);
+		},
+	},
+};
 </script>
 <style lang="scss">
 @import '../assets/sass/app.scss';
