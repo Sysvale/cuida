@@ -101,6 +101,7 @@ export default {
 /* process style */
 .vue-slider-process {
 	border-radius: 15px;
+	background: $azul-sonic-light-1;
 }
 /* mark style */
 .vue-slider-mark {
@@ -124,6 +125,7 @@ export default {
 	cursor: pointer;
 	width: 100%;
 	height: 100%;
+	border: 2px solid $azul-sonic-light-1;
 	border-radius: 50%;
 	background-color: #fff;
 	box-sizing: border-box;
