@@ -126,6 +126,12 @@ export default {
 	font-size: 14px;
 	white-space: nowrap;
 }
+
+.vue-slider-dot {
+	width: 16px!important;
+	height: 16px!important;
+}
+
 /* dot style */
 .vue-slider-dot-handle {
 	cursor: pointer;
@@ -133,7 +139,7 @@ export default {
 	height: 100%;
 	border: 2px solid $azul-sonic-light-1;
 	border-radius: 50%;
-	background-color: #fff;
+	background-color: $azul-sonic-light-2;
 	box-sizing: border-box;
 	box-shadow: 0.5px 0.5px 2px 1px rgba(0, 0, 0, 0.32);
 }
