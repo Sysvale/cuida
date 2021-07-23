@@ -19,7 +19,10 @@
 					:tooltip="tooltip"
 				/>
 			</template>
-			<template v-slot:process="process">
+			<template
+				v-if="hasProcessSlot"
+				v-slot:process="process"
+			>
 				<!-- @slot Scoped slot para renderização customizada do process.
 					A propriedade 'process', que pode ser acessada através do slot,
 					contém start (posição  inicial do slider), end (posição final do slider),
@@ -77,6 +80,9 @@ export default {
 			} = this.$attrs;
 
 			return attrs;
+		},
+		hasProcessSlot() {
+			return !!this.$scopedSlots.process;
 		},
 	},
 	watch: {
