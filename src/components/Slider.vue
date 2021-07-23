@@ -137,7 +137,7 @@ export default {
 	cursor: pointer;
 	width: 100%;
 	height: 100%;
-	border: 2px solid $azul-sonic-light-1;
+	border: 1.5px solid $azul-sonic-light-1;
 	border-radius: 50%;
 	background-color: $azul-sonic-light-2;
 	box-sizing: border-box;
