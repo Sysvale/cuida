@@ -19,7 +19,10 @@
 					:tooltip="tooltip"
 				/>
 			</template>
-			<template v-slot:process="process">
+			<template
+				v-if="hasProcessSlot"
+				v-slot:process="process"
+			>
 				<!-- @slot Scoped slot para renderização customizada do process.
 					A propriedade 'process', que pode ser acessada através do slot,
 					contém start (posição  inicial do slider), end (posição final do slider),
@@ -78,6 +81,9 @@ export default {
 
 			return attrs;
 		},
+		hasProcessSlot() {
+			return !!this.$scopedSlots.process;
+		},
 	},
 	watch: {
 		internalValue(newValue) {
@@ -101,6 +107,7 @@ export default {
 /* process style */
 .vue-slider-process {
 	border-radius: 15px;
+	background: $azul-sonic-light-1;
 }
 /* mark style */
 .vue-slider-mark {
@@ -119,13 +126,20 @@ export default {
 	font-size: 14px;
 	white-space: nowrap;
 }
+
+.vue-slider-dot {
+	width: 16px!important;
+	height: 16px!important;
+}
+
 /* dot style */
 .vue-slider-dot-handle {
 	cursor: pointer;
 	width: 100%;
 	height: 100%;
+	border: 2px solid $azul-sonic-light-1;
 	border-radius: 50%;
-	background-color: #fff;
+	background-color: $azul-sonic-light-2;
 	box-sizing: border-box;
 	box-shadow: 0.5px 0.5px 2px 1px rgba(0, 0, 0, 0.32);
 }
