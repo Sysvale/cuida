@@ -1,24 +1,44 @@
 <template>
-	<div class="d-flex align-items-center justify-content-center mr-5">
+	<div class="playground">
 		<copy-token :target="target" />
 
 		<div>
-			<label for="spacing_type">Espaçamento:</label>
+			<label
+				for="spacing_type"
+				class="playground__field-label"
+			>
+				Espaçamento:
+			</label>
 			<br>
 
 			<div>
-				<input type="checkbox" id="spacing_padding" v-model="spacing_padding">
-				<label for="scales">Padding</label>
+				<input
+					type="radio"
+					id="padding"
+					value="Padding"
+					v-model="picked_spacer"
+				>
+				<label for="padding">Padding</label>
 			</div>
 
 			<div>
-				<input type="checkbox" id="spacing_margin" v-model="spacing_margin">
-				<label for="horns">Margin</label>
+				<input
+					type="radio"
+					id="margin"
+					value="Margin"
+					v-model="picked_spacer"
+				>
+				<label for="margin">Margin</label>
 			</div>
 
 			<br>
-			<br>
-			<label for="direction">Direção:</label>
+
+			<label
+				for="direction"
+				class="playground__field-label"
+			>
+				Direção:
+			</label>
 			<br>
 			<select id="direction" v-model="direction">
 				<option value="t">Top</option>
@@ -32,39 +52,40 @@
 
 			<br>
 			<br>
-			<label for="size">Tamanho:</label>
+			<label
+				for="size"
+				class="playground__field-label"
+			>
+				Tamanho:
+			</label>
 			<br>
 			<select id="size" v-model="size">
-				<option value="0">0</option>
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-				<option value="7">7</option>
-				<option value="8">8</option>
-				<option value="9">9</option>
-				<option value="10">10</option>
-				<option value="11">11</option>
-				<option value="12">12</option>
+				<option
+					v-for="option in optionsList"
+					:key="option"
+					:value="option"
+				>
+					{{ option }}
+				</option>
 			</select>
+
 		</div>
-		<div class="sqrp ml-5">
+
+		<div class="playground__demo-element">
 			<div
-				class="sqr pa"
-				:style="syledStyles"
+				class="demo-element__outer-container"
+				:style="spacingStyles"
 			>
 				<div
-					class="sqrw"
+					class="demo-element__inner-container"
 				>
 					<div
-						@click="target = 'spac'"
-						id="spac"
-						class="copy-clip d-flex align-middle align-items-center"
+						@click="target = `${spacer}${direction}(${size})`"
+						:id="`${spacer}${direction}(${size})`"
+						class="inner-container__token-text"
 					>
-						<copy-icon size="1.1x" class="text-secondary mr-3"></copy-icon>
-						{{ `${spacing}${direction}(${size})` }}
+						<copy-icon size="1.1x" class="inner-container__icon"></copy-icon>
+						{{ `${spacer}${direction}(${size})` }}
 					</div>
 				</div>
 			</div>
@@ -79,85 +100,105 @@ export default {
 	components: {
 		CopyIcon,
 	},
+
 	data() {
 		return {
 			target: '',
 			direction: 'a',
-			spacing: 'p',
 			size: '0',
-			spacing_padding: false,
-			spacing_margin: false,
+			picked_spacer: 'Padding',
 			spacers: [0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3],
 		};
 	},
-	computed: {
-		syledStyles() {
-			let pad;
-			let marg;
 
-			if (this.spacing_padding) {
+	computed: {
+		spacingStyles() {
+			let padding;
+			let margin;
+
+			if (this.picked_spacer === 'Padding') {
 				switch (this.direction) {
 					case 't':
-						pad = `${this.spacers[this.size] * 16}px 0px 0px 0px`;
+						padding = `${this.spacers[this.size] * 16}px 0px 0px 0px`;
 						break;
 					case 'r':
-						pad = `0px ${this.spacers[this.size] * 16}px 0px 0px`;
+						padding = `0px ${this.spacers[this.size] * 16}px 0px 0px`;
 						break;
 					case 'b':
-						pad = `0px 0px ${this.spacers[this.size] * 16}px 0px`;
+						padding = `0px 0px ${this.spacers[this.size] * 16}px 0px`;
 						break;
 					case 'l':
-						pad = `0px 0px 0px ${this.spacers[this.size] * 16}px`;
+						padding = `0px 0px 0px ${this.spacers[this.size] * 16}px`;
 						break;
 					case 'y':
-						pad = `${this.spacers[this.size] * 16}px 0px`;
+						padding = `${this.spacers[this.size] * 16}px 0px`;
 						break;
 					case 'x':
-						pad = `0px ${this.spacers[this.size] * 16}px`;
+						padding = `0px ${this.spacers[this.size] * 16}px`;
 						break;
 					case 'a':
-						pad = `${this.spacers[this.size] * 16}px`;
+						padding = `${this.spacers[this.size] * 16}px`;
 						break;
 					default:
-						pad = `${this.spacers[this.size] * 16}px`;
+						padding = `${this.spacers[this.size] * 16}px`;
 						break;
 				}
 			}
 
-			if (this.spacing_margin) {
+			else {
+				let val = this.size.includes('n') ? -this.spacers[this.size.slice(1)] : this.spacers[this.size];
+
 				switch (this.direction) {
 					case 't':
-						marg = `${this.spacers[this.size] * 16}px 0px 0px 0px`;
+						margin = `${val * 16}px 0px 0px 0px`;
 						break;
 					case 'r':
-						marg = `0px ${this.spacers[this.size] * 16}px 0px 0px`;
+						margin = `0px ${val * 16}px 0px 0px`;
 						break;
 					case 'b':
-						marg = `0px 0px ${this.spacers[this.size] * 16}px 0px`;
+						margin = `0px 0px ${val * 16}px 0px`;
 						break;
 					case 'l':
-						marg = `0px 0px 0px ${this.spacers[this.size] * 16}px`;
+						margin = `0px 0px 0px ${val * 16}px`;
 						break;
 					case 'y':
-						marg = `${this.spacers[this.size] * 16}px 0px`;
+						margin = `${val * 16}px 0px`;
 						break;
 					case 'x':
-						marg = `0px ${this.spacers[this.size] * 16}px`;
+						margin = `0px ${val * 16}px`;
 						break;
 					case 'a':
-						marg = `${this.spacers[this.size] * 16}px`;
+						margin = `${val * 16}px`;
 						break;
 					default:
-						marg = `${this.spacers[this.size] * 16}px`;
+						margin = `${val * 16}px`;
 						break;
 				}
 			}
 
 			return {
-				'--padding': pad,
-				'--margin': marg,
+				'--padding': padding,
+				'--margin': margin,
 			};
 		},
+
+		spacer() {
+			if (this.picked_spacer === 'Padding') {
+				return 'p';
+			}
+
+			return 'm';
+		},
+
+		optionsList() {
+			let options = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+
+			if (this.picked_spacer === 'Padding') {
+				return options;
+			}
+
+			return [...options, 'n1', 'n2', 'n3', 'n4', 'n5', 'n6', 'n7', 'n8', 'n9', 'n10', 'n11', 'n12'];
+		}
 	},
 };
 </script>
@@ -165,66 +206,77 @@ export default {
 <style lang="scss" scoped>
 @import './../assets/sass/app.scss';
 
-.opa{
-	background-color: rgb(139, 145, 190);
-	padding: pt(3);
-	width: min-content;
-	margin: mt-n(0);
-}
-
-.grid {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-
-	&__table-row {
-		display: flex;
-		margin: ml(3);
-	}
-	&__space-card {
-		display: flex;
-		background-color: $turquesa-perry-light-1;
-		color: $turquesa-perry-dark-2;
-		margin: mx(2);
-	}
-}
-
-.sqrp {
-	background-color: cadetblue;
-	border-radius: $border-radius-pequeno;
-}
-
-.sqr {
-	background-color: aquamarine;
+.playground {
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	border-radius: $border-radius-pequeno;
+	justify-content: space-between;
+	width: 50%;
+
+	&__field-label {
+		font-weight: 500;
+	}
+
+	&__demo-element {
+		background-color: $laranja-naruto-light-1;
+		border-radius: $border-radius-pequeno;
+	}
 }
 
-.pa {
-	margin: var(--margin);
-	padding: var(--padding);
+.demo-element {
+	&__outer-container {
+		background-color: $verde-piccolo-light-1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: $border-radius-pequeno;
+
+		margin: var(--margin);
+		padding: var(--padding);
+	}
+
+	&__inner-container {
+		background-color: $branco;
+		padding: 32px 16px;
+		border-radius: $border-radius-pequeno;
+		box-shadow: #2544811f 0px 0px 16px 0px;
+		background-color: $branco;
+	}
 }
 
-.sqrw {
-	background-color: $cinza-3;
-	padding: 16px;
-	border-radius: $border-radius-pequeno;
+.inner-container {
+	&__token-text {
+		width: 120px;
+		padding: 8px 12px;
+		border-radius: 16px;
+		border: 1px solid transparent;
+		transition: all .15s ease-in-out;
+
+		&:hover {
+			border: 1px solid $verde-piccolo-light-1;
+			cursor: pointer;
+			transition: all .15s ease-in-out;
+		}
+	}
+
+	&__icon {
+		margin: mr(4);
+		color: $cinza-6;
+	}
 }
 
-.copy-clip {
-    width: fit-content;
-    padding: 8px 12px;
-    border-radius: 16px;
-	border: 1px solid $branco;
-	transition: all .15s ease-in-out;
-}
-
-.copy-clip:hover {
-	// background-color: #EDFDF5;
-	border: 1px solid $verde-piccolo-light-1;
-	cursor: pointer;
-	transition: all .15s ease-in-out;
+select {
+	width: 100px;
+	font-size: 16px;
+	line-height: 1;
+	border: 0;
+	border-radius: 5px;
+	height: 34px;
+	background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #fff;
+	background-size: 10px 10px;
+	-webkit-appearance: none;
+	background-position-x: 78px;
+	padding: 4px;
+	border-radius: 4px;
+	border: 1px solid #ada9a9;
 }
 </style>
