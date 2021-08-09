@@ -205,6 +205,14 @@ export default {
 
 	},
 
+	watch: {
+		timePicker(newValue) {
+			if (this.screenWidth <= 770) {
+				this.showInLowResolution = newValue;
+			}
+		},
+	},
+
 	methods: {
 		isEmpty(object) {
 			return Object.entries(object).length === 0
@@ -212,7 +220,7 @@ export default {
 
 		dayClicked() {
 			if (!!this.date && this.screenWidth <= 770) {
-				this.showInLowResolution = this.timePicker;
+				this.showInLowResolution = true;
 			}
 
 			this.selectedSchedule.dates = this.date;
