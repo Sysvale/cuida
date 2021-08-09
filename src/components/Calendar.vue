@@ -5,15 +5,15 @@
 			class="calendar-tabs"
 		>
 			<div 
-				:class="showInLowResesolution ? 'calendar-tabs__tab--inactive' : 'calendar-tabs__tab--active'"
+				:class="showInLowResolution ? 'calendar-tabs__tab--inactive' : 'calendar-tabs__tab--active'"
 			>
-				<span @click="showInLowResesolution = false">Data</span>
+				<span @click="toggleCalendarTabs">Data</span>
 			</div>
 
 			<div 
-				:class="showInLowResesolution ? 'calendar-tabs__tab--active' : 'calendar-tabs__tab--inactive'"
+				:class="showInLowResolution ? 'calendar-tabs__tab--active' : 'calendar-tabs__tab--inactive'"
 			>
-				<span @click="showInLowResesolution = true">Hora</span>
+				<span @click="toggleCalendarTabs">Hora</span>
 			</div>
 		</div>
 
@@ -21,7 +21,7 @@
 			class="calendar-container"
 		>
 			<v-date-picker
-				v-if="!showInLowResesolution"
+				v-if="!timePicker || !showInLowResolution"
 				v-bind="$attrs"
 				v-model="date"
 				is-inline
@@ -30,7 +30,7 @@
 				@input="dayClicked()"
 			/>
 			<div
-				v-if="timePicker && (screenWidth > 770 || showInLowResesolution)"
+				v-if="timePicker && (screenWidth > 770 || showInLowResolution)"
 			>
 				<div
 					v-if="!isEmpty(scheduleAttributes)"
@@ -181,7 +181,7 @@ export default {
 				fancySchedule: '',
 			},
 			screenWidth: screen.width,
-			showInLowResesolution: false,
+			showInLowResolution: false,
 		}
 	},
 
@@ -212,7 +212,7 @@ export default {
 
 		dayClicked() {
 			if (this.screenWidth <= 770) {
-				this.showInLowResesolution = true;
+				this.showInLowResolution = this.timePicker;
 			}
 
 			this.selectedSchedule.dates = this.date;
@@ -223,6 +223,10 @@ export default {
 			*/
 			this.$emit('daySelected', this.date);
 			this.$emit('scheduleSelected', this.selectedSchedule);
+		},
+
+		toggleCalendarTabs() {
+			this.showInLowResolution = this.timePicker && !this.showInLowResolution;
 		},
 
 		selectHour(hour, availableHours) {
