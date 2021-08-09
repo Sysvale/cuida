@@ -211,7 +211,7 @@ export default {
 		},
 
 		dayClicked() {
-			if (this.screenWidth <= 770) {
+			if (!!this.date && this.screenWidth <= 770) {
 				this.showInLowResolution = this.timePicker;
 			}
 
