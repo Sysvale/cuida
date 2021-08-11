@@ -43,7 +43,13 @@ $rem: 16px;
 	@return if($minus, -$result, $result);
 }
 
-//Padding functions
+// Spacer
+
+@function spacer($n) {
+	@return getSpacerValue($n);
+}
+
+// Padding functions
 
 @function pa($n) {
 	@return getSpacerValue($n);
@@ -73,7 +79,15 @@ $rem: 16px;
 	@return 0px getSpacerValue($n);
 }
 
-//Positive margin functions
+@function pTRBL($n1, $n2, $n3, $n4) {
+	@return getSpacerValue($n1) getSpacerValue($n2) getSpacerValue($n3) getSpacerValue($n4);
+}
+
+@function pYX($n1, $n2) {
+	@return getSpacerValue($n1) getSpacerValue($n2);
+}
+
+// Margin functions
 
 @function ma($n) {
 	@return getSpacerValue($n);
@@ -101,4 +115,12 @@ $rem: 16px;
 
 @function mx($n) {
 	@return 0px getSpacerValue($n);
+}
+
+@function mTRBL($n1, $n2, $n3, $n4) {
+	@return getSpacerValue($n1) getSpacerValue($n2) getSpacerValue($n3) getSpacerValue($n4);
+}
+
+@function mYX($n1, $n2) {
+	@return getSpacerValue($n1) getSpacerValue($n2);
 }
