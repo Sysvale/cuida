@@ -121,10 +121,10 @@ export default {
 }
 
 #dropdown .option__checkbox {
-	margin-right: 24px;
 	width: 15px;
 	position: relative;
-	margin-left: -12px;
+	margin-right: spacer(6);
+	margin-left: spacer(n3);
 
 	label {
 		cursor: pointer;

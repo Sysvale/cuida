@@ -235,7 +235,7 @@ export default {
 		border: none;
 		padding: 0;
 		outline: none;
-		padding-top: 2px;
+		padding: pt(1);
 		display: flex;
 		color: $cinza-6;
 		transition: all 0.2s ease-out;
@@ -258,7 +258,7 @@ export default {
 		border: none;
 		padding: 0;
 		outline: none;
-		padding-top: 2px;
+		padding: pt(1);
 		display: flex;
 		color: $cinza-6;
 		transition: all 0.2s ease-out;
@@ -280,7 +280,7 @@ export default {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
-	margin: 0;
+	margin: ma(0);
 }
 
 input[type=number] {

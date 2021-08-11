@@ -156,7 +156,7 @@ export default {
 }
 
 #actionList .action-list__item {
-	padding: 24px;
+	padding: pa(6);
 	cursor: pointer;
 	border-radius: 1px;
 

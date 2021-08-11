@@ -236,7 +236,7 @@ export default {
 
 	&__inner-container {
 		background-color: $branco;
-		padding: 32px 16px;
+		padding: pYX(8, 4);
 		border-radius: $border-radius-pequeno;
 		box-shadow: #2544811f 0px 0px 16px 0px;
 		background-color: $branco;
@@ -246,7 +246,7 @@ export default {
 .inner-container {
 	&__token-text {
 		width: 120px;
-		padding: 8px 12px;
+		padding: pYX(2, 3);
 		border-radius: 16px;
 		border: 1px solid transparent;
 		transition: all .15s ease-in-out;
@@ -275,7 +275,7 @@ select {
 	background-size: 10px 10px;
 	-webkit-appearance: none;
 	background-position-x: 78px;
-	padding: 4px;
+	padding: pa(1);
 	border-radius: 4px;
 	border: 1px solid #ada9a9;
 }

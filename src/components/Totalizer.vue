@@ -96,7 +96,7 @@ export default {
 
 	&__icon {
 		display: flex;
-		padding: 12px;
+		padding: pa(3);
 		border-radius: 100%;
 		width: 50px;
 		height: 50px;

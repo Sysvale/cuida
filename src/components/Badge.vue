@@ -85,7 +85,7 @@ export default {
 	&__container {
 		border-radius: 50px !important;
 		width: fit-content;
-		padding: 0px 8px;
+		padding: pYX(0, 2);
 	}
 
 	&__content {

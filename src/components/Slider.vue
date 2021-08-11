@@ -190,7 +190,7 @@ export default {
 	border: none !important;
 	background-color: transparent !important;
 	color: $cinza-6 !important;
-	margin-bottom: -8px !important;
+	margin: mb(n2) !important;
 	@include legenda;
 }
 .vue-slider-component .vue-slider-tooltip-wrap.vue-slider-tooltip-top

@@ -78,7 +78,7 @@ export default {
 
 .filter-pill {
 	&__container {
-		padding: 8px 16px;
+		padding: pYX(2, 4);
 		border: 1px solid $cinza-4;
 		border-radius: 8px;
 		cursor: pointer;

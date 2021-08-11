@@ -175,9 +175,14 @@ export default {
 
 @keyframes content-animation {
 	from {
-		margin-top: 24px; opacity: 0; visibility: hidden; height: 50%;
+		margin: mt(6);
+		opacity: 0;
+		visibility: hidden;
+		height: 50%;
 	} to {
-		visibility: visible; opacity: 1; height: 100%;
+		visibility: visible;
+		opacity: 1;
+		height: 100%;
 	}
 }
 
@@ -310,7 +315,7 @@ export default {
 			&__main-value {
 				@include legenda;
 				color: $cinza-6;
-				margin-bottom: 2px;
+				margin: mb(1);
 				margin: ma(0);
 			}
 
@@ -331,7 +336,7 @@ export default {
 	&__expanded-content {
 		opacity: 0;
 		visibility: hidden;
-		margin-top: 24px;
+		margin: mt(6);
 		height: 0;
 
 		animation: content-animation;
@@ -360,7 +365,7 @@ export default {
 
 	&__icon {
 		display: flex;
-		padding: 12px;
+		padding: pa(3);
 		border-radius: 100%;
 		width: 50px;
 		height: 50px;

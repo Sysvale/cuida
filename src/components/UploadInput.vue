@@ -263,7 +263,7 @@ export default {
 	box-sizing: border-box;
 
 	&__alert {
-		margin-right: 8px;
+		margin: mr(2);
 
 		&-container {
 			background: $amarelo-pikachu-light-2;
@@ -271,7 +271,7 @@ export default {
 			color: $amarelo-pikachu-dark-2;
 			border-radius: 5px;
 			padding: 8px 0;
-			margin-top: 16px;
+			margin: mt(4);
 			display: flex;
 			justify-content: center;
 			align-items: center;

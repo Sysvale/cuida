@@ -98,7 +98,7 @@ export default {
 	width: var(--width);
 	position: absolute;
 	background-color: white;
-	padding: 20px;
+	padding: pa(5);
 	right: var(--right);
 	top: var(--top);
 	border-radius: 8px;

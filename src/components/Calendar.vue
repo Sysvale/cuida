@@ -220,7 +220,7 @@ export default {
 	&__grid {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
-		margin-left: 20px;
+		margin: ml(5);
 		grid-gap: 12px;
 	}
 
@@ -228,7 +228,7 @@ export default {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 		grid-gap: 12px;
-		padding: 20px;
+		padding: pa(5);
 
 		&--selected {
 			background-color: $azul-sonic-base;
@@ -245,7 +245,7 @@ export default {
 	}
 
 	&__time-text {
-		padding: 8px 12px;
+		padding: pYX(2, 3);
 		border-radius: 8px;
 		border: 1px solid $cinza-6;
 		text-align: center;
@@ -254,13 +254,13 @@ export default {
 	&__available-hour {
 		@include botao-2;
 		color: $cinza-7;
-		margin-bottom: -4px;
+		margin: mb(n1);
 	}
 
 	&__unavailable-hour {
 		@include botao-2;
 		color: $cinza-4;
-		margin-bottom: -4px;
+		margin: mb(n1);
 	}
 
 	&__unavailable-interval {
@@ -286,9 +286,9 @@ export default {
 	}
 
 	&__minutes-container {
-		padding: 20px;
+		padding: pa(5);
 		border: 1px solid $cinza-5;
-		margin-left: 20px;
+		margin: ml(5);
 		border-radius: 8px
 	}
 }
@@ -351,7 +351,7 @@ export default {
 }
 
 .time-interval__minutes {
-	padding: 8px 20px;
+	padding: pYX(2, 5);
 	border-radius: 8px;
 	border: 1px solid $cinza-6;
 	color: $cinza-7;

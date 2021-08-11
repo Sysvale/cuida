@@ -231,7 +231,7 @@ export default {
 
 	&__title {
 		@include subtitulo-2;
-		margin-top: 12px;
+		margin: mt(3);
 		display: block;
 
 		&--info {
@@ -285,9 +285,9 @@ export default {
 
 	&__container {
 		display: flex;
-		padding: 12px;
+		padding: pa(3);
 		border-radius: 100%;
-		margin-right: 12px;
+		margin: mr(3);
 		align-self: flex-start;
 
 		&--info {
@@ -310,10 +310,10 @@ export default {
 #alert-card .custom-checkbox {
 	margin: mt(4);
 	align-self: flex-start;
-	margin-right: 32px;
 	width: 14px;
 	position: relative;
-	margin-left: -8px;
+	margin-right: spacer(8);
+	margin-left: spacer(n2);
 
 	label {
 		cursor: pointer;

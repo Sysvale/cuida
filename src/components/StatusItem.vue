@@ -186,11 +186,11 @@ export default {
 
 #status-item .item__container {
 	display: flex;
-	padding-top: 8px;
+	padding: pt(2);
 }
 
 #status-item .icon__container {
-	padding: 16px;
+	padding: pa(4);
 }
 
 #status-item .icon {
