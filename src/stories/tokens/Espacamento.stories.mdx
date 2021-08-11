@@ -33,11 +33,11 @@ de tokens de peso de fonte;
 Clique na função Sass dentro do retângulo para copiar o token para a sua área de transferência.
 
 export const Template = () => ({
-    template:`<space />`,
+	template:`<space />`,
 });
 
 <Story name="escala">
-    { Template.bind({}) }
+	{ Template.bind({}) }
 </Story>
 
 <br />
@@ -46,16 +46,21 @@ export const Template = () => ({
 
 Os tokens de espaçamento do Cuida implementam uma escala de espaçamento de incrementos de 4px que pode ser utilizada com as propriedades `margin` e `padding`.
 
+<br />
+
+#### Exemplos: 
+- `padding: pt(4)`, indica um padding top de 16px (4 * 4px)
+- `margin: mr(n2)`, indica uma margin right de -8px (2 * 4px)
+
+<br />
+
 A escala de espaçamento é implementada como funções Sass baseadas nas classes de espaçamento do Vuetify, utilizando a notação:
 
-<br />
-
 #### `{propriedade}{direção}({tamanho})`,
-Exemplo: `mt(4)`, indica uma margin top de 16px (4 * 4px)
 
 <br />
 
-A <strong>propriedade</strong> assume um dos seguintes valores:
+Onde <strong>propriedade</strong> assume um dos seguintes valores:
 
 - `m` - para `margem`
 - `p` - para `padding`
@@ -97,3 +102,15 @@ O <strong>tamanho</strong> indica o incremento da propriedade em intervalos de 4
 - `n10` - aplica margin de -40px
 - `n11` - aplica margin de -44px
 - `n12` - aplica margin de -48px
+
+<br />
+
+## Funções auxiliares
+
+Além das funções acima apresentadas, o cuida possui três funções auxiliares úteis para casos de uso específicos:
+
+- `pTRLB()` e `mTRLB()` -> Funçoes que permitem que sejam especificados espaçamentos distintos para cada um dos 
+lados de um determinado elemento, seguindo a ordem `top, right, bottom e left`;
+- `pYX()` e `mYX()` -> Funçoes que permitem que sejam especificados espaçamentos horizontais e vertivais simultâneamente;
+- `spacer()` -> Função que permite a utilização da escala de espaçamento do cuida com propriedades
+de margin e paddin mais específicas, como por exemplo, `margin-top`, `padding-left`, etc;
