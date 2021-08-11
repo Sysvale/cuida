@@ -1,133 +1,169 @@
 <template>
-	<div
-		class="d-flex"
-	>
-		<v-date-picker
-			v-bind="$attrs"
-			v-model="date"
-			is-inline
-			locale="pt-BR"
-			:attributes="attributes"
-			@input="dayClicked()"
-		/>
+	<div>
 		<div
-			v-if="timePicker"
+			v-if="screenWidth <= 770"
+			class="calendar-tabs"
 		>
-			<div
-				v-if="!isEmpty(scheduleAttributes)"
+			<div 
+				:class="showInLowResesolution ? 'calendar-tabs__tab--inactive' : 'calendar-tabs__tab--active'"
 			>
+				<span @click="showInLowResesolution = false">Data</span>
+			</div>
 
+			<div 
+				:class="showInLowResesolution ? 'calendar-tabs__tab--active' : 'calendar-tabs__tab--inactive'"
+			>
+				<span @click="showInLowResesolution = true">Hora</span>
+			</div>
+		</div>
+
+		<div
+			class="calendar-container"
+		>
+			<v-date-picker
+				v-if="!showInLowResesolution"
+				v-bind="$attrs"
+				v-model="date"
+				is-inline
+				locale="pt-BR"
+				:attributes="attributes"
+				@input="dayClicked()"
+			/>
+			<div
+				v-if="timePicker && (screenWidth > 770 || showInLowResesolution)"
+			>
 				<div
-					v-if="selectedSchedule.hour === ''"
-					class="schedule__grid"
+					v-if="!isEmpty(scheduleAttributes)"
+					class="schedule__grid-container"
 				>
+
 					<div
-						v-for="(hours, index) in scheduleAttributes"
-						:key="index"
-						class="schedule__time-interval"
-						@click="selectHour(index, availableHours(hours))"
+						v-if="selectedSchedule.hour === ''"
+						class="schedule__grid"
 					>
 						<div
-							class="schedule__time-text"
-							:class="{'schedule__unavailable-interval': availableHours(hours) === 0}"
+							v-for="(hours, index) in scheduleAttributes"
+							:key="index"
+							class="schedule__time-interval"
+							@click="selectHour(index, availableHours(hours))"
 						>
 							<div
-								:class="availableHours(hours) === 0 ? 'schedule__unavailable-hour' : 'schedule__available-hour'"
+								class="schedule__time-text"
+								:class="{
+									'schedule__unavailable-interval': availableHours(hours) === 0,
+									'schedule__grid-hour--selected': index.split(':')[0] === selectedSchedule.minute.split(':')[0],
+								}"
 							>
-								{{ index }}
-							</div>
+								<div
+									:class="availableHours(hours) === 0 ? 'schedule__unavailable-hour' : 'schedule__available-hour'"
+								>
+									{{ index }}
+								</div>
 
-							<span
-								:class="availableHours(hours) === 0 ? 'schedule__unavailable-intervals' : 'schedule__available-intervals'"
-							>
-								{{ availableHoursText(hours) }}
-							</span>
+								<span
+									:class="availableHours(hours) === 0 ? 'schedule__unavailable-intervals' : 'schedule__available-intervals'"
+								>
+									{{ availableHoursText(hours) }}
+								</span>
+							</div>
 						</div>
 					</div>
+
+					<div
+						v-else
+					>
+						<div
+							class="schedule__minutes-container"
+						>
+							<div
+								class="minutes-container__header"
+							>
+								<div
+									@click="selectedSchedule.hour = ''"
+									class="minutes-container__back-buton"
+								>
+									Voltar
+								</div>
+
+								<chevron-left-icon
+									size="1.46x"
+									class="chevron-icon"
+									@click="selectedSchedule.hour = ''"
+								/>
+
+								<div
+									class="minutes-container__header-text"
+								>
+									<div
+										class="minutes-container__header-hours"
+									>
+										{{ selectedSchedule.hour }} - {{ selectedSchedule.hour.replace('00',  '') + '59' }}
+									</div>
+									<div
+										class="minutes-container__header-available-hours"
+									>
+										{{ availableHoursText(scheduleAttributes[selectedSchedule.hour]) }}
+									</div>
+								</div>
+							</div>
+
+							<div
+								class="schedule__grid-hour"
+							>
+								<div
+									v-for="(availability, hour) in scheduleAttributes[selectedSchedule.hour]"
+									:key="hour"
+									class="schedule__time-interval"
+								>
+									<div
+										class="time-interval__minutes"
+										:class="{
+											'schedule__grid-hour--unavailable': !availability,
+											'schedule__grid-hour--selected': selectedSchedule.minute === hour,
+										}"
+										@click="selectMinute(hour, availability)"
+									>
+										{{ hour }}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
 				</div>
 
 				<div
 					v-else
 				>
 					<div
-						class="schedule__minutes-container"
+						class="schedule__grid"
 					>
 						<div
-							class="minutes-container__header"
+							v-for="index in 12"
+							:key="index"
+							class="schedule__time-interval"
 						>
-							<div
-								@click="selectedSchedule.hour = ''"
-								class="minutes-container__back-buton"
-							>
-								Voltar
-							</div>
-							<div
-								class="minutes-container__header-text"
-							>
-								<div
-									class="minutes-container__header-hours"
-								>
-									{{ selectedSchedule.hour }} - {{ selectedSchedule.hour.replace('00',  '') + '59' }}
-								</div>
-								<div
-									class="minutes-container__header-available-hours"
-								>
-									{{ availableHoursText(scheduleAttributes[selectedSchedule.hour]) }}
-								</div>
-							</div>
-						</div>
-
-						<div
-							class="schedule__grid-hour"
-						>
-							<div
-								v-for="(availability, hour) in scheduleAttributes[selectedSchedule.hour]"
-								:key="hour"
-								class="schedule__time-interval"
-							>
-								<div
-									class="time-interval__minutes"
-									:class="{
-										'schedule__grid-hour--unavailable': !availability,
-										'schedule__grid-hour--selected': selectedSchedule.minute === hour,
-									}"
-									@click="selectMinute(hour, availability)"
-								>
-									{{ hour }}
-								</div>
-							</div>
+							<div class="schedule-skeleton" />
 						</div>
 					</div>
 				</div>
-
+				
 			</div>
 
-			<div
-				v-else
-			>
-				<div
-					class="schedule__grid"
-				>
-					<div
-						v-for="index in 12"
-						:key="index"
-						class="schedule__time-interval"
-					>
-						<div class="schedule-skeleton"></div>
-					</div>
-				</div>
-			</div>
-			
 		</div>
-
 	</div>
 </template>
 
 <script>
 import moment from 'moment';
+import { ChevronLeftIcon } from 'vue-feather-icons';
 moment.locale('pt-br');
 
 export default {
+	components: {
+		ChevronLeftIcon,
+	},
+
 	data() {
 		return {
 			date: null,
@@ -143,9 +179,12 @@ export default {
 				hour: '',
 				minute: '',
 				fancySchedule: '',
-			}
+			},
+			screenWidth: screen.width,
+			showInLowResesolution: false,
 		}
 	},
+
 	props: {
 		/**
 		 * Objeto de configuração utilizado para construção do timepicker.
@@ -172,6 +211,10 @@ export default {
 		},
 
 		dayClicked() {
+			if (this.screenWidth <= 770) {
+				this.showInLowResesolution = true;
+			}
+
 			this.selectedSchedule.dates = this.date;
 			/**
 			 * Evento emitido quando a data é selecionada no calendário.
@@ -217,31 +260,109 @@ export default {
 @import '../assets/sass/app.scss';
 
 .schedule {
-	&__grid {
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
-		margin: ml(5);
-		grid-gap: 12px;
+	@media screen and (max-width: 770px) {
+		&__grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			margin-left: 20px;
+			grid-gap: 12px;
+			width: 212px;
+			padding-top: 16px;
+
+			&-container {
+				padding-bottom: 20px;
+				height: 266px;
+				overflow: scroll;
+				width: 252px;
+				border: 1px solid #cbd5e0;
+				border-top: none;
+				border-radius: 0px 0px 8px 8px;
+				-ms-overflow-style: none;
+				scrollbar-width: none;
+			}
+
+			&-container::-webkit-scrollbar {
+				display: none;
+			}
+		}
+
+		&__minutes-container {
+			// padding: 20px;
+			height: 266px;
+			width: 252px;
+			overflow: scroll;
+			-ms-overflow-style: none;
+			scrollbar-width: none;
+			border-top: none;
+			border-radius: 0px 0px 8px 8px;
+			margin-top: 12px;
+		}
+
+		&__minutes-container::-webkit-scrollbar {
+			display: none;
+		}
+
+		&__grid-hour {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-gap: 12px;
+			padding: 20px;
+
+			&--selected {
+				background-color: $azul-sonic-base;
+				color: $branco !important;
+				border: 1px solid $azul-sonic-base !important;
+				font-weight: 500;
+			}
+
+			&--unavailable {
+				color: $cinza-5 !important;
+				@include botao-1;
+				border: 1px solid $cinza-4 !important;
+				cursor: default;
+				font-weight: 400;
+			}
+		}
+
 	}
 
-	&__grid-hour {
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-		grid-gap: 12px;
-		padding: pa(5);
-
-		&--selected {
-			background-color: $azul-sonic-base;
-			color: $branco !important;
-			border: 1px solid $azul-sonic-base !important;
+	@media screen and (min-width: 770px) {
+		&__grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			margin-left: 20px;
+			grid-gap: 12px;
 		}
 
-		&--unavailable {
-			color: $cinza-4 !important;
-			@include botao-1;
-			border: 1px solid $cinza-4 !important;
-			cursor: default;
+		&__minutes-container {
+			padding: 20px;
+			border: 1px solid $cinza-5;
+			margin-left: 20px;
+			border-radius: 8px
 		}
+
+		&__grid-hour {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+			grid-gap: 12px;
+			padding: 20px;
+
+			&--selected {
+				background-color: $azul-sonic-base;
+				color: $branco !important;
+				border: 1px solid $azul-sonic-base !important;
+				font-weight: 500;
+			}
+
+			&--unavailable {
+				color: $cinza-5 !important;
+				@include botao-1;
+				border: 1px solid $cinza-4 !important;
+				cursor: default;
+				font-weight: 400;
+			}
+	}
+
 	}
 
 	&__time-text {
@@ -249,81 +370,91 @@ export default {
 		border-radius: 8px;
 		border: 1px solid $cinza-6;
 		text-align: center;
+		color: $cinza-7;
 	}
 
 	&__available-hour {
 		@include botao-2;
-		color: $cinza-7;
-		margin: mb(n1);
+		margin-bottom: -4px;
 	}
 
 	&__unavailable-hour {
 		@include botao-2;
-		color: $cinza-4;
-		margin: mb(n1);
+		color: $cinza-5;
+		margin-bottom: -4px;
 	}
 
 	&__unavailable-interval {
-		color: $cinza-3 !important;
+		color: $cinza-4 !important;
 		@include botao-1;
 		border: 1px solid $cinza-3 !important;
 		cursor: default;
+		font-weight: 400;
 	}
 
 	&__available-intervals {
 		@include legenda;
-		color: $cinza-7;
 	}
 
 	&__unavailable-intervals {
 		@include legenda;
-		color: $cinza-4;
+		color: $cinza-5;
 	}
 
 	&__time-interval {
 		text-align: center;
 		cursor: pointer;
 	}
-
-	&__minutes-container {
-		padding: pa(5);
-		border: 1px solid $cinza-5;
-		margin: ml(5);
-		border-radius: 8px
-	}
 }
 
 .minutes-container {
-	&__back-buton {
-		cursor: pointer;
-		@include botao-2;
-		color: $azul-sonic-base;
+	@media screen and (max-width: 770px) {
+		&__back-buton {
+			display: none;
+		}
 
-		&:hover {
-			text-decoration: underline;
+		&__header-text {
+			text-align: center;
+			width: 180px;
 		}
 	}
 
-	&__header-text {
-		text-align: center;
-		width: -webkit-fill-available;
-		width: -moz-available;
-		width: fill-available;
+	@media screen and (min-width: 770px) {
+		&__back-buton {
+			cursor: pointer;
+			@include botao-2;
+			color: $azul-sonic-base;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+		
+		&__header-text {
+			text-align: center;
+			width: -webkit-fill-available;
+			width: -moz-available;
+			width: fill-available;
+		}
 	}
+
 }
 
 .minutes-container {
 	&__header {
 		display: flex;
+		justify-content: center;
 	}
 
 	&__header-hours {
 		@include botao-2;
+		font-weight: 700;
 		color: $cinza-8;
 	}
 
 	&__header-available-hours {
 		@include legenda;
+		font-weight: 500;
 		color: $cinza-6;
 	}
 }
@@ -363,5 +494,52 @@ export default {
 	} to {
 		left: 100%;
 	}
+}
+
+@media screen and (max-width: 770px) {
+	.vc-container {
+		border-top: none !important;
+		border-radius: 0px 0px 8px 8px;
+	}
+
+	.calendar-tabs {
+		display: flex;
+		border-radius: 8px 8px 0px 0px;
+		border: 1px solid #cbd5e0;
+		border-bottom: none;
+		width: 252px;
+		justify-content: space-around;
+	}
+}
+
+@media screen and (min-width: 770px) {
+	.chevron-icon {
+		display: none;
+	}
+}
+
+.chevron-icon {
+	color: #718096;
+}
+
+.calendar-tabs__tab {
+	padding: 16px 41px 8px;
+	border-radius: 8px 8px 0px 0px;
+	font-weight: 500;
+
+	&--active {
+		@extend .calendar-tabs__tab;
+		color: $azul-bidu-dark-1;
+		border-bottom: 2px solid $azul-bidu-base;
+	}
+
+	&--inactive {
+		@extend .calendar-tabs__tab;
+		color: rgba($azul-bidu-base, 0.75);
+	}
+}
+
+.calendar-container {
+	display: flex;
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
 	<div>
 		<span
+			:id="id"
 			:class="{
 				'filter-pill__container--disabled' : disabled,
 				'filter-pill__container--active': isActive && !disabled,
@@ -11,21 +12,38 @@
 			<span class="filter-pill__label">{{ this.label }}: </span>
 			<span class="filter-pill__content">{{ this.content }} </span>
 
-			<chevron-down-icon
-				size="1.2x"
+			<ion-icon
+				name="chevron-down-outline"
 				:class="(isActive && !disabled) ? 'filter-pill__chevron--up' : 'filter-pill__chevron--down'"
-			/>
+			>
+			</ion-icon>
 		</span>
+
+		<div
+			v-if="isActive"
+			:style="dynamicStyle"
+			class="filter-pill__dropdown"
+			v-on-click-outside="hide"
+		>
+			<!-- @slot Slot usado para inserção de conteúdo dentro do dropdown do FilterPill. -->
+			<slot />
+		</div>
 	</div>
 </template>
 
 <script>
-import { ChevronDownIcon } from 'vue-feather-icons'
-
 export default {
-	components: {
-		ChevronDownIcon
+	data() {
+		return {
+			id: null,
+			isActive: false,
+		};
 	},
+
+	mounted() {
+		this.id = `filter-pill$-${this._uid}`;
+	},
+
 	props: {
 		/**
 		 * Conteúdo do filter pill.
@@ -51,25 +69,51 @@ export default {
 			default: false,
 		},
 		/**
-		 * Controla o comportamento de ativo ou inativo do FilterPill
+		 * Controla o tamanho do popover do FilterPill (em pixels).
+		 * O tamanho nunca é menor que a largura do FilterPill.
 		 */
-		isActive: {
-			type: Boolean,
-			default: false,
-		}
+		dropdownWidth: {
+			type: Number,
+			default: 0,
+		},
 	},
+
+	computed: {
+		dynamicStyle() {
+			const filterPillDomReference = document.getElementById(this.id);
+			const filterWidth = parseFloat(window.getComputedStyle(filterPillDomReference).width);
+
+			if (filterWidth > this.dropdownWidth) {
+				return {
+					'--width': `${filterWidth}px`,
+				};
+			}
+
+			return {
+				'--width': `${this.dropdownWidth}px`,
+			};
+		},
+	},
+
 	methods: {
 		activeSelection() {
 			if (this.disabled) {
 				return;
 			}
+
+			this.isActive = !this.isActive;
+
 			/**
 			* Evento que indica que o FilterPill foi clicado
 			* @event click
 			* @type {Event}
 			*/
 			this.$emit('click', true);
-		}	
+		},
+
+		hide() {
+			this.isActive = !this.isActive;
+		},
 	},
 };
 </script>
@@ -78,16 +122,18 @@ export default {
 
 .filter-pill {
 	&__container {
-		padding: pYX(2, 4);
+		display: inline-block;
+		padding: 8px 16px;
 		border: 1px solid $cinza-4;
-		border-radius: 8px;
+		border-radius: $border-radius-extra-pequeno;
 		cursor: pointer;
-	
+
 		&--disabled {
 			background-color: $cinza-3;
 			cursor: default;
 		}
 
+		&:hover:not(.filter-pill__container--disabled),
 		&--active {
 			border-color: transparent !important;
 			box-shadow: 0 0px 0px 4px rgba($azul-sonic-base, 0.16);
@@ -96,25 +142,46 @@ export default {
 
 	&__label {
 		@include corpo-2;
-		@include peso-de-fonte-regular;
+		font-weight: $peso-de-fonte-regular;
 		color: $cinza-7;
 	}
 
 	&__content {
 		@include corpo-2;
-		@include peso-de-fonte-semibold;
+		font-weight: $peso-de-fonte-semibold;
 		color: $cinza-7;
 	}
 
 	&__chevron--up {
+		margin-left: 8px;
+		margin-bottom: -4px;
 		color: $cinza-6;
 		transition: all 0.25s ease-in-out;
 		transform: rotate(180deg);
 	}
 
 	&__chevron--down {
+		margin-left: 8px;
+		margin-bottom: -4px;
 		color: $cinza-6;
 		transition: all 0.25s ease-in-out;
 	}
+
+	&__dropdown {
+		width: var(--width);
+		position: absolute;
+		background-color: white;
+		padding: 20px;
+		top: 94px;
+		border-radius: $border-radius-extra-pequeno;
+		box-shadow: 0px 0px 8px rgba($cinza-9, .08);
+		border: 1px solid $cinza-2;
+		z-index:999999999;
+	}
+}
+
+ion-icon {
+    visibility: visible !important;
+	font-size: 18px !important;
 }
 </style>

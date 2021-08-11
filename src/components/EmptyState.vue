@@ -2,18 +2,22 @@
 	<div
 		class="empty-state"
 	>
-		<img
-			class="empty-state__image"
-			:src="emptyStateImage"
-			:alt="imgDescription"
-		/>
-
+		<!-- @slot Slot usado para inserção de conteúdo gráfico
+			customizado como alternativa a imagem do empty-state. -->
+		<slot name="graphic-element">
+			<img
+				class="empty-state__image"
+				:src="image"
+				:alt="imageDescription"
+			/>
+		</slot>
 		<div class="empty-state__title">
 			{{ title }}
 		</div>
 
 		<div class="empty-state__text">
-			<!-- @slot Slot usado para inserção de conteúdo customizado no texto do corpo do empty state. -->
+			<!-- @slot Slot usado para inserção de conteúdo customizado no texto do corpo do
+				empty state. -->
 			<slot name="text">
 				{{ text }}
 			</slot>
@@ -25,11 +29,11 @@
 			@type {Event}
 		-->
 		<button
-			v-if="showActionButton"
+			v-if="!hideActionButton"
 			class="empty-state__button"
 			@click="$emit('action-button-click', true)"
 		>
-			{{ buttonText }}
+			{{ actionButtonText }}
 		</button>
 	</div>
 </template>
@@ -42,14 +46,14 @@ export default {
 		 * do Storybook ainda não permite a seleção de arquivos. Desse modo
 		 * não é possível testar o funcionamento dessa prop por aqui.
 		 */
-		emptyStateImage: {
+		image: {
 			type: String,
 			default: '',
 		},
 		/**
 		 * O descritor da imagem do Empty State adicionado à 'alt' da tag <img>
 		 */
-		imgDescription: {
+		imageDescription: {
 			type: String,
 			default: 'Imagem de Empty State',
 		},
@@ -69,16 +73,16 @@ export default {
 			default: 'Para sair dessa situação de empty state, realize a ação abaixo.',
 		},
 		/**
-		 * Prop utilizada para mostrar ou ocultar o botão de ação do Empty State.
+		 * Prop utilizada para ocultar o botão de ação do Empty State.
 		 */
-		showActionButton: {
+		hideActionButton: {
 			type: Boolean,
-			default: true,
+			default: false,
 		},
 		/**
 		 * O texto mostrado no botão de ação do Empty State
 		 */
-		buttonText: {
+		actionButtonText: {
 			type: String,
 			default: 'Finalizar',
 		},

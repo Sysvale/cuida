@@ -3,10 +3,9 @@
 		class="badge__container"
 		:class="predefinedStyle"
 	>
-		<div>
-			<small class="badge__content">
-				{{ content }}
-			</small>
+		<div class="badge__content">
+			<!-- @slot Slot padrão utilizado para exibir o conteúdo dentro da badge -->
+			<slot/>
 		</div>
 	</div>
 </template>
@@ -15,65 +14,37 @@
 export default {
 	props: {
 		/**
-		 * O texto que vai ser mostrado na badge.
-		 */
-		content: {
-			type: String,
-			default: 'Conteúdo da badge',
-			description: 'The text that will be displayed inside the badge.',
-			required: true,
-		},
-		/**
 		 * A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',
 		 * 'purple', 'pink', 'red', 'orange', 'yellow' e 'gray'.
 		 */
 		variant: {
 			type: String,
 			default: 'gray',
-			description: `Variant mode gives 6 predefined badges 
-				to work with. Seting this property to 'true',
-				you can use 'yellow', 'green', ... 'gray'
-				to use the predefined badge styles.`,
 		},
+	},
+
+	data() {
+		return {
+			predefinedColors: [
+				'turquoise',
+				'green',
+				'blue',
+				'purple',
+				'pink',
+				'red',
+				'orange',
+				'yellow',
+				'gray',
+			],
+		};
 	},
 
 	computed: {
 		predefinedStyle() {
-			let computedStyle = '';
-			switch (this.variant) {
-				case 'turquoise':
-					computedStyle = 'badge--turquoise';
-					break;
-				case 'green':
-					computedStyle = 'badge--green';
-					break;
-				case 'blue':
-					computedStyle = 'badge--blue';
-					break;
-				case 'purple':
-					computedStyle = 'badge--purple';
-					break;
-				case 'pink':
-					computedStyle = 'badge--pink';
-					break;
-				case 'red':
-					computedStyle = 'badge--red';
-					break;
-				case 'orange':
-					computedStyle = 'badge--orange';
-					break;
-				case 'yellow':
-					computedStyle = 'badge--yellow';
-					break;
-				case 'gray':
-					computedStyle = 'badge--gray';
-					break;
-				default:
-					computedStyle = 'badge--gray';
-					break;
+			if (this.predefinedColors.indexOf(this.variant) > -1) {
+				return `badge--${this.variant}`;
 			}
-
-			return computedStyle;
+			return 'badge--gray';
 		},
 	},
 };

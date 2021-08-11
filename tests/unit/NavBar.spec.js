@@ -1,7 +1,7 @@
 import { mount, createLocalVue } from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
-import NavBar from '../../src/components/NavBar.vue';
 import lodash from 'lodash';
+import NavBar from '../../src/components/NavBar.vue';
 
 const localVue = createLocalVue();
 localVue.use(BootstrapVue);
@@ -11,7 +11,7 @@ const mockedData = [
 	{ label: 'Dummy label 2', path: 'dummy/path/2' },
 	{ label: 'Dummy label 3', path: 'dummy/path/3' },
 	{
-		label: 'Dummy option with subitems',
+		label: 'Dummy option with subitems 1',
 		items: [
 			{
 				label: 'Dummy item 1',
@@ -24,6 +24,23 @@ const mockedData = [
 			{
 				label: 'Dummy item 3',
 				path: '/dummy/sub/item/3',
+			},
+		],
+	},
+	{
+		label: 'Dummy option with subitems 2',
+		items: [
+			{
+				label: 'Dummy item 4',
+				path: '/dummy/sub/item/4',
+			},
+			{
+				label: 'Dummy item 5',
+				path: '/dummy/sub/item/5',
+			},
+			{
+				label: 'Dummy item 6',
+				path: '/dummy/sub/item/6',
 			},
 		],
 	},
