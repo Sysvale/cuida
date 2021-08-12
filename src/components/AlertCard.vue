@@ -213,7 +213,7 @@ export default {
 
 	&__container--selected-info {
 		@extend .alert-card;
-		border: 2px solid $azul-sonic-light-1;
+		border: 2px solid $b-300;
 		box-shadow: 1px 1px 4px rgba(32, 110, 217, 0.5);
 	}
 
@@ -236,7 +236,7 @@ export default {
 
 		&--info {
 			@extend .alert-card__title;
-			color: $azul-sonic-dark-1;
+			color: $b-600;
 		}
 
 		&--warning {
@@ -270,7 +270,7 @@ export default {
 
 	&--info {
 		@extend .icon;
-		color: $azul-sonic-dark-1;
+		color: $b-600;
 	}
 
 	&--warning {
@@ -292,7 +292,7 @@ export default {
 
 		&--info {
 			@extend .icon__container;
-			background-color: $azul-sonic-light-2;
+			background-color: $b-200;
 		}
 
 		&--warning {
@@ -352,7 +352,7 @@ export default {
 }
 
 #alert-card .custom-checkbox--checked {
-	background-color: $azul-bidu-dark-1 !important;
+	background-color: $b-500 !important;
 	border: none !important;
 }
 

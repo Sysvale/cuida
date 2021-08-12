@@ -159,7 +159,7 @@ input[type=checkbox] {
 }
 
 .option__checkbox--checked {
-	background-color: $azul-bidu-dark-2 !important;
+	background-color: $b-700 !important;
 	border: none !important;
 }
 

@@ -296,7 +296,7 @@ export default {
 	}
 
 	&__search-link {
-		color: $azul-sonic-base;
+		color: $b-400;
 		font-weight: 700;
 
 		&:hover {
@@ -305,7 +305,7 @@ export default {
 	}
 
 	&--drag-state {
-		background-color: $azul-sonic-light-2;
+		background-color: $b-200;
 		border: 3px dashed $cinza-4;
 	}
 }

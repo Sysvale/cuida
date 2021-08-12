@@ -105,8 +105,8 @@ export default {
 	min-height: 12px !important;
 	min-width: 11.5px !important;
 	border-radius: 50% !important;
-	background-color: $verde-piccolo-base;
-	border: 1px solid $verde-piccolo-base;
+	background-color: $g-400;
+	border: 1px solid $g-400;
 }
 
 #timeline .event__row {

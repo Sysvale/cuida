@@ -123,7 +123,7 @@ export default {
 
 	&__button {
 		margin-top: 20px;
-		background-color: $verde-piccolo-base;
+		background-color: $g-400;
 		color: $branco;
 		border-radius: 4px;
 		font-weight: 600;
@@ -131,7 +131,7 @@ export default {
 		padding: 8px 12px;
 
 		&:hover {
-			background-color: $verde-piccolo-dark-1;
+			background-color: $g-500;
 		}
 
 		&:focus {

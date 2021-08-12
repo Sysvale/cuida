@@ -129,7 +129,7 @@ export default {
 		height: 0;
 
 		&:checked + .switch__slider {
-			background-color: $verde-piccolo-base;
+			background-color: $g-400;
 		}
 
 		&:checked + .switch__slider--small:before {
@@ -222,11 +222,11 @@ export default {
 		}
 
 		&--active-focused {
-			box-shadow: 0 0 0 0.2rem rgba($verde-piccolo-light-1, .45);
+			box-shadow: 0 0 0 0.2rem rgba($g-300, 45);
 		}
 
 		&--inactive-focused {
-			box-shadow: 0 0 0 0.2rem rgba($azul-bidu-light-1, .45);
+			box-shadow: 0 0 0 0.2rem rgba($b-300, .45);
 		}
 	}
 }

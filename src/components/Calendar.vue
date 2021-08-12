@@ -309,9 +309,9 @@ export default {
 			padding: 20px;
 
 			&--selected {
-				background-color: $azul-sonic-base;
+				background-color: $b-400;
 				color: $branco !important;
-				border: 1px solid $azul-sonic-base !important;
+				border: 1px solid $b-400 !important;
 				font-weight: 500;
 			}
 
@@ -348,9 +348,9 @@ export default {
 			padding: 20px;
 
 			&--selected {
-				background-color: $azul-sonic-base;
+				background-color: $b-400;
 				color: $branco !important;
-				border: 1px solid $azul-sonic-base !important;
+				border: 1px solid $b-400 !important;
 				font-weight: 500;
 			}
 
@@ -423,7 +423,7 @@ export default {
 		&__back-buton {
 			cursor: pointer;
 			@include botao-2;
-			color: $azul-sonic-base;
+			color: $b-400;
 
 			&:hover {
 				text-decoration: underline;
@@ -529,13 +529,13 @@ export default {
 
 	&--active {
 		@extend .calendar-tabs__tab;
-		color: $azul-bidu-dark-1;
-		border-bottom: 2px solid $azul-bidu-base;
+		color: $g-500;
+		border-bottom: 2px solid $b-400;
 	}
 
 	&--inactive {
 		@extend .calendar-tabs__tab;
-		color: rgba($azul-bidu-base, 0.75);
+		color: rgba($b-400, 0.75);
 	}
 }
 

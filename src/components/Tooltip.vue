@@ -83,6 +83,8 @@ export default {
 	&--inactive {
 		opacity: 0;
 	}
+
+	z-index: 999;
 }
 
 </style>

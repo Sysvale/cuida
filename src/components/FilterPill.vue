@@ -136,7 +136,7 @@ export default {
 		&:hover:not(.filter-pill__container--disabled),
 		&--active {
 			border-color: transparent !important;
-			box-shadow: 0 0px 0px 4px rgba($azul-sonic-base, 0.16);
+			box-shadow: 0 0px 0px 4px rgba($b-400, 0.16);
 		}
 	}
 

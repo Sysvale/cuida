@@ -127,7 +127,7 @@ export default {
 	content: '';
 	width: 12px;
 	height: 12px;
-	background: $azul-bidu-dark-1;
+	background: $b-600;
 	position: absolute;
 	top: 4px;
 	left: 4px;

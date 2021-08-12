@@ -168,14 +168,14 @@ export default {
 	opacity: 1;
 }
 .vue-slider-component .vue-slider {
-	background-color: $azul-sonic-light-2 !important;
+	background-color: $b-200 !important;
 }
 .vue-slider-component .vue-slider-process {
-	background-color: $azul-sonic-light-1 !important;
+	background-color: $b-300 !important;
 }
 .vue-slider-component .vue-slider-dot .vue-slider-dot-handle {
-	background-color: $azul-sonic-light-2 !important;
-	border: 1px solid $azul-sonic-light-1 !important;
+	background-color: $b-200 !important;
+	border: 1px solid $b-300 !important;
 }
 .vue-slider-dot-handle {
 	box-shadow: none !important;

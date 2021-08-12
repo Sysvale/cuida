@@ -90,7 +90,7 @@ export default {
 		border-radius: $border-radius-token;
 		width: 60px;
 		height: 60px;
-		background-color: $verde-piccolo-base;
+		background-color: $g-400;
 	}
 }
 
@@ -104,7 +104,7 @@ export default {
 
 .copy-clip:hover {
 	// background-color: #EDFDF5;
-	border: 1px solid $verde-piccolo-light-1;
+	border: 1px solid $g-300;
 	cursor: pointer;
 	transition: all .15s ease-in-out;
 }

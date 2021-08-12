@@ -70,15 +70,15 @@ export default {
 	}
 
 	&--green {
-		color: $verde-piccolo-dark-2;
-		background-color: $verde-piccolo-light-2;
-		border: 1px solid $verde-piccolo-light-1;
+		color: $g-700;
+		background-color: $g-200;
+		border: 1px solid $g-300;
 	}
 
 	&--blue {
-		color: $azul-sonic-dark-2;
-		background-color: $azul-sonic-light-2;
-		border: 1px solid $azul-sonic-light-1;
+		color: $b-700;
+		background-color: $b-200;
+		border: 1px solid $b-300;
 	}
 
 	&--purple {

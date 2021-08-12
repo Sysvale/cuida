@@ -159,7 +159,7 @@ export default {
 
 .preview__button:focus {
 	outline: none !important;
-	box-shadow: $verde-piccolo-light-1 0px -3px 0px -1px inset;
+	box-shadow: $g-300 0px -3px 0px -1px inset;
 }
 
 .source-code__container {

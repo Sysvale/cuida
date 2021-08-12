@@ -212,14 +212,14 @@ a {
 
 		.active {
 			color: $branco;
-			border-bottom: 4px solid $verde-piccolo-base;
+			border-bottom: 4px solid $g-400;
 			background: $cinza-6;
 			border-radius: 4px  4px 0px 0px;
 		}
 
 		&.active-parent{
 			color: $branco;
-			border-bottom: 4px solid $verde-piccolo-base;
+			border-bottom: 4px solid $g-400;
 			background: $cinza-6;
 			border-radius: 4px  4px 0px 0px;
 
@@ -254,7 +254,7 @@ a {
 
 			&.active {
 				color: $branco;
-				border-left: 4px solid $verde-piccolo-base;
+				border-left: 4px solid $g-400;
 				border-bottom: 0px;
 				background: $cinza-6;
 				border-radius: 0px;
@@ -267,14 +267,14 @@ a {
 
 		.active {
 			color: $cinza-8 !important;
-			border-bottom: 4px solid $azul-bidu-dark-1;
+			border-bottom: 4px solid $b-500;
 			background: $cinza-2;
 			border-radius: 4px  4px 0px 0px;
 		}
 
 		&.active-parent{
 			color: $cinza-8 !important;
-			border-bottom: 4px solid $azul-bidu-dark-1;
+			border-bottom: 4px solid $b-500;
 			background: $cinza-2;
 			border-radius: 4px  4px 0px 0px;
 
@@ -309,7 +309,7 @@ a {
 			}
 
 			&.active {
-				border-left: 4px solid $azul-bidu-dark-1;
+				border-left: 4px solid $b-500;
 				border-bottom: 0px;
 				background: $cinza-2 !important;
 				border-radius: 0px;

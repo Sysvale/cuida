@@ -184,7 +184,7 @@ export default {
 
 ::v-deep .expansion-card__expand-icon:hover path {
 	transition: stroke ease-in-out;
-	stroke: $azul-sonic-light-1;
+	stroke: $b-300;
 }
 
 .expansion-card {
@@ -218,8 +218,8 @@ export default {
 		&-blue {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $azul-sonic-light-2;
-			box-shadow: 0 0 2px $azul-sonic-base;
+			border: 2px solid $b-200;
+			box-shadow: 0 0 2px $b-400;
 		}
 
 		&-turquoise {
@@ -232,8 +232,8 @@ export default {
 		&-green {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $verde-piccolo-light-2;
-			box-shadow: 0 0 2px $verde-piccolo-base;
+			border: 2px solid $g-200;
+			box-shadow: 0 0 2px $g-400;
 		}
 
 		&-purple {
@@ -366,8 +366,8 @@ export default {
 		@include margin(direita, 3);
 
 		&--blue {
-			color: $azul-sonic-base;
-			background-color: $azul-sonic-light-2;
+			color: $b-400;
+			background-color: $b-200;
 		}
 
 		&--turquoise {
@@ -376,8 +376,8 @@ export default {
 		}
 
 		&--green {
-			color: $verde-piccolo-base;
-			background-color: $verde-piccolo-light-2;
+			color: $g-400;
+			background-color: $g-200;
 		}
 
 		&--purple {
@@ -424,7 +424,7 @@ export default {
 
 		&:hover {
 			transition: color ease-in-out;
-			color: $azul-sonic-light-1;
+			color: $b-300;
 		}
 	}
 

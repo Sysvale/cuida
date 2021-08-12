@@ -204,13 +204,13 @@ export default {
 
 	&--focused {
 		@extend .stepper-input;
-		border: 1px solid $azul-bidu-light-1;
-		box-shadow: 0 0 0 0.2rem rgba($azul-bidu-light-1, .45);
+		border: 1px solid $b-300;
+		box-shadow: 0 0 0 0.2rem rgba($b-300, .45);
 	}
 
 	&--valid {
 		@extend .stepper-input;
-		border: 1px solid $verde-piccolo-dark-1;
+		border: 1px solid $g-500;
 	}
 
 	&--invalid {
@@ -220,7 +220,7 @@ export default {
 
 	&--focused-valid {
 		@extend .stepper-input--valid;
-		box-shadow: 0 0 0 0.2rem rgba($verde-piccolo-light-1, .45);
+		box-shadow: 0 0 0 0.2rem rgba($g-300, .45);
 	}
 
 	&--focused-invalid {
@@ -245,13 +245,13 @@ export default {
 		height: 50%;
 
 		&:hover {
-			background-color: $azul-bidu-base;
+			background-color: $b-400;
 			color: $branco;
 			border-radius: 0px 3px 0px 0px;
 		}
 
 		&:active {
-			background-color: $azul-bidu-dark-1;
+			background-color: $b-500;
 			border-radius: 0px 3px 0px 0px;
 		}
 	}
@@ -268,13 +268,13 @@ export default {
 		height: 50%;
 
 		&:hover {
-			background-color: $azul-bidu-base;
+			background-color: $b-400;
 			color: $branco;
 			border-radius: 0px 0px 3px 0px;
 		}
 
 		&:active {
-			background-color: $azul-bidu-dark-1;
+			background-color: $b-500;
 			border-radius: 0px 0px 3px 0px;
 		}
 	}

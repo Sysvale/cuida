@@ -85,11 +85,11 @@ export default {
 	}
 
 	&--info {
-		background-image: linear-gradient(to right, rgba($azul-sonic-light-1, .25) 50%, transparent 50%);
+		background-image: linear-gradient(to right, rgba($b-300, .25) 50%, transparent 50%);
 	}
 
 	&--success {
-		background-image: linear-gradient(to right, rgba($verde-piccolo-light-1, .28) 50%, transparent 50%);
+		background-image: linear-gradient(to right, rgba($g-300, .28) 50%, transparent 50%);
 	}
 
 	&--danger {

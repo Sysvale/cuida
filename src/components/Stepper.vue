@@ -253,7 +253,7 @@ export default {
 		color: $cinza-6;
 		border: 2px;
 		border-style: solid;
-		border-color: $verde-piccolo-base;
+		border-color: $g-400;
 	}
 
 	&__step--muted {
@@ -264,7 +264,7 @@ export default {
 	&__step--in-processing {
 		border: 2px;
 		border-style: solid;
-		border-color: $azul-sonic-base;
+		border-color: $b-400;
 	}
 
 	&__step--error {
@@ -274,8 +274,8 @@ export default {
 	}
 
 	&__step--completed {
-		background-color: $verde-piccolo-base;
-		border-color: $verde-piccolo-base;
+		background-color: $g-400;
+		border-color: $g-400;
 		color: $branco;
 	}
 
@@ -344,7 +344,7 @@ export default {
 	}
 
 	&__divider--completed {
-		background: $verde-piccolo-base;
+		background: $g-400;
 	}
 
 	&__icon-container {
@@ -400,7 +400,7 @@ export default {
 	}
 
 	&__vertical-divider--completed {
-		background: $verde-piccolo-base;
+		background: $g-400;
 	}
 }
 </style>

@@ -103,8 +103,8 @@ export default {
 		align-self: center;
 		align-items: center;
 		justify-content: center;
-		color: $azul-sonic-base;
-		background-color: $azul-sonic-light-2;
+		color: $b-400;
+		background-color: $b-200;
 
 		&--right {
 			margin-left: 1rem !important;
@@ -115,8 +115,8 @@ export default {
 		}
 
 		&--blue {
-			color: $azul-sonic-base;
-			background-color: $azul-sonic-light-2;
+			color: $b-400;
+			background-color: $b-200;
 		}
 
 		&--turquoise {
@@ -125,8 +125,8 @@ export default {
 		}
 
 		&--green {
-			color: $verde-piccolo-base;
-			background-color: $verde-piccolo-light-2;
+			color: $g-400;
+			background-color: $g-200;
 		}
 
 		&--purple {

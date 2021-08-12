@@ -15,23 +15,21 @@ $turquesa-perry-base: #23B1C7;
 $turquesa-perry-dark-1: #1F9EB2;
 $turquesa-perry-dark-2: #16707E;
 
-$verde-piccolo-light-2: #EDFDF5;
-$verde-piccolo-light-1: #85E0C4;
-$verde-piccolo-base: #2EB88D;
-$verde-piccolo-dark-1: #29A37D;
-$verde-piccolo-dark-2: #1C6E54;
+$g-100: #EEFCF5;
+$g-200: #ABEDD9;
+$g-300: #6DDFBC;
+$g-400: #2AC092;
+$g-500: #239F78;
+$g-600: #197155;
+$g-700: #145C45;
 
-$azul-sonic-light-2: #EFF8FF;
-$azul-sonic-light-1: #77BAEE;
-$azul-sonic-base: #399AE7;
-$azul-sonic-dark-1: #1B88DF;
-$azul-sonic-dark-2: #125C96;
-
-$azul-bidu-light-2: #F0F5FF;
-$azul-bidu-light-1: #84AFEB;
-$azul-bidu-base: #3A7EDF;
-$azul-bidu-dark-1: #206ED9;
-$azul-bidu-dark-2: #164A92;
+$b-100: #F2F5FD;
+$b-200: #B6D1F7;
+$b-300: #83AFEC;
+$b-400: #377EE1;
+$b-500: #206ED9;
+$b-600: #1B59B1;
+$b-700: #144385;
 
 $roxo-thanos-light-2: #F8F0FF;
 $roxo-thanos-light-1: #CDB0E8;
@@ -93,43 +91,34 @@ $turquesa-perry: map-merge(
 	$turquesa-perry
 );
 
-$verde-piccolo: ();
+$g: ();
 
-$verde-piccolo: map-merge(
+$g: map-merge(
 	(
-		"light-2": $verde-piccolo-light-2,
-		"light-1": $verde-piccolo-light-1,
-		"base": $verde-piccolo-base,
-		"dark-1": $verde-piccolo-dark-1,
-		"dark-2": $verde-piccolo-dark-2,
+		"100": $g-100,
+		"200": $g-200,
+		"300": $g-300,
+		"400": $g-400,
+		"500": $g-500,
+		"600": $g-600,
+		"700": $g-700,
 	),
-	$verde-piccolo
+	$g
 );
 
-$azul-sonic: ();
+$b: ();
 
-$azul-sonic: map-merge(
+$b: map-merge(
 	(
-		"light-2": $azul-sonic-light-2,
-		"light-1": $azul-sonic-light-1,
-		"base": $azul-sonic-base,
-		"dark-1": $azul-sonic-dark-1,
-		"dark-2": $azul-sonic-dark-2,
+		"100": $b-100,
+		"200": $b-200,
+		"300": $b-300,
+		"400": $b-400,
+		"500": $b-500,
+		"600": $b-600,
+		"700": $b-700,
 	),
-	$azul-sonic
-);
-
-$azul-bidu: ();
-
-$azul-bidu: map-merge(
-	(
-		"light-2": $azul-bidu-light-2,
-		"light-1": $azul-bidu-light-1,
-		"base": $azul-bidu-base,
-		"dark-1": $azul-bidu-dark-1,
-		"dark-2": $azul-bidu-dark-2,
-	),
-	$azul-bidu
+	$b
 );
 
 $roxo-thanos: ();
@@ -202,9 +191,8 @@ $palete: ();
 $palete: map-merge(
 	(
 		'turquesa-perry': $turquesa-perry,
-		'verde-piccolo': $verde-piccolo,
-		'azul-sonic': $azul-sonic,
-		'azul-bidu': $azul-bidu,
+		'piccolo-green': $g,
+		'b': $b,
 		'roxo-thanos': $roxo-thanos,
 		'pantera-cor-de-rosa': $pantera-cor-de-rosa,
 		'vermelho-mario': $vermelho-mario,

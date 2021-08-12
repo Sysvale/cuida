@@ -2,6 +2,7 @@
 	<div
 		class="grid"
 	>
+		<copy-token :target="target" />
 		<div
 			v-for="color in paleteColors"
 			:key="color"
@@ -15,15 +16,17 @@
 					"last-shade": index === shades.length - 1,
 					[`${colorShadeClass(shade, color)}`]: index >= 0,
 				}'
+				@click="target = `${colorShadeClass(shade, color)}`"
+				:id="`${colorShadeClass(shade, color)}`"
 			>
 				<span
 					v-if="index === 0"
 					class="colorNames"
 					:class="{ 'low-contrast-color-names': index === 0 || index === 1 || index === 2}"
 				>
-					<span> {{ color }} </span>
+					<span class="mainColorName"> {{ color }} </span>
 					<br />
-					<span> {{ shade }} </span>
+					<span> <copy-icon size="1.1x" class="text-secondary mr-3"></copy-icon> {{ shade }} </span>
 				</span>
 
 				<span
@@ -31,7 +34,7 @@
 					class="colorNames"
 					:class="{ 'low-contrast-color-names': index === 0 || index === 1 || index === 2}"
 				>
-					{{ shade }}
+					<span> <copy-icon size="1.1x" class="text-secondary mr-3"></copy-icon> {{ shade }} </span>
 				</span>
 			</div>
 		</div>
@@ -69,14 +72,18 @@
 </template>
 
 <script>
+import { CopyIcon } from 'vue-feather-icons'
 export default {
+	components: {
+		CopyIcon,
+	},
 	data() {
 		return {
+			target: '',
 			paleteColors: [
 				'turquesa-perry',
-				'verde-piccolo',
-				'azul-sonic',
-				'azul-bidu',
+				'piccolo-green',
+				'b',
 				'roxo-thanos',
 				'pantera-cor-de-rosa',
 				'vermelho-mario',
@@ -84,11 +91,13 @@ export default {
 				'amarelo-pikachu',
 			],
 			shades: [
-				'base',
-				'light-2',
-				'light-1',
-				'dark-1',
-				'dark-2',
+				'100',
+				'200',
+				'300',
+				'400',
+				'500',
+				'600',
+				'700',
 			],
 		};
 	},
@@ -111,9 +120,19 @@ export default {
 	@each $shadeName, $shade in $color {
 		.#{$colorName}-#{$shadeName} {
 			background-color: $shade;
-			width: 250px;
-			height: 50px;
+			width: 288px;
+			height: 72px;
 			padding: 14px 20px;
+			transform: scale(1);
+			transition: all .25s ease-in-out;
+			cursor: pointer;
+		}
+
+		.#{$colorName}-#{$shadeName}:hover {
+			box-shadow: 0 2px 4px #00000014, 0 12px 20px #0000001f;
+			transform: scale(1.04);
+			z-index: 2;
+			transition: all .25s ease-in-out;
 		}
 	}
 }
@@ -134,13 +153,12 @@ export default {
 }
 
 .last-shade {
-	border-radius: 0px 0px 8px 8px;
+	border-radius: 0px 0px 16px 16px;
 }
 
 .palete {
 	width: max-content;
-	box-shadow: 2px 4px 15px #2b343b33;
-	border-radius: 8px;
+	border-radius: 16px;
 }
 
 .colorNames {
@@ -150,10 +168,21 @@ export default {
 	flex-direction: column;
 	justify-content: space-evenly;
 	height: -webkit-fill-available;
+	font-weight: 500;
+}
+
+.mainColorName {
+	color: rgb(17, 16, 16);
+	text-transform: capitalize;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	height: -webkit-fill-available;
+	font-weight: 700;
 }
 
 .first-shade {
-	border-radius: 8px 8px 0px 0px;
+	border-radius: 16px 16px 0px 0px;
 	height: 100px;
 }
 
