@@ -73,12 +73,18 @@ export default {
 			required: false,
 		},
 		/**
-		 * Define a espessura do circulo da ProgressCircular.
-		 */
-		width: {
-			type: String,
-			default: 'default',
-			required: false,
+		* Torna a espessura do circulo da ProgressCircular menor.
+		*/
+		small: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		* Torna a espessura do circulo da ProgressCircular maior.
+		*/
+		large: {
+			type: Boolean,
+			default: false,
 		},
 		/**
 		 * Define a cor do texto (label) dentro da ProgressCircular.
@@ -106,14 +112,9 @@ export default {
 		},
 
 		stroke() {
-			switch(this.width) {
-			case 'small':
-				return 1.5;
-			case 'large':
-				return 4.5;
-			default:
-				return 3.5;
-			}
+			if (this.small) return 1.5;
+			if (this.large) return 4.5;
+			return 3.5;
 		},
 
 		labelClass() {
