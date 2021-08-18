@@ -12,20 +12,24 @@ export default {
 			default: '',
 		},
 	},
+
 	data() {
 		return {
 			showTooltip: false,
 		}
 	},
+
 	watch: {
 		target(value) {
 			if (!value) {
 				this.showTooltip = false;
 				return;
 			}
+
 			this.copyToken();
 		},
 	},
+
 	methods: {
 		copyToken() {
 			this.showTooltip = true;

@@ -130,7 +130,7 @@ export default {
 	components: {
 		InfoIcon,
 		AlertTriangleIcon,
-		AlertCircleIcon
+		AlertCircleIcon,
 	},
 
 	data() {
@@ -143,7 +143,7 @@ export default {
 		dynamicIcon() {
 			switch (this.variant) {
 				case 'info':
-					return 'info-icon'
+					return 'info-icon';
 				case 'warning':
 					return 'alert-triangle-icon';
 				case 'danger':
@@ -158,11 +158,11 @@ export default {
 
 			if (!this.muted) {
 				if (this.selectable) {
-					dynamicClass = 'alert-card__container--selectable';	
+					dynamicClass = 'alert-card__container--selectable';
 				}
-				
+
 				if (this.isSelected) {
-					return dynamicClass + ` alert-card__container--selected-${this.variant}`
+					return `${dynamicClass} alert-card__container--selected-${this.variant}`;
 				}
 			} else {
 				dynamicClass = 'alert-card__container--muted';
@@ -172,8 +172,8 @@ export default {
 		},
 
 		iconClass() {
-			return `icon__container--${this.variant} ${this.noTitle ? 'align-self-center' : ''}`
-		}
+			return `icon__container--${this.variant} ${this.noTitle ? 'align-self-center' : ''}`;
+		},
 	},
 
 	methods: {
@@ -195,11 +195,11 @@ export default {
 #alert-card .alert-card {
 	display: flex;
 	align-items: center;
-	@include padding(onidirecional, 3);
+	padding: pa(4);
 	border-radius: 16px;
 
 	&__container {
-		@extend .alert-card;	
+		@extend .alert-card;
 		border: 1px solid $cinza-3;
 
 		&--selectable {
@@ -231,7 +231,7 @@ export default {
 
 	&__title {
 		@include subtitulo-2;
-		margin-top: 12px;
+		margin: mt(3);
 		display: block;
 
 		&--info {
@@ -257,7 +257,7 @@ export default {
 	}
 
 	&__content {
-		@include margin(superior, 3);
+		margin: mt(4);
 	}
 
 	&__content-container {
@@ -285,9 +285,9 @@ export default {
 
 	&__container {
 		display: flex;
-		padding: 12px;
+		padding: pa(3);
 		border-radius: 100%;
-		margin-right: 12px;
+		margin: mr(3);
 		align-self: flex-start;
 
 		&--info {
@@ -308,12 +308,12 @@ export default {
 }
 
 #alert-card .custom-checkbox {
-	@include margin(superior, 3);
+	margin: mt(4);
 	align-self: flex-start;
-	margin-right: 32px;
 	width: 14px;
 	position: relative;
-	margin-left: -8px;
+	margin-right: spacer(8);
+	margin-left: spacer(n2);
 
 	label {
 		cursor: pointer;

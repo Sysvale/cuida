@@ -111,7 +111,7 @@ export default {
 	color: $cinza-8;
 }
 
-input[type=checkbox] {
+#dropdown input[type=checkbox] {
 	visibility: hidden;
 }
 
@@ -120,11 +120,11 @@ input[type=checkbox] {
 	align-items: center;
 }
 
-.option__checkbox {
-	margin-right: 24px;
+#dropdown .option__checkbox {
 	width: 15px;
 	position: relative;
-	margin-left: -12px;
+	margin-right: spacer(6);
+	margin-left: spacer(n3);
 
 	label {
 		cursor: pointer;
@@ -158,7 +158,7 @@ input[type=checkbox] {
 	}
 }
 
-.option__checkbox--checked {
+#dropdown .option__checkbox--checked {
 	background-color: $azul-bidu-dark-2 !important;
 	border: none !important;
 }

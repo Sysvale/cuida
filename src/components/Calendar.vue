@@ -366,7 +366,7 @@ export default {
 	}
 
 	&__time-text {
-		padding: 8px 12px;
+		padding: pYX(2, 3);
 		border-radius: 8px;
 		border: 1px solid $cinza-6;
 		text-align: center;
@@ -482,7 +482,7 @@ export default {
 }
 
 .time-interval__minutes {
-	padding: 8px 20px;
+	padding: pYX(2, 5);
 	border-radius: 8px;
 	border: 1px solid $cinza-6;
 	color: $cinza-7;

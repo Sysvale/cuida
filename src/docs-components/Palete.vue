@@ -113,7 +113,7 @@ export default {
 			background-color: $shade;
 			width: 250px;
 			height: 50px;
-			padding: 14px 20px;
+			padding: pYX(4, 5);
 		}
 	}
 }
@@ -123,7 +123,7 @@ export default {
 		background-color: $shade;
 		width: 250px;
 		height: 50px;
-		padding: 14px 20px;
+		padding: pYX(4, 5);
 	}
 }
 

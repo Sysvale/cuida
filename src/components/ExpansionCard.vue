@@ -174,7 +174,16 @@ export default {
 @import '../assets/sass/app.scss';
 
 @keyframes content-animation {
-	from { margin-top: 24px; opacity: 0; visibility: hidden; height: 50%; } to { visibility: visible; opacity: 1; height: 100%;}
+	from {
+		margin: mt(6);
+		opacity: 0;
+		visibility: hidden;
+		height: 50%;
+	} to {
+		visibility: visible;
+		opacity: 1;
+		height: 100%;
+	}
 }
 
 ::v-deep .expansion-card__expand-icon path {
@@ -192,7 +201,7 @@ export default {
 	position: relative;
 	flex-direction: column;
 	align-items: center;
-	@include padding(onidirecional, 3);
+	padding: pa(4);
 	border-radius: 16px;
 
 	border: 1px solid $cinza-3;
@@ -306,20 +315,20 @@ export default {
 			&__main-value {
 				@include legenda;
 				color: $cinza-6;
-				margin-bottom: 2px;
-				@include margin(onidirecional, 0);
+				margin: mb(1);
+				margin: ma(0);
 			}
 
 			&__legend {
 				@include subtitulo-3;
-				@include margin(onidirecional, 0);
+				margin: ma(0);
 				color: $cinza-8;
 				max-width: 100%;
 				font-weight: 600;
 			}
 
 			&__icon {
-				@include margin(direita, 3);
+				margin: mr(4);
 			}
 		}
 	}
@@ -327,7 +336,7 @@ export default {
 	&__expanded-content {
 		opacity: 0;
 		visibility: hidden;
-		margin-top: 24px;
+		margin: mt(6);
 		height: 0;
 
 		animation: content-animation;
@@ -344,26 +353,26 @@ export default {
 	&__main-value {
 		@include titulo-1;
 		color: $cinza-8;
-		@include margin(inferior, 0);
+		margin: mb(0);
 	}
 
 	&__legend {
 		@include legenda;
-		@include margin(onidirecional, 0);
+		margin: ma(0);
 		color: $cinza-6;
 		max-width: 155px;
 	}
 
 	&__icon {
 		display: flex;
-		padding: 12px;
+		padding: pa(3);
 		border-radius: 100%;
 		width: 50px;
 		height: 50px;
 		align-self: center;
 		align-items: center;
 		justify-content: center;
-		@include margin(direita, 3);
+		margin: mr(4);
 
 		&--blue {
 			color: $azul-sonic-base;
