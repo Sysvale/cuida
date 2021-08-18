@@ -215,7 +215,7 @@ export default {
 
 	&--invalid {
 		@extend .stepper-input;
-		border: 1px solid $vermelho-mario-dark-1;
+		border: 1px solid $v-600;
 	}
 
 	&--focused-valid {
@@ -225,7 +225,7 @@ export default {
 
 	&--focused-invalid {
 		@extend .stepper-input--invalid;
-		box-shadow: 0 0 0 0.2rem rgba($vermelho-mario-light-1, .45);
+		box-shadow: 0 0 0 0.2rem rgba($v-300, .45);
 	}
 
 	&--disabled {

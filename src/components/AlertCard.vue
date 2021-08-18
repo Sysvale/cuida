@@ -219,13 +219,13 @@ export default {
 
 	&__container--selected-warning {
 		@extend .alert-card;
-		border: 2px solid $amarelo-pikachu-light-1;
+		border: 2px solid $a-300;
 		box-shadow: 1px 1px 4px rgba(253, 210, 145, 0.5);
 	}
 
 	&__container--selected-danger {
 		@extend .alert-card;
-		border: 2px solid $vermelho-mario-light-1;
+		border: 2px solid $v-100;
 		box-shadow: 1px 1px 4px rgba(237, 59, 81, 0.5);
 	}
 
@@ -241,12 +241,12 @@ export default {
 
 		&--warning {
 			@extend .alert-card__title;
-			color: $amarelo-pikachu-dark-2;
+			color: $a-600;
 		}
 
 		&--danger {
 			@extend .alert-card__title;
-			color: $vermelho-mario-dark-1;
+			color: $v-600;
 		}
 	}
 
@@ -275,12 +275,12 @@ export default {
 
 	&--warning {
 		@extend .icon;
-		color: $amarelo-pikachu-dark-2;
+		color: $a-600;
 	}
 
 	&--danger {
 		@extend .icon;
-		color: $vermelho-mario-dark-1;
+		color: $v-400;
 	}
 
 	&__container {
@@ -297,12 +297,12 @@ export default {
 
 		&--warning {
 			@extend .icon__container;
-			background-color: $amarelo-pikachu-light-2;
+			background-color: $a-200;
 		}
 
 		&--danger {
 			@extend .icon__container;
-			background-color: $vermelho-mario-light-2;
+			background-color: $v-200;
 		}
 	}
 }

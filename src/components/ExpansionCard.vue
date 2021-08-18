@@ -225,8 +225,8 @@ export default {
 		&-turquoise {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $turquesa-perry-light-2;
-			box-shadow: 0 0 2px $turquesa-perry-base;
+			border: 2px solid $t-200;
+			box-shadow: 0 0 2px $t-500;
 		}
 
 		&-green {
@@ -239,36 +239,36 @@ export default {
 		&-purple {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $roxo-thanos-light-2;
-			box-shadow: 0 0 2px $roxo-thanos-base;
+			border: 2px solid $v-200;
+			box-shadow: 0 0 2px $v-500;
 		}
 
 		&-pink {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $pantera-cor-de-rosa-light-2;
-			box-shadow: 0 0 2px $pantera-cor-de-rosa-base;
+			border: 2px solid $p-200;
+			box-shadow: 0 0 2px $p-500;
 		}
 
 		&-red {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $vermelho-mario-light-2;
-			box-shadow: 0 0 2px $vermelho-mario-base;
+			border: 2px solid $v-200;
+			box-shadow: 0 0 2px $v-500;
 		}
 
 		&-orange {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $laranja-naruto-light-2;
-			box-shadow: 0 0 2px $laranja-naruto-base;
+			border: 2px solid $o-200;
+			box-shadow: 0 0 2px $o-500;
 		}
 
 		&-yellow {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $amarelo-pikachu-light-2;
-			box-shadow: 0 0 2px $amarelo-pikachu-base;
+			border: 2px solid $a-200;
+			box-shadow: 0 0 2px $a-500;
 		}
 
 		&-gray {
@@ -371,8 +371,8 @@ export default {
 		}
 
 		&--turquoise {
-			color: $turquesa-perry-base;
-			background-color: $turquesa-perry-light-2;
+			color: $t-500;
+			background-color: $t-200;
 		}
 
 		&--green {
@@ -381,28 +381,28 @@ export default {
 		}
 
 		&--purple {
-			color: $roxo-thanos-base;
-			background-color: $roxo-thanos-light-2;
+			color: $v-500;
+			background-color: $v-200;
 		}
 
 		&--pink {
-			color: $pantera-cor-de-rosa-base;
-			background-color: $pantera-cor-de-rosa-light-2;
+			color: $p-500;
+			background-color: $p-200;
 		}
 
 		&--red {
-			color: $vermelho-mario-base;
-			background-color: $vermelho-mario-light-2;
+			color: $v-500;
+			background-color: $v-200;
 		}
 
 		&--orange {
-			color: $laranja-naruto-base;
-			background-color: $laranja-naruto-light-2;
+			color: $o-500;
+			background-color: $o-200;
 		}
 
 		&--yellow {
-			color: $amarelo-pikachu-base;
-			background-color: $amarelo-pikachu-light-2;
+			color: $a-500;
+			background-color: $a-200;
 		}
 
 		&--gray {

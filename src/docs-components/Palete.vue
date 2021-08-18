@@ -4,29 +4,32 @@
 	>
 		<copy-token :target="target" />
 		<div
-			v-for="color in paleteColors"
-			:key="color"
+			v-for="p in pal"
+			:key="p"
 			class="palete"
 		>
 			<div
-				v-for="(shade, index) in shades"
+				v-for="(shade, index) in p.tokens"
 				:key="shade"
 				:class='{
 					"first-shade": index === 0,
-					"last-shade": index === shades.length - 1,
-					[`${colorShadeClass(shade, color)}`]: index >= 0,
+					"last-shade": index === p.tokens.length - 1,
+					[`${colorShadeClass(test(shade), p.color)}`]: index >= 0,
 				}'
-				@click="target = `${colorShadeClass(shade, color)}`"
-				:id="`${colorShadeClass(shade, color)}`"
+				@click="target = shade"
+				:id="shade"
 			>
 				<span
 					v-if="index === 0"
 					class="colorNames"
-					:class="{ 'low-contrast-color-names': index === 0 || index === 1 || index === 2}"
+					:class="{ 'low-contrast-color-names': index === 0 || index === 1 || index === 2 || index === 3}"
 				>
-					<span class="mainColorName"> {{ color }} </span>
+					<span class="mainColorName"> {{ p.color }} </span>
 					<br />
-					<span> <copy-icon size="1.1x" class="text-secondary mr-3"></copy-icon> {{ shade }} </span>
+					<span>
+						<copy-icon size="1.1x" class="text-secondary mr-3" :class="{ 'low-contrast-color-names': index === 0 || index === 1 || index === 2 || index === 3}" />
+						{{ shade }}
+					</span>
 				</span>
 
 				<span
@@ -34,37 +37,10 @@
 					class="colorNames"
 					:class="{ 'low-contrast-color-names': index === 0 || index === 1 || index === 2}"
 				>
-					<span> <copy-icon size="1.1x" class="text-secondary mr-3"></copy-icon> {{ shade }} </span>
-				</span>
-			</div>
-		</div>
-		<div
-			class="palete"
-		>
-			<div
-				v-for="index in 9"
-				:key="index"
-				:class='{
-					"first-shade": index === 1,
-					"last-shade": index === 9,
-					[`${colorShadeClass(index)}`]: index >= 1,
-				}'
-			>
-				<span
-					v-if="index === 1"
-					class="colorNames low-contrast-color-names"
-				>
-					<span> Escala de cinza </span>
-					<br />
-					<span> cinza-{{ index }} </span>
-				</span>
-
-				<span
-					v-else
-					class="colorNames"
-					:class="{ 'low-contrast-color-names': index >= 1 && index <= 5}"
-				>
-					cinza-{{ index }}
+					<span>
+						<copy-icon size="1.1x" class="mr-3" :class="{ 'low-contrast-color-names': index === 0 || index === 1 || index === 2 || index === 3}" />
+						{{ shade }}
+					</span>
 				</span>
 			</div>
 		</div>
@@ -80,24 +56,145 @@ export default {
 	data() {
 		return {
 			target: '',
-			paleteColors: [
-				'turquesa-perry',
-				'piccolo-green',
-				'b',
-				'roxo-thanos',
-				'pantera-cor-de-rosa',
-				'vermelho-mario',
-				'laranja-naruto',
-				'amarelo-pikachu',
-			],
-			shades: [
-				'100',
-				'200',
-				'300',
-				'400',
-				'500',
-				'600',
-				'700',
+			pal: [
+				{
+					color: 'Piccolo',
+					tokens: [
+						'g-100',
+						'g-200',
+						'g-300',
+						'g-400',
+						'g-500',
+						'g-600',
+						'g-700',
+					],
+				},
+				{
+					color: 'Sulivan',
+					tokens: [
+						't-100',
+						't-200',
+						't-300',
+						't-400',
+						't-500',
+						't-600',
+						't-700',
+					],
+				},
+				{
+					color: 'Nocturne',
+					tokens: [
+						'b-100',
+						'b-200',
+						'b-300',
+						'b-400',
+						'b-500',
+						'b-600',
+						'b-700',
+					],
+				},
+				{
+					color: 'Sonic',
+					tokens: [
+						'i-100',
+						'i-200',
+						'i-300',
+						'i-400',
+						'i-500',
+						'i-600',
+						'i-700',
+					],
+				},
+				{
+					color: 'Raven',
+					tokens: [
+						'v-100',
+						'v-200',
+						'v-300',
+						'v-400',
+						'v-500',
+						'v-600',
+						'v-700',
+					],
+				},
+				{
+					color: 'Boo',
+					tokens: [
+						'p-100',
+						'p-200',
+						'p-300',
+						'p-400',
+						'p-500',
+						'p-600',
+						'p-700',
+					],
+				},
+				{
+					color: 'Carmen',
+					tokens: [
+						'r-100',
+						'r-200',
+						'r-300',
+						'r-400',
+						'r-500',
+						'r-600',
+						'r-700',
+					],
+				},
+				{
+					color: 'Goku',
+					tokens: [
+						'o-100',
+						'o-200',
+						'o-300',
+						'o-400',
+						'o-500',
+						'o-600',
+						'o-700',
+					],
+				},
+				{
+					color: 'Lisa',
+					tokens: [
+						'a-100',
+						'a-200',
+						'a-300',
+						'a-400',
+						'a-500',
+						'a-600',
+						'a-700',
+					],
+				},
+				{
+					color: 'Light Neutrals',
+					tokens: [
+						'n-0',
+						'n-10',
+						'n-20',
+						'n-30',
+						'n-40',
+					],
+				},
+				{
+					color: 'Mid Neutrals',
+					tokens: [
+						'n-50',
+						'n-100',
+						'n-200',
+						'n-300',
+						'n-400',
+					],
+				},
+				{
+					color: 'Dark Neutrals',
+					tokens: [
+						'n-500',
+						'n-600',
+						'n-700',
+						'n-800',
+						'n-900',
+					],
+				},
 			],
 		};
 	},
@@ -108,6 +205,10 @@ export default {
 				return `${color}-${shade}`;
 			}
 			return `cinza-${shade}`;
+		},
+
+		test(sh) {
+			return sh.replace(/\D-/, "");
 		},
 	},
 };
@@ -120,7 +221,7 @@ export default {
 	@each $shadeName, $shade in $color {
 		.#{$colorName}-#{$shadeName} {
 			background-color: $shade;
-			width: 288px;
+			width: 320px;
 			height: 72px;
 			padding: 14px 20px;
 			transform: scale(1);
@@ -133,6 +234,7 @@ export default {
 			transform: scale(1.04);
 			z-index: 2;
 			transition: all .25s ease-in-out;
+			border-radius: 4px;
 		}
 	}
 }
@@ -163,7 +265,6 @@ export default {
 
 .colorNames {
 	color: white;
-	text-transform: capitalize;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;

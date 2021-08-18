@@ -93,7 +93,7 @@ export default {
 	}
 
 	&--danger {
-		background-image: linear-gradient(to right, rgba($vermelho-mario-light-1, .22) 50%, transparent 50%);
+		background-image: linear-gradient(to right, rgba($v-300, .22) 50%, transparent 50%);
 	}
 }
 

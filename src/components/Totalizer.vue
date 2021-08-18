@@ -120,8 +120,8 @@ export default {
 		}
 
 		&--turquoise {
-			color: $turquesa-perry-base;
-			background-color: $turquesa-perry-light-2;
+			color: $t-500;
+			background-color: $t-200;
 		}
 
 		&--green {
@@ -130,28 +130,28 @@ export default {
 		}
 
 		&--purple {
-			color: $roxo-thanos-base;
-			background-color: $roxo-thanos-light-2;
+			color: $v-500;
+			background-color: $v-200;
 		}
 
 		&--pink {
-			color: $pantera-cor-de-rosa-base;
-			background-color: $pantera-cor-de-rosa-light-2;
+			color: $p-500;
+			background-color: $p-200;
 		}
 
 		&--red {
-			color: $vermelho-mario-base;
-			background-color: $vermelho-mario-light-2;
+			color: $v-500;
+			background-color: $v-300;
 		}
 
 		&--orange {
-			color: $laranja-naruto-base;
-			background-color: $laranja-naruto-light-2;
+			color: $o-500;
+			background-color: $o-200;
 		}
 
 		&--yellow {
-			color: $amarelo-pikachu-base;
-			background-color: $amarelo-pikachu-light-2;
+			color: $a-500;
+			background-color: $a-200;
 		}
 
 		&--gray {

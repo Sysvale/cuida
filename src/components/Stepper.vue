@@ -268,8 +268,8 @@ export default {
 	}
 
 	&__step--error {
-		background-color: $vermelho-mario-base;
-		border-color: $vermelho-mario-base;
+		background-color: $v-500;
+		border-color: $v-500;
 		color: $branco;
 	}
 

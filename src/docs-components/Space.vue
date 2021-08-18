@@ -71,8 +71,8 @@ export default {
 
 	&__space-card {
 		display: flex;
-		background-color: $turquesa-perry-light-1;
-		color: $turquesa-perry-dark-2;
+		background-color: $t-300;
+		color: $t-600;
 		@include margin('horizontal', 1);
 
 		@each $tamanho, $fator in $fatores {

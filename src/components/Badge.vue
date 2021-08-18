@@ -64,9 +64,9 @@ export default {
 	}
 
 	&--turquoise {
-		color: $turquesa-perry-dark-2;
-		background-color: $turquesa-perry-light-2;
-		border: 1px solid $turquesa-perry-light-1;
+		color: $t-600;
+		background-color: $t-200;
+		border: 1px solid $t-300;
 	}
 
 	&--green {
@@ -82,33 +82,33 @@ export default {
 	}
 
 	&--purple {
-		color: $roxo-thanos-dark-2;
-		background-color: $roxo-thanos-light-2;
-		border: 1px solid $roxo-thanos-light-1;
+		color: $v-600;
+		background-color: $v-200;
+		border: 1px solid $v-400;
 	}
 
 	&--pink {
-		color: $pantera-cor-de-rosa-dark-2;
-		background-color: $pantera-cor-de-rosa-light-2;
-		border: 1px solid $pantera-cor-de-rosa-light-1;
+		color: $p-600;
+		background-color: $p-200;
+		border: 1px solid $p-300;
 	}
 
 	&--red {
-		color: $vermelho-mario-dark-2;
-		background-color: $vermelho-mario-light-2;
-		border: 1px solid $vermelho-mario-light-1;
+		color: $v-600;
+		background-color: $v-300;
+		border: 1px solid $v-400;
 	}
 
 	&--orange {
-		color: $laranja-naruto-dark-2;
-		background-color: $laranja-naruto-light-2;
-		border: 1px solid $laranja-naruto-light-1;
+		color: $o-600;
+		background-color: $o-200;
+		border: 1px solid $o-300;
 	}
 
 	&--yellow {
-		color: $amarelo-pikachu-dark-2;
-		background-color: $amarelo-pikachu-light-2;
-		border: 1px solid $amarelo-pikachu-light-1;
+		color: $a-600;
+		background-color: $a-200;
+		border: 1px solid $a-300;
 	}
 
 	&--gray {

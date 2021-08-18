@@ -1,4 +1,4 @@
-$branco: #FFFFFF;
+$branco: #ffffff;
 $cinza-1: #FAFBFE;
 $cinza-2: #F0F3FA;
 $cinza-3: #DDE2E7;
@@ -9,11 +9,29 @@ $cinza-7: #44505C;
 $cinza-8: #303A44;
 $cinza-9: #182532;
 
-$turquesa-perry-light-2: #F0FCFF;
-$turquesa-perry-light-1: #7DD9E8;
-$turquesa-perry-base: #23B1C7;
-$turquesa-perry-dark-1: #1F9EB2;
-$turquesa-perry-dark-2: #16707E;
+$n-0: #ffffff;
+$n-10: #FAFCFE;
+$n-20: #EFF5FB;
+$n-30: #E2EAF3;
+$n-40: #D3DBE4;
+$n-50: #BCC7D2;
+$n-100: #ABB8C4;
+$n-200: #9AA8B6;
+$n-300: #8B99A7;
+$n-400: #7C8A98;
+$n-500: #566676;
+$n-600: #475766;
+$n-700: #36424E;
+$n-800: #29333D;
+$n-900: #1E252C;
+
+$t-100: #F0FAFF;
+$t-200: #C2EDFF;
+$t-300: #7BD0F4;
+$t-400: #3CACDD;
+$t-500: #1F86B2;
+$t-600: #18698B;
+$t-700: #13526D;
 
 $g-100: #EEFCF5;
 $g-200: #ABEDD9;
@@ -31,35 +49,53 @@ $b-500: #206ED9;
 $b-600: #1B59B1;
 $b-700: #144385;
 
-$roxo-thanos-light-2: #F8F0FF;
-$roxo-thanos-light-1: #CDB0E8;
-$roxo-thanos-base: #AB79D8;
-$roxo-thanos-dark-1: #9759CF;
-$roxo-thanos-dark-2: #692E9E;
+$i-100: #E5EAFF;
+$i-200: #CED6FD;
+$i-300: #AAB7F8;
+$i-400: #6174D1;
+$i-500: #5464B6;
+$i-600: #3A4788;
+$i-700: #353D64;
 
-$pantera-cor-de-rosa-light-2: #FFEFFC;
-$pantera-cor-de-rosa-light-1: #ECA7D9;
-$pantera-cor-de-rosa-base: #E06EC0;
-$pantera-cor-de-rosa-dark-1: #D94AB1;
-$pantera-cor-de-rosa-dark-2: #A82483;
+$v-100: #F8F0FF;
+$v-200: #E6D2F9;
+$v-300: #CEABED;
+$v-400: #A169D3;
+$v-500: #8F4DCC;
+$v-600: #7633B2;
+$v-700: #642B96;
 
-$vermelho-mario-light-2: #FFF0F1;
-$vermelho-mario-light-1: #F69DA8;
-$vermelho-mario-base: #F05F71;
-$vermelho-mario-dark-1: #ED3B51;
-$vermelho-mario-dark-2: #B61125;
+$p-100: #FFEFF9;
+$p-200: #F9C8E2;
+$p-300: #EF8FC0;
+$p-400: #DD5A9C;
+$p-500: #CC3381;
+$p-600: #A52766;
+$p-700: #701A48;
 
-$laranja-naruto-light-2: #FFF3F0;
-$laranja-naruto-light-1: #FDAF9B;
-$laranja-naruto-base: #FB876B;
-$laranja-naruto-dark-1: #FA6642;
-$laranja-naruto-dark-2: #CB3510;
+$r-100: #FFF0F2;
+$r-200: #FBD0D6;
+$r-300: #F797A3;
+$r-400: #F95367;
+$r-500: #E83047;
+$r-600: #D22D41;
+$r-700: #A42333;
 
-$amarelo-pikachu-light-2: #FFF7EB;
-$amarelo-pikachu-light-1: #FDD291;
-$amarelo-pikachu-base: #FCBB5A;
-$amarelo-pikachu-dark-1: #FBAA32;
-$amarelo-pikachu-dark-2: #C37604;
+$o-100: #FFF3F0;
+$o-200: #FFD6CC;
+$o-300: #FDAF9B;
+$o-400: #FF8567;
+$o-500: #F5613D;
+$o-600: #D64B29;
+$o-700: #AB3C21;
+
+$a-100: #FFF7EB;
+$a-200: #FFE2B8;
+$a-300: #FDCD87;
+$a-400: #FFB952;
+$a-500: #EEA22F;
+$a-600: #D38817;
+$a-700: #A56A12;
 
 $cinzas: ();
 
@@ -78,17 +114,19 @@ $cinzas: map-merge(
 	$cinzas
 );
 
-$turquesa-perry: ();
+$t: ();
 
-$turquesa-perry: map-merge(
+$t: map-merge(
 	(
-		"light-2": $turquesa-perry-light-2,
-		"light-1": $turquesa-perry-light-1,
-		"base": $turquesa-perry-base,
-		"dark-1": $turquesa-perry-dark-1,
-		"dark-2": $turquesa-perry-dark-2,
+		"100": $t-100,
+		"200": $t-200,
+		"300": $t-300,
+		"400": $t-400,
+		"500": $t-500,
+		"600": $t-600,
+		"700": $t-700,
 	),
-	$turquesa-perry
+	$t
 );
 
 $g: ();
@@ -121,83 +159,133 @@ $b: map-merge(
 	$b
 );
 
-$roxo-thanos: ();
+$i: ();
 
-$roxo-thanos: map-merge(
+$i: map-merge(
 	(
-		"light-2": $roxo-thanos-light-2,
-		"light-1": $roxo-thanos-light-1,
-		"base": $roxo-thanos-base,
-		"dark-1": $roxo-thanos-dark-1,
-		"dark-2": $roxo-thanos-dark-2,
+		"100": $i-100,
+		"200": $i-200,
+		"300": $i-300,
+		"400": $i-400,
+		"500": $i-500,
+		"600": $i-600,
+		"700": $i-700,
 	),
-	$roxo-thanos
+	$i
 );
 
-$pantera-cor-de-rosa: ();
+$v: ();
 
-$pantera-cor-de-rosa: map-merge(
+$v: map-merge(
 	(
-		"light-2": $pantera-cor-de-rosa-light-2,
-		"light-1": $pantera-cor-de-rosa-light-1,
-		"base": $pantera-cor-de-rosa-base,
-		"dark-1": $pantera-cor-de-rosa-dark-1,
-		"dark-2": $pantera-cor-de-rosa-dark-2,
+		"100": $v-100,
+		"200": $v-200,
+		"300": $v-300,
+		"400": $v-400,
+		"500": $v-500,
+		"600": $v-600,
+		"700": $v-700,
 	),
-	$pantera-cor-de-rosa
+	$v
 );
 
-$vermelho-mario: ();
+$p: ();
 
-$vermelho-mario: map-merge(
+$p: map-merge(
 	(
-		"light-2": $vermelho-mario-light-2,
-		"light-1": $vermelho-mario-light-1,
-		"base": $vermelho-mario-base,
-		"dark-1": $vermelho-mario-dark-1,
-		"dark-2": $vermelho-mario-dark-2,
+		"100": $p-100,
+		"200": $p-200,
+		"300": $p-300,
+		"400": $p-400,
+		"500": $p-500,
+		"600": $p-600,
+		"700": $p-700,
 	),
-	$vermelho-mario
+	$p
 );
 
-$laranja-naruto: ();
+$r: ();
 
-$laranja-naruto: map-merge(
+$r: map-merge(
 	(
-		"light-2": $laranja-naruto-light-2,
-		"light-1": $laranja-naruto-light-1,
-		"base": $laranja-naruto-base,
-		"dark-1": $laranja-naruto-dark-1,
-		"dark-2": $laranja-naruto-dark-2,
+		"100": $r-100,
+		"200": $r-200,
+		"300": $r-300,
+		"400": $r-400,
+		"500": $r-500,
+		"600": $r-600,
+		"700": $r-700,
 	),
-	$laranja-naruto
+	$r
 );
 
-$amarelo-pikachu: ();
+$o: ();
 
-$amarelo-pikachu: map-merge(
+$o: map-merge(
 	(
-		"light-2": $amarelo-pikachu-light-2,
-		"light-1": $amarelo-pikachu-light-1,
-		"base": $amarelo-pikachu-base,
-		"dark-1": $amarelo-pikachu-dark-1,
-		"dark-2": $amarelo-pikachu-dark-2,
+		"100": $o-100,
+		"200": $o-200,
+		"300": $o-300,
+		"400": $o-400,
+		"500": $o-500,
+		"600": $o-600,
+		"700": $o-700,
 	),
-	$amarelo-pikachu
+	$o
+);
+
+$a: ();
+
+$a: map-merge(
+	(
+		"100": $a-100,
+		"200": $a-200,
+		"300": $a-300,
+		"400": $a-400,
+		"500": $a-500,
+		"600": $a-600,
+		"700": $a-700,
+	),
+	$a
+);
+
+$n: ();
+
+$n: map-merge(
+	(
+		"0": $n-0,
+		"10": $n-10,
+		"20": $n-20,
+		"30": $n-30,
+		"40": $n-40,
+		"50": $n-50,
+		"100": $n-100,
+		"200": $n-200,
+		"300": $n-300,
+		"400": $n-400,
+		"500": $n-500,
+		"600": $n-600,
+		"700": $n-700,
+		"800": $n-800,
+		"900": $n-900,
+	),
+	$n
 );
 
 $palete: ();
 
 $palete: map-merge(
 	(
-		'turquesa-perry': $turquesa-perry,
-		'piccolo-green': $g,
-		'b': $b,
-		'roxo-thanos': $roxo-thanos,
-		'pantera-cor-de-rosa': $pantera-cor-de-rosa,
-		'vermelho-mario': $vermelho-mario,
-		'laranja-naruto': $laranja-naruto,
-		'amarelo-pikachu': $amarelo-pikachu,
+		'Sulivan': $t,
+		'Piccolo': $g,
+		'Nocturne': $b,
+		'Sonic': $i,
+		'Raven': $v,
+		'Boo': $p,
+		'Carmen': $r,
+		'Goku': $o,
+		'Lisa': $a,
+		'Neutrals': $n,
 	),
 	$palete
 );

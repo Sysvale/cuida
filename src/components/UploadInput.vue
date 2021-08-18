@@ -269,9 +269,9 @@ export default {
 		margin-right: 8px;
 
 		&-container {
-			background: $amarelo-pikachu-light-2;
-			border: 1px solid $amarelo-pikachu-light-1;
-			color: $amarelo-pikachu-dark-2;
+			background: $a-200;
+			border: 1px solid $a-300;
+			color: $a-600;
 			border-radius: 5px;
 			padding: 8px 0;
 			margin-top: 16px;
