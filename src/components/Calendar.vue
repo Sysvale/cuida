@@ -287,7 +287,6 @@ export default {
 		}
 
 		&__minutes-container {
-			// padding: 20px;
 			height: 266px;
 			width: 252px;
 			overflow: scroll;
@@ -309,16 +308,16 @@ export default {
 			padding: 20px;
 
 			&--selected {
-				background-color: $b-400;
-				color: $branco !important;
-				border: 1px solid $b-400 !important;
+				background-color: $bn-400;
+				color: $n-0 !important;
+				border: 1px solid $bn-400 !important;
 				font-weight: 500;
 			}
 
 			&--unavailable {
-				color: $cinza-5 !important;
 				@include botao-1;
-				border: 1px solid $cinza-4 !important;
+				color: $n-500 !important;
+				border: 1px solid $n-40 !important;
 				cursor: default;
 				font-weight: 400;
 			}
@@ -336,7 +335,7 @@ export default {
 
 		&__minutes-container {
 			padding: 20px;
-			border: 1px solid $cinza-5;
+			border: 1px solid $n-500;
 			margin-left: 20px;
 			border-radius: 8px
 		}
@@ -348,16 +347,16 @@ export default {
 			padding: 20px;
 
 			&--selected {
-				background-color: $b-400;
-				color: $branco !important;
-				border: 1px solid $b-400 !important;
+				background-color: $bn-400;
+				color: $n-0 !important;
+				border: 1px solid $bn-400 !important;
 				font-weight: 500;
 			}
 
 			&--unavailable {
-				color: $cinza-5 !important;
+				color: $n-50 !important;
 				@include botao-1;
-				border: 1px solid $cinza-4 !important;
+				border: 1px solid $n-40 !important;
 				cursor: default;
 				font-weight: 400;
 			}
@@ -368,9 +367,9 @@ export default {
 	&__time-text {
 		padding: 8px 12px;
 		border-radius: 8px;
-		border: 1px solid $cinza-6;
+		border: 1px solid $n-600;
 		text-align: center;
-		color: $cinza-7;
+		color: $n-700;
 	}
 
 	&__available-hour {
@@ -380,14 +379,14 @@ export default {
 
 	&__unavailable-hour {
 		@include botao-2;
-		color: $cinza-5;
+		color: $n-500;
 		margin-bottom: -4px;
 	}
 
 	&__unavailable-interval {
-		color: $cinza-4 !important;
+		color: $n-400 !important;
 		@include botao-1;
-		border: 1px solid $cinza-3 !important;
+		border: 1px solid $n-300 !important;
 		cursor: default;
 		font-weight: 400;
 	}
@@ -398,7 +397,7 @@ export default {
 
 	&__unavailable-intervals {
 		@include legenda;
-		color: $cinza-5;
+		color: $n-500;
 	}
 
 	&__time-interval {
@@ -423,7 +422,7 @@ export default {
 		&__back-buton {
 			cursor: pointer;
 			@include botao-2;
-			color: $b-400;
+			color: $bn-400;
 
 			&:hover {
 				text-decoration: underline;
@@ -449,13 +448,13 @@ export default {
 	&__header-hours {
 		@include botao-2;
 		font-weight: 700;
-		color: $cinza-8;
+		color: $n-800;
 	}
 
 	&__header-available-hours {
 		@include legenda;
 		font-weight: 500;
-		color: $cinza-6;
+		color: $n-600;
 	}
 }
 
@@ -484,8 +483,8 @@ export default {
 .time-interval__minutes {
 	padding: 8px 20px;
 	border-radius: 8px;
-	border: 1px solid $cinza-6;
-	color: $cinza-7;
+	border: 1px solid $n-600;
+	color: $n-700;
 }
 
 @keyframes load {
@@ -529,13 +528,13 @@ export default {
 
 	&--active {
 		@extend .calendar-tabs__tab;
-		color: $g-500;
-		border-bottom: 2px solid $b-400;
+		color: $gp-500;
+		border-bottom: 2px solid $bn-400;
 	}
 
 	&--inactive {
 		@extend .calendar-tabs__tab;
-		color: rgba($b-400, 0.75);
+		color: rgba($bn-400, 0.75);
 	}
 }
 

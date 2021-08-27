@@ -69,8 +69,8 @@ export default {
 .tooltip__container {
 	border-radius: 16px;
 	background-size: 200%;
-	background-color: $cinza-9;
-	color: $branco;
+	background-color: $n-900;
+	color: $n-0;
 	position: absolute;
 	padding: 4px 12px;
 	margin-top: 0px;

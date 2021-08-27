@@ -261,7 +261,7 @@ export default {
 @import '../assets/sass/app.scss';
 
 .upload-input {
-	border: 2px dashed $cinza-4;
+	border: 2px dashed $n-40;
 	border-radius: 16px;
 	box-sizing: border-box;
 
@@ -269,9 +269,9 @@ export default {
 		margin-right: 8px;
 
 		&-container {
-			background: $a-200;
-			border: 1px solid $a-300;
-			color: $a-600;
+			background: $al-100;
+			border: 1px solid $al-300;
+			color: $al-600;
 			border-radius: 5px;
 			padding: 8px 0;
 			margin-top: 16px;
@@ -296,7 +296,7 @@ export default {
 	}
 
 	&__search-link {
-		color: $b-400;
+		color: $bn-400;
 		font-weight: 700;
 
 		&:hover {
@@ -305,8 +305,8 @@ export default {
 	}
 
 	&--drag-state {
-		background-color: $b-200;
-		border: 3px dashed $cinza-4;
+		background-color: $bn-100;
+		border: 2px dashed $n-40;
 	}
 }
 </style>

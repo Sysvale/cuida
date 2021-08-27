@@ -147,7 +147,7 @@ export default {
 .preview__button {
 	border: 1px solid rgba(0, 0, 0, 0.15);
 	border-radius: 4px 4px 12px 4px;
-	background-color: $branco;
+	background-color: $n-0;
 	cursor: pointer;
 	@include legenda;
 	padding: 3px 10px;
@@ -159,7 +159,7 @@ export default {
 
 .preview__button:focus {
 	outline: none !important;
-	box-shadow: $g-300 0px -3px 0px -1px inset;
+	box-shadow: $gp-300 0px -3px 0px -1px inset;
 }
 
 .source-code__container {
@@ -182,8 +182,8 @@ export default {
 }
 
 .source-code__button {
-	background-color: $cinza-9;
-	color: $branco;
+	background-color: $n-900;
+	color: $n-0;
 	border: none;
 	border-radius: 4px 0px 12px 4px;
 	padding: 3px 10px;

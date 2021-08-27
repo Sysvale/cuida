@@ -180,19 +180,19 @@ a {
 	padding: 8px 0;
 
 	&--dark {
-		background: $cinza-7;
+		background: $n-700;
 
 		.dropdown-menu {
-			background: $cinza-7;
+			background: $n-700;
 		}
 	}
 
 	&--light {
-		background: linear-gradient(0.93deg, $branco 16.45%, $cinza-2 105.67%);
+		background: linear-gradient(0.93deg, $n-0 16.45%, $n-20 105.67%);
 
 		.dropdown-menu {
-			background: $branco;
-			box-shadow: 2px 2px 4px $cinza-5;
+			background: $n-0;
+			box-shadow: 2px 2px 4px $n-50;
 			border-radius: 2px;
 		}
 	}
@@ -211,16 +211,16 @@ a {
 		@extend .nav-bar__item;
 
 		.active {
-			color: $branco;
-			border-bottom: 4px solid $g-400;
-			background: $cinza-6;
+			color: $n-0;
+			border-bottom: 4px solid $gp-400;
+			background: $n-50;
 			border-radius: 4px  4px 0px 0px;
 		}
 
 		&.active-parent{
-			color: $branco;
-			border-bottom: 4px solid $g-400;
-			background: $cinza-6;
+			color: $n-0;
+			border-bottom: 4px solid $gp-400;
+			background: $n-50;
 			border-radius: 4px  4px 0px 0px;
 
 			.show {
@@ -228,35 +228,35 @@ a {
 			}
 
 			.dropdown-toggle {
-				color: $branco;
+				color: $n-0;
 			}
 		}
 
 		.nav-link {
-			color: $cinza-4;
+			color: $n-40;
 
 			&:hover {
-				color: $branco;
+				color: $n-0;
 			}
 
 			&.active {
-				color: $branco;
+				color: $n-0;
 			}
 		}
 
 		.dropdown-item {
-			color: $cinza-4;
+			color: $n-40;
 
 			&:hover {
-				color: $branco;
+				color: $n-0;
 				background: transparent;
 			}
 
 			&.active {
-				color: $branco;
-				border-left: 4px solid $g-400;
+				color: $n-0;
+				border-left: 4px solid $gp-400;
 				border-bottom: 0px;
-				background: $cinza-6;
+				background: $n-600;
 				border-radius: 0px;
 			}
 		}
@@ -266,16 +266,16 @@ a {
 		@extend .nav-bar__item;
 
 		.active {
-			color: $cinza-8 !important;
-			border-bottom: 4px solid $b-500;
-			background: $cinza-2;
+			color: $n-800 !important;
+			border-bottom: 4px solid $bn-500;
+			background: $n-20;
 			border-radius: 4px  4px 0px 0px;
 		}
 
 		&.active-parent{
-			color: $cinza-8 !important;
-			border-bottom: 4px solid $b-500;
-			background: $cinza-2;
+			color: $n-800 !important;
+			border-bottom: 4px solid $bn-500;
+			background: $n-20;
 			border-radius: 4px  4px 0px 0px;
 
 			.show {
@@ -283,35 +283,35 @@ a {
 			}
 
 			.dropdown-toggle {
-				color: $cinza-8;
+				color: $n-800;
 			}
 		}
 
 		.nav-link {
-			color: $cinza-6;
+			color: $n-600;
 
 			&:hover {
-				color: $cinza-8;
+				color: $n-800;
 				background: transparent;
 			}
 
 			.active {
-				color: $cinza-8;
+				color: $n-800;
 			}
 		}
 
 		.dropdown-item {
-			color: $cinza-6;
+			color: $n-600;
 
 			&:hover {
-				color: $cinza-8;
+				color: $n-800;
 				background: transparent;
 			}
 
 			&.active {
-				border-left: 4px solid $b-500;
+				border-left: 4px solid $bn-500;
 				border-bottom: 0px;
-				background: $cinza-2 !important;
+				background: $n-20 !important;
 				border-radius: 0px;
 			}
 		}

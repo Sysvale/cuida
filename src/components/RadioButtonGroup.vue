@@ -106,7 +106,7 @@ export default {
 	cursor: pointer;
 	line-height: 20px;
 	display: inline-block;
-	color: $cinza-7;
+	color: $n-600;
 }
 
 #radioButton [type="radio"]:checked + label:before,
@@ -117,9 +117,9 @@ export default {
 	top: 0;
 	width: 20px;
 	height: 20px;
-	border: 1px solid $cinza-8;
+	border: 1px solid $n-800;
 	border-radius: 100%;
-	background: $branco;
+	background: $n-0;
 }
 
 #radioButton [type="radio"]:checked + label:after,
@@ -127,7 +127,7 @@ export default {
 	content: '';
 	width: 12px;
 	height: 12px;
-	background: $b-600;
+	background: $bn-600;
 	position: absolute;
 	top: 4px;
 	left: 4px;
@@ -153,7 +153,7 @@ export default {
 }
 
 #radioButton .radio-button {
-	border: 1px solid $cinza-4;
+	border: 1px solid $n-50;
 	padding: 12px 16px;
 	border-radius: 0.5rem;
 	cursor: pointer;
@@ -169,13 +169,13 @@ export default {
 }
 
 #radioButton .radio-button:hover {
-	background-color: $cinza-2;
+	background-color: $n-10;
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 }
 
 #radioButton .radio-button[disabled="disabled"] {
-	background-color: $cinza-3;
+	background-color: $n-30;
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 }

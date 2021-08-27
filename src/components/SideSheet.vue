@@ -146,7 +146,7 @@ export default {
 }
 
 #side-sheet .side-sheet__container {
-	background: $branco;
+	background: $n-0;
 	width: 328px;
 	height: 100%;
 	border-radius: 0px 0px 0px 0px;
@@ -163,12 +163,12 @@ export default {
 }
 
 .close-icon__container {
-	color: $cinza-6;
+	color: $n-600;
 	text-align: right;
 	padding: 16px;
 
 	&:hover {
-		color: $cinza-7;
+		color: $n-700;
 	}
 }
 

@@ -106,9 +106,9 @@ export default {
 @import '../assets/sass/app.scss';
 
 #dropdown .multiselect__option--highlight {
-	background: $cinza-2;
+	background: $n-20;
 	outline: none;
-	color: $cinza-8;
+	color: $n-700;
 }
 
 input[type=checkbox] {
@@ -133,10 +133,10 @@ input[type=checkbox] {
 		height: 15px;
 		top: 0;
 		border-radius: 4px;
-		border: 0.5px solid $cinza-5;
+		border: 0.5px solid $n-500;
 
 		&:after {
-			border: 1.5px solid $branco;
+			border: 1.5px solid $n-0;
 			border-top: none;
 			border-right: none;
 			content: "";
@@ -159,43 +159,43 @@ input[type=checkbox] {
 }
 
 .option__checkbox--checked {
-	background-color: $b-700 !important;
+	background-color: $bn-700 !important;
 	border: none !important;
 }
 
 #dropdown .multiselect__tag {
-	background: $cinza-2;
-	color: $cinza-8;
-	border: 1px solid $cinza-5;
+	background: $n-20;
+	color: $n-700;
+	border: 1px solid $n-100;
 }
 
 #dropdown .multiselect__tag-icon:after{
-	color: $cinza-8;
+	color: $n-700;
 }
 
 #dropdown .multiselect__tag-icon:focus,
 #dropdown .multiselect__tag-icon:hover {
-	background: $cinza-4;
-	color: $cinza-8;
+	background: $n-40;
+	color: $n-800;
 }
 
 #dropdown .multiselect__tag-icon:focus:after,
 #dropdown .multiselect__tag-icon:hover:after {
-	color: $cinza-8;
+	color: $n-800;
 }
 
 #dropdown .multiselect__option--selected.multiselect__option--highlight {
-	background: $branco;
-	color: $cinza-8;
+	background: $n-0;
+	color: $n-800;
 }
 #dropdown .multiselect__option--selected.multiselect__option--highlight:after {
-	background: $branco;
-	color: $cinza-8;
+	background: $n-0;
+	color: $n-800;
 }
 
 #dropdown .multiselect__option--selected {
-	background: $branco;
-	color: $cinza-8;
+	background: $n-0;
+	color: $n-800;
 	font-weight: 600;
 }
 
@@ -204,10 +204,10 @@ input[type=checkbox] {
 }
 
 #dropdown .multiselect--disabled .multiselect__tags {
-	background: $cinza-3 !important;
+	background: $n-300 !important;
 }
 
 #dropdown .multiselect__placeholder {
-	color: $cinza-6;
+	color: $n-600;
 }
 </style>

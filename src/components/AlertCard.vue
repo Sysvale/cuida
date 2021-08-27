@@ -200,32 +200,32 @@ export default {
 
 	&__container {
 		@extend .alert-card;	
-		border: 1px solid $cinza-3;
+		border: 1px solid $n-40;
 
 		&--selectable {
 			cursor: pointer;
 		}
 
 		&--muted {
-			background-color: $cinza-1;
+			background-color: $n-100;
 		}
 	}
 
 	&__container--selected-info {
 		@extend .alert-card;
-		border: 2px solid $b-300;
+		border: 2px solid $bn-300;
 		box-shadow: 1px 1px 4px rgba(32, 110, 217, 0.5);
 	}
 
 	&__container--selected-warning {
 		@extend .alert-card;
-		border: 2px solid $a-300;
+		border: 2px solid $al-300;
 		box-shadow: 1px 1px 4px rgba(253, 210, 145, 0.5);
 	}
 
 	&__container--selected-danger {
 		@extend .alert-card;
-		border: 2px solid $v-100;
+		border: 2px solid $rc-300;
 		box-shadow: 1px 1px 4px rgba(237, 59, 81, 0.5);
 	}
 
@@ -236,24 +236,24 @@ export default {
 
 		&--info {
 			@extend .alert-card__title;
-			color: $b-600;
+			color: $bn-400;
 		}
 
 		&--warning {
 			@extend .alert-card__title;
-			color: $a-600;
+			color: $al-600;
 		}
 
 		&--danger {
 			@extend .alert-card__title;
-			color: $v-600;
+			color: $rc-500;
 		}
 	}
 
 	&__subtitle {
 		@include subtitulo-3;
 		display: block;
-		color: $cinza-6;
+		color: $n-600;
 	}
 
 	&__content {
@@ -270,17 +270,17 @@ export default {
 
 	&--info {
 		@extend .icon;
-		color: $b-600;
+		color: $bn-400;
 	}
 
 	&--warning {
 		@extend .icon;
-		color: $a-600;
+		color: $al-600;
 	}
 
 	&--danger {
 		@extend .icon;
-		color: $v-400;
+		color: $rc-400;
 	}
 
 	&__container {
@@ -292,17 +292,17 @@ export default {
 
 		&--info {
 			@extend .icon__container;
-			background-color: $b-200;
+			background-color: $bn-100;
 		}
 
 		&--warning {
 			@extend .icon__container;
-			background-color: $a-200;
+			background-color: $al-100;
 		}
 
 		&--danger {
 			@extend .icon__container;
-			background-color: $v-200;
+			background-color: $rc-100;
 		}
 	}
 }
@@ -322,10 +322,10 @@ export default {
 		height: 14px;
 		top: 0;
 		border-radius: 4px;
-		border: 1px solid $cinza-5;
+		border: 1px solid $n-200;
 
 		&:after {
-			border: 2px solid $branco;
+			border: 2px solid $n-0;
 			border-top: none;
 			border-right: none;
 			content: "";
@@ -352,7 +352,7 @@ export default {
 }
 
 #alert-card .custom-checkbox--checked {
-	background-color: $b-500 !important;
+	background-color: $bn-500 !important;
 	border: none !important;
 }
 

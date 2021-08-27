@@ -175,13 +175,13 @@ export default {
 
 .stepper-input {
 	display: flex;
-	border: 1px solid $cinza-4;
+	border: 1px solid $n-50;
 	border-radius: 4px;
 	width: fit-content;
 	width: -moz-fit-content;
 
 	&__icon-container {
-		background-color: $cinza-2;
+		background-color: $n-20;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -195,7 +195,7 @@ export default {
 		height: 36px;
 		border: none;
 		text-align: end;
-		color: $cinza-6;
+		color: $n-600;
 
 		&:focus {
 			outline: 0;
@@ -204,32 +204,32 @@ export default {
 
 	&--focused {
 		@extend .stepper-input;
-		border: 1px solid $b-300;
-		box-shadow: 0 0 0 0.2rem rgba($b-300, .45);
+		border: 1px solid $bn-300;
+		box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);
 	}
 
 	&--valid {
 		@extend .stepper-input;
-		border: 1px solid $g-500;
+		border: 1px solid $gp-500;
 	}
 
 	&--invalid {
 		@extend .stepper-input;
-		border: 1px solid $v-600;
+		border: 1px solid $vr-600;
 	}
 
 	&--focused-valid {
 		@extend .stepper-input--valid;
-		box-shadow: 0 0 0 0.2rem rgba($g-300, .45);
+		box-shadow: 0 0 0 0.2rem rgba($gp-300, .45);
 	}
 
 	&--focused-invalid {
 		@extend .stepper-input--invalid;
-		box-shadow: 0 0 0 0.2rem rgba($v-300, .45);
+		box-shadow: 0 0 0 0.2rem rgba($vr-300, .45);
 	}
 
 	&--disabled {
-		background-color: $cinza-1;
+		background-color: $n-100;
 		pointer-events: none;
 	}
 
@@ -240,18 +240,18 @@ export default {
 		outline: none;
 		padding-top: 2px;
 		display: flex;
-		color: $cinza-6;
+		color: $n-600;
 		transition: all 0.2s ease-out;
 		height: 50%;
 
 		&:hover {
-			background-color: $b-400;
-			color: $branco;
+			background-color: $bn-400;
+			color: $n-0;
 			border-radius: 0px 3px 0px 0px;
 		}
 
 		&:active {
-			background-color: $b-500;
+			background-color: $bn-500;
 			border-radius: 0px 3px 0px 0px;
 		}
 	}
@@ -263,18 +263,18 @@ export default {
 		outline: none;
 		padding-top: 2px;
 		display: flex;
-		color: $cinza-6;
+		color: $n-600;
 		transition: all 0.2s ease-out;
 		height: 50%;
 
 		&:hover {
-			background-color: $b-400;
-			color: $branco;
+			background-color: $bn-400;
+			color: $n-0;
 			border-radius: 0px 0px 3px 0px;
 		}
 
 		&:active {
-			background-color: $b-500;
+			background-color: $bn-500;
 			border-radius: 0px 0px 3px 0px;
 		}
 	}

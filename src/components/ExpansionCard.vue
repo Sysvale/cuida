@@ -178,13 +178,13 @@ export default {
 }
 
 ::v-deep .expansion-card__expand-icon path {
-	stroke: $cinza-3;
+	stroke: $n-300;
 	stroke-width: 1;
 }
 
 ::v-deep .expansion-card__expand-icon:hover path {
 	transition: stroke ease-in-out;
-	stroke: $b-300;
+	stroke: $bn-300;
 }
 
 .expansion-card {
@@ -195,7 +195,7 @@ export default {
 	@include padding(onidirecional, 3);
 	border-radius: 16px;
 
-	border: 1px solid $cinza-3;
+	border: 1px solid $n-30;
 	min-height: 130px;
 	width: 255px;
 	height: 130px;
@@ -218,64 +218,64 @@ export default {
 		&-blue {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $b-200;
-			box-shadow: 0 0 2px $b-400;
+			border: 2px solid $bn-200;
+			box-shadow: 0 0 2px $bn-200;
 		}
 
 		&-turquoise {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $t-200;
-			box-shadow: 0 0 2px $t-500;
+			border: 2px solid $ts-200;
+			box-shadow: 0 0 2px $ts-200;
 		}
 
 		&-green {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $g-200;
-			box-shadow: 0 0 2px $g-400;
+			border: 2px solid $gp-200;
+			box-shadow: 0 0 2px $gp-200;
 		}
 
 		&-purple {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $v-200;
-			box-shadow: 0 0 2px $v-500;
+			border: 2px solid $vr-200;
+			box-shadow: 0 0 2px $vr-200;
 		}
 
 		&-pink {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $p-200;
-			box-shadow: 0 0 2px $p-500;
+			border: 2px solid $pp-200;
+			box-shadow: 0 0 2px $pp-200;
 		}
 
 		&-red {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $v-200;
-			box-shadow: 0 0 2px $v-500;
+			border: 2px solid $rc-200;
+			box-shadow: 0 0 2px $rc-200;
 		}
 
 		&-orange {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $o-200;
-			box-shadow: 0 0 2px $o-500;
+			border: 2px solid $og-200;
+			box-shadow: 0 0 2px $og-200;
 		}
 
 		&-yellow {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $a-200;
-			box-shadow: 0 0 2px $a-500;
+			border: 2px solid $al-200;
+			box-shadow: 0 0 2px $al-200;
 		}
 
 		&-gray {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			box-shadow: 0 0 2px $cinza-5;
-			border: 2px solid $cinza-3;
+			box-shadow: 0 0 2px $n-50;
+			border: 2px solid $n-30;
 		}
 	}
 
@@ -305,7 +305,7 @@ export default {
 
 			&__main-value {
 				@include legenda;
-				color: $cinza-6;
+				color: $n-600;
 				margin-bottom: 2px;
 				@include margin(onidirecional, 0);
 			}
@@ -313,7 +313,7 @@ export default {
 			&__legend {
 				@include subtitulo-3;
 				@include margin(onidirecional, 0);
-				color: $cinza-8;
+				color: $n-800;
 				max-width: 100%;
 				font-weight: 600;
 			}
@@ -343,14 +343,14 @@ export default {
 
 	&__main-value {
 		@include titulo-1;
-		color: $cinza-8;
+		color: $n-800;
 		@include margin(inferior, 0);
 	}
 
 	&__legend {
 		@include legenda;
 		@include margin(onidirecional, 0);
-		color: $cinza-6;
+		color: $n-600;
 		max-width: 155px;
 	}
 
@@ -366,48 +366,48 @@ export default {
 		@include margin(direita, 3);
 
 		&--blue {
-			color: $b-400;
-			background-color: $b-200;
+			color: $bn-400;
+			background-color: $bn-100;
 		}
 
 		&--turquoise {
-			color: $t-500;
-			background-color: $t-200;
+			color: $ts-500;
+			background-color: $ts-100;
 		}
 
 		&--green {
-			color: $g-400;
-			background-color: $g-200;
+			color: $gp-400;
+			background-color: $gp-100;
 		}
 
 		&--purple {
-			color: $v-500;
-			background-color: $v-200;
+			color: $vr-500;
+			background-color: $vr-100;
 		}
 
 		&--pink {
-			color: $p-500;
-			background-color: $p-200;
+			color: $pp-500;
+			background-color: $pp-100;
 		}
 
 		&--red {
-			color: $v-500;
-			background-color: $v-200;
+			color: $rc-500;
+			background-color: $rc-100;
 		}
 
 		&--orange {
-			color: $o-500;
-			background-color: $o-200;
+			color: $og-500;
+			background-color: $og-100;
 		}
 
 		&--yellow {
-			color: $a-500;
-			background-color: $a-200;
+			color: $al-500;
+			background-color: $al-100;
 		}
 
 		&--gray {
-			color: $cinza-5;
-			background-color: $cinza-2;
+			color: $n-300;
+			background-color: $n-20;
 		}
 
 		& .b-icon {
@@ -420,11 +420,11 @@ export default {
 		position: absolute;
 		top: 8px;
 		right: 12px;
-		color: $cinza-5;
+		color: $n-500;
 
 		&:hover {
 			transition: color ease-in-out;
-			color: $b-300;
+			color: $bn-300;
 		}
 	}
 

@@ -250,33 +250,33 @@ export default {
 	}
 
 	&__step--active {
-		color: $cinza-6;
+		color: $n-600;
 		border: 2px;
 		border-style: solid;
-		border-color: $g-400;
+		border-color: $gp-400;
 	}
 
 	&__step--muted {
-		color: $cinza-5;
-		border-color: $cinza-5;
+		color: $n-500;
+		border-color: $n-500;
 	}
 
 	&__step--in-processing {
 		border: 2px;
 		border-style: solid;
-		border-color: $b-400;
+		border-color: $bn-400;
 	}
 
 	&__step--error {
-		background-color: $v-500;
-		border-color: $v-500;
-		color: $branco;
+		background-color: $rc-400;
+		border-color: $rc-400;
+		color: $n-0;
 	}
 
 	&__step--completed {
-		background-color: $g-400;
-		border-color: $g-400;
-		color: $branco;
+		background-color: $gp-400;
+		border-color: $gp-400;
+		color: $n-0;
 	}
 
 	&__step--clickable {
@@ -291,11 +291,11 @@ export default {
 		text-align: center;
 
 		&--muted {
-			color: $cinza-6;
+			color: $n-600;
 		}
 
 		&--active small {
-			color: $cinza-9;
+			color: $n-700;
 			font-weight: 600;
 		}
 
@@ -336,15 +336,15 @@ export default {
 	}
 
 	&__divider--default {
-		background-color: $cinza-4;
+		background-color: $n-400;
 	}
 
 	&__divider--in-progress {
-		background: linear-gradient(90deg, #43E4CC 0%, $cinza-4 67.57%);
+		background: linear-gradient(90deg, #43E4CC 0%, $n-400 67.57%);
 	}
 
 	&__divider--completed {
-		background: $g-400;
+		background: $gp-400;
 	}
 
 	&__icon-container {
@@ -392,15 +392,15 @@ export default {
 	}
 
 	&__vertical-divider--default {
-		background-color: $cinza-4;
+		background-color: $n-400;
 	}
 
 	&__vertical-divider--in-progress {
-		background: linear-gradient(180deg, #43E4CC 0%, $cinza-4 67.57%);
+		background: linear-gradient(180deg, #43E4CC 0%, $n-400 67.57%);
 	}
 
 	&__vertical-divider--completed {
-		background: $g-400;
+		background: $gp-400;
 	}
 }
 </style>

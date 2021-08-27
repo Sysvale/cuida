@@ -90,7 +90,7 @@ export default {
 		border-radius: $border-radius-token;
 		width: 60px;
 		height: 60px;
-		background-color: $g-400;
+		background-color: $gp-400;
 	}
 }
 
@@ -98,13 +98,13 @@ export default {
     width: fit-content;
     padding: 8px 12px;
     border-radius: 16px;
-	border: 1px solid $branco;
+	border: 1px solid $n-0;
 	transition: all .15s ease-in-out;
 }
 
 .copy-clip:hover {
 	// background-color: #EDFDF5;
-	border: 1px solid $g-300;
+	border: 1px solid $gp-300;
 	cursor: pointer;
 	transition: all .15s ease-in-out;
 }

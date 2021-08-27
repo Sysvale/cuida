@@ -103,7 +103,7 @@ export default {
 }
 
 .code {
-	border: 1px solid $cinza-4;
+	border: 1px solid $n-400;
 	border-radius: $border-radius-pequeno;
 }
 
@@ -124,7 +124,7 @@ code {
 
 .source-code {
 	&__container {
-		border: 1px solid $cinza-4;
+		border: 1px solid $n-400;
 		border-radius: $border-radius-pequeno;
 		display: flex;
 		background-color: #fafafa;
@@ -145,8 +145,8 @@ code {
 }
 
 .source-code__button {
-	background-color: $cinza-9;
-	color: $branco;
+	background-color: $n-900;
+	color: $n-0;
 	border: none;
 	border-radius: 4px 0px 12px 4px;
 	padding: 3px 10px;

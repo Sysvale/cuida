@@ -109,13 +109,13 @@ export default {
 
 	&__title {
 		margin-top: 48px;
-		color: $cinza-9;
+		color: $n-900;
 		font-size: 28px;
 	}
 
 	&__text {
 		margin-top: 8px;
-		color: $cinza-7;
+		color: $n-700;
 		font-size: 16px;
 		max-width: 50%;
 		text-align: center;
@@ -123,15 +123,15 @@ export default {
 
 	&__button {
 		margin-top: 20px;
-		background-color: $g-400;
-		color: $branco;
+		background-color: $gp-400;
+		color: $n-0;
 		border-radius: 4px;
 		font-weight: 600;
 		border: none;
 		padding: 8px 12px;
 
 		&:hover {
-			background-color: $g-500;
+			background-color: $gp-500;
 		}
 
 		&:focus {

@@ -85,13 +85,13 @@ export default {
 	&__value {
 		@include titulo-2;
 		font-weight: $peso-de-fonte-medium;
-		color: $cinza-8;
+		color: $n-800;
 	}
 
 	&__subtitle {
 		@include legenda;
 		font-weight: $peso-de-fonte-medium;
-		color: $cinza-6;
+		color: $n-600;
 	}
 
 	&__icon {
@@ -103,8 +103,8 @@ export default {
 		align-self: center;
 		align-items: center;
 		justify-content: center;
-		color: $b-400;
-		background-color: $b-200;
+		color: $bn-400;
+		background-color: $bn-200;
 
 		&--right {
 			margin-left: 1rem !important;
@@ -115,48 +115,48 @@ export default {
 		}
 
 		&--blue {
-			color: $b-400;
-			background-color: $b-200;
+			color: $bn-400;
+			background-color: $bn-100;
 		}
 
 		&--turquoise {
-			color: $t-500;
-			background-color: $t-200;
+			color: $ts-500;
+			background-color: $ts-100;
 		}
 
 		&--green {
-			color: $g-400;
-			background-color: $g-200;
+			color: $gp-500;
+			background-color: $gp-100;
 		}
 
 		&--purple {
-			color: $v-500;
-			background-color: $v-200;
+			color: $vr-500;
+			background-color: $vr-100;
 		}
 
 		&--pink {
-			color: $p-500;
-			background-color: $p-200;
+			color: $pp-500;
+			background-color: $pp-100;
 		}
 
 		&--red {
-			color: $v-500;
-			background-color: $v-300;
+			color: $rc-500;
+			background-color: $rc-100;
 		}
 
 		&--orange {
-			color: $o-500;
-			background-color: $o-200;
+			color: $og-500;
+			background-color: $og-100;
 		}
 
 		&--yellow {
-			color: $a-500;
-			background-color: $a-200;
+			color: $al-500;
+			background-color: $al-100;
 		}
 
 		&--gray {
-			color: $cinza-5;
-			background-color: $cinza-2;
+			color: $n-200;
+			background-color: $n-20;
 		}
 
 		& .b-icon {

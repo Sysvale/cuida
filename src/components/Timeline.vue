@@ -68,7 +68,7 @@ export default {
 	overflow: auto;
 	max-height: 350px;
 	width: 100% !important;
-	scrollbar-color: $cinza-1 $branco;
+	scrollbar-color: $n-100 $n-0;
 	scrollbar-width: thin;
 }
 
@@ -78,7 +78,7 @@ export default {
 
 #timeline .container::-webkit-scrollbar-thumb {
 	border-radius: 4px;
-	background: $cinza-1 $branco;
+	background: $n-100 $n-0;
 }
 
 #timeline .content__container {
@@ -87,13 +87,13 @@ export default {
 }
 
 #timeline .content__text {
-	color: $cinza-6;
+	color: $n-600;
 	margin-top: 4px;
 }
 
 #timeline .event__date {
 	font-weight: 400;
-	color: $cinza-5;
+	color: $n-500;
 	text-transform: Capitalize;
 	align-self: flex-end;
 	margin-top: -4px;
@@ -105,8 +105,8 @@ export default {
 	min-height: 12px !important;
 	min-width: 11.5px !important;
 	border-radius: 50% !important;
-	background-color: $g-400;
-	border: 1px solid $g-400;
+	background-color: $gp-400;
+	border: 1px solid $gp-400;
 }
 
 #timeline .event__row {
@@ -115,7 +115,7 @@ export default {
 }
 
 #timeline .content__title {
-	color: $cinza-9;
+	color: $n-900;
 	font-weight: 600;
 	margin-bottom: 0;
 }
@@ -123,7 +123,7 @@ export default {
 #timeline .timeline {
 	height: 100% !important;
 	width: 1px !important;
-	background-color: $cinza-4;
+	background-color: $n-40;
 }
 
 #timeline .timeline__container {
