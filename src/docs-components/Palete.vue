@@ -23,7 +23,7 @@
 				<span
 					v-if="index === 0"
 					class="colorNames"
-					:class="{ 'low-contrast-color-names': isDarkColor(color, index) }"
+					:class="{ 'low-contrast-color-names': isADarkColor(color, index) }"
 				>
 					<span class="mainColorName"> {{ color.name }} </span>
 					<br />
@@ -31,7 +31,7 @@
 						<copy-icon
 							size="1.1x"
 							class="mr-3" 
-							:class="{ 'low-contrast-color-names': isDarkColor(color, index) }"
+							:class="{ 'low-contrast-color-names': isADarkColor(color, index) }"
 						/>
 
 						{{ shade }}
@@ -41,13 +41,13 @@
 				<span
 					v-else
 					class="colorNames"
-					:class="{ 'low-contrast-color-names': isDarkColor(color, index) }"
+					:class="{ 'low-contrast-color-names': isADarkColor(color, index) }"
 				>
 					<span>
 						<copy-icon
 							size="1.1x"
 							class="mr-3"
-							:class="{ 'low-contrast-color-names': isDarkColor(color, index) }"
+							:class="{ 'low-contrast-color-names': isADarkColor(color, index) }"
 						/>
 
 						{{ shade }}
@@ -87,7 +87,7 @@ export default {
 			return shade.replace(/(\D)+-/, "");
 		},
 
-		isDarkColor(color, index) {
+		isADarkColor(color, index) {
 			return !color.isADarkColor && (color.tokens.length <= 5 || ((index <= color.tokens.length / 2)));
 		},
 	},
