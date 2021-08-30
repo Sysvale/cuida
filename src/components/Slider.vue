@@ -214,7 +214,7 @@ export default {
 	border: none !important;
 	background-color: transparent !important;
 	color: $n-600 !important;
-	margin-bottom: -8px !important;
+	margin: mb(n2) !important;
 	@include legenda;
 }
 

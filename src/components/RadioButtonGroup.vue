@@ -102,7 +102,7 @@ export default {
 #radioButton [type="radio"]:not(:checked) + label
 {
 	position: relative;
-	padding-left: 28px;
+	padding: pl(7);
 	cursor: pointer;
 	line-height: 20px;
 	display: inline-block;
@@ -154,17 +154,17 @@ export default {
 
 #radioButton .radio-button {
 	border: 1px solid $n-50;
-	padding: 12px 16px;
+	padding: pYX(3, 4);
 	border-radius: 0.5rem;
 	cursor: pointer;
 	display: inline-block;
 
 	&__container--vertical {
-		margin-left: 16px;
+		margin: ml(4);
 	}
 
 	&__content {
-		margin: 0;
+		margin: ma(0);
 	}
 }
 

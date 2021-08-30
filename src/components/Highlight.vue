@@ -51,15 +51,15 @@ export default {
 				dynamicClass = 'highlight__container--highlighted';
 			}
 
-			switch(this.variant) {
+			switch (this.variant) {
 				case 'info':
-					return dynamicClass + ' highlight__container--info';
+					return `${dynamicClass} highlight__container--info`;
 				case 'success':
-					return dynamicClass + ' highlight__container--success';
+					return `${dynamicClass} highlight__container--success`;
 				case 'danger':
-					return dynamicClass + ' highlight__container--danger';
+					return `${dynamicClass} highlight__container--danger`;
 				default:
-					return dynamicClass + ' highlight__container--info';
+					return `${dynamicClass} highlight__container--info`;
 			}
 		},
 
@@ -69,14 +69,14 @@ export default {
 				'--delay': `${this.delay}s`,
 			};
 		},
-	}
+	},
 };
 </script>
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
 .highlight__container {
-	@include padding(onidirecional, 1);
+	padding: pa(1);
 	border-radius: 4px;
 	background-size: 200%;
 

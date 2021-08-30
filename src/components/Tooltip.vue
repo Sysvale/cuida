@@ -72,8 +72,8 @@ export default {
 	background-color: $n-900;
 	color: $n-0;
 	position: absolute;
-	padding: 4px 12px;
-	margin-top: 0px;
+	padding: pYX(1, 3);
+	margin: mt(0);
 	@include legenda;
 
 	&--active {	

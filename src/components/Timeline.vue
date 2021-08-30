@@ -64,7 +64,7 @@ export default {
 @import '../assets/sass/app.scss';
 
 #timeline .container {
-	padding: 24px !important;
+	padding: pa(6) !important;
 	overflow: auto;
 	max-height: 350px;
 	width: 100% !important;
@@ -83,12 +83,12 @@ export default {
 
 #timeline .content__container {
 	width: 50% !important;
-	margin-top: -8px;
+	margin: mt(n2);
 }
 
 #timeline .content__text {
 	color: $n-600;
-	margin-top: 4px;
+	margin: mt(1);
 }
 
 #timeline .event__date {
@@ -96,9 +96,7 @@ export default {
 	color: $n-500;
 	text-transform: Capitalize;
 	align-self: flex-end;
-	margin-top: -4px;
-	margin-bottom: 0px;
-
+	margin: mt(n1);
 }
 
 #timeline .event__pin {
@@ -117,7 +115,7 @@ export default {
 #timeline .content__title {
 	color: $n-900;
 	font-weight: 600;
-	margin-bottom: 0;
+	margin: mb(0);
 }
 
 #timeline .timeline {

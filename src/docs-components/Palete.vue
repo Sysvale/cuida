@@ -103,7 +103,7 @@ export default {
 			background-color: $shade;
 			width: 320px;
 			height: 72px;
-			padding: 14px 20px;
+			padding: pYX(4, 5);
 			transform: scale(1);
 			transition: all .25s ease-in-out;
 			cursor: pointer;

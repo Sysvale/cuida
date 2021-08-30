@@ -98,7 +98,7 @@ export default {
 	flex-direction: column;
 	align-items: center;
 	position: relative;
-	margin: 60px;
+	margin: ma(12);
 
 	&__image {
 		max-width: 500px;
@@ -108,13 +108,13 @@ export default {
 	}
 
 	&__title {
-		margin-top: 48px;
+		margin: mt(12);
 		color: $n-900;
 		font-size: 28px;
 	}
 
 	&__text {
-		margin-top: 8px;
+		margin: mt(2);
 		color: $n-700;
 		font-size: 16px;
 		max-width: 50%;
@@ -122,13 +122,13 @@ export default {
 	}
 
 	&__button {
-		margin-top: 20px;
+		margin: mt(4);
 		background-color: $gp-400;
 		color: $n-0;
 		border-radius: 4px;
 		font-weight: 600;
 		border: none;
-		padding: 8px 12px;
+		padding: pYX(2, 3);
 
 		&:hover {
 			background-color: $gp-500;

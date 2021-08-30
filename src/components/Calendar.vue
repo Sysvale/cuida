@@ -335,7 +335,7 @@ export default {
 
 		&__minutes-container {
 			padding: 20px;
-			border: 1px solid $n-500;
+			border: 1px solid $n-400;
 			margin-left: 20px;
 			border-radius: 8px
 		}
@@ -365,11 +365,11 @@ export default {
 	}
 
 	&__time-text {
-		padding: 8px 12px;
+		padding: pYX(2, 3);
 		border-radius: 8px;
-		border: 1px solid $n-600;
+		border: 1px solid $n-400;
 		text-align: center;
-		color: $n-700;
+		color: $n-600;
 	}
 
 	&__available-hour {
@@ -379,14 +379,14 @@ export default {
 
 	&__unavailable-hour {
 		@include botao-2;
-		color: $n-500;
+		color: $n-50;
 		margin-bottom: -4px;
 	}
 
 	&__unavailable-interval {
-		color: $n-400 !important;
+		color: $n-40 !important;
 		@include botao-1;
-		border: 1px solid $n-300 !important;
+		border: 1px solid $n-100 !important;
 		cursor: default;
 		font-weight: 400;
 	}
@@ -397,7 +397,7 @@ export default {
 
 	&__unavailable-intervals {
 		@include legenda;
-		color: $n-500;
+		color: $n-50;
 	}
 
 	&__time-interval {
@@ -448,7 +448,7 @@ export default {
 	&__header-hours {
 		@include botao-2;
 		font-weight: 700;
-		color: $n-800;
+		color: $n-700;
 	}
 
 	&__header-available-hours {
@@ -481,9 +481,9 @@ export default {
 }
 
 .time-interval__minutes {
-	padding: 8px 20px;
+	padding: pYX(2, 5);
 	border-radius: 8px;
-	border: 1px solid $n-600;
+	border: 1px solid $n-400;
 	color: $n-700;
 }
 

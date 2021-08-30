@@ -284,8 +284,7 @@ export default {
 	}
 
 	&__step-label {
-		margin-left: -34px;
-		margin-top: 6px;
+		margin: mTRBL(2, 0, 0, n8);
 		line-height: 1.0;
 		display: block;
 		text-align: center;
@@ -305,7 +304,7 @@ export default {
 
 		&--vertical {
 			@extend .stepper__step-label;
-			margin-right: 8px;
+			margin: mr(2);
 			text-align: right;
 		}
 	}

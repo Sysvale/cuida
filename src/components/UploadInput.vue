@@ -266,7 +266,7 @@ export default {
 	box-sizing: border-box;
 
 	&__alert {
-		margin-right: 8px;
+		margin: mr(2);
 
 		&-container {
 			background: $al-100;
@@ -274,7 +274,7 @@ export default {
 			color: $al-600;
 			border-radius: 5px;
 			padding: 8px 0;
-			margin-top: 16px;
+			margin: mt(4);
 			display: flex;
 			justify-content: center;
 			align-items: center;
