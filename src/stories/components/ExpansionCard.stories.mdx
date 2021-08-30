@@ -20,6 +20,15 @@ import { BIconHouseFill } from 'bootstrap-vue';
 					'yellow',
 					'gray',
 				],
+			},
+		},
+		iconSide: {
+			control:{
+				type: 'select',
+				options: [
+					'left',
+					'right',
+				],
 			}
 		},
 	}
@@ -123,6 +132,7 @@ export const docsDecorator = () => {
 			legend: 'UBSs com dados atualizados',
 			variant: 'blue',
 			expansible: true,
+			iconSide: 'left',
 		}}
 	>
 		{ Template.bind({}) }

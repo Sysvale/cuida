@@ -28,6 +28,7 @@
 				class="expansion-card__body"
 			>
 				<div
+					v-if="iconSide === 'left'"
 					class="expansion-card__icon"
 					:class="`expansion-card__icon--${variant}`"
 				>
@@ -48,6 +49,14 @@
 							{{ legend }}
 						</slot>
 					</p>
+				</div>
+				<div
+					v-if="iconSide === 'right'"
+					class="expansion-card__icon--right"
+					:class="`expansion-card__icon--${variant}`"
+				>
+					<!-- @slot Slot para ícone para o template padrão. -->
+					<slot name="icon" />
 				</div>
 			</div>
 			<div
@@ -115,6 +124,11 @@ export default {
 		expansible: {
 			type: Boolean,
 			default: true,
+		},
+		/** */
+		iconSide: {
+			type: String,
+			default: 'left',
 		},
 	},
 
@@ -434,6 +448,12 @@ export default {
 		& .b-icon {
 			min-width: 20px;
 			min-height: 20px;
+		}
+
+		&--right {
+			@extend .expansion-card__icon;
+			@include margin(direita, 0);
+			@include margin(esquerda, 3);
 		}
 	}
 

@@ -1,6 +1,6 @@
 import { mount, shallowMount, createLocalVue } from '@vue/test-utils';
-import ExpansionCard from '../../src/components/ExpansionCard.vue';
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
+import ExpansionCard from '../../src/components/ExpansionCard.vue';
 
 const localVue = createLocalVue();
 
@@ -22,7 +22,7 @@ test('Component is mounted properly', () => {
 });
 
 describe('Hover tests', () => {
-	test("if hover style is applied when the card is hovered", async () => {
+	test('if hover style is applied when the card is hovered', async () => {
 		const wrapper = shallowMount(ExpansionCard, {
 			localVue,
 		});
@@ -42,7 +42,7 @@ describe('Hover tests', () => {
 });
 
 describe('Click tests', () => {
-	test("if the card is expanded and an event is emitted when the card is clicked", async () => {
+	test('if the card is expanded and an event is emitted when the card is clicked', async () => {
 		const wrapper = shallowMount(ExpansionCard, {
 			localVue,
 		});
@@ -59,7 +59,7 @@ describe('Click tests', () => {
 		expect(wrapper.emitted().expanded).toEqual([[true]]);
 	});
 
-	test("if the card is contracted and an event is emitted when the expand icon is clicked", async () => {
+	test('if the card is contracted and an event is emitted when the expand icon is clicked', async () => {
 		const wrapper = shallowMount(ExpansionCard, {
 			localVue,
 		});
@@ -78,7 +78,7 @@ describe('Click tests', () => {
 		expect(wrapper.emitted().expanded).toEqual([[true]]);
 	});
 
-	test("if the card is contracted and an event is emitted when the contract icon is clicked", async () => {
+	test('if the card is contracted and an event is emitted when the contract icon is clicked', async () => {
 		const wrapper = shallowMount(ExpansionCard, {
 			localVue,
 		});
@@ -98,7 +98,7 @@ describe('Click tests', () => {
 	});
 });
 
-describe("Prop 'variant' tests", () => {
+describe('Prop "variant" tests', () => {
 	const variantStyles = {
 		turquoise: 'expansion-card--turquoise',
 		green: 'expansion-card--green',
@@ -112,19 +112,19 @@ describe("Prop 'variant' tests", () => {
 	};
 	const variants = Object.keys(variantStyles);
 
-	variants.forEach(variant => {
-		let expectedStyle = variantStyles[variant];
+	variants.forEach((variant) => {
+		const expectedStyle = variantStyles[variant];
 
 		test(`if the computed property changes when the prop variant is set to '${variant}'`, () => {
-			let wrapper = mount(ExpansionCard, {
+			const wrapper = mount(ExpansionCard, {
 				localVue,
 				propsData: {
 					variant,
 				},
 			});
-	
+
 			expect(wrapper.find('.expansion-card').exists()).toBe(true);
-			
+
 			expect(wrapper.vm.variantStyle).toBe(expectedStyle);
 		});
 	});
