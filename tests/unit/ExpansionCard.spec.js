@@ -22,17 +22,41 @@ test('Component is mounted properly', () => {
 });
 
 describe('Hover tests', () => {
-	test('if hover style is applied when the card is hovered', async () => {
+	test('if hover style is applied when the card is hovered and is expansible', async () => {
+		expect.assertions(4);
+
 		const wrapper = shallowMount(ExpansionCard, {
 			localVue,
+			propsData: {
+				expansible: true,
+			},
 		});
-
-		expect(wrapper.find('.expansion-card').exists()).toBe(true);
 
 		wrapper.trigger('mouseover');
 		await wrapper.vm.$nextTick();
 		expect(wrapper.find('.expansion-card--hover-gray').exists()).toBe(true);
 		expect(wrapper.find('.expansion-card__expand-icon').exists()).toBe(true);
+
+		wrapper.trigger('mouseleave');
+		await wrapper.vm.$nextTick();
+		expect(wrapper.find('.expansion-card--hover-gray').exists()).toBe(false);
+		expect(wrapper.find('.expansion-card__expand-icon').exists()).toBe(false);
+	});
+
+	test('if hover style is not applied when the card is hovered and is not expansible', async () => {
+		expect.assertions(4);
+
+		const wrapper = shallowMount(ExpansionCard, {
+			localVue,
+			propsData: {
+				expansible: false,
+			},
+		});
+
+		wrapper.trigger('mouseover');
+		await wrapper.vm.$nextTick();
+		expect(wrapper.find('.expansion-card--hover-gray').exists()).toBe(false);
+		expect(wrapper.find('.expansion-card__expand-icon').exists()).toBe(false);
 
 		wrapper.trigger('mouseleave');
 		await wrapper.vm.$nextTick();
