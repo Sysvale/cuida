@@ -72,8 +72,8 @@ export default {
 	background-color: $cinza-9;
 	color: $branco;
 	position: absolute;
-	padding: 4px 12px;
-	margin-top: 0px;
+	padding: pYX(1, 3);
+	margin: mt(0);
 	@include legenda;
 
 	&--active {	

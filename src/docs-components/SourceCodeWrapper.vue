@@ -195,7 +195,7 @@ export default {
 }
 
 pre {
-	margin: 0 !important;
+	margin: ma(0) !important;
 	@include legenda;
 	display: flex;
 	border-radius: 0px 0px 12px 12px;

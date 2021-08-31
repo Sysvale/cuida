@@ -165,7 +165,7 @@ export default {
 .close-icon__container {
 	color: $cinza-6;
 	text-align: right;
-	padding: 16px;
+	padding: pa(4);
 
 	&:hover {
 		color: $cinza-7;

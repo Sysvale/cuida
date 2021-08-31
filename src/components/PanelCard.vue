@@ -66,27 +66,27 @@ export default {
 	border-radius: $border-radius-extra-pequeno;
 
 	&__divider {
-		@include margin(onidirecional, 0);
+		margin: ma(0);
 		color: $cinza-3;
 	}
 
 	&__header {
-		@include padding(onidirecional, 3);
+		padding: pa(4);
 		display: flex;
 		min-height: 78px;
 	}
 
 	&__content {
-		@include padding(onidirecional, 3);
+		padding: pa(4);
 	}
 
 	&__content--no-padding {
-		@include padding(onidirecional, 3);
+		padding: pa(4);
 	}
 
 	&__title {
 		@include subtitulo-2;
-		@include margin(inferior, 1);
+		margin: mb(2);
 		color: $cinza-9;
 	}
 

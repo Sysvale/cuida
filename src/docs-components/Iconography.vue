@@ -97,8 +97,7 @@ export default {
 
 	&__title {
 		font-size: 20px;
-		margin-top: 48px;
-		margin-bottom: 16px;
+		margin: mTRBL(12, 0, 12, 0);
 	}
 }
 
@@ -110,7 +109,7 @@ export default {
 pre {
 	display: flex;
 	justify-content: start;
-	margin-bottom: 40px;
+	margin: mb(10);
 	border-radius: $border-radius-pequeno;
 }
 
@@ -119,7 +118,7 @@ code {
 	width: 100%;
 	display: flex;
 	justify-content: flex-start;
-	padding: 32px;
+	padding: pa(8);
 }
 
 .source-code {
@@ -129,12 +128,12 @@ code {
 		display: flex;
 		background-color: #fafafa;
 		height: 80px;
-		margin-top: 16px;
+		margin: mt(4);
 	}
 
 	&__title {
 		font-size: 20px;
-		margin-top: 24px;
+		margin: mt(6);
 	}
 }
 
@@ -149,7 +148,7 @@ code {
 	color: $branco;
 	border: none;
 	border-radius: 4px 0px 12px 4px;
-	padding: 3px 10px;
+	padding: pYX(1, 2);
 	@include legenda;
 	transition: all .3s ease-in-out;
 	align-self: flex-end;

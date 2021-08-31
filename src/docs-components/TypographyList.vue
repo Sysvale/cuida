@@ -186,7 +186,7 @@ export default {
 	font-weight: var(--fontWeight);
 	letter-spacing: var(--letterSpacing);
 	border: 1px solid #ABB5BF;
-	padding: 8px 20px;
+	padding: pYX(2, 5);
 	border-radius: 4px;
 	background: #FFFFFF;
 }
@@ -201,9 +201,9 @@ export default {
 }
 
 .copy-clip {
-    width: fit-content;
-    padding: 8px 12px;
-    border-radius: 16px;
+	width: fit-content;
+	padding: pYX(2, 3);
+	border-radius: 16px;
 	border: 1px solid $branco;
 	transition: all .15s ease-in-out;
 }

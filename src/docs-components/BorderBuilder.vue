@@ -17,6 +17,7 @@
 					<div class="align-middle"> {{ row.item.token }} </div>
 				</div>
 			</template>
+
 			<template class="align-middle" #cell(example)="row">
 				<div class="align-middle" :class="borderRadiusClass(row.index)" />
 			</template>
@@ -95,9 +96,9 @@ export default {
 }
 
 .copy-clip {
-    width: fit-content;
-    padding: 8px 12px;
-    border-radius: 16px;
+	width: fit-content;	
+	padding: pYX(2, 3);
+	border-radius: 16px;
 	border: 1px solid $branco;
 	transition: all .15s ease-in-out;
 }

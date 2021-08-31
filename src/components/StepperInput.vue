@@ -118,21 +118,18 @@ export default {
 				} else {
 					stepperInputClass += ' stepper-input--disabled';
 				}
-
-			} else {
-				if (!this.disabled) {
-					if (this.state === 'default') {
-						stepperInputClass += ' stepper-input--focused';
-					} else if (this.state === 'valid') {
-						stepperInputClass += ' stepper-input--focused-valid';
-					} else if (this.state === 'invalid') {
-						stepperInputClass += ' stepper-input--focused-invalid';
-					}
+			} else if (!this.disabled) {
+				if (this.state === 'default') {
+					stepperInputClass += ' stepper-input--focused';
+				} else if (this.state === 'valid') {
+					stepperInputClass += ' stepper-input--focused-valid';
+				} else if (this.state === 'invalid') {
+					stepperInputClass += ' stepper-input--focused-invalid';
 				}
 			}
 
 			return stepperInputClass;
-		}
+		},
 	},
 
 	watch: {
@@ -164,9 +161,9 @@ export default {
 	},
 
 	methods: {
-		changeValue (amount) {
+		changeValue(amount) {
 			this.internalValue = parseInt(this.internalValue) + amount;
-		}
+		},
 	},
 };
 </script>
@@ -189,10 +186,9 @@ export default {
 	}
 
 	&__field {
-		@include padding(onidirecional, 2);
-		@include margin(direita, 2);
+		padding: pa(2);
+		margin: mr(2);
 		border-radius: 4px;
-		height: 36px;
 		border: none;
 		text-align: end;
 		color: $cinza-6;
@@ -238,7 +234,7 @@ export default {
 		border: none;
 		padding: 0;
 		outline: none;
-		padding-top: 2px;
+		padding: pt(1);
 		display: flex;
 		color: $cinza-6;
 		transition: all 0.2s ease-out;
@@ -261,7 +257,7 @@ export default {
 		border: none;
 		padding: 0;
 		outline: none;
-		padding-top: 2px;
+		padding: pt(1);
 		display: flex;
 		color: $cinza-6;
 		transition: all 0.2s ease-out;
@@ -283,7 +279,7 @@ export default {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
-	margin: 0;
+	margin: ma(0);
 }
 
 input[type=number] {

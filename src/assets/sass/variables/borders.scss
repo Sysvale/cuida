@@ -10,13 +10,13 @@ $border-radius: ();
 
 $border-radius: map-merge(
 	(
-		"botao": $border-radius-botao,
-		"extra-pequeno": $border-radius-extra-pequeno,
-		"pequeno": $border-radius-pequeno,
-		"normal": $border-radius-normal,
-		"grande": $border-radius-grande,
-		"extra-grande": $border-radius-extra-grande,
-		"circulo": $border-radius-circulo,
+		'botao': $border-radius-botao,
+		'extra-pequeno': $border-radius-extra-pequeno,
+		'pequeno': $border-radius-pequeno,
+		'normal': $border-radius-normal,
+		'grande': $border-radius-grande,
+		'extra-grande': $border-radius-extra-grande,
+		'circulo': $border-radius-circulo,
 	),
 	$border-radius
 );

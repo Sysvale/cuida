@@ -160,6 +160,7 @@ export default {
 				this.isDropdown(item)
 				&& this.internalActiveParent
 				&& this.internalActiveParent.path === item.path
+				&& this.internalActiveParent.label === item.label
 			) {
 				accClass = `${accClass} active-parent`;
 			}
@@ -198,12 +199,10 @@ a {
 }
 
 #nav-bar .nav-bar__item {
-	margin-top: 8px;
-	margin-right: 24px;
+	margin: mTRBL(2, 6, 0, 0);
 
 	&-container {
-		margin-right: 24px;
-		margin-top: 8px;
+		margin: mTRBL(2, 6, 0, 0);
 	}
 
 	&--dark {
@@ -322,12 +321,11 @@ a {
 }
 
 .dropdown-item {
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding: pTRBL(3, 0, 3 , 7);
 }
 
 .dropdown-menu {
-	margin-top: 4px;
+	margin: mt(1);
 	border: 0;
 	border-radius: 0;
 }
