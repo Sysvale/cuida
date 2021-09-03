@@ -50,13 +50,13 @@ export default {
 
 		/* Handle */
 		&::-webkit-scrollbar-thumb {
-			background: $cinza-4;
+			background: $n-40;
 			border-radius: 8px;
 		}
 
 		/* Handle on hover */
 		&::-webkit-scrollbar-thumb:hover {
-			background: $cinza-5;
+			background: $n-50;
 		}
 	}
 

@@ -62,12 +62,12 @@ export default {
 @import '../assets/sass/app.scss';
 
 .panel-card {
-	background-color: white;
+	background-color: $n-0;
 	border-radius: $border-radius-extra-pequeno;
 
 	&__divider {
 		margin: ma(0);
-		color: $cinza-3;
+		color: $n-300;
 	}
 
 	&__header {
@@ -87,12 +87,12 @@ export default {
 	&__title {
 		@include subtitulo-2;
 		margin: mb(2);
-		color: $cinza-9;
+		color: $n-900;
 	}
 
 	&__subtitle {
 		@include subtitulo-3;
-		color: $cinza-6;
+		color: $n-500;
 	}
 }
 </style>

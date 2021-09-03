@@ -85,13 +85,13 @@ export default {
 	&__value {
 		@include titulo-2;
 		font-weight: $peso-de-fonte-medium;
-		color: $cinza-8;
+		color: $n-800;
 	}
 
 	&__subtitle {
 		@include legenda;
 		font-weight: $peso-de-fonte-medium;
-		color: $cinza-6;
+		color: $n-600;
 	}
 
 	&__icon {
@@ -103,8 +103,8 @@ export default {
 		align-self: center;
 		align-items: center;
 		justify-content: center;
-		color: $azul-sonic-base;
-		background-color: $azul-sonic-light-2;
+		color: $bn-400;
+		background-color: $bn-200;
 
 		&--right {
 			margin-left: 1rem !important;
@@ -115,48 +115,48 @@ export default {
 		}
 
 		&--blue {
-			color: $azul-sonic-base;
-			background-color: $azul-sonic-light-2;
+			color: $bn-400;
+			background-color: $bn-100;
 		}
 
 		&--turquoise {
-			color: $turquesa-perry-base;
-			background-color: $turquesa-perry-light-2;
+			color: $ts-500;
+			background-color: $ts-100;
 		}
 
 		&--green {
-			color: $verde-piccolo-base;
-			background-color: $verde-piccolo-light-2;
+			color: $gp-500;
+			background-color: $gp-100;
 		}
 
 		&--purple {
-			color: $roxo-thanos-base;
-			background-color: $roxo-thanos-light-2;
+			color: $vr-500;
+			background-color: $vr-100;
 		}
 
 		&--pink {
-			color: $pantera-cor-de-rosa-base;
-			background-color: $pantera-cor-de-rosa-light-2;
+			color: $pp-500;
+			background-color: $pp-100;
 		}
 
 		&--red {
-			color: $vermelho-mario-base;
-			background-color: $vermelho-mario-light-2;
+			color: $rc-500;
+			background-color: $rc-100;
 		}
 
 		&--orange {
-			color: $laranja-naruto-base;
-			background-color: $laranja-naruto-light-2;
+			color: $og-500;
+			background-color: $og-100;
 		}
 
 		&--yellow {
-			color: $amarelo-pikachu-base;
-			background-color: $amarelo-pikachu-light-2;
+			color: $al-500;
+			background-color: $al-100;
 		}
 
 		&--gray {
-			color: $cinza-5;
-			background-color: $cinza-2;
+			color: $n-200;
+			background-color: $n-20;
 		}
 
 		& .b-icon {

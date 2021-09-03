@@ -124,38 +124,38 @@ export default {
 	&__container {
 		display: inline-block;
 		padding: 8px 16px;
-		border: 1px solid $cinza-4;
+		border: 1px solid $n-50;
 		border-radius: $border-radius-extra-pequeno;
 		cursor: pointer;
 
 		&--disabled {
-			background-color: $cinza-3;
+			background-color: $n-30;
 			cursor: default;
 		}
 
 		&:hover:not(.filter-pill__container--disabled),
 		&--active {
 			border-color: transparent !important;
-			box-shadow: 0 0px 0px 4px rgba($azul-sonic-base, 0.16);
+			box-shadow: 0 0px 0px 4px rgba($gp-400, 0.2);
 		}
 	}
 
 	&__label {
 		@include corpo-2;
 		font-weight: $peso-de-fonte-regular;
-		color: $cinza-7;
+		color: $n-500;
 	}
 
 	&__content {
 		@include corpo-2;
 		font-weight: $peso-de-fonte-semibold;
-		color: $cinza-7;
+		color: $n-700;
 	}
 
 	&__chevron--up {
 		margin-left: 8px;
 		margin-bottom: -4px;
-		color: $cinza-6;
+		color: $n-500;
 		transition: all 0.25s ease-in-out;
 		transform: rotate(180deg);
 	}
@@ -163,7 +163,7 @@ export default {
 	&__chevron--down {
 		margin-left: 8px;
 		margin-bottom: -4px;
-		color: $cinza-6;
+		color: $n-500;
 		transition: all 0.25s ease-in-out;
 	}
 
@@ -174,14 +174,15 @@ export default {
 		padding: 20px;
 		top: 94px;
 		border-radius: $border-radius-extra-pequeno;
-		box-shadow: 0px 0px 8px rgba($cinza-9, .08);
-		border: 1px solid $cinza-2;
+		box-shadow: 0px 0px 8px rgba($n-900, .08);
+		border: 1px solid $n-30;
 		z-index:999999999;
+		color: $n-600;
 	}
 }
 
 ion-icon {
-    visibility: visible !important;
+	visibility: visible !important;
 	font-size: 18px !important;
 }
 </style>

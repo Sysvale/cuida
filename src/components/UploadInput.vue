@@ -261,7 +261,7 @@ export default {
 @import '../assets/sass/app.scss';
 
 .upload-input {
-	border: 2px dashed $cinza-4;
+	border: 2px dashed $n-40;
 	border-radius: 16px;
 	box-sizing: border-box;
 
@@ -269,9 +269,9 @@ export default {
 		margin: mr(2);
 
 		&-container {
-			background: $amarelo-pikachu-light-2;
-			border: 1px solid $amarelo-pikachu-light-1;
-			color: $amarelo-pikachu-dark-2;
+			background: $al-100;
+			border: 1px solid $al-300;
+			color: $al-600;
 			border-radius: 5px;
 			padding: 8px 0;
 			margin: mt(4);
@@ -296,7 +296,7 @@ export default {
 	}
 
 	&__search-link {
-		color: $azul-sonic-base;
+		color: $bn-400;
 		font-weight: 700;
 
 		&:hover {
@@ -305,8 +305,8 @@ export default {
 	}
 
 	&--drag-state {
-		background-color: $azul-sonic-light-2;
-		border: 3px dashed $cinza-4;
+		background-color: $bn-100;
+		border: 2px dashed $n-40;
 	}
 }
 </style>

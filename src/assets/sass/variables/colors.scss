@@ -1,215 +1,263 @@
-$branco: #FFFFFF;
-$cinza-1: #FAFBFE;
-$cinza-2: #F0F3FA;
-$cinza-3: #DDE2E7;
-$cinza-4: #CED4DA;
-$cinza-5: #ABB5BF;
-$cinza-6: #697580;
-$cinza-7: #44505C;
-$cinza-8: #303A44;
-$cinza-9: #182532;
+$n-0: #ffffff;
+$n-10: #FAFCFE;
+$n-20: #EFF5FB;
+$n-30: #E2EAF3;
+$n-40: #D3DBE4;
+$n-50: #BCC7D2;
+$n-100: #ABB8C4;
+$n-200: #9AA8B6;
+$n-300: #8B99A7;
+$n-400: #7C8A98;
+$n-500: #566676;
+$n-600: #475766;
+$n-700: #36424E;
+$n-800: #29333D;
+$n-900: #1E252C;
 
-$turquesa-perry-light-2: #F0FCFF;
-$turquesa-perry-light-1: #7DD9E8;
-$turquesa-perry-base: #23B1C7;
-$turquesa-perry-dark-1: #1F9EB2;
-$turquesa-perry-dark-2: #16707E;
+$gp-100: #EEFCF5;
+$gp-200: #ABEDD9;
+$gp-300: #6DDFBC;
+$gp-400: #2AC092;
+$gp-500: #239F78;
+$gp-600: #197155;
+$gp-700: #145C45;
 
-$verde-piccolo-light-2: #EDFDF5;
-$verde-piccolo-light-1: #85E0C4;
-$verde-piccolo-base: #2EB88D;
-$verde-piccolo-dark-1: #29A37D;
-$verde-piccolo-dark-2: #1C6E54;
+$ts-100: #F0FAFF;
+$ts-200: #C2EDFF;
+$ts-300: #7BD0F4;
+$ts-400: #3CACDD;
+$ts-500: #1F86B2;
+$ts-600: #18698B;
+$ts-700: #13526D;
 
-$azul-sonic-light-2: #EFF8FF;
-$azul-sonic-light-1: #77BAEE;
-$azul-sonic-base: #399AE7;
-$azul-sonic-dark-1: #1B88DF;
-$azul-sonic-dark-2: #125C96;
+$bn-100: #F2F5FD;
+$bn-200: #B6D1F7;
+$bn-300: #83AFEC;
+$bn-400: #377EE1;
+$bn-500: #206ED9;
+$bn-600: #1B59B1;
+$bn-700: #144385;
 
-$azul-bidu-light-2: #F0F5FF;
-$azul-bidu-light-1: #84AFEB;
-$azul-bidu-base: #3A7EDF;
-$azul-bidu-dark-1: #206ED9;
-$azul-bidu-dark-2: #164A92;
+$in-100: #E5EAFF;
+$in-200: #CED6FD;
+$in-300: #AAB7F8;
+$in-400: #6174D1;
+$in-500: #5464B6;
+$in-600: #3A4788;
+$in-700: #353D64;
 
-$roxo-thanos-light-2: #F8F0FF;
-$roxo-thanos-light-1: #CDB0E8;
-$roxo-thanos-base: #AB79D8;
-$roxo-thanos-dark-1: #9759CF;
-$roxo-thanos-dark-2: #692E9E;
+$vr-100: #F8F0FF;
+$vr-200: #E6D2F9;
+$vr-300: #CEABED;
+$vr-400: #A169D3;
+$vr-500: #8F4DCC;
+$vr-600: #7633B2;
+$vr-700: #642B96;
 
-$pantera-cor-de-rosa-light-2: #FFEFFC;
-$pantera-cor-de-rosa-light-1: #ECA7D9;
-$pantera-cor-de-rosa-base: #E06EC0;
-$pantera-cor-de-rosa-dark-1: #D94AB1;
-$pantera-cor-de-rosa-dark-2: #A82483;
+$pp-100: #FFEFF9;
+$pp-200: #F9C8E2;
+$pp-300: #EF8FC0;
+$pp-400: #DD5A9C;
+$pp-500: #CC3381;
+$pp-600: #A52766;
+$pp-700: #701A48;
 
-$vermelho-mario-light-2: #FFF0F1;
-$vermelho-mario-light-1: #F69DA8;
-$vermelho-mario-base: #F05F71;
-$vermelho-mario-dark-1: #ED3B51;
-$vermelho-mario-dark-2: #B61125;
+$rc-100: #FFF0F2;
+$rc-200: #FBD0D6;
+$rc-300: #F797A3;
+$rc-400: #F95367;
+$rc-500: #E83047;
+$rc-600: #D22D41;
+$rc-700: #A42333;
 
-$laranja-naruto-light-2: #FFF3F0;
-$laranja-naruto-light-1: #FDAF9B;
-$laranja-naruto-base: #FB876B;
-$laranja-naruto-dark-1: #FA6642;
-$laranja-naruto-dark-2: #CB3510;
+$og-100: #FFF3F0;
+$og-200: #FFD6CC;
+$og-300: #FDAF9B;
+$og-400: #FF8567;
+$og-500: #F5613D;
+$og-600: #D64B29;
+$og-700: #AB3C21;
 
-$amarelo-pikachu-light-2: #FFF7EB;
-$amarelo-pikachu-light-1: #FDD291;
-$amarelo-pikachu-base: #FCBB5A;
-$amarelo-pikachu-dark-1: #FBAA32;
-$amarelo-pikachu-dark-2: #C37604;
+$al-100: #FFF7EB;
+$al-200: #FFE2B8;
+$al-300: #FDCD87;
+$al-400: #FFB952;
+$al-500: #EEA22F;
+$al-600: #D38817;
+$al-700: #A56A12;
 
-$cinzas: ();
+$t: ();
 
-$cinzas: map-merge(
+$t: map-merge(
 	(
-		"1": $cinza-1,
-		"2": $cinza-2,
-		"3": $cinza-3,
-		"4": $cinza-4,
-		"5": $cinza-5,
-		"6": $cinza-6,
-		"7": $cinza-7,
-		"8": $cinza-8,
-		"9": $cinza-9
+		"100": $ts-100,
+		"200": $ts-200,
+		"300": $ts-300,
+		"400": $ts-400,
+		"500": $ts-500,
+		"600": $ts-600,
+		"700": $ts-700,
 	),
-	$cinzas
+	$t
 );
 
-$turquesa-perry: ();
+$g: ();
 
-$turquesa-perry: map-merge(
+$g: map-merge(
 	(
-		"light-2": $turquesa-perry-light-2,
-		"light-1": $turquesa-perry-light-1,
-		"base": $turquesa-perry-base,
-		"dark-1": $turquesa-perry-dark-1,
-		"dark-2": $turquesa-perry-dark-2,
+		"100": $gp-100,
+		"200": $gp-200,
+		"300": $gp-300,
+		"400": $gp-400,
+		"500": $gp-500,
+		"600": $gp-600,
+		"700": $gp-700,
 	),
-	$turquesa-perry
+	$g
 );
 
-$verde-piccolo: ();
+$b: ();
 
-$verde-piccolo: map-merge(
+$b: map-merge(
 	(
-		"light-2": $verde-piccolo-light-2,
-		"light-1": $verde-piccolo-light-1,
-		"base": $verde-piccolo-base,
-		"dark-1": $verde-piccolo-dark-1,
-		"dark-2": $verde-piccolo-dark-2,
+		"100": $bn-100,
+		"200": $bn-200,
+		"300": $bn-300,
+		"400": $bn-400,
+		"500": $bn-500,
+		"600": $bn-600,
+		"700": $bn-700,
 	),
-	$verde-piccolo
+	$b
 );
 
-$azul-sonic: ();
+$i: ();
 
-$azul-sonic: map-merge(
+$i: map-merge(
 	(
-		"light-2": $azul-sonic-light-2,
-		"light-1": $azul-sonic-light-1,
-		"base": $azul-sonic-base,
-		"dark-1": $azul-sonic-dark-1,
-		"dark-2": $azul-sonic-dark-2,
+		"100": $in-100,
+		"200": $in-200,
+		"300": $in-300,
+		"400": $in-400,
+		"500": $in-500,
+		"600": $in-600,
+		"700": $in-700,
 	),
-	$azul-sonic
+	$i
 );
 
-$azul-bidu: ();
+$v: ();
 
-$azul-bidu: map-merge(
+$v: map-merge(
 	(
-		"light-2": $azul-bidu-light-2,
-		"light-1": $azul-bidu-light-1,
-		"base": $azul-bidu-base,
-		"dark-1": $azul-bidu-dark-1,
-		"dark-2": $azul-bidu-dark-2,
+		"100": $vr-100,
+		"200": $vr-200,
+		"300": $vr-300,
+		"400": $vr-400,
+		"500": $vr-500,
+		"600": $vr-600,
+		"700": $vr-700,
 	),
-	$azul-bidu
+	$v
 );
 
-$roxo-thanos: ();
+$p: ();
 
-$roxo-thanos: map-merge(
+$p: map-merge(
 	(
-		"light-2": $roxo-thanos-light-2,
-		"light-1": $roxo-thanos-light-1,
-		"base": $roxo-thanos-base,
-		"dark-1": $roxo-thanos-dark-1,
-		"dark-2": $roxo-thanos-dark-2,
+		"100": $pp-100,
+		"200": $pp-200,
+		"300": $pp-300,
+		"400": $pp-400,
+		"500": $pp-500,
+		"600": $pp-600,
+		"700": $pp-700,
 	),
-	$roxo-thanos
+	$p
 );
 
-$pantera-cor-de-rosa: ();
+$r: ();
 
-$pantera-cor-de-rosa: map-merge(
+$r: map-merge(
 	(
-		"light-2": $pantera-cor-de-rosa-light-2,
-		"light-1": $pantera-cor-de-rosa-light-1,
-		"base": $pantera-cor-de-rosa-base,
-		"dark-1": $pantera-cor-de-rosa-dark-1,
-		"dark-2": $pantera-cor-de-rosa-dark-2,
+		"100": $rc-100,
+		"200": $rc-200,
+		"300": $rc-300,
+		"400": $rc-400,
+		"500": $rc-500,
+		"600": $rc-600,
+		"700": $rc-700,
 	),
-	$pantera-cor-de-rosa
+	$r
 );
 
-$vermelho-mario: ();
+$o: ();
 
-$vermelho-mario: map-merge(
+$o: map-merge(
 	(
-		"light-2": $vermelho-mario-light-2,
-		"light-1": $vermelho-mario-light-1,
-		"base": $vermelho-mario-base,
-		"dark-1": $vermelho-mario-dark-1,
-		"dark-2": $vermelho-mario-dark-2,
+		"100": $og-100,
+		"200": $og-200,
+		"300": $og-300,
+		"400": $og-400,
+		"500": $og-500,
+		"600": $og-600,
+		"700": $og-700,
 	),
-	$vermelho-mario
+	$o
 );
 
-$laranja-naruto: ();
+$a: ();
 
-$laranja-naruto: map-merge(
+$a: map-merge(
 	(
-		"light-2": $laranja-naruto-light-2,
-		"light-1": $laranja-naruto-light-1,
-		"base": $laranja-naruto-base,
-		"dark-1": $laranja-naruto-dark-1,
-		"dark-2": $laranja-naruto-dark-2,
+		"100": $al-100,
+		"200": $al-200,
+		"300": $al-300,
+		"400": $al-400,
+		"500": $al-500,
+		"600": $al-600,
+		"700": $al-700,
 	),
-	$laranja-naruto
+	$a
 );
 
-$amarelo-pikachu: ();
+$n: ();
 
-$amarelo-pikachu: map-merge(
+$n: map-merge(
 	(
-		"light-2": $amarelo-pikachu-light-2,
-		"light-1": $amarelo-pikachu-light-1,
-		"base": $amarelo-pikachu-base,
-		"dark-1": $amarelo-pikachu-dark-1,
-		"dark-2": $amarelo-pikachu-dark-2,
+		"0": $n-0,
+		"10": $n-10,
+		"20": $n-20,
+		"30": $n-30,
+		"40": $n-40,
+		"50": $n-50,
+		"100": $n-100,
+		"200": $n-200,
+		"300": $n-300,
+		"400": $n-400,
+		"500": $n-500,
+		"600": $n-600,
+		"700": $n-700,
+		"800": $n-800,
+		"900": $n-900,
 	),
-	$amarelo-pikachu
+	$n
 );
 
 $palete: ();
 
 $palete: map-merge(
 	(
-		'turquesa-perry': $turquesa-perry,
-		'verde-piccolo': $verde-piccolo,
-		'azul-sonic': $azul-sonic,
-		'azul-bidu': $azul-bidu,
-		'roxo-thanos': $roxo-thanos,
-		'pantera-cor-de-rosa': $pantera-cor-de-rosa,
-		'vermelho-mario': $vermelho-mario,
-		'laranja-naruto': $laranja-naruto,
-		'amarelo-pikachu': $amarelo-pikachu,
+		'PiccoloGreen': $g,
+		'SulivanTurquoise': $t,
+		'NocturneBlue': $b,
+		'NightWingIndigo': $i,
+		'RavenViolet': $v,
+		'PeppaPink': $p,
+		'CarmenRed': $r,
+		'GokuOrange': $o,
+		'LisaAmber': $a,
+		'Neutrals': $n,
 	),
 	$palete
 );

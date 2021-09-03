@@ -200,32 +200,32 @@ export default {
 
 	&__container {
 		@extend .alert-card;
-		border: 1px solid $cinza-3;
+		border: 1px solid $n-40;
 
 		&--selectable {
 			cursor: pointer;
 		}
 
 		&--muted {
-			background-color: $cinza-1;
+			background-color: $n-100;
 		}
 	}
 
 	&__container--selected-info {
 		@extend .alert-card;
-		border: 2px solid $azul-sonic-light-1;
+		border: 2px solid $bn-300;
 		box-shadow: 1px 1px 4px rgba(32, 110, 217, 0.5);
 	}
 
 	&__container--selected-warning {
 		@extend .alert-card;
-		border: 2px solid $amarelo-pikachu-light-1;
+		border: 2px solid $al-300;
 		box-shadow: 1px 1px 4px rgba(253, 210, 145, 0.5);
 	}
 
 	&__container--selected-danger {
 		@extend .alert-card;
-		border: 2px solid $vermelho-mario-light-1;
+		border: 2px solid $rc-300;
 		box-shadow: 1px 1px 4px rgba(237, 59, 81, 0.5);
 	}
 
@@ -236,24 +236,24 @@ export default {
 
 		&--info {
 			@extend .alert-card__title;
-			color: $azul-sonic-dark-1;
+			color: $bn-400;
 		}
 
 		&--warning {
 			@extend .alert-card__title;
-			color: $amarelo-pikachu-dark-2;
+			color: $al-600;
 		}
 
 		&--danger {
 			@extend .alert-card__title;
-			color: $vermelho-mario-dark-1;
+			color: $rc-500;
 		}
 	}
 
 	&__subtitle {
 		@include subtitulo-3;
 		display: block;
-		color: $cinza-6;
+		color: $n-600;
 	}
 
 	&__content {
@@ -270,17 +270,17 @@ export default {
 
 	&--info {
 		@extend .icon;
-		color: $azul-sonic-dark-1;
+		color: $bn-400;
 	}
 
 	&--warning {
 		@extend .icon;
-		color: $amarelo-pikachu-dark-2;
+		color: $al-600;
 	}
 
 	&--danger {
 		@extend .icon;
-		color: $vermelho-mario-dark-1;
+		color: $rc-400;
 	}
 
 	&__container {
@@ -292,17 +292,17 @@ export default {
 
 		&--info {
 			@extend .icon__container;
-			background-color: $azul-sonic-light-2;
+			background-color: $bn-100;
 		}
 
 		&--warning {
 			@extend .icon__container;
-			background-color: $amarelo-pikachu-light-2;
+			background-color: $al-100;
 		}
 
 		&--danger {
 			@extend .icon__container;
-			background-color: $vermelho-mario-light-2;
+			background-color: $rc-100;
 		}
 	}
 }
@@ -322,10 +322,10 @@ export default {
 		height: 14px;
 		top: 0;
 		border-radius: 4px;
-		border: 1px solid $cinza-5;
+		border: 1px solid $n-200;
 
 		&:after {
-			border: 2px solid $branco;
+			border: 2px solid $n-0;
 			border-top: none;
 			border-right: none;
 			content: "";
@@ -352,7 +352,7 @@ export default {
 }
 
 #alert-card .custom-checkbox--checked {
-	background-color: $azul-bidu-dark-1 !important;
+	background-color: $bn-500 !important;
 	border: none !important;
 }
 
