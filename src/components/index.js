@@ -21,6 +21,5 @@ export { default as Scrollable } from './Scrollable.vue';
 export { default as Calendar } from './Calendar.vue';
 export { default as FilterPill } from './FilterPill.vue';
 export { default as Slider } from './Slider.vue';
-export { default as Totalizer } from './Totalizer.vue';
 export { default as Tooltip } from './Tooltip.vue';
 export { default as ToggleSwitch } from './ToggleSwitch.vue';
