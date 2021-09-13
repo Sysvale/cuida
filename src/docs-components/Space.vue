@@ -217,17 +217,18 @@ export default {
 	}
 
 	&__demo-element {
-		background-color: $laranja-naruto-light-1;
+		background-color: $og-200;
 		border-radius: $border-radius-pequeno;
 	}
 }
 
 .demo-element {
 	&__outer-container {
-		background-color: $verde-piccolo-light-1;
+		background-color: $gp-200;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		color: $ts-600;
 		border-radius: $border-radius-pequeno;
 
 		margin: var(--margin);
@@ -235,11 +236,11 @@ export default {
 	}
 
 	&__inner-container {
-		background-color: $branco;
+		background-color: $n-0;
 		padding: pYX(8, 4);
 		border-radius: $border-radius-pequeno;
 		box-shadow: #2544811f 0px 0px 16px 0px;
-		background-color: $branco;
+		background-color: $n-0;
 	}
 }
 
@@ -252,7 +253,7 @@ export default {
 		transition: all .15s ease-in-out;
 
 		&:hover {
-			border: 1px solid $verde-piccolo-light-1;
+			border: 1px solid $gp-100;
 			cursor: pointer;
 			transition: all .15s ease-in-out;
 		}
@@ -260,7 +261,7 @@ export default {
 
 	&__icon {
 		margin: mr(4);
-		color: $cinza-6;
+		color: $n-50;
 	}
 }
 

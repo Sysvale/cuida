@@ -111,7 +111,7 @@ export default {
 
 .action-list {
 	&--right {
-		color: $cinza-6;
+		color: $n-500;
 		font-weight: 600;
 		display: flex;
 		justify-content: flex-end;
@@ -128,17 +128,17 @@ export default {
 		border-radius: 1px;
 
 		&:hover {
-			background-color: $cinza-2;
+			background-color: $n-10;
 		}
 
 		&--right-bordered {
 			@extend .action-list__item;
-			border-right: 1px solid $cinza-4;
+			border-right: 1px solid $n-40;
 		}
 
 		&--left-bordered {
 			@extend .action-list__item;
-			border-left: 1px solid $cinza-4;
+			border-left: 1px solid $n-40;
 		}
 	}
 

@@ -196,7 +196,7 @@ export default {
 		border-radius: $border-radius-token;
 		width: 60px;
 		height: 60px;
-		background-color: $verde-piccolo-base;
+		background-color: $gp-400;
 	}
 }
 
@@ -204,12 +204,12 @@ export default {
 	width: fit-content;
 	padding: pYX(2, 3);
 	border-radius: 16px;
-	border: 1px solid $branco;
+	border: 1px solid $n-0;
 	transition: all .15s ease-in-out;
 }
 
 .copy-clip:hover {
-	border: 1px solid $verde-piccolo-light-1;
+	border: 1px solid $gp-300;
 	cursor: pointer;
 	transition: all .15s ease-in-out;
 }

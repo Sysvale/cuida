@@ -129,7 +129,7 @@ export default {
 		height: 0;
 
 		&:checked + .switch__slider {
-			background-color: $verde-piccolo-base;
+			background-color: $gp-400;
 		}
 
 		&:checked + .switch__slider--small:before {
@@ -152,11 +152,11 @@ export default {
 
 		&:disabled + .switch__slider {
 			cursor: default;
-			background-color: $cinza-4;
+			background-color: $n-40;
 		}
 
 		&:disabled + .switch__slider:before {
-			background-color: $cinza-3;
+			background-color: $n-30;
 		}
 	}
 
@@ -167,7 +167,7 @@ export default {
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background-color: $cinza-4;
+		background-color: $n-50;
 		-webkit-transition: .35s;
 		transition: .35s;
 		border-radius: 80px;
@@ -180,7 +180,7 @@ export default {
 				width: 12px;
 				left: 2px;
 				bottom: 2px;
-				background-color: $branco;
+				background-color: $n-0;
 				-webkit-transition: .35s;
 				border-radius: $border-radius-circulo;
 				transition: .35s;
@@ -195,7 +195,7 @@ export default {
 				width: 18px;
 				left: 3px;
 				bottom: 2.7px;
-				background-color: $branco;
+				background-color: $n-0;
 				-webkit-transition: .35s;
 				border-radius: $border-radius-circulo;
 				transition: .35s;
@@ -210,7 +210,7 @@ export default {
 				width: 24px;
 				left: 4px;
 				bottom: 3px;
-				background-color: $branco;
+				background-color: $n-0;
 				-webkit-transition: .35s;
 				border-radius: $border-radius-circulo;
 				transition: .35s;
@@ -222,11 +222,11 @@ export default {
 		}
 
 		&--active-focused {
-			box-shadow: 0 0 0 0.2rem rgba($verde-piccolo-light-1, .45);
+			box-shadow: 0 0 0 0.2rem rgba($gp-300, 45);
 		}
 
 		&--inactive-focused {
-			box-shadow: 0 0 0 0.2rem rgba($azul-bidu-light-1, .45);
+			box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);
 		}
 	}
 }
