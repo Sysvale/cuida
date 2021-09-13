@@ -87,7 +87,7 @@ export default {
 	props: {
 		/**
 		 * Variante do ExpansionCard. São 9 variantes: 'turquoise', 'green', 'blue',
-		 * 'purple', 'pink', 'red', 'orange', 'yellow' e 'gray'.
+		 * 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
 		 */
 		variant: {
 			type: String,
@@ -257,7 +257,14 @@ export default {
 			box-shadow: 0 0 2px $gp-200;
 		}
 
-		&-purple {
+		&-indigo {
+			@extend .expansion-card--hover, .expansion-card;
+			transition: transform .2s, box-shadow .2s ease-in-out;
+			border: 2px solid $in-200;
+			box-shadow: 0 0 2px $in-200;
+		}
+
+		&-violet {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
 			border: 2px solid $vr-200;
@@ -285,7 +292,7 @@ export default {
 			box-shadow: 0 0 2px $og-200;
 		}
 
-		&-yellow {
+		&-amber {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
 			border: 2px solid $al-200;
@@ -401,7 +408,12 @@ export default {
 			background-color: $gp-100;
 		}
 
-		&--purple {
+		&--indigo {
+			color: $in-400;
+			background-color: $in-100;
+		}
+
+		&--violet {
 			color: $vr-500;
 			background-color: $vr-100;
 		}
@@ -421,7 +433,7 @@ export default {
 			background-color: $og-100;
 		}
 
-		&--yellow {
+		&--amber {
 			color: $al-500;
 			background-color: $al-100;
 		}
