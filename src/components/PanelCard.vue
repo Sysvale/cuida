@@ -63,7 +63,7 @@ export default {
 
 .panel-card {
 	background-color: $n-0;
-	border-radius: $border-radius-extra-pequeno;
+	border-radius: $border-radius-extra-small;
 
 	&__divider {
 		margin: ma(0);
@@ -85,13 +85,13 @@ export default {
 	}
 
 	&__title {
-		@include subtitulo-2;
+		@include subheading-2;
 		margin: mb(2);
 		color: $n-900;
 	}
 
 	&__subtitle {
-		@include subtitulo-3;
+		@include subheading-3;
 		color: $n-500;
 	}
 }

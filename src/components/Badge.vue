@@ -62,7 +62,7 @@ export default {
 
 	&__content {
 		font-weight: 500 !important;
-		@include corpo-2;
+		@include body-2;
 	}
 
 	&--turquoise {

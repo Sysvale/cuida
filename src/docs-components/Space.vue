@@ -218,7 +218,7 @@ export default {
 
 	&__demo-element {
 		background-color: $og-200;
-		border-radius: $border-radius-pequeno;
+		border-radius: $border-radius-small;
 	}
 }
 
@@ -229,7 +229,7 @@ export default {
 		align-items: center;
 		justify-content: center;
 		color: $ts-600;
-		border-radius: $border-radius-pequeno;
+		border-radius: $border-radius-small;
 
 		margin: var(--margin);
 		padding: var(--padding);
@@ -238,7 +238,7 @@ export default {
 	&__inner-container {
 		background-color: $n-0;
 		padding: pYX(8, 4);
-		border-radius: $border-radius-pequeno;
+		border-radius: $border-radius-small;
 		box-shadow: #2544811f 0px 0px 16px 0px;
 		background-color: $n-0;
 	}

@@ -215,7 +215,7 @@ export default {
 	background-color: transparent !important;
 	color: $n-600 !important;
 	margin: mb(n2) !important;
-	@include legenda;
+	@include subtitle;
 }
 
 .vue-slider-component .vue-slider-tooltip-wrap.vue-slider-tooltip-top

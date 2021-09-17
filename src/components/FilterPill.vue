@@ -125,7 +125,7 @@ export default {
 		display: inline-block;
 		padding: 8px 16px;
 		border: 1px solid $n-50;
-		border-radius: $border-radius-extra-pequeno;
+		border-radius: $border-radius-extra-small;
 		cursor: pointer;
 
 		&--disabled {
@@ -141,14 +141,14 @@ export default {
 	}
 
 	&__label {
-		@include corpo-2;
-		font-weight: $peso-de-fonte-regular;
+		@include body-2;
+		font-weight: $font-weight-regular;
 		color: $n-500;
 	}
 
 	&__content {
-		@include corpo-2;
-		font-weight: $peso-de-fonte-semibold;
+		@include body-2;
+		font-weight: $font-weight-semibold;
 		color: $n-700;
 	}
 
@@ -173,7 +173,7 @@ export default {
 		background-color: white;
 		padding: 20px;
 		top: 94px;
-		border-radius: $border-radius-extra-pequeno;
+		border-radius: $border-radius-extra-small;
 		box-shadow: 0px 0px 8px rgba($n-900, .08);
 		border: 1px solid $n-30;
 		z-index:999999999;

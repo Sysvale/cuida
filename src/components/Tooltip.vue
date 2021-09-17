@@ -74,9 +74,9 @@ export default {
 	position: absolute;
 	padding: pYX(1, 3);
 	margin: mt(0);
-	@include legenda;
+	@include subtitle;
 
-	&--active {	
+	&--active {
 		opacity: 1;
 	}
 

@@ -315,7 +315,7 @@ export default {
 			}
 
 			&--unavailable {
-				@include botao-1;
+				@include button-1;
 				color: $n-500 !important;
 				border: 1px solid $n-40 !important;
 				cursor: default;
@@ -355,7 +355,7 @@ export default {
 
 			&--unavailable {
 				color: $n-50 !important;
-				@include botao-1;
+				@include button-1;
 				border: 1px solid $n-40 !important;
 				cursor: default;
 				font-weight: 400;
@@ -373,30 +373,30 @@ export default {
 	}
 
 	&__available-hour {
-		@include botao-2;
+		@include button-2;
 		margin-bottom: -4px;
 	}
 
 	&__unavailable-hour {
-		@include botao-2;
+		@include button-2;
 		color: $n-50;
 		margin-bottom: -4px;
 	}
 
 	&__unavailable-interval {
 		color: $n-40 !important;
-		@include botao-1;
+		@include button-1;
 		border: 1px solid $n-100 !important;
 		cursor: default;
 		font-weight: 400;
 	}
 
 	&__available-intervals {
-		@include legenda;
+		@include subtitle;
 	}
 
 	&__unavailable-intervals {
-		@include legenda;
+		@include subtitle;
 		color: $n-50;
 	}
 
@@ -421,7 +421,7 @@ export default {
 	@media screen and (min-width: 770px) {
 		&__back-buton {
 			cursor: pointer;
-			@include botao-2;
+			@include button-2;
 			color: $bn-400;
 
 			&:hover {
@@ -446,13 +446,13 @@ export default {
 	}
 
 	&__header-hours {
-		@include botao-2;
+		@include button-2;
 		font-weight: 700;
 		color: $n-700;
 	}
 
 	&__header-available-hours {
-		@include legenda;
+		@include subtitle;
 		font-weight: 500;
 		color: $n-600;
 	}

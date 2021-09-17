@@ -230,7 +230,7 @@ export default {
 	}
 
 	&__title {
-		@include subtitulo-2;
+		@include subheading-2;
 		margin: mt(3);
 		display: block;
 
@@ -251,7 +251,7 @@ export default {
 	}
 
 	&__subtitle {
-		@include subtitulo-3;
+		@include subheading-3;
 		display: block;
 		color: $n-600;
 	}
