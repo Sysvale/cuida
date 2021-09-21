@@ -104,7 +104,6 @@ export default {
 }
 
 .copy-clip:hover {
-	// background-color: #EDFDF5;
 	border: 1px solid $gp-300;
 	cursor: pointer;
 	transition: all .15s ease-in-out;
