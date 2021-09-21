@@ -283,15 +283,15 @@ export default {
 
 	&__title {
 		&--lg {
-			@include subtitulo-1;
+			@include subheading-1;
 		}
 
 		&--md {
-			@include subtitulo-2;
+			@include subheading-2;
 		}
 
 		&--sm {
-			@include subtitulo-3;
+			@include subheading-3;
 		}
 	}
 

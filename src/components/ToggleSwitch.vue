@@ -182,7 +182,7 @@ export default {
 				bottom: 2px;
 				background-color: $n-0;
 				-webkit-transition: .35s;
-				border-radius: $border-radius-circulo;
+				border-radius: $border-radius-circle;
 				transition: .35s;
 			}
 		}
@@ -197,7 +197,7 @@ export default {
 				bottom: 2.7px;
 				background-color: $n-0;
 				-webkit-transition: .35s;
-				border-radius: $border-radius-circulo;
+				border-radius: $border-radius-circle;
 				transition: .35s;
 			}
 		}
@@ -212,7 +212,7 @@ export default {
 				bottom: 3px;
 				background-color: $n-0;
 				-webkit-transition: .35s;
-				border-radius: $border-radius-circulo;
+				border-radius: $border-radius-circle;
 				transition: .35s;
 			}
 		}

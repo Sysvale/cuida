@@ -39,18 +39,18 @@ export default {
 				this.visibilityController = true;
 				let tooltip = document.getElementById('tooltip');
 				const offsets = document.getElementById(this.target).getBoundingClientRect();
-				
+
 				tooltip.style.transition = 'none';
 				tooltip.style.top = (document.getElementById(this.target).getBoundingClientRect().top + window.pageYOffset) + 'px';
 
 				let targetWidth = parseFloat(window.getComputedStyle(document.getElementById(this.target)).width);
 				let tooltipWidth = parseFloat(window.getComputedStyle(document.getElementById('tooltip')).width);
 				tooltip.style.left = (((targetWidth - tooltipWidth) / 2) + offsets.left) + 'px';
-				
+
 				tooltip.style.transition = 'all .3s ease-in-out';
-	
+
 				tooltip.style.top = (document.getElementById(this.target).getBoundingClientRect().top + window.pageYOffset - 30) + 'px'
-	
+
 				setTimeout(() => {
 					this.visibilityController = false;
 					tooltip.style.transition = 'none';
@@ -74,9 +74,9 @@ export default {
 	position: absolute;
 	padding: pYX(1, 3);
 	margin: mt(0);
-	@include legenda;
+	@include caption;
 
-	&--active {	
+	&--active {
 		opacity: 1;
 	}
 

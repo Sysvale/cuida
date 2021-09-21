@@ -185,6 +185,10 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
+ion-icon {
+	font-size: 20px !important;
+}
+
 @keyframes content-animation {
 	from {
 		margin: mt(6);
@@ -223,7 +227,7 @@ export default {
 	transition: all .3s ease-in-out;
 
 	&__label-button {
-		@include legenda;
+		@include caption;
 		cursor: pointer;
 
 		&:hover {
@@ -332,14 +336,14 @@ export default {
 			}
 
 			&__main-value {
-				@include legenda;
+				@include caption;
 				color: $n-600;
 				margin: mb(1);
 				margin: ma(0);
 			}
 
 			&__legend {
-				@include subtitulo-3;
+				@include subheading-3;
 				margin: ma(0);
 				color: $n-800;
 				max-width: 100%;
@@ -370,13 +374,13 @@ export default {
 	}
 
 	&__main-value {
-		@include titulo-1;
+		@include heading-1;
 		color: $n-800;
 		margin: mb(0);
 	}
 
 	&__legend {
-		@include legenda;
+		@include caption;
 		margin: ma(0);
 		color: $n-600;
 		max-width: 155px;

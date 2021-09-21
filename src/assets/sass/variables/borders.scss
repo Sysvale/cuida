@@ -1,22 +1,22 @@
-$border-radius-botao: 4px;
-$border-radius-extra-pequeno: 8px;
-$border-radius-pequeno: 12px;
-$border-radius-normal: 16px;
-$border-radius-grande: 20px;
-$border-radius-extra-grande: 24px;
-$border-radius-circulo: 50%;
+$border-radius-button: 4px;
+$border-radius-extra-small: 8px;
+$border-radius-small: 12px;
+$border-radius-medium: 16px;
+$border-radius-large: 20px;
+$border-radius-extra-large: 24px;
+$border-radius-circle: 50%;
 
 $border-radius: ();
 
 $border-radius: map-merge(
 	(
-		'botao': $border-radius-botao,
-		'extra-pequeno': $border-radius-extra-pequeno,
-		'pequeno': $border-radius-pequeno,
-		'normal': $border-radius-normal,
-		'grande': $border-radius-grande,
-		'extra-grande': $border-radius-extra-grande,
-		'circulo': $border-radius-circulo,
+		'button': $border-radius-button,
+		'extra-small': $border-radius-extra-small,
+		'small': $border-radius-small,
+		'medium': $border-radius-medium,
+		'large': $border-radius-large,
+		'extra-large': $border-radius-extra-large,
+		'circle': $border-radius-circle,
 	),
 	$border-radius
 );

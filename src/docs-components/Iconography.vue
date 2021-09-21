@@ -103,18 +103,18 @@ export default {
 
 .code {
 	border: 1px solid $n-400;
-	border-radius: $border-radius-pequeno;
+	border-radius: $border-radius-small;
 }
 
 pre {
 	display: flex;
 	justify-content: start;
 	margin: mb(10);
-	border-radius: $border-radius-pequeno;
+	border-radius: $border-radius-small;
 }
 
 code {
-	border-radius: $border-radius-pequeno;
+	border-radius: $border-radius-small;
 	width: 100%;
 	display: flex;
 	justify-content: flex-start;
@@ -124,7 +124,7 @@ code {
 .source-code {
 	&__container {
 		border: 1px solid $n-30;
-		border-radius: $border-radius-pequeno;
+		border-radius: $border-radius-small;
 		display: flex;
 		background-color: #fafafa;
 		height: 80px;
@@ -149,7 +149,7 @@ code {
 	border: none;
 	border-radius: 4px 0px 12px 4px;
 	padding: pYX(1, 2);
-	@include legenda;
+	@include caption;
 	transition: all .3s ease-in-out;
 	align-self: flex-end;
 	width: 150px;

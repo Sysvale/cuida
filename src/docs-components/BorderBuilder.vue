@@ -49,13 +49,13 @@ export default {
 				},
 			],
 			borderVariables: [
-				'$border-radius-botao',
-				'$border-radius-extra-pequeno',
-				'$border-radius-pequeno',
-				'$border-radius-normal',
-				'$border-radius-grande',
-				'$border-radius-extra-grande',
-				'$border-radius-circulo',
+				'$border-radius-button',
+				'$border-radius-extra-small',
+				'$border-radius-small',
+				'$border-radius-medium',
+				'$border-radius-large',
+				'$border-radius-extra-large',
+				'$border-radius-circle',
 			],
 		};
 	},
@@ -104,7 +104,6 @@ export default {
 }
 
 .copy-clip:hover {
-	// background-color: #EDFDF5;
 	border: 1px solid $gp-300;
 	cursor: pointer;
 	transition: all .15s ease-in-out;
