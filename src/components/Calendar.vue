@@ -392,11 +392,11 @@ export default {
 	}
 
 	&__available-intervals {
-		@include subtitle;
+		@include caption;
 	}
 
 	&__unavailable-intervals {
-		@include subtitle;
+		@include caption;
 		color: $n-50;
 	}
 
@@ -452,7 +452,7 @@ export default {
 	}
 
 	&__header-available-hours {
-		@include subtitle;
+		@include caption;
 		font-weight: 500;
 		color: $n-600;
 	}

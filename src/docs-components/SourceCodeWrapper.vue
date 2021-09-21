@@ -149,7 +149,7 @@ export default {
 	border-radius: 4px 4px 12px 4px;
 	background-color: $n-0;
 	cursor: pointer;
-	@include subtitle;
+	@include caption;
 	padding: 3px 10px;
 	transition: all .3s ease-in-out;
 	position: absolute;
@@ -187,7 +187,7 @@ export default {
 	border: none;
 	border-radius: 4px 0px 12px 4px;
 	padding: 3px 10px;
-	@include subtitle;
+	@include caption;
 	transition: all .3s ease-in-out;
 	position: absolute;
 	right: 10px;
@@ -196,7 +196,7 @@ export default {
 
 pre {
 	margin: ma(0) !important;
-	@include subtitle;
+	@include caption;
 	display: flex;
 	border-radius: 0px 0px 12px 12px;
 	transition: all .3s ease-in-out;

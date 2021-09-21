@@ -223,7 +223,7 @@ export default {
 	transition: all .3s ease-in-out;
 
 	&__label-button {
-		@include subtitle;
+		@include caption;
 		cursor: pointer;
 
 		&:hover {
@@ -332,7 +332,7 @@ export default {
 			}
 
 			&__main-value {
-				@include subtitle;
+				@include caption;
 				color: $n-600;
 				margin: mb(1);
 				margin: ma(0);
@@ -376,7 +376,7 @@ export default {
 	}
 
 	&__legend {
-		@include subtitle;
+		@include caption;
 		margin: ma(0);
 		color: $n-600;
 		max-width: 155px;

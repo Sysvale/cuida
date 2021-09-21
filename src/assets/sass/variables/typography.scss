@@ -52,7 +52,7 @@ $font-weight-semibold: 600;
 	font-weight: $font-weight-regular;
 }
 
-@mixin subtitle {
+@mixin caption {
 	font-size: 12px !important;
 	letter-spacing: 0.15px !important;
 	font-weight: $font-weight-regular;

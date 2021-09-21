@@ -133,7 +133,7 @@ export default {
 						ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que isso já aconteceu.`,
 				},
 				{
-					name: 'subtitle',
+					name: 'caption',
 					fontSize: 12,
 					fontWeight: 400,
 					letterSpacing: 0.4,

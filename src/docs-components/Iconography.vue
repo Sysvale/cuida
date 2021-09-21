@@ -149,7 +149,7 @@ code {
 	border: none;
 	border-radius: 4px 0px 12px 4px;
 	padding: pYX(1, 2);
-	@include subtitle;
+	@include caption;
 	transition: all .3s ease-in-out;
 	align-self: flex-end;
 	width: 150px;
