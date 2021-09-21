@@ -185,6 +185,10 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
+ion-icon {
+	font-size: 20px !important;
+}
+
 @keyframes content-animation {
 	from {
 		margin: mt(6);
