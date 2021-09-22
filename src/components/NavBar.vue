@@ -211,14 +211,14 @@ a {
 		.active {
 			color: $n-0;
 			border-bottom: 4px solid $gp-400;
-			background: $n-50;
+			background: $n-500;
 			border-radius: 4px  4px 0px 0px;
 		}
 
 		&.active-parent{
 			color: $n-0;
 			border-bottom: 4px solid $gp-400;
-			background: $n-50;
+			background: $n-500;
 			border-radius: 4px  4px 0px 0px;
 
 			.show {
