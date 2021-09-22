@@ -38,7 +38,7 @@
     "vue-long-click": "0.0.4",
     "vue-multiselect": "^2.1.6",
     "vue-on-click-outside": "^1.0.3",
-    "vue-slider-component": "^2.8.16"
+    "vue-slider-component": "^3.2.11"
   },
   "devDependencies": {
     "highlight.js": "^10.6.0",

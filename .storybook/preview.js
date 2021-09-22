@@ -16,7 +16,8 @@ import "vue-hljs/dist/style.css";
 import { directive as onClickOutside } from 'vue-on-click-outside' 
 Vue.directive('on-click-outside', onClickOutside)
 
-import vueSlider from 'vue-slider-component/src/vue2-slider.vue';
+import vueSlider from 'vue-slider-component';
+import 'vue-slider-component/theme/default.css'
 
 import _ from 'lodash';
 Object.defineProperty(Vue.prototype, '_', { value: _ });
@@ -131,7 +132,7 @@ addParameters({
 		selectedPanel: 'controls',
 		showCanvas: false,
 		storySort: {
-			order: ['Fundação', ['Principios', 'Tipografia', 'Peso da Fonte', 'Cores', 'Espaçamento', 'Bordas'], 'Componentes'],
+			order: ['Fundação', ['Princípios', 'Tipografia', 'Peso da Fonte', 'Cores', 'Espaçamento', 'Bordas'], 'Componentes'],
 		},
 	},
 });

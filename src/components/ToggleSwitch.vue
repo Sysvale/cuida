@@ -144,6 +144,18 @@ export default {
 			transform: translateX(16px);
 		}
 
+		&:checked + .switch__slider--small:before {
+			-webkit-transform: translateX(12px);
+			-ms-transform: translateX(12px);
+			transform: translateX(12px);
+		}
+
+		&:checked + .switch__slider--medium:before {
+			-webkit-transform: translateX(16px);
+			-ms-transform: translateX(16px);
+			transform: translateX(16px);
+		}
+
 		&:checked + .switch__slider--large:before {
 			-webkit-transform: translateX(24px);
 			-ms-transform: translateX(24px);
