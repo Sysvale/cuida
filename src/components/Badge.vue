@@ -15,7 +15,7 @@ export default {
 	props: {
 		/**
 		 * A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',
-		 * 'purple', 'pink', 'red', 'orange', 'yellow' e 'gray'.
+		 * 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
 		 */
 		variant: {
 			type: String,
@@ -30,11 +30,11 @@ export default {
 				'green',
 				'blue',
 				'indigo',
-				'purple',
+				'violet',
 				'pink',
 				'red',
 				'orange',
-				'yellow',
+				'amber',
 				'gray',
 			],
 		};
@@ -89,7 +89,7 @@ export default {
 		border: 1px solid $in-400;
 	}
 
-	&--purple {
+	&--violet {
 		color: $vr-700;
 		background-color: $vr-100;
 		border: 1px solid $vr-400;
@@ -113,7 +113,7 @@ export default {
 		border: 1px solid $og-400;
 	}
 
-	&--yellow {
+	&--amber {
 		color: $al-700;
 		background-color: $al-100;
 		border: 1px solid $al-500;
