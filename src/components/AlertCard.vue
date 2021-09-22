@@ -207,7 +207,7 @@ export default {
 		}
 
 		&--muted {
-			background-color: $n-100;
+			background-color: $n-10;
 		}
 	}
 

@@ -225,7 +225,7 @@ export default {
 	}
 
 	&--disabled {
-		background-color: $n-100;
+		background-color: $n-10;
 		pointer-events: none;
 	}
 
