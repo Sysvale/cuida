@@ -6,7 +6,7 @@
 
 		<div
 			v-for="color in palete"
-			:key="color"
+			:key="color.name"
 			class="palete"
 		>
 			<div
