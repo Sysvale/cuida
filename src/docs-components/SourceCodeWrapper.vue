@@ -147,9 +147,9 @@ export default {
 .preview__button {
 	border: 1px solid rgba(0, 0, 0, 0.15);
 	border-radius: 4px 4px 12px 4px;
-	background-color: $branco;
+	background-color: $n-0;
 	cursor: pointer;
-	@include legenda;
+	@include caption;
 	padding: 3px 10px;
 	transition: all .3s ease-in-out;
 	position: absolute;
@@ -159,7 +159,7 @@ export default {
 
 .preview__button:focus {
 	outline: none !important;
-	box-shadow: $verde-piccolo-light-1 0px -3px 0px -1px inset;
+	box-shadow: $gp-300 0px -3px 0px -1px inset;
 }
 
 .source-code__container {
@@ -182,12 +182,12 @@ export default {
 }
 
 .source-code__button {
-	background-color: $cinza-9;
-	color: $branco;
+	background-color: $n-900;
+	color: $n-0;
 	border: none;
 	border-radius: 4px 0px 12px 4px;
 	padding: 3px 10px;
-	@include legenda;
+	@include caption;
 	transition: all .3s ease-in-out;
 	position: absolute;
 	right: 10px;
@@ -195,8 +195,8 @@ export default {
 }
 
 pre {
-	margin: 0 !important;
-	@include legenda;
+	margin: ma(0) !important;
+	@include caption;
 	display: flex;
 	border-radius: 0px 0px 12px 12px;
 	transition: all .3s ease-in-out;

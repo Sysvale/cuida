@@ -17,6 +17,7 @@
 					<div class="align-middle"> {{ row.item.token }} </div>
 				</div>
 			</template>
+
 			<template class="align-middle" #cell(example)="row">
 				<div class="align-middle" :class="borderRadiusClass(row.index)" />
 			</template>
@@ -48,13 +49,13 @@ export default {
 				},
 			],
 			borderVariables: [
-				'$border-radius-botao',
-				'$border-radius-extra-pequeno',
-				'$border-radius-pequeno',
-				'$border-radius-normal',
-				'$border-radius-grande',
-				'$border-radius-extra-grande',
-				'$border-radius-circulo',
+				'$border-radius-button',
+				'$border-radius-extra-small',
+				'$border-radius-small',
+				'$border-radius-medium',
+				'$border-radius-large',
+				'$border-radius-extra-large',
+				'$border-radius-circle',
 			],
 		};
 	},
@@ -90,21 +91,20 @@ export default {
 		border-radius: $border-radius-token;
 		width: 60px;
 		height: 60px;
-		background-color: $verde-piccolo-base;
+		background-color: $gp-400;
 	}
 }
 
 .copy-clip {
-    width: fit-content;
-    padding: 8px 12px;
-    border-radius: 16px;
-	border: 1px solid $branco;
+	width: fit-content;	
+	padding: pYX(2, 3);
+	border-radius: 16px;
+	border: 1px solid $n-0;
 	transition: all .15s ease-in-out;
 }
 
 .copy-clip:hover {
-	// background-color: #EDFDF5;
-	border: 1px solid $verde-piccolo-light-1;
+	border: 1px solid $gp-300;
 	cursor: pointer;
 	transition: all .15s ease-in-out;
 }

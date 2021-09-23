@@ -21,7 +21,6 @@ test('if the event is emited correctly when the button is clicked', () => {
 	const wrapper = mount(EmptyState, {
 		localVue,
 		propsData: {
-			showActionButton: true,
 			title: 'EmptyState title',
 			text: 'EmptyState text',
 		},
@@ -37,11 +36,23 @@ test('if the button is shown', () => {
 	const wrapper = mount(EmptyState, {
 		localVue,
 		propsData: {
-			showActionButton: true,
 			title: 'EmptyState title',
 			text: 'EmptyState text',
 		},
 	});
 
 	expect(wrapper.findAll('.empty-state__button').length).toBe(1);
+});
+
+test('if the button is not shown', () => {
+	const wrapper = mount(EmptyState, {
+		localVue,
+		propsData: {
+			hideActionButton: true,
+			title: 'EmptyState title',
+			text: 'EmptyState text',
+		},
+	});
+
+	expect(wrapper.findAll('.empty-state__button').length).toBe(0);
 });

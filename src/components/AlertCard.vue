@@ -130,7 +130,7 @@ export default {
 	components: {
 		InfoIcon,
 		AlertTriangleIcon,
-		AlertCircleIcon
+		AlertCircleIcon,
 	},
 
 	data() {
@@ -143,7 +143,7 @@ export default {
 		dynamicIcon() {
 			switch (this.variant) {
 				case 'info':
-					return 'info-icon'
+					return 'info-icon';
 				case 'warning':
 					return 'alert-triangle-icon';
 				case 'danger':
@@ -158,11 +158,11 @@ export default {
 
 			if (!this.muted) {
 				if (this.selectable) {
-					dynamicClass = 'alert-card__container--selectable';	
+					dynamicClass = 'alert-card__container--selectable';
 				}
-				
+
 				if (this.isSelected) {
-					return dynamicClass + ` alert-card__container--selected-${this.variant}`
+					return `${dynamicClass} alert-card__container--selected-${this.variant}`;
 				}
 			} else {
 				dynamicClass = 'alert-card__container--muted';
@@ -172,8 +172,8 @@ export default {
 		},
 
 		iconClass() {
-			return `icon__container--${this.variant} ${this.noTitle ? 'align-self-center' : ''}`
-		}
+			return `icon__container--${this.variant} ${this.noTitle ? 'align-self-center' : ''}`;
+		},
 	},
 
 	methods: {
@@ -195,69 +195,69 @@ export default {
 #alert-card .alert-card {
 	display: flex;
 	align-items: center;
-	@include padding(onidirecional, 3);
+	padding: pa(4);
 	border-radius: 16px;
 
 	&__container {
-		@extend .alert-card;	
-		border: 1px solid $cinza-3;
+		@extend .alert-card;
+		border: 1px solid $n-40;
 
 		&--selectable {
 			cursor: pointer;
 		}
 
 		&--muted {
-			background-color: $cinza-1;
+			background-color: $n-10;
 		}
 	}
 
 	&__container--selected-info {
 		@extend .alert-card;
-		border: 2px solid $azul-sonic-light-1;
+		border: 2px solid $bn-300;
 		box-shadow: 1px 1px 4px rgba(32, 110, 217, 0.5);
 	}
 
 	&__container--selected-warning {
 		@extend .alert-card;
-		border: 2px solid $amarelo-pikachu-light-1;
+		border: 2px solid $al-300;
 		box-shadow: 1px 1px 4px rgba(253, 210, 145, 0.5);
 	}
 
 	&__container--selected-danger {
 		@extend .alert-card;
-		border: 2px solid $vermelho-mario-light-1;
+		border: 2px solid $rc-300;
 		box-shadow: 1px 1px 4px rgba(237, 59, 81, 0.5);
 	}
 
 	&__title {
-		@include subtitulo-2;
-		margin-top: 12px;
+		@include subheading-2;
+		margin: mt(3);
 		display: block;
 
 		&--info {
 			@extend .alert-card__title;
-			color: $azul-sonic-dark-1;
+			color: $bn-400;
 		}
 
 		&--warning {
 			@extend .alert-card__title;
-			color: $amarelo-pikachu-dark-2;
+			color: $al-600;
 		}
 
 		&--danger {
 			@extend .alert-card__title;
-			color: $vermelho-mario-dark-1;
+			color: $rc-500;
 		}
 	}
 
 	&__subtitle {
-		@include subtitulo-3;
+		@include subheading-3;
 		display: block;
-		color: $cinza-6;
+		color: $n-600;
 	}
 
 	&__content {
-		@include margin(superior, 3);
+		margin: mt(4);
 	}
 
 	&__content-container {
@@ -270,50 +270,50 @@ export default {
 
 	&--info {
 		@extend .icon;
-		color: $azul-sonic-dark-1;
+		color: $bn-400;
 	}
 
 	&--warning {
 		@extend .icon;
-		color: $amarelo-pikachu-dark-2;
+		color: $al-600;
 	}
 
 	&--danger {
 		@extend .icon;
-		color: $vermelho-mario-dark-1;
+		color: $rc-400;
 	}
 
 	&__container {
 		display: flex;
-		padding: 12px;
+		padding: pa(3);
 		border-radius: 100%;
-		margin-right: 12px;
+		margin: mr(3);
 		align-self: flex-start;
 
 		&--info {
 			@extend .icon__container;
-			background-color: $azul-sonic-light-2;
+			background-color: $bn-100;
 		}
 
 		&--warning {
 			@extend .icon__container;
-			background-color: $amarelo-pikachu-light-2;
+			background-color: $al-100;
 		}
 
 		&--danger {
 			@extend .icon__container;
-			background-color: $vermelho-mario-light-2;
+			background-color: $rc-100;
 		}
 	}
 }
 
 #alert-card .custom-checkbox {
-	@include margin(superior, 3);
+	margin: mt(4);
 	align-self: flex-start;
-	margin-right: 32px;
 	width: 14px;
 	position: relative;
-	margin-left: -8px;
+	margin-right: spacer(8);
+	margin-left: spacer(n2);
 
 	label {
 		cursor: pointer;
@@ -322,10 +322,10 @@ export default {
 		height: 14px;
 		top: 0;
 		border-radius: 4px;
-		border: 1px solid $cinza-5;
+		border: 1px solid $n-200;
 
 		&:after {
-			border: 2px solid $branco;
+			border: 2px solid $n-0;
 			border-top: none;
 			border-right: none;
 			content: "";
@@ -352,7 +352,7 @@ export default {
 }
 
 #alert-card .custom-checkbox--checked {
-	background-color: $azul-bidu-dark-1 !important;
+	background-color: $bn-500 !important;
 	border: none !important;
 }
 

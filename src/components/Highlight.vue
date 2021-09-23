@@ -51,15 +51,15 @@ export default {
 				dynamicClass = 'highlight__container--highlighted';
 			}
 
-			switch(this.variant) {
+			switch (this.variant) {
 				case 'info':
-					return dynamicClass + ' highlight__container--info';
+					return `${dynamicClass} highlight__container--info`;
 				case 'success':
-					return dynamicClass + ' highlight__container--success';
+					return `${dynamicClass} highlight__container--success`;
 				case 'danger':
-					return dynamicClass + ' highlight__container--danger';
+					return `${dynamicClass} highlight__container--danger`;
 				default:
-					return dynamicClass + ' highlight__container--info';
+					return `${dynamicClass} highlight__container--info`;
 			}
 		},
 
@@ -69,14 +69,14 @@ export default {
 				'--delay': `${this.delay}s`,
 			};
 		},
-	}
+	},
 };
 </script>
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
 .highlight__container {
-	@include padding(onidirecional, 1);
+	padding: pa(1);
 	border-radius: 4px;
 	background-size: 200%;
 
@@ -85,15 +85,15 @@ export default {
 	}
 
 	&--info {
-		background-image: linear-gradient(to right, rgba($azul-sonic-light-1, .25) 50%, transparent 50%);
+		background-image: linear-gradient(to right, rgba($bn-300, .25) 50%, transparent 50%);
 	}
 
 	&--success {
-		background-image: linear-gradient(to right, rgba($verde-piccolo-light-1, .28) 50%, transparent 50%);
+		background-image: linear-gradient(to right, rgba($gp-300, .28) 50%, transparent 50%);
 	}
 
 	&--danger {
-		background-image: linear-gradient(to right, rgba($vermelho-mario-light-1, .22) 50%, transparent 50%);
+		background-image: linear-gradient(to right, rgba($rc-300, .22) 50%, transparent 50%);
 	}
 }
 

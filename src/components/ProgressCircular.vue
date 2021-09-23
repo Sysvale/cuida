@@ -22,7 +22,9 @@
 			a 15.9155 15.9155 0 0 1 0 31.831
 			a 15.9155 15.9155 0 0 1 0 -31.831"
 		/>
-		<text x="18" y="21.7" :fill="labelColor" class="progress-circular__label">{{label}}</text>
+		<text x="18" y="21.7" :fill="labelColor" :class="labelClass">
+			{{ label }}
+		</text>
 	</svg>
 </template>
 
@@ -71,12 +73,18 @@ export default {
 			required: false,
 		},
 		/**
-		 * Define a espessura do circulo da ProgressCircular.
-		 */
-		stroke: {
-			type: Number,
-			default: 2.6,
-			required: false,
+		* Torna a espessura do circulo da ProgressCircular menor.
+		*/
+		small: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		* Torna a espessura do circulo da ProgressCircular maior.
+		*/
+		large: {
+			type: Boolean,
+			default: false,
 		},
 		/**
 		 * Define a cor do texto (label) dentro da ProgressCircular.
@@ -102,6 +110,17 @@ export default {
 			const normalizedValue = 100 * this.value / this.maxValue;
 			return `${normalizedValue}, 100`;
 		},
+
+		stroke() {
+			if (this.small) return 1.5;
+			if (this.large) return 4.5;
+			return 3.5;
+		},
+
+		labelClass() {
+			const modifier = this.maxValue >= 100 ? '--reduced' : '';
+			return `progress-circular__label${modifier}`;
+		}
 	},
 }
 </script>
@@ -131,8 +150,13 @@ export default {
 
 	&__label {
 		font-family: sans-serif;
-		font-size: 0.7em;
+		font-size: 0.66em;
 		text-anchor: middle;
+
+		&--reduced {
+			@extend .progress-circular__label;
+			font-size: 0.6em;
+		}
 	}
 }
 </style>

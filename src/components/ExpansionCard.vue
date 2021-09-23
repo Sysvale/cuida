@@ -35,11 +35,18 @@
 					<slot name="icon" />
 				</div>
 				<div class="expansion-card__content">
-					<h1 class="expansion-card__main-value">
-						{{ mainValue }}
-					</h1>
+					<!-- @slot Slot para informação principal do card no template padrão. -->
+					<slot name="main-value">
+						<h1 class="expansion-card__main-value">
+							{{ mainValue }}
+						</h1>
+					</slot>
 					<p class="expansion-card__legend">
-						{{ legend }}
+						<!-- @slot Slot para legenda da informação principal do card recolhido,
+						no template padrão. Torna-se o título do card quando este é estendido.-->
+						<slot name="legend">
+							{{ legend }}
+						</slot>
 					</p>
 				</div>
 			</div>
@@ -56,7 +63,9 @@
 					</div>
 					<div class="expansion-card__content">
 						<p class="expansion-card__legend">
-							{{ legend }}
+							<slot name="legend">
+								{{ legend }}
+							</slot>
 						</p>
 						<span class="expansion-card__main-value">
 							{{ subtitle }}
@@ -74,17 +83,11 @@
 </template>
 
 <script>
-import { BIcon, BIconArrowsAngleExpand, BIconArrowsAngleContract } from 'bootstrap-vue';
-
 export default {
-	components: {
-		BIconArrowsAngleExpand,
-		BIconArrowsAngleContract,
-	},
 	props: {
 		/**
 		 * Variante do ExpansionCard. São 9 variantes: 'turquoise', 'green', 'blue',
-		 * 'purple', 'pink', 'red', 'orange', 'yellow' e 'gray'.
+		 * 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
 		 */
 		variant: {
 			type: String,
@@ -99,12 +102,19 @@ export default {
 			default: null,
 		},
 		/**
-		 * Informação principal do card (no template padrão), pode ser a quantidade 
+		 * Informação principal do card (no template padrão), pode ser a quantidade
 		 * de resultados, por exemplo.
 		 */
 		mainValue: {
 			type: Number,
 			default: null,
+		},
+		/**
+		 * Indica se o card é expansível.
+		 */
+		expansible: {
+			type: Boolean,
+			default: true,
 		},
 	},
 
@@ -146,24 +156,26 @@ export default {
 		toggleCardStyle(status) {
 			this.isHovering = false;
 
-			switch (status) {
-				case 'hover':
-					if (!this.isExpanded) {
-						this.isHovering = true;
-					}
-					break;
-				case 'expand':
-				case 'contract':
-					this.isExpanded = !this.isExpanded;
-					/**
-					* Evento emitido quando o card é expandido ('true') ou contraído ('false').
-					* @event expanded
-					* @type {Event}
-					*/
-					this.$emit('expanded', this.isExpanded);
-					break;
-				default:
-					break;
+			if (this.expansible) {
+				switch (status) {
+					case 'hover':
+						if (!this.isExpanded) {
+							this.isHovering = true;
+						}
+						break;
+					case 'expand':
+					case 'contract':
+						this.isExpanded = !this.isExpanded;
+						/**
+						* Evento emitido quando o card é expandido ('true') ou contraído ('false').
+						* @event expanded
+						* @type {Event}
+						*/
+						this.$emit('expanded', this.isExpanded);
+						break;
+					default:
+						break;
+				}
 			}
 		},
 	},
@@ -173,18 +185,31 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
+ion-icon {
+	font-size: 20px !important;
+}
+
 @keyframes content-animation {
-	from { margin-top: 24px; opacity: 0; visibility: hidden; height: 50%; } to { visibility: visible; opacity: 1; height: 100%;}
+	from {
+		margin: mt(6);
+		opacity: 0;
+		visibility: hidden;
+		height: 50%;
+	} to {
+		visibility: visible;
+		opacity: 1;
+		height: 100%;
+	}
 }
 
 ::v-deep .expansion-card__expand-icon path {
-	stroke: $cinza-3;
+	stroke: $n-300;
 	stroke-width: 1;
 }
 
 ::v-deep .expansion-card__expand-icon:hover path {
 	transition: stroke ease-in-out;
-	stroke: $azul-sonic-light-1;
+	stroke: $bn-300;
 }
 
 .expansion-card {
@@ -192,17 +217,17 @@ export default {
 	position: relative;
 	flex-direction: column;
 	align-items: center;
-	@include padding(onidirecional, 3);
+	padding: pa(4);
 	border-radius: 16px;
 
-	border: 1px solid $cinza-3;
+	border: 1px solid $n-30;
 	min-height: 130px;
 	width: 255px;
 	height: 130px;
 	transition: all .3s ease-in-out;
 
 	&__label-button {
-		@include legenda;
+		@include caption;
 		cursor: pointer;
 
 		&:hover {
@@ -218,64 +243,71 @@ export default {
 		&-blue {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $azul-sonic-light-2;
-			box-shadow: 0 0 2px $azul-sonic-base;
+			border: 2px solid $bn-200;
+			box-shadow: 0 0 2px $bn-200;
 		}
 
 		&-turquoise {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $turquesa-perry-light-2;
-			box-shadow: 0 0 2px $turquesa-perry-base;
+			border: 2px solid $ts-200;
+			box-shadow: 0 0 2px $ts-200;
 		}
 
 		&-green {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $verde-piccolo-light-2;
-			box-shadow: 0 0 2px $verde-piccolo-base;
+			border: 2px solid $gp-200;
+			box-shadow: 0 0 2px $gp-200;
 		}
 
-		&-purple {
+		&-indigo {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $roxo-thanos-light-2;
-			box-shadow: 0 0 2px $roxo-thanos-base;
+			border: 2px solid $in-200;
+			box-shadow: 0 0 2px $in-200;
+		}
+
+		&-violet {
+			@extend .expansion-card--hover, .expansion-card;
+			transition: transform .2s, box-shadow .2s ease-in-out;
+			border: 2px solid $vr-200;
+			box-shadow: 0 0 2px $vr-200;
 		}
 
 		&-pink {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $pantera-cor-de-rosa-light-2;
-			box-shadow: 0 0 2px $pantera-cor-de-rosa-base;
+			border: 2px solid $pp-200;
+			box-shadow: 0 0 2px $pp-200;
 		}
 
 		&-red {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $vermelho-mario-light-2;
-			box-shadow: 0 0 2px $vermelho-mario-base;
+			border: 2px solid $rc-200;
+			box-shadow: 0 0 2px $rc-200;
 		}
 
 		&-orange {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $laranja-naruto-light-2;
-			box-shadow: 0 0 2px $laranja-naruto-base;
+			border: 2px solid $og-200;
+			box-shadow: 0 0 2px $og-200;
 		}
 
-		&-yellow {
+		&-amber {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			border: 2px solid $amarelo-pikachu-light-2;
-			box-shadow: 0 0 2px $amarelo-pikachu-base;
+			border: 2px solid $al-200;
+			box-shadow: 0 0 2px $al-200;
 		}
 
 		&-gray {
 			@extend .expansion-card--hover, .expansion-card;
 			transition: transform .2s, box-shadow .2s ease-in-out;
-			box-shadow: 0 0 2px $cinza-5;
-			border: 2px solid $cinza-3;
+			box-shadow: 0 0 2px $n-50;
+			border: 2px solid $n-30;
 		}
 	}
 
@@ -304,22 +336,22 @@ export default {
 			}
 
 			&__main-value {
-				@include legenda;
-				color: $cinza-6;
-				margin-bottom: 2px;
-				@include margin(onidirecional, 0);
+				@include caption;
+				color: $n-600;
+				margin: mb(1);
+				margin: ma(0);
 			}
 
 			&__legend {
-				@include subtitulo-3;
-				@include margin(onidirecional, 0);
-				color: $cinza-8;
+				@include subheading-3;
+				margin: ma(0);
+				color: $n-800;
 				max-width: 100%;
 				font-weight: 600;
 			}
 
 			&__icon {
-				@include margin(direita, 3);
+				margin: mr(4);
 			}
 		}
 	}
@@ -327,7 +359,7 @@ export default {
 	&__expanded-content {
 		opacity: 0;
 		visibility: hidden;
-		margin-top: 24px;
+		margin: mt(6);
 		height: 0;
 
 		animation: content-animation;
@@ -342,72 +374,77 @@ export default {
 	}
 
 	&__main-value {
-		@include titulo-1;
-		color: $cinza-8;
-		@include margin(inferior, 0);
+		@include heading-1;
+		color: $n-800;
+		margin: mb(0);
 	}
 
 	&__legend {
-		@include legenda;
-		@include margin(onidirecional, 0);
-		color: $cinza-6;
+		@include caption;
+		margin: ma(0);
+		color: $n-600;
 		max-width: 155px;
 	}
 
 	&__icon {
 		display: flex;
-		padding: 12px;
+		padding: pa(3);
 		border-radius: 100%;
 		width: 50px;
 		height: 50px;
 		align-self: center;
 		align-items: center;
 		justify-content: center;
-		@include margin(direita, 3);
+		margin: mr(4);
 
 		&--blue {
-			color: $azul-sonic-base;
-			background-color: $azul-sonic-light-2;
+			color: $bn-400;
+			background-color: $bn-100;
 		}
 
 		&--turquoise {
-			color: $turquesa-perry-base;
-			background-color: $turquesa-perry-light-2;
+			color: $ts-500;
+			background-color: $ts-100;
 		}
 
 		&--green {
-			color: $verde-piccolo-base;
-			background-color: $verde-piccolo-light-2;
+			color: $gp-400;
+			background-color: $gp-100;
 		}
 
-		&--purple {
-			color: $roxo-thanos-base;
-			background-color: $roxo-thanos-light-2;
+		&--indigo {
+			color: $in-400;
+			background-color: $in-100;
+		}
+
+		&--violet {
+			color: $vr-500;
+			background-color: $vr-100;
 		}
 
 		&--pink {
-			color: $pantera-cor-de-rosa-base;
-			background-color: $pantera-cor-de-rosa-light-2;
+			color: $pp-500;
+			background-color: $pp-100;
 		}
 
 		&--red {
-			color: $vermelho-mario-base;
-			background-color: $vermelho-mario-light-2;
+			color: $rc-500;
+			background-color: $rc-100;
 		}
 
 		&--orange {
-			color: $laranja-naruto-base;
-			background-color: $laranja-naruto-light-2;
+			color: $og-500;
+			background-color: $og-100;
 		}
 
-		&--yellow {
-			color: $amarelo-pikachu-base;
-			background-color: $amarelo-pikachu-light-2;
+		&--amber {
+			color: $al-500;
+			background-color: $al-100;
 		}
 
 		&--gray {
-			color: $cinza-5;
-			background-color: $cinza-2;
+			color: $n-300;
+			background-color: $n-20;
 		}
 
 		& .b-icon {
@@ -420,11 +457,11 @@ export default {
 		position: absolute;
 		top: 8px;
 		right: 12px;
-		color: $cinza-5;
+		color: $n-500;
 
 		&:hover {
 			transition: color ease-in-out;
-			color: $azul-sonic-light-1;
+			color: $bn-300;
 		}
 	}
 

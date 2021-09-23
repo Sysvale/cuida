@@ -97,44 +97,43 @@ export default {
 
 	&__title {
 		font-size: 20px;
-		margin-top: 48px;
-		margin-bottom: 16px;
+		margin: mTRBL(12, 0, 12, 0);
 	}
 }
 
 .code {
-	border: 1px solid $cinza-4;
-	border-radius: $border-radius-pequeno;
+	border: 1px solid $n-400;
+	border-radius: $border-radius-small;
 }
 
 pre {
 	display: flex;
 	justify-content: start;
-	margin-bottom: 40px;
-	border-radius: $border-radius-pequeno;
+	margin: mb(10);
+	border-radius: $border-radius-small;
 }
 
 code {
-	border-radius: $border-radius-pequeno;
+	border-radius: $border-radius-small;
 	width: 100%;
 	display: flex;
 	justify-content: flex-start;
-	padding: 32px;
+	padding: pa(8);
 }
 
 .source-code {
 	&__container {
-		border: 1px solid $cinza-4;
-		border-radius: $border-radius-pequeno;
+		border: 1px solid $n-30;
+		border-radius: $border-radius-small;
 		display: flex;
 		background-color: #fafafa;
 		height: 80px;
-		margin-top: 16px;
+		margin: mt(4);
 	}
 
 	&__title {
 		font-size: 20px;
-		margin-top: 24px;
+		margin: mt(6);
 	}
 }
 
@@ -145,12 +144,12 @@ code {
 }
 
 .source-code__button {
-	background-color: $cinza-9;
-	color: $branco;
+	background-color: $n-900;
+	color: $n-0;
 	border: none;
 	border-radius: 4px 0px 12px 4px;
-	padding: 3px 10px;
-	@include legenda;
+	padding: pYX(1, 2);
+	@include caption;
 	transition: all .3s ease-in-out;
 	align-self: flex-end;
 	width: 150px;

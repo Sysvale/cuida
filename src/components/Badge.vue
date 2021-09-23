@@ -3,10 +3,9 @@
 		class="badge__container"
 		:class="predefinedStyle"
 	>
-		<div>
-			<small class="badge__content">
-				{{ content }}
-			</small>
+		<div class="badge__content">
+			<!-- @slot Slot padrão utilizado para exibir o conteúdo dentro da badge -->
+			<slot/>
 		</div>
 	</div>
 </template>
@@ -15,65 +14,38 @@
 export default {
 	props: {
 		/**
-		 * O texto que vai ser mostrado na badge.
-		 */
-		content: {
-			type: String,
-			default: 'Conteúdo da badge',
-			description: 'The text that will be displayed inside the badge.',
-			required: true,
-		},
-		/**
 		 * A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',
-		 * 'purple', 'pink', 'red', 'orange', 'yellow' e 'gray'.
+		 * 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
 		 */
 		variant: {
 			type: String,
 			default: 'gray',
-			description: `Variant mode gives 6 predefined badges 
-				to work with. Seting this property to 'true',
-				you can use 'yellow', 'green', ... 'gray'
-				to use the predefined badge styles.`,
 		},
+	},
+
+	data() {
+		return {
+			predefinedColors: [
+				'turquoise',
+				'green',
+				'blue',
+				'indigo',
+				'violet',
+				'pink',
+				'red',
+				'orange',
+				'amber',
+				'gray',
+			],
+		};
 	},
 
 	computed: {
 		predefinedStyle() {
-			let computedStyle = '';
-			switch (this.variant) {
-				case 'turquoise':
-					computedStyle = 'badge--turquoise';
-					break;
-				case 'green':
-					computedStyle = 'badge--green';
-					break;
-				case 'blue':
-					computedStyle = 'badge--blue';
-					break;
-				case 'purple':
-					computedStyle = 'badge--purple';
-					break;
-				case 'pink':
-					computedStyle = 'badge--pink';
-					break;
-				case 'red':
-					computedStyle = 'badge--red';
-					break;
-				case 'orange':
-					computedStyle = 'badge--orange';
-					break;
-				case 'yellow':
-					computedStyle = 'badge--yellow';
-					break;
-				case 'gray':
-					computedStyle = 'badge--gray';
-					break;
-				default:
-					computedStyle = 'badge--gray';
-					break;
+			if (this.predefinedColors.indexOf(this.variant) > -1) {
+				return `badge--${this.variant}`;
 			}
-
-			return computedStyle;
+			return 'badge--gray';
 		},
 	},
 };
@@ -85,65 +57,72 @@ export default {
 	&__container {
 		border-radius: 50px !important;
 		width: fit-content;
-		padding: 0px 8px;
+		padding: pYX(0, 2);
 	}
 
 	&__content {
-		font-weight: 600 !important;
+		font-weight: 500 !important;
+		@include body-2;
 	}
 
 	&--turquoise {
-		color: $turquesa-perry-dark-2;
-		background-color: $turquesa-perry-light-2;
-		border: 1px solid $turquesa-perry-light-1;
+		color: $ts-700;
+		background-color: $ts-100;
+		border: 1px solid $ts-400;
 	}
 
 	&--green {
-		color: $verde-piccolo-dark-2;
-		background-color: $verde-piccolo-light-2;
-		border: 1px solid $verde-piccolo-light-1;
+		color: $gp-700;
+		background-color: $gp-100;
+		border: 1px solid $gp-400;
 	}
 
 	&--blue {
-		color: $azul-sonic-dark-2;
-		background-color: $azul-sonic-light-2;
-		border: 1px solid $azul-sonic-light-1;
+		color: $bn-700;
+		background-color: $bn-100;
+		border: 1px solid $bn-400;
 	}
 
-	&--purple {
-		color: $roxo-thanos-dark-2;
-		background-color: $roxo-thanos-light-2;
-		border: 1px solid $roxo-thanos-light-1;
+	&--indigo {
+		color: $in-700;
+		background-color: $in-100;
+		border: 1px solid $in-400;
+	}
+
+	&--violet {
+		color: $vr-700;
+		background-color: $vr-100;
+		border: 1px solid $vr-400;
 	}
 
 	&--pink {
-		color: $pantera-cor-de-rosa-dark-2;
-		background-color: $pantera-cor-de-rosa-light-2;
-		border: 1px solid $pantera-cor-de-rosa-light-1;
+		color: $pp-700;
+		background-color: $pp-100;
+		border: 1px solid $pp-400;
 	}
 
 	&--red {
-		color: $vermelho-mario-dark-2;
-		background-color: $vermelho-mario-light-2;
-		border: 1px solid $vermelho-mario-light-1;
+		color: $rc-700;
+		background-color: $rc-100;
+		border: 1px solid $rc-400;
 	}
 
 	&--orange {
-		color: $laranja-naruto-dark-2;
-		background-color: $laranja-naruto-light-2;
-		border: 1px solid $laranja-naruto-light-1;
+		color: $og-700;
+		background-color: $og-100;
+		border: 1px solid $og-400;
 	}
 
-	&--yellow {
-		color: $amarelo-pikachu-dark-2;
-		background-color: $amarelo-pikachu-light-2;
-		border: 1px solid $amarelo-pikachu-light-1;
+	&--amber {
+		color: $al-700;
+		background-color: $al-100;
+		border: 1px solid $al-500;
 	}
 
 	&--gray {
-		color: $cinza-9;
-		background-color: $cinza-2;
-		border: 1px solid $cinza-5;
+		color: $n-700;
+		background-color: $n-20;
+		border: 1px solid $n-200;
 	}
 }
 </style>

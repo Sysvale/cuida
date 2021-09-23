@@ -118,21 +118,18 @@ export default {
 				} else {
 					stepperInputClass += ' stepper-input--disabled';
 				}
-
-			} else {
-				if (!this.disabled) {
-					if (this.state === 'default') {
-						stepperInputClass += ' stepper-input--focused';
-					} else if (this.state === 'valid') {
-						stepperInputClass += ' stepper-input--focused-valid';
-					} else if (this.state === 'invalid') {
-						stepperInputClass += ' stepper-input--focused-invalid';
-					}
+			} else if (!this.disabled) {
+				if (this.state === 'default') {
+					stepperInputClass += ' stepper-input--focused';
+				} else if (this.state === 'valid') {
+					stepperInputClass += ' stepper-input--focused-valid';
+				} else if (this.state === 'invalid') {
+					stepperInputClass += ' stepper-input--focused-invalid';
 				}
 			}
 
 			return stepperInputClass;
-		}
+		},
 	},
 
 	watch: {
@@ -164,9 +161,9 @@ export default {
 	},
 
 	methods: {
-		changeValue (amount) {
+		changeValue(amount) {
 			this.internalValue = parseInt(this.internalValue) + amount;
-		}
+		},
 	},
 };
 </script>
@@ -175,13 +172,13 @@ export default {
 
 .stepper-input {
 	display: flex;
-	border: 1px solid $cinza-4;
+	border: 1px solid $n-50;
 	border-radius: 4px;
 	width: fit-content;
 	width: -moz-fit-content;
 
 	&__icon-container {
-		background-color: $cinza-2;
+		background-color: $n-20;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -189,13 +186,12 @@ export default {
 	}
 
 	&__field {
-		@include padding(onidirecional, 2);
-		@include margin(direita, 2);
+		padding: pa(2);
+		margin: mr(2);
 		border-radius: 4px;
-		height: 36px;
 		border: none;
 		text-align: end;
-		color: $cinza-6;
+		color: $n-600;
 
 		&:focus {
 			outline: 0;
@@ -204,32 +200,32 @@ export default {
 
 	&--focused {
 		@extend .stepper-input;
-		border: 1px solid $azul-bidu-light-1;
-		box-shadow: 0 0 0 0.2rem rgba($azul-bidu-light-1, .45);
+		border: 1px solid $bn-300;
+		box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);
 	}
 
 	&--valid {
 		@extend .stepper-input;
-		border: 1px solid $verde-piccolo-dark-1;
+		border: 1px solid $gp-500;
 	}
 
 	&--invalid {
 		@extend .stepper-input;
-		border: 1px solid $vermelho-mario-dark-1;
+		border: 1px solid $vr-600;
 	}
 
 	&--focused-valid {
 		@extend .stepper-input--valid;
-		box-shadow: 0 0 0 0.2rem rgba($verde-piccolo-light-1, .45);
+		box-shadow: 0 0 0 0.2rem rgba($gp-300, .45);
 	}
 
 	&--focused-invalid {
 		@extend .stepper-input--invalid;
-		box-shadow: 0 0 0 0.2rem rgba($vermelho-mario-light-1, .45);
+		box-shadow: 0 0 0 0.2rem rgba($vr-300, .45);
 	}
 
 	&--disabled {
-		background-color: $cinza-1;
+		background-color: $n-10;
 		pointer-events: none;
 	}
 
@@ -238,20 +234,20 @@ export default {
 		border: none;
 		padding: 0;
 		outline: none;
-		padding-top: 2px;
+		padding: pt(1);
 		display: flex;
-		color: $cinza-6;
+		color: $n-600;
 		transition: all 0.2s ease-out;
 		height: 50%;
 
 		&:hover {
-			background-color: $azul-bidu-base;
-			color: $branco;
+			background-color: $bn-400;
+			color: $n-0;
 			border-radius: 0px 3px 0px 0px;
 		}
 
 		&:active {
-			background-color: $azul-bidu-dark-1;
+			background-color: $bn-500;
 			border-radius: 0px 3px 0px 0px;
 		}
 	}
@@ -261,20 +257,20 @@ export default {
 		border: none;
 		padding: 0;
 		outline: none;
-		padding-top: 2px;
+		padding: pt(1);
 		display: flex;
-		color: $cinza-6;
+		color: $n-600;
 		transition: all 0.2s ease-out;
 		height: 50%;
 
 		&:hover {
-			background-color: $azul-bidu-base;
-			color: $branco;
+			background-color: $bn-400;
+			color: $n-0;
 			border-radius: 0px 0px 3px 0px;
 		}
 
 		&:active {
-			background-color: $azul-bidu-dark-1;
+			background-color: $bn-500;
 			border-radius: 0px 0px 3px 0px;
 		}
 	}
@@ -283,7 +279,7 @@ export default {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
-	margin: 0;
+	margin: ma(0);
 }
 
 input[type=number] {

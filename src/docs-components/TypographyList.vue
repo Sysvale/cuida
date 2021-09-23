@@ -73,79 +73,76 @@ export default {
 			],
 			items: [
 				{
-					name: 'titulo-1',
+					name: 'heading-1',
 					fontSize: 47,
 					fontWeight: 400,
 					letterSpacing: 0,
 					sample: 'Não entre em pânico',
 				},
 				{
-					name: 'titulo-2',
+					name: 'heading-2',
 					fontSize: 33,
 					fontWeight: 400,
 					letterSpacing: 0.25,
 					sample: 'Não entre em pânico',
 				},
 				{
-					name: 'titulo-3',
+					name: 'heading-3',
 					fontSize: 23,
 					fontWeight: 400,
 					letterSpacing: 0,
 					sample: 'Não entre em pânico',
 				},
 				{
-					name: 'subtitulo-1',
+					name: 'subheading-1',
 					fontSize: 22,
 					fontWeight: 500,
 					letterSpacing: 0.15,
 					sample: 'Existe uma segunda teoria que diz que isso já aconteceu.',
 				},
 				{
-					name: 'subtitulo-2',
+					name: 'subheading-2',
 					fontSize: 16,
 					fontWeight: 500,
 					letterSpacing: 0.1,
 					sample: 'Existe uma segunda teoria que diz que isso já aconteceu.',
 				},
 				{
-					name: 'subtitulo-3',
+					name: 'subheading-3',
 					fontSize: 14,
 					fontWeight: 400,
 					letterSpacing: 0.1,
 					sample: 'Existe uma segunda teoria que diz que isso já aconteceu.',
 				},
 				{
-					name: 'corpo-1',
+					name: 'body-1',
 					fontSize: 16,
 					fontWeight: 400,
 					letterSpacing: 0.5,
 					sample: `Existe uma teoria que diz que, se um dia alguém descobrir exatamente para que serve o
-						Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituídopor al
-						go ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que 
-						isso já aconteceu.`,
+						Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituído por algo 
+						ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que isso já aconteceu.`,
 				},
 				{
-					name: 'corpo-2',
+					name: 'body-2',
 					fontSize: 14,
 					fontWeight: 400,
 					letterSpacing: 0.25,
 					sample: `Existe uma teoria que diz que, se um dia alguém descobrir exatamente para que serve o
-						Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituídopor al
-						go ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que 
-						isso já aconteceu.`,
+						Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituído por algo 
+						ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que isso já aconteceu.`,
 				},
 				{
-					name: 'legenda',
+					name: 'caption',
 					fontSize: 12,
 					fontWeight: 400,
 					letterSpacing: 0.4,
 					sample: `Existe uma teoria que diz que, se um dia alguém descobrir exatamente para que serve o
-						Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituídopor al
-						go ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que 
-						isso já aconteceu.`,
+						Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituído por algo 
+						ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que isso já aconteceu.`,
 				},
 				{
-					name: 'botao-1',
+					name: 'button-1',
 					fontSize: 16,
 					fontWeight: 600,
 					letterSpacing: 0.25,
@@ -153,7 +150,7 @@ export default {
 					isAButtonSample: true,
 				},
 				{
-					name: 'botao-2',
+					name: 'button-2',
 					fontSize: 14,
 					fontWeight: 600,
 					letterSpacing: 0.15,
@@ -189,7 +186,7 @@ export default {
 	font-weight: var(--fontWeight);
 	letter-spacing: var(--letterSpacing);
 	border: 1px solid #ABB5BF;
-	padding: 8px 20px;
+	padding: pYX(2, 5);
 	border-radius: 4px;
 	background: #FFFFFF;
 }
@@ -199,20 +196,20 @@ export default {
 		border-radius: $border-radius-token;
 		width: 60px;
 		height: 60px;
-		background-color: $verde-piccolo-base;
+		background-color: $gp-400;
 	}
 }
 
 .copy-clip {
-    width: fit-content;
-    padding: 8px 12px;
-    border-radius: 16px;
-	border: 1px solid $branco;
+	width: fit-content;
+	padding: pYX(2, 3);
+	border-radius: 16px;
+	border: 1px solid $n-0;
 	transition: all .15s ease-in-out;
 }
 
 .copy-clip:hover {
-	border: 1px solid $verde-piccolo-light-1;
+	border: 1px solid $gp-300;
 	cursor: pointer;
 	transition: all .15s ease-in-out;
 }
