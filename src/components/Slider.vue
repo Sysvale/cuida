@@ -102,7 +102,7 @@ export default {
 
 /* rail style */
 .vue-slider-rail {
-	background-color: #ccc;
+	background-color: $n-40;
 	border-radius: 15px;
 }
 
@@ -143,9 +143,9 @@ export default {
 	cursor: pointer;
 	width: 100%;
 	height: 100%;
-	border: 2px solid $bn-100;
+	border: 2px solid $bn-200;
 	border-radius: 50%;
-	background-color: $bn-200;
+	background-color: $bn-100;
 	box-sizing: border-box;
 	box-shadow: 0.5px 0.5px 2px 1px rgba(0, 0, 0, 0.32);
 }
@@ -272,5 +272,23 @@ export default {
 .vue-slider-component .vue-slider-tooltip-top
 .vue-merged-tooltip .vue-slider-tooltip::before {
 	border: none !important;
+}
+
+.vue-slider-dot-tooltip-inner {
+	background-color: transparent;
+	border-color: transparent;
+	color: #000;
+}
+
+.vue-slider-process {
+	background-color: $bn-200;
+	border-radius: 15px;
+}
+
+.merge-tooltip {
+	position: absolute;
+	left: 50%;
+	bottom: 100%;
+	transform: translate(-50%, -15px);
 }
 </style>
