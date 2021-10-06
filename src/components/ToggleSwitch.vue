@@ -8,7 +8,7 @@
 				v-model="isActive"
 				type="checkbox"
 				:disabled="disabled"
-				@click="hadleClick"
+				@click="handleClick"
 			>
 			<span
 				tabindex="0"
@@ -89,8 +89,16 @@ export default {
 		},
 	},
 
+	watch: {
+		value(newValue, oldValue) {
+			if (newValue !== oldValue) {
+				this.isActive = newValue;
+			}
+		},
+	},
+
 	methods: {
-		hadleClick() {
+		handleClick() {
 			/**
 			 * Evento utilizado para implementar o v-model.
 			* @event input
