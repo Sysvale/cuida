@@ -1,5 +1,6 @@
 import { mount, createLocalVue } from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
+import flushPromises from 'flush-promises';
 import ToggleSwitch from '../../src/components/ToggleSwitch.vue';
 
 const localVue = createLocalVue();
@@ -45,5 +46,28 @@ describe('Click tests', () => {
 
 		expect(wrapper.emitted().input).toBeTruthy();
 		expect(wrapper.emitted().input).toEqual([[false]]);
+	});
+});
+
+describe('Reactivity tests', () => {
+	test('if internal value is changed on v-model change', async () => {
+		const wrapper = mount(ToggleSwitch, {
+			localVue,
+			propsData: {
+				value: false,
+			},
+		});
+
+		await flushPromises();
+
+		expect(wrapper.vm.isActive).toBeFalsy();
+
+		wrapper.setProps({
+			value: true,
+		});
+
+		await flushPromises();
+
+		expect(wrapper.vm.isActive).toBeTruthy();
 	});
 });
