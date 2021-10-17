@@ -1,6 +1,6 @@
 {
   "name": "@sysvale/cuida",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A design system built by Sysvale, using storybook and Vue components",
   "repository": {
     "type": "git",
@@ -22,7 +22,8 @@
     "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
     "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
-    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
+    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
+    "chromatic": "npx chromatic --project-token=a0f13ffc7d61"
   },
   "dependencies": {
     "bootstrap": "^4.5.2",
@@ -42,9 +43,10 @@
     "vue-slider-component": "^3.2.11"
   },
   "devDependencies": {
-    "highlight.js": "^10.6.0",
-    "vue-hljs": "^2.0.0",
     "@babel/core": "^7.11.6",
+    "@rollup/plugin-alias": "^2.2.0",
+    "@rollup/plugin-buble": "^0.20.0",
+    "@rollup/plugin-replace": "^2.3.0",
     "@storybook/addon-actions": "^6.1.0-alpha.10",
     "@storybook/addon-essentials": "^6.1.0-alpha.10",
     "@storybook/addon-links": "^6.1.0-alpha.10",
@@ -58,23 +60,23 @@
     "@vue/test-utils": "^1.1.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
+    "chromatic": "^6.0.4",
+    "cross-env": "^6.0.3",
     "css-loader": "^4.3.0",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^6.2.2",
+    "highlight.js": "^10.6.0",
     "node-sass": "^4.12.0",
     "react-is": "^16.13.1",
-    "sass-loader": "^8.0.2",
-    "style-loader": "^1.2.1",
-    "vue-template-compiler": "^2.6.11",
-    "@rollup/plugin-alias": "^2.2.0",
-    "@rollup/plugin-buble": "^0.20.0",
-    "@rollup/plugin-replace": "^2.3.0",
     "rollup": "^1.29.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-terser": "^5.2.0",
     "rollup-plugin-vue": "5.1.1",
-    "cross-env": "^6.0.3"
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1",
+    "vue-hljs": "^2.0.0",
+    "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
     "root": true,
