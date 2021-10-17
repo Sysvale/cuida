@@ -1,9 +1,9 @@
 ---
-nome: "🚀 Feature request"
-sobre: Sugira uma melhoria para o Cuida ou um novo componente / recurso
-título: ''
-rótulos: 'type: Melhoria'
-designados: ''
+name: "🚀 Feature request"
+about: Sugira uma melhoria para o Cuida ou um novo componente / recurso
+title: ''
+labels: 'type: Melhoria'
+assignees: ''
 
 ---
 
