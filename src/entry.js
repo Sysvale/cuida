@@ -1,6 +1,7 @@
 import vueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/default.css';
 import { directive as onClickOutside } from 'vue-on-click-outside';
+import VCalendar from 'v-calendar';
 import * as components from './components/index';
 
 // install function executed by Vue.use()
@@ -10,6 +11,8 @@ function install(Vue) {
 	install.installed = true;
 
 	Vue.directive('on-click-outside', onClickOutside);
+
+	Vue.component('vueSlider', vueSlider);
 
 	Vue.component('vueSlider', vueSlider);
 
@@ -38,6 +41,17 @@ if (typeof window !== 'undefined') {
 
 if (GlobalVue) {
 	GlobalVue.use(plugin);
+
+	GlobalVue.use(VCalendar, {
+		locales: {
+			'pt-BR': {
+				firstDayOfWeek: 1,
+				masks: {
+					L: 'YYYY-MM-DD',
+				},
+			},
+		},
+	});
 }
 
 // Default export is library as a whole, registered via Vue.use()
