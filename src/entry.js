@@ -14,8 +14,6 @@ function install(Vue) {
 
 	Vue.component('vueSlider', vueSlider);
 
-	Vue.component('vueSlider', vueSlider);
-
 	Object.keys(components).forEach((componentName) => {
 		Vue.component(
 			`cds-${componentName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()}`,
