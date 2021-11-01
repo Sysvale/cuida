@@ -165,7 +165,7 @@ export default {
 .source-code__container {
 	margin-top: 25px;
 	margin-left: -20px;
-	width: 998px;
+	width: calc(100% + 40px);
 	transition: all .3s ease-in-out;
 }
 
