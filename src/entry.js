@@ -2,6 +2,7 @@ import vueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/default.css';
 import { directive as onClickOutside } from 'vue-on-click-outside';
 import VCalendar from 'v-calendar';
+import _ from 'lodash';
 import * as components from './components/index';
 
 // install function executed by Vue.use()
@@ -13,6 +14,8 @@ function install(Vue) {
 	Vue.directive('on-click-outside', onClickOutside);
 
 	Vue.component('vueSlider', vueSlider);
+
+	Object.defineProperty(Vue.prototype, '_', { value: _ });
 
 	Object.keys(components).forEach((componentName) => {
 		Vue.component(
