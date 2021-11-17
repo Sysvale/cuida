@@ -1,0 +1,110 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Multiselect from '../../components/Multiselect.vue';
+
+<Meta
+	title="Componentes/Forms/Multiselect"
+	component={ Multiselect }
+	argTypes={{
+		options: {
+			description: 'Lista de opções do Multiselect',
+		},
+		value: {
+			description: 'Lista de itens selecionados do Multiselect',
+		},
+		label: {
+			description: 'Propriedade do objeto options, que vai constar nas tags listadas no Multiselect',
+		},
+		trackBy: {
+			description: 'Utilizada para comparar objetos.',
+		},
+	}
+}
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { Multiselect },
+	template: /*html*/ `
+		<Multiselect
+			v-bind="$props" 
+		/>
+	`,
+});
+
+export const template = /*html*/ `
+	<cds-Multiselect
+		v-model="filteredOptions"
+		label="title"
+		track-by="title"
+		:options="options"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
+# Multiselect
+
+### Multiselects são componentes utilizados para criar soluções de navegação e menus.
+---
+<br />
+
+## Recomendamos o uso de Multiselects quando:
+- Você precisar separar conteúdo por páginas e navergar por elas.
+- Não for o caso de utilizar soluções como tabs, sidebars, cards ou links como navegação.
+
+<br />
+
+## Não recomendamos o uso de Multiselects quando:
+- Você tiver muitos itens a serem mostrados no menu.
+- Você precisar mostrar os links verticalmente.
+
+## Observações:
+- O Multiselect do Cuida é um wrapper do <a href="https://vue-multiselect.js.org/">Vue Multiselect</a>
+com a sua adequação aos nossos princípios e recomendações. Para informações detalhadas sobre o componente, recomendamos
+leitura da documentação.
+
+<br />
+
+## Preview
+
+export const options = [
+	{ title: 'Avengers',},
+	{ title: 'Naruto',},
+	{ title: 'X-men',},
+	{ title: 'The Powerpuff Girls',}
+];
+
+export const value = [
+	{ title: 'Avengers',},
+	{ title: 'The Powerpuff Girls',}
+];
+
+<Canvas>
+	<Story
+		name="Multiselect"
+		decorators={[docsDecorator]}
+		args={{
+			options,
+			value,
+			label: 'title',
+			trackBy: 'title',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Multiselect" />
