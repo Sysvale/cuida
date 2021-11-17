@@ -6,6 +6,7 @@
 			:enable-cross="false"
 			:min="min"
 			:max="max"
+			tooltip="always"
 		>
 			<template v-slot:tooltip="tooltip">
 				<!-- @slot Scoped slot para renderização customizada dos tooltips.
