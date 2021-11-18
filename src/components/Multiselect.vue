@@ -1,9 +1,9 @@
 <template>
-	<span id="dropdown">
+	<span id="cds-multiselect">
 		<multiselect
+			v-model="selectedValue"
 			v-bind="$attrs"
 			:options="internalOptions"
-			v-model="selectedValue"
 			multiple
 			:group-values="groupValues"
 			:group-label="groupLabel"
@@ -12,22 +12,67 @@
 			select-label=''
 			deselect-label=''
 			selected-label=''
+			:placeholder="computedPlaceholder"
+			:block-keys="['Delete', 'Enter']"
 			@close="handleClose"
 			@select="selectItem"
 			@remove="selectItem"
+			@search-change="handleSearchChange"
 		>
+			<template
+				slot="beforeList"
+				slot-scope="{ values, isOpen }"
+			>
+				<div v-show="!queryString">
+					<div
+						class="cds-multiselect__option multiselect__option mt-3"
+						@click="toggleSelectAll"
+					>
+						<div class="option__checkbox">
+							<input
+								id="select-all-input-id"
+								ref="select-all-ref"
+								v-model="selectAllValue"
+								type="checkbox"
+								name="select-all-input-name"
+								:value="true"
+							>
+							<label
+								id="select-all-label"
+								for="select-all-input-name"
+								:class="{
+									'option__checkbox--checked': selectAllValue,
+									'option__checkbox--indeterminate': indeterminate,
+								}"
+								@click.stop="toggleSelectAll"
+							/>
+						</div>
+						{{ selectAllFancyMessage }}
+					</div>
+					<div
+						v-if="!isGroupMode"
+						class="mx-2 my-3"
+					>
+						<hr class="my-0">
+					</div>
+				</div>
+			</template>
 			<template
 				slot="option"
 				slot-scope="{ option }"
 			>
 				<div
 					v-if="option.$isLabel"
+					class="d-flex align-items-center"
 				>
-					{{ option.$groupLabel }}
+					<small class="font-weight-bold">{{ option.$groupLabel }}</small>
+					<div class="flex-grow-1 ml-2">
+						<hr class="mx-0" />
+					</div>
 				</div>
 				<div
 					v-else
-					class="dropdown__option"
+					class="cds-multiselect__option"
 				>
 					<div class="option__checkbox">
 						<input
@@ -40,8 +85,8 @@
 						<label
 							:id="`checkbox-${option.title}`"
 							:for="`input-${option.title}`"
-							@click="addItemViaCustomCheckbox(option)"
 							:class="{ 'option__checkbox--checked': option.isSelected }"
+							@click="addItemViaCustomCheckbox(option)"
 						/>
 					</div>
 					{{ option.title }}
@@ -59,6 +104,16 @@
 				</span>
 				<span v-else />
 			</template>
+			<template
+				slot="noResult"
+			>
+				Nenhum resultado encontrado para: "<strong>{{ queryString }} </strong>"
+			</template>
+			<template
+				name="noOptions"
+			>
+				Não há nenhuma opção para ser exibida.
+			</template>
 		</multiselect>
 	</span>
 </template>
@@ -75,6 +130,9 @@ export default {
 			internalOptions: _.cloneDeep(this.$attrs.options),
 			groupValues: null,
 			groupLabel: null,
+			selectAllValue: false,
+			queryString: '',
+			indeterminate: false,
 		};
 	},
 
@@ -86,30 +144,44 @@ export default {
 			};
 		},
 
+		selectAllFancyMessage() {
+			if (!this.hasSelectedValues) {
+				return 'Selecionar todos';
+			}
+			return 'Desfazer seleção';
+		},
+
 		hasSelectedValues() {
 			return this.selectedValue.length > 0;
 		},
 
-		flattenOptions() {
-			if(this.internalOptions[SELECTED].status || this.internalOptions[NOT_SELECTED].status) {
-				return [
-					...this.internalOptions[SELECTED].options || [],
-					...this.internalOptions[NOT_SELECTED].options || [],
-				];
-			}
-
-			return this.internalOptions;
+		isAllItemsSelecteds() {
+			return this.selectedValue.length === this.$attrs.options.length;
 		},
+
+		computedPlaceholder() {
+			if(this.$attrs.placeholder) {
+				return this.$attrs.placeholder;
+			}
+			return 'Selecione uma ou mais opções';
+		},
+
+		isGroupMode() {
+			return this.internalOptions[SELECTED].status || this.internalOptions[NOT_SELECTED].status;
+		}
 	},
 
 	mounted() {
 		this.updateRenderOptions();
+		this.indeterminate = this.hasSelectedValues && this.selectedValue.length < this.$attrs.options.length;
 	},
 
 	watch: {
 		selectedValue(values) {
 			const cleanedValues = _.cloneDeep(values);
 			cleanedValues.forEach((val) => delete val.isSelected);
+
+			this.indeterminate = values.length > 0 && values.length < this.$attrs.options.length;
 
 			/**
 			 * Evento utilizado para implementar o v-model.
@@ -118,11 +190,26 @@ export default {
 				*/
 			this.$emit('input', cleanedValues);
 		},
+
+		isAllItemsSelecteds(newValue) {
+			if(!newValue && this.selectAllValue) {
+				this.selectAllValue = false;
+				return;
+			}
+			if(newValue && !this.selectAllValue) {
+				this.selectAllValue = true;
+			}
+		},
+
+		indeterminate(newValue) {
+			const input = document.getElementById('select-all-input-id');
+			input.indeterminate = newValue;
+		},
 	},
 
 	methods: {
 		selectItem(option) {
-			if(this.internalOptions[SELECTED].status || this.internalOptions[NOT_SELECTED].status) {
+			if(this.isGroupMode) {
 				this.internalOptions[SELECTED].options.forEach(item => {
 					if (item[this.$attrs.label] === option[this.$attrs.label]) {
 						item.isSelected = !item.isSelected;
@@ -140,6 +227,47 @@ export default {
 					}
 				});
 			}
+		},
+
+		toggleSelectAll() {
+			this.selectAllValue = !this.hasSelectedValues;
+
+			if(this.selectAllValue) {
+				this.selectedValue = this.$attrs.options;
+			} else {
+				this.selectedValue = [];
+			}
+
+			this.$nextTick().then(() => {
+				if(this.isGroupMode) {
+					this.$set(
+							this.internalOptions[SELECTED],
+							'options',
+							this.internalOptions[SELECTED].options.map((item) => ({
+								...item,
+								isSelected: this.selectAllValue,
+							}))
+						);
+
+					this.$set(
+							this.internalOptions[NOT_SELECTED],
+							'options',
+							this.internalOptions[NOT_SELECTED].options.map((item) => ({
+								...item,
+								isSelected: this.selectAllValue,
+							}))
+						);
+				} else {
+					this.$set(
+							this,
+							'internalOptions',
+							this.internalOptions.map((item) => ({
+								...item,
+								isSelected: this.selectAllValue,
+							}))
+						);
+				}
+			})
 		},
 
 		addItemViaCustomCheckbox(option) {
@@ -202,6 +330,10 @@ export default {
 				this.groupLabel = 'status';
 			});
 		},
+
+		handleSearchChange(queryString) {
+			this.queryString = queryString;
+		},
 	},
 };
 </script>
@@ -209,22 +341,28 @@ export default {
 <style lang="scss">
 @import '../assets/sass/app.scss';
 
-#dropdown .multiselect__option--highlight {
+#cds-multiselect .multiselect__option--highlight {
 	background: $n-20;
 	outline: none;
 	color: $n-700;
 }
 
-#dropdown input[type=checkbox] {
+#cds-multiselect .multiselect__option--disabled.multiselect__option--group {
+	background: $n-0!important;
+	color: $n-100!important;
+	text-transform: uppercase;
+}
+
+#cds-multiselect input[type=checkbox] {
 	visibility: hidden;
 }
 
-.dropdown__option {
+.cds-multiselect__option {
 	display: flex;
 	align-items: center;
 }
 
-#dropdown .option__checkbox {
+#cds-multiselect .option__checkbox {
 	width: 15px;
 	position: relative;
 	margin-right: spacer(6);
@@ -240,7 +378,7 @@ export default {
 		border: 0.5px solid $n-500;
 
 		&:after {
-			border: 1.5px solid $n-0;
+			border: 2px solid $n-0;
 			border-top: none;
 			border-right: none;
 			content: "";
@@ -260,58 +398,73 @@ export default {
 		filter: alpha(opacity=100);
 		opacity: 1;
 	}
+
+	input[type="checkbox"]:indeterminate + label:after {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+		filter: alpha(opacity=100);
+		opacity: 1;
+		border-left: none;
+		top: 4px;
+		width: 9px;
+		transform: rotate(0deg);
+	}
 }
 
 .option__checkbox--checked {
-	background-color: $bn-700 !important;
+	background-color: $gp-500 !important;
 	border: none !important;
 }
 
-#dropdown .multiselect__tag {
+.option__checkbox--indeterminate {
+	background-color: $gp-500 !important;
+	border: none !important;
+}
+
+#cds-multiselect .multiselect__tag {
 	background: $n-20;
 	color: $n-700;
 	border: 1px solid $n-100;
 }
 
-#dropdown .multiselect__tag-icon:after{
+#cds-multiselect .multiselect__tag-icon:after{
 	color: $n-700;
 }
 
-#dropdown .multiselect__tag-icon:focus,
-#dropdown .multiselect__tag-icon:hover {
-	background: $n-40;
-	color: $n-800;
-}
-
-#dropdown .multiselect__tag-icon:focus:after,
-#dropdown .multiselect__tag-icon:hover:after {
-	color: $n-800;
-}
-
-#dropdown .multiselect__option--selected.multiselect__option--highlight {
-	background: $n-0;
-	color: $n-800;
-}
-#dropdown .multiselect__option--selected.multiselect__option--highlight:after {
+#cds-multiselect .multiselect__tag-icon:focus,
+#cds-multiselect .multiselect__tag-icon:hover {
 	background: $n-0;
 	color: $n-800;
 }
 
-#dropdown .multiselect__option--selected {
-	background: $n-0;
+#cds-multiselect .multiselect__tag-icon:focus:after,
+#cds-multiselect .multiselect__tag-icon:hover:after {
 	color: $n-800;
-	font-weight: 600;
 }
 
-#dropdown .multiselect--disabled {
+#cds-multiselect .multiselect__option--selected.multiselect__option--highlight {
+	background: $n-20;
+	color: $n-800;
+}
+#cds-multiselect .multiselect__option--selected.multiselect__option--highlight:after {
+	background: $n-20;
+	color: $n-800;
+}
+
+#cds-multiselect .multiselect__option--selected {
+	background: $n-0;
+	color: $n-800;
+	font-weight: 500!important;
+}
+
+#cds-multiselect .multiselect--disabled {
 	background: transparent;
 }
 
-#dropdown .multiselect--disabled .multiselect__tags {
+#cds-multiselect .multiselect--disabled .multiselect__tags {
 	background: $n-300 !important;
 }
 
-#dropdown .multiselect__placeholder {
+#cds-multiselect .multiselect__placeholder {
 	color: $n-600;
 }
 </style>
