@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component is mounted properly 1`] = `
+<span id="cds-multiselect" options="[object Object],[object Object],[object Object]" value="[object Object]"><div tabindex="-1" class="multiselect"><div class="multiselect__select"></div>  <div class="multiselect__tags"><span class="multiselect__single">
+				1 opção selecionada
+			</span>
+<transition-stub name="multiselect__loading">
+  <div class="multiselect__spinner" style="display: none;"></div>
+</transition-stub> <input name="" type="text" autocomplete="nope" placeholder="Selecione uma ou mais opções" tabindex="0" class="multiselect__input" style="width: 0px; position: absolute; padding: 0px;">
+<!---->
+<!---->
+</div>
+<transition-stub name="multiselect">
+  <div tabindex="-1" class="multiselect__content-wrapper" style="max-height: 300px; display: none;">
+    <ul class="multiselect__content" style="display: inline-block;">
+      <div>
+        <div class="cds-multiselect__option multiselect__option mt-3">
+          <div class="option__checkbox"><input id="select-all-input-id" type="checkbox" name="select-all-input-name" value="true"> <label id="select-all-label" for="select-all-input-name" class=""></label></div>
+          Desfazer seleção
+        </div>
+        <div class="mx-2 my-3">
+          <hr class="my-0">
+        </div>
+      </div>
+      <!---->
+      <li class="multiselect__element"><span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--highlight"><div class="cds-multiselect__option"><div class="option__checkbox"><input type="checkbox" id="input-Item 1" name="input-Item 1" value="true"> <label id="checkbox-Item 1" for="input-Item 1" class=""></label></div>
+				Item 1
+			</div></span>
+        <!---->
+      </li>
+      <li class="multiselect__element"><span data-select="" data-selected="" data-deselect="" class="multiselect__option"><div class="cds-multiselect__option"><div class="option__checkbox"><input type="checkbox" id="input-Item 2" name="input-Item 2" value="true"> <label id="checkbox-Item 2" for="input-Item 2" class=""></label></div>
+				Item 2
+			</div></span>
+        <!---->
+      </li>
+      <li class="multiselect__element"><span data-select="" data-selected="" data-deselect="" class="multiselect__option"><div class="cds-multiselect__option"><div class="option__checkbox"><input type="checkbox" id="input-Item 3" name="input-Item 3" value="true"> <label id="checkbox-Item 3" for="input-Item 3" class=""></label></div>
+				Item 3
+			</div></span>
+        <!---->
+      </li>
+      <li style="display: none;"><span class="multiselect__option">
+			Nenhum resultado encontrado para: "<strong> </strong>"
+		</span></li>
+      <li style="display: none;"><span class="multiselect__option">List is empty.</span></li>
+    </ul>
+  </div>
+</transition-stub>
+</div>
+</span>
+`;
