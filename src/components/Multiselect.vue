@@ -23,7 +23,9 @@
 				slot="beforeList"
 				slot-scope="{ values, isOpen }"
 			>
-				<div v-show="!queryString">
+				<div
+					v-show="!queryString"
+				>
 					<div
 						class="cds-multiselect__option multiselect__option mt-3"
 						@click="toggleSelectAll"
@@ -63,7 +65,7 @@
 			>
 				<div
 					v-if="option.$isLabel"
-					class="d-flex align-items-center"
+					class="cds-multiselect__group-label"
 				>
 					<small class="font-weight-bold">{{ option.$groupLabel }}</small>
 					<div class="flex-grow-1 ml-2">
@@ -119,15 +121,25 @@
 </template>
 
 <script>
+import Multiselect from 'vue-multiselect';
 
 const SELECTED = 0;
 const NOT_SELECTED = 1;
 
+const clone = (el) => {
+	if(el === undefined) return {};
+	return JSON.parse(JSON.stringify(el));
+}
+
 export default {
+	components: {
+		Multiselect,
+	},
+
 	data() {
 		return {
-			selectedValue: this.$attrs.value,
-			internalOptions: _.cloneDeep(this.$attrs.options),
+			selectedValue: this.$attrs.value || [],
+			internalOptions: clone(this.$attrs.options),
 			groupValues: null,
 			groupLabel: null,
 			selectAllValue: false,
@@ -178,7 +190,7 @@ export default {
 
 	watch: {
 		selectedValue(values) {
-			const cleanedValues = _.cloneDeep(values);
+			const cleanedValues = clone(values);
 			cleanedValues.forEach((val) => delete val.isSelected);
 
 			this.indeterminate = values.length > 0 && values.length < this.$attrs.options.length;
@@ -284,7 +296,7 @@ export default {
 
 		updateRenderOptions() {
 			if (!this.hasSelectedValues) {
-				this.internalOptions = _.cloneDeep(this.$attrs.options);
+				this.internalOptions = clone(this.$attrs.options);
 				this.groupValues = null;
 				this.groupLabel = null;
 				return;
@@ -294,7 +306,7 @@ export default {
 				item.isSelected = true;
 			});
 
-			let rawOptions = _.cloneDeep(this.$attrs.options);
+			let rawOptions = clone(this.$attrs.options);
 			rawOptions = rawOptions.map((item) => {
 				const containsItem = this.selectedValue.some(
 					value => value[this.$attrs.label] === item[this.$attrs.label]
@@ -320,15 +332,13 @@ export default {
 				},
 			];
 
-			this.$nextTick().then(() => {
-				this.internalOptions[SELECTED]
-					.options = this.selectedValue;
-				this.internalOptions[NOT_SELECTED]
-					.options = rawOptions.filter(item => !item.isSelected);
+			this.internalOptions[SELECTED]
+				.options = this.selectedValue;
+			this.internalOptions[NOT_SELECTED]
+				.options = rawOptions.filter(item => !item.isSelected);
 
-				this.groupValues = 'options';
-				this.groupLabel = 'status';
-			});
+			this.groupValues = 'options';
+			this.groupLabel = 'status';
 		},
 
 		handleSearchChange(queryString) {
@@ -357,7 +367,7 @@ export default {
 	visibility: hidden;
 }
 
-.cds-multiselect__option {
+.cds-multiselect__option, .cds-multiselect__group-label {
 	display: flex;
 	align-items: center;
 }
