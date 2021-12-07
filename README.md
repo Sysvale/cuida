@@ -35,9 +35,9 @@ $ npm i @sysvale/cuida;
 
 - Para usar o bootstrap-vue, importe a biblioteca no seu entry point, provavelmente vai ser seu main.js ou app.js:
 ```js
-import BootstrapVue from ‘bootstrap-vue’;
-import ‘bootstrap/dist/css/bootstrap.css’;
-import ‘bootstrap-vue/dist/bootstrap-vue.css’;
+import BootstrapVue from 'bootstrap-vue';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 ```
 
 - Instale o bootstrap-vue com:
