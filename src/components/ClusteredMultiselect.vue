@@ -21,7 +21,7 @@
 		>
 			<template
 				slot="beforeList"
-				slot-scope="{ values, isOpen }"
+				slot-scope="{}"
 			>
 				<div
 					v-show="!queryString"
@@ -167,7 +167,7 @@ export default {
 			return this.selectedValue.length > 0;
 		},
 
-		isAllItemsSelecteds() {
+		isAllItemsSelected() {
 			return this.selectedValue.length === this.$attrs.options.length;
 		},
 
@@ -203,7 +203,7 @@ export default {
 			this.$emit('input', cleanedValues);
 		},
 
-		isAllItemsSelecteds(newValue) {
+		isAllItemsSelected(newValue) {
 			if(!newValue && this.selectAllValue) {
 				this.selectAllValue = false;
 				return;
