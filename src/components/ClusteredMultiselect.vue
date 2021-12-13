@@ -372,6 +372,10 @@ export default {
 	align-items: center;
 }
 
+.cds-multiselect__group-label {
+	@include subheading-3;
+}
+
 #cds-multiselect .option__checkbox {
 	width: 15px;
 	position: relative;
