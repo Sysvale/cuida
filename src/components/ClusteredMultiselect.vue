@@ -198,7 +198,8 @@ export default {
 		},
 
 		isGroupMode() {
-			return this.internalOptions[SELECTED]?.status || this.internalOptions[NOT_SELECTED]?.status;
+			return (this.internalOptions[SELECTED] && this.internalOptions[SELECTED].status)
+				|| (this.internalOptions[NOT_SELECTED] && this.internalOptions[NOT_SELECTED].status);
 		},
 
 		attrs() {
