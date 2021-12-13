@@ -382,15 +382,15 @@ export default {
 
 #cds-multiselect {
 	.multiselect__option--highlight {
-		background: $n-20;
-		outline: none;
-		color: $n-700;
+		background: $n-20!important;
+		outline: none!important;
+		color: $n-700!important;
 	}
 
 	.multiselect__option--disabled.multiselect__option--group {
 		background: $n-0!important;
 		color: $n-100!important;
-		text-transform: uppercase;
+		text-transform: uppercase!important;
 	}
 
 	input[type=checkbox] {
@@ -465,43 +465,43 @@ export default {
 	}
 
 	.multiselect__tag {
-		background: $n-20;
-		color: $n-700;
-		border: 1px solid $n-100;
+		background: $n-20!important;
+		color: $n-700!important;
+		border: 1px solid $n-100!important;
 	}
 
 	.multiselect__tag-icon:after{
-		color: $n-700;
+		color: $n-700!important;
 	}
 
 	.multiselect__tag-icon:focus,
 	.multiselect__tag-icon:hover {
-		background: $n-0;
-		color: $n-800;
+		background: $n-0!important;
+		color: $n-800!important;
 	}
 
 	.multiselect__tag-icon:focus:after,
 	.multiselect__tag-icon:hover:after {
-		color: $n-800;
+		color: $n-800!important;
 	}
 
 	.multiselect__option--selected.multiselect__option--highlight {
-		background: $n-20;
+		background: $n-20!important;
 		color: $n-800;
 	}
 	.multiselect__option--selected.multiselect__option--highlight:after {
-		background: $n-20;
-		color: $n-800;
+		background: $n-20!important;
+		color: $n-800!important;
 	}
 
 	.multiselect__option--selected {
-		background: $n-0;
-		color: $n-800;
+		background: $n-0!important;
+		color: $n-800!important;
 		font-weight: 500!important;
 	}
 
 	.multiselect--disabled {
-		background: transparent;
+		background: transparent!important;
 	}
 
 	.multiselect--disabled .multiselect__tags {
@@ -509,7 +509,7 @@ export default {
 	}
 
 	.multiselect__placeholder {
-		color: $n-600;
+		color: $n-600!important;
 	}
 }
 </style>
