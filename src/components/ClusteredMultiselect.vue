@@ -351,19 +351,20 @@ export default {
 <style lang="scss">
 @import '../assets/sass/app.scss';
 
-#cds-multiselect .multiselect__option--highlight {
+#cds-multiselect {
+	.multiselect__option--highlight {
 	background: $n-20;
 	outline: none;
 	color: $n-700;
 }
 
-#cds-multiselect .multiselect__option--disabled.multiselect__option--group {
+	.multiselect__option--disabled.multiselect__option--group {
 	background: $n-0!important;
 	color: $n-100!important;
 	text-transform: uppercase;
 }
 
-#cds-multiselect input[type=checkbox] {
+	input[type=checkbox] {
 	visibility: hidden;
 }
 
@@ -376,7 +377,7 @@ export default {
 	@include subheading-3;
 }
 
-#cds-multiselect .option__checkbox {
+	.option__checkbox {
 	width: 15px;
 	position: relative;
 	margin-right: spacer(6);
@@ -434,51 +435,52 @@ export default {
 	border: none !important;
 }
 
-#cds-multiselect .multiselect__tag {
+	.multiselect__tag {
 	background: $n-20;
 	color: $n-700;
 	border: 1px solid $n-100;
 }
 
-#cds-multiselect .multiselect__tag-icon:after{
+	.multiselect__tag-icon:after{
 	color: $n-700;
 }
 
-#cds-multiselect .multiselect__tag-icon:focus,
-#cds-multiselect .multiselect__tag-icon:hover {
+	.multiselect__tag-icon:focus,
+	.multiselect__tag-icon:hover {
 	background: $n-0;
 	color: $n-800;
 }
 
-#cds-multiselect .multiselect__tag-icon:focus:after,
-#cds-multiselect .multiselect__tag-icon:hover:after {
+	.multiselect__tag-icon:focus:after,
+	.multiselect__tag-icon:hover:after {
 	color: $n-800;
 }
 
-#cds-multiselect .multiselect__option--selected.multiselect__option--highlight {
+	.multiselect__option--selected.multiselect__option--highlight {
 	background: $n-20;
 	color: $n-800;
 }
-#cds-multiselect .multiselect__option--selected.multiselect__option--highlight:after {
+	.multiselect__option--selected.multiselect__option--highlight:after {
 	background: $n-20;
 	color: $n-800;
 }
 
-#cds-multiselect .multiselect__option--selected {
+	.multiselect__option--selected {
 	background: $n-0;
 	color: $n-800;
 	font-weight: 500!important;
 }
 
-#cds-multiselect .multiselect--disabled {
+	.multiselect--disabled {
 	background: transparent;
 }
 
-#cds-multiselect .multiselect--disabled .multiselect__tags {
+	.multiselect--disabled .multiselect__tags {
 	background: $n-300 !important;
 }
 
-#cds-multiselect .multiselect__placeholder {
+	.multiselect__placeholder {
 	color: $n-600;
+	}
 }
 </style>
