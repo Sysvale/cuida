@@ -505,10 +505,6 @@ export default {
 		background: transparent!important;
 	}
 
-	.multiselect--disabled .multiselect__tags {
-		background: $n-300 !important;
-	}
-
 	.multiselect__placeholder {
 		color: $n-600!important;
 	}
