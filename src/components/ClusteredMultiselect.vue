@@ -391,6 +391,7 @@ export default {
 		background: $n-0!important;
 		color: $n-100!important;
 		text-transform: uppercase!important;
+		border-bottom: none!important;
 	}
 
 	input[type=checkbox] {
