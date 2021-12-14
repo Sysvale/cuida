@@ -41,7 +41,9 @@ exports[`Component is mounted properly 1`] = `
       <li style="display: none;"><span class="multiselect__option">
 			Nenhum resultado encontrado para: "<strong> </strong>"
 		</span></li>
-      <li style="display: none;"><span class="multiselect__option">List is empty.</span></li>
+      <li style="display: none;"><span class="multiselect__option">
+			Não há nenhuma opção para ser exibida.
+		</span></li>
     </ul>
   </div>
 </transition-stub>

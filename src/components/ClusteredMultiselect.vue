@@ -26,7 +26,7 @@
 				slot-scope="{}"
 			>
 				<div
-					v-show="!queryString"
+					v-show="!queryString && options.length"
 				>
 					<div
 						class="cds-multiselect__option multiselect__option mt-3"
@@ -114,7 +114,7 @@
 				Nenhum resultado encontrado para: "<strong>{{ queryString }} </strong>"
 			</template>
 			<template
-				name="noOptions"
+				slot="noOptions"
 			>
 				Não há nenhuma opção para ser exibida.
 			</template>
