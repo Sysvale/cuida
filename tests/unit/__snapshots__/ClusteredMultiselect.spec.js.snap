@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component is mounted properly 1`] = `
+<span id="cds-multiselect" value="[object Object]"><div tabindex="-1" class="multiselect"><div class="multiselect__select"></div>  <div class="multiselect__tags"><span class="multiselect__single">
+				1 opção selecionada
+			</span>
+<transition-stub name="multiselect__loading">
+  <div class="multiselect__spinner" style="display: none;"></div>
+</transition-stub> <input name="" type="text" autocomplete="nope" placeholder="Selecione uma ou mais opções" tabindex="0" class="multiselect__input" style="width: 0px; position: absolute; padding: 0px;">
+<!---->
+<!---->
+</div>
+<transition-stub name="multiselect">
+  <div tabindex="-1" class="multiselect__content-wrapper" style="max-height: 300px; display: none;">
+    <ul class="multiselect__content" style="display: inline-block;">
+      <div>
+        <div class="cds-multiselect__option multiselect__option mt-3">
+          <div class="option__checkbox"><input id="select-all-input-id" type="checkbox" name="select-all-input-name" value="true"> <label id="select-all-label" for="select-all-input-name" class=""></label></div>
+          Desfazer seleção
+        </div>
+        <div class="mx-2 my-3">
+          <hr class="my-0">
+        </div>
+      </div>
+      <!---->
+      <li class="multiselect__element"><span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--highlight multiselect__option--selected"><div class="cds-multiselect__option"><div class="option__checkbox"><input type="checkbox" id="input-undefined" name="input-undefined" value="true"> <label id="checkbox-undefined" for="input-undefined" class=""></label></div>
+				
+			</div></span>
+        <!---->
+      </li>
+      <li class="multiselect__element"><span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--selected"><div class="cds-multiselect__option"><div class="option__checkbox"><input type="checkbox" id="input-undefined" name="input-undefined" value="true"> <label id="checkbox-undefined" for="input-undefined" class=""></label></div>
+				
+			</div></span>
+        <!---->
+      </li>
+      <li class="multiselect__element"><span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--selected"><div class="cds-multiselect__option"><div class="option__checkbox"><input type="checkbox" id="input-undefined" name="input-undefined" value="true"> <label id="checkbox-undefined" for="input-undefined" class=""></label></div>
+				
+			</div></span>
+        <!---->
+      </li>
+      <li style="display: none;"><span class="multiselect__option">
+			Nenhum resultado encontrado para: "<strong> </strong>"
+		</span></li>
+      <li style="display: none;"><span class="multiselect__option">
+			Não há nenhuma opção para ser exibida.
+		</span></li>
+    </ul>
+  </div>
+</transition-stub>
+</div>
+</span>
+`;

@@ -1,18 +1,18 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
-import DropDown from '../../components/DropDown.vue';
+import ClusteredMultiselect from '../../components/ClusteredMultiselect.vue';
 
 <Meta
-	title="Componentes/Forms/DropDown"
-	component={ DropDown }
+	title="Componentes/Forms/ClusteredMultiselect"
+	component={ ClusteredMultiselect }
 	argTypes={{
 		options: {
-			description: 'Lista de opções do DropDown',
+			description: 'Lista de opções do ClusteredMultiselect',
 		},
 		value: {
-			description: 'Lista de itens selecionados do DropDown',
+			description: 'Lista de itens selecionados do ClusteredMultiselect',
 		},
 		label: {
-			description: 'Propriedade do objeto options, que vai constar nas tags listadas no DropDown',
+			description: 'Propriedade do objeto options, que vai constar nas tags listadas no ClusteredMultiselect',
 		},
 		trackBy: {
 			description: 'Utilizada para comparar objetos.',
@@ -23,16 +23,16 @@ import DropDown from '../../components/DropDown.vue';
 
 export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
-	components: { DropDown },
+	components: { ClusteredMultiselect },
 	template: /*html*/ `
-		<DropDown
+		<clustered-multiselect
 			v-bind="$props" 
 		/>
 	`,
 });
 
 export const template = /*html*/ `
-	<cds-dropdown
+	<cds-clustered-multiselect
 		v-model="filteredOptions"
 		label="title"
 		track-by="title"
@@ -55,22 +55,29 @@ export const docsDecorator = () => {
 	};
 };
 
-# DropDown
+# ClusteredMultiselect
 
-### DropDowns são componentes utilizados para criar soluções de navegação e menus.
+### ClusteredMultiselects são componentes que permitem ao usuário selecionar múltiplas opções divididas em categorias.
 ---
+<br />
+
+## Recomendamos o uso de ClusteredMultiselects quando:
+- Houver a possibilidade de selecionar múltipos itens em um select.
+- Se deseja classificar os itens do select em categorias.
 
 <br />
 
-## Não recomendamos o uso de DropDowns quando:
-- Houver muitos itens a serem mostrados no menu.
-- For necessário mostrar os links verticalmente.
+## Não recomendamos o uso de ClusteredMultiselects quando:
+- Os itens do select não puderem ser classificados em categorias.
+- Houver necessidade de detalhar no input as opções selecionadas, já que mostramos como resumo apenas quantas e não quais foram as opções escolhidas.
+
+<br />
 
 ## Observações:
 - O ClusteredMultiselect é similar ao DropDown com uma estilização mais atualizada. Nas próximas versões o componente
 DropDown será descontinuado, por isso é preferível a utilização do ClusteredMultiselect a não ser nas
 ocasiões mencionadas na seção "Não recomendamos".
-- O Dropdown do Cuida é um wrapper do <a href="https://vue-multiselect.js.org/">Vue Multiselect</a>
+- O ClusteredMultiselect do Cuida é um wrapper do <a href="https://vue-multiselect.js.org/">Vue Multiselect</a>
 com a sua adequação aos nossos princípios e recomendações. Para informações detalhadas sobre o componente, recomendamos
 leitura da documentação.
 
@@ -82,17 +89,17 @@ export const options = [
 	{ title: 'Avengers',},
 	{ title: 'Naruto',},
 	{ title: 'X-men',},
-	{ title: 'The Powerpuff Girls',}
+	{ title: 'The Power-puff Girls',}
 ];
 
 export const value = [
 	{ title: 'Avengers',},
-	{ title: 'The Powerpuff Girls',}
+	{ title: 'The Power-puff Girls',}
 ];
 
 <Canvas>
 	<Story
-		name="DropDown"
+		name="ClusteredMultiselect"
 		decorators={[docsDecorator]}
 		args={{
 			options,
@@ -105,4 +112,4 @@ export const value = [
 	</Story>
 </Canvas>
 
-<ArgsTable story="DropDown" />
+<ArgsTable story="ClusteredMultiselect" />

@@ -23,3 +23,4 @@ export { default as FilterPill } from './FilterPill.vue';
 export { default as Slider } from './Slider.vue';
 export { default as Tooltip } from './Tooltip.vue';
 export { default as ToggleSwitch } from './ToggleSwitch.vue';
+export { default as ClusteredMultiselect } from './ClusteredMultiselect.vue';
