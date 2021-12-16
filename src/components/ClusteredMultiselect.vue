@@ -131,7 +131,7 @@ const NOT_SELECTED = 1;
 const clone = (el) => {
 	if(el === undefined) return {};
 	return JSON.parse(JSON.stringify(el));
-}
+};
 
 export default {
 	components: {
@@ -191,7 +191,7 @@ export default {
 		},
 
 		computedPlaceholder() {
-			if(this.$attrs.placeholder) {
+			if (this.$attrs.placeholder) {
 				return this.$attrs.placeholder;
 			}
 			return 'Selecione uma ou mais opções';
@@ -205,7 +205,7 @@ export default {
 		attrs() {
 			const { label, trackBy, options, ...attrs } = this.$attrs;
 			return attrs;
-		}
+		},
 	},
 
 	mounted() {
@@ -229,11 +229,12 @@ export default {
 		},
 
 		isAllItemsSelected(newValue) {
-			if(!newValue && this.selectAllValue) {
+			if (!newValue && this.selectAllValue) {
 				this.selectAllValue = false;
 				return;
 			}
-			if(newValue && !this.selectAllValue) {
+
+			if (newValue && !this.selectAllValue) {
 				this.selectAllValue = true;
 			}
 		},
@@ -246,7 +247,7 @@ export default {
 
 	methods: {
 		selectItem(option) {
-			if(this.isGroupMode) {
+			if (this.isGroupMode) {
 				this.internalOptions[SELECTED].options.forEach(item => {
 					if (item[this.label] === option[this.label]) {
 						item.isSelected = !item.isSelected;
@@ -269,42 +270,42 @@ export default {
 		toggleSelectAll() {
 			this.selectAllValue = !this.hasSelectedValues;
 
-			if(this.selectAllValue) {
+			if (this.selectAllValue) {
 				this.selectedValue = this.options;
 			} else {
 				this.selectedValue = [];
 			}
 
 			this.$nextTick().then(() => {
-				if(this.isGroupMode) {
+				if (this.isGroupMode) {
 					this.$set(
-							this.internalOptions[SELECTED],
-							'options',
-							this.internalOptions[SELECTED].options.map((item) => ({
-								...item,
-								isSelected: this.selectAllValue,
-							}))
-						);
+						this.internalOptions[SELECTED],
+						'options',
+						this.internalOptions[SELECTED].options.map((item) => ({
+							...item,
+							isSelected: this.selectAllValue,
+						})),
+					);
 
 					this.$set(
-							this.internalOptions[NOT_SELECTED],
-							'options',
-							this.internalOptions[NOT_SELECTED].options.map((item) => ({
-								...item,
-								isSelected: this.selectAllValue,
-							}))
-						);
+						this.internalOptions[NOT_SELECTED],
+						'options',
+						this.internalOptions[NOT_SELECTED].options.map((item) => ({
+							...item,
+							isSelected: this.selectAllValue,
+						})),
+					);
 				} else {
 					this.$set(
-							this,
-							'internalOptions',
-							this.internalOptions.map((item) => ({
-								...item,
-								isSelected: this.selectAllValue,
-							}))
-						);
+						this,
+						'internalOptions',
+						this.internalOptions.map((item) => ({
+							...item,
+							isSelected: this.selectAllValue,
+						})),
+					);
 				}
-			})
+			});
 		},
 
 		addItemViaCustomCheckbox(option) {
@@ -333,7 +334,6 @@ export default {
 			this.selectedValue.forEach((item) => {
 				item.isSelected = true;
 			});
-
 
 			let rawOptions = clone(this.options);
 			rawOptions = rawOptions.map((item) => {
