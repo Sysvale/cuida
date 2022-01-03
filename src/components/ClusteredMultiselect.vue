@@ -18,7 +18,7 @@
 			:block-keys="['Delete', 'Enter']"
 			@close="handleClose"
 			@select="selectItem"
-			@remove="selectItem"
+			@remove="unselectItem"
 			@search-change="handleSearchChange"
 		>
 			<template
@@ -246,7 +246,27 @@ export default {
 	},
 
 	methods: {
+		unselectItem(option) {
+			this.handleSelectItem(option);
+			/**
+			 * Evento disparado quando um item é deselecionado.
+			* @event input
+			* @type {Event}
+				*/
+			this.$emit('remove', option);
+		},
+
 		selectItem(option) {
+			this.handleSelectItem(option);
+			/**
+			 * Evento disparado quando um item é selecionado.
+			* @event input
+			* @type {Event}
+				*/
+			this.$emit('select', option);
+		},
+
+		handleSelectItem(option) {
 			if (this.isGroupMode) {
 				this.internalOptions[SELECTED].options.forEach(item => {
 					if (item[this.label] === option[this.label]) {
@@ -318,6 +338,12 @@ export default {
 
 		handleClose() {
 			this.updateRenderOptions();
+			/**
+			 * Evento disparado quando o select é fechado.
+			* @event input
+			* @type {Event}
+				*/
+			this.$emit('close');
 		},
 
 		updateRenderOptions() {
