@@ -6,9 +6,9 @@ const localVue = createLocalVue();
 localVue.use(BootstrapVue);
 
 const options = [
-	{ title: 'Item 1' },
-	{ title: 'Item 2' },
-	{ title: 'Item 3' },
+	{ text: 'Item 1' },
+	{ text: 'Item 2' },
+	{ text: 'Item 3' },
 ];
 
 test('Component is mounted properly', () => {
@@ -46,7 +46,7 @@ test('If the group labels are shown when theres selected items', async () => {
 		attrs: {
 			options,
 			value: [
-				{ title: 'Item 1' },
+				{ text: 'Item 1' },
 			],
 		},
 		attachTo: document.body,
@@ -98,7 +98,7 @@ test('If "unselect all" option are shown when theres selected items', () => {
 		attrs: {
 			options,
 			value: [
-				{ title: 'Item 1' },
+				{ text: 'Item 1' },
 			],
 		},
 		attachTo: document.body,
@@ -115,7 +115,7 @@ test('If "unselect all" option works as expected', async () => {
 		attrs: {
 			options,
 			value: [
-				{ title: 'Item 1' },
+				{ text: 'Item 1' },
 			],
 		},
 		attachTo: document.body,

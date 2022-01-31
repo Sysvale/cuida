@@ -2,7 +2,7 @@
 
 exports[`Component is mounted properly 1`] = `
 <span id="cds-multiselect" value="[object Object]"><div tabindex="-1" class="multiselect"><div class="multiselect__select"></div>  <div class="multiselect__tags"><span class="multiselect__single">
-				1 opção selecionada
+				Item 1
 			</span>
 <transition-stub name="multiselect__loading">
   <div class="multiselect__spinner" style="display: none;"></div>
@@ -23,18 +23,18 @@ exports[`Component is mounted properly 1`] = `
         </div>
       </div>
       <!---->
-      <li class="multiselect__element"><span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--highlight multiselect__option--selected"><div class="cds-multiselect__option"><div class="option__checkbox"><input type="checkbox" id="input-undefined" name="input-undefined" value="true"> <label id="checkbox-undefined" for="input-undefined" class=""></label></div>
-				
+      <li class="multiselect__element"><span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--highlight multiselect__option--selected"><div class="cds-multiselect__option"><div class="option__checkbox"><input type="checkbox" id="input-Item 1" name="input-Item 1" value="true"> <label id="checkbox-Item 1" for="input-Item 1" class=""></label></div>
+				Item 1
 			</div></span>
         <!---->
       </li>
-      <li class="multiselect__element"><span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--selected"><div class="cds-multiselect__option"><div class="option__checkbox"><input type="checkbox" id="input-undefined" name="input-undefined" value="true"> <label id="checkbox-undefined" for="input-undefined" class=""></label></div>
-				
+      <li class="multiselect__element"><span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--selected"><div class="cds-multiselect__option"><div class="option__checkbox"><input type="checkbox" id="input-Item 2" name="input-Item 2" value="true"> <label id="checkbox-Item 2" for="input-Item 2" class=""></label></div>
+				Item 2
 			</div></span>
         <!---->
       </li>
-      <li class="multiselect__element"><span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--selected"><div class="cds-multiselect__option"><div class="option__checkbox"><input type="checkbox" id="input-undefined" name="input-undefined" value="true"> <label id="checkbox-undefined" for="input-undefined" class=""></label></div>
-				
+      <li class="multiselect__element"><span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--selected"><div class="cds-multiselect__option"><div class="option__checkbox"><input type="checkbox" id="input-Item 3" name="input-Item 3" value="true"> <label id="checkbox-Item 3" for="input-Item 3" class=""></label></div>
+				Item 3
 			</div></span>
         <!---->
       </li>
