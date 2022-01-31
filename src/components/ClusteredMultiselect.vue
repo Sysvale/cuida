@@ -340,6 +340,7 @@ export default {
 
 		handleClose() {
 			this.updateRenderOptions();
+			this.setContentWrapperScrollToTop();
 			/**
 			 * Evento disparado quando o select é fechado.
 			* @event input
@@ -400,6 +401,12 @@ export default {
 
 		handleSearchChange(queryString) {
 			this.queryString = queryString;
+		},
+
+		setContentWrapperScrollToTop() {
+			document.getElementById('cds-multiselect')
+				.getElementsByClassName('multiselect__content-wrapper')[0]
+				.scrollTo(0, 0);
 		},
 	},
 };
