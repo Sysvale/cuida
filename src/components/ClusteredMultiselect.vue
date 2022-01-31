@@ -200,8 +200,8 @@ export default {
 		},
 
 		isGroupMode() {
-			return (this.internalOptions[SELECTED] && this.internalOptions[SELECTED].status)
-				|| (this.internalOptions[NOT_SELECTED] && this.internalOptions[NOT_SELECTED].status);
+			return (this.internalOptions[SELECTED] && this.internalOptions[SELECTED].$status)
+				|| (this.internalOptions[NOT_SELECTED] && this.internalOptions[NOT_SELECTED].$status);
 		},
 
 		attrs() {
@@ -381,11 +381,11 @@ export default {
 
 			this.internalOptions = [
 				{
-					status: 'Selecionados',
+					$status: 'Selecionados',
 					options: [],
 				},
 				{
-					status: 'Não selecionados',
+					$status: 'Não selecionados',
 					options: [],
 				},
 			];
@@ -396,7 +396,7 @@ export default {
 				.options = rawOptions.filter(item => !item.isSelected);
 
 			this.groupValues = 'options';
-			this.groupLabel = 'status';
+			this.groupLabel = '$status';
 		},
 
 		handleSearchChange(queryString) {
