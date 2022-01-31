@@ -170,7 +170,9 @@ export default {
 	computed: {
 		selectedFancyMessage() {
 			return (qty) => {
-				if (qty === 1) return '1 opção selecionada';
+				if (qty === 1) {
+					return this.selectedValue[0][this.label];
+				};
 				return `${qty} opções selecionadas`;
 			};
 		},
