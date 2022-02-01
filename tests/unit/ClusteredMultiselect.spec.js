@@ -11,7 +11,7 @@ const options = [
 	{ text: 'Item 3' },
 ];
 
-test('Component is mounted properly', () => {
+test('Component is mounted properly', async () => {
 	const wrapper = mount(ClusteredMultiselect, {
 		localVue,
 		attrs: {
@@ -20,6 +20,10 @@ test('Component is mounted properly', () => {
 		},
 		attachTo: document.body,
 	});
+
+	wrapper.setData({ uniqueKey: 'mockKey' });
+
+	await wrapper.vm.$nextTick();
 
 	expect(wrapper).toMatchSnapshot();
 });
