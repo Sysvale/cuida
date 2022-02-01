@@ -1,5 +1,8 @@
 <template>
-	<span id="cds-multiselect">
+	<span
+		id="cds-multiselect"
+		:name="uniqueKey"
+	>
 		<multiselect
 			v-model="selectedValue"
 			v-bind="attrs"
@@ -124,6 +127,7 @@
 
 <script>
 import Multiselect from 'vue-multiselect';
+import { generateKey } from '../utils';
 
 const SELECTED = 0;
 const NOT_SELECTED = 1;
@@ -164,6 +168,7 @@ export default {
 			selectAllValue: false,
 			queryString: '',
 			indeterminate: false,
+			uniqueKey: generateKey(),
 		};
 	},
 
@@ -404,7 +409,7 @@ export default {
 		},
 
 		setContentWrapperScrollToTop() {
-			document.getElementById('cds-multiselect')
+			document.getElementsByName(this.uniqueKey)[0]
 				.getElementsByClassName('multiselect__content-wrapper')[0]
 				.scrollTo(0, 0);
 		},
