@@ -1,5 +1,8 @@
 <template>
-	<span id="cds-multiselect">
+	<span
+		id="cds-multiselect"
+		:name="uniqueKey"
+	>
 		<multiselect
 			v-model="selectedValue"
 			v-bind="attrs"
@@ -124,6 +127,7 @@
 
 <script>
 import Multiselect from 'vue-multiselect';
+import { generateKey } from '../utils';
 
 const SELECTED = 0;
 const NOT_SELECTED = 1;
@@ -164,13 +168,16 @@ export default {
 			selectAllValue: false,
 			queryString: '',
 			indeterminate: false,
+			uniqueKey: generateKey(),
 		};
 	},
 
 	computed: {
 		selectedFancyMessage() {
 			return (qty) => {
-				if (qty === 1) return '1 opção selecionada';
+				if (qty === 1) {
+					return this.selectedValue[0][this.label];
+				};
 				return `${qty} opções selecionadas`;
 			};
 		},
@@ -198,8 +205,8 @@ export default {
 		},
 
 		isGroupMode() {
-			return (this.internalOptions[SELECTED] && this.internalOptions[SELECTED].status)
-				|| (this.internalOptions[NOT_SELECTED] && this.internalOptions[NOT_SELECTED].status);
+			return (this.internalOptions[SELECTED] && this.internalOptions[SELECTED].$status)
+				|| (this.internalOptions[NOT_SELECTED] && this.internalOptions[NOT_SELECTED].$status);
 		},
 
 		attrs() {
@@ -338,6 +345,7 @@ export default {
 
 		handleClose() {
 			this.updateRenderOptions();
+			this.setContentWrapperScrollToTop();
 			/**
 			 * Evento disparado quando o select é fechado.
 			* @event input
@@ -378,11 +386,11 @@ export default {
 
 			this.internalOptions = [
 				{
-					status: 'Selecionados',
+					$status: 'Selecionados',
 					options: [],
 				},
 				{
-					status: 'Não selecionados',
+					$status: 'Não selecionados',
 					options: [],
 				},
 			];
@@ -393,11 +401,17 @@ export default {
 				.options = rawOptions.filter(item => !item.isSelected);
 
 			this.groupValues = 'options';
-			this.groupLabel = 'status';
+			this.groupLabel = '$status';
 		},
 
 		handleSearchChange(queryString) {
 			this.queryString = queryString;
+		},
+
+		setContentWrapperScrollToTop() {
+			document.getElementsByName(this.uniqueKey)[0]
+				.getElementsByClassName('multiselect__content-wrapper')[0]
+				.scrollTo(0, 0);
 		},
 	},
 };
