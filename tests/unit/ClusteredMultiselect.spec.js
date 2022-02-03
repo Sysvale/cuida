@@ -132,3 +132,22 @@ test('If "unselect all" option works as expected', async () => {
 
 	expect(prependOption.text()).toBe('Selecionar todos');
 });
+
+test('If label is shown when only one option is selected', async () => {
+	const value = [
+		{ text: 'Item 1' },
+	];
+
+	const wrapper = mount(ClusteredMultiselect, {
+		localVue,
+		attrs: {
+			options,
+			value,
+		},
+		attachTo: document.body,
+	});
+	
+	const selectedFancyMessage = wrapper.findAll('.multiselect__single').at(0);
+
+	expect(selectedFancyMessage.text()).toBe(value[0].text);
+});
