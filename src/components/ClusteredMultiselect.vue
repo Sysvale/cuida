@@ -1,7 +1,7 @@
 <template>
 	<span
 		id="cds-multiselect"
-		:name="uniqueKey"
+		:data-cds-multiselect-identifier="uniqueKey"
 	>
 		<multiselect
 			v-model="selectedValue"
@@ -409,7 +409,7 @@ export default {
 		},
 
 		setContentWrapperScrollToTop() {
-			document.getElementsByName(this.uniqueKey)[0]
+			document.querySelector(`span[data-cds-multiselect-identifier='${this.uniqueKey}']`)
 				.getElementsByClassName('multiselect__content-wrapper')[0]
 				.scrollTo(0, 0);
 		},
