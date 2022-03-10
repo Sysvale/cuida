@@ -55,7 +55,7 @@ import Cuida from '@sysvale/cuida';
 Vue.use(Cuida);
 ```
 
-- Agora pra utilizar os componentes, basta usá-los no seu template. Como exemplo, para usar a 
+- Agora para utilizar os componentes, basta usá-los no seu template. Como exemplo, para usar a 
 [Badge](https://sysvale.github.io/cuida/?path=/docs/componentes-display-badge--badge):
 ```html
 <cds-badge 
@@ -63,6 +63,14 @@ Vue.use(Cuida);
 >
   Conteúdo
 </cds-badge>
+```
+
+- Para utilizar os tokens, importe-os na sua tag script.
+```html
+<style lang="scss" scoped>
+  @import 'node_modules/@sysvale/cuida/dist/@sysvale/tokens.scss';
+  ...
+</style>
 ```
 
 ## Desenvolvendo
