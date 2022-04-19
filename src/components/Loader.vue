@@ -20,6 +20,9 @@
 <script>
 export default {
 	props: {
+		/** 
+		*	URL da imagem a ser utilizada como loader.
+		*/
 		imageBackground:
 		{
 			type: String,
