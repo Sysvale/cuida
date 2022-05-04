@@ -7,9 +7,9 @@ const imageBackground = 'https://sysvale.github.io/cuida/static/media/CuidaTempL
 test('Component is mounted properly', () => {
 	const wrapper = shallowMount(Loader, {
 		localVue,
-    propsData: {
-      imageBackground,
-    }
+		propsData: {
+			imageBackground,
+		}
 	});
 	expect(wrapper).toMatchSnapshot();
 });
