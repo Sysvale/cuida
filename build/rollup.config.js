@@ -18,6 +18,7 @@ concat(
 		'src/assets/sass/variables/typography.scss',
 		'src/assets/sass/variables/spacing.scss',
 		'src/assets/sass/variables/borders.scss',
+		'src/assets/sass/variables/shadows.scss',
 	],
 	'dist/@sysvale/tokens.scss',
 );
