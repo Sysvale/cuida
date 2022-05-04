@@ -8,11 +8,11 @@
 					class="loader__content"
 				>
 			</div>
-				<img
-					:src="imageBackground"
-					alt="Carregando"
-					class="loader__content--shadow"
-				>
+			<img
+				:src="imageBackground"
+				alt="Carregando"
+				class="loader__content--shadow"
+			>
 		</div>
 	</div>
 </template>
@@ -20,16 +20,16 @@
 <script>
 export default {
 	props: {
-		/** 
+		/**
 		*	URL da imagem a ser utilizada como loader.
 		*/
 		imageBackground:
 		{
 			type: String,
-			required: true
-		}
-	}
-}
+			required: true,
+		},
+	},
+};
 </script>
 
 <style lang="scss" scoped>
