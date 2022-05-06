@@ -7,3 +7,4 @@ export { default as Space } from './Space.vue';
 export { default as TypographyList } from './TypographyList.vue';
 export { default as SourceCodeWrapper } from './SourceCodeWrapper.vue';
 export { default as CopyToken } from './CopyToken.vue';
+export { default as Shadows } from './Shadows.vue';

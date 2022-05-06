@@ -1,0 +1,34 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs/blocks';
+import Shadow from '../../docs-components/Shadows.vue';
+
+<Meta title="Fundação/Sombras" component={ Shadow } />
+
+# Sombras
+Os tokens de sombra são utilizados indicar a elevação dos elementos da interface, através do uso da propriedade box-shadow.
+Com as sombras criamos hierarquia visual e impressão de profundidade.
+
+<hr />
+<br />
+
+## Recomendações
+
+-  Não recomendamos a utilização de sombras em logos e em imagens.
+
+-  Não recomendamos a utilização de sombras em cards, excetuando-se cards em peças de marketing e gráficas.
+
+- Não recomendamos a utilização de sombras para indicar interação.
+
+
+<br />
+
+## Tokens
+Os tokens de sombra são variáveis do scss e estão descritos abaixo.
+<br />
+
+export const Template = () => ({
+    template:`<shadow-builder />`,
+});
+
+<Story name="shadow">
+    { Template.bind({}) }
+</Story>
