@@ -1,6 +1,7 @@
 import { mount, createLocalVue } from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
 import ClusteredMultiselect from '../../src/components/ClusteredMultiselect.vue';
+import flushPromises from 'flush-promises';
 
 const localVue = createLocalVue();
 localVue.use(BootstrapVue);
@@ -23,7 +24,7 @@ test('Component is mounted properly', async () => {
 
 	wrapper.setData({ uniqueKey: 'mockKey' });
 
-	await wrapper.vm.$nextTick();
+	await flushPromises();
 
 	expect(wrapper).toMatchSnapshot();
 });
@@ -39,7 +40,7 @@ test('If the group labels are not shown when theres no selected items', async ()
 	});
 
 	wrapper.trigger('click');
-	await wrapper.vm.$nextTick();
+	await flushPromises();
 
 	expect(wrapper.findAll('.cds-multiselect__group-label').length).toBe(0);
 });
@@ -55,11 +56,11 @@ test('If the group labels are shown when theres selected items', async () => {
 		},
 		attachTo: document.body,
 	});
-	
+
 	// Do Your Magic
 	wrapper.trigger('click');
-	await wrapper.vm.$nextTick();
-	
+	await flushPromises();
+
 	expect(wrapper.findAll('.cds-multiselect__group-label').length > 0).toBe(true);
 });
 
@@ -89,9 +90,9 @@ test('If "select all" option works as expected', async () => {
 	});
 
 	const prependOption = wrapper.findAll('.cds-multiselect__option').at(0);
-	
+
 	prependOption.trigger('click');
-	await wrapper.vm.$nextTick();
+	await flushPromises();
 
 	expect(prependOption.text()).toBe('Desfazer seleção');
 });
@@ -107,7 +108,7 @@ test('If "unselect all" option are shown when theres selected items', () => {
 		},
 		attachTo: document.body,
 	});
-	
+
 	const prependOptionText = wrapper.findAll('.cds-multiselect__option').at(0).text();
 
 	expect(prependOptionText).toBe('Desfazer seleção');
@@ -124,11 +125,11 @@ test('If "unselect all" option works as expected', async () => {
 		},
 		attachTo: document.body,
 	});
-	
+
 	const prependOption = wrapper.findAll('.cds-multiselect__option').at(0);
-	
+
 	prependOption.trigger('click');
-	await wrapper.vm.$nextTick();
+	await flushPromises();
 
 	expect(prependOption.text()).toBe('Selecionar todos');
 });
@@ -146,7 +147,7 @@ test('If label is shown when only one option is selected', async () => {
 		},
 		attachTo: document.body,
 	});
-	
+
 	const selectedFancyMessage = wrapper.findAll('.multiselect__single').at(0);
 
 	expect(selectedFancyMessage.text()).toBe(value[0].text);

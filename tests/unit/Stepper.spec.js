@@ -1,6 +1,7 @@
 import { mount, createLocalVue } from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
 import Stepper from '../../src/components/Stepper.vue';
+import flushPromises from 'flush-promises';
 
 const localVue = createLocalVue();
 localVue.use(BootstrapVue);
@@ -81,7 +82,7 @@ describe("Divider styles test", () => {
 });
 
 describe("Change step event tests", () => {
-	test('if a event is emited when the stepper is clicked', () => {
+	test('if a event is emited when the stepper is clicked', async () => {
 		let mocked_data = [
 			{ label: 'Dummy label 1', completed: false, inProcessing: false, error: false },
 			{ label: 'Dummy label 2', completed: false, inProcessing: false, error: false },
@@ -98,10 +99,10 @@ describe("Change step event tests", () => {
 
 		wrapper.find('#step-2').trigger('click');
 
-		wrapper.vm.$nextTick(() => {
-			expect(wrapper.emitted().input).toBeTruthy();
-			expect(wrapper.emitted().input).toEqual([[2]]);
-		});
+		await flushPromises();
+
+		expect(wrapper.emitted().input).toBeTruthy();
+		expect(wrapper.emitted().input).toEqual([[2]]);
 	});
 });
 

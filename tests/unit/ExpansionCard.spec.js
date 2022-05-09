@@ -1,6 +1,7 @@
 import { mount, shallowMount, createLocalVue } from '@vue/test-utils';
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
 import ExpansionCard from '../../src/components/ExpansionCard.vue';
+import flushPromises from 'flush-promises';
 
 const localVue = createLocalVue();
 
@@ -33,12 +34,14 @@ describe('Hover tests', () => {
 		});
 
 		wrapper.trigger('mouseover');
-		await wrapper.vm.$nextTick();
+		await flushPromises();
+
 		expect(wrapper.find('.expansion-card--hover-gray').exists()).toBe(true);
 		expect(wrapper.find('.expansion-card__expand-icon').exists()).toBe(true);
 
 		wrapper.trigger('mouseleave');
-		await wrapper.vm.$nextTick();
+		await flushPromises();
+
 		expect(wrapper.find('.expansion-card--hover-gray').exists()).toBe(false);
 		expect(wrapper.find('.expansion-card__expand-icon').exists()).toBe(false);
 	});
@@ -54,12 +57,14 @@ describe('Hover tests', () => {
 		});
 
 		wrapper.trigger('mouseover');
-		await wrapper.vm.$nextTick();
+		await flushPromises();
+
 		expect(wrapper.find('.expansion-card--hover-gray').exists()).toBe(false);
 		expect(wrapper.find('.expansion-card__expand-icon').exists()).toBe(false);
 
 		wrapper.trigger('mouseleave');
-		await wrapper.vm.$nextTick();
+		await flushPromises();
+
 		expect(wrapper.find('.expansion-card--hover-gray').exists()).toBe(false);
 		expect(wrapper.find('.expansion-card__expand-icon').exists()).toBe(false);
 	});
@@ -75,7 +80,8 @@ describe('Click tests', () => {
 
 		wrapper.trigger('mouseover');
 		wrapper.trigger('click');
-		await wrapper.vm.$nextTick();
+		await flushPromises();
+
 		expect(wrapper.find('.expansion-card--expanded').exists()).toBe(true);
 		expect(wrapper.find('.expansion-card__contract-icon').exists()).toBe(true);
 
@@ -90,10 +96,11 @@ describe('Click tests', () => {
 
 		expect(wrapper.find('.expansion-card').exists()).toBe(true);
 		wrapper.trigger('mouseover');
-		await wrapper.vm.$nextTick();
+		await flushPromises();
+
 
 		wrapper.find('.expansion-card__expand-icon').trigger('click');
-		await wrapper.vm.$nextTick();
+		await flushPromises();
 
 		expect(wrapper.find('.expansion-card--expanded').exists()).toBe(true);
 		expect(wrapper.find('.expansion-card__contract-icon').exists()).toBe(true);
@@ -110,10 +117,12 @@ describe('Click tests', () => {
 		expect(wrapper.find('.expansion-card').exists()).toBe(true);
 		wrapper.trigger('mouseover');
 		wrapper.trigger('click');
-		await wrapper.vm.$nextTick();
+		await flushPromises();
+
 
 		wrapper.find('.expansion-card__contract-icon').trigger('click');
-		await wrapper.vm.$nextTick();
+		await flushPromises();
+
 		expect(wrapper.find('.expansion-card--expanded').exists()).toBe(false);
 		expect(wrapper.find('.expansion-card__contract-icon').exists()).toBe(false);
 
