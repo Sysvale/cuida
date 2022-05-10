@@ -1,5 +1,6 @@
 import { mount, shallowMount, createLocalVue } from '@vue/test-utils';
 import AlertCard from '../../src/components/AlertCard.vue';
+import flushPromises from 'flush-promises';
 
 const localVue = createLocalVue();
 
@@ -71,7 +72,7 @@ describe('Click tests', () => {
 });
 
 describe("Styles based on the variants tests", () => {
-	test("if the the styles are applied properly when the variant is 'info'", () => {
+	test("if the the styles are applied properly when the variant is 'info'", async () => {
 		const wrapper = mount(AlertCard, {
 			localVue,
 			propsData: {
@@ -90,12 +91,12 @@ describe("Styles based on the variants tests", () => {
 
 		wrapper.find('#custom-checkbox').trigger('click');
 
-		wrapper.vm.$nextTick(() => {
-			expect(wrapper.findAll('.alert-card__container--selected-info').length).toBe(1);
-		});
+		await flushPromises();
+
+		expect(wrapper.findAll('.alert-card__container--selected-info').length).toBe(1);
 	});
 
-	test("if the the styles are applied properly when the variant is 'warning'", () => {
+	test("if the the styles are applied properly when the variant is 'warning'", async () => {
 		const wrapper = mount(AlertCard, {
 			localVue,
 			propsData: {
@@ -114,12 +115,12 @@ describe("Styles based on the variants tests", () => {
 
 		wrapper.find('#custom-checkbox').trigger('click');
 
-		wrapper.vm.$nextTick(() => {
-			expect(wrapper.findAll('.alert-card__container--selected-warning').length).toBe(1);
-		});
+		await flushPromises();
+
+		expect(wrapper.findAll('.alert-card__container--selected-warning').length).toBe(1);
 	});
 
-	test("if the the styles are applied properly when the variant is 'danger'", () => {
+	test("if the the styles are applied properly when the variant is 'danger'", async () => {
 		const wrapper = mount(AlertCard, {
 			localVue,
 			propsData: {
@@ -138,9 +139,9 @@ describe("Styles based on the variants tests", () => {
 
 		wrapper.find('#custom-checkbox').trigger('click');
 
-		wrapper.vm.$nextTick(() => {
-			expect(wrapper.findAll('.alert-card__container--selected-danger').length).toBe(1);
-		});
+		await flushPromises();
+
+		expect(wrapper.findAll('.alert-card__container--selected-danger').length).toBe(1);
 	});
 });
 

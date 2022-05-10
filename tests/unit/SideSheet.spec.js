@@ -1,6 +1,7 @@
 import { mount, createLocalVue } from '@vue/test-utils';
 import BootstrapVue, { BButton } from 'bootstrap-vue';
 import SideSheet from '../../src/components/SideSheet.vue';
+import flushPromises from 'flush-promises';
 
 const localVue = createLocalVue();
 localVue.use(BootstrapVue);
@@ -64,7 +65,8 @@ describe("Behavior tests", () => {
 
 		const overlay = wrapper.find('.side-sheet__overlay');
 		overlay.trigger('click');
-		await wrapper.vm.$nextTick();
+		await flushPromises();
+
 		expect(wrapper.emitted().input).toBeFalsy();
 		done();
 	});
@@ -83,7 +85,8 @@ describe("Behavior tests", () => {
 			keyCode: 27
 		});
 
-		await wrapper.vm.$nextTick();
+		await flushPromises();
+
 		expect(wrapper.emitted().input).toBeFalsy();
 	});
 });

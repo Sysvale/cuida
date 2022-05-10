@@ -2,6 +2,7 @@ import { mount, createLocalVue } from '@vue/test-utils';
 import lodash from 'lodash';
 import BootstrapVue from 'bootstrap-vue';
 import ActionsList from '../../src/components/ActionsList.vue';
+import flushPromises from 'flush-promises';
 
 const localVue = createLocalVue();
 localVue.use(BootstrapVue);
@@ -71,7 +72,8 @@ describe('Action list functioning', () => {
 			.find('.action-list__item--left-bordered')
 			.trigger('click');
 
-		await localVue.nextTick();
+
+		await flushPromises();
 
 		expect(wrapper.findAll('.action-list__item').length).toBe(1);
 		expect(wrapper.findAll('.action-list__item--left-bordered').length).toBe(4);

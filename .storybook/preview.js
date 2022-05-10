@@ -12,10 +12,6 @@ import vueHljs from "vue-hljs";
 import hljs from "highlight.js";
 import "vue-hljs/dist/style.css";
 
-
-import { directive as onClickOutside } from 'vue-on-click-outside' 
-Vue.directive('on-click-outside', onClickOutside)
-
 import vueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/default.css'
 
