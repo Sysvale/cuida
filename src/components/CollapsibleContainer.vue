@@ -4,19 +4,20 @@
 			class="cds-collapsible-container__item"
 			@click="triggerExpanded"
 		>
-			<span
-				class="cds-collapsible-container__title"
-			>
-				{{ title }}
-			</span>
-			<div class="flex-grow-1 ml-2">
-				<hr class="mx-0" />
-			</div>
 			<ion-icon
 				name="chevron-down-outline"
 				:class="internalValue ? 'cds-collapsible-container__icon--expanded' : 'cds-collapsible-container__icon--collapsed'"
 			>
 			</ion-icon>
+			<!-- @slot Slot para renderização do conteúdo do header/title customizado do item
+			-->
+			<slot name="title">
+				<span
+					class="cds-collapsible-container__title"
+				>
+					{{ title }}
+				</span>
+			</slot>
 		</div>
 		<div
 			v-if="internalValue"
@@ -48,7 +49,6 @@ export default {
 		title: {
 			type: String,
 			default: 'Visualizar mais',
-			required: true,
 		},
 	},
 
@@ -85,7 +85,7 @@ export default {
 		@include caption;
 		color: $n-600;
 		display: flex;
-		align-items: center;
+		align-items: start;
 		cursor: pointer;
 
 		& hr {
@@ -99,7 +99,7 @@ export default {
 
 	&__icon--collapsed {
 		color: $n-600;
-		margin: ml(2);
+		margin: mr(2);
 		transition: all 0.25s ease-in-out;
 	}
 
