@@ -67,4 +67,27 @@ describe('Click tests', () => {
 		expect(wrapper.emitted().input).toBeTruthy();
 		expect(wrapper.emitted().input).toEqual([[false]]);
 	});
+
+	test('if title as slot is correctly rendered', async () => {
+		const titleSlot = {
+			render() {
+				return 'Custom title';
+			},
+		};
+
+		const wrapper = shallowMount(CollapsibleContainer, {
+			localVue,
+			propsData: {
+				value: true,
+			},
+			slots: {
+				title: titleSlot,
+			},
+			stubs: {
+				'ion-icon': true,
+			},
+		});
+
+		expect(wrapper.findComponent(titleSlot)).toBeTruthy();
+	});
 });

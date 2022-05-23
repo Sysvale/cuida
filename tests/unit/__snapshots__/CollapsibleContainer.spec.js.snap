@@ -1,14 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component is mounted properly 1`] = `
-<span id="cds-collapsible-container"><div class="cds-collapsible-container__item"><span class="cds-collapsible-container__title">
-			Seu universo expandido
-		</span>
-<div class="flex-grow-1 ml-2">
-  <hr class="mx-0">
-</div>
-<ion-icon-stub name="chevron-down-outline" class="cds-collapsible-container__icon--expanded"></ion-icon-stub>
-</div>
+<span id="cds-collapsible-container"><div class="cds-collapsible-container__item"><ion-icon-stub name="chevron-down-outline" class="cds-collapsible-container__icon--expanded"></ion-icon-stub> <span class="cds-collapsible-container__title">
+				Seu universo expandido
+			</span></div>
 <div class="cds-collapsible-container__content"></div>
 </span>
 `;
