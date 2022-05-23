@@ -4117,6 +4117,7 @@ var __vue_staticRenderFns__$o = [];
 //
 //
 //
+//
 
 var script$p = {
 	props: {
@@ -4135,7 +4136,6 @@ var script$p = {
 		title: {
 			type: String,
 			default: 'Visualizar mais',
-			required: true,
 		},
 	},
 
@@ -4167,13 +4167,13 @@ var script$p = {
 var __vue_script__$p = script$p;
 
 /* template */
-var __vue_render__$p = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{attrs:{"id":"cds-collapsible-container"}},[_c('div',{staticClass:"cds-collapsible-container__item",on:{"click":_vm.triggerExpanded}},[_c('span',{staticClass:"cds-collapsible-container__title"},[_vm._v("\n\t\t\t"+_vm._s(_vm.title)+"\n\t\t")]),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('ion-icon',{class:_vm.internalValue ? 'cds-collapsible-container__icon--expanded' : 'cds-collapsible-container__icon--collapsed',attrs:{"name":"chevron-down-outline"}})],1),_vm._v(" "),(_vm.internalValue)?_c('div',{staticClass:"cds-collapsible-container__content"},[_vm._t("default")],2):_vm._e()])};
-var __vue_staticRenderFns__$p = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"flex-grow-1 ml-2"},[_c('hr',{staticClass:"mx-0"})])}];
+var __vue_render__$p = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{attrs:{"id":"cds-collapsible-container"}},[_c('div',{staticClass:"cds-collapsible-container__item",on:{"click":_vm.triggerExpanded}},[_c('ion-icon',{class:_vm.internalValue ? 'cds-collapsible-container__icon--expanded' : 'cds-collapsible-container__icon--collapsed',attrs:{"name":"chevron-down-outline"}}),_vm._v(" "),_vm._t("title",[_c('span',{staticClass:"cds-collapsible-container__title"},[_vm._v("\n\t\t\t\t"+_vm._s(_vm.title)+"\n\t\t\t")])])],2),_vm._v(" "),(_vm.internalValue)?_c('div',{staticClass:"cds-collapsible-container__content"},[_vm._t("default")],2):_vm._e()])};
+var __vue_staticRenderFns__$p = [];
 
   /* style */
   var __vue_inject_styles__$p = function (inject) {
     if (!inject) { return }
-    inject("data-v-219e82e6_0", { source: ".cds-collapsible-container__item{font-size:12px!important;letter-spacing:.15px!important;font-weight:400;color:#475766;display:flex;align-items:center;cursor:pointer}.cds-collapsible-container__item hr{border-color:#475766!important}.cds-collapsible-container__title{font-weight:700}.cds-collapsible-container__icon--collapsed,.cds-collapsible-container__icon--expanded{color:#475766;margin:0 0 0 8px;transition:all .25s ease-in-out}.cds-collapsible-container__icon--expanded{transform:rotate(180deg)}ion-icon{visibility:visible!important;font-size:18px!important}", map: undefined, media: undefined });
+    inject("data-v-792c53b4_0", { source: ".cds-collapsible-container__item{font-size:12px!important;letter-spacing:.15px!important;font-weight:400;color:#475766;display:flex;align-items:start;cursor:pointer}.cds-collapsible-container__item hr{border-color:#475766!important}.cds-collapsible-container__title{font-weight:700}.cds-collapsible-container__icon--collapsed,.cds-collapsible-container__icon--expanded{color:#475766;margin:0 8px 0 0;transition:all .25s ease-in-out}.cds-collapsible-container__icon--expanded{transform:rotate(180deg)}ion-icon{visibility:visible!important;font-size:18px!important}", map: undefined, media: undefined });
 
   };
   /* scoped */
