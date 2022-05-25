@@ -67,6 +67,10 @@ export default {
 			*/
 			this.$emit('input', newValue);
 		},
+
+		value(newValue) {
+			this.internalValue = newValue;
+		},
 	},
 
 	methods: {
