@@ -32,15 +32,24 @@ const mockedData = [
 		items: [
 			{
 				label: 'Dummy item 4',
-				path: '/dummy/sub/item/4',
+				route: {
+					path: '/dummy/sub/item/4',
+					name: 'dummy-item-4',
+				}
 			},
 			{
 				label: 'Dummy item 5',
-				path: '/dummy/sub/item/5',
+				route: {
+					path: '/dummy/sub/item/5',
+					name: 'dummy-item-5',
+				}
 			},
 			{
 				label: 'Dummy item 6',
-				path: '/dummy/sub/item/6',
+				route: {
+					path: '/dummy/sub/item/5',
+					name: 'dummy-item-5',
+				}
 			},
 		],
 	},
@@ -56,6 +65,71 @@ test('Component is mounted properly', () => {
 		},
 	});
 	expect(wrapper).toMatchSnapshot();
+});
+
+describe('Items prop is properly set', () => {
+	const consoleError = '[Vue warn]: Invalid prop: custom validator check failed for prop "items".';
+	test('if does not throw console error when items has route', () => {
+		const spy = jest.spyOn(console, 'error')
+
+		mount(NavBar, {
+			localVue,
+			propsData: {
+				items: mockedData[4].items,
+				activeItem: mockedData[4].items[0],
+			},
+		});
+
+		expect(spy).not.toHaveBeenCalledWith(expect.stringContaining(consoleError));
+	});
+
+	test('if does not throw console error when items has path', () => {
+		const spy = jest.spyOn(console, 'error')
+
+		mount(NavBar, {
+			localVue,
+			propsData: {
+				items: mockedData[3].items,
+				activeItem: mockedData[3].items[0],
+			},
+		});
+
+		expect(spy).not.toHaveBeenCalledWith(expect.stringContaining(consoleError));
+	});
+
+	test('if throws console error when some element of "items" has not label', () => {
+		const spy = jest.spyOn(console, 'error')
+
+		mount(NavBar, {
+			localVue,
+			propsData: {
+				items: [
+					{ path: 'dummy/path/0' },
+					...mockedData,
+				],
+				activeItem: mockedData[0],
+			},
+		});
+
+		expect(spy).toHaveBeenCalledWith(expect.stringContaining(consoleError));
+	});
+
+	test('if throws console error when some element of "items" has not path, route or items', () => {
+		const spy = jest.spyOn(console, 'error')
+
+		mount(NavBar, {
+			localVue,
+			propsData: {
+				items: [
+					{ label: 'Dummy label 0' },
+					...mockedData,
+				],
+				activeItem: mockedData[0],
+			},
+		});
+
+		expect(spy).toHaveBeenCalledWith(expect.stringContaining(consoleError));
+	});
 });
 
 describe('Items styles test', () => {
@@ -106,13 +180,13 @@ describe('Items styles test', () => {
 			},
 		});
 
-		expect(wrapper.findAll('.nav-bar--light').length).toBe(1);
-		expect(wrapper.findAll('.nav-bar__item--light').length).toBe(mockedData.length);
+		expect(wrapper.findAll('.cds-nav-bar--light').length).toBe(1);
+		expect(wrapper.findAll('.cds-nav-bar__item--light').length).toBe(mockedData.length);
 	});
 });
 
 describe('Change active item event tests', () => {
-	test('if a event is emited when the item is clicked', () => {
+	test('if a event is emitted when the item is clicked', () => {
 		window._ = lodash;
 		const wrapper = mount(NavBar, {
 			localVue,
@@ -136,7 +210,7 @@ describe('Change active item event tests', () => {
 		]);
 	});
 
-	test('if a event is emited when the subitem is clicked', () => {
+	test('if a event is emitted when the subitem is clicked', () => {
 		window._ = lodash;
 		const wrapper = mount(NavBar, {
 			localVue,
