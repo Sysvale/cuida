@@ -1,6 +1,6 @@
 <template>
 	<span
-		id="#cds-nav-bar"
+		id="cds-nav-bar"
 		class="cds-nav-bar"
 	>
 		<b-nav
@@ -16,7 +16,7 @@
 				:active="isActive(item)"
 				:to="resolveRoute(item)"
 				class="cds-nav-bar__item-container"
-				@click="handleClick(item)"
+				@click.prevent="handleClick(item)"
 			>
 				<template
 					v-if="isDropdown(item)"
@@ -47,7 +47,7 @@
 export default {
 	props: {
 		/**
-		 * A lista dos itens do NavBar a serem mostrados.
+		 * Define a lista dos itens do NavBar a serem mostrados.
 		 * Os itens da lista devem ser objetos com `path` ou `route`, e com uma `label`
 		 */
 		items: {
