@@ -1,18 +1,21 @@
 <template>
-	<span id="nav-bar">
+	<span
+		id="#cds-nav-bar"
+		class="cds-nav-bar"
+	>
 		<b-nav
-			:class="isLightThemed ? 'nav-bar--light' : 'nav-bar--dark'"
+			:class="isLightThemed ? 'cds-nav-bar--light' : 'cds-nav-bar--dark'"
 		>
 			<component
 				v-for="(item, i) in computedItems"
 				:is="dropdownOrSingleItem(item)"
-				:class="getClass(item)"
 				:id="getElementKey(item, i)"
 				:key="getElementKey(item, i)"
+				:class="getClass(item)"
 				:text="item.label"
 				:active="isActive(item)"
-				:to="{name: item.path}"
-				class="nav-bar__item-container"
+				:to="resolveRoute(item)"
+				class="cds-nav-bar__item-container"
 				@click="handleClick(item)"
 			>
 				<template
@@ -23,7 +26,7 @@
 						:id="getElementKey(subitem, j, true)"
 						:key="getElementKey(subitem, j, true)"
 						:active="isActive(subitem)"
-						:to="{name: item.path}"
+						:to="resolveRoute(item)"
 						@click.stop="handleClick(subitem, item)"
 					>
 						{{ subitem.label }}
@@ -40,15 +43,26 @@
 </template>
 
 <script>
+
 export default {
 	props: {
 		/**
-		 * A lista dos itens do NavBar a serem mostrados
+		 * A lista dos itens do NavBar a serem mostrados.
+		 * Os itens da lista devem ser objetos com `path` ou `route`, e com uma `label`
 		 */
 		items: {
 			type: Array,
 			default: () => ([]),
 			required: true,
+			validator: (values) => {
+				const invalidValues = values.filter((value) => {
+					const hasNotRoute = _.isEmpty(value.path) && _.isEmpty(value.route);
+					const hasInvalidItems = _.isEmpty(value.items)
+						|| value.items.filter(item => (_.isEmpty(item.path) && _.isEmpty(item.route))).length;
+					return _.isEmpty(value.label) || (hasInvalidItems && hasNotRoute);
+				});
+				return !invalidValues.length;
+			},
 		},
 		/**
 		 * Define o estilo da NavBar. Quando setado para true,
@@ -80,7 +94,7 @@ export default {
 			return this.items.map((item) => {
 				const customItem = item;
 				if (this.isDropdown(item)) {
-					customItem.items = item.items.map((subitem) => ({
+					customItem.items = item.items.map(subitem => ({
 						parent: _.clone(item),
 						...subitem,
 					}));
@@ -94,7 +108,7 @@ export default {
 	watch: {
 		computedItems: {
 			handler(newValue) {
-				const filtered = newValue.filter((item) => item === this.activeItem);
+				const filtered = newValue.filter(item => item === this.activeItem);
 
 				if (filtered.length) {
 					[this.internalActiveItem] = filtered;
@@ -102,12 +116,12 @@ export default {
 				} else {
 					const subitems = _.flatten(
 						newValue
-							.filter((item) => !!item.items)
+							.filter(item => !!item.items)
 							.map(({ items }) => items),
 					);
 					if (subitems.length) {
 						[this.internalActiveItem] = subitems.filter(
-							(item) => item.path === this.activeItem.path,
+							item => this.resolveRoute(item) === this.resolveRoute(this.activeItem),
 						);
 
 						this.internalActiveParent = this.internalActiveItem.parent;
@@ -122,6 +136,7 @@ export default {
 		handleClick(item, parent) {
 			this.internalActiveItem = item;
 			this.internalActiveParent = parent;
+			console.log('click', this.internalActiveItem);
 			/**
 			 * Evento emitido quando um dos itens da NavBar é clicado
 			* @event click
@@ -130,9 +145,14 @@ export default {
 			this.$emit('click', this.internalActiveItem);
 		},
 
+		resolveRoute({ route, path }) {
+			const to = !_.isEmpty(route) ? route : path;
+			return to instanceof String ? { path: to } : to;
+		},
+
 		isActive(item) {
 			return Object.keys(this.internalActiveItem).length > 0
-				? this.internalActiveItem.path === item.path
+				? this.resolveRoute(this.internalActiveItem) === this.resolveRoute(item)
 				: false;
 		},
 
@@ -154,21 +174,22 @@ export default {
 		},
 
 		getClass(item) {
-			let accClass = this.isLightThemed ? 'nav-bar__item--light' : 'nav-bar__item--dark';
+			const accClass = this.isLightThemed ? 'cds-nav-bar__item--light' : 'cds-nav-bar__item--dark';
 
 			if (
 				this.isDropdown(item)
 				&& this.internalActiveParent
-				&& this.internalActiveParent.path === item.path
+				&& this.resolveRoute(this.internalActiveParent) === this.resolveRoute(item)
 				&& this.internalActiveParent.label === item.label
 			) {
-				accClass = `${accClass} active-parent`;
+				return `${accClass} active-parent`;
 			}
 			return accClass;
 		},
 	},
 };
 </script>
+
 <style lang="scss">
 @import '../assets/sass/app.scss';
 
@@ -176,7 +197,7 @@ a {
 	outline: none;
 }
 
-#nav-bar .nav-bar {
+#cds-nav-bar .cds-nav-bar {
 	padding: 8px 0;
 
 	&--dark {
@@ -198,7 +219,7 @@ a {
 	}
 }
 
-#nav-bar .nav-bar__item {
+#cds-nav-bar .cds-nav-bar__item {
 	margin: mTRBL(2, 6, 0, 0);
 
 	&-container {
@@ -206,7 +227,7 @@ a {
 	}
 
 	&--dark {
-		@extend .nav-bar__item;
+		@extend .cds-nav-bar__item;
 
 		.active {
 			color: $n-0;
@@ -261,7 +282,7 @@ a {
 	}
 
 	&--light {
-		@extend .nav-bar__item;
+		@extend .cds-nav-bar__item;
 
 		.active {
 			color: $n-800 !important;
