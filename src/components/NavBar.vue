@@ -136,7 +136,6 @@ export default {
 		handleClick(item, parent) {
 			this.internalActiveItem = item;
 			this.internalActiveParent = parent;
-			console.log('click', this.internalActiveItem);
 			/**
 			 * Evento emitido quando um dos itens da NavBar é clicado
 			* @event click
@@ -157,6 +156,8 @@ export default {
 		},
 
 		getElementKey(item, index, subitem = false) {
+			if (!item.label) return;
+
 			return `${item.label.replace(/\s/g, '')}${index}${subitem ? '-subitem' : ''}`;
 		},
 
