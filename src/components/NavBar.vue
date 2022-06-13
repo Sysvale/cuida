@@ -14,9 +14,9 @@
 				:class="getClass(item)"
 				:text="item.label"
 				:active="isActive(item)"
-				:to="resolveRoute(item)"
+				:to="routerPushTo(item)"
 				class="cds-nav-bar__item-container"
-				@click.prevent="handleClick(item)"
+				@click.stop="handleClick(item)"
 			>
 				<template
 					v-if="isDropdown(item)"
@@ -26,7 +26,7 @@
 						:id="getElementKey(subitem, j, true)"
 						:key="getElementKey(subitem, j, true)"
 						:active="isActive(subitem)"
-						:to="resolveRoute(item)"
+						:to="routerPushTo(item)"
 						@click.stop="handleClick(subitem, item)"
 					>
 						{{ subitem.label }}
@@ -108,7 +108,7 @@ export default {
 	watch: {
 		computedItems: {
 			handler(newValue) {
-				const filtered = newValue.filter(item => item === this.activeItem);
+				const filtered = newValue.filter(item => _.isEqual(item, this.activeItem));
 
 				if (filtered.length) {
 					[this.internalActiveItem] = filtered;
@@ -121,7 +121,7 @@ export default {
 					);
 					if (subitems.length) {
 						[this.internalActiveItem] = subitems.filter(
-							item => this.resolveRoute(item) === this.resolveRoute(this.activeItem),
+							item => _.isEqual(this.resolveRoute(item), this.resolveRoute(this.activeItem)),
 						);
 
 						this.internalActiveParent = this.internalActiveItem.parent;
@@ -149,9 +149,13 @@ export default {
 			return to instanceof String ? { path: to } : to;
 		},
 
+		routerPushTo(item) {
+			return this.resolveRoute(item) ? this.resolveRoute(item).path : null;
+		},
+
 		isActive(item) {
 			return Object.keys(this.internalActiveItem).length > 0
-				? this.resolveRoute(this.internalActiveItem) === this.resolveRoute(item)
+				? _.isEqual(this.resolveRoute(this.internalActiveItem), this.resolveRoute(item))
 				: false;
 		},
 
@@ -180,7 +184,7 @@ export default {
 			if (
 				this.isDropdown(item)
 				&& this.internalActiveParent
-				&& this.resolveRoute(this.internalActiveParent) === this.resolveRoute(item)
+				&& _.isEqual(this.resolveRoute(this.internalActiveParent), this.resolveRoute(item))
 				&& this.internalActiveParent.label === item.label
 			) {
 				return `${accClass} active-parent`;
