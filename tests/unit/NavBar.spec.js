@@ -67,68 +67,29 @@ test('Component is mounted properly', () => {
 	expect(wrapper).toMatchSnapshot();
 });
 
-describe('Items prop is properly set', () => {
-	const consoleError = '[Vue warn]: Invalid prop: custom validator check failed for prop "items".';
-	test('if does not throw console error when items has route', () => {
-		const spy = jest.spyOn(console, 'error')
+describe('Items prop is valid', () => {
+	const validator = NavBar.props.items.validator;
 
-		mount(NavBar, {
-			localVue,
-			propsData: {
-				items: mockedData[4].items,
-				activeItem: mockedData[4].items[0],
-			},
-		});
-
-		expect(spy).not.toHaveBeenCalledWith(expect.stringContaining(consoleError));
+	test('passes when items has route and label', () => {
+		expect(validator(mockedData[4].items)).toBe(true);
 	});
 
-	test('if does not throw console error when items has path', () => {
-		const spy = jest.spyOn(console, 'error')
-
-		mount(NavBar, {
-			localVue,
-			propsData: {
-				items: mockedData[3].items,
-				activeItem: mockedData[3].items[0],
-			},
-		});
-
-		expect(spy).not.toHaveBeenCalledWith(expect.stringContaining(consoleError));
+	test('passes when items has path and label', () => {
+		expect(validator(mockedData[3].items)).toBe(true);
 	});
 
-	test('if throws console error when some element of "items" has not label', () => {
-		const spy = jest.spyOn(console, 'error')
-
-		mount(NavBar, {
-			localVue,
-			propsData: {
-				items: [
-					{ path: 'dummy/path/0' },
-					...mockedData,
-				],
-				activeItem: mockedData[0],
-			},
-		});
-
-		expect(spy).toHaveBeenCalledWith(expect.stringContaining(consoleError));
+	test('throws exception when some element of "items" has not label', () => {
+		expect(validator([
+			{ path: 'dummy/path/0' },
+			...mockedData,
+		])).toBe(false);
 	});
 
-	test('if throws console error when some element of "items" has not path, route or items', () => {
-		const spy = jest.spyOn(console, 'error')
-
-		mount(NavBar, {
-			localVue,
-			propsData: {
-				items: [
-					{ label: 'Dummy label 0' },
-					...mockedData,
-				],
-				activeItem: mockedData[0],
-			},
-		});
-
-		expect(spy).toHaveBeenCalledWith(expect.stringContaining(consoleError));
+	test('throws exception when some element of "items" has not path, route or items', () => {
+		expect(validator([
+			{ label: 'Dummy label 0' },
+			...mockedData,
+		])).toBe(false);
 	});
 });
 
