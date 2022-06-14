@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component is mounted properly 1`] = `
-<span id="cds-nav-bar" class="cds-nav-bar"><ul class="nav cds-nav-bar--light"><li id="Dummylabel10" text="Dummy label 1" class="nav-item cds-nav-bar__item-container cds-nav-bar__item--light"><a href="#" target="_self" class="nav-link active">
+<span id="cds-nav-bar" class="cds-nav-bar"><ul class="nav cds-nav-bar--light" style="--activeBorderColor: #206ED9;"><li id="Dummylabel10" text="Dummy label 1" class="nav-item cds-nav-bar__item-container cds-nav-bar__item--light"><a href="#" target="_self" class="nav-link active">
 				Dummy label 1
 			</a></li><li id="Dummylabel21" text="Dummy label 2" class="nav-item cds-nav-bar__item-container cds-nav-bar__item--light"><a href="#" target="_self" class="nav-link">
 				Dummy label 2
