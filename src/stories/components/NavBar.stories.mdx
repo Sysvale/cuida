@@ -4,6 +4,25 @@ import NavBar from '../../components/NavBar.vue';
 <Meta
 	title="Componentes/Navegação/NavBar"
 	component={ NavBar }
+	argTypes={{
+		activeColor: {
+			control:{
+				type: 'select',
+				options: [
+					'turquoise',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'gray',
+				],
+			}
+		},
+	}}
 />
 
 export const Template = (args, { argTypes }) => ({

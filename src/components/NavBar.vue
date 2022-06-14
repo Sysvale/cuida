@@ -83,7 +83,10 @@ export default {
 			required: true,
 		},
 		/**
-		 * Cor da borda que indica o item ativo na NavBar
+		 * Cor da borda que indica o item ativo na NavBar.
+		 * Existem algumas cores predefinidas seguindo os guias do Cuida, são elas: 
+		 * `turquoise`, `green`, `blue`, `violet`, `pink`, `red`, `orange`, `amber` e `gray`.
+		 * É possível ainda definir uma cor pela seu hexadecimal (ex.: `#DDE2E7`).
 		 */
 		activeColor: {
 			type: String,
