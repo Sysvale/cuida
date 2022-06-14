@@ -67,14 +67,14 @@ test('Component is mounted properly', () => {
 	expect(wrapper).toMatchSnapshot();
 });
 
-describe('Items prop is valid', () => {
+describe('"items" prop is validated', () => {
 	const validator = NavBar.props.items.validator;
 
-	test('passes when items has route and label', () => {
+	test('passes when "items" has route and label', () => {
 		expect(validator(mockedData[4].items)).toBe(true);
 	});
 
-	test('passes when items has path and label', () => {
+	test('passes when "items" has path and label', () => {
 		expect(validator(mockedData[3].items)).toBe(true);
 	});
 
@@ -90,6 +90,22 @@ describe('Items prop is valid', () => {
 			{ label: 'Dummy label 0' },
 			...mockedData,
 		])).toBe(false);
+	});
+});
+
+describe('"activeColor" prop is validated', () => {
+	const validator = NavBar.props.activeColor.validator;
+
+	test('passes when "activeColor" is an hexadecimal color', () => {
+		expect(validator('#FFF')).toBe(true);
+	});
+
+	test('passes when "activeColor" is a predefined color', () => {
+		expect(validator('turquoise')).toBe(true);
+	});
+
+	test('throws exception when "activeColor" is not a predefined or hexadecimal color', () => {
+		expect(validator('dummy')).toBe(false);
 	});
 });
 
