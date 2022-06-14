@@ -5,6 +5,7 @@
 	>
 		<b-nav
 			:class="isLightThemed ? 'cds-nav-bar--light' : 'cds-nav-bar--dark'"
+			:style="activeBorderStyle"
 		>
 			<component
 				v-for="(item, i) in computedItems"
@@ -43,6 +44,7 @@
 </template>
 
 <script>
+import { colorOptions, colorHexCode } from '../utils/constants/colors';
 
 export default {
 	props: {
@@ -80,12 +82,24 @@ export default {
 			default: () => ({}),
 			required: true,
 		},
+		/**
+		 * Cor da borda que indica o item ativo na NavBar
+		 */
+		activeColor: {
+			type: String,
+			default: null,
+			validator: (value) => {
+				const matchHexColor = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/g;
+				return colorOptions.includes(value) || matchHexColor.test(value);
+			},
+		},
 	},
 
 	data() {
 		return {
 			internalActiveItem: this.activeItem,
 			internalActiveParent: this.activeItem,
+			colorOptions,
 		};
 	},
 
@@ -102,6 +116,21 @@ export default {
 
 				return customItem;
 			});
+		},
+
+		activeBorderStyle() {
+			if (!this.activeColor) {
+				return {
+					'--activeBorderColor': this.isLightThemed
+						? '#206ED9' // $bn-500
+						: '#2AC092' // $gp-400
+				};
+			}
+			const presetColor = this.colorOptions.includes(this.activeColor);
+			const borderColor = presetColor ? this.colorHexCode(this.activeColor) : this.activeColor;
+			return {
+				'--activeBorderColor': borderColor,
+			};
 		},
 	},
 
@@ -133,6 +162,8 @@ export default {
 	},
 
 	methods: {
+		colorHexCode,
+
 		handleClick(item, parent) {
 			this.internalActiveItem = item;
 			this.internalActiveParent = parent;
@@ -236,14 +267,14 @@ a {
 
 		.active {
 			color: $n-0;
-			border-bottom: 4px solid $gp-400;
+			border-bottom: 4px solid var(--activeBorderColor);
 			background: $n-500;
 			border-radius: 4px  4px 0px 0px;
 		}
 
 		&.active-parent{
 			color: $n-0;
-			border-bottom: 4px solid $gp-400;
+			border-bottom: 4px solid var(--activeBorderColor);
 			background: $n-500;
 			border-radius: 4px  4px 0px 0px;
 
@@ -278,7 +309,7 @@ a {
 
 			&.active {
 				color: $n-0;
-				border-left: 4px solid $gp-400;
+				border-left: 4px solid var(--activeBorderColor);
 				border-bottom: 0px;
 				background: $n-600;
 				border-radius: 0px;
@@ -291,14 +322,14 @@ a {
 
 		.active {
 			color: $n-800 !important;
-			border-bottom: 4px solid $bn-500;
+			border-bottom: 4px solid var(--activeBorderColor);
 			background: $n-20;
 			border-radius: 4px  4px 0px 0px;
 		}
 
 		&.active-parent{
 			color: $n-800 !important;
-			border-bottom: 4px solid $bn-500;
+			border-bottom: 4px solid var(--activeBorderColor);
 			background: $n-20;
 			border-radius: 4px  4px 0px 0px;
 
@@ -333,7 +364,7 @@ a {
 			}
 
 			&.active {
-				border-left: 4px solid $bn-500;
+				border-left: 4px solid var(--activeBorderColor);
 				border-bottom: 0px;
 				background: $n-20 !important;
 				border-radius: 0px;
