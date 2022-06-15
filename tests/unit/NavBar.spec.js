@@ -32,15 +32,24 @@ const mockedData = [
 		items: [
 			{
 				label: 'Dummy item 4',
-				path: '/dummy/sub/item/4',
+				route: {
+					path: '/dummy/sub/item/4',
+					name: 'dummy-item-4',
+				}
 			},
 			{
 				label: 'Dummy item 5',
-				path: '/dummy/sub/item/5',
+				route: {
+					path: '/dummy/sub/item/5',
+					name: 'dummy-item-5',
+				}
 			},
 			{
 				label: 'Dummy item 6',
-				path: '/dummy/sub/item/6',
+				route: {
+					path: '/dummy/sub/item/5',
+					name: 'dummy-item-5',
+				}
 			},
 		],
 	},
@@ -56,6 +65,48 @@ test('Component is mounted properly', () => {
 		},
 	});
 	expect(wrapper).toMatchSnapshot();
+});
+
+describe('"items" prop is validated', () => {
+	const validator = NavBar.props.items.validator;
+
+	test('passes when "items" has route and label', () => {
+		expect(validator(mockedData[4].items)).toBe(true);
+	});
+
+	test('passes when "items" has path and label', () => {
+		expect(validator(mockedData[3].items)).toBe(true);
+	});
+
+	test('throws exception when some element of "items" has not label', () => {
+		expect(validator([
+			{ path: 'dummy/path/0' },
+			...mockedData,
+		])).toBe(false);
+	});
+
+	test('throws exception when some element of "items" has not path, route or items', () => {
+		expect(validator([
+			{ label: 'Dummy label 0' },
+			...mockedData,
+		])).toBe(false);
+	});
+});
+
+describe('"activeColor" prop is validated', () => {
+	const validator = NavBar.props.activeColor.validator;
+
+	test('passes when "activeColor" is an hexadecimal color', () => {
+		expect(validator('#FFF')).toBe(true);
+	});
+
+	test('passes when "activeColor" is a predefined color', () => {
+		expect(validator('turquoise')).toBe(true);
+	});
+
+	test('throws exception when "activeColor" is not a predefined or hexadecimal color', () => {
+		expect(validator('dummy')).toBe(false);
+	});
 });
 
 describe('Items styles test', () => {
@@ -106,13 +157,13 @@ describe('Items styles test', () => {
 			},
 		});
 
-		expect(wrapper.findAll('.nav-bar--light').length).toBe(1);
-		expect(wrapper.findAll('.nav-bar__item--light').length).toBe(mockedData.length);
+		expect(wrapper.findAll('.cds-nav-bar--light').length).toBe(1);
+		expect(wrapper.findAll('.cds-nav-bar__item--light').length).toBe(mockedData.length);
 	});
 });
 
 describe('Change active item event tests', () => {
-	test('if a event is emited when the item is clicked', () => {
+	test('if a event is emitted when the item is clicked', () => {
 		window._ = lodash;
 		const wrapper = mount(NavBar, {
 			localVue,
@@ -136,7 +187,7 @@ describe('Change active item event tests', () => {
 		]);
 	});
 
-	test('if a event is emited when the subitem is clicked', () => {
+	test('if a event is emitted when the subitem is clicked', () => {
 		window._ = lodash;
 		const wrapper = mount(NavBar, {
 			localVue,

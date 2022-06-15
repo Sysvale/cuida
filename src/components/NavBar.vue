@@ -1,19 +1,23 @@
 <template>
-	<span id="nav-bar">
+	<span
+		id="cds-nav-bar"
+		class="cds-nav-bar"
+	>
 		<b-nav
-			:class="isLightThemed ? 'nav-bar--light' : 'nav-bar--dark'"
+			:class="isLightThemed ? 'cds-nav-bar--light' : 'cds-nav-bar--dark'"
+			:style="activeBorderStyle"
 		>
 			<component
 				v-for="(item, i) in computedItems"
 				:is="dropdownOrSingleItem(item)"
-				:class="getClass(item)"
 				:id="getElementKey(item, i)"
 				:key="getElementKey(item, i)"
+				:class="getClass(item)"
 				:text="item.label"
 				:active="isActive(item)"
-				:to="{name: item.path}"
-				class="nav-bar__item-container"
-				@click="handleClick(item)"
+				:to="routerPushTo(item)"
+				class="cds-nav-bar__item-container"
+				@click.stop="handleClick(item)"
 			>
 				<template
 					v-if="isDropdown(item)"
@@ -23,7 +27,7 @@
 						:id="getElementKey(subitem, j, true)"
 						:key="getElementKey(subitem, j, true)"
 						:active="isActive(subitem)"
-						:to="{name: item.path}"
+						:to="routerPushTo(item)"
 						@click.stop="handleClick(subitem, item)"
 					>
 						{{ subitem.label }}
@@ -40,15 +44,27 @@
 </template>
 
 <script>
+import { colorOptions, colorHexCode } from '../utils/constants/colors';
+
 export default {
 	props: {
 		/**
-		 * A lista dos itens do NavBar a serem mostrados
+		 * Define a lista dos itens do NavBar a serem mostrados.
+		 * Os itens da lista devem ser objetos com `path` ou `route`, e com uma `label`
 		 */
 		items: {
 			type: Array,
 			default: () => ([]),
 			required: true,
+			validator: (values) => {
+				const invalidValues = values.filter((value) => {
+					const hasNotRoute = _.isEmpty(value.path) && _.isEmpty(value.route);
+					const hasInvalidItems = _.isEmpty(value.items)
+						|| value.items.filter(item => (_.isEmpty(item.path) && _.isEmpty(item.route))).length;
+					return _.isEmpty(value.label) || (hasInvalidItems && hasNotRoute);
+				});
+				return !invalidValues.length;
+			},
 		},
 		/**
 		 * Define o estilo da NavBar. Quando setado para true,
@@ -66,12 +82,27 @@ export default {
 			default: () => ({}),
 			required: true,
 		},
+		/**
+		 * Cor da borda que indica o item ativo na NavBar.
+		 * Existem algumas cores predefinidas seguindo os guias do Cuida, são elas: 
+		 * `turquoise`, `green`, `blue`, `violet`, `pink`, `red`, `orange`, `amber` e `gray`.
+		 * É possível ainda definir uma cor pela seu hexadecimal (ex.: `#DDE2E7`).
+		 */
+		activeColor: {
+			type: String,
+			default: null,
+			validator: (value) => {
+				const matchHexColor = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/g;
+				return colorOptions.includes(value) || matchHexColor.test(value);
+			},
+		},
 	},
 
 	data() {
 		return {
 			internalActiveItem: this.activeItem,
 			internalActiveParent: this.activeItem,
+			colorOptions,
 		};
 	},
 
@@ -80,7 +111,7 @@ export default {
 			return this.items.map((item) => {
 				const customItem = item;
 				if (this.isDropdown(item)) {
-					customItem.items = item.items.map((subitem) => ({
+					customItem.items = item.items.map(subitem => ({
 						parent: _.clone(item),
 						...subitem,
 					}));
@@ -89,12 +120,27 @@ export default {
 				return customItem;
 			});
 		},
+
+		activeBorderStyle() {
+			if (!this.activeColor) {
+				return {
+					'--activeBorderColor': this.isLightThemed
+						? '#206ED9' // $bn-500
+						: '#2AC092' // $gp-400
+				};
+			}
+			const presetColor = this.colorOptions.includes(this.activeColor);
+			const borderColor = presetColor ? this.colorHexCode(this.activeColor) : this.activeColor;
+			return {
+				'--activeBorderColor': borderColor,
+			};
+		},
 	},
 
 	watch: {
 		computedItems: {
 			handler(newValue) {
-				const filtered = newValue.filter((item) => item === this.activeItem);
+				const filtered = newValue.filter(item => _.isEqual(item, this.activeItem));
 
 				if (filtered.length) {
 					[this.internalActiveItem] = filtered;
@@ -102,12 +148,12 @@ export default {
 				} else {
 					const subitems = _.flatten(
 						newValue
-							.filter((item) => !!item.items)
+							.filter(item => !!item.items)
 							.map(({ items }) => items),
 					);
 					if (subitems.length) {
 						[this.internalActiveItem] = subitems.filter(
-							(item) => item.path === this.activeItem.path,
+							item => _.isEqual(this.resolveRoute(item), this.resolveRoute(this.activeItem)),
 						);
 
 						this.internalActiveParent = this.internalActiveItem.parent;
@@ -119,6 +165,8 @@ export default {
 	},
 
 	methods: {
+		colorHexCode,
+
 		handleClick(item, parent) {
 			this.internalActiveItem = item;
 			this.internalActiveParent = parent;
@@ -130,13 +178,24 @@ export default {
 			this.$emit('click', this.internalActiveItem);
 		},
 
+		resolveRoute({ route, path }) {
+			const to = !_.isEmpty(route) ? route : path;
+			return to instanceof String ? { path: to } : to;
+		},
+
+		routerPushTo(item) {
+			return this.resolveRoute(item) ? this.resolveRoute(item).path : null;
+		},
+
 		isActive(item) {
 			return Object.keys(this.internalActiveItem).length > 0
-				? this.internalActiveItem.path === item.path
+				? _.isEqual(this.resolveRoute(this.internalActiveItem), this.resolveRoute(item))
 				: false;
 		},
 
 		getElementKey(item, index, subitem = false) {
+			if (!item.label) return;
+
 			return `${item.label.replace(/\s/g, '')}${index}${subitem ? '-subitem' : ''}`;
 		},
 
@@ -154,21 +213,22 @@ export default {
 		},
 
 		getClass(item) {
-			let accClass = this.isLightThemed ? 'nav-bar__item--light' : 'nav-bar__item--dark';
+			const accClass = this.isLightThemed ? 'cds-nav-bar__item--light' : 'cds-nav-bar__item--dark';
 
 			if (
 				this.isDropdown(item)
 				&& this.internalActiveParent
-				&& this.internalActiveParent.path === item.path
+				&& _.isEqual(this.resolveRoute(this.internalActiveParent), this.resolveRoute(item))
 				&& this.internalActiveParent.label === item.label
 			) {
-				accClass = `${accClass} active-parent`;
+				return `${accClass} active-parent`;
 			}
 			return accClass;
 		},
 	},
 };
 </script>
+
 <style lang="scss">
 @import '../assets/sass/app.scss';
 
@@ -176,7 +236,7 @@ a {
 	outline: none;
 }
 
-#nav-bar .nav-bar {
+#cds-nav-bar .cds-nav-bar {
 	padding: 8px 0;
 
 	&--dark {
@@ -198,7 +258,7 @@ a {
 	}
 }
 
-#nav-bar .nav-bar__item {
+#cds-nav-bar .cds-nav-bar__item {
 	margin: mTRBL(2, 6, 0, 0);
 
 	&-container {
@@ -206,18 +266,18 @@ a {
 	}
 
 	&--dark {
-		@extend .nav-bar__item;
+		@extend .cds-nav-bar__item;
 
 		.active {
 			color: $n-0;
-			border-bottom: 4px solid $gp-400;
+			border-bottom: 4px solid var(--activeBorderColor);
 			background: $n-500;
 			border-radius: 4px  4px 0px 0px;
 		}
 
 		&.active-parent{
 			color: $n-0;
-			border-bottom: 4px solid $gp-400;
+			border-bottom: 4px solid var(--activeBorderColor);
 			background: $n-500;
 			border-radius: 4px  4px 0px 0px;
 
@@ -252,7 +312,7 @@ a {
 
 			&.active {
 				color: $n-0;
-				border-left: 4px solid $gp-400;
+				border-left: 4px solid var(--activeBorderColor);
 				border-bottom: 0px;
 				background: $n-600;
 				border-radius: 0px;
@@ -261,18 +321,18 @@ a {
 	}
 
 	&--light {
-		@extend .nav-bar__item;
+		@extend .cds-nav-bar__item;
 
 		.active {
 			color: $n-800 !important;
-			border-bottom: 4px solid $bn-500;
+			border-bottom: 4px solid var(--activeBorderColor);
 			background: $n-20;
 			border-radius: 4px  4px 0px 0px;
 		}
 
 		&.active-parent{
 			color: $n-800 !important;
-			border-bottom: 4px solid $bn-500;
+			border-bottom: 4px solid var(--activeBorderColor);
 			background: $n-20;
 			border-radius: 4px  4px 0px 0px;
 
@@ -307,7 +367,7 @@ a {
 			}
 
 			&.active {
-				border-left: 4px solid $bn-500;
+				border-left: 4px solid var(--activeBorderColor);
 				border-bottom: 0px;
 				background: $n-20 !important;
 				border-radius: 0px;
