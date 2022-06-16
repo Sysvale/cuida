@@ -70,7 +70,7 @@ export default {
 		bottom: 0;
 		-webkit-transition: height 200ms;
 		transition: height 200ms;
-		animation: switch 3s infinite;
+		animation: switch 4s infinite;
 		z-index: 1;
 	}
 }
@@ -81,7 +81,7 @@ export default {
 	}
 
 	50% {
-		height: 100%;
+		height: 100vh;
 	}
 }
 </style>
