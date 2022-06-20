@@ -1,6 +1,5 @@
 import vueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/default.css';
-import { directive as onClickOutside } from 'vue-on-click-outside';
 import VCalendar from 'v-calendar';
 import _ from 'lodash';
 import * as components from './components/index';
@@ -10,8 +9,6 @@ function install(Vue) {
 	if (install.installed) return;
 
 	install.installed = true;
-
-	Vue.directive('on-click-outside', onClickOutside);
 
 	Vue.component('vueSlider', vueSlider);
 

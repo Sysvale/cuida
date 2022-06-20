@@ -32,7 +32,13 @@
 </template>
 
 <script>
+import { directive as onClickOutside } from 'vue-on-click-outside';
+
 export default {
+	directives: {
+		'on-click-outside': onClickOutside,
+	},
+
 	data() {
 		return {
 			id: null,
@@ -81,6 +87,11 @@ export default {
 	computed: {
 		dynamicStyle() {
 			const filterPillDomReference = document.getElementById(this.id);
+
+			if (!filterPillDomReference) {
+				return null;
+			}
+
 			const filterWidth = parseFloat(window.getComputedStyle(filterPillDomReference).width);
 
 			if (filterWidth > this.dropdownWidth) {

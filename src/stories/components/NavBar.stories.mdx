@@ -4,6 +4,25 @@ import NavBar from '../../components/NavBar.vue';
 <Meta
 	title="Componentes/Navegação/NavBar"
 	component={ NavBar }
+	argTypes={{
+		activeColor: {
+			control:{
+				type: 'select',
+				options: [
+					'turquoise',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'gray',
+				],
+			}
+		},
+	}}
 />
 
 export const Template = (args, { argTypes }) => ({
@@ -20,7 +39,7 @@ export const template = /*html*/ `
 	<cds-nav-bar 
 		:items="items"
 		:isLight-themed="true"
-		:active-item="items[1]"
+		:active-item="activeItem"
 		@click="handleItemClick"
 	/>`;
 
@@ -63,15 +82,24 @@ export const docsDecorator = () => {
 export const items = [
 	{
 		label: 'Mapa de grupo de risco',
-		path: '/',
+		route: {
+			path: '/mapa',
+			name: 'principal'
+		},
 	},
 	{
 		label: 'Liga Saudável',
-		path: '/1',
+		route: {
+			path: '/liga-saudavel',
+			name: 'pagina1'
+		},
 	},
 	{
 		label: 'Mapa de calor dos bairros',
-		path: '/2',
+		route: {
+			path: '/mapa-de-calor',
+			name: 'pagina2'
+		},
 	},
 	{
 		label: 'Sublinks',
