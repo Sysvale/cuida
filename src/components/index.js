@@ -25,3 +25,4 @@ export { default as Tooltip } from './Tooltip.vue';
 export { default as ToggleSwitch } from './ToggleSwitch.vue';
 export { default as ClusteredMultiselect } from './ClusteredMultiselect.vue';
 export { default as Loader } from './Loader.vue';
+export { default as CollapsibleContainer } from './CollapsibleContainer.vue';
