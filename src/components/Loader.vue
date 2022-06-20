@@ -50,6 +50,7 @@ export default {
 
 		&--shadow {
 			@extend .loader__content;
+			opacity: 50%;
 			-webkit-filter: grayscale(100%);
 			filter: grayscale(100%);
 		}
