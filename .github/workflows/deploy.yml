@@ -17,8 +17,14 @@ jobs:
           with:
             node-version: 12
             registry-url: https://registry.npmjs.org
+        
+        - name: 🔧 Build
+          run: |
+            npm ci
+            npm run build-storybook
 
-        - name: Deploy 🚀
+
+        - name: 🚀 Deploy
           uses: JamesIves/github-pages-deploy-action@v4
           with:
             folder: storybook-static
