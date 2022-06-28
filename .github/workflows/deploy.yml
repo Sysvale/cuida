@@ -1,0 +1,25 @@
+name: "Deployer 🚀"
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+    deploy:
+      runs-on: ubuntu-latest
+      concurrency: ci-${{github.ref}}
+      steps:
+        - name: 📚 Checkout
+          uses: actions/checkout@v2.3.4
+
+        - name: 🟢 Node
+          uses: actions/setup-node@v2.1.4
+          with:
+            node-version: 12
+            registry-url: https://registry.npmjs.org
+
+        - name: Deploy 🚀
+          uses: JamesIves/github-pages-deploy-action@v4
+          with:
+            folder: storybook-static
+            branch: gh-pages
