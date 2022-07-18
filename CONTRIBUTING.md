@@ -226,4 +226,4 @@ Outra automação acionada a partir do merge no master é o `Deployer 🚀`, ela
 -  **`npm run build`**  
 -  **`npm publish`**  
 
-Para utilizar esses comandos e publicar novas versões do pacote NPM, contacte [Lucasn4s](https://github.com/lucasn4s), [Geidsonc](https://github.com/geidsonc), [Patriciacoelho](https://github.com/patriciacoelho), [RafaelGondi](https://github.com/RafaelGondi) ou [Tassiocaique](https://github.com/tassiocaique).
+Para utilizar esses comandos e publicar novas versões do pacote NPM, contacte [Geidsonc](https://github.com/geidsonc), [Lucasn4s](https://github.com/lucasn4s), [Patriciacoelho](https://github.com/patriciacoelho), [RafaelGondi](https://github.com/RafaelGondi) ou [Tassiocaique](https://github.com/tassiocaique).
