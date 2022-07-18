@@ -9,15 +9,16 @@
   <p align="center">https://sysvale.github.io/cuida/</p>
 </div>
 
+
 <p align="center">
-  <a href="https://www.codefactor.io/repository/github/sysvale/cuida">
-    <img src="https://www.codefactor.io/repository/github/sysvale/cuida/badge" alt="CodeFactor" />
-  </a>
-  
-  <a href="https://travis-ci.com/Sysvale/cuida">
-    <img src="https://travis-ci.com/Sysvale/cuida.svg?branch=master" alt="CodeFactor" />
-  </a>
+    <a>
+      <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/Sysvale/cuida">
+    </a>
+    <a href="https://www.codefactor.io/repository/github/sysvale/cuida">
+      <img src="https://www.codefactor.io/repository/github/sysvale/cuida/badge" alt="CodeFactor" />
+    </a>
 </p>
+
 
 ## Instalando
 
@@ -122,3 +123,6 @@ $ ./on-server.sh npm run test
 ```bash
 $ npm run test
 ```
+
+## Contribuindo
+Para informações sobre como contribuir com o projeto, acesse o [CONTRIBUTING.MD](https://github.com/Sysvale/cuida/edit/master/CONTRIBUTING.md)
