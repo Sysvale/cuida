@@ -22,6 +22,7 @@
 			<slot>
 				<span
 					class="cds-radio__label-text"
+					:disabled="disabled"
 				>
 					{{ label }}
 				</span>
@@ -98,6 +99,10 @@ export default {
 
 .cds-radio__label {
 	@include body-2;
+
+	[disabled="disabled"] {
+		color: $n-300;
+	}
 }
 
 .cds-radio [type="radio"]:checked,
