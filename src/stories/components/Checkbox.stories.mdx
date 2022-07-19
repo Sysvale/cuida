@@ -38,27 +38,21 @@ export const docsDecorator = () => {
 	};
 };
 
-# RadioButtonGroup
+# Checkbox
 
-### RadioButtonsGroup são radio buttons customizados para facilitar a seleção e feedback.
+### Checkboxes permitem que os usuários selecionem um ou mais itens de um conjunto.
 ---
 <br />
 
-## Recomendamos o uso de RadioButtonGroups quando:
-- As opções que o componente busca prover são mutuamente exclusivas.
-- For necessário utilizar um ```<input type="radio"``` />.
+## Recomendamos o uso de Checkboxes quando:
+- Selecionar uma ou mais opções de uma lista.
+- Apresentar uma lista contendo sub-seleções.
+- Ativar ou desativar um item na área de trabalho.
 
 <br />
 
-## Não recomendamos o uso de RadioButtonGroups quando:
-- Duas ou mais opções puderem ser selecionadas ao mesmo tempo.
-- Houver 4 ou mais opções. Prefira Dropdowns nesses casos.
-
-## Obs.:
-- Você pode disabilitar cada um dos radio buttons passando a propriedade ```disable: true```, no respectivo objeto
-no array de opções. Caso você queira disabilitar todo o grupo, você pode setar a prop ```disabled``` como true no componente.
-
-<br />
+## Não recomendamos o uso de Checkboxes quando:
+- Quando é necessário uma ação imediata. Prefira utilizar ToggleSwitch.
 
 ## Preview
 
