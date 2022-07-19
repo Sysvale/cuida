@@ -114,7 +114,7 @@ Vue.component('tooltip', Tooltip);
 Vue.component('source-code-wrapper', SourceCodeWrapper);
 Vue.component('toggle-switch', ToggleSwitch);
 Vue.component('shadow-builder', Shadows);
-Vue.component('button', Button);
+Vue.component('btn', Button);
 
 addParameters({
 	options: {
