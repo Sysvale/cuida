@@ -3,7 +3,9 @@
 		<button
 			class="button__container"
 			:class="computedStyle"
+			:disabled="disabled"
 			@click="clickHandler()"
+
 		>
 			{{ text }}
 		</button>
@@ -88,9 +90,9 @@ export default {
 		},
 
 		computedStyle() {
-			const disabled = this.disabled ? 'button__container--disabled' : '';
+			const disabled = this.disabled ? '--disabled' : '';
 
-			return `${this.predefinedColor} ${this.predefinedSize} ${disabled}`;
+			return `${this.predefinedColor} ${this.predefinedSize}${disabled}`;
 		}
 	},
 
@@ -117,54 +119,26 @@ export default {
 		border: none;
 	}
 
-	&--disabled {
-		background-color: $gp-300;
-		cursor: default;
-	}
+	$colors: (
+		'--teal': ('active': $ts-400, 'disabled': $ts-300),
+		'--green': $gp-400,
+		'--blue': $bn-400,
+		'--indigo': $in-400,
+		'--violet': $vr-400,
+		'--pink': $pp-400,
+		'--red': $rc-400,
+		'--orange': $og-400,
+		'--amber': $al-400,
+	);
 
-	&--teal {
-		color: $n-0;
-		background-color: $ts-400;
-	}
-
-	&--green {
-		color: $n-0;
-		background-color: $gp-400;
-	}
-
-	&--blue {
-		color: $n-0;
-		background-color: $bn-400;
-	}
-
-	&--indigo {
-		color: $n-0;
-		background-color: $in-400;
-	}
-
-	&--violet {
-		color: $n-0;
-		background-color: $vr-400;
-	}
-
-	&--pink {
-		color: $n-0;
-		background-color: $pp-400;
-	}
-
-	&--red {
-		color: $n-0;
-		background-color: $rc-400;
-	}
-
-	&--orange {
-		color: $n-0;
-		background-color: $og-400;
-	}
-
-	&--amber {
-		color: $n-0;
-		background-color: $al-400;
+	@each $color, $variants in $colors {
+		&#{$color} {
+			@each $state, $variant in $variants {
+				&--#{$state} {
+					background-color: $variant;
+				}
+			}
+		}
 	}
 }
 
