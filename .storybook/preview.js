@@ -87,6 +87,7 @@ Vue.component('actions-list', ActionsList);
 Vue.component('progress-bar', ProgressBar);
 Vue.component('actions-list', ActionsList);
 Vue.component('radio-button-group', RadioButtonGroup);
+Vue.component('radio', Radio);
 Vue.component('timeline', Timeline);
 Vue.component('nav-bar', NavBar);
 Vue.component('popover', Popover);
