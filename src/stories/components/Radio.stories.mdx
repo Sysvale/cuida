@@ -48,7 +48,6 @@ export const docsDecorator = () => {
 
 ## Recomendamos o uso de Radios quando:
 - As opções que o componente busca prover são mutuamente exclusivas.
-- For necessário utilizar um ```<input type="radio"``` />.
 
 <br />
 
@@ -56,40 +55,21 @@ export const docsDecorator = () => {
 - Duas ou mais opções puderem ser selecionadas ao mesmo tempo.
 - Houver 4 ou mais opções. Prefira Dropdowns nesses casos.
 
-## Obs.:
-- Você pode disabilitar cada um dos radio buttons passando a propriedade ```disable: true```, no respectivo objeto
-no array de opções. Caso você queira disabilitar todo o grupo, você pode setar a prop ```disabled``` como true no componente.
-
 <br />
 
 ## Preview
 
 export const value = '';
-export const options = [
-	{
-		text: 'Opção desabilitada',
-		value: 'value1',
-		disabled: true,
-	},
-	{
-		text: 'Opção habilitada 1',
-		value: 'value2',
-	},
-	{
-		text: 'Opção habilitada 2',
-		value: 'value3',
-	},
-];
 
 <Canvas>
 	<Story
 		name="Radio button group"
 		decorators={[docsDecorator]}
 		args={{
-			options,
 			value,
 			disabled: false,
 			inline: false,
+            label: 'Default'
 		}}
 	>
 		{ Template.bind({}) }
