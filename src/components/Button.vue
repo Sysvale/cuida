@@ -1,82 +1,67 @@
 <template>
-	<div
-		class="divider"
-	>
-		<div
-			v-if="withText"
-			class="divider__container"
-			@click="activeSelection"
+	<span id="cds-button">
+		<button
+			class="button__container"
+			:class="predefinedColor + ' ' + predefinedSize"
+			@click="clickHandler()"
 		>
-			<div
-				class="dividerBefore"
-			>
-				{{ text }}
-			</div>
-
-			<div class="textDivider"/>
-
-			<ion-icon
-				v-if="expandable"
-				name="chevron-down-outline"
-				:class="(isActive && !disabled) ? 'filter-pill__chevron--up' : 'filter-pill__chevron--down'"
-			>
-			</ion-icon>
-
-		</div>
-		<div
-			v-else
-		>
-			<div class="textDivider"/>
-		</div>
-
-		<div
-			v-if="isActive && expandable"
-			class="divider__slot"
-		>
-			<!-- @slot Slot usado para especificar o conteúdo a ser mostrado no divider
-			expansível após clicado. -->
-			<slot />
-		</div>
-	</div>
+			{{ text }}
+		</button>
+	</span>
 </template>
 
 <script>
 export default {
 	data() {
 		return {
-			isActive: false,
+			predefinedColors: [
+				'teal',
+				'green',
+				'blue',
+				'indigo',
+				'violet',
+				'pink',
+				'red',
+				'orange',
+				'amber',
+			],
+			predefinedSizes: [
+				'sm',
+				'md',
+				'lg',
+			],
 		};
 	},
 
 	props: {
 		/**
-		 * A variante do Highlight. São 3 variantes implementadas: 'info', 'success'
-		 * e 'danger'
+		 * A variante de cor. São 9 variantes implementadas: 'green', 'teal',
+		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'.
 		 */
 		variant: {
 			type: String,
-			default: 'info',
+			default: 'green',
 		},
 		/**
-		 * Especifica se o Divider é do tipo padrão ou com texto à esquerda.
+		 * Especifica o tamanho do botão. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
 		 */
-		withText: {
-			type: Boolean,
-			default: false,
+		size: {
+			type: String,
+			default: 'md',
 		},
 		/**
-		 * Especifica se o Divider é do tipo padrão ou com texto à esquerda.
+		 * Especifica se o botão é protagonista.
 		 */
-		expandable: {
+		primary: {
 			type: Boolean,
-			default: false,
+			default: true,
 		},
 		/**
-		 * Especifica se o Divider é do tipo padrão ou com texto à esquerda.
+		 * Especifica o texto a ser apresentado no corpo do botão.
 		 */
 		text: {
 			type: String,
-			default: 'Nenhum agendado',
+			default: 'Lorem ipsum',
 		},
 		/**
 		 * Controla a disponibilidade do FilterPill
@@ -87,16 +72,26 @@ export default {
 		},
 	},
 
-	methods: {
-		activeSelection() {
-			if (this.disabled) {
-				return;
+	computed: {
+		predefinedColor() {
+			if (this.predefinedColors.indexOf(this.variant) > -1) {
+				return `button--${this.variant}`;
 			}
+			return 'button--green';
+		},
 
-			this.isActive = !this.isActive;
+		predefinedSize() {
+			if (this.predefinedSizes.indexOf(this.size) > -1) {
+				return `button-size--${this.size}`;
+			}
+			return 'button-size--md';
+		},
+	},
 
+	methods: {
+		clickHandler() {
 			/**
-			* Evento que indica que o FilterPill foi clicado
+			* Evento que indica que o Botão foi clicado
 			* @event click
 			* @type {Event}
 			*/
@@ -107,63 +102,87 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
-
-.divider {
-	margin: my(4);
-
+.button {
 	&__container {
-		display: flex;
-		align-items: center;
-		cursor: pointer;
+		border-radius: 50px !important;
+		min-width: 300px;
+		min-height: 50px;
+		padding: pYX(0, 2);
+		font-weight: 500 !important;
+		display: block;
+		@include body-2;
 	}
 
-	&__slot {
-		margin: ma(3);
+	&--turquoise {
+		color: $ts-700;
+		background-color: $ts-100;
+		border: 1px solid $ts-400;
+	}
+
+	&--green {
+		color: $gp-700;
+		background-color: $gp-100;
+		border: 1px solid $gp-400;
+	}
+
+	&--blue {
+		color: $bn-700;
+		background-color: $bn-100;
+		border: 1px solid $bn-400;
+	}
+
+	&--indigo {
+		color: $in-700;
+		background-color: $in-100;
+		border: 1px solid $in-400;
+	}
+
+	&--violet {
+		color: $vr-700;
+		background-color: $vr-100;
+		border: 1px solid $vr-400;
+	}
+
+	&--pink {
+		color: $pp-700;
+		background-color: $pp-100;
+		border: 1px solid $pp-400;
+	}
+
+	&--red {
+		color: $rc-700;
+		background-color: $rc-100;
+		border: 1px solid $rc-400;
+	}
+
+	&--orange {
+		color: $og-700;
+		background-color: $og-100;
+		border: 1px solid $og-400;
+	}
+
+	&--amber {
+		color: $al-700;
+		background-color: $al-100;
+		border: 1px solid $al-500;
 	}
 }
 
-.dividerBefore {
-	text-transform: uppercase;
-	@include caption;
-	font-weight: $font-weight-semibold;
-	color: $n-600;
-	white-space: nowrap;
-	margin: mr(3);
-}
+.button-size {
+	&--sm {
+		font-size: 12px;
+		padding: 0.5rem 1rem;
+	}
 
-.textDivider {
-	background-color: $n-100;
-	height: 1px;
-	width: 100%;
-}
+	&--md {
+		font-size: 14px;
+		padding: 0.75rem 1.5rem;
+	}
 
-@keyframes highlight {
-	0% {
-		background-position: 100%;
+	&--lg {
+		font-size: 16px;
+		padding: 1rem 2rem;
 	}
 }
 
-.filter-pill {
-	&__chevron--up {
-		margin-left: 8px;
-		margin-bottom: -4px;
-		color: $n-500;
-		transition: all 0.25s ease-in-out;
-		transform: rotate(180deg);
-		font-size: 24px;
-		margin-top: -2px;
-		visibility: visible;
-	}
-
-	&__chevron--down {
-		margin-left: 8px;
-		margin-bottom: -4px;
-		color: $n-500;
-		font-size: 24px;
-		margin-top: -2px;
-		visibility: visible;
-		transition: all 0.25s ease-in-out;
-		transform: rotate(0deg);
-	}
-}
 </style>

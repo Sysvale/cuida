@@ -13,15 +13,14 @@ export const Template = (args, { argTypes }) => ({
 		<button
 			v-bind="$props" 
 		>
-			Conteúdo
 		</button>`,
 });
 
 export const template = /*html*/ `
 	<cds-button 
-		variant="gray"
+		variant="green"
 	>
-		Conteúdo
+		Lorem Ipsum
 	</cds-button>`;
 
 export const docsDecorator = () => {
@@ -67,7 +66,9 @@ export const docsDecorator = () => {
 		name="Button"
 		decorators={[docsDecorator]}
 		args={{
-			variant: 'gray',
+			variant: 'green',
+			size: 'md',
+			text: 'Lorem Ipsum',
 		}}
 	>
 		{ Template.bind({}) }
