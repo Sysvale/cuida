@@ -116,6 +116,10 @@ export default {
 	&__container {
 		font-weight: $font-weight-semibold;
 		border: none;
+
+		&:focus {
+			outline: none !important;
+		}
 	}
 
 	$colors: (
@@ -137,6 +141,10 @@ export default {
 					background-color: $variant;
 					color: $n-0;
 				}
+			}
+
+			&--disabled {
+				cursor: default;
 			}
 		}
 	}
