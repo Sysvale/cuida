@@ -15,13 +15,13 @@
 			@change="$emit('change', $event.target.value)"
 		>
 		<label
-			class="cds-radio__content"
+			class="cds-radio__label"
 			:for="value"
 		>
 			<!-- @slot Slot padrão para renderização de conteúdo customizado da label -->
 			<slot>
 				<span
-					class="cds-radio__label"
+					class="cds-radio__label-text"
 				>
 					{{ label }}
 				</span>
@@ -96,6 +96,10 @@ export default {
 <style lang="scss">
 @import '../assets/sass/app.scss';
 
+.cds-radio__label {
+	@include body-2;
+}
+
 .cds-radio [type="radio"]:checked,
 .cds-radio [type="radio"]:not(:checked) {
 	position: absolute;
@@ -119,23 +123,29 @@ export default {
 	position: absolute;
 	left: 0;
 	top: 0;
-	width: 20px;
-	height: 20px;
+	width: 16px;
+	height: 16px;
 	border: 1px solid $n-200;
 	border-radius: 100%;
 	background: $n-0;
+	margin-top: 2px;
+}
+
+.cds-radio [type="radio"]:checked + label:before {
+	border: 1.5px solid $gp-500;
 }
 
 .cds-radio [type="radio"]:checked + label:after,
 .cds-radio [type="radio"]:not(:checked) + label:after {
 	content: '';
-	width: 12px;
-	height: 12px;
+	width: 9px;
+	height: 9px;
 	background: $gp-500;
-    border: 1px solid $gp-500;
+	border: 1px solid $gp-500;
 	position: absolute;
-	top: 4px;
-	left: 4px;
+	margin-top: 2px;
+	top: 3.7px;
+	left: 3.7px;
 	border-radius: 100%;
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
@@ -156,9 +166,9 @@ export default {
 .cds-radio input[type="radio"][disabled="disabled"] + label:before {
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
-    background: $n-30;
-    color: $n-30;
-    cursor: not-allowed;
+	background: $n-30;
+	color: $n-30;
+	cursor: not-allowed;
 }
 
 .cds-radio input[type="radio"][invalid="invalid"] + label:before {
