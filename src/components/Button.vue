@@ -104,84 +104,73 @@ export default {
 @import '../assets/sass/app.scss';
 .button {
 	&__container {
-		border-radius: 50px !important;
-		min-width: 300px;
-		min-height: 50px;
-		padding: pYX(0, 2);
-		font-weight: 500 !important;
-		display: block;
-		@include body-2;
+		font-weight: $font-weight-semibold;
+		border: none;
 	}
 
-	&--turquoise {
-		color: $ts-700;
-		background-color: $ts-100;
-		border: 1px solid $ts-400;
+	&--teal {
+		color: $n-0;
+		background-color: $ts-400;
 	}
 
 	&--green {
-		color: $gp-700;
-		background-color: $gp-100;
-		border: 1px solid $gp-400;
+		color: $n-0;
+		background-color: $gp-400;
 	}
 
 	&--blue {
-		color: $bn-700;
-		background-color: $bn-100;
-		border: 1px solid $bn-400;
+		color: $n-0;
+		background-color: $bn-400;
 	}
 
 	&--indigo {
-		color: $in-700;
-		background-color: $in-100;
-		border: 1px solid $in-400;
+		color: $n-0;
+		background-color: $in-400;
 	}
 
 	&--violet {
-		color: $vr-700;
-		background-color: $vr-100;
-		border: 1px solid $vr-400;
+		color: $n-0;
+		background-color: $vr-400;
 	}
 
 	&--pink {
-		color: $pp-700;
-		background-color: $pp-100;
-		border: 1px solid $pp-400;
+		color: $n-0;
+		background-color: $pp-400;
 	}
 
 	&--red {
-		color: $rc-700;
-		background-color: $rc-100;
-		border: 1px solid $rc-400;
+		color: $n-0;
+		background-color: $rc-400;
 	}
 
 	&--orange {
-		color: $og-700;
-		background-color: $og-100;
-		border: 1px solid $og-400;
+		color: $n-0;
+		background-color: $og-400;
 	}
 
 	&--amber {
-		color: $al-700;
-		background-color: $al-100;
-		border: 1px solid $al-500;
+		color: $n-0;
+		background-color: $al-400;
 	}
 }
 
 .button-size {
 	&--sm {
 		font-size: 12px;
-		padding: 0.5rem 1rem;
+		padding: pYX(2, 4);
+		border-radius: $border-radius-lil;
 	}
 
 	&--md {
 		font-size: 14px;
-		padding: 0.75rem 1.5rem;
+		padding: pYX(3, 6);
+		border-radius: $border-radius-extra-small;
 	}
 
 	&--lg {
-		font-size: 16px;
-		padding: 1rem 2rem;
+		font-size: 18px;
+		padding: pYX(3, 6);
+		border-radius: $border-radius-extra-small;
 	}
 }
 
