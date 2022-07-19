@@ -10,9 +10,11 @@ export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { Spinner },
 	template: /*html*/ `
-		<spinner
-			v-bind="$props"
-		/>
+		<center>
+			<spinner
+				v-bind="$props"
+			/>
+		</center>
 	`,
 });
 
