@@ -1,12 +1,18 @@
 <template>
 	<span class="cds-radio">
+		<!--
+			Evento emitido quando o Radio muda seu estado.
+			@event change
+			@type {Event}
+		-->
 		<input
 			type="radio"
 			:id="value"
 			:value="value"
-			v-model="selected"
 			:disabled="disabled"
 			:name="name"
+			:checked="isChecked"
+			@change="$emit('change', $event.target.value)"
 		>
 		<label
 			class="cds-radio__content"
@@ -26,9 +32,22 @@
 
 <script>
 export default {
+	model: {
+		prop: 'modelValue',
+		event: 'change',
+	},
+
 	props: {
 		/**
 		 * A prop usada como v-model para monitorar a seleção do Radio
+		*/
+		modelValue: {
+			default: null,
+			required: true,
+		},
+		/**
+		 * A prop usada como valor associado ao Radio. O que será atribuído
+		 * v-model quando essa opção for selecionado
 		*/
 		value: {
 			default: null,
@@ -68,27 +87,9 @@ export default {
 		},
 	},
 
-	data() {
-		return {
-			selected: this.value,
-		};
-	},
-
-	watch: {
-		selected(value) {
-			/**
-			* Evento emitido quando o Radio muda seu estado.
-			* @event change
-			* @type {Event}
-			*/
-			this.$emit('change', value);
-		},
-
-		value: {
-			handler(newValue) {
-				this.selected = newValue;
-			},
-			immediate: true,
+	computed: {
+		isChecked() {
+			return this.modelValue == this.value;
 		},
 	},
 };
