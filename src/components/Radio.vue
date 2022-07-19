@@ -13,7 +13,7 @@
 			:for="value"
 		>
 			<!-- @slot Slot para renderização de conteúdo customizado da label -->
-			<slot name="label">
+			<slot name="custom-label">
 				<span
 					class="cds-radio__label"
 				>

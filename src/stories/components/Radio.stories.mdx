@@ -8,20 +8,56 @@ import Radio from '../../components/Radio.vue';
 
 export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
+	data() {
+		return {
+			selected: 'null',
+			option2 : {
+				value: 'option-2',
+				name: 'choose',
+				label: 'Option 2',
+				disabled: false,
+				invalid: false,
+			},
+			option3 : {
+				value: 'option-3',
+				name: 'choose',
+				label: 'Option 3',
+				disabled: true,
+				invalid: false,
+			},
+		};
+	},
 	components: { Radio },
 	template: /*html*/ `
-		<radio
-			v-bind="$props" 
-		/>
+		<div>
+			<div class="d-flex">
+				<radio
+					v-bind="$props"
+					class="mx-2"
+				/>
+				<radio
+					v-bind="option2"
+					class="mx-2"
+				/>
+				<radio
+					v-model="selected"
+					v-bind="option3"
+					class="mx-2"
+				/>
+			</div>
+			<br>
+			<small>
+				Opção selecionada: {{ selected }}
+			</small>
+		</div>
 	`,
 });
 
 export const template = /*html*/ `
 	<cds-radio
-		v-model="value"
-		:options="options"
-		:disabled="false"
-		:inline="false"
+		value="option-1"
+		name="choose"
+		label="Option 1"
 	/>`;
 
 export const docsDecorator = () => {
@@ -42,7 +78,7 @@ export const docsDecorator = () => {
 
 # Radio
 
-### RadioButtonsGroup são radio buttons customizados para facilitar a seleção e feedback.
+### Radio são radio inputs customizados para facilitar a seleção e feedback.
 ---
 <br />
 
@@ -53,27 +89,26 @@ export const docsDecorator = () => {
 
 ## Não recomendamos o uso de Radios quando:
 - Duas ou mais opções puderem ser selecionadas ao mesmo tempo.
-- Houver 4 ou mais opções. Prefira Dropdowns nesses casos.
+- Houver 4 ou mais opções. Você pode usar o componente `Dropdown` nesses casos.
 
 <br />
 
 ## Preview
 
-export const value = '';
-
 <Canvas>
 	<Story
-		name="Radio button group"
+		name="Radio"
 		decorators={[docsDecorator]}
 		args={{
-			value,
+			value: 'option-1',
+			name: 'choose',
+			label: 'Option 1',
 			disabled: false,
-			inline: false,
-            label: 'Default'
+			invalid: false,
 		}}
 	>
 		{ Template.bind({}) }
 	</Story>
 </Canvas>
 
-<ArgsTable story="Radio button group" />
+<ArgsTable story="Radio" />
