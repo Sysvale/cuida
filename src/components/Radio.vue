@@ -111,7 +111,7 @@ export default {
 	cursor: pointer;
 	line-height: 20px;
 	display: inline-block;
-	color: $n-600;
+	color: $n-800;
 }
 
 .cds-radio [type="radio"]:checked + label:before,
@@ -122,7 +122,7 @@ export default {
 	top: 0;
 	width: 20px;
 	height: 20px;
-	border: 1px solid $n-800;
+	border: 1px solid $n-200;
 	border-radius: 100%;
 	background: $n-0;
 }
@@ -132,7 +132,8 @@ export default {
 	content: '';
 	width: 12px;
 	height: 12px;
-	background: $bn-600;
+	background: $gp-500;
+    border: 1px solid $gp-500;
 	position: absolute;
 	top: 4px;
 	left: 4px;
@@ -153,9 +154,18 @@ export default {
 	transform: scale(1);
 }
 
-.cds-radio {
-	&__content {
-		margin: ma(0);
-	}
+.cds-radio[disabled="disabled"] {
+	-webkit-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+    background: $n-50;
+    cursor: not-allowed;
+
+    label {
+        color: $n-300;
+    }
+}
+
+.cds-radio[invalid="invalid"] {
+	border: 2px solid $rc-400;
 }
 </style>
