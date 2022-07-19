@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Checkbox tests if component mounts correctly 1`] = `
-<span id="cds-checkbox" class="checkbox__container"><div class="option__checkbox"><input type="checkbox" id="cds-checkbox-option" name="cds-checkbox-option" value="true"> <label for="cds-checkbox-option" class=""></label></div> <div class="option__label">
+<span id="cds-checkbox" class="checkbox__container"><div class="checkbox__content"><input type="checkbox" id="cds-checkbox-option" name="cds-checkbox-option" value="true"> <label for="cds-checkbox-option" class=""></label></div> <div class="checkbox__label">
 			checkbox test
 		</div></span>
 `;
