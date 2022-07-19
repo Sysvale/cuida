@@ -18,8 +18,8 @@
 			class="cds-radio__content"
 			:for="value"
 		>
-			<!-- @slot Slot para renderização de conteúdo customizado da label -->
-			<slot name="custom-label">
+			<!-- @slot Slot padrão para renderização de conteúdo customizado da label -->
+			<slot>
 				<span
 					class="cds-radio__label"
 				>
@@ -59,7 +59,6 @@ export default {
 		name: {
 			type: String,
 			default: '',
-			required: true,
 		},
 		/**
 		 * Define a label do input, o conteúdo que é exibido para descrever o Radio.
@@ -67,7 +66,6 @@ export default {
 		label: {
 			type: String,
 			default: '',
-			required: true,
 		},
 		/**
 		 * Controla o status do radio
