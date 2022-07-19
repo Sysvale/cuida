@@ -3,7 +3,6 @@
 		<button
 			class="button__container"
 			:class="computedStyle"
-			:disabled="disabled"
 			@click="clickHandler()"
 
 		>
@@ -90,10 +89,10 @@ export default {
 		},
 
 		computedStyle() {
-			const disabled = this.disabled ? '--disabled' : '';
+			const disabled = this.disabled ? '--disabled' : '--active';
 
-			return `${this.predefinedColor} ${this.predefinedSize}${disabled}`;
-		}
+			return `${this.predefinedColor}${disabled} ${this.predefinedSize}`;
+		},
 	},
 
 	methods: {
@@ -121,14 +120,14 @@ export default {
 
 	$colors: (
 		'--teal': ('active': $ts-400, 'disabled': $ts-300),
-		'--green': $gp-400,
-		'--blue': $bn-400,
-		'--indigo': $in-400,
-		'--violet': $vr-400,
-		'--pink': $pp-400,
-		'--red': $rc-400,
-		'--orange': $og-400,
-		'--amber': $al-400,
+		'--green': ('active': $gp-400, 'disabled': $gp-300),
+		'--blue': ('active': $bn-400, 'disabled': $bn-300),
+		'--indigo': ('active': $in-400, 'disabled': $in-300),
+		'--violet': ('active': $vr-400, 'disabled': $vr-300),
+		'--pink': ('active': $pp-400, 'disabled': $pp-300),
+		'--red': ('active': $rc-400, 'disabled': $rc-300),
+		'--orange': ('active': $og-400, 'disabled': $og-300),
+		'--amber': ('active': $al-400, 'disabled': $al-300),
 	);
 
 	@each $color, $variants in $colors {
@@ -136,6 +135,7 @@ export default {
 			@each $state, $variant in $variants {
 				&--#{$state} {
 					background-color: $variant;
+					color: $n-0;
 				}
 			}
 		}
