@@ -10,18 +10,16 @@ export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	data() {
 		return {
-			selected: 'null',
+			selected: 'option-3',
 			option2 : {
 				value: 'option-2',
-				name: 'choose',
-				label: 'Option 2',
+				label: 'Opção 2',
 				disabled: false,
 				invalid: false,
 			},
 			option3 : {
 				value: 'option-3',
-				name: 'choose',
-				label: 'Option 3',
+				label: 'Opção 3',
 				disabled: true,
 				invalid: false,
 			},
@@ -32,10 +30,14 @@ export const Template = (args, { argTypes }) => ({
 		<div>
 			<div class="d-flex">
 				<radio
+					v-model="selected"
 					v-bind="$props"
 					class="mx-2"
-				/>
+				>
+					Opção de <strong> destaque </strong>
+				</radio>
 				<radio
+					v-model="selected"
 					v-bind="option2"
 					class="mx-2"
 				/>
@@ -55,10 +57,23 @@ export const Template = (args, { argTypes }) => ({
 
 export const template = /*html*/ `
 	<cds-radio
+		v-model="selected"
 		value="option-1"
-		name="choose"
-		label="Option 1"
-	/>`;
+	>
+		Opção de <strong> destaque </strong>
+	</cds-radio>
+	<cds-radio
+		v-model="selected"
+		label="Opção 2"
+		value="option-2"
+	/>
+	<cds-radio
+		v-model="selected"
+		label="Opção 3"
+		value="option-3"
+		disabled
+	/>
+`;
 
 export const docsDecorator = () => {
 	return {
@@ -78,7 +93,7 @@ export const docsDecorator = () => {
 
 # Radio
 
-### Radio são radio inputs customizados para facilitar a seleção e feedback.
+### O Radio permite que os usuários selecionem uma opção de um conjunto.
 ---
 <br />
 
@@ -101,8 +116,7 @@ export const docsDecorator = () => {
 		decorators={[docsDecorator]}
 		args={{
 			value: 'option-1',
-			name: 'choose',
-			label: 'Option 1',
+			label: 'Opção 1',
 			disabled: false,
 			invalid: false,
 		}}
