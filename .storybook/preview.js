@@ -47,6 +47,7 @@ import {
 	Tooltip,
 	ToggleSwitch,
 	CollapsibleContainer,
+	Button,
 } from '../src/components';
 
 import {
