@@ -25,6 +25,7 @@ import {
 	ProgressBar,
 	ActionsList,
 	RadioButtonGroup,
+	Radio,
 	Timeline,
 	NavBar,
 	Popover,

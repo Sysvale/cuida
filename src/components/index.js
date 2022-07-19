@@ -2,6 +2,7 @@
 export { default as ProgressBar } from './ProgressBar.vue';
 export { default as ActionsList } from './ActionsList.vue';
 export { default as RadioButtonGroup } from './RadioButtonGroup.vue';
+export { default as Radio } from './Radio.vue';
 export { default as Timeline } from './Timeline.vue';
 export { default as NavBar } from './NavBar.vue';
 export { default as Popover } from './Popover.vue';
