@@ -11,16 +11,23 @@
 				:id="$attrs.name || 'cds-checkbox-option'"
 				:name="$attrs.name || 'cds-checkbox-option'"
 				:value="true"
+				:disabled="disabled"
 			/>
 			<label
 				:for="$attrs.name || 'cds-checkbox-option'"
-				:class="{ 'checkbox__content--checked': internalValue }"
+				:class="{
+					'checkbox__content--checked': internalValue,
+					'checkbox__content--disabled': disabled,
+				}"
 				@click="toggleValue"
 			/>
 		</div>
 		<!-- @slot Slot usado pra mostrar o conteúdo do checkbox. -->
 		<div
 			class="checkbox__label"
+			:class="{
+				'checkbox__label--disabled': disabled
+			}"
 		>
 			<slot>
 				{{ label }}
@@ -76,6 +83,7 @@ export default {
 
 	methods: {
 		toggleValue() {
+			if(this.disabled) return;
 			this.internalValue = !this.internalValue;
 		},
 	}
@@ -135,7 +143,14 @@ export default {
 			opacity: 1;
 		}
 
-		input[type="checkbox"]:indeterminate + label:after {
+		input[type=checkbox]:not(:checked) + label:after {
+			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=1)";
+			filter: alpha(opacity=1);
+			opacity: 1;
+			border: none !important;
+		}
+
+		input[type=checkbox]:indeterminate + label:after {
 			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 			filter: alpha(opacity=100);
 			opacity: 1;
@@ -144,21 +159,31 @@ export default {
 			width: 9px;
 			transform: rotate(0deg);
 		}
-	}
 
-	.checkbox__content--checked {
-		background-color: $gp-500 !important;
-		border: none !important;
-	}
+		&--checked {
+			background-color: $gp-500 !important;
+			border: none !important;
+		}
 
-	.checkbox__content--indeterminate {
-		background-color: $gp-500 !important;
-		border: none !important;
+		&--indeterminate {
+			background-color: $gp-500 !important;
+			border: none !important;
+		}
+
+		&--disabled {
+			background-color: $n-40 !important;
+			border: none !important;
+		}
 	}
 
 	.checkbox__label {
 		@include body-2;
 		color: $n-500;
+
+		&--disabled {
+			@extend .checkbox__label;
+			color: $n-40;
+		}
 	}
 }
 
