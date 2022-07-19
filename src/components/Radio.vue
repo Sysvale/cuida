@@ -155,18 +155,15 @@ export default {
 	transform: scale(1);
 }
 
-.cds-radio[disabled="disabled"] {
+.cds-radio input[type="radio"][disabled="disabled"] + label:before {
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
-    background: $n-50;
+    background: $n-30;
+    color: $n-30;
     cursor: not-allowed;
-
-    label {
-        color: $n-300;
-    }
 }
 
-.cds-radio[invalid="invalid"] {
+.cds-radio input[type="radio"][invalid="invalid"] + label:before {
 	border: 2px solid $rc-400;
 }
 </style>
