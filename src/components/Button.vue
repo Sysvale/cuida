@@ -96,6 +96,9 @@ export default {
 
 	methods: {
 		clickHandler() {
+			if (this.disabled) {
+				return;
+			}
 			/**
 			* Evento que indica que o Botão foi clicado
 			* @event click
