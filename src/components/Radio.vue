@@ -10,6 +10,7 @@
 			:id="value"
 			:value="value"
 			:disabled="disabled"
+			:invalid="invalid"
 			:name="name"
 			:checked="isChecked"
 			@change="$emit('change', $event.target.value)"
@@ -176,7 +177,7 @@ export default {
 	cursor: not-allowed;
 }
 
-.cds-radio input[type="radio"][invalid="invalid"] + label:before {
-	border: 2px solid $rc-400;
+.cds-radio input[type="radio"][invalid="true"]:not(:checked) + label:before {
+	border: 1.5px solid $rc-400;
 }
 </style>
