@@ -6,16 +6,18 @@
 			:value="value"
 			v-model="selected"
 			:disabled="disabled"
+			:name="name"
 		>
 		<label
 			class="cds-radio__content"
 			:for="value"
 		>
+			<!-- @slot Slot para renderização de conteúdo customizado da label -->
 			<slot name="label">
 				<span
 					class="cds-radio__label"
 				>
-					{{ label }}
+					{{ label }} -- {{ test }}
 				</span>
 			</slot>
 		</label>
@@ -33,11 +35,19 @@ export default {
 			required: true,
 		},
 		/**
+		 * A prop usada como v-model para monitorar a seleção do RadioButton
+		*/
+		name: {
+			type: String,
+			default: '',
+			required: true,
+		},
+		/**
 		 * Controla o status do grupo de radio buttons
 		 */
 		label: {
 			type: String,
-			default: false,
+			default: '',
 			required: true,
 		},
 		/**
@@ -61,6 +71,7 @@ export default {
 	data() {
 		return {
 			selected: this.value,
+			test: '',
 		};
 	},
 
@@ -72,11 +83,13 @@ export default {
 			* @type {Event}
 			*/
 			this.$emit('change', value);
+			this.test = `change  ${value}`;
 		},
 
 		value: {
 			handler(newValue) {
 				this.selected = newValue;
+				// this.test = `change  ${newValue}`;
 			},
 			immediate: true,
 		},
