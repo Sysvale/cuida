@@ -4,21 +4,51 @@ import Button from '../../components/Button.vue';
 <Meta
 	title="Componentes/Forms/Button"
 	component={ Button }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'teal',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber'
+				],
+			}
+		},
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
+	}
+}
 />
 
 export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { Button },
 	template: /*html*/ `
-		<button
+		<btn
 			v-bind="$props" 
 		>
-		</button>`,
+		</btn>`,
 });
 
 export const template = /*html*/ `
-	<cds-button 
+	<cds-button
 		variant="green"
+		size="sm"
 	>
 		Lorem Ipsum
 	</cds-button>`;
@@ -66,7 +96,7 @@ export const docsDecorator = () => {
 		name="Button"
 		decorators={[docsDecorator]}
 		args={{
-			variant: 'green',
+			variant: 'blue',
 			size: 'md',
 			text: 'Lorem Ipsum',
 		}}
