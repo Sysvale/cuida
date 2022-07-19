@@ -47,6 +47,7 @@ import {
 	Tooltip,
 	ToggleSwitch,
 	CollapsibleContainer,
+    Link
 } from '../src/components';
 
 import {
@@ -113,6 +114,7 @@ Vue.component('tooltip', Tooltip);
 Vue.component('source-code-wrapper', SourceCodeWrapper);
 Vue.component('toggle-switch', ToggleSwitch);
 Vue.component('shadow-builder', Shadows);
+Vue.component('link', Link);
 
 addParameters({
 	options: {
