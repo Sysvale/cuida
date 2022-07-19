@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spinner if component is mounted correctly 1`] = `
+<div id="cds-spinner">
+  <div class="spinner"></div>
+  <div> </div>
+</div>
+`;
