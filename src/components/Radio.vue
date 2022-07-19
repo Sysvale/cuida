@@ -17,7 +17,7 @@
 				<span
 					class="cds-radio__label"
 				>
-					{{ label }} -- {{ test }}
+					{{ label }}
 				</span>
 			</slot>
 		</label>
@@ -28,14 +28,14 @@
 export default {
 	props: {
 		/**
-		 * A prop usada como v-model para monitorar a seleção do RadioButton
+		 * A prop usada como v-model para monitorar a seleção do Radio
 		*/
 		value: {
 			default: null,
 			required: true,
 		},
 		/**
-		 * A prop usada como v-model para monitorar a seleção do RadioButton
+		 * A prop usada para controle do input pelo name. Definir mesmo name para um grupo de opções.
 		*/
 		name: {
 			type: String,
@@ -43,7 +43,7 @@ export default {
 			required: true,
 		},
 		/**
-		 * Controla o status do grupo de radio buttons
+		 * Define a label do input, o conteúdo que é exibido para descrever o Radio.
 		 */
 		label: {
 			type: String,
@@ -51,7 +51,7 @@ export default {
 			required: true,
 		},
 		/**
-		 * Controla o status do grupo de radio buttons
+		 * Controla o status do radio
 		 */
 		disabled: {
 			type: Boolean,
@@ -59,7 +59,7 @@ export default {
 			required: false,
 		},
 		/**
-		 * Controla o status do grupo de radio buttons
+		 * Estado do radio em relação a validação
 		 */
 		invalid: {
 			type: Boolean,
@@ -71,25 +71,22 @@ export default {
 	data() {
 		return {
 			selected: this.value,
-			test: '',
 		};
 	},
 
 	watch: {
 		selected(value) {
 			/**
-			* Evento emitido quando o radio muda seu estado.
+			* Evento emitido quando o Radio muda seu estado.
 			* @event change
 			* @type {Event}
 			*/
 			this.$emit('change', value);
-			this.test = `change  ${value}`;
 		},
 
 		value: {
 			handler(newValue) {
 				this.selected = newValue;
-				// this.test = `change  ${newValue}`;
 			},
 			immediate: true,
 		},
