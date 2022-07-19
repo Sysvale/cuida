@@ -2,7 +2,7 @@
 	<span id="cds-button">
 		<button
 			class="button__container"
-			:class="predefinedColor + ' ' + predefinedSize"
+			:class="computedStyle"
 			@click="clickHandler()"
 		>
 			{{ text }}
@@ -86,6 +86,12 @@ export default {
 			}
 			return 'button-size--md';
 		},
+
+		computedStyle() {
+			const disabled = this.disabled ? 'button__container--disabled' : '';
+
+			return `${this.predefinedColor} ${this.predefinedSize} ${disabled}`;
+		}
 	},
 
 	methods: {
@@ -106,6 +112,11 @@ export default {
 	&__container {
 		font-weight: $font-weight-semibold;
 		border: none;
+	}
+
+	&--disabled {
+		background-color: $gp-300;
+		cursor: default;
 	}
 
 	&--teal {
