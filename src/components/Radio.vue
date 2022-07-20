@@ -10,8 +10,7 @@
 			:id="value"
 			:value="value"
 			:disabled="disabled"
-			:invalid="invalid"
-			:name="name"
+			:name="$attrs.name"
 			:checked="isChecked"
 			@change="$emit('change', $event.target.value)"
 		>
@@ -56,34 +55,18 @@ export default {
 			required: true,
 		},
 		/**
-		 * A prop usada para controle do input pelo name. Definir mesmo name para um grupo de opções.
-		*/
-		name: {
-			type: String,
-			default: '',
-		},
-		/**
-		 * Define a label do input, o conteúdo que é exibido para descrever o Radio.
+		 * Define a label do input, o conteúdo que é exibido para descrever o Radio
 		 */
 		label: {
 			type: String,
-			default: '',
+			default: 'radio content',
 		},
 		/**
-		 * Controla o status do radio
+		 * Controla o status do Radio
 		 */
 		disabled: {
 			type: Boolean,
 			default: false,
-			required: false,
-		},
-		/**
-		 * Estado do radio em relação a validação
-		 */
-		invalid: {
-			type: Boolean,
-			default: false,
-			required: false,
 		},
 	},
 
