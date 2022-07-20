@@ -8,7 +8,7 @@
 			<input
 				v-model="internalValue"
 				type="checkbox"
-				:id="$attrs.name || 'cds-checkbox-option'"
+				:id="'cds-checkbox-option-input'"
 				:name="$attrs.name || 'cds-checkbox-option'"
 				:value="true"
 				:disabled="disabled"
@@ -18,17 +18,19 @@
 				:class="{
 					'checkbox__content--checked': internalValue,
 					'checkbox__content--disabled': disabled,
+					'checkbox__content--indeterminate': indeterminate && !internalValue,
 				}"
-				@click="toggleValue"
+				@click.stop="toggleValue"
 			/>
 		</div>
-		<!-- @slot Slot usado pra mostrar o conteúdo do checkbox. -->
 		<div
+			v-if="!noText"
 			class="checkbox__label"
 			:class="{
 				'checkbox__label--disabled': disabled
 			}"
 		>
+			<!-- @slot Slot usado pra mostrar o conteúdo do checkbox. -->
 			<slot>
 				{{ label }}
 			</slot>
@@ -40,25 +42,40 @@
 export default {
 	props: {
 		/**
-		 * A prop usada como v-model para monitorar a seleção do RadioButton
+		 * A prop usada como v-model para monitorar a seleção do Checkbox
 		*/
 		value: {
 			default: null,
 			required: true,
 		},
 		/**
-		 * Controla o status do grupo de radio buttons
+		 * Controla o status checkbox
 		 */
 		disabled: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		 * Controla o status do grupo de radio buttons
+		 * Exibe o checkbox com o estado de indeterminação 
+		 * (deve ser utilizada com operador .sync)
+		 */
+		indeterminate: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Exibe a etiqueta do checkbox
 		 */
 		label: {
 			type: String,
 			default: 'checkbox content',
+		},
+		/**
+		 * Controla a exibição da etiqueta do checkbox
+		 */
+		noText: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
@@ -68,16 +85,32 @@ export default {
 		};
 	},
 
+	mounted() {
+		this.updateIndeterminate(this.indeterminate);
+	},
+
 	watch: {
 		internalValue(value) {
+			/**
+				 * Evento utilizado para o v-model.
+				* @event input
+				* @type {Event}
+			*/
 			this.$emit('input', value);
 		},
 
 		value: {
 			handler(newValue) {
 				this.internalValue = newValue;
+				this.updateIndeterminate(false);
 			},
 			immediate: true,
+		},
+
+		indeterminate: {
+			handler(newValue) {
+				this.updateIndeterminate(newValue);
+			},
 		},
 	},
 
@@ -86,6 +119,21 @@ export default {
 			if(this.disabled) return;
 			this.internalValue = !this.internalValue;
 		},
+		updateIndeterminate(value) {
+			if(this.internalValue) return;
+
+			const input = document.getElementById('cds-checkbox-option-input');
+
+			if(input) {
+				input.indeterminate = value;
+				/**
+					 * Evento utilizado para atualizar a prop indeterminate.
+					* @event input
+					* @type {Event}
+				*/
+				this.$emit('update:indeterminate', value);
+			}
+		}
 	}
 };
 </script>
@@ -154,10 +202,10 @@ export default {
 			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 			filter: alpha(opacity=100);
 			opacity: 1;
-			border-left: none;
-			top: 4px;
-			width: 9px;
-			transform: rotate(0deg);
+			border-left: none !important;
+			top: 4px !important;
+			width: 9px !important;
+			transform: rotate(0deg) !important;
 		}
 
 		&--checked {
