@@ -65,7 +65,7 @@ export default {
 			default: 'Lorem ipsum',
 		},
 		/**
-		 * Controla a disponibilidade do FilterPill
+		 * Controla a disponibilidade do Botão.
 		 */
 		disabled: {
 			type: Boolean,
