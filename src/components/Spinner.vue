@@ -17,6 +17,10 @@ const sizeOptions = ['sm', 'md', 'lg'];
 
 export default {
 	props: {
+		/**
+		*	Propriedade referente ao tamanho do componente ('sm', 'md' ou 'lg')
+		*
+		*/
 		size: {
 			type: String,
 			default: 'md',
