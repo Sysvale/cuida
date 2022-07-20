@@ -2,7 +2,8 @@
 
 exports[`Spinner if component is mounted correctly 1`] = `
 <div id="cds-spinner">
-  <div class="spinner"></div>
-  <div> </div>
+  <div id="spinner" class="spinner--md spinner--green"></div>
+  <!---->
+  <!---->
 </div>
 `;
