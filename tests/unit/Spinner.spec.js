@@ -57,36 +57,4 @@ describe('Spinner', () => {
 
 		expect(spy).toHaveBeenCalledWith(expect.stringContaining('[Vue warn]: Invalid prop: custom validator check failed for prop "variant".'));
 	});
-
-	test('if title is shown correctly', async () => {
-		const wrapper = mount(Spinner, {
-			localVue,
-			propsData: {
-				withTitle: true,
-				title: 'Ola amigos',
-			},
-		});
-
-		await flushPromises();
-
-		const title = wrapper.find('#title');
-
-		expect(title.text()).toContain('Ola amigos');
-	});
-
-	test('if subtitle is shown correctly', async () => {
-		const wrapper = mount(Spinner, {
-			localVue,
-			propsData: {
-				withSubtitle: true,
-				subtitle: 'bem amigos da rede globo',
-			},
-		});
-
-		await flushPromises();
-
-		const subtitle = wrapper.find('#subtitle');
-
-		expect(subtitle.text()).toContain('bem amigos da rede globo');
-	});
 });
