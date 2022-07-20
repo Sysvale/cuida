@@ -14,24 +14,39 @@
 export default {
 	props: {
 		/**
-		 * Prop que 
-		 * 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
+		 * Prop que especifica o título do select.
 		 */
 		label: {
 			type: String,
 			default: 'Label',
 		},
 		/**
-		 * A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',
-		 * 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
+		 * Prop que indica o texto que instrui o usuário a como interagir com o select.
 		 */
 		placeholder: {
 			type: String,
 			default: 'Selecione...',
 		},
+		/**
+		 * Prop que indica o estado do select.
+		 */
 		disabled: {
-			type: String,
-			default: 'Selecione...',
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Especifica a lista de opções do select.
+		 */
+		options: {
+			type: Array,
+			default: () => [],
+		},
+		/**
+		 * Guarda o valor selecionado do select.
+		 */
+		selected: {
+			type: Object,
+			default: () => {},
 		},
 	},
 
