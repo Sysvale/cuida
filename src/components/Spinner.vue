@@ -1,77 +1,26 @@
 <template>
-	<div id="cds-spinner">
+	<div
+		id="cds-spinner"
+		class="spinner__container"
+	>
 		<div
 			id="spinner"
 			:class="computedSpinnerClass"
 		/>
-		<div
-			v-if="withTitle"
-			id="title"
-			class="spinner__title"
-		>
-			{{ title }}
-		</div>
-		<div
-			v-if="withSubtitle"
-			id="subtitle"
-			class="spinner__subtitle"
-		>
-			{{ subtitle }}
-		</div>
 	</div>
 </template>
 
 <script>
-const predefinedColors = [
-	'teal',
-	'green',
-	'blue',
-	'indigo',
-	'violet',
-	'pink',
-	'red',
-	'orange',
-	'amber',
-];
-const predefinedSizes = ['sm', 'md', 'lg'];
+import { colorOptions } from '../utils/constants/colors';
+
+const sizeOptions = ['sm', 'md', 'lg'];
 
 export default {
 	props: {
-		/**
-		*	Texto a ser exibido como título do Spinner
-		*/
-		title: {
-			type: String,
-			default: 'Insert title here',
-		},
-		/**
-		*	Texto a ser exibido como subtítulo do Spinner
-		*/
-		subtitle: {
-			type: String,
-			default: 'Insert subtitle here',
-		},
-		/**
-		*	Propriedade para inibir a exibição do título do Spinner
-		*/
-		withTitle: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		*	Propriedade para inibir a exibição do subtítulo do Spinner
-		*/
-		withSubtitle: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		*	Tamanho do componente ('sm', 'md' ou 'lg')
-		*/
 		size: {
 			type: String,
 			default: 'md',
-			validator: (value) => predefinedSizes.indexOf(value) > -1,
+			validator: (value) => sizeOptions.indexOf(value) > -1,
 		},
 		/**
 		*	Variante de cor do componente ('teal', 'green', 'blue',
@@ -81,7 +30,7 @@ export default {
 		variant: {
 			type: String,
 			default: 'green',
-			validator: (value) => predefinedColors.indexOf(value) > -1,
+			validator: (value) => colorOptions.indexOf(value) > -1,
 		},
 	},
 
@@ -114,6 +63,8 @@ $colors: (
 	'--amber': $al-400,
 );
 
+$size-sm: 16px;
+
 .spinner {
 	border-style: solid;
 	border-radius: 50%;
@@ -128,77 +79,66 @@ $colors: (
 
 	&--sm {
 		@extend .spinner;
-		width: 40px;
-		height: 40px;
-		border-width: 4px;
+		width: $size-sm;
+		height: $size-sm;
+		border-width: 3px;
 
 		&:before, &:after {
-			width: 4px;
-			height: 4px;
-			left: 2px;
+			width: 3px;
+			height: 3px;
+			left: -2px;
 		}
 
 		&:before {
-			top: 1px;
+			top: 7px;
 		}
 
 		&:after {
-			bottom: 1px;
+			bottom: 8px;
+			left: -1px;
 		}
 	}
 
 	&--md {
 		@extend .spinner;
-		width: 80px;
-		height: 80px;
-		border-width: 8px;
+		width: $size-sm * 2;
+		height: $size-sm * 2;
+		border-width: 5px;
 
 		&:before, &:after {
-			width: 8px;
-			height: 8px;
-			left: 4px;
+			width: 5px;
+			height: 5px;
+			left: 0px;
 		}
 
 		&:before {
-			top: 1px;
+			top: -2px;
 		}
 
 		&:after {
-			bottom: 1px;
+			bottom: -2px;
 		}
 	}
 
 	&--lg {
 		@extend .spinner;
-		width: 120px;
-		height: 120px;
-		border-width: 15px;
+		width: $size-sm * 4;
+		height: $size-sm * 4;
+		border-width: 8px;
 
 		&:before, &:after {
-			width: 15px;
-			height: 15px;
+			width: 8px;
+			height: 8px;
 			left: 1px;
 		}
 
 		&:before {
-			top: 1px;
+			top: 0px;
 		}
 
 		&:after {
-			bottom: 1px;
+			bottom: 0px;
 		}
-	}
-
-	&__title {
-		margin: mt(6);
-		@include subheading-2;
-		color: $n-300;
-	}
-
-	&__subtitle {
-		margin: mt(3);
-		@include caption;
-		color: $n-100;
 	}
 
 	@each $color, $variant in $colors {
@@ -209,6 +149,11 @@ $colors: (
 				background: $spinner-color;
 			}
 		}
+	}
+
+	&__container {
+		width: fit-content;
+		padding: pa(2);
 	}
 }
 
