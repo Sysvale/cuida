@@ -15,13 +15,11 @@ export const Template = (args, { argTypes }) => ({
 				value: 'option-2',
 				label: 'Opção 2',
 				disabled: false,
-				invalid: false,
 			},
 			option3 : {
 				value: 'option-3',
 				label: 'Opção 3',
 				disabled: true,
-				invalid: false,
 			},
 		};
 	},
@@ -118,7 +116,6 @@ export const docsDecorator = () => {
 			value: 'option-1',
 			label: 'Opção 1',
 			disabled: false,
-			invalid: false,
 		}}
 	>
 		{ Template.bind({}) }
