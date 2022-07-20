@@ -1,12 +1,17 @@
 <template>
 	<div
 		class="badge__container"
-		:class="predefinedStyle"
 	>
-		<div class="badge__content">
-			<!-- @slot Slot padrão utilizado para exibir o conteúdo dentro da badge -->
-			<slot/>
-		</div>
+		<span>{{ label }}</span>
+		<select :disabled="disabled" v-model="value">
+			<option 
+				v-for="option in options"
+				:key="option.value"
+				:placeholder="placeholder"
+			>
+				{{ option.value }}
+			</option>
+		</select>
 	</div>
 </template>
 
@@ -44,9 +49,9 @@ export default {
 		/**
 		 * Guarda o valor selecionado do select.
 		 */
-		selected: {
+		value: {
 			type: Object,
-			default: () => {},
+			default: {},
 		},
 	},
 
@@ -64,6 +69,7 @@ export default {
 				'amber',
 				'gray',
 			],
+			value: '',
 		};
 	},
 
@@ -73,6 +79,12 @@ export default {
 				return `badge--${this.variant}`;
 			}
 			return 'badge--gray';
+		},
+	},
+
+	watch: {
+		value(currentOption) {
+			this.$emit('input', currentOption);
 		},
 	},
 };
