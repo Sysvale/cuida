@@ -30,11 +30,11 @@ export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { Select },
 	template: /*html*/ `
-		<select
+		<form-drop-down
 			v-bind="$props" 
 		>
 			Conteúdo
-		</select>`,
+		</form-drop-down>`,
 });
 
 export const template = /*html*/ `
@@ -84,10 +84,10 @@ export const docsDecorator = () => {
 
 export const options = [
 	{
-		'foo': 'foo-value',
+		value: 'foo-value',
 	},
 	{
-		'bar': 'bar-value',
+		value: 'bar-value',
 	},
 ];
 
