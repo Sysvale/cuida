@@ -1,48 +1,99 @@
 <template>
 	<div id="cds-spinner">
-		<div :class="computedSpinnerClass"/>
 		<div
-			v-if="!noText"
-			:class="computedLabelClass"
+			id="spinner"
+			:class="computedSpinnerClass"
+		/>
+		<div
+			v-if="withTitle"
+			id="title"
+			class="spinner__title"
 		>
-			{{ label }}
+			{{ title }}
+		</div>
+		<div
+			v-if="withSubtitle"
+			id="subtitle"
+			class="spinner__subtitle"
+		>
+			{{ subtitle }}
 		</div>
 	</div>
 </template>
 
 <script>
+const predefinedColors = [
+	'teal',
+	'green',
+	'blue',
+	'indigo',
+	'violet',
+	'pink',
+	'red',
+	'orange',
+	'amber',
+];
+const predefinedSizes = ['sm', 'md', 'lg'];
+
 export default {
 	props: {
 		/**
-		*	Texto a ser exibido juntamente com o spinner
+		*	Texto a ser exibido como título do Spinner
 		*/
-		label: {
+		title: {
 			type: String,
-			default: 'Carregando...',
+			default: 'Insert title here',
 		},
 		/**
-		*	Propriedade para inibir a exibição da etiqueta do Spinner
+		*	Texto a ser exibido como subtítulo do Spinner
 		*/
-		noText: {
+		subtitle: {
+			type: String,
+			default: 'Insert subtitle here',
+		},
+		/**
+		*	Propriedade para inibir a exibição do título do Spinner
+		*/
+		withTitle: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		*	Tamanho do componente
+		*	Propriedade para inibir a exibição do subtítulo do Spinner
+		*/
+		withSubtitle: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		*	Tamanho do componente ('sm', 'md' ou 'lg')
 		*/
 		size: {
 			type: String,
 			default: 'md',
-			validator: (value) => ['sm', 'md', 'lg'].indexOf(value) > -1,
+			validator: (value) => predefinedSizes.indexOf(value) > -1,
+		},
+		/**
+		*	Variante de cor do componente ('teal', 'green', 'blue',
+			'indigo', 'violet', 'pink', 'red', 'orange', 'amber')
+		*
+		*/
+		variant: {
+			type: String,
+			default: 'green',
+			validator: (value) => predefinedColors.indexOf(value) > -1,
 		},
 	},
 
 	computed: {
-		computedSpinnerClass() {
+		computedSizeClass() {
 			return `spinner--${this.size}`;
 		},
-		computedLabelClass() {
-			return `spinner__label--${this.size}`;
+		computedColorClass() {
+			return `spinner--${this.variant}`;
+		},
+		computedSpinnerClass() {
+			return `${this.computedSizeClass} ${this.computedColorClass}`;
 		},
 	},
 };
@@ -51,32 +102,41 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
-$spinner-width: 15px;
-$spinner-color: #239F78;
+$colors: (
+	'--teal': $ts-400,
+	'--green': $gp-400,
+	'--blue': $bn-400,
+	'--indigo': $in-400,
+	'--violet': $vr-400,
+	'--pink': $pp-400,
+	'--red': $rc-400,
+	'--orange': $og-400,
+	'--amber': $al-400,
+);
 
 .spinner {
-	border-width: $spinner-width;
 	border-style: solid;
-	border-color: $spinner-color $spinner-color $spinner-color transparent;
 	border-radius: 50%;
 	animation: spin 1.5s infinite;
 	position: relative;
 
 	&:before, &:after {
 		content: '';
-		width: $spinner-width;
-		height: $spinner-width;
 		border-radius: 50%;
-		background: $spinner-color;
 		position: absolute;
-		left: 0.1px;
 	}
 
 	&--sm {
 		@extend .spinner;
 		width: 40px;
 		height: 40px;
-		border-width: $spinner-width;
+		border-width: 4px;
+
+		&:before, &:after {
+			width: 4px;
+			height: 4px;
+			left: 2px;
+		}
 
 		&:before {
 			top: 1px;
@@ -91,14 +151,12 @@ $spinner-color: #239F78;
 		@extend .spinner;
 		width: 80px;
 		height: 80px;
-		$spinner-width: 8px;
-
-		border-width: $spinner-width;
+		border-width: 8px;
 
 		&:before, &:after {
-			width: $spinner-width;
-			height: $spinner-width;
-			left: 3px;
+			width: 8px;
+			height: 8px;
+			left: 4px;
 		}
 
 		&:before {
@@ -114,7 +172,13 @@ $spinner-color: #239F78;
 		@extend .spinner;
 		width: 120px;
 		height: 120px;
-		border-width: $spinner-width;
+		border-width: 15px;
+
+		&:before, &:after {
+			width: 15px;
+			height: 15px;
+			left: 1px;
+		}
 
 		&:before {
 			top: 1px;
@@ -125,20 +189,25 @@ $spinner-color: #239F78;
 		}
 	}
 
-	&__label {
+	&__title {
 		margin: mt(6);
 		@include subheading-2;
+		color: $n-300;
+	}
 
-		&--sm {
-			@extend .spinner__label;
-		}
+	&__subtitle {
+		margin: mt(3);
+		@include caption;
+		color: $n-100;
+	}
 
-		&--md {
-			@extend .spinner__label;
-		}
-
-		&--lg {
-			@extend .spinner__label;
+	@each $color, $variant in $colors {
+		&#{$color} {
+			$spinner-color: $variant;
+			border-color: $spinner-color $spinner-color $spinner-color transparent;
+			&:before, &:after {
+				background: $spinner-color;
+			}
 		}
 	}
 }
