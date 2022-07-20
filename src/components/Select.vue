@@ -87,10 +87,14 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
+#cds-select {
+	display: flex;
+	flex-direction: column;
+}
 .select {
 	&__container {
 		border-radius: $border-radius-extra-small;
-		width: fit-content;
+		width: fit-content !important;
 		height: 40px;
 		border: 1px solid $n-40;
 		background: $n-0;
