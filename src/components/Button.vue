@@ -51,13 +51,6 @@ export default {
 			default: 'md',
 		},
 		/**
-		 * Especifica se o botão é protagonista.
-		 */
-		primary: {
-			type: Boolean,
-			default: true,
-		},
-		/**
 		 * Especifica o texto a ser apresentado no corpo do botão.
 		 */
 		text: {
@@ -123,22 +116,54 @@ export default {
 	}
 
 	$colors: (
-		'--teal': ('active': $ts-400, 'disabled': $ts-300),
-		'--green': ('active': $gp-400, 'disabled': $gp-300),
-		'--blue': ('active': $bn-400, 'disabled': $bn-300),
-		'--indigo': ('active': $in-400, 'disabled': $in-300),
-		'--violet': ('active': $vr-400, 'disabled': $vr-300),
-		'--pink': ('active': $pp-400, 'disabled': $pp-300),
-		'--red': ('active': $rc-400, 'disabled': $rc-300),
-		'--orange': ('active': $og-400, 'disabled': $og-300),
-		'--amber': ('active': $al-400, 'disabled': $al-300),
+		'--teal': (
+			'active': $ts-400,
+			'disabled': $ts-300,
+		),
+		'--green': (
+			'active': $gp-400,
+			'disabled': $gp-300,
+		),
+		'--blue': (
+			'active': $bn-400,
+			'disabled': $bn-300,
+		),
+		'--indigo': (
+			'active': $in-400,
+			'disabled': $in-300,
+		),
+		'--violet': (
+			'active': $vr-400,
+			'disabled': $vr-300,
+		),
+		'--pink': (
+			'active': $pp-400,
+			'disabled': $pp-300,
+		),
+		'--red': (
+			'active': $rc-400,
+			'disabled': $rc-300,
+		),
+		'--orange': (
+			'active': $og-400,
+			'disabled': $og-300,
+		),
+		'--amber': (
+			'active': $al-400,
+			'disabled': $al-300,
+		),
 	);
 
 	@each $color, $variants in $colors {
 		&#{$color} {
-			@each $state, $variant in $variants {
+			@each $state, $disabled-color in $variants {
 				&--#{$state} {
-					background-color: $variant;
+					background-color: $disabled-color;
+					color: $n-0;
+				}
+
+				&--#{$state}:hover {
+					background-color: darken($disabled-color, 5%);
 					color: $n-0;
 				}
 			}
