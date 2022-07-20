@@ -20,38 +20,76 @@ test('Component is mounted properly', () => {
 // disabled
 // chevron
 
-test('The component emits the open event when it is open', () => {
-	const wrapper = mount(Select, {
-		localVue,
+describe('Events tests', () => {
+	test('The component emits the open event when it is open', () => {
+		const wrapper = mount(Select, {
+			localVue,
+		});
+
+		expect(wrapper.find('#cds-select').exists()).toBe(true);
+		const select = wrapper.find('#cds-select');
+
+		select.trigger('click');
+
+		expect(wrapper.emitted().open).toBeTruthy();
 	});
 
-	expect(wrapper.find('#cds-select').exists()).toBe(true);
-	const select = wrapper.find('#cds-select');
+	test('The component makes its value reactive', () => {
+		const wrapper = mount(Select, {
+			localVue,
+			propsData: {
+				selected: {
+					'bar': 'bar-value',
+				},
+				options: [
+					{
+						'foo': 'foo-value',
+					},
+					{
+						'bar': 'bar-value',
+					},
+				],
+			}
+		});
 
-	select.trigger('click');
+		const firstOption = wrapper.find('select:first-child');
 
-	expect(wrapper.emitted().open).toBeTruthy();
+		expect(firstOption.exists()).toBe(true);
+
+		wrapper.find('select').trigger('click');
+		firstOption.trigger('click');
+
+		expect(wrapper.props.selected).toBe({
+			'bar': 'bar-value',
+		});
+	});
 });
 
-test('The component makes its value reactive', () => {
+test("if the click event is not emitted when the select is clicked and is disabled'", () => {
 	const wrapper = mount(Select, {
 		localVue,
-		props: {
-			value: 'bar',
+		propsData: {
+			selected: {
+				'bar': 'bar-value',
+			},
 			options: [
 				{
 					'foo': 'foo-value',
-				}
+				},
+				{
+					'bar': 'bar-value',
+				},
 			],
+			disabled: true,
 		}
 	});
 
-	expect(wrapper.find('select:first-child').exists()).toBe(true);
-	const option = wrapper.find('select:first-child');
+	const select = wrapper.find('#cds-select');
 
-	option.trigger('click');
+	expect(select.exists()).toBe(true);
+	select.trigger('click');
 
-	expect(wrapper.props.value).toBe('foo');
+	expect(wrapper.emitted().click).toBeFalsy();
 });
 
 // describe('Prop variant tests', () => {
