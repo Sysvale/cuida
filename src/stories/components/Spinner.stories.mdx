@@ -15,7 +15,7 @@ import Spinner from '../../components/Spinner.vue';
 			control: {
 				type: 'select',
 				options: [
-					'teal',
+					'turquoise',
 					'green',
 					'blue',
 					'indigo',
@@ -44,6 +44,8 @@ export const Template = (args, { argTypes }) => ({
 
 export const template = /*html*/ `
 	<cds-spinner
+		size="md"
+		variant="green"
 	/>`;
 
 export const docsDecorator = () => {
