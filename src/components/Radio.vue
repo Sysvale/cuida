@@ -122,7 +122,6 @@ export default {
 	display: inline-block;
 	color: $n-800;
 }
-
 .cds-radio [type="radio"]:checked + label:before,
 .cds-radio [type="radio"]:not(:checked) + label:before {
 	content: '';
@@ -134,7 +133,6 @@ export default {
 	border: 1px solid $n-200;
 	border-radius: 100%;
 	background: $n-0;
-	margin-top: 2px;
 }
 
 .cds-radio [type="radio"]:checked + label:before {
@@ -144,12 +142,11 @@ export default {
 .cds-radio [type="radio"]:checked + label:after,
 .cds-radio [type="radio"]:not(:checked) + label:after {
 	content: '';
-	width: 9px;
-	height: 9px;
+	width: 8px;
+	height: 8px;
 	background: $gp-500;
 	border: 1px solid $gp-500;
 	position: absolute;
-	margin-top: 2px;
 	top: 3.7px;
 	left: 3.7px;
 	border-radius: 100%;
@@ -174,7 +171,6 @@ export default {
 	transition: all 0.3s ease;
 	background: $n-30;
 	color: $n-30;
-	cursor: not-allowed;
 }
 
 .cds-radio input[type="radio"][invalid="true"]:not(:checked) + label:before {
