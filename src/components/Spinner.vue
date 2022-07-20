@@ -23,7 +23,7 @@ export default {
 			validator: (value) => sizeOptions.indexOf(value) > -1,
 		},
 		/**
-		*	Variante de cor do componente ('teal', 'green', 'blue',
+		*	Variante de cor do componente ('turquoise', 'green', 'blue',
 			'indigo', 'violet', 'pink', 'red', 'orange', 'amber')
 		*
 		*/
@@ -52,7 +52,7 @@ export default {
 @import '../assets/sass/app.scss';
 
 $colors: (
-	'--teal': $ts-400,
+	'--turquoise': $ts-400,
 	'--green': $gp-400,
 	'--blue': $bn-400,
 	'--indigo': $in-400,
@@ -68,7 +68,7 @@ $size-sm: 16px;
 .spinner {
 	border-style: solid;
 	border-radius: 50%;
-	animation: spin 1.5s infinite;
+	animation: spin 0.8s infinite linear;
 	position: relative;
 
 	&:before, &:after {
