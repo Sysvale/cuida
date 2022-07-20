@@ -47,6 +47,7 @@ import {
 	Tooltip,
 	ToggleSwitch,
 	CollapsibleContainer,
+  Link,
 	Spinner,
 	Button,
 } from '../src/components';
@@ -115,6 +116,7 @@ Vue.component('tooltip', Tooltip);
 Vue.component('source-code-wrapper', SourceCodeWrapper);
 Vue.component('toggle-switch', ToggleSwitch);
 Vue.component('shadow-builder', Shadows);
+Vue.component('link', Link);
 Vue.component('spinner', Spinner);
 Vue.component('btn', Button);
 
