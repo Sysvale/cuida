@@ -15,11 +15,6 @@ test('Component is mounted properly', () => {
 	expect(wrapper).toMatchSnapshot();
 });
 
-// evento open
-// select
-// disabled
-// chevron
-
 describe('Events tests', () => {
 	test('The component emits the open event when it is open', () => {
 		const wrapper = mount(Select, {
@@ -39,17 +34,17 @@ describe('Events tests', () => {
 			localVue,
 			propsData: {
 				selected: {
-					'bar': 'bar-value',
+					bar: 'bar-value',
 				},
 				options: [
 					{
-						'foo': 'foo-value',
+						foo: 'foo-value',
 					},
 					{
-						'bar': 'bar-value',
+						bar: 'bar-value',
 					},
 				],
-			}
+			},
 		});
 
 		const firstOption = wrapper.find('select:first-child');
@@ -60,28 +55,28 @@ describe('Events tests', () => {
 		firstOption.trigger('click');
 
 		expect(wrapper.props.selected).toBe({
-			'bar': 'bar-value',
+			bar: 'bar-value',
 		});
 	});
 });
 
-test("if the click event is not emitted when the select is clicked and is disabled'", () => {
+test('if the click event is not emitted when the select is clicked and is disabled', () => {
 	const wrapper = mount(Select, {
 		localVue,
 		propsData: {
 			selected: {
-				'bar': 'bar-value',
+				bar: 'bar-value',
 			},
 			options: [
 				{
-					'foo': 'foo-value',
+					foo: 'foo-value',
 				},
 				{
-					'bar': 'bar-value',
+					bar: 'bar-value',
 				},
 			],
 			disabled: true,
-		}
+		},
 	});
 
 	const select = wrapper.find('#cds-select');
@@ -91,19 +86,3 @@ test("if the click event is not emitted when the select is clicked and is disabl
 
 	expect(wrapper.emitted().click).toBeFalsy();
 });
-
-// describe('Prop variant tests', () => {
-// 	const wrapper = mount(Badge, {
-// 		localVue,
-// 		slots: {
-// 			default: 'Conteúdo',
-// 		},
-// 	});
-
-// 	wrapper.vm.predefinedColors.forEach((color) => {
-// 		test(`if the computed property changes when the prop variant is setted to '${color}'`, async () => {
-// 			await wrapper.setProps({ variant: color });
-// 			expect(wrapper.vm.predefinedStyle).toBe(`badge--${color}`);
-// 		});
-// 	});
-// });
