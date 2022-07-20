@@ -167,7 +167,7 @@ export default {
 			height: 18px;
 			top: 3px;
 			border-radius: $border-radius-button;
-			border: 1px solid $n-500;
+			border: 1px solid $n-400;
 
 			&:after {
 				border: 2px solid $n-0;
@@ -226,11 +226,11 @@ export default {
 
 	.checkbox__label {
 		@include body-2;
-		color: $n-500;
+		color: $n-600;
 
 		&--disabled {
 			@extend .checkbox__label;
-			color: $n-40;
+			color: $n-300;
 		}
 	}
 }
