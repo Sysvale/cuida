@@ -27,3 +27,4 @@ export { default as ClusteredMultiselect } from './ClusteredMultiselect.vue';
 export { default as CollapsibleContainer } from './CollapsibleContainer.vue';
 export { default as Loader } from './Loader.vue';
 export { default as Spinner } from './Spinner.vue';
+export { default as Button } from './Button.vue';

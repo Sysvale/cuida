@@ -50,6 +50,7 @@ export default {
 			],
 			borderVariables: [
 				'$border-radius-button',
+				'$border-radius-lil',
 				'$border-radius-extra-small',
 				'$border-radius-small',
 				'$border-radius-medium',
@@ -68,12 +69,12 @@ export default {
 
 	computed: {
 		items() {
-			const factors = [1, 2, 3, 4, 5, 6];
+			const factors = [1, 1.5, 2, 3, 4, 5, 6];
 			let items = [];
-			for (let n = 0; n < 7; n++) {
+			for (let n = 0; n < 8; n++) {
 				items.push({
 					token: this.borderVariables[n],
-					value: n < 6 ? `${4 * factors[n]}px` : '50%',
+					value: n < 7 ? `${4 * factors[n]}px` : '50%',
 				});
 			}
 
@@ -96,7 +97,7 @@ export default {
 }
 
 .copy-clip {
-	width: fit-content;	
+	width: fit-content;
 	padding: pYX(2, 3);
 	border-radius: 16px;
 	border: 1px solid $n-0;
