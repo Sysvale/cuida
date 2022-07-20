@@ -18,7 +18,6 @@
 				:class="{
 					'checkbox__content--checked': internalValue,
 					'checkbox__content--disabled': disabled,
-					'checkbox__content--indeterminate': indeterminate && !internalValue,
 				}"
 				@click.stop="toggleValue"
 			/>
@@ -56,14 +55,6 @@ export default {
 			default: false,
 		},
 		/**
-		 * Exibe o checkbox com o estado de indeterminação 
-		 * (deve ser utilizada com operador .sync)
-		 */
-		indeterminate: {
-			type: Boolean,
-			default: false,
-		},
-		/**
 		 * Exibe a etiqueta do checkbox
 		 */
 		label: {
@@ -85,10 +76,6 @@ export default {
 		};
 	},
 
-	mounted() {
-		this.updateIndeterminate(this.indeterminate);
-	},
-
 	watch: {
 		internalValue(value) {
 			/**
@@ -102,15 +89,8 @@ export default {
 		value: {
 			handler(newValue) {
 				this.internalValue = newValue;
-				this.updateIndeterminate(false);
 			},
 			immediate: true,
-		},
-
-		indeterminate: {
-			handler(newValue) {
-				this.updateIndeterminate(newValue);
-			},
 		},
 	},
 
@@ -119,21 +99,6 @@ export default {
 			if(this.disabled) return;
 			this.internalValue = !this.internalValue;
 		},
-		updateIndeterminate(value) {
-			if(this.internalValue) return;
-
-			const input = document.getElementById('cds-checkbox-option-input');
-
-			if(input) {
-				input.indeterminate = value;
-				/**
-					 * Evento utilizado para atualizar a prop indeterminate.
-					* @event input
-					* @type {Event}
-				*/
-				this.$emit('update:indeterminate', value);
-			}
-		}
 	}
 };
 </script>
@@ -198,22 +163,7 @@ export default {
 			border: none !important;
 		}
 
-		input[type=checkbox]:indeterminate + label:after {
-			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-			filter: alpha(opacity=100);
-			opacity: 1;
-			border-left: none !important;
-			top: 4px !important;
-			width: 9px !important;
-			transform: rotate(0deg) !important;
-		}
-
 		&--checked {
-			background-color: $gp-500 !important;
-			border: none !important;
-		}
-
-		&--indeterminate {
 			background-color: $gp-500 !important;
 			border: none !important;
 		}
