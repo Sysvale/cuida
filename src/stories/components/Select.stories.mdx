@@ -82,6 +82,7 @@ export const docsDecorator = () => {
 
 ## Preview
 
+export const value = {};
 export const options = [
 	{
 		value: 'foo-value',
@@ -97,8 +98,8 @@ export const options = [
 		name="Select"
 		decorators={[docsDecorator]}
 		args={{
+			value,
 			options,
-			label: 'Título',
 		}}
 	>
 		{ Template.bind({}) }

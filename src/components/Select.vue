@@ -1,13 +1,16 @@
 <template>
 	<div
-		class="badge__container"
+		id="cds-select"
 	>
 		<span>{{ label }}</span>
-		<select :disabled="disabled" v-model="value">
-			<option 
+		<select
+			:disabled="disabled"
+			v-model="selected"
+			class="select__container"
+		>
+			<option
 				v-for="option in options"
 				:key="option.value"
-				:placeholder="placeholder"
 			>
 				{{ option.value }}
 			</option>
@@ -24,6 +27,7 @@ export default {
 		label: {
 			type: String,
 			default: 'Label',
+			required: true,
 		},
 		/**
 		 * Prop que indica o texto que instrui o usuário a como interagir com o select.
@@ -38,6 +42,7 @@ export default {
 		disabled: {
 			type: Boolean,
 			default: false,
+			required: false,
 		},
 		/**
 		 * Especifica a lista de opções do select.
@@ -45,31 +50,21 @@ export default {
 		options: {
 			type: Array,
 			default: () => [],
+			required: true,
 		},
 		/**
 		 * Guarda o valor selecionado do select.
 		 */
 		value: {
 			type: Object,
-			default: {},
+			default: () => {},
+			required: true,
 		},
 	},
 
 	data() {
 		return {
-			predefinedColors: [
-				'turquoise',
-				'green',
-				'blue',
-				'indigo',
-				'violet',
-				'pink',
-				'red',
-				'orange',
-				'amber',
-				'gray',
-			],
-			value: '',
+			selected: this.value,
 		};
 	},
 
@@ -83,7 +78,7 @@ export default {
 	},
 
 	watch: {
-		value(currentOption) {
+		selected(currentOption) {
 			this.$emit('input', currentOption);
 		},
 	},
@@ -92,11 +87,13 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
-.badge {
+.select {
 	&__container {
-		border-radius: 50px !important;
+		border-radius: $border-radius-extra-small;
 		width: fit-content;
-		padding: pYX(0, 2);
+		height: 40px;
+		border: 1px solid $n-40;
+		background: $n-0;
 	}
 
 	&__content {
