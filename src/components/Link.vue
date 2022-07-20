@@ -1,6 +1,13 @@
 <template>
-	<div class="link__container">
-		<a :href="href">{{ text }}</a>
+	<div class="cds-link__container">
+		<a :href="href" :target="newTab ? '_blank' : false">
+			<!-- @slot Slot padrão para renderização de conteúdo customizado do texto do link. -->
+			<slot class="cds-link__text">
+				<span>
+					{{ text }}
+				</span>
+			</slot>
+		</a>
 	</div>
 </template>
 
@@ -13,6 +20,13 @@ export default {
 		href: {
 			type: String,
 			required: true,
+		},
+		/**
+        *   Prop utilizada para o redirecionamento do link ser a partir de uma nova aba.
+        */
+		newTab: {
+			type: Boolean,
+			default: false,
 		},
 		/**
 		*	Texto utilizado no endereço da URL para o usuário.
