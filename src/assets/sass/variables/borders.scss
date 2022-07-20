@@ -1,4 +1,5 @@
 $border-radius-button: 4px;
+$border-radius-lil: 6px;
 $border-radius-extra-small: 8px;
 $border-radius-small: 12px;
 $border-radius-medium: 16px;
@@ -11,6 +12,7 @@ $border-radius: ();
 $border-radius: map-merge(
 	(
 		'button': $border-radius-button,
+		'lil': $border-radius-lil,
 		'extra-small': $border-radius-extra-small,
 		'small': $border-radius-small,
 		'medium': $border-radius-medium,
