@@ -1,9 +1,9 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
-import Badge from '../../components/Badge.vue';
+import Select from '../../components/Select.vue';
 
 <Meta
 	title="Componentes/Forms/Select"
-	component={ Badge }
+	component={ Select }
 	argTypes={{
 		variant: {
 			control:{
@@ -28,21 +28,21 @@ import Badge from '../../components/Badge.vue';
 
 export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
-	components: { Badge },
+	components: { Select },
 	template: /*html*/ `
-		<badge
+		<select
 			v-bind="$props" 
 		>
 			Conteúdo
-		</badge>`,
+		</select>`,
 });
 
 export const template = /*html*/ `
-	<cds-badge 
+	<cds-select 
 		variant="gray"
 	>
 		Conteúdo
-	</cds-badge>`;
+	</cds-select>`;
 
 export const docsDecorator = () => {
 	return {
@@ -82,16 +82,27 @@ export const docsDecorator = () => {
 
 ## Preview
 
+export const options = [
+	{
+		'foo': 'foo-value',
+	},
+	{
+		'bar': 'bar-value',
+	},
+];
+
+
 <Canvas>
 	<Story
-		name="Badge"
+		name="Select"
 		decorators={[docsDecorator]}
 		args={{
-			variant: 'gray',
+			options,
+			label: 'Título',
 		}}
 	>
 		{ Template.bind({}) }
 	</Story>
 </Canvas>
 
-<ArgsTable story="Badge" />
+<ArgsTable story="Select" />
