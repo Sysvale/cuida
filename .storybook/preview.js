@@ -25,6 +25,7 @@ import {
 	ProgressBar,
 	ActionsList,
 	RadioButtonGroup,
+	Radio,
 	Timeline,
 	NavBar,
 	Popover,
@@ -47,6 +48,10 @@ import {
 	Tooltip,
 	ToggleSwitch,
 	CollapsibleContainer,
+	Checkbox,
+	Link,
+	Spinner,
+	Button,
 } from '../src/components';
 
 import {
@@ -86,6 +91,7 @@ Vue.component('actions-list', ActionsList);
 Vue.component('progress-bar', ProgressBar);
 Vue.component('actions-list', ActionsList);
 Vue.component('radio-button-group', RadioButtonGroup);
+Vue.component('radio', Radio);
 Vue.component('timeline', Timeline);
 Vue.component('nav-bar', NavBar);
 Vue.component('popover', Popover);
@@ -113,6 +119,10 @@ Vue.component('tooltip', Tooltip);
 Vue.component('source-code-wrapper', SourceCodeWrapper);
 Vue.component('toggle-switch', ToggleSwitch);
 Vue.component('shadow-builder', Shadows);
+Vue.component('checkbox', Checkbox);
+Vue.component('link', Link);
+Vue.component('spinner', Spinner);
+Vue.component('btn', Button);
 
 addParameters({
 	options: {

@@ -1,0 +1,94 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Spinner from '../../components/Spinner.vue';
+
+<Meta
+	title="Componentes/Display/Spinner"
+	component={ Spinner }
+	argTypes={{
+		size: {
+			control: {
+				type: 'select',
+				options: ['sm', 'md', 'lg'],
+			}
+		},
+		variant: {
+			control: {
+				type: 'select',
+				options: [
+					'turquoise',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+				],
+			}
+		},
+	}}
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { Spinner },
+	template: /*html*/ `
+		<center>
+			<spinner
+				v-bind="$props"
+			/>
+		</center>
+	`,
+});
+
+export const template = /*html*/ `
+	<cds-spinner
+		size="md"
+		variant="green"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
+# Spinner
+
+### Spinners é um componente utilizado para indicar que o progresso de uma operação ainda não foi finalizado.
+---
+<br />
+
+## Recomendamos o uso de Spinners quando:
+- For necessário impedir a visualização e navegação do conteúdo de páginas enquanto houver alguma pendência de operação.
+
+<br />
+
+## Não recomendamos o uso de Spinners quando:
+- A visualização e navegação não puder ser interrompida.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Spinner"
+		decorators={[docsDecorator]}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Spinner" />

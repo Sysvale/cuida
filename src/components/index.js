@@ -2,6 +2,7 @@
 export { default as ProgressBar } from './ProgressBar.vue';
 export { default as ActionsList } from './ActionsList.vue';
 export { default as RadioButtonGroup } from './RadioButtonGroup.vue';
+export { default as Radio } from './Radio.vue';
 export { default as Timeline } from './Timeline.vue';
 export { default as NavBar } from './NavBar.vue';
 export { default as Popover } from './Popover.vue';
@@ -26,3 +27,7 @@ export { default as ToggleSwitch } from './ToggleSwitch.vue';
 export { default as ClusteredMultiselect } from './ClusteredMultiselect.vue';
 export { default as CollapsibleContainer } from './CollapsibleContainer.vue';
 export { default as Loader } from './Loader.vue';
+export { default as Checkbox } from './Checkbox.vue';
+export { default as Link } from './Link.vue';
+export { default as Spinner } from './Spinner.vue';
+export { default as Button } from './Button.vue';
