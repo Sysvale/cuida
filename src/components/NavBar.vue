@@ -6,6 +6,7 @@
 		<b-nav
 			:class="isLightThemed ? 'cds-nav-bar--light' : 'cds-nav-bar--dark'"
 			:style="activeBorderStyle"
+			@contextmenu.prevent="handleRightClick(null)"
 		>
 			<component
 				v-for="(item, i) in computedItems"
@@ -18,6 +19,7 @@
 				:to="routerPushTo(item)"
 				class="cds-nav-bar__item-container"
 				@click.stop="handleClick(item)"
+				@contextmenu.stop="handleRightClick(item)"
 			>
 				<template
 					v-if="isDropdown(item)"
@@ -176,6 +178,15 @@ export default {
 			* @type {Event}
 				*/
 			this.$emit('click', this.internalActiveItem);
+		},
+
+		handleRightClick(item) {
+			/**
+			 * Evento emitido quando um dos itens da NavBar é clicado com o botão direito
+			* @event right-click
+			* @type {Event}
+				*/
+			this.$emit('right-click', item);
 		},
 
 		resolveRoute({ route, path }) {
