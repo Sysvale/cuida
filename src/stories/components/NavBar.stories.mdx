@@ -31,8 +31,14 @@ export const Template = (args, { argTypes }) => ({
 	template: /*html*/ `
 		<navBar
 			v-bind="$props" 
+			@right-click="handle"
 		/>
 	`,
+	methods: {
+		handle(element) {
+			console.log(element);
+		},
+	},
 });
 
 export const template = /*html*/ `
