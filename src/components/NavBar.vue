@@ -19,7 +19,7 @@
 				:to="routerPushTo(item)"
 				class="cds-nav-bar__item-container"
 				@click.stop="handleClick(item)"
-				@contextmenu.stop="(event) => handleRightClick(event, item)"
+				@contextmenu.prevent.stop="(event) => handleRightClick(event, item)"
 			>
 				<template
 					v-if="isDropdown(item)"
