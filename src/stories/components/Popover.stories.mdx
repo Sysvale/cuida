@@ -100,21 +100,19 @@ export const docsDecorator = () => {
 
 # Popover
 
-### Popovers são pop-ups que surgem quando o usuário clica em um determinado elemento.
-### São usados para emular o comportamento de tooltips, e para mostrar conteúdos que estavam previamente ocultos.
+### O popover é um componente utilizado para mostrar informações contextuais a partir de um clique em determinado elemento. Após o clique a informação oculta do elemento surge por meio de um contêiner, fornecendo informações e ações para aquele contexto especifico.
+### <strong> Observação: </strong> Mantenha o conteúdo popover breve. Os usuários precisam fazer uma seleção ou inserir informações rapidamente para concluir a tarefa.
 ---
 <br />
 
 ## Recomendamos o uso de Popovers quando:
-- Se deseja colocar filtros ou textos que serão apresentados apenas após a iteração do usuário com algum elemento da interface.
+- For necessário exibir informações contextuais em um elemento junto com uma ação, sem necessitar transitar entre as páginas ou bloquear a página atual.
 
 <br />
 
 ## Não recomendamos o uso de Popovers quando:
-- For necessário o uso de um modal.
-- Se está procurando uma solução de navegação.
-- Utilizado junto a forms para registrar algo.
-- Se deseja utilizar o componente com muito conteúdo.
+- Houver apenas texto não interativo. Nesse caso, considere usar um Tooltip.
+- Evite usar popovers para formulários ou conteúdo de imagem. Considere usar um modal em vez disso.
 
 <br />
 
