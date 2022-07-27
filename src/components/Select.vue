@@ -11,10 +11,12 @@
 
 		<div
 			class="select__container"
+			:class="fluid ? 'select__container--fluid' : 'select__container--fit'"
 		>
 			<input
+				v-model="testText"
 				v-on-click-outside="hide"
-				:class="active ? 'select__input--opened' : 'select__input--closed'"
+				:class="inputClass"
 				type="text"
 				@click="activeSelection"
 				onkeypress="return false;"
@@ -24,13 +26,21 @@
 			<div
 				v-if="active"
 				class="select__options"
+				:class="{
+					'select__options--sm': size === 'sm',
+					'select__options--md': size === 'md',
+					'select__options--lg': size === 'lg',
+					'select__options--fluid': fluid,
+				}"
 			>
 				<div
 					v-for="option in options"
 					:key="option.value"
 					class="option__text"
+					@click="testText = option.value"
 				>
-					<span>
+					<span
+					>
 						{{ option.value }}
 					</span>
 				</div>
@@ -45,6 +55,7 @@
 
 <script>
 import { directive as onClickOutside } from 'vue-on-click-outside';
+import { sizes } from '../utils';
 
 export default {
 	props: {
@@ -64,14 +75,6 @@ export default {
 			default: 'Selecione...',
 		},
 		/**
-		 * Prop que indica o estado do select.
-		 */
-		disabled: {
-			type: Boolean,
-			default: false,
-			required: false,
-		},
-		/**
 		 * Especifica a lista de opções do select.
 		 */
 		options: {
@@ -87,6 +90,29 @@ export default {
 			default: () => {},
 			required: true,
 		},
+		/**
+		 * Define o tamanho do Select. As opções são 'sm', 'md', 'lg'
+		 */
+		size: {
+			type: String,
+			default: 'md',
+		},
+		/**
+		 * Prop que se a largura do select deve ser fluida.
+		 */
+		fluid: {
+			type: Boolean,
+			default: false,
+			required: false,
+		},
+		/**
+		 * Prop que indica o estado do select.
+		 */
+		disabled: {
+			type: Boolean,
+			default: false,
+			required: false,
+		},
 	},
 
 	directives: {
@@ -98,6 +124,7 @@ export default {
 			selected: this.value,
 			active: false,
 			id: null,
+			testText: '',
 		};
 	},
 
@@ -106,11 +133,14 @@ export default {
 	},
 
 	computed: {
-		predefinedStyle() {
-			if (this.predefinedColors.indexOf(this.variant) > -1) {
-				return `badge--${this.variant}`;
-			}
-			return 'badge--gray';
+		inputClass() {
+			let returningClass = '';
+
+			returningClass = this.active ? 'select__input--opened' : 'select__input--closed';
+			returningClass += ` select__input--${sizes.find((item) => item === this.size)}`;
+			returningClass += this.fluid ? ' select__input--fluid' : ' select__input--fit';
+
+			return returningClass;
 		},
 	},
 
@@ -147,19 +177,18 @@ export default {
 
 .select {
 	&__input {
-		max-width: 576px;
-		min-width: 120px;
 		height: 40px;
 		border: none;
 		outline: 1px solid $n-50;
 		background: $n-0;
-		padding-right: spacer(5);
+		padding-right: spacer(8);
 		padding-left: spacer(3);
 		color: $n-600;
 		caret-color: transparent;
 		cursor: pointer;
 		background-color: $n-0;
 		@include subheading-3;
+		text-overflow: ellipsis;
 
 		&--closed {
 			@extend .select__input;
@@ -171,6 +200,22 @@ export default {
 			border-top-left-radius: $border-radius-extra-small;
 			border-top-right-radius: $border-radius-extra-small;
 		}
+
+		&--sm {
+			width: 150px;
+		}
+
+		&--md {
+			width: 300px;
+		}
+
+		&--lg {
+			width: 600px;
+		}
+
+		&--fluid {
+			width: 100%;
+		}
 	}
 
 	&__label {
@@ -181,8 +226,15 @@ export default {
 	}
 
 	&__container {
-		width: fit-content;
 		position: relative;
+
+		&--fluid {
+			width: 100%;
+		}
+
+		&--fit {
+			width: fit-content;
+		}
 	}
 
 	&__chevron--closed {
@@ -256,6 +308,25 @@ export default {
 		margin-top: 1px;
 		justify-items: center;
 		@include subheading-3;
+		text-overflow: ellipsis;
+		max-height: 300px;
+		overflow: scroll;
+
+		&--sm {
+			width: 150px;
+		}
+
+		&--md {
+			width: 300px;
+		}
+
+		&--lg {
+			width: 600px;
+		}
+
+		&--fluid {
+			width: 100%;
+		}
 	}
 
 }
@@ -263,6 +334,7 @@ export default {
 .option {
 	&__text {
 		padding: pYX(2, 3);
+		text-overflow: ellipsis;
 
 		&:hover {
 			background-color: $n-20;

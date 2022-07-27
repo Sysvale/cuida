@@ -5,25 +5,13 @@ import Select from '../../components/Select.vue';
 	title="Componentes/Forms/Select"
 	component={ Select }
 	argTypes={{
-		variant: {
-			control:{
+		size: { 
+			control: { 
 				type: 'select',
-				options: [
-					'turquoise',
-					'green',
-					'blue',
-					'indigo',
-					'violet',
-					'pink',
-					'red',
-					'orange',
-					'amber',
-					'gray',
-				],
+				options: ['sm', 'md', 'lg']
 			}
 		},
-	}
-}
+	}}
 />
 
 export const Template = (args, { argTypes }) => ({
@@ -92,6 +80,24 @@ export const options = [
 	},
 	{
 		value: 'Naruto',
+	},
+	{
+		value: 'Esquadrão suicida',
+	},
+	{
+		value: 'Pantera negra',
+	},
+	{
+		value: 'Dragon Ball',
+	},
+	{
+		value: 'Capitão América 2 - O Soldado Invernal',
+	},
+	{
+		value: 'Pokemon',
+	},
+	{
+		value: 'Borat: o segundo melhor repórter do glorioso país Cazaquistão viaja à América',
 	},
 ];
 
