@@ -207,6 +207,10 @@ export default {
 		@include subheading-3;
 		text-overflow: ellipsis;
 
+		&:hover {
+			outline: 1px solid $n-200;
+		}
+
 		&--closed {
 			@extend .select__input;
 			border-radius: $border-radius-extra-small;
