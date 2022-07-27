@@ -1,0 +1,15 @@
+name: "Tester 🔧"
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: 🔧 Build
+        run:
+          npm ci
+          npm run build-storybook
+      - name: Test 🟢
+        run: npm run test:unit
