@@ -9,6 +9,13 @@
 			{{ label }}
 		</span>
 
+		<span
+			v-if="required"
+			class="select--required"
+		>
+			*
+		</span>
+
 		<div
 			class="select__container"
 			:class="fluid ? 'select__container--fluid' : 'select__container--fit'"
@@ -60,7 +67,7 @@ import { sizes } from '../utils';
 export default {
 	props: {
 		/**
-		 * Prop que especifica o título do select.
+		 * Especifica o título do select.
 		 */
 		label: {
 			type: String,
@@ -68,7 +75,7 @@ export default {
 			required: true,
 		},
 		/**
-		 * Prop que indica o texto que instrui o usuário a como interagir com o select.
+		 * Indica o texto que instrui o usuário a como interagir com o select.
 		 */
 		placeholder: {
 			type: String,
@@ -91,14 +98,23 @@ export default {
 			required: true,
 		},
 		/**
-		 * Define o tamanho do Select. As opções são 'sm', 'md', 'lg'
+		 * Controla a exibição do asterísco indicativo de campo obrigatório.
+		 */
+		required: {
+			type: Boolean,
+			default: false,
+			required: false,
+		},
+		/**
+		 * Define o tamanho do Select. As opções são 'sm', 'md', 'lg'.
 		 */
 		size: {
 			type: String,
 			default: 'md',
+			required: false,
 		},
 		/**
-		 * Prop que se a largura do select deve ser fluida.
+		 * Especifica se a largura do select deve ser fluida.
 		 */
 		fluid: {
 			type: Boolean,
@@ -106,7 +122,7 @@ export default {
 			required: false,
 		},
 		/**
-		 * Prop que indica o estado do select.
+		 * Especifica o status de interação do select.
 		 */
 		disabled: {
 			type: Boolean,
@@ -231,6 +247,11 @@ export default {
 		&--disabled::placeholder {
 			color: $n-100;
 		}
+	}
+
+	&--required {
+		color: $rc-600;
+		font-weight: $font-weight-semibold;
 	}
 
 	&__label {
