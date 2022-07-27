@@ -10,6 +10,5 @@ jobs:
       - name: 🔧 Build
         run:
           npm ci
-          npm run build-storybook
-      - name: Test 🟢
+      - name: 🟢 Test
         run: npm run test:unit
