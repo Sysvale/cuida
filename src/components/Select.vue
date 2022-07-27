@@ -139,6 +139,7 @@ export default {
 			returningClass = this.active ? 'select__input--opened' : 'select__input--closed';
 			returningClass += ` select__input--${sizes.find((item) => item === this.size)}`;
 			returningClass += this.fluid ? ' select__input--fluid' : ' select__input--fit';
+			returningClass += this.disabled ? ' select__input--disabled' : '';
 
 			return returningClass;
 		},
@@ -216,6 +217,20 @@ export default {
 		&--fluid {
 			width: 100%;
 		}
+
+		&--disabled {
+			background-color: $n-20;
+			outline: none;
+			cursor: default;
+		}
+
+		&::placeholder {
+			color: $n-300;
+		}
+
+		&--disabled::placeholder {
+			color: $n-100;
+		}
 	}
 
 	&__label {
@@ -242,7 +257,6 @@ export default {
 		top: 6px;
 		right: 2px;
 		display: block;
-		background: $n-0;
 		height: 32px;
 		width: 32px;
 		pointer-events: none;
@@ -273,7 +287,6 @@ export default {
 		top: 6px;
 		right: 2px;
 		display: block;
-		background: $n-0;
 		height: 32px;
 		width: 32px;
 		pointer-events: none;
@@ -310,7 +323,7 @@ export default {
 		@include subheading-3;
 		text-overflow: ellipsis;
 		max-height: 300px;
-		overflow: scroll;
+		overflow: auto;
 
 		&--sm {
 			width: 150px;
