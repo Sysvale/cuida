@@ -14,7 +14,7 @@
 		>
 			<input
 				v-on-click-outside="hide"
-				class="select__input"
+				:class="active ? 'select__input--opened' : 'select__input--closed'"
 				type="text"
 				@click="activeSelection"
 				onkeypress="return false;"
@@ -147,11 +147,11 @@ export default {
 
 .select {
 	&__input {
-		border-radius: $border-radius-extra-small;
 		max-width: 576px;
 		min-width: 120px;
 		height: 40px;
-		border: 1px solid $n-50;
+		border: none;
+		outline: 1px solid $n-50;
 		background: $n-0;
 		padding-right: spacer(5);
 		padding-left: spacer(3);
@@ -159,9 +159,17 @@ export default {
 		caret-color: transparent;
 		cursor: pointer;
 		background-color: $n-0;
+		@include subheading-3;
 
-		&:focus-visible {
-			outline: none;
+		&--closed {
+			@extend .select__input;
+			border-radius: $border-radius-extra-small;
+		}
+
+		&--opened {
+			@extend .select__input;
+			border-top-left-radius: $border-radius-extra-small;
+			border-top-right-radius: $border-radius-extra-small;
 		}
 	}
 
@@ -241,10 +249,13 @@ export default {
 
 	&__options {
 		outline: 1px solid $n-50;
-		border-radius: $border-radius-extra-small;
+		border-bottom-left-radius: $border-radius-extra-small;
+		border-bottom-right-radius: $border-radius-extra-small;
 		display: flex;
 		flex-direction: column;
+		margin-top: 1px;
 		justify-items: center;
+		@include subheading-3;
 	}
 
 }
