@@ -42,9 +42,9 @@
 				class="select__options"
 				ref="select-options"
 				:class="{
-					'select__options--sm': size === 'sm',
-					'select__options--md': size === 'md',
-					'select__options--lg': size === 'lg',
+					'select__options--thin': width === 'thin',
+					'select__options--default': width === 'default',
+					'select__options--wide': width =='wide',
 					'select__options--fluid': fluid,
 				}"
 			>
@@ -85,7 +85,7 @@
 
 <script>
 import { directive as onClickOutside } from 'vue-on-click-outside';
-import { sizes } from '../utils';
+import { widths } from '../utils';
 import removeAccents from '../utils/methods/removeAccents';
 
 export default {
@@ -139,11 +139,11 @@ export default {
 			required: false,
 		},
 		/**
-		 * Define o tamanho do Select. As opções são 'sm', 'md', 'lg'.
+		 * Define a largura do Select. As opções são 'thin', 'default' e 'wide'.
 		 */
-		size: {
+		width: {
 			type: String,
-			default: 'md',
+			default: 'default',
 			required: false,
 		},
 		/**
@@ -189,7 +189,7 @@ export default {
 			let returningClass = '';
 
 			returningClass = this.active ? 'select__input--opened' : 'select__input--closed';
-			returningClass += ` select__input--${sizes.find((item) => item === this.size)}`;
+			returningClass += ` select__input--${widths.find((item) => item === this.width)}`;
 			returningClass += this.fluid ? ' select__input--fluid' : ' select__input--fit';
 			returningClass += this.disabled ? ' select__input--disabled' : '';
 			returningClass += this.searchable ? ' select__input--searchable' : '';
@@ -367,15 +367,15 @@ export default {
 			caret-color: $n-700;
 		}
 
-		&--sm {
+		&--thin {
 			width: 150px;
 		}
 
-		&--md {
+		&--default {
 			width: 300px;
 		}
 
-		&--lg {
+		&--wide {
 			width: 600px;
 		}
 
@@ -495,15 +495,15 @@ export default {
 		max-height: 296px;
 		overflow: auto;
 
-		&--sm {
+		&--thin {
 			width: 150px;
 		}
 
-		&--md {
+		&--default {
 			width: 300px;
 		}
 
-		&--lg {
+		&--wide {
 			width: 600px;
 		}
 
