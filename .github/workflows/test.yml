@@ -8,6 +8,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: 🔧 Build
+        uses: actions/setup-node@v2.1.4
+          with:
+              node-version: 12
+              registry-url: https://registry.npmjs.org
         run:
           npm config set ignore-scripts false && npm i
       - name: 🟢 Test
