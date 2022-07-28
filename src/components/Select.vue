@@ -49,6 +49,7 @@
 				}"
 			>
 				<ul
+					v-if="localOptions.length > 0"
 					class="option__container"
 				>
 					<li
@@ -60,6 +61,16 @@
 						@mouseout="unhighlightOnMouseOut()"
 					>
 						{{ option.value }}
+					</li>
+				</ul>
+				<ul
+					v-else
+					class="option__container"
+				>
+					<li
+						class="option__text--muted"
+					>
+						Nenhuma opção encontrada
 					</li>
 				</ul>
 			</div>
@@ -192,9 +203,9 @@ export default {
 			const sanitizedString = removeAccents(this.selectedOption);
 			const regexExp = new RegExp(sanitizedString, 'i');
 
-			this.localOptions = this.options.filter((option) => {
-				return removeAccents(option.value).search(regexExp) >= 0;
-			});
+			this.localOptions = this.options.filter(
+				(option) => removeAccents(option.value).search(regexExp) >= 0,
+			);
 		},
 
 		activeSelection() {
@@ -254,12 +265,51 @@ export default {
 			return this.$refs[element.value][0];
 		},
 
-		handleOptionVisibility(scrolAmount) {
-			return (entry) => {
-				if (!entry[0].isIntersecting) {
-					this.$refs['select-options'].scrollTop += scrolAmount;
-				}
-			};
+		handleOptionVisibility(option, amount, direction) {
+			const optionDOMRect = option.getBoundingClientRect();
+			const optionsContainer = this.$refs['select-options'];
+			const optionsContainerDOMRect = this.$refs['select-options'].getBoundingClientRect();
+
+			if (
+				direction === 'up'
+				&& optionDOMRect.top <= optionsContainerDOMRect.top
+			) {
+				optionsContainer.scrollTop += amount;
+			}
+
+			if (
+				direction === 'down'
+				&& optionDOMRect.top <= optionsContainerDOMRect.bottom
+			) {
+				optionsContainer.scrollTop += amount;
+			}
+		},
+
+		highlightOnArrowDown() {
+			if (this.currentPos === this.localOptions.length - 1) return;
+
+			this.currentPos += 1;
+			const selectedOption = this.getLiInDOM(this.currentPos);
+			const previousOption = this.getLiInDOM(this.currentPos - 1);
+
+			selectedOption.classList.add('highlight');
+			previousOption.classList.remove('highlight');
+
+			this.handleOptionVisibility(selectedOption, 37, 'down');
+		},
+
+		highlightOnArrowUp() {
+			if (this.currentPos === 0) return;
+
+			const selectedOption = this.getLiInDOM(this.currentPos);
+			const previousOption = this.getLiInDOM(this.currentPos - 1);
+
+			selectedOption.classList.remove('highlight');
+			previousOption.classList.add('highlight');
+
+			this.handleOptionVisibility(selectedOption, -37, 'up');
+
+			this.currentPos -= 1;
 		},
 
 		highlightOnMouseOver(index) {
@@ -270,35 +320,6 @@ export default {
 
 		unhighlightOnMouseOut() {
 			this.getLiInDOM(this.currentPos).classList.remove('highlight');
-		},
-
-		highlightOnArrowDown() {
-			if (this.currentPos === this.localOptions.length - 1) return;
-
-			this.currentPos += 1;
-			const selectedOption = this.getLiInDOM(this.currentPos);
-			const previousOption = this.getLiInDOM(this.currentPos - 1);
-
-			const observer = new IntersectionObserver(this.handleOptionVisibility(37));
-			observer.observe(selectedOption);
-
-			selectedOption.classList.add('highlight');
-			previousOption.classList.remove('highlight');
-		},
-
-		highlightOnArrowUp() {
-			if (this.currentPos === 0) return;
-
-			const selectedOption = this.getLiInDOM(this.currentPos);
-			const previousOption = this.getLiInDOM(this.currentPos - 1);
-
-			const observer = new IntersectionObserver(this.handleOptionVisibility(-37));
-			observer.observe(selectedOption);
-
-			selectedOption.classList.remove('highlight');
-			previousOption.classList.add('highlight');
-
-			this.currentPos -= 1;
 		},
 	},
 
@@ -471,7 +492,7 @@ export default {
 		justify-items: center;
 		@include subheading-3;
 		text-overflow: ellipsis;
-		max-height: 294px;
+		max-height: 296px;
 		overflow: auto;
 
 		&--sm {
@@ -497,6 +518,11 @@ export default {
 	&__text {
 		padding: pYX(2, 3);
 		text-overflow: ellipsis;
+
+		&--muted {
+			@extend .option__text;
+			color: $n-400;
+		}
 	}
 
 	&__container {
