@@ -72,7 +72,7 @@ export default {
 
 	computed: {
 		isChecked() {
-			return this.modelValue == this.value;
+			return this.modelValue === this.value;
 		},
 	},
 };
@@ -96,7 +96,7 @@ export default {
 			position: absolute;
 			left: -9999px;
 		}
-	
+
 		&:checked + label,
 		&:not(:checked) + label {
 			position: relative;
@@ -105,7 +105,7 @@ export default {
 			line-height: 16px;
 			display: inline-block;
 			color: $n-700;
-	
+
 			&:before {
 				content: '';
 				position: absolute;
@@ -144,7 +144,6 @@ export default {
 				transform: scale(1);
 			}
 		}
-		
 
 		&:not(:checked) + label {
 			&:after {

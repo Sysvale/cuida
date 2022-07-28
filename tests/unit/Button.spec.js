@@ -20,7 +20,6 @@ test('Component is mounted properly', async () => {
 	expect(wrapper).toMatchSnapshot();
 });
 
-
 describe('The color variants are properly set', () => {
 	const wrapper = mount(Button, {
 		localVue,
@@ -32,7 +31,7 @@ describe('The color variants are properly set', () => {
 			expect(wrapper.vm.predefinedColor).toBe(`button--${color}`);
 		});
 	});
-	
+
 	wrapper.vm.predefinedSizes.forEach((size) => {
 		test(`if the computed property changes when the prop size is set to '${size}'`, async () => {
 			await wrapper.setProps({ size });
@@ -49,7 +48,6 @@ test('Button emits an event when clicked', () => {
 	expect(wrapper.find('#cds-button button').exists()).toBe(true);
 	wrapper.find('#cds-button button').trigger('click');
 
-	console.log(wrapper.emitted()['click']);
-	expect(wrapper.emitted()['click']).toBeTruthy();
-	expect(wrapper.emitted()['click']).toEqual([[true]]);
-})
+	expect(wrapper.emitted().click).toBeTruthy();
+	expect(wrapper.emitted().click).toEqual([[true]]);
+});
