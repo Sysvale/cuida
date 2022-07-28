@@ -21,18 +21,25 @@
 			:class="fluid ? 'select__container--fluid' : 'select__container--fit'"
 		>
 			<input
-				v-model="testText"
-				v-on-click-outside="hide"
-				:class="inputClass"
+				v-model="selectedOption"
 				type="text"
-				@click="activeSelection"
 				onkeypress="return false;"
+				:class="inputClass"
 				:placeholder="placeholder"
+				:disabled="disabled"
+				v-on-click-outside="hide"
+				@click="activateSelectionOnClick"
+				@keydown.enter.prevent="activateSelectionOnEnter"
+				@keydown.arrow-down.prevent="highlightOnArrowDown"
+				@keydown.arrow-up.prevent="highlightOnArrowUp"
+				@focus="activeSelection"
+				@blur="hide"
 			/>
 
 			<div
-				v-if="active"
+				v-show="active"
 				class="select__options"
+				ref="select-options"
 				:class="{
 					'select__options--sm': size === 'sm',
 					'select__options--md': size === 'md',
@@ -40,20 +47,24 @@
 					'select__options--fluid': fluid,
 				}"
 			>
-				<div
-					v-for="option in options"
-					:key="option.value"
-					class="option__text"
-					@click="testText = option.value"
+				<ul
+					class="option__container"
 				>
-					<span
+					<li
+						v-for="(option, index) in options"
+						class="option__text"
+						:key="option.value"
+						:ref="option.value"
+						@mouseover="highlightOnMouseOver(index)"
+						@mouseout="unhighlightOnMouseOut()"
 					>
 						{{ option.value }}
-					</span>
-				</div>
+					</li>
+				</ul>
 			</div>
 
 			<span
+				tabindex="-1"
 				:class="active ? 'select__chevron--opened' : 'select__chevron--closed'"
 			/>
 		</div>
@@ -80,6 +91,7 @@ export default {
 		placeholder: {
 			type: String,
 			default: 'Selecione...',
+			required: false,
 		},
 		/**
 		 * Especifica a lista de opções do select.
@@ -138,14 +150,15 @@ export default {
 	data() {
 		return {
 			selected: this.value,
+			currentPos: 0,
 			active: false,
 			id: null,
-			testText: '',
+			selectedOption: '',
 		};
 	},
 
 	mounted() {
-		this.id = `filter-pill$-${this._uid}`;
+		this.id = `select$-${this._uid}`;
 	},
 
 	computed: {
@@ -163,22 +176,107 @@ export default {
 
 	methods: {
 		activeSelection() {
-			if (this.disabled) {
-				return;
-			}
+			if (this.disabled) return;
 
-			this.active = !this.active;
+			this.$nextTick().then(() => {
+				const element = this.options[this.currentPos];
+				this.$refs[element.value][0].classList.add('highlight');
+			});
+
+			this.active = true;
 
 			/**
 			* Evento que indica que o Select foi clicado
 			* @event click
 			* @type {Event}
 			*/
-			this.$emit('click', true);
+			// this.$emit('click', true);
+		},
+
+		activateSelectionOnEnter() {
+			if (this.disabled) return;
+
+			this.active = !this.active;
+			this.selectedOption = this.options[this.currentPos].value;
+
+			/**
+			* Evento que indica que o Select foi clicado
+			* @event click
+			* @type {Event}
+			*/
+			// this.$emit('click', true);
+		},
+
+		activateSelectionOnClick() {
+			if (this.disabled) return;
+
+			this.active = true;
+
+			// this.selectedOption = this.options[this.currentPos].value;
+
+			/**
+			* Evento que indica que o Select foi clicado
+			* @event click
+			* @type {Event}
+			*/
+			// this.$emit('click', true);
 		},
 
 		hide() {
+			this.selectedOption = this.options[this.currentPos].value;
 			this.active = false;
+		},
+
+		getLiInDOM(position) {
+			const element = this.options[position];
+			return this.$refs[element.value][0];
+		},
+
+		handleOptionVisibility(scrolAmount) {
+			return (entry) => {
+				if (!entry[0].isIntersecting) {
+					this.$refs['select-options'].scrollTop += scrolAmount;
+				}
+			};
+		},
+
+		highlightOnMouseOver(index) {
+			this.currentPos = index;
+
+			this.getLiInDOM(this.currentPos).classList.add('highlight');
+		},
+
+		unhighlightOnMouseOut() {
+			this.getLiInDOM(this.currentPos).classList.remove('highlight');
+		},
+
+		highlightOnArrowDown() {
+			if (this.currentPos === this.options.length - 1) return;
+
+			this.currentPos += 1;
+			const selectedOption = this.getLiInDOM(this.currentPos);
+			const previousOption = this.getLiInDOM(this.currentPos - 1);
+
+			const observer = new IntersectionObserver(this.handleOptionVisibility(37));
+			observer.observe(selectedOption);
+
+			selectedOption.classList.add('highlight');
+			previousOption.classList.remove('highlight');
+		},
+
+		highlightOnArrowUp() {
+			if (this.currentPos === 0) return;
+
+			const selectedOption = this.getLiInDOM(this.currentPos);
+			const previousOption = this.getLiInDOM(this.currentPos - 1);
+
+			const observer = new IntersectionObserver(this.handleOptionVisibility(-37));
+			observer.observe(selectedOption);
+
+			selectedOption.classList.remove('highlight');
+			previousOption.classList.add('highlight');
+
+			this.currentPos -= 1;
 		},
 	},
 
@@ -207,7 +305,7 @@ export default {
 		@include subheading-3;
 		text-overflow: ellipsis;
 
-		&:hover {
+		&:hover:not([disabled]) {
 			outline: 1px solid $n-200;
 		}
 
@@ -347,7 +445,7 @@ export default {
 		justify-items: center;
 		@include subheading-3;
 		text-overflow: ellipsis;
-		max-height: 300px;
+		max-height: 294px;
 		overflow: auto;
 
 		&--sm {
@@ -373,11 +471,17 @@ export default {
 	&__text {
 		padding: pYX(2, 3);
 		text-overflow: ellipsis;
-
-		&:hover {
-			background-color: $n-20;
-			cursor: pointer;
-		}
 	}
+
+	&__container {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+}
+
+.highlight{
+	background-color: $n-20;
+	cursor: pointer;
 }
 </style>
