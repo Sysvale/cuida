@@ -18,11 +18,20 @@ export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { Select },
 	template: /*html*/ `
-		<form-drop-down
-			v-bind="$props" 
-		>
-			Conteúdo
-		</form-drop-down>`,
+		<div class="d-flex">
+			<form-drop-down
+				v-bind="$props" 
+			>
+				Conteúdo
+			</form-drop-down>
+			<select name="cars" id="cars">
+				<option value="volvo">Volvo</option>
+				<option value="saab">Saab</option>
+				<option value="mercedes">Mercedes</option>
+				<option value="audi">Audi</option>
+			</select>
+		</div>
+		`,
 });
 
 export const template = /*html*/ `
@@ -98,6 +107,12 @@ export const options = [
 	},
 	{
 		value: 'Borat: o segundo melhor repórter do glorioso país Cazaquistão viaja à América',
+	},
+	{
+		value: 'Digimon',
+	},
+	{
+		value: 'Batman',
 	},
 ];
 
