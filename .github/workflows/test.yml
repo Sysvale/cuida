@@ -15,6 +15,6 @@ jobs:
           registry-url: https://registry.npmjs.org
       - name: 🔧 Build
         run:
-          npm config set ignore-scripts false && npm i
+          npm i
       - name: 🚀 Test
         run: npm run test:unit
