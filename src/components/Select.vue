@@ -23,11 +23,12 @@
 			<input
 				v-model="selectedOption"
 				type="text"
-				onkeypress="return false;"
+				:onkeypress="`return ${keyp};`"
 				:class="inputClass"
 				:placeholder="placeholder"
 				:disabled="disabled"
 				v-on-click-outside="hide"
+				@input="filterOptions"
 				@click="activateSelectionOnClick"
 				@keydown.enter.prevent="activateSelectionOnEnter"
 				@keydown.arrow-down.prevent="highlightOnArrowDown"
@@ -51,7 +52,7 @@
 					class="option__container"
 				>
 					<li
-						v-for="(option, index) in options"
+						v-for="(option, index) in localOptions"
 						class="option__text"
 						:key="option.value"
 						:ref="option.value"
@@ -74,6 +75,7 @@
 <script>
 import { directive as onClickOutside } from 'vue-on-click-outside';
 import { sizes } from '../utils';
+import removeAccents from '../utils/methods/removeAccents';
 
 export default {
 	props: {
@@ -118,6 +120,14 @@ export default {
 			required: false,
 		},
 		/**
+		 * Indica se vai ser possível fazer buscas no select.
+		 */
+		searchable: {
+			type: Boolean,
+			default: false,
+			required: false,
+		},
+		/**
 		 * Define o tamanho do Select. As opções são 'sm', 'md', 'lg'.
 		 */
 		size: {
@@ -154,6 +164,8 @@ export default {
 			active: false,
 			id: null,
 			selectedOption: '',
+			keyp: this.searchable,
+			localOptions: this.options,
 		};
 	},
 
@@ -169,17 +181,27 @@ export default {
 			returningClass += ` select__input--${sizes.find((item) => item === this.size)}`;
 			returningClass += this.fluid ? ' select__input--fluid' : ' select__input--fit';
 			returningClass += this.disabled ? ' select__input--disabled' : '';
+			returningClass += this.searchable ? ' select__input--searchable' : '';
 
 			return returningClass;
 		},
 	},
 
 	methods: {
+		filterOptions() {
+			const sanitizedString = removeAccents(this.selectedOption);
+			const regexExp = new RegExp(sanitizedString, 'i');
+
+			this.localOptions = this.options.filter((option) => {
+				return removeAccents(option.value).search(regexExp) >= 0;
+			});
+		},
+
 		activeSelection() {
 			if (this.disabled) return;
 
 			this.$nextTick().then(() => {
-				const element = this.options[this.currentPos];
+				const element = this.localOptions[this.currentPos];
 				this.$refs[element.value][0].classList.add('highlight');
 			});
 
@@ -197,7 +219,7 @@ export default {
 			if (this.disabled) return;
 
 			this.active = !this.active;
-			this.selectedOption = this.options[this.currentPos].value;
+			this.selectedOption = this.localOptions[this.currentPos].value;
 
 			/**
 			* Evento que indica que o Select foi clicado
@@ -212,7 +234,7 @@ export default {
 
 			this.active = true;
 
-			// this.selectedOption = this.options[this.currentPos].value;
+			// this.selectedOption = localOptions[this.currentPos].value;
 
 			/**
 			* Evento que indica que o Select foi clicado
@@ -223,12 +245,12 @@ export default {
 		},
 
 		hide() {
-			this.selectedOption = this.options[this.currentPos].value;
+			this.selectedOption = this.localOptions[this.currentPos].value;
 			this.active = false;
 		},
 
 		getLiInDOM(position) {
-			const element = this.options[position];
+			const element = this.localOptions[position];
 			return this.$refs[element.value][0];
 		},
 
@@ -251,7 +273,7 @@ export default {
 		},
 
 		highlightOnArrowDown() {
-			if (this.currentPos === this.options.length - 1) return;
+			if (this.currentPos === this.localOptions.length - 1) return;
 
 			this.currentPos += 1;
 			const selectedOption = this.getLiInDOM(this.currentPos);
@@ -318,6 +340,10 @@ export default {
 			@extend .select__input;
 			border-top-left-radius: $border-radius-extra-small;
 			border-top-right-radius: $border-radius-extra-small;
+		}
+
+		&--searchable {
+			caret-color: $n-700;
 		}
 
 		&--sm {
