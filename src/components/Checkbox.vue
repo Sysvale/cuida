@@ -8,13 +8,13 @@
 			<input
 				v-model="internalValue"
 				type="checkbox"
-				:id="'cds-checkbox-option-input'"
+				:id="$attrs.id || 'cds-checkbox-option-input'"
 				:name="$attrs.name || 'cds-checkbox-option'"
 				:value="true"
 				:disabled="disabled"
 			/>
 			<label
-				:for="$attrs.name || 'cds-checkbox-option'"
+				:for="$attrs.id || 'cds-checkbox-option-input'"
 				:class="{
 					'checkbox__content--checked': internalValue,
 					'checkbox__content--disabled': disabled,
@@ -96,10 +96,10 @@ export default {
 
 	methods: {
 		toggleValue() {
-			if(this.disabled) return;
+			if (this.disabled) return;
 			this.internalValue = !this.internalValue;
 		},
-	}
+	},
 };
 </script>
 <style lang="scss">
@@ -113,8 +113,6 @@ export default {
 }
 
 #cds-checkbox {
-
-
 	input[type=checkbox] {
 		visibility: hidden;
 	}
@@ -184,6 +182,5 @@ export default {
 		}
 	}
 }
-
 
 </style>

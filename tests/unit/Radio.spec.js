@@ -1,8 +1,8 @@
 import { mount, createLocalVue } from '@vue/test-utils';
-import Radio from '../../src/components/Radio.vue';
 import flushPromises from 'flush-promises';
-
 import BootstrapVue from 'bootstrap-vue';
+import Radio from '../../src/components/Radio.vue';
+
 const localVue = createLocalVue();
 localVue.use(BootstrapVue);
 
@@ -20,7 +20,7 @@ test('Component is mounted properly', () => {
 });
 
 test('if updates v-model with value of radio on click', async () => {
-	let modelValue = null;
+	const modelValue = null;
 	const wrapper = mount(Radio, {
 		localVue,
 		propsData: {
@@ -32,7 +32,7 @@ test('if updates v-model with value of radio on click', async () => {
 		},
 	});
 
-	wrapper.find('.cds-radio__content').trigger('click');
+	wrapper.find('.cds-radio__label').trigger('click');
 
 	await flushPromises();
 
