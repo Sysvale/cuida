@@ -18,20 +18,28 @@ export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { Select },
 	template: /*html*/ `
-		<form-drop-down
-			v-bind="$props" 
-		>
-			Conteúdo
-		</form-drop-down>
+		<div>
+			<form-drop-down
+				v-bind="$props" 
+			/>
+			<p
+				class="mt-2"
+			>
+				Valor do v-model: {{ value }}
+			</p>
+		</div>
 	`,
 });
 
 export const template = /*html*/ `
-	<cds-select 
-		variant="gray"
-	>
-		Conteúdo
-	</cds-select>`;
+	<cds-select
+		v-model="value"
+		:options="options"
+		:required="true"
+		width="wide"
+		label="Séries"
+		placeholder="Selecione uma das séries"
+	/>`;
 
 export const docsDecorator = () => {
 	return {
@@ -49,62 +57,74 @@ export const docsDecorator = () => {
 	};
 };
 
-# Badge
+# Select
 
-### Badge são indicadores de status utilizados para tornar evidentes metadados importates.
+### Selects permitem que o usuário escolha uma opção a partir de uma lista de itens.
 ---
 <br />
 
-## Recomendamos o uso de Badges quando:
-- For necessário mostrar status associados com a lógica de negócio ou ações do usuário.
-- O conteúdo a ser mostrado for *readonly*.
-- For preciso categorizar algo.
+## Recomendamos o uso de Selects quando:
+- O usuário tiver de escolher uma única opção em uma lista com diversos itens.
 
 
 <br />
 
-## Não recomendamos o uso de Badges quando:
-- O conteúdo que a badge representa puder ser setado ou removido pelo usuário.
-- O click no componente precisar executar uma ação ou funcionalidade.
+## Não recomendamos o uso de Selects quando:
+- A lista de opções possuir 3 itens ou menos. Nesses casos, recomendamos a utilização de radio buttons.
+- O usuário precisar selecionar mais de um item da lista. Nesse caso, utilize <a href="https://sysvale.github.io/cuida/?path=/docs/componentes-forms-clusteredmultiselect--clustered-multiselect">ClusteredMultiselects</a>.
+
+<br />
+
+## Observações:
+- Coloque as opções mais prováveis de ser selecionada no topo do select. Na dúvida, ordene-os em ordem alfanumérica.
+- As labels dos selects devem ser sucintas (de uma a três palavras).
+- As labels devem ser ser escritas com a primeira letra maiúscula e as restantes minúsculas.
+- ⚠️ **Importante:** Para que o select funcione corretamente, a propriedade cujos valores serão exibidos no select, deve se chamar `value`, como indicado no exemplo abaixo na tabela de props.
 
 <br />
 
 ## Preview
 
-export const value = {};
+export const value = {value: ''};
 export const options = [
 	{
-		value: 'Avengers',
+		value: 'Breaking Bad',
 	},
 	{
-		value: 'X-men',
+		value: 'Game of Thrones ',
 	},
 	{
-		value: 'Naruto',
+		value: 'The Umbrella Academy',
 	},
 	{
-		value: 'Esquadrão suicida',
+		value: 'Fringe',
 	},
 	{
-		value: 'Pantera negra',
+		value: 'Dark',
 	},
 	{
-		value: 'Dragon Ball',
+		value: '👀 Borat: o segundo melhor repórter do glorioso país Cazaquistão viaja à América',
 	},
 	{
-		value: 'Capitão América 2 - O Soldado Invernal',
+		value: 'The Office',
 	},
 	{
-		value: 'Pokemon',
+		value: 'Black Mirror',
 	},
 	{
-		value: 'Borat: o segundo melhor repórter do glorioso país Cazaquistão viaja à América',
+		value: 'Westworld ',
 	},
 	{
-		value: 'Digimon',
+		value: 'Avatar: A Lenda de Aang',
 	},
 	{
-		value: 'Batman',
+		value: 'The Boys',
+	},
+	{
+		value: 'Vikings',
+	},
+	{
+		value: 'Arcane',
 	},
 ];
 
@@ -116,6 +136,10 @@ export const options = [
 		args={{
 			value,
 			options,
+			width: 'wide',
+			label: 'Séries',
+			placeholder: 'Selecione uma das séries',
+			required: true,
 		}}
 	>
 		{ Template.bind({}) }
