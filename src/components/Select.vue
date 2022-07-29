@@ -21,18 +21,18 @@
 			:class="fluid ? 'select__container--fluid' : 'select__container--fit'"
 		>
 			<input
-				v-model="selectedOption"
+				v-model="localValue.value"
 				type="text"
-				:onkeypress="`return ${keyp};`"
+				:onkeypress="`return ${allowSearch};`"
 				:class="inputClass"
 				:placeholder="placeholder"
 				:disabled="disabled"
 				v-on-click-outside="hide"
-				@input="filterOptions"
-				@click="activateSelectionOnClick"
 				@keydown.enter.prevent="activateSelectionOnEnter"
 				@keydown.arrow-down.prevent="highlightOnArrowDown"
 				@keydown.arrow-up.prevent="highlightOnArrowUp"
+				@click="activateSelectionOnClick"
+				@input="filterOptions"
 				@focus="activeSelection"
 				@blur="hide"
 			/>
@@ -55,7 +55,7 @@
 					<li
 						v-for="(option, index) in localOptions"
 						class="option__text"
-						:key="option.value"
+						:key="index"
 						:ref="option.value"
 						@mouseover="highlightOnMouseOver(index)"
 						@mouseout="unhighlightOnMouseOut()"
@@ -63,6 +63,7 @@
 						{{ option.value }}
 					</li>
 				</ul>
+
 				<ul
 					v-else
 					class="option__container"
@@ -76,7 +77,6 @@
 			</div>
 
 			<span
-				tabindex="-1"
 				:class="active ? 'select__chevron--opened' : 'select__chevron--closed'"
 			/>
 		</div>
@@ -107,7 +107,9 @@ export default {
 			required: false,
 		},
 		/**
-		 * Especifica a lista de opções do select.
+		 * Array de objetos que especifica a lista de opções do select. Os valores
+		 * a serem mostrado como opções do select devem ser estar atribuídos a chave
+		 * `value` do objeto.
 		 */
 		options: {
 			type: Array,
@@ -170,13 +172,12 @@ export default {
 
 	data() {
 		return {
-			selected: this.value,
 			currentPos: 0,
 			active: false,
 			id: null,
-			selectedOption: '',
-			keyp: this.searchable,
+			allowSearch: this.searchable,
 			localOptions: this.options,
+			localValue: this.value,
 		};
 	},
 
@@ -200,7 +201,7 @@ export default {
 
 	methods: {
 		filterOptions() {
-			const sanitizedString = removeAccents(this.selectedOption);
+			const sanitizedString = removeAccents(this.localValue.value);
 			const regexExp = new RegExp(sanitizedString, 'i');
 
 			this.localOptions = this.options.filter(
@@ -217,46 +218,23 @@ export default {
 			});
 
 			this.active = true;
-
-			/**
-			* Evento que indica que o Select foi clicado
-			* @event click
-			* @type {Event}
-			*/
-			// this.$emit('click', true);
 		},
 
 		activateSelectionOnEnter() {
 			if (this.disabled) return;
 
 			this.active = !this.active;
-			this.selectedOption = this.localOptions[this.currentPos].value;
-
-			/**
-			* Evento que indica que o Select foi clicado
-			* @event click
-			* @type {Event}
-			*/
-			// this.$emit('click', true);
+			this.localValue.value = this.localOptions[this.currentPos].value;
 		},
 
 		activateSelectionOnClick() {
 			if (this.disabled) return;
 
 			this.active = true;
-
-			// this.selectedOption = localOptions[this.currentPos].value;
-
-			/**
-			* Evento que indica que o Select foi clicado
-			* @event click
-			* @type {Event}
-			*/
-			// this.$emit('click', true);
 		},
 
 		hide() {
-			this.selectedOption = this.localOptions[this.currentPos].value;
+			this.localValue.value = this.localOptions[this.currentPos].value;
 			this.active = false;
 		},
 
@@ -324,8 +302,16 @@ export default {
 	},
 
 	watch: {
-		selected(currentOption) {
-			this.$emit('input', currentOption);
+		localValue: {
+			handler(currentValue) {
+				/**
+				* Evento que indica que o valor do Select foi alterado
+				* @event input
+				* @type {Event}
+				*/
+				this.$emit('input', currentValue);
+			},
+			deep: true,
 		},
 	},
 };
