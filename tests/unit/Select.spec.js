@@ -30,27 +30,48 @@ test('Component is mounted properly', () => {
 	expect(wrapper).toMatchSnapshot();
 });
 
-describe('Keyboard interactions tests', () => {
-	test('Dropdown toggles when Enter is pressed', async () => {
-		const wrapper = mount(Select, {
-			localVue,
-			propsData: {
-				label: 'Label',
-				width: 'thin',
-				options,
-				value,
+
+const wrapper = mount(Select, {
+	localVue,
+	propsData: {
+		label: 'Label',
+		width: 'thin',
+		options,
+		value,
+	},
+});
+
+const input = wrapper.find('.select__input--thin');
+
+test('Dropdown toggles when Enter is pressed', async () => {
+	expect(input.exists()).toBe(true);
+	expect(input.classes()).toContain('select__input--closed');
+
+	await input.trigger('keydown.enter');
+	expect(input.classes()).toContain('select__input--opened');
+
+	await input.trigger('keydown.enter');
+	expect(input.classes()).toContain('select__input--closed');
+});
+
+test('Options are being rendered', () => {
+	const options = wrapper.findAll('.option__text');
+	expect(options.length).toBe(2);
+});
+
+
+test('Event is emitted correctly on click', async () => {
+	await input.trigger('keydown.enter');
+	await input.trigger('click');
+
+	expect(wrapper.emitted()['input']).toBeTruthy();
+	expect(wrapper.emitted()['input']).toEqual([
+		[
+			{
+				value: 'foo',
+				id: 1,
+				text: 'fancy foo text'
 			},
-		});
-
-		const input = wrapper.find('.select__input--thin');
-
-		expect(input.exists()).toBe(true);
-		expect(input.classes()).toContain('select__input--closed');
-
-		await input.trigger('keydown.enter');
-		expect(input.classes()).toContain('select__input--opened');
-
-		await input.trigger('keydown.enter');
-		expect(input.classes()).toContain('select__input--closed');
-	});
+		],
+	]);
 });
