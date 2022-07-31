@@ -224,7 +224,7 @@ export default {
 			if (this.disabled) return;
 
 			this.active = !this.active;
-			this.localValue.value = this.localOptions[this.currentPos].value;
+			this.localValue = this.localOptions[this.currentPos];
 		},
 
 		activateSelectionOnClick() {
@@ -234,7 +234,7 @@ export default {
 		},
 
 		hide() {
-			this.localValue.value = this.localOptions[this.currentPos].value;
+			this.localValue = this.localOptions[this.currentPos];
 			this.active = false;
 		},
 
