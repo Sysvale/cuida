@@ -56,7 +56,7 @@
 						v-for="(option, index) in localOptions"
 						class="option__text"
 						:key="index"
-						:ref="option.value"
+						:ref="`${option.value}-${index}`"
 						@mouseover="highlightOnMouseOver(index)"
 						@mouseout="unhighlightOnMouseOut()"
 					>
@@ -108,7 +108,7 @@ export default {
 		},
 		/**
 		 * Array de objetos que especifica a lista de opções do select. Os valores
-		 * a serem mostrado como opções do select devem ser estar atribuídos a chave
+		 * a serem mostrado como opções do select devem estar atribuídos a chave
 		 * `value` do objeto.
 		 */
 		options: {
@@ -214,7 +214,7 @@ export default {
 
 			this.$nextTick().then(() => {
 				const element = this.localOptions[this.currentPos];
-				this.$refs[element.value][0].classList.add('highlight');
+				this.$refs[`${element.value}-${this.currentPos}`][0].classList.add('highlight');
 			});
 
 			this.active = true;
@@ -240,7 +240,7 @@ export default {
 
 		getLiInDOM(position) {
 			const element = this.localOptions[position];
-			return this.$refs[element.value][0];
+			return this.$refs[`${element.value}-${position}`][0];
 		},
 
 		handleOptionVisibility(option, amount, direction) {
