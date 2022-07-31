@@ -1,88 +1,56 @@
 import { mount, createLocalVue } from '@vue/test-utils';
-import BootstrapVue from 'bootstrap-vue';
 import Select from '../../src/components/Select.vue';
 
 const localVue = createLocalVue();
-localVue.use(BootstrapVue);
+
+const options = [
+	{
+		value: 'foo',
+		id: 1,
+		text: 'fancy foo text'
+	},
+	{
+		value: 'bar',
+		id: 2,
+		text: 'fancy bar text'
+	}
+];
+
+const value = {};
 
 test('Component is mounted properly', () => {
 	const wrapper = mount(Select, {
 		localVue,
-		slots: {
-			default: 'Conteúdo',
+		propsData: {
+			label: 'Label',
+			options,
+			value,
 		},
 	});
 	expect(wrapper).toMatchSnapshot();
 });
 
-describe('Events tests', () => {
-	test('The component emits the open event when it is open', () => {
-		const wrapper = mount(Select, {
-			localVue,
-		});
-
-		expect(wrapper.find('#cds-select').exists()).toBe(true);
-		const select = wrapper.find('#cds-select');
-
-		select.trigger('click');
-
-		expect(wrapper.emitted().open).toBeTruthy();
-	});
-
-	test('The component makes its value reactive', () => {
+describe('Keyboard interactions tests', () => {
+	test('Dropdown toggles when Enter is pressed', async () => {
 		const wrapper = mount(Select, {
 			localVue,
 			propsData: {
-				selected: {
-					bar: 'bar-value',
-				},
-				options: [
-					{
-						foo: 'foo-value',
-					},
-					{
-						bar: 'bar-value',
-					},
-				],
+				label: 'Label',
+				width: 'thin',
+				options,
+				value,
 			},
 		});
 
-		const firstOption = wrapper.find('select:first-child');
+		const input = wrapper.find('.select__input--thin');
 
-		expect(firstOption.exists()).toBe(true);
+		expect(input.exists()).toBe(true);
+		expect(input.classes()).toContain('select__input--closed');
 
-		wrapper.find('select').trigger('click');
-		firstOption.trigger('click');
+		await input.trigger('keydown.enter');
+		expect(input.classes()).toContain('select__input--opened');
 
-		expect(wrapper.props.selected).toBe({
-			bar: 'bar-value',
-		});
+		await input.trigger('keydown.enter');
+		expect(input.classes()).toContain('select__input--closed');
 	});
-});
-
-test('if the click event is not emitted when the select is clicked and is disabled', () => {
-	const wrapper = mount(Select, {
-		localVue,
-		propsData: {
-			selected: {
-				bar: 'bar-value',
-			},
-			options: [
-				{
-					foo: 'foo-value',
-				},
-				{
-					bar: 'bar-value',
-				},
-			],
-			disabled: true,
-		},
-	});
-
-	const select = wrapper.find('#cds-select');
-
-	expect(select.exists()).toBe(true);
-	select.trigger('click');
-
-	expect(wrapper.emitted().click).toBeFalsy();
 });

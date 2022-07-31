@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component is mounted properly 1`] = `
-<div id="cds-select" class="select" default="default"><span class="select__label">
+<div id="cds-select" class="select"><span class="select__label">
 		Label
 	</span>
   <!---->
