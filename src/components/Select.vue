@@ -246,7 +246,7 @@ export default {
 		handleOptionVisibility(option, amount, direction) {
 			const optionDOMRect = option.getBoundingClientRect();
 			const optionsContainer = this.$refs['select-options'];
-			const optionsContainerDOMRect = this.$refs['select-options'].getBoundingClientRect();
+			const optionsContainerDOMRect = optionsContainer.getBoundingClientRect();
 
 			if (
 				direction === 'up'
@@ -257,7 +257,7 @@ export default {
 
 			if (
 				direction === 'down'
-				&& optionDOMRect.top <= optionsContainerDOMRect.bottom
+				&& optionDOMRect.top >= optionsContainerDOMRect.bottom
 			) {
 				optionsContainer.scrollTop += amount;
 			}
