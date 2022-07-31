@@ -18,16 +18,9 @@ export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { Select },
 	template: /*html*/ `
-		<div>
-			<form-drop-down
-				v-bind="$props" 
-			/>
-			<p
-				class="mt-2"
-			>
-				Valor do v-model: {{ value }}
-			</p>
-		</div>
+		<cds-select
+			v-bind="$props" 
+		/>
 	`,
 });
 
@@ -85,10 +78,14 @@ export const docsDecorator = () => {
 
 ## Preview
 
-export const value = {value: ''};
+export const value = {
+	value: '',
+	id: '',
+};
 export const options = [
 	{
 		value: 'Breaking Bad',
+		id: '1',
 	},
 	{
 		value: 'Game of Thrones ',
@@ -113,6 +110,7 @@ export const options = [
 	},
 	{
 		value: 'The Office',
+		id: '2',
 	},
 	{
 		value: 'Black Mirror',

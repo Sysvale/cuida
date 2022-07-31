@@ -120,7 +120,7 @@ Vue.component('tooltip', Tooltip);
 Vue.component('source-code-wrapper', SourceCodeWrapper);
 Vue.component('toggle-switch', ToggleSwitch);
 Vue.component('shadow-builder', Shadows);
-Vue.component('form-drop-down', Select);
+Vue.component('cds-select', Select);
 Vue.component('checkbox', Checkbox);
 Vue.component('link', Link);
 Vue.component('spinner', Spinner);
