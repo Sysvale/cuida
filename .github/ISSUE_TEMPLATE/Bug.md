@@ -1,5 +1,5 @@
 ---
-name: '🐞 Bug'
+name: "🐞 Bug"
 about: Aponte um problema e ajude a evoluir o Cuida
 title: ''
 labels: 'type:Bug'
