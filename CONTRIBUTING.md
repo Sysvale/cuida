@@ -164,7 +164,7 @@ Convenções são utilizadas em projetos para torná-los mais fáceis de manter.
 
 ### Estilo de código
 
-Utilizamos o [Prettier](https://prettier.io/) como *code formater* para garantir que todo o projeto siga o mesmo padrão de estilo de código. As definições de estilo do projeto podem ser encontradas no `package.json`, na chave `"prettier"`.
+Utilizamos o [Prettier](https://prettier.io/) como _code formater_ para garantir que todo o projeto siga o mesmo padrão de estilo de código. As definições de estilo do projeto podem ser encontradas no `package.json`, na chave `"prettier"`.
 
 #### Javascript
 
