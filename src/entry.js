@@ -17,7 +17,7 @@ function install(Vue) {
 	Object.keys(components).forEach((componentName) => {
 		Vue.component(
 			`cds-${componentName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()}`,
-			components[componentName],
+			components[componentName]
 		);
 	});
 }

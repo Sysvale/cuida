@@ -98,7 +98,6 @@ describe('Click tests', () => {
 		wrapper.trigger('mouseover');
 		await flushPromises();
 
-
 		wrapper.find('.expansion-card__expand-icon').trigger('click');
 		await flushPromises();
 
@@ -118,7 +117,6 @@ describe('Click tests', () => {
 		wrapper.trigger('mouseover');
 		wrapper.trigger('click');
 		await flushPromises();
-
 
 		wrapper.find('.expansion-card__contract-icon').trigger('click');
 		await flushPromises();

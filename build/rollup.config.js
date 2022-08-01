@@ -20,7 +20,7 @@ concat(
 		'src/assets/sass/variables/borders.scss',
 		'src/assets/sass/variables/shadows.scss',
 	],
-	'dist/@sysvale/tokens.scss',
+	'dist/@sysvale/tokens.scss'
 );
 
 const argv = minimist(process.argv.slice(2));
@@ -48,9 +48,7 @@ const baseConfig = {
 				isProduction: true,
 			},
 		},
-		postVue: [
-			buble({ objectAssign: true }),
-		],
+		postVue: [buble({ objectAssign: true })],
 	},
 };
 
