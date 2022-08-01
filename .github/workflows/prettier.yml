@@ -15,4 +15,5 @@ jobs:
       - name: Prettify code
         uses: creyD/prettier_action@v4.2
         with:
+          commit_message: 'style: correções de estilo de código (Prettier)'
           prettier_options: --write **/*.{js,md}
