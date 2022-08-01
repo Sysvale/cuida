@@ -164,7 +164,7 @@ Convenções são utilizadas em projetos para torná-los mais fáceis de manter.
 
 ### Estilo de código
 
-<!-- Adicionar posteriormente o Prettier ao projeto e adicionar essa informação aqui -->
+Utilizamos o [Prettier](https://prettier.io/) como *code formater* para garantir que todo o projeto siga o mesmo padrão de estilo de código. As definições de estilo do projeto podem ser encontradas no `package.json`, na chave `"prettier"`.
 
 #### Javascript
 
@@ -239,6 +239,7 @@ No projeto utilizamos alguns workflows do Github Actions no nosso fluxo de CI/CD
 **Worklows:**
 
 -   **Labeler 🏷️:** workflow utilizado para automatizar a criação de labels nos pull requests. A depender as modificações propostas nos PRs, podem ser adicionadas as labels `🧱 Componente` , `🐛 Bug`, `📃 Documentação`, `🛠️ Build` e `🧩 Token`.
+-   **Prettier 🪄:** workflow que utiliza o [Prettier](https://prettier.io/) para estilizar os arquivos automaticamente de acordo com as convenções de estilo de código do projeto. A cada push, caso haja erro de estilo, um commit é automaticamente criado com correções.
 -   **Deployer 🚀:** quando um PR é merjado no master esse workflow é disparado. Ele instala as dependências, builda o projeto e aciona o deploy para a github page que hospeda a [documentação do Cuida](https://sysvale.github.io/cuida/?path=/docs/funda%C3%A7%C3%A3o-principios--page).
 -   **Releaser ✔️:** workflow utilizado para criar tags automáticas do projeto a depender da versão da aplicação e na sequência criar as releases.
 
