@@ -1,7 +1,6 @@
 name: "Prettier 🪄"
 
-on:
-  - pull_request_target
+on: [push]
 
 jobs:
   prettier:
