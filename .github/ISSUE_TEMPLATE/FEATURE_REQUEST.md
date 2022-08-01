@@ -1,26 +1,26 @@
 ---
-name: "🚀 Feature request"
+name: '🚀 Feature request'
 about: Sugira uma melhoria para o Cuida ou um novo componente / recurso
 title: ''
 labels: 'type: Melhoria'
 assignees: ''
-
 ---
 
 ### Do que se trata o feature request?
-- [ ] Novo componente
-- [ ] Novo recurso na documentação
-- [ ] Novo recurso para facilitar o uso
+
+-   [ ] Novo componente
+-   [ ] Novo recurso na documentação
+-   [ ] Novo recurso para facilitar o uso
 
 ### Visão geral
 
-Contextualize do que se trata a feature request. 
+Contextualize do que se trata a feature request.
 
 ### Propósito
 
-- Em que cenário esse recurso vai ser utilizado?
-- Como esse recurso ajuda a evoluir o Cuida?
-- Existem recursos no Cuida que são semelhantes, mas que não resolvem o problema?
+-   Em que cenário esse recurso vai ser utilizado?
+-   Como esse recurso ajuda a evoluir o Cuida?
+-   Existem recursos no Cuida que são semelhantes, mas que não resolvem o problema?
 
 ### Exemplos
 
