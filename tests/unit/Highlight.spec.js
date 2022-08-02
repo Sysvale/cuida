@@ -11,7 +11,7 @@ test('Component is mounted properly', () => {
 	expect(wrapper).toMatchSnapshot();
 });
 
-describe("Styles based on the variants tests", () => {
+describe('Styles based on the variants tests', () => {
 	test("if the the styles are applied properly when the variant is 'info'", () => {
 		const wrapper = mount(Highlight, {
 			localVue,
@@ -46,7 +46,7 @@ describe("Styles based on the variants tests", () => {
 	});
 });
 
-test("if the the styles are applied properly when the highlight is animated", () => {
+test('if the the styles are applied properly when the highlight is animated', () => {
 	const wrapper = mount(Highlight, {
 		localVue,
 		propsData: {

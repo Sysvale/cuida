@@ -9,7 +9,7 @@ test('Component is mounted properly', () => {
 		localVue,
 		propsData: {
 			imageBackground,
-		}
+		},
 	});
 	expect(wrapper).toMatchSnapshot();
 });

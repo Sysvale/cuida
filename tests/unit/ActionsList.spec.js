@@ -68,10 +68,7 @@ describe('Action list functioning', () => {
 		expect(wrapper.findAll('.action-list__item').length).toBe(1);
 		expect(wrapper.findAll('.action-list__item--left-bordered').length).toBe(1);
 
-		wrapper
-			.find('.action-list__item--left-bordered')
-			.trigger('click');
-
+		wrapper.find('.action-list__item--left-bordered').trigger('click');
 
 		await flushPromises();
 
@@ -95,7 +92,7 @@ describe('Action list functioning', () => {
 			[
 				{
 					img: 'img1',
-					title: 'Icon1'
+					title: 'Icon1',
 				},
 			],
 		]);
