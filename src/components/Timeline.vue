@@ -19,7 +19,7 @@
 						class="timeline__container"
 					>
 						<span
-							class="event__pin"
+							:class="event._dotStyle === 'hollowed' ? 'event__pin--hollowed' : 'event__pin--filled'"
 						/>
 						<div
 							v-if="((index + 1) < history.length) && (history.length > 1)"
@@ -103,8 +103,16 @@ export default {
 	min-height: 12px !important;
 	min-width: 11.5px !important;
 	border-radius: 50% !important;
-	background-color: $gp-400;
-	border: 1px solid $gp-400;
+
+	&--filled {
+		@extend .event__pin;
+		background-color: $gp-500;
+	}
+
+	&--hollowed {
+		@extend .event__pin;
+		border: 2px solid $gp-500;
+	}
 }
 
 #timeline .event__row {
