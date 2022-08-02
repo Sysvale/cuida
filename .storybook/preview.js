@@ -47,6 +47,7 @@ import {
 	Tooltip,
 	ToggleSwitch,
 	CollapsibleContainer,
+	Select,
 	Checkbox,
 	Link,
 	Spinner,
@@ -132,6 +133,7 @@ Vue.component('cds-button', Button);
 Vue.component('cds-loader', Loader);
 Vue.component('cds-clustered-multiselect', ClusteredMultiselect);
 Vue.component('cds-collapsible-container', CollapsibleContainer);
+Vue.component('cds-select', Select);
 
 addParameters({
 	options: {
