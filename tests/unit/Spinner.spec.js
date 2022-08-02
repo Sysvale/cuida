@@ -55,6 +55,10 @@ describe('Spinner', () => {
 			},
 		});
 
-		expect(spy).toHaveBeenCalledWith(expect.stringContaining('[Vue warn]: Invalid prop: custom validator check failed for prop "variant".'));
+		expect(spy).toHaveBeenCalledWith(
+			expect.stringContaining(
+				'[Vue warn]: Invalid prop: custom validator check failed for prop "variant".'
+			)
+		);
 	});
 });
