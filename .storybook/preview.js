@@ -52,6 +52,7 @@ import {
 	Link,
 	Spinner,
 	Button,
+	Alert,
 } from '../src/components';
 
 import {
@@ -67,7 +68,7 @@ import {
 
 import { longClickDirective } from 'vue-long-click'
 
-const longClickInstance = longClickDirective({delay: 400, interval: 50});
+const longClickInstance = longClickDirective({ delay: 400, interval: 50 });
 Vue.directive('longclick', longClickInstance);
 
 Vue.use(vueHljs, { hljs });
@@ -123,6 +124,7 @@ Vue.component('checkbox', Checkbox);
 Vue.component('link', Link);
 Vue.component('spinner', Spinner);
 Vue.component('btn', Button);
+Vue.component('alert', Alert);
 
 addParameters({
 	options: {
