@@ -9,15 +9,6 @@
   <p align="center">https://sysvale.github.io/cuida/</p>
 </div>
 
-<p align="center">
-    <a>
-      <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/Sysvale/cuida">
-    </a>
-    <a href="https://www.codefactor.io/repository/github/sysvale/cuida">
-      <img src="https://www.codefactor.io/repository/github/sysvale/cuida/badge" alt="CodeFactor" />
-    </a>
-</p>
-
 ## Instalando
 
 -   O Cuida pode ser instalado com o npm:
