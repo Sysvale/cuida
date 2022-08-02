@@ -85,9 +85,11 @@ Vue.use(VCalendar, {
 	},
 });
 
+//Dependency components
 Vue.component('multiselect', Multiselect);
 Vue.component('vueSlider', vueSlider);
 
+//Internal components (Docs)
 Vue.component('palete', Palete);
 Vue.component('border', BorderBuilder);
 Vue.component('shadow-builder', Shadows);
@@ -97,6 +99,7 @@ Vue.component('typography-list', TypographyList);
 Vue.component('space', Space);
 Vue.component('iconography', Iconography);
 
+//External components (library)
 Vue.component('cds-actions-list', ActionsList);
 Vue.component('cds-progress-bar', ProgressBar);
 Vue.component('cds-actions-list', ActionsList);
