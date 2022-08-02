@@ -19,7 +19,7 @@ function install(Vue) {
 
 		Vue.component(
 			`${prefix}${componentName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()}`,
-			components[componentName],
+			components[componentName]
 		);
 	});
 }
