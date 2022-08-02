@@ -17,4 +17,4 @@ jobs:
         run:
           npm i
       - name: 🚀 Test
-        run: npm run test:unit
+        run: npm run test
