@@ -7,13 +7,13 @@ const options = [
 	{
 		value: 'foo',
 		id: 1,
-		text: 'fancy foo text'
+		text: 'fancy foo text',
 	},
 	{
 		value: 'bar',
 		id: 2,
-		text: 'fancy bar text'
-	}
+		text: 'fancy bar text',
+	},
 ];
 
 const value = {};
@@ -29,7 +29,6 @@ test('Component is mounted properly', () => {
 	});
 	expect(wrapper).toMatchSnapshot();
 });
-
 
 const wrapper = mount(Select, {
 	localVue,
@@ -59,7 +58,6 @@ test('Options are being rendered', () => {
 	expect(wrapperOptions.length).toBe(options.length);
 });
 
-
 test('Event is emitted correctly on click', async () => {
 	await input.trigger('keydown.enter');
 	await input.trigger('click');
@@ -70,7 +68,7 @@ test('Event is emitted correctly on click', async () => {
 			{
 				value: 'foo',
 				id: 1,
-				text: 'fancy foo text'
+				text: 'fancy foo text',
 			},
 		],
 	]);
