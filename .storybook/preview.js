@@ -51,6 +51,8 @@ import {
 	Link,
 	Spinner,
 	Button,
+	Loader,
+	ClusteredMultiselect,
 } from '../src/components';
 
 import {
@@ -82,46 +84,54 @@ Vue.use(VCalendar, {
 	},
 });
 
+//Dependency components
 Vue.component('multiselect', Multiselect);
-Vue.component('palete', Palete);
-Vue.component('iconography', Iconography);
-Vue.component('space', Space);
-Vue.component('actions-list', ActionsList);
-Vue.component('progress-bar', ProgressBar);
-Vue.component('actions-list', ActionsList);
-Vue.component('radio-button-group', RadioButtonGroup);
-Vue.component('radio', Radio);
-Vue.component('timeline', Timeline);
-Vue.component('nav-bar', NavBar);
-Vue.component('popover', Popover);
-Vue.component('side-sheet', SideSheet);
-Vue.component('dropdown', DropDown);
-Vue.component('empty-state', EmptyState);
-Vue.component('badge', Badge);
-Vue.component('typography-list', TypographyList);
-Vue.component('upload-input', UploadInput);
-Vue.component('stepper', Stepper);
-Vue.component('progress-circular', ProgressCircular);
-Vue.component('alert-card', AlertCard);
-Vue.component('stepper-input', StepperInput);
-Vue.component('panel-card', PanelCard);
-Vue.component('expansion-card', ExpansionCard);
-Vue.component('highlight', Highlight);
-Vue.component('scrollable', Scrollable);
-Vue.component('border', BorderBuilder);
-Vue.component('copy-token', CopyToken);
-Vue.component('calendar', Calendar);
-Vue.component('filter-pill', FilterPill);
-Vue.component('slider', Slider);
 Vue.component('vueSlider', vueSlider);
-Vue.component('tooltip', Tooltip);
-Vue.component('source-code-wrapper', SourceCodeWrapper);
-Vue.component('toggle-switch', ToggleSwitch);
+
+//Internal components (Docs)
+Vue.component('palete', Palete);
+Vue.component('border', BorderBuilder);
 Vue.component('shadow-builder', Shadows);
-Vue.component('checkbox', Checkbox);
-Vue.component('link', Link);
-Vue.component('spinner', Spinner);
-Vue.component('btn', Button);
+Vue.component('copy-token', CopyToken);
+Vue.component('tooltip', Tooltip);
+Vue.component('typography-list', TypographyList);
+Vue.component('space', Space);
+Vue.component('iconography', Iconography);
+
+//External components (library)
+Vue.component('cds-actions-list', ActionsList);
+Vue.component('cds-progress-bar', ProgressBar);
+Vue.component('cds-actions-list', ActionsList);
+Vue.component('cds-radio-button-group', RadioButtonGroup);
+Vue.component('cds-radio', Radio);
+Vue.component('cds-timeline', Timeline);
+Vue.component('cds-nav-bar', NavBar);
+Vue.component('cds-popover', Popover);
+Vue.component('cds-side-sheet', SideSheet);
+Vue.component('cds-dropdown', DropDown);
+Vue.component('cds-empty-state', EmptyState);
+Vue.component('cds-badge', Badge);
+Vue.component('cds-upload-input', UploadInput);
+Vue.component('cds-stepper', Stepper);
+Vue.component('cds-progress-circular', ProgressCircular);
+Vue.component('cds-alert-card', AlertCard);
+Vue.component('cds-stepper-input', StepperInput);
+Vue.component('cds-panel-card', PanelCard);
+Vue.component('cds-expansion-card', ExpansionCard);
+Vue.component('cds-highlight', Highlight);
+Vue.component('cds-scrollable', Scrollable);
+Vue.component('cds-calendar', Calendar);
+Vue.component('cds-filter-pill', FilterPill);
+Vue.component('cds-slider', Slider);
+Vue.component('source-code-wrapper', SourceCodeWrapper);
+Vue.component('cds-toggle-switch', ToggleSwitch);
+Vue.component('cds-checkbox', Checkbox);
+Vue.component('cds-link', Link);
+Vue.component('cds-spinner', Spinner);
+Vue.component('cds-button', Button);
+Vue.component('cds-loader', Loader);
+Vue.component('cds-clustered-multiselect', ClusteredMultiselect);
+Vue.component('cds-collapsible-container', CollapsibleContainer);
 
 addParameters({
 	options: {

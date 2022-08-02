@@ -15,8 +15,10 @@ function install(Vue) {
 	Object.defineProperty(Vue.prototype, '_', { value: _ });
 
 	Object.keys(components).forEach((componentName) => {
+		const prefix = componentName.search('cds-') < 0 ? 'cds-' : '';
+
 		Vue.component(
-			`cds-${componentName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()}`,
+			`${prefix}${componentName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()}`,
 			components[componentName]
 		);
 	});
