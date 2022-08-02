@@ -39,9 +39,9 @@ export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { Highlight },
 	template: /*html*/ `
-		<highlight v-bind="$props">
+		<cds-highlight v-bind="$props">
 			<span> Texto bem importante</span>
-		</highlight>
+		</cds-highlight>
 	`,
 });
 

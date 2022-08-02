@@ -27,19 +27,19 @@ export const Template = (args, { argTypes }) => ({
 	template: /*html*/ `
 		<div>
 			<div class="d-flex">
-				<radio
+				<cds-radio
 					v-model="selected"
 					v-bind="$props"
 					class="mx-2"
 				>
 					Opção de <strong> destaque </strong>
-				</radio>
-				<radio
+				</cds-radio>
+				<cds-radio
 					v-model="selected"
 					v-bind="option2"
 					class="mx-2"
 				/>
-				<radio
+				<cds-radio
 					v-model="selected"
 					v-bind="option3"
 					class="mx-2"
