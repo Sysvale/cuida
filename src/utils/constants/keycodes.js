@@ -1,3 +1,3 @@
 export default {
-  ESC: 27,
+	ESC: 27,
 };

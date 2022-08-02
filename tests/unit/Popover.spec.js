@@ -17,7 +17,7 @@ test('Component is mounted properly', () => {
 	expect(wrapper).toMatchSnapshot();
 });
 
-describe("Items styles test", () => {
+describe('Items styles test', () => {
 	let App;
 	beforeEach(() => {
 		App = localVue.component('App', {
@@ -59,7 +59,7 @@ describe("Items styles test", () => {
 		const offsetNegative = offset < 0;
 		expect(offsetNegative).toBe(true);
 	});
-	
+
 	it('if component is right aligned internalOffset must be positive', () => {
 		const wrapper = mount(App, {
 			localVue,

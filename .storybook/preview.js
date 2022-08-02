@@ -1,5 +1,4 @@
-
-import { addParameters } from "@storybook/vue";
+import { addParameters } from '@storybook/vue';
 import CuidaTheme from './theme';
 
 import Vue from 'vue';
@@ -8,12 +7,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import Multiselect from 'vue-multiselect';
 import VCalendar from 'v-calendar';
-import vueHljs from "vue-hljs";
-import hljs from "highlight.js";
-import "vue-hljs/dist/style.css";
+import vueHljs from 'vue-hljs';
+import hljs from 'highlight.js';
+import 'vue-hljs/dist/style.css';
 
 import vueSlider from 'vue-slider-component';
-import 'vue-slider-component/theme/default.css'
+import 'vue-slider-component/theme/default.css';
 
 import _ from 'lodash';
 Object.defineProperty(Vue.prototype, '_', { value: _ });
@@ -65,9 +64,9 @@ import {
 	Shadows,
 } from '../src/docs-components';
 
-import { longClickDirective } from 'vue-long-click'
+import { longClickDirective } from 'vue-long-click';
 
-const longClickInstance = longClickDirective({delay: 400, interval: 50});
+const longClickInstance = longClickDirective({ delay: 400, interval: 50 });
 Vue.directive('longclick', longClickInstance);
 
 Vue.use(vueHljs, { hljs });
@@ -141,7 +140,11 @@ addParameters({
 		selectedPanel: 'controls',
 		showCanvas: false,
 		storySort: {
-			order: ['Fundação', ['Princípios', 'Tipografia', 'Peso da Fonte', 'Cores', 'Espaçamento', 'Bordas'], 'Componentes'],
+			order: [
+				'Fundação',
+				['Princípios', 'Tipografia', 'Peso da Fonte', 'Cores', 'Espaçamento', 'Bordas'],
+				'Componentes',
+			],
 		},
 	},
 });
