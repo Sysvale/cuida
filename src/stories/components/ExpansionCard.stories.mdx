@@ -31,7 +31,7 @@ export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { ExpansionCard, BIconHouseFill },
 	template: /*html*/ `
-		<expansion-card
+		<cds-expansion-card
 			v-bind="$props" 
 		>
 			<template v-slot:icon>
@@ -49,7 +49,7 @@ export const Template = (args, { argTypes }) => ({
 					Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
 				</p>
 			</template>
-		</expansion-card>
+		</cds-expansion-card>
 	`,
 });
 

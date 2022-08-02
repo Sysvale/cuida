@@ -1,6 +1,6 @@
 {
   "name": "@sysvale/cuida",
-  "version": "2.10.0",
+  "version": "2.13.0",
   "description": "A design system built by Sysvale, using storybook and Vue components",
   "repository": {
     "type": "git",
@@ -64,10 +64,13 @@
     "cross-env": "^6.0.3",
     "css-loader": "^4.3.0",
     "eslint": "^6.7.2",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^6.2.2",
     "highlight.js": "^10.6.0",
     "node-sass": "^4.12.0",
+    "prettier": "^2.7.1",
     "react-is": "^16.13.1",
     "rollup": "^1.29.0",
     "rollup-plugin-commonjs": "^10.1.0",
@@ -78,6 +81,13 @@
     "vue-hljs": "^2.0.0",
     "vue-template-compiler": "^2.6.11"
   },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 4,
+    "useTabs": true,
+    "vueIndentScriptAndStyle": true
+  },
   "eslintConfig": {
     "root": true,
     "env": {
@@ -85,11 +95,15 @@
     },
     "extends": [
       "plugin:vue/essential",
+      "plugin:prettier/recommended",
       "@vue/airbnb"
     ],
     "parserOptions": {
       "parser": "babel-eslint"
     },
+    "plugins": [
+      "prettier"
+    ],
     "rules": {
       "vue/html-indent": [
         "error",
@@ -101,6 +115,7 @@
           "ignores": []
         }
       ],
+      "prettier/prettier": "error",
       "no-tabs": "off",
       "indent": [
         "error",

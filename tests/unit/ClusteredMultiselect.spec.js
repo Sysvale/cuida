@@ -6,11 +6,7 @@ import flushPromises from 'flush-promises';
 const localVue = createLocalVue();
 localVue.use(BootstrapVue);
 
-const options = [
-	{ text: 'Item 1' },
-	{ text: 'Item 2' },
-	{ text: 'Item 3' },
-];
+const options = [{ text: 'Item 1' }, { text: 'Item 2' }, { text: 'Item 3' }];
 
 test('Component is mounted properly', async () => {
 	const wrapper = mount(ClusteredMultiselect, {
@@ -50,9 +46,7 @@ test('If the group labels are shown when theres selected items', async () => {
 		localVue,
 		attrs: {
 			options,
-			value: [
-				{ text: 'Item 1' },
-			],
+			value: [{ text: 'Item 1' }],
 		},
 		attachTo: document.body,
 	});
@@ -102,9 +96,7 @@ test('If "unselect all" option are shown when theres selected items', () => {
 		localVue,
 		attrs: {
 			options,
-			value: [
-				{ text: 'Item 1' },
-			],
+			value: [{ text: 'Item 1' }],
 		},
 		attachTo: document.body,
 	});
@@ -119,9 +111,7 @@ test('If "unselect all" option works as expected', async () => {
 		localVue,
 		attrs: {
 			options,
-			value: [
-				{ text: 'Item 1' },
-			],
+			value: [{ text: 'Item 1' }],
 		},
 		attachTo: document.body,
 	});
@@ -135,9 +125,7 @@ test('If "unselect all" option works as expected', async () => {
 });
 
 test('If label is shown when only one option is selected', async () => {
-	const value = [
-		{ text: 'Item 1' },
-	];
+	const value = [{ text: 'Item 1' }];
 
 	const wrapper = mount(ClusteredMultiselect, {
 		localVue,

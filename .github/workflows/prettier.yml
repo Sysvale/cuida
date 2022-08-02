@@ -1,0 +1,19 @@
+name: "Prettier 🪄"
+
+on: [push]
+
+jobs:
+  prettier:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Prettify code
+        uses: creyD/prettier_action@v4.2
+        with:
+          commit_message: 'style: correções de estilo de código (Prettier)'
+          prettier_options: --write **/*.{js,md}

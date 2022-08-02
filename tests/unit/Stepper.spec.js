@@ -24,7 +24,7 @@ test('Component is mounted properly', () => {
 	expect(wrapper).toMatchSnapshot();
 });
 
-describe("Divider styles test", () => {
+describe('Divider styles test', () => {
 	test('if all the stepper dividers are rendered as default dividers', () => {
 		let mocked_data = [
 			{ label: 'Dummy label 1', completed: false, inProcessing: false, error: false },
@@ -40,7 +40,7 @@ describe("Divider styles test", () => {
 			},
 		});
 		const numberOfEdges = 3;
-		expect(wrapper.findAll('.stepper__divider--default').length).toBe(2+numberOfEdges);
+		expect(wrapper.findAll('.stepper__divider--default').length).toBe(2 + numberOfEdges);
 	});
 
 	test('if one of the stepper divider is rendered as an in_progress divider and others are rendered as default dividers', () => {
@@ -59,7 +59,7 @@ describe("Divider styles test", () => {
 		});
 		expect(wrapper.findAll('.stepper__divider--in-progress').length).toBe(1);
 		const numberOfEdges = 3;
-		expect(wrapper.findAll('.stepper__divider--default').length).toBe(1+numberOfEdges);
+		expect(wrapper.findAll('.stepper__divider--default').length).toBe(1 + numberOfEdges);
 	});
 
 	test('if one of the stepper divider is rendered as a completed divider and the other is rendered as an in_progress divider', () => {
@@ -81,7 +81,7 @@ describe("Divider styles test", () => {
 	});
 });
 
-describe("Change step event tests", () => {
+describe('Change step event tests', () => {
 	test('if a event is emited when the stepper is clicked', async () => {
 		let mocked_data = [
 			{ label: 'Dummy label 1', completed: false, inProcessing: false, error: false },
@@ -106,7 +106,7 @@ describe("Change step event tests", () => {
 	});
 });
 
-describe("Component is mounted properly when is vertical", () => {
+describe('Component is mounted properly when is vertical', () => {
 	test('if dividers are shown as vertical', () => {
 		let mocked_data = [
 			{ label: 'Dummy label 1', completed: false, inProcessing: false, error: false },
@@ -124,6 +124,8 @@ describe("Component is mounted properly when is vertical", () => {
 		});
 
 		const numberOfEdges = 2;
-		expect(wrapper.findAll('.stepper__vertical-divider--default').length).toBe(2+numberOfEdges);
+		expect(wrapper.findAll('.stepper__vertical-divider--default').length).toBe(
+			2 + numberOfEdges
+		);
 	});
 });
