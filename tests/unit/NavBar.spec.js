@@ -35,21 +35,21 @@ const mockedData = [
 				route: {
 					path: '/dummy/sub/item/4',
 					name: 'dummy-item-4',
-				}
+				},
 			},
 			{
 				label: 'Dummy item 5',
 				route: {
 					path: '/dummy/sub/item/5',
 					name: 'dummy-item-5',
-				}
+				},
 			},
 			{
 				label: 'Dummy item 6',
 				route: {
 					path: '/dummy/sub/item/5',
 					name: 'dummy-item-5',
-				}
+				},
 			},
 		],
 	},
@@ -79,17 +79,11 @@ describe('"items" prop is validated', () => {
 	});
 
 	test('throws exception when some element of "items" has not label', () => {
-		expect(validator([
-			{ path: 'dummy/path/0' },
-			...mockedData,
-		])).toBe(false);
+		expect(validator([{ path: 'dummy/path/0' }, ...mockedData])).toBe(false);
 	});
 
 	test('throws exception when some element of "items" has not path, route or items', () => {
-		expect(validator([
-			{ label: 'Dummy label 0' },
-			...mockedData,
-		])).toBe(false);
+		expect(validator([{ label: 'Dummy label 0' }, ...mockedData])).toBe(false);
 	});
 });
 
@@ -180,11 +174,7 @@ describe('Change active item event tests', () => {
 			.trigger('click');
 
 		expect(wrapper.emitted().click).toBeTruthy();
-		expect(wrapper.emitted().click).toEqual([
-			[
-				mockedData[elementIndex],
-			],
-		]);
+		expect(wrapper.emitted().click).toEqual([[mockedData[elementIndex]]]);
 	});
 
 	test('if a event is emitted when the subitem is clicked', () => {
@@ -202,10 +192,6 @@ describe('Change active item event tests', () => {
 			.trigger('click');
 
 		expect(wrapper.emitted().click).toBeTruthy();
-		expect(wrapper.emitted().click).toEqual([
-			[
-				mockedData[3].items[0],
-			],
-		]);
+		expect(wrapper.emitted().click).toEqual([[mockedData[3].items[0]]]);
 	});
 });

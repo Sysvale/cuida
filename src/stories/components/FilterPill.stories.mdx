@@ -15,17 +15,17 @@ export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { FilterPill },
 	template: /*html*/ `
-		<filter-pill
+		<cds-filter-pill
 			v-bind="$props"
 			@click="isActive = !isActive"
 		>
 			<p>Slot do dropdown do FilterPill</p>
-		</filter-pill>
+		</cds-filter-pill>
 	`,
 });
 
 export const template = /*html*/ `
-	<cds-filter-pill 
+	<cds-filter-pill
 		label="Idade"
 		content="0 a 120 anos"
 		@click="showSortingOptions"
