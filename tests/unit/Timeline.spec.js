@@ -68,12 +68,10 @@ test('If the UI elements of the timeline are displayed properly', () => {
 	let hollowedPins = 0;
 
 	history.forEach((obj) => {
-		filledPins += (
-			obj._dotStyle === 'filled'
-			|| typeof obj._dotStyle === 'undefined') ? 1 : 0;
+		filledPins += obj._dotStyle === 'filled' || typeof obj._dotStyle === 'undefined' ? 1 : 0;
 
 		hollowedPins += obj._dotStyle === 'hollowed' ? 1 : 0;
-	})
+	});
 
 	expect(wrapper.findAll('.event__pin--filled').length).toBe(filledPins);
 	expect(wrapper.findAll('.event__pin--hollowed').length).toBe(hollowedPins);
