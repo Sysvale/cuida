@@ -55,8 +55,8 @@ test('Dropdown toggles when Enter is pressed', async () => {
 });
 
 test('Options are being rendered', () => {
-	const options = wrapper.findAll('.option__text');
-	expect(options.length).toBe(2);
+	const wrapperOptions = wrapper.findAll('.option__text');
+	expect(wrapperOptions.length).toBe(options.length);
 });
 
 
