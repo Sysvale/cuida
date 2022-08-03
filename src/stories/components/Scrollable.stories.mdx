@@ -15,7 +15,7 @@ export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { Scrollable },
 	template: /*html*/ `
-		<Scrollable
+		<cds-scrollable
 			v-bind="$props" 
 		>
 			<p>
@@ -46,7 +46,7 @@ export const Template = (args, { argTypes }) => ({
 				mais estranho e inexplicável. Existe uma segunda teoria que diz 
 				que isso já aconteceu.
 			</p>
-		</Scrollable>
+		</cds-scrollable>
 	`,
 });
 

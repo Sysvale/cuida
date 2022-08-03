@@ -469,6 +469,7 @@ export default {
 	}
 
 	&__options {
+		@include subheading-3;
 		outline: 1px solid $n-50;
 		border-bottom-left-radius: $border-radius-extra-small;
 		border-bottom-right-radius: $border-radius-extra-small;
@@ -476,10 +477,13 @@ export default {
 		flex-direction: column;
 		margin-top: 1px;
 		justify-items: center;
-		@include subheading-3;
 		text-overflow: ellipsis;
 		max-height: 296px;
 		overflow: auto;
+		position: absolute;
+		z-index: 999;
+		background-color: $n-0;
+
 
 		&--thin {
 			width: 150px;

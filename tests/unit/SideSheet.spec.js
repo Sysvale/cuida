@@ -17,7 +17,7 @@ test('Component is mounted properly', () => {
 	expect(wrapper).toMatchSnapshot();
 });
 
-describe("Items styles test", () => {
+describe('Items styles test', () => {
 	test('if content is left aligned', () => {
 		const wrapper = mount(SideSheet, {
 			localVue,
@@ -38,21 +38,20 @@ describe("Items styles test", () => {
 			},
 		});
 		expect(wrapper.findAll('.side-sheet__container--right').length).toBe(1);
-  });
+	});
 
-  test('if content is right aligned by default', () => {
-    const wrapper = mount(SideSheet, {
-      localVue,
-      propsData: {
-        value: true,
-      },
-    });
-    expect(wrapper.findAll('.side-sheet__container--right').length).toBe(1);
-  });
+	test('if content is right aligned by default', () => {
+		const wrapper = mount(SideSheet, {
+			localVue,
+			propsData: {
+				value: true,
+			},
+		});
+		expect(wrapper.findAll('.side-sheet__container--right').length).toBe(1);
+	});
 });
 
-describe("Behavior tests", () => {
-
+describe('Behavior tests', () => {
 	test('if noCloseOnBackdrop as true works', async (done) => {
 		const wrapper = mount(SideSheet, {
 			localVue,
@@ -82,7 +81,7 @@ describe("Behavior tests", () => {
 		});
 
 		wrapper.trigger('keyup', {
-			keyCode: 27
+			keyCode: 27,
 		});
 
 		await flushPromises();

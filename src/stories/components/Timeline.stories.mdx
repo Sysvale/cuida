@@ -10,7 +10,7 @@ export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { Timeline },
 	template: /*html*/ `
-		<timeline
+		<cds-timeline
 			v-bind="$props" 
 		/>
 	`,
@@ -54,33 +54,44 @@ export const docsDecorator = () => {
 
 <br />
 
+## Observações:
+- A timeline espera um array de objetos com os campos: `date`, `title` e `text`, como espeficiado na tabela de props abaixo;
+- Caso deseje que os pins da timeline tenham estilo com borda e sem preenchimento, você pode especificar a Propriedade
+`_dotStyle` no objeto de configurações. Essa propriedade aceita dois valores: `hollowed` para estilo com borda e `filled`
+para estilo com preenchimento.
+
+<br />
+
 ## Preview
 
 export const history = [
 	{
-		date: '22/09/2020',
+		date: '22/09/2022',
 		title: 'Bloqueio nível 1',
 		text: 'Usuário: Uncle Bob',
+		_dotStyle: 'hollowed',
 	},
 	{
-		date: '22/09/2020',
-		title: 'Bloqueio nível 1',
-		text: 'Usuário: Uncle Bob',
+		date: '15/05/2022',
+		title: 'Bloqueio nível 2',
+		text: 'Usuário: Linus Torvalds',
+		_dotStyle: 'hollowed',
 	},
 	{
-		date: '22/09/2020',
+		date: '18/02/2022',
 		title: 'Bloqueio nível 1',
-		text: 'Usuário: Uncle Bob',
+		text: 'Usuário: Don Norman',
 	},
 	{
-		date: '22/09/2020',
-		title: 'Bloqueio nível 1',
-		text: 'Usuário: Uncle Bob',
+		date: '20/12/2021',
+		title: 'Bloqueio nível 3',
+		text: 'Usuário: Richard Stallman',
+		_dotStyle: 'filled',
 	},
 	{
-		date: '22/09/2020',
+		date: '04/11/2021',
 		title: 'Bloqueio nível 1',
-		text: 'Usuário: Uncle Bob',
+		text: 'Usuário: Dennis Ritchie',
 	},
 ];
 

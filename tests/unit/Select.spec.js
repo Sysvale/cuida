@@ -7,13 +7,13 @@ const options = [
 	{
 		value: 'foo',
 		id: 1,
-		text: 'fancy foo text'
+		text: 'fancy foo text',
 	},
 	{
 		value: 'bar',
 		id: 2,
-		text: 'fancy bar text'
-	}
+		text: 'fancy bar text',
+	},
 ];
 
 const value = {};
@@ -29,7 +29,6 @@ test('Component is mounted properly', () => {
 	});
 	expect(wrapper).toMatchSnapshot();
 });
-
 
 const wrapper = mount(Select, {
 	localVue,
@@ -55,10 +54,9 @@ test('Dropdown toggles when Enter is pressed', async () => {
 });
 
 test('Options are being rendered', () => {
-	const options = wrapper.findAll('.option__text');
-	expect(options.length).toBe(2);
+	const wrapperOptions = wrapper.findAll('.option__text');
+	expect(wrapperOptions.length).toBe(options.length);
 });
-
 
 test('Event is emitted correctly on click', async () => {
 	await input.trigger('keydown.enter');
@@ -70,7 +68,7 @@ test('Event is emitted correctly on click', async () => {
 			{
 				value: 'foo',
 				id: 1,
-				text: 'fancy foo text'
+				text: 'fancy foo text',
 			},
 		],
 	]);
