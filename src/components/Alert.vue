@@ -8,7 +8,7 @@
 				'alert__container--danger': variant === 'danger',
 			}"
 		>
-			<div class="d-flex">
+			<div class="alert__body">
 				<div>
 					<ion-icon
 						:name="icon"
@@ -24,7 +24,7 @@
 					{{ text }}
 				</span>
 
-				<!-- @slot Slot padrão utilizado para exibir o conteúdo dentro da badge -->
+				<!-- @slot Slot padrão utilizado para exibir texto do alert caso não tenha sido especificado por prop -->
 				<span v-else class="alert__text">
 					<slot />
 				</span>
@@ -57,13 +57,16 @@ export default {
 			required: false,
 		},
 		/**
-		 * O título do alerta. O título também pode ser usado com o slot.
+		 * O título do alert. O título também pode ser usado com o slot.
 		 */
 		text: {
 			type: String,
 			default: 'Título do AlertCard',
 			required: false,
 		},
+		/**
+		 * Prop que exibe botão de fechamento do alert.
+		 */
 		dismissible: {
 			type: Boolean,
 			default: false,
@@ -73,7 +76,6 @@ export default {
 
 	data() {
 		return {
-			isSelected: this.value,
 			icon: 'warning',
 		};
 	},
@@ -114,6 +116,10 @@ export default {
 	padding: pa(4);
 	border-radius: $border-radius-extra-small;
 
+	&__body {
+		display: flex;
+	}
+
 	&__container {
 		@extend .alert;
 
@@ -140,7 +146,8 @@ export default {
 	}
 
 	&__icon {
-		margin: mr(2);
+		//Valor fixo utilizado apenas para ajuste do posicionamento do ícone
+		margin-top: 2px;
 
 		&--info {
 			@extend .alert__icon;
@@ -159,11 +166,13 @@ export default {
 	}
 
 	&__text {
+		margin: ml(2);
 		@include subheading-3;
 		font-weight: $font-weight-medium;
 	}
 
 	&__close-button {
+		display: flex;
 		cursor: pointer;
 	}
 }
