@@ -1,27 +1,48 @@
 <template>
 	<span id="alert">
 		<div
+			class="alert"
 			:class="{
 				'alert__container--info': variant === 'info',
 				'alert__container--warning': variant === 'warning',
 				'alert__container--danger': variant === 'danger',
 			}"
 		>
-			<ion-icon
-				name="alert-circle"
-				:class="{
-					'alert__icon--info': variant === 'info',
-					'alert__icon--warning': variant === 'warning',
-					'alert__icon--danger': variant === 'danger',
-				}"
-			/>
+			<div class="d-flex">
+				<div>
+					<ion-icon
+						:name="icon"
+						:class="{
+							'alert__icon--info': variant === 'info',
+							'alert__icon--warning': variant === 'warning',
+							'alert__icon--danger': variant === 'danger',
+						}"
+					/>
+				</div>
 
-			<span class="alert__text">
-				{{ text }}
-			</span>
+				<span v-if="text.length > 0" class="alert__text">
+					{{ text }}
+				</span>
 
-			<!-- @slot Slot padrão utilizado para exibir o conteúdo dentro da badge -->
-			<slot />
+				<!-- @slot Slot padrão utilizado para exibir o conteúdo dentro da badge -->
+				<span v-else class="alert__text">
+					<slot />
+				</span>
+			</div>
+
+			<div>
+				<ion-icon
+					v-if="dismissible"
+					@click="close"
+					name="close"
+					class="alert__close-button"
+					:class="{
+						'alert__icon--info': variant === 'info',
+						'alert__icon--warning': variant === 'warning',
+						'alert__icon--danger': variant === 'danger',
+					}"
+				/>
+			</div>
 		</div>
 	</span>
 </template>
@@ -36,6 +57,7 @@ export default {
 		variant: {
 			type: String,
 			default: 'info',
+			required: false,
 		},
 		/**
 		 * O título do alerta. O título também pode ser usado com o slot.
@@ -43,13 +65,45 @@ export default {
 		text: {
 			type: String,
 			default: 'Título do AlertCard',
+			required: false,
+		},
+		dismissible: {
+			type: Boolean,
+			default: false,
+			required: false,
 		},
 	},
 
 	data() {
 		return {
 			isSelected: this.value,
+			icon: 'warning',
 		};
+	},
+
+	methods: {
+		close() {
+			this.$emit('close');
+		},
+	},
+
+	watch: {
+		variant(value) {
+			switch (value) {
+				case 'info':
+					this.icon = 'information-circle';
+					break;
+				case 'warning':
+					this.icon = 'warning';
+					break;
+				case 'danger':
+					this.icon = 'alert-circle';
+					break;
+				default:
+					this.icon = 'alert-circle';
+					break;
+			}
+		},
 	},
 };
 </script>
@@ -59,6 +113,7 @@ export default {
 #alert .alert {
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	padding: pa(4);
 	border-radius: $border-radius-extra-small;
 
@@ -76,7 +131,7 @@ export default {
 			@extend .alert__container;
 			outline: 2px solid $al-100;
 			background-color: $al-50;
-			color: $al-600;
+			color: $al-700;
 		}
 
 		&--danger {
@@ -97,7 +152,7 @@ export default {
 
 		&--warning {
 			@extend .alert__icon;
-			color: $al-600;
+			color: $al-700;
 		}
 
 		&--danger {
@@ -109,6 +164,10 @@ export default {
 	&__text {
 		@include subheading-3;
 		font-weight: $font-weight-medium;
+	}
+
+	&__close-button {
+		cursor: pointer;
 	}
 }
 </style>
