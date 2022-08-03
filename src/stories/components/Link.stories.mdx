@@ -8,7 +8,7 @@ import Link from '../../components/Link.vue';
 
 export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
-	components: { 'cds-link' : Link },
+	components: { Link },
 	template: /*html*/ `
 		<cds-link
 			v-bind="$props"

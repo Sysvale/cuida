@@ -12,7 +12,7 @@ test('Component is mounted properly', () => {
 		localVue,
 		propsData: {
 			value: {},
-		}
+		},
 	});
 
 	expect(wrapper).toMatchSnapshot();

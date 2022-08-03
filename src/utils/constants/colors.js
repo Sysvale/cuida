@@ -41,9 +41,9 @@ export const colors = [
 	},
 ];
 
-export const colorOptions = colors.map(color => color.name);
+export const colorOptions = colors.map((color) => color.name);
 
 export const colorHexCode = (value) => {
-	const foundColor = colors.filter(color => color.name === value)[0];
+	const foundColor = colors.filter((color) => color.name === value)[0];
 	return foundColor ? foundColor.hex : '';
 };

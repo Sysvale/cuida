@@ -27,6 +27,7 @@ export { default as ToggleSwitch } from './ToggleSwitch.vue';
 export { default as ClusteredMultiselect } from './ClusteredMultiselect.vue';
 export { default as CollapsibleContainer } from './CollapsibleContainer.vue';
 export { default as Loader } from './Loader.vue';
+export { default as Select } from './Select.vue';
 export { default as Checkbox } from './Checkbox.vue';
 export { default as Link } from './Link.vue';
 export { default as Spinner } from './Spinner.vue';

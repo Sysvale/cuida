@@ -15,7 +15,7 @@ export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { ToggleSwitch },
 	template: /*html*/ `
-		<toggle-switch
+		<cds-toggle-switch
 			v-model="isSelected"
 			v-bind="$props"
 		/>

@@ -20,7 +20,7 @@ test('Component is mounted properly', () => {
 	expect(wrapper).toMatchSnapshot();
 });
 
-describe("Click tests", () => {
+describe('Click tests', () => {
 	test("if the click event is emitted properly when the filterPill is clicked'", () => {
 		const wrapper = shallowMount(FilterPill, {
 			localVue,

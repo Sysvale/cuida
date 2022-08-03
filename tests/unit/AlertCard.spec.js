@@ -16,7 +16,7 @@ test('Component is mounted properly', () => {
 });
 
 describe('Click tests', () => {
-	test("if an event is emited when the checkbox is clicked", () => {
+	test('if an event is emited when the checkbox is clicked', () => {
 		const wrapper = shallowMount(AlertCard, {
 			localVue,
 			propsData: {
@@ -34,7 +34,7 @@ describe('Click tests', () => {
 		expect(wrapper.emitted().input).toEqual([[true]]);
 	});
 
-	test("if an event is emited when the card is clicked", () => {
+	test('if an event is emited when the card is clicked', () => {
 		const wrapper = shallowMount(AlertCard, {
 			localVue,
 			propsData: {
@@ -52,7 +52,7 @@ describe('Click tests', () => {
 		expect(wrapper.emitted().input).toEqual([[true]]);
 	});
 
-	test("if an event is not emited when the card is clicked when muted", () => {
+	test('if an event is not emited when the card is clicked when muted', () => {
 		const wrapper = shallowMount(AlertCard, {
 			localVue,
 			propsData: {
@@ -71,7 +71,7 @@ describe('Click tests', () => {
 	});
 });
 
-describe("Styles based on the variants tests", () => {
+describe('Styles based on the variants tests', () => {
 	test("if the the styles are applied properly when the variant is 'info'", async () => {
 		const wrapper = mount(AlertCard, {
 			localVue,
@@ -144,7 +144,6 @@ describe("Styles based on the variants tests", () => {
 		expect(wrapper.findAll('.alert-card__container--selected-danger').length).toBe(1);
 	});
 });
-
 
 test("if the the styles are applied properly when the variant is 'danger'", () => {
 	const wrapper = mount(AlertCard, {

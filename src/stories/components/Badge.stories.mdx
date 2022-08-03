@@ -30,15 +30,15 @@ export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { Badge },
 	template: /*html*/ `
-		<badge
+		<cds-badge
 			v-bind="$props" 
 		>
 			Conteúdo
-		</badge>`,
+		</cds-badge>`,
 });
 
 export const template = /*html*/ `
-	<cds-badge 
+	<cds-badge
 		variant="gray"
 	>
 		Conteúdo
