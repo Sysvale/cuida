@@ -16,4 +16,3 @@ test('Component is mounted properly', () => {
 
 	expect(wrapper).toMatchSnapshot();
 });
-
