@@ -2,9 +2,6 @@
 
 exports[`Component is mounted properly 1`] = `
 <span id="alert"><div class="alert alert__container--info"><div class="d-flex"><div><ion-icon-stub name="warning" class="alert__icon--info"></ion-icon-stub></div> <span class="alert__text"></span></div>
-<div>
-  <!---->
-</div>
-</div>
-</span>
+<!---->
+</div></span>
 `;

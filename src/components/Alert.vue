@@ -30,12 +30,9 @@
 				</span>
 			</div>
 
-			<div>
+			<div v-if="dismissible" @click="close" class="alert__close-button">
 				<ion-icon
-					v-if="dismissible"
-					@click="close"
 					name="close"
-					class="alert__close-button"
 					:class="{
 						'alert__icon--info': variant === 'info',
 						'alert__icon--warning': variant === 'warning',
