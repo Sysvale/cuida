@@ -1,58 +1,87 @@
 <template>
-	<div class="progress">
-		<div
-			class="
-				progress-bar
-				bg-success
-				progress-bar-striped progress-bar-animated
-			"
-			style="width: 100%"
-		></div>
+	<div>
+		<div class="loading-bar__container">
+			<div class="loading-bar" />
+		</div>
 	</div>
 </template>
 
 <script>
-import { colorOptions } from '../utils/constants/colors';
-
-const sizeOptions = ['sm', 'md', 'lg'];
-
-export default {
-	props: {
-		/**
-		 *	Propriedade referente ao tamanho do componente ('sm', 'md' ou 'lg')
-		 *
-		 */
-		size: {
-			type: String,
-			default: 'md',
-			validator: (value) => sizeOptions.indexOf(value) > -1,
-		},
-		/**
-		*	Variante de cor do componente ('turquoise', 'green', 'blue',
-			'indigo', 'violet', 'pink', 'red', 'orange', 'amber')
-		*
-		*/
-		variant: {
-			type: String,
-			default: 'green',
-			validator: (value) => colorOptions.indexOf(value) > -1,
-		},
-	},
-
-	computed: {
-		computedSizeClass() {
-			return `spinner--${this.size}`;
-		},
-		computedColorClass() {
-			return `spinner--${this.variant}`;
-		},
-		computedSpinnerClass() {
-			return `${this.computedSizeClass} ${this.computedColorClass}`;
-		},
-	},
-};
+export default {};
 </script>
 
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
+
+@mixin animation($animation) {
+	-webkit-animation: $animation;
+	-o-animation: $animation;
+	animation: $animation;
+}
+
+@-webkit-keyframes loading-bar-stripes {
+	from {
+		background-position: 40px 0;
+	}
+	to {
+		background-position: 0 0;
+	}
+}
+
+@keyframes loading-bar-stripes {
+	from {
+		background-position: 40px 0;
+	}
+	to {
+		background-position: 0 0;
+	}
+}
+
+.loading-bar__container {
+	display: flex;
+	overflow: hidden;
+	border-radius: $border-radius-small;
+	height: 12px;
+	transform: rotate(180deg);
+}
+
+.loading-bar {
+	background-color: $gp-500;
+	background-size: 40px 40px;
+	width: 100%;
+	@include animation(loading-bar-stripes 2s linear infinite);
+
+	background-image: -webkit-linear-gradient(
+		-45deg,
+		#ffffff26 25%,
+		transparent 25%,
+		transparent 50%,
+		#ffffff26 50%,
+		#ffffff26 75%,
+		transparent 75%,
+		transparent
+	);
+
+	background-image: -o-linear-gradient(
+		-45deg,
+		#ffffff26 25%,
+		transparent 25%,
+		transparent 50%,
+		#ffffff26 50%,
+		#ffffff26 75%,
+		transparent 75%,
+		transparent
+	);
+
+	background-image: linear-gradient(
+		-45deg,
+		#ffffff26 25%,
+		transparent 25%,
+		transparent 50%,
+		#ffffff26 50%,
+		#ffffff26 75%,
+		transparent 75%,
+		transparent
+	);
+}
 </style>

@@ -4,30 +4,6 @@ import LoadingBar from '../../components/LoadingBar.vue';
 <Meta
 	title="Componentes/Display/LoadingBar"
 	component={ LoadingBar }
-	argTypes={{
-		size: {
-			control: {
-				type: 'select',
-				options: ['sm', 'md', 'lg'],
-			}
-		},
-		variant: {
-			control: {
-				type: 'select',
-				options: [
-					'turquoise',
-					'green',
-					'blue',
-					'indigo',
-					'violet',
-					'pink',
-					'red',
-					'orange',
-					'amber',
-				],
-			}
-		},
-	}}
 />
 
 export const Template = (args, { argTypes }) => ({
@@ -43,10 +19,7 @@ export const Template = (args, { argTypes }) => ({
 });
 
 export const template = /*html*/ `
-	<cds-loading-bar
-		size="md"
-		variant="green"
-	/>`;
+	<cds-loading-bar />`;
 
 export const docsDecorator = () => {
 	return {
