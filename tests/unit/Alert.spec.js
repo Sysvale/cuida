@@ -1,4 +1,4 @@
-import { mount, shallowMount, createLocalVue } from '@vue/test-utils';
+import { mount, createLocalVue } from '@vue/test-utils';
 import Alert from '../../src/components/Alert.vue';
 
 const localVue = createLocalVue();
