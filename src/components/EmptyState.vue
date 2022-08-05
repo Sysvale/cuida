@@ -108,17 +108,17 @@ export default {
 	}
 
 	&__title {
-		margin: mt(12);
-		color: $n-900;
-		font-size: 28px;
+		margin: mt(8);
+		color: $n-600;
+		@include subheading-1;
 	}
 
 	&__text {
-		margin: mt(2);
-		color: $n-700;
-		font-size: 16px;
+		margin: mt(1);
+		color: $n-500;
 		max-width: 50%;
 		text-align: center;
+		@include subheading-3;
 	}
 
 	&__button {
