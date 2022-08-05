@@ -54,6 +54,7 @@ import {
 	Button,
 	Loader,
 	ClusteredMultiselect,
+	LoadingBar,
 } from '../src/components';
 
 import {
@@ -98,6 +99,7 @@ Vue.component('tooltip', Tooltip);
 Vue.component('typography-list', TypographyList);
 Vue.component('space', Space);
 Vue.component('iconography', Iconography);
+Vue.component('source-code-wrapper', SourceCodeWrapper);
 
 //External components (library)
 Vue.component('cds-actions-list', ActionsList);
@@ -124,7 +126,6 @@ Vue.component('cds-scrollable', Scrollable);
 Vue.component('cds-calendar', Calendar);
 Vue.component('cds-filter-pill', FilterPill);
 Vue.component('cds-slider', Slider);
-Vue.component('source-code-wrapper', SourceCodeWrapper);
 Vue.component('cds-toggle-switch', ToggleSwitch);
 Vue.component('cds-checkbox', Checkbox);
 Vue.component('cds-link', Link);
@@ -134,6 +135,7 @@ Vue.component('cds-loader', Loader);
 Vue.component('cds-clustered-multiselect', ClusteredMultiselect);
 Vue.component('cds-collapsible-container', CollapsibleContainer);
 Vue.component('cds-select', Select);
+Vue.component('cds-loading-bar', LoadingBar);
 
 addParameters({
 	options: {
