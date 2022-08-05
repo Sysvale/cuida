@@ -4,6 +4,7 @@
 			class="alert"
 			:class="{
 				'alert__container--info': variant === 'info',
+				'alert__container--success': variant === 'success',
 				'alert__container--warning': variant === 'warning',
 				'alert__container--danger': variant === 'danger',
 			}"
@@ -14,6 +15,7 @@
 						:name="icon"
 						:class="{
 							'alert__icon--info': variant === 'info',
+							'alert__icon--success': variant === 'success',
 							'alert__icon--warning': variant === 'warning',
 							'alert__icon--danger': variant === 'danger',
 						}"
@@ -35,6 +37,7 @@
 					name="close"
 					:class="{
 						'alert__icon--info': variant === 'info',
+						'alert__icon--success': variant === 'success',
 						'alert__icon--warning': variant === 'warning',
 						'alert__icon--danger': variant === 'danger',
 					}"
@@ -97,8 +100,11 @@ export default {
 				case 'info':
 					this.icon = 'information-circle';
 					break;
+				case 'success':
+					this.icon = 'success';
+					break;
 				case 'warning':
-					this.icon = 'warning';
+					this.icon = 'checkmark-circle';
 					break;
 				case 'danger':
 					this.icon = 'alert-circle';
@@ -135,6 +141,13 @@ export default {
 			color: $bn-600;
 		}
 
+		&--success {
+			@extend .alert__container;
+			outline: 2px solid $gp-100;
+			background-color: $gp-50;
+			color: $gp-600;
+		}
+
 		&--warning {
 			@extend .alert__container;
 			outline: 2px solid $al-100;
@@ -157,6 +170,10 @@ export default {
 		&--info {
 			@extend .alert__icon;
 			color: $bn-600;
+		}
+		&--success {
+			@extend .alert__icon;
+			color: $gp-600;
 		}
 
 		&--warning {
