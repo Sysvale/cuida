@@ -82,6 +82,11 @@ export default {
 
 	methods: {
 		close() {
+			/**
+			 * Evento emitido quando o botão de fechar o alert é clicado.
+			 * @event expanded
+			 * @type {Event}
+			 */
 			this.$emit('close');
 		},
 	},
