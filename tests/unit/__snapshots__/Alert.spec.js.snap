@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component is mounted properly 1`] = `
+<span id="alert"><div class="alert alert__container--info"><div class="alert__body"><div><ion-icon-stub name="warning" class="alert__icon--info"></ion-icon-stub></div> <span class="alert__text"></span></div>
+<!---->
+</div></span>
+`;

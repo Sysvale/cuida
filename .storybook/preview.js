@@ -52,6 +52,7 @@ import {
 	Link,
 	Spinner,
 	Button,
+	Alert,
 	Loader,
 	ClusteredMultiselect,
 	LoadingBar,
@@ -135,6 +136,7 @@ Vue.component('cds-loader', Loader);
 Vue.component('cds-clustered-multiselect', ClusteredMultiselect);
 Vue.component('cds-collapsible-container', CollapsibleContainer);
 Vue.component('cds-select', Select);
+Vue.component('cds-alert', Alert);
 Vue.component('cds-loading-bar', LoadingBar);
 
 addParameters({

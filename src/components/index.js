@@ -32,4 +32,5 @@ export { default as Checkbox } from './Checkbox.vue';
 export { default as Link } from './Link.vue';
 export { default as Spinner } from './Spinner.vue';
 export { default as Button } from './Button.vue';
+export { default as Alert } from './Alert.vue';
 export { default as LoadingBar } from './LoadingBar.vue';
