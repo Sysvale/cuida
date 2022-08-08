@@ -1,6 +1,6 @@
 {
   "name": "@sysvale/cuida",
-  "version": "2.19.0",
+  "version": "3.0.0",
   "description": "A design system built by Sysvale, using storybook and Vue components",
   "repository": {
     "type": "git",
@@ -13,143 +13,29 @@
     "dist/*"
   ],
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "test:unit": "vue-cli-service test:unit",
-    "test": "jest",
-    "lint": "vue-cli-service lint",
-    "storybook": "start-storybook -p 6006 --docs",
-    "build-storybook": "build-storybook -s public --docs",
-    "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
-    "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
-    "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
-    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
-    "chromatic": "npx chromatic --project-token=a0f13ffc7d61"
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "bootstrap": "^4.5.2",
-    "bootstrap-vue": "^2.17.1",
-    "concat": "^1.0.3",
-    "core-js": "^3.6.5",
-    "flush-promises": "^1.0.2",
-    "ionicons": "^5.5.0",
-    "material-design-icons": "^3.0.1",
-    "moment": "^2.29.1",
-    "v-calendar": "^2.2.3",
-    "vue": "^2.6.12",
-    "vue-feather-icons": "^5.1.0",
-    "vue-long-click": "0.0.4",
-    "vue-multiselect": "^2.1.6",
-    "vue-on-click-outside": "^1.0.3",
-    "vue-slider-component": "^3.2.11"
+    "vue": "^3.2.37"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.6",
-    "@rollup/plugin-alias": "^2.2.0",
-    "@rollup/plugin-buble": "^0.20.0",
-    "@rollup/plugin-replace": "^2.3.0",
-    "@storybook/addon-actions": "^6.5.9",
-    "@storybook/addon-essentials": "^6.5.9",
-    "@storybook/addon-links": "^6.5.9",
-    "@storybook/preset-scss": "^1.0.3",
-    "@storybook/vue": "^6.5.9",
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-plugin-unit-jest": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/eslint-config-airbnb": "^5.0.2",
-    "@vue/test-utils": "^1.1.0",
-    "babel-eslint": "^10.1.0",
-    "babel-loader": "^8.1.0",
-    "chromatic": "^6.0.4",
-    "cross-env": "^6.0.3",
-    "css-loader": "^4.3.0",
-    "eslint": "^6.7.2",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-vue": "^6.2.2",
-    "highlight.js": "^10.6.0",
-    "node-sass": "^4.12.0",
-    "prettier": "^2.7.1",
-    "react-is": "^16.13.1",
-    "rollup": "^1.29.0",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-terser": "^5.2.0",
-    "rollup-plugin-vue": "5.1.1",
-    "sass-loader": "^8.0.2",
-    "style-loader": "^1.2.1",
-    "vue-hljs": "^2.0.0",
-    "vue-template-compiler": "^2.6.11"
-  },
-  "prettier": {
-    "semi": true,
-    "singleQuote": true,
-    "tabWidth": 4,
-    "useTabs": true,
-    "vueIndentScriptAndStyle": true
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "plugin:prettier/recommended",
-      "@vue/airbnb"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "plugins": [
-      "prettier"
-    ],
-    "rules": {
-      "vue/html-indent": [
-        "error",
-        "tab",
-        {
-          "attribute": 1,
-          "closeBracket": 0,
-          "alignAttributesVertically": true,
-          "ignores": []
-        }
-      ],
-      "prettier/prettier": "error",
-      "no-tabs": "off",
-      "indent": [
-        "error",
-        "tab",
-        {
-          "SwitchCase": 1
-        }
-      ],
-      "quotes": [
-        "error",
-        "single",
-        {
-          "allowTemplateLiterals": true
-        }
-      ]
-    },
-    "overrides": [
-      {
-        "files": [
-          "**/__tests__/*.{j,t}s?(x)",
-          "**/tests/unit/**/*.spec.{j,t}s?(x)"
-        ],
-        "env": {
-          "jest": true
-        }
-      }
-    ]
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ],
-  "jest": {
-    "preset": "@vue/cli-plugin-unit-jest"
+    "@babel/core": "^7.18.10",
+    "@storybook/addon-actions": "^6.5.10",
+    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-interactions": "^6.5.10",
+    "@storybook/addon-links": "^6.5.10",
+    "@storybook/builder-vite": "^0.2.2",
+    "@storybook/testing-library": "^0.0.13",
+    "@storybook/vue3": "^6.5.10",
+    "@vitejs/plugin-vue": "^3.0.0",
+    "babel-loader": "^8.2.5",
+    "typescript": "^4.6.4",
+    "vite": "^3.0.0",
+    "vue-loader": "^16.8.3",
+    "vue-tsc": "^0.38.4"
   }
 }

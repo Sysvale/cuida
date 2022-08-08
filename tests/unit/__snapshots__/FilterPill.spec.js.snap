@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Component is mounted properly 1`] = `
-<div><span class="filter-pill__container"><span class="filter-pill__label">Idade: </span> <span class="filter-pill__content">0 a 120 anos </span>
-  <ion-icon-stub name="chevron-down-outline" class="filter-pill__chevron--down"></ion-icon-stub>
-  </span>
-  <!---->
-</div>
-`;

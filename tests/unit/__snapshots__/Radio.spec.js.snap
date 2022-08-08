@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Component is mounted properly 1`] = `
-<span class="cds-radio"><input type="radio" id="option-1" value="option-1"> <label for="option-1" class="cds-radio__label"><span class="cds-radio__label-text">
-				Opção 1
-			</span></label></span>
-`;

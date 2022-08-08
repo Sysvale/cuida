@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Component is mounted properly 1`] = `
-<div class="loader__container">
-  <div class="loader__box">
-    <div class="loader__box-color"><img src="https://sysvale.github.io/cuida/static/media/CuidaTempLogo.f4adb1cc.png" alt="Carregando" class="loader__content"></div> <img src="https://sysvale.github.io/cuida/static/media/CuidaTempLogo.f4adb1cc.png" alt="Carregando" class="loader__content--shadow">
-  </div>
-</div>
-`;
