@@ -50,64 +50,79 @@ export default {
 	},
 };
 </script>
-<style>
-.badge__container {
-	 border-radius: 50px !important;
-	 width: fit-content;
-	 padding: 0px 8px;
-}
- .badge__content {
-	 font-weight: 500 !important;
-	 font-size: 14px;
-}
- .badge--turquoise {
-	 color: #13526D;
-	 background-color: #F0FAFF;
-	 border: 1px solid #3CACDD;
-}
- .badge--green {
-	 color: #145C45;
-	 background-color: #def7eb;
-	 border: 1px solid #2AC092;
-}
- .badge--blue {
-	 color: #144385;
-	 background-color: #ecf1fe;
-	 border: 1px solid #377EE1;
-}
- .badge--indigo {
-	 color: #353D64;
-	 background-color: #E5EAFF;
-	 border: 1px solid #6174D1;
-}
- .badge--violet {
-	 color: #642B96;
-	 background-color: #F8F0FF;
-	 border: 1px solid #A169D3;
-}
- .badge--pink {
-	 color: #701A48;
-	 background-color: #FFEFF9;
-	 border: 1px solid #DD5A9C;
-}
- .badge--red {
-	 color: #A42333;
-	 background-color: #ffe6e9;
-	 border: 1px solid #F95367;
-}
- .badge--orange {
-	 color: #AB3C21;
-	 background-color: #FFF3F0;
-	 border: 1px solid #FF8567;
-}
- .badge--amber {
-	 color: #A56A12;
-	 background-color: #fff1dc;
-	 border: 1px solid #FFB952;
-}
- .badge--gray {
-	 color: #36424E;
-	 background-color: #EFF5FB;
-	 border: 1px solid #9AA8B6;
+<style lang="scss" scoped>
+@import '../assets/sass/tokens.scss';
+
+.badge {
+	&__container {
+		border-radius: 50px !important;
+		width: fit-content;
+		padding: pYX(0, 2);
+	}
+
+	&__content {
+		font-weight: 500 !important;
+		@include body-2;
+	}
+
+	&--turquoise {
+		color: $ts-700;
+		background-color: $ts-100;
+		border: 1px solid $ts-400;
+	}
+
+	&--green {
+		color: $gp-700;
+		background-color: $gp-100;
+		border: 1px solid $gp-400;
+	}
+
+	&--blue {
+		color: $bn-700;
+		background-color: $bn-100;
+		border: 1px solid $bn-400;
+	}
+
+	&--indigo {
+		color: $in-700;
+		background-color: $in-100;
+		border: 1px solid $in-400;
+	}
+
+	&--violet {
+		color: $vr-700;
+		background-color: $vr-100;
+		border: 1px solid $vr-400;
+	}
+
+	&--pink {
+		color: $pp-700;
+		background-color: $pp-100;
+		border: 1px solid $pp-400;
+	}
+
+	&--red {
+		color: $rc-700;
+		background-color: $rc-100;
+		border: 1px solid $rc-400;
+	}
+
+	&--orange {
+		color: $og-700;
+		background-color: $og-100;
+		border: 1px solid $og-400;
+	}
+
+	&--amber {
+		color: $al-700;
+		background-color: $al-100;
+		border: 1px solid $al-500;
+	}
+
+	&--gray {
+		color: $n-700;
+		background-color: $n-20;
+		border: 1px solid $n-200;
+	}
 }
 </style>
