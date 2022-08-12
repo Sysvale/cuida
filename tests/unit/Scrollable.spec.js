@@ -5,12 +5,15 @@ import Scrollable from '../../src/components/Scrollable.vue';
 const localVue = createLocalVue();
 localVue.use(BootstrapVue);
 
-test('Component is mounted properly', () => {
-	const wrapper = mount(Scrollable, {
-		localVue,
-		propsData: {
-			maxHeight: '200px',
-		},
-	});
-	expect(wrapper).toMatchSnapshot();
+describe('Check is the component is getting height and width', () => {
+    test('Component is mounted properly', () => {
+        const wrapper = mount(Scrollable, {
+            localVue,
+            propsData: {
+                maxHeight: '200px',
+                maxWidth: '300px',
+            },
+        });
+        expect(wrapper).toMatchSnapshot();
+    });
 });

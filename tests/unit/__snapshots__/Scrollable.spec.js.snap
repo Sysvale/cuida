@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Check is the component is getting height and width Component is mounted properly 1`] = `<span id="scrollable"><div class="scrollable__container" style="max-height: 200px; max-width: 300px; height: 200px; width: 300px;"></div></span>`;
+
 exports[`Component is mounted properly 1`] = `<span id="scrollable"><div class="scrollable__container" style="max-height: 200px; height: 200px;"></div></span>`;
