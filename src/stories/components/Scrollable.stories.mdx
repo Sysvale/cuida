@@ -8,6 +8,9 @@ import Scrollable from '../../components/Scrollable.vue';
 		maxHeight: {
 			description: 'Altura máxima do container',
 		},
+        maxWidth: {
+			description: 'Largura máxima do container',
+		},
 	}}
 />
 
@@ -52,7 +55,8 @@ export const Template = (args, { argTypes }) => ({
 
 export const template = /*html*/ `
 	<cds-scrollable
-		max-height="150px"
+		max-height="300px"
+        max-width="400px"
 	>
 		<p>
 			Existe uma teoria que diz que, se um dia alguém descobrir 
@@ -124,7 +128,8 @@ export const docsDecorator = () => {
 		name="Scrollable"
 		decorators={[docsDecorator]}
 		args={{
-			maxHeight: '150px',
+			maxHeight: '300px',
+            maxWidth: '400px',
 		}}
 	>
 		{ Template.bind({}) }
