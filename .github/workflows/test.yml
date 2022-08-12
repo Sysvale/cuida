@@ -12,9 +12,9 @@ jobs:
         uses: actions/setup-node@v2.1.4
         with:
           node-version: 12.16.3
-          registry-url: https://registry.npmjs.org
+          cache: 'npm'
       - name: 🔧 Build
         run:
-          npm i
+          npm ci
       - name: 🚀 Test
         run: npm run test:unit
