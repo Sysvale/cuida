@@ -1,0 +1,843 @@
+// Vitest Snapshot v1
+
+exports[`Badge > renders correctly 1`] = `
+VueWrapper {
+  "__app": {
+    "_component": {
+      "name": "VTU_ROOT",
+      "render": [Function],
+    },
+    "_container": <div
+      data-v-app=""
+    >
+      <div
+        class="badge__container badge--gray"
+        data-v-0d3d5e64=""
+      >
+        <div
+          class="badge__content"
+          data-v-0d3d5e64=""
+        >
+          <!-- @slot Slot padrão utilizado para exibir o conteúdo dentro da badge -->
+          
+          
+        </div>
+      </div>
+    </div>,
+    "_context": {
+      "app": [Circular],
+      "components": {
+        "transition": {
+          "name": "transition",
+        },
+        "transition-group": {
+          "name": "transition-group",
+        },
+      },
+      "config": {
+        "compilerOptions": {},
+        "errorHandler": undefined,
+        "globalProperties": {},
+        "isNativeTag": [Function],
+        "optionMergeStrategies": {},
+        "performance": false,
+        "warnHandler": undefined,
+      },
+      "directives": {},
+      "emitsCache": WeakMap {},
+      "mixins": [
+        {
+          "beforeCreate": [Function],
+        },
+      ],
+      "optionsCache": WeakMap {},
+      "propsCache": WeakMap {},
+      "provides": {},
+      "reload": [Function],
+    },
+    "_instance": {
+      "a": null,
+      "accessCache": {},
+      "appContext": {
+        "app": [Circular],
+        "components": {
+          "transition": {
+            "name": "transition",
+          },
+          "transition-group": {
+            "name": "transition-group",
+          },
+        },
+        "config": {
+          "compilerOptions": {},
+          "errorHandler": undefined,
+          "globalProperties": {},
+          "isNativeTag": [Function],
+          "optionMergeStrategies": {},
+          "performance": false,
+          "warnHandler": undefined,
+        },
+        "directives": {},
+        "emitsCache": WeakMap {},
+        "mixins": [
+          {
+            "beforeCreate": [Function],
+          },
+        ],
+        "optionsCache": WeakMap {},
+        "propsCache": WeakMap {},
+        "provides": {},
+        "reload": [Function],
+      },
+      "asyncDep": null,
+      "asyncResolved": false,
+      "attrs": {},
+      "bc": null,
+      "bm": null,
+      "bu": null,
+      "bum": null,
+      "c": null,
+      "components": null,
+      "ctx": {},
+      "da": null,
+      "data": {},
+      "directives": null,
+      "ec": null,
+      "effect": ReactiveEffect {
+        "active": true,
+        "allowRecurse": true,
+        "deps": [
+          Set {
+            [Circular],
+          },
+          Set {
+            [Circular],
+          },
+          Set {
+            [Circular],
+          },
+        ],
+        "fn": [Function],
+        "onTrack": undefined,
+        "onTrigger": undefined,
+        "parent": undefined,
+        "scheduler": [Function],
+      },
+      "emit": [Function],
+      "emitsOptions": null,
+      "emitted": null,
+      "exposeProxy": null,
+      "exposed": null,
+      "inheritAttrs": undefined,
+      "isDeactivated": false,
+      "isMounted": true,
+      "isUnmounted": false,
+      "m": null,
+      "next": null,
+      "parent": null,
+      "props": {},
+      "propsDefaults": {},
+      "propsOptions": [
+        {},
+        [],
+      ],
+      "provides": {},
+      "proxy": {},
+      "refs": {
+        "VTU_COMPONENT": {
+          "hasOwnProperty": [Function],
+          "predefinedColors": [
+            "turquoise",
+            "green",
+            "blue",
+            "indigo",
+            "violet",
+            "pink",
+            "red",
+            "orange",
+            "amber",
+            "gray",
+          ],
+          "predefinedStyle": "badge--gray",
+          "variant": "gray",
+        },
+      },
+      "render": [Function],
+      "renderCache": [],
+      "root": [Circular],
+      "rtc": null,
+      "rtg": null,
+      "scope": EffectScope {
+        "active": true,
+        "cleanups": [],
+        "effects": [
+          ReactiveEffect {
+            "active": true,
+            "allowRecurse": true,
+            "deps": [
+              Set {
+                [Circular],
+              },
+              Set {
+                [Circular],
+              },
+              Set {
+                [Circular],
+              },
+            ],
+            "fn": [Function],
+            "onTrack": undefined,
+            "onTrigger": undefined,
+            "parent": undefined,
+            "scheduler": [Function],
+          },
+        ],
+      },
+      "setupContext": null,
+      "setupState": {},
+      "slots": {},
+      "sp": null,
+      "subTree": {
+        "__v_isVNode": true,
+        "__v_skip": true,
+        "anchor": null,
+        "appContext": null,
+        "children": null,
+        "component": {
+          "a": null,
+          "accessCache": {
+            "@@__IMMUTABLE_ITERABLE__@@": 0,
+            "@@__IMMUTABLE_RECORD__@@": 0,
+            "_isMockFunction": 0,
+            "constructor": 0,
+            "hasOwnProperty": 4,
+            "predefinedColors": 2,
+            "predefinedStyle": 4,
+            "toJSON": 0,
+            "variant": 3,
+            Symbol(Symbol.toStringTag): 0,
+          },
+          "appContext": {
+            "app": [Circular],
+            "components": {
+              "transition": {
+                "name": "transition",
+              },
+              "transition-group": {
+                "name": "transition-group",
+              },
+            },
+            "config": {
+              "compilerOptions": {},
+              "errorHandler": undefined,
+              "globalProperties": {},
+              "isNativeTag": [Function],
+              "optionMergeStrategies": {},
+              "performance": false,
+              "warnHandler": undefined,
+            },
+            "directives": {},
+            "emitsCache": WeakMap {},
+            "mixins": [
+              {
+                "beforeCreate": [Function],
+              },
+            ],
+            "optionsCache": WeakMap {},
+            "propsCache": WeakMap {},
+            "provides": {},
+            "reload": [Function],
+          },
+          "asyncDep": null,
+          "asyncResolved": false,
+          "attrs": {},
+          "bc": null,
+          "bm": null,
+          "bu": null,
+          "bum": null,
+          "c": null,
+          "components": {},
+          "ctx": {
+            "hasOwnProperty": [Function],
+            "predefinedColors": [
+              "turquoise",
+              "green",
+              "blue",
+              "indigo",
+              "violet",
+              "pink",
+              "red",
+              "orange",
+              "amber",
+              "gray",
+            ],
+            "predefinedStyle": "badge--gray",
+            "variant": "gray",
+          },
+          "da": null,
+          "data": {
+            "predefinedColors": [
+              "turquoise",
+              "green",
+              "blue",
+              "indigo",
+              "violet",
+              "pink",
+              "red",
+              "orange",
+              "amber",
+              "gray",
+            ],
+          },
+          "directives": null,
+          "ec": null,
+          "effect": ReactiveEffect {
+            "active": true,
+            "allowRecurse": true,
+            "deps": [
+              Set {
+                [Circular],
+              },
+            ],
+            "fn": [Function],
+            "onTrack": undefined,
+            "onTrigger": undefined,
+            "parent": undefined,
+            "scheduler": [Function],
+          },
+          "emit": [Function],
+          "emitsOptions": null,
+          "emitted": null,
+          "exposeProxy": null,
+          "exposed": null,
+          "inheritAttrs": undefined,
+          "isDeactivated": false,
+          "isMounted": true,
+          "isUnmounted": false,
+          "m": null,
+          "next": null,
+          "parent": [Circular],
+          "props": {
+            "variant": "gray",
+          },
+          "propsDefaults": {},
+          "propsOptions": [
+            {
+              "variant": {
+                "0": false,
+                "1": true,
+                "default": "gray",
+                "type": [Function],
+              },
+            },
+            [
+              "variant",
+            ],
+          ],
+          "provides": {},
+          "proxy": {
+            "hasOwnProperty": [Function],
+            "predefinedColors": [
+              "turquoise",
+              "green",
+              "blue",
+              "indigo",
+              "violet",
+              "pink",
+              "red",
+              "orange",
+              "amber",
+              "gray",
+            ],
+            "predefinedStyle": "badge--gray",
+            "variant": "gray",
+          },
+          "refs": {},
+          "render": [Function],
+          "renderCache": [],
+          "root": [Circular],
+          "rtc": null,
+          "rtg": null,
+          "scope": EffectScope {
+            "active": true,
+            "cleanups": [],
+            "effects": [
+              ReactiveEffect {
+                "active": true,
+                "computed": ComputedRefImpl {
+                  "__v_isReadonly": false,
+                  "__v_isRef": true,
+                  "_cacheable": true,
+                  "_dirty": false,
+                  "_setter": [Function],
+                  "_value": "badge--gray",
+                  "dep": Set {
+                    ReactiveEffect {
+                      "active": true,
+                      "allowRecurse": true,
+                      "deps": [
+                        [Circular],
+                      ],
+                      "fn": [Function],
+                      "onTrack": undefined,
+                      "onTrigger": undefined,
+                      "parent": undefined,
+                      "scheduler": [Function],
+                    },
+                  },
+                  "effect": [Circular],
+                },
+                "deps": [
+                  Set {
+                    [Circular],
+                  },
+                  Set {
+                    [Circular],
+                  },
+                  Set {
+                    [Circular],
+                  },
+                  Set {
+                    [Circular],
+                  },
+                  Set {
+                    [Circular],
+                  },
+                  Set {
+                    [Circular],
+                  },
+                  Set {
+                    [Circular],
+                  },
+                  Set {
+                    [Circular],
+                  },
+                  Set {
+                    [Circular],
+                  },
+                  Set {
+                    [Circular],
+                  },
+                  Set {
+                    [Circular],
+                  },
+                  Set {
+                    [Circular],
+                  },
+                  Set {
+                    [Circular],
+                  },
+                ],
+                "fn": [Function],
+                "parent": undefined,
+                "scheduler": [Function],
+              },
+              ReactiveEffect {
+                "active": true,
+                "allowRecurse": true,
+                "deps": [
+                  Set {
+                    [Circular],
+                  },
+                ],
+                "fn": [Function],
+                "onTrack": undefined,
+                "onTrigger": undefined,
+                "parent": undefined,
+                "scheduler": [Function],
+              },
+            ],
+          },
+          "setupContext": null,
+          "setupState": {},
+          "slots": {},
+          "sp": null,
+          "subTree": {
+            "__v_isVNode": true,
+            "__v_skip": true,
+            "anchor": null,
+            "appContext": null,
+            "children": [
+              {
+                "__v_isVNode": true,
+                "__v_skip": true,
+                "anchor": null,
+                "appContext": null,
+                "children": [
+                  {
+                    "__v_isVNode": true,
+                    "__v_skip": true,
+                    "anchor": null,
+                    "appContext": null,
+                    "children": " @slot Slot padrão utilizado para exibir o conteúdo dentro da badge ",
+                    "component": null,
+                    "dirs": null,
+                    "dynamicChildren": null,
+                    "dynamicProps": null,
+                    "el": <!-- @slot Slot padrão utilizado para exibir o conteúdo dentro da badge -->,
+                    "key": null,
+                    "patchFlag": 0,
+                    "props": null,
+                    "ref": null,
+                    "scopeId": "data-v-0d3d5e64",
+                    "shapeFlag": 8,
+                    "slotScopeIds": null,
+                    "ssContent": null,
+                    "ssFallback": null,
+                    "staticCount": 0,
+                    "suspense": null,
+                    "target": null,
+                    "targetAnchor": null,
+                    "transition": null,
+                    "type": Symbol(Comment),
+                  },
+                  {
+                    "__v_isVNode": true,
+                    "__v_skip": true,
+                    "anchor": ,
+                    "appContext": null,
+                    "children": [],
+                    "component": null,
+                    "dirs": null,
+                    "dynamicChildren": null,
+                    "dynamicProps": null,
+                    "el": ,
+                    "key": "_default",
+                    "patchFlag": -2,
+                    "props": {
+                      "key": "_default",
+                    },
+                    "ref": null,
+                    "scopeId": "data-v-0d3d5e64",
+                    "shapeFlag": 16,
+                    "slotScopeIds": null,
+                    "ssContent": null,
+                    "ssFallback": null,
+                    "staticCount": 0,
+                    "suspense": null,
+                    "target": null,
+                    "targetAnchor": null,
+                    "transition": null,
+                    "type": Symbol(Fragment),
+                  },
+                ],
+                "component": null,
+                "dirs": null,
+                "dynamicChildren": null,
+                "dynamicProps": null,
+                "el": <div
+                  class="badge__content"
+                  data-v-0d3d5e64=""
+                >
+                  <!-- @slot Slot padrão utilizado para exibir o conteúdo dentro da badge -->
+                  
+                  
+                </div>,
+                "key": null,
+                "patchFlag": 0,
+                "props": {
+                  "class": "badge__content",
+                },
+                "ref": null,
+                "scopeId": "data-v-0d3d5e64",
+                "shapeFlag": 17,
+                "slotScopeIds": null,
+                "ssContent": null,
+                "ssFallback": null,
+                "staticCount": 0,
+                "suspense": null,
+                "target": null,
+                "targetAnchor": null,
+                "transition": null,
+                "type": "div",
+              },
+            ],
+            "component": null,
+            "dirs": null,
+            "dynamicChildren": [
+              {
+                "__v_isVNode": true,
+                "__v_skip": true,
+                "anchor": ,
+                "appContext": null,
+                "children": [],
+                "component": null,
+                "dirs": null,
+                "dynamicChildren": null,
+                "dynamicProps": null,
+                "el": ,
+                "key": "_default",
+                "patchFlag": -2,
+                "props": {
+                  "key": "_default",
+                },
+                "ref": null,
+                "scopeId": "data-v-0d3d5e64",
+                "shapeFlag": 16,
+                "slotScopeIds": null,
+                "ssContent": null,
+                "ssFallback": null,
+                "staticCount": 0,
+                "suspense": null,
+                "target": null,
+                "targetAnchor": null,
+                "transition": null,
+                "type": Symbol(Fragment),
+              },
+            ],
+            "dynamicProps": null,
+            "el": <div
+              class="badge__container badge--gray"
+              data-v-0d3d5e64=""
+            >
+              <div
+                class="badge__content"
+                data-v-0d3d5e64=""
+              >
+                <!-- @slot Slot padrão utilizado para exibir o conteúdo dentro da badge -->
+                
+                
+              </div>
+            </div>,
+            "key": null,
+            "patchFlag": 2,
+            "props": {
+              "class": "badge__container badge--gray",
+            },
+            "ref": null,
+            "scopeId": "data-v-0d3d5e64",
+            "shapeFlag": 17,
+            "slotScopeIds": null,
+            "ssContent": null,
+            "ssFallback": null,
+            "staticCount": 0,
+            "suspense": null,
+            "target": null,
+            "targetAnchor": null,
+            "transition": null,
+            "type": "div",
+          },
+          "suspense": null,
+          "suspenseId": 0,
+          "type": {
+            "__file": "/home/lucas/Documentos/Dev/cuida/src/components/Badge.vue",
+            "__scopeId": "data-v-0d3d5e64",
+            "components": {},
+            "computed": {
+              "predefinedStyle": [Function],
+            },
+            "data": [Function],
+            "props": {
+              "variant": {
+                "0": false,
+                "1": true,
+                "default": "gray",
+                "type": [Function],
+              },
+            },
+            "render": [Function],
+            "variant": "gray",
+          },
+          "u": null,
+          "uid": 1,
+          "um": null,
+          "update": [Function],
+          "vnode": [Circular],
+          "withProxy": null,
+        },
+        "dirs": null,
+        "dynamicChildren": null,
+        "dynamicProps": null,
+        "el": <div
+          class="badge__container badge--gray"
+          data-v-0d3d5e64=""
+        >
+          <div
+            class="badge__content"
+            data-v-0d3d5e64=""
+          >
+            <!-- @slot Slot padrão utilizado para exibir o conteúdo dentro da badge -->
+            
+            
+          </div>
+        </div>,
+        "key": null,
+        "patchFlag": 0,
+        "props": {
+          "ref": "VTU_COMPONENT",
+        },
+        "ref": {
+          "f": false,
+          "i": [Circular],
+          "k": undefined,
+          "r": "VTU_COMPONENT",
+        },
+        "scopeId": null,
+        "shapeFlag": 4,
+        "slotScopeIds": null,
+        "ssContent": null,
+        "ssFallback": null,
+        "staticCount": 0,
+        "suspense": null,
+        "target": null,
+        "targetAnchor": null,
+        "transition": null,
+        "type": {
+          "__file": "/home/lucas/Documentos/Dev/cuida/src/components/Badge.vue",
+          "__scopeId": "data-v-0d3d5e64",
+          "components": {},
+          "computed": {
+            "predefinedStyle": [Function],
+          },
+          "data": [Function],
+          "props": {
+            "variant": {
+              "0": false,
+              "1": true,
+              "default": "gray",
+              "type": [Function],
+            },
+          },
+          "render": [Function],
+          "variant": "gray",
+        },
+      },
+      "suspense": null,
+      "suspenseId": 0,
+      "type": {
+        "name": "VTU_ROOT",
+        "render": [Function],
+      },
+      "u": null,
+      "uid": 0,
+      "um": null,
+      "update": [Function],
+      "vnode": {
+        "__v_isVNode": true,
+        "__v_skip": true,
+        "anchor": null,
+        "appContext": {
+          "app": [Circular],
+          "components": {
+            "transition": {
+              "name": "transition",
+            },
+            "transition-group": {
+              "name": "transition-group",
+            },
+          },
+          "config": {
+            "compilerOptions": {},
+            "errorHandler": undefined,
+            "globalProperties": {},
+            "isNativeTag": [Function],
+            "optionMergeStrategies": {},
+            "performance": false,
+            "warnHandler": undefined,
+          },
+          "directives": {},
+          "emitsCache": WeakMap {},
+          "mixins": [
+            {
+              "beforeCreate": [Function],
+            },
+          ],
+          "optionsCache": WeakMap {},
+          "propsCache": WeakMap {},
+          "provides": {},
+          "reload": [Function],
+        },
+        "children": null,
+        "component": [Circular],
+        "dirs": null,
+        "dynamicChildren": null,
+        "dynamicProps": null,
+        "el": <div
+          class="badge__container badge--gray"
+          data-v-0d3d5e64=""
+        >
+          <div
+            class="badge__content"
+            data-v-0d3d5e64=""
+          >
+            <!-- @slot Slot padrão utilizado para exibir o conteúdo dentro da badge -->
+            
+            
+          </div>
+        </div>,
+        "key": null,
+        "patchFlag": 0,
+        "props": null,
+        "ref": null,
+        "scopeId": null,
+        "shapeFlag": 4,
+        "slotScopeIds": null,
+        "ssContent": null,
+        "ssFallback": null,
+        "staticCount": 0,
+        "suspense": null,
+        "target": null,
+        "targetAnchor": null,
+        "transition": null,
+        "type": {
+          "name": "VTU_ROOT",
+          "render": [Function],
+        },
+      },
+      "withProxy": null,
+    },
+    "_props": null,
+    "_uid": 0,
+    "component": [Function],
+    "config": {
+      "compilerOptions": {},
+      "errorHandler": undefined,
+      "globalProperties": {},
+      "isNativeTag": [Function],
+      "optionMergeStrategies": {},
+      "performance": false,
+      "warnHandler": undefined,
+    },
+    "directive": [Function],
+    "mixin": [Function],
+    "mount": [Function],
+    "provide": [Function],
+    "unmount": [Function],
+    "use": [Function],
+    "version": "3.2.37",
+  },
+  "__setProps": [Function],
+  "componentVM": {
+    "hasOwnProperty": [Function],
+    "predefinedColors": [
+      "turquoise",
+      "green",
+      "blue",
+      "indigo",
+      "violet",
+      "pink",
+      "red",
+      "orange",
+      "amber",
+      "gray",
+    ],
+    "predefinedStyle": "badge--gray",
+    "variant": "gray",
+  },
+  "isDisabled": [Function],
+  "rootVM": {},
+  "wrapperElement": <div
+    class="badge__container badge--gray"
+    data-v-0d3d5e64=""
+  >
+    <div
+      class="badge__content"
+      data-v-0d3d5e64=""
+    >
+      <!-- @slot Slot padrão utilizado para exibir o conteúdo dentro da badge -->
+      
+      
+    </div>
+  </div>,
+}
+`;
