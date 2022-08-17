@@ -6,6 +6,9 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "jsdom",
+    snapshotFormat: {
+      maxDepth: 2
+    }
   },
-   root: ".", //Define the root
+    root: ".", //Define the root
 });
