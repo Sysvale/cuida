@@ -16,4 +16,4 @@ jobs:
         run:
           npm i
       - name: 🚀 Test
-        run: npm run vitest
+        run: npm run test
