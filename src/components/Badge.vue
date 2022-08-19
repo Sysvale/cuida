@@ -10,8 +10,10 @@
 	</div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
 	props: {
 		/**
 		 * A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',
@@ -48,7 +50,7 @@ export default {
 			return 'badge--gray';
 		},
 	},
-};
+});
 </script>
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
@@ -57,72 +59,62 @@ export default {
 	&__container {
 		border-radius: 50px !important;
 		width: fit-content;
-		padding: pYX(0, 2);
+		padding: pYX(1, 3);
 	}
 
 	&__content {
 		font-weight: 500 !important;
-		@include body-2;
+		font-size: 16px;
 	}
 
 	&--turquoise {
-		color: $ts-700;
+		color: $ts-600;
 		background-color: $ts-100;
-		border: 1px solid $ts-400;
 	}
 
 	&--green {
-		color: $gp-700;
+		color: $gp-600;
 		background-color: $gp-100;
-		border: 1px solid $gp-400;
 	}
 
 	&--blue {
-		color: $bn-700;
+		color: $bn-500;
 		background-color: $bn-100;
-		border: 1px solid $bn-400;
 	}
 
 	&--indigo {
-		color: $in-700;
+		color: $in-600;
 		background-color: $in-100;
-		border: 1px solid $in-400;
 	}
 
 	&--violet {
-		color: $vr-700;
+		color: $vr-600;
 		background-color: $vr-100;
-		border: 1px solid $vr-400;
 	}
 
 	&--pink {
-		color: $pp-700;
+		color: $pp-600;
 		background-color: $pp-100;
-		border: 1px solid $pp-400;
 	}
 
 	&--red {
-		color: $rc-700;
+		color: $rc-600;
 		background-color: $rc-100;
-		border: 1px solid $rc-400;
 	}
 
 	&--orange {
-		color: $og-700;
+		color: $og-500;
 		background-color: $og-100;
-		border: 1px solid $og-400;
 	}
 
 	&--amber {
-		color: $al-700;
+		color: $al-600;
 		background-color: $al-100;
-		border: 1px solid $al-500;
 	}
 
 	&--gray {
-		color: $n-700;
+		color: $n-600;
 		background-color: $n-20;
-		border: 1px solid $n-200;
 	}
 }
 </style>
