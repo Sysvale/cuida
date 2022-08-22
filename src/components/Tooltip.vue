@@ -47,7 +47,7 @@ export default {
 				let tooltipWidth = parseFloat(window.getComputedStyle(document.getElementById('tooltip')).width);
 				tooltip.style.left = (((targetWidth - tooltipWidth) / 2) + offsets.left) + 'px';
 
-				tooltip.style.transition = 'all .3s ease-in-out';
+				tooltip.style.transition = 'opacity 1s';
 
 				tooltip.style.top = (document.getElementById(this.target).getBoundingClientRect().top + window.pageYOffset - 30) + 'px'
 
