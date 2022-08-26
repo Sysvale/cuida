@@ -1,0 +1,99 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Table from '../../components/Table.vue';
+
+<Meta
+	title="Componentes/Display/Table"
+	component={ Table }
+	argTypes={{
+	}
+}
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { Table },
+	template: /*html*/
+		`<cds-table v-bind="$props" />`,
+});
+
+export const template = /*html*/ `
+	<cds-progress-bar 
+		color="#2EB88D"
+		background-color="#DDE2E7"
+		:show-text="true"
+		:percentage="0.5"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
+# Table
+
+### Tables são componentes utilizados para indicar o status e progresso de algo aos usuários.
+---
+<br />
+
+## Recomendamos o uso de ProgressBrs quando:
+- For necessário transmitir a ideia do progresso de algo.
+- For necessário transmitir a ideia do status de algo.
+- Se deseja chamar a atenção do usuário para uma informação específica de maneira gráfica.
+
+<br />
+
+## Não Recomendamos o uso de ProgressBrs quando:
+- For necessário criar loaders.
+- For necessária muita precisão ao mostrar os números ou progresso.
+- For necessário criar steppers.
+
+<br />
+
+## Preview
+
+export const fields = [
+	{
+		key: 'field-1',
+		label: 'Field 1',
+	},
+	'field2',
+	'field_3',
+];
+export const items = [
+	{
+		'field-1': 'field 1 content',
+		'field2': 'field 2 content',
+		'field_3': 'field 3 content',
+	},
+	{
+		'field-1': 'field 1 content',
+		'field2': 'field 2 content',
+		'field_3': 'field 3 content',
+	},
+];
+
+<Canvas>
+	<Story
+		name="Table"
+		decorators={[docsDecorator]}
+		args={{
+			fields,
+			items,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Table" />
