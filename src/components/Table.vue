@@ -6,8 +6,15 @@
 				:class="resolveHeaderItemClass(index)"
 				:key="index"
 			>
-				<!-- @slot Slot usado para renderizar itens personalizados para o cabeçalho da tabela. -->
-				<slot name="header-item" :data="field" :label="field.label">
+				<!--
+					@slot Slot usado para renderizar itens personalizados para o cabeçalho da tabela.
+					Dados do item referente à coluna podem ser acessados através da propriedade `data`.
+					Os dados do escopo do slot podem ser acessados no formato a seguir:
+
+					
+					slot-scope={ data }
+				-->
+				<slot name="header-item" :data="field">
 					{{ field.label }}
 				</slot>
 			</th>
@@ -21,8 +28,16 @@
 				:class="resolveContentItemClass(itemIndex, fieldIndex)"
 				:key="fieldIndex"
 			>
-				<!-- @slot Slot usado para renderizar itens personalizados para o conteúdo da tabela. -->
-				<slot name="table-item" :data="item">
+				<!--
+					@slot Slot usado para renderizar itens personalizados para o conteúdo da tabela.
+					Dados do item referente à linha podem ser acessados através da propriedade `data`,
+					enquanto a key referente à coluna podem ser acessados através da propriedade `field`.
+					Os dados do escopo do slot podem ser acessados no formato a seguir:
+
+					
+					slot-scope={ data, field }
+				-->
+				<slot name="table-item" :data="item" :field="field.key">
 					{{ item[field.key] }}
 				</slot>
 			</td>
