@@ -4,24 +4,20 @@ import Table from '../../components/Table.vue';
 <Meta
 	title="Componentes/Display/Table"
 	component={ Table }
-	argTypes={{
-	}
-}
 />
 
 export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { Table },
 	template: /*html*/
-		`<cds-table v-bind="$props" />`,
+		`<cds-table v-bind="$props" />
+		`,
 });
 
 export const template = /*html*/ `
-	<cds-progress-bar 
-		color="#2EB88D"
-		background-color="#DDE2E7"
-		:show-text="true"
-		:percentage="0.5"
+	<cds-table
+		:fields="fields"
+		:items="items
 	/>`;
 
 export const docsDecorator = () => {
