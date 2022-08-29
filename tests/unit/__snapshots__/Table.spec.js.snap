@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table component renders correctly 1`] = `
+<table class="table__container">
+  <tr class="table__header">
+    <th class="table__header-item--first">
+      Field 1
+    </th>
+    <th class="table__header-item">
+      Field 2
+    </th>
+    <th class="table__header-item--last">
+      Field 3
+    </th>
+  </tr>
+  <tr>
+    <td class="table__item">
+      field 1 content
+    </td>
+    <td class="table__item">
+      field 2 content
+    </td>
+    <td class="table__item">
+      field 3 content
+    </td>
+  </tr>
+  <tr>
+    <td class="table__item--first">
+      field 1 content
+    </td>
+    <td class="table__item--common">
+      field 2 content
+    </td>
+    <td class="table__item--last">
+      field 3 content
+    </td>
+  </tr>
+</table>
+`;
