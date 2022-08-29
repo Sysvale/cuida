@@ -11,7 +11,6 @@
 					Dados do item referente à coluna podem ser acessados através da propriedade `data`.
 					Os dados do escopo do slot podem ser acessados no formato a seguir:
 
-					
 					slot-scope={ data }
 				-->
 				<slot
