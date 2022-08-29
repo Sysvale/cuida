@@ -72,7 +72,7 @@ export default {
 			default: () => ([]),
 		},
 		/**
-		 * Array contendo os campos serem exibidos no cabeçalho da tabela. Os campos devem estar no seguinte formato:
+		 * Array contendo os campos a serem exibidos no cabeçalho da tabela. Os campos devem estar no seguinte formato:
 		 * 
 		 * ``{ key: 'exampleKey1', label: 'exampleLabel1' }``
 		 * 
