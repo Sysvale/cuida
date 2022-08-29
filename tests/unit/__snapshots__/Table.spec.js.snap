@@ -13,7 +13,7 @@ exports[`Table component renders correctly 1`] = `
       Field 3
     </th>
   </tr>
-  <tr>
+  <tr class="">
     <td class="table__item">
       field 1 content
     </td>
@@ -24,7 +24,7 @@ exports[`Table component renders correctly 1`] = `
       field 3 content
     </td>
   </tr>
-  <tr>
+  <tr class="">
     <td class="table__item--first">
       field 1 content
     </td>
