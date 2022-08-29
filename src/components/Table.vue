@@ -77,6 +77,8 @@ export default {
 		 * ``{ key: 'exampleKey1', label: 'exampleLabel1' }``
 		 * 
 		 * Ou em formato de string simples (``'fieldkey'``). Neste caso, o valor exibido no cabeçalho da tabela será a string convertida para [Start Case](https://en.wikipedia.org/wiki/Letter_case#Stylistic_or_specialised_usage).
+		 * 
+		 * Caso essa propriedade não seja enviada, o cabeçalho da tabela será montado de acordo com as `keys` do primeiro objeto do array enviado através da prop `items`.
 		 */
 		fields: {
 			type: Array,
@@ -148,7 +150,6 @@ export default {
 
 	&__header {
 		background-color: $bn-50;
-		border-radius: $border-radius-lil;
 
 		&-item {
 			@include body-2;
