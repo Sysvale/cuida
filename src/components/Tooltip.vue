@@ -57,7 +57,7 @@ export default {
 					tooltip.style.top = (document.getElementById(this.target).getBoundingClientRect().top + window.pageYOffset) + 'px';
 
 					this.$emit('hide', true);
-				}, 1500);
+				}, 500);
 			}
 		},
 	},
