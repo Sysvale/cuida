@@ -14,7 +14,10 @@
 					
 					slot-scope={ data }
 				-->
-				<slot name="header-item" :data="field">
+				<slot
+					name="header-item"
+					:data="field"
+				>
 					{{ field.label }}
 				</slot>
 			</th>
@@ -37,7 +40,11 @@
 					
 					slot-scope={ data, field }
 				-->
-				<slot name="table-item" :data="item" :field="field.key">
+				<slot
+					name="table-item"
+					:data="item"
+					:field="field.key"
+				>
 					{{ item[field.key] }}
 				</slot>
 			</td>
@@ -136,6 +143,7 @@ export default {
 		border-collapse: separate;
 		border-spacing: 0px;
 		border-radius: $border-radius-lil;
+		width: 100%;
 	}
 
 	&__header {
