@@ -6,7 +6,7 @@ const localVue = createLocalVue();
 
 const fields = ['field1', 'field2', 'field3'];
 
-describe('Table',() => {
+describe('Table', () => {
 	test('component renders correctly', async () => {
 		const wrapper = shallowMount(Table, {
 			localVue,
@@ -72,7 +72,7 @@ describe('Table',() => {
 				key: 'Field3',
 				label: 'Field 3',
 			},
-		]
+		];
 
 		await flushPromises();
 
@@ -112,7 +112,7 @@ describe('Table',() => {
 				key: 'field3',
 				label: 'Field 3',
 			},
-		]
+		];
 
 		await flushPromises();
 
