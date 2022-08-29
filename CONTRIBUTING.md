@@ -187,7 +187,7 @@ Para organizar e nomear nossas classes scss, utilizamos as convenções do padr�
 
 Utilizamos algumas convenções de comentários como anotações para a documentação gerada pelo Storybook:
 
-- Documentações de props são criadas com comentários multilinha acima da definição da propriedade:
+-   Documentações de props são criadas com comentários multilinha acima da definição da propriedade:
 
 <br/>
 
@@ -203,7 +203,7 @@ Resultado na documentação:
 
 <br/>
 
-- Documentações de eventos são criadas com comentários multilnha acima do `$this.emit()` ou comentários html acima do `$emit()`:
+-   Documentações de eventos são criadas com comentários multilnha acima do `$this.emit()` ou comentários html acima do `$emit()`:
 
 <br/>
 
@@ -227,7 +227,7 @@ Resultado na documentação:
 
 <br/>
 
-- Documentações de slots são criadas com comentários html acima da definição do slot:
+-   Documentações de slots são criadas com comentários html acima da definição do slot:
 
 <br/>
 
@@ -247,14 +247,13 @@ Resultado na documentação:
 
 Para padronizar a escrita de comentários no projeto e permitir o uso de extensões como [TODO Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree) e [TODO highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight) que mapeiam os comentários no projeto, utilizamos a seguinte convenção:
 
-- `NOTE`: utilizado para descrever como um trecho específico de códiog funciona. Recomendado para situações nas quais o código não é autoevidente.
-- `FIXME`: utilizado para indicar que determinado trecho de código funciona, mas que poderia ser melhorado.
-- `TODO`: utilizado para indicar que código adicional precisa ser escrito ou melhorias podem ser feitas.
+-   `NOTE`: utilizado para descrever como um trecho específico de códiog funciona. Recomendado para situações nas quais o código não é autoevidente.
+-   `FIXME`: utilizado para indicar que determinado trecho de código funciona, mas que poderia ser melhorado.
+-   `TODO`: utilizado para indicar que código adicional precisa ser escrito ou melhorias podem ser feitas.
 
 Exemplo de uso:
 
 ![image](https://user-images.githubusercontent.com/20057968/186924215-ea16bf62-c791-43d0-af66-5fab45cfa19d.png)
-
 
 ### Estrutura de diretórios
 
