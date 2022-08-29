@@ -11,7 +11,7 @@
 					Dados do item referente à coluna podem ser acessados através da propriedade `data`.
 					Os dados do escopo do slot podem ser acessados no formato a seguir:
 
-					
+
 					slot-scope={ data }
 				-->
 				<slot
@@ -38,7 +38,7 @@
 					enquanto a key referente à coluna podem ser acessados através da propriedade `field`.
 					Os dados do escopo do slot podem ser acessados no formato a seguir:
 
-					
+
 					slot-scope={ data, field }
 				-->
 				<slot
@@ -50,7 +50,7 @@
 				</slot>
 			</td>
 		</tr>
-	</table>	
+	</table>
 </template>
 
 <script>
@@ -61,10 +61,10 @@ export default {
 	props: {
 		/**
 		 * Array contendo os itens a serem exibidos na tabela. Os itens devem estar no seguinte formato:
-		 * 
-		 * 
-		 * ``{ 'exampleKey1': 'exampleValue1', 'exampleKey2': 'exampleValue2' }`` 
-		 * 
+		 *
+		 *
+		 * ``{ 'exampleKey1': 'exampleValue1', 'exampleKey2': 'exampleValue2' }``
+		 *
 		 * Com a 'key' sendo a mesma do campo da tabela onde o valor deve ser exibido
 		 */
 		items: {
@@ -74,11 +74,11 @@ export default {
 		},
 		/**
 		 * Array contendo os campos a serem exibidos no cabeçalho da tabela. Os campos devem estar no seguinte formato:
-		 * 
+		 *
 		 * ``{ key: 'exampleKey1', label: 'exampleLabel1' }``
-		 * 
+		 *
 		 * Ou em formato de string simples (``'fieldkey'``). Neste caso, o valor exibido no cabeçalho da tabela será a string convertida para [Start Case](https://en.wikipedia.org/wiki/Letter_case#Stylistic_or_specialised_usage).
-		 * 
+		 *
 		 * Caso essa propriedade não seja enviada, o cabeçalho da tabela será montado de acordo com as `keys` do primeiro objeto do array enviado através da prop `items`.
 		 */
 		fields: {
