@@ -35,7 +35,7 @@
 				<!--
 					@slot Slot usado para renderizar itens personalizados para o conteúdo da tabela.
 					Dados do item referente à linha podem ser acessados através da propriedade `data`,
-					enquanto a key referente à coluna podem ser acessados através da propriedade `field`.
+					enquanto a key referente à coluna pode ser acessada através da propriedade `field`.
 					Os dados do escopo do slot podem ser acessados no formato a seguir:
 
 
