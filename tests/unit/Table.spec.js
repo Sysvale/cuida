@@ -72,7 +72,7 @@ describe('Table', () => {
 				key: 'Field3',
 				label: 'Field 3',
 			},
-		]
+		];
 
 		await flushPromises();
 
@@ -112,7 +112,7 @@ describe('Table', () => {
 				key: 'field3',
 				label: 'Field 3',
 			},
-		]
+		];
 
 		await flushPromises();
 
