@@ -24,6 +24,7 @@
 		</tr>
 		<tr
 			v-for="(item, itemIndex) in items"
+			:class="resolveItemClass()"
 			:key="itemIndex"
 		>
 			<td
@@ -84,6 +85,13 @@ export default {
 			type: Array,
 			default: () => ([]),
 		},
+		/**
+		 * Boolean, informa se o estilo será alterado no hover da linha.
+		 */
+		hovered: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	computed: {
@@ -132,6 +140,10 @@ export default {
 
 			return index === 0 ? 'table__item--first' : 'table__item--last';
 		},
+
+		resolveItemClass() {
+			return this.hovered ? 'table__content--hoverable' : '';
+		},
 	},
 };
 </script>
@@ -144,7 +156,7 @@ export default {
 		border: 1px solid $n-30;
 		border-collapse: separate;
 		border-spacing: 0px;
-		border-radius: $border-radius-lil;
+		border-radius: $border-radius-extra-small;
 		width: 100%;
 	}
 
@@ -159,13 +171,19 @@ export default {
 
 			&--first {
 				@extend .table__header-item;
-				border-top-left-radius: $border-radius-lil;
+				border-top-left-radius: $border-radius-extra-small;
 			}
 
 			&--last {
 				@extend .table__header-item;
-				border-top-right-radius: $border-radius-lil;
+				border-top-right-radius: $border-radius-extra-small;
 			}
+		}
+	}
+
+	&__content--hoverable {
+		&:hover {
+			background-color: rgba($n-10, .7);
 		}
 	}
 
@@ -178,7 +196,7 @@ export default {
 
 		&--first {
 			@extend .table__item;
-			border-bottom-left-radius: $border-radius-lil;
+			border-bottom-left-radius: $border-radius-extra-small;
 			border-bottom: none;
 		}
 
@@ -189,7 +207,7 @@ export default {
 
 		&--last {
 			@extend .table__item;
-			border-bottom-right-radius: $border-radius-lil;
+			border-bottom-right-radius: $border-radius-extra-small;
 			border-bottom: none;
 		}
 	}
