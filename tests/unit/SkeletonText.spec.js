@@ -9,7 +9,7 @@ test('Component is mounted properly', () => {
 		propsData: {
 			width: '300',
 			height: '20',
-		}
+		},
 	});
 	expect(wrapper).toMatchSnapshot();
 });
