@@ -1,0 +1,75 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import SkeletonText from '../../components/SkeletonText.vue';
+
+<Meta
+	title="Componentes/Loaders/SkeletonText"
+	component={ SkeletonText }
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { SkeletonText },
+	template: /*html*/ `
+		<cds-skeleton-text
+			v-bind="$props" 
+		/>
+	`,
+});
+
+export const template = /*html*/ `
+	<cds-skeleton-text
+		width="100"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
+# Skeleton Text
+
+### Skeleton texts permitem exibir um estado de carregamento para vários tipos de componentes
+### enquanto seus dados estão sendo buscados.
+---
+<br />
+
+## Recomendamos o uso de Skeleton Texts quando:
+- Informar ao usuário que as informações do componentes estão sendo carregadas.
+- O conteúdo a ser carregado for dinâmico.
+
+<br />
+
+## Não recomendamos o uso de Skeleton Texts quando:
+- O conteúdo a ser carregado for estático.
+
+## Observações
+- O Skeleton text deve ser ajustado de acordo com o componente a ser utilizado.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="SkeletonText"
+		decorators={[docsDecorator]}
+		args={{
+			width: "250"
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="SkeletonText" />
