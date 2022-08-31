@@ -38,7 +38,7 @@ export default defineConfig({
 				'src/assets/sass/spacing.scss',
 				'src/assets/sass/fontWeight.scss',
 			],
-			'dist/tokens.scss'
+			'dist/@sysvale/tokens.scss'
 		),
 		{
 			...typescript({ tsconfig: './tsconfig.json' }),
