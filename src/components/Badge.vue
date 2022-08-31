@@ -63,8 +63,8 @@ export default defineComponent({
 	}
 
 	&__content {
-		font-weight: 500 !important;
-		font-size: 16px;
+		@include body-1;
+		font-weight: $font-weight-medium;
 	}
 
 	&--turquoise {
