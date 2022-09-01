@@ -41,7 +41,7 @@
 								href="javascript:void(0)"
 								target="_self"
 								class="nav-link"
-								@click.prevent="(e) => $emit('add-action', e)"
+								@click.prevent="handleAddAction"
 							>
 								<ion-icon
 									name="add-outline"
@@ -184,6 +184,14 @@ export default {
 			this.internalActiveTab = item;
 		},
 
+		handleAddAction(event) {
+			/**
+			 * Evento emitido ao clicar no botão de adicionar
+			* @event add-action
+			* @type {Event}
+			*/
+			this.$emit('add-action', event);
+		},
 
 		isActive(item) {
 			return _.isEqual(this.internalActiveTab, item);
