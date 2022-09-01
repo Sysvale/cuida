@@ -28,18 +28,25 @@
 			@event action-button-click
 			@type {Event}
 		-->
-		<button
+		<cds-button
 			v-if="!hideActionButton"
 			class="empty-state__button"
 			@click="$emit('action-button-click', true)"
+			text
 		>
 			{{ actionButtonText }}
-		</button>
+		</cds-button>
 	</div>
 </template>
 
 <script>
+import CdsButton from './Button.vue';
+
 export default {
+	components: {
+		CdsButton,
+	},
+
 	props: {
 		/**
 		 * A imagem a ser mostrada no Empty State. Obs.: o addon Controls
