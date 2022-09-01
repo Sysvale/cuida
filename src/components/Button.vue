@@ -109,6 +109,7 @@ export default {
 	&__container {
 		font-weight: $font-weight-semibold;
 		border: none;
+		cursor: pointer;
 
 		&:focus {
 			outline: none !important;
