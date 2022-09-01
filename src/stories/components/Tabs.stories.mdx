@@ -29,21 +29,23 @@ export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { Tabs },
 	template: /*html*/ `
-		<cds-tabs
-			v-bind="$props"
-			@right-click="handle"
-			@add-action="add"
-		>
-			<template v-slot:room-42>
-				Sala de Psicologia
-			</template>
-			<template v-slot:room-51>
-				Sala de Fisioterapia
-			</template>
-			<template v-slot:room-13>
-				Sala de Otorrinolaringologista
-			</template>
-		</cds-tabs>
+		<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px;">
+			<cds-tabs
+				v-bind="$props"
+				@right-click="handle"
+				@add-action="add"
+			>
+				<template v-slot:room-42>
+					Sala de Psicologia
+				</template>
+				<template v-slot:room-51>
+					Sala de Fisioterapia
+				</template>
+				<template v-slot:room-13>
+					Sala de Otorrinolaringologista
+				</template>
+			</cds-tabs>
+	</div>
 	`,
 	methods: {
 		handle(e) {
