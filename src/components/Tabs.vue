@@ -52,6 +52,7 @@
 				</template> -->
 				<template #tabs-end>
 					<b-nav-item
+						v-if="showAddAction"
 						role="presentation"
 						class="cds-tab__action"
 						href="#"
@@ -109,6 +110,13 @@ export default {
 			validator: (value) => {
 				return colorOptions.includes(value);
 			},
+		},
+		/**
+		 * Define se o botão de adicionar deve ser exibido ou não, por padrão ele não será exibido
+		 */
+		showAddAction: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
