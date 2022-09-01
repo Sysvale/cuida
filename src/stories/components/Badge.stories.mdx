@@ -5,7 +5,7 @@ import Badge from '../../components/Badge.vue';
 	title="Componentes/Display/Badge"
 	component={ Badge }
 	argTypes={
-    {
+	{
 		variant: {
 			control:{
 				type: 'select',
@@ -28,16 +28,16 @@ import Badge from '../../components/Badge.vue';
 />
 
 export const Template = (args) => ({
-  components: { Badge },
-  setup() {
-    return { args };
-  },
-  template: /*html*/ `
-		<badge
+	components: { CdsBadge: Badge },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-badge
 			v-bind="args" 
 		>
-			Conteúdo
-		</badge>`,
+			PDF
+		</cds-badge>`,
 });
 
 
