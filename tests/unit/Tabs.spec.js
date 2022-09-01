@@ -19,7 +19,7 @@ test('Component is mounted properly', () => {
 		localVue,
 		propsData: {
 			tabs: mockedData,
-			activeItem: mockedData[0],
+			activeTab: mockedData[0],
 		},
 	});
 	expect(wrapper).toMatchSnapshot();
