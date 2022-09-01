@@ -60,7 +60,7 @@ describe('Items styles test', () => {
 			localVue,
 			propsData: {
 				tabs: mockedData,
-				activeItem: mockedData[0],
+				activeTab: mockedData[0],
 			},
 		});
 		expect(wrapper.findAll('.active').length).toBe(1);
