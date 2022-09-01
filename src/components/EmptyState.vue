@@ -31,16 +31,27 @@
 		<cds-button
 			v-if="!hideActionButton"
 			class="empty-state__button"
+			:text="actionButtonText"
+			:variant="actionButtonVariant"
 			@click="$emit('action-button-click', true)"
-			text
-		>
-			{{ actionButtonText }}
-		</cds-button>
+		/>
 	</div>
 </template>
 
 <script>
 import CdsButton from './Button.vue';
+
+const predefinedColors = [
+	'teal',
+	'green',
+	'blue',
+	'indigo',
+	'violet',
+	'pink',
+	'red',
+	'orange',
+	'amber',
+];
 
 export default {
 	components: {
@@ -93,6 +104,14 @@ export default {
 			type: String,
 			default: 'Finalizar',
 		},
+		/**
+		 * A variante do botão de ação do Empty State (segue as variantes do componente de botão do Cuida)
+		 */
+		actionButtonVariant: {
+			type: String,
+			default: 'green',
+			validator: (value) => predefinedColors.includes(value),
+		},
 	},
 };
 </script>
@@ -130,20 +149,6 @@ export default {
 
 	&__button {
 		margin: mt(4);
-		background-color: $gp-400;
-		color: $n-0;
-		border-radius: 4px;
-		font-weight: 600;
-		border: none;
-		padding: pYX(2, 3);
-
-		&:hover {
-			background-color: $gp-500;
-		}
-
-		&:focus {
-			outline: 0px;
-		}
 	}
 }
 </style>
