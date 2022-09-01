@@ -66,4 +66,3 @@ describe('Items styles test', () => {
 		expect(wrapper.findAll('.active').length).toBe(1);
 	});
 });
-
