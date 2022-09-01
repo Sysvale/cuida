@@ -3,75 +3,75 @@
 		id="cds-tabs"
 		class="cds-tabs"
 	>
-		<b-card
-			no-body
-			class="cds-tabs__wrapper"
-		>
-			<b-tabs
+		<div class="card cds-tabs__wrapper">
+			<div
+				class="tabs"
 				:style="activeBorderStyle"
-				active-nav-item-class="cds-tab__active-item"
-				content-class="cds-tab__content"
-				card
 			>
-				<b-tab
-					v-for="(tab, index) in computedTabs"
-					:key="`${index}-${tab.name}-tab`"
-					:active="isActive(tab)"
-					class="cds-tabs__tab-container"
-					title-item-class="cds-tabs__item"
-					title-link-class="cds-tabs__link"
-				>
-					<template #title>
-						<div
-							class="cds-tab__title"
-							@contextmenu.prevent.stop="(event) => handleRightClick(event, tab)"
+				<div class="card-header">
+					<ul class="nav nav-tabs card-header-tabs">
+						<li
+							v-for="(tab, index) in computedTabs"
+							:key="`${index}-${tab.name}-tab`"
+							role="presentation"
+							class="nav-item cds-tabs__item"
 						>
-							{{ tab.title }}
-						</div>
-					</template>
-					<b-container fluid>
-						<slot
-							:name="getSlotName(tab)"
-						/>
-					</b-container>
-				</b-tab>
-				<!-- <template #tabs-start>
-					<b-nav-item
+							<a
+								role="tab"
+								href="javascript:void(0)"
+								target="_self"
+								class="nav-link cds-tabs__link"
+								:class="isActive(tab) ? 'cds-tab__active-item active' : ''"
+								@click="(event) => handleClick(event, tab)"
+								@contextmenu.prevent.stop="(event) => handleRightClick(event, tab)"
+							>
+								<div
+									class="cds-tab__title"
+								>
+									{{ tab.title }}
+								</div>
+							</a>
+						</li>
+						<li
+							role="presentation"
+							class="nav-item cds-tab__action"
+						>
+							<a
+								role="tab"
+								href="javascript:void(0)"
+								target="_self"
+								class="nav-link"
+								@click.prevent="(e) => $emit('add-action', e)"
+							>
+								<ion-icon
+									name="add-outline"
+								/>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="tab-content cds-tab__content">
+					<div
 						v-for="(tab, index) in computedTabs"
 						:key="`${index}-${tab.name}-tab`"
-						role="presentation"
-						class="cds-tabs__item"
-						href="#"
+						role="tabpanel"
+						class="tab-pane cds-tabs__tab-container card-body"
+						:class="isActive(tab) ? 'active' : ''"
 					>
-						<div
-							class="cds-tab__title"
-						>
-							{{ tab.title }}
+						<div class="container-fluid">
+							<slot
+								:name="getSlotName(tab)"
+							/>
 						</div>
-					</b-nav-item>
-				</template> -->
-				<template #tabs-end>
-					<b-nav-item
-						v-if="showAddAction"
-						role="presentation"
-						class="cds-tab__action"
-						href="#"
-						@click.prevent="(e) => $emit('add-action', e)"
-					>
-						<ion-icon
-							name="add-outline"
-						/>
-					</b-nav-item>
-				</template>
-			</b-tabs>
-		</b-card>
+					</div>
+				</div>
+			</div>
+		</div>
 	</span>
 </template>
 
 <script>
 import { colorOptions, colorHexCode } from '../utils/constants/colors';
-
-// @contextmenu.prevent.stop="(event) => handleRightClick(event, tab)"
 
 export default {
 	props: {
@@ -151,32 +151,12 @@ export default {
 	watch: {
 		computedTabs: {
 			handler(newValue) {
-				const filtered = newValue.filter(tab => _.isEqual(tab, this.activeTab));
-
-				if (filtered.length) {
-					[this.internalActiveTab] = filtered;
-				}
+				const filtered = newValue.filter(tab => tab.name === this.activeTab.name);
+				[this.internalActiveTab] = filtered.length ? filtered : newValue;
 			},
 			immediate: true,
 		},
 	},
-
-	// mounted() {
-	// 	document.addEventListener('contextmenu', (e) => {
-	// 		e.preventDefault();
-	// 	});
-
-	// 	const contextMenu = this.$el.querySelectorAll('.nav-item');
-	// 	// const refFirstTab = this.$refs['1-room-42-tab'];
-	// 	// console.log(refFirstTab);
-	// 	// let contextMenu = refFirstTab.querySelectorAll('a');
-	// 	console.log(contextMenu);
-	// 	// contextMenu.addEventListener('contextmenu', (e) => {
-	// 	// 	console.log('right', e);
-	// 	// 	e.preventDefault();
-	// 	// 	contextMenu.textContent = 'GeeksForGeeks';
-	// 	// });
-	// },
 
 	methods: {
 		colorHexCode,
@@ -193,6 +173,17 @@ export default {
 				*/
 			this.$emit('right-click', { event, item });
 		},
+
+		handleClick(event, item) {
+			/**
+			 * Evento emitido quando muda de aba
+			* @event change
+			* @type {Event}
+				*/
+			this.$emit('change', { event, item });
+			this.internalActiveTab = item;
+		},
+
 
 		isActive(item) {
 			return _.isEqual(this.internalActiveTab, item);
@@ -282,10 +273,6 @@ a {
 		border-radius: 8px;
 		padding: pa(1);
 	}
-}
-
-.cds-tabs__item {
-	// 
 }
 
 .cds-tab__title {
