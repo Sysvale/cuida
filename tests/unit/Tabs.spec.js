@@ -18,7 +18,7 @@ test('Component is mounted properly', () => {
 	const wrapper = mount(Tab, {
 		localVue,
 		propsData: {
-			items: mockedData,
+			tabs: mockedData,
 			activeItem: mockedData[0],
 		},
 	});
