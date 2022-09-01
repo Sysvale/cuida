@@ -4,6 +4,24 @@ import EmptyState from '../../components/EmptyState.vue';
 <Meta
 	title="Componentes/Display/EmptyState"
 	component={ EmptyState }
+	argTypes={{
+		actionButtonVariant: {
+			control:{
+				type: 'select',
+				options: [
+					'teal',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+				],
+			}
+		},
+	}}
 />
 
 export const Template = (args, { argTypes }) => ({
