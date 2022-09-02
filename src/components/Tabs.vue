@@ -60,6 +60,10 @@
 						:class="isActive(tab) ? 'active' : ''"
 					>
 						<div class="container-fluid">
+							<!-- @slot Slot para renderização customizada do conteúdo das abas
+								os slots são nomeados de acordo com os `name` das tabs, cada slot
+								nomeado é exibido de acordo com a aba ativa correspondente
+							-->
 							<slot
 								:name="getSlotName(tab)"
 							/>

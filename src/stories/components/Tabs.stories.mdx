@@ -32,8 +32,6 @@ export const Template = (args, { argTypes }) => ({
 		<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px;">
 			<cds-tabs
 				v-bind="$props"
-				@right-click="handle"
-				@add-action="add"
 			>
 				<template v-slot:room-42>
 					Sala de Psicologia
@@ -47,14 +45,6 @@ export const Template = (args, { argTypes }) => ({
 			</cds-tabs>
 	</div>
 	`,
-	methods: {
-		handle(e) {
-			console.log('right-click', e);
-		},
-		add(e) {
-			console.log('add', e);
-		},
-	},
 });
 
 export const template = /*html*/ `
