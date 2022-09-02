@@ -33,6 +33,7 @@
 							</a>
 						</li>
 						<li
+							v-if="showAddAction"
 							role="presentation"
 							class="nav-item cds-tab__action"
 						>
@@ -203,10 +204,6 @@ export default {
 <style lang="scss">
 @import '../assets/sass/app.scss';
 
-a {
-	outline: none;
-}
-
 #cds-tabs .cds-tabs {
 	padding: py(2);
 }
@@ -220,8 +217,7 @@ a {
 	}
 }
 
-.cds-tabs__link,
-.cds-tabs__item .nav-link {
+.cds-tabs__link {
 	height: 60px;
 	max-width: 123px;
 	display: flex;
@@ -249,7 +245,7 @@ a {
 		border: none;
 		padding: pa(0);
 	}
-	
+
 	.card-header-tabs {
 		margin: ma(0);
 		max-height: 60px;
@@ -279,7 +275,7 @@ a {
 	@include caption;
 	font-weight: $font-weight-semibold;
 	color: $n-600;
-	max-height: 16px;
+	max-height: 20px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
