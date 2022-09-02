@@ -111,7 +111,7 @@ export default {
 		 */
 		activeColor: {
 			type: String,
-			default: null,
+			default: 'green',
 			validator: (value) => {
 				return colorOptions.includes(value);
 			},
@@ -140,12 +140,10 @@ export default {
 					'--hoverBorderColor': '#CED6FD', // $bn-200
 				};
 			}
-			const presetColor = this.colorOptions.includes(this.activeColor);
-			const borderColor = presetColor ? this.colorHexCode(this.activeColor) : this.activeColor;
-			const hoverColor = presetColor ? this.colorLighterHexCode(this.activeColor) : this.activeColor;
+
 			return {
-				'--activeBorderColor': borderColor,
-				'--hoverBorderColor': hoverColor,
+				'--activeBorderColor': this.colorHexCode(this.activeColor),
+				'--hoverBorderColor': this.colorLighterHexCode(this.activeColor),
 			};
 		},
 	},
