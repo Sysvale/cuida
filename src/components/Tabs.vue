@@ -11,7 +11,7 @@
 				<div class="card-header">
 					<ul class="nav nav-tabs card-header-tabs">
 						<li
-							v-for="(tab, index) in computedTabs"
+							v-for="(tab, index) in tabs"
 							:key="`${index}-${tab.name}-tab`"
 							role="presentation"
 							class="nav-item cds-tabs__item"
@@ -53,7 +53,7 @@
 				</div>
 				<div class="tab-content cds-tab__content">
 					<div
-						v-for="(tab, index) in computedTabs"
+						v-for="(tab, index) in tabs"
 						:key="`${index}-${tab.name}-tab`"
 						role="tabpanel"
 						class="tab-pane cds-tabs__tab-container card-body"
@@ -129,10 +129,6 @@ export default {
 	},
 
 	computed: {
-		computedTabs() {
-			return this.tabs;
-		},
-
 		activeBorderStyle() {
 			if (!this.activeColor) {
 				return {
@@ -150,7 +146,7 @@ export default {
 	},
 
 	watch: {
-		computedTabs: {
+		tabs: {
 			handler(newValue) {
 				const filtered = newValue.filter(tab => tab.name === this.activeTab.name);
 				[this.internalActiveTab] = filtered.length ? filtered : newValue;
