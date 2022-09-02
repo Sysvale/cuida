@@ -1,10 +1,8 @@
 import { mount, createLocalVue } from '@vue/test-utils';
-import BootstrapVue from 'bootstrap-vue';
 import lodash from 'lodash';
-import Tab from '../../src/components/Tab.vue';
+import Tabs from '../../src/components/Tabs.vue';
 
 const localVue = createLocalVue();
-localVue.use(BootstrapVue);
 
 const mockedData = [
 	{ title: 'Dummy title 1', name: 'dummy-1' },
@@ -15,18 +13,21 @@ const mockedData = [
 
 test('Component is mounted properly', () => {
 	window._ = lodash;
-	const wrapper = mount(Tab, {
+	const wrapper = mount(Tabs, {
 		localVue,
 		propsData: {
 			tabs: mockedData,
 			activeTab: mockedData[0],
+		},
+		stubs: {
+			'ion-icon': true,
 		},
 	});
 	expect(wrapper).toMatchSnapshot();
 });
 
 describe('"tabs" prop is validated', () => {
-	const validator = Tab.props.tabs.validator;
+	const validator = Tabs.props.tabs.validator;
 
 	test('passes when "tabs" has name and title', () => {
 		expect(validator(mockedData)).toBe(true);
@@ -42,7 +43,7 @@ describe('"tabs" prop is validated', () => {
 });
 
 describe('"activeColor" prop is validated', () => {
-	const validator = Tab.props.activeColor.validator;
+	const validator = Tabs.props.activeColor.validator;
 
 	test('passes when "activeColor" is a predefined color', () => {
 		expect(validator('turquoise')).toBe(true);
@@ -56,13 +57,16 @@ describe('"activeColor" prop is validated', () => {
 describe('Items styles test', () => {
 	test('if has one tab set as active', () => {
 		window._ = lodash;
-		const wrapper = mount(Tab, {
+		const wrapper = mount(Tabs, {
 			localVue,
 			propsData: {
 				tabs: mockedData,
 				activeTab: mockedData[0],
 			},
+			stubs: {
+				'ion-icon': true,
+			},
 		});
-		expect(wrapper.findAll('.active').length).toBe(1);
+		expect(wrapper.findAll('.cds-tab__active-item').length).toBe(1);
 	});
 });
