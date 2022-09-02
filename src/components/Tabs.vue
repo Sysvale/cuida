@@ -208,19 +208,12 @@ a {
 }
 
 #cds-tabs .cds-tabs {
-	padding: 8px 0;
+	padding: py(2);
 }
 
 #cds-tabs .cds-tabs__tab-container {
 	margin: mt(2);
 	padding: pYX(6, 7);
-
-	.active {
-		color: $n-800 !important;
-		border-bottom: 4px solid var(--activeBorderColor);
-		background: $n-20;
-		border-radius: 4px  4px 0px 0px;
-	}
 
 	.container-fluid {
 		padding: px(0);
@@ -232,11 +225,10 @@ a {
 	height: 60px;
 	max-width: 123px;
 	display: flex;
-	border-radius: 4px;
+	border-radius: $border-radius-button;
 	border: 1px solid $n-30 !important;
 	border-top: 5px solid $n-30 !important;
-	margin-bottom: 8px !important;
-	margin-right: 8px;
+	margin: mTRBL(0, 2, 2, 0);
 	background-color: $n-0 !important;
 	padding: pYX(4, 5);
 
@@ -244,7 +236,7 @@ a {
 		height: 74px;
 		border: none !important;
 		border-top: 5px solid var(--activeBorderColor) !important;
-		margin-bottom: 0 !important;
+		margin: mr(2);
 	}
 }
 
@@ -255,11 +247,11 @@ a {
 	.card-header {
 		background-color: transparent !important;
 		border: none;
-		padding: 0;
+		padding: pa(0);
 	}
 	
 	.card-header-tabs {
-		margin: 0;
+		margin: ma(0);
 		max-height: 60px;
 	}
 }
@@ -278,7 +270,7 @@ a {
 		color: $n-200;
 		background-color: $n-0;
 		border: 1px solid $n-30 !important;
-		border-radius: 8px;
+		border-radius: $border-radius-extra-small;
 		padding: pa(1);
 	}
 }
@@ -299,11 +291,10 @@ a {
 	font-weight: bold;
 	cursor: default;
 	border: none !important;
-	padding-bottom: 8px;
 }
 
 .cds-tab__content {
 	background-color: $n-0;
-	border-radius: 4px;
+	border-radius: $border-radius-button;
 }
 </style>
