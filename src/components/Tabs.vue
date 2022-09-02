@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import { colorOptions, colorHexCode } from '../utils/constants/colors';
+import { colorOptions, colorHexCode, colorLighterHexCode } from '../utils/constants/colors';
 
 export default {
 	props: {
@@ -132,15 +132,16 @@ export default {
 		activeBorderStyle() {
 			if (!this.activeColor) {
 				return {
-					'--activeBorderColor': this.isLightThemed
-						? '#206ED9' // $bn-500
-						: '#2AC092' // $gp-400
+					'--activeBorderColor': '#206ED9', // $bn-500
+					'--hoverBorderColor': '#CED6FD', // $bn-200
 				};
 			}
 			const presetColor = this.colorOptions.includes(this.activeColor);
 			const borderColor = presetColor ? this.colorHexCode(this.activeColor) : this.activeColor;
+			const hoverColor = presetColor ? this.colorLighterHexCode(this.activeColor) : this.activeColor;
 			return {
 				'--activeBorderColor': borderColor,
+				'--hoverBorderColor': hoverColor,
 			};
 		},
 	},
@@ -157,6 +158,7 @@ export default {
 
 	methods: {
 		colorHexCode,
+		colorLighterHexCode,
 
 		getSlotName(tab) {
 			return tab.name;
@@ -223,6 +225,10 @@ export default {
 	margin: mTRBL(0, 2, 2, 0);
 	background-color: $n-0 !important;
 	padding: pYX(4, 5);
+
+	&:hover {
+		border-top: 5px solid var(--hoverBorderColor) !important;
+	}
 
 	&.active {
 		height: 74px;
