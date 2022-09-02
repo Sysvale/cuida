@@ -56,6 +56,7 @@ import {
 	Loader,
 	ClusteredMultiselect,
 	LoadingBar,
+	Table,
 	SkeletonText,
 } from '../src/components';
 
@@ -139,6 +140,7 @@ Vue.component('cds-collapsible-container', CollapsibleContainer);
 Vue.component('cds-select', Select);
 Vue.component('cds-alert', Alert);
 Vue.component('cds-loading-bar', LoadingBar);
+Vue.component('cds-table', Table);
 Vue.component('cds-skeleton-text', SkeletonText);
 
 addParameters({
