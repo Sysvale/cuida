@@ -58,6 +58,7 @@ import {
 	LoadingBar,
 	Table,
 	SkeletonText,
+	CalloutCard,
 	Tabs,
 } from '../src/components';
 
@@ -143,6 +144,7 @@ Vue.component('cds-alert', Alert);
 Vue.component('cds-loading-bar', LoadingBar);
 Vue.component('cds-table', Table);
 Vue.component('cds-skeleton-text', SkeletonText);
+Vue.component('cds-callout-card', CalloutCard);
 Vue.component('cds-tabs', Tabs);
 
 addParameters({

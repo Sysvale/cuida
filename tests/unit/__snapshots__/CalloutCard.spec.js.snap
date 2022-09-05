@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Callout Card if component renders correctly 1`] = `
+<span id="callout-card"><div class="callout-card__container"><div class="image__container"><img src="http://localhost:6006/static/media/src/assets/images/CuidaTempLogo.png" alt="Imagem de CalloutCard" class="image__content"></div> <div class="content__container"><div class="content"><span class="content__title">
+					Test
+				</span> <span class="content__text">
+						A text test
+					</span></div>
+<div>
+  <cds-button-stub variant="green" size="md" text="Ok" id="content-button"></cds-button-stub>
+</div>
+</div>
+</div>
+</span>
+`;
