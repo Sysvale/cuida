@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component is mounted properly 1`] = `
+<span id="cds-tabs" class="cds-tabs"><div class="card cds-tabs__wrapper"><div class="tabs" style="--activeBorderColor: #2AC092; --hoverBorderColor: #ABEDD9;"><div class="card-header"><ul class="nav nav-tabs card-header-tabs"><li role="presentation" class="nav-item cds-tabs__item"><a role="tab" href="javascript:void(0)" target="_self" class="nav-link cds-tabs__link cds-tab__active-item active"><div class="cds-tab__title">
+								Dummy title 1
+							</div></a></li><li role="presentation" class="nav-item cds-tabs__item"><a role="tab" href="javascript:void(0)" target="_self" class="nav-link cds-tabs__link"><div class="cds-tab__title">
+								Dummy title 2
+							</div></a></li><li role="presentation" class="nav-item cds-tabs__item"><a role="tab" href="javascript:void(0)" target="_self" class="nav-link cds-tabs__link"><div class="cds-tab__title">
+								Dummy title 3
+							</div></a></li><li role="presentation" class="nav-item cds-tabs__item"><a role="tab" href="javascript:void(0)" target="_self" class="nav-link cds-tabs__link"><div class="cds-tab__title">
+								Dummy title 4
+							</div></a></li> <!----></ul></div> <div class="tab-content cds-tab__content"><div role="tabpanel" class="tab-pane cds-tabs__tab-container card-body active"><div class="container-fluid"></div></div><div role="tabpanel" class="tab-pane cds-tabs__tab-container card-body"><div class="container-fluid"></div></div><div role="tabpanel" class="tab-pane cds-tabs__tab-container card-body"><div class="container-fluid"></div></div><div role="tabpanel" class="tab-pane cds-tabs__tab-container card-body"><div class="container-fluid"></div></div></div></div></div></span>
+`;
