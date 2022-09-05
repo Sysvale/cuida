@@ -4,6 +4,24 @@ import CalloutCard from '../../components/CalloutCard.vue';
 <Meta
 	title="Componentes/Display/CalloutCard"
 	component={ CalloutCard }
+	argTypes={{
+		actionButtonVariant: {
+			control:{
+				type: 'select',
+				options: [
+					'teal',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber'
+				],
+			}
+		},
+	}}
 />
 
 export const Template = (args, { argTypes }) => ({
@@ -58,7 +76,7 @@ export const docsDecorator = () => {
 
 export const title = 'Título do CalloutCard';
 
-export const subTitle =  `Existe uma teoria que diz que, se um dia alguém descobrir 
+export const text =  `Existe uma teoria que diz que, se um dia alguém descobrir 
 				exatamente para que serve o Universo e por que ele está aqui, ele 
 				desaparecerá instantaneamente e será substituídopor al go ainda 
 				mais estranho e inexplicável. Existe uma segunda teoria que diz 
@@ -71,7 +89,7 @@ export const subTitle =  `Existe uma teoria que diz que, se um dia alguém desco
 		args={{
 			image: 'https://cdni.iconscout.com/illustration/free/thumb/access-denied-4085803-3385472.png',
 			title,
-			subTitle,
+			text,
 		}}
 	>
 		{ Template.bind({}) }
