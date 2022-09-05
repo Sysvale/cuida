@@ -1,34 +1,39 @@
 <template>
 	<span id="callout-card">
-		<div
-			class="callout-card__container"
-			:class="alertCardContainerSelected"
-		>
+		<div :class="resolveClass('callout-card__container')">
 			<div class="image__container">
 				<img
-					class="image__content"
+					:class="resolveClass('image__content')"
 					:src="image"
 					:alt="imageDescription"
 				/>
 			</div>
-			<div class="content">
-				<div class="content__text">
+			<div :class="resolveClass('content__container')">
+				<div :class="resolveClass('content')">
 					<span class="content__title">
 						{{ title }}
 					</span>
-	
-					<!-- @slot Slot usado para inserção de conteúdo customizado no subtítulo. -->
-					<span class="content__subtitle">
-						<slot name="subTitle-slot">
-							{{ subTitle }}
+
+					<!-- @slot Slot usado para inserção de conteúdo customizado no texto. -->
+					<span class="content__text">
+						<slot name="text">
+							{{ text }}
 						</slot>
 					</span>
 				</div>
 				<div>
+					<!--
+						Evento que indica que o Botão foi clicado
+						@event action-button-click
+						@type {Event}
+					-->
 					<cds-button
 						id="content-button"
-						:variant="actionButtonColor"
+						:variant="actionButtonVariant"
 						:text="actionButtonText"
+						:secondary="actionButtonSecondary"
+						:disabled="actionButtonDisabled"
+						@click="$emit('action-button-click')"
 					/>
 				</div>
 			</div>
@@ -40,7 +45,7 @@
 export default {
 	props: {
 		/**
-		 * O título do alerta. O título também pode ser usado com o slot.
+		 * O título do card. O título também pode ser usado com o slot.
 		 */
 		title: {
 			type: String,
@@ -48,60 +53,69 @@ export default {
 			required: true,
 		},
 		/**
-		 * O subtítulo do alerta. O subtítulo também pode ser usado com o slot.
+		 * O texto do card. O texto também pode ser usado com o slot.
 		 */
-		subTitle: {
+		text: {
 			type: String,
 			default: 'Subtítulo do AlertCard',
+			required: true,
 		},
 		/**
-		 * O subtítulo do alerta. O subtítulo também pode ser usado com o slot.
+		 * A imagem do card.
 		 */
 		image: {
 			type: String,
 			default: '',
+			required: true,
 		},
 		/**
-		 * O subtítulo do alerta. O subtítulo também pode ser usado com o slot.
+		 * A descrição da imagem do card.
 		 */
 		imageDescription: {
 			type: String,
 			default: 'Imagem de CalloutCard',
 		},
 		/**
-		 * O subtítulo do alerta. O subtítulo também pode ser usado com o slot.
+		 * O botão do card.
 		 */
 		actionButtonVariant: {
 			type: String,
-			default: 'primary',
+			default: 'green',
 		},
 		/**
-		 * O subtítulo do alerta. O subtítulo também pode ser usado com o slot.
+		 * O texto do botão do card.
 		 */
 		actionButtonText: {
 			type: String,
-			default: 'Botão',
+			default: 'Ok',
 		},
 		/**
-		 * O subtítulo do alerta. O subtítulo também pode ser usado com o slot.
+		 * A versão secundária do botão.
 		 */
-		actionButtonColor: {
-			type: String,
-			default: 'green',
+		actionButtonSecondary: {
+			type: Boolean,
+			default: false,
 		},
-	},
-
-	data() {
-		return {
-		};
-	},
-
-	computed: {
-		alertCardContainerSelected() {
+		/**
+		 * A versão disabled do botão.
+		 */
+		actionButtonDisabled: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Modo de exibição do card.
+		 */
+		compact: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
 	methods: {
+		resolveClass(element) {
+			return this.compact ? `${element}--compact` : element;
+		},
 	},
 };
 </script>
@@ -114,10 +128,16 @@ export default {
 	align-items: center;
 	padding: pa(7);
 	border-radius: 16px;
+	border: 1px solid $n-40;
 
 	&__container {
 		@extend .callout-card;
-		border: 1px solid $n-40;
+		width: 700px;
+
+		&--compact {
+			@extend .callout-card;
+			padding: pYX(2,6);
+		}
 	}
 
 	&__content-container {
@@ -133,24 +153,42 @@ export default {
 	&__content {
 		max-width: 200px;
 		max-height: 200px;
+
+		&--compact {
+			max-width: 120px;
+			max-height: 120px;
+		}
 	}
 }
 
 #callout-card .content {
+	margin: mb(4);
+
+	&--compact {
+		max-width: 529px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
 	&__title {
 		@include subheading-2;
 		display: block;
 	}
 
-	&__subtitle {
+	&__text {
 		@include subheading-3;
-		margin: mb(4);
 		display: block;
 		color: $n-600;
 	}
-}
 
-#content-button button {
+	&__container {
+		&--compact {
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+			align-items: center;
+		}
+	}
 }
-
 </style>
