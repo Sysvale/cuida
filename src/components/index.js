@@ -36,3 +36,4 @@ export { default as Alert } from './Alert.vue';
 export { default as LoadingBar } from './LoadingBar.vue';
 export { default as Table } from './Table.vue';
 export { default as SkeletonText } from './SkeletonText.vue';
+export { default as Tabs } from './Tabs.vue';
