@@ -22,19 +22,22 @@
 					</span>
 				</div>
 				<div>
-					<!--
-						Evento que indica que o Botão foi clicado
-						@event action-button-click
-						@type {Event}
-					-->
-					<cds-button
-						id="content-button"
-						:variant="actionButtonVariant"
-						:text="actionButtonText"
-						:secondary="actionButtonSecondary"
-						:disabled="actionButtonDisabled"
-						@click="$emit('action-button-click')"
-					/>
+					<!-- @slot Slot usado para inserção de conteúdo customizado no lugar do botão de ação. -->
+					<slot name="action">
+						<!--
+							Evento que indica que o Botão foi clicado
+							@event action-button-click
+							@type {Event}
+						-->
+						<cds-button
+							id="content-button"
+							:variant="actionButtonVariant"
+							:text="actionButtonText"
+							:secondary="actionButtonSecondary"
+							:disabled="actionButtonDisabled"
+							@click="$emit('action-button-click')"
+						/>
+					</slot>
 				</div>
 			</div>
 		</div>
