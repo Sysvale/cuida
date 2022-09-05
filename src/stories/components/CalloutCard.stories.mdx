@@ -1,0 +1,81 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import CalloutCard from '../../components/CalloutCard.vue';
+
+<Meta
+	title="Componentes/Display/CalloutCard"
+	component={ CalloutCard }
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { CalloutCard },
+	template: /*html*/ `
+		<cds-callout-card
+			v-bind="$props"
+		/>
+	`,
+});
+
+export const template = /*html*/ `
+	<cds-callout-card
+		title="Título do CalloutCard"
+		:sub-title="subTitle"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
+# CalloutCard
+### AlertCards são componentes utilizados para transmitir mensagens contextuais importantes e apresentar possíveis ações a serem tomadas em cima delas.
+---
+<br />
+
+## Recomendamos o uso de AlertCards quando:
+- For necessário mostrar informações contextuais extensas.
+- For necessário mostrar informações contextuais que requerem ações do usuário sobre elas.
+
+<br />
+
+## Não recomendamos o uso de AlertCards quando:
+- For necessário mostrar informações de maneira discreta ou que pode ser ocultada. Para esse caso, recomendamos o uso de b-toasts.
+- For necessário mostrar informações contextuais curtas.
+
+<br />
+## Preview
+
+export const title = 'Título do CalloutCard';
+
+export const subTitle =  `Existe uma teoria que diz que, se um dia alguém descobrir 
+				exatamente para que serve o Universo e por que ele está aqui, ele 
+				desaparecerá instantaneamente e será substituídopor al go ainda 
+				mais estranho e inexplicável. Existe uma segunda teoria que diz 
+				que isso já aconteceu.`;
+
+<Canvas>
+	<Story
+		name="CalloutCard"
+		decorators={[docsDecorator]}
+		args={{
+			image: 'https://cdni.iconscout.com/illustration/free/thumb/access-denied-4085803-3385472.png',
+			title,
+			subTitle,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="CalloutCard" />
