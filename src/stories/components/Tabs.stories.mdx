@@ -1,0 +1,131 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Tabs from '../../components/Tabs.vue';
+
+<Meta
+	title="Componentes/Navegação/Tabs"
+	component={ Tabs }
+	argTypes={{
+		activeColor: {
+			control:{
+				type: 'select',
+				options: [
+					'turquoise',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'gray',
+				],
+			}
+		},
+	}}
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { Tabs },
+	template: /*html*/ `
+		<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px;">
+			<cds-tabs
+				v-bind="$props"
+			>
+				<template v-slot:room-42>
+					Sala de Psicologia
+				</template>
+				<template v-slot:room-51>
+					Sala de Fisioterapia
+				</template>
+				<template v-slot:room-13>
+					Sala de Otorrinolaringologista
+				</template>
+			</cds-tabs>
+	</div>
+	`,
+});
+
+export const template = /*html*/ `
+	<cds-tabs 
+		:tabs="tabs"
+		:active-tab="activeTab"
+	>
+		<template v-slot:tab-1>
+			Conteúdo da tab-1
+		</template>
+		<template v-slot:tab-2>
+			Conteúdo da tab-2
+		</template>
+		<template v-slot:tab-3>
+			Conteúdo da tab-3
+		</template>
+	</cds-tabs>
+	`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
+# Tabs
+
+### Tabs são componentes utilizados para criar soluções de navegação internas.
+---
+<br />
+
+## Recomendamos o uso de Tabs quando:
+- For necessário separar o conteúdo por abas e navergar por elas.
+- Não for o caso de utilizar soluções como navbars, sidebars, cards ou links como navegação.
+
+<br />
+
+## Não recomendamos o uso de Tabs quando:
+- Houver muitos itens a serem mostrados como abas.
+- Quando a ação de clique realizada pelo usuário o levar para outra página.
+
+<br />
+
+## Preview
+
+export const items = [
+	{
+		title: 'Psicologia',
+		name: 'room-42',
+	},
+	{
+		title: 'Fisioterapia',
+		name: 'room-51',
+	},
+	{
+		title: 'Otorrinolaringologista',
+		name: 'room-13',
+	},
+];
+
+<Canvas>
+	<Story
+		name="Tabs"
+		decorators={[docsDecorator]}
+		args={{
+			tabs: items,
+			activeTab: items[1],
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Tabs" />
