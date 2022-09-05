@@ -57,6 +57,7 @@ import {
 	ClusteredMultiselect,
 	LoadingBar,
 	SkeletonText,
+	CalloutCard,
 } from '../src/components';
 
 import {
@@ -140,6 +141,7 @@ Vue.component('cds-select', Select);
 Vue.component('cds-alert', Alert);
 Vue.component('cds-loading-bar', LoadingBar);
 Vue.component('cds-skeleton-text', SkeletonText);
+Vue.component('cds-callout-card', CalloutCard);
 
 addParameters({
 	options: {
