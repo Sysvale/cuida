@@ -22,7 +22,7 @@ describe('Callout Card', () => {
 
 		expect(wrapper).toMatchSnapshot();
 	});
-	
+
 	test('if class are resolved correctly', async () => {
 		const wrapper = shallowMount(CalloutCard, {
 			localVue,
@@ -42,7 +42,7 @@ describe('Callout Card', () => {
 		});
 
 		await flushPromises();
-		
+
 		expect(wrapper.vm.resolveClass('test-class')).toBe('test-class--compact');
 	});
 
