@@ -38,6 +38,14 @@ describe('The color variants are properly set', () => {
 			expect(wrapper.vm.predefinedSize).toBe(`button-size--${size}`);
 		});
 	});
+
+	test('if the computed property changes when the prop secondary is set to true', async () => {
+		await wrapper.setProps({
+			secondary: true,
+			size: 'md',
+		});
+		expect(wrapper.vm.computedStyle).toBe('button--secondary--active button-size--md');
+	});
 });
 
 test('Button emits an event when clicked', () => {
