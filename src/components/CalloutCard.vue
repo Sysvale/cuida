@@ -79,7 +79,7 @@ export default {
 			default: 'Imagem de CalloutCard',
 		},
 		/**
-		 * O botão do card.
+		 * A cor do botão do card.
 		 */
 		actionButtonVariant: {
 			type: String,
