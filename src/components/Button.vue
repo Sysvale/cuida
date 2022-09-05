@@ -64,13 +64,25 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Especifica se a versão do Botão é a secundária.
+		 */
+		secondary: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	computed: {
 		predefinedColor() {
+			if (this.secondary) {
+				return 'button--secondary';
+			}
+
 			if (this.predefinedColors.indexOf(this.variant) > -1) {
 				return `button--${this.variant}`;
 			}
+
 			return 'button--green';
 		},
 
@@ -106,6 +118,25 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 .button {
+	&--secondary {
+		&--active {
+			background-color: $n-10;
+			color: $n-700;
+			border: 1px solid $n-50 !important;
+			
+			&:hover {
+				@extend .button--secondary--active;
+				background-color: $n-20;
+			}
+		}
+
+		&--disabled {
+			background-color: $n-10;
+			color: $n-300;
+			border: 1px solid $n-30 !important;
+		}
+	}
+
 	&__container {
 		font-weight: $font-weight-semibold;
 		border: none;
@@ -195,5 +226,4 @@ export default {
 		border-radius: $border-radius-extra-small;
 	}
 }
-
 </style>
