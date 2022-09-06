@@ -272,6 +272,12 @@ export default {
 		border: 1px solid $n-30 !important;
 		border-radius: $border-radius-extra-small;
 		padding: pa(1);
+
+		&:hover {
+			color: var(--activeBorderColor);
+			border-color: var(--activeBorderColor) !important;
+			box-shadow: 0 0 0 2px var(--hoverBorderColor);
+		}
 	}
 }
 

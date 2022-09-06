@@ -257,7 +257,7 @@ Exemplo de uso:
 
 ### Estrutura de diretórios
 
-#### Overview dos principais arquivos e diretórios na raiz do projeto
+#### Overview dos principais arquivos e diretórios do projeto
 
 <!-- <img src="https://user-images.githubusercontent.com/20057968/179384640-83cc301f-0e2c-4777-97ad-901a18bea7ea.png" width="185"> -->
 

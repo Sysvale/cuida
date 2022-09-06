@@ -159,7 +159,7 @@ export default {
 
 		&--compact {
 			max-width: 120px;
-			max-height: 120px;
+			max-height: 90px;
 		}
 	}
 }
@@ -175,8 +175,10 @@ export default {
 	}
 
 	&__title {
-		@include subheading-2;
+		@include body-2;
+		font-weight: $font-weight-semibold;
 		display: block;
+		color: $n-700;
 	}
 
 	&__text {
