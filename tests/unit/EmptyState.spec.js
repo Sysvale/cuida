@@ -18,7 +18,7 @@ test('Component is mounted properly', () => {
 	expect(wrapper).toMatchSnapshot();
 });
 
-test('if the event is emited correctly when the button is clicked', async () => {
+test('if the event is emitted correctly when the button is clicked', async () => {
 	const wrapper = mount(EmptyState, {
 		localVue,
 		propsData: {
