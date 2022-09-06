@@ -7,8 +7,8 @@ exports[`Component is mounted properly 1`] = `
   </div>
   <div class="empty-state__text">
     EmptyState text
-  </div> <button class="empty-state__button">
-    Finalizar
-  </button>
+  </div> <span id="cds-button" class="empty-state__button"><button class="button__container button--green--active button-size--md">
+		Finalizar
+	</button></span>
 </div>
 `;

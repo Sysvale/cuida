@@ -1,6 +1,7 @@
 import { mount, createLocalVue } from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
 import EmptyState from '../../src/components/EmptyState.vue';
+import Button from '../../src/components/Button.vue';
 
 const localVue = createLocalVue();
 localVue.use(BootstrapVue);
@@ -17,7 +18,7 @@ test('Component is mounted properly', () => {
 	expect(wrapper).toMatchSnapshot();
 });
 
-test('if the event is emited correctly when the button is clicked', () => {
+test('if the event is emitted correctly when the button is clicked', async () => {
 	const wrapper = mount(EmptyState, {
 		localVue,
 		propsData: {
@@ -26,7 +27,7 @@ test('if the event is emited correctly when the button is clicked', () => {
 		},
 	});
 
-	wrapper.find('.empty-state__button').trigger('click');
+	await wrapper.findComponent(Button).vm.$emit('click');
 
 	expect(wrapper.emitted()['action-button-click']).toBeTruthy();
 	expect(wrapper.emitted()['action-button-click']).toEqual([[true]]);
