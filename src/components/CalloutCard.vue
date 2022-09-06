@@ -159,7 +159,7 @@ export default {
 
 		&--compact {
 			max-width: 120px;
-			max-height: 120px;
+			max-height: 90px;
 		}
 	}
 }
