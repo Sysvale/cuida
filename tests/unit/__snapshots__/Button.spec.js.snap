@@ -2,6 +2,6 @@
 
 exports[`Component is mounted properly 1`] = `
 <span id="cds-button"><button class="button__container button--teal--active button-size--sm">
-		Conteúdo
-	</button></span>
+			Conteúdo
+		</button></span>
 `;
