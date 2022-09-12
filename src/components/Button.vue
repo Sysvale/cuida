@@ -6,7 +6,10 @@
 			@click="clickHandler()"
 
 		>
-			{{ text }}
+			<!-- @slot Slot padrão utilizado para exibir texto do botão. -->
+			<slot>
+				{{ text }}
+			</slot>
 		</button>
 	</span>
 </template>
@@ -52,6 +55,7 @@ export default {
 		},
 		/**
 		 * Especifica o texto a ser apresentado no corpo do botão.
+		 * Este texto será exibido apenas se o slot default não for utilizado.
 		 */
 		text: {
 			type: String,
@@ -131,6 +135,7 @@ export default {
 		}
 
 		&--disabled {
+			cursor: default !important;
 			background-color: $n-10;
 			color: $n-300;
 			border: 1px solid $n-30 !important;
@@ -194,9 +199,11 @@ export default {
 					color: $n-0;
 				}
 
-				&--#{$state}:hover {
-					background-color: darken($disabled-color, 5%);
-					color: $n-0;
+				@if $state == 'active' {
+					&--#{$state}:hover {
+						background-color: darken($disabled-color, 5%);
+						color: $n-0;
+					}
 				}
 			}
 
