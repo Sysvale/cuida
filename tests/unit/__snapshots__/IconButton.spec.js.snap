@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component is mounted properly 1`] = `<span id="cds-icon-button"><button class="cds-icon-button__container cds-icon-button--active cds-icon-button--md" style="--hoverColor: #2AC092; --hoverBorderColor: #ABEDD9;"><ion-icon-stub name="card-outline" class="cds-icon-button__icon"></ion-icon-stub></button></span>`;
