@@ -59,3 +59,14 @@ test('Button emits an event when clicked', () => {
 	expect(wrapper.emitted().click).toBeTruthy();
 	expect(wrapper.emitted().click).toEqual([[true]]);
 });
+
+test('if slot content is show correctly', async () => {
+	const wrapper = mount(Button, {
+		localVue,
+		slots: {
+			default: '<div> button slot </div>',
+		},
+	});
+
+	expect(wrapper.text()).toContain('button slot');
+});
