@@ -1,0 +1,105 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import IconButton from '../../components/IconButton.vue';
+
+<Meta
+	title="Componentes/Forms/IconButton"
+	component={ IconButton }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'teal',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber'
+				],
+			}
+		},
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
+	}
+}
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { IconButton },
+	template: /*html*/ `
+		<cds-icon-button
+			v-bind="$props" 
+		/>`,
+});
+
+export const template = /*html*/ `
+	<cds-icon-button
+		variant="green"
+		size="sm"
+		icon="card-outline"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
+# IconButton
+
+### IconButtons são componentes que permitem que o usuário execute uma ação com um toque.
+---
+<br />
+
+## Recomendamos o uso de IconButtons quando:
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+seja em diálogos, janelas modais, formulários, cards, etc.
+
+
+<br />
+
+## Não recomendamos o uso de IconButtons quando:
+- For necessário dar a opção de executar uma ação como um detalhe pequeno na interface.
+Nesse caso, recomendamos o uso de links.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="IconButton"
+		decorators={[docsDecorator]}
+		args={{
+			variant: 'green',
+			size: 'md',
+			icon: 'card-outline',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="IconButton" />
