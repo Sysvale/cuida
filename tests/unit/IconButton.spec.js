@@ -57,5 +57,4 @@ test('IconButton emits an event when clicked', () => {
 	wrapper.find('#cds-icon-button button').trigger('click');
 
 	expect(wrapper.emitted().click).toBeTruthy();
-	expect(wrapper.emitted().click).toEqual([[true]]);
 });
