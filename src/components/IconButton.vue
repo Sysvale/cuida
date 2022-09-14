@@ -4,7 +4,7 @@
 			class="cds-icon-button__container"
 			:class="computedModifiers"
 			:style="computedStyle"
-			@click="clickHandler()"
+			@click="clickHandler"
 		>
 			<ion-icon
 				:name="icon"
@@ -92,7 +92,7 @@ export default {
 		colorHexCode,
 		colorLighterHexCode,
 
-		clickHandler() {
+		clickHandler(e) {
 			if (this.disabled) {
 				return;
 			}
@@ -101,7 +101,7 @@ export default {
 			* @event click
 			* @type {Event}
 			*/
-			this.$emit('click', true);
+			this.$emit('click', e);
 		},
 	},
 };
