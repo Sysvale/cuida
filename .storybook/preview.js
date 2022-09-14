@@ -52,6 +52,7 @@ import {
 	Link,
 	Spinner,
 	Button,
+	IconButton,
 	Alert,
 	Loader,
 	ClusteredMultiselect,
@@ -136,6 +137,7 @@ Vue.component('cds-checkbox', Checkbox);
 Vue.component('cds-link', Link);
 Vue.component('cds-spinner', Spinner);
 Vue.component('cds-button', Button);
+Vue.component('cds-icon-button', IconButton);
 Vue.component('cds-loader', Loader);
 Vue.component('cds-clustered-multiselect', ClusteredMultiselect);
 Vue.component('cds-collapsible-container', CollapsibleContainer);

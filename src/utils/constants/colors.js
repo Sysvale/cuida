@@ -5,6 +5,11 @@ export const colors = [
 		lighterHex: '#C2EDFF', // $ts-200
 	},
 	{
+		name: 'teal',
+		hex: '#3CACDD', // $ts-400
+		lighterHex: '#C2EDFF', // $ts-200
+	},
+	{
 		name: 'green',
 		hex: '#2AC092', // $gp-400
 		lighterHex: '#ABEDD9', // $gp-200
