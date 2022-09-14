@@ -112,11 +112,10 @@ export default {
 
 .cds-icon-button {
 	&__container {
-		color: $n-200;
+		color: $n-600;
 		background-color: $n-0;
-		border: 1px solid $n-30 !important;
+		border: 1px solid $n-40 !important;
 		border-radius: $border-radius-extra-small;
-		font-weight: $font-weight-semibold;
 		border: none;
 		cursor: pointer;
 
