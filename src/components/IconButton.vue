@@ -76,8 +76,8 @@ export default {
 		},
 
 		computedModifiers() {
-			const status = this.disabled ? 'disabled' : 'active';
-			return `cds-icon-button--${status} ${this.predefinedSize}`;
+			const status = this.disabled ? 'cds-icon-button--disabled' : '';
+			return `${status} ${this.predefinedSize}`;
 		},
 
 		computedStyle() {
@@ -126,6 +126,17 @@ export default {
 		&:hover {
 			color: var(--hoverColor);
 			border-color: var(--hoverBorderColor) !important;
+		}
+	}
+
+	&--disabled {
+		border-color: $n-30 !important;
+		color: $n-200 !important;
+		background-color: $n-20 !important;
+		cursor: default !important;
+
+		&:hover {
+			border-color: $n-30 !important;
 		}
 	}
 
