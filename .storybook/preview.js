@@ -61,6 +61,7 @@ import {
 	SkeletonText,
 	CalloutCard,
 	Tabs,
+	InnerTabs,
 } from '../src/components';
 
 import {
@@ -148,6 +149,7 @@ Vue.component('cds-table', Table);
 Vue.component('cds-skeleton-text', SkeletonText);
 Vue.component('cds-callout-card', CalloutCard);
 Vue.component('cds-tabs', Tabs);
+Vue.component('cds-inner-tabs', InnerTabs);
 
 addParameters({
 	options: {
