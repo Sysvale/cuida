@@ -1,0 +1,90 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import TimeInput from '../../components/TimeInput.vue';
+
+<Meta
+	title="Componentes/Forms/TimeInput"
+	component={ TimeInput }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'teal',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+				],
+			}
+		},
+	}}
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { TimeInput },
+	template: /*html*/ `
+		<cds-time-input
+			v-bind="$props"
+		/>`,
+});
+
+export const template = /*html*/ `
+	<cds-time-input
+		label="Horário"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
+# Button
+
+### Buttons são componentes que permitem que o usuário execute uma ação com um toque.
+---
+<br />
+
+## Recomendamos o uso de Buttons quando:
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+seja em diálogos, janelas modais, formulários, cards, etc.
+
+
+<br />
+
+## Não recomendamos o uso de Buttons quando:
+- For necessário dar a opção de executar uma ação como um detalhe pequeno na interface.
+Nesse caso, recomendamos o uso de links.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="TimeInput"
+		decorators={[docsDecorator]}
+		args={{
+			label: "Horário",
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="TimeInput" />
