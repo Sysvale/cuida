@@ -4,14 +4,6 @@ import Card from '../../components/Card.vue';
 <Meta
 	title="Componentes/Container/Card"
 	component={ Card }
-	argTypes={{
-		width: { 
-			control: { 
-				type: 'select',
-				options: ['thin', 'default', 'wide']
-			}
-		},
-	}}
 />
 
 export const Template = (args, { argTypes }) => ({
@@ -78,71 +70,11 @@ export const docsDecorator = () => {
 
 ## Preview
 
-export const value = {
-	value: '',
-	id: '',
-};
-export const options = [
-	{
-		value: 'Breaking Bad',
-		id: '1',
-	},
-	{
-		value: 'Game of Thrones ',
-	},
-	{
-		value: 'The Umbrella Academy',
-	},
-	{
-		value: 'Fringe',
-	},
-	{
-		value: 'Breaking Bad',
-	},
-	{
-		value: 'Game of Thrones ',
-	},
-	{
-		value: 'Dark',
-	},
-	{
-		value: '👀 Borat: o segundo melhor repórter do glorioso país Cazaquistão viaja à América',
-	},
-	{
-		value: 'The Office',
-		id: '2',
-	},
-	{
-		value: 'Black Mirror',
-	},
-	{
-		value: 'Westworld ',
-	},
-	{
-		value: 'Avatar: A Lenda de Aang',
-	},
-	{
-		value: 'The Boys',
-	},
-	{
-		value: 'Vikings',
-	},
-	{
-		value: 'Arcane',
-	},
-];
-
-
 <Canvas>
 	<Story
 		name="Card"
 		decorators={[docsDecorator]}
 		args={{
-			description,
-			valueText,
-			targetText: 'wide',
-			tooltip: 'Séries',
-			showAction: 'Selecione uma das séries',
 		}}
 	>
 		{ Template.bind({}) }
