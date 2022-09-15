@@ -39,3 +39,4 @@ export { default as Table } from './Table.vue';
 export { default as SkeletonText } from './SkeletonText.vue';
 export { default as CalloutCard } from './CalloutCard.vue';
 export { default as Tabs } from './Tabs.vue';
+export { default as InnerTabs } from './InnerTabs.vue';
