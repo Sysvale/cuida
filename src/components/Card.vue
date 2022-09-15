@@ -1,76 +1,74 @@
 <template>
 	<div
-		id="resume-grid-card"
-		class="p-3 d-flex flex-column"
+		class="card"
 	>
-		<div class="d-flex justify-content-between">
-			<div class="mt-n2">
-				<span
-					id="resume-grid-card-value"
-					class="heading-3 mr-1"
-				>
-					{{ valueText }}
-				</span>
-
-				<!-- <span
-					id="resume-grid-card-target"
-					class="subheading-3"
-				>
-					{{ targetText }}
-				</span> -->
-
-				<div
-					id="resume-grid-card-description"
-					class="caption"
-				>
-					{{ description }}
-				</div>
-			</div>
-			<ion-icon
-				v-b-tooltip.hover="{
-					title: tooltip.text,
-				}"
-				:name="tooltip.type == 'danger' ? 'alert-circle':'information-circle'"
-				:class="`mr-n2 mt-n1 border-circle ${tooltip.type}`"
-			/>
-		</div>
-		<span
-			v-if="showMetricsListButton"
-			class="view-more"
-			@click="$emit('getList')"
+		<p 
+			v-if="title.length > 0"
+			class="card__title"
 		>
-			VER LISTA
-		</span>
+			{{ title }}
+		</p>
+		<p v-else>
+			<slot name="title" />
+		</p>
+		<p 
+			v-if="description.length > 0"
+			class="card__description"
+		>
+			{{ description }}
+		</p>
+		<p v-else>
+			<slot name="description" />
+		</p>
+		<p 
+			v-if="showAction"
+			class="card__action"
+			@click="$emit('card-action')"
+		>
+			{{ action }}
+		</p>
+		<p v-else>
+			<slot name="action" />
+		</p>
 	</div>
 </template>
 
 <script>
 export default {
 	props: {
+		/**
+		 * O título do alert. O título também pode ser usado com o slot.
+		 */
+		title: {
+			type: String,
+			default: 'Titulo do Card',
+			required: false,
+		},
+		/**
+		 * Texto que será exibido abaixo do título. Utilizado para melhor
+		 * descrever a informação exibida no card.
+		 */
 		description: {
 			type: String,
-			default: 'Default text',
+			default: 'Descrição do card',
+			required: false,
 		},
-
-		valueText: {
-			type: String,
-			default: '##',
-		},
-
-		targetText: {
-			type: String,
-			default: 'Target',
-		},
-
-		tooltip: {
-			type: Object,
-			default: () => {},
-		},
-
+		/**
+		 * Prop que exibe o botão de ação do card.
+		 */
 		showAction: {
 			type: Boolean,
-			default: false,
-		}
+			default: true,
+			required: false,
+		},
+		/**
+		 * Prop que indica o texto do botão de ação do card.
+		 */
+		action: {
+			type: String,
+			default: 'Action',
+			required: false,
+		},
 	},
 };
 </script>
@@ -78,81 +76,40 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
-#resume-grid-card {
-	border-radius: $border-radius-small;
+.card {
+	background-color: $n-0;
 	border: 1px solid $n-40;
-	min-height: 100%;
-	justify-content: space-between;
+	border-radius: $border-radius-small;
+	padding: pa(4);
+	width: fit-content;
+	display: flex;
+	flex-direction: column;
 
-	div {
-		width: 100%;
+	&__title {
+		font-weight: 700;
+		color: $n-700;
+		font-size: 24px;
+		line-height: 28px;
+		letter-spacing: 0.15px;
 	}
-}
 
-#resume-grid-card-description {
-	color: $n-600;
-}
+	&__description {
+		font-weight: 400;
+		color: $n-600;
+		font-size: 12px;
+		line-height: 17px;
+		letter-spacing: 0.4px;
+	}
 
-#resume-grid-card-value {
-	color: $n-900;
-	font-weight: 500;
-}
-
-#resume-grid-card-target {
-	color: $n-700;
-}
-
-.heading-3 {
-	@include heading-3;
-}
-
-.subheading-3 {
-	@include subheading-3;
-}
-
-.caption {
-	@include caption;
-}
-
-.border-circle {
-	visibility: visible;
-	height: 29px;
-	width: 29px;
-}
-
-.danger {
-	color: $rc-500;
-}
-
-.info {
-	color: $bn-400;
-}
-
-::v-deep .tooltip-inner {
-	max-width: 350px;
-	padding: 8px;
-	color: $n-30;
-	text-align: left;
-	line-height: 16px;
-	font-weight: 400;
-	background-color: $n-800;
-	opacity: 1;
-}
-
-::v-deep .arrow::before {
-	border-top-color: $n-800;
-}
-
-.tooltip.b-tooltip {
-	opacity: 1;
-}
-
-.view-more {
-	align-self: flex-end;
-	margin-top: 5px;
-	cursor: pointer;
-	font-weight: 600;
-	font-size: 12px;
+	&__action {
+		color: $n-800;
+		font-weight: 700;
+		font-size: 12px;
+		line-height: 17px;
+		letter-spacing: 0.4px;
+		text-transform: uppercase;
+		align-self: flex-end;
+	}
 }
 
 </style>
