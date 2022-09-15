@@ -319,8 +319,7 @@ ion-icon {
 	&__body {
 		display: flex;
 		width: 100%;
-		margin-top: auto;
-		margin-bottom: auto;
+		padding: pa(4);
 	}
 
 	&__expanded-body {
@@ -374,24 +373,23 @@ ion-icon {
 	}
 
 	&__main-value {
-		@include heading-1;
+		font-size: 28px;
 		color: $n-800;
 		margin: mb(0);
 	}
 
 	&__legend {
-		@include caption;
+		@include subheading-3;
 		margin: ma(0);
-		color: $n-600;
-		max-width: 155px;
+		color: $n-500;
+		max-width: 184px;
 	}
 
 	&__icon {
 		display: flex;
-		padding: pa(3);
-		border-radius: 100%;
-		width: 50px;
-		height: 50px;
+		border-radius: $border-radius-extra-small;
+		width: 48px;
+		height: 48px;
 		align-self: center;
 		align-items: center;
 		justify-content: center;
