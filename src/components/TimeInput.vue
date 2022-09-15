@@ -51,9 +51,16 @@ import { colorOptions } from '../utils/constants/colors';
 
 export default {
 	props: {
-		input: {
+		/**
+		* Prop utilizada como v-model. Define o horário exibido.
+		* Deve ser enviado como string no formato `HH:mm`
+		*/
+		value: {
 			type: String,
 			default: '',
+			validator: (value) => {
+				return value === '' || /[0-2][0-9]:[0-5][0-9]/.test(value);
+			},
 		},
 		/**
 		 * O id a ser utilizado pelo elemento HTML.
