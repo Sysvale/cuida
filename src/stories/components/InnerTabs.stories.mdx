@@ -94,19 +94,27 @@ export const docsDecorator = () => {
 
 # InnerTabs
 
-### InnerTabs são componentes utilizados para criar soluções de navegação internas.
+### InnerTabs são componentes utilizados para criar soluções de navegação quando dentro de Tabs.
 ---
 <br />
 
 ## Recomendamos o uso de InnerTabs quando:
+- Dentro de tabs, houver necessidade de mais um nível na estrutura de navegação;
 - For necessário separar o conteúdo por abas e navergar por elas.
 - Não for o caso de utilizar soluções como navbars, sidebars, cards ou links como navegação.
 
 <br />
 
 ## Não recomendamos o uso de InnerTabs quando:
+- Eles forem o único componente de abas na página.
 - Houver muitos itens a serem mostrados como abas.
 - Quando a ação de clique realizada pelo usuário o levar para outra página.
+
+<br />
+
+## Observações:
+- ⚠️ **Importante:** Reforçando as recomendações acima, InnerTabs foram concebidas para funcionar dentro de abas. O componente não deve ser utilizado isoladamente.
+- TODO: Scroll horizontal quando o número de abas for maior que 6.
 
 <br />
 
