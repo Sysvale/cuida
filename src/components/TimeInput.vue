@@ -105,16 +105,29 @@ export default {
 
 	data() {
 		return {
-			internalValue: '',
 			hour: '',
 			minute: '',
 		};
+	},
+
+	mounted() {
+		this.buildTimeElements(this.value);
 	},
 
 	computed: {
 		computedTimeElementClass() {
 			return colorOptions.includes(this.variant) ? 'input__time--' + this.variant : 'input__time--green';
 		},
+	},
+
+	watch: {
+		value(newValue, oldValue) {
+			if (newValue === oldValue) {
+				return;
+			}
+
+			this.buildTimeElements(newValue);
+		}
 	},
 
 	methods: {
@@ -154,7 +167,11 @@ export default {
 			}
 
 			return internalElement;
-		}
+		},
+
+		buildTimeElements(time) {
+			[ this.hour, this.minute ] = time.split(':');
+		},
 	},
 }
 </script>
