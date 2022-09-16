@@ -25,11 +25,17 @@ export const Template = (args, { argTypes }) => ({
 	components: { CarouselController },
 	template: /*html*/ `
 		<cds-carousel-controller
+			@click-forward="handleClickForwardEvent"
+			@click-back="handleClickBackEvent"
 			v-bind="$props" 
 		>
 			Texto do alerta pelo slot
 		</cds-carousel-controller>
 	`,
+	methods: { 
+		handleClickForwardEvent() { console.log('clicked forward'); },
+		handleClickBackEvent() { console.log('clicked back'); }
+	},
 });
 
 export const template = /*html*/ `
@@ -80,8 +86,9 @@ export const docsDecorator = () => {
 		name="CarouselController"
 		decorators={[docsDecorator]}
 		args={{
-			variant: 'info',
-			text: 'Texto do alerta',
+			total: 12,
+			perPage: 4,
+			propertyName: 'Métricas',
 		}}
 	>
 		{ Template.bind({}) }
