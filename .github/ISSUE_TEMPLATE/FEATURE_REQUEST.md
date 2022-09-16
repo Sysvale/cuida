@@ -14,7 +14,7 @@ assignees: ''
 
 ### Visão geral
 
-Contextualize do que se trata a feature request.
+<!-- Contextualize do que se trata a feature request. -->
 
 ### Propósito
 
@@ -24,4 +24,4 @@ Contextualize do que se trata a feature request.
 
 ### Exemplos
 
-Exemplos de componentes e recursos semelhantes presentes em outros Deisgn Systems de referência. Prints e gifs são sempre bem-vindos aqui.
+<!-- Exemplos de componentes e recursos semelhantes presentes em outros Deisgn Systems de referência. Prints e gifs são sempre bem-vindos aqui. -->
