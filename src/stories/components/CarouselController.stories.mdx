@@ -4,20 +4,6 @@ import CarouselController from '../../components/CarouselController.vue';
 <Meta
 	title="Componentes/Containers/CarouselController"
 	component={ CarouselController }
-	argTypes={{
-		variant: {
-			control:{
-				type: 'select',
-				options: [
-					'info',
-					'success',
-					'warning',
-					'danger',
-				],
-			}
-		},
-	}
-}
 />
 
 export const Template = (args, { argTypes }) => ({
@@ -40,9 +26,12 @@ export const Template = (args, { argTypes }) => ({
 
 export const template = /*html*/ `
 	<cds-carousel-controller
-		variant="info"
-		text="Texto do alerta"
-	/>`;
+		total: 12,
+		perPage: 4,
+		propertyName: 'Métricas'
+	>
+		Texto do alerta pelo slot
+	</cds-carousel-controller>`;
 
 export const docsDecorator = () => {
 	return {
