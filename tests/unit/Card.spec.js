@@ -11,7 +11,7 @@ test('Component is mounted properly', () => {
 			description: 'Card description',
 			showAction: true,
 			action: 'See more',
-		}
+		},
 	});
 	expect(wrapper).toMatchSnapshot();
 });
