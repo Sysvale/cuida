@@ -1,4 +1,6 @@
-### 1 - Checklist do pull request
+> :warning: **Estamos removendo o bootstrap como dependência de projeto**! Evite construir em cima de componentes do BootstrapVue e, se possível, evite utilizar classes do Bootstrap!
+
+### Checklist do pull request
 
 #### Por favor, verifique se o seu pull request está de acordo com o checklist abaixo:
 
@@ -6,26 +8,30 @@
 -   [x] A documentação no mdx foi feita ou atualizada, caso necessário
 -   [x] O eslint passou localmente
 
-### 2 - Tipo de pull request
+### Tipo de pull request
 
--   [ ] Bugfix
+-   [ ] Fix
 -   [ ] Feature
 -   [ ] Melhoria no estilo de código (refatoração **sem** modificação na api)
 -   [ ] Melhoria na escrita de métodos ou componentes (refatoração **com** modificação na api)
 -   [ ] Modificação no build
 -   [ ] Documentação
 
-### 3 - Esse PR fecha alguma issue? Favor referenciá-la
+### Esse PR fecha alguma issue? Favor referenciá-la
+<!-- Utilize o formato Closes: #numero da issue (Ex.: Closes #319) -->
 
-### 4 - Quais são os passos para avaliar o pull request?
 
-Número da atividade ou issue:
+### Quais são os passos para avaliar o pull request?
+- 1 - ...
+- 2 - ...
+- 2 - ...
 
-### 5 - Imagem ou exemplo de uso:
+### Imagem ou exemplo de uso:
 
-### 6 - Esse pull request adiciona _breaking changes_?
+
+### Esse pull request adiciona _breaking changes_?
 
 -   [ ] Sim
 -   [ ] Não
 
-### 7 - Informações adicionais:
+### Informações adicionais:
