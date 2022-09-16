@@ -1,6 +1,6 @@
 <br />
 
-> :warning: **Estamos removendo o bootstrap como dependência de projeto**! Evite construir em cima de componentes do BootstrapVue e, se possível, evite utilizar classes do Bootstrap!
+> :warning: **Estamos removendo o Bootstrap como dependência de projeto**! Evite construir em cima de componentes do BootstrapVue e, se possível, evite utilizar classes do Bootstrap!
 
 <br />
 <br />
