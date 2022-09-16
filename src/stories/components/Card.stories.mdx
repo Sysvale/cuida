@@ -11,20 +11,44 @@ export const Template = (args, { argTypes }) => ({
 	components: { Card },
 	template: /*html*/ `
 		<cds-card
-			v-bind="$props" 
-		/>
+			v-bind="$props"
+			@action-button-click="handleActionClick"
+		>
+			<template slot="title-slot">
+				<div style="display: flex; justify-content: space-between; align-items: flex-start">
+					<div>
+						<span>45</span>
+						<span style="font-size: 12px; font-weight: 500;">gestantes</span>
+					</div>
+					<cds-badge variant="red">Alerta</cds-badge>
+				</div>
+			</template>
+			<template slot="description-slot">
+				Não realizam consulta há mais de 30 dias
+			</template>
+		</cds-card>
 	`,
+	methods: { handleActionClick() { console.log('clicked'); } },
 });
 
 export const template = /*html*/ `
 	<cds-card
-		v-model="value"
-		:options="options"
-		:required="true"
-		width="wide"
-		label="Séries"
-		placeholder="Selecione uma das séries"
-	/>`;
+		v-bind="$props"
+		@action-button-click="handleActionClick"
+	>
+		<template slot="slot-title">
+			<div style="display: flex; justify-content: space-between; align-items: flex-start">
+				<div>
+					<span>45</span>
+					<span style="font-size: 12px; font-weight: 500;">gestantes</span>
+				</div>
+				<cds-badge variant="red">Alerta</cds-badge>
+			</div>
+		</template>
+		<template slot="slot-description">
+			Não realizam consulta há mais de 30 dias
+		</template>
+	</cds-card>`;
 
 export const docsDecorator = () => {
 	return {
@@ -42,7 +66,7 @@ export const docsDecorator = () => {
 	};
 };
 
-# Select
+# Card
 
 ### Selects permitem que o usuário escolha uma opção a partir de uma lista de itens.
 ---
@@ -75,6 +99,8 @@ export const docsDecorator = () => {
 		name="Card"
 		decorators={[docsDecorator]}
 		args={{
+			showAction: true,
+			action: 'Ver lista'
 		}}
 	>
 		{ Template.bind({}) }

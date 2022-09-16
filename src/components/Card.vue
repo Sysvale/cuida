@@ -1,35 +1,43 @@
 <template>
 	<div
-		class="card"
+		class="cds-card"
 	>
-		<p 
-			v-if="title.length > 0"
-			class="card__title"
-		>
-			{{ title }}
-		</p>
-		<p v-else>
-			<slot name="title" />
-		</p>
-		<p 
-			v-if="description.length > 0"
-			class="card__description"
-		>
-			{{ description }}
-		</p>
-		<p v-else>
-			<slot name="description" />
-		</p>
-		<p 
+		<div>
+			<p 
+				v-if="title.length > 0"
+				class="cds-card__title"
+			>
+				{{ title }}
+			</p>
+			<p
+				v-else
+				class="cds-card__title"
+			> 
+				<slot name="title-slot" />
+			</p>
+	
+			<p 
+				v-if="description.length > 0"
+				class="cds-card__description"
+			>
+				{{ description }}
+			</p>
+			<p
+				v-else
+				class="cds-card__description"
+			>
+				<slot name="description-slot" />
+			</p>
+		</div>
+
+		<div 
 			v-if="showAction"
-			class="card__action"
-			@click="$emit('card-action')"
+			class="cds-card__action"
+			@click="$emit('action-button-click')"
 		>
 			{{ action }}
-		</p>
-		<p v-else>
-			<slot name="action" />
-		</p>
+		</div>
+		<p v-else> <slot name="slot-action" /> </p>
 	</div>
 </template>
 
@@ -41,28 +49,28 @@ export default {
 		 */
 		title: {
 			type: String,
-			default: 'Titulo do Card',
+			default: '',
 			required: false,
 		},
 		/**
 		 * Texto que será exibido abaixo do título. Utilizado para melhor
-		 * descrever a informação exibida no card.
+		 * descrever a informação exibida no cds-card.
 		 */
 		description: {
 			type: String,
-			default: 'Descrição do card',
+			default: '',
 			required: false,
 		},
 		/**
-		 * Prop que exibe o botão de ação do card.
+		 * Prop que exibe o botão de ação do cds-card.
 		 */
 		showAction: {
 			type: Boolean,
-			default: true,
+			default: false,
 			required: false,
 		},
 		/**
-		 * Prop que indica o texto do botão de ação do card.
+		 * Prop que indica o texto do botão de ação do cds-card.
 		 */
 		action: {
 			type: String,
@@ -70,20 +78,28 @@ export default {
 			required: false,
 		},
 	},
+	methods: {
+		sss() {
+			console.log('clicliclic');
+		},
+	}
 };
 </script>
 
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
-.card {
+.cds-card {
 	background-color: $n-0;
 	border: 1px solid $n-40;
 	border-radius: $border-radius-small;
 	padding: pa(4);
 	width: fit-content;
+	min-width: 272px;
+	min-height: 120px;
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 
 	&__title {
 		font-weight: 700;
@@ -91,6 +107,7 @@ export default {
 		font-size: 24px;
 		line-height: 28px;
 		letter-spacing: 0.15px;
+		margin: mb(1);
 	}
 
 	&__description {
@@ -99,6 +116,13 @@ export default {
 		font-size: 12px;
 		line-height: 17px;
 		letter-spacing: 0.4px;
+		max-width: 224px;
+		margin: mb(0);
+		text-overflow: ellipsis;
+		overflow: hidden;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
 	}
 
 	&__action {
@@ -106,9 +130,9 @@ export default {
 		font-weight: 700;
 		font-size: 12px;
 		line-height: 17px;
-		letter-spacing: 0.4px;
 		text-transform: uppercase;
 		align-self: flex-end;
+		cursor: pointer;
 	}
 }
 
