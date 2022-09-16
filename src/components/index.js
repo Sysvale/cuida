@@ -40,3 +40,5 @@ export { default as SkeletonText } from './SkeletonText.vue';
 export { default as CalloutCard } from './CalloutCard.vue';
 export { default as Tabs } from './Tabs.vue';
 export { default as TimeInput } from './TimeInput.vue';
+export { default as InnerTabs } from './InnerTabs.vue';
+export { default as DashboardCard } from './DashboardCard.vue';

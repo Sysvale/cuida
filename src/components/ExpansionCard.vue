@@ -186,7 +186,7 @@ export default {
 @import '../assets/sass/app.scss';
 
 ion-icon {
-	font-size: 20px !important;
+	font-size: 22px !important;
 }
 
 @keyframes content-animation {
@@ -219,11 +219,12 @@ ion-icon {
 	align-items: center;
 	padding: pa(4);
 	border-radius: 16px;
+	justify-content: center;
 
 	border: 1px solid $n-30;
-	min-height: 130px;
-	width: 255px;
-	height: 130px;
+	min-height: 120px;
+	min-width: 280px;
+	width: fit-content;
 	transition: all .3s ease-in-out;
 
 	&__label-button {
@@ -319,8 +320,7 @@ ion-icon {
 	&__body {
 		display: flex;
 		width: 100%;
-		margin-top: auto;
-		margin-bottom: auto;
+		align-items: flex-start
 	}
 
 	&__expanded-body {
@@ -346,12 +346,15 @@ ion-icon {
 				@include subheading-3;
 				margin: ma(0);
 				color: $n-800;
-				max-width: 100%;
+				max-width: 184px;
 				font-weight: 600;
 			}
 
 			&__icon {
+				width: 48px;
+				height: 48px;
 				margin: mr(4);
+				align-self: flex-start;
 			}
 		}
 	}
@@ -371,31 +374,31 @@ ion-icon {
 	&__content {
 		display: flex;
 		flex-direction: column;
+		margin-left: 16px
 	}
 
 	&__main-value {
-		@include heading-1;
+		font-size: 28px;
+		font-weight: $font-weight-semibold;
 		color: $n-800;
 		margin: mb(0);
 	}
 
 	&__legend {
-		@include caption;
+		@include subheading-3;
 		margin: ma(0);
-		color: $n-600;
-		max-width: 155px;
+		color: $n-500;
+		max-width: 184px;
 	}
 
 	&__icon {
 		display: flex;
-		padding: pa(3);
-		border-radius: 100%;
-		width: 50px;
-		height: 50px;
-		align-self: center;
+		border-radius: $border-radius-extra-small;
+		width: 48px;
+		height: 48px;
 		align-items: center;
 		justify-content: center;
-		margin: mr(4);
+		align-self: center;
 
 		&--blue {
 			color: $bn-400;

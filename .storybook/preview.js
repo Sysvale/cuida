@@ -62,6 +62,8 @@ import {
 	CalloutCard,
 	Tabs,
 	TimeInput,
+	InnerTabs,
+	DashboardCard,
 } from '../src/components';
 
 import {
@@ -150,6 +152,8 @@ Vue.component('cds-skeleton-text', SkeletonText);
 Vue.component('cds-callout-card', CalloutCard);
 Vue.component('cds-tabs', Tabs);
 Vue.component('cds-time-input', TimeInput);
+Vue.component('cds-inner-tabs', InnerTabs);
+Vue.component('cds-dashboard-card', DashboardCard);
 
 addParameters({
 	options: {

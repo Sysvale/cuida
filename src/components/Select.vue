@@ -1,6 +1,5 @@
 <template>
 	<div
-		id="cds-select"
 		class="select"
 	>
 		<span
@@ -340,13 +339,13 @@ export default {
 
 		&--closed {
 			@extend .select__input;
-			border-radius: $border-radius-extra-small;
+			border-radius: $border-radius-extra-small !important;
 		}
 
 		&--opened {
 			@extend .select__input;
-			border-top-left-radius: $border-radius-extra-small;
-			border-top-right-radius: $border-radius-extra-small;
+			border-top-left-radius: $border-radius-extra-small !important;
+			border-top-right-radius: $border-radius-extra-small !important;
 		}
 
 		&--searchable {
