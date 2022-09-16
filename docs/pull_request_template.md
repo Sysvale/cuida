@@ -18,16 +18,16 @@
 -   [ ] Documentação
 
 ### Esse PR fecha alguma issue? Favor referenciá-la
+
 <!-- Utilize o formato Closes: #numero da issue (Ex.: Closes #319) -->
 
-
 ### Quais são os passos para avaliar o pull request?
-- 1 - ...
-- 2 - ...
-- 2 - ...
+
+-   1 - ...
+-   2 - ...
+-   2 - ...
 
 ### Imagem ou exemplo de uso:
-
 
 ### Esse pull request adiciona _breaking changes_?
 
