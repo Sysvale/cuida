@@ -15,13 +15,15 @@ export const Template = (args, { argTypes }) => ({
 			@action-button-click="handleActionClick"
 		>
 			<template slot="title-slot">
-				<div style="display: flex; justify-content: space-between; align-items: flex-start">
+				<div>
 					<div>
 						<span>45</span>
 						<span style="font-size: 12px; font-weight: 500;">gestantes</span>
 					</div>
-					<cds-badge variant="red">Alerta</cds-badge>
 				</div>
+			</template>
+			<template slot="status-slot">
+				<cds-badge variant="red">Alerta</cds-badge>
 			</template>
 			<template slot="description-slot">
 				Não realizam consulta há mais de 30 dias
@@ -33,19 +35,22 @@ export const Template = (args, { argTypes }) => ({
 
 export const template = /*html*/ `
 	<cds-dashboard-card
-		v-bind="$props"
+		:showAction="true"
+		action='Ver lista'
 		@action-button-click="handleActionClick"
 	>
-		<template slot="slot-title">
-			<div style="display: flex; justify-content: space-between; align-items: flex-start">
+		<template slot="title-slot">
+			<div>
 				<div>
 					<span>45</span>
 					<span style="font-size: 12px; font-weight: 500;">gestantes</span>
 				</div>
-				<cds-badge variant="red">Alerta</cds-badge>
 			</div>
 		</template>
-		<template slot="slot-description">
+		<template slot="status-slot">
+			<cds-badge variant="red">Alerta</cds-badge>
+		</template>
+		<template slot="description-slot">
 			Não realizam consulta há mais de 30 dias
 		</template>
 	</cds-dashboard-card>`;

@@ -1,43 +1,42 @@
 <template>
 	<div
-		class="cds-card"
+		class="dashboard-card"
 	>
 		<div>
-			<p 
-				v-if="title.length > 0"
-				class="cds-card__title"
+			<div
+				class="dashboard-card__header"
 			>
-				{{ title }}
-			</p>
-			<p
-				v-else
-				class="cds-card__title"
-			> 
-				<slot name="title-slot" />
-			</p>
+				<p  v-if="title.length > 0" class="dashboard-card__title">
+					{{ title }}
+				</p>
+
+				<p v-else class="dashboard-card__title">
+					<slot name="title-slot" />
+				</p>
 	
-			<p 
-				v-if="description.length > 0"
-				class="cds-card__description"
-			>
+				<div>
+					<slot name="status-slot" />
+				</div>
+			</div>
+	
+			<p  v-if="description.length > 0" class="dashboard-card__description">
 				{{ description }}
 			</p>
-			<p
-				v-else
-				class="cds-card__description"
-			>
+
+			<p v-else class="dashboard-card__description">
 				<slot name="description-slot" />
 			</p>
 		</div>
 
 		<div 
 			v-if="showAction"
-			class="cds-card__action"
+			class="dashboard-card__action"
 			@click="$emit('action-button-click')"
 		>
 			{{ action }}
 		</div>
-		<p v-else> <slot name="slot-action" /> </p>
+
+		<p v-else> <slot name="action-slot" /> </p>
 	</div>
 </template>
 
@@ -54,7 +53,7 @@ export default {
 		},
 		/**
 		 * Texto que será exibido abaixo do título. Utilizado para melhor
-		 * descrever a informação exibida no cds-card.
+		 * descrever a informação exibida no dashboard-card.
 		 */
 		description: {
 			type: String,
@@ -62,7 +61,7 @@ export default {
 			required: false,
 		},
 		/**
-		 * Prop que exibe o botão de ação do cds-card.
+		 * Prop que exibe o botão de ação do dashboard-card.
 		 */
 		showAction: {
 			type: Boolean,
@@ -70,7 +69,7 @@ export default {
 			required: false,
 		},
 		/**
-		 * Prop que indica o texto do botão de ação do cds-card.
+		 * Prop que indica o texto do botão de ação do dashboard-card.
 		 */
 		action: {
 			type: String,
@@ -84,7 +83,7 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
 
-.cds-card {
+.dashboard-card {
 	background-color: $n-0;
 	border: 1px solid $n-40;
 	border-radius: $border-radius-small;
@@ -95,6 +94,12 @@ export default {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+
+	&__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
 
 	&__title {
 		font-weight: 700;
@@ -130,5 +135,4 @@ export default {
 		cursor: pointer;
 	}
 }
-
 </style>
