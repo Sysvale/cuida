@@ -78,11 +78,6 @@ export default {
 			required: false,
 		},
 	},
-	methods: {
-		sss() {
-			console.log('clicliclic');
-		},
-	}
 };
 </script>
 
