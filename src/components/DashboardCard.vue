@@ -88,7 +88,7 @@ export default {
 	border: 1px solid $n-40;
 	border-radius: $border-radius-small;
 	padding: pa(4);
-	width: fit-content;
+	width: 100%;
 	min-width: 272px;
 	min-height: 120px;
 	display: flex;
