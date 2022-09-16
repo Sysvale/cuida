@@ -57,12 +57,12 @@ export default {
 	&__container {
 		border-radius: 50px !important;
 		width: fit-content;
-		padding: pYX(1, 3);
+		padding: pYX(1, 2);
 	}
 
 	&__content {
-		@include subheading-2;
-		font-weight: $font-weight-medium !important;
+		font-size: 12px;
+		font-weight: $font-weight-semibold !important;
 	}
 
 	&--turquoise {
