@@ -62,7 +62,7 @@ import {
 	CalloutCard,
 	Tabs,
 	InnerTabs,
-	Card,
+	DashboardCard,
 } from '../src/components';
 
 import {
@@ -151,7 +151,7 @@ Vue.component('cds-skeleton-text', SkeletonText);
 Vue.component('cds-callout-card', CalloutCard);
 Vue.component('cds-tabs', Tabs);
 Vue.component('cds-inner-tabs', InnerTabs);
-Vue.component('cds-card', Card);
+Vue.component('cds-dashboard-card', DashboardCard);
 
 addParameters({
 	options: {
