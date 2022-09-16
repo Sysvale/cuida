@@ -60,22 +60,20 @@ export const docsDecorator = () => {
 	};
 };
 
-# Alert
+# CarouselController
 
-### Alerts são componentes utilizados para prover feedbacks contextuais e notificações em resposta a ações do usuário ou atividades do sistema.
+### CarouselControllers são componentes utilizados para controlar a exibição de elementos em carrosséis.
 ---
 <br />
 
-## Recomendamos o uso de Alerts quando:
-- For necessário mostrar informações contextuais.
-- Para feedbacks urgentes.
+## Recomendamos o uso de CarouselControllers quando:
+- Você possuir uma categoria de elementos da interface que se repetem e que podem ser exibidos em forma de carrossel.
 
 <br />
 
-## Não recomendamos o uso de Alerts quando:
-- Não cubra outros elementos da interface com um Alert.
-- For necessário mostrar informações de modo não intrusivo. Para esse caso, recomendamos o uso de b-toasts.
-- For necessário mostrar informações contextuais extensas. Para esse caso, recomendamos o uso de AlertCard.
+## Não recomendamos o uso de CarouselControllers quando:
+- Você estiver trabalhando com tabelas. Nesses casos recomendamos o uso de paginação (TODO).
+- Todo o conteúdo a ser gerenciado puder ser exibido de uma só vez. Nesse caso não há necessidade de controle de páginas e do uso do componente;
 
 <br />
 
