@@ -6,9 +6,9 @@ exports[`TimeInput if component renders correctly 1`] = `
 		</span>
     <!---->
   </label>
-  <div id="time-input" class="input__container"><input type="number" min="0" max="23" step="1" placeholder="00" class="input__time--green">
+  <div id="time-input" class="input__container"><input type="number" min="0" max="23" step="1" placeholder="00" class="input__time">
     :
-    <input type="number" min="0" max="59" step="1" pattern="[0-9]*" placeholder="00" class="input__time--green">
+    <input type="number" min="0" max="59" step="1" pattern="[0-9]*" placeholder="00" class="input__time">
   </div>
 </div>
 `;

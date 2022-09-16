@@ -19,7 +19,7 @@
 			class="input__container"
 		>
 			<input
-				:class="computedTimeElementClass"
+				class="input__time"
 				v-model="hour"
 				:disabled="disabled"
 				type="number"
@@ -31,7 +31,7 @@
 			>
 			:
 			<input
-				:class="computedTimeElementClass"
+				class="input__time"
 				v-model="minute"
 				:disabled="disabled"
 				type="number"
@@ -47,8 +47,6 @@
 </template>
 
 <script>
-import { colorOptions } from '../utils/constants/colors';
-
 export default {
 	props: {
 		/**
@@ -85,16 +83,6 @@ export default {
 			default: false,
 		},
 		/**
-		 * A variante de cor, que altera o estilo do estado de focus do componente.
-		 * São 9 variantes implementadas: 'green', 'teal', 'blue', 'indigo', 'violet',
-		 * 'pink', 'red', 'orange' e 'amber'.
-		 */
-		variant: {
-			type: String,
-			default: 'green',
-			validator: (value) => colorOptions.includes(value),
-		},
-		/**
 		 * Propriedade utilizada para definir o desabilitado do componente
 		 */
 		disabled: {
@@ -112,12 +100,6 @@ export default {
 
 	mounted() {
 		this.buildTimeElements(this.value);
-	},
-
-	computed: {
-		computedTimeElementClass() {
-			return colorOptions.includes(this.variant) ? 'input__time--' + this.variant : 'input__time--green';
-		},
 	},
 
 	watch: {
@@ -197,27 +179,9 @@ export default {
 			color: $n-200;
 		}
 
-		$colors: (
-			'--teal': $ts-300,
-			'--green':  $gp-300,
-			'--blue': $bn-300,
-			'--indigo': $in-300,
-			'--violet': $vr-300,
-			'--pink': $pp-300,
-			'--red': $rc-300,
-			'--orange': $og-300,
-			'--amber': $al-300,
-		);
-
-		@each $color, $variant in $colors {
-			&#{$color} {
-				@extend .input__time;
-
-				&:focus-visible {
-					outline-color: $variant;
-					color: $variant;
-				}
-			}
+		&:focus-visible {
+			outline-color: $bn-300;
+			color: $bn-300;
 		}
 	}
 

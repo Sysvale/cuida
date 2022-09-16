@@ -28,15 +28,6 @@ describe('TimeInput', () => {
 		expect(valueValidator('wrong')).toBeFalsy();
 	});
 
-	test('if "variant" prop is validated correctly', async () => {
-		expect.assertions(2);
-
-		const variantValidator = TimeInput.props.variant.validator;
-
-		expect(variantValidator(colorOptions[0])).toBeTruthy();
-		expect(variantValidator('wrong')).toBeFalsy();
-	});
-
 	test('if input event is emitted correctly', async () => {
 		const wrapper = shallowMount(TimeInput, {
 			localVue,
