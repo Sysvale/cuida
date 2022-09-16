@@ -41,3 +41,4 @@ export { default as CalloutCard } from './CalloutCard.vue';
 export { default as Tabs } from './Tabs.vue';
 export { default as InnerTabs } from './InnerTabs.vue';
 export { default as DashboardCard } from './DashboardCard.vue';
+export { default as CarouselController } from './CarouselController.vue';
