@@ -156,12 +156,14 @@
 
 <script>
 import moment from 'moment';
+import * as VDatePicker from 'v-calendar/lib/components/date-picker.umd';
 import { ChevronLeftIcon } from 'vue-feather-icons';
 moment.locale('pt-br');
 
 export default {
 	components: {
 		ChevronLeftIcon,
+		VDatePicker,
 	},
 
 	data() {
@@ -192,7 +194,6 @@ export default {
 		scheduleAttributes : {
 			type: Object,
 			default: () => {},
-			required: true,
 		},
 		/**
 		 * Prop que especifica se o timepicker vai ser mostrado ou não.
