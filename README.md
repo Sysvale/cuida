@@ -1,3 +1,10 @@
+<br />
+
+> :warning: **Estamos removendo o Bootstrap como dependência de projeto**! Evite construir em cima de componentes do BootstrapVue e, se possível, evite utilizar classes do Bootstrap!
+
+<br />
+<br />
+
 <p align="center">
   <a href="https://sysvale.github.io/cuida">
     <img src="https://sysvale.github.io/cuida/static/media/CuidaTempLogo.f4adb1cc.png" alt="Cuida logo" width="350" />
