@@ -9,6 +9,7 @@ assignees: ''
 <!-- Encontrou um bug? Por favor, preencha as seções abaixo. 👍 -->
 
 ### Resumo do problema
+
 <!-- Uma breve descrição do bug encontrado. Prints são muito bem-vindos.  -->
 
 ### Passos para reproduzir
@@ -18,6 +19,7 @@ assignees: ''
 3. ...
 
 ### Qual o comportamento esperado?
+
 <!-- Qual deveria ser o comportamento padrão na situação mencionada? -->
 
 ### Detalhes técnicos
