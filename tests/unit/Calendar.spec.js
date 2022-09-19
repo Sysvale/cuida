@@ -2,14 +2,14 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
 import lodash from 'lodash';
 import Calendar from '../../src/components/Calendar.vue';
-import VCalendar from 'v-calendar';
+import { setupCalendar } from 'v-calendar';
 import _ from 'lodash';
 
 const localVue = createLocalVue();
 
 Object.defineProperty(localVue.prototype, '_', { value: _ });
 
-localVue.use(VCalendar, {
+setupCalendar({
 	locales: {
 		'pt-BR': {
 			firstDayOfWeek: 1,

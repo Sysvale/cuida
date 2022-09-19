@@ -6,7 +6,7 @@ import BootstrapVue from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import Multiselect from 'vue-multiselect';
-import VCalendar from 'v-calendar';
+import { setupCalendar } from 'v-calendar';
 import vueHljs from 'vue-hljs';
 import hljs from 'highlight.js';
 import 'vue-hljs/dist/style.css';
@@ -85,7 +85,8 @@ Vue.directive('longclick', longClickInstance);
 
 Vue.use(vueHljs, { hljs });
 Vue.use(BootstrapVue);
-Vue.use(VCalendar, {
+
+setupCalendar({
 	locales: {
 		'pt-BR': {
 			firstDayOfWeek: 1,
