@@ -52,7 +52,6 @@ if (typeof window !== 'undefined') {
 
 if (GlobalVue) {
 	GlobalVue.use(plugin);
-
 }
 
 // Default export is library as a whole, registered via Vue.use()
