@@ -1,6 +1,6 @@
 import vueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/default.css';
-import VCalendar from 'v-calendar';
+import { setupCalendar } from 'v-calendar';
 import _ from 'lodash';
 import * as components from './components/index';
 
@@ -24,6 +24,17 @@ function install(Vue) {
 	});
 }
 
+setupCalendar({
+	locales: {
+		'pt-BR': {
+			firstDayOfWeek: 1,
+			masks: {
+				L: 'YYYY-MM-DD',
+			},
+		},
+	},
+});
+
 // Create module definition for Vue.use()
 const plugin = {
 	install,
@@ -42,16 +53,6 @@ if (typeof window !== 'undefined') {
 if (GlobalVue) {
 	GlobalVue.use(plugin);
 
-	GlobalVue.use(VCalendar, {
-		locales: {
-			'pt-BR': {
-				firstDayOfWeek: 1,
-				masks: {
-					L: 'YYYY-MM-DD',
-				},
-			},
-		},
-	});
 }
 
 // Default export is library as a whole, registered via Vue.use()
