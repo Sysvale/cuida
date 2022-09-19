@@ -29,14 +29,17 @@
 		</div>
 
 		<div 
-			v-if="showAction"
 			class="dashboard-card__action"
 			@click="$emit('action-button-click')"
 		>
-			{{ action }}
+			<!-- @slot Slot para renderização customizada do conteúdo das actions. Sobrescreve a prop `showAction`.
+			-->
+			<slot name="action-slot">
+				<div v-if="showAction">
+					{{ action }}
+				</div>
+			</slot>
 		</div>
-
-		<p v-else> <slot name="action-slot" /> </p>
 	</div>
 </template>
 
