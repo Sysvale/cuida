@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component is mounted properly 1`] = `
+<div>
+  <div class="carousel-controller"><span class="carousel-controller__previous-button--disabled"></span>
+    <div><span class="text">
+				1-4 de 12
+			</span> <span class="value"> Métricas </span></div> <span class="carousel-controller__next-button"></span>
+  </div>
+</div>
+`;

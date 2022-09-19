@@ -6,11 +6,11 @@ labels: 'type:Bug'
 assignees: ''
 ---
 
-Encontrou um bug? Por favor, preencha as seções abaixo. 👍
+<!-- Encontrou um bug? Por favor, preencha as seções abaixo. 👍 -->
 
 ### Resumo do problema
 
-Uma breve descrição do bug encontrado. Prints são muito bem-vindos.
+<!-- Uma breve descrição do bug encontrado. Prints são muito bem-vindos.  -->
 
 ### Passos para reproduzir
 
@@ -20,7 +20,7 @@ Uma breve descrição do bug encontrado. Prints são muito bem-vindos.
 
 ### Qual o comportamento esperado?
 
-Qual deveria ser o comportamento padrão na situação mencionada?
+<!-- Qual deveria ser o comportamento padrão na situação mencionada? -->
 
 ### Detalhes técnicos
 
