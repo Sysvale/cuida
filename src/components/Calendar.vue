@@ -212,6 +212,18 @@ export default {
 				this.showInLowResolution = newValue;
 			}
 		},
+
+		$attrs(newValue, oldValue) {
+			if (newValue !== oldValue) {
+				return;
+			}
+
+			this.resolveCalendarAttributes();
+		},
+	},
+
+	created() {
+		this.resolveCalendarAttributes();
 	},
 
 	methods: {
@@ -265,6 +277,13 @@ export default {
 				*/
 				this.$emit('scheduleSelected', this.selectedSchedule);
 			}
+		},
+
+		resolveCalendarAttributes() {
+			this.attributes = [
+				...this.attributes,
+				...this.$attrs.attributes,
+			];
 		},
 	},
 };
