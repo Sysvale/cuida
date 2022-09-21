@@ -28,6 +28,7 @@
 				locale="pt-BR"
 				:attributes="attributes"
 				@input="dayClicked()"
+				@update:to-page="handleCalendarUpdate"
 			/>
 			<div
 				v-if="timePicker && (screenWidth > 770 || showInLowResolution)"
@@ -280,10 +281,24 @@ export default {
 		},
 
 		resolveCalendarAttributes() {
-			this.attributes = [
-				...this.attributes,
-				...this.$attrs.attributes,
-			];
+			const fullAttributes = [ ...this.attributes];
+
+			if (this.$attrs.attributes) {
+				fullAttributes.push(...this.$attrs.attributes)
+			}
+
+			this.attributes = fullAttributes;
+		},
+
+		handleCalendarUpdate(month) {
+			/**
+			 * Evento utilizado para emitir o mês a ser exibido após mudança na seção
+			 * superior do calendário. Em caso de haver mais de 1 linha/coluna,
+			 * o mês enviado será sempre o exibido primeiro.
+			* @event updated
+			* @type {Event}
+			*/
+			this.$emit('updated', month);
 		},
 	},
 };
