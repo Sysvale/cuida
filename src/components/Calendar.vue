@@ -28,7 +28,7 @@
 				locale="pt-BR"
 				:attributes="attributes"
 				@input="dayClicked()"
-				@update:to-page="handleCalendarUpdate"
+				@update:from-page="handleCalendarUpdate"
 			/>
 			<div
 				v-if="timePicker && (screenWidth > 770 || showInLowResolution)"
