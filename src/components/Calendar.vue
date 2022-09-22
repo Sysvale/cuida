@@ -295,10 +295,10 @@ export default {
 			 * Evento utilizado para emitir o mês a ser exibido após mudança na seção
 			 * superior do calendário. Em caso de haver mais de 1 linha/coluna,
 			 * o mês enviado será sempre o exibido primeiro.
-			* @event updated
+			* @event month-updated
 			* @type {Event}
 			*/
-			this.$emit('updated', month);
+			this.$emit('month-updated', month);
 		},
 	},
 };
