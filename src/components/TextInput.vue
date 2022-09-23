@@ -77,7 +77,7 @@ export default {
 			default: false,
 		},
 		/**
-		 * Especifica o estado do StepperInput. As opções são 'default', 'valid' e 'invalid'.
+		 * Especifica o estado do TextInput. As opções são 'default', 'valid' e 'invalid'.
 		 */
 		state: {
 			type: String,
