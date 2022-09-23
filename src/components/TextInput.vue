@@ -5,7 +5,7 @@
 			class="text-input__label"
 			for="cds-text-input"
 		>
-			<!-- @slot Slot para renderização customizada da label -->
+			<!-- @slot Slot para renderização customizada da label (Obs.: Existe, também, a prop label que pode ser usada quando não há necessidade de customização) -->
 			<slot name="label">
 				{{ label }}
 				<span
