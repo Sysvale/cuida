@@ -65,6 +65,7 @@ import {
 	InnerTabs,
 	DashboardCard,
 	CarouselController,
+	TextInput,
 } from '../src/components';
 
 import {
@@ -157,6 +158,7 @@ Vue.component('cds-time-input', TimeInput);
 Vue.component('cds-inner-tabs', InnerTabs);
 Vue.component('cds-dashboard-card', DashboardCard);
 Vue.component('cds-carousel-controller', CarouselController);
+Vue.component('cds-text-input', TextInput);
 
 addParameters({
 	options: {
