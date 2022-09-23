@@ -56,7 +56,7 @@ import { CheckIcon, AlertCircleIcon } from 'vue-feather-icons';
 export default {
 	props: {
 		/**
-		* Prop utilizada como v-model. Controla a visibilidade do popover .
+		* Prop utilizada como v-model.
 		*/
 		value: {
 			type: String,
