@@ -43,3 +43,4 @@ export { default as TimeInput } from './TimeInput.vue';
 export { default as InnerTabs } from './InnerTabs.vue';
 export { default as DashboardCard } from './DashboardCard.vue';
 export { default as CarouselController } from './CarouselController.vue';
+export { default as TextInput } from './TextInput.vue';

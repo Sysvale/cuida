@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component is mounted properly 1`] = `
+<div><label for="cds-text-input" class="text-input__label">
+    Label
+    <!---->
+  </label>
+  <div class="text-input"><input id="cds-text-input" placeholder="Digite aqui a informação" type="text" class="text-input__field">
+    <div class="text-input__icon-container">
+      <!---->
+      <!---->
+    </div>
+  </div>
+  <!---->
+</div>
+`;
