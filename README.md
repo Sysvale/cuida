@@ -125,8 +125,8 @@ $ npm run test
 
 Para informações sobre como contribuir com o projeto, acesse o [CONTRIBUTING.MD](https://github.com/Sysvale/cuida/blob/master/CONTRIBUTING.md)
 
-
 ### Problemas
+
 Alert >> Estilo
 AlertCard >> Problema com size do feather-icons
 Calendar >> excluído
@@ -139,4 +139,4 @@ Radio >> Problema ao clicar
 Table >> header desalinhado
 Timeline >> Estilo estranho
 
-$border-radius-* não sendo reconhecido no tokens.scss
+$border-radius-\* não sendo reconhecido no tokens.scss
