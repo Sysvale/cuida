@@ -124,3 +124,19 @@ $ npm run test
 ## Contribuindo
 
 Para informações sobre como contribuir com o projeto, acesse o [CONTRIBUTING.MD](https://github.com/Sysvale/cuida/blob/master/CONTRIBUTING.md)
+
+
+### Problemas
+Alert >> Estilo
+AlertCard >> Problema com size do feather-icons
+Calendar >> excluído
+ClusteredMultiselect >> Problema louco de lógica
+Dropdown >> Problema louco de lógica
+FilterPill >> excluído
+IconButton >> Problema com ion-icon
+Spinner >> Estilo quebrado
+Radio >> Problema ao clicar
+Table >> header desalinhado
+Timeline >> Estilo estranho
+
+$border-radius-* não sendo reconhecido no tokens.scss
