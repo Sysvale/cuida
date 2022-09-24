@@ -1,0 +1,101 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Popover from '../../components/Popover.vue';
+
+<Meta
+	title="Componentes/Overlays/Popover"
+	component={ Popover }
+	argTypes={{
+		alignment: { control: { type: 'select', options: ['right', 'left'] } },
+		size: { control: { type: 'select', options: ['default', 'xl', 'lg', 'sm'] } },
+	}
+}
+/>
+
+export const Template = (args) => ({
+	components: { CdsPopover: Popover },
+	data() {
+		return {
+			show: false,
+		};
+	},
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div class="d-flex justify-content-center" style="height: 300px;">
+			<b-button
+				id="trigger-popover"
+				style="height: 40px;"
+				@click="togglePopover"
+			>
+				Click
+			</b-button>
+			<cds-popover
+				v-model="show"
+				v-bind="args"
+			>
+				<p class="p-3">
+					Mussum Ipsum, cacilds vidis litro abertis. Todo mundo vê os porris que eu tomo,
+					mas ninguém vê os tombis que eu levo! Atirei o pau no gatis, per gatis num
+					morreus. Pra lá , depois divoltis porris, paradis. Leite de capivaris,
+					leite de mula manquis sem cabeça. Viva Forevis aptent taciti sociosqu
+					ad litora torquent.
+				</p>
+				<b-button
+					class="m-3"
+					variant="success"
+					@click="show = false"
+				>
+					Confirmar
+				</b-button>
+			</cds-popover>
+		</div>
+	`,
+	methods: {
+		togglePopover() {
+			this.show = !this.show;
+		},
+	},
+});
+
+# Popover
+
+### Popover são componentes utilizados para mostrar informações contextuais a partir de um clique em determinado elemento. Após o clique a informação oculta do elemento surge por meio de um contêiner, fornecendo informações e ações para aquele contexto especifico.
+---
+<br />
+
+## Recomendamos o uso de Popovers quando:
+- For necessário exibir informações adicionais e ações contextuais sem que seja necessário transitar entre páginas ou remover o foco do usuário da página.
+- For necessário navegar, filtrar e escolher em uma lista de opções.
+
+<br />
+
+## Não recomendamos o uso de Popovers quando:
+- Houver apenas texto que não realize ações. Nesse caso, considere usar um Tooltip.
+- Evite usar popovers para formulários ou imagens. Considere usar um modal em vez disso.
+
+<br />
+
+## Observações:
+- Mantenha o conteúdo do popover breve.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Popover"
+		args={{
+			alignment: 'left',
+			size: 'lg',
+			noCloseOnBackdrop: false,
+			noCloseOnEsc: false,
+			target: 'trigger-popover',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Popover" />

@@ -1,0 +1,52 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import UploadInput from '../../components/UploadInput.vue';
+
+<Meta
+	title="Componentes/Forms/UploadInput"
+	component={ UploadInput }
+	argTypes={{
+		size: { control: { type: 'select', options: ['md', 'lg', 'sm'] } },
+	}
+}
+/>
+
+export const Template = (args) => ({
+	components: { CdsUploadInput: UploadInput },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-upload-input
+			v-bind="args" 
+		/>
+	`,
+});
+
+# UploadInput
+
+### UploadInput é um input customizado de arquivos.
+---
+<br />
+
+## Recomendamos o uso de UploadInputs quando:
+- For necessário que o usuário faça uploads do seu computador para a plataforma.
+- For necessário prover uma experiência de arrasta e solta para upload de arquivos.
+
+<br />
+
+## Não recomendamos o uso de UploadInputs quando:
+- Se tratar de uma experiência mobile-first.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="UploadInput"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="UploadInput" />

@@ -1,0 +1,61 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import TextInput from '../../components/TextInput.vue';
+
+<Meta
+	title="Componentes/Forms/TextInput"
+	component={ TextInput }
+	argTypes={{
+		state: {
+			control:{
+				type: 'select',
+				options: [
+					'default',
+					'valid',
+					'invalid',
+				],
+			}
+		},
+	}
+}
+/>
+
+export const Template = (args) => ({
+	components: { CdsTextInput: TextInput },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-text-input
+			v-bind="args" 
+		/>
+	`,
+});
+
+# TextInput
+
+### TextInputs permitem que os usuários insiram texto em uma interface
+---
+<br />
+
+## Recomendamos o uso de TextInputs quando:
+- Necessitar de um campo de texto para inserir informações.
+
+<br />
+
+## Não recomendamos o uso de TextInputs quando:
+- O dado a ser utilizado no componente for numérico.
+- Houver a necessidade de selecionar múltiplos itens.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="TextInput"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="TextInput" />

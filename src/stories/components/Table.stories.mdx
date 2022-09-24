@@ -1,0 +1,72 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Table from '../../components/Table.vue';
+
+<Meta
+	title="Componentes/Display/Table"
+	component={ Table }
+/>
+
+export const Template = (args) => ({
+	components: { CdsTable: Table },
+	setup() {
+		return { args };
+	},
+	template: /*html*/
+		`<cds-table v-bind="args" />
+		`,
+});
+
+# Table
+
+### Tables são componentes utilizados para exibir e organizar conteúdo, facilitando a comparação e análise de informações.
+---
+<br />
+
+## Recomendamos o uso de Tables quando:
+- Desejar comparar dados.
+- For necessário exibir dados de forma tabulada.
+
+<br />
+
+## Não Recomendamos o uso de Tables quando:
+- For necessário interagir/realizar uma ação com o conteúdo apresentado na tabela.
+
+<br />
+
+## Preview
+
+export const fields = [
+	{
+		key: 'field-1',
+		label: 'Field 1',
+	},
+	'field2',
+	'field_3',
+];
+export const items = [
+	{
+		'field-1': 'field 1 content',
+		'field2': 'field 2 content',
+		'field_3': 'field 3 content',
+	},
+	{
+		'field-1': 'field 1 content',
+		'field2': 'field 2 content',
+		'field_3': 'field 3 content',
+	},
+];
+
+<Canvas>
+	<Story
+		name="Table"
+		
+		args={{
+			fields,
+			items,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Table" />

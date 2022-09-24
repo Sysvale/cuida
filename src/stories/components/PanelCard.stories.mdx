@@ -1,0 +1,67 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import PanelCard from '../../components/PanelCard.vue';
+
+<Meta
+	title="Componentes/Containers/PanelCard"
+	component={ PanelCard }
+/>
+
+export const Template = (args) => ({
+	components: { CdsPanelCard: PanelCard },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div style="background-color: #F5F5F5; padding: 24px;">
+			<cds-panel-card
+				v-bind="args"
+			>
+				<template v-slot:panel-actions>
+					<h2>#</h2>
+				</template>
+				Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
+				vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
+				Atirei o pau no gatis, per gatis num morreus. Pra lá , depois
+				divoltis porris, paradis. Leite de capivaris, leite de mula
+				manquis sem cabeça. Viva Forevis aptent taciti sociosqu ad
+				litora torquent. Per aumento de cachacis, eu reclamis. Nec
+				orci ornare consequat. Praesent lacinia ultrices consectetur.
+				Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
+			</cds-panel-card>
+		</div>
+	`,
+});
+
+# PanelCard
+
+### PanelCards são componentes utilizados para agrupar informação em containers com uma estrutura mínima formada por título, subtítulo, e conteúdo.
+---
+<br />
+
+## Recomendações de uso:
+- Houver a construção de páginas e dashboards com cars em grid.
+- O slot de ações deve agrupar ícones ou botões que aplicam mudanças em todas as informações contidas no PainelCard.
+
+<br />
+
+## Não recomendamos o uso de PanelCards quando:
+- For necessário agrupar elementos fora da estrutura básica: título + subtítulo + conteúdo.
+- Ele for o único componente do seu tipo na página, ocupando toda a largura disponível.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="PanelCard"
+		args={{
+			title: 'Redes',
+			subtitle: 'Habilite as redes da regulação',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="PanelCard" />

@@ -1,0 +1,53 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Loader from '../../components/Loader.vue';
+
+<Meta
+	title="Componentes/Display/Loader"
+	component={ Loader }
+/>
+
+export const Template = (args) => ({
+	components: { CdsLoader: Loader },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-loader
+			v-bind="args"
+		/>
+	`,
+});
+
+# Loader
+
+### Loaders é um componente utilizado para indicar que o progresso de uma operação ainda não foi finalizado.
+---
+<br />
+
+## Recomendamos o uso de Loaders quando:
+- For necessário impedir a visualização e navegação do conteúdo de páginas enquanto houver alguma pendência de operação.
+
+<br />
+
+## Não recomendamos o uso de Loaders quando:
+- A visualização e navegação não puder ser interrompida.
+
+<br />
+
+## Preview
+
+export const imageBackground = 'https://sysvale.github.io/cuida/static/media/CuidaTempLogo.f4adb1cc.png';
+
+
+<Canvas>
+	<Story
+		name="Loader"
+		args={{
+			imageBackground
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Loader" />

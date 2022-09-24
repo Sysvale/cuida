@@ -1,0 +1,85 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import DropDown from '../../components/DropDown.vue';
+
+<Meta
+	title="Componentes/Forms/DropDown"
+	component={ DropDown }
+	argTypes={{
+		options: {
+			description: 'Lista de opções do DropDown',
+		},
+		value: {
+			description: 'Lista de itens selecionados do DropDown',
+		},
+		label: {
+			description: 'Propriedade do objeto options, que vai constar nas tags listadas no DropDown',
+		},
+		trackBy: {
+			description: 'Utilizada para comparar objetos.',
+		},
+	}
+}
+/>
+
+export const Template = (args) => ({
+	components: { CdsDropDown: DropDown },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-dropdown
+			v-bind="args" 
+		/>
+	`,
+});
+
+# DropDown
+
+### DropDowns são componentes utilizados para criar soluções de navegação e menus.
+---
+
+<br />
+
+## Não recomendamos o uso de DropDowns quando:
+- Houver muitos itens a serem mostrados no menu.
+- For necessário mostrar os links verticalmente.
+
+## Observações:
+- O ClusteredMultiselect é similar ao DropDown com uma estilização mais atualizada. Nas próximas versões o componente
+DropDown será descontinuado, por isso é preferível a utilização do ClusteredMultiselect a não ser nas
+ocasiões mencionadas na seção "Não recomendamos".
+- O Dropdown do Cuida é um wrapper do <a href="https://vue-multiselect.js.org/">Vue Multiselect</a>
+com a sua adequação aos nossos princípios e recomendações. Para informações detalhadas sobre o componente, recomendamos
+leitura da documentação.
+
+<br />
+
+## Preview
+
+export const options = [
+	{ title: 'Avengers',},
+	{ title: 'Naruto',},
+	{ title: 'X-men',},
+	{ title: 'The Powerpuff Girls',}
+];
+
+export const value = [
+	{ title: 'Avengers',},
+	{ title: 'The Powerpuff Girls',}
+];
+
+<Canvas>
+	<Story
+		name="DropDown"
+		args={{
+			options,
+			value,
+			label: 'title',
+			trackBy: 'title',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="DropDown" />

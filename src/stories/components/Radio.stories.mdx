@@ -1,0 +1,91 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Radio from '../../components/Radio.vue';
+
+<Meta
+	title="Componentes/Forms/Radio"
+	component={ Radio }
+/>
+
+export const Template = (args) => ({
+	components: { CdsRadio: Radio },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			selected: 'option-3',
+			option2 : {
+				value: 'option-2',
+				label: 'Opção 2',
+				disabled: false,
+			},
+			option3 : {
+				value: 'option-3',
+				label: 'Opção 3',
+				disabled: true,
+			},
+		};
+	},
+	template: /*html*/ `
+		<div>
+			<div style="display: flex;">
+				<cds-radio
+					v-model="selected"
+					v-bind="args"
+					style="margin-right: 4px; margin-left: 4px"
+				>
+					Opção de <strong> destaque </strong>
+				</cds-radio>
+				<cds-radio
+					v-model="selected"
+					v-bind="option2"
+					style="margin-right: 4px; margin-left: 4px"
+				/>
+				<cds-radio
+					v-model="selected"
+					v-bind="option3"
+					style="margin-right: 4px; margin-left: 4px"
+				/>
+			</div>
+			<br>
+			<small>
+				Opção selecionada: {{ selected }}
+			</small>
+		</div>
+	`,
+});
+
+# Radio
+
+### O Radio permite que os usuários selecionem uma opção de um conjunto.
+---
+<br />
+
+## Recomendamos o uso de Radios quando:
+- As opções que o componente busca prover são mutuamente exclusivas.
+
+<br />
+
+## Não recomendamos o uso de Radios quando:
+- Duas ou mais opções puderem ser selecionadas ao mesmo tempo.
+- Houver 4 ou mais opções. Você pode usar o componente `Dropdown` nesses casos.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Radio"
+		
+		args={{
+			value: 'option-1',
+			label: 'Opção 1',
+			disabled: false,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Radio" />

@@ -1,0 +1,54 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Checkbox from '../../components/Checkbox.vue';
+
+<Meta
+	title="Componentes/Forms/Checkbox"
+	component={ Checkbox }
+/>
+
+export const Template = (args) => ({
+	components: { CdsCheckbox: Checkbox },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-checkbox
+			v-bind="args" 
+		/>
+	`,
+});
+
+# Checkbox
+
+### Checkboxes permitem que os usuários selecionem um ou mais itens de um conjunto.
+---
+<br />
+
+## Recomendamos o uso de Checkboxes quando:
+- Selecionar uma ou mais opções de uma lista.
+- Apresentar uma lista contendo sub-seleções.
+- Ativar ou desativar um item na área de trabalho.
+
+<br />
+
+## Não recomendamos o uso de Checkboxes quando:
+- Quando é necessário uma ação imediata. Prefira utilizar ToggleSwitch.
+
+## Preview
+
+export const value = true;
+export const label = 'checkbox'
+
+<Canvas>
+	<Story
+		name="Checkbox"
+		args={{
+			value,
+			label,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Checkbox" />

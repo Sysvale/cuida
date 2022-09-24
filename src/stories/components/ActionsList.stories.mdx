@@ -1,0 +1,76 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview, Source } from '@storybook/addon-docs/blocks';
+import ActionsList from '../../components/ActionsList.vue';
+
+<Meta
+	title="Componentes/Display/ActionsList"
+	component={ ActionsList }
+/>
+
+export const Template = (args) => ({
+	components: { CdsActionList: ActionsList },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-actions-list
+			v-bind="args" 
+		>
+			<template
+				#action
+				v-slot="slotProps"
+			>
+				{{ slotProps.list }}
+			</template>
+		</cds-actions-list>
+	`,
+});
+
+# ActionsList
+
+### Actions lists são componentes usados para mostrar uma lista de ações em linha, podendo algumas delas serem ocultas.
+---
+<br />
+
+## Recomendamos o uso de ActionsLists quando:
+- Houver ações associadas a um item de uma lista ou linha de tabela.
+- Houver várias ações possíveis em determinada situação, mas algumas delas puderem ser colapsadas.
+
+<br />
+
+## Não recomendamos o uso de ActionsLists quando:
+- For necessário o uso de botões.
+- For necessário construir componentes de navegação (Menu, navbar, etc).
+- As ações listadas afetam toda a view ou mais que um conjunto de dados relacionados.
+
+<br />
+
+## Preview
+
+export const actions = [
+	{
+		"title": "Icon1",
+	},
+	{
+		"title": "Icon2",
+	},
+	{
+		"title": "Icon3",
+	},
+	{
+		"title": "Icon4",
+	}
+];
+
+<Canvas>
+	<Story
+		name="Actions list"
+		args={{
+			actions: actions,
+			numberOfExpandedActions: 2,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Actions list" />

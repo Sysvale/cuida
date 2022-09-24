@@ -1,0 +1,59 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import ToggleSwitch from '../../components/ToggleSwitch.vue';
+
+<Meta
+	title="Componentes/Forms/ToggleSwitch"
+	component={ ToggleSwitch }
+/>
+
+export const Template = (args) => ({
+	components: { CdsToggleSwitch: ToggleSwitch },
+	data() {
+		return {
+			isSelected: false,
+		};
+	},
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-toggle-switch
+			v-model="isSelected"
+			v-bind="args"
+		/>
+	`,
+});
+
+# ToggleSwitch
+
+### ToggleSwitches são componentes utilizados para ativar ou desativar configurações ou opções específicas. 
+
+---
+<br />
+
+## Recomendações de uso:
+- A configuração controlada pelo ToggleSwitch deve aplicar mudanças automaticamente.
+- Ao usar labels. Quando usados em conjunto, devem descrever dois estados, dependentes do estado do ToggleSwitch.
+
+<br />
+
+## O que evitar:
+- Em formulários que possuem botão de submit.
+- Utilizar ToggleSwitches para controlar ações que dependam de requisições sem indicar o tempo de espera ao usuário.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Switch"
+		args={{
+			value: false,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Switch" />
