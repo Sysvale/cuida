@@ -28,7 +28,9 @@
 		"test": "vitest"
 	},
 	"dependencies": {
-		"vue": "^3.2.37"
+		"vue": "^3.2.37",
+		"vue-feather-icons": "^5.1.0",
+		"vue-multiselect": "^3.0.0-alpha.2"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.18.10",
