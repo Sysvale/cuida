@@ -214,7 +214,7 @@ export default {
 			}
 
 			/**
-			* Evento indicado que o input foi preenchido.
+			* Evento indicando que o input foi preenchido.
 			* Retorna uma string com o horário, caso o componente esteja em modo `single`,
 			* ou um array contendo horários inicial e final, quando em modo `range`.
 			* As datas são retornadas sempre no formato `HH:mm`.
