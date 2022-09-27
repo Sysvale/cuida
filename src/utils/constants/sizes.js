@@ -1,1 +1,1 @@
-export default ['sm', 'md', 'lg'];
+export default ["sm", "md", "lg"];
