@@ -126,6 +126,7 @@ $ npm run test
 Para informações sobre como contribuir com o projeto, acesse o [CONTRIBUTING.MD](https://github.com/Sysvale/cuida/blob/master/CONTRIBUTING.md)
 
 ### Problemas
+
 Alert >> Estilo (apenas no storybook) e problema no ícone
 AlertCard >> Problema com size do feather-icons
 Calendar >> excluído
