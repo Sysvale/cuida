@@ -19,11 +19,12 @@
 		<div :class="stepperInputDynamicClass">
 			<input
 				id="cds-text-input"
-				v-model="internalValue"
+				:value="modelValue"
 				:placeholder="placeholder"
 				:disabled="disabled"
 				class="text-input__field"
 				type="text"
+				@input="handleInput"
 				@focus="isBeingFocused = true"
 				@blur="isBeingFocused = false"
 			/>
@@ -56,7 +57,7 @@ export default {
 		/**
 		* Prop utilizada como v-model.
 		*/
-		value: {
+		modelValue: {
 			type: String,
 			default: '',
 		},
@@ -109,7 +110,6 @@ export default {
 
 	data() {
 		return {
-			internalValue: this.value,
 			isBeingFocused: false,
 		};
 	},
@@ -152,16 +152,16 @@ export default {
 		},
 	},
 
-	watch: {
-		internalValue(value) {
+	methods: {
+		handleInput(e) {
 			/**
 			* Evento utilizado para implementar o v-model.
-			* @event input
+			* @event update:modelValue
 			* @type {Event}
 			*/
-			this.$emit('input', value);
-		},
-	},
+			this.$emit('update:modelValue', e.target.value);
+		}
+	}
 };
 </script>
 <style lang="scss" scoped>
