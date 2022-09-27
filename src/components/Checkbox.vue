@@ -6,17 +6,18 @@
 	>
 		<div class="checkbox__content">
 			<input
-				v-model="internalValue"
+				:value="modelValue"
 				type="checkbox"
 				:id="$attrs.id || 'cds-checkbox-option-input'"
 				:name="$attrs.name || 'cds-checkbox-option'"
-				:value="true"
+				:checked="isChecked"
 				:disabled="disabled"
+				@input="toggleValue"
 			/>
 			<label
 				:for="$attrs.id || 'cds-checkbox-option-input'"
 				:class="{
-					'checkbox__content--checked': internalValue,
+					'checkbox__content--checked': isChecked,
 					'checkbox__content--disabled': disabled,
 				}"
 				@click.stop="toggleValue"
@@ -43,7 +44,7 @@ export default {
 		/**
 		 * A prop usada como v-model para monitorar a seleção do Checkbox
 		*/
-		value: {
+		modelValue: {
 			default: null,
 			required: true,
 		},
@@ -72,32 +73,20 @@ export default {
 
 	data() {
 		return {
-			internalValue: this.value,
+			isChecked: this.modelValue,
 		};
-	},
-
-	watch: {
-		internalValue(value) {
-			/**
-				 * Evento utilizado para o v-model.
-				* @event input
-				* @type {Event}
-			*/
-			this.$emit('input', value);
-		},
-
-		value: {
-			handler(newValue) {
-				this.internalValue = newValue;
-			},
-			immediate: true,
-		},
 	},
 
 	methods: {
 		toggleValue() {
 			if (this.disabled) return;
-			this.internalValue = !this.internalValue;
+			this.isChecked = !this.isChecked;
+			/**
+			* Evento utilizado para implementar o v-model.
+			* @event update:modelValue
+			* @type {Event}
+			*/
+			this.$emit('update:modelValue', this.isChecked);
 		},
 	},
 };
