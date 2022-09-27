@@ -25,8 +25,7 @@
 			@search-change="handleSearchChange"
 		>
 			<template
-				slot="beforeList"
-				slot-scope="{}"
+				v-slot:beforeList="{}"
 			>
 				<div
 					v-show="!queryString && options.length"
@@ -65,8 +64,7 @@
 				</div>
 			</template>
 			<template
-				slot="option"
-				slot-scope="{ option }"
+				v-slot:option="{ option }"
 			>
 				<div
 					v-if="option.$isLabel"
@@ -100,8 +98,7 @@
 				</div>
 			</template>
 			<template
-				slot="selection"
-				slot-scope="{ values, isOpen }"
+				v-slot:selection="{ values, isOpen }"
 			>
 				<span
 					v-if="values.length && !isOpen"
@@ -112,12 +109,12 @@
 				<span v-else />
 			</template>
 			<template
-				slot="noResult"
+				#noResult
 			>
 				Nenhum resultado encontrado para: "<strong>{{ queryString }} </strong>"
 			</template>
 			<template
-				slot="noOptions"
+				#noOptions
 			>
 				Não há nenhuma opção para ser exibida.
 			</template>
@@ -248,7 +245,7 @@ export default {
 
 		indeterminate(newValue) {
 			const input = document.getElementById('select-all-input-id');
-			input?.indeterminate = newValue;
+			if(input) input.indeterminate = newValue;
 		},
 	},
 
