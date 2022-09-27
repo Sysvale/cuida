@@ -1,4 +1,4 @@
-import ActionList from './ActionList.vue';
+import ActionsList from './ActionsList.vue';
 import Alert from './Alert.vue';
 import AlertCard from './AlertCard.vue';
 import Badge from './Badge.vue';
@@ -45,7 +45,7 @@ import UploadInput from './UploadInput.vue';
 
 export default {
 	install: (app: any, options: any) => {
-		app.component('CdsActionList', ActionList);
+		app.component('CdsActionsList', ActionsList);
 		app.component('CdsAlert', Alert);
 		app.component('CdsAlertCard', AlertCard);
 		app.component('CdsBadge', Badge);
