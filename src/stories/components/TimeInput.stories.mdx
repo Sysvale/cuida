@@ -4,6 +4,27 @@ import TimeInput from '../../components/TimeInput.vue';
 <Meta
 	title="Componentes/Forms/TimeInput"
 	component={ TimeInput }
+	argTypes={{
+		mode: {
+			control:{
+				type: 'select',
+				options: [
+					'single',
+					'range',
+				],
+			},
+		},
+		state: {
+			control:{
+				type: 'select',
+				options: [
+					'default',
+					'valid',
+					'invalid',
+				],
+			}
+		},
+	}}
 />
 
 export const Template = (args, { argTypes }) => ({
@@ -61,6 +82,7 @@ export const docsDecorator = () => {
 		decorators={[docsDecorator]}
 		args={{
 			label: "Horário",
+			required: true,
 		}}
 	>
 		{ Template.bind({}) }
