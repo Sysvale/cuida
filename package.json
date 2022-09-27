@@ -1,6 +1,6 @@
 {
 	"name": "@sysvale/cuida",
-	"version": "3.0.0-alpha2",
+	"version": "3.0.0-alpha.13",
 	"description": "A design system built by Sysvale, using storybook and Vue components",
 	"repository": {
 		"type": "git",
@@ -49,7 +49,7 @@
 		"babel-loader": "^8.2.5",
 		"concat": "^1.0.3",
 		"jsdom": "^20.0.0",
-		"sass": "^1.54.3",
+		"sass": "^1.55.0",
 		"typescript": "^4.6.4",
 		"vite": "^3.0.0",
 		"vitest": "^0.22.0",
