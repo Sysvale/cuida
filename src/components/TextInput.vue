@@ -29,14 +29,14 @@
 			/>
 
 			<div class="text-input__icon-container">
-				<check-icon
+				<ion-icon
 					v-if="validState && !disabled"
-					size="1x"
+					name="checkmark-outline"
 					class="text-input__icon--check-icon"
 				/>
-				<alert-circle-icon
+				<ion-icon
 					v-if="errorState && !disabled"
-					size="1x"
+					name="alert-circle-outline"
 					class="text-input__icon--alert-circle-icon"
 				/>
 			</div>
@@ -51,8 +51,6 @@
 </template>
 
 <script>
-import { CheckIcon, AlertCircleIcon } from 'vue-feather-icons';
-
 export default {
 	props: {
 		/**
@@ -107,11 +105,6 @@ export default {
 			type: String,
 			default: 'Valor inválido',
 		},
-	},
-
-	components: {
-		CheckIcon,
-		AlertCircleIcon,
 	},
 
 	data() {
