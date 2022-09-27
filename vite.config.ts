@@ -33,10 +33,12 @@ export default defineConfig({
 	plugins: [
 		concat(
 			[
+				'src/assets/sass/borders.scss',
 				'src/assets/sass/colors.scss',
-				'src/assets/sass/typography.scss',
-				'src/assets/sass/spacing.scss',
 				'src/assets/sass/fontWeight.scss',
+				'src/assets/sass/shadows.scss',
+				'src/assets/sass/spacing.scss',
+				'src/assets/sass/typography.scss',
 			],
 			'dist/@sysvale/tokens.scss'
 		),
