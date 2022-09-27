@@ -83,7 +83,7 @@
 </template>
 
 <script>
-import { directive as onClickOutside } from 'vue-on-click-outside';
+import vClickOutside from 'click-outside-vue3';
 import { widths } from '../utils';
 import removeAccents from '../utils/methods/removeAccents';
 
@@ -166,7 +166,7 @@ export default {
 	},
 
 	directives: {
-		'on-click-outside': onClickOutside,
+		'on-click-outside': vClickOutside.directive,
 	},
 
 	data() {
