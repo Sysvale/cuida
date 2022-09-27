@@ -13,12 +13,10 @@ export const Template = (args) => ({
 	},
 	template: /*html*/ `
 		<cds-carousel-controller
+			v-bind="args"
 			@click-forward="handleClickForwardEvent"
 			@click-back="handleClickBackEvent"
-			v-bind="args" 
-		>
-			Texto do alerta pelo slot
-		</cds-carousel-controller>
+		/>
 	`,
 	methods: { 
 		handleClickForwardEvent() { console.log('clicked forward'); },
