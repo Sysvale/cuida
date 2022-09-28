@@ -135,7 +135,7 @@ export default {
 		 */
 		searchable: {
 			type: Boolean,
-			default: true,
+			default: false,
 			required: false,
 		},
 		/**
