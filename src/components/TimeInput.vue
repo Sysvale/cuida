@@ -147,8 +147,10 @@ export default {
 		},
 		/**
 		 * Propriedade utilizada para definir o modo de exibição do componente.
-		 * `single` - Apenas um input de tempo;
-		 * `range` - Dois inputs de tempo (início e fim).
+		 * 
+		 * `single`: Apenas um input de tempo;
+		 * 
+		 * `range`: Dois inputs de tempo (início e fim).
 		 */
 		mode: {
 			type: String,
