@@ -20,7 +20,7 @@
 			:class="fluid ? 'select__container--fluid' : 'select__container--fit'"
 		>
 			<input
-				v-model="localValue.value"
+				v-model="internalValue"
 				type="text"
 				:onkeypress="`return ${allowSearch};`"
 				:class="inputClass"
@@ -118,9 +118,8 @@ export default {
 		/**
 		 * Guarda o valor selecionado do select.
 		 */
-		value: {
+		modelValue: {
 			type: Object,
-			default: () => {},
 			required: true,
 		},
 		/**
@@ -136,7 +135,7 @@ export default {
 		 */
 		searchable: {
 			type: Boolean,
-			default: false,
+			default: true,
 			required: false,
 		},
 		/**
@@ -176,7 +175,8 @@ export default {
 			id: null,
 			allowSearch: this.searchable,
 			localOptions: this.options,
-			localValue: this.value,
+			localValue: this.modelValue,
+			internalValue: this.modelValue?.value || '',
 		};
 	},
 
@@ -200,7 +200,7 @@ export default {
 
 	methods: {
 		filterOptions() {
-			const sanitizedString = removeAccents(this.localValue.value);
+			const sanitizedString = removeAccents(this.internalValue);
 			const regexExp = new RegExp(sanitizedString, 'i');
 
 			this.localOptions = this.options.filter(
@@ -235,6 +235,8 @@ export default {
 		hide() {
 			this.localValue = this.localOptions[this.currentPos];
 			this.active = false;
+			this.localOptions = [...this.options];
+			this.internalValue = this.localValue?.value || '';
 		},
 
 		getLiInDOM(position) {
@@ -303,14 +305,19 @@ export default {
 	watch: {
 		localValue: {
 			handler(currentValue) {
+				this.internalValue = currentValue?.value;
 				/**
 				* Evento que indica que o valor do Select foi alterado
 				* @event input
 				* @type {Event}
 				*/
-				this.$emit('input', currentValue);
+				this.$emit('update:modelValue', currentValue);
 			},
 			deep: true,
+		},
+
+		modelValue(newValue) {
+			this.internalValue = newValue?.value;
 		},
 	},
 };
