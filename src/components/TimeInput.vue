@@ -262,13 +262,21 @@ export default {
 		},
 
 		buildTimeElements(time) {
-			if (typeof time === Array) {
-				[ this.startHour, this.startMinute ] = time[0].split(':');
-				[ this.endHour, this.endMinute ] = time[1].split(':');
+			if (this.mode === 'single') {
+				if (typeof time !== 'string') {
+						return;
+					}
+
+			[ this.startHour, this.startMinute ] = time.split(':');
 				return;
 			}
 
-			[ this.startHour, this.startMinute ] = time.split(':');
+			if (typeof time === 'string') {
+				return;
+			}
+
+			[ this.startHour, this.startMinute ] = time[0].split(':');
+			[ this.endHour, this.endMinute ] = time[1].split(':');
 		},
 	},
 }
