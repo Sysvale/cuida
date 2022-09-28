@@ -9,6 +9,7 @@ export const isAfter = (finalTime, initialTime) => {
 		return false;
 	}
 
-	return DateTime.fromFormat(finalTime, 'HH:mm')
-		.diff(DateTime.fromFormat(initialTime, 'HH:mm')) > 0;
+	return (
+		DateTime.fromFormat(finalTime, 'HH:mm').diff(DateTime.fromFormat(initialTime, 'HH:mm')) > 0
+	);
 };
