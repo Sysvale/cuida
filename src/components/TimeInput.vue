@@ -202,7 +202,7 @@ export default {
 
 	watch: {
 		value(newValue, oldValue) {
-			if (newValue === oldValue) {
+			if (newValue === oldValue || !newValue) {
 				return;
 			}
 
@@ -221,6 +221,7 @@ export default {
 				!(this.startHour && this.startMinute)
 				|| (this.range && !(this.endHour && this.endMinute))
 			) {
+				this.$emit('input', null);
 				return;
 			}
 
@@ -233,6 +234,10 @@ export default {
 			* Evento indicando que o input foi preenchido.
 			* Retorna uma string com o horário, caso o componente esteja em modo `single`,
 			* ou um array contendo horários inicial e final, quando em modo `range`.
+			*
+			* Em caso de o valor do campo estar inválido, o evento é emitido com valor `null`,
+			* leve isto em consideração em possíveis formatações.
+			*
 			* As datas são retornadas sempre no formato `HH:mm`.
 			* @event input
 			* @type {Event}
@@ -247,6 +252,7 @@ export default {
 			);
 
 			if (interval.invalid) {
+				this.$emit('input', null);
 				return;
 			}
 
@@ -283,7 +289,7 @@ export default {
 						return;
 					}
 
-			[ this.startHour, this.startMinute ] = time.split(':');
+				[ this.startHour, this.startMinute ] = time.split(':');
 				return;
 			}
 
