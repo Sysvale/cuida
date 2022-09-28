@@ -107,8 +107,14 @@ export default {
 	props: {
 		/**
 		* Prop utilizada como v-model. Define o horário exibido.
-		* Deve ser enviado como uma String contendo a data, array contendo duas datas,
-		* Array vazio ou String vazia. Todas as datas devem estar no formato `HH:mm`.
+		*
+		* Modo `single`: Deve ser enviada como uma String contendo o horário.
+		* 
+		* Modo `range`: Deve ser enviada como um Array contendo dois horários (inicial e final).
+		*
+		* Pode ser enviada como um Array vazio ou String vazia.
+		*
+		* Todos os horários devem estar no formato `HH:mm`.
 		* 
 		*/
 		value: {
