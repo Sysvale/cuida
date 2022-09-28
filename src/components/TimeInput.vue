@@ -335,7 +335,6 @@ export default {
 
 		&:focus-visible {
 			outline-color: $bn-300;
-			color: $bn-300;
 		}
 
 		&--valid {
@@ -344,7 +343,6 @@ export default {
 
 			&:focus-visible {
 				outline-color: $gp-500;
-				color: $n-600;
 			}
 		}
 
@@ -354,7 +352,6 @@ export default {
 
 			&:focus-visible {
 				outline-color: $rc-500;
-				color: $n-600;
 			}
 		}
 	}
