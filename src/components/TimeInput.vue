@@ -88,19 +88,33 @@
 
 <script>
 import { Interval, DateTime } from 'luxon';
+import { hourFormat, isAfter } from '../utils/validators/time';
+
+const valueValidator = (value) => {
+	if (value === '' || value === []) {
+		return true;
+	}
+
+	if (typeof value === 'string') {
+		return hourFormat(value);
+	}
+
+	return value.length === 2
+		&& isAfter(value[1], value[0]);
+};
 
 export default {
 	props: {
 		/**
 		* Prop utilizada como v-model. Define o horário exibido.
-		* Deve ser enviado como string no formato `HH:mm`
+		* Deve ser enviado como uma String contendo a data, array contendo duas datas,
+		* Array vazio ou String vazia. Todas as datas devem estar no formato `HH:mm`.
+		* 
 		*/
 		value: {
 			type: [String, Array],
 			default: '',
-			validator: (value) => {
-				return value === '' || /[0-2][0-9]:[0-5][0-9]/.test(value);
-			},
+			validator: valueValidator,
 		},
 		/**
 		 * O id a ser utilizado pelo elemento HTML.
