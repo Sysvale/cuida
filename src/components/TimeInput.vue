@@ -88,19 +88,39 @@
 
 <script>
 import { Interval, DateTime } from 'luxon';
+import { hourFormat, isAfter } from '../utils/validators/time';
+
+const valueValidator = (value) => {
+	if (value === '' || value === []) {
+		return true;
+	}
+
+	if (typeof value === 'string') {
+		return hourFormat(value);
+	}
+
+	return value.length === 2
+		&& isAfter(value[1], value[0]);
+};
 
 export default {
 	props: {
 		/**
 		* Prop utilizada como v-model. Define o horário exibido.
-		* Deve ser enviado como string no formato `HH:mm`
+		*
+		* Modo `single`: Deve ser enviada como uma String contendo o horário.
+		* 
+		* Modo `range`: Deve ser enviada como um Array contendo dois horários (inicial e final).
+		*
+		* Pode ser enviada como um Array vazio ou String vazia.
+		*
+		* Todos os horários devem estar no formato `HH:mm`.
+		* 
 		*/
 		value: {
 			type: [String, Array],
 			default: '',
-			validator: (value) => {
-				return value === '' || /[0-2][0-9]:[0-5][0-9]/.test(value);
-			},
+			validator: valueValidator,
 		},
 		/**
 		 * O id a ser utilizado pelo elemento HTML.
@@ -133,8 +153,10 @@ export default {
 		},
 		/**
 		 * Propriedade utilizada para definir o modo de exibição do componente.
-		 * `single` - Apenas um input de tempo;
-		 * `range` - Dois inputs de tempo (início e fim).
+		 * 
+		 * `single`: Apenas um input de tempo;
+		 * 
+		 * `range`: Dois inputs de tempo (início e fim).
 		 */
 		mode: {
 			type: String,
@@ -186,7 +208,7 @@ export default {
 
 	watch: {
 		value(newValue, oldValue) {
-			if (newValue === oldValue) {
+			if (newValue === oldValue || !newValue) {
 				return;
 			}
 
@@ -205,6 +227,7 @@ export default {
 				!(this.startHour && this.startMinute)
 				|| (this.range && !(this.endHour && this.endMinute))
 			) {
+				this.$emit('input', null);
 				return;
 			}
 
@@ -217,6 +240,10 @@ export default {
 			* Evento indicando que o input foi preenchido.
 			* Retorna uma string com o horário, caso o componente esteja em modo `single`,
 			* ou um array contendo horários inicial e final, quando em modo `range`.
+			*
+			* Em caso de o valor do campo estar inválido, o evento é emitido com valor `null`,
+			* leve isto em consideração em possíveis formatações.
+			*
 			* As datas são retornadas sempre no formato `HH:mm`.
 			* @event input
 			* @type {Event}
@@ -231,6 +258,7 @@ export default {
 			);
 
 			if (interval.invalid) {
+				this.$emit('input', null);
 				return;
 			}
 
@@ -262,13 +290,21 @@ export default {
 		},
 
 		buildTimeElements(time) {
-			if (typeof time === Array) {
-				[ this.startHour, this.startMinute ] = time[0].split(':');
-				[ this.endHour, this.endMinute ] = time[1].split(':');
+			if (this.mode === 'single') {
+				if (typeof time !== 'string') {
+						return;
+					}
+
+				[ this.startHour, this.startMinute ] = time.split(':');
 				return;
 			}
 
-			[ this.startHour, this.startMinute ] = time.split(':');
+			if (typeof time === 'string') {
+				return;
+			}
+
+			[ this.startHour, this.startMinute ] = time[0].split(':');
+			[ this.endHour, this.endMinute ] = time[1].split(':');
 		},
 	},
 }
@@ -305,7 +341,6 @@ export default {
 
 		&:focus-visible {
 			outline-color: $bn-300;
-			color: $bn-300;
 		}
 
 		&--valid {
@@ -314,7 +349,6 @@ export default {
 
 			&:focus-visible {
 				outline-color: $gp-500;
-				color: $n-600;
 			}
 		}
 
@@ -324,7 +358,6 @@ export default {
 
 			&:focus-visible {
 				outline-color: $rc-500;
-				color: $n-600;
 			}
 		}
 	}
