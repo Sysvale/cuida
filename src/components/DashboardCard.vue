@@ -1,6 +1,6 @@
 <template>
 	<div
-		:class="computedCardClass"
+		:class="resolveComputedClass('dashboard-card')"
 	>
 		<div>
 			<div
@@ -19,7 +19,7 @@
 				</div>
 			</div>
 	
-			<p class="dashboard-card__description">
+			<p :class="resolveComputedClass('dashboard-card__description')">
 				<!-- @slot Slot para renderização customizada da descrição. -->
 				<slot name="description-slot">
 					{{ description }}
@@ -92,9 +92,9 @@ export default {
 		},
 	},
 
-	computed: {
-		computedCardClass() {
-			return this.fluid ? 'dashboard-card--fluid' : 'dashboard-card';
+	methods: {
+		resolveComputedClass(componentClass) {
+			return this.fluid ? `${componentClass}--fluid` : componentClass;
 		},
 	},
 };
@@ -151,7 +151,7 @@ export default {
 
 		&--fluid {
 			@extend .dashboard-card__description;
-			max-width: 100%;
+			max-width: 80%;
 		}
 	}
 
