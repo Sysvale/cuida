@@ -34,4 +34,4 @@ test('action-button-click event is emitted correctly', async () => {
 	await flushPromises();
 
 	expect(wrapper.emitted('action-button-click')).toBeTruthy();
-})
+});
