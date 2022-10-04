@@ -1,33 +1,37 @@
 <template>
 	<div
-		class="dashboard-card"
+		:class="resolveComputedClass('dashboard-card')"
 	>
 		<div>
 			<div
 				class="dashboard-card__header"
 			>
-				<p  v-if="title.length > 0" class="dashboard-card__title">
-					{{ title }}
+				<p class="dashboard-card__title">
+					<!-- @slot Slot para renderização customizada do título. -->
+					<slot name="title-slot">
+						{{ title }}
+					</slot>
 				</p>
 
-				<p v-else class="dashboard-card__title">
-					<slot name="title-slot" />
-				</p>
-	
 				<div>
+					<!-- @slot Slot para renderização customizada de conteúdo localizado na parte direita do header. -->
 					<slot name="status-slot" />
 				</div>
 			</div>
 	
-			<p  v-if="description.length > 0" class="dashboard-card__description">
-				{{ description }}
-			</p>
-
-			<p v-else class="dashboard-card__description">
-				<slot name="description-slot" />
+			<p :class="resolveComputedClass('dashboard-card__description')">
+				<!-- @slot Slot para renderização customizada da descrição. -->
+				<slot name="description-slot">
+					{{ description }}
+				</slot>
 			</p>
 		</div>
 
+		<!--
+			Evento emitido quando o botão de ação é clicado.
+			@event action-button-click
+			@type {Event}
+		-->
 		<div 
 			class="dashboard-card__action"
 			@click="$emit('action-button-click')"
@@ -79,6 +83,19 @@ export default {
 			default: 'Action',
 			required: false,
 		},
+		/**
+		 * Prop que indica se o componente deverá ocupar 100% do espaço disponível.
+		 */
+		fluid: {
+			type: Boolean,
+			default: false,
+		},
+	},
+
+	methods: {
+		resolveComputedClass(componentClass) {
+			return this.fluid ? `${componentClass}--fluid` : componentClass;
+		},
 	},
 };
 </script>
@@ -91,12 +108,17 @@ export default {
 	border: 1px solid $n-40;
 	border-radius: $border-radius-small;
 	padding: pa(4);
-	width: 100%;
+	width: fit-content;
 	min-width: 272px;
 	min-height: 120px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+
+	&--fluid {
+		@extend .dashboard-card;
+		width: 100%;
+	}
 
 	&__header {
 		display: flex;
@@ -126,6 +148,11 @@ export default {
 		display: -webkit-box;
 		-webkit-line-clamp: 2;
 		-webkit-box-orient: vertical;
+
+		&--fluid {
+			@extend .dashboard-card__description;
+			max-width: 80%;
+		}
 	}
 
 	&__action {
