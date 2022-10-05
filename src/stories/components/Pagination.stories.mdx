@@ -1,0 +1,71 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Pagination from '../../components/Pagination.vue';
+
+<Meta
+	title="Componentes/Navegação/Pagination"
+	component={ Pagination }
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { Pagination },
+	template: /*html*/
+		`<cds-pagination v-bind="$props" />
+		`,
+});
+
+export const template = /*html*/ `
+	<cds-pagination
+		:fields="fields"
+		:items="items
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
+# Table
+
+### Tables são componentes utilizados para exibir e organizar conteúdo, facilitando a comparação e análise de informações.
+---
+<br />
+
+## Recomendamos o uso de Tables quando:
+- Desejar comparar dados.
+- For necessário exibir dados de forma tabulada.
+
+<br />
+
+## Não Recomendamos o uso de Tables quando:
+- For necessário interagir/realizar uma ação com o conteúdo apresentado na tabela.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Table"
+		decorators={[docsDecorator]}
+		args={{
+			perPage: 10,
+			total: 60,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Table" />
