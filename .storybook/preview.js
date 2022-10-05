@@ -66,6 +66,7 @@ import {
 	DashboardCard,
 	CarouselController,
 	TextInput,
+	Pagination,
 } from '../src/components';
 
 import {
@@ -159,6 +160,7 @@ Vue.component('cds-inner-tabs', InnerTabs);
 Vue.component('cds-dashboard-card', DashboardCard);
 Vue.component('cds-carousel-controller', CarouselController);
 Vue.component('cds-text-input', TextInput);
+Vue.component('cds-pagination', Pagination);
 
 addParameters({
 	options: {
