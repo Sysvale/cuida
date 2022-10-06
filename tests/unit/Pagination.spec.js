@@ -35,7 +35,7 @@ describe('Pagination', () => {
 		expect(/<<\s*<\s*1\s*2\s*3\s*4\s*5\s*>\s*>>/.test(wrapper.text())).toBeTruthy();
 	});
 
-	test('page-change events are emitted correctly', async () => {
+	test('input events are emitted correctly', async () => {
 		expect.assertions(5);
 		const wrapper = mount(Pagination, {
 			localVue,
@@ -49,22 +49,22 @@ describe('Pagination', () => {
 
 		await wrapper.vm.handlePageClick(wrapper.vm.pages[3]);
 
-		expect(wrapper.emitted('page-change')[0]).toContainEqual(2);
+		expect(wrapper.emitted('input')[0]).toContainEqual(2);
 
 		await wrapper.vm.handlePageClick(wrapper.vm.pages[7]);
 
-		expect(wrapper.emitted('page-change')[1]).toContainEqual(3);
+		expect(wrapper.emitted('input')[1]).toContainEqual(3);
 
 		await wrapper.vm.handlePageClick(wrapper.vm.pages[8]);
 
-		expect(wrapper.emitted('page-change')[2]).toContainEqual(7);
+		expect(wrapper.emitted('input')[2]).toContainEqual(7);
 
 		await wrapper.vm.handlePageClick(wrapper.vm.pages[1]);
 
-		expect(wrapper.emitted('page-change')[3]).toContainEqual(6);
+		expect(wrapper.emitted('input')[3]).toContainEqual(6);
 
 		await wrapper.vm.handlePageClick(wrapper.vm.pages[0]);
 
-		expect(wrapper.emitted('page-change')[4]).toContainEqual(1);
+		expect(wrapper.emitted('input')[4]).toContainEqual(1);
 	});
 });
