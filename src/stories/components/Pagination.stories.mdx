@@ -1,0 +1,75 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Pagination from '../../components/Pagination.vue';
+
+<Meta
+	title="Componentes/Navegação/Pagination"
+	component={ Pagination }
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { Pagination },
+	template: /*html*/
+		`<cds-pagination v-bind="$props" />
+		`,
+});
+
+export const template = /*html*/ `
+	<cds-pagination
+		v-model="page"
+		per-page="10"
+		total="60"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
+# Pagination
+
+### Paginations são componentes utilizados para dividir longos conjuntos de dados em diferentes páginas sem haver sobrecarrega do conteúdo na tela apresentada.
+---
+<br />
+
+## Recomendamos o uso de Paginations quando:
+- For necessário listar 20 dados ou mais.
+- For necessário navegar para um conjunto de dados de forma paginada.
+
+<br />
+
+## Não Recomendamos o uso de Paginations quando:
+- A quantidade de dados apresentados não é maior ou igual a 20.
+- O conjunto de dados é apresentado em dispositivos moveis. Nesse caso, recomendamos o uso de rolagem infinita ([lazy loading](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading)).
+
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Pagination"
+		decorators={[docsDecorator]}
+		args={{
+			value: 1,
+			perPage: 10,
+			total: 60,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Pagination" />

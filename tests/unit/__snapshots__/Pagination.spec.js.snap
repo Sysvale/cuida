@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination component renders correctly 1`] = `
+<div class="pagination__container">
+  <div class="pagination__button--first pagination__button--disabled">
+    &lt;&lt;
+  </div>
+  <div class="pagination__button pagination__button--disabled">
+    &lt;
+  </div>
+  <div class="pagination__button--active">
+    1
+  </div>
+  <div class="pagination__button">
+    2
+  </div>
+  <div class="pagination__button">
+    3
+  </div>
+  <div class="pagination__button">
+    4
+  </div>
+  <div class="pagination__button">
+    &gt;
+  </div>
+  <div class="pagination__button--last">
+    &gt;&gt;
+  </div>
+</div>
+`;
