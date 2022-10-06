@@ -16,8 +16,9 @@ export const Template = (args, { argTypes }) => ({
 
 export const template = /*html*/ `
 	<cds-pagination
-		:fields="fields"
-		:items="items
+		v-model="page"
+		per-page="10"
+		total="60"
 	/>`;
 
 export const docsDecorator = () => {
@@ -57,9 +58,10 @@ export const docsDecorator = () => {
 
 <Canvas>
 	<Story
-		name="Table"
+		name="Pagination"
 		decorators={[docsDecorator]}
 		args={{
+			value: 1,
 			perPage: 10,
 			total: 60,
 		}}
@@ -68,4 +70,4 @@ export const docsDecorator = () => {
 	</Story>
 </Canvas>
 
-<ArgsTable story="Table" />
+<ArgsTable story="Pagination" />
