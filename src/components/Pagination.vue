@@ -18,6 +18,13 @@ import PaginationItem from '../entities/PaginationItem';
 export default {
 	props: {
 		/**
+		 * Prop utilizada para receber a página atual.
+		 */
+		value: {
+			type: [Number, String],
+			default: 1,
+		},
+		/**
 		 * Prop utilizada para receber o número total de registros a serem paginados.
 		 */
 		total: {
@@ -45,7 +52,7 @@ export default {
 
 	data() {
 		return {
-			selectedPage: new PaginationItem(2, 1, true),
+			selectedPage: new PaginationItem(null, parseInt(this.value, 10), true),
 			pages: [],
 		};
 	},
@@ -58,6 +65,17 @@ export default {
 
 		computedContainerClass() {
 			return this.fluid ? 'pagination__container--fluid' : 'pagination__container';
+		},
+	},
+
+	watch: {
+		value(newValue, oldValue) {
+			if (newValue === oldValue || newValue === this.selectedPage.value) {
+				return;
+			}
+
+			this.selectedPage = new PaginationItem(null, parseInt(newValue, 10), true);
+			this.resolvePages();
 		},
 	},
 
@@ -156,11 +174,13 @@ export default {
 					/**
 					* Evento que indica que a página atual foi alterada.
 					*
+					* Altera o valor do v-model.
+					*
 					* Emite o número referente à página selecionada.
-					* @event page-change
+					* @event input
 					* @type {Event}
 					*/
-					this.$emit('page-change', 1);
+					this.$emit('input', 1);
 					this.resolvePages();
 					return;
 				case 'last':
@@ -174,14 +194,14 @@ export default {
 						true,
 					);
 
-					this.$emit('page-change', this.pageCount);
+					this.$emit('input', this.pageCount);
 					this.resolvePages();
 					return;
 				case 'back':
 					if (this.selectedPage.index === 1) {
 						return;
 					}
-					this.$emit('page-change', this.selectedPage.value - 1);
+					this.$emit('input', this.selectedPage.value - 1);
 
 					this.selectedPage = new PaginationItem(
 						null,
@@ -196,7 +216,7 @@ export default {
 						return;
 					}
 
-					this.$emit('page-change', this.selectedPage.value + 1);
+					this.$emit('input', this.selectedPage.value + 1);
 
 					this.selectedPage = new PaginationItem(
 						null,
@@ -213,7 +233,7 @@ export default {
 						true,
 					);
 
-					this.$emit('page-change', page.value);
+					this.$emit('input', page.value);
 					this.resolvePages();
 					break;
 			}
