@@ -37,20 +37,22 @@ export const docsDecorator = () => {
 	};
 };
 
-# Table
+# Pagination
 
-### Tables são componentes utilizados para exibir e organizar conteúdo, facilitando a comparação e análise de informações.
+### Paginations são componentes utilizados para dividir longos conjuntos de dados em diferentes páginas sem haver sobrecarrega do conteúdo na tela apresentada.
 ---
 <br />
 
-## Recomendamos o uso de Tables quando:
-- Desejar comparar dados.
-- For necessário exibir dados de forma tabulada.
+## Recomendamos o uso de Paginations quando:
+- For necessário listar 20 dados ou mais.
+- For necessário navegar para um conjunto de dados de forma paginada.
 
 <br />
 
-## Não Recomendamos o uso de Tables quando:
-- For necessário interagir/realizar uma ação com o conteúdo apresentado na tabela.
+## Não Recomendamos o uso de Paginations quando:
+- A quantidade de dados apresentados não é maior ou igual a 20.
+- O conjunto de dados é apresentado em dispositivos moveis. Nesse caso, recomendamos o uso de rolagem infinita ([lazy loading](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading)).
+
 
 <br />
 
