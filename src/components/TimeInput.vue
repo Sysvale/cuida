@@ -109,13 +109,13 @@ export default {
 		* Prop utilizada como v-model. Define o horário exibido.
 		*
 		* Modo `single`: Deve ser enviada como uma String contendo o horário.
-		* 
+		*
 		* Modo `range`: Deve ser enviada como um Array contendo dois horários (inicial e final).
 		*
 		* Pode ser enviada como um Array vazio ou String vazia.
 		*
 		* Todos os horários devem estar no formato `HH:mm`.
-		* 
+		*
 		*/
 		value: {
 			type: [String, Array],
@@ -153,9 +153,9 @@ export default {
 		},
 		/**
 		 * Propriedade utilizada para definir o modo de exibição do componente.
-		 * 
+		 *
 		 * `single`: Apenas um input de tempo;
-		 * 
+		 *
 		 * `range`: Dois inputs de tempo (início e fim).
 		 */
 		mode: {
@@ -203,7 +203,7 @@ export default {
 				default:
 					return 'input__time';
 			}
-		}
+		},
 	},
 
 	watch: {
@@ -269,7 +269,7 @@ export default {
 		},
 
 		formatTimeElement(element) {
-			return parseInt(element).toLocaleString(undefined, {
+			return parseInt(element, 10).toLocaleString(undefined, {
 				minimumIntegerDigits: 2,
 				maximumFractionDigits: 0,
 			});
@@ -292,10 +292,10 @@ export default {
 		buildTimeElements(time) {
 			if (this.mode === 'single') {
 				if (typeof time !== 'string') {
-						return;
-					}
+					return;
+				}
 
-				[ this.startHour, this.startMinute ] = time.split(':');
+				[this.startHour, this.startMinute] = time.split(':');
 				return;
 			}
 
@@ -303,11 +303,11 @@ export default {
 				return;
 			}
 
-			[ this.startHour, this.startMinute ] = time[0].split(':');
-			[ this.endHour, this.endMinute ] = time[1].split(':');
+			[this.startHour, this.startMinute] = time[0].split(':');
+			[this.endHour, this.endMinute] = time[1].split(':');
 		},
 	},
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -371,7 +371,7 @@ export default {
 		font-weight: $font-weight-semibold;
 		color: $n-700;
 		font-size: 14px;
-		margin: mb(1);
+		margin: mb(2);
 	}
 
 	&__message {
