@@ -2,19 +2,20 @@
 	<div
 		class="select"
 	>
-		<span
+		<div
 			class="select__label"
 		>
-			{{ label }}
-		</span>
+			<span>
+				{{ label }}
+			</span>
 
-		<span
-			v-if="required"
-			class="select--required"
-		>
-			*
-		</span>
-
+			<span
+				v-if="required"
+				class="select--required"
+			>
+				*
+			</span>
+		</div>
 		<div
 			class="select__container"
 			:class="fluid ? 'select__container--fluid' : 'select__container--fit'"
@@ -392,7 +393,7 @@ export default {
 		font-weight: $font-weight-semibold;
 		color: $n-700;
 		font-size: 14px;
-		margin: mb(1);
+		margin: mb(2);
 	}
 
 	&__container {
@@ -482,7 +483,6 @@ export default {
 		position: absolute;
 		z-index: 999;
 		background-color: $n-0;
-
 
 		&--thin {
 			width: 150px;
