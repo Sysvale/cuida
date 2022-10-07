@@ -330,7 +330,6 @@ export default {
 		@include caption;
 		border: 1px solid $n-50;
 		border-radius: $border-radius-button;
-		height: 39px;
 		width: 33px;
 		text-align: center;
 		color: $n-600;
