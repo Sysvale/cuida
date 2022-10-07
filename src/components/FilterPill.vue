@@ -138,6 +138,7 @@ export default {
 		border: 1px solid $n-50;
 		border-radius: $border-radius-extra-small;
 		cursor: pointer;
+		height: 40px;
 
 		&--disabled {
 			background-color: $n-30;
