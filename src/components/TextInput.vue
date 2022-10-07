@@ -269,10 +269,6 @@ input::-webkit-inner-spin-button {
 	margin: ma(0);
 }
 
-input[type=text]{
-	height: 40px;
-}
-
 input:disabled {
 	background: none !important;
 }
