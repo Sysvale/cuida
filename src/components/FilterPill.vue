@@ -13,7 +13,7 @@
 			<span class="filter-pill__content">{{ this.content }} </span>
 
 			<ion-icon
-				name="chevron-down-outline"
+				name="caret-down-outline"
 				:class="(isActive && !disabled) ? 'filter-pill__chevron--up' : 'filter-pill__chevron--down'"
 			>
 			</ion-icon>
@@ -157,6 +157,7 @@ export default {
 	&__label {
 		@include body-2;
 		font-weight: $font-weight-regular;
+		margin: mr(1);
 		color: $n-500;
 	}
 
@@ -168,15 +169,15 @@ export default {
 
 	&__chevron--up {
 		margin-left: 8px;
-		margin-bottom: -4px;
 		color: $n-500;
+		font-size: 14px !important;
 		transition: all 0.25s ease-in-out;
 		transform: rotate(180deg);
 	}
 
 	&__chevron--down {
 		margin-left: 8px;
-		margin-bottom: -4px;
+		font-size: 14px !important;
 		color: $n-500;
 		transition: all 0.25s ease-in-out;
 	}
