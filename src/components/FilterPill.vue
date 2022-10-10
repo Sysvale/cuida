@@ -32,6 +32,7 @@
 </template>
 
 <script>
+/* eslint-disable no-underscore-dangle */
 import { directive as onClickOutside } from 'vue-on-click-outside';
 
 export default {
@@ -133,8 +134,9 @@ export default {
 
 .filter-pill {
 	&__container {
-		display: inline-block;
-		padding: 8px 16px;
+		display: inline-flex;
+		align-items: center;
+		padding: mx(4);
 		border: 1px solid $n-50;
 		border-radius: $border-radius-extra-small;
 		cursor: pointer;
