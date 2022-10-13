@@ -13,7 +13,7 @@
 			<span class="filter-pill__content">{{ this.content }} </span>
 
 			<ion-icon
-				name="chevron-down-outline"
+				name="caret-down-outline"
 				:class="(isActive && !disabled) ? 'filter-pill__chevron--up' : 'filter-pill__chevron--down'"
 			>
 			</ion-icon>
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+/* eslint-disable no-underscore-dangle */
 import { directive as onClickOutside } from 'vue-on-click-outside';
 
 export default {
@@ -133,8 +134,9 @@ export default {
 
 .filter-pill {
 	&__container {
-		display: inline-block;
-		padding: 8px 16px;
+		display: inline-flex;
+		align-items: center;
+		padding: mx(4);
 		border: 1px solid $n-50;
 		border-radius: $border-radius-extra-small;
 		cursor: pointer;
@@ -155,6 +157,7 @@ export default {
 	&__label {
 		@include body-2;
 		font-weight: $font-weight-regular;
+		margin: mr(1);
 		color: $n-500;
 	}
 
@@ -166,15 +169,15 @@ export default {
 
 	&__chevron--up {
 		margin-left: 8px;
-		margin-bottom: -4px;
 		color: $n-500;
+		font-size: 14px !important;
 		transition: all 0.25s ease-in-out;
 		transform: rotate(180deg);
 	}
 
 	&__chevron--down {
 		margin-left: 8px;
-		margin-bottom: -4px;
+		font-size: 14px !important;
 		color: $n-500;
 		transition: all 0.25s ease-in-out;
 	}
