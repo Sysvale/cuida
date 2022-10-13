@@ -43,13 +43,7 @@ import * as VDatePicker from 'v-calendar/lib/components/date-picker.umd';
 
 const currentDate = DateTime.now().toFormat('yyyy-MM-dd');
 
-const dateStringValidator = (value) => {
-	if (!value) {
-		return true;
-	}
-
-	return /^(19|20)\d\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/.test(value);
-};
+const dateStringValidator = (value) => /^(19|20)\d\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/.test(value);
 
 export default {
 	components: {
@@ -63,7 +57,7 @@ export default {
 		value: {
 			type: String,
 			default: currentDate,
-			validator: (value) => dateStringValidator(value),
+			validator: (value) => value === '' || dateStringValidator(value),
 		},
 		/**
 		 * Especifica a label do input.
@@ -99,7 +93,7 @@ export default {
 		minDate: {
 			type: String,
 			default: '',
-			validator: (value) => dateStringValidator(value),
+			validator: (value) => value === '' || dateStringValidator(value),
 		},
 		/**
 		 * A data máxima selecionável no DateInput. Deve ser uma string no formato `yyyy-MM-dd`.
@@ -107,7 +101,7 @@ export default {
 		maxDate: {
 			type: String,
 			default: '',
-			validator: (value) => dateStringValidator(value),
+			validator: (value) => value === '' || dateStringValidator(value),
 		},
 	},
 
@@ -115,6 +109,10 @@ export default {
 		return {
 			internalDate: DateTime.now(),
 		};
+	},
+
+	mounted() {
+		this.resolveInternalDate();
 	},
 
 	computed: {
@@ -130,6 +128,16 @@ export default {
 		},
 	},
 
+	watch: {
+		value(newValue, oldValue) {
+			if (newValue === oldValue) {
+				return;
+			}
+
+			this.resolveInternalDate();
+		},
+	},
+
 	methods: {
 		handleDateInput(date) {
 			/**
@@ -138,6 +146,12 @@ export default {
 			* @type {Event}
 			*/
 			this.$emit('input', DateTime.fromJSDate(date).toFormat('yyyy-MM-dd'));
+		},
+
+		resolveInternalDate() {
+			this.internalDate = dateStringValidator(this.value)
+				? DateTime.fromFormat(this.value, 'yyyy-MM-dd')
+				: DateTime.now();
 		},
 	},
 };
