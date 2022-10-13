@@ -1,6 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import TextInput from '../../src/components/TextInput.vue';
 import flushPromises from 'flush-promises';
+import TextInput from '../../src/components/TextInput.vue';
 
 const localVue = createLocalVue();
 
@@ -32,7 +32,7 @@ test('if the value is emited properly when the content is changed by input', asy
 });
 
 describe('Styles based on the state tests', () => {
-	test("if the the styles are applied properly when the state is 'valid' and the input is not focused", async () => {
+	test('if the the styles are applied properly when the state is "valid" and the input is not focused', async () => {
 		const wrapper = shallowMount(TextInput, {
 			localVue,
 			propsData: {
@@ -45,7 +45,7 @@ describe('Styles based on the state tests', () => {
 		expect(wrapper.findAll('.text-input--valid').length).toBe(1);
 	});
 
-	test("if the the styles are applied properly when the state is 'invalid' and the input is not focused", async () => {
+	test('if the the styles are applied properly when the state is "invalid" and the input is not focused', async () => {
 		const wrapper = shallowMount(TextInput, {
 			localVue,
 			propsData: {
@@ -74,7 +74,7 @@ test('if the input is blocked when the prop disabled is true', async () => {
 	expect(wrapper.emitted().input).toBeFalsy();
 });
 
-test('if the the error message is displayed when state is invalid', async () => {
+test('if the error message is displayed when state is invalid', async () => {
 	const wrapper = shallowMount(TextInput, {
 		localVue,
 		propsData: {
@@ -86,4 +86,17 @@ test('if the the error message is displayed when state is invalid', async () => 
 	await flushPromises();
 
 	expect(wrapper.find('.text-input__error-message').text()).toBe('error message');
+});
+
+test('if fluid class is applied based on prop', async () => {
+	const wrapper = shallowMount(TextInput, {
+		localVue,
+		propsData: {
+			fluid: true,
+		},
+	});
+
+	await flushPromises();
+
+	expect(wrapper.find('.text-input--fluid').exists()).toBeTruthy();
 });
