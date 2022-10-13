@@ -5,7 +5,11 @@
 			class="text-input__label"
 			for="cds-text-input"
 		>
-			<!-- @slot Slot para renderização customizada da label (Obs.: Existe, também, a prop label que pode ser usada quando não há necessidade de customização) -->
+			<!--
+				@slot Slot para renderização customizada da label
+				(Obs.: Existe, também, a prop label que pode ser usada
+				quando não há necessidade de customização)
+			-->
 			<slot name="label">
 				{{ label }}
 				<span
@@ -22,7 +26,7 @@
 				v-model="internalValue"
 				:placeholder="placeholder"
 				:disabled="disabled"
-				class="text-input__field"
+				:class="inputClass"
 				type="text"
 				@focus="isBeingFocused = true"
 				@blur="isBeingFocused = false"
@@ -107,6 +111,14 @@ export default {
 			type: String,
 			default: 'Valor inválido',
 		},
+		/**
+		 * Especifica se a largura do TextInput deve ser fluida.
+		 */
+		fluid: {
+			type: Boolean,
+			default: false,
+			required: false,
+		},
 	},
 
 	components: {
@@ -123,11 +135,9 @@ export default {
 
 	computed: {
 		stepperInputDynamicClass() {
-			let stepperInputClass = '';
+			let stepperInputClass = this.fluid ? 'text-input--fluid' : 'text-input';
 
 			if (!this.isBeingFocused) {
-				stepperInputClass = 'text-input';
-
 				if (!this.disabled) {
 					if (this.state === 'valid') {
 						stepperInputClass += ' text-input--valid';
@@ -157,6 +167,10 @@ export default {
 		errorState() {
 			return this.state === 'invalid';
 		},
+
+		inputClass() {
+			return this.fluid ? 'text-input__field--fluid' : 'text-input__field';
+		},
 	},
 
 	watch: {
@@ -181,12 +195,17 @@ export default {
 	width: fit-content;
 	width: -moz-fit-content;
 
+	&--fluid {
+		@extend .text-input;
+		width: 100%;
+	}
+
 	&__label {
 		@include body-2;
 		font-weight: $font-weight-semibold;
 		color: $n-700;
 		margin: mb(2);
-		
+
 		&--required-indicator {
 			color: $rc-600;
 		}
@@ -211,6 +230,11 @@ export default {
 
 		&:focus {
 			outline: 0;
+		}
+
+		&--fluid {
+			@extend .text-input__field;
+			width: 100%;
 		}
 	}
 
