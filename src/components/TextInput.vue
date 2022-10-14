@@ -204,7 +204,6 @@ export default {
 		@include body-2;
 		font-weight: $font-weight-semibold;
 		color: $n-700;
-		margin: mb(2);
 
 		&--required-indicator {
 			color: $rc-600;

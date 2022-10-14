@@ -370,7 +370,6 @@ export default {
 		font-weight: $font-weight-semibold;
 		color: $n-700;
 		font-size: 14px;
-		margin: mb(2);
 	}
 
 	&__message {
