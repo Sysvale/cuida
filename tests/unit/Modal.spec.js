@@ -1,6 +1,6 @@
 import { mount, shallowMount, createLocalVue } from '@vue/test-utils';
 import Modal from '../../src/components/Modal.vue';
-import { directive as onClickOutside } from 'vue-on-click-outside' 
+import { directive as onClickOutside } from 'vue-on-click-outside';
 
 const localVue = createLocalVue();
 
