@@ -39,17 +39,20 @@ export const docsDecorator = () => {
 
 # LoadingBar
 
-### LoadingBars é um componente utilizado para indicar que o progresso de uma operação ainda não foi finalizado.
+### LoadingBar é uma animação que informa ao usuário que algo está acontecendo.
 ---
 <br />
 
-## Recomendamos o uso de LoadingBars quando:
-- For necessário impedir a visualização e navegação do conteúdo de páginas enquanto houver alguma pendência de operação.
+## Recomendamos o uso da LoadingBar quando:
+- For necessário informar ao usuário que algo está acontecendo.
+- For necessário impedir a navegação do conteúdo e páginas enquanto houver alguma pendência de operação.
 
 <br />
 
-## Não recomendamos o uso de LoadingBars quando:
-- A visualização e navegação não puder ser interrompida.
+## Não recomendamos o uso da LoadingBar quando:
+- O tempo para carregamento for menor do que 1 segundo.
+- A navegação não puder ser interrompida.
+- For necessário informar a ideia de progresso de uma operação em andamento. Nesse caso, recomendamos a utilização de ProgressBar ou ProgressCircular.
 
 <br />
 
