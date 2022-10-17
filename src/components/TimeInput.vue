@@ -1,11 +1,10 @@
 <template>
 	<div>
-		<label :for="id">
-			<span
-				class="input__label"
-			>
-				{{ label }}
-			</span>
+		<label
+			:for="id"
+			class="input__label"
+		>
+			{{ label }}
 
 			<span
 				v-if="required"
