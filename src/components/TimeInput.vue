@@ -1,11 +1,10 @@
 <template>
 	<div>
-		<label :for="id">
-			<span
-				class="input__label"
-			>
-				{{ label }}
-			</span>
+		<label
+			:for="id"
+			class="input__label"
+		>
+			{{ label }}
 
 			<span
 				v-if="required"
@@ -370,7 +369,6 @@ export default {
 		font-weight: $font-weight-semibold;
 		color: $n-700;
 		font-size: 14px;
-		margin: mb(2);
 	}
 
 	&__message {

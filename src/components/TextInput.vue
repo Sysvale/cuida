@@ -204,7 +204,6 @@ export default {
 		@include body-2;
 		font-weight: $font-weight-semibold;
 		color: $n-700;
-		margin: mb(2);
 
 		&--required-indicator {
 			color: $rc-600;
@@ -223,6 +222,7 @@ export default {
 	&__field {
 		padding: pa(3);
 		margin: mr(2);
+		height: 38px !important;
 		border-radius: $border-radius-extra-small;
 		border: none;
 		text-align: start;
