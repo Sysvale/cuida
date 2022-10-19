@@ -28,6 +28,7 @@
 					readonly
 					:class="inputClass"
 					:disabled="disabled"
+					:placeholder="placeholder"
 					type="text"
 					@click="togglePopover"
 				/>
@@ -103,6 +104,13 @@ export default {
 			default: '',
 			validator: (value) => value === '' || dateStringValidator(value),
 		},
+		/**
+		 * Texto placeholder para o DateInput.
+		 */
+		placeholder: {
+			type: String,
+			default: 'Selecione uma data',
+		},
 	},
 
 	data() {
@@ -145,7 +153,7 @@ export default {
 			* @event input
 			* @type {Event}
 			*/
-			this.$emit('input', DateTime.fromJSDate(date).toFormat('yyyy-MM-dd'));
+			this.$emit('input', date ? DateTime.fromJSDate(date).toFormat('yyyy-MM-dd') : '');
 		},
 
 		resolveInternalDate() {
