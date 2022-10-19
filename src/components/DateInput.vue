@@ -19,6 +19,7 @@
 		<v-date-picker
 			v-model="internalDate"
 			id="cds-date-input"
+			locale="pt-BR"
 			:available-dates="availableDates"
 			@input="handleDateInput"
 		>
@@ -28,6 +29,7 @@
 					readonly
 					:class="inputClass"
 					:disabled="disabled"
+					:placeholder="placeholder"
 					type="text"
 					@click="togglePopover"
 				/>
@@ -40,8 +42,6 @@
 // eslint-disable-next-line import/no-unresolved
 import { DateTime } from 'luxon';
 import * as VDatePicker from 'v-calendar/lib/components/date-picker.umd';
-
-const currentDate = DateTime.now().toFormat('yyyy-MM-dd');
 
 const dateStringValidator = (value) => /^(19|20)\d\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/.test(value);
 
@@ -56,7 +56,7 @@ export default {
 		*/
 		value: {
 			type: String,
-			default: currentDate,
+			default: '',
 			validator: (value) => value === '' || dateStringValidator(value),
 		},
 		/**
@@ -103,6 +103,13 @@ export default {
 			default: '',
 			validator: (value) => value === '' || dateStringValidator(value),
 		},
+		/**
+		 * Texto placeholder para o DateInput.
+		 */
+		placeholder: {
+			type: String,
+			default: 'Selecione uma data',
+		},
 	},
 
 	data() {
@@ -145,10 +152,15 @@ export default {
 			* @event input
 			* @type {Event}
 			*/
-			this.$emit('input', DateTime.fromJSDate(date).toFormat('yyyy-MM-dd'));
+			this.$emit('input', date ? DateTime.fromJSDate(date).toFormat('yyyy-MM-dd') : '');
 		},
 
 		resolveInternalDate() {
+			if (!this.value) {
+				this.internalDate = '';
+				return;
+			}
+
 			this.internalDate = dateStringValidator(this.value)
 				? DateTime.fromFormat(this.value, 'yyyy-MM-dd')
 				: DateTime.now();
