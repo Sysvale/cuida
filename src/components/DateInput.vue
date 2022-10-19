@@ -42,8 +42,6 @@
 import { DateTime } from 'luxon';
 import * as VDatePicker from 'v-calendar/lib/components/date-picker.umd';
 
-const currentDate = DateTime.now().toFormat('yyyy-MM-dd');
-
 const dateStringValidator = (value) => /^(19|20)\d\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/.test(value);
 
 export default {
@@ -57,7 +55,7 @@ export default {
 		*/
 		value: {
 			type: String,
-			default: currentDate,
+			default: '',
 			validator: (value) => value === '' || dateStringValidator(value),
 		},
 		/**
@@ -157,6 +155,11 @@ export default {
 		},
 
 		resolveInternalDate() {
+			if (!this.value) {
+				this.internalDate = '';
+				return;
+			}
+
 			this.internalDate = dateStringValidator(this.value)
 				? DateTime.fromFormat(this.value, 'yyyy-MM-dd')
 				: DateTime.now();
