@@ -19,6 +19,7 @@
 		<v-date-picker
 			v-model="internalDate"
 			id="cds-date-input"
+			locale="pt-BR"
 			:available-dates="availableDates"
 			@input="handleDateInput"
 		>
