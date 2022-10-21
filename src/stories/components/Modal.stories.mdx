@@ -15,7 +15,7 @@ export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { Modal },
 	template: /*html*/ `
-		<div class="d-flex justify-content-center" style="height: 250px;">
+		<div class="d-flex justify-content-center" style="height: 150px;">
 			<b-button
 				class="btn-info"
 				id="trigger-popover"
@@ -27,9 +27,14 @@ export const Template = (args, { argTypes }) => ({
 			<modal
 				:show="showModal"
 				v-bind="$props"
-				@hide="showModal = false"
+				@close="showModal = false"
+				@ok="showModal = false"
 			>
-				<span> Texto bem importante</span>
+				<span>
+					Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
+					eu conheço uma cachacis que pode alegrar sua vidis.Paisis, filhis, espiritis santis.Leite de capivaris,
+					leite de mula manquis sem cabeça.
+				</span>
 			</modal>
 		</div>
 	`,
@@ -64,8 +69,7 @@ export const Template = (args, { argTypes }) => ({
 		name="Modal"
 		args={{
 			top: 20,
-			right: 20,
-			height: 293,
+			height: 350,
 			width: 313,
 		}}
 	>
