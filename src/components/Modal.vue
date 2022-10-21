@@ -25,7 +25,12 @@
 
 			<!-- @slot Slot usado para inserção de conteúdo dentro do Modal. -->
 			<section>
-				<slot />
+				<cds-scrollable
+					:max-height="maxBodyHeight"
+					auto-height
+				>
+					<slot />
+				</cds-scrollable>
 			</section>
 
 			<footer class="cds-modal__footer">
@@ -73,20 +78,6 @@ export default {
 			required: true,
 		},
 		/**
-		 * Controla o posicionamento do modal verticalmente.
-		 */
-		top: {
-			type: Number,
-			default: 0,
-		},
-		/**
-		 * Define a altura do modal.
-		 */
-		height: {
-			type: Number,
-			default: 150,
-		},
-		/**
 		 * Define a largura do modal.
 		 */
 		width: {
@@ -115,10 +106,13 @@ export default {
 	computed: {
 		dynamicStyle() {
 			return {
-				'--top': `${this.top}px`,
-				'--height': `${this.height}px`,
 				'--width': `${this.width}px`,
 			};
+		},
+
+		maxBodyHeight() {
+			// 90% da largura subtraído o padding vertical (32 * 2) e subtraído o footer e o header
+			return `${ window.innerHeight * 0.9 - 32 * 2 - 110 }px`;
 		},
 	},
 
@@ -150,14 +144,13 @@ export default {
 .cds-modal {
 	display: flex;
 	flex-direction: column;
-	min-height: 150px;
-	height: var(--height);
+	max-height: 90%;
+	height: auto;
 	width: var(--width);
 	position: absolute;
 	background-color: white;
 	padding: 32px 28px;
 	right: calc(50% - var(--width) / 2);
-	top: var(--top);
 	border-radius: 8px;
 	box-shadow: 0px 0px 8px rgba(40, 90, 185, 0.2);
 	overflow-x: auto;
@@ -189,6 +182,7 @@ export default {
 		display: flex;
 		justify-content: end;
 		margin-top: auto;
+		padding-top: 28px;
 	}
 }
 </style>
