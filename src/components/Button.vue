@@ -215,22 +215,31 @@ export default {
 }
 
 .button-size {
+	display: flex;
+	align-items: center;
+
 	&--sm {
+		@extend .button-size;
 		font-size: 12px;
 		padding: pYX(2, 4);
 		border-radius: $border-radius-lil;
+		height: spacer(8);
 	}
 
 	&--md {
+		@extend .button-size;
 		font-size: 14px;
 		padding: pYX(3, 6);
 		border-radius: $border-radius-extra-small;
+		height: spacer(10);
 	}
 
 	&--lg {
+		@extend .button-size;
 		font-size: 18px;
 		padding: pYX(3, 6);
 		border-radius: $border-radius-extra-small;
+		height: spacer(12);
 	}
 }
 </style>

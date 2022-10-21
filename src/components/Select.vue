@@ -2,8 +2,9 @@
 	<div
 		class="select"
 	>
-		<div
+		<label
 			class="select__label"
+			for="cds-select"
 		>
 			<span>
 				{{ label }}
@@ -15,13 +16,14 @@
 			>
 				*
 			</span>
-		</div>
+		</label>
 		<div
 			class="select__container"
 			:class="fluid ? 'select__container--fluid' : 'select__container--fit'"
 		>
 			<input
 				v-model="localValue.value"
+				id="cds-select"
 				type="text"
 				:onkeypress="`return ${allowSearch};`"
 				:class="inputClass"
@@ -393,7 +395,6 @@ export default {
 		font-weight: $font-weight-semibold;
 		color: $n-700;
 		font-size: 14px;
-		margin: mb(2);
 	}
 
 	&__container {

@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TimeInput if component renders correctly 1`] = `
-<div><label for="time-input"><span class="input__label">
-			Test label
-		</span>
+<div><label for="time-input" class="input__label">
+    Test label
+
     <!---->
   </label>
   <div id="time-input" class="input__container">

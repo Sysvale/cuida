@@ -46,3 +46,4 @@ export { default as CarouselController } from './CarouselController.vue';
 export { default as TextInput } from './TextInput.vue';
 export { default as Pagination } from './Pagination.vue';
 export { default as Modal } from './Modal.vue';
+export { default as DateInput } from './DateInput.vue';
