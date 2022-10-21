@@ -7,14 +7,17 @@
 			v-if="internalShow"
 			class="cds-modal"
 			:style="dynamicStyle"
-			v-on-click-outside="close"
+			v-on-click-outside="noCloseOnBackdrop ? () => {} : close"
 		>
-			<header>
+			<header 
+				v-if="!noHeader"
+			>
 				<!-- @slot Slot usado para utilização de header customizado. -->
 				<slot name="header">
 					<div class="cds-modal__header">
 						<h3>Título</h3>
 						<ion-icon
+							v-if="!noCloseButton"
 							name="close-outline"
 							class="cds-modal__close-icon"
 							@click="close"
@@ -33,10 +36,14 @@
 				</cds-scrollable>
 			</section>
 
-			<footer class="cds-modal__footer">
+			<footer
+				v-if="!noFooter"
+				class="cds-modal__footer"
+			>
 				<!-- @slot Slot usado para inserção de footer customizado. -->
 				<slot name="footer">
 					<cds-button
+						v-if="!noCancelButton"
 						text="Cancelar"
 						secondary
 						:disabled="disabled"
@@ -85,9 +92,44 @@ export default {
 			default: 150,
 		},
 		/**
-		 * Define a largura do modal.
+		 * Define o estado das ações do modal.
 		 */
 		disabled: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 *  Controla a ação de fechar o modal ao clicar fora.
+		 */
+		noCloseOnBackdrop: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 *  Controla a exibição do botão de fechar do modal.
+		 */
+		noCloseButton: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 *  Controla a exibição do botão de cancelar do modal.
+		 */
+		noCancelButton: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 *  Controla a exibição do rodapé (footer) do modal.
+		 */
+		noFooter: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 *  Controla a exibição do cabeçalho (header) do modal.
+		 */
+		noHeader: {
 			type: Boolean,
 			default: false,
 		},
