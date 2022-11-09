@@ -43,6 +43,12 @@
 					size="1x"
 					class="text-input__icon--alert-circle-icon"
 				/>
+				<cds-spinner
+					v-if="loadingState && !disabled"
+					size="sm"
+					variant="blue"
+					class="text-input__icon--spinner-icon"
+				/>
 			</div>
 		</div>
 		<div
@@ -81,7 +87,7 @@ export default {
 			default: false,
 		},
 		/**
-		 * Especifica o estado do TextInput. As opções são 'default', 'valid' e 'invalid'.
+		 * Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
 		 */
 		state: {
 			type: String,
@@ -154,6 +160,8 @@ export default {
 					stepperInputClass += ' text-input--focused-valid';
 				} else if (this.state === 'invalid') {
 					stepperInputClass += ' text-input--focused-invalid';
+				} else if (this.state === 'loading') {
+					stepperInputClass += ' text-input--focused-loading';
 				}
 			}
 
@@ -166,6 +174,10 @@ export default {
 
 		errorState() {
 			return this.state === 'invalid';
+		},
+
+		loadingState(){
+			return this.state === 'loading';
 		},
 
 		inputClass() {
@@ -280,11 +292,16 @@ export default {
 		height: 50%;
 	}
 
+	&__icon--spinner-icon {
+		padding: 0px;
+	}
+
 	&__error-message {
 		@include caption;
 		color: $rc-600;
 		margin: mt(1);
 	}
+
 }
 
 input::-webkit-outer-spin-button,
