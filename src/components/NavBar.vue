@@ -46,6 +46,9 @@
 </template>
 
 <script>
+import isEmpty from 'lodash.isempty';
+import isEqual from 'lodash.isequal';
+
 import { colorOptions, colorHexCode } from '../utils/constants/colors';
 
 export default {
@@ -60,10 +63,10 @@ export default {
 			required: true,
 			validator: (values) => {
 				const invalidValues = values.filter((value) => {
-					const hasNotRoute = _.isEmpty(value.path) && _.isEmpty(value.route);
-					const hasInvalidItems = _.isEmpty(value.items)
-						|| value.items.filter(item => (_.isEmpty(item.path) && _.isEmpty(item.route))).length;
-					return _.isEmpty(value.label) || (hasInvalidItems && hasNotRoute);
+					const hasNotRoute = isEmpty(value.path) && isEmpty(value.route);
+					const hasInvalidItems = isEmpty(value.items)
+						|| value.items.filter(item => (isEmpty(item.path) && isEmpty(item.route))).length;
+					return isEmpty(value.label) || (hasInvalidItems && hasNotRoute);
 				});
 				return !invalidValues.length;
 			},
@@ -142,7 +145,7 @@ export default {
 	watch: {
 		computedItems: {
 			handler(newValue) {
-				const filtered = newValue.filter(item => _.isEqual(item, this.activeItem));
+				const filtered = newValue.filter(item => isEqual(item, this.activeItem));
 
 				if (filtered.length) {
 					[this.internalActiveItem] = filtered;
@@ -155,7 +158,7 @@ export default {
 					);
 					if (subitems.length) {
 						[this.internalActiveItem] = subitems.filter(
-							item => _.isEqual(this.resolveRoute(item), this.resolveRoute(this.activeItem)),
+							item => isEqual(this.resolveRoute(item), this.resolveRoute(this.activeItem)),
 						);
 
 						this.internalActiveParent = this.internalActiveItem.parent;
@@ -190,7 +193,7 @@ export default {
 		},
 
 		resolveRoute({ route, path }) {
-			const to = !_.isEmpty(route) ? route : path;
+			const to = !isEmpty(route) ? route : path;
 			return to instanceof String ? { path: to } : to;
 		},
 
@@ -200,7 +203,7 @@ export default {
 
 		isActive(item) {
 			return Object.keys(this.internalActiveItem).length > 0
-				? _.isEqual(this.resolveRoute(this.internalActiveItem), this.resolveRoute(item))
+				? isEqual(this.resolveRoute(this.internalActiveItem), this.resolveRoute(item))
 				: false;
 		},
 
@@ -229,7 +232,7 @@ export default {
 			if (
 				this.isDropdown(item)
 				&& this.internalActiveParent
-				&& _.isEqual(this.resolveRoute(this.internalActiveParent), this.resolveRoute(item))
+				&& isEqual(this.resolveRoute(this.internalActiveParent), this.resolveRoute(item))
 				&& this.internalActiveParent.label === item.label
 			) {
 				return `${accClass} active-parent`;

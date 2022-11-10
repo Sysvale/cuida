@@ -97,6 +97,8 @@
 </template>
 
 <script>
+import isEmpty from 'lodash.isempty';
+
 import { AlertTriangleIcon } from 'vue-feather-icons';
 
 export default {
@@ -135,7 +137,7 @@ export default {
 
 	data() {
 		return {
-			file: !!this.value && !_.isEmpty(this.value) ? this.value : null,
+			file: !!this.value && !isEmpty(this.value) ? this.value : null,
 			isOnDragEnterState: false,
 			isValid: null,
 		};

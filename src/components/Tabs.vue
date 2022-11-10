@@ -76,6 +76,8 @@
 </template>
 
 <script>
+import isEmpty from 'lodash.isempty';
+import isEqual from 'lodash.isequal';
 import { colorOptions, colorHexCode, colorLighterHexCode } from '../utils/constants/colors';
 
 export default {
@@ -91,7 +93,7 @@ export default {
 			required: true,
 			validator: (values) => {
 				const invalidValues = values.filter((value) => {
-					return _.isEmpty(value.title) || _.isEmpty(value.name);
+					return isEmpty(value.title) || isEmpty(value.name);
 				});
 				return !invalidValues.length;
 			},
@@ -195,7 +197,7 @@ export default {
 		},
 
 		isActive(item) {
-			return _.isEqual(this.internalActiveTab, item);
+			return isEqual(this.internalActiveTab, item);
 		},
 	},
 };
