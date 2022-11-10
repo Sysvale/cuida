@@ -3,7 +3,7 @@ version: '3.7'
 services:
   cuida:
     container_name: main
-    image: sysops/cuida:dev-1.0
+    image: sysvaleops/cuida:dev-1.0
     volumes:
       - .:/usr/src/app
     ports:
