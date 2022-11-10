@@ -93,7 +93,7 @@ $ npm i
 
 ### Executando o Cuida
 
-- Após a execução do comando `docker-composer up -d` a aplicação já estará rodando no [http://localhost:6006/](http://localhost:6006)
+- Após a execução do comando `docker-composer up -d` a aplicação iniciará com instalação e build em segundo plano e estará acessível após alguns segundos em [http://localhost:6006/](http://localhost:6006). O progresso pode ser acompanhado também executando `docker-compose logs -f main`.
   .
 - Ou alternativamente, sem o docker, rode apenas:
 
