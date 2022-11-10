@@ -1,6 +1,6 @@
 #!/bin/bash
 
 
-npm ci
+npm install
 npm run build
 npm run storybook
