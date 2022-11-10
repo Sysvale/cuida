@@ -301,7 +301,6 @@ export default {
 		color: $rc-600;
 		margin: mt(1);
 	}
-
 }
 
 input::-webkit-outer-spin-button,
