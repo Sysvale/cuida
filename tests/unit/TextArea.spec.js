@@ -68,10 +68,8 @@ test('if as slot is correctly rendered', () => {
 
 	const wrapper = mount(TextArea, {
 		localVue,
-        value: '',
-		slots: [
-			slotTextArea,
-		],
+		value: '',
+		slots: [slotTextArea],
 	});
 
 	expect(wrapper.findComponent(slotTextArea)).toBeTruthy();

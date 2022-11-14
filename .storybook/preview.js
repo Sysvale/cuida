@@ -68,7 +68,7 @@ import {
 	TextInput,
 	Pagination,
 	DateInput,
-    TextArea,
+	TextArea,
 } from '../src/components';
 
 import {
