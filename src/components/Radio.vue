@@ -110,6 +110,7 @@ input[type="radio"] {
     height: 16px;
     border: 1px solid $gp-500;
     border-radius: 50%;
+    margin-top: 1.5px;
     display: grid;
     place-content: center;
 }
