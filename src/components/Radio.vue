@@ -94,7 +94,7 @@ export default {
 
 .cds-radio__label {
     @include body-2;    
-    margin-left: 5px;
+    margin-left: 10px;
 
     [disabled="disabled"] {
         color: $n-300;
