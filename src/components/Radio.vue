@@ -108,11 +108,15 @@ input[type="radio"] {
     font: inherit;
     width: 16px;
     height: 16px;
-    border: 1px solid $gp-500;
+    border: 1px solid $n-50;
     border-radius: 50%;
     margin-top: 1.5px;
     display: grid;
     place-content: center;
+}
+
+input[type="radio"]:checked {
+    border: 1px solid $gp-500;
 }
 
 input[type="radio"]::before {
@@ -126,16 +130,12 @@ input[type="radio"]::before {
 }
 
 input[type="radio"]:checked::before {
-  transform: scale(1);
+    transform: scale(1);
 }
-
 input[type="radio"][disabled="disabled"] {
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    background: $n-20;
     border: 1px solid $n-50;
+    background: $n-20;
 }
-
 input[type="radio"][disabled="disabled"]::before {
     background: $n-20;
 }
