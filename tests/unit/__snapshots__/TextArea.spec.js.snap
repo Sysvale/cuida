@@ -5,7 +5,13 @@ exports[`component is mounted properly 1`] = `
     Uma verdade difícil de engolir
     <!---->
   </label>
-  <div class="textarea"><textarea id="textarea" placeholder="Digite aqui a descrição" class="textarea__input"></textarea></div>
+  <div class="textarea"><textarea id="textarea" placeholder="Digite aqui a descrição" class="textarea__input"></textarea>
+    <div class="textarea__icon-container">
+      <!---->
+      <!---->
+      <!---->
+    </div>
+  </div>
   <!---->
 </div>
 `;
