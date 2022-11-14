@@ -95,12 +95,7 @@ export const iconsData = [
 	},
 	{
 		categoryName: 'Users',
-		icons: [
-			'user-outline',
-			'user-remove-outline',
-			'user-add-outline',
-			'users-outline',
-		],
+		icons: ['user-outline', 'user-remove-outline', 'user-add-outline', 'users-outline'],
 	},
 	{
 		categoryName: 'Charts',
@@ -113,41 +108,22 @@ export const iconsData = [
 	},
 	{
 		categoryName: 'Settings',
-		icons: [
-			'settings-outline',
-			'funnel-outline',
-			'sliders-outline',
-		],
+		icons: ['settings-outline', 'funnel-outline', 'sliders-outline'],
 	},
 	{
 		categoryName: 'Location',
-		icons: [
-			'map-pin-outline',
-			'map-outline',
-			'pin-outline',
-		],
+		icons: ['map-pin-outline', 'map-outline', 'pin-outline'],
 	},
 	{
 		categoryName: 'Date & time',
-		icons: [
-			'calendar-clear-outline',
-			'calendar-outline',
-			'clock-outline',
-		],
+		icons: ['calendar-clear-outline', 'calendar-outline', 'clock-outline'],
 	},
 	{
 		categoryName: 'Security',
-		icons: [
-			'lock-outline',
-			'unlock-outline',
-			'key-outline',
-		],
+		icons: ['lock-outline', 'unlock-outline', 'key-outline'],
 	},
 	{
 		categoryName: 'Messaging',
-		icons: [
-			'chatbubble-outline',
-			'chatbubbles-outline',
-		],
+		icons: ['chatbubble-outline', 'chatbubbles-outline'],
 	},
-]
+];
