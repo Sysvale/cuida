@@ -26,7 +26,6 @@
                 class="textarea__input"
 				v-model="internalValue"
 				:placeholder="placeholder"
-				:class="inputStateClass"
 				:disabled="disabled"
 			/>
 			<div class="textarea__icon-container">
@@ -67,7 +66,7 @@ export default {
 		*/
 		value: {
 			type: String,
-			default: null,
+			default: '',
 			required: true,
 		},
 
