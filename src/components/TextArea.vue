@@ -29,6 +29,24 @@
 				:class="inputStateClass"
 				:disabled="disabled"
 			/>
+			<div class="textarea__icon-container">
+				<check-icon
+					v-if="validState && !disabled"
+					size="1x"
+					class="textarea__icon--check-icon"
+				/>
+				<alert-circle-icon
+					v-if="errorState && !disabled"
+					size="1x"
+					class="textarea__icon--alert-circle-icon"
+				/>
+                <cds-spinner
+					v-if="loadingState && !disabled"
+					size="sm"
+					variant="blue"
+					class="textarea__icon--spinner-icon"
+				/>
+			</div>
 		</div>
 		<div
 			v-if="errorState && !disabled"
@@ -40,6 +58,8 @@
 </template>
 
 <script>
+import { CheckIcon, AlertCircleIcon } from 'vue-feather-icons';
+
 export default {
 	props: {
 		/**
@@ -84,7 +104,7 @@ export default {
 		},
 
 		/**
-		 * Especifica o estado do textarea. As opções são 'default', 'valid' e 'invalid'.
+		 * Especifica o estado do textarea. As opções são 'default', 'valid', 'invalid' e 'loading'.
 		 */
 		state: {
 			type: String,
@@ -117,10 +137,15 @@ export default {
 			required: false,
 		},
 	},
+
+    components: {
+		CheckIcon,
+		AlertCircleIcon,
+	},
+
 	data() {
 		return {
 			internalValue: this.value,
-            isBeingFocused: false,
 		};
 	},
 	computed: {
@@ -137,7 +162,8 @@ export default {
 				} else {
 					stepperInputClass += ' textarea--disabled';
 				}
-			} 
+			}
+
 			return stepperInputClass;
 		},
         
@@ -147,6 +173,11 @@ export default {
 
 		errorState() {
 			return this.state === 'invalid';
+		},
+
+
+		loadingState(){
+			return this.state === 'loading';
 		},
 
 		inputClass() {
@@ -200,12 +231,46 @@ textarea {
 		}
     }
 
+	&__icon-container {
+		background-color: none;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		width: 0;
+        margin-top: 12px;
+	}
+
+    &__icon--check-icon {
+        position: absolute;
+        left: 429px;
+        color: $gp-500;
+    }
+
+    &__icon--alert-circle-icon {
+        position: absolute;
+        left: 429px;
+        color: $rc-600;
+    }
+
+    &__icon--spinner-icon {
+        position: absolute;
+        left: 420px;
+    }
+
     &--fluid {
         @extend .textarea;
 		width: 100%;
 
         .textarea__input {
             width: 100%;
+        }
+
+        .textarea__icon--alert-circle-icon, 
+        .textarea__icon--check-icon {
+            left: 1149px;
+        }
+        .textarea__icon--spinner-icon {
+            left: 1140px;
         }
 	}
 
