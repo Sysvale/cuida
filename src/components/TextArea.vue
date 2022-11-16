@@ -29,16 +29,22 @@
 				:disabled="disabled"
 			/>
 			<div class="textarea__icon-container">
-				<check-icon
-					v-if="validState && !disabled"
-					size="1x"
-					class="textarea__icon--check-icon"
-				/>
-				<alert-circle-icon
-					v-if="errorState && !disabled"
-					size="1x"
-					class="textarea__icon--alert-circle-icon"
-				/>
+                <cds-icon
+                    v-if="validState && !disabled"
+                    name="check-outline"
+                    height="1"
+                    width="1"
+                    color="#239f78"
+                    class="textarea__icon--check-icon"
+                />
+                <cds-icon
+                    v-if="errorState && !disabled"
+                    name="alert-outline"
+                    height="1"
+                    width="1"
+                    color="#a42333"
+                    class="textarea__icon--alert-circle-icon"
+                />
                 <cds-spinner
 					v-if="loadingState && !disabled"
 					size="sm"
@@ -57,7 +63,7 @@
 </template>
 
 <script>
-import { CheckIcon, AlertCircleIcon } from 'vue-feather-icons';
+import CdsIcon from '../components/Icon.vue';
 
 export default {
 	props: {
@@ -138,8 +144,7 @@ export default {
 	},
 
     components: {
-		CheckIcon,
-		AlertCircleIcon,
+		CdsIcon
 	},
 
 	data() {
@@ -241,13 +246,11 @@ textarea {
     &__icon--check-icon {
         position: absolute;
         left: 429px;
-        color: $gp-500;
     }
 
     &__icon--alert-circle-icon {
         position: absolute;
         left: 429px;
-        color: $rc-600;
     }
 
     &__icon--spinner-icon {
