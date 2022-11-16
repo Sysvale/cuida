@@ -32,17 +32,17 @@
                 <cds-icon
                     v-if="validState && !disabled"
                     name="check-outline"
-                    height="1"
-                    width="1"
-                    color="#239f78"
+                    height="20"
+                    width="20"
+                    color="#239F78"
                     class="textarea__icon--check-icon"
                 />
                 <cds-icon
                     v-if="errorState && !disabled"
                     name="alert-outline"
-                    height="1"
-                    width="1"
-                    color="#a42333"
+                    height="20"
+                    width="20"
+                    color="#D22D41"
                     class="textarea__icon--alert-circle-icon"
                 />
                 <cds-spinner
