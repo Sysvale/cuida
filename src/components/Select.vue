@@ -1,6 +1,7 @@
 <template>
 	<div
 		class="select"
+		ref="cds-select"
 	>
 		<label
 			class="select__label"
@@ -45,8 +46,10 @@
 				:class="{
 					'select__options--thin': width === 'thin',
 					'select__options--default': width === 'default',
-					'select__options--wide': width =='wide',
+					'select__options--wide': width === 'wide',
 					'select__options--fluid': fluid,
+					'select__options--down': direction === 'down',
+					'select__options--up': direction === 'up',
 				}"
 			>
 				<ul
@@ -174,18 +177,28 @@ export default {
 			allowSearch: this.searchable,
 			localOptions: this.options,
 			localValue: this.value,
+			selectElement: '',
+			direction: 'down',
 		};
 	},
 
 	mounted() {
 		this.id = `select$-${this._uid}`;
+		this.selectElement = this.$refs['cds-select'];
 	},
 
 	computed: {
 		inputClass() {
 			let returningClass = '';
 
-			returningClass = this.active ? 'select__input--opened' : 'select__input--closed';
+			if (this.active && this.direction === 'down') {
+				returningClass = 'select__input--opened-down';
+			} else if (this.active && this.direction === 'up') {
+				returningClass = 'select__input--opened-up';
+			} else {
+				returningClass = 'select__input--closed';
+			}
+
 			returningClass += ` select__input--${widths.find((item) => item === this.width)}`;
 			returningClass += this.fluid ? ' select__input--fluid' : ' select__input--fit';
 			returningClass += this.disabled ? ' select__input--disabled' : '';
@@ -224,6 +237,14 @@ export default {
 		},
 
 		activateSelectionOnClick() {
+			let boundingRect = this.selectElement.getBoundingClientRect();
+
+			if ((boundingRect.top + boundingRect.height + 286) < window.innerHeight) {
+				this.direction = 'down';
+			} else {
+				this.direction = 'up';
+			}
+
 			if (this.disabled) return;
 
 			this.active = true;
@@ -339,10 +360,16 @@ export default {
 			border-radius: $border-radius-extra-small !important;
 		}
 
-		&--opened {
+		&--opened-down {
 			@extend .select__input;
 			border-top-left-radius: $border-radius-extra-small !important;
 			border-top-right-radius: $border-radius-extra-small !important;
+		}
+
+		&--opened-up {
+			@extend .select__input;
+			border-bottom-left-radius: $border-radius-extra-small !important;
+			border-bottom-right-radius: $border-radius-extra-small !important;
 		}
 
 		&--searchable {
@@ -466,8 +493,6 @@ export default {
 	&__options {
 		@include subheading-3;
 		outline: 1px solid $n-50;
-		border-bottom-left-radius: $border-radius-extra-small;
-		border-bottom-right-radius: $border-radius-extra-small;
 		display: flex;
 		flex-direction: column;
 		margin-top: 1px;
@@ -494,8 +519,20 @@ export default {
 		&--fluid {
 			width: 100%;
 		}
-	}
 
+		&--up {
+			bottom: 40px;
+			width: 100%;
+			border-top-left-radius: $border-radius-extra-small;
+			border-top-right-radius: $border-radius-extra-small;
+		}
+
+		&--down {
+			width: 100%;
+			border-bottom-left-radius: $border-radius-extra-small;
+			border-bottom-right-radius: $border-radius-extra-small;
+		}
+	}
 }
 
 .option {
