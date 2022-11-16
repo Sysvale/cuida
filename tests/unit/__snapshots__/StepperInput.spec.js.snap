@@ -1,8 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component is mounted properly 1`] = `
-<div><label for="stepper-input-number">Label</label>
-  <div class="stepper-input"><input id="stepper-input-number" type="number" class="stepper-input__field">
+<div><label for="stepper-input" class="stepper-input__label">
+    Label
+    <!---->
+  </label>
+  <div class="stepper-input"><input id="stepper-input" type="number" class="stepper-input__field stepper-input__field--default">
     <div class="stepper-input__icon-container"><button tabindex="-1" class="stepper-input__icon--plus">
         <plus-icon-stub size="1x" class="custom-class"></plus-icon-stub>
       </button> <button tabindex="-1" class="stepper-input__icon--minus">
