@@ -234,7 +234,7 @@ export default {
 	&__field {
 		padding: pa(3);
 		margin: mr(2);
-		height: 38px !important;
+		height: 40px !important;
 		border-radius: $border-radius-extra-small;
 		border: none;
 		text-align: start;
