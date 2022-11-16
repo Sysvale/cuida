@@ -211,7 +211,6 @@ textarea {
 }
 .textarea {
     display: flex;
-	border: 1px solid $n-50;
 	border-radius: $border-radius-extra-small;
 	width: fit-content;
 	width: -moz-fit-content;
@@ -219,13 +218,13 @@ textarea {
     &__input {
         width: 429px;
 		height: 130px;
+        border: 1px solid $n-50;
 		border-radius: $border-radius-extra-small;
 		resize: none;
 		padding: pa(3);
-        border: none;
 
 		&:focus {
-			border: 1px solid $bn-300;
+            border: 1px solid $bn-300;
 			box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);
 		}
     }
@@ -303,11 +302,11 @@ textarea {
 
 	&--valid {
         @extend .textarea;
-		border: 1px solid $gp-500;
 
         .textarea__input {
+            border: 1px solid $gp-500;
+
             &:focus {
-                border: transparent;
                 box-shadow: 0 0 0 0.2rem rgba($gp-300, .45) !important;
             }
         }
@@ -315,11 +314,11 @@ textarea {
 
 	&--invalid {
         @extend .textarea;
-		border: 1px solid $rc-600;
 
         .textarea__input {
+            border: 1px solid $rc-600;
+            
             &:focus {
-                border: transparent;
                 box-shadow: 0 0 0 0.2rem rgba($rc-300, .45);
             }
         }
