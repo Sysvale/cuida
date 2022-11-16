@@ -27,6 +27,11 @@
 				@blur="isBeingFocused = false"
 				v-model="internalValue"
 				class="stepper-input__field"
+				:class="{
+					'stepper-input__field--thin': width === 'thin',
+					'stepper-input__field--default': width === 'default',
+					'stepper-input__field--wide': width =='wide',
+				}"
 				id="stepper-input"
 				type="number"
 			/>
@@ -99,6 +104,14 @@ export default {
 		 required: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Define a largura do Select. As opções são 'thin', 'default' e 'wide'.
+		 */
+		 width: {
+			type: String,
+			default: 'default',
+			required: false,
 		},
 		/**
 		 * Desabilita o input.
@@ -230,6 +243,18 @@ export default {
 		text-align: end;
 		color: $n-600;
 
+		&--thin {
+			width: 72px;
+		}
+
+		&--default {
+			width: 144px;
+		}
+
+		&--wide {
+			width: 284px;
+		}
+
 		&:focus {
 			outline: 0;
 		}
@@ -324,7 +349,7 @@ input[type=number] {
 }
 
 input[type=number]{
-	width: 68px;
+	// width: 68px;
 }
 
 input:disabled {
