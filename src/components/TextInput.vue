@@ -70,7 +70,6 @@ export default {
 		*/
 		value: {
 			type: [String, Number],
-			default: '',
 		},
 		/**
 		 * Especifica a label do input.
@@ -93,7 +92,6 @@ export default {
 			type: String,
 			default: 'default',
 		},
-
 		/**
 		 * Exibe asterisco de obrigatório (obs.: não faz a validação)
 		 */
@@ -101,7 +99,6 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-
 		/**
 		 * Especifica o placeholder do input
 		 */
@@ -109,7 +106,6 @@ export default {
 			type: String,
 			default: 'Digite aqui a informação',
 		},
-
 		/**
 		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
 		 */
