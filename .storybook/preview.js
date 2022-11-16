@@ -68,6 +68,7 @@ import {
 	TextInput,
 	Pagination,
 	DateInput,
+    Icon,
 	TextArea,
 } from '../src/components';
 
@@ -164,6 +165,7 @@ Vue.component('cds-carousel-controller', CarouselController);
 Vue.component('cds-text-input', TextInput);
 Vue.component('cds-pagination', Pagination);
 Vue.component('cds-date-input', DateInput);
+Vue.component('cds-icon', Icon);
 Vue.component('cds-text-area', TextArea);
 
 addParameters({

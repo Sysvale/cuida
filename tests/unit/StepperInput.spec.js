@@ -66,8 +66,8 @@ test('if the value is emited properly when the number is changed by input', asyn
 
 	await flushPromises();
 
-	wrapper.find('#stepper-input-number').element.value = 50;
-	wrapper.find('#stepper-input-number').trigger('input');
+	wrapper.find('#stepper-input').element.value = 50;
+	wrapper.find('#stepper-input').trigger('input');
 
 	await flushPromises();
 
@@ -113,7 +113,7 @@ test('if the input is blocked when the prop disabled is true', async () => {
 
 	await flushPromises();
 
-	wrapper.find('#stepper-input-number').trigger('input');
+	wrapper.find('#stepper-input').trigger('input');
 
 	expect(wrapper.emitted().input).toBeFalsy();
 
