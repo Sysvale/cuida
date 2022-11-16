@@ -26,6 +26,7 @@
 				v-model="localValue.value"
 				id="cds-select"
 				type="text"
+				autocomplete="off"
 				:onkeypress="`return ${allowSearch};`"
 				:class="inputClass"
 				:placeholder="placeholder"
