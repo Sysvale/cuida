@@ -69,7 +69,7 @@ export default {
 		* Prop utilizada como v-model.
 		*/
 		value: {
-			type: String,
+			type: [String, Number],
 			default: '',
 		},
 		/**
@@ -202,7 +202,7 @@ export default {
 
 .text-input {
 	display: flex;
-	border: 1px solid $n-50;
+	outline: 1px solid $n-50;
 	border-radius: $border-radius-extra-small;
 	width: fit-content;
 	width: -moz-fit-content;
@@ -252,18 +252,18 @@ export default {
 
 	&--focused {
 		@extend .text-input;
-		border: 1px solid $bn-300;
+		outline: 1px solid $bn-300;
 		box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);
 	}
 
 	&--valid {
 		@extend .text-input;
-		border: 1px solid $gp-500;
+		outline: 1px solid $gp-500;
 	}
 
 	&--invalid {
 		@extend .text-input;
-		border: 1px solid $rc-600;
+		outline: 1px solid $rc-600;
 	}
 
 	&--focused-valid {
