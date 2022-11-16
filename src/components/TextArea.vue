@@ -156,18 +156,14 @@ export default {
 		stepperInputDynamicClass() {
 			let stepperInputClass = this.fluid ? 'textarea--fluid' : 'textarea';
 
-			if (!this.isBeingFocused) {
-				if (!this.disabled) {
-					if (this.state === 'valid') {
-						stepperInputClass += ' textarea--valid';
-					} else if (this.state === 'invalid') {
-						stepperInputClass += ' textarea--invalid';
-					}
-				} else {
-					stepperInputClass += ' textarea--disabled';
-				}
-			}
-
+            switch(!this.isBeingFocused) {
+                case !this.disabled && this.state === 'valid':
+                    return stepperInputClass += ' textarea--valid';
+                case !this.disabled && this.state === 'invalid':
+                    return stepperInputClass += ' textarea--invalid';
+                case this.disabled:
+                    return stepperInputClass += ' textarea--disabled';
+            }
 			return stepperInputClass;
 		},
         
