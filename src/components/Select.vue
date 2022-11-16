@@ -29,7 +29,6 @@
 				:class="inputClass"
 				:placeholder="placeholder"
 				:disabled="disabled"
-				v-on-click-outside="hide"
 				@keydown.enter.prevent="activateSelectionOnEnter"
 				@keydown.arrow-down.prevent="highlightOnArrowDown"
 				@keydown.arrow-up.prevent="highlightOnArrowUp"
@@ -86,7 +85,6 @@
 </template>
 
 <script>
-import { directive as onClickOutside } from 'vue-on-click-outside';
 import { widths } from '../utils';
 import removeAccents from '../utils/methods/removeAccents';
 
@@ -166,10 +164,6 @@ export default {
 			default: false,
 			required: false,
 		},
-	},
-
-	directives: {
-		'on-click-outside': onClickOutside,
 	},
 
 	data() {
