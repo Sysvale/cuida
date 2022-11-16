@@ -70,6 +70,7 @@ export default {
 		*/
 		value: {
 			type: [String, Number],
+			default: '',
 		},
 		/**
 		 * Especifica a label do input.

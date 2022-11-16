@@ -47,3 +47,4 @@ export { default as TextInput } from './TextInput.vue';
 export { default as Pagination } from './Pagination.vue';
 export { default as DateInput } from './DateInput.vue';
 export { default as Icon } from './Icon.vue';
+export { default as TextArea } from './TextArea.vue';
