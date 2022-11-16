@@ -1,0 +1,81 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import TextArea from '../../components/TextArea.vue';
+
+<Meta
+	title="Componentes/Forms/TextArea"
+	component={ TextArea }
+	argTypes={{
+		state: {
+		    control: {
+				type: 'select',
+				    options: [
+					    'default',
+					    'valid',
+					    'invalid',
+                        'loading',
+				    ],
+			}
+		},
+	}}
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { TextArea },
+	template: /*html*/ `
+		<cds-text-area
+			v-bind="$props" 
+		/>
+	`,
+});
+
+export const template = /*html*/ `
+	<cds-text-area
+		v-model="value"
+		label="Label"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
+# TextArea
+
+### TextAreas permitem que os usuários insiram um texto longo em uma interface.
+---
+<br />
+
+## Recomendamos o uso de TextAreas quando:
+- Necessitar de um campo de texto para inserir informações grandes. Exemplo: Descrição de produto ou mensagens.
+
+<br />
+
+## Não recomendamos o uso de TextAreas quando:
+- For necessário informar apenas um dado específico ao campo de texto.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="TextArea"
+		decorators={[docsDecorator]}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="TextArea" />
