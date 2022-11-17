@@ -1,21 +1,32 @@
 <template>
 	<div class="date-input__container">
-		<label
-			v-if="label"
-			class="date-input__label"
-			for="cds-date-input"
-		>
-			<!-- @slot Slot para renderização customizada da label. -->
-			<slot name="label">
-				{{ label }}
+		<span>
+			<span
+				v-if="hasSlots"
+			>
+				<!-- @slot Slot para renderização customizada da label. -->
+				<slot name="label" />
+			</span>
+
+			<label
+				v-else
+				class="date-input__label"
+				for="cds-date-input"
+			>
+				<span>
+					{{ label }}
+				</span>
+	
 				<span
 					v-if="required"
 					class="date-input__label--required-indicator"
 				>
 					*
 				</span>
-			</slot>
-		</label>
+	
+			</label>
+		</span>
+
 		<v-date-picker
 			v-model="internalDate"
 			id="cds-date-input"
@@ -123,6 +134,10 @@ export default {
 	},
 
 	computed: {
+		hasSlots() {
+			return !!Object.keys(this.$slots).length;
+		},
+
 		inputClass() {
 			return this.fluid ? 'date-input--fluid' : 'date-input';
 		},
@@ -173,8 +188,9 @@ export default {
 @import '../assets/sass/app.scss';
 
 .date-input {
-	border: 1px solid $n-50;
-	border-radius: $border-radius-extra-small;
+	outline: 1px solid $n-50 !important;
+	border: none !important;
+	border-radius: $border-radius-extra-small !important;
 	padding: pa(3);
 	color: $n-600;
 	cursor: pointer;
@@ -182,7 +198,7 @@ export default {
 	&:focus {
 		@extend .date-input;
 		outline: 0;
-		border: 1px solid $bn-300;
+		outline: 1px solid $bn-300;
 		box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);
 	}
 
