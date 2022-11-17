@@ -143,6 +143,12 @@
 				Não há nenhuma opção para ser exibida.
 			</template>
 		</multiselect>
+		<div
+			v-if="errorState && !disabled"
+			class="clustered-multiselect__error-message"
+		>
+			{{ errorMessage }}
+		</div>
 	</span>
 </template>
 
@@ -182,6 +188,20 @@ export default {
 			type: String,
 			default: 'Label',
 		},
+		/**
+		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+		 */
+		errorMessage: {
+			type: String,
+			default: 'Valor inválido',
+		},
+		/**
+		 * Especifica o estado do TextInput. As opções são 'default' e 'invalid'.
+		 */
+		state: {
+			type: String,
+			default: 'default',
+		},
 		options: {
 			type: Array,
 			required: true,
@@ -200,6 +220,10 @@ export default {
 		};
 	},
 	computed: {
+		errorState() {
+			return this.state === 'invalid';
+		},
+
 		selectedFancyMessage() {
 			return (qty) => {
 				if (qty === 1) {
@@ -208,28 +232,34 @@ export default {
 				return `${qty} opções selecionadas`;
 			};
 		},
+
 		selectAllFancyMessage() {
 			if (!this.hasSelectedValues) {
 				return 'Selecionar todos';
 			}
 			return 'Desfazer seleção';
 		},
+
 		hasSelectedValues() {
 			return this.selectedValue.length > 0;
 		},
+
 		isAllItemsSelected() {
 			return this.selectedValue.length === this.options.length;
 		},
+
 		computedPlaceholder() {
 			if (this.$attrs.placeholder) {
 				return this.$attrs.placeholder;
 			}
 			return 'Selecione uma ou mais opções';
 		},
+
 		isGroupMode() {
 			return (this.internalOptions[SELECTED] && this.internalOptions[SELECTED].$status)
 				|| (this.internalOptions[NOT_SELECTED] && this.internalOptions[NOT_SELECTED].$status);
 		},
+
 		attrs() {
 			const { label, trackBy, options, ...attrs } = this.$attrs;
 			return attrs;
@@ -251,6 +281,7 @@ export default {
 				*/
 			this.$emit('input', cleanedValues);
 		},
+
 		isAllItemsSelected(newValue) {
 			if (!newValue && this.selectAllValue) {
 				this.selectAllValue = false;
@@ -260,6 +291,7 @@ export default {
 				this.selectAllValue = true;
 			}
 		},
+
 		indeterminate(newValue) {
 			const input = document.getElementById('select-all-input-id');
 			input.indeterminate = newValue;
@@ -275,6 +307,7 @@ export default {
 				*/
 			this.$emit('remove', option);
 		},
+
 		selectItem(option) {
 			this.handleSelectItem(option);
 			/**
@@ -284,6 +317,7 @@ export default {
 				*/
 			this.$emit('select', option);
 		},
+
 		handleSelectItem(option) {
 			if (this.isGroupMode) {
 				this.internalOptions[SELECTED].options.forEach(item => {
@@ -304,6 +338,7 @@ export default {
 				});
 			}
 		},
+
 		toggleSelectAll() {
 			this.selectAllValue = !this.hasSelectedValues;
 			if (this.selectAllValue) {
@@ -341,6 +376,7 @@ export default {
 				}
 			});
 		},
+
 		addItemViaCustomCheckbox(option) {
 			option.isSelected = !option.isSelected;
 			this.selectedValue = [
@@ -348,6 +384,7 @@ export default {
 				option,
 			];
 		},
+
 		handleClose() {
 			this.updateRenderOptions();
 			this.setContentWrapperScrollToTop();
@@ -401,9 +438,11 @@ export default {
 			this.groupValues = 'options';
 			this.groupLabel = '$status';
 		},
+
 		handleSearchChange(queryString) {
 			this.queryString = queryString;
 		},
+
 		setContentWrapperScrollToTop() {
 			document.querySelector(`span[data-cds-multiselect-identifier='${this.uniqueKey}']`)
 				.getElementsByClassName('multiselect__content-wrapper')[0]
@@ -506,14 +545,17 @@ export default {
 		color: $n-700!important;
 		border: 1px solid $n-100!important;
 	}
+
 	.multiselect__tag-icon:after{
 		color: $n-700!important;
 	}
+
 	.multiselect__tag-icon:focus,
 	.multiselect__tag-icon:hover {
 		background: $n-0!important;
 		color: $n-800!important;
 	}
+
 	.multiselect__tag-icon:focus:after,
 	.multiselect__tag-icon:hover:after {
 		color: $n-800!important;
@@ -559,6 +601,12 @@ export default {
 				color: $rc-600;
 			}
 		}
+	}
+
+	.clustered-multiselect__error-message {
+		@include caption;
+		color: $rc-600;
+		margin: mt(1);
 	}
 }
 </style>
