@@ -1,25 +1,31 @@
 <template>
 	<div>
-		<label
-			v-if="label"
-			class="text-input__label"
-			for="cds-text-input"
-		>
-			<!--
-				@slot Slot para renderização customizada da label
-				(Obs.: Existe, também, a prop label que pode ser usada
-				quando não há necessidade de customização)
-			-->
-			<slot name="label">
-				{{ label }}
+		<span>
+			<span
+				v-if="hasSlots"
+			>
+				<slot name="label" />
+			</span>
+
+			<label
+				v-else
+				class="text-input__label"
+				for="cds-text-input"
+			>
+				<span>
+					{{ label }}
+				</span>
+	
 				<span
 					v-if="required"
 					class="text-input__label--required-indicator"
 				>
 					*
 				</span>
-			</slot>
-		</label>
+	
+			</label>
+		</span>
+
 		<div :class="stepperInputDynamicClass">
 			<input
 				id="cds-text-input"
@@ -137,6 +143,10 @@ export default {
 	},
 
 	computed: {
+		hasSlots() {
+			return !!Object.keys(this.$slots).length;
+		},
+
 		stepperInputDynamicClass() {
 			let stepperInputClass = this.fluid ? 'text-input--fluid' : 'text-input';
 
