@@ -3,26 +3,32 @@
 		id="cds-multiselect"
 		:data-cds-multiselect-identifier="uniqueKey"
 	>
-		<label
-			v-if="inputLabel"
-			class="clustered-multiselect__label"
-			for="clustered-multiselect"
-		>
-			<!--
-				@slot Slot para renderização customizada da label
-				(Obs.: Existe, também, a prop label que pode ser usada
-				quando não há necessidade de customização)
-			-->
-			<slot name="label">
-				{{ inputLabel }}
+		<span>
+			<span
+				v-if="hasSlots"
+			>
+				<slot name="label" />
+			</span>
+
+			<label
+				v-else
+				class="clustered-multiselect__label"
+				for="clustered-multiselect"
+			>
+				<span>
+					{{ inputLabel }}
+				</span>
+	
 				<span
 					v-if="required"
 					class="clustered-multiselect__label--required-indicator"
 				>
 					*
 				</span>
-			</slot>
-		</label>
+	
+			</label>
+		</span>
+
 		<multiselect
 			id="clustered-multiselect"
 			v-model="selectedValue"
@@ -165,6 +171,7 @@ export default {
 	components: {
 		Multiselect,
 	},
+
 	props: {
 		label: {
 			type: String,
@@ -178,6 +185,13 @@ export default {
 		 * Exibe asterisco de obrigatório (obs.: não faz a validação)
 		 */
 		 required: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Desabilita o input.
+		 */
+		 disabled: {
 			type: Boolean,
 			default: false,
 		},
@@ -207,6 +221,7 @@ export default {
 			required: true,
 		},
 	},
+
 	data() {
 		return {
 			selectedValue: this.$attrs.value || [],
@@ -219,7 +234,12 @@ export default {
 			uniqueKey: generateKey(),
 		};
 	},
+
 	computed: {
+		hasSlots() {
+			return !!Object.keys(this.$slots).length;
+		},
+
 		errorState() {
 			return this.state === 'invalid';
 		},
@@ -533,6 +553,7 @@ export default {
 		border-top-right-radius: 8px !important;
 		border-top-left-radius: 8px !important;
 		border: 1px solid $n-50;
+		height: 40px !important;
 	}
 
 	.multiselect--active > .multiselect__tags {
@@ -581,7 +602,7 @@ export default {
 		background: transparent!important;
 	}
 	.multiselect__placeholder {
-		color: $n-600!important;
+		color: $n-300 !important;
 	}
 
 	.multiselect__content-wrapper {

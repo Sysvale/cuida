@@ -1,25 +1,31 @@
 <template>
 	<div>
-		<label
-			v-if="label"
-			class="stepper-input__label"
-			for="stepper-input"
-		>
-			<!--
-				@slot Slot para renderização customizada da label
-				(Obs.: Existe, também, a prop label que pode ser usada
-				quando não há necessidade de customização)
-			-->
-			<slot name="label">
-				{{ label }}
+		<span>
+			<span
+				v-if="hasSlots"
+			>
+				<slot name="label" />
+			</span>
+
+			<label
+				v-else
+				class="stepper-input__label"
+				for="stepper-input"
+			>
+				<span>
+					{{ label }}
+				</span>
+	
 				<span
 					v-if="required"
 					class="stepper-input__label--required-indicator"
 				>
 					*
 				</span>
-			</slot>
-		</label>
+	
+			</label>
+		</span>
+
 		<div :class="stepperInputDynamicClass">
 			<input
 				:disabled="disabled"
@@ -61,6 +67,13 @@
 					<minus-icon size="1x" class="custom-class" />
 				</button>
 			</div>
+		</div>
+
+		<div
+			v-if="errorState && !disabled"
+			class="stepper-input__error-message"
+		>
+			{{ errorMessage }}
 		</div>
 	</div>
 </template>
@@ -127,6 +140,13 @@ export default {
 			type: String,
 			default: 'default',
 		},
+		/**
+		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+		 */
+		 errorMessage: {
+			type: String,
+			default: 'Valor inválido',
+		},
 	},
 
 	components: {
@@ -142,6 +162,14 @@ export default {
 	},
 
 	computed: {
+		hasSlots() {
+			return !!Object.keys(this.$slots).length;
+		},
+
+		errorState() {
+			return this.state === 'invalid';
+		},
+
 		stepperInputDynamicClass() {
 			let stepperInputClass = '';
 
@@ -335,6 +363,12 @@ export default {
 			background-color: $bn-500;
 			border-radius: 0px 0px 8px 0px;
 		}
+	}
+
+	&__error-message {
+		@include caption;
+		color: $rc-600;
+		margin: mt(1);
 	}
 }
 
