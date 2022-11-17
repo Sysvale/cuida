@@ -481,7 +481,7 @@ export default {
 		color: $n-700!important;
 	}
 	.multiselect__option--disabled.multiselect__option--group {
-		background: $n-0!important;
+		background: $n-0 !important;
 		color: $n-100!important;
 		text-transform: uppercase!important;
 		border-bottom: none!important;
@@ -543,10 +543,17 @@ export default {
 		background-color: $gp-500 !important;
 		border: none !important;
 	}
+
 	.option__checkbox--indeterminate {
 		background-color: $gp-500 !important;
 		border: none !important;
 	}
+
+	.multiselect__single {
+		@include subheading-3;
+		color: $n-600 !important;
+	}
+
 	.multiselect__tags{
 		border-bottom-left-radius: 8px !important;
 		border-bottom-right-radius: 8px !important;
@@ -554,6 +561,10 @@ export default {
 		border-top-left-radius: 8px !important;
 		border: 1px solid $n-50;
 		height: 40px !important;
+		align-items: center !important;
+		display: flex !important;
+		padding-right: spacer(8);
+		padding-left: spacer(3);
 	}
 
 	.multiselect--active > .multiselect__tags {
@@ -573,7 +584,7 @@ export default {
 
 	.multiselect__tag-icon:focus,
 	.multiselect__tag-icon:hover {
-		background: $n-0!important;
+		background: $n-0 !important;
 		color: $n-800!important;
 	}
 
@@ -581,10 +592,16 @@ export default {
 	.multiselect__tag-icon:hover:after {
 		color: $n-800!important;
 	}
+
+	.multiselect__select {
+		top: 5px !important;
+	}
+
 	.multiselect__select:before {
 		color: $n-100 !important;
 		border-color: $n-100 transparent transparent !important;
 	}
+
 	.multiselect__option--selected.multiselect__option--highlight {
 		background: $n-20!important;
 		color: $n-800;
@@ -594,7 +611,7 @@ export default {
 		color: $n-800!important;
 	}
 	.multiselect__option--selected {
-		background: $n-0!important;
+		background: $n-0 !important;
 		color: $n-800!important;
 		font-weight: 500!important;
 	}
@@ -603,6 +620,12 @@ export default {
 	}
 	.multiselect__placeholder {
 		color: $n-300 !important;
+	}
+
+	.multiselect__input {
+		background-color: transparent !important;
+		@include subheading-3;
+		color: $n-700 !important;
 	}
 
 	.multiselect__content-wrapper {
