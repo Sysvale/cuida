@@ -46,6 +46,12 @@
 				/>
 			</template>
 		</v-date-picker>
+		<div
+			v-if="errorState && !disabled"
+			class="date-input__error-message"
+		>
+			{{ errorMessage }}
+		</div>
 	</div>
 </template>
 
@@ -85,11 +91,25 @@ export default {
 			default: false,
 		},
 		/**
+		 * Especifica o estado do DateInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
+		 */
+		 state: {
+			type: String,
+			default: 'default',
+		},
+		/**
 		 * Exibe asterisco de obrigatório (obs.: não faz a validação)
 		 */
 		required: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+		 */
+		 errorMessage: {
+			type: String,
+			default: 'Valor inválido',
 		},
 		/**
 		 * Especifica se a largura do DateInput deve ser fluida.
@@ -134,6 +154,10 @@ export default {
 	},
 
 	computed: {
+		errorState() {
+			return this.state === 'invalid';
+		},
+
 		hasSlots() {
 			return !!Object.keys(this.$slots).length;
 		},
@@ -221,6 +245,12 @@ export default {
 		&--required-indicator {
 			color: $rc-600;
 		}
+	}
+
+	&__error-message {
+		@include caption;
+		color: $rc-600;
+		margin: mt(1);
 	}
 }
 </style>
