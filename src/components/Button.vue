@@ -143,6 +143,8 @@ export default {
 	}
 
 	&__container {
+		display: flex;
+		justify-content: center;
 		font-weight: $font-weight-semibold;
 		border: none;
 		cursor: pointer;
