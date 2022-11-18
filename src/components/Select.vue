@@ -85,6 +85,13 @@
 				:class="active ? 'select__chevron--opened' : 'select__chevron--closed'"
 			/>
 		</div>
+
+		<div
+			v-if="errorState && !disabled"
+			class="select__error-message"
+		>
+			{{ errorMessage }}
+		</div>
 	</div>
 </template>
 
@@ -129,12 +136,26 @@ export default {
 			required: true,
 		},
 		/**
+		 * Especifica o estado do Select. As opções são 'default', 'valid', 'loading' e 'invalid'.
+		 */
+		 state: {
+			type: String,
+			default: 'default',
+		},
+		/**
 		 * Controla a exibição do asterísco indicativo de campo obrigatório.
 		 */
 		required: {
 			type: Boolean,
 			default: false,
 			required: false,
+		},
+		/**
+		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+		 */
+		 errorMessage: {
+			type: String,
+			default: 'Valor inválido',
 		},
 		/**
 		 * Indica se vai ser possível fazer buscas no select.
@@ -189,6 +210,10 @@ export default {
 	},
 
 	computed: {
+		errorState() {
+			return this.state === 'invalid';
+		},
+
 		inputClass() {
 			let returningClass = '';
 
@@ -533,6 +558,12 @@ export default {
 			border-bottom-left-radius: $border-radius-extra-small;
 			border-bottom-right-radius: $border-radius-extra-small;
 		}
+	}
+
+	&__error-message {
+		@include caption;
+		color: $rc-600;
+		margin: mt(1);
 	}
 }
 
