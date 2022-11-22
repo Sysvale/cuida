@@ -224,9 +224,18 @@ export default {
 				returningClass = 'select__input--closed';
 			}
 
+			if (!this.disabled) {
+				if (this.state === 'valid') {
+					returningClass += ' select__input--valid';
+				} else if (this.state === 'invalid') {
+					returningClass += ' select__input--invalid';
+				}
+			} else {
+				returningClass += ' select__input--disabled';
+			}
+
 			returningClass += ` select__input--${widths.find((item) => item === this.width)}`;
 			returningClass += this.fluid ? ' select__input--fluid' : ' select__input--fit';
-			returningClass += this.disabled ? ' select__input--disabled' : '';
 			returningClass += this.searchable ? ' select__input--searchable' : '';
 
 			return returningClass;
@@ -376,7 +385,7 @@ export default {
 		@include subheading-3;
 		text-overflow: ellipsis;
 
-		&:hover:not([disabled]) {
+		&:hover:not([disabled]):not(.select__input--invalid):not(.select__input--valid) {
 			outline: 1px solid $n-200;
 		}
 
@@ -422,6 +431,16 @@ export default {
 			outline: none;
 			cursor: default;
 		}
+
+		&--valid {
+			outline: 1px solid $gp-500;
+		}
+
+
+		&--invalid {
+			outline: 1px solid $rc-600;
+		}
+
 
 		&::placeholder {
 			color: $n-300;
