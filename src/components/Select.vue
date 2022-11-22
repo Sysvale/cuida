@@ -131,8 +131,7 @@ export default {
 		 * Guarda o valor selecionado do select.
 		 */
 		value: {
-			type: Object,
-			default: () => {},
+			type: [Array, Object],
 			required: true,
 		},
 		/**
