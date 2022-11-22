@@ -79,6 +79,13 @@ export default {
 			default: '',
 		},
 		/**
+		* Prop utilizada para converter o valor do input de String para Number.
+		*/
+		castToNumber: {
+			type: Boolean,
+			default: false,
+		},
+		/**
 		 * Especifica a label do input.
 		 */
 		label: {
@@ -199,7 +206,11 @@ export default {
 			* @event input
 			* @type {Event}
 			*/
-			this.$emit('input', value);
+			if (this.castToNumber) {
+				this.$emit('input', +value);
+			} else {
+				this.$emit('input', value);
+			}
 		},
 	},
 };
