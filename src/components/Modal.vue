@@ -6,6 +6,7 @@
 		<div
 			v-if="internalShow"
 			class="cds-modal"
+			:class="`cds-modal--${size}`"
 			:style="dynamicStyle"
 			v-on-click-outside="noCloseOnBackdrop ? () => {} : close"
 		>
@@ -85,11 +86,11 @@ export default {
 			required: true,
 		},
 		/**
-		 * Define a largura do modal.
+		 * Especifica o tamanho do modal. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
 		 */
-		width: {
-			type: Number,
-			default: 150,
+		size: {
+			type: String,
+			default: 'md',
 		},
 		/**
 		 * Define o estado das ações do modal.
@@ -160,12 +161,6 @@ export default {
 	},
 
 	computed: {
-		dynamicStyle() {
-			return {
-				'--width': `${this.width}px`,
-			};
-		},
-
 		maxBodyHeight() {
 			// 90% da largura subtraído o padding vertical (32 * 2) e subtraído o footer e o header
 			return `${ window.innerHeight * 0.9 - 32 * 2 - 110 }px`;
@@ -201,12 +196,12 @@ export default {
 	display: flex;
 	flex-direction: column;
 	max-height: 90%;
-	height: auto;
-	width: var(--width);
 	position: absolute;
+	right: calc(50% - 500px / 2);
+	width: 500px;
+	height: auto;
 	background-color: white;
 	padding: 32px 28px;
-	right: calc(50% - var(--width) / 2);
 	border-radius: 8px;
 	box-shadow: 0px 0px 8px rgba(40, 90, 185, 0.2);
 	overflow-x: auto;
@@ -239,6 +234,27 @@ export default {
 		justify-content: end;
 		margin-top: auto;
 		padding-top: 28px;
+	}
+}
+
+@media (min-width: 576px) {
+	.cds-modal--md {
+		max-width: 500px;
+		width: 500px;
+		right: calc(50% - 500px / 2);
+	}
+	.cds-modal--sm {
+		max-width: 300px;
+		width: 300px;
+		right: calc(50% - 300px / 2);
+	}
+}
+
+@media (min-width: 992px) {
+	.cds-modal--lg {
+		max-width: 800px;
+		width: 800px;
+		right: calc(50% - 800px / 2);
 	}
 }
 </style>

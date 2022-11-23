@@ -4,6 +4,18 @@ import Modal from '../../components/Modal.vue';
 <Meta
 	title="Componentes/Modal"
 	component={ Modal }
+	argTypes={{
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
+	}}
 />
 
 export const Template = (args, { argTypes }) => ({
@@ -67,11 +79,6 @@ export const Template = (args, { argTypes }) => ({
 <Canvas>
 	<Story
 		name="Modal"
-		args={{
-			top: 20,
-			height: 350,
-			width: 313,
-		}}
 	>
 		{ Template.bind({}) }
 	</Story>
