@@ -44,14 +44,14 @@
 				<slot name="footer">
 					<cds-button
 						v-if="!noCancelButton"
-						text="Cancelar"
+						:text="cancelButtonText"
 						secondary
 						:disabled="disabled"
 						@click="close"
 					/>
 					<cds-button
 						class="ml-2"
-						text="Ok"
+						:text="okButtonText"
 						variant="green"
 						:disabled="disabled"
 						@click="ok"
@@ -132,6 +132,20 @@ export default {
 		noHeader: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 *  Define texto do botão de ação do modal
+		 */
+		okButtonText: {
+			type: String,
+			default: 'Ok',
+		},
+		/**
+		 *  Define texto do botão de cancelar do modal
+		 */
+		cancelButtonText: {
+			type: String,
+			default: 'Cancelar',
 		},
 	},
 
