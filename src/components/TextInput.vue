@@ -216,7 +216,8 @@ export default {
 			* @type {Event}
 			*/
 			if (this.castToNumber) {
-				this.$emit('input', Number(value));
+				let sanitizedInput = value.replace(',', '.');
+				this.$emit('input', Number(sanitizedInput));
 			} else {
 				this.$emit('input', value);
 			}
