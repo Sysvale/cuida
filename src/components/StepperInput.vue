@@ -205,6 +205,10 @@ export default {
 				this.internalValue = 0;
 			}
 
+			if (typeof value === 'string') {
+				this.internalValue = +this.internalValue;
+			}
+
 			if (value < this.min) {
 				/**
 				* Evento que indica que o valor informado está fora do intervalo aceito.
