@@ -123,6 +123,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+    text-align: center;
 	position: relative;
 	margin: ma(12);
 
@@ -142,8 +143,7 @@ export default {
 	&__text {
 		margin: mt(1);
 		color: $n-500;
-		max-width: 50%;
-		text-align: center;
+		max-width: 60%;
 		@include subheading-3;
 	}
 

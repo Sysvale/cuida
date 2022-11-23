@@ -1,25 +1,31 @@
 <template>
 	<div>
-		<label
-			v-if="label"
-			class="text-input__label"
-			for="cds-text-input"
-		>
-			<!--
-				@slot Slot para renderização customizada da label
-				(Obs.: Existe, também, a prop label que pode ser usada
-				quando não há necessidade de customização)
-			-->
-			<slot name="label">
-				{{ label }}
+		<span>
+			<span
+				v-if="hasSlots"
+			>
+				<slot name="label" />
+			</span>
+
+			<label
+				v-else
+				class="text-input__label"
+				for="cds-text-input"
+			>
+				<span>
+					{{ label }}
+				</span>
+	
 				<span
 					v-if="required"
 					class="text-input__label--required-indicator"
 				>
 					*
 				</span>
-			</slot>
-		</label>
+	
+			</label>
+		</span>
+
 		<div :class="stepperInputDynamicClass">
 			<input
 				id="cds-text-input"
@@ -43,6 +49,12 @@
 					size="1x"
 					class="text-input__icon--alert-circle-icon"
 				/>
+				<cds-spinner
+					v-if="loadingState && !disabled"
+					size="sm"
+					variant="blue"
+					class="text-input__icon--spinner-icon"
+				/>
 			</div>
 		</div>
 		<div
@@ -63,8 +75,15 @@ export default {
 		* Prop utilizada como v-model.
 		*/
 		value: {
-			type: String,
+			type: [String, Number],
 			default: '',
+		},
+		/**
+		* Prop utilizada para converter o valor do input de String para Number.
+		*/
+		castToNumber: {
+			type: Boolean,
+			default: false,
 		},
 		/**
 		 * Especifica a label do input.
@@ -81,13 +100,12 @@ export default {
 			default: false,
 		},
 		/**
-		 * Especifica o estado do TextInput. As opções são 'default', 'valid' e 'invalid'.
+		 * Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
 		 */
 		state: {
 			type: String,
 			default: 'default',
 		},
-
 		/**
 		 * Exibe asterisco de obrigatório (obs.: não faz a validação)
 		 */
@@ -95,7 +113,6 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-
 		/**
 		 * Especifica o placeholder do input
 		 */
@@ -103,7 +120,6 @@ export default {
 			type: String,
 			default: 'Digite aqui a informação',
 		},
-
 		/**
 		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
 		 */
@@ -134,6 +150,10 @@ export default {
 	},
 
 	computed: {
+		hasSlots() {
+			return !!Object.keys(this.$slots).length;
+		},
+
 		stepperInputDynamicClass() {
 			let stepperInputClass = this.fluid ? 'text-input--fluid' : 'text-input';
 
@@ -154,6 +174,8 @@ export default {
 					stepperInputClass += ' text-input--focused-valid';
 				} else if (this.state === 'invalid') {
 					stepperInputClass += ' text-input--focused-invalid';
+				} else if (this.state === 'loading') {
+					stepperInputClass += ' text-input--focused-loading';
 				}
 			}
 
@@ -168,6 +190,10 @@ export default {
 			return this.state === 'invalid';
 		},
 
+		loadingState(){
+			return this.state === 'loading';
+		},
+
 		inputClass() {
 			return this.fluid ? 'text-input__field--fluid' : 'text-input__field';
 		},
@@ -180,7 +206,11 @@ export default {
 			* @event input
 			* @type {Event}
 			*/
-			this.$emit('input', value);
+			if (this.castToNumber) {
+				this.$emit('input', +value);
+			} else {
+				this.$emit('input', value);
+			}
 		},
 	},
 };
@@ -190,7 +220,7 @@ export default {
 
 .text-input {
 	display: flex;
-	border: 1px solid $n-50;
+	outline: 1px solid $n-50;
 	border-radius: $border-radius-extra-small;
 	width: fit-content;
 	width: -moz-fit-content;
@@ -222,7 +252,7 @@ export default {
 	&__field {
 		padding: pa(3);
 		margin: mr(2);
-		height: 38px !important;
+		height: 40px !important;
 		border-radius: $border-radius-extra-small;
 		border: none;
 		text-align: start;
@@ -240,18 +270,18 @@ export default {
 
 	&--focused {
 		@extend .text-input;
-		border: 1px solid $bn-300;
+		outline: 1px solid $bn-300;
 		box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);
 	}
 
 	&--valid {
 		@extend .text-input;
-		border: 1px solid $gp-500;
+		outline: 1px solid $gp-500;
 	}
 
 	&--invalid {
 		@extend .text-input;
-		border: 1px solid $rc-600;
+		outline: 1px solid $rc-600;
 	}
 
 	&--focused-valid {
@@ -278,6 +308,10 @@ export default {
 	&__icon--alert-circle-icon {
 		color: $rc-600;
 		height: 50%;
+	}
+
+	&__icon--spinner-icon {
+		padding: 0px;
 	}
 
 	&__error-message {

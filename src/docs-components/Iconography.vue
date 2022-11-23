@@ -21,20 +21,57 @@
 			</button>
 		</div>
 
-		<p class="iframe__title">Lista de ícones:</p>
+		<div class="source-code__title">Lista de ícones:</div>
 
-		<div class="iframe__container">
-			<iframe class="iframe" src="https://ionicons.com/" scrolling="no" />
+		<div
+			class="icon__grid"
+		>
+			<div
+				v-for="category in iconsData"
+				class="icon__category"
+			>
+				<h6 class="icon__category-title"> {{ category.categoryName }} </h6>
+				<br>
+				<div
+					v-for="icon in category.icons"
+					class="icon__tile"
+				>
+					<cds-icon
+						height="40"
+						width="40"
+						color="#36424E"
+						:name="icon"
+					/>
+		
+					<p class="icon__name">{{ icon }}</p>
+	
+				</div>
+			</div>
 		</div>
 	</span>
 </template>
 
 <script>
+import { completeIconSet } from "@sysvale/cuida-icons/dist";
+import { iconsData } from '../utils/constants/iconsData.js';
+import CdsIcon from '../components/Icon.vue';
+
 export default {
 	data() {
 		return {
-			exampleSourceCode: '<ion-icon name="help-circle-outline" />',
+			selectedIcon: '',
+			iconPath: '',
+			set: completeIconSet,
+			exampleSourceCode: `
+<cds-icon
+	name="box-outline"
+	height="40"
+	width="40"
+	color="#36424E"
+/>
+			`,
 			copyCodeButtonText: 'Copiar código',
+			iconsData: iconsData,
 		};
 	},
 
@@ -74,33 +111,11 @@ export default {
 			}
 		},
 	},
-};
+}
 </script>
 
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
-
-.iframe {
-	position: absolute;
-	top: -500px;
-	width: 800px;
-	height: 4850px;
-	border: none;
-
-	&__container {
-		width: 800px;
-		height: 4400px;
-		overflow: hidden;
-		position: relative;
-		margin: auto;
-	}
-
-	&__title {
-		font-size: 20px;
-		margin: mTRBL(12, 0, 12, 0);
-	}
-}
-
 .code {
 	border: 1px solid $n-400;
 	border-radius: $border-radius-small;
@@ -127,7 +142,7 @@ code {
 		border-radius: $border-radius-small;
 		display: flex;
 		background-color: #fafafa;
-		height: 80px;
+		height: 200px;
 		margin: mt(4);
 	}
 
@@ -135,12 +150,11 @@ code {
 		font-size: 20px;
 		margin: mt(6);
 	}
-}
 
-.inactive {
-	opacity: 0;
-	height: 0px;
-	transition: all .5s ease-in-out;
+	&__title {
+		font-size: 20px;
+		margin: mt(12);
+	}
 }
 
 .source-code__button {
@@ -155,11 +169,50 @@ code {
 	width: 150px;
 }
 
+
+.icon {
+	&__tile {
+		width: 120px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	&__name {
+		font-size: 12px;
+		color: $n-400;
+		text-align: center;
+	}
+
+	&__grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		justify-items: stretch;
+		gap: 32px;
+		margin: mt(12);
+		row-gap: 150px;
+	}
+
+	&__category {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+		width: fit-content;
+		gap: 20px;
+		align-content: baseline;
+	}
+
+	&__category-title {
+		grid-column: span 3;
+	}
+}
+
 .pre__container {
 	width: 100%;
 }
 
 .code__content {
-	height: 70px;
+	height: 180px;
 }
+
+
 </style>

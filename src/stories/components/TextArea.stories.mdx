@@ -1,37 +1,36 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
-import TextInput from '../../components/TextInput.vue';
+import TextArea from '../../components/TextArea.vue';
 
 <Meta
-	title="Componentes/Forms/TextInput"
-	component={ TextInput }
+	title="Componentes/Forms/TextArea"
+	component={ TextArea }
 	argTypes={{
 		state: {
-			control:{
+			control: {
 				type: 'select',
-				options: [
-					'default',
-					'valid',
-					'invalid',
-					'loading',
-				],
+					options: [
+						'default',
+						'valid',
+						'invalid',
+						'loading',
+					],
 			}
 		},
-	}
-}
+	}}
 />
 
 export const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
-	components: { TextInput },
+	components: { TextArea },
 	template: /*html*/ `
-		<cds-text-input
+		<cds-text-area
 			v-bind="$props" 
 		/>
 	`,
 });
 
 export const template = /*html*/ `
-	<cds-text-input
+	<cds-text-area
 		v-model="value"
 		label="Label"
 	/>`;
@@ -52,20 +51,19 @@ export const docsDecorator = () => {
 	};
 };
 
-# TextInput
+# TextArea
 
-### TextInputs permitem que os usuários insiram texto em uma interface
+### TextAreas permitem que os usuários insiram um texto longo em uma interface.
 ---
 <br />
 
-## Recomendamos o uso de TextInputs quando:
-- Necessitar de um campo de texto para inserir informações.
+## Recomendamos o uso de TextAreas quando:
+- Necessitar de um campo de texto para inserir informações grandes. Exemplo: Descrição de produto ou mensagens.
 
 <br />
 
-## Não recomendamos o uso de TextInputs quando:
-- O dado a ser utilizado no componente for numérico.
-- Houver a necessidade de selecionar múltiplos itens.
+## Não recomendamos o uso de TextAreas quando:
+- For necessário informar apenas um dado específico ao campo de texto.
 
 <br />
 
@@ -73,11 +71,11 @@ export const docsDecorator = () => {
 
 <Canvas>
 	<Story
-		name="TextInput"
+		name="TextArea"
 		decorators={[docsDecorator]}
 	>
 		{ Template.bind({}) }
 	</Story>
 </Canvas>
 
-<ArgsTable story="TextInput" />
+<ArgsTable story="TextArea" />

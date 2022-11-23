@@ -1,12 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component is mounted properly 1`] = `
-<span id="cds-multiselect" data-cds-multiselect-identifier="mockKey" value="[object Object]"><div tabindex="-1" class="multiselect"><div class="multiselect__select"></div>  <div class="multiselect__tags"><span class="multiselect__single">
+<span id="cds-multiselect" data-cds-multiselect-identifier="mockKey" value="[object Object]"><label for="clustered-multiselect" class="clustered-multiselect__label">
+			Label
+			<!----></label> <div tabindex="-1" class="multiselect"><div class="multiselect__select"></div>  <div class="multiselect__tags"><span class="multiselect__single">
 				Item 1
 			</span>
 <transition-stub name="multiselect__loading">
   <div class="multiselect__spinner" style="display: none;"></div>
-</transition-stub> <input name="" type="text" autocomplete="nope" placeholder="Selecione uma ou mais opções" tabindex="0" class="multiselect__input" style="width: 0px; position: absolute; padding: 0px;">
+</transition-stub> <input name="" id="clustered-multiselect" type="text" autocomplete="nope" placeholder="Selecione uma ou mais opções" tabindex="0" class="multiselect__input" style="width: 0px; position: absolute; padding: 0px;">
 <!---->
 <!---->
 </div>
@@ -52,5 +54,6 @@ exports[`Component is mounted properly 1`] = `
   </div>
 </transition-stub>
 </div>
+<!---->
 </span>
 `;
