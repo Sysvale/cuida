@@ -16,7 +16,7 @@
 				<!-- @slot Slot usado para utilização de header customizado. -->
 				<slot name="header">
 					<div class="cds-modal__header">
-						<h3>Título</h3>
+						<h3>{{ title }}</h3>
 						<ion-icon
 							v-if="!noCloseButton"
 							name="close-outline"
@@ -84,6 +84,13 @@ export default {
 			type: Boolean,
 			default: false,
 			required: true,
+		},
+		/**
+		 * Define o título do modal exibido no header
+		 */
+		title: {
+			type: String,
+			default: 'Título',
 		},
 		/**
 		 * Especifica o tamanho do modal. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
@@ -201,8 +208,8 @@ export default {
 	width: 500px;
 	height: auto;
 	background-color: white;
-	padding: 32px 28px;
-	border-radius: 8px;
+	padding: pYX(8, 7);
+	border-radius: $border-radius-medium;
 	box-shadow: 0px 0px 8px rgba(40, 90, 185, 0.2);
 	overflow-x: auto;
 	z-index: 999999999;
@@ -223,6 +230,12 @@ export default {
 	&__header {
 		display: flex;
 		justify-content: space-between;
+		padding: pb(7);
+
+		h3 {
+			@include subheading-1;
+			color: $n-900;
+		}
 	}
 
 	&__close-icon {
@@ -233,7 +246,7 @@ export default {
 		display: flex;
 		justify-content: end;
 		margin-top: auto;
-		padding-top: 28px;
+		padding: pt(7);
 	}
 }
 
