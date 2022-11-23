@@ -216,7 +216,7 @@ export default {
 			* @type {Event}
 			*/
 			if (this.castToNumber) {
-				this.$emit('input', +value);
+				this.$emit('input', Number(value));
 			} else {
 				this.$emit('input', value);
 			}
