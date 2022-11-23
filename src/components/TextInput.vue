@@ -15,14 +15,14 @@
 				<span>
 					{{ label }}
 				</span>
-	
+
 				<span
 					v-if="required"
 					class="text-input__label--required-indicator"
 				>
 					*
 				</span>
-	
+
 			</label>
 		</span>
 
@@ -144,7 +144,7 @@ export default {
 
 	data() {
 		return {
-			internalValue: this.value,
+			internalValue: '',
 			isBeingFocused: false,
 		};
 	},
@@ -200,6 +200,15 @@ export default {
 	},
 
 	watch: {
+    value: {
+			handler(newValue, oldValue) {
+				if (newValue !== oldValue) {
+					this.internalValue = newValue;
+				}
+			},
+
+			immediate: true,
+		},
 		internalValue(value) {
 			/**
 			* Evento utilizado para implementar o v-model.
