@@ -59,6 +59,7 @@
 					v-show="!queryString && options.length"
 				>
 					<div
+						v-if="selectAll"
 						class="cds-multiselect__option multiselect__option mt-3"
 						@click="toggleSelectAll"
 					>
@@ -184,14 +185,14 @@ export default {
 		/**
 		 * Exibe asterisco de obrigatório (obs.: não faz a validação)
 		 */
-		 required: {
+		required: {
 			type: Boolean,
 			default: false,
 		},
 		/**
 		 * Desabilita o input.
 		 */
-		 disabled: {
+		disabled: {
 			type: Boolean,
 			default: false,
 		},
@@ -219,6 +220,13 @@ export default {
 		options: {
 			type: Array,
 			required: true,
+		},
+		/**
+		 * Permite habilitar o botão selecionar todos ou não
+		 */
+		selectAll: {
+			type: Boolean,
+			default: true,
 		},
 	},
 
