@@ -59,18 +59,20 @@ export const Template = (args, { argTypes }) => ({
 
 # Modal
 
-### Modals são componentes utilizados para apresentar aos usuários ações ou informações importantes, como aplicação de filtros, e cofirmações, mas sem ser intrusivo e alterar completamente o contexto do usuário.
+### Modals são como dialogs personolizados, janelas que exibem um conteúdo adicional em uma camada acima da página atual, com uma sobreposição de superfície (overlay) cobrindo a página e tornando-a temporariamente inacessível.
 ---
 <br />
 
 ## Recomendamos o uso de Modals quando:
-- Você desejar implementar filtros não intrusivos.
+- For necessário notificar o usuário de algum processo;
+- For necessário uma tomada de decisão para completar uma ação;
+- Se deseja realizar ação dentro de uma página paralelo ao fluxo principal da mesma;
 
 <br />
 
 ## Não recomendamos o uso de Modals quando:
-- Precisarem ser usados em conjunto com outros modais e popovers.
-- Forem utilizados em situações que precisem fazer o usuáro mudar de contexto e focar em determinado conteúdo, fluxo ou atividade.
+- For necessário exibir uma grande quantidade de informação ou fluxos complexos;
+- For necessário ser usado em conjunto com outros modais e popovers (cascata).
 
 <br />
 
