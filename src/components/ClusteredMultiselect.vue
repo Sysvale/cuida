@@ -59,7 +59,7 @@
 					v-show="!queryString && options.length"
 				>
 					<div
-						v-if="selectAll"
+						v-if="!hideSelectAll"
 						class="cds-multiselect__option multiselect__option mt-3"
 						@click="toggleSelectAll"
 					>
@@ -222,11 +222,11 @@ export default {
 			required: true,
 		},
 		/**
-		 * Permite habilitar o botão selecionar todos ou não
+		 * Permite ocultar o botão "selecionar todos" ou não
 		 */
-		selectAll: {
+		hideSelectAll: {
 			type: Boolean,
-			default: true,
+			default: false,
 		},
 	},
 
