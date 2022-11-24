@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component is mounted properly 1`] = `
+<div class="cds-modal__backdrop">
+  <div class="cds-modal cds-modal--md">
+    <header>
+      <div class="cds-modal__header">
+        <h3>Título</h3>
+        <ion-icon-stub name="close-outline" class="cds-modal__close-icon"></ion-icon-stub>
+      </div>
+    </header>
+    <section>
+      <cds-scrollable-stub max-height="517.2px" auto-height="">
+        <div>modal content</div>
+      </cds-scrollable-stub>
+    </section>
+    <footer class="cds-modal__footer">
+      <cds-button-stub text="Cancelar" secondary=""></cds-button-stub>
+      <cds-button-stub text="Ok" variant="green" class="ml-2"></cds-button-stub>
+    </footer>
+  </div>
+</div>
+`;
