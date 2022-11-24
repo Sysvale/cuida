@@ -87,13 +87,108 @@ describe('default content, classes and attributes',  () => {
 });
 
 describe('custom content, attributes and slots', () => {
-	// if close modal is unavailable when noCloseOnBackdrop, noCloseButton e noCancelButton is set
-	
-	// if dont show default footer when noFooter is true
-	// if dont show default header when noHeader is true
-	
-	// if applies a custom header slot as expected 
-	// if applies a custom footer slot as expected 
+	test('close modal options is unavailable when noCloseButton e noCancelButton is set', async () => {
+		const wrapper = mount(Modal, {
+			localVue,
+			propsData: {
+				show: true,
+				noCloseButton: true,
+				noCancelButton: true,
+			},
+			stubs: {
+				'cds-button': true,
+				'cds-scrollable': true,
+				'ion-icon': true,
+			},
+		});
+
+		await flushPromises();
+
+		expect(wrapper.find('.cds-modal__close-icon').exists()).toBe(false);
+
+		expect(wrapper.find('.cds-modal__footer').html().includes('Cancelar')).toBe(false);
+	});
+
+	test('hide default footer when noFooter is set', async () => {
+		const wrapper = mount(Modal, {
+			localVue,
+			propsData: {
+				show: true,
+				noFooter: true,
+			},
+			stubs: {
+				'cds-button': true,
+				'cds-scrollable': true,
+				'ion-icon': true,
+			},
+		});
+
+		await flushPromises();
+
+		expect(wrapper.find('.cds-modal__footer').exists()).toBe(false);
+	});
+
+	test('hide default header when noHeader is set', async () => {
+		const wrapper = mount(Modal, {
+			localVue,
+			propsData: {
+				show: true,
+				noHeader: true,
+			},
+			stubs: {
+				'cds-button': true,
+				'cds-scrollable': true,
+				'ion-icon': true,
+			},
+		});
+
+		await flushPromises();
+
+		expect(wrapper.find('.cds-modal__header').exists()).toBe(false);
+	});
+
+	test('applies a custom header slot as expected', async () => {
+		const wrapper = mount(Modal, {
+			localVue,
+			slots: {
+				header: '<div>dummy header</div>',
+			},
+			propsData: {
+				show: true,
+			},
+			stubs: {
+				'cds-button': true,
+				'cds-scrollable': true,
+				'ion-icon': true,
+			},
+		});
+
+		await flushPromises();
+
+		expect(wrapper.find('.cds-modal__header').exists()).toBe(false);
+		expect(wrapper.find('.cds-modal').html()).toContain('<div>dummy header</div>');
+	});
+
+	test('applies a custom footer slot as expected', async () => {
+		const wrapper = mount(Modal, {
+			localVue,
+			slots: {
+				footer: '<div>dummy footer</div>',
+			},
+			propsData: {
+				show: true,
+			},
+			stubs: {
+				'cds-button': true,
+				'cds-scrollable': true,
+				'ion-icon': true,
+			},
+		});
+
+		await flushPromises();
+
+		expect(wrapper.find('.cds-modal__footer').text()).toBe('dummy footer');
+	});
 });
 
 describe('button and event functionality', () => {
