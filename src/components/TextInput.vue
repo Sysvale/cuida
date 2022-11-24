@@ -33,7 +33,7 @@
 				:placeholder="placeholder"
 				:disabled="disabled"
 				:class="inputClass"
-				type="text"
+				:type="castToNumber ? 'number' : 'text'"
 				@focus="isBeingFocused = true"
 				@blur="isBeingFocused = false"
 			/>
@@ -200,7 +200,7 @@ export default {
 	},
 
 	watch: {
-    value: {
+		value: {
 			handler(newValue, oldValue) {
 				if (newValue !== oldValue) {
 					this.internalValue = newValue;
@@ -211,13 +211,24 @@ export default {
 		},
 		internalValue(value) {
 			/**
-			* Evento utilizado para implementar o v-model.
-			* @event input
-			* @type {Event}
-			*/
+			 * Evento utilizado para implementar o v-model.
+			 * @event input
+			 * @type {Event}
+			 */
 			if (this.castToNumber) {
-				let sanitizedInput = value.replace(',', '.');
-				this.$emit('input', Number(sanitizedInput));
+				if (value.length > 15) {
+					this.internalValue = value.slice(0, 15);
+				} else {
+					let sanitizedInput = '';
+
+					if (value.length === 1) {
+						sanitizedInput = value.replace(',', '0');
+					}
+
+					sanitizedInput = value.replace(',', '.');
+					this.$emit('input', Number(sanitizedInput));
+				}
+
 			} else {
 				this.$emit('input', value);
 			}
