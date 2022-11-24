@@ -28,7 +28,7 @@ test('Component is mounted properly', async () => {
 	expect(wrapper).toMatchSnapshot();
 });
 
-describe('default content, classes and attributes',  () => {
+describe('default content, classes and attributes', () => {
 	test('modal is hidden when show is false', async () => {
 		const wrapper = mount(Modal, {
 			localVue,
@@ -88,12 +88,10 @@ describe('default content, classes and attributes',  () => {
 
 describe('custom content, attributes and slots', () => {
 	// if close modal is unavailable when noCloseOnBackdrop, noCloseButton e noCancelButton is set
-	
 	// if dont show default footer when noFooter is true
 	// if dont show default header when noHeader is true
-	
-	// if applies a custom header slot as expected 
-	// if applies a custom footer slot as expected 
+	// if applies a custom header slot as expected
+	// if applies a custom footer slot as expected
 });
 
 describe('button and event functionality', () => {
