@@ -28,7 +28,7 @@ test('Component is mounted properly', async () => {
 	expect(wrapper).toMatchSnapshot();
 });
 
-describe('default content, classes and attributes',  () => {
+describe('default content, classes and attributes', () => {
 	test('modal is hidden when show is false', async () => {
 		const wrapper = mount(Modal, {
 			localVue,
