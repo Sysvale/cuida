@@ -6,7 +6,9 @@ exports[`Component is mounted properly 1`] = `
     <header>
       <div class="cds-modal__header">
         <h3>Título</h3>
-        <ion-icon-stub name="close-outline" class="cds-modal__close-icon"></ion-icon-stub>
+        <div class="cds-modal__close-icon">
+          <ion-icon-stub name="close-outline"></ion-icon-stub>
+        </div>
       </div>
     </header>
     <section>
@@ -15,8 +17,8 @@ exports[`Component is mounted properly 1`] = `
       </cds-scrollable-stub>
     </section>
     <footer class="cds-modal__footer">
-      <cds-button-stub text="Cancelar" secondary=""></cds-button-stub>
-      <cds-button-stub text="Ok" variant="green" class="ml-2"></cds-button-stub>
+      <cds-button-stub variant="green" size="md" text="Cancelar" secondary="true"></cds-button-stub>
+      <cds-button-stub variant="green" size="md" text="Ok" class="ml-2"></cds-button-stub>
     </footer>
   </div>
 </div>

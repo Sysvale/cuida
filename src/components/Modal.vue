@@ -17,12 +17,13 @@
 				<slot name="header">
 					<div class="cds-modal__header">
 						<h3>{{ title }}</h3>
-						<ion-icon
+						<div
 							v-if="!noCloseButton"
-							name="close-outline"
 							class="cds-modal__close-icon"
 							@click="close"
-						/>
+						>
+							<ion-icon name="close-outline" />
+						</div>
 					</div>
 				</slot>
 			</header>

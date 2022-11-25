@@ -3,9 +3,12 @@ import Modal from '../../src/components/Modal.vue';
 import { directive as onClickOutside } from 'vue-on-click-outside';
 import flushPromises from 'flush-promises';
 
+import Button from '../../src/components/Button.vue';
+
 const localVue = createLocalVue();
 
 localVue.directive('on-click-outside', onClickOutside);
+localVue.component('cds-button', Button);
 
 test('Component is mounted properly', async () => {
 	const wrapper = shallowMount(Modal, {
@@ -192,8 +195,70 @@ describe('custom content, attributes and slots', () => {
 });
 
 describe('button and event functionality', () => {
-	// if header close button triggers modal close
-	// if footer cancel button triggers modal close
-	// if footer ok button triggers modal ok
-	// if click outside closes modal
+	test('header close button triggers modal close', async () => {
+		const wrapper = mount(Modal, {
+			localVue,
+			propsData: {
+				show: true,
+			},
+			stubs: {
+				'cds-button': true,
+				'cds-scrollable': true,
+				'ion-icon': true,
+			},
+		});
+
+		await flushPromises();
+
+		wrapper.find('.cds-modal__close-icon').trigger('click');
+
+		await flushPromises();
+
+		expect(wrapper.emitted().close).toBeTruthy();
+		expect(wrapper.emitted().close).toEqual([[true]]);
+	});
+
+	test('footer cancel button triggers modal close', async () => {
+		const wrapper = mount(Modal, {
+			localVue,
+			propsData: {
+				show: true,
+			},
+			stubs: {
+				'cds-scrollable': true,
+				'ion-icon': true,
+			},
+		});
+
+		await flushPromises();
+
+		wrapper.findComponent(Button).find('.button__container').trigger('click');
+
+		await flushPromises();
+
+		expect(wrapper.emitted().close).toBeTruthy();
+		expect(wrapper.emitted().close).toEqual([[true]]);
+	});
+
+	test('footer ok button triggers modal ok', async () => {
+		const wrapper = mount(Modal, {
+			localVue,
+			propsData: {
+				show: true,
+			},
+			stubs: {
+				'cds-scrollable': true,
+				'ion-icon': true,
+			},
+		});
+
+		await flushPromises();
+
+		wrapper.findAllComponents(Button).at(1).find('.button__container').trigger('click');
+
+		await flushPromises();
+
+		expect(wrapper.emitted().ok).toBeTruthy();
+		expect(wrapper.emitted().ok).toEqual([[true]]);
+	});
 });
