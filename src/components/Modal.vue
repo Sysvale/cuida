@@ -214,6 +214,7 @@ export default {
 	box-shadow: 0px 0px 8px rgba(40, 90, 185, 0.2);
 	overflow-x: auto;
 	z-index: 999999999;
+	animation: zoom-in .5s;
 
 	&__backdrop {
 		display: flex;
@@ -249,6 +250,15 @@ export default {
 		margin-top: auto;
 		padding: pt(7);
 	}
+}
+
+@keyframes zoom-in {
+    0% {
+        transform:scale(0);
+    }
+    100% {
+        transform:scale(1);
+    }
 }
 
 @media (min-width: 576px) {
