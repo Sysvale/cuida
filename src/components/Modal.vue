@@ -8,7 +8,7 @@
 			class="cds-modal"
 			:class="`cds-modal--${size}`"
 			:style="dynamicStyle"
-			v-on-click-outside="noCloseOnBackdrop ? () => {} : close"
+			v-on-click-outside="noCloseOnBackdrop ? () => {} : closeHandle"
 		>
 			<header 
 				v-if="!noHeader"
@@ -54,14 +54,14 @@
 						:text="cancelButtonText"
 						secondary
 						:disabled="disabled"
-						@click="close"
+						@click="closeHandle"
 					/>
 					<cds-button
 						class="ml-2"
 						:text="okButtonText"
 						variant="green"
 						:disabled="disabled"
-						@click="ok"
+						@click="okHandle"
 					/>
 				</slot>
 			</footer>
@@ -181,7 +181,7 @@ export default {
 	},
 
 	methods: {
-		close() {
+		closeHandle() {
 			/**
 			 * Evento que indica se o modal foi escondido.
 			* @event close
@@ -190,7 +190,7 @@ export default {
 			this.$emit('close', true);
 			this.internalShow = !this.internalShow;
 		},
-		ok() {
+		okHandle() {
 			/**
 			 * Evento que indica se o botão de ação do modal foi clicado.
 			* @event ok
