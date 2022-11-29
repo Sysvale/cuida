@@ -15,14 +15,14 @@
 				<span>
 					{{ label }}
 				</span>
-	
+
 				<span
 					v-if="required"
 					class="text-input__label--required-indicator"
 				>
 					*
 				</span>
-	
+
 			</label>
 		</span>
 
@@ -33,7 +33,7 @@
 				:placeholder="placeholder"
 				:disabled="disabled"
 				:class="inputClass"
-				type="text"
+				:type="castToNumber ? 'number' : 'text'"
 				@focus="isBeingFocused = true"
 				@blur="isBeingFocused = false"
 			/>
@@ -144,7 +144,7 @@ export default {
 
 	data() {
 		return {
-			internalValue: this.value,
+			internalValue: '',
 			isBeingFocused: false,
 		};
 	},
@@ -200,14 +200,35 @@ export default {
 	},
 
 	watch: {
+		value: {
+			handler(newValue, oldValue) {
+				if (newValue !== oldValue) {
+					this.internalValue = newValue;
+				}
+			},
+
+			immediate: true,
+		},
 		internalValue(value) {
 			/**
-			* Evento utilizado para implementar o v-model.
-			* @event input
-			* @type {Event}
-			*/
+			 * Evento utilizado para implementar o v-model.
+			 * @event input
+			 * @type {Event}
+			 */
 			if (this.castToNumber) {
-				this.$emit('input', +value);
+				if (value.length > 15) {
+					this.internalValue = value.slice(0, 15);
+				} else {
+					let sanitizedInput = '';
+
+					if (value.length === 1) {
+						sanitizedInput = value.replace(',', '0');
+					}
+
+					sanitizedInput = value.replace(',', '.');
+					this.$emit('input', Number(sanitizedInput));
+				}
+
 			} else {
 				this.$emit('input', value);
 			}
