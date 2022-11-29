@@ -1,0 +1,89 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Modal from '../../components/Modal.vue';
+
+<Meta
+	title="Componentes/Containers/Modal"
+	component={ Modal }
+	argTypes={{
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
+	}}
+/>
+
+export const Template = (args, { argTypes }) => ({
+	data() {
+		return {
+			showModal: false,
+		};
+	},
+	props: Object.keys(argTypes),
+	components: { Modal },
+	template: /*html*/ `
+		<div class="d-flex justify-content-center" style="height: 150px;">
+			<b-button
+				class="btn-info"
+				id="trigger-popover"
+				style="height: 40px;"
+				@click="togglePopover"
+			>
+				Click
+			</b-button>
+			<modal
+				:show="showModal"
+				v-bind="$props"
+				@close="showModal = false"
+				@ok="showModal = false"
+			>
+				<span>
+					Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
+					eu conheço uma cachacis que pode alegrar sua vidis.Paisis, filhis, espiritis santis.Leite de capivaris,
+					leite de mula manquis sem cabeça.
+				</span>
+			</modal>
+		</div>
+	`,
+	methods: {
+		togglePopover() {
+			this.showModal = true;
+		},
+	},
+});
+
+# Modal
+
+### Modais são como dialogs personolizados, janelas que exibem um conteúdo adicional em uma camada acima da página atual, com uma sobreposição de superfície (overlay) cobrindo a página e tornando-a temporariamente inacessível.
+---
+<br />
+
+## Recomendamos o uso de Modais quando:
+- For necessário notificar o usuário de algum processo;
+- For necessário uma tomada de decisão para completar uma ação;
+- Se deseja realizar ação dentro de uma página paralelo ao fluxo principal da mesma;
+
+<br />
+
+## Não recomendamos o uso de Modais quando:
+- For necessário exibir uma grande quantidade de informação ou fluxos complexos;
+- For necessário ser usado em conjunto com outros modais e popovers (cascata).
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Modal"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Modal" />
