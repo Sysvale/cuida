@@ -210,8 +210,7 @@ export default {
 	flex-direction: column;
 	max-height: 90%;
 	position: absolute;
-	right: calc(50% - 500px / 2);
-	width: 500px;
+	width: calc(100% - 2 * 16px);
 	height: auto;
 	background-color: white;
 	padding: pYX(8, 7);
@@ -226,6 +225,7 @@ export default {
 		justify-content: center;
 		align-items: center;
 		position: fixed;
+		padding: px(4);
 		top: 0;
 		bottom: 0;
 		left: 0;
