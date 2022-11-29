@@ -20,7 +20,7 @@
 						<div
 							v-if="!noCloseButton"
 							class="cds-modal__close-icon"
-							@click="close"
+							@click="closeHandle"
 						>
 							<cds-icon
 								name="x-outline"
