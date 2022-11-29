@@ -22,7 +22,12 @@
 							class="cds-modal__close-icon"
 							@click="close"
 						>
-							<ion-icon name="close-outline" />
+							<cds-icon
+								name="x-outline"
+								height="20"
+								width="20"
+								color="#29333D"
+							/>
 						</div>
 					</div>
 				</slot>
@@ -241,6 +246,7 @@ export default {
 	}
 
 	&__close-icon {
+		display: flex;
 		cursor: pointer;
 	}
 
