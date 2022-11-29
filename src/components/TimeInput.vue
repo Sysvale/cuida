@@ -207,7 +207,7 @@ export default {
 
 	watch: {
 		value(newValue, oldValue) {
-			if (newValue === oldValue || !newValue) {
+			if (newValue === oldValue || newValue == null) {
 				return;
 			}
 
@@ -299,6 +299,11 @@ export default {
 			}
 
 			if (typeof time === 'string') {
+				this.startHour = '';
+				this.startMinute = '';
+				this.endHour = '';
+				this.endMinute = '';
+
 				return;
 			}
 

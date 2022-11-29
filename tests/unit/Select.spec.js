@@ -47,7 +47,7 @@ test('Dropdown toggles when Enter is pressed', async () => {
 	expect(input.classes()).toContain('select__input--closed');
 
 	await input.trigger('keydown.enter');
-	expect(input.classes()).toContain('select__input--opened');
+	expect(input.classes()).toContain('select__input--opened-down');
 
 	await input.trigger('keydown.enter');
 	expect(input.classes()).toContain('select__input--closed');

@@ -1,6 +1,7 @@
 <template>
 	<div
 		class="select"
+		ref="cds-select"
 	>
 		<label
 			class="select__label"
@@ -25,11 +26,11 @@
 				v-model="localValue.value"
 				id="cds-select"
 				type="text"
+				autocomplete="off"
 				:onkeypress="`return ${allowSearch};`"
 				:class="inputClass"
 				:placeholder="placeholder"
 				:disabled="disabled"
-				v-on-click-outside="hide"
 				@keydown.enter.prevent="activateSelectionOnEnter"
 				@keydown.arrow-down.prevent="highlightOnArrowDown"
 				@keydown.arrow-up.prevent="highlightOnArrowUp"
@@ -46,8 +47,10 @@
 				:class="{
 					'select__options--thin': width === 'thin',
 					'select__options--default': width === 'default',
-					'select__options--wide': width =='wide',
+					'select__options--wide': width === 'wide',
 					'select__options--fluid': fluid,
+					'select__options--down': direction === 'down',
+					'select__options--up': direction === 'up',
 				}"
 			>
 				<ul
@@ -82,11 +85,17 @@
 				:class="active ? 'select__chevron--opened' : 'select__chevron--closed'"
 			/>
 		</div>
+
+		<div
+			v-if="errorState && !disabled"
+			class="select__error-message"
+		>
+			{{ errorMessage }}
+		</div>
 	</div>
 </template>
 
 <script>
-import { directive as onClickOutside } from 'vue-on-click-outside';
 import { widths } from '../utils';
 import removeAccents from '../utils/methods/removeAccents';
 
@@ -122,9 +131,15 @@ export default {
 		 * Guarda o valor selecionado do select.
 		 */
 		value: {
-			type: Object,
-			default: () => {},
+			type: [Array, Object],
 			required: true,
+		},
+		/**
+		 * Especifica o estado do Select. As opções são 'default', 'valid', 'loading' e 'invalid'.
+		 */
+		 state: {
+			type: String,
+			default: 'default',
 		},
 		/**
 		 * Controla a exibição do asterísco indicativo de campo obrigatório.
@@ -133,6 +148,13 @@ export default {
 			type: Boolean,
 			default: false,
 			required: false,
+		},
+		/**
+		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+		 */
+		 errorMessage: {
+			type: String,
+			default: 'Valor inválido',
 		},
 		/**
 		 * Indica se vai ser possível fazer buscas no select.
@@ -168,10 +190,6 @@ export default {
 		},
 	},
 
-	directives: {
-		'on-click-outside': onClickOutside,
-	},
-
 	data() {
 		return {
 			currentPos: 0,
@@ -180,21 +198,44 @@ export default {
 			allowSearch: this.searchable,
 			localOptions: this.options,
 			localValue: this.value,
+			selectElement: '',
+			direction: 'down',
 		};
 	},
 
 	mounted() {
 		this.id = `select$-${this._uid}`;
+		this.selectElement = this.$refs['cds-select'];
 	},
 
 	computed: {
+		errorState() {
+			return this.state === 'invalid';
+		},
+
 		inputClass() {
 			let returningClass = '';
 
-			returningClass = this.active ? 'select__input--opened' : 'select__input--closed';
+			if (this.active && this.direction === 'down') {
+				returningClass = 'select__input--opened-down';
+			} else if (this.active && this.direction === 'up') {
+				returningClass = 'select__input--opened-up';
+			} else {
+				returningClass = 'select__input--closed';
+			}
+
+			if (!this.disabled) {
+				if (this.state === 'valid') {
+					returningClass += ' select__input--valid';
+				} else if (this.state === 'invalid') {
+					returningClass += ' select__input--invalid';
+				}
+			} else {
+				returningClass += ' select__input--disabled';
+			}
+
 			returningClass += ` select__input--${widths.find((item) => item === this.width)}`;
 			returningClass += this.fluid ? ' select__input--fluid' : ' select__input--fit';
-			returningClass += this.disabled ? ' select__input--disabled' : '';
 			returningClass += this.searchable ? ' select__input--searchable' : '';
 
 			return returningClass;
@@ -230,6 +271,14 @@ export default {
 		},
 
 		activateSelectionOnClick() {
+			let boundingRect = this.selectElement.getBoundingClientRect();
+
+			if ((boundingRect.top + boundingRect.height + 286) < window.innerHeight) {
+				this.direction = 'down';
+			} else {
+				this.direction = 'up';
+			}
+
 			if (this.disabled) return;
 
 			this.active = true;
@@ -336,7 +385,7 @@ export default {
 		@include subheading-3;
 		text-overflow: ellipsis;
 
-		&:hover:not([disabled]) {
+		&:hover:not([disabled]):not(.select__input--invalid):not(.select__input--valid) {
 			outline: 1px solid $n-200;
 		}
 
@@ -345,10 +394,16 @@ export default {
 			border-radius: $border-radius-extra-small !important;
 		}
 
-		&--opened {
+		&--opened-down {
 			@extend .select__input;
 			border-top-left-radius: $border-radius-extra-small !important;
 			border-top-right-radius: $border-radius-extra-small !important;
+		}
+
+		&--opened-up {
+			@extend .select__input;
+			border-bottom-left-radius: $border-radius-extra-small !important;
+			border-bottom-right-radius: $border-radius-extra-small !important;
 		}
 
 		&--searchable {
@@ -376,6 +431,16 @@ export default {
 			outline: none;
 			cursor: default;
 		}
+
+		&--valid {
+			outline: 1px solid $gp-500;
+		}
+
+
+		&--invalid {
+			outline: 1px solid $rc-600;
+		}
+
 
 		&::placeholder {
 			color: $n-300;
@@ -472,8 +537,6 @@ export default {
 	&__options {
 		@include subheading-3;
 		outline: 1px solid $n-50;
-		border-bottom-left-radius: $border-radius-extra-small;
-		border-bottom-right-radius: $border-radius-extra-small;
 		display: flex;
 		flex-direction: column;
 		margin-top: 1px;
@@ -500,8 +563,26 @@ export default {
 		&--fluid {
 			width: 100%;
 		}
+
+		&--up {
+			bottom: 40px;
+			width: 100%;
+			border-top-left-radius: $border-radius-extra-small;
+			border-top-right-radius: $border-radius-extra-small;
+		}
+
+		&--down {
+			width: 100%;
+			border-bottom-left-radius: $border-radius-extra-small;
+			border-bottom-right-radius: $border-radius-extra-small;
+		}
 	}
 
+	&__error-message {
+		@include caption;
+		color: $rc-600;
+		margin: mt(1);
+	}
 }
 
 .option {

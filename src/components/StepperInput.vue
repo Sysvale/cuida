@@ -1,6 +1,31 @@
 <template>
 	<div>
-		<label v-if="label" for="stepper-input-number">{{ label }}</label>
+		<span>
+			<span
+				v-if="hasSlots"
+			>
+				<slot name="label" />
+			</span>
+
+			<label
+				v-else
+				class="stepper-input__label"
+				for="stepper-input"
+			>
+				<span>
+					{{ label }}
+				</span>
+	
+				<span
+					v-if="required"
+					class="stepper-input__label--required-indicator"
+				>
+					*
+				</span>
+	
+			</label>
+		</span>
+
 		<div :class="stepperInputDynamicClass">
 			<input
 				:disabled="disabled"
@@ -8,7 +33,12 @@
 				@blur="isBeingFocused = false"
 				v-model="internalValue"
 				class="stepper-input__field"
-				id="stepper-input-number"
+				:class="{
+					'stepper-input__field--thin': width === 'thin',
+					'stepper-input__field--default': width === 'default',
+					'stepper-input__field--wide': width =='wide',
+				}"
+				id="stepper-input"
 				type="number"
 			/>
 
@@ -37,6 +67,13 @@
 					<minus-icon size="1x" class="custom-class" />
 				</button>
 			</div>
+		</div>
+
+		<div
+			v-if="errorState && !disabled"
+			class="stepper-input__error-message"
+		>
+			{{ errorMessage }}
 		</div>
 	</div>
 </template>
@@ -75,6 +112,21 @@ export default {
 			default: 'Label',
 		},
 		/**
+		 * Exibe asterisco de obrigatório (obs.: não faz a validação)
+		 */
+		 required: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Define a largura do Select. As opções são 'thin', 'default' e 'wide'.
+		 */
+		 width: {
+			type: String,
+			default: 'default',
+			required: false,
+		},
+		/**
 		 * Desabilita o input.
 		 */
 		disabled: {
@@ -87,6 +139,13 @@ export default {
 		state: {
 			type: String,
 			default: 'default',
+		},
+		/**
+		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+		 */
+		 errorMessage: {
+			type: String,
+			default: 'Valor inválido',
 		},
 	},
 
@@ -103,6 +162,14 @@ export default {
 	},
 
 	computed: {
+		hasSlots() {
+			return !!Object.keys(this.$slots).length;
+		},
+
+		errorState() {
+			return this.state === 'invalid';
+		},
+
 		stepperInputDynamicClass() {
 			let stepperInputClass = '';
 
@@ -136,6 +203,10 @@ export default {
 		internalValue(value) {
 			if (!value) {
 				this.internalValue = 0;
+			}
+
+			if (typeof value === 'string') {
+				this.internalValue = +this.internalValue;
 			}
 
 			if (value < this.min) {
@@ -172,26 +243,49 @@ export default {
 
 .stepper-input {
 	display: flex;
-	border: 1px solid $n-50;
-	border-radius: 4px;
+	outline: 1px solid $n-50;
+	border-radius: 6px;
+	height: 40px;
 	width: fit-content;
 	width: -moz-fit-content;
+
+	&__label {
+		@include body-2;
+		font-weight: $font-weight-semibold;
+		color: $n-700;
+
+		&--required-indicator {
+			color: $rc-600;
+		}
+	}
 
 	&__icon-container {
 		background-color: $n-20;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		border-radius: 0px 3px 3px 0px;
+		border-radius: 0px 8px 8px 0px;
 	}
 
 	&__field {
 		padding: pa(2);
 		margin: mr(2);
-		border-radius: 4px;
+		border-radius: 6px;
 		border: none;
 		text-align: end;
 		color: $n-600;
+
+		&--thin {
+			width: 72px;
+		}
+
+		&--default {
+			width: 144px;
+		}
+
+		&--wide {
+			width: 284px;
+		}
 
 		&:focus {
 			outline: 0;
@@ -200,18 +294,18 @@ export default {
 
 	&--focused {
 		@extend .stepper-input;
-		border: 1px solid $bn-300;
+		outline: 1px solid $bn-300;
 		box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);
 	}
 
 	&--valid {
 		@extend .stepper-input;
-		border: 1px solid $gp-500;
+		outline: 1px solid $gp-500;
 	}
 
 	&--invalid {
 		@extend .stepper-input;
-		border: 1px solid $vr-600;
+		outline: 1px solid $rc-600;
 	}
 
 	&--focused-valid {
@@ -221,7 +315,7 @@ export default {
 
 	&--focused-invalid {
 		@extend .stepper-input--invalid;
-		box-shadow: 0 0 0 0.2rem rgba($vr-300, .45);
+		box-shadow: 0 0 0 0.2rem rgba($rc-300, .45);
 	}
 
 	&--disabled {
@@ -243,12 +337,12 @@ export default {
 		&:hover {
 			background-color: $bn-400;
 			color: $n-0;
-			border-radius: 0px 3px 0px 0px;
+			border-radius: 0px 8px 0px 0px;
 		}
 
 		&:active {
 			background-color: $bn-500;
-			border-radius: 0px 3px 0px 0px;
+			border-radius: 0px 8px 0px 0px;
 		}
 	}
 
@@ -266,13 +360,19 @@ export default {
 		&:hover {
 			background-color: $bn-400;
 			color: $n-0;
-			border-radius: 0px 0px 3px 0px;
+			border-radius: 0px 0px 8px 0px;
 		}
 
 		&:active {
 			background-color: $bn-500;
-			border-radius: 0px 0px 3px 0px;
+			border-radius: 0px 0px 8px 0px;
 		}
+	}
+
+	&__error-message {
+		@include caption;
+		color: $rc-600;
+		margin: mt(1);
 	}
 }
 
@@ -287,7 +387,7 @@ input[type=number] {
 }
 
 input[type=number]{
-	width: 68px;
+	// width: 68px;
 }
 
 input:disabled {
