@@ -203,7 +203,7 @@ Resultado na documentação:
 
 <br/>
 
--   Documentações de eventos são criadas com comentários multilnha acima do `$this.emit()` ou comentários html acima do `$emit()`:
+-   Documentações de eventos são criadas com comentários multilinha acima do `this.$emit()` ou comentários html acima do `$emit()`:
 
 <br/>
 
