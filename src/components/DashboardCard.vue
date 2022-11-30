@@ -45,7 +45,7 @@
 			</div>
 
 			<div
-				v-else
+				v-else-if="showAction"
 			>
 				{{ action }}
 			</div>
@@ -74,7 +74,7 @@ export default {
 			required: false,
 		},
 		/**
-		 * Prop que exibe o botão de ação do dashboard-card.
+		 * Prop que exibe o botão de ação do dashboard-card. (DEPRECATED - remover na próxima breaking change)
 		 */
 		showAction: {
 			type: Boolean,
