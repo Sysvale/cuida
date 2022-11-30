@@ -36,13 +36,19 @@
 			class="dashboard-card__action"
 			@click="$emit('action-button-click')"
 		>
-			<!-- @slot Slot para renderização customizada do conteúdo das actions. Sobrescreve a prop `showAction`.
-			-->
-			<slot name="action-slot">
-				<div v-if="showAction">
-					{{ action }}
-				</div>
-			</slot>
+			<div
+				v-if="hasActionSlot"
+			>
+				<!-- @slot Slot para renderização customizada do conteúdo das actions. Sobrescreve a prop `showAction`.
+				-->
+				<slot name="action-slot" />
+			</div>
+
+			<div
+				v-else
+			>
+				{{ action }}
+			</div>
 		</div>
 	</div>
 </template>
@@ -89,6 +95,12 @@ export default {
 		fluid: {
 			type: Boolean,
 			default: false,
+		},
+	},
+
+	computed: {
+		hasActionSlot(){
+			return Object.keys(this.$slots).some(slot => slot === 'action-slot');
 		},
 	},
 
