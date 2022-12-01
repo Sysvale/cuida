@@ -197,7 +197,7 @@ export default {
 			id: null,
 			allowSearch: this.searchable,
 			localOptions: this.options,
-			localValue: this.value,
+			localValue: '',
 			selectElement: '',
 			direction: 'down',
 		};
@@ -353,6 +353,15 @@ export default {
 	},
 
 	watch: {
+		value: {
+			handler(newValue, oldValue) {
+				if (newValue !== oldValue) {
+					this.localValue = newValue;
+				}
+			},
+			immediate: true,
+		},
+
 		localValue: {
 			handler(currentValue) {
 				/**
