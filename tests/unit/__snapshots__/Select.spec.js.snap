@@ -6,7 +6,7 @@ exports[`Component is mounted properly 1`] = `
 		</span>
     <!---->
   </label>
-  <div class="select__container select__container--fit"><input id="cds-select" type="text" onkeypress="return false;" placeholder="Selecione..." class="select__input--closed select__input--default select__input--fit">
+  <div class="select__container select__container--fit"><input id="cds-select" type="text" autocomplete="off" onkeypress="return false;" placeholder="Selecione..." class="select__input--closed select__input--default select__input--fit">
     <div class="select__options select__options--default select__options--down" style="display: none;">
       <ul class="option__container">
         <li class="option__text">
@@ -18,5 +18,6 @@ exports[`Component is mounted properly 1`] = `
       </ul>
     </div> <span class="select__chevron--closed"></span>
   </div>
+  <!---->
 </div>
 `;
