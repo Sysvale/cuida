@@ -37,6 +37,7 @@
     "material-design-icons": "^3.0.1",
     "moment": "^2.29.1",
     "v-calendar": "^2.2.3",
+    "v-mask": "^2.3.0",
     "vue": "^2.6.12",
     "vue-feather-icons": "^5.1.0",
     "vue-long-click": "0.0.4",
