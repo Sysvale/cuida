@@ -329,3 +329,13 @@ Outra automação acionada a partir do merge no master é o `Deployer 🚀`, ela
 -   **`npm publish`**
 
 Para utilizar esses comandos e publicar novas versões do pacote NPM, contacte [Geidsonc](https://github.com/geidsonc), [Lucasn4s](https://github.com/lucasn4s), [Patriciacoelho](https://github.com/patriciacoelho), [RafaelGondi](https://github.com/RafaelGondi) ou [Tassiocaique](https://github.com/tassiocaique).
+
+## Como testar um recurso que ainda não foi publicado?
+
+Muitas vezes não é possível simular o comportamento de um componente dentro do Storybook tal qual nos projetos em que eles serão usados. Para esse caso uma alternativa para testar um recurso ou componente que ainda esteja em desenvolvimento no Cuida é possível instalar o pacote a partir de um branch do github.
+
+- Primeiro você deve executar o `npm run build` para gerar a compilação do pacote;
+- Em seguida você deve enviar o diretório `/dist` para o branch em desenvolvimento, para tal você deve comentar o `/dist` no arquivo `.gitignore`, commitar as alterações e fazer o push;
+- Feito isso você pode instalar o pacote no seu projeto alterando a versão do Cuida no `package.json` para `"@sysvale/cuida": "https://github.com/Sysvale/cuida/tarball/<branch-name>",` e rodando o `npm i`, onde `<branch-name>` é o nome do branch em desenvolvimento no Cuida;
+
+**Obs.:** Sempre que fizer uma alteração no branch você deve enviar uma versão atualizada da `/dist` para o github e rodar o `npm i` no projeto de interesse.
