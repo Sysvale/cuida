@@ -30,6 +30,7 @@
 			<input
 				id="cds-text-input"
 				v-model="internalValue"
+				v-mask="mask"
 				:placeholder="placeholder"
 				:disabled="disabled"
 				:class="inputClass"
@@ -134,6 +135,14 @@ export default {
 			type: Boolean,
 			default: false,
 			required: false,
+		},
+		/**
+		 * Especifica a máscara a ser aplicada ao TextInput. 
+		 * Exemplo: "(##) #####-####"
+		 */
+		mask: {
+			type: String,
+			default: null,
 		},
 	},
 

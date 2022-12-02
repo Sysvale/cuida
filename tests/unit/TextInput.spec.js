@@ -2,7 +2,10 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import flushPromises from 'flush-promises';
 import TextInput from '../../src/components/TextInput.vue';
 
+import VueMask from 'v-mask';
+
 const localVue = createLocalVue();
+localVue.use(VueMask);
 
 test('Component is mounted properly', () => {
 	const wrapper = shallowMount(TextInput, {
@@ -99,4 +102,18 @@ test('if fluid class is applied based on prop', async () => {
 	await flushPromises();
 
 	expect(wrapper.find('.text-input--fluid').exists()).toBeTruthy();
+});
+
+test('if the mask is applied when prop mask is set', async () => {
+	const wrapper = shallowMount(TextInput, {
+		localVue,
+		propsData: {
+			value: '123',
+			mask: '#-#-#',
+		},
+	});
+
+	await flushPromises();
+
+	expect(wrapper.emitted().input).toEqual([['1-2-3']]);
 });
