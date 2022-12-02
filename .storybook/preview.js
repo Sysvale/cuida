@@ -14,6 +14,8 @@ import 'vue-hljs/dist/style.css';
 import vueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/default.css';
 
+import VueMask from 'v-mask';
+
 import _ from 'lodash';
 Object.defineProperty(Vue.prototype, '_', { value: _ });
 
@@ -91,6 +93,8 @@ Vue.directive('longclick', longClickInstance);
 
 Vue.use(vueHljs, { hljs });
 Vue.use(BootstrapVue);
+
+Vue.use(VueMask);
 
 setupCalendar({
 	locales: {
