@@ -163,7 +163,19 @@ export default {
 		},
 
 		inputClass() {
-			return this.fluid ? 'date-input--fluid' : 'date-input';
+			let returningClass = '';
+
+			if (!this.disabled) {
+				if (this.state === 'valid') {
+					returningClass += ' date-input--valid';
+				} else if (this.state === 'invalid') {
+					returningClass += ' date-input--invalid';
+				}
+			}
+
+			returningClass += this.fluid ? ' date-input--fluid' : ' date-input';
+
+			return returningClass;
 		},
 
 		availableDates() {
@@ -229,6 +241,14 @@ export default {
 	&--fluid {
 		@extend .date-input;
 		width: 100%;
+	}
+
+	&--valid {
+		outline: 1px solid $gp-500 !important;
+	}
+
+	&--invalid {
+		outline: 1px solid $rc-600 !important;
 	}
 
 	&__container {
