@@ -115,5 +115,5 @@ test('if the mask is applied when prop mask is set', async () => {
 
 	await flushPromises();
 
-	expect(wrapper.emitted().input).toEqual([["1-2-3"]]);
+	expect(wrapper.emitted().input).toEqual([['1-2-3']]);
 });
