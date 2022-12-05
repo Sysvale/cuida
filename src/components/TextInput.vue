@@ -137,12 +137,12 @@ export default {
 			required: false,
 		},
 		/**
-		 * Especifica a máscara a ser aplicada ao TextInput. 
-		 * Exemplo: "(##) #####-####"
+		 * Especifica a máscara a ser aplicada ao TextInput.
+		 * Exemplo: "(##) #####-####" ou ainda ['(##) #####-####', '(##) ####-####']"
 		 */
 		mask: {
-			type: String,
-			default: null,
+			type: [String, Array],
+			default: '',
 		},
 	},
 

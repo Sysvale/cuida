@@ -117,3 +117,26 @@ test('if the mask is applied when prop mask is set', async () => {
 
 	expect(wrapper.emitted().input).toEqual([['1-2-3']]);
 });
+
+test('the component renderes correctly when an array mask is provided', async () => {
+	const wrapper = shallowMount(TextInput, {
+		localVue,
+		mask: "['(##) ####-####', '(##) #####-####']",
+	});
+
+	await flushPromises();
+
+	wrapper.find('#cds-text-input').element.value = '74912345678';
+	wrapper.find('#cds-text-input').trigger('input');
+
+	await flushPromises();
+
+	expect(wrapper.emitted().input).toEqual([['(74) 91234-5678']]);
+
+	wrapper.find('#cds-text-input').element.value = '7412345678';
+	wrapper.find('#cds-text-input').trigger('input');
+
+	await flushPromises();
+
+	expect(wrapper.emitted().input).toEqual([['(74) 1234-5678']]);
+});
