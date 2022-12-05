@@ -1,0 +1,179 @@
+<template>
+	<div class="toolbar__container">
+		<div
+			:class="{
+				'toolbar--fixed': float,
+				'toolbar--dark': dark,
+				'toolbar--light': !dark,
+			}"
+		>
+			<!-- @slot Slot utilizado para renderização de texto no componente.-->
+			<slot
+				name="description"
+			/>
+
+			<div
+				v-if="hasActionSlot"
+			>
+				<!-- @slot Slot para renderização de botões na ActionBar.-->
+				<slot
+					class="px-2 mx-1"
+					name="actions"
+				/>
+			</div>
+
+			<div
+				class="toolbar__buttons-container"
+				v-else
+			>
+				<div
+					v-for="(action, index) in actions"
+					:key="index"
+				>
+					<cds-button
+						class="toolbar__button"
+						secondary
+						@click="$emit('click', action)"
+					>
+						<span class="light">{{ action }}</span>
+					</cds-button>
+				</div>
+			</div>
+			<!--
+				Evento emitido quando o botão "X" é clicado.
+				@event action-clicked
+				@type {Event}
+			-->
+			<div
+				v-if="dismissible"
+				class="icon-container"
+				@click="$emit('close', true)"
+			>
+				<cds-icon
+					name="x-outline"
+					height="20"
+					width="20"
+				/>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+import CdsIcon from '../components/Icon.vue';
+import CdsButton from '../components/Button.vue';
+
+export default {
+	components: {
+		CdsIcon,
+		CdsButton,
+	},
+
+	props: {
+		
+		/**
+		* Faz com que a ActionBar flutue acima do conteúdo da view,
+		* sendo colocada na parte inferior da página
+		*/
+		float: {
+			
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Prop que exibe botão de fechamento da ActionBar.
+		 */
+		dismissible: {
+			
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Especifica se a versão da ActionBar é a dark.
+		 */
+		dark: {
+			
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Indica os botões a serem exibidos na ActionBar.
+		 */
+		actions: {
+			
+			type: Array,
+			default: () => [],
+		},
+	},
+	
+	computed: {
+		
+		hasActionSlot(){
+			return Object.keys(this.$slots).some(slot => slot === 'actions');
+		},
+	},
+};
+</script>
+<style lang="scss" scoped>
+@import '../assets/sass/app.scss';
+.toolbar {
+	align-items: center;
+	border-radius: $border-radius-extra-small;
+	bottom: 72px;
+	box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05);
+	display: flex;
+	padding: pYX(3, 4);
+	z-index: 99;
+	width: 500px;
+	
+	&__container {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+	}
+
+	&__buttons-container {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__button {
+		padding: px(2);
+		margin: mx(1);
+	}
+
+	&--dark {
+		background-color: $n-700;
+		color: $n-10;
+		outline: 1px solid $n-30;
+		@extend .toolbar;
+	}
+
+	&--light {
+		background-color: $n-10;
+		color: $n-800;
+		outline: 1px solid $n-600;
+		@extend .toolbar;
+	}
+
+	&--fixed {
+		position: fixed;
+	}
+}
+
+
+.icon-container {
+	align-items: center;
+	background-color: $n-40;
+	border-radius: 50%;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	padding: pa(2);
+	margin: ml(2);
+}
+
+.icon-container:hover {
+	background-color: #00000041;
+}
+</style>

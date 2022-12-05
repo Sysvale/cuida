@@ -73,6 +73,7 @@ import {
 	DateInput,
 	Icon,
 	TextArea,
+	ActionBar,
 } from '../src/components';
 
 import {
@@ -173,6 +174,7 @@ Vue.component('cds-modal', Modal);
 Vue.component('cds-date-input', DateInput);
 Vue.component('cds-icon', Icon);
 Vue.component('cds-text-area', TextArea);
+Vue.component('cds-action-bar', ActionBar);
 
 addParameters({
 	options: {
