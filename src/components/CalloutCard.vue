@@ -16,9 +16,17 @@
 
 					<!-- @slot Slot usado para inserção de conteúdo customizado no texto. -->
 					<span class="content__text">
-						<slot name="text">
+						<div
+							v-if="hasTextSlot"
+						>
+							<!-- @slot Slot para renderização customizada do texto. Sobrescreve a prop `text`.
+							-->
+							<slot name="text-slot" />
+						</div>
+
+						<div v-else-if="text">
 							{{ text }}
-						</slot>
+						</div>
 					</span>
 				</div>
 				<div>
@@ -61,7 +69,7 @@ export default {
 		text: {
 			type: String,
 			default: 'Subtítulo do AlertCard',
-			required: true,
+			required: false,
 		},
 		/**
 		 * A imagem do card.
@@ -113,6 +121,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+	},
+
+	computed :{
+
+		hasTextSlot(){
+			return Object.keys(this.$slots).some(slot => slot === 'text-slot');
+		}
 	},
 
 	methods: {
