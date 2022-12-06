@@ -30,7 +30,7 @@
 			<input
 				id="cds-text-input"
 				v-model="internalValue"
-				v-mask="mask"
+				v-facade="mask"
 				:placeholder="placeholder"
 				:disabled="disabled"
 				:class="inputClass"
@@ -141,8 +141,8 @@ export default {
 		 * Exemplo: "(##) #####-####"
 		 */
 		mask: {
-			type: String,
-			default: null,
+			type: [Array, String],
+			default: "",
 		},
 	},
 
