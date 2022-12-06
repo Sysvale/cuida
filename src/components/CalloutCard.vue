@@ -1,7 +1,10 @@
 <template>
 	<span id="callout-card">
 		<div :class="resolveClass('callout-card__container')">
-			<div class="image__container">
+			<div
+				v-if="image"
+				class="image__container"
+			>
 				<img
 					:class="resolveClass('image__content')"
 					:src="image"
@@ -21,10 +24,10 @@
 						>
 							<!-- @slot Slot para renderização customizada do texto. Sobrescreve a prop `text`.
 							-->
-							<slot name="text-slot" />
+							<slot name="text" />
 						</div>
 
-						<div v-else-if="text">
+						<div v-else>
 							{{ text }}
 						</div>
 					</span>
@@ -77,7 +80,7 @@ export default {
 		image: {
 			type: String,
 			default: '',
-			required: true,
+			required: false,
 		},
 		/**
 		 * A descrição da imagem do card.
@@ -124,9 +127,8 @@ export default {
 	},
 
 	computed :{
-
 		hasTextSlot(){
-			return Object.keys(this.$slots).some(slot => slot === 'text-slot');
+			return Object.keys(this.$slots).some(slot => slot === 'text');
 		}
 	},
 
