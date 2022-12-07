@@ -13,6 +13,7 @@ import 'vue-hljs/dist/style.css';
 
 import vueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/default.css';
+import { longClickDirective } from 'vue-long-click';
 
 import InputFacade from 'vue-input-facade';
 
@@ -85,8 +86,6 @@ import {
 	CopyToken,
 	Shadows,
 } from '../src/docs-components';
-
-import { longClickDirective } from 'vue-long-click';
 
 const longClickInstance = longClickDirective({ delay: 400, interval: 50 });
 Vue.directive('longclick', longClickInstance);
