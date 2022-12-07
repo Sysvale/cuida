@@ -1,6 +1,7 @@
 import vueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/default.css';
 import { setupCalendar } from 'v-calendar';
+import { longClickDirective } from 'vue-long-click';
 import _ from 'lodash';
 import * as components from './components/index';
 
@@ -11,6 +12,9 @@ function install(Vue) {
 	install.installed = true;
 
 	Vue.component('vueSlider', vueSlider);
+
+	const longClickInstance = longClickDirective({ delay: 400, interval: 50 });
+	Vue.directive('longclick', longClickInstance);
 
 	Object.defineProperty(Vue.prototype, '_', { value: _ });
 
