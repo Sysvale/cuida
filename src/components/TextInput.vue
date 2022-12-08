@@ -22,8 +22,17 @@
 				>
 					*
 				</span>
-
+				
+				<cds-icon
+					v-if="tooltip"
+					v-cdstip="tooltip"
+					:name="tooltipIcon"
+					height="20"
+					width="20"
+					class="text-input__icon"
+				/>
 			</label>
+
 		</span>
 
 		<div :class="stepperInputDynamicClass">
@@ -82,6 +91,7 @@
 
 <script>
 import { CheckIcon, AlertCircleIcon } from 'vue-feather-icons';
+import CdsIcon from '../components/Icon.vue';
 
 export default {
 	props: {
@@ -157,6 +167,20 @@ export default {
 			type: [Array, String],
 			default: null,
 		},
+		/**
+		 * Define exibição e texto do tooltip do input
+		 */
+		tooltip: {
+			type: String,
+			default: null,
+		},
+		/**
+		 * Especifica ícone do tooltip do TextInput. 
+		 */
+		tooltipIcon: {
+			type: String,
+			default: 'info-outline',
+		}
 	},
 
 	components: {
@@ -277,10 +301,17 @@ export default {
 		@include body-2;
 		font-weight: $font-weight-semibold;
 		color: $n-700;
+		display: flex;
+		align-items: flex-end;
 
 		&--required-indicator {
 			color: $rc-600;
 		}
+	}
+
+	&__icon {
+		margin: ml(1);
+		cursor: pointer;
 	}
 
 	&__icon-container {
