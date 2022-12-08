@@ -12,6 +12,7 @@ import hljs from 'highlight.js';
 import tippy from 'tippy.js';
 import 'vue-hljs/dist/style.css';
 import 'tippy.js/dist/tippy.css';
+import Cdstip from '../src/utils/directives/cdstip';
 
 import vueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/default.css';
@@ -91,28 +92,7 @@ import {
 
 const longClickInstance = longClickDirective({ delay: 400, interval: 50 });
 Vue.directive('longclick', longClickInstance);
-Vue.directive('cdstip', (el, binding) => {
-	const generateRandomId = () => {
-		const s4 = () => {
-			return Math.floor((1 + Math.random()) * 0x10000)
-				.toString(16)
-				.substring(1);
-		};
-
-		return `${s4()}-${s4()}`;
-	};
-
-	if (binding.value === null || binding.value === undefined) return;
-
-	const tippyId = generateRandomId();
-	el.setAttribute('data-tippy', tippyId);
-
-	const elementQueryString = `${el.tagName.toLowerCase()}[data-tippy="${tippyId}"]`;
-
-	tippy(elementQueryString, {
-		content: binding.value,
-	});
-});
+Vue.directive('cdstip', Cdstip);
 
 Vue.use(vueHljs, { hljs });
 Vue.use(BootstrapVue);
