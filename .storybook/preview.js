@@ -94,14 +94,16 @@ Vue.directive('longclick', longClickInstance);
 Vue.directive('cdstip', (el, binding) => {
 	const generateRandomId = () => {
 		const s4 = () => {
-			return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-		}
-	
-		return `${s4()}-${s4()}`;
-	}
+			return Math.floor((1 + Math.random()) * 0x10000)
+				.toString(16)
+				.substring(1);
+		};
 
-	if(binding.value === null || binding.value === undefined) return;
-	
+		return `${s4()}-${s4()}`;
+	};
+
+	if (binding.value === null || binding.value === undefined) return;
+
 	const tippyId = generateRandomId();
 	el.setAttribute('data-tippy', tippyId);
 
