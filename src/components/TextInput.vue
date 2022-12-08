@@ -37,9 +37,22 @@
 
 		<div :class="stepperInputDynamicClass">
 			<input
+				v-if="mask"
 				id="cds-text-input"
 				v-model="internalValue"
 				v-facade="mask"
+				:placeholder="placeholder"
+				:disabled="disabled"
+				:class="inputClass"
+				:type="castToNumber ? 'number' : 'text'"
+				@focus="isBeingFocused = true"
+				@blur="isBeingFocused = false"
+			/>
+
+			<input
+				v-else
+				id="cds-text-input"
+				v-model="internalValue"
 				:placeholder="placeholder"
 				:disabled="disabled"
 				:class="inputClass"
@@ -152,7 +165,7 @@ export default {
 		 */
 		mask: {
 			type: [Array, String],
-			default: "",
+			default: null,
 		},
 		/**
 		 * Define exibição e texto do tooltip do input
