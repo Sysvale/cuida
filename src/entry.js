@@ -5,6 +5,9 @@ import { longClickDirective } from 'vue-long-click';
 import _ from 'lodash';
 import * as components from './components/index';
 import InputFacade from 'vue-input-facade';
+import tippy from 'tippy.js';
+import 'tippy.js/dist/tippy.css';
+import Cdstip from '../src/utils/directives/cdstip';
 
 // install function executed by Vue.use()
 function install(Vue) {
@@ -17,6 +20,8 @@ function install(Vue) {
 
 	const longClickInstance = longClickDirective({ delay: 400, interval: 50 });
 	Vue.directive('longclick', longClickInstance);
+	
+	Vue.directive('cdstip', Cdstip);
 
 	Object.defineProperty(Vue.prototype, '_', { value: _ });
 
