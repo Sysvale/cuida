@@ -50,6 +50,18 @@
 			/>
 
 			<input
+				v-else-if="money"
+				id="cds-text-input"
+				v-model.lazy="internalValue"
+				v-money="moneyDirectiveConfig"
+				:placeholder="placeholder"
+				:disabled="disabled"
+				:class="inputClass"
+				@focus="isBeingFocused = true"
+				@blur="isBeingFocused = false"
+			/>
+
+			<input
 				v-else
 				id="cds-text-input"
 				v-model="internalValue"
@@ -92,6 +104,7 @@
 <script>
 import { CheckIcon, AlertCircleIcon } from 'vue-feather-icons';
 import CdsIcon from '../components/Icon.vue';
+  import { VMoney } from 'v-money';
 
 export default {
 	props: {
@@ -180,7 +193,20 @@ export default {
 		tooltipIcon: {
 			type: String,
 			default: 'info-outline',
-		}
+		},
+
+		/**
+		 * Especifica se o input deve exibir uma máscara monetária. 
+		 * Exemplo: "(##) #####-####"
+		 */
+		money: {
+			type: Boolean,
+			default: false,
+		},
+	},
+
+	directives: {
+		money: VMoney,
 	},
 
 	components: {
@@ -192,6 +218,13 @@ export default {
 		return {
 			internalValue: '',
 			isBeingFocused: false,
+			moneyDirectiveConfig: {
+				decimal: ',',
+				thousands: '.',
+				prefix: 'R$ ',
+				precision: 2,
+				masked: false,
+			},
 		};
 	},
 
@@ -261,20 +294,24 @@ export default {
 			 * @event input
 			 * @type {Event}
 			 */
-			if (this.castToNumber) {
-				if (value.length > 15) {
-					this.internalValue = value.slice(0, 15);
-				} else {
-					let sanitizedInput = '';
+			if (this.castToNumber || this.money) {
+				let sanitizedInput = value;
 
-					if (value.length === 1) {
-						sanitizedInput = value.replace(',', '0');
-					}
-
-					sanitizedInput = value.replace(',', '.');
-					this.$emit('input', Number(sanitizedInput));
+				if(this.money) {
+					sanitizedInput = sanitizedInput.replaceAll(this.moneyDirectiveConfig.prefix, '');
+					sanitizedInput = sanitizedInput.replaceAll(this.moneyDirectiveConfig.thousands, '');
+					sanitizedInput = sanitizedInput.replaceAll(this.moneyDirectiveConfig.decimal, '.');
 				}
 
+				if (sanitizedInput.length > 15) {
+					this.internalValue = sanitizedInput.slice(0, 15);
+				} else {
+					if (sanitizedInput.length === 1) {
+						sanitizedInput = sanitizedInput.replace(',', '0');
+					}
+					sanitizedInput = sanitizedInput.replace(',', '.');
+					this.$emit('input', Number(sanitizedInput));
+				}
 			} else {
 				this.$emit('input', value);
 			}
