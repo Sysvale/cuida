@@ -32,6 +32,7 @@ export const iconsData = [
 			'clipboard-text-outline',
 			'folder-outline',
 			'folder-open-outline',
+			'briefcase-outline',
 			'layers-outline',
 			'subtask-outline',
 			'box-outline',
@@ -49,6 +50,9 @@ export const iconsData = [
 			'info-outline',
 			'mail-outline',
 			'notification-bell-outline',
+			'checkbox-checked-outlined',
+			'flag-outline',
+			'sparks-outline',
 		],
 	},
 	{
@@ -80,6 +84,8 @@ export const iconsData = [
 			'login-outline',
 			'rotate-left-outline',
 			'rotate-right-outline',
+			'loading-right-outline',
+			'loadgin-left-outline',
 		],
 	},
 	{
@@ -89,6 +95,7 @@ export const iconsData = [
 			'pause-outline',
 			'play-circle-outline',
 			'pause-circle-outline',
+			'stop-circle-outline',
 			'image-outline',
 			'videocam-outline',
 		],
@@ -112,7 +119,7 @@ export const iconsData = [
 	},
 	{
 		categoryName: 'Location',
-		icons: ['map-pin-outline', 'map-outline', 'pin-outline'],
+		icons: ['map-pin-outline', 'map-outline', 'pin-outline', 'bed-outiline', 'building-outline', 'ticket-outline'],
 	},
 	{
 		categoryName: 'Date & time',
@@ -120,10 +127,14 @@ export const iconsData = [
 	},
 	{
 		categoryName: 'Security',
-		icons: ['lock-outline', 'unlock-outline', 'key-outline'],
+		icons: ['lock-outline', 'unlock-outline', 'key-outline', 'shield-outline', 'shield-tick-outline'],
 	},
 	{
 		categoryName: 'Messaging',
 		icons: ['chatbubble-outline', 'chatbubbles-outline'],
+	},
+	{
+		categoryName: 'Brands',
+		icons: ['github-logo-outline', 'gitlab-logo-outline', 'figma-logo-outline', 'framer-logo-outline'],
 	},
 ];
