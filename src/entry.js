@@ -20,7 +20,7 @@ function install(Vue) {
 
 	const longClickInstance = longClickDirective({ delay: 400, interval: 50 });
 	Vue.directive('longclick', longClickInstance);
-	
+
 	Vue.directive('cdstip', Cdstip);
 
 	Object.defineProperty(Vue.prototype, '_', { value: _ });

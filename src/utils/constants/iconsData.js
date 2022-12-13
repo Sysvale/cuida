@@ -119,7 +119,14 @@ export const iconsData = [
 	},
 	{
 		categoryName: 'Location',
-		icons: ['map-pin-outline', 'map-outline', 'pin-outline', 'bed-outiline', 'building-outline', 'ticket-outline'],
+		icons: [
+			'map-pin-outline',
+			'map-outline',
+			'pin-outline',
+			'bed-outiline',
+			'building-outline',
+			'ticket-outline',
+		],
 	},
 	{
 		categoryName: 'Date & time',
@@ -127,7 +134,13 @@ export const iconsData = [
 	},
 	{
 		categoryName: 'Security',
-		icons: ['lock-outline', 'unlock-outline', 'key-outline', 'shield-outline', 'shield-tick-outline'],
+		icons: [
+			'lock-outline',
+			'unlock-outline',
+			'key-outline',
+			'shield-outline',
+			'shield-tick-outline',
+		],
 	},
 	{
 		categoryName: 'Messaging',
@@ -135,6 +148,11 @@ export const iconsData = [
 	},
 	{
 		categoryName: 'Brands',
-		icons: ['github-logo-outline', 'gitlab-logo-outline', 'figma-logo-outline', 'framer-logo-outline'],
+		icons: [
+			'github-logo-outline',
+			'gitlab-logo-outline',
+			'figma-logo-outline',
+			'framer-logo-outline',
+		],
 	},
 ];
