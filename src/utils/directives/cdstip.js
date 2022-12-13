@@ -9,17 +9,17 @@ export default (el, binding) => {
 					.toString(16)
 					.substring(1);
 			};
-	
+
 			return `${s4()}-${s4()}`;
 		};
-	
+
 		if (binding.value === null || binding.value === undefined) return;
-	
+
 		const tippyId = generateRandomId();
 		el.setAttribute('data-tippy', tippyId);
-	
+
 		const elementQueryString = `${el.tagName.toLowerCase()}[data-tippy="${tippyId}"]`;
-	
+
 		tippy(elementQueryString, {
 			content: binding.value,
 		});
