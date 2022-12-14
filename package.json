@@ -80,7 +80,7 @@
     "rollup": "^1.29.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-terser": "^5.2.0",
-    "rollup-plugin-vue": "5.1.1",
+    "rollup-plugin-vue": "6.0.0",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
     "vue-hljs": "^2.0.0",
