@@ -1,7 +1,7 @@
 import { mount, createLocalVue } from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
 import ActionBar from '../../src/components/ActionBar.vue';
-import { completeIconSet } from "@sysvale/cuida-icons/dist";
+import { completeIconSet } from '@sysvale/cuida-icons/dist';
 
 const localVue = createLocalVue();
 localVue.use(BootstrapVue);
@@ -46,7 +46,7 @@ test('if the event is emited correctly when the dismissible icon is clicked', ()
 	wrapper.find('.icon-container').trigger('click');
 
 	expect(wrapper.emitted().close).toBeTruthy();
-	expect(wrapper.emitted().close).toEqual([ [ true ] ]);
+	expect(wrapper.emitted().close).toEqual([[true]]);
 });
 
 test("if the the color sent to the prop 'bgData' is applied", () => {
@@ -57,11 +57,5 @@ test("if the the color sent to the prop 'bgData' is applied", () => {
 		},
 	});
 
-	expect(
-		wrapper
-		.find('.toolbar')
-		.element
-		.style['background-color'])
-		.toEqual('rgb(0, 0, 0)'
-	);
+	expect(wrapper.find('.toolbar').element.style['background-color']).toEqual('rgb(0, 0, 0)');
 });
