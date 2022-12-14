@@ -14,10 +14,10 @@
 
 			<div
 				v-if="hasActionSlot"
+				class="toolbar__buttons-container"
 			>
 				<!-- @slot Slot para renderização de botões na ActionBar.-->
 				<slot
-					class="px-2 mx-1"
 					name="actions"
 				/>
 			</div>
@@ -26,6 +26,11 @@
 				class="toolbar__buttons-container"
 				v-else
 			>
+				<!--
+					Evento emitido quando os botões são clicados.
+					@event action-clicked
+					@type {Event}
+				-->
 				<div
 					v-for="(action, index) in actions"
 					:key="index"
@@ -33,10 +38,10 @@
 				>
 					<cds-button
 						:secondary="!dark"
-						variant="red"
+						variant="dark"
 						@click="$emit('click', action)"
 					>
-						<span class="light">{{ action }}</span>
+						<span>{{ action }}</span>
 					</cds-button>
 				</div>
 			</div>
@@ -47,7 +52,7 @@
 			-->
 			<div
 				v-if="dismissible"
-				class="icon-container"
+				:class="dark ? 'toolbar__icon--dark' : 'toolbar__icon--light'"
 				@click="$emit('close', true)"
 			>
 				<cds-icon
@@ -129,10 +134,11 @@ export default {
 		justify-content: center;
 		width: 100%;
 	}
-
+	
 	&__buttons-container {
 		display: flex;
 		justify-content: space-between;
+		margin: ml(2);
 	}
 
 	&__button {
@@ -143,34 +149,51 @@ export default {
 	&--dark {
 		background-color: $n-700;
 		color: $n-10;
-		outline: 1px solid $n-600;
+		border: 1px solid $n-600;
 		@extend .toolbar;
 	}
 
 	&--light {
 		background-color: $n-10;
 		color: $n-800;
-		outline: 1px solid $n-30;
+		border: 1px solid $n-30;
 		@extend .toolbar;
 	}
 
 	&--fixed {
 		position: fixed;
 	}
-}
 
-.icon-container {
-	align-items: center;
-	background-color: $n-40;
-	border-radius: 50%;
-	cursor: pointer;
-	display: flex;
-	justify-content: center;
-	padding: pa(2);
-	margin: ml(2);
-}
-
-.icon-container:hover {
-	background-color: #00000041;
+	&__icon {
+		&--dark {
+			align-items: center;
+			background-color: $n-800;
+			border-radius: 50%;
+			cursor: pointer;
+			display: flex;
+			justify-content: center;
+			padding: pa(1);
+			margin: ml(1);
+		}
+		
+		&--dark:hover {
+			background-color: $n-900;
+		}
+		
+		&--light {
+			align-items: center;
+			background-color: $n-30;
+			border-radius: 50%;
+			cursor: pointer;
+			display: flex;
+			justify-content: center;
+			padding: pa(1);
+			margin: ml(1);
+		}
+		
+		&--light:hover {
+			background-color: $n-40;
+		}
+	}
 }
 </style>
