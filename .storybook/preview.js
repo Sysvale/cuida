@@ -9,12 +9,16 @@ import Multiselect from 'vue-multiselect';
 import { setupCalendar } from 'v-calendar';
 import vueHljs from 'vue-hljs';
 import hljs from 'highlight.js';
+import tippy from 'tippy.js';
 import 'vue-hljs/dist/style.css';
+import 'tippy.js/dist/tippy.css';
+import Cdstip from '../src/utils/directives/cdstip';
 
 import vueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/default.css';
+import { longClickDirective } from 'vue-long-click';
 
-import VueMask from 'v-mask';
+import InputFacade from 'vue-input-facade';
 
 import _ from 'lodash';
 Object.defineProperty(Vue.prototype, '_', { value: _ });
@@ -87,15 +91,14 @@ import {
 	Shadows,
 } from '../src/docs-components';
 
-import { longClickDirective } from 'vue-long-click';
-
 const longClickInstance = longClickDirective({ delay: 400, interval: 50 });
 Vue.directive('longclick', longClickInstance);
+Vue.directive('cdstip', Cdstip);
 
 Vue.use(vueHljs, { hljs });
 Vue.use(BootstrapVue);
 
-Vue.use(VueMask);
+Vue.use(InputFacade);
 
 setupCalendar({
 	locales: {

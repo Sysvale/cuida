@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component is mounted properly 1`] = `
-<span id="cds-button"><button class="button__container button--teal--active button-size--sm">
+<span id="cds-button"><button class="button__container button--teal--active button-size--sm"><span class="button__text">
+		
 			Conteúdo
-		</button></span>
+		</span></button></span>
 `;

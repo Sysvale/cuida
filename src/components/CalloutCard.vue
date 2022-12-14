@@ -1,7 +1,10 @@
 <template>
 	<span id="callout-card">
 		<div :class="resolveClass('callout-card__container')">
-			<div class="image__container">
+			<div
+				v-if="image"
+				class="image__container"
+			>
 				<img
 					:class="resolveClass('image__content')"
 					:src="image"
@@ -16,9 +19,17 @@
 
 					<!-- @slot Slot usado para inserção de conteúdo customizado no texto. -->
 					<span class="content__text">
-						<slot name="text">
+						<div
+							v-if="hasTextSlot"
+						>
+							<!-- @slot Slot para renderização customizada do texto. Sobrescreve a prop `text`.
+							-->
+							<slot name="text" />
+						</div>
+
+						<div v-else>
 							{{ text }}
-						</slot>
+						</div>
 					</span>
 				</div>
 				<div>
@@ -61,7 +72,7 @@ export default {
 		text: {
 			type: String,
 			default: 'Subtítulo do AlertCard',
-			required: true,
+			required: false,
 		},
 		/**
 		 * A imagem do card.
@@ -69,7 +80,7 @@ export default {
 		image: {
 			type: String,
 			default: '',
-			required: true,
+			required: false,
 		},
 		/**
 		 * A descrição da imagem do card.
@@ -113,6 +124,12 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+	},
+
+	computed :{
+		hasTextSlot(){
+			return Object.keys(this.$slots).some(slot => slot === 'text');
+		}
 	},
 
 	methods: {

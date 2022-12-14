@@ -17,6 +17,15 @@
 			>
 				*
 			</span>
+
+			<cds-icon
+				v-if="tooltip"
+				v-cdstip="tooltip"
+				:name="tooltipIcon"
+				height="20"
+				width="20"
+				class="select__icon"
+			/>
 		</label>
 		<div
 			class="select__container"
@@ -187,6 +196,20 @@ export default {
 			type: Boolean,
 			default: false,
 			required: false,
+		},
+		/**
+		 * Define exibição e texto do tooltip do select
+		 */
+		tooltip: {
+			type: String,
+			default: null,
+		},
+		/**
+		 * Especifica ícone do tooltip do Select. 
+		 */
+		tooltipIcon: {
+			type: String,
+			default: 'info-outline',
 		},
 	},
 
@@ -469,6 +492,8 @@ export default {
 		font-weight: $font-weight-semibold;
 		color: $n-700;
 		font-size: 14px;
+		display: flex;
+		align-items: flex-end;
 	}
 
 	&__container {
@@ -592,6 +617,13 @@ export default {
 		color: $rc-600;
 		margin: mt(1);
 	}
+
+
+	&__icon {
+		margin: ml(1);
+		cursor: pointer;
+	}
+
 }
 
 .option {

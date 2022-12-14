@@ -2,10 +2,10 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import flushPromises from 'flush-promises';
 import TextInput from '../../src/components/TextInput.vue';
 
-import VueMask from 'v-mask';
+import InputFacade from 'vue-input-facade';
 
 const localVue = createLocalVue();
-localVue.use(VueMask);
+localVue.use(InputFacade);
 
 test('Component is mounted properly', () => {
 	const wrapper = shallowMount(TextInput, {

@@ -43,6 +43,8 @@
 					:placeholder="placeholder"
 					type="text"
 					@click="togglePopover"
+					@focus="isBeingFocused = true"
+					@blur="isBeingFocused = false"
 				/>
 			</template>
 		</v-date-picker>
@@ -91,7 +93,7 @@ export default {
 			default: false,
 		},
 		/**
-		 * Especifica o estado do DateInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
+		 * Especifica o estado do DateInput. As opções são 'default', 'valid' e 'invalid'.
 		 */
 		 state: {
 			type: String,
@@ -146,6 +148,7 @@ export default {
 	data() {
 		return {
 			internalDate: DateTime.now(),
+			isBeingFocused: false,
 		};
 	},
 
@@ -163,7 +166,27 @@ export default {
 		},
 
 		inputClass() {
-			return this.fluid ? 'date-input--fluid' : 'date-input';
+			let returningClass = '';
+
+			if (!this.isBeingFocused) {
+				if (!this.disabled) {
+					if (this.state === 'valid') {
+						returningClass += ' date-input--valid';
+					} else if (this.state === 'invalid') {
+						returningClass += ' date-input--invalid';
+					}
+				}
+			} else if (!this.disabled) {
+				if (this.state === 'valid') {
+					returningClass += ' date-input--focused-valid';
+				} else if (this.state === 'invalid') {
+					returningClass += ' date-input--focused-invalid';
+				}
+			}
+
+			returningClass += this.fluid ? ' date-input--fluid' : ' date-input';
+
+			return returningClass;
 		},
 
 		availableDates() {
@@ -212,8 +235,8 @@ export default {
 @import '../assets/sass/app.scss';
 
 .date-input {
-	outline: 1px solid $n-50 !important;
-	border: none !important;
+	outline: 1px solid $n-50;
+	border: none;
 	border-radius: $border-radius-extra-small !important;
 	padding: pa(3);
 	color: $n-600;
@@ -229,6 +252,24 @@ export default {
 	&--fluid {
 		@extend .date-input;
 		width: 100%;
+	}
+
+	&--valid {
+		outline: 1px solid $gp-500 !important;
+	}
+
+	&--invalid {
+		outline: 1px solid $rc-600 !important;
+	}
+
+	&--focused-valid {
+		@extend .date-input--valid;
+		box-shadow: 0 0 0 0.2rem rgba($gp-300, .45) !important;
+	}
+
+	&--focused-invalid {
+		@extend .date-input--invalid;
+		box-shadow: 0 0 0 0.2rem rgba($rc-300, .45) !important;
 	}
 
 	&__container {

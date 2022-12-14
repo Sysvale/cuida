@@ -12,9 +12,16 @@
 					<!-- @slot Slot para renderização customizada do conteúdo do item
 						de expandir/colapsar a lista
 					-->
-					<slot name="action-trigger">
+					<slot
+						v-if="hasActionTrigger"
+						name="action-trigger"
+					/>
+
+					<span
+						v-else
+					>
 						{{ itsBeingShown ? 'Menos ações' : 'Mais ações'}}
-					</slot>
+					</span>
 				</div>
 			</div>
 			<div
@@ -47,9 +54,16 @@
 					class="action-list__item--left-bordered"
 					@click="toggleCollapseState"
 				>
-					<slot name="action-trigger">
+					<slot
+						v-if="hasActionTrigger"
+						name="action-trigger"
+					/>
+
+					<span
+						v-else
+					>
 						{{ itsBeingShown ? 'Menos ações' : 'Mais ações'}}
-					</slot>
+					</span>
 				</div>
 			</div>
 		</div>
@@ -83,12 +97,19 @@ export default {
 			default: false,
 		},
 	},
+
 	data() {
 		return {
 			action: _.cloneDeep(this.actions),
 			internalNumberOfExpandedActions: this.numberOfExpandedActions,
 			itsBeingShown: false,
 		};
+	},
+
+	computed: {
+		hasActionTrigger() {
+			return Object.keys(this.$slots).some(slot => slot === 'action-trigger');
+		},
 	},
 
 	methods: {
