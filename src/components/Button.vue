@@ -38,6 +38,7 @@ export default {
 				'red',
 				'orange',
 				'amber',
+				'dark',
 			],
 			predefinedSizes: [
 				'sm',
@@ -50,7 +51,7 @@ export default {
 	props: {
 		/**
 		 * A variante de cor. São 9 variantes implementadas: 'green', 'teal',
-		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'.
+		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e dark.
 		 */
 		variant: {
 			type: String,
@@ -208,6 +209,10 @@ export default {
 		'--amber': (
 			'active': $al-400,
 			'disabled': $al-300,
+		),
+		'--dark': (
+			'active': $n-700,
+			'disabled': $n-500,
 		),
 	);
 
