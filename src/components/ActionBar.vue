@@ -29,10 +29,11 @@
 				<div
 					v-for="(action, index) in actions"
 					:key="index"
+					class="toolbar__button"
 				>
 					<cds-button
-						class="toolbar__button"
-						secondary
+						:secondary="!dark"
+						variant="red"
 						@click="$emit('click', action)"
 					>
 						<span class="light">{{ action }}</span>
@@ -70,13 +71,11 @@ export default {
 	},
 
 	props: {
-		
 		/**
 		* Faz com que a ActionBar flutue acima do conteúdo da view,
 		* sendo colocada na parte inferior da página
 		*/
 		float: {
-			
 			type: Boolean,
 			default: false,
 		},
@@ -84,7 +83,6 @@ export default {
 		 * Prop que exibe botão de fechamento da ActionBar.
 		 */
 		dismissible: {
-			
 			type: Boolean,
 			default: false,
 		},
@@ -92,7 +90,6 @@ export default {
 		 * Especifica se a versão da ActionBar é a dark.
 		 */
 		dark: {
-			
 			type: Boolean,
 			default: false,
 		},
@@ -100,7 +97,6 @@ export default {
 		 * Indica os botões a serem exibidos na ActionBar.
 		 */
 		actions: {
-			
 			type: Array,
 			default: () => [],
 		},
@@ -124,7 +120,9 @@ export default {
 	display: flex;
 	padding: pYX(3, 4);
 	z-index: 99;
-	width: 500px;
+	min-width: 400px;
+	width: fit-content;
+	justify-content: space-between;
 	
 	&__container {
 		display: flex;
@@ -145,14 +143,14 @@ export default {
 	&--dark {
 		background-color: $n-700;
 		color: $n-10;
-		outline: 1px solid $n-30;
+		outline: 1px solid $n-600;
 		@extend .toolbar;
 	}
 
 	&--light {
 		background-color: $n-10;
 		color: $n-800;
-		outline: 1px solid $n-600;
+		outline: 1px solid $n-30;
 		@extend .toolbar;
 	}
 
@@ -160,7 +158,6 @@ export default {
 		position: fixed;
 	}
 }
-
 
 .icon-container {
 	align-items: center;
