@@ -6,10 +6,20 @@
 			@click="clickHandler()"
 
 		>
-			<!-- @slot Slot padrão utilizado para exibir texto do botão. -->
-			<slot>
+			<span
+				v-if="hasSlots"
+			>
+				<!-- @slot Slot padrão utilizado para exibir texto do botão. -->
+				<slot />
+			</span>
+			
+			<span
+				v-else
+				class="button__text"
+			>
+			
 				{{ text }}
-			</slot>
+			</span>
 		</button>
 	</span>
 </template>
@@ -102,6 +112,10 @@ export default {
 
 			return `${this.predefinedColor}${disabled} ${this.predefinedSize}`;
 		},
+
+		hasSlots() {
+			return !!Object.keys(this.$slots).length;
+		},
 	},
 
 	methods: {
@@ -152,6 +166,10 @@ export default {
 		&:focus {
 			outline: none !important;
 		}
+	}
+
+	&__text {
+		min-width: max-content;
 	}
 
 	$colors: (
