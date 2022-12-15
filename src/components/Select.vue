@@ -286,8 +286,6 @@ export default {
 				const element = this.localOptions[this.currentPos];
 				this.$refs[`${element.value}-${this.currentPos}`][0].classList.add('highlight');
 			});
-
-			this.active = true;
 		},
 
 		activateSelectionOnEnter() {
@@ -315,7 +313,7 @@ export default {
 
 			if (this.disabled) return;
 
-			this.active = true;
+			this.active = !this.active;
 		},
 
 		hide() {
