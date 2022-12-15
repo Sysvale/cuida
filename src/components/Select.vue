@@ -34,6 +34,7 @@
 			<input
 				v-model="localValue.value"
 				id="cds-select"
+				ref="select-input"
 				type="text"
 				autocomplete="off"
 				:onkeypress="`return ${allowSearch};`"
@@ -222,6 +223,7 @@ export default {
 			id: null,
 			allowSearch: this.searchable,
 			localOptions: this.options,
+			pristineOptions: this.options,
 			localValue: '',
 			selectElement: '',
 			direction: 'down',
@@ -292,7 +294,14 @@ export default {
 			if (this.disabled) return;
 
 			this.active = !this.active;
-			this.localValue = this.localOptions[this.currentPos];
+
+			if (typeof this.localOptions[this.currentPos] === 'undefined') {
+				this.localOptions = this.pristineOptions;
+			} else {
+				this.localValue = _.clone(this.localOptions[this.currentPos]);
+			}
+
+			this.$refs['select-input'].blur();
 		},
 
 		activateSelectionOnClick() {
@@ -310,13 +319,12 @@ export default {
 		},
 
 		hide() {
-			// this.localValue = this.localOptions[this.currentPos];
+			this.localOptions = this.pristineOptions;
 			this.active = false;
 		},
 
 		selectItem() {
-			console.log('SELECTING');
-			this.localValue = this.localOptions[this.currentPos];
+			this.localValue = _.clone(this.localOptions[this.currentPos]);
 		},
 
 		getLiInDOM(position) {
