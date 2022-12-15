@@ -40,6 +40,7 @@
 				:class="inputClass"
 				:placeholder="placeholder"
 				:disabled="disabled"
+				:readonly="!searchable"
 				@keydown.enter.prevent="activateSelectionOnEnter"
 				@keydown.arrow-down.prevent="highlightOnArrowDown"
 				@keydown.arrow-up.prevent="highlightOnArrowUp"
@@ -71,6 +72,7 @@
 						class="option__text"
 						:key="index"
 						:ref="`${option.value}-${index}`"
+						@mousedown="selectItem"
 						@mouseover="highlightOnMouseOver(index)"
 						@mouseout="unhighlightOnMouseOut()"
 					>
@@ -308,8 +310,13 @@ export default {
 		},
 
 		hide() {
-			this.localValue = this.localOptions[this.currentPos];
+			// this.localValue = this.localOptions[this.currentPos];
 			this.active = false;
+		},
+
+		selectItem() {
+			console.log('SELECTING');
+			this.localValue = this.localOptions[this.currentPos];
 		},
 
 		getLiInDOM(position) {
@@ -401,6 +408,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
+
+#cds-select {
+	-webkit-user-select: none; /* Safari */
+	-ms-user-select: none; /* IE 10 and IE 11 */
+	user-select: none;
+}
 
 .select {
 	&__input {
