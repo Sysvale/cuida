@@ -1,0 +1,95 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import PageHeader from '../../components/PageHeader.vue';
+
+<Meta
+	title="Componentes/Estrutural/PageHeader"
+	component={ PageHeader }
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { PageHeader },
+	template: /*html*/ `
+		<cds-page-header
+			v-bind="$props"
+		>
+			<template
+				slot="aside"
+			>
+				<div class="d-flex">
+					<cds-button
+						secondary
+						@click="logClick('Btn 1')"
+						text="Button 1"
+					/>
+				</div>
+				<cds-button
+					class="d-flex align-items-center ml-4"
+					variant="success"
+					@click="logClick('Btn 2')"
+					text="Button 2"
+				/>
+			</template>
+		</cds-page-header>
+	`,
+	methods: { logClick(btnName) { console.log(btnName) } }
+});
+
+export const template = /*html*/ `
+	<cds-page-header 
+		:items="items"
+		:isLight-themed="true"
+		:active-item="activeItem"
+		@click="handleItemClick"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
+# PageHeader
+
+### PageHeader são componentes utilizados para criar soluções de navegação e menus.
+---
+<br />
+
+## Recomendamos o uso de PageHeaderPageHeader quando:
+- For necessário separar o conteúdo por páginas e navergar por elas.
+- Não for o caso de utilizar soluções como tabs, sidebars, cards ou links como navegação.
+
+<br />
+
+## Não recomendamos o uso de PageHeader quando:
+- Houver muitos itens a serem mostrados no menu.
+- For necessário mostrar os links verticalmente.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="PageHeader"
+		decorators={[docsDecorator]}
+		args={{
+			title:"Procedimentos",
+			subtitle:"Gerencie os procedimentos cadastrados"
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="PageHeader" />
