@@ -8,22 +8,44 @@ import Button from '../../components/Button.vue';
 />
 
 export const Template = (args, { argTypes }) => ({
+	data() {
+		return {
+			showActionBar: false,
+		};
+	},
 	props: Object.keys(argTypes),
 	components: { ActionBar, Button },
 	template: /*html*/ `
-		<cds-action-bar
-			v-bind="$props"
-			@click="logAction"
-			@close="logClose"
-		>
-			<template slot="description">
-				8 itens selecionados
-			</template>
-		</cds-action-bar>
+		<div>
+			<cds-button
+				id="trigger-popover"
+				@click="togglePopover"
+			>
+				Click
+			</cds-button>
+			<cds-action-bar
+				v-bind="$props"
+				:show="showActionBar"
+				@click="logAction"
+				@close="logClose"
+			>
+				<template slot="description">
+					8 itens selecionados
+				</template>
+			</cds-action-bar>
+		</div>
 	`,
 	methods: { 
-		logAction(btn) { console.log('logAction: ', btn); },
-		logClose(event) { console.log('logClose: ', event); },
+		logAction(btn) {
+			console.log('logAction: ', btn);
+		},
+		logClose(event) {
+			this.showActionBar = false;
+			console.log('logClose: ', event);
+		},
+		togglePopover() {
+			this.showActionBar = true;
+		},
 	},
 });
 

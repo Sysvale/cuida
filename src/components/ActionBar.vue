@@ -1,5 +1,8 @@
 <template>
-	<div class="toolbar__container">
+	<div
+		v-if="internalShow"
+		class="toolbar__container"
+	>
 		<div
 			:class="{
 				'toolbar--fixed': float,
@@ -26,16 +29,16 @@
 				class="toolbar__buttons-container"
 				v-else
 			>
-				<!--
-					Evento emitido quando os botões são clicados.
-					@event action-clicked
-					@type {Event}
-				-->
 				<div
 					v-for="(action, index) in actions"
 					:key="index"
 					class="toolbar__button"
 				>
+					<!--
+						Evento emitido quando os botões são clicados.
+						@event click
+						@type {Event}
+					-->
 					<cds-button
 						:secondary="!dark"
 						variant="dark"
@@ -45,15 +48,11 @@
 					</cds-button>
 				</div>
 			</div>
-			<!--
-				Evento emitido quando o botão "X" é clicado.
-				@event action-clicked
-				@type {Event}
-			-->
+
 			<div
 				v-if="dismissible"
 				:class="dark ? 'toolbar__icon--dark' : 'toolbar__icon--light'"
-				@click="$emit('close', true)"
+				@click="handleClose"
 			>
 				<cds-icon
 					name="x-outline"
@@ -76,6 +75,14 @@ export default {
 	},
 
 	props: {
+		/**
+		 *  Controla a exibição do modal.
+		 */
+		 show: {
+			type: Boolean,
+			default: false,
+			required: true,
+		},
 		/**
 		* Faz com que a ActionBar flutue acima do conteúdo da view,
 		* sendo colocada na parte inferior da página
@@ -106,13 +113,41 @@ export default {
 			default: () => [],
 		},
 	},
+
+	data() {
+		return {
+			internalShow: false,
+		}
+	},
+
+	mounted() {
+		this.internalShow = this.show;
+	},
+
+	watch: {
+		show(value) {
+			this.internalShow = value;
+		},
+	},
 	
 	computed: {
-		
 		hasActionSlot(){
 			return Object.keys(this.$slots).some(slot => slot === 'actions');
 		},
 	},
+
+	methods: {
+		handleClose() {
+			this.internalShow = false;
+
+			/**
+			* Evento emitido quando o botão "X" é clicado.
+			* @event close
+			* @type {Event}
+			*/
+			this.$emit('close', true);
+		},
+	}
 };
 </script>
 <style lang="scss" scoped>
