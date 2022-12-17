@@ -40,6 +40,7 @@
 						@type {Event}
 					-->
 					<cds-button
+						:id="`btn-${index + 1}`"
 						:secondary="!dark"
 						variant="dark"
 						@click="$emit('click', action)"
@@ -78,10 +79,10 @@ export default {
 		/**
 		 *  Controla a exibição do modal.
 		 */
-		 show: {
+		show: {
 			type: Boolean,
 			default: false,
-			required: true,
+			required: false,
 		},
 		/**
 		* Faz com que a ActionBar flutue acima do conteúdo da view,

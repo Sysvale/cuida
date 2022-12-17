@@ -1,10 +1,10 @@
-import { mount, createLocalVue } from '@vue/test-utils';
-import BootstrapVue from 'bootstrap-vue';
+import { mount, shallowMount, createLocalVue } from '@vue/test-utils';
 import ActionBar from '../../src/components/ActionBar.vue';
-import { completeIconSet } from '@sysvale/cuida-icons/dist';
+import Button from '../../src/components/Button.vue';
+import flushPromises from 'flush-promises';
 
 const localVue = createLocalVue();
-localVue.use(BootstrapVue);
+localVue.component('cds-button', Button);
 
 test('Component is mounted properly', () => {
 	const wrapper = mount(ActionBar, {
@@ -13,49 +13,76 @@ test('Component is mounted properly', () => {
 	expect(wrapper).toMatchSnapshot();
 });
 
-test('if the dismiss icon is shown when the prop isDismissible is setted to true', () => {
-	const wrapper = mount(ActionBar, {
+test('if the dismiss icon is shown when the prop dismissible is setted to true', async () => {
+	const wrapper = shallowMount(ActionBar, {
 		localVue,
+		slots: {
+			description: '<div>dummy description</div>',
+		},
 		propsData: {
-			isDismissible: true,
+			show: true,
+			dismissible: true,
+			dark: true,
+			actions: ['Button1', 'Button2', 'Button3'],
+		},
+		stubs: {
+			'cds-button': true,
 		},
 	});
 
-	expect(wrapper.findAll('.icon-container').length).toBe(1);
+	await flushPromises();
+
+	expect(wrapper.findAll('.toolbar__icon--dark').length).toBe(1);
 });
 
-test("if the 'fixed' class is used when the floatingMode is setted to true", () => {
-	const wrapper = mount(ActionBar, {
+test("if the 'fixed' class is used when the float is setted to true", async () => {
+	const wrapper = shallowMount(ActionBar, {
 		localVue,
+		slots: {
+			description: '<div>dummy description</div>',
+		},
 		propsData: {
-			floatingMode: true,
+			show: true,
+			dismissible: true,
+			dark: true,
+			float: true,
+			actions: ['Button1', 'Button2', 'Button3'],
+		},
+		stubs: {
+			'cds-button': true,
 		},
 	});
 
-	expect(wrapper.findAll('.fixed').length).toBe(1);
+	await flushPromises();
+
+	expect(wrapper.findAll('.toolbar--fixed').length).toBe(1);
 });
 
-test('if the event is emited correctly when the dismissible icon is clicked', () => {
-	const wrapper = mount(ActionBar, {
+test('if the event is emited correctly when the dismissible icon is clicked', async () => {
+	const wrapper = shallowMount(ActionBar, {
 		localVue,
+		slots: {
+			description: '<div>dummy description</div>',
+		},
 		propsData: {
-			isDismissible: true,
+			show: true,
+			dismissible: true,
+			dark: true,
+			float: true,
+			actions: ['Button1', 'Button2', 'Button3'],
+		},
+		stubs: {
+			'cds-button': true,
 		},
 	});
 
-	wrapper.find('.icon-container').trigger('click');
+	await flushPromises();
+
+	const closeButton = wrapper.find('.toolbar__icon--dark');
+
+	expect(closeButton.exists()).toBe(true);
+	closeButton.trigger('click');
 
 	expect(wrapper.emitted().close).toBeTruthy();
 	expect(wrapper.emitted().close).toEqual([[true]]);
-});
-
-test("if the the color sent to the prop 'bgData' is applied", () => {
-	const wrapper = mount(ActionBar, {
-		localVue,
-		propsData: {
-			bgColor: 'rgb(0, 0, 0)',
-		},
-	});
-
-	expect(wrapper.find('.toolbar').element.style['background-color']).toEqual('rgb(0, 0, 0)');
 });
