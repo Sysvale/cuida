@@ -204,7 +204,7 @@ export default {
 		&--dark {
 			align-items: center;
 			background-color: $n-800;
-			border-radius: 50%;
+			border-radius: $border-radius-circle;
 			cursor: pointer;
 			display: flex;
 			justify-content: center;
