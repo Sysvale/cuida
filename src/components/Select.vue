@@ -32,7 +32,7 @@
 			:class="fluid ? 'select__container--fluid' : 'select__container--fit'"
 		>
 			<input
-				v-model="localValue.value"
+				v-model="localValue[optionsField]"
 				id="cds-select"
 				type="text"
 				autocomplete="off"
@@ -70,11 +70,11 @@
 						v-for="(option, index) in localOptions"
 						class="option__text"
 						:key="index"
-						:ref="`${option.value}-${index}`"
+						:ref="`${option[optionsField]}-${index}`"
 						@mouseover="highlightOnMouseOver(index)"
 						@mouseout="unhighlightOnMouseOut()"
 					>
-						{{ option.value }}
+						{{ option[optionsField] }}
 					</li>
 				</ul>
 
@@ -211,6 +211,15 @@ export default {
 			type: String,
 			default: 'info-outline',
 		},
+		/**
+		 * Indica o nome da da chave do objeto a ser considerada na renderização
+		 * das opções do select.
+		 */
+		optionsField: {
+			type: String,
+			default: 'value',
+			required: false,
+		},
 	},
 
 	data() {
@@ -267,11 +276,11 @@ export default {
 
 	methods: {
 		filterOptions() {
-			const sanitizedString = removeAccents(this.localValue.value);
+			const sanitizedString = removeAccents(this.localValue[this.optionsField]);
 			const regexExp = new RegExp(sanitizedString, 'i');
 
 			this.localOptions = this.options.filter(
-				(option) => removeAccents(option.value).search(regexExp) >= 0,
+				(option) => removeAccents(option[this.optionsField]).search(regexExp) >= 0,
 			);
 		},
 
@@ -280,7 +289,7 @@ export default {
 
 			this.$nextTick().then(() => {
 				const element = this.localOptions[this.currentPos];
-				this.$refs[`${element.value}-${this.currentPos}`][0].classList.add('highlight');
+				this.$refs[`${element[this.optionsField]}-${this.currentPos}`][0].classList.add('highlight');
 			});
 
 			this.active = true;
@@ -314,7 +323,7 @@ export default {
 
 		getLiInDOM(position) {
 			const element = this.localOptions[position];
-			return this.$refs[`${element.value}-${position}`][0];
+			return this.$refs[`${element[this.optionsField]}-${position}`][0];
 		},
 
 		handleOptionVisibility(option, amount, direction) {
@@ -360,13 +369,11 @@ export default {
 			previousOption.classList.add('highlight');
 
 			this.handleOptionVisibility(selectedOption, -37, 'up');
-
 			this.currentPos -= 1;
 		},
 
 		highlightOnMouseOver(index) {
 			this.currentPos = index;
-
 			this.getLiInDOM(this.currentPos).classList.add('highlight');
 		},
 
@@ -468,11 +475,9 @@ export default {
 			outline: 1px solid $gp-500;
 		}
 
-
 		&--invalid {
 			outline: 1px solid $rc-600;
 		}
-
 
 		&::placeholder {
 			color: $n-300;
@@ -617,7 +622,6 @@ export default {
 		color: $rc-600;
 		margin: mt(1);
 	}
-
 
 	&__icon {
 		margin: ml(1);

@@ -224,6 +224,12 @@ export default {
 					color: $n-0;
 				}
 
+				@if $color == '--dark' {
+					&--#{$state} {
+						border: 1px solid $n-50 !important;
+					}
+				}
+
 				@if $state == 'active' {
 					&--#{$state}:hover {
 						background-color: darken($disabled-color, 5%);
