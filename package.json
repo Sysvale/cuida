@@ -1,6 +1,6 @@
 {
   "name": "@sysvale/cuida",
-  "version": "2.60.0",
+  "version": "2.62.0",
   "description": "A design system built by Sysvale, using storybook and Vue components",
   "repository": {
     "type": "git",
@@ -155,6 +155,9 @@
     "not dead"
   ],
   "jest": {
-    "preset": "@vue/cli-plugin-unit-jest"
+    "preset": "@vue/cli-plugin-unit-jest",
+    "transformIgnorePatterns": [
+      "node_modules/(?!vue2-google-maps)(?!epic-spinners)(?!vue-slider-component)(?!@sysvale/cuida-icons)"
+    ]
   }
 }

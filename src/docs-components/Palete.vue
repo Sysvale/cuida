@@ -1,58 +1,76 @@
 <template>
-	<div
-		class="grid"
-	>
-		<copy-token :target="target" />
-
+	<div>
 		<div
-			v-for="color in palete"
-			:key="color.name"
-			class="palete"
+			class="grid"
 		>
+			<copy-token :target="target" />
+	
 			<div
-				v-for="(shade, index) in color.tokens"
-				:key="shade"
-				:class='{
-					"first-shade": index === 0,
-					"last-shade": index === color.tokens.length - 1,
-					[`${colorShadeClass(shadeNumber(shade), color.name)}`]: index >= 0,
-				}'
-				@click="target = shade"
-				:id="shade"
+				v-for="color in palete"
+				:key="color.name"
+				class="palete"
 			>
-				<span
-					v-if="index === 0"
-					class="colorNames"
-					:class="{ 'low-contrast-color-names': isADarkColor(color, index) }"
+				<div
+					v-for="(shade, index) in color.tokens"
+					:key="shade"
+					:class='{
+						"first-shade": index === 0,
+						"last-shade": index === color.tokens.length - 1,
+						[`${colorShadeClass(shadeNumber(shade), color.name)}`]: index >= 0,
+					}'
+					@click="target = shade"
+					:id="shade"
 				>
-					<span class="mainColorName"> {{ color.name }} </span>
-					<br />
-					<span>
-						<copy-icon
-							size="1.1x"
-							class="mr-3" 
-							:class="{ 'low-contrast-color-names': isADarkColor(color, index) }"
-						/>
-
-						{{ shade }}
+					<span
+						v-if="index === 0"
+						class="colorNames"
+						:class="{ 'low-contrast-color-names': isADarkColor(color, index) }"
+					>
+						<span class="mainColorName"> {{ color.name }} </span>
+						<br />
+						<span>
+							<copy-icon
+								size="1.1x"
+								class="mr-3" 
+								:class="{ 'low-contrast-color-names': isADarkColor(color, index) }"
+							/>
+	
+							{{ shade }}
+						</span>
 					</span>
-				</span>
-
-				<span
-					v-else
-					class="colorNames"
-					:class="{ 'low-contrast-color-names': isADarkColor(color, index) }"
-				>
-					<span>
-						<copy-icon
-							size="1.1x"
-							class="mr-3"
-							:class="{ 'low-contrast-color-names': isADarkColor(color, index) }"
-						/>
-
-						{{ shade }}
+	
+					<span
+						v-else
+						class="colorNames"
+						:class="{ 'low-contrast-color-names': isADarkColor(color, index) }"
+					>
+						<span>
+							<copy-icon
+								size="1.1x"
+								class="mr-3"
+								:class="{ 'low-contrast-color-names': isADarkColor(color, index) }"
+							/>
+	
+							{{ shade }}
+						</span>
 					</span>
-				</span>
+				</div>
+			</div>
+		</div>
+
+		<div>
+			<h5 class="gradient-container__title"> Gradiente </h5>
+			<div
+				class="gradient-container"
+				id="linear-gradient($bg-gradient)"
+				@click="target = 'linear-gradient($bg-gradient)'"
+			>
+				<copy-icon
+					size="1.1x"
+					class="mr-3"
+				/>
+
+				linear-gradient($bg-gradient)
 			</div>
 		</div>
 	</div>
@@ -159,5 +177,32 @@ export default {
 
 .low-contrast-color-names {
 	color: $n-900 !important;
+}
+
+.gradient-container {
+	font-weight: 500;
+	background: linear-gradient($bg-gradient);
+	height: 388px;
+	width: 94%;
+	border-radius: $border-radius-medium;
+	outline: 1px solid $n-20;
+	display: flex;
+	align-items: flex-end;
+	justify-content: end;
+	padding: pa(4);
+	cursor: pointer;
+	transform: scale(1);
+	transition: all .25s ease-in-out;
+}
+
+.gradient-container:hover {
+	box-shadow: 0 2px 4px #00000014, 0 12px 20px #0000001f;
+	transform: scale(1.04);
+	z-index: 2;
+	transition: all .25s ease-in-out;
+}
+
+.gradient-container__title {
+	margin: mTRBL(10, 0, 3, 0);
 }
 </style>
