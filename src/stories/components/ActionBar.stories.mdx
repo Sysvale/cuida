@@ -1,0 +1,111 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview, Source } from '@storybook/addon-docs/blocks';
+import ActionBar from '../../components/ActionBar.vue';
+import Button from '../../components/Button.vue';
+
+<Meta
+	title="Componentes/Display/ActionBar"
+	component={ ActionBar }
+/>
+
+export const Template = (args, { argTypes }) => ({
+	data() {
+		return {
+			showActionBar: false,
+		};
+	},
+	props: Object.keys(argTypes),
+	components: { ActionBar, Button },
+	template: /*html*/ `
+		<div>
+			<cds-button
+				id="trigger-popover"
+				@click="togglePopover"
+			>
+				Click
+			</cds-button>
+			<cds-action-bar
+				v-bind="$props"
+				:show="showActionBar"
+				@click="logAction"
+				@close="logClose"
+			>
+				<template slot="description">
+					8 itens selecionados
+				</template>
+			</cds-action-bar>
+		</div>
+	`,
+	methods: { 
+		logAction(btn) {
+			console.log('logAction: ', btn);
+		},
+		logClose(event) {
+			this.showActionBar = false;
+			console.log('logClose: ', event);
+		},
+		togglePopover() {
+			this.showActionBar = true;
+		},
+	},
+});
+
+export const template = /*html*/`
+	<cds-action-bar
+		show
+		dark
+		actions="['Button1', 'Button2', 'Button3']"
+	>
+		<template slot="description">
+			8 itens selecionados
+		</template>
+	</cds-action-bar>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
+# ActionBar
+
+### ActionBars são barras de ferramentas que podem exibir ações e informações para o usuário.
+---
+<br />
+
+## Recomendamos o uso de ActionBars quando:
+- Você precisar agrupar ações que o usuário pode tomar sobre itens de uma lista ou tabela.
+- Você não tiver espaço nos menus e em outros locais para exibir ações e informações.
+
+<br />
+
+## Não recomendamos o uso de ActionBars quando:
+- Para exibir os status do sistema.
+- Em modo flutuante, a ActionBar ocultar permanentemente informações na tela.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Action Bar"
+		decorators={[docsDecorator]}
+		args={{
+			actions: ['Button1', 'Button2', 'Button3'],
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Action Bar" />
