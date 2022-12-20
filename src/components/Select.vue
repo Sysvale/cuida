@@ -34,12 +34,14 @@
 			<input
 				v-model="localValue[optionsField]"
 				id="cds-select"
+				ref="select-input"
 				type="text"
 				autocomplete="off"
 				:onkeypress="`return ${allowSearch};`"
 				:class="inputClass"
 				:placeholder="placeholder"
 				:disabled="disabled"
+				:readonly="!searchable"
 				@keydown.enter.prevent="activateSelectionOnEnter"
 				@keydown.arrow-down.prevent="highlightOnArrowDown"
 				@keydown.arrow-up.prevent="highlightOnArrowUp"
@@ -71,6 +73,7 @@
 						class="option__text"
 						:key="index"
 						:ref="`${option[optionsField]}-${index}`"
+						@mousedown="selectItem"
 						@mouseover="highlightOnMouseOver(index)"
 						@mouseout="unhighlightOnMouseOut()"
 					>
@@ -229,6 +232,7 @@ export default {
 			id: null,
 			allowSearch: this.searchable,
 			localOptions: this.options,
+			pristineOptions: this.options,
 			localValue: '',
 			selectElement: '',
 			direction: 'down',
@@ -291,15 +295,20 @@ export default {
 				const element = this.localOptions[this.currentPos];
 				this.$refs[`${element[this.optionsField]}-${this.currentPos}`][0].classList.add('highlight');
 			});
-
-			this.active = true;
 		},
 
 		activateSelectionOnEnter() {
 			if (this.disabled) return;
 
 			this.active = !this.active;
-			this.localValue = this.localOptions[this.currentPos];
+
+			if (typeof this.localOptions[this.currentPos] === 'undefined') {
+				this.localOptions = this.pristineOptions;
+			} else {
+				this.localValue = _.clone(this.localOptions[this.currentPos]);
+			}
+
+			this.$refs['select-input'].blur();
 		},
 
 		activateSelectionOnClick() {
@@ -313,12 +322,16 @@ export default {
 
 			if (this.disabled) return;
 
-			this.active = true;
+			this.active = !this.active;
 		},
 
 		hide() {
-			this.localValue = this.localOptions[this.currentPos];
+			this.localOptions = this.pristineOptions;
 			this.active = false;
+		},
+
+		selectItem() {
+			this.localValue = _.clone(this.localOptions[this.currentPos]);
 		},
 
 		getLiInDOM(position) {
@@ -408,6 +421,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '../assets/sass/app.scss';
+
+#cds-select {
+	-webkit-user-select: none; /* Safari */
+	-ms-user-select: none; /* IE 10 and IE 11 */
+	user-select: none;
+}
 
 .select {
 	&__input {
