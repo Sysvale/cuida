@@ -50,3 +50,4 @@ export { default as DateInput } from './DateInput.vue';
 export { default as Icon } from './Icon.vue';
 export { default as TextArea } from './TextArea.vue';
 export { default as PageHeader } from './PageHeader.vue';
+export { default as ActionBar } from './ActionBar.vue';

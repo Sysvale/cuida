@@ -78,6 +78,7 @@ import {
 	Icon,
 	TextArea,
 	PageHeader,
+	ActionBar,
 } from '../src/components';
 
 import {
@@ -178,6 +179,7 @@ Vue.component('cds-date-input', DateInput);
 Vue.component('cds-icon', Icon);
 Vue.component('cds-text-area', TextArea);
 Vue.component('cds-page-header', PageHeader);
+Vue.component('cds-action-bar', ActionBar);
 
 addParameters({
 	options: {
