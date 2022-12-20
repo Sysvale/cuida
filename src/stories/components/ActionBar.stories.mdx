@@ -50,17 +50,13 @@ export const Template = (args, { argTypes }) => ({
 });
 
 export const template = /*html*/`
-	<cds-action-bar 
-		number-of-expanded-actions="2"
-		:actions="actions"
-		@action-clicked="handleClick"
-		@expanded="toggleExpandState"
+	<cds-action-bar
+		show
+		dark
+		actions="['Button1', 'Button2', 'Button3']"
 	>
-		<template
-			slot="action"
-			slot-scope="{list: item}"
-		>
-			{{ item.title }}
+		<template slot="description">
+			8 itens selecionados
 		</template>
 	</cds-action-bar>`;
 
