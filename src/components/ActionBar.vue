@@ -155,7 +155,7 @@ export default {
 @import '../assets/sass/app.scss';
 .toolbar {
 	align-items: center;
-	border-radius: $border-radius-extra-small;
+	border-radius: $border-radius-small;
 	bottom: 72px;
 	box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05);
 	display: flex;
@@ -219,7 +219,7 @@ export default {
 		&--light {
 			align-items: center;
 			background-color: $n-30;
-			border-radius: 50%;
+			border-radius: $border-radius-circle;
 			cursor: pointer;
 			display: flex;
 			justify-content: center;
