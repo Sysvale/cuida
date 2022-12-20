@@ -36,12 +36,28 @@ export const Template = (args, { argTypes }) => ({
 });
 
 export const template = /*html*/ `
-	<cds-page-header 
-		:items="items"
-		:isLight-themed="true"
-		:active-item="activeItem"
-		@click="handleItemClick"
-	/>`;
+	<cds-page-header
+			title="Procedimentos"
+			subtitle="Gerencie os procedimentos cadastrados"
+		>
+			<template
+				slot="aside"
+			>
+				<div class="d-flex">
+					<cds-button
+						secondary
+						@click="logClick('Btn 1')"
+						text="Button 1"
+					/>
+				</div>
+				<cds-button
+					class="d-flex align-items-center ml-4"
+					variant="success"
+					@click="logClick('Btn 2')"
+					text="Button 2"
+				/>
+			</template>
+		</cds-page-header>`;
 
 export const docsDecorator = () => {
 	return {
