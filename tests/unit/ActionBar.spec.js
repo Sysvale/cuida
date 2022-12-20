@@ -9,6 +9,9 @@ localVue.component('cds-button', Button);
 test('Component is mounted properly', () => {
 	const wrapper = mount(ActionBar, {
 		localVue,
+		propsData: {
+			show: true,
+		},
 	});
 	expect(wrapper).toMatchSnapshot();
 });
