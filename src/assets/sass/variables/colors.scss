@@ -1,3 +1,5 @@
+$bg-gradient: 158.71deg, #FFFFFF -36.57%, #F1F5FB 156.92%;
+
 $n-0: #ffffff;
 $n-10: #FAFCFE;
 $n-20: #EFF5FB;
@@ -255,5 +257,6 @@ $palete: map-merge(('PiccoloGreen': $g,
 			'GokuOrange': $o,
 			'LisaAmber': $a,
 			'Neutrals': $n,
+			'bg-gradient': $bg-gradient,
 		),
 		$palete);
