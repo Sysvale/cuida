@@ -1,23 +1,21 @@
 <template>
-	<header class="mt-3">
-		<div class="d-flex justify-content-between">
-			<div>
-				<p class="page-header__title">
-					{{ title }}
-				</p>
+	<header class="page-header__container">
+		<div>
+			<p class="page-header__title">
+				{{ title }}
+			</p>
 
-				<p
-					class="page-header__subtitle"
-				>
-					{{ subtitle }}
-				</p>
-			</div>
+			<p
+				class="page-header__subtitle"
+			>
+				{{ subtitle }}
+			</p>
+		</div>
 
-			<div class="d-flex align-items-end">
-				<slot
-					name="aside"
-				/>
-			</div>
+		<div class="page-header__aside-slot">
+			<slot
+				name="aside"
+			/>
 		</div>
 	</header>
 </template>
@@ -38,6 +36,17 @@ export default {
 <style lang="scss">
 @import '../assets/sass/app.scss';
 	.page-header {
+		&__container {
+			display: flex;
+			justify-content: space-between;
+			margin: mTRBL(3, 0, 2, 0);
+		}
+
+		&__aside-slot {
+			display: flex;
+			align-items: flex-end;
+		}
+
 		&__title {
 			@include heading-2;
 			margin: ma(0);
