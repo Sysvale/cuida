@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`component is mounted properly 1`] = `
-<div><label for="cds-text-area" class="textarea__label">
-    Uma verdade difícil de engolir
-    <!---->
-  </label>
+<div><span><label for="cds-text-area" class="textarea__label"><span>
+				Uma verdade difícil de engolir
+			</span>
+  <!----></label></span>
   <div class="textarea"><textarea id="textarea" placeholder="Digite aqui a descrição" class="textarea__input"></textarea>
     <div class="textarea__icon-container">
       <!---->
