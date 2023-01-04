@@ -1,22 +1,8 @@
 <template>
 	<span class="action-list">
 		<div
-			:class="left ? 'action-list--left' : 'action-list--right'"
+			class="action-list--right"
 		>
-			<div v-if="left">
-				<div
-					v-if="actions.length > numberOfExpandedActions"
-					class="action-list__item--right-bordered"
-					@click="toggleCollapseState"
-				>
-					<!-- @slot Slot para renderização customizada do conteúdo do item
-						de expandir/colapsar a lista
-					-->
-					<slot name="action-trigger">
-						{{ itsBeingShown ? 'Menos ações' : 'Mais ações'}}
-					</slot>
-				</div>
-			</div>
 			<div
 				v-for="(action, i) in actions"
 				:key="action.title"
@@ -41,22 +27,26 @@
 					</div>
 				</transition>
 			</div>
-			<div v-if="!left">
-				<div
-					v-if="actions.length > numberOfExpandedActions"
-					class="action-list__item--left-bordered"
-					@click="toggleCollapseState"
-				>
-					<slot name="action-trigger">
-						{{ itsBeingShown ? 'Menos ações' : 'Mais ações'}}
-					</slot>
-				</div>
+			
+			<div
+				v-if="actions.length > numberOfExpandedActions"
+				class="action-list__item--left-bordered"
+				@click="toggleCollapseState"
+			>
+				<!-- @slot Slot para renderização customizada do conteúdo do item
+					de expandir/colapsar a lista
+				-->
+				<slot name="action-trigger">
+					{{ itsBeingShown ? 'Menos ações' : 'Mais ações'}}
+				</slot>
 			</div>
 		</div>
 	</span>
 </template>
 
 <script>
+import cloneDeep from 'lodash.clonedeep';
+
 export default {
 	props: {
 		/**
@@ -75,17 +65,11 @@ export default {
 			default: 2,
 			required: false,
 		},
-		/**
-		 * Faz com que o componente seja renderizado do lado esquerdo.
-		 */
-		left: {
-			type: Boolean,
-			default: false,
-		},
 	},
+
 	data() {
 		return {
-			action: _.cloneDeep(this.actions),
+			action: cloneDeep(this.actions),
 			internalNumberOfExpandedActions: this.numberOfExpandedActions,
 			itsBeingShown: false,
 		};
@@ -112,33 +96,33 @@ export default {
 .action-list {
 	&--right {
 		color: $n-500;
-		font-weight: 600;
 		display: flex;
+		font-weight: 600;
 		justify-content: flex-end;
 	}
 
 	&--left {
-		@extend .action-list--right;
 		justify-content: flex-start;
+		@extend .action-list--right;
 	}
 
 	&__item {
-		padding: 24px;
-		cursor: pointer;
 		border-radius: 1px;
-
+		cursor: pointer;
+		padding: 24px;
+		
 		&:hover {
 			background-color: $n-10;
 		}
 
 		&--right-bordered {
-			@extend .action-list__item;
 			border-right: 1px solid $n-40;
+			@extend .action-list__item;
 		}
 
 		&--left-bordered {
-			@extend .action-list__item;
 			border-left: 1px solid $n-40;
+			@extend .action-list__item;
 		}
 	}
 
@@ -152,8 +136,8 @@ export default {
 
 	&__slide-fade-enter,
 	&__slide-fade-leave-to {
-		transform: translateX(10px);
 		opacity: 0;
+		transform: translateX(10px);
 	}
 }
 </style>
