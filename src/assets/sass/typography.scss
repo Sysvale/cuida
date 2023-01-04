@@ -1,71 +1,65 @@
-$font-weight-regular: 400;
-
-$font-weight-medium: 500;
-
-$font-weight-semibold: 600;
-
 @mixin heading-1 {
-	font-size: 47px !important;
-	letter-spacing: 0px !important;
-	font-weight: $font-weight-regular;
+	font-size: 45px !important;
+	letter-spacing: 0.15px !important;
+	font-weight: 700;
 }
 
 @mixin heading-2 {
 	font-size: 33px !important;
-	letter-spacing: 0.25px !important;
-	font-weight: $font-weight-regular;
+	letter-spacing: 0.1px !important;
+	font-weight: 700;
 }
 
 @mixin heading-3 {
-	font-size: 23px !important;
+	font-size: 29px !important;
 	letter-spacing: 0px !important;
-	font-weight: $font-weight-regular;
+	font-weight: 650;
 }
 
 @mixin subheading-1 {
-	font-size: 22px !important;
+	font-size: 25px !important;
 	letter-spacing: 0.15px !important;
-	font-weight: $font-weight-medium;
+	font-weight: 600;
 }
 
 @mixin subheading-2 {
-	font-size: 16px !important;
-	letter-spacing: 0.1px !important;
-	font-weight: $font-weight-medium;
+	font-size: 21px !important;
+	letter-spacing: 0px !important;
+	font-weight: 600;
 }
 
 @mixin subheading-3 {
-	font-size: 14px !important;
-	letter-spacing: 0.1px !important;
-	font-weight: $font-weight-regular;
+	font-size: 17px !important;
+	letter-spacing: 0px !important;
+	font-weight: 600;
 }
 
 @mixin body-1 {
-	font-size: 16px !important;
-	letter-spacing: 0.5px !important;
-	font-weight: $font-weight-regular;
+	font-size: 17px !important;
+	letter-spacing: 0px !important;
+	font-weight: 430;
 }
 
 @mixin body-2 {
-	font-size: 14px !important;
-	letter-spacing: 0.25px !important;
-	font-weight: $font-weight-regular;
+	font-size: 15px !important;
+	letter-spacing: 0px !important;
+	font-weight: 430;
 }
 
 @mixin caption {
-	font-size: 12px !important;
-	letter-spacing: 0.15px !important;
-	font-weight: $font-weight-regular;
+	font-size: 13.5px !important;
+	letter-spacing: 0.1px !important;
+	font-weight: 470;
 }
 
 @mixin button-1 {
-	font-size: 16px !important;
-	letter-spacing: 0.25px !important;
-	font-weight: $font-weight-semibold;
+	font-size: 17px !important;
+	letter-spacing: 0.2px !important;
+	font-weight: 600;
 }
 
 @mixin button-2 {
-	font-size: 14px !important;
+	font-size: 15px !important;
 	letter-spacing: 0.15px !important;
-	font-weight: $font-weight-semibold;
+	font-weight: 600;
 }
