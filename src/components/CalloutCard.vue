@@ -10,12 +10,12 @@
 			</div>
 			<div :class="resolveClass('content__container')">
 				<div :class="resolveClass('content')">
-					<span class="content__title">
+					<p class="content__title">
 						{{ title }}
-					</span>
+					</p>
 
-					<!-- @slot Slot usado para inserção de conteúdo customizado no texto. -->
 					<span class="content__text">
+						<!-- @slot Slot usado para inserção de conteúdo customizado no texto. -->
 						<slot name="text">
 							{{ text }}
 						</slot>
@@ -35,7 +35,7 @@
 							:text="actionButtonText"
 							:secondary="actionButtonSecondary"
 							:disabled="actionButtonDisabled"
-							@click="$emit('action-button-click')"
+							@click="$emit('action-button-click', true)"
 						/>
 					</slot>
 				</div>
@@ -45,7 +45,13 @@
 </template>
 
 <script>
+import CdsButton from './Button.vue';
+
 export default {
+	components: {
+		CdsButton,
+	},
+
 	props: {
 		/**
 		 * O título do card. O título também pode ser usado com o slot.
@@ -127,11 +133,11 @@ export default {
 @import '../assets/sass/tokens.scss';
 
 #callout-card .callout-card {
-	display: flex;
 	align-items: center;
-	padding: pa(7);
-	border-radius: 16px;
+	display: flex;
 	border: 1px solid $n-40;
+	border-radius: 16px;
+	padding: pa(7);
 
 	&__container {
 		@extend .callout-card;
@@ -154,12 +160,12 @@ export default {
 	}
 
 	&__content {
-		max-width: 200px;
-		max-height: 200px;
+		max-height: 150px;
+		max-width: 150px;
 
 		&--compact {
-			max-width: 120px;
 			max-height: 90px;
+			max-width: 120px;
 		}
 	}
 }
@@ -168,31 +174,30 @@ export default {
 	margin: mb(4);
 
 	&--compact {
-		max-width: 529px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		max-width: 529px;
 	}
 
 	&__title {
-		@include body-2;
-		font-weight: $font-weight-semibold;
-		display: block;
 		color: $n-700;
+		display: block;
+		@include subheading-3;
+		margin: mb(2);
 	}
 
 	&__text {
-		@include subheading-3;
-		display: block;
-		color: $n-600;
+		color: $n-700;
+		@include body-2;
 	}
 
 	&__container {
 		&--compact {
+			align-items: center;
 			display: flex;
 			justify-content: space-between;
 			width: 100%;
-			align-items: center;
 		}
 	}
 }

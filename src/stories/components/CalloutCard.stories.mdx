@@ -1,4 +1,4 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import CalloutCard from '../../components/CalloutCard.vue';
 
 <Meta
@@ -22,6 +22,22 @@ import CalloutCard from '../../components/CalloutCard.vue';
 			}
 		},
 	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ `
+<cds-callout-card
+	image="caminho-da-imagem.jpg"
+	text="Texto do CalloutCard"
+	title="Título do CalloutCard"
+/>`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
@@ -32,8 +48,14 @@ export const Template = (args) => ({
 	template: /*html*/ `
 		<cds-callout-card
 			v-bind="args"
+			@actionButtonClick="logButtonClick"
 		/>
 	`,
+	methods: {
+		logButtonClick(event) {
+			console.log('logClick: ', event);
+		}
+	},
 });
 
 # CalloutCard
@@ -41,12 +63,12 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de CalloutCards quando:
+## Quando usar:
 - For necessário mostrar atalhos, dicas ou tutoriais de uma forma não intrusiva e visualmente marcante.
 
 <br />
 
-## Não recomendamos o uso de CalloutCards quando:
+## Quando não usar:
 - For necessário mostrar mensagens relacionadas a mudanças ou condições especiais que ocorrem em um componente ou página. Para estes casos, recomenda-se o uso do Alert.
 
 <br />
@@ -63,7 +85,7 @@ export const text =  `Existe uma teoria que diz que, se um dia alguém descobrir
 	<Story
 		name="CalloutCard"
 		args={{
-			image: 'https://cdni.iconscout.com/illustration/free/thumb/access-denied-4085803-3385472.png',
+			image: 'https://cdn-icons-png.flaticon.com/512/7486/7486747.png',
 			title,
 			text,
 		}}
