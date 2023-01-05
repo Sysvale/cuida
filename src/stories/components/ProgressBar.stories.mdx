@@ -1,12 +1,27 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import ProgressBar from '../../components/ProgressBar.vue';
 
 <Meta
 	title="Componentes/Display/ProgressBar"
 	component={ ProgressBar }
 	argTypes={{
-		color: { control: 'color' },
-		backgroundColor: { control: 'color' },
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'turquoise',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'gray',
+				],
+			}
+		},
 		percentage: {
 			control: {
 				type: 'range',
@@ -15,8 +30,22 @@ import ProgressBar from '../../components/ProgressBar.vue';
 				step: 0.01,
 			},
 		},
-	}
-}
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-progress-bar
+	showText
+	:percentage="0.5"
+/>`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
@@ -52,11 +81,9 @@ export const Template = (args) => ({
 <Canvas>
 	<Story
 		name="Progress bar"
-		
 		args={{
 			percentage: 0.5,
-			backgroundColor: '#DDE2E7',
-			color: '#2EB88D',
+			showText: true,
 		}}
 	>
 		{ Template.bind({}) }

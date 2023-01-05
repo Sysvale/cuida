@@ -7,13 +7,13 @@
 		>
 			<span
 				v-if="showText"
-				class="bar__text"
+				:class="textAside ? 'bar__text--aside' : 'bar__text'"
 			>
 				{{ formatedPercentage }}
 			</span>
+
 			<div
 				class="bar__content"
-				:style="backgroundColorStyle"
 			>
 				<div
 					class="bar__indicator"
@@ -25,26 +25,20 @@
 </template>
 
 <script>
+import { colorHexCode } from '../utils/constants/colors';
+
 export default {
 	props: {
 		/**
-		 * Define a cor da ProgressBar.
+		 * A variante de cor. São 9 variantes implementadas: 'green', 'teal',
+		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'.
 		 */
-		color: {
+		 variant: {
 			type: String,
-			default: '#2EB88D',
-			required: false,
+			default: 'green',
 		},
 		/**
-		 * Define a cor de background da ProgressBar.
-		 */
-		backgroundColor: {
-			type: String,
-			default: '#DDE2E7',
-			required: false,
-		},
-		/**
-		 * Define a largura da ProgressBar.
+		 * Define o indicador de progresso da ProgressBar.
 		 */
 		percentage: {
 			type: Number,
@@ -56,19 +50,23 @@ export default {
 		 */
 		showText: {
 			type: Boolean,
-			default: true,
-			description: 'Defines if the text will be displayed',
+			default: false,
 			required: false,
+		},
+		/**
+		 * Quando true, dispõe o texto à direita.
+		 */
+		textAside: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
-	computed: {
-		backgroundColorStyle() {
-			return {
-				'--backgroundColor': this.backgroundColor,
-			};
-		},
+	methods: {
+		colorHexCode,
+	},
 
+	computed: {
 		formatedPercentage() {
 			return `${parseInt(this.percentage * 100, 10)}%`;
 		},
@@ -76,35 +74,48 @@ export default {
 		progressIndicatorStyle() {
 			return {
 				'--width': this.formatedPercentage,
-				'--color': this.color,
+				'--indicatorColor': this.colorHexCode(this.variant),
+				'--leftMargin': this.textAside ? '3' : '10',
+				'--bottomMargin': this.textAside ? '10' : '2',
 			};
+		},
+
+		textDirection() {
+			return this.textAside ? 'row-reverse' : 'column';
 		},
 	},
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import './../assets/sass/tokens.scss';
 #progressBar .bar {
-	display: flex;
 	align-items: center;
-	flex-direction: column;
+	display: flex;
+	flex-direction: v-bind(textDirection);
 
 	&__content {
-		background-color: var(--backgroundColor);
+		background-color: $n-40;
 		border-radius: 80px;
-		width: 100%;
 		height: 7px;
+		width: 100%;
 	}
 
 	&__indicator {
+		background-color: var(--indicatorColor);
 		border-radius: 80px;
 		height: 7px;
-		background-color: var(--color);
 		width: var(--width);
+	}
+
+	&__text--aside {
+		font-weight: 600;
+		margin: ml(3);
 	}
 
 	&__text {
 		font-weight: 600;
+		margin: mb(2);
 	}
 }
 </style>
