@@ -22,7 +22,14 @@
 					class="stepper-input__icon--plus"
 					tabindex="-1"
 				>
-					<plus-icon size="1x" class="custom-class" />
+					<!-- <plus-icon size="1x" class="custom-class" /> -->
+					
+					<cds-icon
+						height="32"
+						width="32"
+						name="plus-outline"
+						class="custom-class"
+					/>
 				</button>
 
 				<button
@@ -34,7 +41,14 @@
 					class="stepper-input__icon--minus"
 					tabindex="-1"
 				>
-					<minus-icon size="1x" class="custom-class" />
+					<!-- <minus-icon size="1x" class="custom-class" /> -->
+					
+					<cds-icon
+						height="32"
+						width="32"
+						name="minus-outline"
+						class="custom-class"
+					/>
 				</button>
 			</div>
 		</div>
@@ -42,7 +56,9 @@
 </template>
 
 <script>
-import { PlusIcon, MinusIcon } from 'vue-feather-icons';
+// import { longClickDirective } from '@sysvale/vue3-long-click';
+// import { PlusIcon, MinusIcon } from 'vue-feather-icons';
+import CdsIcon from './Icon.vue';
 
 export default {
 	props: {
@@ -91,9 +107,12 @@ export default {
 	},
 
 	components: {
-		PlusIcon,
-		MinusIcon,
+		CdsIcon,
 	},
+
+	// directives: {
+	// 	'longclick': longClickDirective.directive,
+	// },
 
 	data() {
 		return {
