@@ -31,14 +31,31 @@
 					class="stepper__icon-circle"
 					:class="circleStyle(step, index)"
 				>
-					<check-icon
+					<!-- <check-icon
 						v-if="step.completed"
 						size="1x"
+					/> -->
+
+
+					<cds-icon
+						v-if="step.completed"
+						height="32"
+						width="32"
+						name="check-outline"
 					/>
-					<x-icon
+
+					<!-- <x-icon
 						v-else-if="step.error"
 						size="1x"
+					/> -->
+					
+					<cds-icon
+						v-else-if="step.error"
+						height="32"
+						width="32"
+						name="x-outline"
 					/>
+
 					<div
 						v-else-if="step.inProcessing"
 						class="stepper__processing-icon"
@@ -76,12 +93,12 @@
 	</div>
 </template>
 <script>
-import { CheckIcon, XIcon } from 'vue-feather-icons';
+// import { CheckIcon, XIcon } from 'vue-feather-icons';
+import CdsIcon from './Icon.vue';
 
 export default {
 	components: {
-		CheckIcon,
-		XIcon,
+		CdsIcon,
 	},
 
 	props: {
@@ -360,6 +377,7 @@ export default {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		box-sizing: content-box;
 	}
 
 	&__icon-text {
