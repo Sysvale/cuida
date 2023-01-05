@@ -46,20 +46,26 @@
 	font-weight: 430;
 }
 
+@mixin button-1 {
+	font-size: 17px !important;
+	letter-spacing: 0.2px !important;
+	font-weight: 750;
+}
+
+@mixin button-2 {
+	font-size: 15px !important;
+	letter-spacing: 0.15px !important;
+	font-weight: 700;
+}
+
 @mixin caption {
 	font-size: 13.5px !important;
 	letter-spacing: 0.1px !important;
 	font-weight: 470;
 }
 
-@mixin button-1 {
-	font-size: 17px !important;
-	letter-spacing: 0.2px !important;
-	font-weight: 600;
-}
-
-@mixin button-2 {
-	font-size: 15px !important;
+@mixin overline {
+	font-size: 11.5px !important;
 	letter-spacing: 0.15px !important;
-	font-weight: 600;
+	font-weight: 650;
 }
