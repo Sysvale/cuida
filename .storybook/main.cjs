@@ -13,12 +13,12 @@ module.exports = {
   "core": {
     "builder": "@storybook/builder-vite"
   },
-  features: {
-    storyStoreV7: true,
-    buildStoriesJson: true,
-    modernInlineRender: false,
-  },
-  docs: {
-    docsPage: "automatic"
-  }
+  // features: {
+  //   storyStoreV7: true,
+  //   buildStoriesJson: true,
+  //   modernInlineRender: false,
+  // },
+  // docs: {
+  //   docsPage: "automatic"
+  // }
 }
