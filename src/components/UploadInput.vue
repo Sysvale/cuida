@@ -44,9 +44,9 @@
 							</a>
 						</div>
 						<div v-if="isValid === false" class="upload-input__alert-container">
-							<alert-triangle-icon
+							<!-- <alert-triangle-icon
 								class="upload-input__alert"
-							/> {{ computedAllowedMessage }}
+							/> {{ computedAllowedMessage }} -->
 						</div>
 					</div>
 					<div v-else>
@@ -99,11 +99,11 @@
 <script>
 import isEmpty from 'lodash.isempty';
 
-import { AlertTriangleIcon } from 'vue-feather-icons';
+// import { AlertTriangleIcon } from 'vue-feather-icons';
 
 export default {
 	components: {
-		AlertTriangleIcon,
+		// AlertTriangleIcon,
 	},
 	props: {
 		/**
