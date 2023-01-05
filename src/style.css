@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Satoshi, Inter, Avenir, Helvetica, Arial, sans-serif;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -27,6 +27,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  font-family: Satoshi, Inter, Avenir, Helvetica, Arial, sans-serif;
 }
 
 h1 {
@@ -56,4 +57,8 @@ h1 {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.d-flex {
+  display: flex;
 }
