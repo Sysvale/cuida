@@ -11,7 +11,7 @@
 		>
 			<div class="alert__body">
 				<div>
-					<ion-icon
+					<cds-icon
 						:name="icon"
 						:class="{
 							'alert__icon--info': variant === 'info',
@@ -33,8 +33,8 @@
 			</div>
 
 			<div v-if="dismissible" @click="close" class="alert__close-button">
-				<ion-icon
-					name="close"
+				<cds-icon
+					name="x-outline"
 					:class="{
 						'alert__icon--info': variant === 'info',
 						'alert__icon--success': variant === 'success',
@@ -48,7 +48,13 @@
 </template>
 
 <script>
+import CdsIcon from '../components/Icon.vue';
+
 export default {
+	components: {
+		CdsIcon,
+	},
+
 	props: {
 		/**
 		 * A variante do Alert. São 3 variantes implementadas: 'info', 'warning'
@@ -79,7 +85,7 @@ export default {
 
 	data() {
 		return {
-			icon: 'warning',
+			icon: 'warning-outline',
 		};
 	},
 
@@ -95,24 +101,28 @@ export default {
 	},
 
 	watch: {
-		variant(value) {
-			switch (value) {
-				case 'info':
-					this.icon = 'information-circle';
-					break;
-				case 'success':
-					this.icon = 'success';
-					break;
-				case 'warning':
-					this.icon = 'checkmark-circle';
-					break;
-				case 'danger':
-					this.icon = 'alert-circle';
-					break;
-				default:
-					this.icon = 'alert-circle';
-					break;
-			}
+		variant: {
+			handler(value) {
+				console.log('OPA');
+				switch (value) {
+					case 'info':
+						this.icon = 'info-outline';
+						break;
+					case 'success':
+						this.icon = 'check-circle-outline';
+						break;
+					case 'warning':
+						this.icon = 'warning-outline';
+						break;
+					case 'danger':
+						this.icon = 'alert-outline';
+						break;
+					default:
+						this.icon = 'alert-outline';
+						break;
+				}
+			},
+			immediate: true,
 		},
 	},
 };
@@ -129,6 +139,7 @@ export default {
 
 	&__body {
 		display: flex;
+		align-items: center
 	}
 
 	&__container {
@@ -189,7 +200,7 @@ export default {
 
 	&__text {
 		margin: ml(2);
-		@include subheading-3;
+		@include body-2;
 		font-weight: $font-weight-medium;
 	}
 
