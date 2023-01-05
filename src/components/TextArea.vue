@@ -225,6 +225,27 @@ textarea {
 	&:focus {
 		outline: none;
 	}
+
+	&::-webkit-scrollbar {
+		width: 12px;
+		border-radius: 20px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: $n-40;
+		border-radius: 12px;
+		border-right: 3px solid transparent;
+		border-left: 3px solid transparent;
+		background-clip: padding-box;
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+		background: $n-50;
+	}
 }
 .textarea {
 	display: flex;
