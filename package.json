@@ -24,7 +24,7 @@
 		"build": "vue-tsc --noEmit && vite build",
 		"preview": "vite preview",
 		"storybook": "start-storybook --docs --no-manager-cache",
-		"build-storybook": "build-storybook -s public --docs",
+		"build-storybook": "build-storybook --docs --no-manager-cache",
 		"test": "vitest"
 	},
 	"dependencies": {
