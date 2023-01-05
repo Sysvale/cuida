@@ -27,9 +27,10 @@
 				v-if="withIcon"
 				:class="iconClass"
 			>
-				<component
-					:is="dynamicIcon"
-					size="1.4x"
+				<cds-icon
+					height="24"
+					width="24"
+					:name="dynamicIcon"
 					:class="`icon--${variant}`"
 				/>
 			</div>
@@ -64,7 +65,8 @@
 </template>
 
 <script>
-import { InfoIcon, AlertTriangleIcon, AlertCircleIcon } from 'vue-feather-icons';
+// import { InfoIcon, AlertTriangleIcon, AlertCircleIcon } from 'vue-feather-icons';
+import CdsIcon from './Icon.vue';
 
 export default {
 	props: {
@@ -128,9 +130,7 @@ export default {
 	},
 
 	components: {
-		InfoIcon,
-		AlertTriangleIcon,
-		AlertCircleIcon,
+		CdsIcon,
 	},
 
 	data() {
@@ -143,13 +143,13 @@ export default {
 		dynamicIcon() {
 			switch (this.variant) {
 				case 'info':
-					return 'info-icon';
+					return 'info-outline';
 				case 'warning':
-					return 'alert-triangle-icon';
+					return 'warning-outline';
 				case 'danger':
-					return 'alert-circle-icon';
+					return 'alert-outline';
 				default:
-					return 'info-icon';
+					return 'info-outline';
 			}
 		},
 
@@ -230,8 +230,8 @@ export default {
 	}
 
 	&__title {
-		@include subheading-2;
-		margin: mt(3);
+		@include subheading-3;
+		margin: my(3);
 		display: block;
 
 		&--info {
@@ -251,7 +251,7 @@ export default {
 	}
 
 	&__subtitle {
-		@include subheading-3;
+		@include body-2;
 		display: block;
 		color: $n-600;
 	}
@@ -285,7 +285,7 @@ export default {
 
 	&__container {
 		display: flex;
-		padding: pa(3);
+		padding: pa(2);
 		border-radius: 100%;
 		margin: mr(3);
 		align-self: flex-start;
