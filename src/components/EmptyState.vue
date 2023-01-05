@@ -120,31 +120,31 @@ export default {
 @import '../assets/sass/tokens.scss';
 
 .empty-state {
+	align-items: center;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	position: relative;
 	margin: ma(12);
+	position: relative;
 
 	&__image {
-		max-width: 500px;
-		max-height: 500px;
-		width: auto;
 		height: auto;
+		max-height: 180px;
+		max-width: 180px;
+		width: auto;
 	}
 
 	&__title {
-		margin: mt(8);
 		color: $n-600;
-		@include subheading-1;
+		margin: mt(8);
+		@include subheading-2;
 	}
 
 	&__text {
-		margin: mt(1);
 		color: $n-500;
+		margin: mt(1);
 		max-width: 50%;
 		text-align: center;
-		@include subheading-3;
+		@include body-1;
 	}
 
 	&__button {
