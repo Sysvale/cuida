@@ -45,6 +45,8 @@
 					name="table-item"
 					:data="item"
 					:field="field.key"
+					:rowIndex="itemIndex"
+					:colIndex="fieldIndex"
 				>
 					{{ item[field.key] }}
 				</slot>
@@ -88,7 +90,7 @@ export default {
 		/**
 		 * Boolean, informa se o estilo será alterado no hover da linha.
 		 */
-		hovered: {
+		hover: {
 			type: Boolean,
 			default: false,
 		},
@@ -142,7 +144,7 @@ export default {
 		},
 
 		resolveItemClass() {
-			return this.hovered ? 'table__content--hoverable' : '';
+			return this.hover ? 'table__content--hoverable' : '';
 		},
 	},
 };
@@ -155,28 +157,31 @@ export default {
 	&__container {
 		border: 1px solid $n-30;
 		border-collapse: separate;
-		border-spacing: 0px;
 		border-radius: $border-radius-extra-small;
+		border-spacing: 0px;
 		width: 100%;
 	}
 
 	&__header {
-		background-color: $bn-50;
+		background-color: $n-10;
 
 		&-item {
 			@include body-2;
-			font-weight: $font-weight-semibold;
-			padding: spacer(3) spacer(5);
 			border-bottom: 1px solid $n-30;
+			font-weight: 700;
+			padding: spacer(3) spacer(4);
+			text-align: inherit;
 
 			&--first {
-				@extend .table__header-item;
 				border-top-left-radius: $border-radius-extra-small;
+
+				@extend .table__header-item;
 			}
 
 			&--last {
-				@extend .table__header-item;
 				border-top-right-radius: $border-radius-extra-small;
+
+				@extend .table__header-item;
 			}
 		}
 	}
@@ -189,26 +194,30 @@ export default {
 
 	&__item {
 		@include body-2;
-		font-size: 14px;
-		padding: pa(5);
-		max-width: 400px;
 		border-bottom: 1px solid $n-30;
+		font-size: 14px;
+		max-width: 400px;
+		padding: pa(4);
+		vertical-align: top;
 
 		&--first {
-			@extend .table__item;
-			border-bottom-left-radius: $border-radius-extra-small;
 			border-bottom: none;
+			border-bottom-left-radius: $border-radius-extra-small;
+
+			@extend .table__item;
 		}
 
 		&--common {
-			@extend .table__item;
 			border-bottom: none;
+
+			@extend .table__item;
 		}
 
 		&--last {
-			@extend .table__item;
-			border-bottom-right-radius: $border-radius-extra-small;
 			border-bottom: none;
+			border-bottom-right-radius: $border-radius-extra-small;
+
+			@extend .table__item;
 		}
 	}
 }

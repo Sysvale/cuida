@@ -1,9 +1,24 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import Table from '../../components/Table.vue';
 
 <Meta
 	title="Componentes/Display/Table"
 	component={ Table }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-table
+	:fields="fields"
+	:items="items"
+/>`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
@@ -22,13 +37,13 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de Tables quando:
+## Quando usar:
 - Desejar comparar dados.
 - For necessário exibir dados de forma tabulada.
 
 <br />
 
-## Não Recomendamos o uso de Tables quando:
+## Quando não usar:
 - For necessário interagir/realizar uma ação com o conteúdo apresentado na tabela.
 
 <br />
