@@ -1,0 +1,73 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import PageHeader from '../../components/PageHeader.vue';
+import Button from '../../components/Button.vue';
+
+<Meta
+	title="Componentes/Estrutural/PageHeader"
+	component={ PageHeader }
+/>
+
+export const Template = (args) => ({
+	components: { CdsPageHeader: PageHeader, CdsButton: Button },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-page-header
+			v-bind="args"
+		>
+			<template
+				#aside
+			>
+				<div class="d-flex">
+					<cds-button
+						secondary
+						@click="logClick('Btn 1')"
+						text="Button 1"
+					/>
+					<cds-button
+						class="d-flex align-items-center ml-4"
+						variant="success"
+						@click="logClick('Btn 2')"
+						text="Button 2"
+					/>
+				</div>
+			</template>
+		</cds-page-header>
+	`,
+	methods: { logClick(btnName) { console.log(btnName) } }
+});
+
+# PageHeader
+
+### PageHeader são componentes utilizados para adicionar título, subtítulo e ações em páginas.
+---
+<br />
+
+## Recomendamos o uso de PageHeaderPageHeader quando:
+- Precisar colocar headers em páginas.
+- Precisar adicionar botões de ação a nível de página.
+- Precisar adicionar cards informativos no topo de páginas.
+
+<br />
+
+## Não recomendamos o uso de PageHeader quando:
+- Fora do topo de páginas.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="PageHeader"
+		args={{
+			title:"Procedimentos",
+			subtitle:"Gerencie os procedimentos cadastrados"
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="PageHeader" />
