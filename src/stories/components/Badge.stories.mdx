@@ -1,11 +1,10 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
 import Badge from '../../components/Badge.vue';
 
 <Meta
 	title="Componentes/Display/Badge"
 	component={ Badge }
-	argTypes={
-	{
+	argTypes={{
 		variant: {
 			control:{
 				type: 'select',
@@ -20,11 +19,37 @@ import Badge from '../../components/Badge.vue';
 					'orange',
 					'amber',
 					'gray',
+					'white',
 				],
 			}
 		},
-	}
-}
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ `
+<cds-badge
+	variant="red"
+>
+	Badge
+</cds-badge>`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
@@ -36,7 +61,7 @@ export const Template = (args) => ({
 		<cds-badge
 			v-bind="args" 
 		>
-			PDF
+			Badge
 		</cds-badge>`,
 });
 
@@ -47,7 +72,7 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de Badges quando:
+## Quando usar:
 - For necessário mostrar status associados com a lógica de negócio ou ações do usuário.
 - O conteúdo a ser mostrado for *readonly*.
 - For preciso categorizar algo.
@@ -55,7 +80,7 @@ export const Template = (args) => ({
 
 <br />
 
-## Não recomendamos o uso de Badges quando:
+## Quando não usar:
 - O conteúdo que a badge representa puder ser setado ou removido pelo usuário.
 - O click no componente precisar executar uma ação ou funcionalidade.
 
