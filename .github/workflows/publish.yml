@@ -3,7 +3,7 @@ name: "Publisher 📦"
 on:
     push:
         branches:
-          - master
+          - feature/components-migration
 
 jobs:
     release:
@@ -15,7 +15,7 @@ jobs:
             - name: 🟢 Node
               uses: actions/setup-node@v2.1.4
               with:
-                  node-version: 12
+                  node-version: 16
                   registry-url: https://registry.npmjs.org
             - name: Publish 📦
               run: npm i && npm run build && npm publish --access public
