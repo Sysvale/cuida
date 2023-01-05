@@ -76,9 +76,9 @@ export default {
 @import '../assets/sass/tokens.scss';
 
 .highlight__container {
-	padding: pa(1);
-	border-radius: 4px;
 	background-size: 200%;
+	border-radius: 4px;
+	padding: pa(1);
 
 	&--highlighted {
 		animation: highlight var(--duration) ease-in var(--delay) backwards;

@@ -1,4 +1,4 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import Highlight from '../../components/Highlight.vue';
 
 <Meta
@@ -31,8 +31,25 @@ import Highlight from '../../components/Highlight.vue';
 				step: 0.1,
 			},
 		},
-	}
-}
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-highlight
+	animated
+	:duration="1"
+	:delay="0"
+>
+	<span> Texto bem importante</span>
+</cds-highlight>`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
@@ -53,13 +70,13 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de Highlights quando:
+## Quando usar:
 - Se deseja guiar a atenção do usuário para palavras ou frases específicas na interface (nesses cenários, Highlights animados podem ser ainda mais efetivos que os comuns).
 - Estiver implementando alguma feature de *diff* e precisar indicar elementos que foram substituídos por outros.
 
 <br />
 
-## Não recomendamos o uso de Highlights quando:
+## Quando não usar:
 - Se deseja criar hierarquia na página. Para esses casos, use mecanismos de hierarquia tipográfica como peso da fonte, tamanho ou cor.
 - O elemento sobre o qual o Highlight será *wrapper* não for um elemento de texto.
 - Forem destacados trechos muito grandes de texto. Isso pode acabar resultando no oposto do que se espera com o uso de Highlights.
