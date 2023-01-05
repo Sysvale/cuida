@@ -12,7 +12,7 @@ module.exports = {
   "framework": "@storybook/vue3",
   "core": {
     "builder": "@storybook/builder-vite"
-  },
+  }
   // features: {
   //   storyStoreV7: true,
   //   buildStoriesJson: true,
