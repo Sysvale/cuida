@@ -1,0 +1,25 @@
+import"./jsx-runtime.db376543.js";import{c as e,A as y,C as v,S as _,M as h,a as B}from"./Props.519c721e.js";import"./iframe.facb5a71.js";import"./blocks.70b2f959.js";import{c as u,a as x,b as C}from"./colors.f20a4d92.js";import{r as I,o as S,a as T,b as z,f as q,n as N,x as k}from"./vue.esm-bundler.3f4907d5.js";import{_ as M}from"./_plugin-vue_export-helper.cdc0426e.js";import"./string.7a88f6c6.js";import"./es.map.constructor.dc039611.js";import"./es.number.to-fixed.98762696.js";const m=["sm","md","lg"],p={props:{variant:{type:String,default:"green",validator:o=>u.includes(o)},size:{type:String,default:"md",validator:o=>m.includes(o)},icon:{type:String,default:"create-outline",required:!0},disabled:{type:Boolean,default:!1}},data(){return{predefinedColors:u,predefinedSizes:m}},computed:{predefinedSize(){return`cds-icon-button--${this.size}`},computedModifiers(){return`${this.disabled?"cds-icon-button--disabled":""} ${this.predefinedSize}`},computedStyle(){return{"--hoverColor":this.colorHexCode(this.variant),"--hoverBorderColor":this.colorLighterHexCode(this.variant)}}},methods:{colorHexCode:x,colorLighterHexCode:C,clickHandler(o){this.disabled||this.$emit("click",o)}}},E={id:"cds-icon-button"};function H(o,n,t,r,j,s){const g=I("ion-icon");return S(),T("span",E,[z("button",{class:N(["cds-icon-button__container",s.computedModifiers]),style:k(s.computedStyle),onClick:n[0]||(n[0]=(...b)=>s.clickHandler&&s.clickHandler(...b))},[q(g,{name:t.icon,class:"cds-icon-button__icon"},null,8,["name"])],6)])}const c=M(p,[["render",H],["__scopeId","data-v-1cc43ac0"]]);p.__docgenInfo={exportName:"default",displayName:"IconButton",description:"",tags:{},props:[{name:"variant",description:`A variante de cor. S\xE3o 9 variantes implementadas: 'green', 'teal',
+'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'.`,type:{name:"string"},defaultValue:{func:!1,value:"'green'"}},{name:"size",description:"Especifica o tamanho do bot\xE3o. S\xE3o 3 tamanhos implementados: 'sm', 'md', 'lg'.",type:{name:"string"},defaultValue:{func:!1,value:"'md'"}},{name:"icon",description:"Especifica o `name` do \xEDcone do ion-icons a ser apresentado no corpo do bot\xE3o.",type:{name:"string"},required:!0,defaultValue:{func:!1,value:"'create-outline'"}},{name:"disabled",description:"Controla a disponibilidade do bot\xE3o.",type:{name:"boolean"},defaultValue:{func:!1,value:"false"}}],events:[{name:"click",description:"Evento que indica que o bot\xE3o foi clicado",type:{names:["Event"]}}]};function i(){return i=Object.assign?Object.assign.bind():function(o){for(var n=1;n<arguments.length;n++){var t=arguments[n];for(var r in t)Object.prototype.hasOwnProperty.call(t,r)&&(o[r]=t[r])}return o},i.apply(this,arguments)}const l=o=>({components:{CdsIconButton:c},setup(){return{args:o}},template:`
+		<cds-icon-button
+			v-bind="args" 
+		/>`}),A={Template:l},O="wrapper";function f({components:o,...n}){return e(O,i({},A,n,{components:o,mdxType:"MDXLayout"}),e(h,{title:"Componentes/Forms/IconButton",component:c,argTypes:{variant:{control:{type:"select",options:["teal","green","blue","indigo","violet","pink","red","orange","amber"]}},size:{control:{type:"select",options:["sm","md","lg"]}}},mdxType:"Meta"}),e("h1",null,"IconButton"),e("h3",null,"IconButtons s\xE3o componentes que permitem que o usu\xE1rio execute uma a\xE7\xE3o com um toque."),e("hr",null),e("br",null),e("h2",null,"Recomendamos o uso de IconButtons quando:"),e("ul",null,e("li",{parentName:"ul"},`For necess\xE1rio comunicar ao usu\xE1rio que ele pode executar uma a\xE7\xE3o na interface,
+seja em di\xE1logos, janelas modais, formul\xE1rios, cards, etc.`)),e("br",null),e("h2",null,"N\xE3o recomendamos o uso de IconButtons quando:"),e("ul",null,e("li",{parentName:"ul"},`For necess\xE1rio dar a op\xE7\xE3o de executar uma a\xE7\xE3o como um detalhe pequeno na interface.
+Nesse caso, recomendamos o uso de links.`)),e("br",null),e("h2",null,"Preview"),e(v,{mdxType:"Canvas"},e(_,{name:"IconButton",args:{variant:"green",size:"sm",icon:"trash"},mdxType:"Story"},l.bind({}))),e(B,{story:"IconButton",mdxType:"ArgsTable"}))}f.isMDXComponent=!0;const d=l.bind({});d.storyName="IconButton";d.args={variant:"green",size:"sm",icon:"trash"};d.parameters={storySource:{source:`args => ({
+  components: {
+    CdsIconButton: IconButton
+  },
+
+  setup() {
+    return {
+      args
+    };
+  },
+
+  template:
+  /*html*/
+  \`
+		<cds-icon-button
+			v-bind="args" 
+		/>\`
+})`}};const a={title:"Componentes/Forms/IconButton",component:c,argTypes:{variant:{control:{type:"select",options:["teal","green","blue","indigo","violet","pink","red","orange","amber"]}},size:{control:{type:"select",options:["sm","md","lg"]}}},includeStories:["iconButton"]},V={IconButton:"iconButton"};a.parameters=a.parameters||{};a.parameters.docs={...a.parameters.docs||{},page:()=>e(y,{mdxStoryNameToKey:V,mdxComponentAnnotations:a},e(f,null))};const J=["Template","iconButton"];export{l as Template,J as __namedExportsOrder,a as default,d as iconButton};
+//# sourceMappingURL=IconButton.stories.7d28fe85.js.map
