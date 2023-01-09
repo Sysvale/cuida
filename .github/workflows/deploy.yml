@@ -2,7 +2,7 @@ name: "Deployer 🚀"
 on:
   push:
     branches:
-      - master
+      - feature/components-migration
 
 jobs:
     deploy:
@@ -15,7 +15,7 @@ jobs:
         - name: 🟢 Node
           uses: actions/setup-node@v2.1.4
           with:
-            node-version: 12
+            node-version: 16
             registry-url: https://registry.npmjs.org
 
         - name: 🔧 Build
