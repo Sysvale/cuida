@@ -1,10 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component is mounted properly 1`] = `
-<div class="date-input__container"><label for="cds-date-input" class="date-input__label">
-    Date
-    <!---->
-  </label>
-  <v-date-picker-stub availabledates="[object Object]" mode="date" value="2022-10-13T00:00:00.000+00:00" modelconfig="[object Object]" popover="[object Object]" id="cds-date-input"></v-date-picker-stub>
+<div class="date-input__container"><span><label for="cds-date-input" class="date-input__label"><span>
+				Date
+			</span>
+  <!----></label></span>
+  <v-date-picker-stub locale="pt-BR" availabledates="[object Object]" mode="date" value="2022-10-13T00:00:00.000+00:00" modelconfig="[object Object]" popover="[object Object]" id="cds-date-input"></v-date-picker-stub>
+  <!---->
 </div>
 `;
