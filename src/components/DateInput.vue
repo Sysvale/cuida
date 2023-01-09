@@ -34,14 +34,14 @@
 			:available-dates="availableDates"
 			@input="handleDateInput"
 		>
-			<template v-slot="{ inputValue, togglePopover }">
+			<template v-slot="{ inputValue, togglePopover, inputEvents }">
 				<input
 					:value="inputValue"
-					readonly
 					:class="inputClass"
 					:disabled="disabled"
 					:placeholder="placeholder"
 					type="text"
+					v-on="inputEvents"
 					@click="togglePopover"
 					@focus="isBeingFocused = true"
 					@blur="isBeingFocused = false"
