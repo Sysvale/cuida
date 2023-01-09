@@ -408,7 +408,7 @@ export default {
 		options: {
 			handler(newValue, oldValue) {
 				if (newValue !== oldValue) {
-					this.localValue = newValue;
+					this.localOptions = newValue;
 					this.pristineOptions = newValue;
 				}
 			},
