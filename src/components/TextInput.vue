@@ -9,27 +9,39 @@
 
 			<label
 				v-else
-				class="text-input__label"
-				for="cds-text-input"
+				:class="labelDynamicClass"
 			>
-				<span>
-					{{ label }}
-				</span>
-
-				<span
-					v-if="required"
-					class="text-input__label--required-indicator"
+				<div
+					class="label__content"
+					for="cds-text-input"
 				>
-					*
-				</span>
-				
-				<cds-icon
-					v-if="tooltip"
-					v-cdstip="tooltip"
-					:name="tooltipIcon"
-					height="20"
-					width="20"
-					class="text-input__icon"
+					<span>
+						{{ label }}
+					</span>
+
+					<span
+						v-if="required"
+						class="label__required-indicator"
+					>
+						*
+					</span>
+
+					<cds-icon
+						v-if="tooltip"
+						v-cdstip="tooltip"
+						:name="tooltipIcon"
+						height="20"
+						width="20"
+						class="label__icon"
+					/>
+				</div>
+
+				<cds-link
+					v-if="linkText"
+					class="label__link"
+					:href="linkUrl"
+					:text="linkText"
+					new-tab
 				/>
 			</label>
 
@@ -103,8 +115,8 @@
 
 <script>
 import { CheckIcon, AlertCircleIcon } from 'vue-feather-icons';
-import CdsIcon from '../components/Icon.vue';
-  import { VMoney } from 'v-money';
+import { VMoney } from 'v-money';
+import Link from '../components/Link.vue';
 
 export default {
 	props: {
@@ -173,7 +185,7 @@ export default {
 			required: false,
 		},
 		/**
-		 * Especifica a máscara a ser aplicada ao TextInput. 
+		 * Especifica a máscara a ser aplicada ao TextInput.
 		 * Exemplo: "(##) #####-####"
 		 */
 		mask: {
@@ -188,7 +200,7 @@ export default {
 			default: null,
 		},
 		/**
-		 * Especifica ícone do tooltip do TextInput. 
+		 * Especifica ícone do tooltip do TextInput.
 		 */
 		tooltipIcon: {
 			type: String,
@@ -196,12 +208,25 @@ export default {
 		},
 
 		/**
-		 * Especifica se o input deve exibir uma máscara monetária. 
+		 * Especifica se o input deve exibir uma máscara monetária.
 		 * Exemplo: "(##) #####-####"
 		 */
 		money: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Define exibição e texto do link do input (localizado à direita da label).
+		 */
+		linkText: {
+			type: String,
+		},
+		/**
+		 * Define a url a ser acessada no clique do link (no caso do link ser exibido).
+		 */
+		linkUrl: {
+			type: String,
+			default: 'https://cuida.framer.wiki/',
 		},
 	},
 
@@ -212,6 +237,7 @@ export default {
 	components: {
 		CheckIcon,
 		AlertCircleIcon,
+		Link,
 	},
 
 	data() {
@@ -259,6 +285,10 @@ export default {
 			}
 
 			return stepperInputClass;
+		},
+
+		labelDynamicClass() {
+			return this.fluid ? 'text-input__label--fluid' : 'text-input__label';
 		},
 
 		validState() {
@@ -326,8 +356,7 @@ export default {
 	display: flex;
 	outline: 1px solid $n-50;
 	border-radius: $border-radius-extra-small;
-	width: fit-content;
-	width: -moz-fit-content;
+	width: 266px;
 
 	&--fluid {
 		@extend .text-input;
@@ -340,15 +369,13 @@ export default {
 		color: $n-700;
 		display: flex;
 		align-items: flex-end;
+		justify-content: space-between;
+		width: 266px;
 
-		&--required-indicator {
-			color: $rc-600;
+		&--fluid {
+			@extend .text-input__label;
+			width: 100%;
 		}
-	}
-
-	&__icon {
-		margin: ml(1);
-		cursor: pointer;
 	}
 
 	&__icon-container {
@@ -429,6 +456,21 @@ export default {
 		@include caption;
 		color: $rc-600;
 		margin: mt(1);
+	}
+}
+
+.label {
+	&__required-indicator {
+		color: $rc-600;
+	}
+
+	&__icon {
+		margin: ml(1);
+		cursor: pointer;
+	}
+
+	&__link {
+		justify-self: end;
 	}
 }
 
