@@ -230,6 +230,7 @@ export default {
 			currentPos: 0,
 			active: false,
 			id: null,
+			allowSearch: false,
 			localOptions: [],
 			pristineOptions: [],
 			localValue: '',
@@ -409,6 +410,15 @@ export default {
 				if (newValue !== oldValue) {
 					this.localValue = newValue;
 					this.pristineOptions = newValue;
+				}
+			},
+			immediate: true,
+		},
+
+		searchable: {
+			handler(newValue, oldValue) {
+				if (newValue !== oldValue) {
+					this.allowSearch = newValue;
 				}
 			},
 			immediate: true,
