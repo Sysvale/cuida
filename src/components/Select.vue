@@ -208,7 +208,7 @@ export default {
 			default: null,
 		},
 		/**
-		 * Especifica ícone do tooltip do Select. 
+		 * Especifica ícone do tooltip do Select.
 		 */
 		tooltipIcon: {
 			type: String,
@@ -230,9 +230,9 @@ export default {
 			currentPos: 0,
 			active: false,
 			id: null,
-			allowSearch: this.searchable,
-			localOptions: this.options,
-			pristineOptions: this.options,
+			allowSearch: false,
+			localOptions: [],
+			pristineOptions: [],
 			localValue: '',
 			selectElement: '',
 			direction: 'down',
@@ -400,6 +400,25 @@ export default {
 			handler(newValue, oldValue) {
 				if (newValue !== oldValue) {
 					this.localValue = newValue;
+				}
+			},
+			immediate: true,
+		},
+
+		options: {
+			handler(newValue, oldValue) {
+				if (newValue !== oldValue) {
+					this.localOptions = newValue;
+					this.pristineOptions = newValue;
+				}
+			},
+			immediate: true,
+		},
+
+		searchable: {
+			handler(newValue, oldValue) {
+				if (newValue !== oldValue) {
+					this.allowSearch = newValue;
 				}
 			},
 			immediate: true,
