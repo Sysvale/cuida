@@ -2,6 +2,6 @@
 
 exports[`Checkbox tests if component mounts correctly 1`] = `
 <span class="cds-checkbox__container"><div class="cds-checkbox__content"><input type="checkbox" id="cds-checkbox-option-input" name="cds-checkbox-option" value="true"> <label for="cds-checkbox-option-input" class=""></label></div> <div class="cds-checkbox__label">
-			checkbox test
-		</div></span>
+				checkbox test
+			</div></span>
 `;
