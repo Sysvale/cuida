@@ -1,6 +1,5 @@
 $font-weight-regular: 430;
-$font-weight-medium: 550;
-$font-weight-semibold: 650;
+$font-weight-semibold: 600;
 $font-weight-bold: 800;
 
 $fontWeight: ();
@@ -8,7 +7,6 @@ $fontWeight: ();
 $fontWeight: map-merge(
 	(
 		'regular': $font-weight-regular,
-		'medium': $font-weight-medium,
 		'semibold': $font-weight-semibold,
 		'bold': $font-weight-bold,
 	),
