@@ -2,12 +2,13 @@
 	box-sizing: border-box;
 }
 
-svg {
-	box-sizing: content-box;
+*:before,
+*:after {
+	box-sizing: border-box;
 }
 
-div, span, a, p {
-	font-weight: $font-weight-regular;
+svg {
+	box-sizing: content-box;
 }
 
 body {
