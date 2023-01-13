@@ -13,6 +13,7 @@
 		>
 			<span class="expansion-card__label-button">Maximizar</span>
 		</div>
+
 		<div
 			v-if="isExpanded"
 			class="expansion-card__contract-icon"
@@ -20,65 +21,64 @@
 		>
 			<span class="expansion-card__label-button">Minimizar</span>
 		</div>
-		<!-- @slot Slot usado para inserção de conteúdo customizado
-		(ignora props e slots do template padrão). -->
-		<slot>
+
+		<div
+			v-if="!isExpanded"
+			class="expansion-card__body"
+		>
 			<div
-				v-if="!isExpanded"
-				class="expansion-card__body"
+				class="expansion-card__icon"
+				:class="`expansion-card__icon--${variant}`"
 			>
+				<!-- @slot Slot para ícone para o template padrão. -->
+				<slot name="icon" />
+			</div>
+			<div class="expansion-card__content">
+				<!-- @slot Slot para informação principal do card no template padrão. -->
+				<slot name="main-value">
+					<h1 class="expansion-card__main-value">
+						{{ mainValue }}
+					</h1>
+				</slot>
+				<p class="expansion-card__legend">
+					<!-- @slot Slot para legenda da informação principal do card recolhido,
+					no template padrão. Torna-se o título do card quando este é estendido.-->
+					<slot name="legend">
+						{{ legend }}
+					</slot>
+				</p>
+			</div>
+		</div>
+
+		<div
+			v-else
+			class="expansion-card__expanded-body"
+		>
+			<div class="expansion-card__header">
 				<div
 					class="expansion-card__icon"
 					:class="`expansion-card__icon--${variant}`"
 				>
-					<!-- @slot Slot para ícone para o template padrão. -->
 					<slot name="icon" />
 				</div>
 				<div class="expansion-card__content">
-					<!-- @slot Slot para informação principal do card no template padrão. -->
-					<slot name="main-value">
-						<h1 class="expansion-card__main-value">
-							{{ mainValue }}
-						</h1>
-					</slot>
 					<p class="expansion-card__legend">
-						<!-- @slot Slot para legenda da informação principal do card recolhido,
-						no template padrão. Torna-se o título do card quando este é estendido.-->
 						<slot name="legend">
 							{{ legend }}
 						</slot>
 					</p>
+					<span class="expansion-card__main-value">
+						{{ subtitle }}
+					</span>
 				</div>
 			</div>
-			<div
-				v-else
-				class="expansion-card__expanded-body"
-			>
-				<div class="expansion-card__header">
-					<div
-						class="expansion-card__icon"
-						:class="`expansion-card__icon--${variant}`"
-					>
-						<slot name="icon" />
-					</div>
-					<div class="expansion-card__content">
-						<p class="expansion-card__legend">
-							<slot name="legend">
-								{{ legend }}
-							</slot>
-						</p>
-						<span class="expansion-card__main-value">
-							{{ subtitle }}
-						</span>
-					</div>
-				</div>
-				<div class="expansion-card__expanded-content">
-					<!-- @slot Slot usado para inserção do conteúdo principal
-					na versão expandida do card (template padrão). -->
-					<slot name="content" />
-				</div>
+			<div class="expansion-card__expanded-content">
+				<!-- @slot Slot usado para inserção do conteúdo principal
+				na versão expandida do card (template padrão). -->
+				<slot name="content" />
 			</div>
-		</slot>
+		</div>
+
 	</div>
 </template>
 
