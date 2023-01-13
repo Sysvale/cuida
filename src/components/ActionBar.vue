@@ -121,8 +121,10 @@ export default {
 		}
 	},
 
-	mounted() {
-		this.internalShow = this.show;
+	computed: {
+		hasActionSlot(){
+			return Object.keys(this.$slots).some(slot => slot === 'actions');
+		},
 	},
 
 	watch: {
@@ -130,11 +132,9 @@ export default {
 			this.internalShow = value;
 		},
 	},
-	
-	computed: {
-		hasActionSlot(){
-			return Object.keys(this.$slots).some(slot => slot === 'actions');
-		},
+
+	mounted() {
+		this.internalShow = this.show;
 	},
 
 	methods: {
