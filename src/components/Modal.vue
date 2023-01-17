@@ -175,8 +175,8 @@ export default {
 
 	computed: {
 		maxBodyHeight() {
-			// 90% da largura subtraído o padding vertical (32 * 2) e subtraído o footer e o header
-			return `${ window.innerHeight * 0.9 - 32 * 2 - 110 }px`;
+			// 90% da largura subtraído o padding vertical (32 * 2) e subtraído o footer (68) e o header (64)
+			return `${ window.innerHeight * 0.9 - 32 * 2 - 68 - 64 }px`;
 		},
 	},
 
