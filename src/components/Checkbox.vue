@@ -1,5 +1,8 @@
 <template>
-	<span class="cds-checkbox__container">
+	<span
+		class="cds-checkbox__container"
+		@click="toggleValue"
+	>
 		<div class="cds-checkbox__content">
 			<input
 				v-model="internalValue"
@@ -15,8 +18,7 @@
 					'cds-checkbox__content--checked': internalValue,
 					'cds-checkbox__content--disabled': disabled,
 				}"
-                @click="toggleValue"
-				@click.stop="toggleValue"
+				@click.stop
 			/>
 		</div>
 		<div
