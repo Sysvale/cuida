@@ -57,7 +57,7 @@
 						@click="closeHandle"
 					/>
 					<cds-button
-						class="ml-2"
+						class="cds-modal__ok-button"
 						:text="okButtonText"
 						variant="green"
 						:disabled="disabled"
@@ -255,6 +255,10 @@ export default {
 		justify-content: end;
 		margin-top: auto;
 		padding: pt(7);
+	}
+
+	&__ok-button {
+		margin: ml(2);
 	}
 }
 
