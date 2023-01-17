@@ -39,7 +39,9 @@
 					:max-height="maxBodyHeight"
 					auto-height
 				>
-					<slot />
+					<div class="cds-modal__body">
+						<slot />
+					</div>
 				</cds-scrollable>
 			</section>
 
@@ -80,6 +82,7 @@ export default {
 	data() {
 		return {
 			internalShow: false,
+			tmp: '',
 		}
 	},
 	props: {
@@ -248,6 +251,11 @@ export default {
 	&__close-icon {
 		display: flex;
 		cursor: pointer;
+	}
+
+	&__body {
+		padding-right: 4.4px;
+		padding-left: 0.4px;
 	}
 
 	&__footer {
