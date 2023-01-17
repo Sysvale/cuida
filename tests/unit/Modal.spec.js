@@ -22,7 +22,7 @@ test('Component is mounted properly', async () => {
 		stubs: {
 			'cds-button': true,
 			'cds-scrollable': true,
-			'ion-icon': true,
+			'cds-icon': true,
 		},
 	});
 
@@ -44,7 +44,7 @@ describe('default content, classes and attributes', () => {
 			stubs: {
 				'cds-button': true,
 				'cds-scrollable': true,
-				'ion-icon': true,
+				'cds-icon': true,
 			},
 		});
 
@@ -69,7 +69,7 @@ describe('default content, classes and attributes', () => {
 			stubs: {
 				'cds-button': true,
 				'cds-scrollable': true,
-				'ion-icon': true,
+				'cds-icon': true,
 			},
 		});
 
@@ -101,7 +101,7 @@ describe('custom content, attributes and slots', () => {
 			stubs: {
 				'cds-button': true,
 				'cds-scrollable': true,
-				'ion-icon': true,
+				'cds-icon': true,
 			},
 		});
 
@@ -122,7 +122,7 @@ describe('custom content, attributes and slots', () => {
 			stubs: {
 				'cds-button': true,
 				'cds-scrollable': true,
-				'ion-icon': true,
+				'cds-icon': true,
 			},
 		});
 
@@ -141,7 +141,7 @@ describe('custom content, attributes and slots', () => {
 			stubs: {
 				'cds-button': true,
 				'cds-scrollable': true,
-				'ion-icon': true,
+				'cds-icon': true,
 			},
 		});
 
@@ -162,7 +162,7 @@ describe('custom content, attributes and slots', () => {
 			stubs: {
 				'cds-button': true,
 				'cds-scrollable': true,
-				'ion-icon': true,
+				'cds-icon': true,
 			},
 		});
 
@@ -184,7 +184,7 @@ describe('custom content, attributes and slots', () => {
 			stubs: {
 				'cds-button': true,
 				'cds-scrollable': true,
-				'ion-icon': true,
+				'cds-icon': true,
 			},
 		});
 
@@ -204,7 +204,7 @@ describe('button and event functionality', () => {
 			stubs: {
 				'cds-button': true,
 				'cds-scrollable': true,
-				'ion-icon': true,
+				'cds-icon': true,
 			},
 		});
 
@@ -226,7 +226,7 @@ describe('button and event functionality', () => {
 			},
 			stubs: {
 				'cds-scrollable': true,
-				'ion-icon': true,
+				'cds-icon': true,
 			},
 		});
 
@@ -248,7 +248,7 @@ describe('button and event functionality', () => {
 			},
 			stubs: {
 				'cds-scrollable': true,
-				'ion-icon': true,
+				'cds-icon': true,
 			},
 		});
 
