@@ -20,13 +20,14 @@
 						<div
 							v-if="!noCloseButton"
 							class="cds-modal__close-icon"
+							:class="disabled ? 'cds-modal__close-icon--disabled' : ''"
 							@click="closeHandle"
 						>
 							<cds-icon
 								name="x-outline"
 								height="20"
 								width="20"
-								color="#29333D"
+								:color="disabled ? '#BCC7D2' : '#29333D'"
 							/>
 						</div>
 					</div>
@@ -185,6 +186,9 @@ export default {
 
 	methods: {
 		closeHandle() {
+			if (this.disabled) {
+				return;
+			}
 			/**
 			 * Evento que indica se o modal foi escondido.
 			* @event close
@@ -250,11 +254,16 @@ export default {
 	&__close-icon {
 		display: flex;
 		cursor: pointer;
+
+		&--disabled {
+			cursor: default;
+			color: $n-30;
+		}
 	}
 
 	&__body {
 		padding-right: 4.4px;
-		padding-left: 0.4px;
+		padding-left: 0.8px;
 	}
 
 	&__footer {
