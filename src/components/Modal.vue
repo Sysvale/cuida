@@ -39,7 +39,9 @@
 					:max-height="maxBodyHeight"
 					auto-height
 				>
-					<slot />
+					<div class="cds-modal__body">
+						<slot />
+					</div>
 				</cds-scrollable>
 			</section>
 
@@ -57,7 +59,7 @@
 						@click="closeHandle"
 					/>
 					<cds-button
-						class="ml-2"
+						class="cds-modal__ok-button"
 						:text="okButtonText"
 						variant="green"
 						:disabled="disabled"
@@ -80,6 +82,7 @@ export default {
 	data() {
 		return {
 			internalShow: false,
+			tmp: '',
 		}
 	},
 	props: {
@@ -175,8 +178,8 @@ export default {
 
 	computed: {
 		maxBodyHeight() {
-			// 90% da largura subtraído o padding vertical (32 * 2) e subtraído o footer e o header
-			return `${ window.innerHeight * 0.9 - 32 * 2 - 110 }px`;
+			// 90% da largura subtraído o padding vertical (32 * 2) e subtraído o footer (68) e o header (64)
+			return `${ window.innerHeight * 0.9 - 32 * 2 - 68 - 64 }px`;
 		},
 	},
 
@@ -250,11 +253,20 @@ export default {
 		cursor: pointer;
 	}
 
+	&__body {
+		padding-right: 4.4px;
+		padding-left: 0.4px;
+	}
+
 	&__footer {
 		display: flex;
 		justify-content: end;
 		margin-top: auto;
 		padding: pt(7);
+	}
+
+	&__ok-button {
+		margin: ml(2);
 	}
 }
 

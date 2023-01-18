@@ -7,18 +7,20 @@ exports[`Component is mounted properly 1`] = `
       <div class="cds-modal__header">
         <h3>Título</h3>
         <div class="cds-modal__close-icon">
-          <ion-icon-stub name="close-outline"></ion-icon-stub>
+          <cds-icon-stub name="x-outline" height="20" width="20" color="#29333D"></cds-icon-stub>
         </div>
       </div>
     </header>
     <section>
-      <cds-scrollable-stub max-height="517.2px" auto-height="">
-        <div>modal content</div>
+      <cds-scrollable-stub max-height="495.20000000000005px" auto-height="">
+        <div class="cds-modal__body">
+          <div>modal content</div>
+        </div>
       </cds-scrollable-stub>
     </section>
     <footer class="cds-modal__footer">
       <cds-button-stub variant="green" size="md" text="Cancelar" secondary="true"></cds-button-stub>
-      <cds-button-stub variant="green" size="md" text="Ok" class="ml-2"></cds-button-stub>
+      <cds-button-stub variant="green" size="md" text="Ok" class="cds-modal__ok-button"></cds-button-stub>
     </footer>
   </div>
 </div>
