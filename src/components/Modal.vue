@@ -200,7 +200,6 @@ export default {
 			* @type {Event}
 			*/
 			this.$emit('ok', true);
-			this.internalShow = !this.internalShow;
 		},
 	},
 };
