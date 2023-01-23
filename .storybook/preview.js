@@ -79,6 +79,11 @@ import {
 	TextArea,
 	PageHeader,
 	ActionBar,
+	Divider,
+	Chevron,
+	Clickable,
+	Avatar,
+	AppBar,
 } from '../src/components';
 
 import {
@@ -180,6 +185,11 @@ Vue.component('cds-icon', Icon);
 Vue.component('cds-text-area', TextArea);
 Vue.component('cds-page-header', PageHeader);
 Vue.component('cds-action-bar', ActionBar);
+Vue.component('cds-divider', Divider);
+Vue.component('cds-chevron', Chevron);
+Vue.component('cds-clickable', Clickable);
+Vue.component('cds-avatar', Avatar);
+Vue.component('cds-app-bar', AppBar);
 
 addParameters({
 	options: {
