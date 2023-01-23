@@ -155,4 +155,3 @@ describe('Items styles test', () => {
 		expect(wrapper.findAll('.cds-nav-bar__item--light').length).toBe(mockedData.length);
 	});
 });
-
