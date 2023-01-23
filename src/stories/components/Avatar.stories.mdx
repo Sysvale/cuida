@@ -1,0 +1,96 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Avatar from '../../components/Avatar.vue';
+
+<Meta
+	title="Componentes/Display/Avatar"
+	component={ Avatar }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'teal',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'white',
+				],
+			}
+		},
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
+	}}
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { Avatar },
+	template: /*html*/ `
+		<cds-avatar
+			v-bind="$props"
+		/>`,
+});
+
+export const template = /*html*/ `
+	<cds-avatar
+		src="https://faces-img.xcdn.link/image-lorem-face-6152.jpg"
+	/>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
+# Avatar
+
+### Avatares são componentes utilizados para exibir representações visuais de usuários, como imagens ou nome.
+---
+<br />
+
+## Quando usar:
+- Recomenda-se o uso de avatares quando o usuário ou lista de usuários possuir
+imagens ou nomes definidos.
+- É geralmente usado em conjunto com Headers, NavBars, Tabelas, Cards e Listas
+
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Avatar"
+		decorators={[docsDecorator]}
+		args={{
+			src: 'https://faces-img.xcdn.link/image-lorem-face-6152.jpg',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Avatar" />

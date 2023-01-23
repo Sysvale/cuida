@@ -1,0 +1,70 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Clickable from '../../components/Clickable.vue';
+
+<Meta
+	title="Componentes/Utils/Clickable"
+	component={ Clickable }
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { Clickable },
+	template: /*html*/ `
+		<cds-clickable
+			v-bind="$props"
+			@click="logClickableClick"
+		>
+			Texto clicável
+		</cds-clickable>`,
+	methods: {
+		logClickableClick(event) {
+			console.log('logClick: ', event);
+		}
+	},
+});
+
+export const template = /*html*/ `
+	<cds-clickable
+		clickable
+		@click="logClickableClick"
+	>
+		Texto clicável
+	</cds-clickable>`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
+# Clickable
+
+### Componente utilizado para adicionar um wrapper cliclável a componentes que não possuem interação nativa por clique.
+---
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Clickable"
+		decorators={[docsDecorator]}
+		args={{
+			clickable: true,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Clickable" />

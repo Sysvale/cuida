@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component is mounted properly 1`] = `
+<div class="app-bar__container" style="--template-areas: 'logo icons'; --template-columns: 1fr 1fr;">
+  <!---->
+  <div class="app-bar__icons-grid">
+    <div class="clickable__container--clickable"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="notification-bell-outline" role="presentation">
+        <title id="notification-bell-outline" lang="en">
+          notification-bell-outline icon
+        </title>
+        <g fill="#ffffff"></g>
+      </svg></div>
+    <div class="clickable__container--clickable"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="help-outline" role="presentation">
+        <title id="help-outline" lang="en">
+          help-outline icon
+        </title>
+        <g fill="#ffffff"></g>
+      </svg></div>
+    <div class="clickable__container--clickable"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="settings-outline" role="presentation">
+        <title id="settings-outline" lang="en">
+          settings-outline icon
+        </title>
+        <g fill="#ffffff"></g>
+      </svg></div>
+    <div class="user-info__avatar-container">
+      <div class="user-info__container"><span class="user-info__name"></span> <span class="user-info__description"></span></div>
+      <div class="clickable__container--clickable">
+        <div class="avatar-w-chevron">
+          <div class="avatar__container--white avatar__container--md"><span class="avatar__initials--md">
+				UND
+			</span></div>
+          <div class="chev-class chevron--bottom chevron--sm"></div>
+        </div>
+      </div>
+    </div>
+    <div class="app-switcher__container">
+      <div class="divider__container">
+        <!---->
+        <hr class="divider divider--vertical" style="--width: 30px;">
+      </div>
+      <div class="clickable__container--clickable"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="grid-outline" role="presentation">
+          <title id="grid-outline" lang="en">
+            grid-outline icon
+          </title>
+          <g fill="#ffffff"></g>
+        </svg></div>
+    </div>
+  </div>
+  <!---->
+</div>
+`;

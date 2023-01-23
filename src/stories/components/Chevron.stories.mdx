@@ -1,0 +1,98 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import Chevron from '../../components/Chevron.vue';
+
+<Meta
+	title="Componentes/Forms/Chevron"
+	component={ Chevron }
+	argTypes={{
+		direction: {
+			control:{
+				type: 'select',
+				options: [
+					'top',
+					'right',
+					'bottom',
+					'left',
+				],
+			}
+		},
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
+	}}
+/>
+
+export const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { Chevron },
+	template: /*html*/ `
+		<div
+			style="width: 15px;
+			height: 15px;
+			position: absolute;
+			top: 35px;
+			left: 40px;"
+		>
+			<cds-chevron
+				v-bind="$props" 
+			/>
+		</div>`,
+});
+
+export const template = /*html*/ `
+	<cds-chevron />`;
+
+export const docsDecorator = () => {
+	return {
+		data() {
+			return {
+				template,
+			};
+		},
+		template: /*html*/ `
+			<source-code-wrapper
+				:exampleSourceCode="template"
+			>
+				<story slot="component-preview"/>
+			</source-code-wrapper>`,
+	};
+};
+
+# Chevron
+
+### Chevrons são elementos gráficos usados em interfaces para indicar possibilidade de interação.
+---
+<br />
+
+## Quando usar:
+- Parte de um elemento pode ser ora oculta ora visível,
+- Indicar ações como `play`, `next` e `fastfoward`
+
+
+<br />
+
+## Quando não usar:
+- Como ícones.
+- Evite usar chevrons sem a propriedade `animate` ativa
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Chevron"
+		decorators={[docsDecorator]}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Chevron" />
