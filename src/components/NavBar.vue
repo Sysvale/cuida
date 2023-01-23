@@ -1,31 +1,48 @@
 <template>
-	<div
-		id="nav-bar"
+	<span
+		id="cds-nav-bar"
+		class="cds-nav-bar"
 	>
-		<ul class="nav-bar__container">
-			<li
-				v-for="(item, index) in items"
-				:key="`${index}-${item.name}-item`"
-				role="presentation"
-				class="nav-bar__item-container"
-				:class="isActive(item) ? 'nav-bar__item-container--active' : 'nav-bar__item-container--inactive'"
+		<b-nav
+			:class="isLightThemed ? 'cds-nav-bar--light' : 'cds-nav-bar--dark'"
+			:style="activeBorderStyle"
+			@contextmenu.prevent="(event) => handleRightClick(event, null)"
+		>
+			<component
+				v-for="(item, i) in computedItems"
+				:is="dropdownOrSingleItem(item)"
+				:id="getElementKey(item, i)"
+				:key="getElementKey(item, i)"
+				:class="getClass(item)"
+				:text="item.label"
+				:active="isActive(item)"
+				:to="routerPushTo(item)"
+				class="cds-nav-bar__item-container"
+				@click.stop="handleClick(item)"
+				@contextmenu.prevent.stop="(event) => handleRightClick(event, item)"
 			>
-				<router-link
-					:to="routerPushTo(item)"
-					class="nav-bar__item"
-					:class="isActive(item) ? 'nav-bar__item--active' : 'nav-bar__item--inactive'"
-					@click="(event) => handleClick(event, item)"
+				<template
+					v-if="isDropdown(item)"
+				>
+					<b-dropdown-item
+						v-for="(subitem, j) in item.items"
+						:id="getElementKey(subitem, j, true)"
+						:key="getElementKey(subitem, j, true)"
+						:active="isActive(subitem)"
+						:to="routerPushTo(item)"
+						@click.stop="handleClick(subitem, item)"
+					>
+						{{ subitem.label }}
+					</b-dropdown-item>
+				</template>
+				<template
+					v-else
 				>
 					{{ item.label }}
-				</router-link>
-
-				<div
-					:class="isActive(item) ? 'item__indicator--active' : ''"
-					:style="activeBorderStyle"
-				/>
-			</li>
-		</ul>
-	</div>
+				</template>
+			</component>
+		</b-nav>
+	</span>
 </template>
 
 <script>
@@ -34,9 +51,8 @@ import { colorOptions, colorHexCode } from '../utils/constants/colors';
 export default {
 	props: {
 		/**
-		 * Define a lista dos itens do NavBar a serem
-		 * mostrados. Os itens da lista devem ser
-		 * objetos com path ou route, e com uma label
+		 * Define a lista dos itens do NavBar a serem mostrados.
+		 * Os itens da lista devem ser objetos com `path` ou `route`, e com uma `label`
 		 */
 		items: {
 			type: Array,
@@ -53,6 +69,14 @@ export default {
 			},
 		},
 		/**
+		 * Define o estilo da NavBar. Quando setado para true,
+		 * a NavBar passa a ter um tema claro, quando false, tem o tema padrão, escuro.
+		 */
+		isLightThemed: {
+			type: Boolean,
+			default: true,
+		},
+		/**
 		 * O item ativo da NavBar
 		 */
 		activeItem: {
@@ -64,12 +88,14 @@ export default {
 		 * Cor da borda que indica o item ativo na NavBar.
 		 * Existem algumas cores predefinidas seguindo os guias do Cuida, são elas: 
 		 * `turquoise`, `green`, `blue`, `violet`, `pink`, `red`, `orange`, `amber` e `gray`.
+		 * É possível ainda definir uma cor pela seu hexadecimal (ex.: `#DDE2E7`).
 		 */
 		activeColor: {
 			type: String,
-			default: 'green',
+			default: null,
 			validator: (value) => {
-				return colorOptions.includes(value);
+				const matchHexColor = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/g;
+				return colorOptions.includes(value) || matchHexColor.test(value);
 			},
 		},
 	},
@@ -77,23 +103,64 @@ export default {
 	data() {
 		return {
 			internalActiveItem: this.activeItem,
+			internalActiveParent: this.activeItem,
 			colorOptions,
 		};
 	},
 
 	computed: {
+		computedItems() {
+			return this.items.map((item) => {
+				const customItem = item;
+				if (this.isDropdown(item)) {
+					customItem.items = item.items.map(subitem => ({
+						parent: _.clone(item),
+						...subitem,
+					}));
+				}
+
+				return customItem;
+			});
+		},
+
 		activeBorderStyle() {
+			if (!this.activeColor) {
+				return {
+					'--activeBorderColor': this.isLightThemed
+						? '#206ED9' // $bn-500
+						: '#2AC092' // $gp-400
+				};
+			}
+			const presetColor = this.colorOptions.includes(this.activeColor);
+			const borderColor = presetColor ? this.colorHexCode(this.activeColor) : this.activeColor;
 			return {
-				'--indicatorColor': this.colorHexCode(this.activeColor),
+				'--activeBorderColor': borderColor,
 			};
 		},
 	},
 
 	watch: {
-		items: {
+		computedItems: {
 			handler(newValue) {
-				const filtered = newValue.filter(item => item.name === this.activeItem.name);
-				[this.internalActiveItem] = filtered.length ? filtered : newValue;
+				const filtered = newValue.filter(item => _.isEqual(item, this.activeItem));
+
+				if (filtered.length) {
+					[this.internalActiveItem] = filtered;
+					this.internalActiveParent = this.internalActiveItem;
+				} else {
+					const subitems = _.flatten(
+						newValue
+							.filter(item => !!item.items)
+							.map(({ items }) => items),
+					);
+					if (subitems.length) {
+						[this.internalActiveItem] = subitems.filter(
+							item => _.isEqual(this.resolveRoute(item), this.resolveRoute(this.activeItem)),
+						);
+
+						this.internalActiveParent = this.internalActiveItem.parent;
+					}
+				}
 			},
 			immediate: true,
 		},
@@ -102,27 +169,72 @@ export default {
 	methods: {
 		colorHexCode,
 
-		handleClick(event, item) {
+		handleClick(item, parent) {
 			this.internalActiveItem = item;
+			this.internalActiveParent = parent;
 			/**
 			 * Evento emitido quando um dos itens da NavBar é clicado
-			* @event change
+			* @event click
 			* @type {Event}
-			*/
+				*/
 			this.$emit('click', this.internalActiveItem);
 		},
 
-		isActive(item) {
-			return _.isEqual(this.internalActiveItem, item);
+		handleRightClick(event, item) {
+			/**
+			 * Evento emitido quando um dos itens da NavBar é clicado com o botão direito
+			* @event right-click
+			* @type {Event}
+				*/
+			this.$emit('right-click', { event, item });
 		},
 
 		resolveRoute({ route, path }) {
-			const to = _.isEmpty(route) ? route : path;
+			const to = !_.isEmpty(route) ? route : path;
 			return to instanceof String ? { path: to } : to;
 		},
 
 		routerPushTo(item) {
 			return this.resolveRoute(item) ? this.resolveRoute(item).path : null;
+		},
+
+		isActive(item) {
+			return Object.keys(this.internalActiveItem).length > 0
+				? _.isEqual(this.resolveRoute(this.internalActiveItem), this.resolveRoute(item))
+				: false;
+		},
+
+		getElementKey(item, index, subitem = false) {
+			if (!item.label) return;
+
+			return `${item.label.replace(/\s/g, '')}${index}${subitem ? '-subitem' : ''}`;
+		},
+
+		isSubitem(item) {
+			return !!item.parent;
+		},
+
+		isDropdown(item) {
+			return !!item.items;
+		},
+
+		dropdownOrSingleItem(item) {
+			if (this.isDropdown(item)) return 'b-nav-item-dropdown';
+			return 'b-nav-item';
+		},
+
+		getClass(item) {
+			const accClass = this.isLightThemed ? 'cds-nav-bar__item--light' : 'cds-nav-bar__item--dark';
+
+			if (
+				this.isDropdown(item)
+				&& this.internalActiveParent
+				&& _.isEqual(this.resolveRoute(this.internalActiveParent), this.resolveRoute(item))
+				&& this.internalActiveParent.label === item.label
+			) {
+				return `${accClass} active-parent`;
+			}
+			return accClass;
 		},
 	},
 };
@@ -131,65 +243,169 @@ export default {
 <style lang="scss">
 @import '../assets/sass/app.scss';
 
-#nav-bar {
-	.nav-bar {
-		&__container {
-			display: flex;
-			flex-wrap: wrap;
-			padding: pTRBL(2, 2, 0, 2);
-			margin: mb(0);
-			list-style: none;
-			border-bottom: 1px solid $n-40;
-			background-color: darken(#576169, 5%);
+a {
+	outline: none;
+}
+
+#cds-nav-bar .cds-nav-bar {
+	padding: 8px 0;
+
+	&--dark {
+		background: darken(#576169, 5%);
+
+		.dropdown-menu {
+			background: darken(#576169, 5%);
+		}
+	}
+
+	&--light {
+		background: linear-gradient(0.93deg, $n-0 16.45%, $n-20 105.67%);
+
+		.dropdown-menu {
+			background: $n-0;
+			box-shadow: 2px 2px 4px $n-50;
+			border-radius: 2px;
+		}
+	}
+}
+
+#cds-nav-bar .cds-nav-bar__item {
+	margin: mTRBL(2, 6, 0, 0);
+
+	&-container {
+		margin: mTRBL(2, 6, 0, 0);
+	}
+
+	&--dark {
+		@extend .cds-nav-bar__item;
+
+		.active {
+			color: $n-0;
+			border-bottom: 4px solid var(--activeBorderColor);
+			background: #576169;
+			border-radius: 4px  4px 0px 0px;
 		}
 
-		&__item-container {
-			margin: mx(2);
+		&.active-parent{
+			color: $n-0;
+			border-bottom: 4px solid var(--activeBorderColor);
+			background: #576169;
+			border-radius: 4px  4px 0px 0px;
 
-			&--active {
-				background-color: #576169;
-				border-radius: $border-radius-button;
-				cursor: default;
-				color: $n-10;
+			.show {
+				border-bottom: 4px solid transparent;
 			}
-		}
 
-		&__item {
-			@include caption;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			display: -webkit-box;
-			-webkit-line-clamp: 1;
-			-webkit-box-orient: vertical;
-			text-align: center;
-			text-decoration: none !important;
-			padding: pYX(2, 3);
-			cursor: pointer;
-
-			&--active {
-				cursor: default;
-				color: $n-10;
-			}
-			
-			&--active:hover {
+			.dropdown-toggle {
 				color: $n-0;
 			}
-			
-			&--inactive {
-				color: $n-100;
+		}
+
+		.nav-link {
+			color: $n-40;
+
+			&:hover {
+				color: $n-0;
 			}
-			
-			&--inactive:hover {
-				color: $n-40;
+
+			&.active {
+				color: $n-0;
+			}
+		}
+
+		.dropdown-item {
+			color: $n-40;
+
+			&:hover {
+				color: $n-0;
+				background: transparent;
+			}
+
+			&.active {
+				color: $n-0;
+				border-left: 4px solid var(--activeBorderColor);
+				border-bottom: 0px;
+				background: #576169;
+				border-radius: 0px;
 			}
 		}
 	}
 
-	.item__indicator--active {
-		height: 4px;
-		width: 100%;
-		background-color: var(--indicatorColor);
-		transition: all 0.3s ease-out;
+	&--light {
+		@extend .cds-nav-bar__item;
+
+		.active {
+			color: $n-800 !important;
+			border-bottom: 4px solid var(--activeBorderColor);
+			background: $n-20;
+			border-radius: 4px  4px 0px 0px;
+		}
+
+		&.active-parent{
+			color: $n-800 !important;
+			border-bottom: 4px solid var(--activeBorderColor);
+			background: $n-20;
+			border-radius: 4px  4px 0px 0px;
+
+			.show {
+				border-bottom: 4px solid transparent;
+			}
+
+			.dropdown-toggle {
+				color: $n-800;
+			}
+		}
+
+		.nav-link {
+			color: $n-600;
+
+			&:hover {
+				color: $n-800;
+				background: transparent;
+			}
+
+			.active {
+				color: $n-800;
+			}
+		}
+
+		.dropdown-item {
+			color: $n-600;
+
+			&:hover {
+				color: $n-800;
+				background: transparent;
+			}
+
+			&.active {
+				border-left: 4px solid var(--activeBorderColor);
+				border-bottom: 0px;
+				background: $n-20 !important;
+				border-radius: 0px;
+			}
+		}
 	}
+}
+
+.dropdown-item:active {
+	background: inherit;
+}
+
+.dropdown-item {
+	padding: pTRBL(3, 0, 3 , 7);
+}
+
+.dropdown-menu {
+	margin: mt(1);
+	border: 0;
+	border-radius: 0;
+}
+
+.dropdown-toggle[aria-expanded="true"]:after {
+	transform: rotate(180deg);
+}
+
+.dropdown-toggle:after {
+	transition: all 0.4s ease;
 }
 </style>

@@ -30,20 +30,17 @@ export const Template = (args, { argTypes }) => ({
 	components: { NavBar },
 	template: /*html*/ `
 		<cds-nav-bar
-			v-bind="$props"
-			@click="logClick"
-		/>`,
-	methods: {
-		logClick(element) {
-			console.log('logAction: ', element);
-		},
-	},
+			v-bind="$props" 
+		/>
+	`,
 });
 
 export const template = /*html*/ `
-	<cds-nav-bar
-		v-bind="$props"
-		@click="logClick"
+	<cds-nav-bar 
+		:items="items"
+		:isLight-themed="true"
+		:active-item="activeItem"
+		@click="handleItemClick"
 	/>`;
 
 export const docsDecorator = () => {
@@ -104,6 +101,23 @@ export const items = [
 			name: 'pagina2'
 		},
 	},
+	{
+		label: 'Sublinks',
+		items: [
+			{
+				label: 'Sublink 1',
+				path: '/sublink-1',
+			},
+			{
+				label: 'Sublink 2',
+				path: '/sublink-2',
+			},
+			{
+				label: 'Sublink 3',
+				path: '/sublink-3',
+			},
+		]
+	}
 ];
 
 <Canvas>
@@ -112,6 +126,7 @@ export const items = [
 		decorators={[docsDecorator]}
 		args={{
 			items,
+			isLightThemed: true,
 			activeItem: items[1],
 		}}
 	>
