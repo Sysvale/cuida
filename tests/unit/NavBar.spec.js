@@ -156,3 +156,42 @@ describe('Items styles test', () => {
 	});
 });
 
+describe('Change active item event tests', () => {
+	test('if a event is emitted when the item is clicked', () => {
+		window._ = lodash;
+		const wrapper = mount(NavBar, {
+			localVue,
+			propsData: {
+				items: mockedData,
+				activeItem: mockedData[0],
+			},
+		});
+
+		const elementIndex = 1;
+
+		wrapper
+			.find(`#${wrapper.vm.getElementKey(mockedData[elementIndex], elementIndex)} a`)
+			.trigger('click');
+
+		expect(wrapper.emitted().click).toBeTruthy();
+		expect(wrapper.emitted().click).toEqual([[mockedData[elementIndex]]]);
+	});
+
+	test('if a event is emitted when the subitem is clicked', () => {
+		window._ = lodash;
+		const wrapper = mount(NavBar, {
+			localVue,
+			propsData: {
+				items: mockedData,
+				activeItem: mockedData[0],
+			},
+		});
+
+		wrapper
+			.find(`#${wrapper.vm.getElementKey(mockedData[3].items[0], 0, true)}`)
+			.trigger('click');
+
+		expect(wrapper.emitted().click).toBeTruthy();
+		expect(wrapper.emitted().click).toEqual([[mockedData[3].items[0]]]);
+	});
+});
