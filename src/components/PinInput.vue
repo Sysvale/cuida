@@ -14,7 +14,9 @@
 			:class="computedClass"
 			autocomplete="off"
 			@keydown.delete.stop="handleBack(number)"
+			@keypress="(event) => changeInputContent(event, number)"
 			@input="(event) => handleInput(event, number)"
+			@focus="fixCursorPosition(number)"
 		>
 	</div>
 </template>
@@ -70,7 +72,6 @@ export default {
 
 	methods: {
 		handleInput(event, index) {
-			console.log('input');
 			let stringifiedPin = this.innerValue.join('');
 
 			if (index < this.length && event.inputType !== 'deleteContentBackward') {
@@ -91,6 +92,21 @@ export default {
 				setTimeout(() => {
 					previousInput.focus();
 				}, 150);
+			}
+		},
+
+		fixCursorPosition(index) {
+			let input = this.$refs[`pin-input${index}`][0];
+			setTimeout(() => {
+				input.setSelectionRange(1, 1);
+			}, 3);
+		},
+
+		changeInputContent(event, index) {
+			this.$refs[`pin-input${index}`][0].value = event.key;
+
+			if (index < this.length) {
+				this.$refs[`pin-input${index + 1}`][0].focus();
 			}
 		}
 	},
