@@ -1,0 +1,71 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Dropdown from '../../components/Dropdown.vue';
+
+<Meta
+	title="Componentes/Display/Dropdown"
+	component={ Dropdown }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-dropdown
+	label="Idade"
+	content="0 a 120 anos"
+	@click="isActive = !isActive"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsDropdown: Dropdown },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-dropdown
+			v-bind="$props"
+		>
+			<p>Slot do dropdown do Dropdown</p>
+		</cds-dropdown>`,
+});
+
+
+# Dropdown
+
+### Dropdown são componentes utilizados para ativar popovers contendo filtros para listas e views.
+---
+<br />
+
+## Quando usar:
+- Para utilizar com filtros.
+- Houver popovers contendo opções de filtragem.
+
+
+<br />
+
+## Quando não usar:
+- Em substituição à um Multiselect ou Select.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Dropdown"
+		args={{
+			label: 'Idade',
+			content: '0 a 120 anos',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Dropdown" />

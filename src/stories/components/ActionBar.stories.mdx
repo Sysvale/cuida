@@ -13,24 +13,16 @@ import Button from '../../components/Button.vue';
 				language: 'html',
 				format:true,
 				code: /*html*/ `
-<div>
-	<cds-button
-		id="trigger-popover"
-		@click="togglePopover"
-	>
-		Click
-	</cds-button>
-	<cds-action-bar
-		v-bind="args"
-		:show="showActionBar"
-		@click="logAction"
-		@close="logClose"
-	>
-		<template #description>
-			8 itens selecionados
-		</template>
-	</cds-action-bar>
-</div>`
+<cds-action-bar
+	v-bind="args"
+	:show="showActionBar"
+	@click="logAction"
+	@close="logClose"
+>
+	<template #description>
+		8 itens selecionados
+	</template>
+</cds-action-bar>`
 			},
 		}}
 	}
@@ -87,8 +79,8 @@ export const Template = (args) => ({
 <br />
 
 ## Quando usar:
-- Você precisar agrupar ações que o usuário pode tomar sobre itens de uma lista ou tabela.
-- Você não tiver espaço nos menus e em outros locais para exibir ações e informações.
+- Par agrupar ações que o usuário pode tomar sobre itens de uma lista ou tabela.
+- Não houver espaço nos menus e em outros locais para exibir ações e informações.
 
 <br />
 

@@ -1,9 +1,24 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import RadioButtonGroup from '../../components/RadioButtonGroup.vue';
 
 <Meta
 	title="Componentes/Forms/RadioButtonGroup"
 	component={ RadioButtonGroup }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-radio-button-group
+	:options="options"
+	:value="value"
+/>`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
@@ -24,13 +39,13 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de RadioButtonGroups quando:
+## Quando usar:
 - As opções que o componente busca prover são mutuamente exclusivas.
 - For necessário utilizar um ```<input type="radio"``` />.
 
 <br />
 
-## Não recomendamos o uso de RadioButtonGroups quando:
+## Quando não usar:
 - Duas ou mais opções puderem ser selecionadas ao mesmo tempo.
 - Houver 4 ou mais opções. Prefira Dropdowns nesses casos.
 
@@ -62,7 +77,6 @@ export const options = [
 <Canvas>
 	<Story
 		name="Radio button group"
-		
 		args={{
 			options,
 			value,

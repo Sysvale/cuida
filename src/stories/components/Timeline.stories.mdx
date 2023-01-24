@@ -1,9 +1,23 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import Timeline from '../../components/Timeline.vue';
 
 <Meta
 	title="Componentes/Display/Timeline"
 	component={ Timeline }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-timeline
+	:history="history"
+/>`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
@@ -24,12 +38,12 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de Timelines quando:
+## Quando usar:
 - Se tem uma série de informações que podem ser categorizadas por data.
 
 <br />
 
-## Não recomendamos o uso de Timelines quando:
+## Quando não usar:
 - Se precisa de um componente de stepper.
 - A ordem das informações que você está apresentando é irrelevante.
 

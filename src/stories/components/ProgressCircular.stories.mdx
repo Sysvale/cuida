@@ -1,23 +1,62 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import ProgressCircular from '../../components/ProgressCircular.vue';
 
 <Meta
 	title="Componentes/Display/ProgressCircular"
 	component={ ProgressCircular }
 	argTypes={{
-		color: { control: 'color' },
-		backgroundColor: { control: 'color' },
-		labelColor: { control: 'color' },
-		size: { control: 
-			{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'teal',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
+		value: {
+			control: {
 				type: 'range',
-				min: 24,
+				min: 0,
 				max: 100,
-				step: 6,
+				step: 1,
 			},
 		},
-	}
-}
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-progress-circular
+	variant="blue"
+	size="md"
+	:value="35"
+/>`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
@@ -34,14 +73,14 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de ProgressCirculars quando:
+## Quando usar:
 - For necessário transmitir a ideia de progresso ou percentual de uma operação em andamento.
 - For necessário transmitir a ideia de status de uma operação em andamento e que fração dela já foi concluída.
 - For necessário chamar a atenção do usuário para uma informação específica de maneira gráfica.
 
 <br />
 
-## Não Recomendamos o uso de ProgressCirculars quando:
+## Quanddo não usar:
 - For necessário representar fração de um processo com muitas etapas.
 
 <br />
@@ -52,8 +91,8 @@ export const Template = (args) => ({
 	<Story
 		name="Progress circular"
 		args={{
-			size: 60,
-			value: 10,
+			value: 35,
+			variant: "blue",
 		}}
 	>
 		{ Template.bind({}) }

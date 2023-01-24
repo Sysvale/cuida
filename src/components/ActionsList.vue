@@ -23,7 +23,10 @@
 							A propriedade 'list', que pode ser acessada através do slot,
 							representa o array de actions a ser exibido.
 						-->
-						<slot name="action" :list="action" />
+						<slot
+							name="action"
+							:list="action"
+						/>
 					</div>
 				</transition>
 			</div>
@@ -37,7 +40,7 @@
 					de expandir/colapsar a lista
 				-->
 				<slot name="action-trigger">
-					{{ itsBeingShown ? 'Menos ações' : 'Mais ações'}}
+					{{ itsBeingShown ? 'Menos ações' : 'Mais ações' }}
 				</slot>
 			</div>
 		</div>

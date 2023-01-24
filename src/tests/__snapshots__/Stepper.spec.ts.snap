@@ -1,0 +1,52 @@
+// Vitest Snapshot v1
+
+exports[`Stepper > renders correctly 1`] = `
+VueWrapper {
+  "__app": {
+    "_component": [Object],
+    "_container": <div … />,
+    "_context": [Object],
+    "_instance": [Object],
+    "_props": null,
+    "_uid": 0,
+    "component": [Function],
+    "config": [Object],
+    "directive": [Function],
+    "mixin": [Function],
+    "mount": [Function],
+    "provide": [Function],
+    "unmount": [Function],
+    "use": [Function],
+    "version": "3.2.37",
+  },
+  "__setProps": [Function],
+  "componentVM": {
+    "changeStep": [Function],
+    "circleStyle": [Function],
+    "disableOnClick": false,
+    "dividerStyle": [Function],
+    "hasOwnProperty": [Function],
+    "internalValue": 3,
+    "labelStyle": [Function],
+    "stepSectionStyle": [Function],
+    "steps": [Array],
+    "value": 4,
+    "vertical": false,
+  },
+  "isDisabled": [Function],
+  "rootVM": {},
+  "wrapperElement": <div
+    class="stepper"
+    data-v-49d2667a=""
+  >
+    <div … />
+    
+    <div … />
+    <div … />
+    <div … />
+    <div … />
+    
+    <div … />
+  </div>,
+}
+`;

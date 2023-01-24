@@ -5,6 +5,39 @@ import Button from '../../components/Button.vue';
 <Meta
 	title="Componentes/Estrutural/PageHeader"
 	component={ PageHeader }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-page-header
+	title="Procedimentos"
+	subtitle="Gerencie os procedimentos cadastrados"
+>
+	<template
+		#aside
+	>
+		<div class="d-flex">
+			<cds-button
+				secondary
+				@click="logClick('Btn 1')"
+				text="Button 1"
+			/>
+			<cds-button
+				class="d-flex align-items-center ml-4"
+				variant="success"
+				@click="logClick('Btn 2')"
+				text="Button 2"
+			/>
+		</div>
+	</template>
+</cds-page-header>`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
@@ -19,19 +52,17 @@ export const Template = (args) => ({
 			<template
 				#aside
 			>
-				<div class="d-flex">
-					<cds-button
-						secondary
-						@click="logClick('Btn 1')"
-						text="Button 1"
-					/>
-					<cds-button
-						class="d-flex align-items-center ml-4"
-						variant="success"
-						@click="logClick('Btn 2')"
-						text="Button 2"
-					/>
-				</div>
+				<cds-button
+					secondary
+					@click="logClick('Btn 1')"
+					text="Button 1"
+				/>
+				<cds-button
+					class="d-flex align-items-center ml-4"
+					variant="success"
+					@click="logClick('Btn 2')"
+					text="Button 2"
+				/>
 			</template>
 		</cds-page-header>
 	`,
@@ -44,14 +75,14 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de PageHeaderPageHeader quando:
+## Quando usar:
 - Precisar colocar headers em páginas.
 - Precisar adicionar botões de ação a nível de página.
 - Precisar adicionar cards informativos no topo de páginas.
 
 <br />
 
-## Não recomendamos o uso de PageHeader quando:
+## Quando não usar:
 - Fora do topo de páginas.
 
 <br />

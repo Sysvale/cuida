@@ -41,9 +41,10 @@ import Badge from '../../components/Badge.vue';
 			source: {
 				language: 'html',
 				format:true,
-				code: /*html*/ `
-<cds-badge
+				code: /*html*/ 
+`<cds-badge
 	variant="red"
+	size="md"
 >
 	Badge
 </cds-badge>`
@@ -59,10 +60,14 @@ export const Template = (args) => ({
 	},
 	template: /*html*/ `
 		<cds-badge
-			v-bind="args" 
+			v-bind="args"
+			@click="handleEmit"
 		>
 			Badge
 		</cds-badge>`,
+	methods: {
+		handleEmit(value) { console.log('value: ', value); }
+	}
 });
 
 

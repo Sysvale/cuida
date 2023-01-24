@@ -3,26 +3,7 @@
 		<div
 			class="alert-card__container"
 			:class="alertCardContainerSelected"
-			v-on="selectable && !muted ? { click: selectCheckbox } : {}"
 		>
-			<div
-				v-if="selectable"
-				class="custom-checkbox"
-			>
-				<input
-					type="checkbox"
-					id="checkbox-input"
-					name="checkbox-input"
-					:value="isSelected"
-					:checked="isSelected"
-				/>
-				<label
-					id="custom-checkbox"
-					@click.stop="selectCheckbox"
-					:class="{ 'custom-checkbox--checked': isSelected }"
-				/>
-			</div>
-
 			<div
 				v-if="withIcon"
 				:class="iconClass"
@@ -57,7 +38,10 @@
 
 				<!-- @slot Slot usado para inserção de conteúdo adicional no AlertCard
 					abaixo do subtítulo. -->
-				<slot name="content-slot" class="alert-card__content" />
+				<slot
+					name="content-slot"
+					class="alert-card__content"
+				/>
 			</div>
 		</div>
 
@@ -65,10 +49,13 @@
 </template>
 
 <script>
-// import { InfoIcon, AlertTriangleIcon, AlertCircleIcon } from 'vue-feather-icons';
 import CdsIcon from './Icon.vue';
 
 export default {
+	components: {
+		CdsIcon,
+	},
+
 	props: {
 		/**
 		 * A variante do Alert. São 3 variantes implementadas: 'info', 'warning'
@@ -93,23 +80,9 @@ export default {
 			default: 'Subtítulo do AlertCard',
 		},
 		/**
-		 * Indica se a prop title deve ser exibida.
-		 */
-		noTitle: {
-			type: Boolean,
-			default: false,
-		},
-		/**
 		 * Determina se o Alert vai ter ícone ou não.
 		 */
 		withIcon: {
-			type: Boolean,
-			default: true,
-		},
-		/**
-		 * Determina se o Alert vai ter um checkbox de seleção.
-		 */
-		selectable: {
 			type: Boolean,
 			default: false,
 		},
@@ -120,17 +93,6 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-		/**
-		* Deixa o card com o estilo de card desabilitado.
-		*/
-		muted: {
-			type: Boolean,
-			default: false,
-		},
-	},
-
-	components: {
-		CdsIcon,
 	},
 
 	data() {
@@ -173,18 +135,6 @@ export default {
 
 		iconClass() {
 			return `icon__container--${this.variant} ${this.noTitle ? 'align-self-center' : ''}`;
-		},
-	},
-
-	methods: {
-		selectCheckbox() {
-			this.isSelected = !this.isSelected;
-			/**
-			 * Evento utilizado para implementar o v-model.
-			* @event input
-			* @type {Event}
-				*/
-			this.$emit('input', !this.value);
 		},
 	},
 };

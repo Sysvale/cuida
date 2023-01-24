@@ -1,32 +1,47 @@
 <template>
 	<div
+		ref="cds-select"
 		class="select"
 	>
-		<span
+		<label
 			class="select__label"
+			for="cds-select"
 		>
-			{{ label }}
-		</span>
+			<span>
+				{{ label }}
+			</span>
 
-		<span
-			v-if="required"
-			class="select--required"
-		>
-			*
-		</span>
+			<span
+				v-if="required"
+				class="select--required"
+			>
+				*
+			</span>
 
+			<cds-icon
+				v-if="tooltip"
+				v-cdstip="tooltip"
+				:name="tooltipIcon"
+				height="20"
+				width="20"
+				class="select__icon"
+			/>
+		</label>
 		<div
 			class="select__container"
 			:class="fluid ? 'select__container--fluid' : 'select__container--fit'"
 		>
 			<input
-				v-model="internalValue"
+				id="cds-select"
+				ref="select-input"
+				v-model="localValue[optionsField]"
 				type="text"
+				autocomplete="off"
 				:onkeypress="`return ${allowSearch};`"
 				:class="inputClass"
 				:placeholder="placeholder"
 				:disabled="disabled"
-				v-on-click-outside="hide"
+				:readonly="!searchable"
 				@keydown.enter.prevent="activateSelectionOnEnter"
 				@keydown.arrow-down.prevent="highlightOnArrowDown"
 				@keydown.arrow-up.prevent="highlightOnArrowUp"
@@ -34,17 +49,19 @@
 				@input="filterOptions"
 				@focus="activeSelection"
 				@blur="hide"
-			/>
+			>
 
 			<div
 				v-show="active"
-				class="select__options"
 				ref="select-options"
+				class="select__options"
 				:class="{
 					'select__options--thin': width === 'thin',
 					'select__options--default': width === 'default',
-					'select__options--wide': width =='wide',
+					'select__options--wide': width === 'wide',
 					'select__options--fluid': fluid,
+					'select__options--down': direction === 'down',
+					'select__options--up': direction === 'up',
 				}"
 			>
 				<ul
@@ -53,13 +70,14 @@
 				>
 					<li
 						v-for="(option, index) in localOptions"
-						class="option__text"
 						:key="index"
-						:ref="`${option.value}-${index}`"
+						:ref="`${option[optionsField]}-${index}`"
+						class="option__text"
+						@mousedown="selectItem"
 						@mouseover="highlightOnMouseOver(index)"
 						@mouseout="unhighlightOnMouseOut()"
 					>
-						{{ option.value }}
+						{{ option[optionsField] }}
 					</li>
 				</ul>
 
@@ -79,15 +97,27 @@
 				:class="active ? 'select__chevron--opened' : 'select__chevron--closed'"
 			/>
 		</div>
+
+		<div
+			v-if="errorState && !disabled"
+			class="select__error-message"
+		>
+			{{ errorMessage }}
+		</div>
 	</div>
 </template>
 
 <script>
-import vClickOutside from 'click-outside-vue3';
 import { widths } from '../utils';
+import cloneDeep from 'lodash.clonedeep';
 import removeAccents from '../utils/methods/removeAccents';
+import CdsIcon from './Icon.vue';
 
 export default {
+	components: {
+		CdsIcon,
+	},
+
 	props: {
 		/**
 		 * Especifica o título do select.
@@ -119,8 +149,15 @@ export default {
 		 * Guarda o valor selecionado do select.
 		 */
 		modelValue: {
-			type: Object,
+			type: [Array, Object],
 			required: true,
+		},
+		/**
+		 * Especifica o estado do Select. As opções são 'default', 'valid', 'loading' e 'invalid'.
+		 */
+		state: {
+			type: String,
+			default: 'default',
 		},
 		/**
 		 * Controla a exibição do asterísco indicativo de campo obrigatório.
@@ -129,6 +166,13 @@ export default {
 			type: Boolean,
 			default: false,
 			required: false,
+		},
+		/**
+		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+		 */
+		errorMessage: {
+			type: String,
+			default: 'Valor inválido',
 		},
 		/**
 		 * Indica se vai ser possível fazer buscas no select.
@@ -162,10 +206,29 @@ export default {
 			default: false,
 			required: false,
 		},
-	},
-
-	directives: {
-		'on-click-outside': vClickOutside.directive,
+		/**
+		 * Define exibição e texto do tooltip do select
+		 */
+		tooltip: {
+			type: String,
+			default: null,
+		},
+		/**
+		 * Especifica ícone do tooltip do Select.
+		 */
+		tooltipIcon: {
+			type: String,
+			default: 'info-outline',
+		},
+		/**
+		 * Indica o nome da da chave do objeto a ser considerada na renderização
+		 * das opções do select.
+		 */
+		optionsField: {
+			type: String,
+			default: 'value',
+			required: false,
+		},
 	},
 
 	data() {
@@ -173,38 +236,103 @@ export default {
 			currentPos: 0,
 			active: false,
 			id: null,
-			allowSearch: this.searchable,
-			localOptions: this.options,
-			localValue: this.modelValue,
-			internalValue: this.modelValue?.value || '',
+			allowSearch: false,
+			localOptions: [],
+			pristineOptions: [],
+			localValue: '',
+			selectElement: '',
+			direction: 'down',
 		};
 	},
 
-	mounted() {
-		this.id = `select$-${this._uid}`;
-	},
-
 	computed: {
+		errorState() {
+			return this.state === 'invalid';
+		},
+
 		inputClass() {
 			let returningClass = '';
 
-			returningClass = this.active ? 'select__input--opened' : 'select__input--closed';
+			if (this.active && this.direction === 'down') {
+				returningClass = 'select__input--opened-down';
+			} else if (this.active && this.direction === 'up') {
+				returningClass = 'select__input--opened-up';
+			} else {
+				returningClass = 'select__input--closed';
+			}
+
+			if (!this.disabled) {
+				if (this.state === 'valid') {
+					returningClass += ' select__input--valid';
+				} else if (this.state === 'invalid') {
+					returningClass += ' select__input--invalid';
+				}
+			} else {
+				returningClass += ' select__input--disabled';
+			}
+
 			returningClass += ` select__input--${widths.find((item) => item === this.width)}`;
 			returningClass += this.fluid ? ' select__input--fluid' : ' select__input--fit';
-			returningClass += this.disabled ? ' select__input--disabled' : '';
 			returningClass += this.searchable ? ' select__input--searchable' : '';
 
 			return returningClass;
 		},
 	},
 
+	watch: {
+		modelValue: {
+			handler(newValue, oldValue) {
+				if (newValue !== oldValue) {
+					this.localValue = newValue;
+				}
+			},
+			immediate: true,
+		},
+
+		options: {
+			handler(newValue, oldValue) {
+				if (newValue !== oldValue) {
+					this.localOptions = newValue;
+					this.pristineOptions = newValue;
+				}
+			},
+			immediate: true,
+		},
+
+		searchable: {
+			handler(newValue, oldValue) {
+				if (newValue !== oldValue) {
+					this.allowSearch = newValue;
+				}
+			},
+			immediate: true,
+		},
+
+		localValue: {
+			handler(currentValue) {
+				/**
+				* Evento que indica que o valor do Select foi alterado
+				* @event input
+				* @type {Event}
+				*/
+				this.$emit('update:modelValue', currentValue);
+			},
+			deep: true,
+		},
+	},
+
+	mounted() {
+		this.id = `select$-${this._uid}`;
+		this.selectElement = this.$refs['cds-select'];
+	},
+
 	methods: {
 		filterOptions() {
-			const sanitizedString = removeAccents(this.internalValue);
+			const sanitizedString = removeAccents(this.localValue[this.optionsField]);
 			const regexExp = new RegExp(sanitizedString, 'i');
 
 			this.localOptions = this.options.filter(
-				(option) => removeAccents(option.value).search(regexExp) >= 0,
+				(option) => removeAccents(option[this.optionsField]).search(regexExp) >= 0,
 			);
 		},
 
@@ -213,35 +341,50 @@ export default {
 
 			this.$nextTick().then(() => {
 				const element = this.localOptions[this.currentPos];
-				this.$refs[`${element.value}-${this.currentPos}`][0].classList.add('highlight');
+				this.$refs[`${element[this.optionsField]}-${this.currentPos}`][0].classList.add('highlight');
 			});
-
-			this.active = true;
 		},
 
 		activateSelectionOnEnter() {
 			if (this.disabled) return;
 
 			this.active = !this.active;
-			this.localValue = this.localOptions[this.currentPos];
+
+			if (typeof this.localOptions[this.currentPos] === 'undefined') {
+				this.localOptions = this.pristineOptions;
+			} else {
+				this.localValue = cloneDeep(this.localOptions[this.currentPos]);
+			}
+
+			this.$refs['select-input'].blur();
 		},
 
 		activateSelectionOnClick() {
+			let boundingRect = this.selectElement.getBoundingClientRect();
+
+			if ((boundingRect.top + boundingRect.height + 286) < window.innerHeight) {
+				this.direction = 'down';
+			} else {
+				this.direction = 'up';
+			}
+
 			if (this.disabled) return;
 
-			this.active = true;
+			this.active = !this.active;
 		},
 
 		hide() {
-			this.localValue = this.localOptions[this.currentPos];
+			this.localOptions = this.pristineOptions;
 			this.active = false;
-			this.localOptions = [...this.options];
-			this.internalValue = this.localValue?.value || '';
+		},
+
+		selectItem() {
+			this.localValue = cloneDeep(this.localOptions[this.currentPos]);
 		},
 
 		getLiInDOM(position) {
 			const element = this.localOptions[position];
-			return this.$refs[`${element.value}-${position}`][0];
+			return this.$refs[`${element[this.optionsField]}-${position}`][0];
 		},
 
 		handleOptionVisibility(option, amount, direction) {
@@ -287,13 +430,11 @@ export default {
 			previousOption.classList.add('highlight');
 
 			this.handleOptionVisibility(selectedOption, -37, 'up');
-
 			this.currentPos -= 1;
 		},
 
 		highlightOnMouseOver(index) {
 			this.currentPos = index;
-
 			this.getLiInDOM(this.currentPos).classList.add('highlight');
 		},
 
@@ -301,29 +442,16 @@ export default {
 			this.getLiInDOM(this.currentPos).classList.remove('highlight');
 		},
 	},
-
-	watch: {
-		localValue: {
-			handler(currentValue) {
-				this.internalValue = currentValue?.value;
-				/**
-				* Evento que indica que o valor do Select foi alterado
-				* @event input
-				* @type {Event}
-				*/
-				this.$emit('update:modelValue', currentValue);
-			},
-			deep: true,
-		},
-
-		modelValue(newValue) {
-			this.internalValue = newValue?.value;
-		},
-	},
 };
 </script>
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
+
+#cds-select {
+	-webkit-user-select: none; /* Safari */
+	-ms-user-select: none; /* IE 10 and IE 11 */
+	user-select: none;
+}
 
 .select {
 	&__input {
@@ -337,11 +465,11 @@ export default {
 		caret-color: transparent;
 		cursor: pointer;
 		background-color: $n-0;
-		@include subheading-3;
+		@include body-2;
 		text-overflow: ellipsis;
 
-		&:hover:not([disabled]) {
-			outline: 1px solid $n-200;
+		&:hover:not([disabled]):not(.select__input--invalid):not(.select__input--valid) {
+			outline: 1px solid $n-100;
 		}
 
 		&--closed {
@@ -349,10 +477,16 @@ export default {
 			border-radius: $border-radius-extra-small !important;
 		}
 
-		&--opened {
+		&--opened-down {
 			@extend .select__input;
 			border-top-left-radius: $border-radius-extra-small !important;
 			border-top-right-radius: $border-radius-extra-small !important;
+		}
+
+		&--opened-up {
+			@extend .select__input;
+			border-bottom-left-radius: $border-radius-extra-small !important;
+			border-bottom-right-radius: $border-radius-extra-small !important;
 		}
 
 		&--searchable {
@@ -381,8 +515,17 @@ export default {
 			cursor: default;
 		}
 
+		&--valid {
+			outline: 1px solid $gp-500;
+		}
+
+		&--invalid {
+			outline: 1px solid $rc-600;
+		}
+
 		&::placeholder {
 			color: $n-300;
+			@include body-2;
 		}
 
 		&--disabled::placeholder {
@@ -396,10 +539,7 @@ export default {
 	}
 
 	&__label {
-		font-weight: $font-weight-semibold;
-		color: $n-700;
-		font-size: 14px;
-		margin: mb(1);
+		@include label;
 	}
 
 	&__container {
@@ -475,10 +615,9 @@ export default {
 	}
 
 	&__options {
-		@include subheading-3;
+		@include body-2;
+		color: $n-700;
 		outline: 1px solid $n-50;
-		border-bottom-left-radius: $border-radius-extra-small;
-		border-bottom-right-radius: $border-radius-extra-small;
 		display: flex;
 		flex-direction: column;
 		margin-top: 1px;
@@ -489,7 +628,6 @@ export default {
 		position: absolute;
 		z-index: 999;
 		background-color: $n-0;
-
 
 		&--thin {
 			width: 150px;
@@ -506,13 +644,37 @@ export default {
 		&--fluid {
 			width: 100%;
 		}
+
+		&--up {
+			bottom: 40px;
+			width: 100%;
+			border-top-left-radius: $border-radius-extra-small;
+			border-top-right-radius: $border-radius-extra-small;
+		}
+
+		&--down {
+			width: 100%;
+			border-bottom-left-radius: $border-radius-extra-small;
+			border-bottom-right-radius: $border-radius-extra-small;
+		}
+	}
+
+	&__error-message {
+		@include caption;
+		color: $rc-600;
+		margin: mt(1);
+	}
+
+	&__icon {
+		margin: ml(1);
+		cursor: pointer;
 	}
 
 }
 
 .option {
 	&__text {
-		padding: pYX(2, 3);
+		padding: pa(3);
 		text-overflow: ellipsis;
 
 		&--muted {

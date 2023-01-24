@@ -1,8 +1,8 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import Spinner from '../../components/Spinner.vue';
 
 <Meta
-	title="Componentes/Display/Spinner"
+	title="Componentes/Loaders/Spinner"
 	component={ Spinner }
 	argTypes={{
 		size: {
@@ -24,9 +24,25 @@ import Spinner from '../../components/Spinner.vue';
 					'red',
 					'orange',
 					'amber',
+					'white',
 				],
 			}
 		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-spinner
+	variant="green"
+	size="md"
+/>`
+			},
+		}
 	}}
 />
 
@@ -36,11 +52,9 @@ export const Template = (args) => ({
 		return { args };
 	},
 	template: /*html*/ `
-		<center>
-			<cds-spinner
-				v-bind="args"
-			/>
-		</center>
+		<cds-spinner
+			v-bind="args"
+		/>
 	`,
 });
 
@@ -50,12 +64,12 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de Spinners quando:
+## Quando usar:
 - For necessário impedir a visualização e navegação do conteúdo de páginas enquanto houver alguma pendência de operação.
 
 <br />
 
-## Não recomendamos o uso de Spinners quando:
+## Quando não usar:
 - A visualização e navegação não puder ser interrompida.
 
 <br />

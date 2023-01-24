@@ -1,13 +1,31 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import CarouselController from '../../components/CarouselController.vue';
 
 <Meta
 	title="Componentes/Containers/CarouselController"
 	component={ CarouselController }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ `
+<cds-carousel-controller
+	:total="12"
+	:perPage="4"
+	propertyName="Métricas"
+	@click-forward="handleClickForwardEvent"
+	@click-back="handleClickBackEvent"
+/>`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
-	components: { CdsCarrouselController: CarouselController },
+	components: { CdsCarouselController: CarouselController },
 	setup() {
 		return { args };
 	},
@@ -30,12 +48,12 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de CarouselControllers quando:
+## Quando usar:
 - Você possuir uma categoria de elementos da interface que se repetem e que podem ser exibidos em forma de carrossel.
 
 <br />
 
-## Não recomendamos o uso de CarouselControllers quando:
+## Quando não usar:
 - Você estiver trabalhando com tabelas. Nesses casos recomendamos o uso de paginação (TODO).
 - Todo o conteúdo a ser gerenciado puder ser exibido de uma só vez. Nesse caso não há necessidade de controle de páginas e do uso do componente;
 

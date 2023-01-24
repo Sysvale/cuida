@@ -1,71 +1,104 @@
 <template>
 	<div>
-		<label v-if="label" for="stepper-input-number">{{ label }}</label>
+		<span>
+			<span
+				v-if="hasSlots"
+			>
+				<slot name="label" />
+			</span>
+
+			<label
+				v-else
+				class="stepper-input__label"
+				for="stepper-input"
+			>
+				<span>
+					{{ label }}
+				</span>
+	
+				<span
+					v-if="required"
+					class="stepper-input__label--required-indicator"
+				>
+					*
+				</span>
+	
+			</label>
+		</span>
+
 		<div :class="stepperInputDynamicClass">
 			<input
+				id="stepper-input"
+				v-model="internalValue"
 				:disabled="disabled"
+				class="stepper-input__field"
+				:class="{
+					'stepper-input__field--thin': width === 'thin',
+					'stepper-input__field--default': width === 'default',
+					'stepper-input__field--wide': width =='wide',
+				}"
+				type="number"
 				@focus="isBeingFocused = true"
 				@blur="isBeingFocused = false"
-				v-model="internalValue"
-				class="stepper-input__field"
-				id="stepper-input-number"
-				type="number"
-			/>
+			>
 
 			<div class="stepper-input__icon-container">
 				<button
+					v-longclick="() => changeValue(1)"
 					:disabled="disabled"
+					class="stepper-input__icon--plus"
+					tabindex="-1"
 					@focus="isBeingFocused = true"
 					@blur="isBeingFocused = false"
 					@click="changeValue(1)"
-					v-longclick="() => changeValue(1)"
-					class="stepper-input__icon--plus"
-					tabindex="-1"
 				>
-					<!-- <plus-icon size="1x" class="custom-class" /> -->
-					
 					<cds-icon
-						height="32"
-						width="32"
+						height="16"
+						width="16"
 						name="plus-outline"
-						class="custom-class"
 					/>
 				</button>
 
 				<button
+					v-longclick="() => changeValue(-1)"
 					:disabled="disabled"
+					class="stepper-input__icon--minus"
+					tabindex="-1"
 					@focus="isBeingFocused = true"
 					@blur="isBeingFocused = false"
 					@click="changeValue(-1)"
-					v-longclick="() => changeValue(-1)"
-					class="stepper-input__icon--minus"
-					tabindex="-1"
 				>
-					<!-- <minus-icon size="1x" class="custom-class" /> -->
-					
 					<cds-icon
-						height="32"
-						width="32"
+						height="16"
+						width="16"
 						name="minus-outline"
-						class="custom-class"
 					/>
 				</button>
 			</div>
+		</div>
+
+		<div
+			v-if="errorState && !disabled"
+			class="stepper-input__error-message"
+		>
+			{{ errorMessage }}
 		</div>
 	</div>
 </template>
 
 <script>
-// import { longClickDirective } from '@sysvale/vue3-long-click';
-// import { PlusIcon, MinusIcon } from 'vue-feather-icons';
 import CdsIcon from './Icon.vue';
 
 export default {
+
+	components: {
+		CdsIcon,
+	},
 	props: {
 		/**
 		* Prop utilizada como v-model. Controla a visibilidade do popover .
 		*/
-		value: {
+		modelValue: {
 			type: [Number, String],
 			default: 0,
 		},
@@ -91,6 +124,21 @@ export default {
 			default: 'Label',
 		},
 		/**
+		 * Exibe asterisco de obrigatório (obs.: não faz a validação)
+		 */
+		required: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Define a largura do Select. As opções são 'thin', 'default' e 'wide'.
+		 */
+		width: {
+			type: String,
+			default: 'default',
+			required: false,
+		},
+		/**
 		 * Desabilita o input.
 		 */
 		disabled: {
@@ -104,24 +152,31 @@ export default {
 			type: String,
 			default: 'default',
 		},
+		/**
+		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+		 */
+		errorMessage: {
+			type: String,
+			default: 'Valor inválido',
+		},
 	},
-
-	components: {
-		CdsIcon,
-	},
-
-	// directives: {
-	// 	'longclick': longClickDirective.directive,
-	// },
 
 	data() {
 		return {
-			internalValue: this.value,
+			internalValue: this.modelValue,
 			isBeingFocused: false,
 		};
 	},
 
 	computed: {
+		hasSlots() {
+			return !!Object.keys(this.$slots).length;
+		},
+
+		errorState() {
+			return this.state === 'invalid';
+		},
+
 		stepperInputDynamicClass() {
 			let stepperInputClass = '';
 
@@ -157,6 +212,10 @@ export default {
 				this.internalValue = 0;
 			}
 
+			if (typeof value === 'string') {
+				this.internalValue = +this.internalValue;
+			}
+
 			if (value < this.min) {
 				/**
 				* Evento que indica que o valor informado está fora do intervalo aceito.
@@ -174,7 +233,7 @@ export default {
 				* @event input
 				* @type {Event}
 				*/
-				this.$emit('input', parseInt(value, 10));
+				this.$emit('update:modelValue', parseInt(value, 10));
 			}
 		},
 	},
@@ -191,26 +250,51 @@ export default {
 
 .stepper-input {
 	display: flex;
-	border: 1px solid $n-50;
-	border-radius: 4px;
+	outline: 1px solid $n-50;
+	border-radius: 6px;
+	height: 40px;
 	width: fit-content;
 	width: -moz-fit-content;
+
+	&__label {
+		@include caption;
+		font-weight: $font-weight-semibold;
+		margin: mb(1);
+		display: block;
+		color: $n-700;
+
+		&--required-indicator {
+			color: $rc-600;
+		}
+	}
 
 	&__icon-container {
 		background-color: $n-20;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		border-radius: 0px 3px 3px 0px;
+		border-radius: 0px 8px 8px 0px;
 	}
 
 	&__field {
 		padding: pa(2);
 		margin: mr(2);
-		border-radius: 4px;
+		border-radius: 6px;
 		border: none;
 		text-align: end;
 		color: $n-600;
+
+		&--thin {
+			width: 72px;
+		}
+
+		&--default {
+			width: 144px;
+		}
+
+		&--wide {
+			width: 284px;
+		}
 
 		&:focus {
 			outline: 0;
@@ -219,18 +303,18 @@ export default {
 
 	&--focused {
 		@extend .stepper-input;
-		border: 1px solid $bn-300;
+		outline: 1px solid $bn-300;
 		box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);
 	}
 
 	&--valid {
 		@extend .stepper-input;
-		border: 1px solid $gp-500;
+		outline: 1px solid $gp-500;
 	}
 
 	&--invalid {
 		@extend .stepper-input;
-		border: 1px solid $vr-600;
+		outline: 1px solid $rc-600;
 	}
 
 	&--focused-valid {
@@ -240,7 +324,7 @@ export default {
 
 	&--focused-invalid {
 		@extend .stepper-input--invalid;
-		box-shadow: 0 0 0 0.2rem rgba($vr-300, .45);
+		box-shadow: 0 0 0 0.2rem rgba($rc-300, .45);
 	}
 
 	&--disabled {
@@ -258,16 +342,17 @@ export default {
 		color: $n-600;
 		transition: all 0.2s ease-out;
 		height: 50%;
+		cursor: pointer;
 
 		&:hover {
 			background-color: $bn-400;
 			color: $n-0;
-			border-radius: 0px 3px 0px 0px;
+			border-radius: 0px 8px 0px 0px;
 		}
 
 		&:active {
 			background-color: $bn-500;
-			border-radius: 0px 3px 0px 0px;
+			border-radius: 0px 8px 0px 0px;
 		}
 	}
 
@@ -281,17 +366,24 @@ export default {
 		color: $n-600;
 		transition: all 0.2s ease-out;
 		height: 50%;
+		cursor: pointer;
 
 		&:hover {
 			background-color: $bn-400;
 			color: $n-0;
-			border-radius: 0px 0px 3px 0px;
+			border-radius: 0px 0px 8px 0px;
 		}
 
 		&:active {
 			background-color: $bn-500;
-			border-radius: 0px 0px 3px 0px;
+			border-radius: 0px 0px 8px 0px;
 		}
+	}
+
+	&__error-message {
+		@include caption;
+		color: $rc-600;
+		margin: mt(1);
 	}
 }
 
@@ -306,7 +398,7 @@ input[type=number] {
 }
 
 input[type=number]{
-	width: 68px;
+	// width: 68px;
 }
 
 input:disabled {

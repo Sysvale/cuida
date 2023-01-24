@@ -22,7 +22,7 @@ import ProgressBar from '../../components/ProgressBar.vue';
 				],
 			}
 		},
-		percentage: {
+		value: {
 			control: {
 				type: 'range',
 				min: 0,
@@ -41,7 +41,7 @@ import ProgressBar from '../../components/ProgressBar.vue';
 				code: /*html*/ 
 `<cds-progress-bar
 	showText
-	:percentage="0.5"
+	:value="0.5"
 />`
 			},
 		}
@@ -62,14 +62,14 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de ProgressBrs quando:
+## Quando usar:
 - For necessário transmitir a ideia do progresso de algo.
 - For necessário transmitir a ideia do status de algo.
 - Se deseja chamar a atenção do usuário para uma informação específica de maneira gráfica.
 
 <br />
 
-## Não Recomendamos o uso de ProgressBrs quando:
+## Quando não usar:
 - For necessário criar loaders.
 - For necessária muita precisão ao mostrar os números ou progresso.
 - For necessário criar steppers.
@@ -82,7 +82,7 @@ export const Template = (args) => ({
 	<Story
 		name="Progress bar"
 		args={{
-			percentage: 0.5,
+			value: 0.5,
 			showText: true,
 		}}
 	>

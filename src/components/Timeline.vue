@@ -29,16 +29,17 @@
 					<div class="content__container">
 						<div>
 							<p
-								class="content__title">
+								class="content__title"
+							>
 								{{ event.title }}
 							</p>
 						</div>
 						<span class="content__text">
 							{{ event.text }}
 						</span>
-						<hr
+						<cds-divider
 							v-if="(index + 1) < history.length"
-						>
+						/>
 					</div>
 				</div>
 			</div>
@@ -47,7 +48,13 @@
 </template>
 
 <script>
+import CdsDivider from './Divider.vue';
+
 export default {
+	components: {
+		CdsDivider,
+	},
+
 	props: {
 		/**
 		 * O array que especifica os eventos que vão ser mostrados na timeline
@@ -84,11 +91,16 @@ export default {
 #timeline .content__container {
 	width: 50% !important;
 	margin: mt(n2);
+
+	& > .divider__container {
+		margin: my(3);
+	}
 }
 
 #timeline .content__text {
 	color: $n-600;
 	margin: mt(1);
+	margin: mb(2);
 }
 
 #timeline .event__date {
@@ -101,8 +113,9 @@ export default {
 
 #timeline .event__pin {
 	min-height: 12px !important;
-	min-width: 11.5px !important;
+	min-width: 12px !important;
 	border-radius: 50% !important;
+	box-sizing: content-box;
 
 	&--filled {
 		@extend .event__pin;
@@ -112,6 +125,7 @@ export default {
 	&--hollowed {
 		@extend .event__pin;
 		border: 2px solid $gp-500;
+		box-sizing: border-box;
 	}
 }
 
@@ -123,7 +137,7 @@ export default {
 #timeline .content__title {
 	color: $n-900;
 	font-weight: 600;
-	margin: mb(0);
+	margin: mb(2);
 }
 
 #timeline .timeline {

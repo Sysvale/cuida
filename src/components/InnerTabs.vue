@@ -25,8 +25,6 @@
 				/>
 			</li>
 		</ul>
-		
-		<hr class="inner-tabs__divider"/>
 
 		<div class="inner-tabs__content">
 			<div
@@ -156,6 +154,7 @@ export default {
 			padding: pl(0);
 			margin: mb(0);
 			list-style: none;
+			border-bottom: 1px solid $n-40;
 		}
 
 		&__tab {
@@ -171,12 +170,14 @@ export default {
 			text-decoration: none !important;
 			margin: mTRBL(0, 2, 2, 0);
 			padding: pYX(2, 5);
+			cursor: pointer;
+			width: auto;
 
 
 			&--active {
 				cursor: default;
 				color: $n-800;
-				font-weight: $font-weight-medium;
+				font-weight: $font-weight-semibold;
 			}
 			
 			&--active:hover {
@@ -191,11 +192,6 @@ export default {
 			&--inactive:hover {
 				color: $n-500;
 			}
-		}
-
-		&__divider {
-			background-color: $n-20;
-			margin: ma(0);
 		}
 
 		&__content {

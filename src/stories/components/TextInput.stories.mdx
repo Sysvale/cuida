@@ -1,4 +1,4 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import TextInput from '../../components/TextInput.vue';
 
 <Meta
@@ -15,8 +15,19 @@ import TextInput from '../../components/TextInput.vue';
 				],
 			}
 		},
-	}
-}
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ `
+<cds-text-input />`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
@@ -24,11 +35,19 @@ export const Template = (args) => ({
 	setup() {
 		return { args };
 	},
+	data() {
+		return {
+			value: '',
+		};
+	},
 	template: /*html*/ `
 		<cds-text-input
 			v-bind="args" 
-		/>
-	`,
+			v-model="value"
+		/>`,
+	updated() {
+		console.log('v-model: ', this.value);
+	},
 });
 
 # TextInput
@@ -37,12 +56,12 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de TextInputs quando:
+## Quando usar:
 - Necessitar de um campo de texto para inserir informações.
 
 <br />
 
-## Não recomendamos o uso de TextInputs quando:
+## Quando não usar:
 - O dado a ser utilizado no componente for numérico.
 - Houver a necessidade de selecionar múltiplos itens.
 

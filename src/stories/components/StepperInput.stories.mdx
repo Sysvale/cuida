@@ -1,4 +1,4 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import StepperInput from '../../components/StepperInput.vue';
 
 <Meta
@@ -15,8 +15,25 @@ import StepperInput from '../../components/StepperInput.vue';
 				],
 			}
 		},
-	}
-}
+		width: { 
+			control: { 
+				type: 'select',
+				options: ['thin', 'default', 'wide']
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-stepper-input />`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
@@ -24,11 +41,20 @@ export const Template = (args) => ({
 	setup() {
 		return { args };
 	},
+	data() {
+		return {
+			value: '',
+		};
+	},
 	template: /*html*/ `
 		<cds-stepper-input
-			v-bind="args" 
+			v-bind="args"
+			v-model="value"
 		/>
 	`,
+	updated() {
+		console.log('v-model: ', this.value);
+	},
 });
 
 # StepperInput
@@ -37,13 +63,13 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de StepperInputs quando:
+## Quando usar:
 - For necessário precisar de um input do tipo número.
 - O número a ser adicionado ao StepperInput for pequeno ou de poucos dígitos.
 
 <br />
 
-## Não recomendamos o uso de StepperInputs quando:
+## Quando não usar:
 - O dado a ser utilizado no componente não for numérico.
 - O dado a ser utilizado  no componente for muito grande.
 - O dado a ser utilizado no componente não for incremental.
@@ -55,7 +81,6 @@ export const Template = (args) => ({
 <Canvas>
 	<Story
 		name="StepperInput"
-		
 	>
 		{ Template.bind({}) }
 	</Story>

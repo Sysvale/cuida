@@ -6,11 +6,11 @@
 			class="scrollable__container"
 			:style="{
 				'max-height': maxHeight,
-				'height': maxHeight,
+				'height': autoHeight ? 'auto' : maxHeight,
 			}"
 		>
 			<!-- @slot Slot com o conteúdo que você deseja que seja scrollable -->
-			<slot></slot>
+			<slot />
 		</div>
 	</span>
 </template>
@@ -25,6 +25,13 @@ export default {
 			type: String,
 			default: '300px',
 			required: true,
+		},
+		/**
+		 * Define altura como 'auto' para o container até o limite máximo
+		 */
+		autoHeight: {
+			type: Boolean,
+			default: false,
 		},
 	},
 };
@@ -59,6 +66,5 @@ export default {
 			background: $n-50;
 		}
 	}
-
 }
 </style>

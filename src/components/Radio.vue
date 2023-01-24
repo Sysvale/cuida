@@ -6,13 +6,13 @@
 			@type {Event}
 		-->
 		<input
-			type="radio"
 			:id="value"
+			type="radio"
 			:value="value"
 			:disabled="disabled"
 			:name="$attrs.name"
 			:checked="isChecked"
-			@change="$emit('change', $event.target.value)"
+			@change="$emit('update:modelValue', $event.target.value)"
 		>
 		<label
 			class="cds-radio__label"
@@ -33,11 +33,6 @@
 
 <script>
 export default {
-	model: {
-		prop: 'modelValue',
-		event: 'change',
-	},
-
 	props: {
 		/**
 		 * A prop usada como v-model para monitorar a seleção do Radio
@@ -81,99 +76,62 @@ export default {
 <style lang="scss">
 @import '../assets/sass/tokens.scss';
 
+.cds-radio {
+	display: flex;
+	align-items: flex-start;	
+}
+
 .cds-radio__label {
 	@include body-2;
+	margin-left: 10px;
+	cursor: pointer;
 
-	[disabled="disabled"] {
+	disabled {
 		color: $n-300;
 	}
 }
 
-.cds-radio {
-	[type="radio"] {
-		&:checked,
-		&:not(:checked) {
-			position: absolute;
-			left: -9999px;
-		}
+input[type="radio"] {
+	-webkit-appearance: none;
+	appearance: none;
+	margin: 0;
+	font: inherit;
+	width: 16px;
+	height: 16px;
+	border: 1px solid $n-50;
+	border-radius: 50%;
+	margin-top: 1.5px;
+	display: grid;
+	place-content: center;
+	cursor: pointer;
+}
 
-		&:checked + label,
-		&:not(:checked) + label {
-			position: relative;
-			padding: pl(7);
-			cursor: pointer;
-			line-height: 16px;
-			display: inline-block;
-			color: $n-700;
+input[type="radio"]:checked {
+	border: 1px solid $gp-500;
+}
 
-			&:before {
-				content: '';
-				position: absolute;
-				left: 0;
-				top: 0;
-				width: 16px;
-				height: 16px;
-				border: 1px solid $n-400;
-				border-radius: 100%;
-				background: $n-0;
-			}
+input[type="radio"]::before {
+	content: "";
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	transform: scale(0.5);
+	opacity: 0;
+	transition: $interaction;
+	background: $gp-500;
+}
 
-			&:after {
-				content: '';
-				width: 8px;
-				height: 8px;
-				background: $gp-500;
-				border: 1px solid $gp-500;
-				position: absolute;
-				top: 3.7px;
-				left: 3.7px;
-				border-radius: 100%;
-				-webkit-transition: all 0.3s ease;
-				transition: all 0.3s ease;
-			}
-		}
+input[type="radio"]:checked::before {
+	transform: scale(1);
+	opacity: 1;
+}
 
-		&:checked + label {
-			&:before {
-				border: 1px solid $gp-500;
-			}
+input[type="radio"]:disabled {
+	border: 1px solid $n-50;
+	background: $n-20;
+}
 
-			&:after {
-				opacity: 1;
-				-webkit-transform: scale(1);
-				transform: scale(1);
-			}
-		}
-
-		&:not(:checked) + label {
-			&:after {
-				opacity: 0;
-				-webkit-transform: scale(0);
-				transform: scale(0);
-			}
-		}
-	}
-
-	input[type="radio"][disabled="disabled"]:not(:checked) + label:before {
-		-webkit-transition: all 0.3s ease;
-		transition: all 0.3s ease;
-		background: $n-20;
-		border: 1px solid $n-50;
-	}
-
-	input[type="radio"][disabled="disabled"]:checked + label:before {
-		-webkit-transition: all 0.3s ease;
-		transition: all 0.3s ease;
-		border: 1px solid $n-50;
-		color: $n-50;
-	}
-
-	input[type="radio"][disabled="disabled"]:checked + label:after {
-		-webkit-transition: all 0.3s ease;
-		transition: all 0.3s ease;
-		border: 1px solid $n-50;
-		background: $n-50;
-		color: $n-50;
-	}
+input[type="radio"]:disabled::before {
+	background: $n-20;
 }
 </style>

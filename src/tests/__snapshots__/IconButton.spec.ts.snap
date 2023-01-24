@@ -1,0 +1,42 @@
+// Vitest Snapshot v1
+
+exports[`IconButton > renders correctly 1`] = `
+VueWrapper {
+  "__app": {
+    "_component": [Object],
+    "_container": <div … />,
+    "_context": [Object],
+    "_instance": [Object],
+    "_props": null,
+    "_uid": 0,
+    "component": [Function],
+    "config": [Object],
+    "directive": [Function],
+    "mixin": [Function],
+    "mount": [Function],
+    "provide": [Function],
+    "unmount": [Function],
+    "use": [Function],
+    "version": "3.2.37",
+  },
+  "__setProps": [Function],
+  "componentVM": {
+    "clickHandler": [Function],
+    "computedModifiers": " cds-icon-button--lg",
+    "disabled": false,
+    "hasOwnProperty": [Function],
+    "icon": "trash-outline",
+    "predefinedSize": "cds-icon-button--lg",
+    "predefinedSizes": [Array],
+    "size": "lg",
+  },
+  "isDisabled": [Function],
+  "rootVM": {},
+  "wrapperElement": <span
+    data-v-f6045c74=""
+    id="cds-icon-button"
+  >
+    <button … />
+  </span>,
+}
+`;

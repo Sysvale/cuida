@@ -1,4 +1,4 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import Select from '../../components/Select.vue';
 
 <Meta
@@ -12,6 +12,25 @@ import Select from '../../components/Select.vue';
 			}
 		},
 	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-select
+	:value="value"
+	:options="options"
+	width="wide"
+	label="Séries"
+	placeholder="Selecione uma das séries"
+	required
+/>`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
@@ -19,11 +38,23 @@ export const Template = (args) => ({
 	setup() {
 		return { args };
 	},
+	data() {
+		return {
+			value: {
+				value: '',
+				id: '',
+			},
+		};
+	},
 	template: /*html*/ `
 		<cds-select
 			v-bind="args" 
+			v-model="value"
 		/>
 	`,
+	updated() {
+		console.log('v-model: ', this.value);
+	},
 });
 
 # Select
@@ -32,13 +63,13 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de Selects quando:
+## Quando usar:
 - O usuário tiver de escolher uma única opção em uma lista com diversos itens.
 
 
 <br />
 
-## Não recomendamos o uso de Selects quando:
+## Quando não usar:
 - A lista de opções possuir 3 itens ou menos. Nesses casos, recomendamos a utilização de radio buttons.
 - O usuário precisar selecionar mais de um item da lista. Nesse caso, utilize <a href="https://sysvale.github.io/cuida/?path=/docs/componentes-forms-clusteredmultiselect--clustered-multiselect">ClusteredMultiselects</a>.
 
@@ -58,6 +89,7 @@ export const value = {
 	value: '',
 	id: '',
 };
+
 export const options = [
 	{
 		value: 'Breaking Bad',
@@ -112,9 +144,7 @@ export const options = [
 <Canvas>
 	<Story
 		name="Select"
-		
 		args={{
-			value,
 			options,
 			width: 'wide',
 			label: 'Séries',

@@ -1,13 +1,44 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import DashboardCard from '../../components/DashboardCard.vue';
+import Badge from '../../components/Badge.vue';
 
 <Meta
 	title="Componentes/Containers/DashboardCard"
 	component={ DashboardCard }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ `
+<cds-dashboard-card
+	:showAction="true"
+	:action="Ver lista"
+	@action-button-click="handleActionClick"
+>
+	<template #title-slot>
+		<bold>45</bold>
+		<span style="margin-left: 8px; font-size: 13.5px; font-weight: 500;">gestantes</span>
+	</template>
+	<template #status-slot>
+		<cds-badge variant="red">Alerta</cds-badge>
+	</template>
+	<template #description-slot>
+		Não realizam consulta há mais de 30 dias
+	</template>
+</cds-dashboard-card>`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
-	components: { CdsDashboardCard: DashboardCard },
+	components: {
+		CdsDashboardCard: DashboardCard,
+		CdsBadge: Badge,
+	},
 	setup() {
 		return { args };
 	},
@@ -16,18 +47,14 @@ export const Template = (args) => ({
 			v-bind="args"
 			@action-button-click="handleActionClick"
 		>
-			<template slot="title-slot">
-				<div>
-					<div>
-						<span>45</span>
-						<span style="font-size: 12px; font-weight: 500;">gestantes</span>
-					</div>
-				</div>
+			<template #title-slot>
+				<bold>45</bold>
+				<span style="margin-left: 8px; font-size: 13.5px; font-weight: 500;">gestantes</span>
 			</template>
-			<template slot="status-slot">
+			<template #status-slot>
 				<cds-badge variant="red">Alerta</cds-badge>
 			</template>
-			<template slot="description-slot">
+			<template #description-slot>
 				Não realizam consulta há mais de 30 dias
 			</template>
 		</cds-dashboard-card>
@@ -41,7 +68,7 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de DashboardCards quando:
+## Quando usar:
 - For necessário mostrar informações de modo resumido em dashboards
 - For necessário um card com botão clicável e que leve o usuário a uma nova tela.
 - A informação descrita no card possa ser classificada.
@@ -49,7 +76,7 @@ export const Template = (args) => ({
 
 <br />
 
-## Não recomendamos o uso de DashboardCards quando:
+## Quando não usar:
 - Houver um conjunto muito grande de informações a ser exibido.
 - Se deseja utilizar ícones em conjunto com os dados. Utilize <a href="https://sysvale.github.io/cuida/?path=/docs/componentes-containers-expansioncard--expansion-card">ExpansionCards</a> nesses cenários.
 

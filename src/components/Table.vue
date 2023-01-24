@@ -3,16 +3,11 @@
 		<tr class="table__header">
 			<th
 				v-for="(field, index) in computedFields"
-				:class="resolveHeaderItemClass(index)"
 				:key="index"
+				:class="resolveHeaderItemClass(index)"
 			>
 				<!--
-					@slot Slot usado para renderizar itens personalizados para o cabeçalho da tabela.
-					Dados do item referente à coluna podem ser acessados através da propriedade `data`.
-					Os dados do escopo do slot podem ser acessados no formato a seguir:
-
-
-					slot-scope={ data }
+					@slot Slot usado para renderizar itens personalizados para o cabeçalho da tabela. Dados do item referente à coluna podem ser acessados através da propriedade `data`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ data }
 				-->
 				<slot
 					name="header-item"
@@ -24,29 +19,23 @@
 		</tr>
 		<tr
 			v-for="(item, itemIndex) in items"
-			:class="resolveItemClass()"
 			:key="itemIndex"
+			:class="resolveItemClass()"
 		>
 			<td
 				v-for="(field, fieldIndex) in computedFields"
-				:class="resolveContentItemClass(itemIndex, fieldIndex)"
 				:key="fieldIndex"
+				:class="resolveContentItemClass(itemIndex, fieldIndex)"
 			>
 				<!--
-					@slot Slot usado para renderizar itens personalizados para o conteúdo da tabela.
-					Dados do item referente à linha podem ser acessados através da propriedade `data`,
-					enquanto a key referente à coluna pode ser acessada através da propriedade `field`.
-					Os dados do escopo do slot podem ser acessados no formato a seguir:
-
-
-					slot-scope={ data, field }
+					@slot Slot usado para renderizar itens personalizados para o conteúdo da tabela. Dados do item referente à linha podem ser acessados através da propriedade `data`, enquanto a key referente à coluna pode ser acessada através da propriedade `field`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ `data`, `field`, `rowIndex` e `colIndex` }
 				-->
 				<slot
 					name="table-item"
 					:data="item"
 					:field="field.key"
-					:rowIndex="itemIndex"
-					:colIndex="fieldIndex"
+					:row-index="itemIndex"
+					:col-index="fieldIndex"
 				>
 					{{ item[field.key] }}
 				</slot>

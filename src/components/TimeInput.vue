@@ -1,11 +1,10 @@
 <template>
 	<div>
-		<label :for="id">
-			<span
-				class="input__label"
-			>
-				{{ label }}
-			</span>
+		<label
+			:for="id"
+			class="input__label"
+		>
+			{{ label }}
 
 			<span
 				v-if="required"
@@ -18,47 +17,109 @@
 			:id="id"
 			class="input__container"
 		>
-			<input
-				class="input__time"
-				v-model="hour"
-				:disabled="disabled"
-				type="number"
-				min="0"
-				max="23"
-				step="1"
-				placeholder="00"
-				@input="handleTimeInput"
+			<div>
+				<input
+					v-model="startHour"
+					:class="computedInputClass"
+					:disabled="disabled"
+					type="number"
+					min="0"
+					max="23"
+					step="1"
+					placeholder="00"
+					@input="handleTimeInput"
+				>
+				:
+				<input
+					v-model="startMinute"
+					:class="computedInputClass"
+					:disabled="disabled"
+					type="number"
+					min="0"
+					max="59"
+					step="1"
+					pattern="[0-9]*"
+					placeholder="00"
+					@input="handleTimeInput"
+				>
+			</div>
+			<div
+				v-if="mode === 'range'"
+				class="input__separator"
 			>
-			:
-			<input
-				class="input__time"
-				v-model="minute"
-				:disabled="disabled"
-				type="number"
-				min="0"
-				max="59"
-				step="1"
-				pattern="[0-9]*"
-				placeholder="00"
-				@input="handleTimeInput"
-			>
+				Até
+			</div>
+			<div v-if="mode === 'range'">
+				<input
+					v-model="endHour"
+					:class="computedInputClass"
+					:disabled="disabled"
+					type="number"
+					min="0"
+					max="23"
+					step="1"
+					placeholder="00"
+					@input="handleTimeInput"
+				>
+				:
+				<input
+					v-model="endMinute"
+					:class="computedInputClass"
+					:disabled="disabled"
+					type="number"
+					min="0"
+					max="59"
+					step="1"
+					pattern="[0-9]*"
+					placeholder="00"
+					@input="handleTimeInput"
+				>
+			</div>
+		</div>
+		<div
+			v-if="state === 'invalid'"
+			class="input__message"
+		>
+			{{ errorMessage }}
 		</div>
 	</div>
 </template>
 
 <script>
+import { Interval, DateTime } from 'luxon';
+import { hourFormat, isAfter } from '../utils/validators/time';
+
+const valueValidator = (value) => {
+	if (value === '' || value === []) {
+		return true;
+	}
+
+	if (typeof value === 'string') {
+		return hourFormat(value);
+	}
+
+	return value.length === 2
+		&& isAfter(value[1], value[0]);
+};
+
 export default {
 	props: {
 		/**
 		* Prop utilizada como v-model. Define o horário exibido.
-		* Deve ser enviado como string no formato `HH:mm`
+		*
+		* Modo `single`: Deve ser enviada como uma String contendo o horário.
+		*
+		* Modo `range`: Deve ser enviada como um Array contendo dois horários (inicial e final).
+		*
+		* Pode ser enviada como um Array vazio ou String vazia.
+		*
+		* Todos os horários devem estar no formato `HH:mm`.
+		*
 		*/
-		value: {
-			type: String,
+		modelValue: {
+			type: [String, Array],
 			default: '',
-			validator: (value) => {
-				return value === '' || /[0-2][0-9]:[0-5][0-9]/.test(value);
-			},
+			validator: valueValidator,
 		},
 		/**
 		 * O id a ser utilizado pelo elemento HTML.
@@ -89,49 +150,125 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Propriedade utilizada para definir o modo de exibição do componente.
+		 *
+		 * `single`: Apenas um input de tempo;
+		 *
+		 * `range`: Dois inputs de tempo (início e fim).
+		 */
+		mode: {
+			type: String,
+			default: 'single',
+			validator: (value) => ['single', 'range'].includes(value),
+		},
+		/**
+		 * Propriedade utilizada para indicar o estado de validação do componente.
+		 */
+		state: {
+			type: String,
+			default: 'default',
+			validator: (value) => ['default', 'valid', 'invalid'].includes(value),
+		},
+		/**
+		 * Mensagem a ser exibida em caso de estado inválido.
+		 */
+		errorMessage: {
+			type: String,
+			default: 'Horário inválido',
+		},
 	},
 
 	data() {
 		return {
-			hour: '',
-			minute: '',
+			startHour: '',
+			startMinute: '',
+			endHour: '',
+			endMinute: '',
 		};
 	},
 
-	mounted() {
-		this.buildTimeElements(this.value);
+	computed: {
+		computedInputClass() {
+			switch (this.state) {
+				case 'valid':
+					return 'input__time--valid';
+				case 'invalid':
+					return 'input__time--invalid';
+				default:
+					return 'input__time';
+			}
+		},
 	},
 
 	watch: {
-		value(newValue, oldValue) {
-			if (newValue === oldValue) {
+		modelValue(newValue, oldValue) {
+			if (newValue === oldValue || newValue == null) {
 				return;
 			}
 
 			this.buildTimeElements(newValue);
-		}
+		},
+	},
+
+	mounted() {
+		this.buildTimeElements(this.modelValue);
 	},
 
 	methods: {
 		handleTimeInput() {
-			this.hour = this.hour ? this.resolveTimeElement(this.hour, 23) : '';
-			this.minute = this.minute ? this.resolveTimeElement(this.minute, 59) : '';
+			this.startHour = this.startHour ? this.resolveTimeElement(this.startHour, 23) : '';
+			this.startMinute = this.startMinute ? this.resolveTimeElement(this.startMinute, 59) : '';
+			this.endHour = this.endHour ? this.resolveTimeElement(this.endHour, 23) : '';
+			this.endMinute = this.endMinute ? this.resolveTimeElement(this.endMinute, 59) : '';
 
-			if (!this.hour || !this.minute) {
+			if (
+				!(this.startHour && this.startMinute)
+				|| (this.range && !(this.endHour && this.endMinute))
+			) {
+				this.$emit('update:modelValue', null);
+				return;
+			}
+
+			if (this.mode === 'range') {
+				this.resolveRangeInterval();
 				return;
 			}
 
 			/**
-			* Evento indicado que o input foi preenchido.
-			* Retorna o horário no formato `HH:mm`
-			* @event input
+			* Evento indicando que o input foi preenchido.
+			* Retorna uma string com o horário, caso o componente esteja em modo `single`,
+			* ou um array contendo horários inicial e final, quando em modo `range`.
+			*
+			* Em caso de o valor do campo estar inválido, o evento é emitido com valor `null`,
+			* leve isto em consideração em possíveis formatações.
+			*
+			* As datas são retornadas sempre no formato `HH:mm`.
+			* @event update:modelValue
 			* @type {Event}
 			*/
-			this.$emit('input', `${this.hour}:${this.minute}`);
+			this.$emit('update:modelValue', `${this.startHour}:${this.startMinute}`);
+		},
+
+		resolveRangeInterval() {
+			const interval = Interval.fromDateTimes(
+				DateTime.fromFormat(`${this.startHour}:${this.startMinute}`, 'HH:mm'),
+				DateTime.fromFormat(`${this.endHour}:${this.endMinute}`, 'HH:mm'),
+			);
+
+			if (interval.invalid) {
+				this.$emit('update:modelValue', null);
+				return;
+			}
+
+			this.$emit('update:modelValue', [
+				interval.start.toFormat('HH:mm'),
+				interval.end.toFormat('HH:mm'),
+			]);
 		},
 
 		formatTimeElement(element) {
-			return parseInt(element).toLocaleString(undefined, {
+			return parseInt(element, 10).toLocaleString(undefined, {
 				minimumIntegerDigits: 2,
 				maximumFractionDigits: 0,
 			});
@@ -152,10 +289,29 @@ export default {
 		},
 
 		buildTimeElements(time) {
-			[ this.hour, this.minute ] = time.split(':');
+			if (this.mode === 'single') {
+				if (typeof time !== 'string') {
+					return;
+				}
+
+				[this.startHour, this.startMinute] = time.split(':');
+				return;
+			}
+
+			if (typeof time === 'string') {
+				this.startHour = '';
+				this.startMinute = '';
+				this.endHour = '';
+				this.endMinute = '';
+
+				return;
+			}
+
+			[this.startHour, this.startMinute] = time[0].split(':');
+			[this.endHour, this.endMinute] = time[1].split(':');
 		},
 	},
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -164,14 +320,22 @@ export default {
 .input {
 	&__container {
 		color: $n-400;
+		display: flex;
+		align-items: center;
+	}
+
+	&__separator {
+		@include caption;
+		margin: mx(3);
+		color: $n-600;
 	}
 
 	&__time {
 		@include caption;
 		border: 1px solid $n-50;
-		border-radius: $border-radius-button;
-		height: 39px;
-		width: 33px;
+		border-radius: $border-radius-lil;
+		width: 36px;
+		height: 40px;
 		text-align: center;
 		color: $n-600;
 
@@ -181,7 +345,24 @@ export default {
 
 		&:focus-visible {
 			outline-color: $bn-300;
-			color: $bn-300;
+		}
+
+		&--valid {
+			@extend .input__time;
+			border: 1px solid $gp-500;
+
+			&:focus-visible {
+				outline-color: $gp-500;
+			}
+		}
+
+		&--invalid {
+			@extend .input__time;
+			border: 1px solid $rc-500;
+
+			&:focus-visible {
+				outline-color: $rc-500;
+			}
 		}
 	}
 
@@ -191,10 +372,13 @@ export default {
 	}
 
 	&__label {
-		font-weight: $font-weight-semibold;
-		color: $n-700;
-		font-size: 14px;
-		margin: mb(1);
+		@include label;
+	}
+
+	&__message {
+		@include caption;
+		color: $rc-500;
+		margin: mt(2);
 	}
 }
 

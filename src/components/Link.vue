@@ -1,11 +1,20 @@
 <template>
-	<div class="cds-link__container">
-		<a :href="href" :target="newTab ? '_blank' : false">
+	<div
+		class="link__container"
+		:class="{
+			'link__container--sm': size === 'sm',
+			'link__container--md': size === 'md',
+			'link__container--lg': size === 'lg',
+			'link__container--bold': bold,
+		}"
+	>
+		<a
+			:href="href"
+			:target="newTab ? '_blank' : false"
+		>
 			<!-- @slot Slot padrão para renderização de conteúdo customizado do texto do link. -->
-			<slot class="cds-link__text">
-				<span>
-					{{ text }}
-				</span>
+			<slot class="link__text">
+				{{ text }}
 			</slot>
 		</a>
 	</div>
@@ -22,8 +31,8 @@ export default {
 			required: true,
 		},
 		/**
-        *   Prop utilizada para o redirecionamento do link ser a partir de uma nova aba.
-        */
+		*   Prop utilizada para o redirecionamento do link ser a partir de uma nova aba.
+		*/
 		newTab: {
 			type: Boolean,
 			default: false,
@@ -32,8 +41,22 @@ export default {
 		*	Texto utilizado no endereço da URL para o usuário.
 		*/
 		text: {
-        	type: String,
-        	required: true,
+			type: String,
+			required: true,
+		},
+		/**
+		*	Texto utilizado no endereço da URL para o usuário.
+		*/
+		size: {
+			type: String,
+			default: 'md',
+		},
+		/**
+		*	Texto utilizado no endereço da URL para o usuário.
+		*/
+		bold: {
+			type: Boolean,
+			default: false,
 		},
 	},
 };
@@ -42,19 +65,41 @@ export default {
 @import '../assets/sass/tokens.scss';
 
 .link__container {
-    display: inline;
-    width: auto;
-    height: 40px;
-    padding: 4px;
-    border-radius: 4px;
+	display: inline;
+	width: auto;
 
-    a {
-        font-size: 18px;
-        color: $bn-500;
-    }
+	a {
+		color: $bn-500;
+		text-decoration: none;
+		transition: $interaction;
+		border-bottom: 1px solid transparent;
+	}
 
-    &:hover {
-        background-color: $bn-100;
-    }
+	a:visited {
+		color: $bn-500;
+	}
+
+	a:hover {
+		color: $bn-500;
+		border-bottom: 1px solid $bn-500;
+		transition: $interaction;
+		cursor: pointer;
+	}
+
+	&--sm > a {
+		@include caption;
+	}
+
+	&--md > a {
+		@include body-2;
+	}
+
+	&--lg > a {
+		@include body-1;
+	}
+
+	&--bold > a {
+		font-weight: $font-weight-semibold;
+	}
 }
 </style>

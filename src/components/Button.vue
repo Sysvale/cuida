@@ -4,8 +4,14 @@
 			class="button__container"
 			:class="computedStyle"
 			@click="clickHandler()"
-
 		>
+			<cds-spinner
+				v-if="loading"
+				variant="white"
+				size="sm"
+				class="button__loader"
+			/>
+
 			<!-- @slot Slot padrão utilizado para exibir texto do botão. -->
 			<slot>
 				{{ text }}
@@ -13,28 +19,12 @@
 		</button>
 	</span>
 </template>
-
 <script>
+import CdsSpinner from '../components/Spinner.vue';
+
 export default {
-	data() {
-		return {
-			predefinedColors: [
-				'teal',
-				'green',
-				'blue',
-				'indigo',
-				'violet',
-				'pink',
-				'red',
-				'orange',
-				'amber',
-			],
-			predefinedSizes: [
-				'sm',
-				'md',
-				'lg',
-			],
-		};
+	components: {
+		CdsSpinner,
 	},
 
 	props: {
@@ -75,6 +65,35 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Especifica se a versão do Botão é a secundária.
+		 */
+		loading: {
+			type: Boolean,
+			default: false,
+		},
+	},
+
+	data() {
+		return {
+			predefinedColors: [
+				'teal',
+				'green',
+				'blue',
+				'indigo',
+				'violet',
+				'pink',
+				'red',
+				'orange',
+				'amber',
+				'dark',
+			],
+			predefinedSizes: [
+				'sm',
+				'md',
+				'lg',
+			],
+		};
 	},
 
 	computed: {
@@ -142,7 +161,14 @@ export default {
 		}
 	}
 
+	&__loader {
+		margin: mr(3);
+	}
+
 	&__container {
+		display: flex;
+		align-items: center;
+		width: max-content;
 		font-weight: $font-weight-semibold;
 		border: none;
 		cursor: pointer;
@@ -188,6 +214,10 @@ export default {
 		'--amber': (
 			'active': $al-400,
 			'disabled': $al-300,
+		),
+		'--dark': (
+			'active': $n-700,
+			'disabled': $n-500,
 		),
 	);
 

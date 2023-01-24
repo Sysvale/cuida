@@ -10,7 +10,13 @@ const concat = require('concat');
 
 // https://vitejs.dev/config/
 export default defineConfig({
+	optimizeDeps: {
+		esbuildOptions: {
+			target: ['es2020', 'safari14', 'chrome87', 'edge88', 'firefox78'],
+		},
+	},
 	build: {
+		target: ['es2020', 'safari14', 'chrome87', 'edge88', 'firefox78'],
 		lib: {
 			entry: path.resolve(__dirname, './src/components/index.ts'),
 			name: '@sysvale/cuida',
@@ -35,10 +41,14 @@ export default defineConfig({
 			[
 				'src/assets/sass/borders.scss',
 				'src/assets/sass/colors.scss',
+				'src/assets/sass/elevation.scss',
 				'src/assets/sass/fontWeight.scss',
+				'src/assets/sass/reset.scss',
 				'src/assets/sass/shadows.scss',
 				'src/assets/sass/spacing.scss',
+				'src/assets/sass/transitions.scss',
 				'src/assets/sass/typography.scss',
+				'src/assets/sass/utils.scss',
 			],
 			'dist/@sysvale/tokens.scss'
 		),

@@ -1,52 +1,57 @@
 <template>
-    <vue-slider 
-        v-bind="attrs"
-        v-model="value"
-        :enable-cross="false"  
-        :min="min"
-	    :max="max"
-        :tooltip="showMergeTooltip ? 'none' : 'always'"
-        :dot-style="{ borderColor: '#3498db'}"
-        :process-style="{ background: '#3498db' }"
-    >
-        <template v-slot:process="{ style }">
-            <div 
-                class="vue-slider-process" 
-                :style="style"
-            >
-                <div 
-                    v-if="showMergeTooltip"
-                    :class="[
-                        'merge-tooltip',
-                        'vue-slider-dot-tooltip-inner',
-                        'vue-slider-dot-tooltip-inner-top',
-                    ]"
-                >
-                    {{ value[0] }} - {{ value[1] }}
-                </div>
-            </div>
-        </template>
-        <template v-slot:tooltip="tooltip">
-            <!-- @slot Scoped slot para renderização customizada dos tooltips.
-                A propriedade 'tooltip', que pode ser acessada através do slot,
-                contém pos (posição do componente em %), index (o índice do slider),
-                value (o valor do slider), focus (se o slider está no estado de focus ou não),
-                disabled (se o slider está disabilitado ou não)
-            -->
-            <slot
-                name="tooltip"
-                :tooltip="tooltip"
-            />
-        </template>
-    </vue-slider>
+	<vue-slider 
+		v-bind="attrs"
+		v-model="value"
+		:enable-cross="false"  
+		:min="min"
+		:max="max"
+		:tooltip="showMergeTooltip ? 'none' : 'always'"
+		:dot-style="{ borderColor: '#3498db'}"
+		:process-style="{ background: '#3498db' }"
+	>
+		<template #process="{ style }">
+			<div 
+				class="vue-slider-process" 
+				:style="style"
+			>
+				<div 
+					v-if="showMergeTooltip"
+					:class="[
+						'merge-tooltip',
+						'vue-slider-dot-tooltip-inner',
+						'vue-slider-dot-tooltip-inner-top',
+					]"
+				>
+					{{ value[0] }} - {{ value[1] }}
+				</div>
+			</div>
+		</template>
+		<template #tooltip="tooltip">
+			<!-- @slot Scoped slot para renderização customizada dos tooltips.
+				A propriedade 'tooltip', que pode ser acessada através do slot,
+				contém pos (posição do componente em %), index (o índice do slider),
+				value (o valor do slider), focus (se o slider está no estado de focus ou não),
+				disabled (se o slider está disabilitado ou não)
+			-->
+			<slot
+				name="tooltip"
+				:tooltip="tooltip"
+			/>
+		</template>
+	</vue-slider>
 </template>
 <script>
-
+import vueSlider from 'vue-slider-component'
+import 'vue-slider-component/theme/default.css';
 
 export default {
-    props: {
+	components: {
+		vueSlider,
+	},
+
+	props: {
 		/**
-		    * O valor mínimo do slider.
+			* O valor mínimo do slider.
 		*/
 		min: {
 			type: Number,
@@ -54,15 +59,15 @@ export default {
 			required: true,
 		},
 		/**
-		    * O valor máximo do slider.
+			* O valor máximo do slider.
 		*/
 		max: {
 			type: Number,
 			default: 100,
 			required: true,
 		},
-        /**
-		    * Prop utilizada como v-model. Retorna as posições selecionadas no slider.
+		/**
+			* Prop utilizada como v-model. Retorna as posições selecionadas no slider.
 		*/
 		value: {
 			type: Array,
@@ -70,8 +75,8 @@ export default {
 			required: true,
 		},
 	},
-    computed: {
-        attrs() {
+	computed: {
+		attrs() {
 			const {
 				min,
 				max,
@@ -81,10 +86,10 @@ export default {
 
 			return attrs;
 		},
-        showMergeTooltip() {
-            return this.value[1] - this.value[0] < 10
-        },
-    },
+		showMergeTooltip() {
+			return this.value[1] - this.value[0] < 10
+		},
+	},
 }
 </script>
 <style lang="scss">

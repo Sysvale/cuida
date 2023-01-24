@@ -14,10 +14,10 @@
 					:for="option.value"
 				>
 					<input
-						type="radio"
 						:id="option.value"
-						:value="option.value"
 						v-model="selected"
+						type="radio"
+						:value="option.value"
 						:disabled="option.disabled || disabled"
 					>
 					<label
@@ -38,7 +38,7 @@ export default {
 		/**
 		 * A prop usada como v-model para monitorar a seleção do RadioButton
 		*/
-		value: {
+		modelValue: {
 			default: null,
 			required: true,
 		},
@@ -71,16 +71,16 @@ export default {
 
 	data() {
 		return {
-			selected: this.value,
+			selected: this.modelValue,
 		};
 	},
 
 	watch: {
 		selected(value) {
-			this.$emit('input', value);
+			this.$emit('update:modelValue', value);
 		},
 
-		value: {
+		modelValue: {
 			handler(newValue) {
 				this.selected = newValue;
 			},
@@ -99,13 +99,11 @@ export default {
 }
 
 #radioButton [type="radio"]:checked + label,
-#radioButton [type="radio"]:not(:checked) + label
-{
+#radioButton [type="radio"]:not(:checked) + label {
 	position: relative;
 	padding: pl(7);
 	cursor: pointer;
 	line-height: 20px;
-	display: inline-block;
 	color: $n-600;
 }
 
@@ -113,23 +111,22 @@ export default {
 #radioButton [type="radio"]:not(:checked) + label:before {
 	content: '';
 	position: absolute;
-	left: 0;
-	top: 0;
-	width: 20px;
-	height: 20px;
-	border: 1px solid $n-800;
+	left: -0.5px;
+	top: 0.4px;
+	width: 19px;
+	height: 19px;
+	border: 1px solid $n-600;
 	border-radius: 100%;
-	background: $n-0;
 }
 
 #radioButton [type="radio"]:checked + label:after,
 #radioButton [type="radio"]:not(:checked) + label:after {
 	content: '';
-	width: 12px;
-	height: 12px;
+	width: 10px;
+	height: 10px;
 	background: $bn-600;
 	position: absolute;
-	top: 4px;
+	top: 5px;
 	left: 4px;
 	border-radius: 100%;
 	-webkit-transition: all 0.3s ease;
@@ -155,16 +152,13 @@ export default {
 #radioButton .radio-button {
 	border: 1px solid $n-50;
 	padding: pYX(3, 4);
-	border-radius: 0.5rem;
+	border-radius: $border-radius-extra-small;
 	cursor: pointer;
 	display: inline-block;
+	margin: mb(2);
 
 	&__container--vertical {
 		margin: ml(4);
-	}
-
-	&__content {
-		margin: ma(0);
 	}
 }
 
@@ -174,16 +168,20 @@ export default {
 	transition: all 0.3s ease;
 }
 
-#radioButton .radio-button[disabled="disabled"] {
-	background-color: $n-30;
+#radioButton .radio-button:disabled {
+	background-color: $n-100;
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 }
 
-#radioButton .radio-button[disabled="disabled"]
+#radioButton .radio-button:disabled
 	[type="radio"]:checked + label:before,
-#radioButton .radio-button[disabled="disabled"]
+#radioButton .radio-button:disabled
 	[type="radio"]:not(:checked) + label:before {
 	background: transparent;
+}
+
+#radioButton .radio-button:has(input[type="radio"]:disabled) {
+	background-color: $n-20;
 }
 </style>

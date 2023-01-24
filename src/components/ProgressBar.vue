@@ -9,7 +9,7 @@
 				v-if="showText"
 				:class="textAside ? 'bar__text--aside' : 'bar__text'"
 			>
-				{{ formatedPercentage }}
+				{{ formatedvalue }}
 			</span>
 
 			<div
@@ -33,14 +33,14 @@ export default {
 		 * A variante de cor. São 9 variantes implementadas: 'green', 'teal',
 		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'.
 		 */
-		 variant: {
+		variant: {
 			type: String,
 			default: 'green',
 		},
 		/**
 		 * Define o indicador de progresso da ProgressBar.
 		 */
-		percentage: {
+		value: {
 			type: Number,
 			default: 0,
 			required: true,
@@ -62,18 +62,14 @@ export default {
 		},
 	},
 
-	methods: {
-		colorHexCode,
-	},
-
 	computed: {
-		formatedPercentage() {
-			return `${parseInt(this.percentage * 100, 10)}%`;
+		formatedvalue() {
+			return `${parseInt(this.value * 100, 10)}%`;
 		},
 
 		progressIndicatorStyle() {
 			return {
-				'--width': this.formatedPercentage,
+				'--width': this.formatedvalue,
 				'--indicatorColor': this.colorHexCode(this.variant),
 				'--leftMargin': this.textAside ? '3' : '10',
 				'--bottomMargin': this.textAside ? '10' : '2',
@@ -83,6 +79,10 @@ export default {
 		textDirection() {
 			return this.textAside ? 'row-reverse' : 'column';
 		},
+	},
+
+	methods: {
+		colorHexCode,
 	},
 };
 </script>

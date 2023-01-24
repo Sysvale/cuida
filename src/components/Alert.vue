@@ -22,17 +22,27 @@
 					/>
 				</div>
 
-				<span v-if="text.length > 0" class="alert__text">
+				<span
+					v-if="text.length > 0"
+					class="alert__text"
+				>
 					{{ text }}
 				</span>
 
 				<!-- @slot Slot padrão utilizado para exibir texto do alert caso não tenha sido especificado por prop -->
-				<span v-else class="alert__text">
+				<span
+					v-else
+					class="alert__text"
+				>
 					<slot />
 				</span>
 			</div>
 
-			<div v-if="dismissible" @click="close" class="alert__close-button">
+			<div
+				v-if="dismissible"
+				class="alert__close-button"
+				@click="close"
+			>
 				<cds-icon
 					name="x-outline"
 					:class="{
@@ -89,21 +99,9 @@ export default {
 		};
 	},
 
-	methods: {
-		close() {
-			/**
-			 * Evento emitido quando o botão de fechar o alert é clicado.
-			 * @event expanded
-			 * @type {Event}
-			 */
-			this.$emit('close');
-		},
-	},
-
 	watch: {
 		variant: {
 			handler(value) {
-				console.log('OPA');
 				switch (value) {
 					case 'info':
 						this.icon = 'info-outline';
@@ -123,6 +121,17 @@ export default {
 				}
 			},
 			immediate: true,
+		},
+	},
+
+	methods: {
+		close() {
+			/**
+			 * Evento emitido quando o botão de fechar o alert é clicado.
+			 * @event expanded
+			 * @type {Event}
+			 */
+			this.$emit('close');
 		},
 	},
 };
@@ -201,7 +210,7 @@ export default {
 	&__text {
 		margin: ml(2);
 		@include body-2;
-		font-weight: $font-weight-medium;
+		font-weight: $font-weight-semibold;
 	}
 
 	&__close-button {

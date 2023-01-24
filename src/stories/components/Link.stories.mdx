@@ -1,9 +1,36 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import Link from '../../components/Link.vue';
 
 <Meta
 	title="Componentes/Navegação/Link"
 	component={ Link }
+	argTypes={{
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-link
+	href="https://github.com/Sysvale/cuida"
+	text="Cuida"
+/>`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
@@ -24,14 +51,13 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de Links quando:
+## Quando usar:
 - For necessário navegar para outra seção ou página.
-
 - For necessário redirecionar para um site ou documento externo.
 
 <br />
 
-## Não recomendamos o uso de Links quando:
+## Quando não usar:
 - For necessário executar uma ação (exemplo: salvar, editar). Nesses casos é recomendado utilizar o componente Button.
 
 <br />

@@ -1,9 +1,23 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import SkeletonText from '../../components/SkeletonText.vue';
 
 <Meta
 	title="Componentes/Loaders/SkeletonText"
 	component={ SkeletonText }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-skeleton-text
+	:width="250"
+/>`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
@@ -25,13 +39,13 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de Skeleton Texts quando:
+## Quando usar:
 - Informar ao usuário que as informações do componentes estão sendo carregadas.
 - O conteúdo a ser carregado for dinâmico.
 
 <br />
 
-## Não recomendamos o uso de Skeleton Texts quando:
+## Quando não usar:
 - O conteúdo a ser carregado for estático.
 
 ## Observações

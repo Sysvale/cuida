@@ -10,14 +10,27 @@
 				'badge__content--lg': size === 'lg',
 			}"
 		>
-			<!-- @slot Slot padrão utilizado para exibir o conteúdo dentro da badge -->
-			<slot/>
+			<cds-clickable
+				v-if="clickable"
+				@click="$emit('click', true)"
+			>
+				<!-- @slot Slot padrão utilizado para exibir o conteúdo dentro da badge -->
+				<slot />
+			</cds-clickable>
+
+			<slot v-else />
 		</div>
 	</div>
 </template>
 
 <script>
+import CdsClickable from './Clickable.vue'
+
 export default {
+	components: {
+		CdsClickable,
+	},
+
 	props: {
 		/**
 		 * A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',
@@ -33,6 +46,13 @@ export default {
 		size: {
 			type: String,
 			default: 'md',
+		},
+		/**
+		 * Especifica o tamanho da badge. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
+		 */
+		clickable: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
@@ -83,6 +103,7 @@ export default {
 	&__container {
 		border-radius: 50px !important;
 		width: fit-content;
+		cursor: default;
 	}
 
 	&--sm {
@@ -104,12 +125,12 @@ export default {
 
 		&--md {
 			@include caption;
-			font-weight: $font-weight-medium;
+			font-weight: $font-weight-semibold;
 		}
 
 		&--lg {
-			@include button-2;
-			font-weight: $font-weight-medium;
+			@include button-1;
+			font-weight: $font-weight-semibold;
 		}
 	}
 

@@ -6,7 +6,7 @@
 					:class="resolveClass('image__content')"
 					:src="image"
 					:alt="imageDescription"
-				/>
+				>
 			</div>
 			<div :class="resolveClass('content__container')">
 				<div :class="resolveClass('content')">
@@ -67,7 +67,6 @@ export default {
 		text: {
 			type: String,
 			default: 'Subtítulo do AlertCard',
-			required: true,
 		},
 		/**
 		 * A imagem do card.

@@ -1,11 +1,11 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import Tabs from '../../components/Tabs.vue';
 
 <Meta
 	title="Componentes/Navegação/Tabs"
 	component={ Tabs }
 	argTypes={{
-		activeColor: {
+		variant: {
 			control:{
 				type: 'select',
 				options: [
@@ -23,6 +23,31 @@ import Tabs from '../../components/Tabs.vue';
 			}
 		},
 	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-tabs
+	:tabs="items"
+	:activeTab="items[1]"
+>
+	<template #room-42>
+		Sala de Psicologia
+	</template>
+	<template #room-51>
+		Sala de Fisioterapia
+	</template>
+	<template #room-13>
+		Sala de Otorrinolaringologista
+	</template>
+</cds-tabs>`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
@@ -35,13 +60,13 @@ export const Template = (args) => ({
 			<cds-tabs
 				v-bind="args"
 			>
-				<template v-slot:room-42>
+				<template #room-42>
 					Sala de Psicologia
 				</template>
-				<template v-slot:room-51>
+				<template #room-51>
 					Sala de Fisioterapia
 				</template>
-				<template v-slot:room-13>
+				<template #room-13>
 					Sala de Otorrinolaringologista
 				</template>
 			</cds-tabs>
@@ -55,13 +80,13 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de Tabs quando:
+## Quando usar:
 - For necessário separar o conteúdo por abas e navergar por elas.
 - Não for o caso de utilizar soluções como navbars, sidebars, cards ou links como navegação.
 
 <br />
 
-## Não recomendamos o uso de Tabs quando:
+## Quando não usar:
 - Houver muitos itens a serem mostrados como abas.
 - Quando a ação de clique realizada pelo usuário o levar para outra página.
 

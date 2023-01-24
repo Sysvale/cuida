@@ -2,8 +2,11 @@
 	<svg
 		class="progress-circular"
 		viewBox="0 0 36 36"
-		:height="size"
-		:width="size"
+		:class="{
+			'progress-circular--sm': size === 'sm',
+			'progress-circular--md': size === 'md',
+			'progress-circular--lg': size === 'lg',
+		}"
 	>
 		<path
 			class="progress-circular__ring-background"
@@ -13,46 +16,46 @@
 			a 15.9155 15.9155 0 0 1 0 31.831
 			a 15.9155 15.9155 0 0 1 0 -31.831"
 		/>
+
 		<path
 			class="progress-circular__ring-progress"
-			:stroke="color"
 			:stroke-dasharray="normalizedDashArray"
 			:stroke-width="stroke-1"
+			:style="circleIndicatorStyle"
 			d="M18 2.0845
 			a 15.9155 15.9155 0 0 1 0 31.831
 			a 15.9155 15.9155 0 0 1 0 -31.831"
 		/>
-		<text x="18" y="21.7" :fill="labelColor" :class="labelClass">
+
+		<text
+			v-if="!noLabel"
+			x="18"
+			y="21.7"
+			:class="labelClass"
+		>
 			{{ label }}
 		</text>
 	</svg>
 </template>
 
 <script>
+import { colorOptions, colorHexCode } from '../utils/constants/colors';
+
 export default {
 	props: {
 		/**
 		 * Define a cor da ProgressCircular.
 		 */
-		color: {
+		variant: {
 			type: String,
-			default: '#2EB88D',
-			required: false,
-		},
-		/**
-		 * Define a cor de background da ProgressCircular.
-		 */
-		backgroundColor: {
-			type: String,
-			default: '#CED4DA',
-			required: false,
+			default: 'green',
 		},
 		/**
 		 * Define o tamanho (diâmetro) da ProgressCircular.
 		 */
 		size: {
-			type: Number,
-			default: 24,
+			type: String,
+			default: 'md',
 			required: false,
 		},
 		/**
@@ -75,24 +78,23 @@ export default {
 		/**
 		* Torna a espessura do circulo da ProgressCircular menor.
 		*/
-		small: {
+		slim: {
 			type: Boolean,
 			default: false,
 		},
 		/**
 		* Torna a espessura do circulo da ProgressCircular maior.
 		*/
-		large: {
+		thick: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		 * Define a cor do texto (label) dentro da ProgressCircular.
-		 */
-		labelColor: {
-			type: String,
-			default: '#303A44',
-			required: false,
+		* Controla a exibição da label.
+		*/
+		noLabel: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
@@ -112,34 +114,76 @@ export default {
 		},
 
 		stroke() {
-			if (this.small) return 1.5;
-			if (this.large) return 4.5;
+			if (this.slim) return 1.5;
+			if (this.thick) return 4.5;
 			return 3.5;
 		},
 
 		labelClass() {
 			const modifier = this.maxValue >= 100 ? '--reduced' : '';
 			return `progress-circular__label${modifier}`;
-		}
+		},
+
+		circleIndicatorStyle() {
+			return {
+				'--indicatorColor': this.colorHexCode(this.variant),
+			};
+		},
+	},
+
+	methods: {
+		colorHexCode,
 	},
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import '../assets/sass/tokens.scss';
+
 .progress-circular {
 	display: block;
 	margin: 0 auto;
 	max-width: 80%;
 	max-height: 250px;
 
+	&--sm {
+		height: 48px;
+		width: 48px;
+
+		& > .progress-circular__label {
+			font-weight: $font-weight-semibold;
+		}
+	}
+
+	&--md {
+		height: 64px;
+		width: 64px;
+
+		& > .progress-circular__label {
+			font-weight: $font-weight-semibold;
+		}
+	}
+
+	&--lg {
+		height: 80px;
+		width: 80px;
+
+		& > .progress-circular__label {
+			font-weight: $font-weight-regular;
+		}
+	}
+	
+
 	&__ring-background {
 		fill: none;
+		stroke: $n-50;
 	}
 
 	&__ring-progress {
 		fill: none;
 		stroke-linecap: round;
 		animation: progress 1s ease-out forwards;
+		stroke: var(--indicatorColor);
 	}
 
 	@keyframes progress {
@@ -149,8 +193,7 @@ export default {
 	}
 
 	&__label {
-		font-family: sans-serif;
-		font-size: 0.66em;
+		font-size: 0.5em;
 		text-anchor: middle;
 
 		&--reduced {

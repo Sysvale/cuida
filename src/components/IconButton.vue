@@ -6,7 +6,7 @@
 			:style="computedStyle"
 			@click="clickHandler"
 		>
-			<ion-icon
+			<cds-icon
 				:name="icon"
 				class="cds-icon-button__icon"
 			/>
@@ -15,27 +15,20 @@
 </template>
 
 <script>
-import { colorOptions, colorHexCode, colorLighterHexCode } from '../utils/constants/colors';
+import CdsIcon from './Icon.vue';
 
 const predefinedSizes = [
-		'sm',
-		'md',
-		'lg',
-	];
+	'sm',
+	'md',
+	'lg',
+];
 
 export default {
+	components: {
+		CdsIcon,
+	},
+
 	props: {
-		/**
-		 * A variante de cor. São 9 variantes implementadas: 'green', 'teal',
-		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'.
-		 */
-		variant: {
-			type: String,
-			default: 'green',
-			validator: (value) => {
-				return colorOptions.includes(value);
-			},
-		},
 		/**
 		 * Especifica o tamanho do botão. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
 		 */
@@ -65,7 +58,6 @@ export default {
 
 	data() {
 		return {
-			predefinedColors: colorOptions,
 			predefinedSizes,
 		};
 	},
@@ -79,19 +71,9 @@ export default {
 			const status = this.disabled ? 'cds-icon-button--disabled' : '';
 			return `${status} ${this.predefinedSize}`;
 		},
-
-		computedStyle() {
-			return {
-				'--hoverColor': this.colorHexCode(this.variant),
-				'--hoverBorderColor': this.colorLighterHexCode(this.variant),
-			};
-		},
 	},
 
 	methods: {
-		colorHexCode,
-		colorLighterHexCode,
-
 		clickHandler(e) {
 			if (this.disabled) {
 				return;
@@ -114,30 +96,26 @@ export default {
 	&__container {
 		color: $n-600;
 		background-color: $n-0;
-		border: 1px solid $n-40 !important;
+		border: 1px solid $n-50 !important;
 		border-radius: $border-radius-extra-small;
-		border: none;
 		cursor: pointer;
+		box-sizing: border-box;
 
 		&:focus {
 			outline: none !important;
 		}
 
 		&:hover {
-			color: var(--hoverColor);
-			border-color: var(--hoverBorderColor) !important;
+			border-color: $n-100 !important;
 		}
 	}
 
 	&--disabled {
-		border-color: $n-30 !important;
-		color: $n-200 !important;
+		box-sizing: border-box;
+		border: 1px solid transparent !important;
+		color: $n-100 !important;
 		background-color: $n-20 !important;
 		cursor: default !important;
-
-		&:hover {
-			border-color: $n-30 !important;
-		}
 	}
 
 	&__icon {
@@ -151,28 +129,28 @@ export default {
 		border-radius: $border-radius-lil;
 
 		.cds-icon-button__icon {
-			width: 14px;
-			height: 14px;
-		}
-	}
-
-	&--md {
-		padding: pYX(3, 3);
-		border-radius: $border-radius-extra-small;
-
-		.cds-icon-button__icon {
 			width: 16px;
 			height: 16px;
 		}
 	}
 
-	&--lg {
-		padding: pYX(3, 3);
+	&--md {
+		padding: pYX(2, 2);
 		border-radius: $border-radius-extra-small;
 
 		.cds-icon-button__icon {
-			width: 18px;
-			height: 18px;
+			width: 20px;
+			height: 20px;
+		}
+	}
+
+	&--lg {
+		padding: pYX(2, 2);
+		border-radius: $border-radius-extra-small;
+
+		.cds-icon-button__icon {
+			width: 24px;
+			height: 24px;
 		}
 	}
 }

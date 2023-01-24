@@ -6,12 +6,14 @@
 				<br>
 				<span class="panel-card__subtitle">{{ subtitle }}</span>
 			</div>
-			<div class="ml-auto">
+			<div>
 				<!-- @slot Slot usado para inserção de elemento à direita no header. -->
 				<slot name="panel-actions" />
 			</div>
 		</div>
-		<hr class="panel-card__divider">
+
+		<cds-divider />
+
 		<div :class="contentClass">
 			<!-- @slot Slot usado para inserção de conteúdo customizado. -->
 			<slot />
@@ -20,7 +22,12 @@
 </template>
 
 <script>
+import CdsDivider from './Divider.vue';
 export default {
+	components: {
+		CdsDivider,
+	},
+
 	props: {
 		/**
 		 * Título do card.
@@ -60,7 +67,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
-
 .panel-card {
 	background-color: $n-0;
 	border-radius: $border-radius-extra-small;
@@ -73,7 +79,8 @@ export default {
 	&__header {
 		padding: pa(4);
 		display: flex;
-		min-height: 78px;
+		justify-content: space-between;
+		align-items: center;
 	}
 
 	&__content {
@@ -91,7 +98,8 @@ export default {
 	}
 
 	&__subtitle {
-		@include subheading-3;
+		@include body-2;
+		font-weight: $font-weight-semibold;
 		color: $n-500;
 	}
 }

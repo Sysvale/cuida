@@ -6,28 +6,28 @@
 </template>
 
 <script>
-	export default {
-		props: {
-			width: {
-				type: String,
-				required: false,
-			},
-			height: {
-				type: String,
-				required: false,
-				default: '16',
-			}
+export default {
+	props: {
+		width: {
+			type: String,
+			required: false,
 		},
+		height: {
+			type: String,
+			required: false,
+			default: '16',
+		}
+	},
 
-		computed: {
-			computedStyle() {
-				return  {
-					'--width': `${this.width}px`,
-					'--height': `${this.height}px`,
-				};
-			},
+	computed: {
+		computedStyle() {
+			return  {
+				'--width': `${this.width}px`,
+				'--height': `${this.height}px`,
+			};
 		},
-	}
+	},
+}
 </script>
 
 <style lang="scss" scoped>

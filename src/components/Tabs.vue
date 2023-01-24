@@ -1,89 +1,82 @@
 <template>
-	<span
-		id="cds-tabs"
-		class="cds-tabs"
+	<div
+		id="tabs"
 	>
-		<div class="card cds-tabs__wrapper">
-			<div
-				class="tabs"
-				:style="activeBorderStyle"
+		<ul class="inner-tabs__header">
+			<li
+				v-for="(tab, index) in tabs"
+				:key="`${index}-${tab.name}-tab`"
+				role="presentation"
+				class="inner-tabs__header-item"
 			>
-				<div class="card-header">
-					<ul class="nav nav-tabs card-header-tabs">
-						<li
-							v-for="(tab, index) in tabs"
-							:key="`${index}-${tab.name}-tab`"
-							role="presentation"
-							class="nav-item cds-tabs__item"
-						>
-							<a
-								role="tab"
-								href="javascript:void(0)"
-								target="_self"
-								class="nav-link cds-tabs__link"
-								:class="isActive(tab) ? 'cds-tab__active-item active' : ''"
-								@click="(event) => handleClick(event, tab)"
-								@contextmenu.prevent.stop="(event) => handleRightClick(event, tab)"
-							>
-								<div
-									class="cds-tab__title"
-								>
-									{{ tab.title }}
-								</div>
-							</a>
-						</li>
-						<li
-							v-if="showAddAction"
-							role="presentation"
-							class="nav-item cds-tab__action"
-						>
-							<a
-								role="tab"
-								href="javascript:void(0)"
-								target="_self"
-								class="nav-link"
-								@click.prevent="handleAddAction"
-							>
-								<ion-icon
-									name="add-outline"
-								/>
-							</a>
-						</li>
-					</ul>
-				</div>
-				<div class="tab-content cds-tab__content">
-					<div
-						v-for="(tab, index) in tabs"
-						:key="`${index}-${tab.name}-tab`"
-						role="tabpanel"
-						class="tab-pane cds-tabs__tab-container card-body"
-						:class="isActive(tab) ? 'active' : ''"
-					>
-						<div class="container-fluid">
-							<!-- @slot Slot para renderização customizada do conteúdo das abas
-								os slots são nomeados de acordo com os `name` das tabs, cada slot
-								nomeado é exibido de acordo com a aba ativa correspondente
-							-->
-							<slot
-								:name="getSlotName(tab)"
-							/>
-						</div>
-					</div>
-				</div>
+				<a
+					role="tab"
+					href="javascript:void(0)"
+					target="_self"
+					class="inner-tabs__tab"
+					:class="isActive(tab) ? 'inner-tabs__tab--active' : 'inner-tabs__tab--inactive'"
+					@click="(event) => handleClick(event, tab)"
+				>
+					<span class="inner-tabs__text">{{ tab.title }}</span>
+				</a>
+			</li>
+			<li
+				v-if="showAddAction"
+				role="presentation"
+				class="nav-item cds-tab__action"
+			>
+				<a
+					role="tab"
+					href="javascript:void(0)"
+					target="_self"
+					class="nav-link"
+					@click.prevent="handleAddAction"
+				>
+					
+					<cds-icon
+						height="32"
+						width="32"
+						name="plus-outline"
+					/>
+				</a>
+			</li>
+		</ul>
+
+		<div class="inner-tabs__content">
+			<div
+				v-for="(tab, index) in tabs"
+				:key="`${index}-${tab.name}-tab`"
+				role="tabpanel"
+				class="content__pane"
+				:class="isActive(tab) ? 'content__pane--active' : 'content__pane--inactive'"
+			>
+				<!-- @slot Slot para renderização customizada do conteúdo das abas
+					os slots são nomeados de acordo com os `name` das tabs, cada slot
+					nomeado é exibido de acordo com a aba ativa correspondente
+				-->
+				<slot
+					:name="getSlotName(tab)"
+				/>
 			</div>
 		</div>
-	</span>
+	</div>
 </template>
 
 <script>
 import isEmpty from 'lodash.isempty';
 import isEqual from 'lodash.isequal';
-import { colorOptions, colorHexCode, colorLighterHexCode } from '../utils/constants/colors';
+import CdsIcon from '../components/Icon.vue';
+
+import { colorOptions, colorHexCode } from '../utils/constants/colors';
 
 export default {
+	components: {
+		CdsIcon,
+	},
+
 	props: {
 		/**
-		 * Define a lista dos itens do Tabs a serem mostrados.
+		 * Define a lista dos itens da InnerTabs a serem mostrados.
 		 * Os itens da lista devem ser objetos com `name` (para identificar o slot)
 		 * e `title` (título da aba)
 		 */
@@ -111,7 +104,7 @@ export default {
 		 * Existem algumas cores predefinidas seguindo os guias do Cuida, são elas: 
 		 * `turquoise`, `green`, `blue`, `violet`, `pink`, `red`, `orange`, `amber` e `gray`.
 		 */
-		activeColor: {
+		variant: {
 			type: String,
 			default: 'green',
 			validator: (value) => {
@@ -136,16 +129,8 @@ export default {
 
 	computed: {
 		activeBorderStyle() {
-			if (!this.activeColor) {
-				return {
-					'--activeBorderColor': '#206ED9', // $bn-500
-					'--hoverBorderColor': '#CED6FD', // $bn-200
-				};
-			}
-
 			return {
-				'--activeBorderColor': this.colorHexCode(this.activeColor),
-				'--hoverBorderColor': this.colorLighterHexCode(this.activeColor),
+				'--indicatorColor': this.colorHexCode(this.variant),
 			};
 		},
 	},
@@ -162,38 +147,19 @@ export default {
 
 	methods: {
 		colorHexCode,
-		colorLighterHexCode,
 
 		getSlotName(tab) {
 			return tab.name;
 		},
 
-		handleRightClick(event, item) {
-			/**
-			 * Evento emitido quando uma das abas é clicada com o botão direito
-			* @event right-click
-			* @type {Event}
-				*/
-			this.$emit('right-click', { event, item });
-		},
-
 		handleClick(event, item) {
 			/**
-			 * Evento emitido quando muda de aba
+			 * Evento emitido quando a aba ativa é alterada
 			* @event change
 			* @type {Event}
 				*/
 			this.$emit('change', { event, item });
 			this.internalActiveTab = item;
-		},
-
-		handleAddAction(event) {
-			/**
-			 * Evento emitido ao clicar no botão de adicionar
-			* @event add-action
-			* @type {Event}
-			*/
-			this.$emit('add-action', event);
 		},
 
 		isActive(item) {
@@ -206,103 +172,114 @@ export default {
 <style lang="scss">
 @import '../assets/sass/tokens.scss';
 
-#cds-tabs .cds-tabs {
-	padding: py(2);
-}
+#tabs {
+	.inner-tabs {
+		&__header {
+			display: flex;
+			justify-content: flex-start;
+			padding: pl(0);
+			margin: mb(0);
+			list-style: none;
+			gap: spacer(2);
+		}
 
-#cds-tabs .cds-tabs__tab-container {
-	margin: mt(2);
-	padding: pYX(6, 7);
+		&__header-item {
+			width: fit-content;
+		}
 
-	.container-fluid {
-		padding: px(0);
-	}
-}
+		&__tab {
+			@include caption;
+			width: 112px;
+			font-weight: $font-weight-regular;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 1;
+			-webkit-box-orient: vertical;
+			text-align: center;
+			text-decoration: none !important;
+			padding: pYX(5, 4);
+			cursor: pointer;
+			background-color: $n-0;
 
-.cds-tabs__link {
-	height: 60px;
-	max-width: 123px;
-	display: flex;
-	border-radius: $border-radius-button;
-	border: 1px solid $n-30 !important;
-	border-top: 5px solid $n-30 !important;
-	margin: mTRBL(0, 2, 2, 0);
-	background-color: $n-0 !important;
-	padding: pYX(4, 5);
+			&--active {
+				cursor: default;
+				color: $n-800;
+				font-weight: $font-weight-semibold;
+				border-top: 5px solid $gp-400;
+				height: 72px;
+				border-top-left-radius: $border-radius-button;
+				border-top-right-radius: $border-radius-button;
+				transition: border-top 0.2s ease-in-out;
+			}
+			
+			&--active:hover {
+				color: $n-800;
+			}
+			
+			&--inactive {
+				color: $n-500;
+				font-weight: $font-weight-semibold;
+				border-radius: $border-radius-button;
+				border: 1px solid $n-30;
+				border-top: 5px solid $n-50;
+				transition: border-top 0.2s ease-in-out;
+			}
+			
+			&--inactive:hover {
+				color: $n-500;
+			}
+		}
 
-	&:hover {
-		border-top: 5px solid var(--hoverBorderColor) !important;
-	}
+		&__text {
+			width: 80px;
+			display: block;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
 
-	&.active {
-		height: 74px;
-		border: none !important;
-		border-top: 5px solid var(--activeBorderColor) !important;
-		margin: mr(2);
-	}
-}
 
-.cds-tabs__wrapper {
-	border: none;
-	background-color: transparent;
-
-	.card-header {
-		background-color: transparent !important;
-		border: none;
-		padding: pa(0);
-	}
-
-	.card-header-tabs {
-		margin: ma(0);
-		max-height: 60px;
-	}
-}
-
-.cds-tab__action {
-	display: flex;
-	align-items: center;
-	height: 68px;
-
-	.nav-link {
-		display: flex;
-		height: 30px;
-		width: 30px;
-		align-items: center;
-		justify-content: center;
-		color: $n-200;
-		background-color: $n-0;
-		border: 1px solid $n-30 !important;
-		border-radius: $border-radius-extra-small;
-		padding: pa(1);
-
-		&:hover {
-			color: var(--activeBorderColor);
-			border-color: var(--activeBorderColor) !important;
-			box-shadow: 0 0 0 2px var(--hoverBorderColor);
+		&__content {
+			background-color: $n-0;
+			padding: pYX(6, 7);
+			border-radius: $border-radius-button;
+		
+			> .content__pane--inactive {
+				display: none;
+			}
+		
+			> .content__pane--active {
+				display: block;
+			}
 		}
 	}
-}
 
-.cds-tab__title {
-	@include caption;
-	font-weight: $font-weight-semibold;
-	color: $n-600;
-	max-height: 20px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 1;
-	-webkit-box-orient: vertical;
-}
+	.cds-tab__action {
+		display: flex;
+		align-items: center;
+		height: 68px;
 
-.cds-tab__active-item {
-	font-weight: bold;
-	cursor: default;
-	border: none !important;
-}
+		.nav-link {
+			display: flex;
+			height: 30px;
+			width: 30px;
+			align-items: center;
+			justify-content: center;
+			color: $n-200;
+			background-color: $n-0;
+			border: 1px solid $n-30 !important;
+			border-radius: $border-radius-extra-small;
+			padding: pa(1);
+			transition: $interaction;
 
-.cds-tab__content {
-	background-color: $n-0;
-	border-radius: $border-radius-button;
+			&:hover {
+				border-color: $n-100 !important;
+				color: $n-300 !important;
+				transition: $interaction;
+			}
+		}
+	}
 }
 </style>

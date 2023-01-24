@@ -9,7 +9,7 @@
 				class="empty-state__image"
 				:src="image"
 				:alt="imageDescription"
-			/>
+			>
 		</slot>
 		<div class="empty-state__title">
 			{{ title }}

@@ -1,4 +1,4 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import Button from '../../components/Button.vue';
 
 <Meta
@@ -17,7 +17,8 @@ import Button from '../../components/Button.vue';
 					'pink',
 					'red',
 					'orange',
-					'amber'
+					'amber',
+					'dark'
 				],
 			}
 		},
@@ -31,8 +32,23 @@ import Button from '../../components/Button.vue';
 				],
 			}
 		},
-	}
-}
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-button
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+/>`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
@@ -53,14 +69,14 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de Buttons quando:
+## Quando usar:
 - For necessário comunicar ao usuário que ele pode executar uma ação na interface,
 seja em diálogos, janelas modais, formulários, cards, etc.
 
 
 <br />
 
-## Não recomendamos o uso de Buttons quando:
+## Quando não usar:
 - For necessário dar a opção de executar uma ação como um detalhe pequeno na interface.
 Nesse caso, recomendamos o uso de links.
 
@@ -74,7 +90,7 @@ Nesse caso, recomendamos o uso de links.
 		args={{
 			variant: 'green',
 			size: 'md',
-			text: 'Lorem Ipsum',
+			text: 'Button',
 		}}
 	>
 		{ Template.bind({}) }

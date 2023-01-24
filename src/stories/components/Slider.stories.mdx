@@ -1,9 +1,25 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import Slider from '../../components/Slider.vue';
 
 <Meta
 	title="Componentes/Forms/Slider"
 	component={ Slider }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-slider
+	:min="0"
+	:max="100"
+	:value="value"
+/>`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
@@ -24,7 +40,7 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de Sliders quando:
+## Quando usar:
 - Recomendamos o uso de sliders quando for preciso a seleção de valores dentro de um intervalo,
 sobretudo quando for preciso selecionar mais de um valor.
 - Recomendamos o uso de sliders quando a velocidade na seleção de valores em um intervalo for
@@ -32,7 +48,7 @@ mais relevante que a precisão.
 
 <br />
 
-## Não recomendamos o uso de Sliders quando:
+## Quando não usar:
 - Não recomendamos o uso de sliders quando não houver necessidade de uma precisão muito grande na seleção dos valores.
 - Não recomendamos o uso de sliders em conjunto com inputs para que o usuário consiga editar
 o dado tanto pelo slider quanto pelos inputs.

@@ -1,0 +1,61 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import SearchInput from '../../components/SearchInput.vue';
+
+<Meta
+	title="Componentes/Forms/SearchInput"
+	component={ SearchInput }
+	argTypes={{
+		state: {
+			control:{
+				type: 'select',
+				options: [
+					'default',
+					'valid',
+					'invalid',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-search-input />`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsSearchInput: SearchInput },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-search-input
+			v-bind="args" 
+		/>
+	`,
+});
+
+# SearchInput
+
+### SearchInputs permitem que os usuários realizem buscas sobre conjuntos de dados na interface
+---
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="SearchInput"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="SearchInput" />

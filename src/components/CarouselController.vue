@@ -1,5 +1,5 @@
 <template>
-	<div >
+	<div>
 		<div
 			class="carousel-controller"
 			:class="{ 'carousel-controller--fluid': fluid }"
@@ -13,10 +13,16 @@
 			/>
 
 			<div>
-				<span v-if="!simple" class="carousel-controller__text">
+				<span
+					v-if="!simple"
+					class="carousel-controller__text"
+				>
 					{{ currentNumberOfItemsMin }}-{{ currentNumberOfItemsMax }} de {{ total }}
 				</span>
-				<span v-else class="carousel-controller__text">
+				<span
+					v-else
+					class="carousel-controller__text"
+				>
 					{{ currentNumberOfItemsMin }} de {{ numberOfPages }}
 				</span>
 	

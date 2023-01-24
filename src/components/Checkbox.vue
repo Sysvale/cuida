@@ -6,14 +6,14 @@
 	>
 		<div class="checkbox__content">
 			<input
+				:id="$attrs.id || 'cds-checkbox-option-input'"
 				:value="modelValue"
 				type="checkbox"
-				:id="$attrs.id || 'cds-checkbox-option-input'"
 				:name="$attrs.name || 'cds-checkbox-option'"
 				:checked="isChecked"
 				:disabled="disabled"
 				@input="toggleValue"
-			/>
+			>
 			<label
 				:for="$attrs.id || 'cds-checkbox-option-input'"
 				:class="{
@@ -109,10 +109,12 @@ export default {
 	.checkbox__content {
 		width: 18px;
 		position: relative;
-		margin-right: spacer(6);
-		margin-left: spacer(n3);
+		margin-right: spacer(3);
+		margin-top: spacer(n1);
+		box-sizing: border-box;
 
 		label {
+			box-sizing: border-box;
 			cursor: pointer;
 			position: absolute;
 			width: 18px;
@@ -126,9 +128,9 @@ export default {
 				border-top: none;
 				border-right: none;
 				content: "";
-				height: 6px;
-				width: 12px;
-				left: 3px;
+				height: 4px;
+				width: 8px;
+				left: 4px;
 				opacity: 0;
 				position: absolute;
 				top: 4px;
@@ -171,5 +173,4 @@ export default {
 		}
 	}
 }
-
 </style>

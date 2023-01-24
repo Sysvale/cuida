@@ -6,8 +6,8 @@
 		<div
 			:class="{
 				'toolbar--fixed': float,
-				'toolbar--dark': dark,
-				'toolbar--light': !dark,
+				'toolbar--light': light,
+				'toolbar--dark': !light,
 			}"
 		>
 			<!-- @slot Slot utilizado para renderização de texto no componente.-->
@@ -26,8 +26,8 @@
 			</div>
 
 			<div
-				class="toolbar__buttons-container"
 				v-else
+				class="toolbar__buttons-container"
 			>
 				<div
 					v-for="(action, index) in actions"
@@ -41,7 +41,7 @@
 					-->
 					<cds-button
 						:id="`btn-${index + 1}`"
-						:secondary="!dark"
+						:secondary="light"
 						variant="dark"
 						@click="$emit('click', action)"
 					>
@@ -52,7 +52,7 @@
 
 			<div
 				v-if="dismissible"
-				:class="dark ? 'toolbar__icon--dark' : 'toolbar__icon--light'"
+				:class="light ? 'toolbar__icon--light' : 'toolbar__icon--dark'"
 				@click="handleClose"
 			>
 				<cds-icon
@@ -100,9 +100,9 @@ export default {
 			default: false,
 		},
 		/**
-		 * Especifica se a versão da ActionBar é a dark.
+		 * Especifica se a versão da ActionBar é a light.
 		 */
-		dark: {
+		light: {
 			type: Boolean,
 			default: false,
 		},

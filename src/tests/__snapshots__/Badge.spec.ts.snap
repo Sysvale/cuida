@@ -23,13 +23,15 @@ VueWrapper {
   "componentVM": {
     "hasOwnProperty": [Function],
     "predefinedColors": [Array],
-    "predefinedStyle": "badge--gray",
+    "predefinedSizes": [Array],
+    "predefinedStyle": "badge--gray badge--md",
+    "size": "md",
     "variant": "gray",
   },
   "isDisabled": [Function],
   "rootVM": {},
   "wrapperElement": <div
-    class="badge__container badge--gray"
+    class="badge__container badge--gray badge--md"
     data-v-0d3d5e64=""
   >
     <div … />

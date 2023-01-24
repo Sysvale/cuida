@@ -1,0 +1,80 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import NumberInput from '../../components/NumberInput.vue';
+
+<Meta
+	title="Componentes/Forms/NumberInput"
+	component={ NumberInput }
+	argTypes={{
+		state: {
+			control:{
+				type: 'select',
+				options: [
+					'default',
+					'valid',
+					'invalid',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ `
+<cds-number-input />`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsNumberInput: NumberInput },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			value: null,
+		};
+	},
+	template: /*html*/ `
+		<cds-number-input
+			v-bind="args" 
+			v-model="value"
+		/>`,
+	updated() {
+		console.log('v-model: ', this.value);
+	},
+});
+
+# NumerInput
+
+### TextInputs permitem que os usuários insiram texto em uma interface
+---
+<br />
+
+## Quando usar:
+- Necessitar de um campo de texto para inserir informações.
+
+<br />
+
+## Quando não usar:
+- O dado a ser utilizado no componente for numérico.
+- Houver a necessidade de selecionar múltiplos itens.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="NumberInput"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="NumberInput" />

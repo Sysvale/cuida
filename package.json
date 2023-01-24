@@ -1,6 +1,6 @@
 {
   "name": "@sysvale/cuida",
-  "version": "3.0.0-alpha.21",
+  "version": "3.0.0-alpha.38",
   "description": "A design system built by Sysvale, using storybook and Vue components",
   "repository": {
     "type": "git",
@@ -36,8 +36,12 @@
     "lodash.clonedeep": "^4.5.0",
     "lodash.isempty": "^4.4.0",
     "lodash.isequal": "^4.5.0",
+    "luxon": "^3.2.1",
     "tippy.js": "^6.3.7",
+    "v-calendar": "^3.0.0-alpha.8",
+    "v-money3": "^3.22.3",
     "vue": "^3.2.37",
+    "vue-input-facade": "^3.0.0-beta.1",
     "vue-multiselect": "^3.0.0-alpha.2",
     "vue-slider-component": "^4.1.0-beta.7"
   },

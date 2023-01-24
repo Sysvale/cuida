@@ -15,8 +15,23 @@ import AlertCard from '../../components/AlertCard.vue';
 				],
 			}
 		},
-	}
-}
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-alert-card
+	:title="title"
+	:subTitle="subTitle"
+	variant="info"
+/>`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
@@ -37,13 +52,13 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de AlertCards quando:
+## Quando usar:
 - For necessário mostrar informações contextuais extensas.
 - For necessário mostrar informações contextuais que requerem ações do usuário sobre elas.
 
 <br />
 
-## Não recomendamos o uso de AlertCards quando:
+## Quando não usar:
 - For necessário mostrar informações de maneira discreta ou que pode ser ocultada. Para esse caso, recomendamos o uso de b-toasts.
 - For necessário mostrar informações contextuais curtas.
 

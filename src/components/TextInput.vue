@@ -1,44 +1,100 @@
 <template>
 	<div>
-		<label
-			v-if="label"
-			class="text-input__label"
-			for="cds-text-input"
-		>
-			<!-- @slot Slot para renderização customizada da label (Obs.: Existe, também, a prop label que pode ser usada quando não há necessidade de customização) -->
-			<slot name="label">
-				{{ label }}
-				<span
-					v-if="required"
-					class="text-input__label--required-indicator"
+		<span>
+			<span
+				v-if="hasSlots"
+			>
+				<slot name="label" />
+			</span>
+
+			<label
+				v-else
+				:class="labelDynamicClass"
+			>
+				<div
+					class="label__content"
+					for="cds-text-input"
 				>
-					*
-				</span>
-			</slot>
-		</label>
+					<span>
+						{{ label }}
+					</span>
+
+					<span
+						v-if="required"
+						class="label__required-indicator"
+					>
+						*
+					</span>
+
+					<cds-icon
+						v-if="tooltip"
+						v-cdstip="tooltip"
+						:name="tooltipIcon"
+						height="20"
+						width="20"
+						class="label__icon"
+					/>
+				</div>
+
+				<cds-link
+					v-if="linkText"
+					class="label__link"
+					:href="linkUrl"
+					:text="linkText"
+					new-tab
+				/>
+			</label>
+
+		</span>
+
 		<div :class="stepperInputDynamicClass">
 			<input
+				v-if="mask"
 				id="cds-text-input"
-				:value="modelValue"
+				v-model="internalValue"
+				v-facade="mask"
 				:placeholder="placeholder"
 				:disabled="disabled"
-				class="text-input__field"
+				:class="inputClass"
 				type="text"
-				@input="handleInput"
 				@focus="isBeingFocused = true"
 				@blur="isBeingFocused = false"
-			/>
+			>
+
+			<input
+				v-else
+				id="cds-text-input"
+				v-model="internalValue"
+				:placeholder="placeholder"
+				:disabled="disabled"
+				:class="inputClass"
+				type="text"
+				@focus="isBeingFocused = true"
+				@blur="isBeingFocused = false"
+			>
 
 			<div class="text-input__icon-container">
-				<ion-icon
+				<cds-icon
 					v-if="validState && !disabled"
-					name="checkmark-outline"
+					height="20"
+					width="20"
+					name="check-outline"
 					class="text-input__icon--check-icon"
 				/>
-				<ion-icon
+
+				<cds-icon
 					v-if="errorState && !disabled"
-					name="alert-circle-outline"
+					height="20"
+					width="20"
+					name="alert-outline"
 					class="text-input__icon--alert-circle-icon"
+				/>
+
+				<cds-spinner
+					v-if="loadingState && !disabled"
+					size="sm"
+					variant="blue"
+					class="text-input__icon--spinner-icon"
 				/>
 			</div>
 		</div>
@@ -52,7 +108,24 @@
 </template>
 
 <script>
+import { facade } from 'vue-input-facade';
+import CdsLink from './Link.vue';
+import CdsIcon from './Icon.vue';
+import CdsSpinner from './Spinner.vue';
+import Cdstip from '../utils/directives/cdstip';
+
 export default {
+	directives: {
+		cdstip: Cdstip,
+		facade,
+	},
+
+	components: {
+		CdsLink,
+		CdsIcon,
+		CdsSpinner,
+	},
+
 	props: {
 		/**
 		* Prop utilizada como v-model.
@@ -76,13 +149,12 @@ export default {
 			default: false,
 		},
 		/**
-		 * Especifica o estado do TextInput. As opções são 'default', 'valid' e 'invalid'.
+		 * Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
 		 */
 		state: {
 			type: String,
 			default: 'default',
 		},
-
 		/**
 		 * Exibe asterisco de obrigatório (obs.: não faz a validação)
 		 */
@@ -90,7 +162,6 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-
 		/**
 		 * Especifica o placeholder do input
 		 */
@@ -98,7 +169,6 @@ export default {
 			type: String,
 			default: 'Digite aqui a informação',
 		},
-
 		/**
 		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
 		 */
@@ -106,21 +176,68 @@ export default {
 			type: String,
 			default: 'Valor inválido',
 		},
+		/**
+		 * Especifica se a largura do TextInput deve ser fluida.
+		 */
+		fluid: {
+			type: Boolean,
+			default: false,
+			required: false,
+		},
+		/**
+		 * Especifica a máscara a ser aplicada ao TextInput.
+		 * Exemplo: "(##) #####-####"
+		 */
+		mask: {
+			type: [String, Array],
+			default: null,
+		},
+		/**
+		 * Define exibição e texto do tooltip do input
+		 */
+		tooltip: {
+			type: String,
+			default: null,
+		},
+		/**
+		 * Especifica ícone do tooltip do TextInput.
+		 */
+		tooltipIcon: {
+			type: String,
+			default: 'info-outline',
+		},
+		/**
+		 * Define exibição e texto do link do input (localizado à direita da label).
+		 */
+		linkText: {
+			type: String,
+			default: '#',
+		},
+		/**
+		 * Define a url a ser acessada no clique do link (no caso do link ser exibido).
+		 */
+		linkUrl: {
+			type: String,
+			default: 'https://cuida.framer.wiki/',
+		},
 	},
 
 	data() {
 		return {
+			internalValue: '',
 			isBeingFocused: false,
 		};
 	},
 
 	computed: {
+		hasSlots() {
+			return !!Object.keys(this.$slots).length;
+		},
+
 		stepperInputDynamicClass() {
-			let stepperInputClass = '';
+			let stepperInputClass = this.fluid ? 'text-input--fluid' : 'text-input';
 
 			if (!this.isBeingFocused) {
-				stepperInputClass = 'text-input';
-
 				if (!this.disabled) {
 					if (this.state === 'valid') {
 						stepperInputClass += ' text-input--valid';
@@ -137,10 +254,16 @@ export default {
 					stepperInputClass += ' text-input--focused-valid';
 				} else if (this.state === 'invalid') {
 					stepperInputClass += ' text-input--focused-invalid';
+				} else if (this.state === 'loading') {
+					stepperInputClass += ' text-input--focused-loading';
 				}
 			}
 
 			return stepperInputClass;
+		},
+
+		labelDynamicClass() {
+			return this.fluid ? 'text-input__label--fluid' : 'text-input__label';
 		},
 
 		validState() {
@@ -150,18 +273,36 @@ export default {
 		errorState() {
 			return this.state === 'invalid';
 		},
+
+		loadingState(){
+			return this.state === 'loading';
+		},
+
+		inputClass() {
+			return this.fluid ? 'text-input__field--fluid' : 'text-input__field';
+		},
 	},
 
-	methods: {
-		handleInput(e) {
+	watch: {
+		modelValue: {
+			handler(newValue, oldValue) {
+				if (newValue !== oldValue) {
+					this.internalValue = newValue;
+				}
+			},
+
+			immediate: true,
+		},
+
+		internalValue(value) {
 			/**
-			* Evento utilizado para implementar o v-model.
-			* @event update:modelValue
-			* @type {Event}
-			*/
-			this.$emit('update:modelValue', e.target.value);
-		}
-	}
+			 * Evento utilizado para implementar o v-model.
+			 * @event input
+			 * @type {Event}
+			 */
+			this.$emit('update:modelValue', value);
+		},
+	},
 };
 </script>
 <style lang="scss" scoped>
@@ -169,19 +310,25 @@ export default {
 
 .text-input {
 	display: flex;
-	border: 1px solid $n-50;
+	outline: 1px solid $n-50;
 	border-radius: $border-radius-extra-small;
-	width: fit-content;
-	width: -moz-fit-content;
+	width: 266px;
+
+	&--fluid {
+		@extend .text-input;
+		width: 100%;
+	}
 
 	&__label {
-		@include body-2;
-		font-weight: $font-weight-semibold;
-		color: $n-700;
-		margin: mb(2);
-		
-		&--required-indicator {
-			color: $rc-600;
+		@include label;
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		width: 266px;
+
+		&--fluid {
+			@extend .text-input__label;
+			width: 100%;
 		}
 	}
 
@@ -197,6 +344,7 @@ export default {
 	&__field {
 		padding: pa(3);
 		margin: mr(2);
+		height: 40px !important;
 		border-radius: $border-radius-extra-small;
 		border: none;
 		text-align: start;
@@ -205,22 +353,27 @@ export default {
 		&:focus {
 			outline: 0;
 		}
+
+		&--fluid {
+			@extend .text-input__field;
+			width: 100%;
+		}
 	}
 
 	&--focused {
 		@extend .text-input;
-		border: 1px solid $bn-300;
+		outline: 1px solid $bn-300;
 		box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);
 	}
 
 	&--valid {
 		@extend .text-input;
-		border: 1px solid $gp-500;
+		outline: 1px solid $gp-500;
 	}
 
 	&--invalid {
 		@extend .text-input;
-		border: 1px solid $rc-600;
+		outline: 1px solid $rc-600;
 	}
 
 	&--focused-valid {
@@ -249,6 +402,10 @@ export default {
 		height: 50%;
 	}
 
+	&__icon--spinner-icon {
+		padding: 0px;
+	}
+
 	&__error-message {
 		@include caption;
 		color: $rc-600;
@@ -256,14 +413,29 @@ export default {
 	}
 }
 
+.label {
+	&__required-indicator {
+		color: $rc-600;
+	}
+
+	&__icon {
+		margin: ml(1);
+		cursor: pointer;
+	}
+
+	&__link {
+		justify-self: end;
+	}
+
+	&__content {
+		margin: mb(1);
+	}
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 	margin: ma(0);
-}
-
-input[type=text]{
-	height: 40px;
 }
 
 input:disabled {

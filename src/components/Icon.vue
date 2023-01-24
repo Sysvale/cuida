@@ -1,23 +1,22 @@
+<!-- eslint-disable vue/no-v-html -->
 <template>
-	<svg xmlns="http://www.w3.org/2000/svg"
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
 		:width="width"
 		:height="height"
 		viewBox="0 0 24 24"
 		:aria-labelledby="name"
 		role="presentation"
 	>
-		<title
-			:id="name"
-			lang="en"
-		>
-			{{ name }} icon
-		</title>
-		<g v-html="iconPath" :fill="color" />
+		<g
+			:fill="colorResolver"
+			v-html="iconPath"
+		/>
 	</svg>
 </template>
 
 <script>
-import { completeIconSet } from "@sysvale/cuida-icons/dist";
+import { completeIconSet } from '@sysvale/cuida-icons/dist';
 
 export default {
 	props: {
@@ -36,6 +35,14 @@ export default {
 		color: {
 			type: String,
 			default: 'currentColor'
+		},
+		dark: {
+			type: Boolean,
+			default: false,
+		},
+		light: {
+			type: Boolean,
+			default: false,
 		}
 	},
 
@@ -44,6 +51,20 @@ export default {
 			selectedIcon: '',
 			iconPath: '',
 		};
+	},
+
+	computed: {
+		colorResolver() {
+			if (this.dark) {
+				return '#3b4754';
+			}
+
+			if (this.light) {
+				return '#ffffff';
+			}
+
+			return this.color;
+		},
 	},
 
 	mounted() {

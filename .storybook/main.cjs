@@ -1,3 +1,5 @@
+const { mergeConfig } = require('vite');
+
 module.exports = {
 	"stories": [
 		"../src/**/*.stories.mdx",
@@ -11,12 +13,21 @@ module.exports = {
 	"core": {
 		"builder": "@storybook/builder-vite"
 	},
-	features: {
-		storyStoreV7: true,
-		buildStoriesJson: true,
-		modernInlineRender: false,
-	},
 	docs: {
 		docsPage: "automatic"
-	}
+	},
+	async viteFinal(config, { configType }) {
+		// return the customized config
+		return mergeConfig(config, {
+			// customize the Vite config here
+			optimizeDeps: {
+				esbuildOptions: {
+					target: ['es2020', 'safari14', 'chrome87', 'edge88', 'firefox78'],
+				},
+			},
+			build: {
+				target: ['es2020', 'safari14', 'chrome87', 'edge88', 'firefox78'],
+			},
+		});
+	},
 }

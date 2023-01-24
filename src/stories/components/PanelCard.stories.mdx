@@ -1,9 +1,33 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import PanelCard from '../../components/PanelCard.vue';
 
 <Meta
 	title="Componentes/Containers/PanelCard"
 	component={ PanelCard }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-panel-card
+	title="Redes"
+	subtitle="Habilite as redes da regulação"
+>
+	<template #panel-actions>
+		<strong>#</strong>
+	</template>
+	Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
+	vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
+	Atirei o pau no gatis, per gatis num morreus. Pra lá , depois
+	divoltis porris, paradis. Leite de capivaris, leite de mula
+	manquis sem cabeça.
+</cds-panel-card>`
+			},
+		}
+	}}
 />
 
 export const Template = (args) => ({
@@ -16,8 +40,8 @@ export const Template = (args) => ({
 			<cds-panel-card
 				v-bind="args"
 			>
-				<template v-slot:panel-actions>
-					<h2>#</h2>
+				<template #panel-actions>
+					<strong>#</strong>
 				</template>
 				Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
 				vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
@@ -38,13 +62,13 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendações de uso:
+## Quando usar:
 - Houver a construção de páginas e dashboards com cars em grid.
 - O slot de ações deve agrupar ícones ou botões que aplicam mudanças em todas as informações contidas no PainelCard.
 
 <br />
 
-## Não recomendamos o uso de PanelCards quando:
+## Quando não usar:
 - For necessário agrupar elementos fora da estrutura básica: título + subtítulo + conteúdo.
 - Ele for o único componente do seu tipo na página, ocupando toda a largura disponível.
 
