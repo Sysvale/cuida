@@ -12,6 +12,7 @@
 			maxlength="1"
 			class="pin-input"
 			:class="computedClass"
+			autocomplete="off"
 			@keydown.delete.stop="handleBack(number)"
 			@input="(event) => handleInput(event, number)"
 		>
@@ -61,8 +62,15 @@ export default {
 		},
 	},
 
+	watch: {
+		modelValue(value) {
+			this.innerValue = value.split('');
+		},
+	},
+
 	methods: {
 		handleInput(event, index) {
+			console.log('input');
 			let stringifiedPin = this.innerValue.join('');
 
 			if (index < this.length && event.inputType !== 'deleteContentBackward') {
@@ -76,11 +84,13 @@ export default {
 		},
 
 		handleBack(index) {
-			if (index > 1 && (this.innerValue[index - 1].length === 0)) {
+			if (index > 1) {
+				this.innerValue[index - 1] = '';
+				let previousInput = this.$refs[`pin-input${index - 1}`][0];
+
 				setTimeout(() => {
-					let previousInput = this.$refs[`pin-input${index - 1}`][0];
 					previousInput.focus();
-				}, 100);
+				}, 150);
 			}
 		}
 	},

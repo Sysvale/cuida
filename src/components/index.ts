@@ -76,7 +76,7 @@ export default {
 		app.component('CdsCheckbox', Checkbox); //FIXME: Problema no SB de estilo
 		app.component('CdsChevron', Chevron); //NOTE: Testado no SB
 		app.component('CdsClickable', Clickable); //NOTE: Testado no SB
-		app.component('CdsCollapsibleContainer', CollapsibleContainer);
+		app.component('CdsCollapsibleContainer', CollapsibleContainer); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsDashboardCard', DashboardCard);
 		// app.component('CdsDateInput', DateInput);
 		app.component('CdsDivider', Divider); //NOTE: Testado no SB
@@ -110,7 +110,7 @@ export default {
 		// app.component('CdsSlider', Slider);
 		app.component('CdsSpinner', Spinner); //NOTE: Testado no SB
 		app.component('CdsStepper', Stepper);
-		app.component('CdsStepperInput', StepperInput);
+		app.component('CdsStepperInput', StepperInput); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsSwitch', Switch); //NOTE: Testado no SB
 		app.component('CdsTable', Table); //NOTE: Testado no SB
 		// app.component('CdsTabs', Tabs);
