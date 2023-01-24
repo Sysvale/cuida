@@ -41,7 +41,7 @@ export const parameters = {
 };
 
 import { app } from "@storybook/vue3";
-import { longClickDirective } from "@sysvale/vue3-long-click";
+// import { longClickDirective } from "@sysvale/vue3-long-click";
 // import tippy from 'tippy.js';
 // import 'tippy.js/dist/tippy.css';
 import Cdstip from "../src/utils/directives/cdstip";

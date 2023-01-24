@@ -87,6 +87,9 @@
 </template>
 
 <script>
+import { longClickDirective } from "@sysvale/vue3-long-click";
+const longClickInstance = longClickDirective({ delay: 400, interval: 50 });
+
 import CdsIcon from './Icon.vue';
 
 export default {
@@ -94,6 +97,11 @@ export default {
 	components: {
 		CdsIcon,
 	},
+
+	directives: {
+		'longclick': longClickInstance,
+	},
+
 	props: {
 		/**
 		* Prop utilizada como v-model. Controla a visibilidade do popover .

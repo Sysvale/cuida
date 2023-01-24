@@ -109,7 +109,10 @@
 		</div>
 
 		<!-- @slot Slot utilizado para renderização de ícone de módulos.-->
-		<div class="app-switcher">
+		<div
+			v-if="hasAppSlot"
+			class="app-switcher"
+		>
 			<slot name="app-info" />
 		</div>
 	</div>

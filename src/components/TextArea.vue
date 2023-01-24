@@ -190,6 +190,15 @@ export default {
 			*/
 			this.$emit('update:modelValue', value);
 		},
+
+		modelValue(value) {
+			/**
+			* Evento utilizado para implementar o v-model.
+			* @event input
+			* @type {Event}
+			*/
+			this.internalValue = this.modelValue;
+		},
 	},
 };
 </script>

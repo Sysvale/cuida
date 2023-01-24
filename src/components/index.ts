@@ -28,6 +28,7 @@ import Link from './Link.vue';
 import LoadingBar from './LoadingBar.vue';
 import Modal from './Modal.vue';
 import Multiselect from './Multiselect.vue';
+import NavBar from './NavBar.vue';
 import NumberInput from './NumberInput.vue';
 import PageHeader from './PageHeader.vue';
 import Pagination from './Pagination.vue';
@@ -91,7 +92,8 @@ export default {
 		app.component('CdsLoadingBar', LoadingBar); //NOTE: Testado no SB
 		// app.component('CdsModal', Modal);
 		// app.component('CdsMultiselect', Multiselect);
-		app.component('CdsNumberInput', NumberInput);
+		app.component('CdsNavBar', NavBar);
+		// app.component('CdsNumberInput', NumberInput);
 		app.component('CdsPageHeader', PageHeader); //NOTE: Testado no SB
 		app.component('CdsPagination', Pagination);
 		app.component('CdsPanelCard', PanelCard);
@@ -112,9 +114,9 @@ export default {
 		app.component('CdsSwitch', Switch); //NOTE: Testado no SB
 		app.component('CdsTable', Table); //NOTE: Testado no SB
 		// app.component('CdsTabs', Tabs);
-		app.component('CdsTextArea', TextArea);
-		app.component('CdsTextInput', TextInput);
-		app.component('CdsTimeInput', TimeInput);
+		app.component('CdsTextArea', TextArea); //NOTE: Testado no SB. !Reativo!
+		// app.component('CdsTextInput', TextInput);
+		app.component('CdsTimeInput', TimeInput); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsTooltip', Tooltip); //NOTE: Testado no SB
 		app.component('CdsTimeline', Timeline);
 		app.component('CdsTruncate', Truncate); //NOTE: Testado no SB
