@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import { longClickDirective } from "@sysvale/vue3-long-click";
+import { longClickDirective } from '@sysvale/vue3-long-click';
 const longClickInstance = longClickDirective({ delay: 400, interval: 50 });
 
 import CdsIcon from './Icon.vue';
@@ -215,6 +215,10 @@ export default {
 	},
 
 	watch: {
+		modelValue(value) {
+			this.internalValue = value;
+		},
+
 		internalValue(value) {
 			if (!value) {
 				this.internalValue = 0;

@@ -46,8 +46,8 @@ import { app } from "@storybook/vue3";
 // import 'tippy.js/dist/tippy.css';
 import Cdstip from "../src/utils/directives/cdstip";
 
-const longClickInstance = longClickDirective({ delay: 400, interval: 50 });
+// const longClickInstance = longClickDirective({ delay: 400, interval: 50 });
 
-app.directive("longclick", longClickInstance);
+// app.directive("longclick", longClickInstance);
 app.directive("cdstip", Cdstip);
 app.mount("#app");
