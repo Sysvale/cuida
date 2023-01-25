@@ -12,7 +12,7 @@
 			</div>
 		</div>
 
-		<cds-divider />
+		<cds-divider dimmed />
 
 		<div :class="contentClass">
 			<!-- @slot Slot usado para inserção de conteúdo customizado. -->
@@ -99,7 +99,6 @@ export default {
 
 	&__subtitle {
 		@include body-2;
-		font-weight: $font-weight-semibold;
 		color: $n-500;
 	}
 }
