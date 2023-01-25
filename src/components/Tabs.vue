@@ -15,7 +15,9 @@
 					target="_self"
 					class="inner-tabs__tab"
 					:class="isActive(tab) ? 'inner-tabs__tab--active' : 'inner-tabs__tab--inactive'"
+					:style="activeBorderStyle"
 					@click="(event) => handleClick(event, tab)"
+					@contextmenu.prevent.stop="(event) => handleRightClick(event, tab)"
 				>
 					<span class="inner-tabs__text">{{ tab.title }}</span>
 				</a>
@@ -152,6 +154,15 @@ export default {
 			return tab.name;
 		},
 
+		handleRightClick(event, item) {
+			/**
+			 * Evento emitido quando uma das abas é clicada com o botão direito
+			* @event right-click
+			* @type {Event}
+				*/
+			this.$emit('right-click', { event, item });
+		},
+
 		handleClick(event, item) {
 			/**
 			 * Evento emitido quando a aba ativa é alterada
@@ -160,6 +171,15 @@ export default {
 				*/
 			this.$emit('change', { event, item });
 			this.internalActiveTab = item;
+		},
+
+		handleAddAction(event) {
+			/**
+			 * Evento emitido ao clicar no botão de adicionar
+			* @event add-action
+			* @type {Event}
+			*/
+			this.$emit('add-action', event);
 		},
 
 		isActive(item) {
@@ -207,7 +227,7 @@ export default {
 				cursor: default;
 				color: $n-800;
 				font-weight: $font-weight-semibold;
-				border-top: 5px solid $gp-400;
+				border-top: 5px solid var(--indicatorColor);
 				height: 72px;
 				border-top-left-radius: $border-radius-button;
 				border-top-right-radius: $border-radius-button;
