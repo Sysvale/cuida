@@ -12,7 +12,7 @@
 		>
 			{{ name }} icon
 		</title>
-		<g v-html="iconPath" :fill="color" />
+		<g v-html="iconPath" :fill="colorResolver" />
 	</svg>
 </template>
 
@@ -36,6 +36,10 @@ export default {
 		color: {
 			type: String,
 			default: 'currentColor'
+		},
+		light: {
+			type: Boolean,
+			default: false,
 		}
 	},
 
@@ -44,6 +48,16 @@ export default {
 			selectedIcon: '',
 			iconPath: '',
 		};
+	},
+
+	computed: {
+		colorResolver() {
+			if (this.light) {
+				return '#ffffff';
+			}
+
+			return this.color;
+		},
 	},
 
 	mounted() {

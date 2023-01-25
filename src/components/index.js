@@ -51,3 +51,8 @@ export { default as Icon } from './Icon.vue';
 export { default as TextArea } from './TextArea.vue';
 export { default as PageHeader } from './PageHeader.vue';
 export { default as ActionBar } from './ActionBar.vue';
+export { default as Divider } from './Divider.vue';
+export { default as Chevron } from './Chevron.vue';
+export { default as Clickable } from './Clickable.vue';
+export { default as Avatar } from './Avatar.vue';
+export { default as AppBar } from './AppBar.vue';

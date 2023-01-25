@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component is mounted properly 1`] = `
+<div class="clickable__container--not-clickable">
+  <div class="avatar__container">
+    <div class="avatar__container--green avatar__container--md"><span class="avatar__initials--md">
+				UND
+			</span></div>
+    <!---->
+  </div>
+</div>
+`;
