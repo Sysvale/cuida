@@ -316,9 +316,8 @@ export default {
 		-khtml-user-select: none;
 		-moz-user-select: none;
 		-ms-user-select: none;
-
+		background-color: $n-0;
 		color: $n-600;
-
 		border: 1px solid $n-40;
 		margin: mx(1);
 		border-radius: $border-radius-lil;
