@@ -177,15 +177,16 @@ export default {
 
 	&__dropdown {
 		width: var(--width);
-		position: absolute;
 		background-color: $n-0;
 		padding: pa(3);
-		top: 94px;
 		border-radius: $border-radius-extra-small;
 		box-shadow: 0px 0px 8px rgba($n-900, .08);
-		border: 1px solid $n-30;
+		outline: 1px solid $n-30;
 		z-index:999999999;
-		color: $n-600;
+		color: $n-700;
+		position: absolute;
+		margin: mt(2);
+
 	}
 }
 
