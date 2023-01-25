@@ -147,9 +147,9 @@ export default {
 #inner-tabs {
 	.inner-tabs {
 		&__header {
-			display: grid;
-			grid-template-columns: repeat(6, minmax(140px, 176px));
-			justify-content: space-between;
+			display: flex;
+			justify-content: flex-start;
+			gap: spacer(4);
 			flex-wrap: wrap;
 			padding: pl(0);
 			margin: mb(0);
@@ -159,6 +159,7 @@ export default {
 
 		&__tab {
 			width: 100%;
+			min-width: 140px;
 			@include caption;
 			font-weight: $font-weight-regular;
 			overflow: hidden;
@@ -171,8 +172,6 @@ export default {
 			margin: mTRBL(0, 2, 2, 0);
 			padding: pYX(2, 5);
 			cursor: pointer;
-			width: auto;
-
 
 			&--active {
 				cursor: default;
