@@ -13,6 +13,7 @@ import Button from '../../components/Button.vue';
 					'sm',
 					'md',
 					'lg',
+					'xl',
 				],
 			}
 		},
@@ -75,7 +76,7 @@ export const Template = (args) => ({
 	`,
 	methods: {
 		togglePopover() {
-			console.log('modal opened');
+			console.info('modal opened');
 			this.showModal = true;
 		},
 	},

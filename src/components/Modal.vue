@@ -39,7 +39,9 @@
 					:max-height="maxBodyHeight"
 					auto-height
 				>
-					<slot />
+					<div class="cds-modal__body">
+						<slot />
+					</div>
 				</cds-scrollable>
 			</section>
 
@@ -103,7 +105,7 @@ export default {
 			default: 'Título',
 		},
 		/**
-		 * Especifica o tamanho do modal. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
+		 * Especifica o tamanho do modal. São 3 tamanhos implementados: 'sm', 'md', 'lg' e 'xl'.
 		 */
 		size: {
 			type: String,
@@ -170,13 +172,14 @@ export default {
 	data() {
 		return {
 			internalShow: false,
+			tmp: '',
 		}
 	},
 
 	computed: {
 		maxBodyHeight() {
-			// 90% da largura subtraído o padding vertical (32 * 2) e subtraído o footer e o header
-			return `${ window.innerHeight * 0.9 - 32 * 2 - 110 }px`;
+			// 90% da largura subtraído o padding vertical (32 * 2) e subtraído o footer (68) e o header (64)
+			return `${ window.innerHeight * 0.9 - 32 * 2 - 68 - 64 }px`;
 		},
 	},
 
@@ -197,8 +200,8 @@ export default {
 			* @event close
 			* @type {Event}
 			*/
-			this.$emit('close', true);
 			this.internalShow = !this.internalShow;
+			this.$emit('close', true);
 		},
 
 		okHandle() {
@@ -224,7 +227,7 @@ export default {
 	width: calc(100% - 2 * 16px);
 	height: auto;
 	background-color: white;
-	padding: pYX(8, 7);
+	padding: pYX(5, 5);
 	border-radius: $border-radius-medium;
 	box-shadow: 0px 0px 8px rgba(40, 90, 185, 0.2);
 	overflow-x: auto;
@@ -243,6 +246,7 @@ export default {
 		right: 0;
 		background-color: rgba(0, 0, 0, 0.45);
 		z-index: 99999999;
+		animation: zoom-in ease .3s;
 	}
 
 	&__header {
@@ -262,6 +266,11 @@ export default {
 		cursor: pointer;
 	}
 
+	&__body {
+		padding-right: 4.4px;
+		padding-left: 0.8px;
+	}
+
 	&__footer {
 		display: flex;
 		justify-content: end;
@@ -277,10 +286,10 @@ export default {
 
 @keyframes zoom-in {
 	0% {
-		transform:scale(0);
+		opacity: 0;
 	}
 	100% {
-		transform:scale(1);
+		opacity: 1;
 	}
 }
 
@@ -302,6 +311,14 @@ export default {
 		max-width: 800px;
 		width: 800px;
 		right: calc(50% - 800px / 2);
+	}
+}
+
+@media (min-width: 1500px) {
+	.cds-modal--xl {
+		max-width: 1200px;
+		width: 1200px;
+		right: calc(50% - 1200px / 2);
 	}
 }
 </style>
