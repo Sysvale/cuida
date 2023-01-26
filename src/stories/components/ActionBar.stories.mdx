@@ -60,11 +60,11 @@ export const Template = (args) => ({
 	`,
 	methods: {
 		logAction(btn) {
-			console.log('logAction: ', btn);
+			console.info('logAction: ', btn);
 		},
 		logClose(event) {
 			this.showActionBar = false;
-			console.log('logClose: ', event);
+			console.info('logClose: ', event);
 		},
 		togglePopover() {
 			this.showActionBar = true;
