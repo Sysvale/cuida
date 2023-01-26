@@ -251,10 +251,10 @@ a {
 	padding: 8px 0;
 
 	&--dark {
-		background: $n-700;
+		background: darken(#576169, 5%);
 
 		.dropdown-menu {
-			background: $n-700;
+			background: darken(#576169, 5%);
 		}
 	}
 
@@ -282,14 +282,14 @@ a {
 		.active {
 			color: $n-0;
 			border-bottom: 4px solid var(--activeBorderColor);
-			background: $n-500;
+			background: #576169;
 			border-radius: 4px  4px 0px 0px;
 		}
 
 		&.active-parent{
 			color: $n-0;
 			border-bottom: 4px solid var(--activeBorderColor);
-			background: $n-500;
+			background: #576169;
 			border-radius: 4px  4px 0px 0px;
 
 			.show {
@@ -325,7 +325,7 @@ a {
 				color: $n-0;
 				border-left: 4px solid var(--activeBorderColor);
 				border-bottom: 0px;
-				background: $n-600;
+				background: #576169;
 				border-radius: 0px;
 			}
 		}
