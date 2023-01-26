@@ -28,7 +28,7 @@
 
 			<div
 				v-if="!file"
-				class="icon-p-text"
+				class="file-input__container"
 			>
 				<cds-icon
 					name="upload-cloud-outline"
@@ -64,7 +64,7 @@
 
 			<div
 				v-else
-				class="icon-p-text"
+				class="file-input__container"
 			>
 				<cds-icon
 					height="24"
@@ -85,11 +85,11 @@
 				>
 					<div
 						v-if="!isOnDragEnterState"
-						class="df"
+						class="on-drag-content__container"
 					>
 						<div>{{ file.name }}</div>
 						<div
-							class="df2"
+							class="x-icon__container"
 							@click.stop="handleRemove"
 						>
 							<cds-icon
@@ -129,6 +129,7 @@ export default {
 	components: {
 		CdsIcon,
 	},
+
 	props: {
 		/**
 		 * O conteúdo do arquivo upado.
@@ -217,6 +218,10 @@ export default {
 
 			return null;
 		},
+
+		textAlignmentResolver() {
+			return this.size === 'sm' ? 'flex-start' : 'center';
+		},
 	},
 
 	watch: {
@@ -286,7 +291,7 @@ export default {
 		},
 
 		handleFormFileChange(ev) {
-			this.isValid = null;
+			this.isValid = 'invalid';
 			const [file] = ev.target.files || {};
 
 			if (this.isAValidExtension(file.name)) {
@@ -302,7 +307,7 @@ export default {
 		},
 
 		handleRemove() {
-			this.isValid = null;
+			this.isValid = 'default';
 			this.file = null;
 		},
 	},
@@ -314,6 +319,12 @@ export default {
 .file-input {
 	border: 2px dashed $n-40;
 	box-sizing: border-box;
+	justify-content: v-bind(textAlignmentResolver);
+
+	&__container {
+		display: flex;
+		align-items: center;
+	}
 
 	&--valid {
 		border: 2px dashed $gp-200;
@@ -464,20 +475,14 @@ export default {
 	}
 }
 
-.icon-p-text {
-	display: flex;
-	align-items: center;
-	width: 100%;
-}
-
-.df {
+.on-drag-content__container {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
 }
 
-.df2 {
+.x-icon__container {
 	padding: px(1);
 	cursor: pointer;
 	display: grid;
