@@ -1,37 +1,30 @@
 <template>
-	<cds-clickable :clickable="clickable">
-		<div class="avatar-w-chevron">
-			<div
-				:class="avatarContainerClasses"
+	<div class="avatar__container">
+		<div
+			:class="`avatar__container--${variant} avatar__container--${size}`"
+		>
+			<span
+				v-if="!src"
+				:class="`avatar__initials--${size}`"
 			>
-				<span
-					v-if="!src"
-					:class="{
-						'avatar__initials--sm': size === 'sm',
-						'avatar__initials--md': size === 'md',
-						'avatar__initials--lg': size === 'lg',
-					}"
-				>
-					{{ computedInitials }}
-				</span>
-				<img
-					v-else
-					:src="src"
-					:alt="name"
-					:class="{
-						'avatar__image--sm': size === 'sm',
-						'avatar__image--md': size === 'md',
-						'avatar__image--lg': size === 'lg',
-					}"
-				>
-			</div>
-			<cds-chevron
-				size="sm"
-				class="chev-class"
-				direction="bottom"
-			/>
+				{{ computedInitials }}
+			</span>
+
+			<img
+				v-else
+				:src="src"
+				:alt="name"
+				:class="`avatar__image--${size}`"
+			>
 		</div>
-	</cds-clickable>
+
+		<cds-chevron
+			v-if="clickable"
+			size="sm"
+			class="avatar__chevron"
+			direction="bottom"
+		/>
+	</div>
 </template>
 <script>
 import CdsChevron from './Chevron.vue';
@@ -101,63 +94,6 @@ export default {
 
 			return 'UND';
 		},
-
-		avatarContainerClasses() {
-			let className = '';
-
-			switch (this.variant) {
-				case 'teal':
-					className = 'avatar__container--teal';
-					break;
-				case 'green':
-					className = 'avatar__container--green';
-					break;
-				case 'blue':
-					className = 'avatar__container--blue';
-					break;
-				case 'indigo':
-					className = 'avatar__container--indigo';
-					break;
-				case 'violet':
-					className = 'avatar__container--violet';
-					break;
-				case 'pink':
-					className = 'avatar__container--pink';
-					break;
-				case 'red':
-					className = 'avatar__container--red';
-					break;
-				case 'orange':
-					className = 'avatar__container--orange';
-					break;
-				case 'amber':
-					className = 'avatar__container--amber';
-					break;
-				case 'gray':
-					className = 'avatar__container--gray';
-					break;
-				case 'white':
-					className = 'avatar__container--white';
-					break;
-				default:
-					className = 'avatar__container--gray';
-					break;
-			}
-
-			switch (this.size) {
-				case 'sm':
-					className += ' avatar__container--sm';
-					break;
-				case 'md':
-					className += ' avatar__container--md';
-					break;
-				case 'lg':
-					className += ' avatar__container--lg';
-					break;
-			}
-
-			return className;
-		}
 	}
 }
 </script>
@@ -165,16 +101,11 @@ export default {
 <style lang="scss">
 @import '../assets/sass/tokens.scss';
 
-.avatar-w-chevron {
-	display: flex;
-	align-items: center;
-}
-
-.chev-class {
-	margin: ml(1);
-}
-
 .avatar {
+	&__chevron {
+		margin: ml(1);
+	}
+
 	&__container {
 		align-items: center;
 		border-radius: $border-radius-circle;
