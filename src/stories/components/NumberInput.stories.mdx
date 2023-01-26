@@ -12,6 +12,7 @@ import NumberInput from '../../components/NumberInput.vue';
 					'default',
 					'valid',
 					'invalid',
+					'loading',
 				],
 			}
 		},
@@ -37,16 +38,19 @@ export const Template = (args) => ({
 	},
 	data() {
 		return {
-			value: null,
+			value: 0,
+			unmaskedValue: 0,
 		};
 	},
 	template: /*html*/ `
 		<cds-number-input
 			v-bind="args" 
 			v-model="value"
+			v-model:unmaskedValue="unmaskedValue"
 		/>`,
 	updated() {
 		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+		console.info('%cv-model:unmaskedValue ', 'color: #2C70CD;', this.unmaskedValue);
 	},
 });
 
@@ -72,6 +76,9 @@ export const Template = (args) => ({
 <Canvas>
 	<Story
 		name="NumberInput"
+		args={{
+			money: false,
+		}}
 	>
 		{ Template.bind({}) }
 	</Story>

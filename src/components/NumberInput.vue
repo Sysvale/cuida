@@ -49,20 +49,7 @@
 
 		<div :class="stepperInputDynamicClass">
 			<input
-				v-if="mask"
-				id="cds-text-input"
-				v-model="internalValue"
-				v-facade="mask"
-				:placeholder="placeholder"
-				:disabled="disabled"
-				:class="inputClass"
-				type="number"
-				@focus="isBeingFocused = true"
-				@blur="isBeingFocused = false"
-			>
-
-			<input
-				v-else-if="money"
+				v-if="money"
 				id="cds-text-input"
 				v-model.lazy="internalValue"
 				v-money="moneyDirectiveConfig"
@@ -147,7 +134,15 @@ export default {
 		* Prop utilizada como v-model.
 		*/
 		modelValue: {
-			type: Number,
+			type: [Number, String],
+			default: 0,
+		},
+		/**
+		* Prop utilizada como v-model para valores sem máscara
+		* de dinheiro.
+		*/
+		unmaskedValue: {
+			type: [Number, String],
 			default: 0,
 		},
 		/**
@@ -201,14 +196,6 @@ export default {
 			required: false,
 		},
 		/**
-		 * Especifica a máscara a ser aplicada ao TextInput.
-		 * Exemplo: "(##) #####-####"
-		 */
-		mask: {
-			type: [String, Array],
-			default: null,
-		},
-		/**
 		 * Define exibição e texto do tooltip do input
 		 */
 		tooltip: {
@@ -222,10 +209,18 @@ export default {
 			type: String,
 			default: 'info-outline',
 		},
-
 		/**
-		 * Especifica se o input deve exibir uma máscara monetária.
-		 * Exemplo: "(##) #####-####"
+		 * Indica se o input vai funcionar com a máscara de dinheiro.
+		 * A máscara utiliza `R$` como prefixo,` , ` como separador de decimais
+		 * e tem precisão de 2 dígitos.
+		 * 
+		 * 
+		 * Ao utilizar essa prop o `update:modelValue` vai deixar de emitir
+		 * `Number`e vai passar a emitir uma `String` contendo a máscara.
+		 * 
+		 * 
+		 * Para receber o valor sem máscara, utilize a prop `unmaskedValue`
+		 * com v-model: `v-model:unmaskedValue="nome da propriedade a ser atualizada"`
 		 */
 		money: {
 			type: Boolean,
@@ -327,21 +322,34 @@ export default {
 		},
 
 		internalValue(value) {
-			/**
-			 * Evento utilizado para implementar o v-model.
-			 * @event update:modelValue
-			 * @type {Event}
-			 */
+			let stringifiedInput = String(value);
 
-			let sanitizedInput = String(value);
+			if (this.money) {
+				let sanitizedInput = stringifiedInput.replace('R$ ', '');
+				sanitizedInput = sanitizedInput.replaceAll('.', ',');
+				sanitizedInput = sanitizedInput.replace(/(.*),(\d{2})/g, '$1.$2');
+				sanitizedInput = sanitizedInput.replaceAll(',', '');
 
-			if (sanitizedInput.length > 15) {
-				console.log('UATR');
-				this.internalValue = +sanitizedInput.slice(0, 15);
+				/**
+				 * Evento utilizado para implementar o v-model para atualização
+				 * de valores sem máscara de dinheiro.
+				 * @event update:unmaskedValue
+				 * @type {Event}
+				 */
+				this.$emit('update:unmaskedValue', +sanitizedInput);
+				this.$emit('update:modelValue', stringifiedInput);
+			} else if (stringifiedInput.length > 15) {
+				this.internalValue = +stringifiedInput.slice(0, 15);
+			} else {
+				this.$emit('update:modelValue', +stringifiedInput);
+
+				/**
+				 * Evento utilizado para implementar o v-model padrão do componente.
+				 * @event update:modelValue
+				 * @type {Event}
+				 */
+				this.$emit('update:unmaskedValue', +stringifiedInput);
 			}
-			
-			console.log('🚀 -> file: NumberInput.vue:351 -> sanitizedInput', sanitizedInput);
-			this.$emit('update:modelValue', Number(sanitizedInput));
 		},
 	},
 };
@@ -351,6 +359,7 @@ export default {
 
 .text-input {
 	display: flex;
+	justify-content: space-between;
 	outline: 1px solid $n-50;
 	border-radius: $border-radius-extra-small;
 	width: 266px;
