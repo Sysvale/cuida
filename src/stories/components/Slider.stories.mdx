@@ -4,6 +4,25 @@ import Slider from '../../components/Slider.vue';
 <Meta
 	title="Componentes/Forms/Slider"
 	component={ Slider }
+		argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'teal',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'white',
+				],
+			}
+		},
+	}}
 	parameters={{
 		viewMode: 'docs',
 		previewTabs: { canvas: { hidden: true }},
@@ -27,11 +46,20 @@ export const Template = (args) => ({
 	setup() {
 		return { args };
 	},
+	data() {
+		return {
+			value: [20, 60],
+		};
+	},
 	template: /*html*/ `
 		<cds-slider
-			v-bind="args" 
+			v-bind="args"
+			v-model="value"
 		/>
 	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
 });
 
 # Slider
@@ -62,15 +90,12 @@ leitura da documentação.
 
 ## Preview
 
-export const value = [0, 100];
-
 <Canvas>
 	<Story
 		name="Slider"
 		args={{
 			min: 0,
 			max: 100,
-			value,
 		}}
 	>
 		{ Template.bind({}) }

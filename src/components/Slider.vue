@@ -1,13 +1,12 @@
 <template>
 	<vue-slider 
 		v-bind="attrs"
-		v-model="value"
+		v-model="innerValue"
 		:enable-cross="false"  
 		:min="min"
 		:max="max"
 		:tooltip="showMergeTooltip ? 'none' : 'always'"
-		:dot-style="{ borderColor: '#3498db'}"
-		:process-style="{ background: '#3498db' }"
+		:class="`slider--${variant}`"
 	>
 		<template #process="{ style }">
 			<div 
@@ -22,7 +21,16 @@
 						'vue-slider-dot-tooltip-inner-top',
 					]"
 				>
-					{{ value[0] }} - {{ value[1] }}
+					<span
+						v-if="innerValue[0] !== innerValue[1]"
+					>
+						{{ innerValue[0] }} - {{ innerValue[1] }}
+					</span>
+					<span
+						v-else
+					>
+						{{ innerValue[0] }}
+					</span>
 				</div>
 			</div>
 		</template>
@@ -51,7 +59,7 @@ export default {
 
 	props: {
 		/**
-			* O valor mínimo do slider.
+		* O valor mínimo do slider.
 		*/
 		min: {
 			type: Number,
@@ -69,26 +77,55 @@ export default {
 		/**
 			* Prop utilizada como v-model. Retorna as posições selecionadas no slider.
 		*/
-		value: {
+		modelValue: {
 			type: Array,
-			default: () => [],
+			default: () => [0, 100],
 			required: true,
 		},
+		/**
+		 * A variante de cor. São 10 variantes implementadas: 'green', 'teal',
+		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.
+		 */
+		variant: {
+			type: String,
+			default: 'green',
+		},
 	},
+
+	data() {
+		return {
+			innerValue: [0, 100],
+		};
+	},
+
 	computed: {
 		attrs() {
 			const {
 				min,
 				max,
-				value,
 				...attrs
 			} = this.$attrs;
 
 			return attrs;
 		},
+
 		showMergeTooltip() {
-			return this.value[1] - this.value[0] < 10
+			return this.innerValue[1] - this.innerValue[0] < 10
 		},
+	},
+
+	watch: {
+		modelValue(value) {
+			this.innerValue = value;
+		},
+
+		innerValue(value) {
+			this.$emit('update:modelValue', value);
+		},
+	},
+
+	mounted() {
+		this.innerValue = this.modelValue;
 	},
 }
 </script>
@@ -96,37 +133,47 @@ export default {
 @import '../assets/sass/tokens.scss';
 
 .vue-slider-dot {
-	width: 16px!important;
-	height: 16px!important;
+	width: 18px !important;
+	height: 18px !important;
 }
-.vue-slider-dot-handle {
-	cursor: pointer;
-	width: 100%;
-	height: 100%;
-	border: 2px solid $bn-200;
-	border-radius: 50%;
-	background-color: $bn-100;
-	box-sizing: border-box;
-	box-shadow: 0.5px 0.5px 2px 1px rgba(0, 0, 0, 0.32);
-}
-.vue-slider-dot-handle {
-	box-shadow: none !important;
-}
-.vue-slider-component .vue-slider-dot .vue-slider-dot-handle {
-	box-shadow: none !important;
-}
+
 .vue-slider {
 	height: 3px !important;
 }
+
+.vue-slider-dot-tooltip-top {
+	top: spacer(n1);
+}
+
 .vue-slider-dot-tooltip-inner {
+	@include caption;
 	background-color: transparent;
 	border-color: transparent;
-	color: #000;
+	color: $n-800;
 }
+
 .merge-tooltip {
 	position: absolute;
 	left: 50%;
 	bottom: 100%;
 	transform: translate(-50%, -15px);
+}
+
+.vue-slider-rail {
+	background-color: $n-50;
+}
+
+.slider {
+	@include variantResolver using ($color-name, $base-color, $disabled, $muted, $hover) {
+
+		& > .vue-slider-rail > .vue-slider-process {
+			background-color: $disabled !important;
+		}
+
+		& > .vue-slider-rail > .vue-slider-dot > .vue-slider-dot-handle {
+			background-color: $base-color !important;
+			box-shadow: none;
+		}
+	}
 }
 </style>
