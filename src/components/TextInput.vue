@@ -310,6 +310,7 @@ export default {
 
 .text-input {
 	display: flex;
+	justify-content: space-between;
 	outline: 1px solid $n-50;
 	border-radius: $border-radius-extra-small;
 	width: 266px;
@@ -419,7 +420,7 @@ export default {
 	}
 
 	&__icon {
-		margin: ml(1);
+		margin: mTRBL(0, 0, n1, 1);
 		cursor: pointer;
 	}
 
