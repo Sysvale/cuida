@@ -33,7 +33,7 @@
 			locale="pt-BR"
 			:available-dates="availableDates"
 			@day-click="handleDateInput"
-            @input="handleDateInput"
+			@input="handleDateInput"
 		>
 			<template #default="{ inputValue, togglePopover, inputEvents }">
 				<input
