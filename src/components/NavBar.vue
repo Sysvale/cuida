@@ -120,7 +120,7 @@ export default {
 		},
 
 		resolveRoute({ route, path }) {
-			const to = isEmpty(route) ? route : path;
+			const to = isEmpty(route) ? path : route;
 			return to instanceof String ? { path: to } : to;
 		},
 

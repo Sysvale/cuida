@@ -14,7 +14,6 @@ import Clickable from './Clickable.vue';
 import CollapsibleContainer from './CollapsibleContainer.vue';
 import DashboardCard from './DashboardCard.vue';
 import DateInput from './DateInput.vue';
-import Dialog from './Dialog.vue';
 import Divider from './Divider.vue';
 import Dropdown from './Dropdown.vue';
 import EmptyState from './EmptyState.vue';
@@ -78,11 +77,11 @@ export default {
 		app.component('CdsClickable', Clickable); //NOTE: Testado no SB
 		app.component('CdsCollapsibleContainer', CollapsibleContainer); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsDashboardCard', DashboardCard);
-		// app.component('CdsDateInput', DateInput);
+		app.component('CdsDateInput', DateInput); //NOTE: Testado no SB
 		app.component('CdsDivider', Divider); //NOTE: Testado no SB
 		app.component('CdsDropdown', Dropdown); //NOTE: Testado no SB
 		app.component('CdsEmptyState', EmptyState); //NOTE: Testado no SB
-		// app.component('CdsFileInput', FileInput);
+		app.component('CdsFileInput', FileInput); //NOTE: Testado no SB
 		app.component('CdsFlatButton', FlatButton); //NOTE: Testado no SB
 		app.component('CdsHighlight', Highlight); //NOTE: Testado no SB
 		app.component('CdsIcon', Icon); //NOTE: Testado no SB
@@ -90,10 +89,10 @@ export default {
 		app.component('CdsInnerTabs', InnerTabs); //NOTE: Testado no SB
 		app.component('CdsLink', Link); //NOTE: Testado no SB
 		app.component('CdsLoadingBar', LoadingBar); //NOTE: Testado no SB
-		// app.component('CdsModal', Modal);
-		// app.component('CdsMultiselect', Multiselect);
+		app.component('CdsModal', Modal); //NOTE: Testado no SB
+		app.component('CdsMultiselect', Multiselect); //FIXME: Problema no SB
 		app.component('CdsNavBar', NavBar); //NOTE: Testado no SB
-		// app.component('CdsNumberInput', NumberInput);
+		app.component('CdsNumberInput', NumberInput); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsPageHeader', PageHeader); //NOTE: Testado no SB
 		app.component('CdsPagination', Pagination); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsPanelCard', PanelCard); //NOTE: Testado no SB
@@ -107,7 +106,7 @@ export default {
 		app.component('CdsSegmentedControl', SegmentedControl);
 		app.component('CdsSelect', Select); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsSkeletonText', SkeletonText); //NOTE: Testado no SB
-		// app.component('CdsSlider', Slider);
+		app.component('CdsSlider', Slider);
 		app.component('CdsSpinner', Spinner); //NOTE: Testado no SB
 		app.component('CdsStepper', Stepper);
 		app.component('CdsStepperInput', StepperInput); //NOTE: Testado no SB. !Reativo!
@@ -115,7 +114,7 @@ export default {
 		app.component('CdsTable', Table); //NOTE: Testado no SB
 		app.component('CdsTabs', Tabs); //NOTE: Testado no SB
 		app.component('CdsTextArea', TextArea); //NOTE: Testado no SB. !Reativo!
-		app.component('CdsTextInput', TextInput);
+		app.component('CdsTextInput', TextInput); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsTimeInput', TimeInput); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsTooltip', Tooltip); //NOTE: Testado no SB
 		app.component('CdsTimeline', Timeline);
