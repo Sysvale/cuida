@@ -106,6 +106,19 @@
 					/>
 				</cds-clickable>
 			</div>
+
+			<cds-clickable
+				v-if="!hideLogout"
+				clickable
+				@click="handleClick('logout')"
+			>
+				<cds-icon
+					height="24"
+					width="24"
+					light
+					name="logout-outline"
+				/>
+			</cds-clickable>
 		</div>
 
 		<!-- @slot Slot utilizado para renderização de ícone de módulos.-->
@@ -158,6 +171,13 @@ export default {
 		 * Controla a exibição do ícone de notificação.
 		 */
 		hideAppSwitcher: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Controla a exibição do ícone de Logout.
+		 */
+		hideLogout: {
 			type: Boolean,
 			default: false,
 		},
@@ -229,6 +249,8 @@ export default {
 			* `avatar-click`
 			*
 			* `app-switcher-click`
+			*
+			* `logout-click`
 			* @event `${element}-click`
 			* @type {Event}
 			*/
