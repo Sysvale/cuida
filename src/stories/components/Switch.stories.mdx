@@ -1,0 +1,74 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Switch from '../../components/Switch.vue';
+
+<Meta
+	title="Componentes/Forms/Switch"
+	component={ Switch }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ `
+<cds-switch
+	v-model="isSelected"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsSwitch: Switch },
+	data() {
+		return {
+			value: false,
+		};
+	},
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-switch
+			v-bind="args"
+			v-model="value"
+		/>
+	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
+});
+
+# Switch
+
+### Switches são componentes utilizados para ativar ou desativar configurações ou opções específicas. 
+
+---
+<br />
+
+## Quando usar:
+- A configuração controlada pelo Switch deve aplicar mudanças automaticamente.
+- Ao usar labels. Quando usados em conjunto, devem descrever dois estados, dependentes do estado do Switch.
+
+<br />
+
+## Quando não usar:
+- Em formulários que possuem botão de submit.
+- Utilizar Switches para controlar ações que dependam de requisições sem indicar o tempo de espera ao usuário.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Switch"
+		args={{}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Switch" />

@@ -1,0 +1,76 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import SegmentedControl from '../../components/SegmentedControl.vue';
+import Icon from '../../components/Icon.vue';
+
+<Meta
+	title="Componentes/Navegação/SegmentedControl"
+	component={ SegmentedControl }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-segmented-control
+	:segments="['info-outline', 'copy-outline', 'edit-outline']"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsSegmentedControl: SegmentedControl, CdsIcon: Icon },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-segmented-control
+			v-bind="args"
+			@click="handleEmit"
+		>
+		</cds-segmented-control>
+	`,
+	methods: {
+		handleEmit(value, index) { console.info('value: ', value); }
+	}
+});
+
+# SegmentedControl
+
+### SegmentedControls são componentes que permitem que o usuário visualize versões alternativas de uma feature ou interface
+---
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="SegmentedControl1"
+		args={{
+			segments: ['info-outline', 'copy-outline', 'edit-outline'],
+			withIcon: false,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="SegmentedControl1" />
+
+<Canvas>
+	<Story
+		name="SegmentedControl2"
+		args={{
+			segments: ['info-outline', 'copy-outline', 'edit-outline'],
+			segmentsTooltipText: ['info', 'copiar', 'editar'],
+			withIcon: true,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="SegmentedControl2" />

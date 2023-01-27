@@ -1,0 +1,107 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import DashboardCard from '../../components/DashboardCard.vue';
+import Badge from '../../components/Badge.vue';
+
+<Meta
+	title="Componentes/Containers/DashboardCard"
+	component={ DashboardCard }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ `
+<cds-dashboard-card
+	:showAction="true"
+	:action="Ver lista"
+	@action-button-click="handleActionClick"
+>
+	<template #title-slot>
+		<bold>45</bold>
+		<span style="margin-left: 8px; font-size: 13.5px; font-weight: 500;">gestantes</span>
+	</template>
+	<template #status-slot>
+		<cds-badge variant="red">Alerta</cds-badge>
+	</template>
+	<template #description-slot>
+		Não realizam consulta há mais de 30 dias
+	</template>
+</cds-dashboard-card>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: {
+		CdsDashboardCard: DashboardCard,
+		CdsBadge: Badge,
+	},
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-dashboard-card
+			v-bind="args"
+			@action-button-click="handleActionClick"
+		>
+			<template #title-slot>
+				<bold>45</bold>
+				<span style="margin-left: 8px; font-size: 13.5px; font-weight: 500;">gestantes</span>
+			</template>
+			<template #status-slot>
+				<cds-badge variant="red">Alerta</cds-badge>
+			</template>
+			<template #description-slot>
+				Não realizam consulta há mais de 30 dias
+			</template>
+		</cds-dashboard-card>
+	`,
+	methods: { handleActionClick() { console.info('clicked'); } },
+});
+
+# DashboardCards
+
+### DashboardCards são componentes utilizados para construir cards com informações que requeiram uma descrição curta e que possam ser classificadas em status.
+---
+<br />
+
+## Quando usar:
+- For necessário mostrar informações de modo resumido em dashboards
+- For necessário um card com botão clicável e que leve o usuário a uma nova tela.
+- A informação descrita no card possa ser classificada.
+
+
+<br />
+
+## Quando não usar:
+- Houver um conjunto muito grande de informações a ser exibido.
+- Se deseja utilizar ícones em conjunto com os dados. Utilize <a href="https://sysvale.github.io/cuida/?path=/docs/componentes-containers-expansioncard--expansion-card">ExpansionCards</a> nesses cenários.
+
+<br />
+
+## Observações:
+- O DashboardCard exibee informações de modo vertical, ao contrário do <a href="https://sysvale.github.io/cuida/?path=/docs/componentes-containers-expansioncard--expansion-card">ExpansionCard</a>.
+- <a href="https://sysvale.github.io/cuida/?path=/docs/componentes-containers-expansioncard--expansion-card">ExpansionCards</a> comunicam informações de modo mais direto e com auxílio de ícones. DashboardCars focam mais em descrição e classificação das informações.
+- Considere utilizar DashboardCards se precisa que o componente redirecione o usuário para outra página para mais informações.
+- Considere <a href="https://sysvale.github.io/cuida/?path=/docs/componentes-containers-expansioncard--expansion-card">ExpansionCards</a> se for necessário detalhar o conteúdo do card, mas sem tirar o usuário da página.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="DashboardCard"
+		args={{
+			showAction: true,
+			action: 'Ver lista'
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="DashboardCard" />

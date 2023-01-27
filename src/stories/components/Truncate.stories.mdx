@@ -1,0 +1,73 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Truncate from '../../components/Truncate.vue';
+
+<Meta
+	title="Componentes/Utils/Truncate"
+	component={ Truncate }
+	argTypes={{
+		width: {
+			control: {
+				type: 'range',
+				min: 10,
+				max: 250,
+				step: 1,
+			},
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-truncate
+	width="80"
+>
+	Texto longo para testar o truncate
+</cds-truncate>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsTruncate: Truncate },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-truncate
+			v-bind="args"
+		>
+			Texto longo para testar o truncate
+		</cds-truncate>
+	`,
+	methods: {
+		logClickableClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+# Truncate
+
+### Componente auxiliar utilizado para truncar texto adicionando a ele reticências
+---
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Truncate"
+		args={{
+			width: 80,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Truncate" />

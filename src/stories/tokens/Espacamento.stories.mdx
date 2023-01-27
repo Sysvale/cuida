@@ -1,0 +1,124 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs';
+import Space from '../../docs-components/Space.vue';
+
+<Meta title="Fundação/Espaçamento" component={ Space } />
+
+# Espaçamento
+
+Os tokens de espaçamento são parte essencial na construção de
+interfaces usando o Cuida. Utilize os tokens de espaçamento para 
+criar hierarquias visuais e arranjos equilibrados entre os
+elementos da interface, a fim de tornar a escanebilidade e 
+leitura mais fáceis para os usuários.
+
+<hr />
+<br />
+
+## Recomendações
+
+- Utilize os tokens de espaçamento em detrimento de espaçamentos hard-coded.
+
+- O espaçamento pode ser utilizado para criar relações funcionais entre os
+diversos elementos da interface. Elementos próximos são interpretados como
+relacionados. Essa relação diminui à medida que mais espaço é adicionado.
+
+- Elementos com o mesmo nível de importância na interface devem possuir espaçamentos consistentes.
+
+- Elementos com maior espaçamento ao seu redor são percebidos como mais relevantes na interface. 
+Caso você queira evidenciar a importância de algum texto ou componente da interface,
+utilize um maior espaçamento ao seu redor, além de tokens de peso de fonte.
+
+
+<br />
+
+## Playground
+
+Clique na função Sass dentro do retângulo para copiar o token para a sua área de transferência.
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	components: { Space },
+	template:`<space />`,
+});
+
+<Story name="escala">
+	{ Template.bind({}) }
+</Story>
+
+<br />
+
+## Notação
+
+Os tokens de espaçamento do Cuida implementam uma escala de espaçamento de incrementos de 4px que pode ser utilizada com as propriedades `margin` e `padding`.
+
+<br />
+
+#### Exemplos: 
+- `padding: pt(4)`, indica um padding top de 16px (4 * 4px)
+- `margin: mr(n2)`, indica uma margin right de -8px (2 * 4px)
+
+<br />
+
+A escala de espaçamento é implementada como funções Sass baseadas nas classes de espaçamento do Vuetify, utilizando a notação:
+
+#### `{propriedade}{direção}({tamanho})`,
+
+<br />
+
+Onde <strong>propriedade</strong> assume um dos seguintes valores:
+
+- `m` - para `margem`
+- `p` - para `padding`
+
+A <strong>direção</strong> indica o lado no qual a propriedade vai ser aplicada:
+
+- `t` - aplica `margin-top` ou `padding-top`
+- `r` - aplica `margin-right` ou `padding-right`
+- `b` - aplica `margin-bottom` ou `padding-bottom`
+- `l` - aplica `margin-left` ou `padding-left`
+- `y` - aplica margin ou padding ao mesmo nas direções top e bottom
+- `x` - aplica margin ou padding ao mesmo nas direções right e left
+- `a` - aplica margin ou padding em todas as direções
+
+O <strong>tamanho</strong> indica o incremento da propriedade em intervalos de 4 pixels:
+
+- `0` - aplica margin ou padding de 0px
+- `1` - aplica margin ou padding de 4px
+- `2` - aplica margin ou padding de 8px
+- `3` - aplica margin ou padding de 12px
+- `4` - aplica margin ou padding de 16px
+- `5` - aplica margin ou padding de 20 px
+- `6` - aplica margin ou padding de 24px
+- `7` - aplica margin ou padding de 28px
+- `8` - aplica margin ou padding de 32px
+- `9` - aplica margin ou padding de 36px
+- `10` - aplica margin ou padding de 40px
+- `11` - aplica margin ou padding de 44px
+- `12` - aplica margin ou padding de 48px
+- `n1` - aplica margin de -4px
+- `n2` - aplica margin de -8px
+- `n3` - aplica margin de -12px
+- `n4` - aplica margin de -16px
+- `n5` - aplica margin de -20px
+- `n6` - aplica margin de -24px
+- `n7` - aplica margin de -28px
+- `n8` - aplica margin de -32px
+- `n9` - aplica margin de -36px
+- `n10` - aplica margin de -40px
+- `n11` - aplica margin de -44px
+- `n12` - aplica margin de -48px
+
+<br />
+
+## Funções auxiliares
+
+Além das funções acima apresentadas, o Cuida possui três funções auxiliares úteis para casos de uso específicos:
+
+- `pTRBL()` e `mTRBL()` -> Funções que permitem que sejam especificados espaçamentos distintos para 
+cada um dos lados de um determinado elemento, seguindo a ordem `top, right, bottom e left`.
+
+- `pYX()` e `mYX()` -> Funções que permitem que sejam especificados espaçamentos horizontais e verticais simultaneamente.
+- `spacer()` -> Função que permite a utilização da escala de espaçamento do Cuida com propriedades de margin
+e padding mais específicas, como, por exemplo: `margin-top`, `padding-left`, etc.

@@ -1,0 +1,115 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Scrollable from '../../components/Scrollable.vue';
+
+<Meta
+	title="Componentes/Containers/Scrollable"
+	component={ Scrollable }
+	argTypes={{
+		maxHeight: {
+			description: 'Altura máxima do container',
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-scrollable
+	maxHeight="150px"
+>
+	<p>
+		Existe uma teoria que diz que, se um dia alguém descobrir 
+		exatamente para que serve o Universo e por que ele está aqui, ele 
+		desaparecerá instantaneamente e será substituídopor al go ainda 
+		mais estranho e inexplicável. Existe uma segunda teoria que diz 
+		que isso já aconteceu.
+	</p>
+	<p>
+		Existe uma teoria que diz que, se um dia alguém descobrir 
+		exatamente para que serve o Universo e por que ele está aqui, ele 
+		desaparecerá instantaneamente e será substituídopor al go ainda 
+		mais estranho e inexplicável. Existe uma segunda teoria que diz 
+		que isso já aconteceu.
+	</p>
+</cds-scrollable>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsScrollable: Scrollable },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-scrollable
+			v-bind="args" 
+		>
+			<p>
+				Existe uma teoria que diz que, se um dia alguém descobrir 
+				exatamente para que serve o Universo e por que ele está aqui, ele 
+				desaparecerá instantaneamente e será substituídopor al go ainda 
+				mais estranho e inexplicável. Existe uma segunda teoria que diz 
+				que isso já aconteceu.
+			</p>
+			<p>
+				Existe uma teoria que diz que, se um dia alguém descobrir 
+				exatamente para que serve o Universo e por que ele está aqui, ele 
+				desaparecerá instantaneamente e será substituídopor al go ainda 
+				mais estranho e inexplicável. Existe uma segunda teoria que diz 
+				que isso já aconteceu.
+			</p>
+			<p>
+				Existe uma teoria que diz que, se um dia alguém descobrir 
+				exatamente para que serve o Universo e por que ele está aqui, ele 
+				desaparecerá instantaneamente e será substituídopor al go ainda 
+				mais estranho e inexplicável. Existe uma segunda teoria que diz 
+				que isso já aconteceu.
+			</p>
+			<p>
+				Existe uma teoria que diz que, se um dia alguém descobrir 
+				exatamente para que serve o Universo e por que ele está aqui, ele 
+				desaparecerá instantaneamente e será substituídopor al go ainda 
+				mais estranho e inexplicável. Existe uma segunda teoria que diz 
+				que isso já aconteceu.
+			</p>
+		</cds-scrollable>
+	`,
+});
+
+# Scrollable
+
+### Scrollable é um componente utilizado para o tornar o conteúdo envolvido "scrolável".
+---
+<br />
+
+## Quando usar:
+- Se quer mostrar muito conteúdo em um espaço pequeno ou pré-definido.
+
+<br />
+
+## Quando não usar:
+- Houver pouco conteúdo.
+- Já houver um outro scrollable.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Scrollable"
+		
+		args={{
+			maxHeight: '150px',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Scrollable" />

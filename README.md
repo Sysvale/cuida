@@ -124,3 +124,21 @@ $ npm run test
 ## Contribuindo
 
 Para informações sobre como contribuir com o projeto, acesse o [CONTRIBUTING.MD](https://github.com/Sysvale/cuida/blob/master/CONTRIBUTING.md)
+
+### Problemas
+
+Alert >> Estilo (apenas no storybook) e problema no ícone
+AlertCard >> Problema com size do feather-icons
+Calendar >> excluído
+CarouselController >> prop simple não funciona
+ClusteredMultiselect >> Alinhar estilização com Select, problema com $set
+Dropdown >> Problema louco de lógica
+FilterPill >> excluído
+IconButton >> Problema com ion-icon
+Spinner >> Estilo quebrado
+Radio >> Problema ao clicar
+Table >> header desalinhado
+Timeline >> Estilo estranho
+
+LEMBRAR DO IONICONS (SENDO IMPORTADO NO PREVIEW-BODY.HTML)
+LEMBRAR DO BOOTSTRAP (SENDO IMPORTADO NO PREVIEW-BODY.HTML)

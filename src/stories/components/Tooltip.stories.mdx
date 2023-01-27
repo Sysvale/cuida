@@ -1,0 +1,91 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Tooltip from '../../components/Tooltip.vue';
+
+<Meta
+	title="Componentes/Display/Tooltip"
+	component={ Tooltip }
+	argTypes={{
+		position: {
+			control:{
+				type: 'select',
+				options: [
+					'top',
+					'right',
+					'bottom',
+					'left',
+				],
+			}
+		},
+	}}
+		parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-tooltip
+	text="Texto do tooltip"
+>
+	Tooltip trigger
+</cds-tooltip>`
+},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsTooltip: Tooltip },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div class="d-flex justify-content-center">
+			<cds-tooltip
+				v-bind="args"
+			>
+				Tooltip trigger
+			</cds-tooltip>
+		</div>
+	`,
+	methods: {
+		logClickableClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+# Tooltip
+
+### Tooltip são labels flutuantes não interativas usados para explicar um elemento ou recurso da interface. Podem ser acionados com hover.
+---
+<br />
+
+## Quando usar:
+- O texto a ser exibido como label for conciso, com no máximo 4 palavras.
+- Para exibir informações suplementares sobre uma feature ou elemento da interface.
+
+
+<br />
+
+## Quando não usar:
+- Para comunicar erros e status do sistema.
+- Para mostrar informações críticas para a compreensão de uma feature ou elemento da interface.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Tooltip"
+		args={{
+			text: 'Texto do tooltip'
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Tooltip" />

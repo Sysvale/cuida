@@ -1,18 +1,22 @@
+$bg-gradient: 158.71deg, #FFFFFF -36.57%, #F1F5FB 156.92%;
+
+$appbar-color: #576169;
+
 $n-0: #ffffff;
 $n-10: #FAFCFE;
-$n-20: #F1F5F9;
-$n-30: #E2EAF3;
-$n-40: #D3DBE4;
-$n-50: #BCC7D2;
-$n-100: #ABB8C4;
-$n-200: #9AA8B6;
-$n-300: #8B99A7;
-$n-400: #7C8A98;
-$n-500: #566676;
-$n-600: #475766;
-$n-700: #36424E;
-$n-800: #29333D;
-$n-900: #1E252C;
+$n-20: #F4F8FB;
+$n-30: #E7EDF3;
+$n-40: #DFE5EC;
+$n-50: #d6dce3;
+$n-100: #c3ccd5;
+$n-200: #acb8c3;
+$n-300: #99a6b2;
+$n-400: #8794a1;
+$n-500: #647382;
+$n-600: #52616f;
+$n-700: #3b4754;
+$n-800: #28333e;
+$n-900: #1d262f;
 
 $gp-50: #f3fcf8;
 $gp-100: #def7eb;
@@ -20,14 +24,14 @@ $gp-200: #ABEDD9;
 $gp-300: #6DDFBC;
 $gp-400: #2AC092;
 $gp-500: #239F78;
-$gp-600: #197155;
-$gp-700: #145C45;
+$gp-600: #1B795B;
+$gp-700: #126349;
 
 $ts-50: #F7FCFF;
-$ts-100: #F0FAFF;
+$ts-100: #E2F4FE;
 $ts-200: #C2EDFF;
 $ts-300: #7BD0F4;
-$ts-400: #3CACDD;
+$ts-400: #42AAD7;
 $ts-500: #1F86B2;
 $ts-600: #18698B;
 $ts-700: #13526D;
@@ -35,54 +39,54 @@ $ts-700: #13526D;
 $bn-50: #F8FAFE;
 $bn-100: #ecf1fe;
 $bn-200: #B6D1F7;
-$bn-300: #83AFEC;
-$bn-400: #377EE1;
-$bn-500: #206ED9;
-$bn-600: #1B59B1;
-$bn-700: #144385;
+$bn-300: #83ADE7;
+$bn-400: #4B88DD;
+$bn-500: #2C70CD;
+$bn-600: #1A55A8;
+$bn-700: #174382;
 
-$in-50: #F2F4FF;
+$in-50: #F5F6FF;
 $in-100: #E5EAFF;
 $in-200: #CED6FD;
 $in-300: #AAB7F8;
-$in-400: #6174D1;
-$in-500: #5464B6;
-$in-600: #3A4788;
+$in-400: #7080D2;
+$in-500: #4D5DAC;
+$in-600: #384584;
 $in-700: #353D64;
 
 $vr-50: #FBF7FF;
-$vr-100: #F8F0FF;
+$vr-100: #F5EBFF;
 $vr-200: #E6D2F9;
 $vr-300: #CEABED;
-$vr-400: #A169D3;
-$vr-500: #8F4DCC;
-$vr-600: #7633B2;
-$vr-700: #642B96;
+$vr-400: #A975D7;
+$vr-500: #8955B9;
+$vr-600: #6B3A98;
+$vr-700: #4F2673;
 
 $pp-50: #FFF7FC;
-$pp-100: #FFEFF9;
+$pp-100: #FFEBF7;
 $pp-200: #F9C8E2;
 $pp-300: #EF8FC0;
-$pp-400: #DD5A9C;
-$pp-500: #CC3381;
-$pp-600: #A52766;
+$pp-400: #DA629F;
+$pp-500: #BE377C;
+$pp-600: #A12663;
 $pp-700: #701A48;
 
 $rc-50: #fef5f6;
 $rc-100: #ffe6e9;
-$rc-200: #FBD0D6;
-$rc-300: #F797A3;
-$rc-400: #F95367;
-$rc-500: #E83047;
-$rc-600: #D22D41;
+$rc-200: #FABDC5;
+$rc-300: #F98B98;
+$rc-400: #F3596C;
+$rc-500: #E03E52;
+$rc-600: #C92C3F;
 $rc-700: #A42333;
 
-$og-50: #FFF9F7;
-$og-100: #FFF3F0;
+$og-50: #FEF9F8;
+$og-100: #FFEBE5;
 $og-200: #FFD6CC;
 $og-300: #FDAF9B;
 $og-400: #FF8567;
-$og-500: #F5613D;
+$og-500: #F06442;
 $og-600: #D64B29;
 $og-700: #AB3C21;
 
@@ -242,18 +246,87 @@ $n: map-merge(("0": $n-0,
 		),
 		$n);
 
-$palete: (
+$palete: ();
+
+$palete: map-merge(
+	(
+		'PiccoloGreen': $g,
+		'SulivanTurquoise': $t,
+		'NocturneBlue': $b,
+		'NightWingIndigo': $i,
+		'RavenViolet': $v,
+		'PeppaPink': $p,
+		'CarmenRed': $r,
+		'GokuOrange': $o,
+		'LisaAmber': $a,
+		'Neutrals': $n,
+	),
+$palete);
+
+$baseColors: (
+	'teal': $ts-400,
+	'green': $gp-400,
+	'blue': $bn-400,
+	'indigo': $in-400,
+	'violet': $vr-400,
+	'pink': $pp-400,
+	'red': $rc-400,
+	'orange': $og-400,
+	'amber': $al-400,
+	'dark': $n-600,
+	'white': $n-0,
 );
 
-$palete: map-merge(('PiccoloGreen': $g,
-			'SulivanTurquoise': $t,
-			'NocturneBlue': $b,
-			'NightWingIndigo': $i,
-			'RavenViolet': $v,
-			'PeppaPink': $p,
-			'CarmenRed': $r,
-			'GokuOrange': $o,
-			'LisaAmber': $a,
-			'Neutrals': $n,
-		),
-		$palete);
+$disabledColors: (
+	'teal': $ts-300,
+	'green': $gp-300,
+	'blue': $bn-300,
+	'indigo': $in-300,
+	'violet': $vr-300,
+	'pink': $pp-300,
+	'red': $rc-300,
+	'orange': $og-300,
+	'amber': $al-300,
+	'dark': $n-400,
+	'white': $n-0,
+);
+
+$mutedColors: (
+	'teal': $ts-200,
+	'green': $gp-200,
+	'blue': $bn-200,
+	'indigo': $in-200,
+	'violet': $vr-200,
+	'pink': $pp-200,
+	'red': $rc-200,
+	'orange': $og-200,
+	'amber': $al-200,
+	'dark': $n-200,
+	'white': $n-0,
+);
+
+$hoverColors: (
+	'teal': $ts-500,
+	'green': $gp-500,
+	'blue': $bn-500,
+	'indigo': $in-500,
+	'violet': $vr-500,
+	'pink': $pp-500,
+	'red': $rc-500,
+	'orange': $og-500,
+	'amber': $al-500,
+	'dark': $n-700,
+	'white': $n-0,
+);
+
+@mixin variantResolver {
+	@each $color-name, $base-color in $baseColors {
+		$disabled: map-get($disabledColors , $color-name);
+		$muted: map-get($mutedColors , $color-name);
+		$hover: map-get($hoverColors , $color-name);
+
+		&--#{$color-name} {
+			@content($color-name, $base-color, $disabled, $muted, $hover);
+		}
+	}
+}

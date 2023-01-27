@@ -1,0 +1,54 @@
+// Vitest Snapshot v1
+
+exports[`EmptyState > renders correctly 1`] = `
+VueWrapper {
+  "__app": {
+    "_component": [Object],
+    "_container": <div … />,
+    "_context": [Object],
+    "_instance": [Object],
+    "_props": null,
+    "_uid": 0,
+    "component": [Function],
+    "config": [Object],
+    "directive": [Function],
+    "mixin": [Function],
+    "mount": [Function],
+    "provide": [Function],
+    "unmount": [Function],
+    "use": [Function],
+    "version": "3.2.37",
+  },
+  "__setProps": [Function],
+  "componentVM": {
+    "actionButtonText": "Finalizar",
+    "actionButtonVariant": "green",
+    "hasOwnProperty": [Function],
+    "hideActionButton": false,
+    "image": "",
+    "imageDescription": "Imagem de Empty State",
+    "text": "EmptyState text",
+    "title": "EmptyState title",
+  },
+  "isDisabled": [Function],
+  "rootVM": {},
+  "wrapperElement": <div
+    class="empty-state"
+    data-v-f262d0f3=""
+  >
+    <!-- @slot Slot usado para inserção de conteúdo gráfico
+			customizado como alternativa a imagem do empty-state. -->
+    
+    <img … />
+    
+    <div … />
+    <div … />
+    <!--
+			Evento emitido quando o botão do Empty State é clicado
+			@event action-button-click
+			@type {Event}
+		-->
+    <span … />
+  </div>,
+}
+`;

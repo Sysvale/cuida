@@ -1,0 +1,29 @@
+* {
+	box-sizing: border-box;
+}
+
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+svg {
+	box-sizing: content-box;
+}
+
+body {
+	line-height: 1.25;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+svg:focus {
+	outline: none;
+}

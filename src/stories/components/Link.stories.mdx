@@ -1,0 +1,79 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Link from '../../components/Link.vue';
+
+<Meta
+	title="Componentes/Navegação/Link"
+	component={ Link }
+	argTypes={{
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-link
+	href="https://github.com/Sysvale/cuida"
+	text="Cuida"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsLink: Link },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-link
+			v-bind="args"
+		/>
+	`,
+});
+
+# Link
+
+### Links são componentes usados ​​para navegar para outra página e podem abrir uma nova guia.
+---
+<br />
+
+## Quando usar:
+- For necessário navegar para outra seção ou página.
+- For necessário redirecionar para um site ou documento externo.
+
+<br />
+
+## Quando não usar:
+- For necessário executar uma ação (exemplo: salvar, editar). Nesses casos é recomendado utilizar o componente Button.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Link"
+		args={{
+			href: 'https://github.com/Sysvale/cuida',
+			text: 'Cuida'
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Link" />

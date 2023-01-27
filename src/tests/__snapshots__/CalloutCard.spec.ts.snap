@@ -1,0 +1,44 @@
+// Vitest Snapshot v1
+
+exports[`CalloutCard > renders correctly 1`] = `
+VueWrapper {
+  "__app": {
+    "_component": [Object],
+    "_container": <div … />,
+    "_context": [Object],
+    "_instance": [Object],
+    "_props": null,
+    "_uid": 0,
+    "component": [Function],
+    "config": [Object],
+    "directive": [Function],
+    "mixin": [Function],
+    "mount": [Function],
+    "provide": [Function],
+    "unmount": [Function],
+    "use": [Function],
+    "version": "3.2.37",
+  },
+  "__setProps": [Function],
+  "componentVM": {
+    "actionButtonDisabled": false,
+    "actionButtonSecondary": false,
+    "actionButtonText": "Ok",
+    "actionButtonVariant": "green",
+    "compact": false,
+    "hasOwnProperty": [Function],
+    "image": "https://cdn-icons-png.flaticon.com/512/7486/7486747.png",
+    "imageDescription": "Imagem de CalloutCard",
+    "resolveClass": [Function],
+    "text": "Subtítulo do AlertCard",
+    "title": "Título do CalloutCard",
+  },
+  "isDisabled": [Function],
+  "rootVM": {},
+  "wrapperElement": <span
+    id="callout-card"
+  >
+    <div … />
+  </span>,
+}
+`;

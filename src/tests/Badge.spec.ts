@@ -1,16 +1,18 @@
 // @vitest-environment jsdom
-import { describe, it, expect } from 'vitest';
-import { flushPromises } from '@vue/test-utils';
+import { describe, test, expect } from 'vitest';
 import Badge from '../components/Badge.vue';
 import { mount } from '@vue/test-utils';
 
 describe('Badge', () => {
-	it('renders correctly', async () => {
+	test('renders correctly', async () => {
 		const wrapper = mount(Badge, {
-			variant: 'gray',
+			props: {
+				variant: 'gray',
+			},
+			slots: {
+				default: 'Badge'
+			}
 		});
-
-		await flushPromises();
 
 		expect(wrapper).toMatchSnapshot();
 	});

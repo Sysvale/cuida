@@ -1,0 +1,84 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Alert from '../../components/Alert.vue';
+
+<Meta
+	title="Componentes/Notificação/Alert"
+	component={ Alert }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'info',
+					'success',
+					'warning',
+					'danger',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-alert
+	variant="info",
+	text="Texto do alerta",
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsAlert: Alert },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-alert
+			v-bind="args" 
+		>
+			Texto do alerta pelo slot
+		</cds-alert>
+	`,
+});
+
+# Alert
+
+### Alerts são componentes utilizados para prover feedbacks contextuais e notificações em resposta a ações do usuário ou atividades do sistema.
+---
+<br />
+
+## Quando usar:
+- For necessário mostrar informações contextuais.
+- Para feedbacks urgentes.
+
+<br />
+
+## Quando não usar:
+- Não cubra outros elementos da interface com um Alert.
+- For necessário mostrar informações de modo não intrusivo. Para esse caso, recomendamos o uso de b-toasts.
+- For necessário mostrar informações contextuais extensas. Para esse caso, recomendamos o uso de AlertCard.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Alert"
+		args={{
+			variant: 'info',
+			text: 'Texto do alerta',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Alert" />

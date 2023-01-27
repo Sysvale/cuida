@@ -1,0 +1,70 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import SkeletonText from '../../components/SkeletonText.vue';
+
+<Meta
+	title="Componentes/Loaders/SkeletonText"
+	component={ SkeletonText }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-skeleton-text
+	:width="250"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsSkeletonText: SkeletonText },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-skeleton-text
+			v-bind="args" 
+		/>
+	`,
+});
+
+# Skeleton Text
+
+### Skeleton texts permitem exibir um estado de carregamento para vários tipos de componentes
+### enquanto seus dados estão sendo buscados.
+---
+<br />
+
+## Quando usar:
+- Informar ao usuário que as informações do componentes estão sendo carregadas.
+- O conteúdo a ser carregado for dinâmico.
+
+<br />
+
+## Quando não usar:
+- O conteúdo a ser carregado for estático.
+
+## Observações
+- O Skeleton text deve ser ajustado de acordo com o componente a ser utilizado.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="SkeletonText"
+		
+		args={{
+			width: "250"
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="SkeletonText" />

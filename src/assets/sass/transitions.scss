@@ -1,0 +1,14 @@
+$interaction: all .2s ease-in-out;
+$hover: all .3s ease-in-out;
+$opening: all .4s ease-in-out;
+
+$transition: ();
+
+$transition: map-merge(
+	(
+		'interaction': $interaction,
+		'hover': $hover,
+		'opening': $opening,
+	),
+	$transition
+);

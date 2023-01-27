@@ -1,0 +1,94 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import TimeInput from '../../components/TimeInput.vue';
+
+<Meta
+	title="Componentes/Forms/TimeInput"
+	component={ TimeInput }
+	argTypes={{
+		mode: {
+			control:{
+				type: 'select',
+				options: [
+					'single',
+					'range',
+				],
+			}
+		},
+		state: {
+			control:{
+				type: 'select',
+				options: [
+					'default',
+					'valid',
+					'invalid',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ `
+<cds-time-input
+	label="Horário"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsTimeInput: TimeInput },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			value: '',
+		};
+	},
+	template: /*html*/ `
+		<cds-time-input
+			v-bind="args"
+			v-model="value"
+		/>`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
+});
+
+# TimeInput
+
+### TimeInputs são componentes utilizados para inserir horários específicos no formato simples: hora e minutos.
+---
+<br />
+
+## Quando usar:
+- For necessário definir horários de eventos, agendamentos, alarmes e etc…
+
+<br />
+
+## Quando não usar:
+- For necessário mostrar opções disponíveis de horários para seleção.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="TimeInput"
+		
+		args={{
+			label: "Horário",
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="TimeInput" />

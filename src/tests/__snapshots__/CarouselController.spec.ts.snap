@@ -1,0 +1,50 @@
+// Vitest Snapshot v1
+
+exports[`Button > renders correctly 1`] = `
+VueWrapper {
+  "__app": {
+    "_component": [Object],
+    "_container": <div … />,
+    "_context": [Object],
+    "_instance": [Object],
+    "_props": null,
+    "_uid": 0,
+    "component": [Function],
+    "config": [Object],
+    "directive": [Function],
+    "mixin": [Function],
+    "mount": [Function],
+    "provide": [Function],
+    "unmount": [Function],
+    "use": [Function],
+    "version": "3.2.37",
+  },
+  "__setProps": [Function],
+  "componentVM": {
+    "clickHandler": [Function],
+    "computedStyle": "button--green--active button-size--md",
+    "disabled": false,
+    "hasOwnProperty": [Function],
+    "loading": false,
+    "predefinedColor": "button--green",
+    "predefinedColors": [Array],
+    "predefinedSize": "button-size--md",
+    "predefinedSizes": [Array],
+    "secondary": false,
+    "size": "md",
+    "text": "Lorem ipsum",
+    "variant": "green",
+  },
+  "isDisabled": [Function],
+  "rootVM": {},
+  "wrapperElement": <span
+    data-v-3c9d0845=""
+    id="cds-button"
+    perpage="4"
+    propertyname="Métricas"
+    total="12"
+  >
+    <button … />
+  </span>,
+}
+`;

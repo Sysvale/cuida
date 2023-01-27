@@ -1,0 +1,62 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import LoadingBar from '../../components/LoadingBar.vue';
+
+<Meta
+	title="Componentes/Loaders/LoadingBar"
+	component={ LoadingBar }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-loading-bar />`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsLoadingBar: LoadingBar },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<center>
+			<cds-loading-bar
+				v-bind="args"
+			/>
+		</center>
+	`,
+});
+
+# LoadingBar
+
+### LoadingBars é um componente utilizado para indicar que o progresso de uma operação ainda não foi finalizado.
+---
+<br />
+
+## Quando usar:
+- For necessário impedir a visualização e navegação do conteúdo de páginas enquanto houver alguma pendência de operação.
+
+<br />
+
+## Quando não usar:
+- A visualização e navegação não puder ser interrompida.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="LoadingBar"
+		
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="LoadingBar" />

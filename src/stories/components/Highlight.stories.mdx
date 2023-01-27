@@ -1,0 +1,102 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Highlight from '../../components/Highlight.vue';
+
+<Meta
+	title="Componentes/Display/Highlight"
+	component={ Highlight }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'info',
+					'success',
+					'danger',
+				],
+			}
+		},
+		duration: { 
+			control: {
+				type: 'range',
+				min: 0.5,
+				max: 5,
+				step: 0.1,
+			},
+		},
+		delay: {
+			control: {
+				type: 'range',
+				min: 0,
+				max: 5,
+				step: 0.1,
+			},
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-highlight
+	animated
+	:duration="1"
+	:delay="0"
+>
+	<span> Texto bem importante</span>
+</cds-highlight>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsHighlight: Highlight },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-highlight v-bind="args">
+			<span> Texto bem importante</span>
+		</cds-highlight>
+	`,
+});
+
+# Highlight
+
+### Highlights são componentes utilizados para destacar palavras ou frases importantes em um determinado contexto.
+---
+<br />
+
+## Quando usar:
+- Se deseja guiar a atenção do usuário para palavras ou frases específicas na interface (nesses cenários, Highlights animados podem ser ainda mais efetivos que os comuns).
+- Estiver implementando alguma feature de *diff* e precisar indicar elementos que foram substituídos por outros.
+
+<br />
+
+## Quando não usar:
+- Se deseja criar hierarquia na página. Para esses casos, use mecanismos de hierarquia tipográfica como peso da fonte, tamanho ou cor.
+- O elemento sobre o qual o Highlight será *wrapper* não for um elemento de texto.
+- Forem destacados trechos muito grandes de texto. Isso pode acabar resultando no oposto do que se espera com o uso de Highlights.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Highlight"
+		
+		args={{
+			animated: true,
+			duration: 1,
+			delay: 0,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Highlight" />

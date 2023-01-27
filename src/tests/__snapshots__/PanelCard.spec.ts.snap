@@ -1,0 +1,41 @@
+// Vitest Snapshot v1
+
+exports[`PanelCard > renders correctly 1`] = `
+VueWrapper {
+  "__app": {
+    "_component": [Object],
+    "_container": <div … />,
+    "_context": [Object],
+    "_instance": [Object],
+    "_props": null,
+    "_uid": 0,
+    "component": [Function],
+    "config": [Object],
+    "directive": [Function],
+    "mixin": [Function],
+    "mount": [Function],
+    "provide": [Function],
+    "unmount": [Function],
+    "use": [Function],
+    "version": "3.2.37",
+  },
+  "__setProps": [Function],
+  "componentVM": {
+    "contentClass": "panel-card__content",
+    "hasOwnProperty": [Function],
+    "noContentPadding": false,
+    "subtitle": "Habilite as redes da regulação",
+    "title": "Redes",
+  },
+  "isDisabled": [Function],
+  "rootVM": {},
+  "wrapperElement": <div
+    class="panel-card"
+    data-v-9994fd39=""
+  >
+    <div … />
+    <div … />
+    <div … />
+  </div>,
+}
+`;

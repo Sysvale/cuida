@@ -1,0 +1,106 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview, Source } from '@storybook/addon-docs';
+import ActionBar from '../../components/ActionBar.vue';
+import Button from '../../components/Button.vue';
+
+<Meta
+	title="Componentes/Display/ActionBar"
+	component={ ActionBar }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ `
+<cds-action-bar
+	v-bind="args"
+	:show="showActionBar"
+	@click="logAction"
+	@close="logClose"
+>
+	<template #description>
+		8 itens selecionados
+	</template>
+</cds-action-bar>`
+			},
+		}}
+	}
+/>
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			showActionBar: false,
+		};
+	},
+	components: { CdsActionBar: ActionBar, CdsButton: Button },
+	template: /*html*/ `
+		<div>
+			<cds-button
+				id="trigger-popover"
+				@click="togglePopover"
+			>
+				Click
+			</cds-button>
+			<cds-action-bar
+				v-bind="args"
+				:show="showActionBar"
+				@click="logAction"
+				@close="logClose"
+			>
+				<template #description>
+					8 itens selecionados
+				</template>
+			</cds-action-bar>
+		</div>
+	`,
+	methods: {
+		logAction(btn) {
+			console.info('logAction: ', btn);
+		},
+		logClose(event) {
+			this.showActionBar = false;
+			console.info('logClose: ', event);
+		},
+		togglePopover() {
+			this.showActionBar = true;
+		},
+	},
+});
+
+# ActionBar
+
+### ActionBars são barras de ferramentas que podem exibir ações e informações para o usuário.
+---
+<br />
+
+## Quando usar:
+- Par agrupar ações que o usuário pode tomar sobre itens de uma lista ou tabela.
+- Não houver espaço nos menus e em outros locais para exibir ações e informações.
+
+<br />
+
+## Quando não usar:
+- Para exibir os status do sistema.
+- Em modo flutuante, a ActionBar ocultar permanentemente informações na tela.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Action Bar"
+		args={{
+			actions: ['Button1', 'Button2', 'Button3'],
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Action Bar" />

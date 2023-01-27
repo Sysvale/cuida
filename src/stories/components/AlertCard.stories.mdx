@@ -1,0 +1,91 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import AlertCard from '../../components/AlertCard.vue';
+
+<Meta
+	title="Componentes/Notificação/AlertCard"
+	component={ AlertCard }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'info',
+					'warning',
+					'danger',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-alert-card
+	:title="title"
+	:subTitle="subTitle"
+	variant="info"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsAlertCard: AlertCard },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-alert-card
+			v-bind="args" 
+		/>
+	`,
+});
+
+# AlertCard
+
+### AlertCards são componentes utilizados para transmitir mensagens contextuais importantes e apresentar possíveis ações a serem tomadas em cima delas.
+---
+<br />
+
+## Quando usar:
+- For necessário mostrar informações contextuais extensas.
+- For necessário mostrar informações contextuais que requerem ações do usuário sobre elas.
+
+<br />
+
+## Quando não usar:
+- For necessário mostrar informações de maneira discreta ou que pode ser ocultada. Para esse caso, recomendamos o uso de b-toasts.
+- For necessário mostrar informações contextuais curtas.
+
+<br />
+
+## Preview
+
+export const title = 'Título do AlertCard';
+
+export const subTitle =  `Existe uma teoria que diz que, se um dia alguém descobrir 
+				exatamente para que serve o Universo e por que ele está aqui, ele 
+				desaparecerá instantaneamente e será substituídopor al go ainda 
+				mais estranho e inexplicável. Existe uma segunda teoria que diz 
+				que isso já aconteceu.`;
+
+<Canvas>
+	<Story
+		name="AlertCard"
+		args={{
+			title,
+			subTitle,
+			variant: 'info',
+			value: false,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="AlertCard" />

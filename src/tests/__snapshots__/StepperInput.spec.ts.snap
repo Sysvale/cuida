@@ -1,0 +1,48 @@
+// Vitest Snapshot v1
+
+exports[`TextInput > renders correctly 1`] = `
+VueWrapper {
+  "__app": {
+    "_component": [Object],
+    "_container": <div … />,
+    "_context": [Object],
+    "_instance": [Object],
+    "_props": null,
+    "_uid": 0,
+    "component": [Function],
+    "config": [Object],
+    "directive": [Function],
+    "mixin": [Function],
+    "mount": [Function],
+    "provide": [Function],
+    "unmount": [Function],
+    "use": [Function],
+    "version": "3.2.37",
+  },
+  "__setProps": [Function],
+  "componentVM": {
+    "disabled": false,
+    "errorMessage": "Valor inválido",
+    "errorState": false,
+    "handleInput": [Function],
+    "hasOwnProperty": [Function],
+    "isBeingFocused": false,
+    "label": "Label",
+    "modelValue": "",
+    "placeholder": "Digite aqui a informação",
+    "required": false,
+    "state": "default",
+    "stepperInputDynamicClass": "text-input",
+    "validState": false,
+  },
+  "isDisabled": [Function],
+  "rootVM": {},
+  "wrapperElement": <div
+    data-v-d8d9f755=""
+  >
+    <label … />
+    <div … />
+    <!--v-if-->
+  </div>,
+}
+`;
