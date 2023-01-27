@@ -1,9 +1,10 @@
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import AvatarGroup from '../../components/AvatarGroup.vue';
 import Avatar from '../../components/Avatar.vue';
 
 <Meta
-	title="Componentes/Display/Avatar"
-	component={ Avatar }
+	title="Componentes/Display/AvatarGroup"
+	component={ AvatarGroup }
 	argTypes={{
 		variant: {
 			control:{
@@ -50,19 +51,23 @@ import Avatar from '../../components/Avatar.vue';
 />
 
 export const Template = (args) => ({
-	components: { CdsAvatar: Avatar },
+	components: { CdsAvatarGroup: AvatarGroup, CdsAvatar: Avatar },
 	setup() {
 		return { args };
 	},
 	template: /*html*/ `
-		<cds-avatar
+		<cds-avatar-group
 			v-bind="args" 
-		/>
+		>
+			<cds-avatar src="https://userstock.io/data/wp-content/uploads/2020/06/kimson-doan-HD8KlyWRYYM-4-1024x1024.jpg" />
+			<cds-avatar src="https://userstock.io/data/wp-content/uploads/2020/06/tyler-nix-PQeoQdkU9jQ-1024x1024.jpg" />
+			<cds-avatar src="https://userstock.io/data/wp-content/uploads/2017/07/ayo-ogunseinde-221958-1024x723.jpg"/>
+		</cds-avatar-group>
 	`
 });
 
 
-# Avatar
+# AvatarGroup
 
 ### Avatares são componentes utilizados para exibir representações visuais de usuários, como imagens ou nome.
 ---
