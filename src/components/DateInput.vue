@@ -35,6 +35,19 @@
 			@day-click="handleDateInput"
 			@input="handleDateInput"
 		>
+			<template #header-left-button="{ page }">
+				<cds-chevron
+					direction="left"
+					@click="page.movePrevMonth()"
+				/>
+			</template>
+			<template #header-right-button="{ page }">
+				<cds-chevron
+					direction="right"
+					@click="page.moveNextMonth()"
+				/>
+			</template>
+
 			<template #default="{ inputValue, togglePopover, inputEvents }">
 				<input
 					:value="inputValue"
@@ -63,12 +76,14 @@
 import { DateTime } from 'luxon';
 import { DatePicker } from 'v-calendar';
 import 'v-calendar/dist/style.css';
+import CdsChevron from './Chevron.vue';
 
 const dateStringValidator = (value) => /^(19|20)\d\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/.test(value);
 
 export default {
 	components: {
 		VDatePicker: DatePicker,
+		CdsChevron,
 	},
 
 	props: {
@@ -233,7 +248,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../assets/sass/tokens.scss';
 
 .date-input {
@@ -292,5 +307,28 @@ export default {
 		color: $rc-600;
 		margin: mt(1);
 	}
+}
+
+.vc-popover-caret {
+	display: none !important;
+}
+
+.vc-container {
+	outline: 1px solid $n-30 !important;
+	border: none !important;
+	border-radius: $border-radius-extra-small !important;
+}
+
+.vc-popover-content {
+	box-shadow: none !important;
+	box-shadow: 0px 0px 8px rgba($n-900, .08) !important;
+}
+
+.vc-arrows-container {
+	padding: 12px 10px !important
+}
+
+.vc-title {
+	line-height: 24px !important;
 }
 </style>
