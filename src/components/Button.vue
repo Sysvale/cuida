@@ -1,23 +1,22 @@
 <template>
-	<span id="cds-button">
-		<button
-			class="button__container"
-			:class="computedStyle"
-			@click="clickHandler()"
-		>
-			<cds-spinner
-				v-if="loading"
-				variant="white"
-				size="sm"
-				class="button__loader"
-			/>
+	<button
+		id="cds-button"
+		class="button__container"
+		:class="computedStyle"
+		@click.stop="clickHandler()"
+	>
+		<cds-spinner
+			v-if="loading"
+			variant="white"
+			size="sm"
+			class="button__loader"
+		/>
 
-			<!-- @slot Slot padrão utilizado para exibir texto do botão. -->
-			<slot>
-				{{ text }}
-			</slot>
-		</button>
-	</span>
+		<!-- @slot Slot padrão utilizado para exibir texto do botão. -->
+		<slot>
+			{{ text }}
+		</slot>
+	</button>
 </template>
 <script>
 import CdsSpinner from '../components/Spinner.vue';
