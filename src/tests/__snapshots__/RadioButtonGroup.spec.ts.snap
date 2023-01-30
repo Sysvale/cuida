@@ -24,14 +24,15 @@ VueWrapper {
     "disabled": false,
     "hasOwnProperty": [Function],
     "inline": false,
+    "modelValue": null,
     "options": [Array],
-    "selected": "",
-    "value": "",
+    "selected": null,
   },
   "isDisabled": [Function],
   "rootVM": {},
   "wrapperElement": <span
     id="radioButton"
+    value=""
   >
     <div … />
   </span>,

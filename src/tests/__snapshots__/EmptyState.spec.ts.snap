@@ -48,7 +48,7 @@ VueWrapper {
 			@event action-button-click
 			@type {Event}
 		-->
-    <span … />
+    <button … />
   </div>,
 }
 `;
