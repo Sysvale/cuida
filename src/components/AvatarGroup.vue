@@ -1,150 +1,100 @@
 <template>
 	<div class="avatar--group__container">
-		<slot />
+		<cds-tooltip
+			v-for="(avatarData, index) in listAvatars"
+			:key="index"
+			position="bottom"
+			:text="avatarData.name"
+		>
+			<cds-avatar
+				v-bind="avatarData"
+				:size="size"
+				:clickable="false"
+			/>
+		</cds-tooltip>
+
+		<cds-avatar
+			v-if="showAvatarCounter"
+			:size="size"
+			:clickable="false"
+			:name="avatarCounterText"
+			variant="gray"
+			class="avatar--group__counter"
+		/>
 	</div>
 </template>
 <script>
-
+import CdsAvatar from './Avatar.vue';
+import CdsTooltip from './Tooltip.vue';
 export default {
+	components: {
+		CdsAvatar,
+		CdsTooltip,
+	},
+
 	props: {
-		/**
-		 * A variante de cor. São 10 variantes implementadas: 'green', 'teal',
-		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.
-		 */
-		variant: {
-			type: String,
-			default: 'green',
-		},
-		/**
-		 * Especifica o tamanho do avatar. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
-		 */
 		size: {
 			type: String,
 			default: 'md',
 		},
-		/**
-		 * src da imagem do avatar. Tem prioridade maior que as props de iniciais de nome.
-		 */
-		src: {
-			type: String,
-			default: '',
+		avatars: {
+			type: Array,
+			default: () => [],
 		},
-		/**
-		 * Recebe as iniciais do usuário cujas informações vão ser mostradas no Avatar.
-		 * As iniciais são exibidas apenas quando nenhuma imagem é especificada.
-		 */
-		initials: {
-			type: String,
-			default: null,
+		maxCount: {
+			type: Number,
+			default: 4,
 		},
-		/**
-		 * Recebe o nome do usuário cujas informações vão ser mostradas no Avatar.
-		 * Do nome são extraídas as duas primeiras iniciais para exibição no componente
-		 * quando nenhuma imagem é especificada.
-		 */
-		name: {
-			type: String,
-			default: null,
-		},
-		clickable: {
-			type: Boolean,
-			default: false,
-		}
+	},
+
+	data() {
+		return {
+			listAvatars: this.avatars.slice(0, this.maxCount),
+		};
 	},
 
 	computed: {
-		computedInitials() {
-			if (this.initials) {
-				return this.initials;
-			}
-
-			if (this.name) {
-				return this.name.replace(/(\S+)(\s*)/gi, (p1) => p1[0].toUpperCase()).slice(0, 2);
-			}
-
-			return 'UND';
+		showAvatarCounter() {
+			return this.maxCount < this.avatars.length;
 		},
 
-		avatarContainerClasses() {
-			let className = '';
-
-			switch (this.variant) {
-				case 'teal':
-					className = 'avatar__container--teal';
-					break;
-				case 'green':
-					className = 'avatar__container--green';
-					break;
-				case 'blue':
-					className = 'avatar__container--blue';
-					break;
-				case 'indigo':
-					className = 'avatar__container--indigo';
-					break;
-				case 'violet':
-					className = 'avatar__container--violet';
-					break;
-				case 'pink':
-					className = 'avatar__container--pink';
-					break;
-				case 'red':
-					className = 'avatar__container--red';
-					break;
-				case 'orange':
-					className = 'avatar__container--orange';
-					break;
-				case 'amber':
-					className = 'avatar__container--amber';
-					break;
-				case 'gray':
-					className = 'avatar__container--gray';
-					break;
-				case 'white':
-					className = 'avatar__container--white';
-					break;
-				default:
-					className = 'avatar__container--gray';
-					break;
-			}
-
-			switch (this.size) {
-				case 'sm':
-					className += ' avatar__container--sm';
-					break;
-				case 'md':
-					className += ' avatar__container--md';
-					break;
-				case 'lg':
-					className += ' avatar__container--lg';
-					break;
-			}
-
-			return className;
-		}
-	}
+		avatarCounterText() {
+			return `+ ${this.avatars.length - this.maxCount}`;
+		},
+	},
 }
 </script>
 
 <style lang="scss">
 @import '../assets/sass/tokens.scss';
 
-.avatar--group__container {
-	display: flex;
-
-	& > .avatar__container:not(:first-child) {
-		margin: ml(n3);
+.avatar--group {
+	&__container {
+		display: flex;
+	
+		//FIXME: Número fixo. Se encontrarmos uma solução
+		//que não seja hardcoded, vale trocar aqui
+		@for $i from 20 to 0 {
+			& > .tp:nth-child(#{$i - 1}) {
+				z-index: ($i - 20) * -1;
+			}
+		}
+	
+		& > .tp:not(:first-child) {
+			margin: ml(n1);
+		}
+	
+		& > * {
+			outline: 2px solid $n-0;
+		}
 	}
 
-	& > .avatar__container:nth-child(2) {
-		outline: 4px solid $n-0;
-		z-index: 2;
+	&__counter {
+		margin: ml(n1);
 	}
-
-	& > .avatar__container:nth-child(3) {
-		outline: 4px solid $n-0;
-		z-index: 3;
-	}
-
 }
 
+.tp {
+	border-radius: 100px;
+}
 </style>
