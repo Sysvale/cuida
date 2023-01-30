@@ -24,15 +24,25 @@ VueWrapper {
     "disabled": false,
     "errorMessage": "Valor inválido",
     "errorState": false,
-    "handleInput": [Function],
+    "fluid": false,
     "hasOwnProperty": [Function],
+    "hasSlots": false,
+    "inputClass": "text-input__field",
+    "internalValue": "",
     "isBeingFocused": false,
     "label": "Label",
+    "labelDynamicClass": "text-input__label",
+    "linkText": "#",
+    "linkUrl": "https://cuida.framer.wiki/",
+    "loadingState": false,
+    "mask": null,
     "modelValue": "",
     "placeholder": "Digite aqui a informação",
     "required": false,
     "state": "default",
     "stepperInputDynamicClass": "text-input",
+    "tooltip": null,
+    "tooltipIcon": "info-outline",
     "validState": false,
   },
   "isDisabled": [Function],
@@ -42,7 +52,7 @@ VueWrapper {
     fields="field1,field2,field3"
     items="[object Object],[object Object]"
   >
-    <label … />
+    <span … />
     <div … />
     <!--v-if-->
   </div>,
