@@ -1,0 +1,91 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Popover from '../../components/Popover.vue';
+import Button from '../../components/Button.vue';
+
+<Meta
+	title="Componentes/Overlays/Popover"
+	component={ Popover }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-modal
+	:show="showModal"
+	@close="showModal = false"
+	@ok="showModal = false"
+>
+	<span>
+		Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
+		eu conheço uma cachacis que pode alegrar sua vidis.Paisis, filhis, espiritis santis.Leite de capivaris,
+		leite de mula manquis sem cabeça.
+	</span>
+</cds-modal>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			showPopover: false,
+		};
+	},
+	components: { CdsPopover: Popover, CdsButton: Button },
+	template: /*html*/ `
+		<div class="d-flex justify-content-center">
+			<cds-button
+				id="trigger-cds-popover"
+				@click="showPopover = true"
+			>
+				Click
+			</cds-button>
+			<cds-popover
+				v-bind="args"
+				v-model="showPopover"
+				targetId="trigger-cds-popover"
+				:width="400"
+			>
+				<span>
+					Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
+					eu conheço uma cachacis que pode alegrar sua vidis.Paisis, filhis, espiritis santis.Leite de capivaris,
+					leite de mula manquis sem cabeça.
+				</span>
+				<span>
+					Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
+					eu conheço uma cachacis que pode alegrar sua vidis.Paisis, filhis, espiritis santis.Leite de capivaris,
+					leite de mula manquis sem cabeça.
+				</span>
+			</cds-popover>
+		</div>
+	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.showPopover);
+	},
+});
+
+# Popover
+
+### Beta
+
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Popover"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Popover" />
