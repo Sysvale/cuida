@@ -5,6 +5,24 @@ import Button from '../../components/Button.vue';
 <Meta
 	title="Componentes/Overlays/Popover"
 	component={ Popover }
+	argTypes={{
+		width: {
+			control: {
+				type: 'range',
+				min: 50,
+				max: 400,
+				step: 10,
+			},
+		},
+		height: {
+			control: {
+				type: 'range',
+				min: 200,
+				max: 500,
+				step: 10,
+			},
+		},
+	}}
 	parameters={{
 		viewMode: 'docs',
 		previewTabs: { canvas: { hidden: true }},
@@ -13,17 +31,32 @@ import Button from '../../components/Button.vue';
 				language: 'html',
 				format:true,
 				code: /*html*/ 
-`<cds-modal
-	:show="showModal"
-	@close="showModal = false"
-	@ok="showModal = false"
->
-	<span>
-		Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
-		eu conheço uma cachacis que pode alegrar sua vidis.Paisis, filhis, espiritis santis.Leite de capivaris,
-		leite de mula manquis sem cabeça.
-	</span>
-</cds-modal>`
+`<div class="d-flex justify-content-center">
+	<cds-button
+		id="trigger-cds-popover"
+		@click="showPopover = true"
+	>
+		Click
+	</cds-button>
+	<cds-popover
+		rightAligned="false"
+		targetId="trigger-cds-popover"
+		width="250"
+		height="250"
+		v-model="showPopover"
+	>
+		<span>
+			Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
+			eu conheço uma cachacis que pode alegrar sua vidis.Paisis, filhis, espiritis santis.Leite de capivaris,
+			leite de mula manquis sem cabeça.
+		</span>
+		<span>
+			Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
+			eu conheço uma cachacis que pode alegrar sua vidis.Paisis, filhis, espiritis santis.Leite de capivaris,
+			leite de mula manquis sem cabeça.
+		</span>
+	</cds-popover>
+</div>`
 			},
 		}
 	}}
@@ -50,8 +83,6 @@ export const Template = (args) => ({
 			<cds-popover
 				v-bind="args"
 				v-model="showPopover"
-				targetId="trigger-cds-popover"
-				:width="400"
 			>
 				<span>
 					Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
@@ -73,8 +104,21 @@ export const Template = (args) => ({
 
 # Popover
 
-### Beta
+### Popovers são componentes flutuantes utilizados para exibir, sob interação, informações e ações relacionadas ao conteúdo da tela.
 
+---
+<br />
+
+## Quando usar:
+- Para criar dropdowns;
+- Para mostrar informações ou ações adicionais sobre determinado elemento da interface;
+
+<br />
+
+## Quando não usar:
+- Como um substituto para Tooltips, ou seja, tendo como conteúdo apenas pequenas porções de texto;
+- Como um subistituto para modais;
+- Para mostrar informações críticas para o sucesso de uma ação do usuário;
 
 <br />
 
@@ -83,6 +127,12 @@ export const Template = (args) => ({
 <Canvas>
 	<Story
 		name="Popover"
+		args={{
+			rightAligned: false,
+			targetId: 'trigger-cds-popover',
+			width: 250,
+			height: 250,
+		}}
 	>
 		{ Template.bind({}) }
 	</Story>

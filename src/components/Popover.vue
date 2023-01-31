@@ -1,21 +1,26 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div
-		v-show="innerValue"
 		id="cds-popover"
 		v-on-click-outside="hide"
 		class="popover"
 	>
 		<cds-scrollable
-			max-height="250px"
+			v-if="!verticalFluid"
+			:max-height="`${popoverHeight}`"
 		>
+			<!-- @slot Slot utilizado para renderização do conteúdo do Popover.-->
 			<slot />
 		</cds-scrollable>
+		
+		<slot v-else />
 	</div>
 </template>
 
 <script>
 import CdsScrollable from './Scrollable.vue';
 import vClickOutside from 'click-outside-vue3';
+import { createPopper } from '@popperjs/core';
 
 export default {
 	components: {
@@ -28,64 +33,140 @@ export default {
 
 	props: {
 		/**
-		 * Controla o tamanho do popover do Dropdown (em pixels).
-		 * O tamanho nunca é menor que a largura do Dropdown.
-		 */
+		* Prop utilizada como v-model.
+		* controla a exibição do Popover.
+		*/
 		modelValue: {
 			type: Boolean,
 			default: false,
 		},
-		rightAligned: {
-			type: Boolean,
-			default: true,
-		},
 		/**
-		 * Controla o tamanho do popover do Dropdown (em pixels).
-		 * O tamanho nunca é menor que a largura do Dropdown.
+		 * Largura do Popover. A largura mínima é 100px e a máxima é 400px.
 		 */
 		width: {
-			type: Number,
-			default: 0,
+			type: [String, Number],
+			default: 250,
 		},
 		/**
-		 * Controla o tamanho do popover do Dropdown (em pixels).
-		 * O tamanho nunca é menor que a largura do Dropdown.
+		 * Altura do Popover. A altura máxima é 500px
+		 */
+		height: {
+			type: [String, Number],
+			default: 200,
+		},
+		/**
+		 * Id do elemento que será referência para a renderização
+		 * do Popover.
 		 */
 		targetId: {
 			type: String,
 			default: '',
 		},
+		/**
+		 * Quando `true`, alinha o popover à direita do
+		 * do componente referência (target).
+		 */
+		rightAligned: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Quando `true`, remove o scroll interno e torna
+		 * o tamanho do Popover fluido.
+		 */
+		verticalFluid: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
 		return {
-			innerValue: this.modelValue,
+			target: '',
+			popover: '',
+			popperInstance: null,
 		};
 	},
 
+	computed: {
+		variationPlacement() {
+			return this.rightAligned ? 'end' : 'start';
+		},
+
+		popoverWidth() {
+			return `${this.width}px`;
+		},
+
+		popoverHeight() {
+			return this.verticalFluid ? 'fit-content' : `${this.height}px`;
+		},
+	},
+
 	watch: {
-		modelValue(value) {
-			this.innerValue = value;
-		}
+		modelValue(isTrue) {
+			if (isTrue) {
+				this.show();
+			} else {
+				this.hide();
+			}
+		},
 	},
 
 	mounted() {
-		const target = document.getElementById(this.targetId);
-		const popover = document.getElementById('cds-popover');
-
-		const targetDOMRect = target.getBoundingClientRect();
-		const popoverDOMRect = popover.getBoundingClientRect();
-
-		popover.style.top = (targetDOMRect.y + targetDOMRect.height) + 'px';
-
-		if (this.rightAligned) {
-			popover.style.left = targetDOMRect.left - popoverDOMRect.width + targetDOMRect.width + 'px';
-		}
+		setTimeout(() => {
+			this.target = document.querySelector(`[id='${this.targetId}']`);
+			this.popover = document.querySelector('#cds-popover');
+			
+			this.popperInstance = createPopper(this.target, this.popover, {
+				placement: `bottom-${this.variationPlacement}`,
+				modifiers: [
+					{
+						name: 'offset',
+						options: {
+							offset: [0, 8],
+						},
+					},
+					{
+						name: 'flip',
+						options: {
+							fallbackPlacements: [`top-${this.variationPlacement}`],
+						},
+					},
+				],
+			});
+		}, 150);
 	},
 
 	methods: {
+		show() {
+			this.popover.setAttribute('data-show', '');
+
+			this.popperInstance.setOptions((options) => ({
+				...options,
+				modifiers: [
+					...options.modifiers,
+					{ name: 'eventListeners', enabled: true },
+				],
+			}));
+
+			this.popperInstance.update();
+		},
+
 		hide() {
-			this.innerValue = false;
+			this.popover.removeAttribute('data-show');
+
+			this.popperInstance.setOptions((options) => ({
+				...options,
+				modifiers: [
+					...options.modifiers,
+					{ name: 'eventListeners', enabled: false },
+				],
+			}));
+			/**
+			* Evento utilizado para implementar o v-model.
+			* @event update:modelValue
+			* @type {Event}
+			*/
 			this.$emit('update:modelValue', false);
 		}
 	},
@@ -95,27 +176,25 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
 .popover {
-	// width: v-bind(popoverWidth);
-	width: 250px;
 	background-color: $n-0;
-	padding: pa(4);
 	border-radius: $border-radius-extra-small;
 	box-shadow: 0px 0px 8px rgba($n-900, .08);
-	outline: 1px solid $n-30;
-	z-index:999999999;
 	color: $n-700;
+	display: none;
+	max-height: 500px;
+	max-width: 400px;
+	min-height: v-bind(popoverHeight);
+	min-width: 100px;
+	outline: 1px solid $n-30;
+	overflow: hidden;
+	padding: pa(4);
 	position: absolute;
-	margin: mt(2);
+	width: v-bind(popoverWidth);
+	z-index: $z-index-tooltip;
 
-	min-height: 250px;
-	max-height: 450px;
-
-	&--active {
-		opacity: 1;
-	}
-
-	&--inactive {
-		opacity: 1;
+	&[data-show] {
+		display: block;
 	}
 }
+
 </style>
