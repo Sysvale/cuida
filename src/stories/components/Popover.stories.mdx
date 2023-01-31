@@ -1,0 +1,141 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Popover from '../../components/Popover.vue';
+import Button from '../../components/Button.vue';
+
+<Meta
+	title="Componentes/Overlays/Popover"
+	component={ Popover }
+	argTypes={{
+		width: {
+			control: {
+				type: 'range',
+				min: 50,
+				max: 400,
+				step: 10,
+			},
+		},
+		height: {
+			control: {
+				type: 'range',
+				min: 200,
+				max: 500,
+				step: 10,
+			},
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<div class="d-flex justify-content-center">
+	<cds-button
+		id="trigger-cds-popover"
+		@click="showPopover = true"
+	>
+		Click
+	</cds-button>
+	<cds-popover
+		rightAligned="false"
+		targetId="trigger-cds-popover"
+		width="250"
+		height="250"
+		v-model="showPopover"
+	>
+		<span>
+			Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
+			eu conheço uma cachacis que pode alegrar sua vidis.Paisis, filhis, espiritis santis.Leite de capivaris,
+			leite de mula manquis sem cabeça.
+		</span>
+		<span>
+			Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
+			eu conheço uma cachacis que pode alegrar sua vidis.Paisis, filhis, espiritis santis.Leite de capivaris,
+			leite de mula manquis sem cabeça.
+		</span>
+	</cds-popover>
+</div>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			showPopover: false,
+		};
+	},
+	components: { CdsPopover: Popover, CdsButton: Button },
+	template: /*html*/ `
+		<div class="d-flex justify-content-center">
+			<cds-button
+				id="trigger-cds-popover"
+				@click="showPopover = true"
+			>
+				Click
+			</cds-button>
+			<cds-popover
+				v-bind="args"
+				v-model="showPopover"
+			>
+				<span>
+					Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
+					eu conheço uma cachacis que pode alegrar sua vidis.Paisis, filhis, espiritis santis.Leite de capivaris,
+					leite de mula manquis sem cabeça.
+				</span>
+				<span>
+					Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
+					eu conheço uma cachacis que pode alegrar sua vidis.Paisis, filhis, espiritis santis.Leite de capivaris,
+					leite de mula manquis sem cabeça.
+				</span>
+			</cds-popover>
+		</div>
+	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.showPopover);
+	},
+});
+
+# Popover
+
+### Popovers são componentes flutuantes utilizados para exibir, sob interação, informações e ações relacionadas ao conteúdo da tela.
+
+---
+<br />
+
+## Quando usar:
+- Para criar dropdowns;
+- Para mostrar informações ou ações adicionais sobre determinado elemento da interface;
+
+<br />
+
+## Quando não usar:
+- Como um substituto para Tooltips, ou seja, tendo como conteúdo apenas pequenas porções de texto;
+- Como um subistituto para modais;
+- Para mostrar informações críticas para o sucesso de uma ação do usuário;
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Popover"
+		args={{
+			rightAligned: false,
+			targetId: 'trigger-cds-popover',
+			width: 250,
+			height: 250,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Popover" />
