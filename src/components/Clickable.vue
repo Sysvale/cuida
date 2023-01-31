@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<!--
 		Evento emitido quando o wrapper é clicado
@@ -9,7 +10,7 @@
 			'clickable__container--clickable': clickable,
 			'clickable__container--not-clickable': !clickable,
 		}"
-		@click="$emit('click', true)"
+		@click.stop="$emit('click', true)"
 	>
 		<slot />
 	</div>

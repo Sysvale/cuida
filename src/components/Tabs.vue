@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div
 		id="tabs"
@@ -5,6 +6,7 @@
 		<ul class="inner-tabs__header">
 			<li
 				v-for="(tab, index) in tabs"
+				:id="`${index}-${tab.name}-tab`"
 				:key="`${index}-${tab.name}-tab`"
 				role="presentation"
 				class="inner-tabs__header-item"
