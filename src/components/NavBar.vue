@@ -2,7 +2,9 @@
 	<div
 		id="nav-bar"
 	>
-		<ul class="nav-bar__container">
+		<ul 
+			:class="items.length < 1 ? 'nav-bar__none-item' : 'nav-bar__container'"
+		>
 			<li
 				v-for="(item, index) in items"
 				:key="`${index}-${item.name}-item`"
@@ -136,6 +138,10 @@ export default {
 
 #nav-bar {
 	.nav-bar {
+        &__none-item {
+            display: block;
+        }
+
 		&__container {
 			display: flex;
 			flex-wrap: wrap;
