@@ -21,6 +21,7 @@ VueWrapper {
   },
   "__setProps": [Function],
   "componentVM": {
+    "clickable": false,
     "hasOwnProperty": [Function],
     "predefinedColors": [Array],
     "predefinedSizes": [Array],

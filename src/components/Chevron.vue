@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div
 		ref="chevron"
@@ -98,7 +99,7 @@ export default {
 	&::before {
 		border-left: 6px solid transparent;
 		border-right: 6px solid transparent;
-		border-bottom: 6px solid $n-400;
+		border-bottom: 6px solid $n-300;
 		border-radius: $border-radius-small;
 		transition: all 300ms ease-in-out;
 	}

@@ -37,13 +37,18 @@ VueWrapper {
   },
   "isDisabled": [Function],
   "rootVM": {},
-  "wrapperElement": <span
+  "wrapperElement": <button
+    class="button__container button--green--active button-size--md"
     data-v-3c9d0845=""
     id="cds-button"
     label="checkbox test"
     value="false"
   >
-    <button … />
-  </span>,
+    <!--v-if-->
+    <!-- @slot Slot padrão utilizado para exibir texto do botão. -->
+    
+    Lorem ipsum
+    
+  </button>,
 }
 `;

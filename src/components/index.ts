@@ -33,6 +33,7 @@ import PageHeader from './PageHeader.vue';
 import Pagination from './Pagination.vue';
 import PanelCard from './PanelCard.vue';
 import PinInput from './PinInput.vue';
+import Popover from './Popover.vue';
 import ProgressBar from './ProgressBar.vue';
 import ProgressCircular from './ProgressCircular.vue';
 import Radio from './Radio.vue';
@@ -97,6 +98,7 @@ export default {
 		app.component('CdsPagination', Pagination); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsPanelCard', PanelCard); //NOTE: Testado no SB
 		app.component('CdsPinInput', PinInput); //NOTE: Testado no SB. !Reativo!
+		app.component('CdsPopover', Popover);
 		app.component('CdsProgressBar', ProgressBar); //NOTE: Testado no SB
 		app.component('CdsProgressCircular', ProgressCircular); //NOTE: Testado no SB
 		app.component('CdsRadio', Radio); //NOTE: Testado no SB
@@ -106,7 +108,7 @@ export default {
 		app.component('CdsSegmentedControl', SegmentedControl);
 		app.component('CdsSelect', Select); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsSkeletonText', SkeletonText); //NOTE: Testado no SB
-		app.component('CdsSlider', Slider);
+		// app.component('CdsSlider', Slider);
 		app.component('CdsSpinner', Spinner); //NOTE: Testado no SB
 		app.component('CdsStepper', Stepper);
 		app.component('CdsStepperInput', StepperInput); //NOTE: Testado no SB. !Reativo!
