@@ -22,18 +22,19 @@ VueWrapper {
   "__setProps": [Function],
   "componentVM": {
     "hasOwnProperty": [Function],
-    "internalValue": true,
+    "internalValue": false,
+    "modelValue": false,
     "title": "Seu universo expandido",
     "triggerExpanded": [Function],
-    "value": true,
   },
   "isDisabled": [Function],
   "rootVM": {},
   "wrapperElement": <span
     id="collapsible-container"
+    value="true"
   >
     <div … />
-    <div … />
+    <!--v-if-->
   </span>,
 }
 `;

@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div class="avatar__container">
 		<div
@@ -115,7 +116,7 @@ export default {
 		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $hover) {
 			background-color: $base-color;
 
-			@if ($color-name == 'white') {
+			@if ($color-name == 'white' or $color-name == 'gray') {
 				color: $n-700;
 			} @else {
 				color: $n-0;
@@ -176,7 +177,7 @@ export default {
 		}
 
 		&--md {
-			@include body-2;
+			@include caption;
 			font-weight: $font-weight-semibold;
 		}
 

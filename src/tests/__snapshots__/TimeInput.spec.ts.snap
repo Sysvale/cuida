@@ -22,17 +22,24 @@ VueWrapper {
   "__setProps": [Function],
   "componentVM": {
     "buildTimeElements": [Function],
+    "computedInputClass": "input__time",
     "disabled": false,
+    "endHour": "",
+    "endMinute": "",
+    "errorMessage": "Horário inválido",
     "formatTimeElement": [Function],
     "handleTimeInput": [Function],
     "hasOwnProperty": [Function],
-    "hour": "",
     "id": "time-input",
     "label": "Test label",
-    "minute": undefined,
+    "mode": "single",
+    "modelValue": "",
     "required": false,
+    "resolveRangeInterval": [Function],
     "resolveTimeElement": [Function],
-    "value": "",
+    "startHour": "",
+    "startMinute": undefined,
+    "state": "default",
   },
   "isDisabled": [Function],
   "rootVM": {},
@@ -41,6 +48,7 @@ VueWrapper {
   >
     <label … />
     <div … />
+    <!--v-if-->
   </div>,
 }
 `;
