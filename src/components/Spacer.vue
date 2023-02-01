@@ -60,49 +60,41 @@ export default {
 	computed: {
 		paddingTopResolver() {
 			let pt = this.paddingTop > 12 ? 12 : +this.paddingTop;
-			
 			return `${pt * 4}px`;
 		},
 
 		paddingRightResolver() {
 			let pr = this.paddingRight > 12 ? 12 : +this.paddingRight;
-			
 			return `${pr * 4}px`;
 		},
 
 		paddingBottomResolver() {
 			let pb = this.paddingBottom > 12 ? 12 : +this.paddingBottom;
-			
 			return `${pb * 4}px`;
 		},
 
 		paddingLeftResolver() {
 			let pl = this.paddingLeft > 12 ? 12 : +this.paddingLeft;
-			
 			return `${pl * 4}px`;
 		},
 
 		marginTopResolver() {
 			let mt = this.marginTop > 12 ? 12 : +this.marginTop;
-			
 			return `${mt * 4}px`;
 		},
 
 		marginRightResolver() {
 			let mr = this.marginRight > 12 ? 12 : +this.marginRight;
-			
 			return `${mr * 4}px`;
 		},
 
 		marginBottomResolver() {
 			let mb = this.marginBottom > 12 ? 12 : +this.marginBottom;
-			
 			return `${mb * 4}px`;
 		},
 
 		marginLeftResolver() {
 			let ml = this.marginLeft > 12 ? 12 : +this.marginLeft;
-			
 			return `${ml * 4}px`;
 		},
 	},
