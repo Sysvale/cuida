@@ -1,5 +1,5 @@
 '🧱 Componente':
-- src/components/index.js
+- src/components/index.ts
 
 '🐛 Bug':
 - any: ['src/components/*.vue']
@@ -7,11 +7,11 @@
 
 '📃 Documentação':
 - any: ['src/stories/**/*.stories.mdx']
-  all: ['!src/components/index.js', '!src/components/*.vue']
+  all: ['!src/components/index.ts', '!src/components/*.vue']
 
 '🛠️ Build':
-- build/rollup.config.js
-- src/entry.js
+- vite.config.ts
+- src/components/index.ts
 - .github/**/*
 
 '🧩 Token':
