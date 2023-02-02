@@ -138,10 +138,6 @@ export default {
 
 #nav-bar {
 	.nav-bar {
-        &__none-item {
-            display: block;
-        }
-
 		&__container {
 			display: flex;
 			flex-wrap: wrap;
