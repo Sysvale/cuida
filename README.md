@@ -6,7 +6,7 @@
 
 <div align="center">
   <p align="center">A design system built by Sysvale, using storybook and Vue components</p>
-  <p align="center">https://sysvale.github.io/cuida/</p>
+  <p align="center">https://main--6168a1779cac8c003ab99c2d.chromatic.com</p>
 </div>
 
 ## Instalando
