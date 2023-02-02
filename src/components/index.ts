@@ -38,6 +38,7 @@ import ProgressBar from './ProgressBar.vue';
 import ProgressCircular from './ProgressCircular.vue';
 import Radio from './Radio.vue';
 import RadioButtonGroup from './RadioButtonGroup.vue';
+import Spacer from './Spacer.vue';
 import Scrollable from './Scrollable.vue';
 import SearchInput from './SearchInput.vue';
 import SegmentedControl from './SegmentedControl.vue';
@@ -103,6 +104,7 @@ export default {
 		app.component('CdsProgressCircular', ProgressCircular); //NOTE: Testado no SB
 		app.component('CdsRadio', Radio); //NOTE: Testado no SB
 		app.component('CdsRadioButtonGroup', RadioButtonGroup); //NOTE: Testado no SB
+		app.component('CdsSpacer', Spacer); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsScrollable', Scrollable); //FIXME: Problema no SB
 		app.component('CdsSearchInput', SearchInput);
 		app.component('CdsSegmentedControl', SegmentedControl);
