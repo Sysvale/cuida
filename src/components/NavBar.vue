@@ -2,7 +2,9 @@
 	<div
 		id="nav-bar"
 	>
-		<ul class="nav-bar__container">
+		<ul 
+			:class="{'nav-bar__container': items.length >= 1}"
+		>
 			<li
 				v-for="(item, index) in items"
 				:key="`${index}-${item.name}-item`"
