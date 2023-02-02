@@ -3,7 +3,7 @@
 		id="nav-bar"
 	>
 		<ul 
-			:class="items.length < 1 ? 'nav-bar__none-item' : 'nav-bar__container'"
+			:class="{'nav-bar__container': items.length >= 1}"
 		>
 			<li
 				v-for="(item, index) in items"
