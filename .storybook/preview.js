@@ -41,13 +41,9 @@ export const parameters = {
 };
 
 import { app } from "@storybook/vue3";
-// import { longClickDirective } from "@sysvale/vue3-long-click";
-// import tippy from 'tippy.js';
-// import 'tippy.js/dist/tippy.css';
 import Cdstip from "../src/utils/directives/cdstip";
+import CdsFloatify from "../src/utils/directives/cdsFloatify";
 
-// const longClickInstance = longClickDirective({ delay: 400, interval: 50 });
-
-// app.directive("longclick", longClickInstance);
 app.directive("cdstip", Cdstip);
+app.directive("cds-floatify", CdsFloatify);
 app.mount("#app");
