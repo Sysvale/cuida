@@ -1,0 +1,83 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Image from '../../components/Image.vue';
+
+<Meta
+	title="Componentes/Utils/Image"
+	component={ Image }
+	argTypes={{
+		opacity: {
+			control: {
+				type: 'range',
+				min: 0,
+				max: 1,
+				step: 0.1,
+			},
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-image
+	:width="400"
+	:blackAndWhite="false"
+	:dimmed="false"
+	:roundedCorners="false"
+	:opacity="1"
+	src="https://cdn.dribbble.com/users/56251/screenshots/10780716/media/bf16339f04fb54b38055adcce2a6da21.png?compress=1&resize=1000x750&vertical=top"
+	fallbackSrc="https://cdn.dribbble.com/users/945601/screenshots/15072838/media/4a82b3dc2b8b419e245f28fd1767f717.png?compress=1&resize=1000x750&vertical=top"
+	alt="Imagem de exemplo do cds-image"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsImage: Image },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-image
+			v-bind="args"
+		/>
+	`,
+	methods: {
+		logClickableClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+# Image
+
+### Image é um componente utilitário utilizado para renderizar imagens com fallback.
+---
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Image"
+		args={{
+			src: 'https://cdn.dribbble.com/users/56251/screenshots/10780716/media/bf16339f04fb54b38055adcce2a6da21.png?compress=1&resize=1000x750&vertical=top',
+			fallbackSrc: 'https://cdn.dribbble.com/users/945601/screenshots/15072838/media/4a82b3dc2b8b419e245f28fd1767f717.png?compress=1&resize=1000x750&vertical=top',
+			width: 400,
+			blackAndWhite: false,
+			dimmed: false,
+			roundedCorners: false,
+			opacity: 1,
+			alt: 'Imagem de exemplo do cds-image',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Image" />
