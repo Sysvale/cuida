@@ -1,0 +1,101 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import TimelineItem from '../../components/TimelineItem.vue';
+
+<Meta
+	title="Componentes/Display/TimelineItem"
+	component={ TimelineItem }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'teal',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-timeline
+	:history="history"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsTimelineItem: TimelineItem },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-timeline-item
+			v-bind="args"
+		>
+			<template #opposite>
+				24/01/2020
+			</template>
+			<template #title>
+				Denis Ritchie
+			</template>
+			<template #content>
+				Criador da linguagem de programação C
+			</template>
+		</cds-timeline-item>
+	`,
+});
+
+# Timeline
+
+### Timelines são componentes utilizados para apresentar informações em ordem cronológica.
+---
+<br />
+
+## Quando usar:
+- Se tem uma série de informações que podem ser categorizadas por data.
+
+<br />
+
+## Quando não usar:
+- Se precisa de um componente de stepper.
+- A ordem das informações que você está apresentando é irrelevante.
+
+<br />
+
+## Observações:
+- A timeline espera um array de objetos com os campos: `date`, `title` e `text`, como espeficiado na tabela de props abaixo;
+- Caso deseje que os pins da timeline tenham estilo com borda e sem preenchimento, você pode especificar a Propriedade
+`_dotStyle` no objeto de configurações. Essa propriedade aceita dois valores: `hollowed` para estilo com borda e `filled`
+para estilo com preenchimento.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="TimelineItem"
+		args={{
+			history,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="TimelineItem" />
