@@ -1,9 +1,28 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import Timeline from '../../components/Timeline.vue';
+import TimelineItem from '../../components/TimelineItem.vue';
 
 <Meta
 	title="Componentes/Display/Timeline"
 	component={ Timeline }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'teal',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+				],
+			}
+		},
+	}}
 	parameters={{
 		viewMode: 'docs',
 		previewTabs: { canvas: { hidden: true }},
@@ -21,14 +40,32 @@ import Timeline from '../../components/Timeline.vue';
 />
 
 export const Template = (args) => ({
-	components: { CdsTimeline: Timeline },
+	components: { CdsTimeline: Timeline, CdsTimelineItem: TimelineItem },
 	setup() {
 		return { args };
 	},
 	template: /*html*/ `
 		<cds-timeline
 			v-bind="args" 
-		/>
+		>
+			<cds-timeline-item variant="violet" loading>
+				<template #title>
+					Michael
+				</template>
+				<template #content>
+					Caso deseje que os pins da timeline tenham estilo com borda
+					e sem preenchimento, você pode especificar a Propriedade
+				</template>
+			</cds-timeline-item>
+			<cds-timeline-item variant="violet">
+				<template #title>
+					Joõa
+				</template>
+				<template #content>
+					A timeline espera um array de objetos com os campos: date, title e text, como espeficiado na tabela de props abaixo;
+				</template>
+			</cds-timeline-item>
+		</cds-timeline-item>
 	`,
 });
 
@@ -61,32 +98,27 @@ para estilo com preenchimento.
 
 export const history = [
 	{
-		date: '22/09/2022',
 		title: 'Bloqueio nível 1',
-		text: 'Usuário: Uncle Bob',
-		_dotStyle: 'hollowed',
-	},
-	{
-		date: '15/05/2022',
-		title: 'Bloqueio nível 2',
-		text: 'Usuário: Linus Torvalds',
-		_dotStyle: 'hollowed',
-	},
-	{
-		date: '18/02/2022',
-		title: 'Bloqueio nível 1',
-		text: 'Usuário: Don Norman',
-	},
-	{
-		date: '20/12/2021',
-		title: 'Bloqueio nível 3',
-		text: 'Usuário: Richard Stallman',
+		text: 'Data: 08/01/2023',
 		_dotStyle: 'filled',
 	},
 	{
-		date: '04/11/2021',
+		title: 'Bloqueio nível 2',
+		text: 'Data: 07/01/2023',
+		_dotStyle: 'filled',
+	},
+	{
 		title: 'Bloqueio nível 1',
-		text: 'Usuário: Dennis Ritchie',
+		text: 'Data: 06/01/2023',
+	},
+	{
+		title: 'Bloqueio nível 3',
+		text: 'Data: 04/01/2023',
+		_dotStyle: 'filled',
+	},
+	{
+		title: 'Bloqueio nível 1',
+		text: 'Data: 02/01/2023',
 	},
 ];
 
