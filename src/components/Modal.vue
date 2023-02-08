@@ -1,11 +1,11 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div
-		v-if="internalShow"
+		v-if="innerValue"
 		class="cds-modal__backdrop"
 	>
 		<div
-			v-if="internalShow"
+			v-if="innerValue"
 			v-on-click-outside="noCloseOnBackdrop ? () => {} : closeHandle"
 			class="cds-modal"
 			:class="`cds-modal--${size}`"
@@ -105,7 +105,7 @@ export default {
 		/**
 		 *  Controla a exibição do modal.
 		 */
-		show: {
+		modelValue: {
 			type: Boolean,
 			default: false,
 			required: true,
@@ -192,7 +192,7 @@ export default {
 
 	data() {
 		return {
-			internalShow: false,
+			innerValue: false,
 			tmp: '',
 		}
 	},
@@ -205,13 +205,13 @@ export default {
 	},
 
 	watch: {
-		show(value) {
-			this.internalShow = value;
+		modelValue(value) {
+			this.innerValue = value;
 		},
 	},
 
 	mounted() {
-		this.internalShow = this.show;
+		this.innerValue = this.modelValue;
 	},
 
 	methods: {
@@ -221,8 +221,9 @@ export default {
 			* @event close
 			* @type {Event}
 			*/
-			this.internalShow = !this.internalShow;
+			this.innerValue = !this.innerValue;
 			this.$emit('close', true);
+			this.$emit('update:modelValue', false);
 		},
 
 		okHandle() {
@@ -232,7 +233,8 @@ export default {
 			* @type {Event}
 			*/
 			this.$emit('ok', true);
-			this.internalShow = !this.internalShow;
+			this.$emit('update:modelValue', false);
+			this.innerValue = !this.innerValue;
 		},
 	},
 };
