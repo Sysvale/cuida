@@ -1,47 +1,18 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div class="cds-timeline">
+		<!-- @slot Conteúdo a ser colocar na Timeline. Suporta o `TimelineItem` como subcomponente.  -->
 		<slot />
 	</div>
 </template>
 
 <script>
-import CdsDivider from './Divider.vue';
-import CdsSpinner from './Spinner.vue';
-
 export default {
-	components: {
-		CdsDivider,
-		CdsSpinner,
-	},
-
 	props: {
 		/**
-		* O array que especifica os eventos que vão ser mostrados na timeline
-		*/
-		history: {
-			type: Array,
-			default: () => [],
-			required: true,
-		},
-		/**
-		* O array que especifica os eventos que vão ser mostrados na timeline
+		* Inverte a ordem dos elementos da Timeline.
 		*/
 		reverse: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		* O array que especifica os eventos que vão ser mostrados na timeline
-		*/
-		variant: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		* O array que especifica os eventos que vão ser mostrados na timeline
-		*/
-		leftAligned: {
 			type: Boolean,
 			default: false,
 		},
@@ -49,14 +20,41 @@ export default {
 
 	data() {
 		return {
-			innerHistory: this.reverse ? this.history.slice().reverse() : this.history,
+			oppositeSlotMaxWidth: '0',
 		};
+	},
+
+	computed: {
+		directionResolver() {
+			return this.reverse ? 'column-reverse' : 'column';
+		},
+
+		oppositeSlotWidthResolver() {
+			return `${this.oppositeSlotMaxWidth}px`;
+		},
+	},
+
+	mounted() {
+		let oppositeSlots = document.querySelectorAll('.cds-timeline-item__opposite');
+
+		oppositeSlots.forEach(slot => {
+			let slotWidth = slot.getClientRects()[0].width;
+			if (this.oppositeSlotMaxWidth < slotWidth) {
+				this.oppositeSlotMaxWidth = slotWidth;
+			}
+		});
 	},
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../assets/sass/tokens.scss';
 .cds-timeline {
 	padding: pa(5);
+	display: flex;
+	flex-direction: v-bind(directionResolver);
+}
+
+.cds-timeline > .cds-timeline-item > .cds-timeline-item__opposite {
+	min-width: v-bind(oppositeSlotWidthResolver);
 }
 </style>

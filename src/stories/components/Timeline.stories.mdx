@@ -5,24 +5,6 @@ import TimelineItem from '../../components/TimelineItem.vue';
 <Meta
 	title="Componentes/Display/Timeline"
 	component={ Timeline }
-	argTypes={{
-		variant: {
-			control:{
-				type: 'select',
-				options: [
-					'teal',
-					'green',
-					'blue',
-					'indigo',
-					'violet',
-					'pink',
-					'red',
-					'orange',
-					'amber',
-				],
-			}
-		},
-	}}
 	parameters={{
 		viewMode: 'docs',
 		previewTabs: { canvas: { hidden: true }},
@@ -32,8 +14,34 @@ import TimelineItem from '../../components/TimelineItem.vue';
 				format:true,
 				code: /*html*/ 
 `<cds-timeline
-	:history="history"
-/>`
+	:reverse="false"
+>
+	<cds-timeline-item variant="blue" loading>
+		<template #title>
+			Michael
+		</template>
+		<template #content>
+			Caso deseje que os pins da timeline tenham estilo com borda
+			e sem preenchimento, você pode especificar a Propriedade
+		</template>
+	</cds-timeline-item> 
+	<cds-timeline-item variant="blue">
+		<template #title>
+			João
+		</template>
+		<template #content>
+			A timeline espera um array de objetos com os campos: date, title e text, como espeficiado na tabela de props abaixo;
+		</template>
+	</cds-timeline-item>
+	<cds-timeline-item variant="blue">
+		<template #title>
+			Carlos
+		</template>
+		<template #content>
+			Testes testes
+		</template>
+	</cds-timeline-item>
+</cds-timeline>`
 			},
 		}
 	}}
@@ -48,7 +56,7 @@ export const Template = (args) => ({
 		<cds-timeline
 			v-bind="args" 
 		>
-			<cds-timeline-item variant="violet" loading>
+			<cds-timeline-item variant="blue" loading>
 				<template #title>
 					Michael
 				</template>
@@ -56,16 +64,24 @@ export const Template = (args) => ({
 					Caso deseje que os pins da timeline tenham estilo com borda
 					e sem preenchimento, você pode especificar a Propriedade
 				</template>
-			</cds-timeline-item>
-			<cds-timeline-item variant="violet">
+			</cds-timeline-item> 
+			<cds-timeline-item variant="blue">
 				<template #title>
-					Joõa
+					João
 				</template>
 				<template #content>
 					A timeline espera um array de objetos com os campos: date, title e text, como espeficiado na tabela de props abaixo;
 				</template>
 			</cds-timeline-item>
-		</cds-timeline-item>
+			<cds-timeline-item variant="blue">
+				<template #title>
+					Carlos
+				</template>
+				<template #content>
+					Testes testes
+				</template>
+			</cds-timeline-item>
+		</cds-timeline>
 	`,
 });
 
@@ -76,7 +92,7 @@ export const Template = (args) => ({
 <br />
 
 ## Quando usar:
-- Se tem uma série de informações que podem ser categorizadas por data.
+- Se há um conjunto de informações que pode ser categorizado por data.
 
 <br />
 
@@ -87,46 +103,18 @@ export const Template = (args) => ({
 <br />
 
 ## Observações:
-- A timeline espera um array de objetos com os campos: `date`, `title` e `text`, como espeficiado na tabela de props abaixo;
-- Caso deseje que os pins da timeline tenham estilo com borda e sem preenchimento, você pode especificar a Propriedade
-`_dotStyle` no objeto de configurações. Essa propriedade aceita dois valores: `hollowed` para estilo com borda e `filled`
-para estilo com preenchimento.
+- O componente `Timeline` é um wrapper e é utilizado para agrupar uma série de `TimelineItems` em um mesmo compoente
+via slots. Para mais informações acesse a documentação do componente.
 
 <br />
 
 ## Preview
 
-export const history = [
-	{
-		title: 'Bloqueio nível 1',
-		text: 'Data: 08/01/2023',
-		_dotStyle: 'filled',
-	},
-	{
-		title: 'Bloqueio nível 2',
-		text: 'Data: 07/01/2023',
-		_dotStyle: 'filled',
-	},
-	{
-		title: 'Bloqueio nível 1',
-		text: 'Data: 06/01/2023',
-	},
-	{
-		title: 'Bloqueio nível 3',
-		text: 'Data: 04/01/2023',
-		_dotStyle: 'filled',
-	},
-	{
-		title: 'Bloqueio nível 1',
-		text: 'Data: 02/01/2023',
-	},
-];
-
 <Canvas>
 	<Story
 		name="Timeline"
 		args={{
-			history,
+			reverse: false,
 		}}
 	>
 		{ Template.bind({}) }
