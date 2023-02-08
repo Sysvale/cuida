@@ -9,7 +9,7 @@
 
 		<img
 			v-else-if="sysvaleBrand"
-			class="app-bar__logo--sysvale"
+			class="app-bar__logo--sv"
 			src="https://framerusercontent.com/images/djNYjj5IdpsZL50hF8HEDt5Wbg.svg"
 			alt="logo da Sysvale"
 		>
