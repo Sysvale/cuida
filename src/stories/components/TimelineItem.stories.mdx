@@ -1,5 +1,7 @@
-import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import { Meta, Story, ArgsTable, Canvas,  Source } from '@storybook/addon-docs';
 import TimelineItem from '../../components/TimelineItem.vue';
+
+import dedent from 'ts-dedent';
 
 <Meta
 	title="Componentes/Display/TimelineItem"
@@ -18,6 +20,8 @@ import TimelineItem from '../../components/TimelineItem.vue';
 					'red',
 					'orange',
 					'amber',
+					'gray',
+					'dark',
 				],
 			}
 		},
@@ -30,9 +34,21 @@ import TimelineItem from '../../components/TimelineItem.vue';
 				language: 'html',
 				format:true,
 				code: /*html*/ 
-`<cds-timeline
-	:history="history"
-/>`
+`<cds-timeline-item
+	variant="green"
+	:loading="false"
+	:hollowed="false"
+>
+	<template #opposite>
+		24/01/20202
+	</template>
+	<template #title>
+		Denis Ritchie
+	</template>
+	<template #content>
+		Criador da linguagem de programação C
+	</template>
+</cds-timeline-item>`
 			},
 		}
 	}}
@@ -48,7 +64,7 @@ export const Template = (args) => ({
 			v-bind="args"
 		>
 			<template #opposite>
-				24/01/2020
+				24/01/20202
 			</template>
 			<template #title>
 				Denis Ritchie
@@ -60,28 +76,14 @@ export const Template = (args) => ({
 	`,
 });
 
-# Timeline
+# TimelineItem
 
-### Timelines são componentes utilizados para apresentar informações em ordem cronológica.
+### TimelineItems são componentes auxiliares utilizados para montar Timelines.
 ---
 <br />
 
-## Quando usar:
-- Se tem uma série de informações que podem ser categorizadas por data.
-
-<br />
-
 ## Quando não usar:
-- Se precisa de um componente de stepper.
-- A ordem das informações que você está apresentando é irrelevante.
-
-<br />
-
-## Observações:
-- A timeline espera um array de objetos com os campos: `date`, `title` e `text`, como espeficiado na tabela de props abaixo;
-- Caso deseje que os pins da timeline tenham estilo com borda e sem preenchimento, você pode especificar a Propriedade
-`_dotStyle` no objeto de configurações. Essa propriedade aceita dois valores: `hollowed` para estilo com borda e `filled`
-para estilo com preenchimento.
+- Fora de componentes `Timeline`.
 
 <br />
 
@@ -91,7 +93,9 @@ para estilo com preenchimento.
 	<Story
 		name="TimelineItem"
 		args={{
-			history,
+			variant: 'green',
+			loading: false,
+			hollowed: false,
 		}}
 	>
 		{ Template.bind({}) }
