@@ -58,6 +58,7 @@ import TextArea from './TextArea.vue';
 import TextInput from './TextInput.vue';
 import TimeInput from './TimeInput.vue';
 import Timeline from './Timeline.vue';
+import TimelineItem from './TimelineItem.vue';
 import Tooltip from './Tooltip.vue';
 import Truncate from './Truncate.vue';
 
@@ -130,6 +131,7 @@ export default {
 		app.component('CdsTimeInput', TimeInput); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsTooltip', Tooltip); //NOTE: Testado no SB
 		app.component('CdsTimeline', Timeline);
+		app.component('CdsTimelineItem', TimelineItem);
 		app.component('CdsTruncate', Truncate); //NOTE: Testado no SB
 	},
 }

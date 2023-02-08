@@ -63,7 +63,7 @@
 					<cds-button
 						class="footer__ok-button"
 						:text="okButtonText"
-						variant="green"
+						:variant="actionButtonVariant"
 						:disabled="disabled"
 						@click="okHandle"
 					/>
@@ -78,6 +78,18 @@ import CdsIcon from '../components/Icon.vue';
 import CdsButton from '../components/Button.vue';
 import CdsScrollable from '../components/Scrollable.vue';
 import vClickOutside from 'click-outside-vue3';
+
+const predefinedColors = [
+	'teal',
+	'green',
+	'blue',
+	'indigo',
+	'violet',
+	'pink',
+	'red',
+	'orange',
+	'amber',
+];
 
 export default {
 	directives: {
@@ -167,6 +179,14 @@ export default {
 		cancelButtonText: {
 			type: String,
 			default: 'Cancelar',
+		},
+		/**
+		 * Define a variante do botão de ação do Modal (segue as variantes do componente de botão do Cuida)
+		 */
+		actionButtonVariant: {
+			type: String,
+			default: 'green',
+			validator: (value) => predefinedColors.includes(value),
 		},
 	},
 
