@@ -36,6 +36,7 @@ import PinInput from './PinInput.vue';
 import Popover from './Popover.vue';
 import ProgressBar from './ProgressBar.vue';
 import ProgressCircular from './ProgressCircular.vue';
+import Pulsar from './Pulsar.vue';
 import Radio from './Radio.vue';
 import RadioButtonGroup from './RadioButtonGroup.vue';
 import Spacer from './Spacer.vue';
@@ -59,10 +60,12 @@ import Tooltip from './Tooltip.vue';
 import Truncate from './Truncate.vue';
 
 import Cdstip from '../utils/directives/cdstip';
+import CdsFloatify from "../utils/directives/cdsFloatify";
 
 export default {
 	install: (app: any, options: any) => {
 		app.directive('cdstip', Cdstip);
+		app.directive("cds-floatify", CdsFloatify);
 
 		app.component('CdsActionBar', ActionBar); //NOTE: Testado no SB
 		app.component('CdsActionsList', ActionsList); //NOTE: Testado no SB
@@ -102,6 +105,7 @@ export default {
 		app.component('CdsPopover', Popover);
 		app.component('CdsProgressBar', ProgressBar); //NOTE: Testado no SB
 		app.component('CdsProgressCircular', ProgressCircular); //NOTE: Testado no SB
+		app.component('CdsPulsar', Pulsar);
 		app.component('CdsRadio', Radio); //NOTE: Testado no SB
 		app.component('CdsRadioButtonGroup', RadioButtonGroup); //NOTE: Testado no SB
 		app.component('CdsSpacer', Spacer); //NOTE: Testado no SB. !Reativo!
