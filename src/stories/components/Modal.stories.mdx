@@ -27,7 +27,7 @@ import Button from '../../components/Button.vue';
 				format:true,
 				code: /*html*/ 
 `<cds-modal
-	:show="showModal"
+	v-model="showModal"
 	@close="showModal = false"
 	@ok="showModal = false"
 >
@@ -56,15 +56,13 @@ export const Template = (args) => ({
 		<div class="d-flex justify-content-center">
 			<cds-button
 				id="trigger-popover"
-				@click="togglePopover"
+				@click="showModal = true"
 			>
 				Click
 			</cds-button>
 			<cds-modal
 				v-bind="args"
-				:show="showModal"
-				@close="showModal = false"
-				@ok="showModal = false"
+				v-model="showModal"
 			>
 				<span>
 					Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
@@ -74,11 +72,8 @@ export const Template = (args) => ({
 			</cds-modal>
 		</div>
 	`,
-	methods: {
-		togglePopover() {
-			console.info('modal opened');
-			this.showModal = true;
-		},
+    updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.showModal);
 	},
 });
 
