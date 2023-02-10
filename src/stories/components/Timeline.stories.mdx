@@ -1,5 +1,6 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import Timeline from '../../components/Timeline.vue';
+import TimelineItem from '../../components/TimelineItem.vue';
 
 <Meta
 	title="Componentes/Display/Timeline"
@@ -13,22 +14,80 @@ import Timeline from '../../components/Timeline.vue';
 				format:true,
 				code: /*html*/ 
 `<cds-timeline
-	:history="history"
-/>`
+	:reverse="false"
+>
+	<cds-timeline-item variant="blue" loading>
+		<template #title>
+			Item 1
+		</template>
+		<template #content>
+			Desta maneira, a determinação clara de objetivos estimula
+			a padronização das novas proposições.
+		</template>
+	</cds-timeline-item> 
+	<cds-timeline-item variant="blue">
+		<template #title>
+			Item 2
+		</template>
+		<template #content>
+			O que temos que ter sempre em mente é que o consenso sobre
+			a necessidade de qualificação assume importantes posições
+			no estabelecimento das regras de conduta normativas.
+		</template>
+	</cds-timeline-item>
+	<cds-timeline-item variant="blue">
+		<template #title>
+			Item 3
+		</template>
+		<template #content>
+			A prática cotidiana prova que a complexidade dos estudos
+			efetuados estimula a padronização dos paradigmas corporativos.
+		</template>
+	</cds-timeline-item>
+</cds-timeline>`
 			},
 		}
 	}}
 />
 
 export const Template = (args) => ({
-	components: { CdsTimeline: Timeline },
+	components: { CdsTimeline: Timeline, CdsTimelineItem: TimelineItem },
 	setup() {
 		return { args };
 	},
 	template: /*html*/ `
 		<cds-timeline
 			v-bind="args" 
-		/>
+		>
+			<cds-timeline-item variant="blue" loading>
+				<template #title>
+					Item 1
+				</template>
+				<template #content>
+					Desta maneira, a determinação clara de objetivos estimula
+					a padronização das novas proposições.
+				</template>
+			</cds-timeline-item> 
+			<cds-timeline-item variant="blue">
+				<template #title>
+					Item 2
+				</template>
+				<template #content>
+					O que temos que ter sempre em mente é que o consenso sobre
+					a necessidade de qualificação assume importantes posições
+					no estabelecimento das regras de conduta normativas.
+				</template>
+			</cds-timeline-item>
+			<cds-timeline-item variant="blue">
+				<template #title>
+					Item 3
+				</template>
+				<template #content>
+					A prática cotidiana prova que a complexidade dos estudos
+					efetuados estimula a padronização dos paradigmas corporativos.
+				</template>
+			</cds-timeline-item>
+		</cds-timeline>
 	`,
 });
 
@@ -39,7 +98,7 @@ export const Template = (args) => ({
 <br />
 
 ## Quando usar:
-- Se tem uma série de informações que podem ser categorizadas por data.
+- Se há um conjunto de informações que pode ser categorizado por data.
 
 <br />
 
@@ -50,51 +109,18 @@ export const Template = (args) => ({
 <br />
 
 ## Observações:
-- A timeline espera um array de objetos com os campos: `date`, `title` e `text`, como espeficiado na tabela de props abaixo;
-- Caso deseje que os pins da timeline tenham estilo com borda e sem preenchimento, você pode especificar a Propriedade
-`_dotStyle` no objeto de configurações. Essa propriedade aceita dois valores: `hollowed` para estilo com borda e `filled`
-para estilo com preenchimento.
+- O componente `Timeline` é um wrapper e é utilizado para agrupar uma série de `TimelineItems` em um mesmo compoente
+via slots. Para mais informações acesse a documentação do componente.
 
 <br />
 
 ## Preview
 
-export const history = [
-	{
-		date: '22/09/2022',
-		title: 'Bloqueio nível 1',
-		text: 'Usuário: Uncle Bob',
-		_dotStyle: 'hollowed',
-	},
-	{
-		date: '15/05/2022',
-		title: 'Bloqueio nível 2',
-		text: 'Usuário: Linus Torvalds',
-		_dotStyle: 'hollowed',
-	},
-	{
-		date: '18/02/2022',
-		title: 'Bloqueio nível 1',
-		text: 'Usuário: Don Norman',
-	},
-	{
-		date: '20/12/2021',
-		title: 'Bloqueio nível 3',
-		text: 'Usuário: Richard Stallman',
-		_dotStyle: 'filled',
-	},
-	{
-		date: '04/11/2021',
-		title: 'Bloqueio nível 1',
-		text: 'Usuário: Dennis Ritchie',
-	},
-];
-
 <Canvas>
 	<Story
 		name="Timeline"
 		args={{
-			history,
+			reverse: false,
 		}}
 	>
 		{ Template.bind({}) }

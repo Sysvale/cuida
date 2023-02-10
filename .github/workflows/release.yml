@@ -2,7 +2,8 @@ name: "Releaser ✔️"
 on:
   push:
     branches:
-      - master
+      - main
+      - v2.70-legacy
 
 jobs:
   build:

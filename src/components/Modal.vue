@@ -1,11 +1,11 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div
-		v-if="internalShow"
+		v-if="innerValue"
 		class="cds-modal__backdrop"
 	>
 		<div
-			v-if="internalShow"
+			v-if="innerValue"
 			v-on-click-outside="noCloseOnBackdrop ? () => {} : closeHandle"
 			class="cds-modal"
 			:class="`cds-modal--${size}`"
@@ -63,7 +63,7 @@
 					<cds-button
 						class="footer__ok-button"
 						:text="okButtonText"
-						variant="green"
+						:variant="actionButtonVariant"
 						:disabled="disabled"
 						@click="okHandle"
 					/>
@@ -79,6 +79,18 @@ import CdsButton from '../components/Button.vue';
 import CdsScrollable from '../components/Scrollable.vue';
 import vClickOutside from 'click-outside-vue3';
 
+const predefinedColors = [
+	'teal',
+	'green',
+	'blue',
+	'indigo',
+	'violet',
+	'pink',
+	'red',
+	'orange',
+	'amber',
+];
+
 export default {
 	directives: {
 		'on-click-outside': vClickOutside.directive,
@@ -93,7 +105,7 @@ export default {
 		/**
 		 *  Controla a exibição do modal.
 		 */
-		show: {
+		modelValue: {
 			type: Boolean,
 			default: false,
 			required: true,
@@ -168,11 +180,19 @@ export default {
 			type: String,
 			default: 'Cancelar',
 		},
+		/**
+		 * Define a variante do botão de ação do Modal (segue as variantes do componente de botão do Cuida)
+		 */
+		actionButtonVariant: {
+			type: String,
+			default: 'green',
+			validator: (value) => predefinedColors.includes(value),
+		},
 	},
 
 	data() {
 		return {
-			internalShow: false,
+			innerValue: false,
 			tmp: '',
 		}
 	},
@@ -185,13 +205,13 @@ export default {
 	},
 
 	watch: {
-		show(value) {
-			this.internalShow = value;
+		modelValue(value) {
+			this.innerValue = value;
 		},
 	},
 
 	mounted() {
-		this.internalShow = this.show;
+		this.innerValue = this.modelValue;
 	},
 
 	methods: {
@@ -201,8 +221,9 @@ export default {
 			* @event close
 			* @type {Event}
 			*/
-			this.internalShow = !this.internalShow;
+			this.innerValue = !this.innerValue;
 			this.$emit('close', true);
+			this.$emit('update:modelValue', false);
 		},
 
 		okHandle() {
@@ -212,7 +233,8 @@ export default {
 			* @type {Event}
 			*/
 			this.$emit('ok', true);
-			this.internalShow = !this.internalShow;
+			this.$emit('update:modelValue', false);
+			this.innerValue = !this.innerValue;
 		},
 	},
 };

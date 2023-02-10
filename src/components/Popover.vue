@@ -110,11 +110,19 @@ export default {
 				this.hide();
 			}
 		},
+
+		targetId(id) {
+			this.setPopper(id);
+		},
 	},
 
 	mounted() {
-		setTimeout(() => {
-			this.target = document.querySelector(`[id='${this.targetId}']`);
+		this.setPopper(this.targetId);
+	},
+
+	methods: {
+		setPopper(id) {
+			this.target = document.querySelector(`[id='${id}']`);
 			this.popover = document.querySelector('#cds-popover');
 			
 			this.popperInstance = createPopper(this.target, this.popover, {
@@ -134,10 +142,8 @@ export default {
 					},
 				],
 			});
-		}, 150);
-	},
+		},
 
-	methods: {
 		show() {
 			this.popover.setAttribute('data-show', '');
 
