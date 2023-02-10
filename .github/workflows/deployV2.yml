@@ -1,0 +1,30 @@
+name: "Deployer - Legacy 🚀"
+on:
+	push:
+		branches:
+			- v2.70-legacy
+
+jobs:
+	deploy:
+		runs-on: ubuntu-latest
+		concurrency: ci-${{github.ref}}
+		steps:
+			- name: 📚 Checkout
+				uses: actions/checkout@v2.3.4
+
+			- name: 🟢 Node
+				uses: actions/setup-node@v2.1.4
+				with:
+					node-version: 16
+					registry-url: https://registry.npmjs.org
+
+			- name: 🔧 Build
+				run: |
+					npm ci
+					npm run build-storybook
+
+			- name: 🚀 Deploy - legacy
+				uses: JamesIves/github-pages-deploy-action@v4
+				with:
+					folder: storybook-static
+					branch: gh-pages
