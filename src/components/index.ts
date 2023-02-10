@@ -5,6 +5,7 @@ import AlertCard from './AlertCard.vue';
 import AppBar from './AppBar.vue';
 import Avatar from './Avatar.vue';
 import Badge from './Badge.vue';
+import Box from './Box.vue';
 import Button from './Button.vue';
 import CalloutCard from './CalloutCard.vue';
 import CarouselController from './CarouselController.vue';
@@ -23,6 +24,7 @@ import Highlight from './Highlight.vue';
 import Icon from './Icon.vue';
 import IconButton from './IconButton.vue';
 import InnerTabs from './InnerTabs.vue';
+import Image from './Image.vue';
 import Link from './Link.vue';
 import LoadingBar from './LoadingBar.vue';
 import Modal from './Modal.vue';
@@ -75,6 +77,7 @@ export default {
 		app.component('CdsAppBar', AppBar); //NOTE: Testado no SB
 		app.component('CdsAvatar', Avatar); //NOTE: Testado no SB
 		app.component('CdsBadge', Badge); //NOTE: Testado no SB
+		app.component('CdsBox', Box);
 		app.component('CdsButton', Button); //NOTE: Testado no SB
 		app.component('CdsCalloutCard', CalloutCard); //NOTE: Testado no SB
 		app.component('CdsCarouselController', CarouselController);
@@ -92,6 +95,7 @@ export default {
 		app.component('CdsHighlight', Highlight); //NOTE: Testado no SB
 		app.component('CdsIcon', Icon); //NOTE: Testado no SB
 		app.component('CdsIconButton', IconButton); //NOTE: Testado no SB
+		app.component('CdsImage', Image);
 		app.component('CdsInnerTabs', InnerTabs); //NOTE: Testado no SB
 		app.component('CdsLink', Link); //NOTE: Testado no SB
 		app.component('CdsLoadingBar', LoadingBar); //NOTE: Testado no SB
@@ -109,7 +113,7 @@ export default {
 		app.component('CdsPulsar', Pulsar);
 		app.component('CdsRadio', Radio); //NOTE: Testado no SB
 		app.component('CdsRadioButtonGroup', RadioButtonGroup); //NOTE: Testado no SB
-		app.component('CdsSpacer', Spacer); //NOTE: Testado no SB. !Reativo!
+		app.component('CdsSpacer', Spacer);
 		app.component('CdsScrollable', Scrollable); //FIXME: Problema no SB
 		app.component('CdsSearchInput', SearchInput);
 		app.component('CdsSegmentedControl', SegmentedControl);
