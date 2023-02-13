@@ -77,6 +77,9 @@ export default {
 			type: String,
 			default: null,
 		},
+		/**
+		 * Ativa ou desativa o clique no componente
+		 */
 		clickable: {
 			type: Boolean,
 			default: false,
@@ -113,7 +116,7 @@ export default {
 		display: flex;
 		justify-content: center;
 
-		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $hover) {
+		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
 			background-color: $base-color;
 
 			@if ($color-name == 'white' or $color-name == 'gray') {

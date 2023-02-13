@@ -1,57 +1,100 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div
-		:class="elevated ? 'box--elevated' : 'box'"
+		ref="cds-box"
+		:class="elevated ? 'box--elevated' : `box--${variant}`"
 	>
-		<!-- @slot Slot utilizado para renderização do conteúdo interno do Box.-->
-		<cds-spacer
-			:padding-top="padding"
-			:padding-right="padding"
-			:padding-bottom="padding"
-			:padding-left="padding"
+		<cds-clickable
+			:clickable="clickable"
 		>
-			<slot />
-		</cds-spacer>
+			<!-- @slot Slot utilizado para renderização do conteúdo interno do Box.-->
+			<cds-spacer
+				:padding-top="padding"
+				:padding-right="padding"
+				:padding-bottom="padding"
+				:padding-left="padding"
+			>
+				<slot />
+			</cds-spacer>
+		</cds-clickable>
 	</div>
 </template>
 
 <script>
 import CdsSpacer from './Spacer.vue';
+import CdsClickable from './Clickable.vue';
+
+import rounder from '../utils/methods/rounder';
+
 export default {
 	components: {
 		CdsSpacer,
+		CdsClickable,
 	},
 
 	props: {
 		/**
-		 * Quando true aplica o token $shadow-sm como box-shadow do componente.
-		 */
+		* Quando true aplica o token $shadow-sm como box-shadow do componente.
+		*/
 		elevated: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		 * Indica se o componente deverá ocupar 100% da largura disponível.
-		 */
+		* Indica se o componente deverá ocupar 100% da largura disponível.
+		*/
 		fluid: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		 * O valor setado é sempre multiplicado por 4, assim como nos tokens scss do Cuida.
-		 * O valor mínimo aceito é 4 e o máximo aceito é 12.
-		 */
+		* O valor setado é sempre multiplicado por 4, assim como nos tokens scss do Cuida.
+		* O valor mínimo aceito é 4 e o máximo aceito é 12.
+		*/
 		padding: {
 			type: Number,
 			default: 4,
 			validator: (value) => value <= 12,
 		},
+		/**
+		* Ativa ou desativa o clique no componente
+		*/
+		clickable: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		* A variante de cor. São 9 variantes implementadas: 'green', 'teal',
+		* 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.
+		*/
+		variant: {
+			type: String,
+			default: 'gray',
+		},
+	},
+
+	data() {
+		return {
+			width: 0,
+		};
 	},
 
 	computed: {
 		widthResolver() {
 			return this.fluid ? '100%' : 'fit-content';
 		},
+
+		borderRadiusResolver() {
+			return this.rounder(this.width, 16);
+		},
+	},
+
+	mounted() {
+		this.width = this.$refs['cds-box'].getBoundingClientRect().width;
+	},
+
+	methods: {
+		rounder,
 	},
 }
 </script>
@@ -60,13 +103,19 @@ export default {
 @import './../assets/sass/tokens.scss';
 .box {
 	width: v-bind(widthResolver);
-	background-color: $n-0;
-	border-radius: $border-radius-extra-small;
-	outline: 1px solid $n-30;
+	border-radius: v-bind(borderRadiusResolver);
 
 	&--elevated {
 		@extend .box;
 		box-shadow: $shadow-sm;
+		background-color: $n-0;
+		outline: 1px solid $n-30;
+	}
+
+	@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
+		@extend .box;
+		outline: 1px solid $base-color;
+		background-color: $background;
 	}
 }
 </style>

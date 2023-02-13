@@ -116,7 +116,7 @@ export default {
 		min-height: 16px !important;
 		min-width: 16px !important;
 
-		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $hover) {
+		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
 			background-color: $base-color;
 			@extend .cds-timeline-item__pin;
 
