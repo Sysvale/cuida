@@ -323,14 +323,29 @@ $hoverColors: (
 	'white': $n-0,
 );
 
+$backgroundColors: (
+	'teal': $ts-50,
+	'green': $gp-50,
+	'blue': $bn-50,
+	'indigo': $in-50,
+	'violet': $vr-50,
+	'pink': $pp-50,
+	'red': $rc-50,
+	'orange': $og-50,
+	'amber': $al-50,
+	'dark': $n-30,
+	'gray': $n-0,
+);
+
 @mixin variantResolver {
 	@each $color-name, $base-color in $baseColors {
 		$disabled: map-get($disabledColors , $color-name);
 		$muted: map-get($mutedColors , $color-name);
+		$background: map-get($backgroundColors , $color-name);
 		$hover: map-get($hoverColors , $color-name);
 
 		&--#{$color-name} {
-			@content($color-name, $base-color, $disabled, $muted, $hover);
+			@content($color-name, $base-color, $disabled, $muted, $background, $hover);
 		}
 	}
 }

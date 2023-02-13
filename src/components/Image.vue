@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import rounder from '../utils/methods/rounder';
+
 export default {
 	props: {
 		/**
@@ -99,7 +101,7 @@ export default {
 		},
 
 		radiusResolver() {
-			return this.roundedCorners ? `${this.width / 20}px` : '0px';
+			return this.roundedCorners ? rounder(this.width) : '0px';
 		},
 
 		grayScaleResolver() {
@@ -114,6 +116,8 @@ export default {
 	},
 
 	methods: {
+		rounder,
+
 		imageSrcResolver() {
 			this.innerSrc = this.fallbackSrc;
 		},
