@@ -1,0 +1,82 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Card from '../../components/Card.vue';
+import Button from '../../components/Button.vue';
+
+<Meta
+	title="Componentes/Containers/Card"
+	component={ Card }
+	argTypes={{
+		width: {
+			control: {
+				type: 'range',
+				min: 10,
+				max: 250,
+				step: 1,
+			},
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-truncate
+	width="80"
+>
+	Texto longo para testar o truncate
+</cds-truncate>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsCard: Card, CdsButton: Button },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-card
+			v-bind="args"
+		>
+			<template #header>Card Title</template>
+            <template #body>
+                Some quick example text to build on the card title and make up the bulk of the card's content.
+            </template>
+            <template #footer>
+                <cds-button size="md">
+                    Action 1
+                </cds-button>
+            </template>
+		</cds-card>
+	`,
+	methods: {
+		logClickableClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+# Card
+
+### Componente auxiliar utilizado para truncar texto adicionando a ele reticências
+---
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Card"
+		args={{
+			width: 80,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Card" />

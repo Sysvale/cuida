@@ -104,6 +104,7 @@ export default {
 .box {
 	width: v-bind(widthResolver);
 	border-radius: v-bind(borderRadiusResolver);
+	overflow: hidden;
 
 	&--elevated {
 		@extend .box;
