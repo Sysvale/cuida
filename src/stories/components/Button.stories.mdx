@@ -45,6 +45,7 @@ import Button from '../../components/Button.vue';
 	variant="green"
 	size="md"
 	text="Lorem Ipsum"
+    @click="buttonClick = true"
 />`
 			},
 		}
@@ -56,11 +57,21 @@ export const Template = (args) => ({
 	setup() {
 		return { args };
 	},
+    data() {
+		return {
+			buttonClick: false,
+	    };
+    },
 	template: /*html*/ `
 		<cds-button
-			v-bind="args" 
+			v-bind="args"
+            @click="buttonClick = true"
+            v-model="buttonClick"
 		>
 		</cds-button>`,
+    updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.buttonClick);
+	},
 });
 
 # Button
