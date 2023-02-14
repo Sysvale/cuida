@@ -130,10 +130,10 @@ export default {
 			}
 			/**
 			* Evento que indica que o Botão foi clicado
-			* @event internalClick
+			* @event button-click
 			* @type {Event}
 			*/
-			this.$emit('internalClick', true);
+			this.$emit('button-click', true);
 		},
 	},
 };
