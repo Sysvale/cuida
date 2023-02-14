@@ -57,20 +57,16 @@ export const Template = (args) => ({
 	setup() {
 		return { args };
 	},
-    data() {
-		return {
-			buttonClick: false,
-	    };
-    },
 	template: /*html*/ `
 		<cds-button
 			v-bind="args"
-            @click="buttonClick = true"
-            v-model="buttonClick"
+            @button-click="logButtonClick"
 		>
 		</cds-button>`,
-    updated() {
-		console.info('%cv-model: ', 'color: #2C70CD;', this.buttonClick);
+    methods: {
+		logButtonClick(event) {
+			console.info('%con click: ', 'color: #2C70CD;', event);
+		},
 	},
 });
 
