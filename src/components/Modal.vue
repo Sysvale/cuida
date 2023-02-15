@@ -11,7 +11,7 @@
 			:class="`cds-modal--${size}`"
 			:style="dynamicStyle"
 		>
-			<header 
+			<header
 				v-if="!noHeader"
 			>
 				<!-- @slot Slot usado para utilização de header customizado. -->
@@ -56,7 +56,7 @@
 						v-if="!noCancelButton"
 						:text="cancelButtonText"
 						secondary
-						:disabled="disabled"
+						:disabled="disableCancelButton"
 						@click="closeHandle"
 					/>
 
@@ -64,7 +64,7 @@
 						class="footer__ok-button"
 						:text="okButtonText"
 						:variant="actionButtonVariant"
-						:disabled="disabled"
+						:disabled="disableOkButton"
 						@click="okHandle"
 					/>
 				</slot>
@@ -125,9 +125,16 @@ export default {
 			default: 'md',
 		},
 		/**
-		 * Define o estado das ações do modal.
+		 * Define o estado do botão de ação do modal.
 		 */
-		disabled: {
+		disableOkButton: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Define o estado do botão de cancelar do modal.
+		 */
+		disableCancelButton: {
 			type: Boolean,
 			default: false,
 		},
