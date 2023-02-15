@@ -4,7 +4,7 @@
 		id="cds-button"
 		class="button__container"
 		:class="computedStyle"
-		@click.stop="clickHandler()"
+		@click="clickHandler"
 	>
 		<cds-spinner
 			v-if="loading"
@@ -130,10 +130,10 @@ export default {
 			}
 			/**
 			* Evento que indica que o Botão foi clicado
-			* @event click
+			* @event button-click
 			* @type {Event}
 			*/
-			this.$emit('click', true);
+			this.$emit('button-click', true);
 		},
 	},
 };
