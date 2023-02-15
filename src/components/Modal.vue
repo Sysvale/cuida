@@ -240,8 +240,6 @@ export default {
 			* @type {Event}
 			*/
 			this.$emit('ok', true);
-			this.$emit('update:modelValue', false);
-			this.innerValue = !this.innerValue;
 		},
 	},
 };
