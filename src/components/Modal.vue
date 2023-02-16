@@ -57,7 +57,7 @@
 						:text="cancelButtonText"
 						secondary
 						:disabled="disableCancelButton"
-						@click="closeHandle"
+						@click="closeHandle(disableCancelButton)"
 					/>
 
 					<cds-button
@@ -65,7 +65,7 @@
 						:text="okButtonText"
 						:variant="actionButtonVariant"
 						:disabled="disableOkButton"
-						@click="okHandle"
+						@click="okHandle(disableOkButton)"
 					/>
 				</slot>
 			</footer>
@@ -222,24 +222,28 @@ export default {
 	},
 
 	methods: {
-		closeHandle() {
+		closeHandle(state) {
 			/**
 			 * Evento que indica se o modal foi escondido.
 			* @event close
 			* @type {Event}
 			*/
-			this.innerValue = !this.innerValue;
-			this.$emit('close', true);
-			this.$emit('update:modelValue', false);
+			if (!state) {
+				this.innerValue = !this.innerValue;
+				this.$emit('close', true);
+				this.$emit('update:modelValue', false);
+			}
 		},
 
-		okHandle() {
+		okHandle(state) {
 			/**
 			 * Evento que indica se o botão de ação do modal foi clicado.
 			* @event ok
 			* @type {Event}
 			*/
-			this.$emit('ok', true);
+			if (!state) {
+				this.$emit('ok', true);
+			}
 		},
 	},
 };
