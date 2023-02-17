@@ -57,7 +57,7 @@
 						:text="cancelButtonText"
 						secondary
 						:disabled="disableCancelButton"
-						@click="closeHandleCancelButton(disableCancelButton)"
+						@click="!disableCancelButton ? closeHandle() : false"
 					/>
 
 					<cds-button
@@ -65,7 +65,7 @@
 						:text="okButtonText"
 						:variant="actionButtonVariant"
 						:disabled="disableOkButton"
-						@click="okHandle(disableOkButton)"
+						@click="!disableOkButton ? okHandle() : false"
 					/>
 				</slot>
 			</footer>
@@ -142,6 +142,13 @@ export default {
 		 *  Controla a ação de fechar o modal ao clicar fora.
 		 */
 		noCloseOnBackdrop: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 *  Controla a ação de fechar o modal ao clicar no botão de ação.
+		 */
+		noCloseOkButton: {
 			type: Boolean,
 			default: false,
 		},
@@ -234,28 +241,17 @@ export default {
 			this.$emit('update:modelValue', false);
 		},
 
-		closeHandleCancelButton(state) {
-			/**
-			 * Evento que indica se o modal foi escondido pelo botão de cancelar.
-			 * @event close
-			 * @type {Event}
-			*/
-			if (!state) {
-				this.innerValue = !this.innerValue;
-				this.$emit('close', true);
-				this.$emit('update:modelValue', false);
-			}
-		},
-
-		okHandle(state) {
+		okHandle() {
 			/**
 			 * Evento que indica se o botão de ação do modal foi clicado.
 			* @event ok
 			* @type {Event}
 			*/
-			if (!state) {
-				this.$emit('ok', true);
+			if (!this.noCloseOkButton) {
+				this.innerValue = !this.innerValue;
+				this.$emit('update:modelValue', false);
 			}
+			this.$emit('ok', true);
 		},
 	},
 };
