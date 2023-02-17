@@ -37,7 +37,7 @@
 				</div>
 
 				<cds-link
-					v-if="linkText"
+					v-if="linkTextState"
 					class="label__link"
 					:href="linkUrl"
 					:text="linkText"
@@ -207,11 +207,11 @@ export default {
 			default: 'info-outline',
 		},
 		/**
-		 * Define exibição e texto do link do input (localizado à direita da label).
+		 * Define texto do link do input (localizado à direita da label).
 		 */
 		linkText: {
 			type: String,
-			default: '#',
+			default: null,
 		},
 		/**
 		 * Define a url a ser acessada no clique do link (no caso do link ser exibido).
@@ -281,6 +281,10 @@ export default {
 		inputClass() {
 			return this.fluid ? 'text-input__field--fluid' : 'text-input__field';
 		},
+
+		linkTextState() {
+			return this.linkText ? true : false;
+		}
 	},
 
 	watch: {
