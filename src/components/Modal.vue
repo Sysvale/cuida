@@ -57,7 +57,7 @@
 						:text="cancelButtonText"
 						secondary
 						:disabled="disableCancelButton"
-						@click="closeHandle(disableCancelButton)"
+						@click="closeHandleCancelButton(disableCancelButton)"
 					/>
 
 					<cds-button
@@ -222,11 +222,23 @@ export default {
 	},
 
 	methods: {
-		closeHandle(state) {
+
+		closeHandle() {
 			/**
 			 * Evento que indica se o modal foi escondido.
-			* @event close
-			* @type {Event}
+			 * @event close
+			 * @type {Event}
+			*/
+			this.innerValue = !this.innerValue;
+			this.$emit('close', true);
+			this.$emit('update:modelValue', false);
+		},
+
+		closeHandleCancelButton(state) {
+			/**
+			 * Evento que indica se o modal foi escondido pelo botão de cancelar.
+			 * @event close
+			 * @type {Event}
 			*/
 			if (!state) {
 				this.innerValue = !this.innerValue;
