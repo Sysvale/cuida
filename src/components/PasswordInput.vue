@@ -44,10 +44,9 @@
 
 		<div :class="stepperInputDynamicClass">
 			<input
-				v-if="showPassword"
 				id="cds-password-input"
 				v-model="internalValue"
-				type="text"
+				:type="customInputType"
 				:placeholder="placeholder"
 				:disabled="disabled"
 				:class="inputClass"
@@ -55,17 +54,6 @@
 				@blur="isBeingFocused = false"
 			>
 
-			<input
-				v-else
-				id="cds-password-input"
-				v-model="internalValue"
-				type="password"
-				:placeholder="placeholder"
-				:disabled="disabled"
-				:class="inputClass"
-				@focus="isBeingFocused = true"
-				@blur="isBeingFocused = false"
-			>
 			<div
 				v-if="!disabled" 
 				class="password-input__password-toogle"
@@ -199,6 +187,10 @@ export default {
 	},
 
 	computed: {
+		customInputType() {
+			return this.showPassword ? 'text' : 'password';
+		},
+
 		customTextPasswordInput() {
 			return this.showPassword ? 'Ocultar' : 'Mostrar';
 		},
