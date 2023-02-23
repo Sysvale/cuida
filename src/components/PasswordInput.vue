@@ -13,7 +13,7 @@
 					for="cds-password-input"
 				>
 					<span>{{ label }}</span>
-                    
+
 					<span
 						v-if="required"
 						class="password-input__label__required-indicator"
@@ -43,7 +43,7 @@
 				@blur="isBeingFocused = false"
 			>
 			<div
-				v-if="!disableTextPasswordInput" 
+				v-if="!disableTextPasswordInput"
 				class="password-input__password-toogle"
 			>
 				<cds-clickable
@@ -167,11 +167,11 @@ export default {
 		customTextPasswordInput() {
 			return this.showPassword ? 'Ocultar' : 'Mostrar';
 		},
-        
+
 		disableTextPasswordInput() {
 			return this.internalValue.length < 1 || this.disabled;
 		},
-        
+
 		hasSlots() {
 			return !!Object.keys(this.$slots).length;
 		},
@@ -270,18 +270,18 @@ export default {
 			width: 100%;
 		}
 
-        &__required-indicator {
-            color: $rc-600;
-        }
+		&__required-indicator {
+			color: $rc-600;
+		}
 
-        &__content {
-            margin: mb(1);
-        }
+		&__content {
+			margin: mb(1);
+		}
 
-        &__icon {
-            margin: mTRBL(0, 0, n1, 1);
-            cursor: pointer;
-        }
+		&__icon {
+			margin: mTRBL(0, 0, n1, 1);
+			cursor: pointer;
+		}
 	}
 
 	&__field {
@@ -303,16 +303,16 @@ export default {
 		}
 	}
 
-    &__password-toogle {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        color: $n-600;
-        padding: pr(4);
-        @include caption;
-    }
+	&__password-toogle {
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		color: $n-600;
+		padding: pr(4);
+		@include caption;
+	}
 
-    &__error-message {
+	&__error-message {
 		@include caption;
 		color: $rc-600;
 		margin: mt(1);
