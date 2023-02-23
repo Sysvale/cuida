@@ -43,7 +43,7 @@
 			v-on-click-outside="toggleDropdown"
 		>
 			<!-- @slot Slot usado para inserção de conteúdo dentro do dropdown do Avatar. -->
-			<slot />
+			<slot name="dropdown-content" />
 		</div>
 	</cds-clickable>
 </template>
