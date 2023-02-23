@@ -1,5 +1,8 @@
 <template>
-	<cds-clickable :clickable="clickable">
+	<cds-clickable
+		:clickable="clickable"
+		@click="toggleDropdown"
+	>
 		<div class="avatar__container">
 			<div
 				:class="avatarContainerClasses"
@@ -32,14 +35,28 @@
 				class="avatar__chevron"
 				direction="bottom"
 			/>
+
+		</div>
+		<div
+			v-if="isActive"
+			class="avatar__dropdown"
+			v-on-click-outside="toggleDropdown"
+		>
+			<!-- @slot Slot usado para inserção de conteúdo dentro do dropdown do Avatar. -->
+			<slot />
 		</div>
 	</cds-clickable>
 </template>
 <script>
+import { directive as onClickOutside } from 'vue-on-click-outside';
 import CdsChevron from './Chevron.vue';
 import CdsClickable from './Clickable.vue';
 
 export default {
+	directives: {
+		'on-click-outside': onClickOutside,
+	},
+
 	components: {
 		CdsChevron,
 		CdsClickable,
@@ -89,6 +106,12 @@ export default {
 			type: Boolean,
 			default: false,
 		}
+	},
+
+	data() {
+		return {
+			isActive: false,
+		};
 	},
 
 	computed: {
@@ -160,6 +183,16 @@ export default {
 
 			return className;
 		}
+	},
+
+	methods: {
+		toggleDropdown() {
+			if (!this.clickable) {
+				return;
+			}
+
+			this.isActive = !this.isActive;
+		},
 	}
 }
 </script>
@@ -266,6 +299,19 @@ $baseColors: (
 		&--lg {
 			@include subheading-2;
 		}
+	}
+
+	&__dropdown {
+		width: fit-content;
+		position: absolute;
+		background-color: white;
+		padding: 20px;
+		top: 94px;
+		border-radius: $border-radius-extra-small;
+		box-shadow: 0px 0px 8px rgba($n-900, .08);
+		border: 1px solid $n-30;
+		z-index:999999999;
+		color: $n-600;
 	}
 }
 </style>
