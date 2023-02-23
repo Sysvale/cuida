@@ -4,7 +4,6 @@
 			<span v-if="hasSlots">
 				<slot name="label" />
 			</span>
-
 			<label
 				v-else
 				:class="labelDynamicClass"
@@ -21,7 +20,6 @@
 					>
 						*
 					</span>
-
 					<cds-icon
 						v-if="tooltip"
 						v-cdstip="tooltip"
@@ -31,17 +29,8 @@
 						class="password-input__label__icon"
 					/>
 				</div>
-
-				<cds-link
-					v-if="linkTextState"
-					class="password-input__label__link"
-					:href="linkUrl"
-					:text="linkText"
-					new-tab
-				/>
 			</label>
 		</span>
-
 		<div :class="stepperInputDynamicClass">
 			<input
 				id="cds-password-input"
@@ -53,7 +42,6 @@
 				@focus="isBeingFocused = true"
 				@blur="isBeingFocused = false"
 			>
-
 			<div
 				v-if="!disableTextPasswordInput" 
 				class="password-input__password-toogle"
@@ -77,7 +65,6 @@
 </template>
 
 <script>
-import CdsLink from './Link.vue';
 import CdsIcon from './Icon.vue';
 import Cdstip from '../utils/directives/cdstip';
 
@@ -85,8 +72,8 @@ export default {
 	directives: {
 		cdstip: Cdstip,
 	},
+
 	components: {
-		CdsLink,
 		CdsIcon
 	},
 
@@ -162,20 +149,6 @@ export default {
 			type: String,
 			default: 'info-outline',
 		},
-		/**
-		 * Define texto do link do input (localizado à direita da label).
-		 */
-		linkText: {
-			type: String,
-			default: null,
-		},
-		/**
-		 * Define a url a ser acessada no clique do link (no caso do link ser exibido).
-		 */
-		linkUrl: {
-			type: String,
-			default: 'https://cuida.framer.wiki/',
-		},
 	},
 
 	data() {
@@ -240,10 +213,6 @@ export default {
 		errorState() {
 			return this.state === 'invalid';
 		},
-
-		linkTextState() {
-			return this.linkText ? true : false;
-		}
 	},
 
 	watch: {
@@ -274,9 +243,9 @@ export default {
 	}
 };
 </script>
+
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
-
 .password-input {
 	display: flex;
 	justify-content: space-between;
@@ -303,10 +272,6 @@ export default {
 
         &__required-indicator {
             color: $rc-600;
-        }
-
-        &__link {
-            justify-self: end;
         }
 
         &__content {
