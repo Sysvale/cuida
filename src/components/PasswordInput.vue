@@ -55,7 +55,7 @@
 			>
 
 			<div
-				v-if="!disabled" 
+				v-if="!disableTextPasswordInput" 
 				class="password-input__password-toogle"
 			>
 				<cds-clickable
@@ -194,7 +194,11 @@ export default {
 		customTextPasswordInput() {
 			return this.showPassword ? 'Ocultar' : 'Mostrar';
 		},
-
+        
+		disableTextPasswordInput() {
+			return this.internalValue.length < 1 || this.disabled;
+		},
+        
 		hasSlots() {
 			return !!Object.keys(this.$slots).length;
 		},
