@@ -25,12 +25,13 @@ exports[`Component is mounted properly 1`] = `
     <div class="user-info__avatar-container">
       <div class="user-info__container"><span class="user-info__name"></span> <span class="user-info__description"></span></div>
       <div class="clickable__container--clickable">
-        <div class="avatar-w-chevron">
+        <div class="avatar__container">
           <div class="avatar__container--white avatar__container--md"><span class="avatar__initials--md">
 				UND
 			</span></div>
-          <div class="chev-class chevron--bottom chevron--sm"></div>
+          <div class="avatar__chevron chevron--bottom chevron--sm"></div>
         </div>
+        <!---->
       </div>
     </div>
     <div class="app-switcher__container">
