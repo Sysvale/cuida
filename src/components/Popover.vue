@@ -4,7 +4,7 @@
 			v-if="value"
 			class="overlay"
 			tabindex="0"
-			@click="shouldCloseOnBackdrop"
+			@click.stop="shouldCloseOnBackdrop"
 		>
 			<b-popover
 				:show.sync="value"
