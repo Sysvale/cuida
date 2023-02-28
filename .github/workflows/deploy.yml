@@ -14,9 +14,16 @@ jobs:
     # Job steps
     steps:
       - uses: actions/checkout@v1
+      
+      - name: 🟢 Node
+        uses: actions/setup-node@v2.1.4
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org
+
       - name: Install dependencies
         # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
-        run: yarn
+        run: npm
         # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
         uses: chromaui/action@v1
