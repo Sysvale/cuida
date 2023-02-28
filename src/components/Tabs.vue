@@ -36,7 +36,7 @@
 					class="nav-link"
 					@click.prevent="handleAddAction"
 				>
-					
+
 					<cds-icon
 						height="32"
 						width="32"
@@ -105,7 +105,7 @@ export default {
 		},
 		/**
 		 * Cor da borda que indica o item ativo.
-		 * Existem algumas cores predefinidas seguindo os guias do Cuida, são elas: 
+		 * Existem algumas cores predefinidas seguindo os guias do Cuida, são elas:
 		 * `turquoise`, `green`, `blue`, `violet`, `pink`, `red`, `orange`, `amber` e `gray`.
 		 */
 		variant: {
@@ -168,10 +168,10 @@ export default {
 		handleClick(event, item) {
 			/**
 			 * Evento emitido quando a aba ativa é alterada
-			* @event change
+			* @event tabs-change
 			* @type {Event}
 				*/
-			this.$emit('change', { event, item });
+			this.$emit('tabs-change', { event, item });
 			this.internalActiveTab = item;
 		},
 
@@ -235,11 +235,11 @@ export default {
 				border-top-right-radius: $border-radius-button;
 				transition: border-top 0.2s ease-in-out;
 			}
-			
+
 			&--active:hover {
 				color: $n-800;
 			}
-			
+
 			&--inactive {
 				color: $n-500;
 				font-weight: $font-weight-semibold;
@@ -248,7 +248,7 @@ export default {
 				border-top: 5px solid $n-50;
 				transition: border-top 0.2s ease-in-out;
 			}
-			
+
 			&--inactive:hover {
 				color: $n-500;
 			}
@@ -267,11 +267,11 @@ export default {
 			background-color: $n-0;
 			padding: pYX(6, 7);
 			border-radius: $border-radius-button;
-		
+
 			> .content__pane--inactive {
 				display: none;
 			}
-		
+
 			> .content__pane--active {
 				display: block;
 			}
