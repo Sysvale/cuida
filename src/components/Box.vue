@@ -6,6 +6,7 @@
 	>
 		<cds-clickable
 			:clickable="clickable"
+			@click="handleClick"
 		>
 			<!-- @slot Slot utilizado para renderização do conteúdo interno do Box.-->
 			<cds-spacer
@@ -52,7 +53,7 @@ export default {
 		* O valor mínimo aceito é 4 e o máximo aceito é 12.
 		*/
 		padding: {
-			type: Number,
+			type: [Number, String],
 			default: 4,
 			validator: (value) => value <= 12,
 		},
@@ -95,6 +96,12 @@ export default {
 
 	methods: {
 		rounder,
+
+		handleClick() {
+			if (this.clickable) {
+				this.$emit('boxClick', true);
+			}
+		},
 	},
 }
 </script>
