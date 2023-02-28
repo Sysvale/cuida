@@ -236,5 +236,4 @@ export default {
 		margin: mt(0);
 	}
 }
-
 </style>
