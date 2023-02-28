@@ -45,6 +45,7 @@ import Button from '../../components/Button.vue';
 	variant="green"
 	size="md"
 	text="Lorem Ipsum"
+    @click="buttonClick = true"
 />`
 			},
 		}
@@ -58,9 +59,15 @@ export const Template = (args) => ({
 	},
 	template: /*html*/ `
 		<cds-button
-			v-bind="args" 
+			v-bind="args"
+            @button-click="logButtonClick"
 		>
 		</cds-button>`,
+    methods: {
+		logButtonClick(event) {
+			console.info('%con click: ', 'color: #2C70CD;', event);
+		},
+	},
 });
 
 # Button
