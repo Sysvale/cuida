@@ -28,7 +28,7 @@ export default {
 		*/
 		fallbackSrc: {
 			type: String,
-			required: true,
+			required: false,
 		},
 		/**
 		* Largura da imagem. Quando não especificada, o valor `auto` é aplicado.
