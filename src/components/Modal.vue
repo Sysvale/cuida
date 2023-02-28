@@ -11,7 +11,7 @@
 			:class="`cds-modal--${size}`"
 			:style="dynamicStyle"
 		>
-			<header 
+			<header
 				v-if="!noHeader"
 			>
 				<!-- @slot Slot usado para utilização de header customizado. -->
@@ -56,16 +56,16 @@
 						v-if="!noCancelButton"
 						:text="cancelButtonText"
 						secondary
-						:disabled="disabled"
-						@click="closeHandle"
+						:disabled="disableCancelButton"
+						@click="!disableCancelButton ? closeHandle() : false"
 					/>
 
 					<cds-button
 						class="footer__ok-button"
 						:text="okButtonText"
 						:variant="actionButtonVariant"
-						:disabled="disabled"
-						@click="okHandle"
+						:disabled="disableOkButton"
+						@click="!disableOkButton ? okHandle() : false"
 					/>
 				</slot>
 			</footer>
@@ -125,9 +125,16 @@ export default {
 			default: 'md',
 		},
 		/**
-		 * Define o estado das ações do modal.
+		 * Define o estado do botão de ação do modal.
 		 */
-		disabled: {
+		disableOkButton: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Define o estado do botão de cancelar do modal.
+		 */
+		disableCancelButton: {
 			type: Boolean,
 			default: false,
 		},
@@ -135,6 +142,13 @@ export default {
 		 *  Controla a ação de fechar o modal ao clicar fora.
 		 */
 		noCloseOnBackdrop: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 *  Controla a ação de fechar o modal ao clicar no botão de ação.
+		 */
+		noCloseOkButton: {
 			type: Boolean,
 			default: false,
 		},
@@ -215,11 +229,12 @@ export default {
 	},
 
 	methods: {
+
 		closeHandle() {
 			/**
 			 * Evento que indica se o modal foi escondido.
-			* @event close
-			* @type {Event}
+			 * @event close
+			 * @type {Event}
 			*/
 			this.innerValue = !this.innerValue;
 			this.$emit('close', true);
@@ -232,9 +247,11 @@ export default {
 			* @event ok
 			* @type {Event}
 			*/
+			if (!this.noCloseOkButton) {
+				this.innerValue = !this.innerValue;
+				this.$emit('update:modelValue', false);
+			}
 			this.$emit('ok', true);
-			this.$emit('update:modelValue', false);
-			this.innerValue = !this.innerValue;
 		},
 	},
 };
