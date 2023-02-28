@@ -3,18 +3,19 @@
 		<div
 			class="file-input text-center"
 			:class="{
-				'file-input--drag-state': isOnDragEnterState,
+				'file-input--drag-state': isOnDragEnterState && disabled === false,
 				'file-input--sm': size === 'sm',
 				'file-input--md': size === 'md',
 				'file-input--lg': size === 'lg',
 				'file-input--valid': state === 'valid',
 				'file-input--invalid': state === 'invalid' || !isValid,
+				'file-input--disabled': disabled === true,
 				[sizeClass.holderPadding]: size,
 			}"
-			@dragover.prevent.stop="isOnDragEnterState = true"
-			@dragenter.prevent.stop="isOnDragEnterState = true"
-			@dragleave.prevent.stop="isOnDragEnterState = false"
-			@dragend.prevent.stop="isOnDragEnterState = false"
+			@dragover.prevent.stop="isOnDragEnterState = true && disabled === false"
+			@dragenter.prevent.stop="isOnDragEnterState = true && disabled === false"
+			@dragleave.prevent.stop="isOnDragEnterState = false && disabled === false"
+			@dragend.prevent.stop="isOnDragEnterState = false && disabled === false"
 			@drop="dropHandler"
 			@click="linkClick"
 		>
@@ -36,10 +37,11 @@
 						'icon-upload--sm': size === 'sm',
 						'icon-upload--md': size === 'md',
 						'icon-upload--lg': size === 'lg',
+						'icon-upload--disabled': disabled === true,
 						[sizeClass.holderPadding]: size,
 					}"
 				/>
-	
+
 				<div
 					:class="{
 						[sizeClass.inputTitle]: size,
@@ -51,6 +53,9 @@
 						<a
 							href="javascript:void(0)"
 							class="file-input__search-link"
+							:class="{
+								'file-input__search-link--disabled': disabled === true,
+							}"
 						>
 							pesquise no seu dispositivo
 						</a>
@@ -74,6 +79,7 @@
 						'icon-document--sm': size === 'sm',
 						'icon-document--md': size === 'md',
 						'icon-document--lg': size === 'lg',
+						'icon-document--disabled': disabled === true,
 					}"
 				/>
 
@@ -167,6 +173,13 @@ export default {
 			type: String,
 			default: 'Valor inválido',
 		},
+		/**
+		 * Controla a disponibilidade do Select.
+		 */
+		disabled: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -257,9 +270,12 @@ export default {
 		dropHandler(ev) {
 			this.isValid = null;
 			this.isOnDragEnterState = false;
-
 			// Prevent the browser default behavior (open the file)
 			ev.preventDefault();
+
+			if (this.disabled) {
+				return;
+			}
 
 			if (!ev.dataTransfer.items || ev.dataTransfer.items[0].kind !== 'file') return;
 
@@ -277,12 +293,20 @@ export default {
 
 		linkClick() {
 			// A lot of nested operations are needed because b-form-file wraps the input tag with a div
+			if (this.disabled) {
+				return;
+			}
+
 			this.$refs.fileInput.click();
 		},
 
 		isAValidExtension(fileName) {
+			if (this.disabled) {
+				return;
+			}
+
 			if (this.allowedExtensions === null) return true;
-			
+
 			const alloweds = this.allowedExtensions.split(',');
 			let uploaded = fileName.split('.');
 			uploaded = uploaded[uploaded.length - 1].trim();
@@ -326,10 +350,16 @@ export default {
 		align-items: center;
 	}
 
+	&--disabled {
+		cursor: default !important;
+		border: 2px dashed $n-40 !important;
+		color: $n-300;
+	}
+
 	&--valid {
 		border: 2px dashed $gp-200;
 	}
-	
+
 	&--invalid {
 		border: 2px dashed $rc-200;
 	}
@@ -400,6 +430,11 @@ export default {
 		&:hover {
 			text-decoration: underline;
 		}
+
+		&--disabled {
+		cursor: default !important;
+		color: $bn-200 !important;
+	}
 	}
 
 	&__close-button {
@@ -455,6 +490,11 @@ export default {
 
 .icon-upload {
 	color: $bn-500;
+
+	&--disabled {
+		cursor: default !important;
+		color: $bn-200 !important;
+	}
 
 	&--sm {
 		@extend .icon-upload;
