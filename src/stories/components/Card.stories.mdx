@@ -1,0 +1,285 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview, Source } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+
+import Card from '../../components/Card.vue';
+import Button from '../../components/Button.vue';
+import Badge from '../../components/Badge.vue';
+import Icon from '../../components/Icon.vue';
+
+<Meta
+	title="Componentes/Containers/Card"
+	component={ Card }
+	argTypes={{
+		imageWidth: {
+			control: {
+				type: 'range',
+				min: 150,
+				max: 550,
+				step: 10,
+			},
+		},
+		imageHeight: {
+			control: {
+				type: 'range',
+				min: 150,
+				max: 550,
+				step: 10,
+			},
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-card
+	imageWidth="300"
+	imageHeight="180"
+	imageSrc="https://images.unsplash.com/photo-1677391520535-e03e845dec33?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+	@cardClick="logClick"
+>
+	<template #header>
+		<div style="margin-bottom: 12px">
+			Card Title
+		</div>
+	</template>
+	<template #extra>
+		<cds-badge>Action</cds-badge>
+	</template>
+	<template #body>
+		Some quick example text to build on the card title and make up the bulk of the card's content.
+	</template>
+	<template #footer>
+		<cds-button size="md" style="margin-top: 16px">
+			Action 1
+		</cds-button>
+	</template>
+</cds-card>`
+			},
+		}
+	}}
+/>
+
+export const TemplateStandard = (args) => ({
+	components: { CdsCard: Card, CdsButton: Button, CdsBadge: Badge },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-card
+			v-bind="args"
+			@cardClick="logClick"
+		>
+			<template #header>
+				<div style="margin-bottom: 12px">
+					Card Title
+				</div>
+			</template>
+			<template #extra>
+				<cds-badge>Action</cds-badge>
+			</template>
+			<template #body>
+				Some quick example text to build on the card title and make up the bulk of the card's content.
+			</template>
+			<template #footer>
+				<cds-button size="md" style="margin-top: 16px">
+					Action 1
+				</cds-button>
+			</template>
+		</cds-card>
+	`,
+	methods: {
+		logClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+export const SimpleCardTemplate = (args) => ({
+	components: { CdsCard: Card, CdsButton: Button, CdsBadge: Badge },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-card
+			v-bind="args"
+		>
+		</cds-card>
+	`,
+});
+
+export const withSlotsTemplate = (args) => ({
+	components: { CdsCard: Card, CdsButton: Button, CdsBadge: Badge },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-card
+			v-bind="args"
+		>
+			<template #header>45 <small>gestantes</small></template>
+			<template #extra>
+				<cds-badge variant="red">Alerta</cds-badge>
+			</template>
+			<template #body>
+				Não realizam consulta há mais de 30 dias
+			</template>
+			<template #footer>
+				<div class="d-flex justify-content-end">
+					<small><strong>VER LISTA</strong></small>
+				</div>
+			</template>
+		</cds-card>
+	`,
+});
+
+export const withIconTemplate = (args) => ({
+	components: { CdsCard: Card, CdsButton: Button, CdsIcon: Icon },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-card
+			v-bind="args"
+		>
+			<template #icon>
+				<div class="d-flex align-items-center justify-content-center" style="background: #ecf1fe; height: 48px; width: 48px; border-radius: 8px">
+					<cds-icon name="home-outline" color="#1A55A8"/>
+				</div>
+			</template>
+			<template #header>
+				<div style="font-size: 24px; margin-bottom: 4px"> 32 </div>
+			</template>
+			<template #body>
+				UBSs com dados atualizados
+			</template>
+		</cds-card>
+	`,
+});
+
+export const horizontalPropTemplate = (args) => ({
+	components: { CdsCard: Card, CdsButton: Button, CdsBadge: Badge },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-card
+			v-bind="args"
+		>
+		</cds-card>
+	`,
+});
+
+# Card
+
+### Cards são componentes utilizados como containers de propósito geral. À partir das suas props e slots `header`, `body`, `footer`, `image`, `icon` e `extra` é possível criar variações e cards mais específicos, como o DashboardCard.
+
+---
+<br />
+
+## Quando usar:
+- Para agrupar elementos relacionados entre si.
+- Para dar proeminência visual a elementos relacionados entre si. 
+
+<br />
+
+## Quando não usar:
+- De modo aninhado, com cards dentro de cards.
+- Quando o conteúdo encapsulado pelo card ocupar mais da metade da página.
+
+<br />
+
+## Observações:
+- ⚠️ Há exemplos adicionais de card abaixo da tabela de props e slots.
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Card-standard"
+		args={{
+			imageWidth: 300,
+			imageHeight: 180,
+			clickable: false,
+			horizontal: false,
+			imageSrc: 'https://images.unsplash.com/photo-1677391520535-e03e845dec33?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+		}}
+	>
+		{ TemplateStandard.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Card-standard" />
+
+## __Card simples__
+As props `title` `content` e `imageSrc` nos permitem montar um layout simples de Card utilizando apenas props. 
+
+<br />
+
+<Story
+	name="simple-card"
+	args={{
+		title: 'Card Title',
+		content: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+	}}
+>
+	{ SimpleCardTemplate.bind({}) }
+</Story>
+
+<br />
+<br />
+
+## __Utilizando slots__
+Utilizando os slots `title`, `body`, `footer` e `extra` conseguimos criar Cards mais complexos, como o DashboardCard.  
+
+<br />
+
+<Story
+	name="Card-with-slots"
+>
+	{ withSlotsTemplate.bind({}) }
+</Story>
+
+<br />
+<br />
+
+## __Slot icon__
+O Card possui um slot chamado `icon`, que pode ser utilizado para adição de ícones no Card.  
+
+⚠️O Slot `image` tem precedência maior que o slot `icon`. Caso os dois sejam utiliados o slot `image` será exibido
+e o slot `icon` será ocultado.  
+
+<br />
+
+<Story
+	name="Card-with-icon"
+	args={{
+		horizontal: true,
+	}}
+>
+	{ withIconTemplate.bind({}) }
+</Story>
+
+<br />
+<br />
+
+## __Prop `horizontal`__
+Para layouts horizontais de Card, utilize a prop `horizontal`
+
+<br />
+
+<Story
+	name="Card-with-horizontal-prop"
+	args={{
+		imageSrc: 'https://images.unsplash.com/photo-1677391520535-e03e845dec33?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+		horizontal: true,
+		imageWidth: 200,
+		title: 'Card Title',
+		content: "Some quick example text to build on the card title and make up the bulk of the card's content."
+	}}
+>
+	{ horizontalPropTemplate.bind({}) }
+</Story>

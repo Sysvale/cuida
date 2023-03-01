@@ -5,6 +5,14 @@ import Spacer from '../../components/Spacer.vue';
 	title="Componentes/Utils/Spacer"
 	component={ Spacer }
 	argTypes={{
+		padding: {
+			control: {
+				type: 'range',
+				min: 0,
+				max: 12,
+				step: 1,
+			},
+		},
 		paddingTop: {
 			control: {
 				type: 'range',
@@ -30,6 +38,14 @@ import Spacer from '../../components/Spacer.vue';
 			},
 		},
 		paddingLeft: {
+			control: {
+				type: 'range',
+				min: 0,
+				max: 12,
+				step: 1,
+			},
+		},
+		margin: {
 			control: {
 				type: 'range',
 				min: 0,
@@ -149,10 +165,12 @@ utilize classes e nelas inclua paddings e margins com os tokens de espaçamento 
 	<Story
 		name="Spacer"
 		args={{
+			padding: 0,
 			paddingTop: 0,
 			paddingRight: 0,
 			paddingBottom: 0,
 			paddingLeft: 0,
+			margin: 0,
 			marginTop: 0,
 			marginRight: 0,
 			marginBottom: 0,

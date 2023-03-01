@@ -28,7 +28,7 @@ export default {
 		*/
 		fallbackSrc: {
 			type: String,
-			required: true,
+			required: false,
 		},
 		/**
 		* Largura da imagem. Quando não especificada, o valor `auto` é aplicado.
@@ -132,6 +132,7 @@ export default {
 	border-radius: v-bind(radiusResolver);
 	filter: v-bind(grayScaleResolver);
 	height: v-bind(heightResolver);
+	object-fit: cover;
 	opacity: v-bind(opacity);
 	width: v-bind(widthResolver);
 	-webkit-filter: v-bind(grayScaleResolver);
