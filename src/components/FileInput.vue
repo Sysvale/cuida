@@ -4,7 +4,6 @@
 			class="file-input text-center"
 			:class="{
 				'file-input--drag-state': isOnDragEnterState,
-				'file-input--drag-state--disabled': isOnDragEnterState && disabled === true,
 				'file-input--sm': size === 'sm',
 				'file-input--md': size === 'md',
 				'file-input--lg': size === 'lg',
@@ -435,6 +434,9 @@ export default {
 		&--disabled {
 			cursor: default !important;
 			color: $bn-200 !important;
+		}
+		&--disabled:hover {
+			text-decoration: none;
 		}
 	}
 
