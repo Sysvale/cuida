@@ -29,7 +29,7 @@ VueWrapper {
     "hasOwnProperty": [Function],
     "hasSlot": [Function],
     "horizontal": false,
-    "imageAlt": undefined,
+    "imageAlt": "imagem do card",
     "imageHeight": 180,
     "imageSrc": "",
     "imageWidth": 300,
