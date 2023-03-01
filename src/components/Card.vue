@@ -82,7 +82,6 @@
 <script>
 import CdsBox from './Box.vue';
 import CdsImage from './Image.vue';
-import CdsSpacer from './Spacer.vue';
 
 import hasSlot from '../utils/methods/hasSlot';
 
@@ -90,7 +89,6 @@ export default {
 	components: {
 		CdsBox,
 		CdsImage,
-		CdsSpacer,
 	},
 
 	props: {
