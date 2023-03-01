@@ -21,20 +21,32 @@ VueWrapper {
   },
   "__setProps": [Function],
   "componentVM": {
+    "borderRadiusResolver": "4px",
+    "clickable": false,
     "elevated": false,
     "fluid": false,
+    "handleClick": [Function],
     "hasOwnProperty": [Function],
     "padding": 4,
+    "rounder": [Function],
+    "variant": "gray",
+    "width": 0,
     "widthResolver": "fit-content",
   },
   "isDisabled": [Function],
   "rootVM": {},
   "wrapperElement": <div
-    class="box"
+    class="box--gray"
     data-v-f9290560=""
   >
-    <!-- @slot Slot utilizado para renderização do conteúdo interno do Box.-->
+    
+    <!--
+		Evento emitido quando o wrapper é clicado
+		@event click
+		@type {Event}
+	-->
     <div … />
+    
   </div>,
 }
 `;
