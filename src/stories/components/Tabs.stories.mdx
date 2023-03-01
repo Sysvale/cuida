@@ -30,7 +30,7 @@ import Tabs from '../../components/Tabs.vue';
 			source: {
 				language: 'html',
 				format:true,
-				code: /*html*/ 
+				code: /*html*/
 `<cds-tabs
 	:tabs="items"
 	:activeTab="items[1]"
@@ -59,6 +59,7 @@ export const Template = (args) => ({
 		<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px;">
 			<cds-tabs
 				v-bind="args"
+				@tabs-change="logTabsChange"
 			>
 				<template #room-42>
 					Sala de Psicologia
@@ -72,6 +73,11 @@ export const Template = (args) => ({
 			</cds-tabs>
 	</div>
 	`,
+	methods: {
+		logTabsChange(event) {
+			console.info('%ctabs-change: ', 'color: #2C70CD;', event);
+		},
+	},
 });
 
 # Tabs
