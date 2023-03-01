@@ -1,6 +1,6 @@
 {
 	"name": "@sysvale/cuida",
-	"version": "3.0.0-beta.29",
+	"version": "3.0.0-beta.30",
 	"description": "A design system built by Sysvale, using storybook and Vue components",
 	"repository": {
 		"type": "git",
@@ -21,7 +21,7 @@
 	"unpkg": "dist/@sysvale/cuida.umd.js",
 	"scripts": {
 		"dev": "vite",
-		"build": "vue-tsc --noEmit && vite build",
+		"build": "vue-tsc --noEmit && vite build && node buildtokens.js",
 		"preview": "vite preview",
 		"storybook": "start-storybook --docs --no-manager-cache",
 		"build-storybook": "build-storybook -s public --docs",
@@ -34,6 +34,7 @@
 		"@sysvale/vue3-long-click": "^0.2.0",
 		"chromatic": "^6.14.0",
 		"click-outside-vue3": "^4.0.1",
+		"create-file": "^1.0.1",
 		"lodash.clonedeep": "^4.5.0",
 		"lodash.isempty": "^4.4.0",
 		"lodash.isequal": "^4.5.0",
