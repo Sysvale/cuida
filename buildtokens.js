@@ -1,7 +1,9 @@
 const concat = require('concat');
 const createFile = require('create-file');
 
-createFile('dist/@sysvale/tokens.scss', '');
+createFile('dist/@sysvale/tokens.scss', '', function (err) {
+	console.warn(err);
+});
 
 concat(
 	[
