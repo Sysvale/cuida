@@ -7,6 +7,7 @@ import Avatar from './Avatar.vue';
 import Badge from './Badge.vue';
 import Box from './Box.vue';
 import Button from './Button.vue';
+import Card from './Card.vue';
 import CalloutCard from './CalloutCard.vue';
 import CarouselController from './CarouselController.vue';
 import Checkbox from './Checkbox.vue';
@@ -80,6 +81,7 @@ export default {
 		app.component('CdsBadge', Badge); //NOTE: Testado no SB
 		app.component('CdsBox', Box);
 		app.component('CdsButton', Button); //NOTE: Testado no SB
+		app.component('CdsCard', Card);
 		app.component('CdsCalloutCard', CalloutCard); //NOTE: Testado no SB
 		app.component('CdsCarouselController', CarouselController);
 		app.component('CdsCheckbox', Checkbox); //FIXME: Problema no SB de estilo

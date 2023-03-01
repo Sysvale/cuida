@@ -1,0 +1,56 @@
+// Vitest Snapshot v1
+
+exports[`Card snapshot test > renders correctly 1`] = `
+VueWrapper {
+  "__app": {
+    "_component": [Object],
+    "_container": <div … />,
+    "_context": [Object],
+    "_instance": [Object],
+    "_props": null,
+    "_uid": 0,
+    "component": [Function],
+    "config": [Object],
+    "directive": [Function],
+    "mixin": [Function],
+    "mount": [Function],
+    "provide": [Function],
+    "unmount": [Function],
+    "use": [Function],
+    "version": "3.2.37",
+  },
+  "__setProps": [Function],
+  "componentVM": {
+    "bodyWidth": 300,
+    "bodyWidthResolver": "300px",
+    "clickable": false,
+    "content": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "handleClick": [Function],
+    "hasOwnProperty": [Function],
+    "hasSlot": [Function],
+    "horizontal": false,
+    "imageAlt": undefined,
+    "imageHeight": 180,
+    "imageSrc": "",
+    "imageWidth": 300,
+    "imageWidthResolver": "300px",
+    "title": "Card Title",
+  },
+  "isDisabled": [Function],
+  "rootVM": {},
+  "wrapperElement": <div
+    class="box--gray"
+    data-v-c6c3362a=""
+    data-v-f9290560=""
+  >
+    
+    <!--
+		Evento emitido quando o wrapper é clicado
+		@event click
+		@type {Event}
+	-->
+    <div … />
+    
+  </div>,
+}
+`;
