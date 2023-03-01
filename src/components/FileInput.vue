@@ -3,7 +3,8 @@
 		<div
 			class="file-input text-center"
 			:class="{
-				'file-input--drag-state': isOnDragEnterState && disabled === false,
+				'file-input--drag-state': isOnDragEnterState,
+				'file-input--drag-state--disabled': isOnDragEnterState && disabled === true,
 				'file-input--sm': size === 'sm',
 				'file-input--md': size === 'md',
 				'file-input--lg': size === 'lg',
@@ -12,10 +13,10 @@
 				'file-input--disabled': disabled === true,
 				[sizeClass.holderPadding]: size,
 			}"
-			@dragover.prevent.stop="isOnDragEnterState = true && disabled === false"
-			@dragenter.prevent.stop="isOnDragEnterState = true && disabled === false"
-			@dragleave.prevent.stop="isOnDragEnterState = false && disabled === false"
-			@dragend.prevent.stop="isOnDragEnterState = false && disabled === false"
+			@dragover.prevent.stop="isOnDragEnterState = true"
+			@dragenter.prevent.stop="isOnDragEnterState = true"
+			@dragleave.prevent.stop="isOnDragEnterState = false"
+			@dragend.prevent.stop="isOnDragEnterState = false"
 			@drop="dropHandler"
 			@click="linkClick"
 		>
@@ -92,6 +93,7 @@
 					<div
 						v-if="!isOnDragEnterState"
 						class="on-drag-content__container"
+						:class="{'on-drag-content__container--disabled': disabled === true}"
 					>
 						<div>{{ file.name }}</div>
 						<div
@@ -107,6 +109,7 @@
 									'file-input__close-button--sm': size === 'sm',
 									'file-input__close-button--md': size === 'md',
 									'file-input__close-button--lg': size === 'lg',
+									'file-input__close-button--disabled': disabled === true,
 								}"
 							/>
 						</div>
@@ -273,11 +276,9 @@ export default {
 			// Prevent the browser default behavior (open the file)
 			ev.preventDefault();
 
-			if (this.disabled) {
-				return;
-			}
-
 			if (!ev.dataTransfer.items || ev.dataTransfer.items[0].kind !== 'file') return;
+
+			if (this.disabled) return;
 
 			const internalFile = ev.dataTransfer.items[0].getAsFile();
 
@@ -293,18 +294,12 @@ export default {
 
 		linkClick() {
 			// A lot of nested operations are needed because b-form-file wraps the input tag with a div
-			if (this.disabled) {
-				return;
-			}
+			if (this.disabled) return;
 
 			this.$refs.fileInput.click();
 		},
 
 		isAValidExtension(fileName) {
-			if (this.disabled) {
-				return;
-			}
-
 			if (this.allowedExtensions === null) return true;
 
 			const alloweds = this.allowedExtensions.split(',');
@@ -331,6 +326,7 @@ export default {
 		},
 
 		handleRemove() {
+			if (this.disabled) return;
 			this.isValid = 'default';
 			this.file = null;
 		},
@@ -394,6 +390,11 @@ export default {
 	}
 
 	&__title {
+		&--disabled {
+			cursor: default !important;
+			color: $n-300;
+		}
+
 		&--lg {
 			margin: ml(2);
 			display: flex;
@@ -432,14 +433,19 @@ export default {
 		}
 
 		&--disabled {
-		cursor: default !important;
-		color: $bn-200 !important;
-	}
+			cursor: default !important;
+			color: $bn-200 !important;
+		}
 	}
 
 	&__close-button {
 		color: $bn-400;
 		cursor: pointer;
+
+		&--disabled {
+			cursor: default !important;
+			color: $bn-200 !important;
+		}
 
 		&--sm {
 			@extend .file-input__close-button;
@@ -463,11 +469,21 @@ export default {
 	&--drag-state {
 		background-color: $n-10;
 		border: 2px dashed $n-40;
+
+		&--disabled {
+			cursor: default !important;
+			color: $bn-200 !important;
+		}
 	}
 }
 
 .icon-document {
 	color: $bn-500;
+
+	&--disabled {
+		cursor: default !important;
+		color: $bn-200 !important;
+	}
 
 	&--sm {
 		@extend .icon-document;
@@ -520,6 +536,11 @@ export default {
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
+
+	&--disabled {
+		cursor: default !important;
+		color: $n-300;
+	}
 }
 
 .x-icon__container {
