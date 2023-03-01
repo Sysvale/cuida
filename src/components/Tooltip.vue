@@ -56,7 +56,6 @@ export default {
 	border-radius: $border-radius-extra-large !important;
 	background-color: $n-900 !important;
 	color: $n-0 !important;
-	max-height: 24px !important;
 	display: flex;
 	align-items: center;
 	font-weight: $font-weight-semibold !important;

@@ -79,15 +79,13 @@ export default {
 
 .cds-radio {
 	display: flex;
-	align-items: flex-start;	
+	align-items: flex-start;
 }
 
 .cds-radio__label {
-	@include body-2;
+	@include body-2;    
 	margin-left: 10px;
-	cursor: pointer;
-
-	disabled {
+	[disabled="disabled"] {
 		color: $n-300;
 	}
 }
@@ -101,10 +99,9 @@ input[type="radio"] {
 	height: 16px;
 	border: 1px solid $n-50;
 	border-radius: 50%;
-	margin-top: 1.5px;
+	margin-top: 1.4px;
 	display: grid;
 	place-content: center;
-	cursor: pointer;
 }
 
 input[type="radio"]:checked {
@@ -113,26 +110,24 @@ input[type="radio"]:checked {
 
 input[type="radio"]::before {
 	content: "";
-	width: 7px;
-	height: 7px;
+	width: 8px;
+	height: 8px;
 	border-radius: 50%;
-	transform: scale(0.5);
-	opacity: 0;
-	transition: $interaction;
+	transform: scale(0);
+	transition: 120ms transform ease-in-out;
 	background: $gp-500;
 }
 
 input[type="radio"]:checked::before {
 	transform: scale(1);
-	opacity: 1;
 }
 
-input[type="radio"]:disabled {
+input[type="radio"][disabled="disabled"] {
 	border: 1px solid $n-50;
 	background: $n-20;
 }
 
-input[type="radio"]:disabled::before {
+input[type="radio"][disabled="disabled"]::before {
 	background: $n-20;
 }
 </style>
