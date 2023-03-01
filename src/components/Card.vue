@@ -118,6 +118,7 @@ export default {
 		*/
 		imageAlt: {
 			type: String,
+			default: 'imagem do card',
 		},
 		/**
 		* Largura da imagem do card.
