@@ -303,7 +303,7 @@ export default {
 			this.active = !this.active;
 
 			if (typeof this.localOptions[this.currentPos] === 'undefined') {
-				this.localOptions = this.pristineOptions;
+				this.localOptions = _.clone(this.pristineOptions);
 			} else {
 				this.localValue = _.clone(this.localOptions[this.currentPos]);
 			}
@@ -326,7 +326,15 @@ export default {
 		},
 
 		hide() {
-			this.localOptions = this.pristineOptions;
+			let isOneOfTheOptions = this.pristineOptions.some((option) => {
+				return this.localValue.value === option.value;
+			})
+
+			if (!isOneOfTheOptions) {
+				this.localValue.value = '';
+			}
+
+			this.localOptions = _.clone(this.pristineOptions);
 			this.active = false;
 		},
 
