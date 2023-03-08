@@ -19,30 +19,15 @@ $ npm i @sysvale/cuida;
 
 ## Usando
 
-- Instale o bootstrap-vue como dependência:
-
-```bash
-$ npm i @sysvale/cuida;
-```
-
-- Para usar o bootstrap-vue, importe a biblioteca no seu entry point, provavelmente vai ser seu main.js ou app.js:
-
-```js
-import BootstrapVue from "bootstrap-vue";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
-```
-
-- Instale o bootstrap-vue com:
-
-```js
-$ npm install bootstrap-vue bootstrap;
-```
-
 - Para usar o cuida, importe a biblioteca no seu entry point, provavelmente vai ser seu main.js ou app.js:
 
 ```js
 import Cuida from "@sysvale/cuida";
+```
+
+- Importe os estilos do Cuida:
+```js
+import '@sysvale/cuida/dist/style.css';
 ```
 
 - E instale o Cuida:
