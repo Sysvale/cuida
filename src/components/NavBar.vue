@@ -2,7 +2,7 @@
 	<div
 		id="nav-bar"
 	>
-		<ul 
+		<ul
 			:class="{'nav-bar__container': items.length >= 1}"
 		>
 			<li
@@ -67,7 +67,7 @@ export default {
 		},
 		/**
 		 * Cor da borda que indica o item ativo na NavBar.
-		 * Existem algumas cores predefinidas seguindo os guias do Cuida, são elas: 
+		 * Existem algumas cores predefinidas seguindo os guias do Cuida, são elas:
 		 * `turquoise`, `green`, `blue`, `violet`, `pink`, `red`, `orange`, `amber` e `gray`.
 		 */
 		variant: {
@@ -111,10 +111,10 @@ export default {
 			this.internalActiveItem = item;
 			/**
 			 * Evento emitido quando um dos itens da NavBar é clicado
-			* @event change
+			* @event navbar-click
 			* @type {Event}
 			*/
-			this.$emit('click', this.internalActiveItem);
+			this.$emit('navbar-click', this.internalActiveItem);
 		},
 
 		isActive(item) {
@@ -175,15 +175,15 @@ export default {
 				cursor: default;
 				color: $n-10;
 			}
-			
+
 			&--active:hover {
 				color: $n-0;
 			}
-			
+
 			&--inactive {
 				color: $n-100;
 			}
-			
+
 			&--inactive:hover {
 				color: $n-40;
 			}
