@@ -18,7 +18,7 @@
 					'cds-checkbox__content--checked': internalValue,
 					'cds-checkbox__content--disabled': disabled,
 				}"
-				@click.stop
+				@click="toggleValue"
 			/>
 		</div>
 		<div
