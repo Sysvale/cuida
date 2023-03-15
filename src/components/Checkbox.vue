@@ -30,7 +30,7 @@
 		>
 			<!-- @slot Slot usado pra mostrar o conteúdo do checkbox. -->
 			<slot>
-				opa {{ label }}
+				{{ label }}
 			</slot>
 		</div>
 	</span>
