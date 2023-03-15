@@ -18,7 +18,7 @@
 					'cds-checkbox__content--checked': internalValue,
 					'cds-checkbox__content--disabled': disabled,
 				}"
-				@click.stop
+				@click="toggleValue"
 			/>
 		</div>
 		<div
@@ -30,7 +30,7 @@
 		>
 			<!-- @slot Slot usado pra mostrar o conteúdo do checkbox. -->
 			<slot>
-				{{ label }}
+				opa {{ label }}
 			</slot>
 		</div>
 	</span>
