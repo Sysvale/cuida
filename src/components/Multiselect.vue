@@ -19,22 +19,22 @@
 				<span>
 					{{ label }}
 				</span>
-	
+
 				<span
 					v-if="required"
 					class="clustered-multiselect__label--required-indicator"
 				>
 					*
 				</span>
-	
+
 			</label>
 		</span>
 
 		<multiselect
 			id="clustered-multiselect"
 			ref="cds-multiselect"
-			v-model="selectedValue"
 			v-bind="attrs"
+			v-model="selectedValue"
 			:options="internalOptions"
 			:label="optionsField"
 			:track-by="trackBy"
@@ -103,7 +103,7 @@
 					<cds-divider
 						:text="option.$groupLabel"
 						inline
-						dimmed 
+						dimmed
 					/>
 				</div>
 				<div
@@ -673,7 +673,7 @@ export default {
 	.clustered-multiselect {
 		&__label {
 			@include label;
-	
+
 			&--required-indicator {
 				color: $rc-600;
 			}
