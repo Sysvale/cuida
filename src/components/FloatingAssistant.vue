@@ -1,5 +1,8 @@
 <template>
-	<div class="floating-assistant">
+	<div
+		v-if="isActive"
+		class="floating-assistant"
+	>
 		<cds-pulsar
 			:id="pulsarId"
 			:target-id="targetId"
@@ -13,9 +16,24 @@
 				v-on-click-outside="collapse"
 				class="floating-assistant__dropdown"
 				:class="{ 'floating-assistant__dropdown--expanded': isExpanded }"
-				@click="isExpanded = true"
+				@click="expand"
 			>
-				<div>
+				<div v-if="waitingConfirmation">
+					Desativar esta dica?
+					<span
+						class="floating-assistant__link"
+						@click="confirmationHandle(true)"
+					>
+						Sim
+					</span> /
+					<span
+						class="floating-assistant__link"
+						@click="confirmationHandle(false)"
+					>
+						Não
+					</span>
+				</div>
+				<div v-else>
 					<span class="floating-assistant__title">
 						{{ title }}
 					</span>
@@ -45,7 +63,7 @@
 					</span>
 				</div>
 				<div v-if="isExpanded">
-					<div @click.stop="collapse">
+					<div @click.stop="close">
 						<cds-icon
 							class="floating-assistant__close-button"
 							name="x-outline"
@@ -106,6 +124,8 @@ export default {
 			containerId: null,
 			position: 'right',
 			isExpanded: false,
+			isActive: true,
+			waitingConfirmation: false,
 		};
 	},
 
@@ -115,9 +135,35 @@ export default {
 	},
 
 	methods: {
+		expand() {
+			if (!this.waitingConfirmation) {
+				this.isExpanded = true;
+			}
+		},
+
 		collapse() {
 			this.isExpanded = false;
 		},
+
+		close() {
+			this.collapse();
+			this.waitingConfirmation = true;
+		},
+
+		confirmationHandle(shouldDisable) {
+			if (!shouldDisable) {
+				this.isActive = false;
+				return;
+			}
+
+			/**
+			* Evento que indica que a opção de desativar a dica foi selecionada
+			* @event disable-tip
+			* @type {Event}
+			*/
+			this.$emit('disable-tip', true);
+			this.isActive = false;
+		}
 	},
 };
 </script>
