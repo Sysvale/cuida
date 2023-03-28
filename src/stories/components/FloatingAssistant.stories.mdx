@@ -1,0 +1,74 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import FloatingAssistant from '../../components/FloatingAssistant.vue';
+
+<Meta
+	title="Componentes/Display/FloatingAssistant"
+	component={ FloatingAssistant }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-floating-assistant
+	targetId="floating-assistant-target"
+	title="Nova funcionalidade!"
+/>`
+},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsFloatingAssistant: FloatingAssistant },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+			<div id="floating-assistant-target" style="width: fit-content;">FloatingAssistant target</div>
+
+			<cds-floating-assistant
+				v-bind="args"
+				targetId="floating-assistant-target"
+			/>
+	`,
+	methods: {
+		logClickableClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+# FloatingAssistant
+
+### Floating Assistant é um componente flutuante que pode ser utilizado para fornecer dicas de usabilidade ou informações específicas sobre o conteúdo da página.
+---
+<br />
+
+## Quando usar:
+- Houver necessidade de fornecer dicas ou informações adicionais sobre um determinado elemento ou seção da página.
+- For necessário direcionar o usuário para uma página externa que contenha informações/tutoriais adicionais sobre o conteúdo.
+- O objetivo for reduzir a quantidade de informações exibidas na tela, mantendo o foco do usuário no elemento relevante.
+
+
+<br />
+
+## Quando não usar:
+- O componente se tornar intrusivo e atrapalhar a navegação e experiência do usuário.
+- Não houver espaço suficiente para exibição do componente e ele puder ser confundido com o conteúdo da página.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="FloatingAssistant"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="FloatingAssistant" />
