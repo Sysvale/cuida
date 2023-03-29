@@ -1,5 +1,6 @@
 <template>
 	<div
+		:id="id"
 		class="floating-assistant"
 		:class="{ 'floating-assistant--hidden': !isActive }"
 	>
@@ -133,11 +134,13 @@ export default {
 	data() {
 		return {
 			isActive: this.modelValue,
+			id: null,
 			pulsarId: null,
 			containerId: null,
 			position: 'right',
 			isExpanded: false,
 			waitingConfirmation: false,
+			boxTop: 0,
 		};
 	},
 
@@ -158,11 +161,39 @@ export default {
 	},
 
 	mounted() {
-		this.pulsarId = `floating-assistant$-${this._uid}`;
+		this.id = `floating-assistant$-${this._uid}`;
+		this.pulsarId = `floating-assistant-pulsar$-${this._uid}`;
 		this.containerId = `floating-assistant-container$-${this._uid}`;
+
+		window.addEventListener('scroll', this.startAnimation, false);
 	},
 
 	methods: {
+		startAnimation() {
+			// verifica se o elemento está visível
+			if (this.isScrolledIntoView()) {
+				// adiciona classe 'animation' se estiver visível
+				document.getElementById(this.id).classList.add('animation');
+
+				window.removeEventListener('scroll', this.startAnimation);
+			}
+		},
+
+		isScrolledIntoView() {
+			const scrollTop = window.scrollY;
+			const scrollBottom = scrollTop + window.innerHeight;
+
+			// obtém posição e dimensões do elemento
+			const box = document.getElementById(this.id).getBoundingClientRect();
+			if (!this.boxTop) {
+				this.boxTop = box.top;
+			}
+			const elemTop = this.boxTop;
+			const elemBottom = elemTop + 18;
+
+			return ((elemBottom <= scrollBottom) && (elemTop >= scrollTop));
+		},
+
 		expand() {
 			if (!this.waitingConfirmation) {
 				this.isExpanded = true;
@@ -201,6 +232,27 @@ export default {
 @import '../assets/sass/tokens.scss';
 
 .floating-assistant {
+	&.animation {
+		.floating-assistant__dropdown {
+			display: flex;
+			animation-name: showCard;
+			animation-duration: 0.5s;
+			animation-fill-mode: forwards;
+
+			&--expanded {
+				animation-name: expandCard;
+				animation-duration: 0.5s;
+				animation-fill-mode: forwards;
+			}
+		}
+
+		.floating-assistant__title {
+			animation: fadeInTitle ease 1s;
+			animation-iteration-count: 1;
+			animation-fill-mode: forwards;
+		}
+	}
+
 	&--hidden {
 		animation: fadeOut ease .2s;
 		animation-iteration-count: 1;
@@ -215,6 +267,7 @@ export default {
 
 	&__dropdown {
 		@include overline;
+		display: none;
 		color: $n-500;
 		background-color: $n-0;
 		border-radius: $border-radius-small;
@@ -224,23 +277,14 @@ export default {
 		margin: ml(3);
 		padding: pYX(2, 5);
 		z-index: 999999999;
-		display: flex;
 		max-width: 336px;
 		max-height: 46px;
 		transition : 0.3s ease-in-out;
-
-		animation-name: showCard;
-		animation-duration: 0.5s;
-		animation-fill-mode: forwards;
 
 		&--expanded {
 			padding: pYX(3, 5);
 			width: 100%;
 			max-height: none;
-
-			animation-name: expandCard;
-			animation-duration: 0.5s;
-			animation-fill-mode: forwards;
 
 			.floating-assistant__title {
 				animation: fadeInContent ease 1s;
@@ -264,10 +308,6 @@ export default {
 		@include caption;
 		color: $gp-400;
 		font-weight: $font-weight-bold;
-
-		animation: fadeInTitle ease 1s;
-		animation-iteration-count: 1;
-		animation-fill-mode: forwards;
 	}
 
 	&__subtitle {
