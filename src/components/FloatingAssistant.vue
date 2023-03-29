@@ -1,7 +1,7 @@
 <template>
 	<div
-		v-if="isActive"
 		class="floating-assistant"
+		:class="{ 'floating-assistant--hidden': !isActive }"
 	>
 		<cds-pulsar
 			:id="pulsarId"
@@ -15,7 +15,10 @@
 			<div
 				v-on-click-outside="collapse"
 				class="floating-assistant__dropdown"
-				:class="{ 'floating-assistant__dropdown--expanded': isExpanded }"
+				:class="{
+					'floating-assistant__dropdown--expanded': isExpanded,
+					'floating-assistant__dropdown--confirmation': waitingConfirmation,
+				}"
 				@click="expand"
 			>
 				<div v-if="waitingConfirmation">
@@ -173,6 +176,12 @@ export default {
 @import '../assets/sass/tokens.scss';
 
 .floating-assistant {
+	&--hidden {
+		animation: fadeOut ease .2s;
+		animation-iteration-count: 1;
+		animation-fill-mode: forwards;
+	}
+
 	&__container {
 		display: flex;
 		align-items: center;
@@ -192,25 +201,67 @@ export default {
 		z-index: 999999999;
 		display: flex;
 		max-width: 336px;
+		max-height: 46px;
+		transition : 0.3s ease-in-out;
+
+		animation-name: showCard;
+		animation-duration: 0.5s;
+		animation-fill-mode: forwards;
 
 		&--expanded {
 			padding: pYX(3, 5);
+			width: 100%;
+			max-height: none;
+
+			animation-name: expandCard;
+			animation-duration: 0.5s;
+			animation-fill-mode: forwards;
+
+			.floating-assistant__title {
+				animation: fadeInContent ease 1s;
+				animation-iteration-count: 1;
+				animation-fill-mode: forwards;
+			}
+		}
+
+		&--confirmation {
+			width: auto !important;
+
+			animation-name: collapseCard;
+			animation-duration: 5s;
+			animation-fill-mode: forwards;
 		}
 	}
 
 	&__title {
 		display: block;
+		width: max-content;
 		@include caption;
 		color: $gp-400;
 		font-weight: $font-weight-bold;
+
+		animation: fadeInTitle ease 1s;
+		animation-iteration-count: 1;
+		animation-fill-mode: forwards;
 	}
 
 	&__subtitle {
+		display: block;
+		width: max-content;
 		color: $n-400;
+
+		animation: fadeInTitle ease 1s;
+		animation-iteration-count: 1;
+		animation-fill-mode: forwards;
 	}
 
 	&__content {
 		margin: mt(1);
+		width: 276px;
+
+		animation: fadeInContent ease 1s;
+		animation-iteration-count: 1;
+		animation-fill-mode: forwards;
 	}
 
 	&__footer {
@@ -226,6 +277,73 @@ export default {
 	&__close-button {
 		color: $n-600;
 		cursor: pointer;
+
+		animation: fadeInContent ease 2s;
+		animation-iteration-count: 1;
+		animation-fill-mode: forwards;
+	}
+}
+
+@keyframes fadeInContent {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 0.3;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInTitle {
+	0% {
+		opacity: 0;
+		margin-top: 8px;
+	}
+	50% {
+		opacity: 0.3;
+		margin-top: 2px;
+	}
+	100% {
+		opacity: 1;
+		margin-top: 0;
+	}
+}
+
+@keyframes showCard {
+	from { width: 0; }
+	to { width: 202px; }
+}
+
+@keyframes expandCard {
+	from {
+		width: 202px;
+	}
+	to {
+		width: 336px;
+	}
+}
+
+@keyframes collapseCard {
+	from {
+		width: 336px;
+	}
+	to {
+		width: 206px;
+	}
+}
+
+@keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.3;
+	}
+	100% {
+		opacity: 0;
+		display: none;
 	}
 }
 </style>
