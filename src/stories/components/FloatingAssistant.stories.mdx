@@ -13,6 +13,7 @@ import FloatingAssistant from '../../components/FloatingAssistant.vue';
 				format:true,
 				code: /*html*/ 
 `<cds-floating-assistant
+	v-model="showTip"
 	targetId="floating-assistant-target"
 	title="Nova funcionalidade!"
 	url="https://medium.com/cidade-saud%C3%A1vel"
@@ -73,6 +74,7 @@ export const Template = (args) => ({
 	<Story
 		name="FloatingAssistant"
 		args={{
+			modelValue: true,
 			url: 'https://medium.com/cidade-saud%C3%A1vel',
 		}}
 	>

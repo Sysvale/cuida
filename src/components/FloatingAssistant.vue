@@ -97,6 +97,15 @@ export default {
 
 	props: {
 		/**
+		 * Representa o estado do componente. Quando 'false' o componente não é mostrado
+		 * e quando 'true' o componente é exibido.
+		 */
+		modelValue: {
+			type: Boolean,
+			default: true,
+			required: true,
+		},
+		/**
 		 * O título do card flutuante que é exibido.
 		 */
 		title: {
@@ -123,13 +132,29 @@ export default {
 
 	data() {
 		return {
+			isActive: this.modelValue,
 			pulsarId: null,
 			containerId: null,
 			position: 'right',
 			isExpanded: false,
-			isActive: true,
 			waitingConfirmation: false,
 		};
+	},
+
+	watch: {
+		isActive(newValue) {
+			/**
+			* Evento emitido quando o componente é exibido ('true') ou ocultado ('false').
+			* @event expanded
+			* @type {Event}
+			*/
+			this.$emit('update:modelValue', newValue);
+		},
+
+		modelValue(newValue) {
+			console.log('v-model', newValue);
+			this.isActive = newValue;
+		},
 	},
 
 	mounted() {
