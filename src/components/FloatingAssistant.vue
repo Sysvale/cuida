@@ -23,7 +23,7 @@
 				@click="expand"
 			>
 				<div v-if="waitingConfirmation">
-					Desativar esta dica?
+					Ocultar dica para sempre?
 					<span
 						class="floating-assistant__link"
 						@click="confirmationHandle(true)"
@@ -112,6 +112,7 @@ export default {
 		title: {
 			type: String,
 			default: 'Nova funcionalidade!',
+			validator: (value) => value.length <= 22,
 		},
 		/**
 		 * A url para redirecionar para uma página externa ao clicar no
@@ -303,11 +304,16 @@ export default {
 	}
 
 	&__title {
-		display: block;
 		width: max-content;
 		@include caption;
 		color: $gp-400;
 		font-weight: $font-weight-bold;
+		width: 162px;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
 	}
 
 	&__subtitle {
