@@ -41,9 +41,9 @@ export const Template = (args) => ({
 	template: /*html*/ `
 		<cds-icon-button
 			v-bind="args"
-            @cds-click="logIconButtonClick"
+			@cds-click="logIconButtonClick"
 		/>`,
-    methods: {
+	methods: {
 		logIconButtonClick(event) {
 			console.info('%con click: ', 'color: #2C70CD;', event);
 		},

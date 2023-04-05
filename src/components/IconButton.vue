@@ -117,7 +117,7 @@ export default {
 		background-color: $n-20 !important;
 		cursor: default !important;
 
-        &:hover {
+		&:hover {
 			border: 1px solid transparent !important;
 		}
 	}
