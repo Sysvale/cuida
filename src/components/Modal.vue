@@ -271,7 +271,7 @@ export default {
 	border-radius: $border-radius-medium;
 	box-shadow: 0px 0px 8px rgba(40, 90, 185, 0.2);
 	overflow-x: auto;
-	z-index: 999999999;
+	z-index: 1060;
 	animation: zoom-in .5s;
 
 	&__backdrop {
@@ -285,7 +285,7 @@ export default {
 		left: 0;
 		right: 0;
 		background-color: rgba(0, 0, 0, 0.45);
-		z-index: 99999999;
+		z-index: 1060;
 		animation: zoom-in ease .3s;
 	}
 
