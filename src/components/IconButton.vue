@@ -80,10 +80,10 @@ export default {
 			}
 			/**
 			* Evento que indica que o botão foi clicado
-			* @event click
+			* @event cds-click
 			* @type {Event}
 			*/
-			this.$emit('click', e);
+			this.$emit('cds-click', e);
 		},
 	},
 };
@@ -116,6 +116,10 @@ export default {
 		color: $n-100 !important;
 		background-color: $n-20 !important;
 		cursor: default !important;
+
+		&:hover {
+			border: 1px solid transparent !important;
+		}
 	}
 
 	&__icon {
