@@ -7,7 +7,7 @@
 				<div
 					v-if="actions.length > numberOfExpandedActions"
 					class="action-list__item--right-bordered"
-					@click="toggleCollapseState"
+					@click.stop="toggleCollapseState"
 				>
 					<!-- @slot Slot para renderização customizada do conteúdo do item
 						de expandir/colapsar a lista
@@ -38,7 +38,7 @@
 					<div
 						v-if="i <= internalNumberOfExpandedActions - 1"
 						:class="i === 0 ? 'action-list__item' : 'action-list__item--left-bordered'"
-						@click="$emit('action-clicked', action)"
+						@click.stop="$emit('action-clicked', action)"
 					>
 						<!-- @slot Scoped slot para renderização customizada das 'actions'.
 							A propriedade 'list', que pode ser acessada através do slot,
@@ -52,7 +52,7 @@
 				<div
 					v-if="actions.length > numberOfExpandedActions"
 					class="action-list__item--left-bordered"
-					@click="toggleCollapseState"
+					@click.stop="toggleCollapseState"
 				>
 					<slot
 						v-if="hasActionTrigger"
