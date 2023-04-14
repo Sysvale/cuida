@@ -46,7 +46,7 @@ VueWrapper {
     
     <!--
 		Evento emitido quando o wrapper é clicado
-		@event click
+		@event cds-click
 		@type {Event}
 	-->
     <div … />
