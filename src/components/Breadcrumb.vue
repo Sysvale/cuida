@@ -109,10 +109,19 @@ export default {
 	&__link {
 		@include caption;
 		color: $n-600;
+		border-radius: $border-radius-lil;
+		padding: pa(1);
+		transition: $hover;
+
+		&:hover {
+			background-color: $bn-50;
+			color: $bn-600;
+			transition: $hover;
+		}
 	}
 
 	&__icons {
-		color: $n-500;
+		color: $n-600;
 	}
 }
 </style>
