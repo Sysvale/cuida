@@ -1,0 +1,118 @@
+<template>
+	<nav>
+		<ul class="breadcrumb">
+			<li
+				v-for="(item, index) in items"
+				:key="`${index}-${item.name}-item`"
+				role="presentation"
+				class="breadcrumb__items"
+			>
+				<cds-spacer
+					v-if="index === 0"
+					class="breadcrumb__items"
+					margin-right="2"
+				>
+					<cds-icon
+						v-if="items.length <= 2"
+						height="16"
+						width="16"
+						name="arrow-left-outline"
+						class="breadcrumb__icons"
+					/>
+
+					<cds-icon
+						v-else
+						height="16"
+						width="16"
+						name="home-outline"
+						class="breadcrumb__icons"
+					/>
+				</cds-spacer>
+
+				<cds-spacer
+					v-else
+					class="breadcrumb__items"
+					margin-right="2"
+					margin-left="2"
+				>
+					<cds-icon
+						height="16"
+						width="16"
+						name="caret-right-outline"
+						class="breadcrumb__icons"
+					/>
+				</cds-spacer>
+
+				<router-link
+					:to="routerPushTo(item)"
+					class="breadcrumb__link"
+				>
+					<cds-clickable clickable>
+						{{ item.label }}
+					</cds-clickable>
+				</router-link>
+			</li>
+		</ul>
+	</nav>
+</template>
+
+<script>
+import CdsIcon from './Icon.vue';
+import CdsSpacer from './Spacer.vue';
+import CdsClickable from './Clickable.vue';
+import isEmpty from 'lodash.isempty';
+
+export default {
+	components: {
+		CdsIcon,
+		CdsSpacer,
+		CdsClickable,
+	},
+	props: {
+		/**
+		 * Define a lista dos itens do Breadcrumb a serem
+		 * mostrados. Os itens da lista devem ser
+		 * objetos com path ou route, e com uma label.
+		 */
+		items: {
+			type: Array,
+			default: () => ([]),
+			required: true,
+		},
+	},
+
+	methods: {
+		resolveRoute({ route, path }) {
+			const to = isEmpty(route) ? path : route;
+			return to instanceof String ? { path: to } : to;
+		},
+
+		routerPushTo(item) {
+			return this.resolveRoute(item) ? this.resolveRoute(item).path : null;
+		},
+	},
+};
+</script>
+
+<style lang="scss" scoped>
+@import '../assets/sass/tokens.scss';
+
+.breadcrumb {
+	display: flex;
+	align-items: center;
+	padding: pa(0);
+
+	&__items {
+		@extend .breadcrumb;
+	}
+
+	&__link {
+		@include caption;
+		color: $n-600;
+	}
+
+	&__icons {
+		color: $n-500;
+	}
+}
+</style>
