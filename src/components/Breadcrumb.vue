@@ -5,52 +5,57 @@
 				v-for="(item, index) in items"
 				:key="`${index}-${item.name}-item`"
 				role="presentation"
-				class="breadcrumb__items"
 			>
-				<cds-spacer
+				<cds-clickable
 					v-if="index === 0"
-					class="breadcrumb__items"
-					margin-right="2"
+					clickable
 				>
-					<cds-icon
-						v-if="items.length <= 2"
-						height="16"
-						width="16"
-						name="arrow-left-outline"
-						class="breadcrumb__icons"
-					/>
+					<router-link
+						:to="routerPushTo(item)"
+						class="breadcrumb__link"
+					>
+						<cds-icon
+							v-if="items.length <= 2"
+							height="16"
+							width="16"
+							name="arrow-left-outline"
+						/>
 
-					<cds-icon
-						v-else
-						height="16"
-						width="16"
-						name="home-outline"
-						class="breadcrumb__icons"
-					/>
-				</cds-spacer>
+						<cds-icon
+							v-else
+							height="15"
+							width="15"
+							name="home-outline"
+						/>
+
+						<cds-spacer margin-left="2">
+							{{ item.label }}
+						</cds-spacer>
+					</router-link>
+				</cds-clickable>
 
 				<cds-spacer
 					v-else
-					class="breadcrumb__items"
-					margin-right="2"
-					margin-left="2"
+					class="breadcrumb__item"
+					margin-right="1"
+					margin-left="1"
 				>
 					<cds-icon
 						height="16"
 						width="16"
 						name="caret-right-outline"
-						class="breadcrumb__icons"
+						class="breadcrumb__separator"
 					/>
-				</cds-spacer>
 
-				<router-link
-					:to="routerPushTo(item)"
-					class="breadcrumb__link"
-				>
-					<cds-clickable clickable>
-						{{ item.label }}
-					</cds-clickable>
-				</router-link>
+					<router-link
+						:to="routerPushTo(item)"
+						class="breadcrumb__link"
+					>
+						<cds-clickable clickable>
+							{{ item.label }}
+						</cds-clickable>
+					</router-link>
+				</cds-spacer>
 			</li>
 		</ul>
 	</nav>
@@ -102,25 +107,27 @@ export default {
 	align-items: center;
 	padding: pa(0);
 
-	&__items {
+	&__item {
 		@extend .breadcrumb;
 	}
 
 	&__link {
+		@extend .breadcrumb;
 		@include caption;
 		color: $n-600;
 		border-radius: $border-radius-lil;
 		padding: pa(1);
 		transition: $hover;
 
-		&:hover {
+		&:hover,
+		&:hover svg {
 			background-color: $bn-50;
 			color: $bn-600;
 			transition: $hover;
 		}
 	}
 
-	&__icons {
+	&__separator {
 		color: $n-600;
 	}
 }
