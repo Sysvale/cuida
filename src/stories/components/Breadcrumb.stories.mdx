@@ -1,0 +1,131 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Breadcrumb from '../../components/Breadcrumb.vue';
+
+<Meta
+	title="Componentes/Navegação/Breadcrumb"
+	component={ Breadcrumb }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-breadcrumb
+	:items="items"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsBreadcrumb: Breadcrumb },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-breadcrumb
+			v-bind="args"
+		/>
+	`,
+});
+
+# Breadcrumb
+
+### Breadcrumbs são utilizados para indicar ao usuário o caminho percorrido entre as páginas de uma aplicação até se checar na página atual.
+---
+<br />
+
+## Quando usar:
+- Quando houver dois ou mais níveis na hierarquia de páginas;
+- Quando você precisar indicar ao usuário em que página ele está e como ele pode refazer os passos que o levaram à página atual;
+
+<br />
+
+## Quando não usar:
+- Em casos nos quais só houver uma página na estrutura de navegação.
+
+<br />
+
+## Obs.:
+- Idealmente Breadcrumbs devem ser usados com <b>três</b> ou mais níveis de hierarquia. Entretanto, o Breadcrumb do
+Cuida pode ser usado com <b>dois</b> níveis pois nesse cenário ele se comporta como um botão de retorno para a página anterior.
+
+<br />
+
+## Preview
+
+export const items = [
+	{
+		label: 'Relatórios',
+		route: {
+			path: '/reports',
+			name: 'reports'
+		},
+	},
+	{
+		label: 'Relatórios individualizados',
+		route: {
+			path: '/individualized-reports',
+			name: 'individualized'
+		},
+	},
+	{
+		label: 'Relatório de usuários',
+		route: {
+			path: '/users-reports',
+			name: 'users'
+		},
+	},
+];
+
+export const items2 = [
+	{
+		label: 'Relatórios',
+		route: {
+			path: '/reports',
+			name: 'reports'
+		},
+	},
+	{
+		label: 'Relatórios individualizados',
+		route: {
+			path: '/individualized-reports',
+			name: 'individualized'
+		},
+	},
+];
+
+<br />
+
+##### Breadcrumb de 3 ou mais níveis:
+
+<Canvas>
+	<Story
+		name="Breadcrumb"
+		args={{
+			items: items,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Breadcrumb" />
+
+<br />
+
+##### Breadcrumb de 2 níveis:
+
+<Canvas>
+	<Story
+		name="two-level-breadcrumb"
+		args={{
+			items: items2,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
