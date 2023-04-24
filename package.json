@@ -1,6 +1,6 @@
 {
   "name": "@sysvale/cuida",
-  "version": "2.70.8",
+  "version": "2.70.9",
   "description": "A design system built by Sysvale, using storybook and Vue components",
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
     "chromatic": "npx chromatic --project-token=a0f13ffc7d61"
   },
   "dependencies": {
-    "@sysvale/cuida-icons": "^1.9.1",
+    "@sysvale/cuida-icons": "^1.9.3",
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.17.1",
     "concat": "^1.0.3",
