@@ -22,6 +22,7 @@ export const iconsData = [
 			'tag-outline',
 			'bullseye-outline',
 			'scope-outline',
+			'lifebuoy-outline',
 		],
 	},
 	{
@@ -59,7 +60,6 @@ export const iconsData = [
 			'checkbox-checked-outlined',
 			'flag-outline',
 			'sparks-outline',
-			'medicine-outline',
 			'lamp-outline',
 			'lamp-on-outline',
 		],
@@ -68,13 +68,14 @@ export const iconsData = [
 		categoryName: 'Menu & navigation',
 		icons: [
 			'home-outline',
+			'dashboard-outline',
 			'grid-outline',
 			'list-outline',
 			'menu-outline',
+			'filter-outline',
 			'more-horizontal-outline',
 			'more-vertical-outline',
 			'reorder-outline',
-			'filter-outline',
 		],
 	},
 	{
@@ -102,6 +103,11 @@ export const iconsData = [
 			'arrow-down-outline',
 			'swap-horizontal-arrows-outline',
 			'swap-vertical-arrows-outline',
+			'expand-outline',
+			'minimize-outline',
+			'move-outline',
+			'undo-outline',
+			'rendo-outline',
 		],
 	},
 	{
@@ -185,6 +191,19 @@ export const iconsData = [
 			'gitlab-logo-outline',
 			'figma-logo-outline',
 			'framer-logo-outline',
+		],
+	},
+	{
+		categoryName: 'Health',
+		icons: [
+			'medicine-outline',
+			'test-tube-outline',
+			'syringe-outline',
+			'tube-outline',
+			'sample-container-outline',
+			'stethoscope-outline',
+			'heart-rate-outline',
+			'ambulance-outline',
 		],
 	},
 ];
