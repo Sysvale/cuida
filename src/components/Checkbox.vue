@@ -80,7 +80,7 @@ export default {
 
 	watch: {
 		modelValue: {
-			handle(newValue, oldValue) {
+			handler(newValue, oldValue) {
 				if (newValue === oldValue) {
 					return;
 				}
