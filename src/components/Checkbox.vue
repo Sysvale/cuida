@@ -78,6 +78,19 @@ export default {
 		};
 	},
 
+	watch: {
+		modelValue: {
+			handler(newValue, oldValue) {
+				if (newValue === oldValue) {
+					return;
+				}
+				
+				this.isChecked = this.modelValue;
+			},
+			immediate: true,
+		},
+	},
+
 	methods: {
 		toggleValue() {
 			if (this.disabled) return;
