@@ -511,8 +511,8 @@ export default {
 		}
 
 		&--disabled {
-			background-color: $n-20;
-			outline: none;
+			background-color: $n-20 !important;
+			outline: none !important;
 			cursor: default;
 		}
 
