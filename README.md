@@ -14,7 +14,7 @@
 - O Cuida pode ser instalado com o npm:
 
 ```bash
-$ npm i @sysvale/cuida;
+npm i @sysvale/cuida;
 ```
 
 ## Usando
@@ -59,13 +59,13 @@ Vue.use(Cuida);
 - Clone o repositório:
 
 ```bash
-$ git clone https://github.com/Sysvale/cuida.git
+git clone https://github.com/Sysvale/cuida.git
 ```
 
 - Instale as dependências e suba o container docker:
 
 ```bash
-$ docker-compose up -d
+docker-compose up -d
 ```
 
 A aplicação estará disponível na porta `6006`, em [http://localhost:6006/](http://localhost:6006).
@@ -73,7 +73,7 @@ A aplicação estará disponível na porta `6006`, em [http://localhost:6006/](h
 - Caso não queira usar docker, instale as dependências com:
 
 ```bash
-$ npm i
+npm i
 ```
 
 ### Executando o Cuida
@@ -83,7 +83,7 @@ $ npm i
 - Ou alternativamente, sem o docker, rode apenas:
 
 ```bash
-$ npm run storybook
+npm run storybook
 ```
 
 ### Testando-o
@@ -91,19 +91,19 @@ $ npm run storybook
 - Utilizando o docker:
 
 ```bash
-$ docker-compose exec cuida npm run test
+docker-compose exec cuida npm run test
 ```
 
 ou
 
 ```bash
-$ ./on-server.sh npm run test
+./on-server.sh npm run test
 ```
 
 - Sem o docker:
 
 ```bash
-$ npm run test
+npm run test
 ```
 
 ## Contribuindo
