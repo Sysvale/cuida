@@ -142,12 +142,12 @@ export default {
 				border-top: none;
 				border-right: none;
 				content: "";
-				height: 4px;
-				width: 8px;
-				left: 4px;
+				height: 5px;
+				width: 9px;
+				left: 5px;
 				opacity: 0;
 				position: absolute;
-				top: 4px;
+				top: 5px;
 				transform: rotate(-45deg);
 				border-radius: 0.4px;
 			}
