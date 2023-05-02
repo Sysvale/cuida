@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://sysvale.github.io/cuida">
-    <img src="https://sysvale.github.io/cuida/static/media/CuidaTempLogo.f4adb1cc.png" alt="Cuida logo" width="350" />
+    <img src="https://framerusercontent.com/images/xz7CrU73qctPY2Vm79XMnTAVM.svg" alt="Cuida logo" width="150" />
   </a>
 </p>
 
