@@ -32,7 +32,7 @@
 			v-model="internalDate"
 			locale="pt-BR"
 			:available-dates="availableDates"
-			@day-click="handleDateInput"
+			@dayclick="handleDateInput"
 			@input="handleDateInput"
 		>
 			<template #header-left-button="{ page }">
@@ -226,12 +226,14 @@ export default {
 
 	methods: {
 		handleDateInput(date) {
+			let jsDate = new Date(date.id + 'T00:00:00-03:00'); //NOTE: Adiciona timezone GMT-3 (Brasil)
+			
 			/**
 			* Evento emitido quando uma data é selecionada. Utilizado para implementar o v-model.
 			* @event update:modelValue
 			* @type {Event}
 			*/
-			this.$emit('update:modelValue', date ? DateTime.fromJSDate(date).toFormat('yyyy-MM-dd') : '');
+			this.$emit('update:modelValue', date ? DateTime.fromJSDate(jsDate).toFormat('yyyy-MM-dd') : '');
 		},
 
 		resolveInternalDate() {
