@@ -4,7 +4,7 @@
 		id="cds-button"
 		class="button__container"
 		:class="computedStyle"
-		@click="clickHandler"
+		@click.stop="clickHandler"
 	>
 		<cds-spinner
 			v-if="loading"
