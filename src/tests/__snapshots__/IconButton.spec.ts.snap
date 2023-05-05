@@ -26,9 +26,11 @@ VueWrapper {
     "disabled": false,
     "hasOwnProperty": [Function],
     "icon": "trash-outline",
+    "innerTooltipText": null,
     "predefinedSize": "cds-icon-button--lg",
     "predefinedSizes": [Array],
     "size": "lg",
+    "tooltipText": null,
   },
   "isDisabled": [Function],
   "rootVM": {},
@@ -36,7 +38,7 @@ VueWrapper {
     data-v-f6045c74=""
     id="cds-icon-button"
   >
-    <button … />
+    <cds-tooltip-stub … />
   </span>,
 }
 `;
