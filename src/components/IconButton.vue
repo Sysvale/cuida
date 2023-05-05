@@ -1,21 +1,25 @@
 <template>
 	<span id="cds-icon-button">
-		<button
-			class="cds-icon-button__container"
-			:class="computedModifiers"
-			:style="computedStyle"
-			@click="clickHandler"
+		<cds-tooltip
+			:text="innerTooltipText"
 		>
-			<cds-icon
-				:name="icon"
-				class="cds-icon-button__icon"
-			/>
-		</button>
+			<button
+				class="cds-icon-button__container"
+				:class="computedModifiers"
+				@click="clickHandler"
+			>
+				<cds-icon
+					:name="icon"
+					class="cds-icon-button__icon"
+				/>
+			</button>
+		</cds-tooltip>
 	</span>
 </template>
 
 <script>
 import CdsIcon from './Icon.vue';
+import CdsTooltip from './Tooltip.vue';
 
 const predefinedSizes = [
 	'sm',
@@ -26,6 +30,7 @@ const predefinedSizes = [
 export default {
 	components: {
 		CdsIcon,
+		CdsTooltip,
 	},
 
 	props: {
@@ -45,7 +50,6 @@ export default {
 		icon: {
 			type: String,
 			default: 'create-outline',
-			required: true,
 		},
 		/**
 		 * Controla a disponibilidade do botão.
@@ -54,11 +58,19 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		* Texto a ser exibido como tooltip com o hover do botão.
+		*/
+		tooltipText: {
+			type: String,
+			default: null,
+		},
 	},
 
 	data() {
 		return {
 			predefinedSizes,
+			innerTooltipText: this.tooltipText,
 		};
 	},
 
@@ -70,6 +82,23 @@ export default {
 		computedModifiers() {
 			const status = this.disabled ? 'cds-icon-button--disabled' : '';
 			return `${status} ${this.predefinedSize}`;
+		},
+	},
+
+	watch: {
+		disabled: {
+			handler(newValue, oldValue) {
+				if (newValue === oldValue) {
+					return;
+				}
+
+				if (newValue === true) {
+					this.innerTooltipText = null;
+				} else {
+					this.innerTooltipText = this.tooltipText;
+				}
+			},
+			immediate: true,
 		},
 	},
 
@@ -113,7 +142,7 @@ export default {
 	&--disabled {
 		box-sizing: border-box;
 		border: 1px solid transparent !important;
-		color: $n-100 !important;
+		color: $n-300 !important;
 		background-color: $n-20 !important;
 		cursor: default !important;
 

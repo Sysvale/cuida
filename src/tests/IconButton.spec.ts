@@ -8,6 +8,7 @@ describe('IconButton', () => {
 			global: {
 				stubs: {
 					'cds-icon': true,
+					'cds-tooltip': true,
 				},
 			},
 			props: {
