@@ -155,6 +155,13 @@ export default {
 				],
 			}));
 
+			/**
+			* Evento utilizado para implementar o v-model.
+			* @event update:modelValue
+			* @type {Event}
+			*/
+			this.$emit('update:modelValue', true)
+
 			this.popperInstance.update();
 		},
 
