@@ -1,37 +1,55 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-	<div class="avatar__container">
-		<div
-			:class="`avatar__container--${variant} avatar__container--${size}`"
-		>
-			<span
-				v-if="!src"
-				:class="`avatar__initials--${size}`"
+	<cds-clickable 
+		:clickable="clickable"
+		@click="toggleDropdown"
+	>
+		<div class="avatar__container">
+			<div
+				:class="`avatar__container--${variant} avatar__container--${size}`"
 			>
-				{{ computedInitials }}
-			</span>
+				<span
+					v-if="!src"
+					:class="`avatar__initials--${size}`"
+				>
+					{{ computedInitials }}
+				</span>
 
-			<img
-				v-else
-				:src="src"
-				:alt="name"
-				:class="`avatar__image--${size}`"
-			>
+				<img
+					v-else
+					:src="src"
+					:alt="name"
+					:class="`avatar__image--${size}`"
+				>
+			</div>
+
+			<cds-chevron
+				v-if="clickable"
+				size="sm"
+				class="avatar__chevron"
+				direction="bottom"
+			/>
 		</div>
-
-		<cds-chevron
-			v-if="clickable"
-			size="sm"
-			class="avatar__chevron"
-			direction="bottom"
-		/>
-	</div>
+		
+		<div
+			v-if="isActive"
+			v-on-click-outside="hide"
+			class="avatar__dropdown"
+		>
+			<slot name="dropdown-content" />
+		</div>
+	</cds-clickable>
 </template>
 <script>
+import vClickOutside from 'click-outside-vue3';
 import CdsChevron from './Chevron.vue';
 import CdsClickable from './Clickable.vue';
 
 export default {
+	directives: {
+		'on-click-outside': vClickOutside.directive,
+	},
+
 	components: {
 		CdsChevron,
 		CdsClickable,
@@ -86,6 +104,12 @@ export default {
 		}
 	},
 
+	data() {
+		return {
+			isActive: false,
+		};
+	},
+
 	computed: {
 		computedInitials() {
 			if (this.initials) {
@@ -98,7 +122,20 @@ export default {
 
 			return 'UND';
 		},
-	}
+	},
+
+	methods: {
+		toggleDropdown() {
+			if (!this.clickable) {
+				return;
+			}
+			this.isActive = !this.isActive;
+		},
+
+		hide() {
+			this.isActive = !this.isActive;
+		}
+	},
 }
 </script>
 
@@ -187,6 +224,19 @@ export default {
 		&--lg {
 			@include subheading-2;
 		}
+	}
+
+	&__dropdown {
+		width: fit-content;
+		position: absolute;
+		background-color:white;
+		padding: 20px;
+		top: 94px;
+		border-radius: $border-radius-extra-small;
+		box-shadow: 0px 0px 8px rgba($n-900, .08);
+		border: 1px solid $n-30;
+		z-index:999999999;
+		color: $n-600;
 	}
 }
 </style>
