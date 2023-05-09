@@ -58,8 +58,12 @@ export const Template = (args) => ({
 	template: /*html*/ `
 		<cds-avatar
 			v-bind="args" 
-		/>
-	`
+		>
+			<template #dropdown-content>
+				Conteúdo do dropdown
+			</template>
+		</cds-avatar>
+	`,
 });
 
 
