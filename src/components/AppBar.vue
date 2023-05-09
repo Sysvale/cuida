@@ -82,7 +82,14 @@
 					size="md"
 					clickable
 					@click="handleClick('avatar')"
-				/>
+				>
+					<template #dropdown-content>
+						<!-- @slot Slot utilizado para renderização do conteúdo do dropdown do Avatar.-->
+						<slot name="dropdown-content">
+							Conteúdo do dropdown
+						</slot>
+					</template>
+				</cds-avatar>
 			</div>
 
 			<div
