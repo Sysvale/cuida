@@ -1,40 +1,59 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-	<div class="avatar__container">
-		<div
-			:class="`avatar__container--${variant} avatar__container--${size}`"
-		>
-			<span
-				v-if="!src"
-				:class="`avatar__initials--${size}`"
+	<cds-clickable
+		id="avatar-dropdown"
+		:clickable="clickable"
+		@click="toggleDropdown"
+	>
+		<div class="avatar__container">
+			<div
+				:class="`avatar__container--${variant} avatar__container--${size}`"
 			>
-				{{ computedInitials }}
-			</span>
+				<span
+					v-if="!src"
+					:class="`avatar__initials--${size}`"
+				>
+					{{ computedInitials }}
+				</span>
 
-			<img
-				v-else
-				:src="src"
-				:alt="name"
-				:class="`avatar__image--${size}`"
-			>
+				<img
+					v-else
+					:src="src"
+					:alt="name"
+					:class="`avatar__image--${size}`"
+				>
+			</div>
+
+			<cds-chevron
+				v-if="clickable"
+				size="sm"
+				class="avatar__chevron"
+				direction="bottom"
+			/>
 		</div>
 
-		<cds-chevron
-			v-if="clickable"
-			size="sm"
-			class="avatar__chevron"
-			direction="bottom"
-		/>
-	</div>
+		<cds-popover
+			v-model="showPopover"
+			target-id="avatar-dropdown"
+			width="180"
+			right-aligned
+			vertical-fluid
+		>
+			<slot name="dropdown-content" />
+		</cds-popover>
+	</cds-clickable>
 </template>
 <script>
 import CdsChevron from './Chevron.vue';
 import CdsClickable from './Clickable.vue';
+import CdsPopover from './Popover.vue';
 
 export default {
+
 	components: {
 		CdsChevron,
 		CdsClickable,
+		CdsPopover
 	},
 
 	props: {
@@ -86,6 +105,12 @@ export default {
 		}
 	},
 
+	data() {
+		return {
+			showPopover: false,
+		};
+	},
+
 	computed: {
 		computedInitials() {
 			if (this.initials) {
@@ -98,7 +123,16 @@ export default {
 
 			return 'UND';
 		},
-	}
+	},
+
+	methods: {
+		toggleDropdown() {
+			if (!this.clickable) {
+				return;
+			}
+			this.showPopover = !this.showPopover;
+		},
+	},
 }
 </script>
 

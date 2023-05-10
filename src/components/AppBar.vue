@@ -75,14 +75,22 @@
 					<span class="user-info__name">{{ userName }}</span>
 					<span class="user-info__description">{{ userDescription }}</span>
 				</div>
-	
+
 				<cds-avatar
 					:name="userName"
 					variant="white"
 					size="md"
-					clickable
+					:clickable="clickable"
 					@click="handleClick('avatar')"
-				/>
+				>
+					<template
+						v-if="clickable"
+						#dropdown-content
+					>
+						<!-- @slot Slot utilizado para renderização do conteúdo do dropdown do Avatar.-->
+						<slot name="dropdown-content" />
+					</template>
+				</cds-avatar>
 			</div>
 
 			<div
@@ -93,7 +101,7 @@
 					vertical
 					width="30"
 				/>
-	
+
 				<cds-clickable
 					clickable
 					@click="handleClick('app-switcher')"
@@ -209,6 +217,13 @@ export default {
 			type: String,
 			default: null,
 		},
+		/**
+		 * Ativa ou desativa o clique no componente Avatar.
+		 */
+		clickable: {
+			type: Boolean,
+			default: false,
+		}
 	},
 
 	computed: {
@@ -302,7 +317,7 @@ export default {
 	&__avatar-container {
 		display: contents;
 	}
-	
+
 	&__container{
 		align-items: flex-end;
 		color: $n-0;
@@ -310,12 +325,12 @@ export default {
 		flex-direction: column;
 		margin: ml(4)
 	}
-	
+
 	&__name {
 		@include caption;
 		font-weight: $font-weight-semibold;
 	}
-	
+
 	&__description {
 		@include overline;
 		font-weight: $font-weight-regular;
