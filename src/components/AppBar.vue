@@ -217,6 +217,9 @@ export default {
 			type: String,
 			default: null,
 		},
+		/**
+		 * Ativa ou desativa o clique no componente Avatar.
+		 */
 		clickable: {
 			type: Boolean,
 			default: false,
