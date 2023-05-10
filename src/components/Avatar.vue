@@ -1,6 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-	<cds-clickable 
+	<cds-clickable
+		id="avatar-dropdown"
 		:clickable="clickable"
 		@click="toggleDropdown"
 	>
@@ -30,29 +31,29 @@
 				direction="bottom"
 			/>
 		</div>
-		
-		<div
-			v-if="isActive"
-			v-on-click-outside="hide"
-			class="avatar__dropdown"
+
+		<cds-popover
+			v-model="showPopover"
+			target-id="avatar-dropdown"
+			width="180"
+			right-aligned
+			vertical-fluid
 		>
 			<slot name="dropdown-content" />
-		</div>
+		</cds-popover>
 	</cds-clickable>
 </template>
 <script>
-import vClickOutside from 'click-outside-vue3';
 import CdsChevron from './Chevron.vue';
 import CdsClickable from './Clickable.vue';
+import CdsPopover from './Popover.vue';
 
 export default {
-	directives: {
-		'on-click-outside': vClickOutside.directive,
-	},
 
 	components: {
 		CdsChevron,
 		CdsClickable,
+		CdsPopover
 	},
 
 	props: {
@@ -106,7 +107,7 @@ export default {
 
 	data() {
 		return {
-			isActive: false,
+			showPopover: false,
 		};
 	},
 
@@ -129,12 +130,8 @@ export default {
 			if (!this.clickable) {
 				return;
 			}
-			this.isActive = !this.isActive;
+			this.showPopover = !this.showPopover;
 		},
-
-		hide() {
-			this.isActive = !this.isActive;
-		}
 	},
 }
 </script>
@@ -224,19 +221,6 @@ export default {
 		&--lg {
 			@include subheading-2;
 		}
-	}
-
-	&__dropdown {
-		width: fit-content;
-		position: absolute;
-		background-color:white;
-		padding: 20px;
-		top: 94px;
-		border-radius: $border-radius-extra-small;
-		box-shadow: 0px 0px 8px rgba($n-900, .08);
-		border: 1px solid $n-30;
-		z-index:999999999;
-		color: $n-600;
 	}
 }
 </style>
