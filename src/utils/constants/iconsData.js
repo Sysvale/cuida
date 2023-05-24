@@ -12,7 +12,6 @@ export const iconsData = [
 			'power-outline',
 			'printer-outline',
 			'bookmark-outline',
-			'star-outline',
 			'trash-outline',
 			'search-outline',
 			'upload-outline',
@@ -23,6 +22,8 @@ export const iconsData = [
 			'bullseye-outline',
 			'scope-outline',
 			'lifebuoy-outline',
+			'trophy-outline',
+			'loop-outline',
 		],
 	},
 	{
@@ -49,14 +50,15 @@ export const iconsData = [
 	{
 		categoryName: 'Notifications',
 		icons: [
+			'notification-bell-outline',
+			'notification-bell-timer-outline',
 			'alert-outline',
 			'check-circle-outline',
 			'check-outline',
-			'mail-outline',
 			'info-outline',
 			'help-outline',
 			'warning-outline',
-			'notification-bell-outline',
+			'mail-outline',
 			'checkbox-checked-outlined',
 			'flag-outline',
 			'sparks-outline',
@@ -108,11 +110,13 @@ export const iconsData = [
 			'move-outline',
 			'undo-outline',
 			'rendo-outline',
+			'shuffle-outline',
 		],
 	},
 	{
 		categoryName: 'Multimedia',
 		icons: [
+			'translate-outline',
 			'play-outline',
 			'pause-outline',
 			'play-circle-outline',
@@ -129,6 +133,9 @@ export const iconsData = [
 			'volume-1-outline',
 			'volume-2-outline',
 			'phone-outline',
+			'share-outline',
+			'headphone-outline',
+			'headset-outline',
 		],
 	},
 	{
@@ -162,15 +169,24 @@ export const iconsData = [
 			'bed-outiline',
 			'building-outline',
 			'ticket-outline',
+			'moon-outline',
+			'sun-outline',
 		],
 	},
 	{
 		categoryName: 'Date & time',
-		icons: ['calendar-clear-outline', 'calendar-outline', 'clock-outline'],
+		icons: [
+			'calendar-clear-outline',
+			'calendar-outline',
+			'clock-outline',
+			'history-outline',
+		],
 	},
 	{
 		categoryName: 'Security',
 		icons: [
+			'visibility-on-outline',
+			'visibility-off-outline',
 			'lock-outline',
 			'unlock-outline',
 			'key-outline',
@@ -181,8 +197,15 @@ export const iconsData = [
 		],
 	},
 	{
-		categoryName: 'Messaging',
-		icons: ['chatbubble-outline', 'chatbubbles-outline'],
+		categoryName: 'Social',
+		icons: [
+			'chatbubble-outline', 
+			'chatbubbles-outline',
+			'trophy-outline',
+			'weight-outline',
+			'fire-outline',
+			'star-outline',
+		],
 	},
 	{
 		categoryName: 'Brands',
