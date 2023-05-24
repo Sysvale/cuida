@@ -19,27 +19,34 @@
 		>
 			<div>
 				<input
+					:id="`${id}-start-hour`"
 					v-model="startHour"
+					v-facade="'##'"
 					:class="computedInputClass"
 					:disabled="disabled"
-					type="number"
+					type="text"
 					min="0"
 					max="23"
 					step="1"
 					placeholder="00"
+					@keyup.up="startHour++"
+					@keyup.down="startHour > 0 ? startHour-- : null"
 					@input="handleTimeInput"
 				>
 				:
 				<input
+					:id="`${id}-start-minute`"
 					v-model="startMinute"
+					v-facade="'##'"
 					:class="computedInputClass"
 					:disabled="disabled"
-					type="number"
+					type="text"
 					min="0"
 					max="59"
 					step="1"
-					pattern="[0-9]*"
 					placeholder="00"
+					@keyup.up="startMinute++"
+					@keyup.down="startMinute > 0 ? startMinute-- : null"
 					@input="handleTimeInput"
 				>
 			</div>
@@ -51,27 +58,34 @@
 			</div>
 			<div v-if="mode === 'range'">
 				<input
+					:id="`${id}-end-hour`"
 					v-model="endHour"
+					v-facade="'##'"
 					:class="computedInputClass"
 					:disabled="disabled"
-					type="number"
+					type="text"
 					min="0"
 					max="23"
 					step="1"
 					placeholder="00"
+					@keyup.up="endHour++"
+					@keyup.down="endHour > 0 ? endHour-- : null"
 					@input="handleTimeInput"
 				>
 				:
 				<input
+					:id="`${id}-end-minute`"
 					v-model="endMinute"
+					v-facade="'##'"
 					:class="computedInputClass"
 					:disabled="disabled"
-					type="number"
+					type="text"
 					min="0"
 					max="59"
 					step="1"
-					pattern="[0-9]*"
 					placeholder="00"
+					@keyup.up="endMinute++"
+					@keyup.down="endMinute > 0 ? endMinute-- : null"
 					@input="handleTimeInput"
 				>
 			</div>
@@ -86,6 +100,7 @@
 </template>
 
 <script>
+import { facade } from 'vue-input-facade';
 import { Interval, DateTime } from 'luxon';
 import { hourFormat, isAfter } from '../utils/validators/time';
 
@@ -103,6 +118,10 @@ const valueValidator = (value) => {
 };
 
 export default {
+	directives: {
+		facade,
+	},
+
 	props: {
 		/**
 		* Prop utilizada como v-model. Define o horário exibido.
