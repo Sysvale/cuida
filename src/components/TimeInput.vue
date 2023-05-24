@@ -30,7 +30,7 @@
 					step="1"
 					placeholder="00"
 					@keyup.up="startHour++"
-					@keyup.down="startHour != 0 ? startHour-- : null"
+					@keyup.down="startHour > 0 ? startHour-- : null"
 					@input="handleTimeInput"
 				>
 				:
@@ -46,7 +46,7 @@
 					step="1"
 					placeholder="00"
 					@keyup.up="startMinute++"
-					@keyup.down="startMinute != 0 ? startMinute-- : null"
+					@keyup.down="startMinute > 0 ? startMinute-- : null"
 					@input="handleTimeInput"
 				>
 			</div>
@@ -69,7 +69,7 @@
 					step="1"
 					placeholder="00"
 					@keyup.up="endHour++"
-					@keyup.down="endHour != 0 ? endHour-- : null"
+					@keyup.down="endHour > 0 ? endHour-- : null"
 					@input="handleTimeInput"
 				>
 				:
@@ -85,7 +85,7 @@
 					step="1"
 					placeholder="00"
 					@keyup.up="endMinute++"
-					@keyup.down="endMinute != 0 ? endMinute-- : null"
+					@keyup.down="endMinute > 0 ? endMinute-- : null"
 					@input="handleTimeInput"
 				>
 			</div>
