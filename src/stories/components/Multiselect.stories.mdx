@@ -8,9 +8,6 @@ import Multiselect from '../../components/Multiselect.vue';
 		options: {
 			description: 'Lista de opções do ClusteredMultiselect',
 		},
-		value: {
-			description: 'Lista de itens selecionados do ClusteredMultiselect',
-		},
 		label: {
 			description: 'Propriedade do objeto options, que vai constar nas tags listadas no ClusteredMultiselect',
 		},
@@ -28,7 +25,7 @@ import Multiselect from '../../components/Multiselect.vue';
 				code: /*html*/ 
 `<cds-multiselect
 	:options="options"
-	:value="value"
+	v-model="value"
 	label="title"
 	trackBy="title"
 />`
@@ -42,9 +39,15 @@ export const Template = (args) => ({
 	setup() {
 		return { args };
 	},
+	data() {
+		return {
+			value: [{ title: 'Naruto'}],
+		};
+	},
 	template: /*html*/ `
 		<cds-multiselect
-			v-bind="args" 
+			v-bind="args"
+			v-model="value"
 		/>
 	`,
 });
@@ -86,14 +89,11 @@ export const options = [
 	{ title: 'The Power-puff Girls',}
 ];
 
-export const value = [];
-
 <Canvas>
 	<Story
 		name="Multiselect"
 		args={{
 			options,
-			value,
 			label: 'Séries',
 			optionsField: 'title',
 			trackBy: 'title',
