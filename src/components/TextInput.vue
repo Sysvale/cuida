@@ -221,8 +221,8 @@ export default {
 			default: 'https://cuida.framer.wiki/',
 		},
 		/**
-		* Define a utilização de lazy para debouncer.
-		*/
+		 * Define a utilização de lazy para debouncer.
+		 */
 		lazy: {
 			type: Boolean,
 			default: false,
@@ -320,6 +320,9 @@ export default {
 	},
 
 	methods: {
+		/**
+		 * Permite que o evento seja emitido apenas quando não houver digitação por 1 segundo.
+		 */
 		emitLazy(value) {
 			clearTimeout(this.timeout);
 
