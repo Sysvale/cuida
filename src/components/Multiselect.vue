@@ -178,6 +178,13 @@ export default {
 
 	props: {
 		/**
+		 * Guarda o valor selecionado do multiselect.
+		 */
+		modelValue: {
+			type: Array,
+			required: true,
+		},
+		/**
 		 * Especifica a label do input.
 		 */
 		label: {
@@ -240,7 +247,7 @@ export default {
 
 	data() {
 		return {
-			selectedValue: this.$attrs.value || [],
+			selectedValue: this.$attrs.modelValue || [],
 			internalOptions: clone(this.options),
 			groupValues: null,
 			groupLabel: null,
@@ -302,6 +309,15 @@ export default {
 		},
 	},
 	watch: {
+		modelValue: {
+			handler(newValue, oldValue) {
+				if (newValue !== oldValue) {
+					this.selectedValue = newValue;
+				}
+			},
+			immediate: true,
+		},
+
 		selectedValue(values) {
 			const cleanedValues = clone(values);
 			cleanedValues.forEach((val) => delete val.isSelected);
@@ -310,8 +326,15 @@ export default {
 			 * Evento utilizado para implementar o v-model.
 			* @event input
 			* @type {Event}
-				*/
+			*/
 			this.$emit('input', cleanedValues);
+
+			/**
+			* Evento que indica que o valor do Multiselect foi alterado
+			* @event update:modelValue
+			* @type {Event}
+			*/
+			this.$emit('update:modelValue', cleanedValues);
 		},
 
 		isAllItemsSelected(newValue) {
@@ -338,7 +361,7 @@ export default {
 			this.handleSelectItem(option);
 			/**
 			 * Evento disparado quando um item é deselecionado.
-			* @event input
+			* @event remove
 			* @type {Event}
 				*/
 			this.$emit('remove', option);
@@ -348,7 +371,7 @@ export default {
 			this.handleSelectItem(option);
 			/**
 			 * Evento disparado quando um item é selecionado.
-			* @event input
+			* @event select
 			* @type {Event}
 				*/
 			this.$emit('select', option);
@@ -416,7 +439,7 @@ export default {
 			this.setContentWrapperScrollToTop();
 			/**
 			 * Evento disparado quando o select é fechado.
-			* @event input
+			* @event close
 			* @type {Event}
 				*/
 			this.$emit('close');
