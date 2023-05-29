@@ -220,12 +220,20 @@ export default {
 			type: String,
 			default: 'https://cuida.framer.wiki/',
 		},
+		/**
+		* Define a utilização de lazy para debouncer.
+		*/
+		lazy: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
 		return {
 			internalValue: '',
 			isBeingFocused: false,
+			timeout: null,
 		};
 	},
 
@@ -304,9 +312,24 @@ export default {
 			 * @event input
 			 * @type {Event}
 			 */
-			this.$emit('update:modelValue', value);
+
+			if (this.lazy) {
+				this.emitLazy(value)
+			} else this.$emit('update:modelValue', value);
 		},
 	},
+
+	methods: {
+		emitLazy(value) {
+			clearTimeout(this.timeout);
+
+			const that = this;
+
+			this.timeout = setTimeout(function () {
+				that.$emit('update:modelValue', value);
+			}, 1000);
+		}
+	}
 };
 </script>
 <style lang="scss" scoped>
