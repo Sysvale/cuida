@@ -32,6 +32,7 @@
 		"@popperjs/core": "^2.11.6",
 		"@sysvale/cuida-icons": "1.12.0",
 		"@sysvale/vue3-long-click": "^0.2.0",
+		"chart.js": "^4.3.0",
 		"chromatic": "^6.14.0",
 		"click-outside-vue3": "^4.0.1",
 		"create-file": "^1.0.1",
@@ -43,6 +44,7 @@
 		"v-calendar": "^3.0.0-alpha.8",
 		"v-money3": "^3.22.3",
 		"vue": "^3.2.37",
+		"vue-chartjs": "^5.2.0",
 		"vue-input-facade": "^3.0.0-beta.1",
 		"vue-multiselect": "^3.0.0-alpha.2",
 		"vue-slider-component": "^4.1.0-beta.7"
