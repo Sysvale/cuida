@@ -1,0 +1,140 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Chart from '../../components/Chart.vue';
+import Multiselect from '../../components/Multiselect.vue';
+
+<Meta
+  title="Componentes/Charts/Chart"
+  component={ Chart }
+  argTypes={{
+		chartType: {
+			control:{
+				type: 'select',
+				options: [
+	        'bar',
+          'line',
+          'pie',
+          'doughnut',
+          'polarArea',
+          'radar'
+				],
+			},
+		},
+    variant: {
+      control: {
+        type: 'select',
+        options: [
+          'random',
+          'green',
+          'turquoise',
+          'blue',
+          'indigo',
+          'violet',
+          'pink',
+          'red',
+          'orange',
+          'amber',
+          'light-neutrals',
+          'mid-neutrals',
+          'dark-neutrals'
+        ]
+      }
+    }
+	}}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: { canvas: { hidden: true }},
+    docs: {
+      source: {
+        language: 'html',
+        format: true,
+        code: /*html*/`
+<cds-chart
+  :chart-data="chartData"
+  :chart-labels="chartLabels"
+  :chart-options="chartOptions"
+  :chart-type="chartType"
+  :choice-multiselect="choiceMultiselect"
+>
+</cds-chart>`
+      },
+    }
+  }}
+/>
+
+export const Template = (args) => ({
+  components: { CdsChart: Chart },
+  setup() {
+    return { args };
+  },
+  data() {
+    return {
+      chartData: {
+        datasets: args.chartData.datasets,
+        // labels: args.chartData.labels = args.chartLabels,
+      },
+      chartOptions: args.chartOptions,
+      chartType: args.chartType,
+      choiceMultiselect: args.choiceMultiselect,
+    };
+  },
+  template: /*html*/ `
+    <div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px;">
+      <cds-chart
+        v-bind="args"
+      />
+    </div>
+  `
+});
+
+# Chart
+
+### Um componente de gráfico reutilizável para exibir dados visualmente.
+---
+<br />
+
+## Quando usar:
+- Exibir dados em formatos visuais, como gráficos de barra, linha, pizza, rosquinha, área polar e radar;
+- Visualizar tendências, proporções ou comparações em dados.
+
+<br />
+
+## Quando não usar:
+- Para informações simples que podem ser exibidas em um formato tabular ou em texto.
+
+## Preview
+
+<Canvas>
+  <Story
+    name="Chart"
+    args={{
+      chartType: 'bar',
+      chartLabels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
+      variant: 'green',
+      chartData: {
+        datasets: [
+          {
+            label: 'Realizado',
+            data: [120, 220, 180, 320, 150],
+          },
+          {
+            label: 'Pendente',
+            data: [200, 180, 250, 190, 280],
+          },
+          {
+            label: 'Não realizado',
+            data: [38, 84, 120, 90, 185],
+          }
+        ]
+      },
+      chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+      },   
+      choiceMultiselect: false,
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="Chart" />
