@@ -11,6 +11,7 @@ import Button from './Button.vue';
 import Card from './Card.vue';
 import CalloutCard from './CalloutCard.vue';
 import CarouselController from './CarouselController.vue';
+import Chart from './Chart.vue';
 import Checkbox from './Checkbox.vue';
 import Chevron from './Chevron.vue';
 import Clickable from './Clickable.vue';
@@ -87,6 +88,7 @@ export default {
 		app.component('CdsCard', Card);
 		app.component('CdsCalloutCard', CalloutCard); //NOTE: Testado no SB
 		app.component('CdsCarouselController', CarouselController);
+		app.component('CdsChart', Chart);
 		app.component('CdsCheckbox', Checkbox); //FIXME: Problema no SB de estilo
 		app.component('CdsChevron', Chevron); //NOTE: Testado no SB
 		app.component('CdsClickable', Clickable); //NOTE: Testado no SB
