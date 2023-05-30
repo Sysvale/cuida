@@ -7,7 +7,6 @@
 		<cds-multiselect
 			v-bind="field"
 			v-model="selectedOptions"
-			:value="value"
 			:options="multiOptions"
 			:label="label"
 			:options-field="options.name"
@@ -15,44 +14,14 @@
 		/>
 	</div>
 	<div id="teste">
-		<h1>TESTE</h1>
+		<h1>{{ localVariant }}</h1>
 	</div>
 	<div
 		id="cds-chart"
 	>
-		<Bar
+		<component
 			:is="chartType"
-			v-if="localChartType === 'bar'"
-			:data="computedDataSet"
-			:options="chartOptions"
-		/>
-		<Line
-			:is="chartType"
-			v-else-if="localChartType === 'line'"
-			:data="computedDataSet"
-			:options="chartOptions"
-		/>
-		<Pie
-			:is="chartType"
-			v-else-if="localChartType === 'pie'"
-			:data="computedDataSet"
-			:options="chartOptions"
-		/>
-		<Doughnut
-			:is="chartType"
-			v-else-if="localChartType === 'doughnut'"
-			:data="computedDataSet"
-			:options="chartOptions"
-		/>
-		<PolarArea
-			:is="chartType"
-			v-else-if="localChartType === 'polarArea'"
-			:data="computedDataSet"
-			:options="chartOptions"
-		/>
-		<Radar
-			:is="chartType"
-			v-else-if="localChartType === 'radar'"
+			v-if="localChartType === chartType"
 			:data="computedDataSet"
 			:options="chartOptions"
 		/>
@@ -82,18 +51,16 @@ export default {
 	},
 	props: {
 		chartData: {
-			type: Array,
+			type: Object,
 			required: true,
-			default: () => [
-				{
-					datasets: [
-						{
-							label: 'teste',
-							data: [],
-						}
-					]
-				}
-			]
+			default: () => ({
+				datasets: [
+					{
+						label: 'teste',
+						data: [],
+					}
+				]
+			})
 		},
 		/**
          * Define configurações gerais par o gráfico.
@@ -151,59 +118,7 @@ export default {
 			localChartType: '',
 			localChartData: {},
 			localLabels: [],
-			predefinedColors: [
-				{
-					name: 'random',
-				},
-				{
-					name: 'green',
-					pallet: ['$gp-50', '$gp-100', '$gp-200', '$gp-300', '$gp-400', '$gp-500', '$gp-600', '$gp-700']
-				},
-				{
-					name: 'turquoise',
-					pallet: ['$ts-50', '$ts-100', '$ts-200', '$ts-300', '$ts-400', '$ts-500', '$ts-600', '$ts-700']
-				},
-				{
-					name: 'blue',
-					pallet: ['$bn-50', '$bn-100', '$bn-200', '$bn-300', '$bn-400', '$bn-500', '$bn-600', '$bn-700']
-				},
-				{
-					name: 'indigo',
-					pallet: ['$in-50', '$in-100', '$in-200', '$in-300', '$in-400', '$in-500', '$in-600', '$in-700']
-				},
-				{
-					name: 'violet',
-					pallet: ['$vr-50', '$vr-100', '$vr-200', '$vr-300', '$vr-400', '$vr-500', '$vr-600', '$vr-700']
-				},
-				{
-					name: 'pink',
-					pallet: ['$pp-50', '$pp-100', '$pp-200', '$pp-300', '$pp-400', '$pp-500', '$pp-600', '$pp-700']
-				},
-				{
-					name: 'red',
-					pallet: ['$rc-50', '$rc-100', '$rc-200', '$rc-300', '$rc-400', '$rc-500', '$rc-600', '$rc-700']
-				},
-				{
-					name: 'orange',
-					pallet: ['$og-50', '$og-100', '$og-200', '$og-300', '$og-400', '$og-500', '$og-600', '$og-700']
-				},
-				{
-					name: 'amber',
-					pallet: ['$al-50', '$al-100', '$al-200', '$al-300', '$al-400', '$al-500', '$al-600', '$al-700']
-				},
-				{
-					name: 'light',
-					pallet: ['$n-0', '$n-10', '$n-20', '$n-30', '$n-40']
-				},
-				{
-					name: 'mid',
-					pallet: ['$n-50', '$n-100', '$n-200', '$n-300', '$n-400']
-				},
-				{
-					name: 'dark',
-					pallet: ['$n-500', '$n-600', '$n-700', '$n-800', '$n-900']
-				},
-			],
+			localVariant: '',
 			localSelect: false,
 			//Label do multiselect
 			label: 'Exames',
@@ -313,7 +228,13 @@ export default {
 				this.localLabels = newValue
 			},
 			immediate: true,
-		}
+		},
+		variant: {
+			handler(newValue) {
+				this.localVariant = newValue;
+			},
+			immediate: true,
+		},
 	},
 	created() {
 		if (this.choiceMultiselect && this.multiOptions.length > 0) {
@@ -339,16 +260,11 @@ export default {
 		// Chama a função mergeChartData para mesclar os dados das opções selecionadas para atualizar localChartData
 		handleSelectedValues(selectedValues) {
 			this.selectedValues = selectedValues;
-			if (selectedValues !== null) {
+			if (Array.isArray(selectedValues)) {
 				const newData = selectedValues.map(selected => {
 					const option = this.options.find(element => element.name === selected.value);
-					option.chartData.datasets.forEach(dataset => {
-						const label = dataset.label;
-						console.log(label); // Imprime cada rótulo individualmente
-					});
 					if (option) {
-						console.log(option.chartData.datasets.length)
-						const backgroundColor = this.generateBackgroundColor(selectedValues);
+						const backgroundColor = this.generateBackgroundColor();
 						this.setColors(option.chartData.datasets, backgroundColor);
 						return option.chartData;
 					}
@@ -360,15 +276,12 @@ export default {
 				this.localChartData = {};
 			}
 		},
+
   
 		// Função responsável por gerar uma cor de fundo aleatória, se apenas um valor estiver selecionado, gera uma cor de fundo aleatória. Caso contrário gera mesma cor de fundo para todos os datasets
 		// OBS: Corrigir esse ponto para gerar valores de cores aleatorios dentro do proprio dataset
-		generateBackgroundColor(selectedValues) {
-			if (selectedValues.length === 1) {
-				return `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.5)`;
-			} else {
-				return `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.5)`;
-			}
+		generateBackgroundColor() {
+			return `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.5)`;
 		},
   
 		// Função responsável por setar backgroundColor, bordeWidth e borderColor
@@ -432,42 +345,129 @@ export default {
 }
 
 $colors: (
-		'--green': (
-			'active': $gp-400,
-			'disabled': $gp-300,
+		'green': (
+			'0': $gp-50,
+			'1': $gp-100,
+			'2': $gp-200,
+			'3': $gp-300,
+			'4': $gp-400,
+			'5': $gp-500,
+			'6': $gp-600,
+			'7': $gp-700,
 		),
-		'--blue': (
-			'active': $bn-400,
-			'disabled': $bn-300,
+		'turquoise': (
+			'0': $ts-50,
+			'1': $ts-100,
+			'2': $ts-200,
+			'3': $ts-300,
+			'4': $ts-400,
+			'5': $ts-500,
+			'6': $ts-600,
+			'7': $ts-700,
 		),
-		'--indigo': (
-			'active': $in-400,
-			'disabled': $in-300,
+		'blue': (
+			'0': $bn-50,
+			'1': $bn-100,
+			'2': $bn-200,
+			'3': $bn-300,
+			'4': $bn-400,
+			'5': $bn-500,
+			'6': $bn-600,
+			'7': $bn-700,
 		),
-		'--violet': (
-			'active': $vr-400,
-			'disabled': $vr-300,
+		'indigo': (
+			'0': $in-50,
+			'1': $in-100,
+			'2': $in-200,
+			'3': $in-300,
+			'4': $in-400,
+			'5': $in-500,
+			'6': $in-600,
+			'7': $in-700,
 		),
-		'--pink': (
-			'active': $pp-400,
-			'disabled': $pp-300,
+		'violet': (
+			'0': $vr-50,
+			'1': $vr-100,
+			'2': $vr-200,
+			'3': $vr-300,
+			'4': $vr-400,
+			'5': $vr-500,
+			'6': $vr-600,
+			'7': $vr-700,
 		),
-		'--red': (
-			'active': $rc-400,
-			'disabled': $rc-300,
+		'pink': (
+			'0': $pp-50,
+			'1': $pp-100,
+			'2': $pp-200,
+			'3': $pp-300,
+			'4': $pp-400,
+			'5': $pp-500,
+			'6': $pp-600,
+			'7': $pp-700,
 		),
-		'--orange': (
-			'active': $og-400,
-			'disabled': $og-300,
+		'red': (
+			'0': $rc-50,
+			'1': $rc-100,
+			'2': $rc-200,
+			'3': $rc-300,
+			'4': $rc-400,
+			'5': $rc-500,
+			'6': $rc-600,
+			'7': $rc-700,
 		),
-		'--amber': (
-			'active': $al-400,
-			'disabled': $al-300,
+		'orange': (
+			'0': $og-50,
+			'1': $og-100,
+			'2': $og-200,
+			'3': $og-300,
+			'4': $og-400,
+			'5': $og-500,
+			'6': $og-600,
+			'7': $og-700,
 		),
-		'--dark': (
-			'active': $n-700,
-			'disabled': $n-500,
+		'amber': (
+			'0': $al-50,
+			'1': $al-100,
+			'2': $al-200,
+			'3': $al-300,
+			'4': $al-400,
+			'5': $al-500,
+			'6': $al-600,
+			'7': $al-700,
+		),
+		'light': (
+			'0': $n-0,
+			'1': $n-10,
+			'2': $n-20,
+			'3': $n-30,
+			'4': $n-40,
+		),
+		'mid': (
+			'0': $n-50,
+			'1': $n-100,
+			'2': $n-200,
+			'3': $n-300,
+			'4': $n-400,
+		),
+		'dark': (
+			'0': $n-500,
+			'1': $n-600,
+			'2': $n-700,
+			'3': $n-800,
+			'4': $n-900,
 		),
 	);
+
+	@each $color, $variants in $colors {
+		$selector: unquote($color); // Converte a string "--cor" para "cor"
+  
+		.#{$selector} {
+			@each $state, $color-value in $variants {
+			&--#{$state} {
+				background-color: $color-value;
+			}
+			}
+		}
+	}
 
 </style>
