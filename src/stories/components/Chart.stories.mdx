@@ -50,6 +50,7 @@ import Multiselect from '../../components/Multiselect.vue';
         code: /*html*/`
 <cds-chart
   :chart-data="chartData"
+  :variant="variant"
   :chart-labels="chartLabels"
   :chart-options="chartOptions"
   :chart-type="chartType"
@@ -73,6 +74,7 @@ export const Template = (args) => ({
         // labels: args.chartData.labels = args.chartLabels,
       },
       chartOptions: args.chartOptions,
+      variant: args.variant,
       chartType: args.chartType,
       choiceMultiselect: args.choiceMultiselect,
     };
