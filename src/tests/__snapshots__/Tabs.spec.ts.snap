@@ -22,6 +22,7 @@ VueWrapper {
   "__setProps": [Function],
   "componentVM": {
     "disabled": false,
+    "emitLazy": [Function],
     "errorMessage": "Valor inválido",
     "errorState": false,
     "fluid": false,
@@ -32,6 +33,7 @@ VueWrapper {
     "isBeingFocused": false,
     "label": "Label",
     "labelDynamicClass": "text-input__label",
+    "lazy": false,
     "linkText": null,
     "linkTextState": false,
     "linkUrl": "https://cuida.framer.wiki/",
@@ -42,6 +44,7 @@ VueWrapper {
     "required": false,
     "state": "default",
     "stepperInputDynamicClass": "text-input",
+    "timeout": null,
     "tooltip": null,
     "tooltipIcon": "info-outline",
     "validState": false,
