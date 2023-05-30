@@ -315,7 +315,9 @@ export default {
 
 			if (this.lazy) {
 				this.emitLazy(value)
-			} else this.$emit('update:modelValue', value);
+			} else {
+				this.$emit('update:modelValue', value);
+			} 
 		},
 	},
 
