@@ -13,9 +13,6 @@
 			@input="handleSelectedValues"
 		/>
 	</div>
-	<div id="teste">
-		<h1>{{ localVariant }}</h1>
-	</div>
 	<div
 		id="cds-chart"
 	>
@@ -86,14 +83,14 @@ export default {
 		},
 		/**
 		 * A variante de cor. São 9 variantes implementadas: 'random', 'green', 'turquoise',
-		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'light-neutrals', 'mid-neutrals', 'dark-neutrals'.
+		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'mid', 'dark'.
 		 */
 		variant: {
 			type: String,
 			required: true,
 			default: 'green',
 			validator: (value) => {
-				return ['random', 'green', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'light-neutrals', 'mid-neutrals', 'dark-neutrals'].includes(value);
+				return ['random', 'green', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'mid', 'dark'].includes(value);
 			}
 		},
 		/**
@@ -119,6 +116,63 @@ export default {
 			localChartData: {},
 			localLabels: [],
 			localVariant: '',
+			palletColors: [
+				{
+					name: 'green',
+					colorHex: ['#ABEDD9', '#6DDFBC', '#2AC092', '#239F78', '#1B795B', '#126349'],
+					colorToken: ['$gp-200','$gp-300','$gp-400','$gp-500','$gp-600','$gp-700'],
+				},
+				{
+					name: 'turquoise',
+					colorHex: ['#C2EDFF', '#7BD0F4', '#42AAD7', '#1F86B2', '#18698B', '#13526D'],
+					colorToken: ['$ts-200','$ts-300','$ts-400','$ts-500','$ts-600','$ts-700'],
+				},
+				{
+					name: 'blue',
+					colorHex: ['#B6D1F7', '#83ADE7', '#4B88DD', '#2C70CD', '#1A55A8', '#174382'],
+					colorToken: ['$bn-200', '$bn-300', '$bn-400', '$bn-500', '$bn-600', '$bn-700']
+				},
+				{
+					name: 'indigo',
+					colorHex: ['#CED6FD', '#AAB7F8', '#7080D2', '#4D5DAC', '#384584', '#353D64'],
+					colorToken: ['$in-200', '$in-300', '$in-400', '$in-500', '$in-600', '$in-700'],
+				},
+				{
+					name: 'violet',
+					colorHex: ['#E6D2F9', '#CEABED', '#A975D7', '#8955B9', '#6B3A98', '#4F2673'],
+					colorToken: ['$vr-200', '$vr-300', '$vr-400', '$vr-500', '$vr-600', '$vr-700'],
+				},
+				{
+					name: 'pink',
+					colorHex: ['#F9C8E2', '#EF8FC0', '#DA629F', '#BE377C', '#A12663', '#701A48'],
+					colorToken: ['$pp-200', '$pp-300', '$pp-400', '$pp-500', '$pp-600', '$pp-700'],
+				},
+				{
+					name: 'red',
+					colorHex: ['#FABDC5', '#F98B98', '#F3596C', '#E03E52', '#C92C3F', '#A42333'],
+					colorToken: ['$rc-200', '$rc-300', '$rc-400', '$rc-500', '$rc-600', '$rc-700'],
+				},
+				{
+					name: 'orange',
+					colorHex: ['#FFD6CC', '#FDAF9B', '#FF8567', '#F06442', '#D64B29', '#AB3C21'],
+					colorToken: ['$og-200', '$og-300', '$og-400', '$og-500', '$og-600', '$og-700'],
+				},
+				{
+					name: 'amber',
+					colorHex: ['#FFE2B8', '#FDCD87', '#FFB952', '#EEA22F', '#D38817', '#A56A12'],
+					colorToken: ['$al-200', '$al-300', '$al-400', '$al-500', '$al-600', '$al-700'],
+				},
+				{
+					name: 'mid',
+					colorHex: ['#d6dce3', '#c3ccd5', '#acb8c3', '#99a6b2', '#8794a1'],
+					colorToken: ['$n-50', '$n-100', '$n-200',  '$n-300', '$n-400'],
+				},
+				{
+					name: 'dark',
+					colorHex: ['#647382', '#52616f', '#3b4754', '#28333e', '#1d262f'],
+					colorToken: ['$n-500', '$n-600', '$n-700',  '$n-800', '$n-900'],
+				}
+			],
 			localSelect: false,
 			//Label do multiselect
 			label: 'Exames',
@@ -255,7 +309,6 @@ export default {
 
 	methods: {
 		// Responsável por lidar com os valores selecionados do multiselect, mapeando cada valor para encontrar os dados correspondentes nas opções disponíveis;
-		// Para cada opção de cor selecionada, a função gera uma cor de fundo aleatória;
 		// Em seguida define setColors para definir as cores dos datasets das opções selecionadas;
 		// Chama a função mergeChartData para mesclar os dados das opções selecionadas para atualizar localChartData
 		handleSelectedValues(selectedValues) {
@@ -264,6 +317,14 @@ export default {
 				const newData = selectedValues.map(selected => {
 					const option = this.options.find(element => element.name === selected.value);
 					if (option) {
+						console.log(selectedValues)
+
+						if (selectedValues.length === 1 && selectedValues.value === option.label) {
+							console.log('igual')
+							console.log(option.chartData)
+							// this.mergeChartDataNoSelect(option)
+							
+						}
 						const backgroundColor = this.generateBackgroundColor();
 						this.setColors(option.chartData.datasets, backgroundColor);
 						return option.chartData;
@@ -275,24 +336,6 @@ export default {
 			} else {
 				this.localChartData = {};
 			}
-		},
-
-  
-		// Função responsável por gerar uma cor de fundo aleatória, se apenas um valor estiver selecionado, gera uma cor de fundo aleatória. Caso contrário gera mesma cor de fundo para todos os datasets
-		// OBS: Corrigir esse ponto para gerar valores de cores aleatorios dentro do proprio dataset
-		generateBackgroundColor() {
-			return `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.5)`;
-		},
-  
-		// Função responsável por setar backgroundColor, bordeWidth e borderColor
-		setColors(datasets, backgroundColor) {
-			datasets.forEach(dataset => {
-				dataset.backgroundColor = backgroundColor;
-				dataset.borderWidth = 1;
-				const rgb = this.extractRGB(backgroundColor);
-				dataset.borderColor = rgb;
-				dataset.borderRadius = 4;
-			});
 		},
   
 		// Função que recebe uma matriz de dados dos gráficos das opções selecionadas e mescla em um único objeto de dados. (MultiSelect: True)
@@ -308,26 +351,45 @@ export default {
 		// Função que recebe uma matriz de dados dos gráfico. (MultiSelect: False)
 		mergeChartDataNoSelect(data) {
 			data.labels = this.localLabels;
-			data.datasets.forEach(dataset => {
-				const backgroundColor = this.generateRandomColor();
-				dataset.backgroundColor = backgroundColor;
-				dataset.borderWidth = 1;
-				const rgb = this.extractRGB(backgroundColor);
-				dataset.borderColor = rgb;
+			const backgroundColor = this.generateBackgroundColor();
+			this.setColors(data.datasets, backgroundColor);
+		},
+
+		// Função responsável por gerar uma cor de fundo aleatória, gera uma cor de fundo aleatória. Caso contrário gera mesma cor de fundo para todos os datasets
+		// OBS: Corrigir esse ponto para gerar valores de cores aleatorios dentro do proprio dataset
+		generateBackgroundColor() {
+			const palletColor = this.palletColors.find(color => color.name === this.variant);
+			if (palletColor) {
+				return palletColor.colorHex;
+			}
+			// Se variant for definido como 'random', vai gerar hex aleatório para cada rótulo
+			return [
+				'#' + Math.floor(Math.random() * 16777215).toString(16),
+				'#' + Math.floor(Math.random() * 16777215).toString(16),
+				'#' + Math.floor(Math.random() * 16777215).toString(16),
+				'#' + Math.floor(Math.random() * 16777215).toString(16),
+				'#' + Math.floor(Math.random() * 16777215).toString(16),
+				'#' + Math.floor(Math.random() * 16777215).toString(16),
+				'#' + Math.floor(Math.random() * 16777215).toString(16)
+			];
+		},
+  
+		// Função responsável por setar backgroundColor, bordeWidth
+		setColors(datasets, backgroundColor) {
+			datasets.forEach((dataset, index) => {
+				const colorIndex = index % backgroundColor.length;
+				const color = backgroundColor[colorIndex];
+				dataset.backgroundColor = color;
 				dataset.borderRadius = 4;
 			});
 		},
 
 		generateRandomColor() {
-			return `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.5)`;
-		},
-
-  
-		// Função para extrair os valores RGB de um RGBA para assir poder definir o borderColor.
-		extractRGB(color) {
-			const rgbaValues = color.substring(color.indexOf('(') + 1, color.lastIndexOf(')')).split(',');
-			const [r, g, b] = rgbaValues.map(value => parseInt(value.trim()));
-			return `rgb(${r}, ${g}, ${b})`;
+			const palletColor = this.palletColors.find(color => color.name === this.variant);
+			if (palletColor) {
+				return palletColor.colorHex;
+			}
+			return ['#' + Math.floor(Math.random() * 16777215).toString(16)];
 		},
 	}
 }
@@ -343,131 +405,4 @@ export default {
 #teste{
 	background-color: $rc-500;
 }
-
-$colors: (
-		'green': (
-			'0': $gp-50,
-			'1': $gp-100,
-			'2': $gp-200,
-			'3': $gp-300,
-			'4': $gp-400,
-			'5': $gp-500,
-			'6': $gp-600,
-			'7': $gp-700,
-		),
-		'turquoise': (
-			'0': $ts-50,
-			'1': $ts-100,
-			'2': $ts-200,
-			'3': $ts-300,
-			'4': $ts-400,
-			'5': $ts-500,
-			'6': $ts-600,
-			'7': $ts-700,
-		),
-		'blue': (
-			'0': $bn-50,
-			'1': $bn-100,
-			'2': $bn-200,
-			'3': $bn-300,
-			'4': $bn-400,
-			'5': $bn-500,
-			'6': $bn-600,
-			'7': $bn-700,
-		),
-		'indigo': (
-			'0': $in-50,
-			'1': $in-100,
-			'2': $in-200,
-			'3': $in-300,
-			'4': $in-400,
-			'5': $in-500,
-			'6': $in-600,
-			'7': $in-700,
-		),
-		'violet': (
-			'0': $vr-50,
-			'1': $vr-100,
-			'2': $vr-200,
-			'3': $vr-300,
-			'4': $vr-400,
-			'5': $vr-500,
-			'6': $vr-600,
-			'7': $vr-700,
-		),
-		'pink': (
-			'0': $pp-50,
-			'1': $pp-100,
-			'2': $pp-200,
-			'3': $pp-300,
-			'4': $pp-400,
-			'5': $pp-500,
-			'6': $pp-600,
-			'7': $pp-700,
-		),
-		'red': (
-			'0': $rc-50,
-			'1': $rc-100,
-			'2': $rc-200,
-			'3': $rc-300,
-			'4': $rc-400,
-			'5': $rc-500,
-			'6': $rc-600,
-			'7': $rc-700,
-		),
-		'orange': (
-			'0': $og-50,
-			'1': $og-100,
-			'2': $og-200,
-			'3': $og-300,
-			'4': $og-400,
-			'5': $og-500,
-			'6': $og-600,
-			'7': $og-700,
-		),
-		'amber': (
-			'0': $al-50,
-			'1': $al-100,
-			'2': $al-200,
-			'3': $al-300,
-			'4': $al-400,
-			'5': $al-500,
-			'6': $al-600,
-			'7': $al-700,
-		),
-		'light': (
-			'0': $n-0,
-			'1': $n-10,
-			'2': $n-20,
-			'3': $n-30,
-			'4': $n-40,
-		),
-		'mid': (
-			'0': $n-50,
-			'1': $n-100,
-			'2': $n-200,
-			'3': $n-300,
-			'4': $n-400,
-		),
-		'dark': (
-			'0': $n-500,
-			'1': $n-600,
-			'2': $n-700,
-			'3': $n-800,
-			'4': $n-900,
-		),
-	);
-
-	@each $color, $variants in $colors {
-		$selector: unquote($color); // Converte a string "--cor" para "cor"
-  
-		.#{$selector} {
-			@each $state, $color-value in $variants {
-			&--#{$state} {
-				background-color: $color-value;
-			}
-			}
-		}
-	}
-
 </style>
