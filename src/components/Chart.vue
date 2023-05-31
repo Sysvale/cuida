@@ -183,6 +183,7 @@ export default {
 		}
 	},
 	computed: {
+		// Computada do multiselect responsável para exibir lista dos options pelo name
 		multiOptions() {
 			const tab = [];
 			this.options.forEach((element) => {
@@ -191,8 +192,26 @@ export default {
 
 			return tab;
 		},
+
+		// Computada responsável por definir qual tipo de dado vai ser exibido de acordo com o multiSelect ativado ou desativado
 		computedDataSet() {
-			return this.localSelect === true ? this.localChartData : this.chartData;
+			return this.localSelect === true ? this.localChartData : this.verify;
+		},
+
+		// Como modo de segurança, caso utilize um array de objetos irá exibir o primeiro objeto, caso não seja irá retornar somente o objeto passado
+		// eslint-disable-next-line vue/return-in-computed-property
+		verify() {
+			if (Array.isArray(this.chartData)) {
+				// eslint-disable-next-line vue/no-side-effects-in-computed-properties
+				this.multiOptions[0].isSelected = true;
+				const selectedOption = {
+					value: this.multiOptions[0].value,
+				};
+				// eslint-disable-next-line vue/no-side-effects-in-computed-properties
+				this.selectedOptions = [selectedOption];
+				return this.localChartData;
+			}
+			return this.chartData;
 		},
 	},
 	watch: {
@@ -292,7 +311,7 @@ export default {
 			}
 		},
   
-		// Função que recebe uma matriz de dados dos gráficos das opções selecionadas e mescla em um único objeto de dados. (MultiSelect: True)
+		// Função que recebe a matriz de dados dos gráficos das opções selecionadas e mescla em um único objeto de dados. (MultiSelect: True)
 		mergeChartData(data) {
 			return data.reduce((mergedData, chartData) => {
 				if (chartData) {
@@ -311,7 +330,7 @@ export default {
 			this.localChartData = data;
 		},
 
-		// Função responsável por gerar uma cor de fundo aleatória, gera uma cor de fundo aleatória. Caso contrário gera mesma cor de fundo para todos os datasets
+		// Função responsável por gerar uma cor de fundo aleatória. Caso contrário gera mesma cor de fundo para todos os datasets (Quando 'variant' for definido como random)
 		generateBackgroundColor() {
 			const palletColor = this.palletColors.find(color => color.name === this.variant);
 			if (palletColor) {
@@ -349,7 +368,4 @@ export default {
 	width: 300px;
 }
 
-#teste{
-	background-color: $rc-500;
-}
 </style>
