@@ -103,7 +103,7 @@ export default {
 		},
 
 		/**
-         * Ativa ou desativa o componente multiselect. Caso esteja definido como true, o data deve ser uma lista de objetos, caso seja false, somente um objeto.
+         * Ativa ou desativa o componente multiselect. Quando definido como verdadeiro (true), espera-se que 'data' seja uma lista de objetos. Quando definido como falso (false), espera-se apenas um objeto.
          */
 		choiceMultiselect: {
 			type: Boolean,
