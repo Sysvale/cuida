@@ -111,7 +111,7 @@ export const Template = (args) => ({
       chartType: 'bar',
       chartLabels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
       variant: 'green',
-      chartData: {
+      chartData1: {
         datasets: [
           {
             label: 'Realizado',
@@ -127,7 +127,7 @@ export const Template = (args) => ({
           }
         ]
       },
-      chartData1: [
+      chartData: [
 				{ 
 					name: 'Ecocardiograma',
 					chartData: {
@@ -190,7 +190,7 @@ export const Template = (args) => ({
         responsive: true,
         maintainAspectRatio: false,
       },   
-      choiceMultiselect: false,
+      choiceMultiselect: true,
     }}
   >
     { Template.bind({}) }
