@@ -54,6 +54,7 @@ import Multiselect from '../../components/Multiselect.vue';
   :chart-options="chartOptions"
   :chart-type="chartType"
   :choice-multiselect="choiceMultiselect"
+  :label-select="labelSelect"
 >
 </cds-chart>`
       },
@@ -76,6 +77,7 @@ export const Template = (args) => ({
       variant: args.variant,
       chartType: args.chartType,
       choiceMultiselect: args.choiceMultiselect,
+      labelSelect: args.labelSelect,
     }
   },
   template: /*html*/ `
@@ -175,6 +177,7 @@ export const Template = (args) => ({
         maintainAspectRatio: false,
       },   
       choiceMultiselect: true,
+      labelSelect: 'Exames',
     }}
   >
     { Template.bind({}) }
