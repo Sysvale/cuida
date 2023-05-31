@@ -180,9 +180,9 @@ export default {
 				}
 			],
 			localSelect: '',
-			//Label do multiselect
+			// NOTE: Label do multiselect
 			label: '',
-			//Options do multiselect
+			// NOTE: Options do multiselect
 			options: [],
 			value: [],
 			selectedOptions: [],
@@ -190,7 +190,7 @@ export default {
 		}
 	},
 	computed: {
-		// Computada do multiselect responsável para exibir lista dos options pelo name
+		// NOTE: Computada do multiselect responsável para exibir lista dos options pelo name
 		multiOptions() {
 			const tab = [];
 			this.options.forEach((element) => {
@@ -200,12 +200,12 @@ export default {
 			return tab;
 		},
 
-		// Computada responsável por definir qual tipo de dado vai ser exibido de acordo com o multiSelect ativado ou desativado
+		// NOTE: Computada responsável por definir qual tipo de dado vai ser exibido de acordo com o multiSelect ativado ou desativado
 		computedDataSet() {
 			return this.localSelect === true ? this.localChartData : this.verify;
 		},
 
-		// Como modo de segurança, caso utilize um array de objetos irá exibir o primeiro objeto, caso não seja irá retornar somente o objeto passado
+		// NOTE: Como modo de segurança, caso utilize um array de objetos irá exibir o primeiro objeto, caso não seja irá retornar somente o objeto passado
 		// eslint-disable-next-line vue/return-in-computed-property
 		verify() {
 			if (Array.isArray(this.chartData)) {
@@ -287,22 +287,19 @@ export default {
 
 	methods: {
 
-		// Verifica o tipo de dado que está sendo inserido
+		// NOTE: Verifica o tipo de dado que está sendo inserido
 		typeOfData(chartData) {
 			if (typeof chartData === 'object') {
 				if (!Array.isArray(chartData)) {
-					console.log('Não é uma lista de objetos: ', chartData);
 					if (!this.localSelect) {
 						// Redireciona para função de merge do Objeto quando multiselect desativado
 						this.mergeChartDataNoSelect(chartData);
 					}
-				} else {
-					console.log('chartData é uma lista de objetos:', chartData);
 				}
 			}
 		},
 
-		// Responsável por lidar com os valores selecionados do multiselect, mapeando cada valor para encontrar os dados correspondentes nas opções disponíveis;
+		// NOTE: Responsável por lidar com os valores selecionados do multiselect, mapeando cada valor para encontrar os dados correspondentes nas opções disponíveis;
 		// Em seguida define setColors para definir as cores dos datasets das opções selecionadas;
 		// Chama a função mergeChartData para mesclar os dados das opções selecionadas para atualizar localChartData
 		handleSelectedValues(selectedValues) {
@@ -324,7 +321,7 @@ export default {
 			}
 		},
   
-		// Função que recebe a matriz de dados dos gráficos das opções selecionadas e mescla em um único objeto de dados. (MultiSelect: True)
+		// NOTE: Função que recebe a matriz de dados dos gráficos das opções selecionadas e mescla em um único objeto de dados. (MultiSelect: True)
 		mergeChartData(data) {
 			return data.reduce((mergedData, chartData) => {
 				if (chartData) {
@@ -334,22 +331,21 @@ export default {
 			}, { labels: this.localLabels, datasets: [] });
 		},
 
-		// Função que recebe uma matriz de dados dos gráfico. (MultiSelect: False)
-		mergeChartDataNoSelect(data) {
-			console.log(data)			
+		// NOTE: Função que recebe uma matriz de dados dos gráfico. (MultiSelect: False)
+		mergeChartDataNoSelect(data) {		
 			data.labels = this.localLabels;
 			const backgroundColor = this.generateBackgroundColor();
 			this.setColors(data.datasets, backgroundColor);
 			this.localChartData = data;
 		},
 
-		// Função responsável por gerar uma cor de fundo aleatória. Caso contrário gera mesma cor de fundo para todos os datasets (Quando 'variant' for definido como random)
+		// NOTE: Função responsável por gerar uma cor de fundo aleatória. Caso contrário gera mesma cor de fundo para todos os datasets (Quando 'variant' for definido como random)
 		generateBackgroundColor() {
 			const palletColor = this.palletColors.find(color => color.name === this.variant);
 			if (palletColor) {
 				return palletColor.colorHex;
 			}
-			// Se variant for definido como 'random', vai gerar hex aleatório para cada rótulo/label
+			// NOTE: Se variant for definido como 'random', vai gerar hex aleatório para cada rótulo/label
 			return [
 				'#' + Math.floor(Math.random() * 16777215).toString(16),
 				'#' + Math.floor(Math.random() * 16777215).toString(16),
@@ -361,7 +357,7 @@ export default {
 			];
 		},
   
-		// Função responsável por setar backgroundColor, bordeWidth
+		// NOTE: Função responsável por setar backgroundColor, bordeWidth
 		setColors(datasets, backgroundColor) {
 			datasets.forEach((dataset, index) => {
 				const colorIndex = index % backgroundColor.length;
@@ -380,101 +376,4 @@ export default {
 #cds-multiselect {
 	width: 300px;
 }
-
-$n-0: #ffffff;
-$n-10: #FAFCFE;
-$n-20: #F4F8FB;
-$n-30: #E7EDF3;
-$n-40: #DFE5EC;
-$n-50: #d6dce3;
-$n-100: #c3ccd5;
-$n-200: #acb8c3;
-$n-300: #99a6b2;
-$n-400: #8794a1;
-$n-500: #647382;
-$n-600: #52616f;
-$n-700: #3b4754;
-$n-800: #28333e;
-$n-900: #1d262f;
-
-$gp-50: #f3fcf8;
-$gp-100: #def7eb;
-$gp-200: #ABEDD9;
-$gp-300: #6DDFBC;
-$gp-400: #2AC092;
-$gp-500: #239F78;
-$gp-600: #1B795B;
-$gp-700: #126349;
-
-$ts-50: #F7FCFF;
-$ts-100: #E2F4FE;
-$ts-200: #C2EDFF;
-$ts-300: #7BD0F4;
-$ts-400: #42AAD7;
-$ts-500: #1F86B2;
-$ts-600: #18698B;
-$ts-700: #13526D;
-
-$bn-50: #F8FAFE;
-$bn-100: #ecf1fe;
-$bn-200: #B6D1F7;
-$bn-300: #83ADE7;
-$bn-400: #4B88DD;
-$bn-500: #2C70CD;
-$bn-600: #1A55A8;
-$bn-700: #174382;
-
-$in-50: #F5F6FF;
-$in-100: #E5EAFF;
-$in-200: #CED6FD;
-$in-300: #AAB7F8;
-$in-400: #7080D2;
-$in-500: #4D5DAC;
-$in-600: #384584;
-$in-700: #353D64;
-
-$vr-50: #FBF7FF;
-$vr-100: #F5EBFF;
-$vr-200: #E6D2F9;
-$vr-300: #CEABED;
-$vr-400: #A975D7;
-$vr-500: #8955B9;
-$vr-600: #6B3A98;
-$vr-700: #4F2673;
-
-$pp-50: #FFF7FC;
-$pp-100: #FFEBF7;
-$pp-200: #F9C8E2;
-$pp-300: #EF8FC0;
-$pp-400: #DA629F;
-$pp-500: #BE377C;
-$pp-600: #A12663;
-$pp-700: #701A48;
-
-$rc-50: #fef5f6;
-$rc-100: #ffe6e9;
-$rc-200: #FABDC5;
-$rc-300: #F98B98;
-$rc-400: #F3596C;
-$rc-500: #E03E52;
-$rc-600: #C92C3F;
-$rc-700: #A42333;
-
-$og-50: #FEF9F8;
-$og-100: #FFEBE5;
-$og-200: #FFD6CC;
-$og-300: #FDAF9B;
-$og-400: #FF8567;
-$og-500: #F06442;
-$og-600: #D64B29;
-$og-700: #AB3C21;
-
-$al-50: #fefbf5;
-$al-100: #fff1dc;
-$al-200: #FFE2B8;
-$al-300: #FDCD87;
-$al-400: #FFB952;
-$al-500: #EEA22F;
-$al-600: #D38817;
-$al-700: #A56A12;
 </style>
