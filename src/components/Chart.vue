@@ -5,7 +5,6 @@
 		id="cds-multiselect"
 	>	
 		<cds-multiselect
-			v-bind="field"
 			v-model="selectedOptions"
 			:options="multiOptions"
 			:label="label"
@@ -82,7 +81,7 @@ export default {
 			}
 		},
 		/**
-		 * A variante de cor. São 9 variantes implementadas: 'random', 'green', 'turquoise',
+		 * A variante de cor. São 12 variantes implementadas: 'random', 'green', 'turquoise',
 		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'mid', 'dark'.
 		 */
 		variant: {
@@ -103,7 +102,7 @@ export default {
 		},
 
 		/**
-         * Ativa ou desativa o componente multiselect. Quando definido como verdadeiro (true), espera-se que 'data' seja uma lista de objetos. Quando definido como falso (false), espera-se apenas um objeto.
+         * Ativa ou desativa o componente multiselect. Quando definido como verdadeiro (true), espera-se que 'chartData' seja uma lista de objetos. Quando definido como falso (false), espera-se apenas um objeto.
          */
 		choiceMultiselect: {
 			type: Boolean,
@@ -193,7 +192,7 @@ export default {
 			return tab;
 		},
 		computedDataSet() {
-			return this.localSelect ? this.localChartData : this.chartData;
+			return this.localSelect === true ? this.localChartData : this.chartData;
 		},
 	},
 	watch: {
@@ -210,13 +209,12 @@ export default {
 			immediate: true,
 		},
 		chartData: {
-			handler(newValue) {
-				// Se multiselect true é utilizado o options
-				if (this.localSelect) {
-					this.options = newValue;
+			handler(newValue, oldValue) {
+				this.options = newValue;
+				if (newValue === oldValue && Array.isArray(newValue) && newValue.length > 0) {
+					this.options = newValue[0].chartData;
 					return;
 				}
-				// Se falso é utilizado o localChartData
 				this.localChartData = newValue;
 			},
 			immediate: true,
