@@ -103,7 +103,7 @@ export default {
 		},
 
 		/**
-         * Ativa ou desativa o componente multiselect
+         * Ativa ou desativa o componente multiselect. Caso esteja definido como true, o data deve ser uma lista de objetos, caso seja false, somente um objeto.
          */
 		choiceMultiselect: {
 			type: Boolean,
@@ -177,65 +177,7 @@ export default {
 			//Label do multiselect
 			label: 'Exames',
 			//Options do multiselect
-			options: [
-				{ 
-					name: 'Ecocardiograma',
-					chartData: {
-						datasets: [
-							{
-								label: 'Realizado',
-								data: [50, 50, 50, 50, 50],
-							},
-							{
-								label: 'Pendente',
-								data: [200, 180, 250, 190, 280],
-							},
-							{
-								label: 'Não realizado',
-								data: [38, 84, 120, 90, 185],
-							}
-						]
-					},	
-				},
-				{ 
-					name: 'Raio-X',
-					chartData: {
-						datasets: [
-							{
-								label: 'Realizado',
-								data: [120, 220, 180, 320, 150],
-							},
-							{
-								label: 'Pendente',
-								data: [98, 145, 160, 190, 175],
-							},
-							{
-								label: 'Não realizado',
-								data: [49, 84, 120, 78, 130],
-							}
-						]
-					}
-				},
-				{ 
-					name: 'Tomografia',
-					chartData: {
-						datasets: [
-							{
-								label: 'Realizado',
-								data: [55, 40, 33, 90, 120],
-							},
-							{
-								label: 'Pendente',
-								data: [25, 30, 90, 45, 20],
-							},
-							{
-								label: 'Não realizado',
-								data: [38, 84, 120, 90, 45],
-							}
-						]
-					}
-				}
-			],
+			options: [],
 			value: [],
 			selectedOptions: [],
 			selectedValues: [],
@@ -264,9 +206,18 @@ export default {
 		choiceMultiselect: {
 			handler(newValue) {
 				this.localSelect = newValue;
-				if (newValue === false) {
-					this.mergeChartDataNoSelect(this.chartData)
+			},
+			immediate: true,
+		},
+		chartData: {
+			handler(newValue) {
+				// Se multiselect true é utilizado o options
+				if (this.localSelect) {
+					this.options = newValue;
+					return;
 				}
+				// Se falso é utilizado o localChartData
+				this.localChartData = newValue;
 			},
 			immediate: true,
 		},
@@ -301,13 +252,26 @@ export default {
 			this.selectedOptions = [];
 		}
 
-		// Para quando choiceMultiSelect é falso é definido as labels do chartData
-		if (!this.choiceMultiselect) {
-			this.mergeChartDataNoSelect(this.chartData);
-		}
+		this.typeOfData(this.chartData);
 	},
 
 	methods: {
+
+		// Verifica o tipo de dado que está sendo inserido
+		typeOfData(chartData) {
+			if (typeof chartData === 'object') {
+				if (!Array.isArray(chartData)) {
+					console.log('Não é uma lista de objetos: ', chartData);
+					if (!this.localSelect) {
+						// Redireciona para função de merge do Objeto quando multiselect desativado
+						this.mergeChartDataNoSelect(chartData);
+					}
+				} else {
+					console.log('chartData é uma lista de objetos:', chartData);
+				}
+			}
+		},
+
 		// Responsável por lidar com os valores selecionados do multiselect, mapeando cada valor para encontrar os dados correspondentes nas opções disponíveis;
 		// Em seguida define setColors para definir as cores dos datasets das opções selecionadas;
 		// Chama a função mergeChartData para mesclar os dados das opções selecionadas para atualizar localChartData
@@ -317,14 +281,6 @@ export default {
 				const newData = selectedValues.map(selected => {
 					const option = this.options.find(element => element.name === selected.value);
 					if (option) {
-						console.log(selectedValues)
-
-						if (selectedValues.length === 1 && selectedValues.value === option.label) {
-							console.log('igual')
-							console.log(option.chartData)
-							// this.mergeChartDataNoSelect(option)
-							
-						}
 						const backgroundColor = this.generateBackgroundColor();
 						this.setColors(option.chartData.datasets, backgroundColor);
 						return option.chartData;
@@ -350,19 +306,20 @@ export default {
 
 		// Função que recebe uma matriz de dados dos gráfico. (MultiSelect: False)
 		mergeChartDataNoSelect(data) {
+			console.log(data)			
 			data.labels = this.localLabels;
 			const backgroundColor = this.generateBackgroundColor();
 			this.setColors(data.datasets, backgroundColor);
+			this.localChartData = data;
 		},
 
 		// Função responsável por gerar uma cor de fundo aleatória, gera uma cor de fundo aleatória. Caso contrário gera mesma cor de fundo para todos os datasets
-		// OBS: Corrigir esse ponto para gerar valores de cores aleatorios dentro do proprio dataset
 		generateBackgroundColor() {
 			const palletColor = this.palletColors.find(color => color.name === this.variant);
 			if (palletColor) {
 				return palletColor.colorHex;
 			}
-			// Se variant for definido como 'random', vai gerar hex aleatório para cada rótulo
+			// Se variant for definido como 'random', vai gerar hex aleatório para cada rótulo/label
 			return [
 				'#' + Math.floor(Math.random() * 16777215).toString(16),
 				'#' + Math.floor(Math.random() * 16777215).toString(16),
@@ -382,14 +339,6 @@ export default {
 				dataset.backgroundColor = color;
 				dataset.borderRadius = 4;
 			});
-		},
-
-		generateRandomColor() {
-			const palletColor = this.palletColors.find(color => color.name === this.variant);
-			if (palletColor) {
-				return palletColor.colorHex;
-			}
-			return ['#' + Math.floor(Math.random() * 16777215).toString(16)];
 		},
 	}
 }
