@@ -108,4 +108,4 @@ npm run test
 
 ## Contribuindo
 
-Para informações sobre como contribuir com o projeto, acesse o [CONTRIBUTING.MD](https://github.com/Sysvale/cuida/blob/master/CONTRIBUTING.md)
+Para informações sobre como contribuir com o projeto, acesse o [CONTRIBUTING.MD](https://github.com/Sysvale/cuida/blob/main/CONTRIBUTING.md)
