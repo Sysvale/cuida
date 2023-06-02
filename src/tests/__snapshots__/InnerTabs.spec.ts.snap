@@ -38,7 +38,7 @@ VueWrapper {
   "wrapperElement": <div
     id="inner-tabs"
   >
-    <ul … />
+    <div … />
     <div … />
   </div>,
 }
