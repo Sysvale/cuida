@@ -65,13 +65,15 @@ export default {
 		}
 
 		&__title {
-			@include heading-2;
+			@include heading-3;
+			font-weight: $font-weight-bold;
 			color: $n-900;
 			margin: mb(2);
 		}
 
 		&__subtitle {
-			@include body-1;
+			@include subheading-3;
+			font-weight: $font-weight-regular;
 			color: $n-700;
 			margin: ma(0);
 		}
