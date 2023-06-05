@@ -2,29 +2,31 @@
 	<div
 		id="inner-tabs"
 	>
-		<ul class="inner-tabs__header">
-			<li
-				v-for="(tab, index) in tabs"
-				:key="`${index}-${tab.name}-tab`"
-				role="presentation"
-			>
-				<a
-					role="tab"
-					href="javascript:void(0)"
-					target="_self"
-					class="inner-tabs__tab"
-					:class="isActive(tab) ? 'inner-tabs__tab--active' : 'inner-tabs__tab--inactive'"
-					@click="(event) => handleClick(event, tab)"
+		<div class="inner-tabs__header-container">
+			<ul class="inner-tabs__header">
+				<li
+					v-for="(tab, index) in tabs"
+					:key="`${index}-${tab.name}-tab`"
+					role="presentation"
 				>
-					{{ tab.title }}
-				</a>
-
-				<div
-					:class="isActive(tab) ? 'tab__indicator--active' : ''"
-					:style="activeBorderStyle"
-				/>
-			</li>
-		</ul>
+					<a
+						role="tab"
+						href="javascript:void(0)"
+						target="_self"
+						class="inner-tabs__tab"
+						:class="isActive(tab) ? 'inner-tabs__tab--active' : 'inner-tabs__tab--inactive'"
+						@click="(event) => handleClick(event, tab)"
+					>
+						{{ tab.title }}
+					</a>
+	
+					<div
+						:class="isActive(tab) ? 'tab__indicator--active' : ''"
+						:style="activeBorderStyle"
+					/>
+				</li>
+			</ul>
+		</div>
 
 		<div class="inner-tabs__content">
 			<div
@@ -150,15 +152,40 @@ export default {
 			display: flex;
 			justify-content: flex-start;
 			gap: spacer(4);
-			flex-wrap: wrap;
 			padding: pl(0);
 			margin: mb(0);
 			list-style: none;
-			border-bottom: 1px solid $n-40;
+			transition: $opening;
+
+			&-container {
+				overflow-x: scroll;
+
+				/* width */
+				&::-webkit-scrollbar {
+					height: 4px;
+					border-radius: 8px;
+				}
+
+				/* Track */
+				&::-webkit-scrollbar-track {
+					background: transparent;
+				}
+
+				/* Handle */
+				&::-webkit-scrollbar-thumb {
+					background: $n-40;
+					border-radius: 8px;
+				}
+
+				/* Handle on hover */
+				&::-webkit-scrollbar-thumb:hover {
+					background: $n-50;
+				}
+			}
 		}
 
 		&__tab {
-			width: 100%;
+			width: max-content;
 			min-width: 140px;
 			@include caption;
 			font-weight: $font-weight-regular;
