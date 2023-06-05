@@ -1,5 +1,8 @@
 <template>
-	<div class="panel-card">
+	<cds-box
+		class="panel-card"
+		padding="0"
+	>
 		<div class="panel-card__header">
 			<div>
 				<span class="panel-card__title">{{ title }}</span>
@@ -18,13 +21,16 @@
 			<!-- @slot Slot usado para inserção de conteúdo customizado. -->
 			<slot />
 		</div>
-	</div>
+	</cds-box>
 </template>
 
 <script>
+import CdsBox from './Box.vue';
 import CdsDivider from './Divider.vue';
+
 export default {
 	components: {
+		CdsBox,
 		CdsDivider,
 	},
 
@@ -67,11 +73,8 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
-.panel-card {
-	background-color: $n-0;
-	border: 1px solid $n-30;
-	border-radius: $border-radius-extra-small;
 
+.panel-card {
 	&__divider {
 		margin: ma(0);
 		color: $n-300;
