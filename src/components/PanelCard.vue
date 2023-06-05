@@ -69,6 +69,7 @@ export default {
 @import '../assets/sass/tokens.scss';
 .panel-card {
 	background-color: $n-0;
+	border: 1px solid $n-30;
 	border-radius: $border-radius-extra-small;
 
 	&__divider {
