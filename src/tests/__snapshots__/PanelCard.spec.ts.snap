@@ -30,12 +30,18 @@ VueWrapper {
   "isDisabled": [Function],
   "rootVM": {},
   "wrapperElement": <div
-    class="panel-card"
+    class="box--gray panel-card"
     data-v-9994fd39=""
+    data-v-f9290560=""
   >
+    
+    <!--
+		Evento emitido quando o wrapper é clicado
+		@event cds-click
+		@type {Event}
+	-->
     <div … />
-    <div … />
-    <div … />
+    
   </div>,
 }
 `;
