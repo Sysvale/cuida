@@ -2,6 +2,7 @@
 	<cds-box
 		class="panel-card"
 		padding="0"
+		fluid
 	>
 		<div class="panel-card__header">
 			<div>
