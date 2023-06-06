@@ -3,6 +3,17 @@
 	<table class="table__container">
 		<tr class="table__header">
 			<th
+				class="table__select-item"
+				:class="resolveHeaderItemClass(0)"
+			>
+				<cds-checkbox
+					id="select-all-rows"
+					v-model="selectAll"
+					no-text
+					@update:model-value="handleSelectAll"
+				/>
+			</th>
+			<th
 				v-for="(field, index) in computedFields"
 				:key="index"
 				:class="resolveHeaderItemClass(index)"
@@ -23,6 +34,16 @@
 			:key="itemIndex"
 			:class="resolveItemClass()"
 		>
+			<td
+				class="table__select-item"
+				:class="resolveContentItemClass(itemIndex, 0)"
+			>
+				<cds-checkbox
+					:id="`select-row-${itemIndex}`"
+					v-model="select[itemIndex]"
+					no-text
+				/>
+			</td>
 			<td
 				v-for="(field, fieldIndex) in computedFields"
 				:key="fieldIndex"
@@ -47,10 +68,21 @@
 
 <script>
 import { startCase } from 'lodash';
+import CdsCheckbox from './Checkbox.vue';
 
 export default {
+	components: {
+		CdsCheckbox,
+	},
 
 	props: {
+		/**
+		 * Guarda os itens selecionados da tabela.
+		 */
+		modelValue: {
+			type: Array,
+			default: () => ([]),
+		},
 		/**
 		 * Array contendo os itens a serem exibidos na tabela. Os itens devem estar no seguinte formato:
 		 *
@@ -84,6 +116,20 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Boolean, informa se devem ser exibidas checkboxes para selecionar linhas.
+		 */
+		showSelect: {
+			type: Boolean,
+			default: false,
+		},
+	},
+
+	data() {
+		return {
+			selectAll: false,
+			select: [],
+		};
 	},
 
 	computed: {
@@ -112,7 +158,21 @@ export default {
 		},
 	},
 
+	watch: {
+		items(newValue, oldValue) {
+			if (newValue !== oldValue) {
+				this.selectAll = false;
+			}
+		},
+	},
+
 	methods: {
+		handleSelectAll() {
+			for (let index = 0; index < this.items.length; index++) {
+				this.select[index] = this.selectAll;
+			}
+		},
+
 		resolveHeaderItemClass(index) {
 			if (index !== 0 && index !== (this.fields.length - 1)) {
 				return 'table__header-item';
@@ -150,6 +210,10 @@ export default {
 		border-radius: $border-radius-extra-small;
 		border-spacing: 0px;
 		width: 100%;
+	}
+
+	&__select-item {
+		width: 62px;
 	}
 
 	&__header {
