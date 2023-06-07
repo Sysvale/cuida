@@ -3,12 +3,14 @@
 	<table class="table__container">
 		<tr class="table__header">
 			<th
+				v-if="showSelect"
 				class="table__select-item"
 				:class="resolveHeaderItemClass(0)"
 			>
 				<cds-checkbox
 					id="select-all-rows"
 					v-model="selectAll"
+					class="table__select-checkbox"
 					no-text
 					@update:model-value="handleSelectAll"
 				/>
@@ -35,13 +37,16 @@
 			:class="resolveItemClass()"
 		>
 			<td
+				v-if="showSelect"
 				class="table__select-item"
 				:class="resolveContentItemClass(itemIndex, 0)"
 			>
 				<cds-checkbox
 					:id="`select-row-${itemIndex}`"
 					v-model="select[itemIndex]"
+					class="table__select-checkbox"
 					no-text
+					@update:model-value="handleSelectRow"
 				/>
 			</td>
 			<td
@@ -67,7 +72,7 @@
 </template>
 
 <script>
-import { startCase } from 'lodash';
+import { startCase, findIndex } from 'lodash';
 import CdsCheckbox from './Checkbox.vue';
 
 export default {
@@ -159,17 +164,63 @@ export default {
 	},
 
 	watch: {
+		modelValue: {
+			handler(newValue, oldValue) {
+				if (newValue !== oldValue) {
+					if (!newValue.length) {
+						this.resetSelect();
+						return;
+					}
+
+					newValue.forEach((item) => {
+						const index = findIndex(this.items, item);
+						if (index > -1) {
+							this.select[index] = true;
+						}
+					});
+				}
+			},
+			immediate: true,
+		},
+
 		items(newValue, oldValue) {
 			if (newValue !== oldValue) {
 				this.selectAll = false;
+				this.resetSelect();
 			}
+		},
+
+		select:{
+			handler(newValue) {
+				const selectedItems = this.items.filter((item, index) => newValue[index]);
+
+				/**
+				* Evento que indica que o valor do Select foi alterado
+				* @event update:modelValue
+				* @type {Event}
+				*/
+				this.$emit('update:modelValue', selectedItems);
+			},
+			deep: true,
 		},
 	},
 
 	methods: {
+		resetSelect() {
+			for (let index = 0; index < this.items.length; index++) {
+				this.select[index] = false;
+			}
+		},
+
 		handleSelectAll() {
 			for (let index = 0; index < this.items.length; index++) {
 				this.select[index] = this.selectAll;
+			}
+		},
+
+		handleSelectRow(value) {
+			if (this.selectAll && !value) {
+				this.selectAll = false;
 			}
 		},
 
@@ -213,7 +264,12 @@ export default {
 	}
 
 	&__select-item {
-		width: 62px;
+		width: 50px;
+	}
+
+	&__select-checkbox {
+		scale: 0.75;
+		margin-top: 1px;
 	}
 
 	&__header {
