@@ -4,7 +4,10 @@
 		class="cds-checkbox__container"
 		@click="toggleValue"
 	>
-		<div class="cds-checkbox__content">
+		<div
+			class="cds-checkbox__content"
+			:class="{ 'cds-checkbox__content--no-text': noText } "
+		>
 			<input
 				:id="$attrs.id || 'cds-checkbox-option-input'"
 				:value="modelValue"
@@ -123,6 +126,10 @@ export default {
 		margin-right: spacer(3);
 		margin-top: spacer(n1);
 		box-sizing: border-box;
+
+		&--no-text {
+			margin-right: spacer(0);
+		}
 
 		label {
 			box-sizing: border-box;
