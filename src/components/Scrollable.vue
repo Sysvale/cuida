@@ -43,6 +43,7 @@ export default {
 	&__container {
 		overflow-y: auto;
 		overflow-x: hidden;
+		padding: pr(1);
 
 		/* width */
 		&::-webkit-scrollbar {
