@@ -3,6 +3,19 @@
 	<table class="table__container">
 		<tr class="table__header">
 			<th
+				v-if="showSelect"
+				class="table__select-item"
+				:class="resolveHeaderItemClass(0)"
+			>
+				<cds-checkbox
+					id="select-all-rows"
+					v-model="selectAll"
+					class="table__select-checkbox"
+					no-text
+					@update:model-value="handleSelectAll"
+				/>
+			</th>
+			<th
 				v-for="(field, index) in computedFields"
 				:key="index"
 				:class="resolveHeaderItemClass(index)"
@@ -23,6 +36,19 @@
 			:key="itemIndex"
 			:class="resolveItemClass()"
 		>
+			<td
+				v-if="showSelect"
+				class="table__select-item"
+				:class="resolveContentItemClass(itemIndex, 0)"
+			>
+				<cds-checkbox
+					:id="`select-row-${itemIndex}`"
+					v-model="select[itemIndex]"
+					class="table__select-checkbox"
+					no-text
+					@update:model-value="handleSelectRow"
+				/>
+			</td>
 			<td
 				v-for="(field, fieldIndex) in computedFields"
 				:key="fieldIndex"
@@ -46,11 +72,22 @@
 </template>
 
 <script>
-import { startCase } from 'lodash';
+import { startCase, findIndex } from 'lodash';
+import CdsCheckbox from './Checkbox.vue';
 
 export default {
+	components: {
+		CdsCheckbox,
+	},
 
 	props: {
+		/**
+		 * Guarda os itens selecionados da tabela.
+		 */
+		modelValue: {
+			type: Array,
+			default: () => ([]),
+		},
 		/**
 		 * Array contendo os itens a serem exibidos na tabela. Os itens devem estar no seguinte formato:
 		 *
@@ -84,6 +121,20 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Boolean, informa se devem ser exibidas checkboxes para selecionar linhas.
+		 */
+		showSelect: {
+			type: Boolean,
+			default: false,
+		},
+	},
+
+	data() {
+		return {
+			selectAll: false,
+			select: [],
+		};
 	},
 
 	computed: {
@@ -112,7 +163,67 @@ export default {
 		},
 	},
 
+	watch: {
+		modelValue: {
+			handler(newValue, oldValue) {
+				if (newValue !== oldValue) {
+					if (!newValue.length) {
+						this.resetSelect();
+						return;
+					}
+
+					newValue.forEach((item) => {
+						const index = findIndex(this.items, item);
+						if (index > -1) {
+							this.select[index] = true;
+						}
+					});
+				}
+			},
+			immediate: true,
+		},
+
+		items(newValue, oldValue) {
+			if (newValue !== oldValue) {
+				this.selectAll = false;
+				this.resetSelect();
+			}
+		},
+
+		select:{
+			handler(newValue) {
+				const selectedItems = this.items.filter((item, index) => newValue[index]);
+
+				/**
+				* Evento que indica que o valor do Select foi alterado
+				* @event update:modelValue
+				* @type {Event}
+				*/
+				this.$emit('update:modelValue', selectedItems);
+			},
+			deep: true,
+		},
+	},
+
 	methods: {
+		resetSelect() {
+			for (let index = 0; index < this.items.length; index++) {
+				this.select[index] = false;
+			}
+		},
+
+		handleSelectAll() {
+			for (let index = 0; index < this.items.length; index++) {
+				this.select[index] = this.selectAll;
+			}
+		},
+
+		handleSelectRow(value) {
+			if (this.selectAll && !value) {
+				this.selectAll = false;
+			}
+		},
+
 		resolveHeaderItemClass(index) {
 			if (index !== 0 && index !== (this.fields.length - 1)) {
 				return 'table__header-item';
@@ -150,6 +261,15 @@ export default {
 		border-radius: $border-radius-extra-small;
 		border-spacing: 0px;
 		width: 100%;
+	}
+
+	&__select-item {
+		width: 50px;
+	}
+
+	&__select-checkbox {
+		scale: 0.75;
+		margin-top: 1px;
 	}
 
 	&__header {

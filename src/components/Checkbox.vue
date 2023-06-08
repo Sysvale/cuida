@@ -1,11 +1,13 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<span
-		id="cds-checkbox"
-		class="checkbox__container"
+		class="cds-checkbox__container"
 		@click="toggleValue"
 	>
-		<div class="checkbox__content">
+		<div
+			class="cds-checkbox__content"
+			:class="{ 'cds-checkbox__content--no-text': noText } "
+		>
 			<input
 				:id="$attrs.id || 'cds-checkbox-option-input'"
 				:value="modelValue"
@@ -18,17 +20,17 @@
 			<label
 				:for="$attrs.id || 'cds-checkbox-option-input'"
 				:class="{
-					'checkbox__content--checked': isChecked,
-					'checkbox__content--disabled': disabled,
+					'cds-checkbox__content--checked': isChecked,
+					'cds-checkbox__content--disabled': disabled,
 				}"
 				@click.stop="toggleValue"
 			/>
 		</div>
 		<div
 			v-if="!noText"
-			class="checkbox__label"
+			class="cds-checkbox__label"
 			:class="{
-				'checkbox__label--disabled': disabled
+				'cds-checkbox__label--disabled': disabled
 			}"
 		>
 			<!-- @slot Slot usado pra mostrar o conteúdo do checkbox. -->
@@ -108,24 +110,26 @@ export default {
 <style lang="scss">
 @import '../assets/sass/tokens.scss';
 
-.checkbox__container {
+.cds-checkbox__container {
 	display: flex;
 	align-items: center;
 	width: fit-content;
 	cursor: pointer;
-}
 
-#cds-checkbox {
 	input[type=checkbox] {
 		visibility: hidden;
 	}
 
-	.checkbox__content {
+	.cds-checkbox__content {
 		width: 18px;
 		position: relative;
 		margin-right: spacer(3);
 		margin-top: spacer(n1);
 		box-sizing: border-box;
+
+		&--no-text {
+			margin-right: spacer(0);
+		}
 
 		label {
 			box-sizing: border-box;
@@ -177,12 +181,12 @@ export default {
 		}
 	}
 
-	.checkbox__label {
+	.cds-checkbox__label {
 		@include body-2;
 		color: $n-600;
 
 		&--disabled {
-			@extend .checkbox__label;
+			@extend .cds-checkbox__label;
 			color: $n-300;
 		}
 	}
