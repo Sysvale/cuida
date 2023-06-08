@@ -5,7 +5,7 @@ import Table from '../../components/Table.vue';
 	title="Componentes/Display/Table"
 	component={ Table }
 	argTypes={{
-		selectVariant: {
+		selectionVariant: {
 			control:{
 				type: 'select',
 				options: [
@@ -56,8 +56,10 @@ export const Template = (args) => ({
 			v-bind="args"
 		/>
 		<br>
-		<pre>{{ selected }}</pre>
 		`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.selected);
+	},
 });
 
 # Table
@@ -89,26 +91,25 @@ export const fields = [
 ];
 export const items = [
 	{
-		'field-1': 'field 1 content a',
+		'field-1': 'Praesent malesuada urna nisi',
 		'field2': 'field 2 content a',
-		'field_3': 'field 3 content a',
+		'field_3': 50,
 	},
 	{
-		'field-1': 'field 1 content b',
-		'field2': 'field 2 content b',
-		'field_3': 'field 3 content b',
-	},
-	{
-		'field-1': 'field 1 content c',
+		'field-1': 'quis volutpat erat hendrerit non',
 		'field2': 'field 2 content c',
-		'field_3': 'field 3 content c',
+		'field_3': 72,
+	},
+	{
+		'field-1': 'Nam vulputate dapibus',
+		'field2': 'field 2 content b',
+		'field_3': 72,
 	},
 ];
 
 <Canvas>
 	<Story
 		name="Table"
-		
 		args={{
 			fields,
 			items,
