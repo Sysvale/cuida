@@ -12,6 +12,7 @@
 					v-model="selectAll"
 					class="table__select-checkbox"
 					no-text
+					:variant="selectVariant"
 					@update:model-value="handleSelectAll"
 				/>
 			</th>
@@ -46,6 +47,7 @@
 					v-model="select[itemIndex]"
 					class="table__select-checkbox"
 					no-text
+					:variant="selectVariant"
 					@update:model-value="handleSelectRow"
 				/>
 			</td>
@@ -127,6 +129,14 @@ export default {
 		showSelect: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * A variante das checkboxes de seleção. São 10 variantes: 'teal', 'green', 'blue',
+		 * 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+		 */
+		selectVariant: {
+			type: String,
+			default: 'green',
 		},
 	},
 

@@ -72,7 +72,7 @@ export default {
 			default: false,
 		},
 		/**
-		 * A variante da Badge. São 10 variantes: 'teal', 'green', 'blue',
+		 * A variante da Checkbox. São 10 variantes: 'teal', 'green', 'blue',
 		 * 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
 		 */
 		variant: {
