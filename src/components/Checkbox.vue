@@ -19,10 +19,7 @@
 			>
 			<label
 				:for="$attrs.id || 'cds-checkbox-option-input'"
-				:class="{
-					'cds-checkbox__content--checked': isChecked,
-					'cds-checkbox__content--disabled': disabled,
-				}"
+				:class="resolveCheckboxClass"
 				@click.stop="toggleValue"
 			/>
 		</div>
@@ -42,6 +39,8 @@
 </template>
 
 <script>
+import variantClassResolver from '../utils/methods/variantClassResolver';
+
 export default {
 	props: {
 		/**
@@ -72,12 +71,30 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * A variante da Badge. São 10 variantes: 'teal', 'green', 'blue',
+		 * 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+		 */
+		variant: {
+			type: String,
+			default: 'green',
+		},
 	},
 
 	data() {
 		return {
 			isChecked: this.modelValue,
 		};
+	},
+
+	computed: {
+		resolveCheckboxClass() {
+			const disabledClass = this.disabled ? 'cds-checkbox__content--disabled' : '';
+			const checkedClass = this.isChecked
+				? `cds-checkbox__content--checked ${variantClassResolver('cds-checkbox__content--checked', this.variant)}`
+				: '';
+			return `${checkedClass} ${disabledClass}`;
+		}
 	},
 
 	watch: {
@@ -173,6 +190,11 @@ export default {
 		&--checked {
 			background-color: $gp-500 !important;
 			border: none !important;
+
+			@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
+				@extend .cds-checkbox__content--checked;
+				background-color: $hover !important;
+			}
 		}
 
 		&--disabled {
