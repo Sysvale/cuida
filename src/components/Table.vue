@@ -21,15 +21,45 @@
 				:key="index"
 				:class="resolveHeaderItemClass(index)"
 			>
-				<!--
-					@slot Slot usado para renderizar itens personalizados para o cabeçalho da tabela. Dados do item referente à coluna podem ser acessados através da propriedade `data`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ data }
-				-->
-				<slot
-					name="header-item"
-					:data="field"
-				>
-					{{ field.label }}
-				</slot>
+				<div class="table__header-item-content">
+					<!--
+						@slot Slot usado para renderizar itens personalizados para o cabeçalho da tabela. Dados do item referente à coluna podem ser acessados através da propriedade `data`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ data }
+					-->
+					<slot
+						name="header-item"
+						:data="field"
+					>
+						{{ field.label }}
+					</slot>
+					<cds-clickable
+						v-if="sortBy"
+						:id="`sort-icon-${field.key}`"
+						clickable
+						@click.stop="handleSortBy(field.key)"
+					>
+						<cds-icon
+							v-if="field.key !== localSortBy"
+							class="table__sort-icon"
+							height="13"
+							width="13"
+							name="swap-vertical-arrows-outline"
+						/>
+						<cds-icon
+							v-else-if="localSortDesc"
+							class="table__sort-icon"
+							height="13"
+							width="13"
+							name="swap-vertical-arrows-up-duotone"
+						/>
+						<cds-icon
+							v-else
+							class="table__sort-icon"
+							height="13"
+							width="13"
+							name="swap-vertical-arrows-down-duotone"
+						/>
+					</cds-clickable>
+				</div>
 			</th>
 		</tr>
 		<tr
@@ -76,10 +106,14 @@
 <script>
 import { startCase, findIndex } from 'lodash';
 import CdsCheckbox from './Checkbox.vue';
+import CdsIcon from '../components/Icon.vue';
+import CdsClickable from '../components/Clickable.vue';
 
 export default {
 	components: {
 		CdsCheckbox,
+		CdsIcon,
+		CdsClickable,
 	},
 
 	props: {
@@ -138,12 +172,30 @@ export default {
 			type: String,
 			default: 'green',
 		},
+		/**
+		 * Específica a propriedade (chave da coluna) usada para ordenação.
+		 * Por padrão os itens são exibidos na sequência definida pelo array `items`
+		 */
+		sortBy: {
+			type: String,
+			default: null,
+		},
+		/**
+		 * Boolean, informa que a ordenação deve ser descendente, por padrão a ordenação
+		 * é ascendente (`sortDesc: false`).
+		 */
+		sortDesc: {
+			type: Boolean,
+			default: false,
+		}
 	},
 
 	data() {
 		return {
 			selectAll: false,
 			select: [],
+			localSortDesc: this.sortDesc,
+			localSortBy: this.sortBy,
 		};
 	},
 
@@ -234,6 +286,11 @@ export default {
 			}
 		},
 
+		handleSortBy(sortBy) {
+			this.localSortDesc = !this.localSortDesc;
+			this.localSortBy = sortBy;
+		},
+
 		resolveHeaderItemClass(index) {
 			if (index !== 0 && index !== (this.fields.length - 1)) {
 				return 'table__header-item';
@@ -282,6 +339,11 @@ export default {
 		margin-top: 1px;
 	}
 
+	&__sort-icon {
+		color: $n-200;
+		margin-left: 6px;
+	}
+
 	&__header {
 		background-color: $n-10;
 
@@ -303,6 +365,11 @@ export default {
 
 				@extend .table__header-item;
 			}
+		}
+
+		&-item-content {
+			display: flex;
+			align-items: center;
 		}
 	}
 
