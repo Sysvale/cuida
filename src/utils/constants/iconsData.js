@@ -105,6 +105,8 @@ export const iconsData = [
 			'arrow-down-outline',
 			'swap-horizontal-arrows-outline',
 			'swap-vertical-arrows-outline',
+			'swap-vertical-arrows-down-duotone',
+			'swap-vertical-arrows-up-duotone',
 			'expand-outline',
 			'minimize-outline',
 			'move-outline',
