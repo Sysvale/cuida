@@ -264,6 +264,7 @@ export default {
 	border-radius: $border-radius-medium;
 	box-shadow: 0px 0px 8px rgba(40, 90, 185, 0.2);
 	overflow-x: auto;
+    overflow-y: visible;
 	z-index: 1060;
 	animation: zoom-in .5s;
 
