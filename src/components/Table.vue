@@ -265,7 +265,6 @@ export default {
 
 		items(newValue, oldValue) {
 			if (!isEqual(newValue, oldValue)) {
-				this.selectAll = false;
 				this.localItems = newValue;
 				this.resetSelect();
 			}
@@ -297,6 +296,7 @@ export default {
 
 	methods: {
 		resetSelect() {
+			this.selectAll = false;
 			for (let index = 0; index < this.localItems.length; index++) {
 				this.select[index] = false;
 			}
