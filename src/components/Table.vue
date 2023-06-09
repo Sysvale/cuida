@@ -315,10 +315,16 @@ export default {
 		},
 
 		handleSortBy(sortBy) {
-			this.localSortDesc = !this.localSortDesc;
-			this.localSortBy = sortBy;
-			this.localItems = orderBy(this.items, [this.localSortBy], [this.localSortDesc ? 'asc' : 'desc']);
 			this.resetSelect();
+			if (this.localSortBy === sortBy && this.localSortDesc) {
+				this.localSortBy = null;
+				this.localItems = this.items;
+				return;
+			}
+			const orders = this.localSortDesc ? 'asc' : 'desc';
+			this.localSortDesc = this.localSortBy === sortBy ? !this.localSortDesc : false;
+			this.localSortBy = sortBy;
+			this.localItems = orderBy(this.items, [this.localSortBy], [orders]);
 		},
 
 		resolveHeaderItemClass(index) {
