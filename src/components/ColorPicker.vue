@@ -56,7 +56,19 @@
 					<div
 						:class="`swatch--${cl}`"
 						@click="SwatchSelection(cl)"
-					/>
+					>
+						<cds-icon
+							v-if="color === exp[cl.replace('-', '')]"
+							height="22"
+							width="22"
+							name="check-outline"
+							class="icnn"
+							:class="{
+								wht: ContrastChecker(color, '#ffffff', 17, 'POOR'),
+								blk: ContrastChecker(color, '#1d262f', 17, 'POOR'),
+							}"
+						/>
+					</div>
 				</div>
 			</div>
 		</cds-popover>
@@ -126,7 +138,7 @@ export default {
 			this.$emit('change', this.color);
 			/**
 			 * Evento que indica se o modal foi escondido.
-			 * @event close
+			 * @event update:modelValue
 			 * @type {Event}
 			*/
 			this.$emit('update:modelValue', this.color);
@@ -146,7 +158,7 @@ export default {
 }
 
 .preview-container:hover {
-	outline: 1px solid $bn-300;
+	outline: 1px solid $n-200;
 	cursor: pointer;
 	transition: $hover;
 }
