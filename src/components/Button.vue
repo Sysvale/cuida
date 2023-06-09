@@ -1,30 +1,37 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-	<button
-		id="cds-button"
-		class="button__container"
-		:class="computedStyle"
-		@click.stop="clickHandler"
-	>
-		<cds-spinner
-			v-if="loading"
-			variant="white"
-			size="sm"
-			class="button__loader"
-		/>
+	<span id="cds-button">
+		<cds-tooltip
+			:text="tooltipDisabled"
+		>
+			<button
+				id="cds-button"
+				class="button__container"
+				:class="computedStyle"
+				@click.stop="clickHandler"
+			>
+				<cds-spinner
+					v-if="loading"
+					variant="white"
+					size="sm"
+					class="button__loader"
+				/>
 
-		<!-- @slot Slot padrão utilizado para exibir texto do botão. -->
-		<slot>
-			{{ text }}
-		</slot>
-	</button>
+				<!-- @slot Slot padrão utilizado para exibir texto do botão. -->
+				<slot>
+					{{ text }}
+				</slot>
+			</button>
+		</cds-tooltip>
+	</span>
 </template>
 <script>
 import CdsSpinner from '../components/Spinner.vue';
-
+import CdsTooltip from './Tooltip.vue';
 export default {
 	components: {
 		CdsSpinner,
+		CdsTooltip,
 	},
 
 	props: {
@@ -57,6 +64,13 @@ export default {
 		disabled: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Texto a ser exibido como tooltip com o hover do botão quando disabled estiver ativo.
+		 */
+		tooltipText: {
+			type: String,
+			default: null,
 		},
 		/**
 		 * Especifica se a versão do Botão é a secundária.
@@ -97,6 +111,15 @@ export default {
 	},
 
 	computed: {
+
+		tooltipDisabled() {
+			return this.disabled === true ? this.checkTooltip : null;
+		},
+
+		checkTooltip() {
+			return this.tooltipText ? this.tooltipText : null;
+		},
+
 		predefinedColor() {
 			if (this.secondary) {
 				return 'button--secondary';
@@ -121,6 +144,15 @@ export default {
 
 			return `${this.predefinedColor}${disabled} ${this.predefinedSize}`;
 		},
+	},
+
+	watch: {
+		disabled: {
+			handler(newValue) {
+				console.log(newValue);
+			},
+			immediate: true,
+		}
 	},
 
 	methods: {
