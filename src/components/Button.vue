@@ -5,7 +5,6 @@
 			:text="tooltipDisabled"
 		>
 			<button
-				id="cds-button"
 				class="button__container"
 				:class="computedStyle"
 				@click.stop="clickHandler"
@@ -113,11 +112,7 @@ export default {
 	computed: {
 
 		tooltipDisabled() {
-			return this.disabled === true ? this.checkTooltip : null;
-		},
-
-		checkTooltip() {
-			return this.tooltipText ? this.tooltipText : null;
+			return this.disabled && this.tooltipText !== '' ? this.tooltipText : null;
 		},
 
 		predefinedColor() {
@@ -144,15 +139,6 @@ export default {
 
 			return `${this.predefinedColor}${disabled} ${this.predefinedSize}`;
 		},
-	},
-
-	watch: {
-		disabled: {
-			handler(newValue) {
-				console.log(newValue);
-			},
-			immediate: true,
-		}
 	},
 
 	methods: {
