@@ -26,37 +26,37 @@
 						@slot Slot usado para renderizar itens personalizados para o cabeçalho da tabela. Dados do item referente à coluna podem ser acessados através da propriedade `data`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ data }
 					-->
 					<slot
+						v-if="hasHeaderItemSlot"
 						name="header-item"
 						:data="field"
-					>
-						{{ field.label }}
-					</slot>
+					/>
 					<cds-clickable
-						v-if="sortable"
+						v-else
 						:id="`sort-icon-${field.key}`"
-						clickable
+						:clickable="sortable"
 						@click.stop="handleSortBy(field.key)"
 					>
+						{{ field.label }}
 						<cds-icon
-							v-if="field.key !== localSortBy"
+							v-if="sortable && field.key !== localSortBy"
 							class="table__sort-icon"
 							height="13"
 							width="13"
 							name="swap-vertical-arrows-outline"
 						/>
 						<cds-icon
-							v-else-if="localSortDesc"
+							v-else-if="sortable && localSortDesc"
 							class="table__sort-icon"
 							height="13"
 							width="13"
-							name="swap-vertical-arrows-down-duotone"
+							name="sort-descending-duotone"
 						/>
 						<cds-icon
-							v-else
+							v-else-if="sortable"
 							class="table__sort-icon"
 							height="13"
 							width="13"
-							name="swap-vertical-arrows-up-duotone"
+							name="sort-ascending-duotone"
 						/>
 					</cds-clickable>
 				</div>
@@ -236,6 +236,10 @@ export default {
 					}
 				})
 				: [];
+		},
+
+		hasHeaderItemSlot(){
+			return Object.keys(this.$slots).some(slot => slot === 'header-item');
 		},
 	},
 
