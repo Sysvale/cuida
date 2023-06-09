@@ -311,7 +311,9 @@ export default {
 		handleSelectRow(value) {
 			if (this.selectAll && !value) {
 				this.selectAll = false;
+				return;
 			}
+			this.selectAll = this.select.reduce((allSelected, itemSelected ) => allSelected && itemSelected);
 		},
 
 		handleSortBy(sortBy) {
