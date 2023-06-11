@@ -1,32 +1,32 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template> 
-	<div
-		v-if="localSelect"
-		id="cds-multiselect"
-	>	
-		<cds-multiselect
-			v-model="selectedOptions"
-			:options="multiOptions"
-			:label="label"
-			:options-field="options.name"
-			@input="handleSelectedValues"
-		/>
-	</div>
-	<div
-		id="cds-bar-chart"
-	>
-		<Bar
-			:is="'bar'"
-			:data="computedDataSet"
-			:options="chartOptions"
-		/>
-	</div>
+	<span id="cds-bar-chart">
+		<div
+			v-if="localSelect"
+			id="cds-multiselect"
+		>	
+			<cds-multiselect
+				v-model="selectedOptions"
+				:options="multiOptions"
+				:label="label"
+				:options-field="options.name"
+				@input="handleSelectedValues"
+			/>
+		</div>
+		<div>
+			<Bar
+				:is="'bar'"
+				:data="computedDataSet"
+				:options="chartOptions"
+			/>
+		</div>
+	</span>
 </template>
   
 <script>
+import { Chart, registerables } from 'chart.js';
 import { Bar } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
-import { Chart, registerables } from 'chart.js';
 import CdsMultiselect from '../Multiselect.vue';
 
 // Registrar o elemento "point" no registro (Torna-se necessário para Line e Pie que necessita de marcações de ponto)
@@ -52,18 +52,6 @@ export default {
 			})
 		},
 		/**
-         * Define configurações gerais par o gráfico.
-         */
-		chartOptions: {
-			type: Object,
-			required: true,
-			default: () => ({
-				responsive: true,
-				maintainAspectRatio: false,
-				indexAxis: 'y',
-			})
-		},
-		/**
 		 * A variante de cor. São 12 variantes implementadas: 'random', 'green', 'turquoise',
 		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'mid', 'dark'.
 		 */
@@ -83,7 +71,6 @@ export default {
 			required: true,
 			default: () => [],
 		},
-
 		/**
          * Ativa ou desativa o componente multiselect. Quando definido como verdadeiro (true), espera-se que 'chartData' seja uma lista de objetos. Quando definido como falso (false), espera-se apenas um objeto.
          */
@@ -96,7 +83,21 @@ export default {
          */
 		labelSelect: {
 			type: String,
-			default: ''
+			default: 'Label'
+		},
+		/**
+         * Configura o eixo de exibição do gráfico. (x ou y)
+         */
+		indexAxis: {
+			type: String,
+			default: 'x'
+		},
+		/**
+		 * Configura a porcentagem ocupada pela barra do gráfico. (0.1-1).
+		 */
+		categoryPercentage: {
+			type: Number,
+			default: 1,
 		},
 	},
 	data() {
@@ -169,6 +170,22 @@ export default {
 			value: [],
 			selectedOptions: [],
 			selectedValues: [],
+			chartOptions: {
+				responsive: true,
+				maintainAspectRatio: true, //NOTE: Caso true manterá aspecto de proporção original, caso false, será dimensionado para preencher completamente o contêiner (Isso pode fazer com que o gráfico pareça distorcido se o cntêiner tiver proporção de aspecto diferente do gráfico original)
+				indexAxis: this.indexAxis, //NOTE: Configura o eixo do gráfico.
+				categoryPercentage: this.categoryPercentage, //NOTE: Configura a porcentagem ocupada pela barra do gráfico. (0-1)
+				plugins: {
+					tooltip: {
+						callbacks: {
+							beforeTitle: function (context) {
+								console.log(context[0].dataset.label);
+								return `${context[0].dataset.label}`;
+							}
+						}
+					}
+				}
+			},
 		}
 	},
 	computed: {
