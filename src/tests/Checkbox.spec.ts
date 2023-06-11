@@ -5,14 +5,9 @@ import { mount } from '@vue/test-utils';
 describe('Button', () => {
 	test('renders correctly', async () => {
 		const wrapper = mount(Button, {
-			global: {
-				stubs: {
-					'cds-tooltip': true,
-				},
-			},
 			props: {
-				disabled: true,
-				tooltipText: 'Tooltip test'
+				value: false,
+				label: 'checkbox test'
 			},
 		});
   
