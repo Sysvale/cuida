@@ -41,6 +41,8 @@ import Multiselect from '../../../components/Multiselect.vue';
   :chart-options="chartOptions"
   :choice-multiselect="choiceMultiselect"
   :label-select="labelSelect"
+  :index-axis="indexAxis"
+  :category-percentage:"categoryPercentage"
 >
 </cds-bar-chart>`
       },
@@ -63,6 +65,8 @@ export const Template = (args) => ({
       variant: args.variant,
       choiceMultiselect: args.choiceMultiselect,
       labelSelect: args.labelSelect,
+      indexAxis: args.indexAxis,
+      categoryPercentage: args.categoryPercentage,
     }
   },
   template: /*html*/ `
@@ -156,11 +160,8 @@ export const Template = (args) => ({
 					}
 				}
 			],
-      chartOptions: {
-        responsive: true,
-        maintainAspectRatio: true,
-        indexAxis: 'y',
-      },   
+      indexAxis: 'x',
+      categoryPercentage: 0.5,
       choiceMultiselect: true,
       labelSelect: 'Exames',
     }}
