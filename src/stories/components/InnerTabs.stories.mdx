@@ -32,8 +32,8 @@ import InnerTabs from '../../components/InnerTabs.vue';
 				format:true,
 				code: /*html*/ 
 `<cds-inner-tabs
-	:tabs="items"
-	:activeTab="items[1]"
+	:tabs="dataSet"
+	:activeTab="dataSet[1]"
 >
 	<template #overview>
 		Overview
@@ -81,6 +81,18 @@ export const Template = (args) => ({
 				<template #indicator-4>
 					Conteúdo da tab-4
 				</template>
+				<template #indicator-5>
+					Conteúdo da tab-5
+				</template>
+				<template #indicator-6>
+					Conteúdo da tab-6
+				</template>
+				<template #indicator-7>
+					Conteúdo da tab-7
+				</template>
+				<template #indicator-8>
+					Conteúdo da tab-8
+				</template>
 			</cds-inner-tabs>
 	</div>
 	`,
@@ -94,27 +106,44 @@ export const Template = (args) => ({
 
 ## Quando usar:
 - Dentro de tabs, houver necessidade de mais um nível na estrutura de navegação;
-- For necessário separar o conteúdo por abas e navergar por elas.
-- Não for o caso de utilizar soluções como navbars, sidebars, cards ou links como navegação.
+- Em casos que for muito importante mostrar todo o título das abas;
+- For necessário separar o conteúdo por abas e navergar por elas;
+- Não for o caso de utilizar soluções como navbars, sidebars, cards ou links como navegação;
 
 <br />
 
 ## Quando não usar:
-- Eles forem o único componente de abas na página.
 - Houver muitos itens a serem mostrados como abas.
 - Quando a ação de clique realizada pelo usuário o levar para outra página.
 
 <br />
 
-## Observações:
-- ⚠️ **Importante:** Reforçando as recomendações acima, InnerTabs foram concebidas para funcionar dentro de abas. O componente não deve ser utilizado isoladamente.
-- TODO: Scroll horizontal quando o número de abas for maior que 6.
-
-<br />
-
 ## Preview
 
-export const items = [
+export const dataSet = [
+	{
+		title: 'Visão geral',
+		name: 'overview',
+	},
+	{
+		title: 'Indicador 1',
+		name: 'indicator-1',
+	},
+	{
+		title: 'Indicador 2',
+		name: 'indicator-2',
+	},
+	{
+		title: 'Indicador 3',
+		name: 'indicator-3',
+	},
+	{
+		title: 'Indicador 4',
+		name: 'indicator-4',
+	}
+];
+
+export const dataSet2 = [
 	{
 		title: 'Visão geral',
 		name: 'overview',
@@ -135,14 +164,30 @@ export const items = [
 		title: 'Indicador 4',
 		name: 'indicator-4',
 	},
+	{
+		title: 'Indicador 5',
+		name: 'indicator-5',
+	},
+	{
+		title: 'Indicador com o nome absurdamente grande 6',
+		name: 'indicator-6',
+	},
+	{
+		title: 'Indicador 7',
+		name: 'indicator-7',
+	},
+	{
+		title: 'Indicador 8',
+		name: 'indicator-8',
+	},
 ];
 
 <Canvas>
 	<Story
 		name="InnerTabs"
 		args={{
-			tabs: items,
-			activeTab: items[1],
+			tabs: dataSet,
+			activeTab: dataSet[1],
 		}}
 	>
 		{ Template.bind({}) }
@@ -150,3 +195,18 @@ export const items = [
 </Canvas>
 
 <ArgsTable story="InnerTabs" />
+
+## __Com scroll horizontal__
+Quando o conjunto de abas tiver uma largura maior que o container, será exibida uma barra de scroll horizonal para que o layout não seja quebrado em linhas ou fique oculto.
+
+<br />
+
+<Story
+	name="InnerTabs2"
+	args={{
+		tabs: dataSet2,
+		activeTab: dataSet2[1],
+	}}
+>
+	{ Template.bind({}) }
+</Story>

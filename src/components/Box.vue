@@ -5,6 +5,7 @@
 		:class="elevated ? 'box--elevated' : `box--${variant}`"
 	>
 		<cds-clickable
+			class="box__container"
 			:clickable="clickable"
 			@click="handleClick"
 		>
@@ -108,10 +109,15 @@ export default {
 
 <style lang="scss" scoped>
 @import './../assets/sass/tokens.scss';
+
 .box {
 	width: v-bind(widthResolver);
 	border-radius: v-bind(borderRadiusResolver);
 	overflow: hidden;
+
+	&__container {
+		width: v-bind(widthResolver);
+	}
 
 	&--elevated {
 		@extend .box;
