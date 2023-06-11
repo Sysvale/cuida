@@ -7,7 +7,6 @@ describe('Button', () => {
 		const wrapper = mount(Button, {
 			global: {
 				stubs: {
-					'cds-button': true,
 					'cds-tooltip': true,
 				},
 			},
