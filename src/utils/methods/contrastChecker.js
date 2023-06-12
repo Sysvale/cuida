@@ -10,7 +10,7 @@ const PARAMETER = {
 	SUPER: 12,
 }
 
-export default (color1, color2, fontSize, parameter = 'GOOD') => {
+export default (color1, color2, parameter = 'GOOD') => {
 	let color1RGB = hexToRgb(color1);
 	let color2RGB = hexToRgb(color2);
 
