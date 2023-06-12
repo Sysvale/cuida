@@ -1,36 +1,35 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-	<span id="cds-button">
-		<cds-tooltip
-			:text="tooltipDisabled"
-		>
-			<button
-				class="button__container"
-				:class="computedStyle"
-				@click.stop="clickHandler"
-			>
-				<cds-spinner
-					v-if="loading"
-					variant="white"
-					size="sm"
-					class="button__loader"
-				/>
+	<button
+		v-cdstip="tooltipDisabled"
+		class="button__container"
+		:class="computedStyle"
+		@click.stop="clickHandler"
+	>
+		<cds-spinner
+			v-if="loading"
+			variant="white"
+			size="sm"
+			class="button__loader"
+		/>
 
-				<!-- @slot Slot padrão utilizado para exibir texto do botão. -->
-				<slot>
-					{{ text }}
-				</slot>
-			</button>
-		</cds-tooltip>
-	</span>
+		<!-- @slot Slot padrão utilizado para exibir texto do botão. -->
+		<slot>
+			{{ text }}
+		</slot>
+	</button>
 </template>
 <script>
 import CdsSpinner from '../components/Spinner.vue';
-import CdsTooltip from './Tooltip.vue';
+import Cdstip from '../utils/directives/cdstip';
 export default {
+	
+	directives: {
+		cdstip: Cdstip,
+	},
+
 	components: {
 		CdsSpinner,
-		CdsTooltip,
 	},
 
 	props: {
