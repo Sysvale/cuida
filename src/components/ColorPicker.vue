@@ -1,27 +1,29 @@
 <template>
 	<div v-if="inline">
-		<div class="labl">{{ label }}</div>
+		<div class="color-picker__label">
+			{{ label }}
+		</div>
 	
 		<div
-			v-for="(swatchline, index) in swatch"
-			:key="index"
-			class="d-flex"
+			v-for="(swatchline, i) in swatch"
+			:key="i"
+			class="color-picker__container"
 		>
 			<div
-				v-for="(cl, idx) in swatchline"
-				:key="idx"
+				v-for="(color, j) in swatchline"
+				:key="j"
 			>
-				<div :class="`swatch--${cl}`" @click="SwatchSelection(cl)">
+				<div
+					:class="`color-picker__swatch--${color}`"
+					@click="SwatchSelection(color)"
+				>
 					<cds-icon
-						v-if="color === exp[cl.replace('-', '')]"
+						v-if="isCurrentColorSelected(color)"
 						height="22"
 						width="22"
 						name="check-outline"
-						class="icnn"
-						:class="{
-							wht: ContrastChecker(color, '#ffffff', 17, 'POOR'),
-							blk: ContrastChecker(color, '#1d262f', 17, 'POOR'),
-						}"
+						class="swatch__icon"
+						:class="iconColorResolver"
 					/>
 				</div>
 			</div>
@@ -31,42 +33,39 @@
 	<div v-else>
 		<div
 			id="color-picker"
-			@click.stop="clpClick"
+			class="color-picker__trigger"
+			@click.stop="showPopover = !showPopover"
 		>
-			<div class="preview-container">
-				<div class="preview" /> 
-			</div>
+			<div class="color-picker__preview" /> 
 		</div>
+
 		<cds-popover
 			v-model="showPopover"
 			:right-aligned="false"
 			target-id="color-picker"
-			height="190"
+			:height="popoverHeight"
 			fit-content-width
 		>
 			<div
-				v-for="(swatchline, index) in swatch"
-				:key="index"
-				class="d-flex"
+				v-for="(swatchline, i) in swatch"
+				:key="i"
+				class="popover__container"
 			>
 				<div
-					v-for="(cl, idx) in swatchline"
-					:key="idx"
+					v-for="(color, j) in swatchline"
+					:key="j"
 				>
 					<div
-						:class="`swatch--${cl}`"
-						@click="SwatchSelection(cl)"
+						:class="`color-picker__swatch--${color}`"
+						@click="SwatchSelection(color)"
 					>
 						<cds-icon
-							v-if="color === exp[cl.replace('-', '')]"
+							v-if="isCurrentColorSelected(color)"
 							height="22"
 							width="22"
 							name="check-outline"
-							class="icnn"
-							:class="{
-								wht: ContrastChecker(color, '#ffffff', 17, 'POOR'),
-								blk: ContrastChecker(color, '#1d262f', 17, 'POOR'),
-							}"
+							class="swatch__icon"
+							:class="iconColorResolver"
 						/>
 					</div>
 				</div>
@@ -78,7 +77,7 @@
 <script>
 import CdsPopover from './Popover.vue';
 import CdsIcon from './Icon.vue';
-import Exp from '../assets/sass/colors.module.scss';
+import sassColorVariables from '../assets/sass/colors.module.scss';
 import ContrastChecker from '../utils/methods/contrastChecker';
 
 export default {
@@ -110,6 +109,13 @@ export default {
 			default: false,
 		},
 		/**
+		* Especifica a label do input.
+		*/
+		popoverHeight: {
+			type: Number,
+			default: 190,
+		},
+		/**
 		* Conjunto de cores a serem renderizadas no ColorPicker. A prop espera um Array de Array de tokens de cor sem `$` (dolar). Ex.: gp-400
 		*/
 		swatch: {
@@ -120,28 +126,36 @@ export default {
 
 	data() {
 		return {
-			color: this.modelValue,
-			exp: Exp,
+			selectedColor: this.modelValue,
+			sassColorVariables,
 			showPopover: false,
 		};
+	},
+
+	computed: {
+		iconColorResolver() {
+			return this.ContrastChecker(this.selectedColor, '#FFFFFF', 'POOR') 
+				? 'swatch__icon--white'
+				: 'swatch__icon--black';
+		}
 	},
 
 	methods:{
 		ContrastChecker,
 
-		clpClick() {
-			this.showPopover = !this.showPopover;
-		},
+		SwatchSelection(color) {
+			this.selectedColor = this.sassColorVariables[color.replace('-', '')];
 
-		SwatchSelection(c) {
-			this.color = this.exp[c.replace('-', '')];
-			this.$emit('change', this.color);
 			/**
-			 * Evento que indica se o modal foi escondido.
+			 * Evento utilizado para emitir a cor selecionada. A cor é emitida como uma string no formato HEX.
 			 * @event update:modelValue
 			 * @type {Event}
 			*/
-			this.$emit('update:modelValue', this.color);
+			this.$emit('update:modelValue', this.selectedColor);
+		},
+
+		isCurrentColorSelected(color) {
+			return this.selectedColor === this.sassColorVariables[color.replace('-', '')];
 		},
 	},
 }
@@ -149,74 +163,71 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
-.preview-container {
-	padding: pa(1);
-	outline: 1px solid $n-50;
-	width: fit-content;
-	border-radius: $border-radius-lil;
-	transition: $hover;
-}
 
-.preview-container:hover {
-	outline: 1px solid $n-200;
-	cursor: pointer;
-	transition: $hover;
-}
+.color-picker {
+	&__container {
+		display: flex;
+	}
 
-.preview {
-	height: 24px;
-	width: 24px;
-	border-radius: 4px;
-	background-color: v-bind(color);
-}
+	&__label {
+		margin: mb(1);
+		@include label;
+	}
 
-.swatch {
-	@include paleteResolver using ($color) {
-		background-color: $color;
+	&__swatch {
+		@include paleteResolver using ($color) {
+			background-color: $color;
+			height: 24px;
+			width: 24px;
+			border-radius: 4px;
+			margin: mTRBL(1, 1, 0, 0);
+			padding-top: 2px;
+			padding-left: 1px;
+			cursor: pointer;
+			transition: $interaction;
+
+			&:hover {
+				transform: scale(1.1);
+				transition: $interaction;
+			}
+		}
+	}
+
+	&__trigger {
+		padding: pa(1);
+		outline: 1px solid $n-50;
+		width: fit-content;
+		border-radius: $border-radius-lil;
+		transition: $hover;
+		cursor: pointer;
+
+		&:hover {
+			outline: 1px solid $n-200;
+			transition: $hover;
+		}
+	}
+
+	&__preview {
 		height: 24px;
 		width: 24px;
 		border-radius: 4px;
-		margin: mTRBL(1, 1, 0, 0);
-		padding-top: 2px;
-		padding-left: 1px;
-		cursor: pointer;
-		transition: $interaction;
+		background-color: v-bind(selectedColor);
+	}
+}
 
-		&:hover {
-			transform: scale(1.1);
-			transition: $interaction;
+.swatch {
+	&__icon {
+		&--white {
+			color: $n-0;
+		}
+
+		&--black {
+			color: $n-900;
 		}
 	}
 }
 
-.color-input {
+.popover__container {
 	display: flex;
-	align-items: center;
-	width: fit-content;
-	padding: pa(2);
-	outline: 1px solid $n-50;
-	border-radius: $border-radius-extra-small;
-	width: 256px;
-	justify-content: space-between;
-	height: 40px;
-	color: $n-600;
-}
-
-
-.labl {
-	margin: mb(1);
-	@include label;
-}
-
-.icnn {
-	transition: $interaction;
-}
-
-.blk {
-	color: black;
-}
-
-.wht {
-	color: white;
 }
 </style>
