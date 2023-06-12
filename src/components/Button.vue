@@ -22,6 +22,7 @@
 <script>
 import CdsSpinner from '../components/Spinner.vue';
 import Cdstip from '../utils/directives/cdstip';
+
 export default {
 
 	directives: {
