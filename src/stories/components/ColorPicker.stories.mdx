@@ -45,7 +45,7 @@ export const Template = (args) => ({
 		};
 	},
 	template: /*html*/ `
-		<div class="d-flex" style="width: 350px; justify-content: space-between; align-items: end;">
+		<div class="d-flex" style="width: 550px; justify-content: space-between; align-items: end;">
 			<div>
 				<cds-color-picker
 					v-bind="args"
@@ -53,7 +53,10 @@ export const Template = (args) => ({
 					@change="handleEmit"
 				/>
 			</div>
-			<div style="height: 52px; width: 52px; border-radius: 8px" :style="{background: color}" class="opa"/>
+			<div>
+				<div style="height: 52px; width: 52px; border-radius: 8px" :style="{background: color}"/>
+				<i style="margin-top: 1px; font-size: 12.5px; color: #3b4754">⚠️ Div usada como demo. Não faz parte do ColorPicker.</i>
+			</div>
 		</div>`,
 	methods: {
 		handleEmit(value) { console.info('value: ', value); }
