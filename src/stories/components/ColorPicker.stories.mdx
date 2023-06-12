@@ -4,6 +4,16 @@ import ColorPicker from '../../components/ColorPicker.vue';
 <Meta
 	title="Componentes/Forms/ColorPicker"
 	component={ ColorPicker }
+	argTypes={{
+		popoverHeight: { 
+			control: {
+				type: 'range',
+				min: 50,
+				max: 190,
+				step: 10,
+			},
+		},
+	}}
 	parameters={{
 		viewMode: 'docs',
 		previewTabs: { canvas: { hidden: true }},
@@ -12,12 +22,13 @@ import ColorPicker from '../../components/ColorPicker.vue';
 				language: 'html',
 				format:true,
 				code: /*html*/ 
-`<cds-badge
-	variant="red"
-	size="md"
->
-	Badge
-</cds-badge>`
+`<cds-color-picker
+	v-model="color"
+	label="Cor"
+	:swatch="swatch"
+	:inline="true"
+	@change="handleEmit"
+/>`
 			},
 		}
 	}}
@@ -34,7 +45,7 @@ export const Template = (args) => ({
 		};
 	},
 	template: /*html*/ `
-		<div class="d-flex justify-content-between" style="width: 350px; justify-content: space-between; align-items: end;">
+		<div class="d-flex" style="width: 350px; justify-content: space-between; align-items: end;">
 			<div>
 				<cds-color-picker
 					v-bind="args"
