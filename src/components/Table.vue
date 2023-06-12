@@ -3,7 +3,7 @@
 	<table class="table__container">
 		<tr class="table__header">
 			<th
-				v-if="showSelect"
+				v-if="allowSelection"
 				class="table__select-item"
 				:class="resolveHeaderItemClass(0)"
 			>
@@ -12,7 +12,7 @@
 					v-model="selectAll"
 					class="table__select-checkbox"
 					no-text
-					:variant="selectVariant"
+					:variant="selectionVariant"
 					@update:model-value="handleSelectAll"
 				/>
 			</th>
@@ -21,24 +21,54 @@
 				:key="index"
 				:class="resolveHeaderItemClass(index)"
 			>
-				<!--
-					@slot Slot usado para renderizar itens personalizados para o cabeçalho da tabela. Dados do item referente à coluna podem ser acessados através da propriedade `data`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ data }
-				-->
-				<slot
-					name="header-item"
-					:data="field"
-				>
-					{{ field.label }}
-				</slot>
+				<div class="table__header-item-content">
+					<!--
+						@slot Slot usado para renderizar itens personalizados para o cabeçalho da tabela. Dados do item referente à coluna podem ser acessados através da propriedade `data`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ data }
+					-->
+					<slot
+						v-if="hasSlot($slots, 'header-item')"
+						name="header-item"
+						:data="field"
+					/>
+					<cds-clickable
+						v-else
+						:id="`sort-icon-${field.key}`"
+						:clickable="sortable"
+						@click.stop="handleSortBy(field.key)"
+					>
+						{{ field.label }}
+						<cds-icon
+							v-if="sortable && field.key !== localSortBy"
+							class="table__sort-icon"
+							height="13"
+							width="13"
+							name="swap-vertical-arrows-outline"
+						/>
+						<cds-icon
+							v-else-if="sortable && localSortDesc"
+							class="table__sort-icon"
+							height="13"
+							width="13"
+							name="sort-descending-duotone"
+						/>
+						<cds-icon
+							v-else-if="sortable"
+							class="table__sort-icon"
+							height="13"
+							width="13"
+							name="sort-ascending-duotone"
+						/>
+					</cds-clickable>
+				</div>
 			</th>
 		</tr>
 		<tr
-			v-for="(item, itemIndex) in items"
+			v-for="(item, itemIndex) in localItems"
 			:key="itemIndex"
 			:class="resolveItemClass()"
 		>
 			<td
-				v-if="showSelect"
+				v-if="allowSelection"
 				class="table__select-item"
 				:class="resolveContentItemClass(itemIndex, 0)"
 			>
@@ -47,7 +77,7 @@
 					v-model="select[itemIndex]"
 					class="table__select-checkbox"
 					no-text
-					:variant="selectVariant"
+					:variant="selectionVariant"
 					@update:model-value="handleSelectRow"
 				/>
 			</td>
@@ -74,12 +104,22 @@
 </template>
 
 <script>
-import { startCase, findIndex } from 'lodash';
+import {
+	startCase,
+	findIndex,
+	orderBy,
+	isEqual,
+} from 'lodash';
+import hasSlot from '../utils/methods/hasSlot';
 import CdsCheckbox from './Checkbox.vue';
+import CdsIcon from '../components/Icon.vue';
+import CdsClickable from '../components/Clickable.vue';
 
 export default {
 	components: {
 		CdsCheckbox,
+		CdsIcon,
+		CdsClickable,
 	},
 
 	props: {
@@ -126,7 +166,7 @@ export default {
 		/**
 		 * Boolean, informa se devem ser exibidas checkboxes para selecionar linhas.
 		 */
-		showSelect: {
+		allowSelection: {
 			type: Boolean,
 			default: false,
 		},
@@ -134,9 +174,33 @@ export default {
 		 * A variante das checkboxes de seleção. São 10 variantes: 'teal', 'green', 'blue',
 		 * 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
 		 */
-		selectVariant: {
+		selectionVariant: {
 			type: String,
 			default: 'green',
+		},
+		/**
+		 * Boolean, informa se a UI de ordenação deve ser exibida nos itens
+		 * do header
+		 */
+		sortable: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Específica a propriedade (chave da coluna) usada para ordenação.
+		 * Por padrão os itens são exibidos na sequência definida pelo array `items`
+		 */
+		sortBy: {
+			type: String,
+			default: null,
+		},
+		/**
+		 * Boolean, informa que a ordenação deve ser descendente, por padrão
+		 * a ordenação é ascendente (`sortDesc: false`).
+		 */
+		sortDesc: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
@@ -144,6 +208,9 @@ export default {
 		return {
 			selectAll: false,
 			select: [],
+			localSortDesc: this.sortDesc,
+			localSortBy: this.sortBy,
+			localItems: this.items,
 		};
 	},
 
@@ -183,7 +250,7 @@ export default {
 					}
 
 					newValue.forEach((item) => {
-						const index = findIndex(this.items, item);
+						const index = findIndex(this.localItems, item);
 						if (index > -1) {
 							this.select[index] = true;
 						}
@@ -194,15 +261,24 @@ export default {
 		},
 
 		items(newValue, oldValue) {
-			if (newValue !== oldValue) {
-				this.selectAll = false;
+			if (!isEqual(newValue, oldValue)) {
+				this.localItems = newValue;
 				this.resetSelect();
 			}
 		},
 
+		sortBy: {
+			handler(newValue, oldValue) {
+				if (newValue !== oldValue) {
+					this.handleSortBy(newValue);
+				}
+			},
+			immediate: true,
+		},
+
 		select:{
 			handler(newValue) {
-				const selectedItems = this.items.filter((item, index) => newValue[index]);
+				const selectedItems = this.localItems.filter((item, index) => newValue[index]);
 
 				/**
 				* Evento que indica que o valor do Select foi alterado
@@ -216,14 +292,17 @@ export default {
 	},
 
 	methods: {
+		hasSlot,
+
 		resetSelect() {
-			for (let index = 0; index < this.items.length; index++) {
+			this.selectAll = false;
+			for (let index = 0; index < this.localItems.length; index++) {
 				this.select[index] = false;
 			}
 		},
 
 		handleSelectAll() {
-			for (let index = 0; index < this.items.length; index++) {
+			for (let index = 0; index < this.localItems.length; index++) {
 				this.select[index] = this.selectAll;
 			}
 		},
@@ -231,7 +310,22 @@ export default {
 		handleSelectRow(value) {
 			if (this.selectAll && !value) {
 				this.selectAll = false;
+				return;
 			}
+			this.selectAll = this.select.reduce((allSelected, itemSelected ) => allSelected && itemSelected);
+		},
+
+		handleSortBy(sortBy) {
+			this.resetSelect();
+			if (this.localSortBy === sortBy && this.localSortDesc) {
+				this.localSortBy = null;
+				this.localItems = this.items;
+				return;
+			}
+			const orders = this.localSortDesc ? 'asc' : 'desc';
+			this.localSortDesc = this.localSortBy === sortBy ? !this.localSortDesc : false;
+			this.localSortBy = sortBy;
+			this.localItems = orderBy(this.items, [this.localSortBy], [orders]);
 		},
 
 		resolveHeaderItemClass(index) {
@@ -282,6 +376,11 @@ export default {
 		margin-top: 1px;
 	}
 
+	&__sort-icon {
+		color: $n-200;
+		margin-left: 6px;
+	}
+
 	&__header {
 		background-color: $n-10;
 
@@ -303,6 +402,11 @@ export default {
 
 				@extend .table__header-item;
 			}
+		}
+
+		&-item-content {
+			display: flex;
+			align-items: center;
 		}
 	}
 
