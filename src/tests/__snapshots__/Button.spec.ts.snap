@@ -33,6 +33,8 @@ VueWrapper {
     "secondary": false,
     "size": "md",
     "text": "Button",
+    "tooltipDisabled": null,
+    "tooltipText": null,
     "variant": "green",
   },
   "isDisabled": [Function],
@@ -40,7 +42,6 @@ VueWrapper {
   "wrapperElement": <button
     class="button__container button--green--active button-size--md"
     data-v-3c9d0845=""
-    id="cds-button"
   >
     <!--v-if-->
     <!-- @slot Slot padrão utilizado para exibir texto do botão. -->
