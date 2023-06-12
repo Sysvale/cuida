@@ -26,7 +26,7 @@
 						@slot Slot usado para renderizar itens personalizados para o cabeçalho da tabela. Dados do item referente à coluna podem ser acessados através da propriedade `data`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ data }
 					-->
 					<slot
-						v-if="hasHeaderItemSlot"
+						v-if="hasSlot($slots, 'header-item')"
 						name="header-item"
 						:data="field"
 					/>
@@ -110,6 +110,7 @@ import {
 	orderBy,
 	isEqual,
 } from 'lodash';
+import hasSlot from '../utils/methods/hasSlot';
 import CdsCheckbox from './Checkbox.vue';
 import CdsIcon from '../components/Icon.vue';
 import CdsClickable from '../components/Clickable.vue';
@@ -237,10 +238,6 @@ export default {
 				})
 				: [];
 		},
-
-		hasHeaderItemSlot(){
-			return Object.keys(this.$slots).some(slot => slot === 'header-item');
-		},
 	},
 
 	watch: {
@@ -295,6 +292,8 @@ export default {
 	},
 
 	methods: {
+		hasSlot,
+
 		resetSelect() {
 			this.selectAll = false;
 			for (let index = 0; index < this.localItems.length; index++) {
