@@ -1,11 +1,13 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<span
-		id="cds-checkbox"
-		class="checkbox__container"
+		class="cds-checkbox__container"
 		@click="toggleValue"
 	>
-		<div class="checkbox__content">
+		<div
+			class="cds-checkbox__content"
+			:class="{ 'cds-checkbox__content--no-text': noText } "
+		>
 			<input
 				:id="$attrs.id || 'cds-checkbox-option-input'"
 				:value="modelValue"
@@ -17,18 +19,15 @@
 			>
 			<label
 				:for="$attrs.id || 'cds-checkbox-option-input'"
-				:class="{
-					'checkbox__content--checked': isChecked,
-					'checkbox__content--disabled': disabled,
-				}"
+				:class="resolveCheckboxClass"
 				@click.stop="toggleValue"
 			/>
 		</div>
 		<div
 			v-if="!noText"
-			class="checkbox__label"
+			class="cds-checkbox__label"
 			:class="{
-				'checkbox__label--disabled': disabled
+				'cds-checkbox__label--disabled': disabled
 			}"
 		>
 			<!-- @slot Slot usado pra mostrar o conteúdo do checkbox. -->
@@ -40,6 +39,8 @@
 </template>
 
 <script>
+import variantClassResolver from '../utils/methods/variantClassResolver';
+
 export default {
 	props: {
 		/**
@@ -70,12 +71,30 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * A variante da Checkbox. São 10 variantes: 'teal', 'green', 'blue',
+		 * 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+		 */
+		variant: {
+			type: String,
+			default: 'green',
+		},
 	},
 
 	data() {
 		return {
 			isChecked: this.modelValue,
 		};
+	},
+
+	computed: {
+		resolveCheckboxClass() {
+			const disabledClass = this.disabled ? 'cds-checkbox__content--disabled' : '';
+			const checkedClass = this.isChecked
+				? `cds-checkbox__content--checked ${variantClassResolver('cds-checkbox__content--checked', this.variant)}`
+				: '';
+			return `${checkedClass} ${disabledClass}`;
+		}
 	},
 
 	watch: {
@@ -108,24 +127,26 @@ export default {
 <style lang="scss">
 @import '../assets/sass/tokens.scss';
 
-.checkbox__container {
+.cds-checkbox__container {
 	display: flex;
 	align-items: center;
 	width: fit-content;
 	cursor: pointer;
-}
 
-#cds-checkbox {
 	input[type=checkbox] {
 		visibility: hidden;
 	}
 
-	.checkbox__content {
+	.cds-checkbox__content {
 		width: 18px;
 		position: relative;
 		margin-right: spacer(3);
 		margin-top: spacer(n1);
 		box-sizing: border-box;
+
+		&--no-text {
+			margin-right: spacer(0);
+		}
 
 		label {
 			box-sizing: border-box;
@@ -169,6 +190,11 @@ export default {
 		&--checked {
 			background-color: $gp-500 !important;
 			border: none !important;
+
+			@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
+				@extend .cds-checkbox__content--checked;
+				background-color: $hover !important;
+			}
 		}
 
 		&--disabled {
@@ -177,12 +203,12 @@ export default {
 		}
 	}
 
-	.checkbox__label {
+	.cds-checkbox__label {
 		@include body-2;
 		color: $n-600;
 
 		&--disabled {
-			@extend .checkbox__label;
+			@extend .cds-checkbox__label;
 			color: $n-300;
 		}
 	}

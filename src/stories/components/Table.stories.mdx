@@ -4,6 +4,25 @@ import Table from '../../components/Table.vue';
 <Meta
 	title="Componentes/Display/Table"
 	component={ Table }
+	argTypes={{
+		selectVariant: {
+			control:{
+				type: 'select',
+				options: [
+					'teal',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+	}}
 	parameters={{
 		viewMode: 'docs',
 		previewTabs: { canvas: { hidden: true }},
@@ -26,8 +45,18 @@ export const Template = (args) => ({
 	setup() {
 		return { args };
 	},
+	data() {
+		return {
+			selected: [],
+		};
+	},
 	template: /*html*/
-		`<cds-table v-bind="args" />
+		`<cds-table
+			v-model="selected"
+			v-bind="args"
+		/>
+		<br>
+		<pre>{{ selected }}</pre>
 		`,
 });
 
@@ -60,14 +89,19 @@ export const fields = [
 ];
 export const items = [
 	{
-		'field-1': 'field 1 content',
-		'field2': 'field 2 content',
-		'field_3': 'field 3 content',
+		'field-1': 'field 1 content a',
+		'field2': 'field 2 content a',
+		'field_3': 'field 3 content a',
 	},
 	{
-		'field-1': 'field 1 content',
-		'field2': 'field 2 content',
-		'field_3': 'field 3 content',
+		'field-1': 'field 1 content b',
+		'field2': 'field 2 content b',
+		'field_3': 'field 3 content b',
+	},
+	{
+		'field-1': 'field 1 content c',
+		'field2': 'field 2 content c',
+		'field_3': 'field 3 content c',
 	},
 ];
 

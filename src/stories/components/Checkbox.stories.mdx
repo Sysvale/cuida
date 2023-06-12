@@ -4,6 +4,25 @@ import Checkbox from '../../components/Checkbox.vue';
 <Meta
 	title="Componentes/Forms/Checkbox"
 	component={ Checkbox }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'teal',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+	}}
 	parameters={{
 		viewMode: 'docs',
 		previewTabs: { canvas: { hidden: true }},
