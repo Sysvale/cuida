@@ -3,7 +3,7 @@
 	<table class="table__container">
 		<tr class="table__header">
 			<th
-				v-if="allowSelect"
+				v-if="allowSelection"
 				class="table__select-item"
 				:class="resolveHeaderItemClass(0)"
 			>
@@ -68,7 +68,7 @@
 			:class="resolveItemClass()"
 		>
 			<td
-				v-if="allowSelect"
+				v-if="allowSelection"
 				class="table__select-item"
 				:class="resolveContentItemClass(itemIndex, 0)"
 			>
@@ -165,7 +165,7 @@ export default {
 		/**
 		 * Boolean, informa se devem ser exibidas checkboxes para selecionar linhas.
 		 */
-		allowSelect: {
+		allowSelection: {
 			type: Boolean,
 			default: false,
 		},
