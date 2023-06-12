@@ -23,7 +23,7 @@
 import CdsSpinner from '../components/Spinner.vue';
 import Cdstip from '../utils/directives/cdstip';
 export default {
-	
+
 	directives: {
 		cdstip: Cdstip,
 	},
@@ -64,7 +64,7 @@ export default {
 			default: false,
 		},
 		/**
-		 * Texto a ser exibido como tooltip com o hover do botão quando disabled estiver ativo.
+		 * Texto a ser exibido como tooltip com o hover do botão quando a prop disabled estiver ativa.
 		 */
 		tooltipText: {
 			type: String,
