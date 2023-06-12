@@ -1,5 +1,5 @@
 
-name: "💬 RocketChat announcer"
+name: "RocketChat announcer 💬"
 
 on:
   push:
@@ -12,7 +12,6 @@ jobs:
     name: Test
     steps:
       - uses: actions/checkout@v1
-      - uses: ./
         with:
           message: Testando Integracao
           ROCKET_CHAT_HOOK: ${{ secrets.ROCKET_CHAT_HOOK }}
