@@ -1,0 +1,174 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import BarChart from '../../../components/Charts/BarChart.vue';
+import Multiselect from '../../../components/Multiselect.vue';
+
+<Meta
+  title="Componentes/Charts/BarChart"
+  component={ BarChart }
+  argTypes={{
+    variant: {
+      control: {
+        type: 'select',
+        options: [
+          'random',
+          'green',
+          'turquoise',
+          'blue',
+          'indigo',
+          'violet',
+          'pink',
+          'red',
+          'orange',
+          'amber',
+          'mid',
+          'dark'
+        ]
+      }
+    }
+	}}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: { canvas: { hidden: true }},
+    docs: {
+      source: {
+        language: 'html',
+        format: true,
+        code: /*html*/`
+<cds-bar-chart
+  :chart-data="chartData"
+  :variant="variant"
+  :chart-labels="chartLabels"
+  :chart-options="chartOptions"
+  :choice-multiselect="choiceMultiselect"
+  :label-select="labelSelect"
+  :index-axis="indexAxis"
+  :category-percentage:"categoryPercentage"
+>
+</cds-bar-chart>`
+      },
+    }
+  }}
+/>
+
+export const Template = (args) => ({
+  components: { CdsBarChart: BarChart },
+  setup() {
+    return { args };
+  },
+  data() {
+    return {
+      chartData: {
+        datasets: args.chartData,
+        // labels: args.chartData.labels = args.chartLabels,
+      },
+      chartOptions: args.chartOptions,
+      variant: args.variant,
+      choiceMultiselect: args.choiceMultiselect,
+      labelSelect: args.labelSelect,
+      indexAxis: args.indexAxis,
+      categoryPercentage: args.categoryPercentage,
+    }
+  },
+  template: /*html*/ `
+    <div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px;">
+      <cds-bar-chart
+        v-bind="args"
+      />
+    </div>
+  `
+});
+
+# BarChart
+
+### Um componente de gráfico reutilizável para exibir dados visualmente.
+---
+<br />
+
+## Quando usar:
+- Exibir dados em formatos visuais, como gráficos de barra, linha, pizza, rosquinha, área polar e radar;
+- Visualizar tendências, proporções ou comparações em dados.
+
+<br />
+
+## Quando não usar:
+- Para informações simples que podem ser exibidas em um formato tabular ou em texto.
+
+## Preview
+
+<Canvas>
+  <Story
+    name="BarChart"
+    args={{
+      chartLabels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
+      variant: 'green',
+      chartData: [
+				{ 
+					name: 'Ecocardiograma',
+					chartData: {
+						datasets: [
+							{
+								label: 'Realizado',
+								data: [50, 50, 50, 50, 50],
+							},
+							{
+								label: 'Pendente',
+								data: [200, 180, 250, 190, 280],
+							},
+							{
+								label: 'Não realizado',
+								data: [38, 84, 120, 90, 185],
+							}
+						]
+					},	
+				},
+				{ 
+					name: 'Raio-X',
+					chartData: {
+						datasets: [
+							{
+								label: 'Realizado',
+								data: [120, 220, 180, 320, 150],
+							},
+							{
+								label: 'Pendente',
+								data: [98, 145, 160, 190, 175],
+							},
+							{
+								label: 'Não realizado',
+								data: [49, 84, 120, 78, 130],
+							}
+						]
+					}
+				},
+				{ 
+					name: 'Tomografia',
+					chartData: {
+						datasets: [
+							{
+								label: 'Realizado',
+								data: [55, 40, 33, 90, 120],
+							},
+							{
+								label: 'Pendente',
+								data: [25, 30, 90, 45, 20],
+							},
+							{
+								label: 'Não realizado',
+								data: [38, 84, 120, 90, 45],
+							}
+						]
+					}
+				}
+			],
+      indexAxis: 'x',
+      categoryPercentage: 0.5,
+      choiceMultiselect: true,
+      labelSelect: 'Exames',
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="BarChart" />
+
