@@ -27,7 +27,7 @@
 import { Chart, registerables } from 'chart.js';
 import { Bar } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
-import CdsMultiselect from '../Multiselect.vue';
+import CdsMultiselect from './Multiselect.vue';
 
 // Registrar o elemento "point" no registro (Torna-se necessário para Line e Pie que necessita de marcações de ponto)
 Chart.register(...registerables);
@@ -364,7 +364,7 @@ export default {
 </script>
   
 <style lang="scss" scoped>
-@import '../../assets/sass/tokens.scss';
+@import './../assets/sass/tokens.scss';
 
 #cds-multiselect {
 	width: 300px;
