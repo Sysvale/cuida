@@ -18,14 +18,19 @@ $n-700: #3b4754;
 $n-800: #28333e;
 $n-900: #1d262f;
 
-$gp-50: #f3fcf8;
-$gp-100: #def7eb;
+$gp-50: #F3FCF8;
+$gp-100: #DEF7EB;
 $gp-200: #ABEDD9;
 $gp-300: #6DDFBC;
 $gp-400: #2AC092;
 $gp-500: #239F78;
 $gp-600: #1B795B;
 $gp-700: #126349;
+
+$piccoloGreenShades: $gp-50, $gp-100, $gp-200, $gp-300, $gp-400, $gp-500, $gp-600, $gp-700;
+$piccoloGreenTokens: '$gp-50', '$gp-100', '$gp-200', '$gp-300', '$gp-400', '$gp-500', '$gp-600', '$gp-700';
+
+$greenMetaData: 'Piccolo Green', $piccoloGreenShades, $piccoloGreenTokens;
 
 $ts-50: #F7FCFF;
 $ts-100: #E2F4FE;
@@ -36,6 +41,11 @@ $ts-500: #1F86B2;
 $ts-600: #18698B;
 $ts-700: #13526D;
 
+$sulivanTurquoiseShades: $ts-50, $ts-100, $ts-200, $ts-300, $ts-400, $ts-500, $ts-600, $ts-700;
+$sulivanTurquoiseTokens: '$ts-50', '$ts-100', '$ts-200', '$ts-300', '$ts-400', '$ts-500', '$ts-600', '$ts-700';
+
+$turquoiseMetaData: 'Sulivan Turquoise', $sulivanTurquoiseShades, $sulivanTurquoiseTokens;
+
 $bn-50: #F8FAFE;
 $bn-100: #ecf1fe;
 $bn-200: #B6D1F7;
@@ -44,6 +54,11 @@ $bn-400: #4B88DD;
 $bn-500: #2C70CD;
 $bn-600: #1A55A8;
 $bn-700: #174382;
+
+$nocturneBlueShades: $bn-50, $bn-100, $bn-200, $bn-300, $bn-400, $bn-500, $bn-600, $bn-700;
+$nocturneBlueTokens: '$bn-50', '$bn-100', '$bn-200', '$bn-300', '$bn-400', '$bn-500', '$bn-600', '$bn-700';
+
+$blueMetaData: 'Nocturne Blue', $nocturneBlueShades, $nocturneBlueTokens;
 
 $in-50: #F5F6FF;
 $in-100: #E5EAFF;
@@ -54,6 +69,11 @@ $in-500: #4D5DAC;
 $in-600: #384584;
 $in-700: #353D64;
 
+$nightwingIndigoShades: $in-50, $in-100, $in-200, $in-300, $in-400, $in-500, $in-600, $in-700;
+$nightwingIndigoTokens: '$in-50', '$in-100', '$in-200', '$in-300', '$in-400', '$in-500', '$in-600', '$in-700';
+
+$indigoMetaData: 'Nightwing Indigo', $nightwingIndigoShades, $nightwingIndigoTokens;
+
 $vr-50: #FBF7FF;
 $vr-100: #F5EBFF;
 $vr-200: #E6D2F9;
@@ -62,6 +82,11 @@ $vr-400: #A975D7;
 $vr-500: #8955B9;
 $vr-600: #6B3A98;
 $vr-700: #4F2673;
+
+$ravenVioletShades: $vr-50, $vr-100, $vr-200, $vr-300, $vr-400, $vr-500, $vr-600, $vr-700;
+$ravenVioletTokens: '$vr-50', '$vr-100', '$vr-200', '$vr-300', '$vr-400', '$vr-500', '$vr-600', '$vr-700';
+
+$violetMetaData: 'Raven Violet', $ravenVioletShades, $ravenVioletTokens;
 
 $pp-50: #FFF7FC;
 $pp-100: #FFEBF7;
@@ -72,6 +97,11 @@ $pp-500: #BE377C;
 $pp-600: #A12663;
 $pp-700: #701A48;
 
+$peppaPinkShades: $pp-50, $pp-100, $pp-200, $pp-300, $pp-400, $pp-500, $pp-600, $pp-700;
+$peppaPinkTokens: '$pp-50', '$pp-100', '$pp-200', '$pp-300', '$pp-400', '$pp-500', '$pp-600', '$pp-700';
+
+$pinkMetaData: 'Peppa Pink', $peppaPinkShades, $peppaPinkTokens;
+
 $rc-50: #fef5f6;
 $rc-100: #ffe6e9;
 $rc-200: #FABDC5;
@@ -80,6 +110,11 @@ $rc-400: #F3596C;
 $rc-500: #E03E52;
 $rc-600: #C92C3F;
 $rc-700: #A42333;
+
+$carmenRedShades: $rc-50, $rc-100, $rc-200, $rc-300, $rc-400, $rc-500, $rc-600, $rc-700;
+$carmenRedTokens: '$rc-50', '$rc-100', '$rc-200', '$rc-300', '$rc-400', '$rc-500', '$rc-600', '$rc-700';
+
+$redMetaData: 'Peppa Pink', $carmenRedShades, $carmenRedTokens;
 
 $og-50: #FEF9F8;
 $og-100: #FFEBE5;
@@ -90,6 +125,11 @@ $og-500: #F06442;
 $og-600: #D64B29;
 $og-700: #AB3C21;
 
+$gokuOrangeShades: $og-50, $og-100, $og-200, $og-300, $og-400, $og-500, $og-600, $og-700;
+$gokuOrangeTokens: '$og-50', '$og-100', '$og-200', '$og-300', '$og-400', '$og-500', '$og-600', '$og-700';
+
+$orangeMetaData: 'Goku Orange', $gokuOrangeShades, $gokuOrangeTokens;
+
 $al-50: #fefbf5;
 $al-100: #fff1dc;
 $al-200: #FFE2B8;
@@ -98,6 +138,21 @@ $al-400: #FFB952;
 $al-500: #EEA22F;
 $al-600: #D38817;
 $al-700: #A56A12;
+
+$lisaAmberShades: $al-50, $al-100, $al-200, $al-300, $al-400, $al-500, $al-600, $al-700;
+$lisaAmberTokens: '$al-50', '$al-100', '$al-200', '$al-300', '$al-400', '$al-500', '$al-600', '$al-700';
+
+$amberMetaData: 'Lisa Amber', $lisaAmberShades, $lisaAmberTokens;
+
+$paleter: [$greenMetaData],
+	[$turquoiseMetaData],
+	[$blueMetaData],
+	[$indigoMetaData],
+	[$violetMetaData],
+	[$pinkMetaData],
+	[$redMetaData],
+	[$orangeMetaData],
+	[$amberMetaData];
 
 $g: (
 );
@@ -554,4 +609,8 @@ $allColors: (
 	n700: $n-700;
 	n800: $n-800;
 	n900: $n-900;
+
+	greens: $greenMetaData;
+
+	palete: $paleter;
 }
