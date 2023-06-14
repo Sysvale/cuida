@@ -232,6 +232,7 @@ export default {
 		&-title {
 			@include subheading-3;
 			color: $n-600;
+			margin: mb(2);
 		}
 
 		&-subtitle {
@@ -242,7 +243,7 @@ export default {
 		&-image {
 			width: 75px;
 			height: auto;
-			margin: mb(5); 
+			margin: mb(5);
 		}
 	}
 
