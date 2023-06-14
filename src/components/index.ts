@@ -5,6 +5,7 @@ import AlertCard from './AlertCard.vue';
 import AppBar from './AppBar.vue';
 import Avatar from './Avatar.vue';
 import Badge from './Badge.vue';
+import BarChart from './BarChart.vue';
 import Box from './Box.vue';
 import Breadcrumb from './Breadcrumb.vue';
 import Button from './Button.vue';
@@ -81,6 +82,7 @@ export default {
 		app.component('CdsAppBar', AppBar); //NOTE: Testado no SB
 		app.component('CdsAvatar', Avatar); //NOTE: Testado no SB
 		app.component('CdsBadge', Badge); //NOTE: Testado no SB
+		app.component('CdsBarChart', BarChart);
 		app.component('CdsBox', Box);
 		app.component('CdsBreadcrumb', Breadcrumb);
 		app.component('CdsButton', Button); //NOTE: Testado no SB
