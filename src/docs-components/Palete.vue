@@ -4,29 +4,36 @@
 			class="grid"
 		>
 			<copy-token :target="target" :value="target" />
-	
+
 			<div
-				v-for="color in palete"
-				:key="color.name"
+				v-for="color in aaaa"
+				:key="color.colorNames"
 				class="palete"
 			>
 				<div
-					v-for="(shade, index) in color.tokens"
-					:key="shade"
+					v-for="(shade, index) in color.colorTokens"
 					:class='{
 						"first-shade": index === 0,
-						"last-shade": index === color.tokens.length - 1,
-						[`${colorShadeClass(shadeNumber(shade), color.name)}`]: index >= 0,
+						"last-shade": index === color.colorTokens.length - 1,
+						[`palete--${shade.replace("$", "")}`]: index >= 0,
 					}'
 					@click="target = shade"
+					:key="shade"
 					:id="shade"
 				>
 					<span
 						v-if="index === 0"
 						class="colorNames"
-						:class="{ 'low-contrast-color-names': isADarkColor(color, index) }"
 					>
-						<span class="mainColorName"> {{ color.name }} </span>
+						<div class="colornameContainer">
+							<span class="mainColorName"> {{ color.colorName }} </span>
+	
+							<div class="d-flex" :id="`${shade.replace('$', '')}-pop`">
+								<cds-chevron />
+								Tokem
+							</div>
+						</div>
+
 						<br />
 						<span class="color-token__container">
 							
@@ -44,7 +51,6 @@
 					<span
 						v-else
 						class="colorNames"
-						:class="{ 'low-contrast-color-names': isADarkColor(color, index) }"
 					>
 						<span class="color-token__container">
 							<cds-icon
@@ -60,6 +66,22 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- <cds-popover
+			v-model="showPopover"
+			:target-id="popoverTargetId"
+			fitContentWidth
+			right-aligned
+			vertical-fluid
+		>
+			<div class="popElement">
+				Totem
+			</div>
+			<div class="popElement popElement2">
+				HEX
+			</div>
+			{{ sassColorVariables.palete }}
+		</cds-popover> -->
 
 		<div>
 			<h5 class="gradient-container__title"> Gradiente </h5>
@@ -83,67 +105,88 @@
 
 <script>
 import CdsIcon from '../components/Icon.vue';
+import CdsChevron from '../components/Chevron.vue';
+import CdsPopover from '../components/Popover.vue';
 import CopyToken from '../docs-components/CopyToken.vue';
+import sassColorVariables from '../assets/sass/colors.module.scss';
 import { PALETE } from '../utils/constants/paleteConstants.js';
+import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
 export default {
 	components: {
 		CdsIcon,
 		CopyToken,
+		CdsChevron,
+		CdsPopover,
 	},
 
 	data() {
 		return {
 			target: '',
-			palete: PALETE,
+			palete2: [],
+			showPopover: false,
+			popoverTargetId: '$gp-50-pop',
+			sassColorVariables,
 		};
 	},
 
+	mounted() {
+		
+		// console.log('🚀 -> file: Palete.vue:137 -> this.palete:', this.palete[0].colorShades);
+
+		this.$nextTick().then(() => {
+			this.palete2 = this.paleteBuilder(sassColorVariables.palete);
+		});
+	},
+
+	computed: {
+		aaaa() {
+			return this.paleteBuilder(this.sassColorVariables.palete);
+		}
+	},
+
 	methods: {
-		colorShadeClass(shade, color) {
-			if (color.includes('Neutrals')) {
-				return `${color.replace(/.+ /, "")}-${shade}`;	
-			}
+		paleteBuilder,
 
-			return `${color.replace(" ", "")}-${shade}`;
-		},
+		// colorShadeClass(shade, color) {
+		// 	if (color.includes('Neutrals')) {
+		// 		return `${color.replace(/.+ /, "")}-${shade}`;	
+		// 	}
 
-		shadeNumber(shade) {
-			return shade.replace(/(\D)+-/, "");
-		},
+		// 	return `${color.replace(" ", "")}-${shade}`;
+		// },
 
-		isADarkColor(color, index) {
-			return !color.isADarkColor && (color.tokens.length <= 5 || ((index <= color.tokens.length / 2)));
-		},
+		// shadeNumber(shade) {
+		// 	return shade.replace(/(\D)+-/, "");
+		// },
+
+		// isADarkColor(color, index) {
+		// 	return !color.isADarkColor && (color.tokens.length <= 5 || ((index <= color.tokens.length / 2)));
+		// },
+
+		// handlePop(shade) {
+		// 	this.popoverTargetId = `${shade}-pop`;
+		// 	this.showPopover = !this.showPopover;
+
+		// 	const regexp = /(\[[^\[\]]*\])/g;
+
+		// 	let objj = this.paleteBuilder(sassColorVariables.palete);
+		// 	// console.log('🚀 -> file: Palete.vue:161 -> objj:', objj);
+
+		// 	const matches = sassColorVariables.palete.match(regexp);
+			
+		// 	for (let i = 0; i < matches.length; i++){
+		// 		matches[i] = matches[i].replace(/\\/g, 'aaa');
+		// 	}
+
+		// 	// console.log('🚀 -> file: Palete.vue:159 -> matches:', matches);
+		// },
 	},
 };
 </script>
 
 <style lang="scss" scoped>
 @import './../assets/sass/tokens.scss';
-
-@each $colorName, $color in $palete {
-	@each $shadeName, $shade in $color {
-		.#{$colorName}-#{$shadeName} {
-			background-color: $shade;
-			width: 320px;
-			height: 72px;
-			padding: pYX(4, 5);
-			transform: scale(1);
-			transition: all .25s ease-in-out;
-			cursor: pointer;
-			box-sizing: border-box;
-		}
-
-		.#{$colorName}-#{$shadeName}:hover {
-			box-shadow: 0 2px 4px #00000014, 0 12px 20px #0000001f;
-			transform: scale(1.04);
-			z-index: 2;
-			transition: all .25s ease-in-out;
-			border-radius: 4px;
-		}
-	}
-}
 
 .grid {
 	display: grid;
@@ -158,6 +201,25 @@ export default {
 .palete {
 	width: max-content;
 	border-radius: 16px;
+
+	@include paleteResolver using ($color) {
+		background-color: $color;
+		width: 320px;
+		height: 72px;
+		padding: pYX(4, 5);
+		transform: scale(1);
+		transition: all .25s ease-in-out;
+		cursor: pointer;
+		box-sizing: border-box;
+
+		&:hover {
+			box-shadow: 0 2px 4px #00000014, 0 12px 20px #0000001f;
+			transform: scale(1.04);
+			z-index: 2;
+			transition: all .25s ease-in-out;
+			border-radius: 4px;
+		}
+	}
 }
 
 .colorNames {
@@ -167,6 +229,7 @@ export default {
 	justify-content: space-evenly;
 	height: -webkit-fill-available;
 	font-weight: 500;
+	color: $n-900 !important;
 }
 
 .mainColorName {
@@ -176,6 +239,7 @@ export default {
 	justify-content: space-evenly;
 	height: -webkit-fill-available;
 	font-weight: 700;
+	color: $n-800;
 }
 
 .first-shade {
@@ -221,5 +285,27 @@ export default {
 
 .copy-icon {
 	margin: mr(3);
+}
+
+.colornameContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: $n-900 !important;
+}
+
+.popElement {
+	color: $n-600;
+	@include body-2;
+	font-weight: $font-weight-semibold;
+	cursor: pointer;
+}
+
+.popElement:hover {
+	color: $n-800;
+}
+
+.popElement2 {
+	margin: mt(2);
 }
 </style>
