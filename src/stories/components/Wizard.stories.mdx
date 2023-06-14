@@ -4,6 +4,33 @@ import Wizard from '../../components/Wizard.vue';
 <Meta
 	title="Componentes/Display/Wizard"
 	component={ Wizard }
+	argTypes={{
+		activeStep: {
+			control: {
+				type: 'range',
+				min: 0,
+				max: 2,
+				step: 1,
+			},
+		},
+		nextButtonVariant: {
+			control:{
+				type: 'select',
+				options: [
+					'teal',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+	}}
 	parameters={{
 		viewMode: 'docs',
 		previewTabs: { canvas: { hidden: true }},
@@ -14,7 +41,15 @@ import Wizard from '../../components/Wizard.vue';
 				code: /*html*/ 
 `<cds-wizard
 	:steps="steps"
-/>`
+>
+	<template #step-1>
+		Etapa 1
+	</template>
+	<template #step-2>
+		Etapa 2
+	</template>
+</cds-wizard>
+`
 			},
 		}
 	}}
@@ -27,14 +62,16 @@ export const Template = (args) => ({
 	},
 	data() {
 		return {
-			selected: [],
+			activeStep: 1,
 		};
 	},
 	template: /*html*/
 		`<cds-wizard
-			v-model="selected"
 			v-bind="args"
-			next-button-variant="blue"
+			:active-step="activeStep"
+			@step-change="handleStepChange"
+			@next-action="handleNextAction"
+			@cancel-action="handleCancelAction"
 		>
 			<template #step-1>
 				Nec orci ornare consequat. Praesent lacinia ultrices consectetur. Sed non ipsum felis.Casamentiss faiz malandris se pirulitá.Mé faiz elementum girarzis, nisi eros vermeio.Diuretics paradis num copo é motivis de denguis.
@@ -54,25 +91,37 @@ export const Template = (args) => ({
 		</cds-wizard>
 		<br>
 		`,
-	updated() {
-		console.info('%cv-model: ', 'color: #2C70CD;', this.selected);
+	methods: {
+		handleStepChange(value) {
+			console.info('%c@step-change: ', 'color: #2C70CD;', value);
+			this.activeStep = value;
+		},
+		handleNextAction(value) {
+			console.info('%c@next-action: ', 'color: #2C70CD;', value.nextStep);
+			this.activeStep = value.nextStep;
+		},
+		handleCancelAction(value) {
+			console.info('%c@cancel-action: ', 'color: #2C70CD;', value);
+		}
 	},
 });
 
 # Wizard
 
-### Wizards são componentes utilizados para exibir e organizar conteúdo, facilitando a comparação e análise de informações.
+### Wizards são componentes utilizados para um processo passo a passo que permite ao usuário inserir informações em uma ordem prescrita e na qual as etapas subsequentes podem depender das informações inseridas nas etapas anteriores.
 ---
 <br />
 
 ## Quando usar:
-- Desejar comparar dados.
-- For necessário exibir dados de forma tabulada.
+- Quando precisar completar etapas em uma determinada sequência.
+- For necessário exibir informações em  blocos para simplificar o fluxo.
 
 <br />
 
 ## Quando não usar:
-- For necessário interagir/realizar uma ação com o conteúdo apresentado na tabela.
+- Quando o processo não for tão complexo, não havendo necessidade de divisão em etapas.
+- Quando houver mais de três etapas, deve se considerar dividir em mais processos.
+- Quando não houver necessidade de guiar o usuário numa sequência.
 
 <br />
 
@@ -83,22 +132,14 @@ export const steps = [
 	{
 		title: 'Informações gerais',
 		subtitle: 'Insira as informações de identificação',
-		completed: true,
-		inProcessing: false,
-		error: false,
 	},
 	{
 		title: 'Endereço de entrega',
-		completed: false,
-		inProcessing: false,
-		error: true,
 	},
 	{
 		title: 'Informações complementares',
 		subtitle: 'Adicione informações complementares para triagem',
-		completed: false,
-		inProcessing: true,
-		error: false,
+		image: 'https://static.vecteezy.com/system/resources/previews/011/537/753/non_2x/box-empty-state-single-isolated-icon-with-flat-style-free-vector.jpg',
 	},
 ];
 
@@ -107,6 +148,7 @@ export const steps = [
 		name="Wizard"
 		args={{
 			steps,
+			nextButtonVariant: 'blue',
 		}}
 	>
 		{ Template.bind({}) }

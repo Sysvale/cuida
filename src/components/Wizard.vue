@@ -4,10 +4,12 @@
 			<cds-box
 				v-for="(step, index) in steps"
 				:key="`wizard-step-${index}`"
-				fluid
+				:class="{ 'cds-wizard__empty-state-box': currentStep < index }"
 				:padding="5"
 				:elevated="currentStep === index"
-				:class="{ 'cds-wizard__empty-state-box': currentStep < index }"
+				fluid
+				:clickable="clickable"
+				@box-click="handleStepBoxClick(index)"
 			>
 				<span v-if="currentStep >= index">
 					<slot :name="`step-${index + 1}-header`">
@@ -72,10 +74,9 @@ export default {
 
 	props: {
 		/**
-		 * Um array com objetos com as propriedades 'title' (obrigatório), 'subtitle', 'image',
-		 * 'inProcessing', 'error' e 'completed'. O 'title' e 'subtitle' são textos que descrevem
-		 * a etapa, a 'imagem' é o caminho para a imagem do empty-state; e as demais props são
-		 * Boolean e representam o status da etapa.
+		 * Um array com objetos com as propriedades 'title' (obrigatório), 'subtitle' e 'image'.
+		 * O 'title' e 'subtitle' são textos que descrevem a etapa, a 'imagem' é o caminho para
+		 * a imagem do empty-state;
 		 */
 		steps: {
 			type: Array,
@@ -85,10 +86,31 @@ export default {
 				return value.length >= 2 && value.length <= 3;
 			},
 		},
+		/**
+		 * O índice da etapa atual (0, 1 ou 2)
+		 */
+		activeStep: {
+			type: Number,
+			default: 0,
+			validator: (value) => (value >= 0 && value <= 2),
+		},
+		/**
+		* Ativa ou desativa o clique no passo (etapa) para ir para esta etapa
+		*/
+		clickable: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * O texto do botão de avançar (ação principal).
+		 */
 		nextButtonText: {
 			type: String,
 			default: 'Próximo',
 		},
+		/**
+		 * O texto do botão de voltar (ação secundária).
+		 */
 		cancelButtonText: {
 			type: String,
 			default: 'Anterior',
@@ -105,7 +127,7 @@ export default {
 
 	data() {
 		return {
-			currentStep: 0,
+			currentStep: this.activeStep,
 		};
 	},
 
@@ -119,26 +141,64 @@ export default {
 		},
 	},
 
+	watch: {
+		activeStep: {
+			handler(newValue, oldValue) {
+				console.log('hiho', newValue);
+				if (newValue !== oldValue) {
+					this.currentStep = newValue;
+				}
+			},
+			immediate: true,
+		},
+
+		currentStep(newValue, oldValue) {
+			if (newValue !== oldValue) {
+				/**
+				 * Evento emitido quando a etapa ativa é alterada
+				* @event step-change
+				* @type {Event}
+				*/
+				this.$emit('step-change', newValue);
+			}
+		}
+	},
+
 	methods: {
 		emptyStateText(title) {
 			return `Preencha todos os campos obrigatórios da etapa anterior para
 				liberar a seção de ${title.toLowerCase()}`;
 		},
 
+		handleStepBoxClick(index) {
+			this.currentStep = index;
+		},
+
 		backActionClick() {
 			if (this.currentStep > 0) {
 				this.currentStep--;
 			} else {
+				/**
+				* Evento que indica que a ação de cancelar foi acionada.
+				* Emitido ao clicar no botão de voltar na primeira etapa.
+				* @event cancel-action
+				* @type {Event}
+				*/
 				this.$emit('cancel-action', true);
 			}
 		},
 
 		nextActionClick() {
+			let nextStep = this.currentStep;
 			if (this.currentStep < this.steps.length - 1) {
-				this.currentStep++;
+				nextStep++;
 			}
-
-			this.$emit('next-action', true);
+			/**
+			* Evento que indica que ação de avançar foi acionada
+			* @event next-action
+			* @type {Event}
+			*/
+			this.$emit('next-action', { nextStep });
 		},
 	},
 };
@@ -166,6 +226,7 @@ export default {
 		flex-direction: column;
 		text-align: center;
 		justify-content: center;
+		align-items: center;
 		margin: mYX(0, 10);
 
 		&-title {
@@ -176,6 +237,12 @@ export default {
 		&-subtitle {
 			@include caption;
 			color: $n-400;
+		}
+
+		&-image {
+			width: 75px;
+			height: auto;
+			margin: mb(5); 
 		}
 	}
 
