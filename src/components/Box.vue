@@ -113,7 +113,7 @@ export default {
 .box {
 	width: v-bind(widthResolver);
 	border-radius: v-bind(borderRadiusResolver);
-	overflow: hidden;
+	overflow: visible;
 
 	&__container {
 		width: v-bind(widthResolver);
