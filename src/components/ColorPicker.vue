@@ -14,7 +14,7 @@
 				:key="j"
 			>
 				<div
-					:class="`color-picker__swatch--${color}`"
+					:class="`color-picker__swatch--${color.replace('$', '')}`"
 					@click="SwatchSelection(color)"
 				>
 					<cds-icon
@@ -56,7 +56,7 @@
 					:key="j"
 				>
 					<div
-						:class="`color-picker__swatch--${color}`"
+						:class="`color-picker__swatch--${color.replace('$', '')}`"
 						@click="SwatchSelection(color)"
 					>
 						<cds-icon
@@ -116,7 +116,7 @@ export default {
 			default: 190,
 		},
 		/**
-		* Conjunto de cores a serem renderizadas no ColorPicker. A prop espera um Array de Array de tokens de cor sem `$` (dolar). Ex.: gp-400
+		* Conjunto de cores a serem renderizadas no ColorPicker. A prop espera um Array de Array de tokens de cor. Ex.: $gp-400
 		*/
 		swatch: {
 			type: Array,
@@ -144,7 +144,7 @@ export default {
 		ContrastChecker,
 
 		SwatchSelection(color) {
-			this.selectedColor = this.sassColorVariables[color.replace('-', '')];
+			this.selectedColor = this.sassColorVariables[color.replace(/-|\$/gi, '')];
 
 			/**
 			 * Evento utilizado para emitir a cor selecionada. A cor é emitida como uma string no formato HEX.
@@ -155,7 +155,7 @@ export default {
 		},
 
 		isCurrentColorSelected(color) {
-			return this.selectedColor === this.sassColorVariables[color.replace('-', '')];
+			return this.selectedColor === this.sassColorVariables[color.replace(/-|\$/gi, '')];
 		},
 	},
 }
