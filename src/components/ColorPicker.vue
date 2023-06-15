@@ -102,14 +102,14 @@ export default {
 			default: 'Label',
 		},
 		/**
-		* Especifica a label do input.
+		* Quando true passa a mostrar as opções de cores fora do popover.
 		*/
 		inline: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		* Especifica a label do input.
+		* Especifica a altura do popover. ⚠️ Quando a prop inline estiver ativa essa prop não surte efeito.
 		*/
 		popoverHeight: {
 			type: Number,

@@ -9,7 +9,7 @@ import ColorPicker from '../../components/ColorPicker.vue';
 			control: {
 				type: 'range',
 				min: 50,
-				max: 190,
+				max: 290,
 				step: 10,
 			},
 		},
@@ -119,28 +119,31 @@ export const swatch = [
 	],
 ];
 
-### __Com popover__
+### __Inline__
 
 <Canvas>
 	<Story
 		name="ColorPicker"
 		args={{
-			swatch: swatch2,
+			swatch: swatch,
+			inline: true,
+			label: "Cor",
 		}}
 	>
 		{ Template.bind({}) }
 	</Story>
 </Canvas>
 
-### __Inline__
+<ArgsTable story="ColorPicker" />
+
+### __Com popover__
 
 <Canvas>
 	<Story
 		name="ColorPicker2"
 		args={{
-			swatch: swatch,
-			inline: true,
-			label: "Cor",
+			swatch: swatch2,
+			popoverHeight: 190,
 		}}
 	>
 		{ Template.bind({}) }
