@@ -172,8 +172,8 @@ export default {
 		}
 
 		&--disabled {
-			background-color: $n-40 !important;
-			border: none !important;
+			background-color: $n-20 !important;
+			border-color: $n-50 !important;
 		}
 	}
 

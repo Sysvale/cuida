@@ -374,7 +374,6 @@ export default {
 			@extend .input__time;
 			background-color: $n-20 !important;
 			pointer-events: none;
-			border: none;
 		}
 
 		&--valid {
