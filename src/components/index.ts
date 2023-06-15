@@ -65,6 +65,7 @@ import TimelineItem from './TimelineItem.vue';
 import Tooltip from './Tooltip.vue';
 import Truncate from './Truncate.vue';
 import PasswordInput from './PasswordInput.vue';
+import Wizard from './Wizard.vue';
 
 import Cdstip from '../utils/directives/cdstip';
 import CdsFloatify from "../utils/directives/cdsFloatify";
@@ -141,5 +142,6 @@ export default {
 		app.component('CdsTimelineItem', TimelineItem);
 		app.component('CdsTruncate', Truncate); //NOTE: Testado no SB
         app.component('CdsPasswordInput', PasswordInput);
+		app.component('CdsWizard', Wizard);
 	},
 }

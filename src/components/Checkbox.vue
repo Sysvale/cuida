@@ -193,7 +193,7 @@ export default {
 
 			@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
 				@extend .cds-checkbox__content--checked;
-				background-color: $hover !important;
+				background-color: $base-color !important;
 			}
 		}
 

@@ -9,7 +9,7 @@ import ColorPicker from '../../components/ColorPicker.vue';
 			control: {
 				type: 'range',
 				min: 50,
-				max: 190,
+				max: 290,
 				step: 10,
 			},
 		},
@@ -90,57 +90,60 @@ export const Template = (args) => ({
 ## Preview
 
 export const swatch2 = [
-	['gp-200', 'gp-300', 'gp-400', 'gp-500'],
-	['ts-200', 'ts-300', 'ts-400', 'ts-500'],
-	['bn-200', 'bn-300', 'bn-400', 'bn-500'],
-	['in-200', 'in-300', 'in-400', 'in-500'],
-	['vr-200', 'vr-300', 'vr-400', 'vr-500'],
-	['pp-200', 'pp-300', 'pp-400', 'pp-500'],
-	['rc-200', 'rc-300', 'rc-400', 'rc-500'],
-	['og-200', 'og-300', 'og-400', 'og-500'],
-	['al-200', 'al-300', 'al-400', 'al-500'],
-	['n-10', 'n-40', 'n-300', 'n-600'],
+	['$gp-200', '$gp-300', '$gp-400', '$gp-500'],
+	['$ts-200', '$ts-300', '$ts-400', '$ts-500'],
+	['$bn-200', '$bn-300', '$bn-400', '$bn-500'],
+	['$in-200', '$in-300', '$in-400', '$in-500'],
+	['$vr-200', '$vr-300', '$vr-400', '$vr-500'],
+	['$pp-200', '$pp-300', '$pp-400', '$pp-500'],
+	['$rc-200', '$rc-300', '$rc-400', '$rc-500'],
+	['$og-200', '$og-300', '$og-400', '$og-500'],
+	['$al-200', '$al-300', '$al-400', '$al-500'],
+	['$n-10', '$n-40', '$n-300', '$n-600'],
 ];
 
 export const swatch = [
 	[
-		'gp-400',
-		'ts-400',
-		'bn-400',
-		'in-400',
-		'vr-400',
+		'$gp-400',
+		'$ts-400',
+		'$bn-400',
+		'$in-400',
+		'$vr-400',
 	],
 	[
-		'pp-400',
-		'rc-400',
-		'og-400',
-		'al-400',
-		'n-400',
+		'$pp-400',
+		'$rc-400',
+		'$og-400',
+		'$al-400',
+		'$n-400',
 	],
 ];
 
-### __Com popover__
+### __Inline__
 
 <Canvas>
 	<Story
 		name="ColorPicker"
 		args={{
-			swatch: swatch2,
+			swatch: swatch,
+			inline: true,
+			label: "Cor",
 		}}
 	>
 		{ Template.bind({}) }
 	</Story>
 </Canvas>
 
-### __Inline__
+<ArgsTable story="ColorPicker" />
+
+### __Com popover__
 
 <Canvas>
 	<Story
 		name="ColorPicker2"
 		args={{
-			swatch: swatch,
-			inline: true,
-			label: "Cor",
+			swatch: swatch2,
+			popoverHeight: 190,
 		}}
 	>
 		{ Template.bind({}) }

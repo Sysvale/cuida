@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<button
-		id="cds-button"
+		v-cdstip="tooltipDisabled"
 		class="button__container"
 		:class="computedStyle"
 		@click.stop="clickHandler"
@@ -21,8 +21,14 @@
 </template>
 <script>
 import CdsSpinner from '../components/Spinner.vue';
+import Cdstip from '../utils/directives/cdstip';
 
 export default {
+
+	directives: {
+		cdstip: Cdstip,
+	},
+
 	components: {
 		CdsSpinner,
 	},
@@ -57,6 +63,13 @@ export default {
 		disabled: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Texto a ser exibido como tooltip com o hover do botão quando a prop disabled estiver ativa.
+		 */
+		tooltipText: {
+			type: String,
+			default: null,
 		},
 		/**
 		 * Especifica se a versão do Botão é a secundária.
@@ -97,6 +110,11 @@ export default {
 	},
 
 	computed: {
+
+		tooltipDisabled() {
+			return this.disabled && this.tooltipText !== '' ? this.tooltipText : null;
+		},
+
 		predefinedColor() {
 			if (this.secondary) {
 				return 'button--secondary';
