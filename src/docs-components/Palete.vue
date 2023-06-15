@@ -1,40 +1,63 @@
+<!-- eslint-disable vue/html-quotes -->
 <template>
 	<div>
 		<div
 			class="grid"
 		>
-			<copy-token :target="target" :value="target" />
+			<copy-token
+				:target="target"
+				:value="copyVal"
+			/>
 
 			<div
-				v-for="color in aaaa"
-				:key="color.colorNames"
-				class="palete"
+				v-for="(color, idx) in palete"
+				:key="idx"
+				class="color-swatch"
 			>
 				<div
-					v-for="(shade, index) in color.colorTokens"
+					v-for="(shade, index) in color.colorData"
+					:id="shade['token']"
+					:key="shade['token']"
 					:class='{
 						"first-shade": index === 0,
 						"last-shade": index === color.colorTokens.length - 1,
-						[`palete--${shade.replace("$", "")}`]: index >= 0,
+						[`color-swatch--${shade.token.replace("$", "")}`]: index >= 0,
 					}'
-					@click="target = shade"
-					:key="shade"
-					:id="shade"
+					@click="handleClick(shade.token, shade[hexTokenArray[idx]])"
 				>
 					<span
 						v-if="index === 0"
 						class="colorNames"
 					>
 						<div class="colornameContainer">
-							<span class="mainColorName"> {{ color.colorName }} </span>
+							<span
+								class="mainColorName"
+								:class="fontColorResolver(shade.shade)"
+							>
+								{{ color.colorName }}
+							</span>
 	
-							<div class="d-flex" :id="`${shade.replace('$', '')}-pop`">
-								<cds-chevron />
-								Tokem
+							<div
+								:id="`${shade['token']}-pop`"
+								class="d-flex align-items-center"
+								@click.stop="handlePop(shade['token'], idx)"
+							>								
+								<cds-icon
+									height="18"
+									width="18"
+									name="unfold-vertical-outline"
+									:class="ContrastChecker(shade.shade, '#FFFFFF', 'POOR') ? 'white' : 'black'"
+								/>
+
+								<div
+									class="fancyType"
+									:class="fontColorResolver(shade.shade)"
+								>
+									{{ hexTokenArray[idx] === 'shade' ? 'HEX' : 'Token' }}
+								</div>
 							</div>
 						</div>
-
-						<br />
+						<br>
 						<span class="color-token__container">
 							
 							<cds-icon
@@ -42,9 +65,12 @@
 								width="20"
 								name="copy-outline"
 								class="copy-icon"
+								:class="fontColorResolver(shade.shade)"
 							/>
 	
-							{{ shade }}
+							<div :class="fontColorResolver(shade.shade)">
+								{{ shade[hexTokenArray[idx]] }}
+							</div>
 						</span>
 					</span>
 	
@@ -58,37 +84,26 @@
 								width="20"
 								name="copy-outline"
 								class="copy-icon"
+								:class="fontColorResolver(shade.shade)"
 							/>
 	
-							{{ shade }}
+							<div :class="fontColorResolver(shade.shade)">
+								{{ shade[hexTokenArray[idx]] }}
+							</div>
 						</span>
 					</span>
 				</div>
 			</div>
 		</div>
 
-		<!-- <cds-popover
-			v-model="showPopover"
-			:target-id="popoverTargetId"
-			fitContentWidth
-			right-aligned
-			vertical-fluid
-		>
-			<div class="popElement">
-				Totem
-			</div>
-			<div class="popElement popElement2">
-				HEX
-			</div>
-			{{ sassColorVariables.palete }}
-		</cds-popover> -->
-
 		<div>
-			<h5 class="gradient-container__title"> Gradiente </h5>
+			<h5 class="gradient-container__title">
+				Gradiente
+			</h5>
 			<div
-				class="gradient-container"
 				id="linear-gradient($bg-gradient)"
-				@click="target = 'linear-gradient($bg-gradient)'"
+				class="gradient-container"
+				@click="handleClick('linear-gradient($bg-gradient)', 'linear-gradient($bg-gradient)')"
 			>
 				<cds-icon
 					height="20"
@@ -105,82 +120,86 @@
 
 <script>
 import CdsIcon from '../components/Icon.vue';
-import CdsChevron from '../components/Chevron.vue';
-import CdsPopover from '../components/Popover.vue';
 import CopyToken from '../docs-components/CopyToken.vue';
 import sassColorVariables from '../assets/sass/colors.module.scss';
-import { PALETE } from '../utils/constants/paleteConstants.js';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
+import ContrastChecker from '../utils/methods/contrastChecker';
 
 export default {
 	components: {
 		CdsIcon,
 		CopyToken,
-		CdsChevron,
-		CdsPopover,
 	},
 
 	data() {
 		return {
 			target: '',
-			palete2: [],
 			showPopover: false,
 			popoverTargetId: '$gp-50-pop',
+			copyVal: '',
+			hexTokenArray: [],
+			currentIndex: 0,
 			sassColorVariables,
 		};
 	},
 
-	mounted() {
-		
-		// console.log('🚀 -> file: Palete.vue:137 -> this.palete:', this.palete[0].colorShades);
-
-		this.$nextTick().then(() => {
-			this.palete2 = this.paleteBuilder(sassColorVariables.palete);
-		});
-	},
-
 	computed: {
-		aaaa() {
+		palete() {
 			return this.paleteBuilder(this.sassColorVariables.palete);
 		}
 	},
 
+	mounted() {
+		this.hexTokenArray = this.palete.map(() => {
+			return 'token';
+		});
+	},
+
 	methods: {
 		paleteBuilder,
+		ContrastChecker,
 
-		// colorShadeClass(shade, color) {
-		// 	if (color.includes('Neutrals')) {
-		// 		return `${color.replace(/.+ /, "")}-${shade}`;	
-		// 	}
+		handleTypeClick(type) {
+			if (type === 'token') {
+				this.hexTokenArray[this.currentIndex] = 'token';
+			} else {
+				this.hexTokenArray[this.currentIndex] = 'shade';
+			}
 
-		// 	return `${color.replace(" ", "")}-${shade}`;
-		// },
+			this.showPopover = false;
+		},
 
-		// shadeNumber(shade) {
-		// 	return shade.replace(/(\D)+-/, "");
-		// },
+		handleClick(target, val) {
+			this.copyVal = val;
+			this.target = target;
+		},
 
-		// isADarkColor(color, index) {
-		// 	return !color.isADarkColor && (color.tokens.length <= 5 || ((index <= color.tokens.length / 2)));
-		// },
+		handlePop(shade, index) {
+			this.hexTokenArray[index] = this.hexTokenArray[index] === 'token' ? 'shade' : 'token';
+			this.currentIndex = index;
+		},
 
-		// handlePop(shade) {
-		// 	this.popoverTargetId = `${shade}-pop`;
-		// 	this.showPopover = !this.showPopover;
+		fontColorResolver(shade) {
+			return ContrastChecker(shade, '#FFFFFF', 'POOR') ? 'white' : 'black';
+		},
 
-		// 	const regexp = /(\[[^\[\]]*\])/g;
+		selectHandle(type) {
+			let selectClass = '';
 
-		// 	let objj = this.paleteBuilder(sassColorVariables.palete);
-		// 	// console.log('🚀 -> file: Palete.vue:161 -> objj:', objj);
+			if ((this.hexTokenArray[this.currentIndex] === 'shade') && type === 'HEX') {
+				selectClass ='blue';
+			}
 
-		// 	const matches = sassColorVariables.palete.match(regexp);
-			
-		// 	for (let i = 0; i < matches.length; i++){
-		// 		matches[i] = matches[i].replace(/\\/g, 'aaa');
-		// 	}
+			if ((this.hexTokenArray[this.currentIndex] === 'token') && type === 'Token') {
+				return 'blue';
+			}
 
-		// 	// console.log('🚀 -> file: Palete.vue:159 -> matches:', matches);
-		// },
+			return selectClass;
+		},
+
+		handleToggle() {
+
+		},
 	},
 };
 </script>
@@ -198,7 +217,7 @@ export default {
 	border-radius: 0px 0px 16px 16px;
 }
 
-.palete {
+.color-swatch {
 	width: max-content;
 	border-radius: 16px;
 
@@ -247,10 +266,6 @@ export default {
 	height: 100px;
 }
 
-.low-contrast-color-names {
-	color: $n-900 !important;
-}
-
 .gradient-container {
 	font-weight: 500;
 	background: linear-gradient($bg-gradient);
@@ -294,18 +309,20 @@ export default {
 	color: $n-900 !important;
 }
 
-.popElement {
-	color: $n-600;
-	@include body-2;
-	font-weight: $font-weight-semibold;
-	cursor: pointer;
+.fancyType {
+	margin: ml(1);
+	min-width: 42px;
 }
 
-.popElement:hover {
-	color: $n-800;
+.white {
+	color: $n-0;
 }
 
-.popElement2 {
-	margin: mt(2);
+.black {
+	color: $n-900;
+}
+
+.blue {
+	color: $bn-500;
 }
 </style>
