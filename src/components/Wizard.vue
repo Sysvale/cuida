@@ -144,7 +144,6 @@ export default {
 	watch: {
 		activeStep: {
 			handler(newValue, oldValue) {
-				console.log('hiho', newValue);
 				if (newValue !== oldValue) {
 					this.currentStep = newValue;
 				}
@@ -268,6 +267,14 @@ export default {
 
 	&__content {
 		margin: mYX(6, 0);
+	}
+}
+
+@media (max-width: 992px) {
+	.cds-wizard {
+		&__container {
+			flex-direction: column;
+		}
 	}
 }
 </style>
