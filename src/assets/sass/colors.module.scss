@@ -1,0 +1,471 @@
+$bg-gradient: 158.71deg, #FFFFFF -36.57%, #F1F5FB 156.92%;
+
+$appbar-color: #576169;
+
+$n-0: #FFFFFF;
+$n-10: #FAFCFE;
+$n-20: #F4F8FB;
+$n-30: #E7EDF3;
+$n-40: #DFE5EC;
+
+$lightNeutralsShades: $n-0, $n-10, $n-20, $n-30, $n-40;
+$lightNeutralsTokens: '$n-0', '$n-10', '$n-20', '$n-30', '$n-40';
+
+$lightNeutralMetaData: 'Light Neutrals', $lightNeutralsShades, $lightNeutralsTokens;
+
+$n-50: #D6DCE3;
+$n-100: #C3CCD5;
+$n-200: #ACB8C3;
+$n-300: #99A6B2;
+$n-400: #8794A1;
+
+$midNeutralsShades: $n-50, $n-100, $n-200, $n-300, $n-400;
+$midNeutralsTokens: '$n-50', '$n-100', '$n-200', '$n-300', '$n-400';
+
+$midNeutralsMetaData: 'Mid Neutrals', $midNeutralsShades, $midNeutralsTokens;
+
+$n-500: #647382;
+$n-600: #52616F;
+$n-700: #3B4754;
+$n-800: #28333E;
+$n-900: #1D262F;
+
+$darkNeutralsShades: $n-500, $n-600, $n-700, $n-800, $n-900;
+$darkNeutralsTokens: '$n-500', '$n-600', '$n-700', '$n-800', '$n-900';
+
+$darkNeutralsMetaData: 'Dark Neutrals', $darkNeutralsShades, $darkNeutralsTokens;
+
+$gp-50: #F3FCF8;
+$gp-100: #DEF7EB;
+$gp-200: #ABEDD9;
+$gp-300: #6DDFBC;
+$gp-400: #2AC092;
+$gp-500: #239F78;
+$gp-600: #1B795B;
+$gp-700: #126349;
+
+$piccoloGreenShades: $gp-50, $gp-100, $gp-200, $gp-300, $gp-400, $gp-500, $gp-600, $gp-700;
+$piccoloGreenTokens: '$gp-50', '$gp-100', '$gp-200', '$gp-300', '$gp-400', '$gp-500', '$gp-600', '$gp-700';
+
+$greenMetaData: 'Piccolo Green', $piccoloGreenShades, $piccoloGreenTokens;
+
+$ts-50: #F7FCFF;
+$ts-100: #E2F4FE;
+$ts-200: #C2EDFF;
+$ts-300: #7BD0F4;
+$ts-400: #42AAD7;
+$ts-500: #1F86B2;
+$ts-600: #18698B;
+$ts-700: #13526D;
+
+$sulivanTurquoiseShades: $ts-50, $ts-100, $ts-200, $ts-300, $ts-400, $ts-500, $ts-600, $ts-700;
+$sulivanTurquoiseTokens: '$ts-50', '$ts-100', '$ts-200', '$ts-300', '$ts-400', '$ts-500', '$ts-600', '$ts-700';
+
+$turquoiseMetaData: 'Sulivan Turquoise', $sulivanTurquoiseShades, $sulivanTurquoiseTokens;
+
+$bn-50: #F8FAFE;
+$bn-100: #ECF1FE;
+$bn-200: #B6D1F7;
+$bn-300: #83ADE7;
+$bn-400: #4B88DD;
+$bn-500: #2C70CD;
+$bn-600: #1A55A8;
+$bn-700: #174382;
+
+$nocturneBlueShades: $bn-50, $bn-100, $bn-200, $bn-300, $bn-400, $bn-500, $bn-600, $bn-700;
+$nocturneBlueTokens: '$bn-50', '$bn-100', '$bn-200', '$bn-300', '$bn-400', '$bn-500', '$bn-600', '$bn-700';
+
+$blueMetaData: 'Nocturne Blue', $nocturneBlueShades, $nocturneBlueTokens;
+
+$in-50: #F5F6FF;
+$in-100: #E5EAFF;
+$in-200: #CED6FD;
+$in-300: #AAB7F8;
+$in-400: #7080D2;
+$in-500: #4D5DAC;
+$in-600: #384584;
+$in-700: #353D64;
+
+$nightwingIndigoShades: $in-50, $in-100, $in-200, $in-300, $in-400, $in-500, $in-600, $in-700;
+$nightwingIndigoTokens: '$in-50', '$in-100', '$in-200', '$in-300', '$in-400', '$in-500', '$in-600', '$in-700';
+
+$indigoMetaData: 'Nightwing Indigo', $nightwingIndigoShades, $nightwingIndigoTokens;
+
+$vr-50: #FBF7FF;
+$vr-100: #F5EBFF;
+$vr-200: #E6D2F9;
+$vr-300: #CEABED;
+$vr-400: #A975D7;
+$vr-500: #8955B9;
+$vr-600: #6B3A98;
+$vr-700: #4F2673;
+
+$ravenVioletShades: $vr-50, $vr-100, $vr-200, $vr-300, $vr-400, $vr-500, $vr-600, $vr-700;
+$ravenVioletTokens: '$vr-50', '$vr-100', '$vr-200', '$vr-300', '$vr-400', '$vr-500', '$vr-600', '$vr-700';
+
+$violetMetaData: 'Raven Violet', $ravenVioletShades, $ravenVioletTokens;
+
+$pp-50: #FFF7FC;
+$pp-100: #FFEBF7;
+$pp-200: #F9C8E2;
+$pp-300: #EF8FC0;
+$pp-400: #DA629F;
+$pp-500: #BE377C;
+$pp-600: #A12663;
+$pp-700: #701A48;
+
+$peppaPinkShades: $pp-50, $pp-100, $pp-200, $pp-300, $pp-400, $pp-500, $pp-600, $pp-700;
+$peppaPinkTokens: '$pp-50', '$pp-100', '$pp-200', '$pp-300', '$pp-400', '$pp-500', '$pp-600', '$pp-700';
+
+$pinkMetaData: 'Peppa Pink', $peppaPinkShades, $peppaPinkTokens;
+
+$rc-50: #FEF5F6;
+$rc-100: #FFE6E9;
+$rc-200: #FABDC5;
+$rc-300: #F98B98;
+$rc-400: #F3596C;
+$rc-500: #E03E52;
+$rc-600: #C92C3F;
+$rc-700: #A42333;
+
+$carmenRedShades: $rc-50, $rc-100, $rc-200, $rc-300, $rc-400, $rc-500, $rc-600, $rc-700;
+$carmenRedTokens: '$rc-50', '$rc-100', '$rc-200', '$rc-300', '$rc-400', '$rc-500', '$rc-600', '$rc-700';
+
+$redMetaData: 'Carmen Red', $carmenRedShades, $carmenRedTokens;
+
+$og-50: #FEF9F8;
+$og-100: #FFEBE5;
+$og-200: #FFD6CC;
+$og-300: #FDAF9B;
+$og-400: #FF8567;
+$og-500: #F06442;
+$og-600: #D64B29;
+$og-700: #AB3C21;
+
+$gokuOrangeShades: $og-50, $og-100, $og-200, $og-300, $og-400, $og-500, $og-600, $og-700;
+$gokuOrangeTokens: '$og-50', '$og-100', '$og-200', '$og-300', '$og-400', '$og-500', '$og-600', '$og-700';
+
+$orangeMetaData: 'Goku Orange', $gokuOrangeShades, $gokuOrangeTokens;
+
+$al-50: #fefbf5;
+$al-100: #fff1dc;
+$al-200: #FFE2B8;
+$al-300: #FDCD87;
+$al-400: #FFB952;
+$al-500: #EEA22F;
+$al-600: #D38817;
+$al-700: #A56A12;
+
+$lisaAmberShades: $al-50, $al-100, $al-200, $al-300, $al-400, $al-500, $al-600, $al-700;
+$lisaAmberTokens: '$al-50', '$al-100', '$al-200', '$al-300', '$al-400', '$al-500', '$al-600', '$al-700';
+
+$amberMetaData: 'Lisa Amber', $lisaAmberShades, $lisaAmberTokens;
+
+$palete: [$greenMetaData],
+	[$turquoiseMetaData],
+	[$blueMetaData],
+	[$indigoMetaData],
+	[$violetMetaData],
+	[$pinkMetaData],
+	[$redMetaData],
+	[$orangeMetaData],
+	[$amberMetaData],
+	[$lightNeutralMetaData],
+	[$midNeutralsMetaData],
+	[$darkNeutralsMetaData];
+
+$baseColors: (
+	'turquoise': $ts-400,
+	'green': $gp-400,
+	'blue': $bn-400,
+	'indigo': $in-400,
+	'violet': $vr-400,
+	'pink': $pp-400,
+	'red': $rc-400,
+	'orange': $og-400,
+	'amber': $al-400,
+	'dark': $n-600,
+	'gray': $n-30,
+	'white': $n-0,
+);
+
+$disabledColors: (
+	'turquoise': $ts-300,
+	'green': $gp-300,
+	'blue': $bn-300,
+	'indigo': $in-300,
+	'violet': $vr-300,
+	'pink': $pp-300,
+	'red': $rc-300,
+	'orange': $og-300,
+	'amber': $al-300,
+	'dark': $n-400,
+	'gray': $n-10,
+	'white': $n-0,
+);
+
+$mutedColors: (
+	'turquoise': $ts-200,
+	'green': $gp-200,
+	'blue': $bn-200,
+	'indigo': $in-200,
+	'violet': $vr-200,
+	'pink': $pp-200,
+	'red': $rc-200,
+	'orange': $og-200,
+	'amber': $al-200,
+	'dark': $n-200,
+	'gray': $n-20,
+	'white': $n-0,
+);
+
+$hoverColors: (
+	'turquoise': $ts-500,
+	'green': $gp-500,
+	'blue': $bn-500,
+	'indigo': $in-500,
+	'violet': $vr-500,
+	'pink': $pp-500,
+	'red': $rc-500,
+	'orange': $og-500,
+	'amber': $al-500,
+	'dark': $n-700,
+	'gray': $n-50,
+	'white': $n-0,
+);
+
+$backgroundColors: (
+	'green': $gp-50,
+	'turquoise': $ts-50,
+	'blue': $bn-50,
+	'indigo': $in-50,
+	'violet': $vr-50,
+	'pink': $pp-50,
+	'red': $rc-50,
+	'orange': $og-50,
+	'amber': $al-50,
+	'dark': $n-30,
+	'gray': $n-0,
+);
+
+$allColors: (
+	'gp-50': $gp-50,
+	'gp-100': $gp-100,
+	'gp-200': $gp-200,
+	'gp-300': $gp-300,
+	'gp-400': $gp-400,
+	'gp-500': $gp-500,
+	'gp-600': $gp-600,
+	'gp-700': $gp-700,
+
+	'ts-50': $ts-50,
+	'ts-100': $ts-100,
+	'ts-200': $ts-200,
+	'ts-300': $ts-300,
+	'ts-400': $ts-400,
+	'ts-500': $ts-500,
+	'ts-600': $ts-600,
+	'ts-700': $ts-700,
+
+	'bn-50': $bn-50,
+	'bn-100': $bn-100,
+	'bn-200': $bn-200,
+	'bn-300': $bn-300,
+	'bn-400': $bn-400,
+	'bn-500': $bn-500,
+	'bn-600': $bn-600,
+	'bn-700': $bn-700,
+
+	'in-50': $in-50,
+	'in-100': $in-100,
+	'in-200': $in-200,
+	'in-300': $in-300,
+	'in-400': $in-400,
+	'in-500': $in-500,
+	'in-600': $in-600,
+	'in-700': $in-700,
+
+	'vr-50': $vr-50,
+	'vr-100': $vr-100,
+	'vr-200': $vr-200,
+	'vr-300': $vr-300,
+	'vr-400': $vr-400,
+	'vr-500': $vr-500,
+	'vr-600': $vr-600,
+	'vr-700': $vr-700,
+
+	'pp-50': $pp-50,
+	'pp-100': $pp-100,
+	'pp-200': $pp-200,
+	'pp-300': $pp-300,
+	'pp-400': $pp-400,
+	'pp-500': $pp-500,
+	'pp-600': $pp-600,
+	'pp-700': $pp-700,
+
+	'rc-50': $rc-50,
+	'rc-100': $rc-100,
+	'rc-200': $rc-200,
+	'rc-300': $rc-300,
+	'rc-400': $rc-400,
+	'rc-500': $rc-500,
+	'rc-600': $rc-600,
+	'rc-700': $rc-700,
+
+	'og-50': $og-50,
+	'og-100': $og-100,
+	'og-200': $og-200,
+	'og-300': $og-300,
+	'og-400': $og-400,
+	'og-500': $og-500,
+	'og-600': $og-600,
+	'og-700': $og-700,
+
+	'al-50': $al-50,
+	'al-100': $al-100,
+	'al-200': $al-200,
+	'al-300': $al-300,
+	'al-400': $al-400,
+	'al-500': $al-500,
+	'al-600': $al-600,
+	'al-700': $al-700,
+
+	"n-0": $n-0,
+	"n-10": $n-10,
+	"n-20": $n-20,
+	"n-30": $n-30,
+	"n-40": $n-40,
+	"n-50": $n-50,
+	"n-100": $n-100,
+	"n-200": $n-200,
+	"n-300": $n-300,
+	"n-400": $n-400,
+	"n-500": $n-500,
+	"n-600": $n-600,
+	"n-700": $n-700,
+	"n-800": $n-800,
+	"n-900": $n-900,
+);
+
+@mixin variantResolver {
+	@each $color-name, $base-color in $baseColors {
+		$disabled: map-get($disabledColors , $color-name);
+		$muted: map-get($mutedColors , $color-name);
+		$background: map-get($backgroundColors , $color-name);
+		$hover: map-get($hoverColors , $color-name);
+
+		&--#{$color-name} {
+			@content($color-name, $base-color, $disabled, $muted, $background, $hover);
+		}
+	}
+}
+
+@mixin paleteResolver {
+	@each $token-name, $token in $allColors {
+		$color: $token;
+
+		&--#{$token-name} {
+			@content($color);
+		}
+	}
+}
+
+:export {
+	gp50: $gp-50;
+	gp100: $gp-100;
+	gp200: $gp-200;
+	gp300: $gp-300;
+	gp400: $gp-400;
+	gp500: $gp-500;
+	gp600: $gp-600;
+	gp700: $gp-700;
+
+	ts50: $ts-50;
+	ts100: $ts-100;
+	ts200: $ts-200;
+	ts300: $ts-300;
+	ts400: $ts-400;
+	ts500: $ts-500;
+	ts600: $ts-600;
+	ts700: $ts-700;
+
+	bn50: $bn-50;
+	bn100: $bn-100;
+	bn200: $bn-200;
+	bn300: $bn-300;
+	bn400: $bn-400;
+	bn500: $bn-500;
+	bn600: $bn-600;
+	bn700: $bn-700;
+
+	in50: $in-50;
+	in100: $in-100;
+	in200: $in-200;
+	in300: $in-300;
+	in400: $in-400;
+	in500: $in-500;
+	in600: $in-600;
+	in700: $in-700;
+
+	vr50: $vr-50;
+	vr100: $vr-100;
+	vr200: $vr-200;
+	vr300: $vr-300;
+	vr400: $vr-400;
+	vr500: $vr-500;
+	vr600: $vr-600;
+	vr700: $vr-700;
+
+	pp50: $pp-50;
+	pp100: $pp-100;
+	pp200: $pp-200;
+	pp300: $pp-300;
+	pp400: $pp-400;
+	pp500: $pp-500;
+	pp600: $pp-600;
+	pp700: $pp-700;
+
+	rc50: $rc-50;
+	rc100: $rc-100;
+	rc200: $rc-200;
+	rc300: $rc-300;
+	rc400: $rc-400;
+	rc500: $rc-500;
+	rc600: $rc-600;
+	rc700: $rc-700;
+
+	og50: $og-50;
+	og100: $og-100;
+	og200: $og-200;
+	og300: $og-300;
+	og400: $og-400;
+	og500: $og-500;
+	og600: $og-600;
+	og700: $og-700;
+
+	al50: $al-50;
+	al100: $al-100;
+	al200: $al-200;
+	al300: $al-300;
+	al400: $al-400;
+	al500: $al-500;
+	al600: $al-600;
+	al700: $al-700;
+
+	n10: $n-10;
+	n20: $n-20;
+	n30: $n-30;
+	n40: $n-40;
+	n50: $n-50;
+	n100: $n-100;
+	n200: $n-200;
+	n300: $n-300;
+	n400: $n-400;
+	n500: $n-500;
+	n600: $n-600;
+	n700: $n-700;
+	n800: $n-800;
+	n900: $n-900;
+
+	palete: $palete;
+}
