@@ -2,96 +2,82 @@
 <template>
 	<div>
 		<div
-			class="grid"
+			class="color-swatch__grid"
 		>
 			<copy-token
 				:target="target"
-				:value="copyVal"
+				:value="clipboardValue"
 			/>
 
 			<div
-				v-for="(color, idx) in palete"
+				v-for="(swatch, idx) in palete"
 				:key="idx"
-				class="color-swatch"
 			>
 				<div
-					v-for="(shade, index) in color.colorData"
-					:id="shade['token']"
-					:key="shade['token']"
-					:class='{
-						"first-shade": index === 0,
-						"last-shade": index === color.colorTokens.length - 1,
-						[`color-swatch--${shade.token.replace("$", "")}`]: index >= 0,
-					}'
-					@click="handleClick(shade.token, shade[hexTokenArray[idx]])"
+					v-for="(color, index) in swatch.colorData"
+					:id="color.token"
+					:key="color.token"
+					class="color-swatch"
+					:class="colorSwatchContainer(color.token)"
+					@click="handleClick(color.token, color[colorFormatArray[idx]])"
 				>
-					<span
+					<div
 						v-if="index === 0"
-						class="colorNames"
 					>
-						<div class="colornameContainer">
+						<div class="color-swatch__header">
 							<span
-								class="mainColorName"
-								:class="fontColorResolver(shade.shade)"
+								class="color-swatch__name"
+								:class="fontColorResolver(color.shade)"
 							>
-								{{ color.colorName }}
+								{{ swatch.colorName }}
 							</span>
 	
 							<div
-								:id="`${shade['token']}-pop`"
-								class="d-flex align-items-center"
-								@click.stop="handlePop(shade['token'], idx)"
-							>								
+								class="color-swatch__format-select"
+								@click.stop="handlePop(idx)"
+							>
 								<cds-icon
 									height="18"
 									width="18"
 									name="unfold-vertical-outline"
-									:class="ContrastChecker(shade.shade, '#FFFFFF', 'POOR') ? 'white' : 'black'"
+									:class="fontColorResolver(color.shade)"
 								/>
 
-								<div
-									class="fancyType"
-									:class="fontColorResolver(shade.shade)"
-								>
-									{{ hexTokenArray[idx] === 'shade' ? 'HEX' : 'Token' }}
+								<div :class="fontColorResolver(color.shade)">
+									{{ colorFormatArray[idx] === 'shade' ? 'HEX' : 'Token' }}
 								</div>
 							</div>
 						</div>
 						<br>
-						<span class="color-token__container">
-							
+						<div class="color-swatch__color">
 							<cds-icon
 								height="20"
 								width="20"
 								name="copy-outline"
-								class="copy-icon"
-								:class="fontColorResolver(shade.shade)"
+								:class="fontColorResolver(color.shade)"
 							/>
-	
-							<div :class="fontColorResolver(shade.shade)">
-								{{ shade[hexTokenArray[idx]] }}
+
+							<div :class="fontColorResolver(color.shade)">
+								{{ color[colorFormatArray[idx]] }}
 							</div>
-						</span>
-					</span>
-	
-					<span
+						</div>
+					</div>
+
+					<div
 						v-else
-						class="colorNames"
+						class="color-swatch__color"
 					>
-						<span class="color-token__container">
-							<cds-icon
-								height="20"
-								width="20"
-								name="copy-outline"
-								class="copy-icon"
-								:class="fontColorResolver(shade.shade)"
-							/>
-	
-							<div :class="fontColorResolver(shade.shade)">
-								{{ shade[hexTokenArray[idx]] }}
-							</div>
-						</span>
-					</span>
+						<cds-icon
+							height="20"
+							width="20"
+							name="copy-outline"
+							:class="fontColorResolver(color.shade)"
+						/>
+
+						<div :class="fontColorResolver(color.shade)">
+							{{ color[colorFormatArray[idx]] }}
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -109,7 +95,6 @@
 					height="20"
 					width="20"
 					name="copy-outline"
-					class="copy-icon"
 				/>
 
 				linear-gradient($bg-gradient)
@@ -134,10 +119,8 @@ export default {
 	data() {
 		return {
 			target: '',
-			showPopover: false,
-			popoverTargetId: '$gp-50-pop',
-			copyVal: '',
-			hexTokenArray: [],
+			clipboardValue: '',
+			colorFormatArray: [],
 			currentIndex: 0,
 			sassColorVariables,
 		};
@@ -146,11 +129,11 @@ export default {
 	computed: {
 		palete() {
 			return this.paleteBuilder(this.sassColorVariables.palete);
-		}
+		},
 	},
 
 	mounted() {
-		this.hexTokenArray = this.palete.map(() => {
+		this.colorFormatArray = this.palete.map(() => {
 			return 'token';
 		});
 	},
@@ -159,47 +142,23 @@ export default {
 		paleteBuilder,
 		ContrastChecker,
 
-		handleTypeClick(type) {
-			if (type === 'token') {
-				this.hexTokenArray[this.currentIndex] = 'token';
-			} else {
-				this.hexTokenArray[this.currentIndex] = 'shade';
-			}
-
-			this.showPopover = false;
-		},
-
 		handleClick(target, val) {
-			this.copyVal = val;
+			this.clipboardValue = val;
 			this.target = target;
 		},
 
-		handlePop(shade, index) {
-			this.hexTokenArray[index] = this.hexTokenArray[index] === 'token' ? 'shade' : 'token';
+		handlePop(index) {
+			this.colorFormatArray[index] = this.colorFormatArray[index] === 'token' ? 'shade' : 'token';
 			this.currentIndex = index;
 		},
 
 		fontColorResolver(shade) {
-			return ContrastChecker(shade, '#FFFFFF', 'POOR') ? 'white' : 'black';
+			return ContrastChecker(shade, '#FFFFFF', 'POOR') ? 'font-color--white' : 'font-color--black';
 		},
 
-		selectHandle(type) {
-			let selectClass = '';
-
-			if ((this.hexTokenArray[this.currentIndex] === 'shade') && type === 'HEX') {
-				selectClass ='blue';
-			}
-
-			if ((this.hexTokenArray[this.currentIndex] === 'token') && type === 'Token') {
-				return 'blue';
-			}
-
-			return selectClass;
-		},
-
-		handleToggle() {
-
-		},
+		colorSwatchContainer(shade) {
+			return `color-swatch--${shade.replace('$', '')}`;
+		}
 	},
 };
 </script>
@@ -207,19 +166,47 @@ export default {
 <style lang="scss" scoped>
 @import './../assets/sass/tokens.scss';
 
-.grid {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	row-gap: 50px;
-}
-
-.last-shade {
-	border-radius: 0px 0px 16px 16px;
-}
-
 .color-swatch {
-	width: max-content;
-	border-radius: 16px;
+	&:nth-child(1) {
+		border-radius: 16px 16px 0px 0px;
+		height: 100px;
+	}
+
+	&:last-child {
+		border-radius: 0px 0px 16px 16px;
+	}
+
+	&__grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		row-gap: 50px;
+	}
+
+	&__format-select {
+		display: flex;
+		align-items: center;
+		gap: 2px;
+		font-weight: $font-weight-semibold;
+	}
+
+	&__name {
+		font-weight: 700;
+		color: $n-800;
+	}
+
+	&__header {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__color {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		height: -webkit-fill-available;
+		font-weight: 500;
+		color: $n-900 !important;
+	}
 
 	@include paleteResolver using ($color) {
 		background-color: $color;
@@ -241,31 +228,6 @@ export default {
 	}
 }
 
-.colorNames {
-	color: white;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	height: -webkit-fill-available;
-	font-weight: 500;
-	color: $n-900 !important;
-}
-
-.mainColorName {
-	text-transform: capitalize;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	height: -webkit-fill-available;
-	font-weight: 700;
-	color: $n-800;
-}
-
-.first-shade {
-	border-radius: 16px 16px 0px 0px;
-	height: 100px;
-}
-
 .gradient-container {
 	font-weight: 500;
 	background: linear-gradient($bg-gradient);
@@ -274,55 +236,31 @@ export default {
 	border-radius: $border-radius-medium;
 	outline: 1px solid $n-20;
 	display: flex;
+	gap: 4px;
 	align-items: flex-end;
 	justify-content: end;
 	padding: pa(4);
 	cursor: pointer;
 	transform: scale(1);
 	transition: all .25s ease-in-out;
+
+	&:hover {
+		box-shadow: 0 2px 4px #00000014, 0 12px 20px #0000001f;
+		transform: scale(1.04);
+		z-index: 2;
+		transition: all .25s ease-in-out;
+	}
+
+	&__title {
+		margin: mTRBL(10, 0, 3, 0);
+	}
 }
 
-.gradient-container:hover {
-	box-shadow: 0 2px 4px #00000014, 0 12px 20px #0000001f;
-	transform: scale(1.04);
-	z-index: 2;
-	transition: all .25s ease-in-out;
-}
-
-.gradient-container__title {
-	margin: mTRBL(10, 0, 3, 0);
-}
-
-.color-token__container {
-	display: flex;
-	align-items: center;
-}
-
-.copy-icon {
-	margin: mr(3);
-}
-
-.colornameContainer {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	color: $n-900 !important;
-}
-
-.fancyType {
-	margin: ml(1);
-	min-width: 42px;
-}
-
-.white {
+.font-color--white {
 	color: $n-0;
 }
 
-.black {
+.font-color--black {
 	color: $n-900;
-}
-
-.blue {
-	color: $bn-500;
 }
 </style>
