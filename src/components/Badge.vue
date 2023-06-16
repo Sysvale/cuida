@@ -135,44 +135,9 @@ export default {
 		}
 	}
 
-	&--turquoise {
-		color: $ts-600;
-		background-color: $ts-100;
-	}
-
-	&--green {
-		color: $gp-600;
-		background-color: $gp-100;
-	}
-
-	&--blue {
-		color: $bn-500;
-		background-color: $bn-100;
-	}
-
-	&--indigo {
-		color: $in-600;
-		background-color: $in-100;
-	}
-
-	&--violet {
-		color: $vr-600;
-		background-color: $vr-100;
-	}
-
-	&--pink {
-		color: $pp-600;
-		background-color: $pp-100;
-	}
-
-	&--red {
-		color: $rc-600;
-		background-color: $rc-100;
-	}
-
-	&--orange {
-		color: $og-500;
-		background-color: $og-100;
+	@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
+		color: $base-color;
+		background-color: $background;
 	}
 
 	&--amber {
