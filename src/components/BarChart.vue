@@ -179,11 +179,11 @@ export default {
 					tooltip: {
 						callbacks: {
 							beforeTitle: function (context) {
-								console.log(context[0].dataset.label);
-								return `${context[0].dataset.label}`;
+								// console.log(context[0].dataset);
+								return `${context[0].dataset.name}`;
 							}
 						}
-					}
+					},
 				}
 			},
 		}
@@ -193,7 +193,7 @@ export default {
 		multiOptions() {
 			const tab = [];
 			this.options.forEach((element) => {
-				tab.push({ value: element.name });
+				tab.push({ value: element.chartData.name });
 			});
 
 			return tab;
@@ -236,6 +236,7 @@ export default {
 		chartData: {
 			handler(newValue, oldValue) {
 				this.options = newValue;
+				// console.log(newValue[0].chartData.name);
 				if (newValue === oldValue && Array.isArray(newValue) && newValue.length > 0) {
 					this.options = newValue[0].chartData;
 					return;
@@ -274,7 +275,6 @@ export default {
 		} else {
 			this.selectedOptions = [];
 		}
-
 		this.typeOfData(this.chartData);
 	},
 
@@ -297,22 +297,24 @@ export default {
 		// Chama a função mergeChartData para mesclar os dados das opções selecionadas para atualizar localChartData
 		handleSelectedValues(selectedValues) {
 			this.selectedValues = selectedValues;
+			let mergedData = { labels: this.localLabels, datasets: [] };
+
 			if (Array.isArray(selectedValues)) {
-				const newData = selectedValues.map(selected => {
-					const option = this.options.find(element => element.name === selected.value);
+				selectedValues.forEach((selected, index) => { // Adicione o parâmetro index ao forEach
+					const option = this.options.find(element => element.chartData.name === selected.value);
 					if (option) {
 						const backgroundColor = this.generateBackgroundColor();
 						this.setColors(option.chartData.datasets, backgroundColor);
-						return option.chartData;
+						this.setName(option.chartData.datasets, index); // Chame a função setName com o parâmetro index
+						mergedData.datasets.push(...option.chartData.datasets);
 					}
-					return null;
 				});
-
-				this.localChartData = this.mergeChartData(newData);
-			} else {
-				this.localChartData = {};
 			}
+
+			this.localChartData = mergedData;
 		},
+
+
   
 		// NOTE: Função que recebe a matriz de dados dos gráficos das opções selecionadas e mescla em um único objeto de dados. (MultiSelect: True)
 		mergeChartData(data) {
@@ -350,15 +352,27 @@ export default {
 			];
 		},
   
-		// NOTE: Função responsável por setar backgroundColor, bordeWidth
+		// NOTE: Função responsável por setar backgroundColor, bordeWidth e name
 		setColors(datasets, backgroundColor) {
 			datasets.forEach((dataset, index) => {
 				const colorIndex = index % backgroundColor.length;
 				const color = backgroundColor[colorIndex];
 				dataset.backgroundColor = color;
 				dataset.borderRadius = 4;
+			});	
+
+		},
+
+		setName(datasets, index) {
+			datasets.forEach((dataset) => {
+				if (index !== undefined) { // Verifica se o index foi fornecido
+					dataset.name = this.selectedValues[index].value; // Atribui o nome do item selecionado com base no índice
+				} else {
+					dataset.name = '';
+				}
 			});
 		},
+
 	}
 }
 </script>
