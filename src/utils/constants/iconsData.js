@@ -113,6 +113,8 @@ export const iconsData = [
 			'undo-outline',
 			'rendo-outline',
 			'shuffle-outline',
+			'unfold-vertical-outline',
+			'unfold-horizontal-outline',
 		],
 	},
 	{
