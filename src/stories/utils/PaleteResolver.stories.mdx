@@ -1,0 +1,47 @@
+import { Source, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Utils/Sass/PaleteResolver()"/>
+
+# PaleteResolver()
+
+Mixin utilizado para .
+
+<hr />
+<br />
+
+#### Argumentos
+
+Nenhum
+
+<br />
+
+#### Retorno
+
+**(Token) - $color:** 
+
+<br />
+
+#### Exemplo
+
+<Story name="PaleteResolver">
+</Story>
+
+<Source
+	language='css'
+	format={true}
+	code={/*css*/ `
+	&__swatch {
+		@include paleteResolver using ($color) {
+			background-color: $color;
+			height: 24px;
+			width: 24px;
+			border-radius: 4px;
+			margin: mTRBL(1, 1, 0, 0);
+			padding-top: 2px;
+			padding-left: 1px;
+			cursor: pointer;
+			transition: $interaction;
+		}
+	}
+`}
+/>

@@ -1,0 +1,39 @@
+import { Source, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Utils/Sass/VariantResolver()"/>
+
+# VariantResolver()
+
+Mixin utilizado para .
+
+<hr />
+<br />
+
+#### Argumentos
+
+Nenhum
+
+<br />
+
+#### Retorno
+
+**(Token) - $color:** 
+
+<br />
+
+#### Exemplo
+
+<Story name="VariantResolver">
+</Story>
+
+<Source
+	language='css'
+	format={true}
+	code={/*css*/ `
+  @include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
+    @extend .pagination__button--active;
+    background-color: $base-color;
+    border-color: $base-color;
+  }
+`}
+/>
