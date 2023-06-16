@@ -193,7 +193,7 @@ export default {
 		multiOptions() {
 			const tab = [];
 			this.options.forEach((element) => {
-				tab.push({ value: element.chartData.name });
+				tab.push({ value: element.name });
 			});
 
 			return tab;
@@ -238,7 +238,7 @@ export default {
 				this.options = newValue;
 				// console.log(newValue[0].chartData.name);
 				if (newValue === oldValue && Array.isArray(newValue) && newValue.length > 0) {
-					this.options = newValue[0].chartData;
+					this.options = newValue[0];
 					return;
 				}
 				this.localChartData = newValue;
@@ -301,12 +301,12 @@ export default {
 
 			if (Array.isArray(selectedValues)) {
 				selectedValues.forEach((selected, index) => { // Adicione o parâmetro index ao forEach
-					const option = this.options.find(element => element.chartData.name === selected.value);
+					const option = this.options.find(element => element.name === selected.value);
 					if (option) {
 						const backgroundColor = this.generateBackgroundColor();
-						this.setColors(option.chartData.datasets, backgroundColor);
-						this.setName(option.chartData.datasets, index); // Chame a função setName com o parâmetro index
-						mergedData.datasets.push(...option.chartData.datasets);
+						this.setColors(option.datasets, backgroundColor);
+						this.setName(option.datasets, index); // Chame a função setName com o parâmetro index
+						mergedData.datasets.push(...option.datasets);
 					}
 				});
 			}
