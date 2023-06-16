@@ -264,7 +264,7 @@ $palete: map-merge(
 $palete);
 
 $baseColors: (
-	'teal': $ts-400,
+	'turquoise': $ts-400,
 	'green': $gp-400,
 	'blue': $bn-400,
 	'indigo': $in-400,
@@ -279,7 +279,7 @@ $baseColors: (
 );
 
 $disabledColors: (
-	'teal': $ts-300,
+	'turquoise': $ts-300,
 	'green': $gp-300,
 	'blue': $bn-300,
 	'indigo': $in-300,
@@ -294,7 +294,7 @@ $disabledColors: (
 );
 
 $mutedColors: (
-	'teal': $ts-200,
+	'turquoise': $ts-200,
 	'green': $gp-200,
 	'blue': $bn-200,
 	'indigo': $in-200,
@@ -309,7 +309,7 @@ $mutedColors: (
 );
 
 $hoverColors: (
-	'teal': $ts-500,
+	'turquoise': $ts-500,
 	'green': $gp-500,
 	'blue': $bn-500,
 	'indigo': $in-500,
@@ -324,8 +324,8 @@ $hoverColors: (
 );
 
 $backgroundColors: (
-	'teal': $ts-50,
 	'green': $gp-50,
+	'turquoise': $ts-50,
 	'blue': $bn-50,
 	'indigo': $in-50,
 	'violet': $vr-50,
@@ -335,6 +335,104 @@ $backgroundColors: (
 	'amber': $al-50,
 	'dark': $n-30,
 	'gray': $n-0,
+);
+
+$allColors: (
+	'gp-50': $gp-50,
+	'gp-100': $gp-100,
+	'gp-200': $gp-200,
+	'gp-300': $gp-300,
+	'gp-400': $gp-400,
+	'gp-500': $gp-500,
+	'gp-600': $gp-600,
+	'gp-700': $gp-700,
+
+	'ts-50': $ts-50,
+	'ts-100': $ts-100,
+	'ts-200': $ts-200,
+	'ts-300': $ts-300,
+	'ts-400': $ts-400,
+	'ts-500': $ts-500,
+	'ts-600': $ts-600,
+	'ts-700': $ts-700,
+
+	'bn-50': $bn-50,
+	'bn-100': $bn-100,
+	'bn-200': $bn-200,
+	'bn-300': $bn-300,
+	'bn-400': $bn-400,
+	'bn-500': $bn-500,
+	'bn-600': $bn-600,
+	'bn-700': $bn-700,
+
+	'in-50': $in-50,
+	'in-100': $in-100,
+	'in-200': $in-200,
+	'in-300': $in-300,
+	'in-400': $in-400,
+	'in-500': $in-500,
+	'in-600': $in-600,
+	'in-700': $in-700,
+
+	'vr-50': $vr-50,
+	'vr-100': $vr-100,
+	'vr-200': $vr-200,
+	'vr-300': $vr-300,
+	'vr-400': $vr-400,
+	'vr-500': $vr-500,
+	'vr-600': $vr-600,
+	'vr-700': $vr-700,
+
+	'pp-50': $pp-50,
+	'pp-100': $pp-100,
+	'pp-200': $pp-200,
+	'pp-300': $pp-300,
+	'pp-400': $pp-400,
+	'pp-500': $pp-500,
+	'pp-600': $pp-600,
+	'pp-700': $pp-700,
+
+	'rc-50': $rc-50,
+	'rc-100': $rc-100,
+	'rc-200': $rc-200,
+	'rc-300': $rc-300,
+	'rc-400': $rc-400,
+	'rc-500': $rc-500,
+	'rc-600': $rc-600,
+	'rc-700': $rc-700,
+
+	'og-50': $og-50,
+	'og-100': $og-100,
+	'og-200': $og-200,
+	'og-300': $og-300,
+	'og-400': $og-400,
+	'og-500': $og-500,
+	'og-600': $og-600,
+	'og-700': $og-700,
+
+	'al-50': $al-50,
+	'al-100': $al-100,
+	'al-200': $al-200,
+	'al-300': $al-300,
+	'al-400': $al-400,
+	'al-500': $al-500,
+	'al-600': $al-600,
+	'al-700': $al-700,
+
+	"n-10": $n-10,
+	"n-20": $n-20,
+	"n-30": $n-30,
+	"n-40": $n-40,
+	"n-50": $n-50,
+	"n-100": $n-100,
+	"n-200": $n-200,
+	"n-300": $n-300,
+	"n-400": $n-400,
+	"n-500": $n-500,
+	"n-600": $n-600,
+	"n-700": $n-700,
+	"n-800": $n-800,
+	"n-900": $n-900,
 );
 
 @mixin variantResolver {
@@ -348,4 +446,112 @@ $backgroundColors: (
 			@content($color-name, $base-color, $disabled, $muted, $background, $hover);
 		}
 	}
+}
+
+@mixin paleteResolver {
+	@each $token-name, $token in $allColors {
+		$color: $token;
+
+		&--#{$token-name} {
+			@content($color);
+		}
+	}
+}
+
+:export {
+	gp50: $gp-50;
+	gp100: $gp-100;
+	gp200: $gp-200;
+	gp300: $gp-300;
+	gp400: $gp-400;
+	gp500: $gp-500;
+	gp600: $gp-600;
+	gp700: $gp-700;
+
+	ts50: $ts-50;
+	ts100: $ts-100;
+	ts200: $ts-200;
+	ts300: $ts-300;
+	ts400: $ts-400;
+	ts500: $ts-500;
+	ts600: $ts-600;
+	ts700: $ts-700;
+
+	bn50: $bn-50;
+	bn100: $bn-100;
+	bn200: $bn-200;
+	bn300: $bn-300;
+	bn400: $bn-400;
+	bn500: $bn-500;
+	bn600: $bn-600;
+	bn700: $bn-700;
+
+	in50: $in-50;
+	in100: $in-100;
+	in200: $in-200;
+	in300: $in-300;
+	in400: $in-400;
+	in500: $in-500;
+	in600: $in-600;
+	in700: $in-700;
+
+	vr50: $vr-50;
+	vr100: $vr-100;
+	vr200: $vr-200;
+	vr300: $vr-300;
+	vr400: $vr-400;
+	vr500: $vr-500;
+	vr600: $vr-600;
+	vr700: $vr-700;
+
+	pp50: $pp-50;
+	pp100: $pp-100;
+	pp200: $pp-200;
+	pp300: $pp-300;
+	pp400: $pp-400;
+	pp500: $pp-500;
+	pp600: $pp-600;
+	pp700: $pp-700;
+
+	rc50: $rc-50;
+	rc100: $rc-100;
+	rc200: $rc-200;
+	rc300: $rc-300;
+	rc400: $rc-400;
+	rc500: $rc-500;
+	rc600: $rc-600;
+	rc700: $rc-700;
+
+	og50: $og-50;
+	og100: $og-100;
+	og200: $og-200;
+	og300: $og-300;
+	og400: $og-400;
+	og500: $og-500;
+	og600: $og-600;
+	og700: $og-700;
+
+	al50: $al-50;
+	al100: $al-100;
+	al200: $al-200;
+	al300: $al-300;
+	al400: $al-400;
+	al500: $al-500;
+	al600: $al-600;
+	al700: $al-700;
+
+	n10: $n-10;
+	n20: $n-20;
+	n30: $n-30;
+	n40: $n-40;
+	n50: $n-50;
+	n100: $n-100;
+	n200: $n-200;
+	n300: $n-300;
+	n400: $n-400;
+	n500: $n-500;
+	n600: $n-600;
+	n700: $n-700;
+	n800: $n-800;
+	n900: $n-900;
 }
