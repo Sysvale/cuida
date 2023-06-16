@@ -101,9 +101,9 @@ export const Template = (args) => ({
       chartLabels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
       variant: 'green',
       chartData: [
-				{ 
-					name: 'Ecocardiograma',
+				{
 					chartData: {
+            name: 'Ecocardiograma',
 						datasets: [
 							{
 								label: 'Realizado',
@@ -121,8 +121,8 @@ export const Template = (args) => ({
 					},	
 				},
 				{ 
-					name: 'Raio-X',
 					chartData: {
+            name: 'Raio-X',
 						datasets: [
 							{
 								label: 'Realizado',
@@ -140,8 +140,8 @@ export const Template = (args) => ({
 					}
 				},
 				{ 
-					name: 'Tomografia',
 					chartData: {
+            name: 'Tomografia',
 						datasets: [
 							{
 								label: 'Realizado',
@@ -160,7 +160,7 @@ export const Template = (args) => ({
 				}
 			],
       indexAxis: 'x',
-      categoryPercentage: 0.5,
+      categoryPercentage: 0.9,
       choiceMultiselect: true,
       labelSelect: 'Exames',
     }}
