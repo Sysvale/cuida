@@ -300,20 +300,19 @@ export default {
 			let mergedData = { labels: this.localLabels, datasets: [] };
 
 			if (Array.isArray(selectedValues)) {
-				selectedValues.forEach((selected, index) => { // Adicione o parâmetro index ao forEach
+				const selectedDatasets = selectedValues.reduce((datasets, selected) => {
 					const option = this.options.find(element => element.name === selected.value);
-					if (option) {
-						const backgroundColor = this.generateBackgroundColor();
-						this.setColors(option.datasets, backgroundColor);
-						this.setName(option.datasets, index); // Chame a função setName com o parâmetro index
-						mergedData.datasets.push(...option.datasets);
-					}
-				});
+					return datasets.concat(option.datasets);
+				}, []);
+
+				const backgroundColor = this.generateBackgroundColor();
+				this.setColors(selectedDatasets, backgroundColor);
+
+				mergedData.datasets = selectedDatasets;
 			}
 
 			this.localChartData = mergedData;
 		},
-
 
   
 		// NOTE: Função que recebe a matriz de dados dos gráficos das opções selecionadas e mescla em um único objeto de dados. (MultiSelect: True)
@@ -340,27 +339,25 @@ export default {
 			if (palletColor) {
 				return palletColor.colorHex;
 			}
-			// NOTE: Se variant for definido como 'random', vai gerar hex aleatório para cada rótulo/label
-			return [
-				'#' + Math.floor(Math.random() * 16777215).toString(16),
-				'#' + Math.floor(Math.random() * 16777215).toString(16),
-				'#' + Math.floor(Math.random() * 16777215).toString(16),
-				'#' + Math.floor(Math.random() * 16777215).toString(16),
-				'#' + Math.floor(Math.random() * 16777215).toString(16),
-				'#' + Math.floor(Math.random() * 16777215).toString(16),
-				'#' + Math.floor(Math.random() * 16777215).toString(16)
-			];
+
+			const backgroundColor = [];
+			const selectedValuesCount = Array.isArray(this.selectedValues) ? this.selectedValues.length : 0;
+			for (let i = 0; i < selectedValuesCount; i++) {
+				backgroundColor.push('#' + Math.floor(Math.random() * 16777215).toString(16));
+			}
+			return backgroundColor;
 		},
+
   
 		// NOTE: Função responsável por setar backgroundColor, bordeWidth e name
 		setColors(datasets, backgroundColor) {
 			datasets.forEach((dataset, index) => {
+				console.log(dataset);
 				const colorIndex = index % backgroundColor.length;
 				const color = backgroundColor[colorIndex];
 				dataset.backgroundColor = color;
 				dataset.borderRadius = 4;
 			});	
-
 		},
 
 		setName(datasets, index) {
