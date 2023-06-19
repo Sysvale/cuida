@@ -71,7 +71,6 @@
 </template>
 
 <script>
-// eslint-disable-next-line import/no-unresolved
 import { DateTime } from 'luxon';
 import { DatePicker } from 'v-calendar';
 import 'v-calendar/dist/style.css';
@@ -180,6 +179,12 @@ export default {
 		inputClass() {
 			let returningClass = '';
 
+			if (this.disabled) {
+				return this.fluid
+					? 'date-input--disabled date-input--fluid'
+					: 'date-input--disabled';
+			}
+
 			if (!this.isBeingFocused) {
 				if (!this.disabled) {
 					if (this.state === 'valid') {
@@ -268,6 +273,13 @@ export default {
 	&--fluid {
 		@extend .date-input;
 		width: 100%;
+	}
+
+	&--disabled {
+		@extend .date-input;
+		background-color: $n-20 !important;
+		pointer-events: none;
+		border: none;
 	}
 
 	&--valid {
