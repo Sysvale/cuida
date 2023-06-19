@@ -48,6 +48,13 @@ export default {
 			default: 250,
 		},
 		/**
+		* Quando true deixa a largura do popover adaptável ao conteúdo. `Essa prop tem prevalência sobre a prop width!`
+		*/
+		fitContentWidth: {
+			type: Boolean,
+			default: false,
+		},
+		/**
 		 * Altura do Popover. A altura máxima é 500px
 		 */
 		height: {
@@ -94,6 +101,10 @@ export default {
 		},
 
 		popoverWidth() {
+			if (this.fitContentWidth) {
+				return 'fit-content';
+			}
+
 			return `${this.width}px`;
 		},
 
@@ -209,5 +220,4 @@ export default {
 		display: block;
 	}
 }
-
 </style>
