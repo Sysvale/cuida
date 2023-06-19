@@ -4,7 +4,7 @@ import { Source, Meta, Story } from '@storybook/addon-docs';
 
 # Rounder()
 
-Método utilizado para checar se um slot específico está sendo usado no componente.
+Método utilizado para determinar o `border-radius` de um elemento baseado na sua largura.
 
 <hr />
 <br />
@@ -15,21 +15,22 @@ Método utilizado para checar se um slot específico está sendo usado no compon
 
 #### Argumentos
 
-**(Objeto):**
-- Objeto de slots obtido com o this.$slots
+**(Number):**
+- Largura de um elemento no DOM
 - Obrigatória: *Sim*
-- Valores válidos: objeto de slots doc componente;
+- Valores válidos: qualquer número natural;
 
-**(String):**
-- Nome do slot que se deseja checar o uso
-- Obrigatória: *Sim*
-- Valores válidos: qualquer string contendo o nome de um dos slots do componente;
+**(Number):**
+- Limitador do border-radius. Essa prop limita o valor máximo que pode ser retornado.
+- Obrigatória: *Não*
+- Valores válidos: qualquer número natural;
+- Valor padrão: 24px;
 
 <br />
 
 #### Retorno
 
-**(Boolean):** Indica se está sendo utilizado o slot informado.
+**(Number):** Valor a ser utilizado como border-radius, calculado à partir da largura de um elemento no DOM.
 
 <br />
 
@@ -42,6 +43,6 @@ Método utilizado para checar se um slot específico está sendo usado no compon
   language='js'
   format={true}
   code={/*js*/ `
-  Rounder($slots, 'image')
+  this.rounder(this.width, 16)
 `}
 />

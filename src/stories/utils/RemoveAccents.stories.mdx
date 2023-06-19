@@ -4,7 +4,7 @@ import { Source, Meta, Story } from '@storybook/addon-docs';
 
 # RemoveAccents()
 
-Método utilizado para checar se um slot específico está sendo usado no componente.
+Sanitiza strings removendo acentos.
 
 <hr />
 <br />
@@ -15,21 +15,16 @@ Método utilizado para checar se um slot específico está sendo usado no compon
 
 #### Argumentos
 
-**(Objeto):**
-- Objeto de slots obtido com o this.$slots
-- Obrigatória: *Sim*
-- Valores válidos: objeto de slots doc componente;
-
 **(String):**
-- Nome do slot que se deseja checar o uso
+- String cujo valor se deseja sanitizar
 - Obrigatória: *Sim*
-- Valores válidos: qualquer string contendo o nome de um dos slots do componente;
+- Valores válidos: qualquer string;
 
 <br />
 
 #### Retorno
 
-**(Boolean):** Indica se está sendo utilizado o slot informado.
+**(Strgin):** String sem acentos.
 
 <br />
 
@@ -42,6 +37,6 @@ Método utilizado para checar se um slot específico está sendo usado no compon
   language='js'
   format={true}
   code={/*js*/ `
-  RemoveAccents($slots, 'image')
+  removeAccents(this.label)
 `}
 />
