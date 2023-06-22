@@ -3,7 +3,10 @@
 		id="scrollable"
 	>
 		<div
-			class="scrollable__container"
+			:class="[
+				'scrollable__container',
+				{ 'scrollable__container--horizontal': horizontalScroll }
+			]"
 			:style="{
 				'max-height': maxHeight,
 				'height': autoHeight ? 'auto' : maxHeight,
@@ -30,6 +33,13 @@ export default {
 		 * Define altura como 'auto' para o container até o limite máximo
 		 */
 		autoHeight: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+         * Torna o container scrollável horizontalmente
+         */
+		horizontalScroll: {
 			type: Boolean,
 			default: false,
 		},
@@ -66,6 +76,10 @@ export default {
 		&::-webkit-scrollbar-thumb:hover {
 			background: $n-50;
 		}
+
+        &--horizontal {
+            overflow-x: auto;
+        }
 	}
 }
 </style>
