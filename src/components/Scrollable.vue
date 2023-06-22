@@ -37,8 +37,8 @@ export default {
 			default: false,
 		},
 		/**
-         * Torna o container scrollável horizontalmente
-         */
+		 * Torna o container scrollável horizontalmente
+		 */
 		horizontalScroll: {
 			type: Boolean,
 			default: false,
@@ -77,9 +77,9 @@ export default {
 			background: $n-50;
 		}
 
-        &--horizontal {
-            overflow-x: auto;
-        }
+		&--horizontal {
+			overflow-x: auto;
+		}
 	}
 }
 </style>
