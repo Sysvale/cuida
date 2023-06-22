@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div class="cds-wizard">
 		<div class="cds-wizard__container">
@@ -10,6 +11,7 @@
 				fluid
 				:clickable="clickable"
 				@box-click="handleStepBoxClick(index)"
+				@click.prevent
 			>
 				<span v-if="currentStep >= index">
 					<slot :name="`step-${index + 1}-header`">
@@ -52,11 +54,14 @@
 				:text="cancelButtonText"
 				secondary
 				@button-click="backActionClick"
+				@click.prevent
 			/>
 			<cds-button
 				:text="nextButtonText"
 				:variant="nextButtonVariant"
+				:disabled="disableNextButton"
 				@button-click="nextActionClick"
+				@click.prevent
 			/>
 		</div>
 	</div>
@@ -82,9 +87,7 @@ export default {
 			type: Array,
 			default: () => ([]),
 			required: true,
-			validator: (value) => {
-				return value.length >= 2 && value.length <= 3;
-			},
+			validator: (value) => value.length >= 2 && value.length <= 3,
 		},
 		/**
 		 * O índice da etapa atual (0, 1 ou 2)
@@ -123,6 +126,13 @@ export default {
 			type: String,
 			default: 'green',
 		},
+		/**
+		 * Controla a disponibilidade do botão de ação principal.
+		 */
+		disableNextButton: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -160,7 +170,7 @@ export default {
 				*/
 				this.$emit('step-change', newValue);
 			}
-		}
+		},
 	},
 
 	methods: {
