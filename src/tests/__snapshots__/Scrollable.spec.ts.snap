@@ -23,6 +23,7 @@ VueWrapper {
   "componentVM": {
     "autoHeight": false,
     "hasOwnProperty": [Function],
+    "horizontalScroll": false,
     "maxHeight": "200px",
   },
   "isDisabled": [Function],
