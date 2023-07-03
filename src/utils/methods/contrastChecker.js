@@ -10,6 +10,8 @@ const PARAMETER = {
 	SUPER: 12,
 }
 
+import hexToRgb from './hexToRgb.js';
+
 export default (color1, color2, parameter = 'GOOD') => {
 	let color1RGB = hexToRgb(color1);
 	let color2RGB = hexToRgb(color2);
@@ -31,14 +33,4 @@ function luminance(r, g, b) {
 	});
 
 	return a[0] * RED + a[1] * GREEN + a[2] * BLUE;
-}
-
-
-function hexToRgb(hex) {
-	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-	return result ? [
-		parseInt(result[1], 16),
-		parseInt(result[2], 16),
-		parseInt(result[3], 16)
-	] : null;
 }
