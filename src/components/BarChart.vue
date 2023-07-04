@@ -29,6 +29,7 @@ import { Bar } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 import CdsMultiselect from './Multiselect.vue';
 import sassColorVariables from '../assets/sass/colors.module.scss';
+import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
 // Registrar o elemento "point" no registro (Torna-se necessário para Line e Pie que necessita de marcações de ponto)
 Chart.register(...registerables);
@@ -53,7 +54,7 @@ export default {
 			})
 		},
 		/**
-		 * A variante de cor. São 12 variantes implementadas: 'random', 'green', 'turquoise',
+		 * A variante de cor. São 12 variantes implementadas:'green', 'turquoise',
 		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'mid', 'dark'.
 		 */
 		variant: {
@@ -61,7 +62,7 @@ export default {
 			required: true,
 			default: 'green',
 			validator: (value) => {
-				return ['random', 'green', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'mid', 'dark'].includes(value);
+				return ['Piccolo Green', 'Sulivan Turquoise', 'Nocturne Blue', 'Nightwing Indigo', 'Raven Violet', 'Peppa Pink', 'Carmen Red', 'Goku Orange', 'Lisa Amber', 'Mid Neutrals', 'Dark Neutrals'].includes(value);
 			}
 		},
 		/**
@@ -104,66 +105,11 @@ export default {
 	data() {
 		return {
 			sassColorVariables,
+			teste: [],
 			localChartData: {},
 			localLabels: [],
 			localVariant: '',
-			palletColors: [
-				{
-					name: 'green',
-					colorHex: ['ABEDD9', '6DDFBC', '2AC092', '239F78', '1B795B', '126349'],
-					colorToken: ['gp200','gp300','gp400','gp500','gp600','gp700'],
-				},
-				{
-					name: 'turquoise',
-					colorHex: ['C2EDFF', '7BD0F4', '42AAD7', '1F86B2', '18698B', '13526D'],
-					colorToken: ['ts200','ts300','ts400','ts500','ts600','ts700'],
-				},
-				{
-					name: 'blue',
-					colorHex: ['B6D1F7', '83ADE7', '4B88DD', '2C70CD', '1A55A8', '174382'],
-					colorToken: ['bn200', 'bn300', 'bn400', 'bn500', 'bn600', 'bn700']
-				},
-				{
-					name: 'indigo',
-					colorHex: ['CED6FD', 'AAB7F8', '7080D2', '4D5DAC', '384584', '353D64'],
-					colorToken: ['in200', 'in300', 'in400', 'in500', 'in600', 'in700'],
-				},
-				{
-					name: 'violet',
-					colorHex: ['E6D2F9', 'CEABED', 'A975D7', '8955B9', '6B3A98', '4F2673'],
-					colorToken: ['vr200', 'vr300', 'vr400', 'vr500', 'vr600', 'vr700'],
-				},
-				{
-					name: 'pink',
-					colorHex: ['F9C8E2', 'EF8FC0', 'DA629F', 'BE377C', 'A12663', '701A48'],
-					colorToken: ['pp200', 'pp300', 'pp400', 'pp500', 'pp600', 'pp700'],
-				},
-				{
-					name: 'red',
-					colorHex: ['FABDC5', 'F98B98', 'F3596C', 'E03E52', 'C92C3F', 'A42333'],
-					colorToken: ['rc200', 'rc300', 'rc400', 'rc500', 'rc600', 'rc700'],
-				},
-				{
-					name: 'orange',
-					colorHex: ['FFD6CC', 'FDAF9B', 'FF8567', 'F06442', 'D64B29', 'AB3C21'],
-					colorToken: ['og200', 'og300', 'og400', 'og500', 'og600', 'og700'],
-				},
-				{
-					name: 'amber',
-					colorHex: ['FFE2B8', 'FDCD87', 'FFB952', 'EEA22F', 'D38817', 'A56A12'],
-					colorToken: ['al200', 'al300', 'al400', 'al500', 'al600', 'al700'],
-				},
-				{
-					name: 'mid',
-					colorHex: ['d6dce3', 'c3ccd5', 'acb8c3', '99a6b2', '8794a1'],
-					colorToken: ['n50', 'n100', 'n200',  'n300', 'n400'],
-				},
-				{
-					name: 'dark',
-					colorHex: ['647382', '52616f', '3b4754', '28333e', '1d262f'],
-					colorToken: ['n500', 'n600', 'n700',  'n800', 'n900'],
-				}
-			],
+			palletColors: [],
 			localSelect: '',
 			// NOTE: Label do multiselect
 			label: '',
@@ -269,7 +215,7 @@ export default {
 
 	mounted() {
 		this.addDataSetNames();
-		this.replaceColorsFromSass();
+		this.palete();
 	},
 
 	created() {
@@ -286,18 +232,23 @@ export default {
 	},
 
 	methods: {
-		// NOTE: Método que itera sobre palletColors e atualiza hex em acordo com o sassColorVariables
-		replaceColorsFromSass() {
-			this.palletColors.forEach((color) => {
-				color.colorToken.forEach((token, i) => {
-					const hex = this.sassColorVariables[token];
+		paleteBuilder,
 
-					if (hex) {
-						const formattedHex = `${hex}`;
-						color.colorHex[i] = formattedHex;
-					}
-				});
-			});
+		palete() {
+			this.palletColors = this.paleteBuilder(this.sassColorVariables.palete);
+			this.removeFirstTwoElements();
+		},
+
+		removeFirstTwoElements() {
+			for (let i = 0; i < this.palletColors.length; i++) {
+				const color = this.palletColors[i];
+
+				if (color.colorName !== 'Mid Neutrals' && color.colorName !== 'Dark Neutrals') {
+					color.colorShades.splice(0, 2);
+					color.colorTokens.splice(0, 2);
+					color.colorData.splice(0, 2);
+				}
+			}
 		},
 
 		// NOTE: Adiciona campo dataset.name com o nome do objeto respectivo
@@ -363,9 +314,9 @@ export default {
 
 		// NOTE: Função responsável por gerar uma cor de fundo aleatória. Caso contrário gera mesma cor de fundo para todos os datasets (Quando 'variant' for definido como random)
 		generateBackgroundColor() {
-			const palletColor = this.palletColors.find(color => color.name === this.variant);
+			const palletColor = this.palletColors.find(color => color.colorName === this.variant);
 			if (palletColor) {
-				return palletColor.colorHex;
+				return palletColor.colorShades;
 			}
 
 			const backgroundColor = [];
