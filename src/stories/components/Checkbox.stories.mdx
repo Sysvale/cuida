@@ -9,7 +9,7 @@ import Checkbox from '../../components/Checkbox.vue';
 			control:{
 				type: 'select',
 				options: [
-					'teal',
+					'turquoise',
 					'green',
 					'blue',
 					'indigo',
@@ -45,11 +45,23 @@ export const Template = (args) => ({
 	setup() {
 		return { args };
 	},
+	data() {
+		return {
+			value: false,
+			indeterminate: false,
+		};
+	},
 	template: /*html*/ `
 		<cds-checkbox
-			v-bind="args" 
+			v-bind="args"
+			v-model="value"
+			v-model:indeterminate="indeterminate"
 		/>
 	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+		console.info('%cv-model:indeterminate: ', 'color: #2C70CD;', this.indeterminate);
+	},
 });
 
 # Checkbox
@@ -70,13 +82,12 @@ export const Template = (args) => ({
 
 ## Preview
 
-export const label = 'checkbox'
-
 <Canvas>
 	<Story
 		name="Checkbox"
 		args={{
-			label,
+			label: 'Checkbox',
+			indeterminate: false,
 		}}
 	>
 		{ Template.bind({}) }
