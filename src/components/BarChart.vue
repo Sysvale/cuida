@@ -190,17 +190,13 @@ export default {
 	computed: {
 		// NOTE: Computada do multiselect responsável para exibir lista dos options pelo name
 		multiOptions() {
-			const tab = [];
-			this.options.forEach((element) => {
-				tab.push({ value: element.name });
-			});
-
-			return tab;
+			return this.options.map(option => ({ value: option.name }));
 		},
+
 
 		// NOTE: Computada responsável por definir qual tipo de dado vai ser exibido de acordo com o multiSelect ativado ou desativado
 		computedDataSet() {
-			return this.localSelect === true ? this.localChartData : this.verify;
+			return this.localSelect ? this.localChartData : this.verify;
 		},
 
 		// NOTE: Como modo de segurança, caso utilize um array de objetos irá exibir o primeiro objeto, caso não seja irá retornar somente o objeto passado
@@ -227,12 +223,14 @@ export default {
 			},
 			immediate: true,
 		},
+
 		labelSelect: {
 			handler(newValue) {
 				this.label = newValue
 			},
 			immediate: true,
 		},
+
 		chartData: {
 			handler(newValue, oldValue) {
 				this.options = newValue;
@@ -244,6 +242,7 @@ export default {
 			},
 			immediate: true,
 		},
+
 		selectedOptions: {
 			handler(newValue) {
 				this.handleSelectedValues(newValue);
@@ -251,12 +250,14 @@ export default {
 			deep: true,
 			immediate: true,
 		},
+
 		chartLabels: {
 			handler(newValue) {
 				this.localLabels = newValue
 			},
 			immediate: true,
 		},
+
 		variant: {
 			handler(newValue) {
 				this.localVariant = newValue;
@@ -312,10 +313,10 @@ export default {
 			let mergedData = { labels: this.localLabels, datasets: [] };
 
 			if (Array.isArray(selectedValues)) {
-				const selectedDatasets = selectedValues.reduce((datasets, selected) => {
+				const selectedDatasets = selectedValues.flatMap(selected => {
 					const option = this.options.find(element => element.name === selected.value);
-					return datasets.concat(option.datasets);
-				}, []);
+					return option ? option.datasets : [];
+				});
 
 				const backgroundColor = this.generateBackgroundColor();
 				this.setColors(selectedDatasets, backgroundColor);
@@ -325,7 +326,6 @@ export default {
 
 			this.localChartData = mergedData;
 		},
-
   
 		// NOTE: Função que recebe a matriz de dados dos gráficos das opções selecionadas e mescla em um único objeto de dados. (MultiSelect: True)
 		mergeChartData(data) {
