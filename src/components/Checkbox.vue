@@ -48,7 +48,7 @@ export default {
 			required: true,
 		},
 		/**
-		* A prop usada como v-model para monitorar a seleção do Checkbox
+		* Prop usada para indicar visualmente se o checkbox está no estado indeterminado. Two-way binding ativo com o `v-model:indeterminate`
 		*/
 		indeterminate: {
 			type: Boolean,
