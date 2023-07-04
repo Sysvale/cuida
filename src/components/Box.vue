@@ -87,7 +87,7 @@ export default {
 		},
 
 		borderRadiusResolver() {
-			return this.rounder(this.width, 16);
+			return this.rounder(this.width, 12);
 		},
 	},
 

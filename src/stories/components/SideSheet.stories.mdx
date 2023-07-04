@@ -1,0 +1,133 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import SideSheet from '../../components/SideSheet.vue';
+import Button from '../../components/Button.vue';
+
+<Meta
+	title="Componentes/Overlays/SideSheet"
+	component={ SideSheet }
+	argTypes={{
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'xl',
+					'lg',
+					'md',
+					'sm',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-side-sheet
+	v-model="show"
+	:position="right"
+	:no-close-on-backdrop="false"
+	:no-close-on-esc="false"
+>
+	<p class="p-3">
+		Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
+		vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
+		Atirei o pau no gatis, per gatis num morreus. Pra lá , depois
+		divoltis porris, paradis. Leite de capivaris, leite de mula
+		manquis sem cabeça. Viva Forevis aptent taciti sociosqu ad
+		litora torquent. Per aumento de cachacis, eu reclamis. Nec
+		orci ornare consequat. Praesent lacinia ultrices consectetur.
+		Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
+	</p>
+</cds-side-sheet>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsSideSheet: SideSheet, CdsButton: Button },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			show: false,
+		};
+	},
+	props: Object.keys(args),
+	template: /*html*/ `
+		<div>
+			<cds-button
+				@click="show = true"
+			>
+				Click
+			</cds-button>
+			<cds-side-sheet
+				v-model="show"
+				v-bind="$props"
+			>
+				<p class="p-3">
+					Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
+					vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
+					Atirei o pau no gatis, per gatis num morreus. Pra lá , depois
+					divoltis porris, paradis. Leite de capivaris, leite de mula
+					manquis sem cabeça. Viva Forevis aptent taciti sociosqu ad
+					litora torquent. Per aumento de cachacis, eu reclamis. Nec
+					orci ornare consequat. Praesent lacinia ultrices consectetur.
+					Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
+				</p>
+			</cds-side-sheet>
+		</div>
+	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.show);
+	},
+});
+
+# SideSheet
+
+### SideSheets são painéis que surgem do lado direito da tela. De modo semelhante aos Modais, são úteis quando se precisa que os usuários concluam executem ações sem perder o contexto da página atual.
+---
+<br />
+
+
+## Quando usar:
+- Para criar filtros com muitos campos sobre o conteúdo mostrado na página.
+- Para criar formulários mantendo o conteúdo principal da página visível.
+- Para mostrar informações detalhadas sobre determinado item da página.
+
+<br />
+
+## Quando não usar:
+- Quando o conteúdo do SideSheet não for relacionado com o conteúdo da página.
+- Não use SideBars como solução de navegação vertical.
+
+<br />
+
+## Observações:
+- ⚠️ Este componente foi projetado apenas para usos em desktops e tablets.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="SideSheet"
+		args={{
+			size: 'md',
+			title: 'SideSheet',
+			withOverlay: true,
+			noCloseOnBackdrop: false,
+			noCloseOnEsc: false,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="SideSheet" />

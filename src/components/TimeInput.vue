@@ -91,7 +91,7 @@
 			</div>
 		</div>
 		<div
-			v-if="state === 'invalid'"
+			v-if="state === 'invalid' && !disabled"
 			class="input__message"
 		>
 			{{ errorMessage }}
@@ -209,6 +209,10 @@ export default {
 
 	computed: {
 		computedInputClass() {
+			if (this.disabled) {
+				return 'input__time--disabled';
+			}
+
 			switch (this.state) {
 				case 'valid':
 					return 'input__time--valid';
@@ -364,6 +368,12 @@ export default {
 
 		&:focus-visible {
 			outline-color: $bn-300;
+		}
+
+		&--disabled {
+			@extend .input__time;
+			background-color: $n-20 !important;
+			pointer-events: none;
 		}
 
 		&--valid {

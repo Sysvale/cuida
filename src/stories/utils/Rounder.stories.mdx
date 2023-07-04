@@ -1,0 +1,48 @@
+import { Source, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Utils/Métodos/Rounder()"/>
+
+# Rounder()
+
+Método utilizado para determinar o `border-radius` de um elemento baseado na sua largura.
+
+<hr />
+<br />
+
+⚠️ *Método disponível apenas para desenvolvimento interno no Cuida*
+
+<br />
+
+#### Argumentos
+
+**(Number):**
+- Largura de um elemento no DOM
+- Obrigatória: *Sim*
+- Valores válidos: qualquer número natural;
+
+**(Number):**
+- Limitador do border-radius. Essa prop limita o valor máximo que pode ser retornado.
+- Obrigatória: *Não*
+- Valores válidos: qualquer número natural;
+- Valor padrão: 24px;
+
+<br />
+
+#### Retorno
+
+**(Number):** Valor a ser utilizado como border-radius, calculado à partir da largura de um elemento no DOM.
+
+<br />
+
+#### Exemplo
+
+<Story name="Rounder">
+</Story>
+
+<Source
+  language='js'
+  format={true}
+  code={/*js*/ `
+  this.rounder(this.width, 16)
+`}
+/>

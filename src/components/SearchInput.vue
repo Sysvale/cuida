@@ -118,6 +118,7 @@ export default {
 
 		stepperInputDynamicClass() {
 			let stepperInputClass = this.fluid ? 'search-input--fluid' : 'search-input';
+			return stepperInputClass.concat(' ', this.disabled ? 'search-input--disabled' : '');
 
 			// if (!this.isBeingFocused) {
 			// 	if (!this.disabled) {
@@ -140,8 +141,6 @@ export default {
 			// 		stepperInputClass += ' search-input--focused-loading';
 			// 	}
 			// }
-
-			return stepperInputClass;
 		},
 
 		// loadingState(){
