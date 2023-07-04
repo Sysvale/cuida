@@ -179,7 +179,6 @@ export default {
 					tooltip: {
 						callbacks: {
 							beforeTitle: function (context) {
-								// console.log(context[0].dataset);
 								return `${context[0].dataset.name}`;
 							}
 						}
@@ -220,6 +219,7 @@ export default {
 			return this.chartData;
 		},
 	},
+
 	watch: {
 		choiceMultiselect: {
 			handler(newValue) {
@@ -236,7 +236,6 @@ export default {
 		chartData: {
 			handler(newValue, oldValue) {
 				this.options = newValue;
-				// console.log(newValue[0].chartData.name);
 				if (newValue === oldValue && Array.isArray(newValue) && newValue.length > 0) {
 					this.options = newValue[0];
 					return;
@@ -265,6 +264,11 @@ export default {
 			immediate: true,
 		},
 	},
+
+	mounted() {
+		this.addDataSetNames();
+	},
+
 	created() {
 		if (this.choiceMultiselect && this.multiOptions.length > 0) {
 			this.multiOptions[0].isSelected = true;
@@ -279,6 +283,14 @@ export default {
 	},
 
 	methods: {
+		// NOTE: Adiciona campo dataset.name com o nome do objeto respectivo
+		addDataSetNames() {
+			this.chartData.forEach(item => {
+				item.datasets.forEach(dataset => {
+					dataset.name = item.name;
+				});
+			});
+		},
 
 		// NOTE: Verifica o tipo de dado que está sendo inserido
 		typeOfData(chartData) {
@@ -350,26 +362,31 @@ export default {
 
   
 		// NOTE: Função responsável por setar backgroundColor, bordeWidth e name
+		// Ocorre essa verificação para garantir que o mesmo conjunto de dados para mais de um item selecionado tenha a mesma cor
 		setColors(datasets, backgroundColor) {
-			datasets.forEach((dataset, index) => {
-				console.log(dataset);
-				const colorIndex = index % backgroundColor.length;
-				const color = backgroundColor[colorIndex];
-				dataset.backgroundColor = color;
-				dataset.borderRadius = 4;
-			});	
-		},
+			if (this.selectedValues.length > 1) {
+				const colors = {};
 
-		setName(datasets, index) {
-			datasets.forEach((dataset) => {
-				if (index !== undefined) { // Verifica se o index foi fornecido
-					dataset.name = this.selectedValues[index].value; // Atribui o nome do item selecionado com base no índice
-				} else {
-					dataset.name = '';
-				}
-			});
-		},
+				datasets.forEach(dataset => {
+					const objectName = dataset.name;
 
+					if (!colors[objectName]) {
+						const colorIndex = Object.keys(colors).length % backgroundColor.length;
+						colors[objectName] = backgroundColor[colorIndex];
+					}
+
+					dataset.backgroundColor = colors[objectName];
+					dataset.borderRadius = 4;
+				});
+			} else {
+				datasets.forEach((dataset, index) => {
+					const colorIndex = index % backgroundColor.length;
+					const color = backgroundColor[colorIndex];
+					dataset.backgroundColor = color;
+					dataset.borderRadius = 4;
+				});
+			}
+		},
 	}
 }
 </script>
