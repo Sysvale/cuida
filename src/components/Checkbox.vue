@@ -11,26 +11,27 @@
 				:value="modelValue"
 				type="checkbox"
 				:name="$attrs.name || 'cds-checkbox-option'"
-				:checked="isChecked"
 				:disabled="disabled"
 			>
 
 			<label
 				:for="$attrs.id || 'cds-checkbox-option-input'"
 				:class="resolveCheckboxClass"
-				@click.stop="toggleValue"
+				@click="toggleValue"
 			/>
 		</div>
 
-		<div
+		<label
 			class="cds-checkbox__label"
 			:class="{
-				'cds-checkbox__label--disabled': disabled
+				'cds-checkbox__label--disabled': disabled,
+				'cds-checkbox__label--prominent': prominent && modelValue,
 			}"
+			:for="$attrs.id || 'cds-checkbox-option-input'"
 			@click="toggleValue"
 		>
 			{{ label }}
-		</div>
+		</label>
 	</div>
 </template>
 
@@ -48,20 +49,6 @@ export default {
 			required: true,
 		},
 		/**
-		* Prop usada para indicar visualmente se o checkbox está no estado indeterminado. Two-way binding ativo com o `v-model:indeterminate`
-		*/
-		indeterminate: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		* Controla o status checkbox
-		*/
-		disabled: {
-			type: Boolean,
-			default: false,
-		},
-		/**
 		* Exibe a etiqueta do checkbox
 		*/
 		label: {
@@ -75,6 +62,27 @@ export default {
 		variant: {
 			type: String,
 			default: 'green',
+		},
+		/**
+		* Prop usada para indicar visualmente se o checkbox está no estado indeterminado. Two-way binding ativo com o `v-model:indeterminate`
+		*/
+		indeterminate: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		* Destaca visualmente a label
+		*/
+		prominent: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		* Controla o status checkbox
+		*/
+		disabled: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
@@ -144,23 +152,22 @@ export default {
 	},
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
 
 .cds-checkbox__container {
 	display: flex;
 	align-items: center;
-	width: fit-content;
+	gap: spacer(3);
 
 	input[type=checkbox] {
 		visibility: hidden;
+		margin-top: spacer(n8);
+		position: absolute;
 	}
 
 	.cds-checkbox__input {
-		width: 18px;
 		position: relative;
-		margin-right: spacer(3);
-		margin-top: spacer(n1);
 
 		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
 			background-color: $base-color !important;
@@ -168,10 +175,9 @@ export default {
 
 		label {
 			cursor: pointer;
-			position: absolute;
-			width: 18px;
-			height: 18px;
-			top: 3px;
+			display: block;
+			width: 16px;
+			height: 16px;
 			border-radius: $border-radius-button;
 		}
 
@@ -182,8 +188,8 @@ export default {
 				border-right: none;
 				content: "";
 				height: 5px;
-				width: 9px;
-				left: 5px;
+				width: 8px;
+				left: 4px;
 				opacity: 0;
 				position: absolute;
 				top: 5px;
@@ -201,8 +207,8 @@ export default {
 				border-left: none;
 				content: "";
 				height: 5px;
-				width: 9px;
-				left: 5px;
+				width: 8px;
+				left: 4px;
 				opacity: 0;
 				position: absolute;
 				top: 5px;
@@ -211,24 +217,39 @@ export default {
 			}
 		}
 
-		&--unchecked {
-			border: 1px solid $n-400;
-			background-color: $n-0 !important;
+		&--disabled {
+			background-color: $n-100 !important;
+			border: none !important;
+			cursor: default !important;
 		}
 
-		&--disabled {
+		&--disabled:not(.cds-checkbox__input--checked) {
 			background-color: $n-20 !important;
-			border-color: $n-50 !important;
+			border: 1px solid $n-200 !important;
+			cursor: default !important;
 		}
+
+		&--unchecked {
+			background-color: $n-0 !important;
+			border: 1px solid $n-400 !important;
+		}
+
 	}
 
 	.cds-checkbox__label {
 		@include body-2;
 		cursor: pointer;
+		color: $n-700;
 
 		&--disabled {
 			@extend .cds-checkbox__label;
-			color: $n-300;
+			color: $n-400;
+			cursor: default !important;
+		}
+
+		&--prominent {
+			font-weight: $font-weight-semibold;
+			color: $n-800;
 		}
 	}
 }
