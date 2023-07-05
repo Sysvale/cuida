@@ -6,7 +6,7 @@
 			id="cds-multiselect"
 		>	
 			<cds-multiselect
-				v-model="selectedOptions"
+				v-model="selectedValues"
 				:options="multiOptions"
 				:label="label"
 				:options-field="options.name"
@@ -66,7 +66,7 @@ export default {
 			}
 		},
 		/**
-		 * Defina a labels do gráfico
+		 * Defina as labels do gráfico
 		 */
 		chartLabels: {
 			type: Array,
@@ -111,7 +111,6 @@ export default {
 			localSelect: '',
 			label: '', // NOTE: Label do multiselect
 			options: [], 			// NOTE: Options do multiselect
-			selectedOptions: [],
 			selectedValues: [],
 			chartOptions: {
 				responsive: true,
@@ -151,7 +150,7 @@ export default {
 					value: this.multiOptions[0].value,
 				};
 				// eslint-disable-next-line vue/no-side-effects-in-computed-properties
-				this.selectedOptions = [selectedOption];
+				this.selectedValues = [selectedOption];
 				return this.localChartData;
 			}
 			return this.chartData;
@@ -185,7 +184,7 @@ export default {
 			immediate: true,
 		},
 
-		selectedOptions: {
+		selectedValues: {
 			handler(newValue) {
 				this.handleSelectedValues(newValue);
 			},
@@ -212,9 +211,9 @@ export default {
 			const selectedOption = {
 				value: this.multiOptions[0].value,
 			};
-			this.selectedOptions = [selectedOption];
+			this.selectedValues = [selectedOption];
 		} else {
-			this.selectedOptions = [];
+			this.selectedValues = [];
 		}
 		this.typeOfData(this.chartData);
 	},
@@ -251,13 +250,9 @@ export default {
 
 		// NOTE: Verifica o tipo de dado que está sendo inserido
 		typeOfData(chartData) {
-			if (typeof chartData === 'object') {
-				if (!Array.isArray(chartData)) {
-					if (!this.localSelect) {
-						// Redireciona para função de merge do Objeto quando multiselect desativado
-						this.mergeChartDataNoSelect(chartData);
-					}
-				}
+			if (!Array.isArray(chartData) && !this.localSelect) {
+				// Redireciona para a função de merge do objeto quando o multiselect está desativado
+				this.mergeChartDataNoSelect(chartData);
 			}
 		},
 
@@ -322,7 +317,6 @@ export default {
 						const colorIndex = Object.keys(colors).length % backgroundColor.length;
 						colors[objectName] = backgroundColor[colorIndex];
 					}
-
 					dataset.backgroundColor = colors[objectName];
 					dataset.borderRadius = 4;
 				});
