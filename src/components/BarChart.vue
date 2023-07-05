@@ -33,8 +33,8 @@ import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
 // Registrar o elemento "point" no registro (Torna-se necessário para Line e Pie que necessita de marcações de ponto)
 Chart.register(...registerables);
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 export default {
 	components: {
 		Bar,
@@ -54,8 +54,8 @@ export default {
 			})
 		},
 		/**
-		 * A variante de cor. São 12 variantes implementadas:'green', 'turquoise',
-		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'mid', 'dark'.
+		 * A variante de cor. São 11 variantes implementadas:'Piccolo Green', 'Sulivan Turquoise',
+		 * 'Nocturne Blue', 'Nightwing Indigo', 'Raven Violet', 'Peppa Pink', 'Carmen Red', 'Goku Orange', 'Lisa Amber', 'Mid Neutrals', 'Dark Neutrals'.
 		 */
 		variant: {
 			type: String,
@@ -95,8 +95,8 @@ export default {
 			default: 'x'
 		},
 		/**
-		 * Configura a porcentagem ocupada pela barra do gráfico. (0.1-1).
-		 */
+			 * Configura a porcentagem ocupada pela barra do gráfico. (0.1-1).
+			 */
 		categoryPercentage: {
 			type: Number,
 			default: 1,
@@ -105,22 +105,17 @@ export default {
 	data() {
 		return {
 			sassColorVariables,
-			teste: [],
 			localChartData: {},
 			localLabels: [],
-			localVariant: '',
 			palletColors: [],
 			localSelect: '',
-			// NOTE: Label do multiselect
-			label: '',
-			// NOTE: Options do multiselect
-			options: [],
-			value: [],
+			label: '', // NOTE: Label do multiselect
+			options: [], 			// NOTE: Options do multiselect
 			selectedOptions: [],
 			selectedValues: [],
 			chartOptions: {
 				responsive: true,
-				maintainAspectRatio: true, //NOTE: Caso true manterá aspecto de proporção original, caso false, será dimensionado para preencher completamente o contêiner (Isso pode fazer com que o gráfico pareça distorcido se o container tiver proporção de aspecto diferente do gráfico original)
+				maintainAspectRatio: true, // NOTE: Caso true manterá aspecto de proporção original, caso false, será dimensionado para preencher completamente o contêiner (Isso pode fazer com que o gráfico pareça distorcido se o container tiver proporção de aspecto diferente do gráfico original)
 				indexAxis: this.indexAxis, //NOTE: Configura o eixo do gráfico.
 				categoryPercentage: this.categoryPercentage, //NOTE: Configura a porcentagem ocupada pela barra do gráfico. (0-1)
 				plugins: {
@@ -204,13 +199,6 @@ export default {
 			},
 			immediate: true,
 		},
-
-		variant: {
-			handler(newValue) {
-				this.localVariant = newValue;
-			},
-			immediate: true,
-		},
 	},
 
 	mounted() {
@@ -239,6 +227,7 @@ export default {
 			this.removeFirstTwoElements();
 		},
 
+		// NOTE: Função responsável por remover os dois primeiros elementos da paleta para quando não é Mid ou Dark Neutrals
 		removeFirstTwoElements() {
 			for (let i = 0; i < this.palletColors.length; i++) {
 				const color = this.palletColors[i];
@@ -273,7 +262,7 @@ export default {
 		},
 
 		// NOTE: Responsável por lidar com os valores selecionados do multiselect, mapeando cada valor para encontrar os dados correspondentes nas opções disponíveis;
-		// Em seguida define setColors para definir as cores dos datasets das opções selecionadas;
+		// Em seguida define setColors para atribuir as cores dos datasets das opções selecionadas;
 		// Chama a função mergeChartData para mesclar os dados das opções selecionadas para atualizar localChartData
 		handleSelectedValues(selectedValues) {
 			this.selectedValues = selectedValues;
@@ -290,7 +279,6 @@ export default {
 
 				mergedData.datasets = selectedDatasets;
 			}
-
 			this.localChartData = mergedData;
 		},
   
@@ -312,19 +300,13 @@ export default {
 			this.localChartData = data;
 		},
 
-		// NOTE: Função responsável por gerar uma cor de fundo aleatória. Caso contrário gera mesma cor de fundo para todos os datasets (Quando 'variant' for definido como random)
+		// NOTE: Função responsável por buscar a cor na paleta
 		generateBackgroundColor() {
 			const palletColor = this.palletColors.find(color => color.colorName === this.variant);
 			if (palletColor) {
 				return palletColor.colorShades;
 			}
-
-			const backgroundColor = [];
-			const selectedValuesCount = Array.isArray(this.selectedValues) ? this.selectedValues.length : 0;
-			for (let i = 0; i < selectedValuesCount; i++) {
-				backgroundColor.push('#' + Math.floor(Math.random() * 16777215).toString(16));
-			}
-			return backgroundColor;
+			return [];
 		},
   
 		// NOTE: Função responsável por setar backgroundColor, bordeWidth e name
