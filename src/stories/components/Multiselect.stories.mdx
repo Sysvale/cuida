@@ -4,17 +4,6 @@ import Multiselect from '../../components/Multiselect.vue';
 <Meta
 	title="Componentes/Forms/Multiselect"
 	component={ Multiselect }
-	argTypes={{
-		options: {
-			description: 'Lista de opções do ClusteredMultiselect',
-		},
-		label: {
-			description: 'Propriedade do objeto options, que vai constar nas tags listadas no ClusteredMultiselect',
-		},
-		trackBy: {
-			description: 'Utilizada para comparar objetos.',
-		},
-	}}
 	parameters={{
 		viewMode: 'docs',
 		previewTabs: { canvas: { hidden: true }},
@@ -41,7 +30,7 @@ export const Template = (args) => ({
 	},
 	data() {
 		return {
-			value: [{ title: 'Naruto'}],
+			value: [{ title: 'Naruto'}, {title: 'Pokemon'}],
 		};
 	},
 	template: /*html*/ `
@@ -50,6 +39,9 @@ export const Template = (args) => ({
 			v-model="value"
 		/>
 	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
 });
 
 # Multiselect
@@ -71,9 +63,6 @@ export const Template = (args) => ({
 <br />
 
 ## Observações:
-- O Multiselect é similar ao DropDown com uma estilização mais atualizada. Nas próximas versões o componente
-DropDown será descontinuado, por isso é preferível a utilização do Multiselect a não ser nas
-ocasiões mencionadas na seção "Não recomendamos".
 - O Multiselect do Cuida é um wrapper do <a href="https://vue-multiselect.js.org/">Vue Multiselect</a>
 com a sua adequação aos nossos princípios e recomendações. Para informações detalhadas sobre o componente, recomendamos
 leitura da documentação.
@@ -86,7 +75,11 @@ export const options = [
 	{ title: 'Avengers',},
 	{ title: 'Naruto',},
 	{ title: 'X-men',},
-	{ title: 'The Power-puff Girls',}
+	{ title: 'The Simpsons',},
+	{ title: 'Bananas de pijamas',},
+	{ title: 'Pokemon',},
+	{ title: 'Digimon',},
+	{ title: 'Megamente',},
 ];
 
 <Canvas>
