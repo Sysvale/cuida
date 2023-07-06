@@ -83,8 +83,10 @@
 								@click.stop="toggleSelectAll"
 							/>
 						</div>
+						
 						{{ selectAllFancyMessage }}
 					</div>
+
 					<div
 						v-if="!isGroupMode"
 						class="test"
@@ -93,6 +95,7 @@
 					</div>
 				</div>
 			</template>
+
 			<template
 				#option="{ option }"
 			>
@@ -106,6 +109,7 @@
 						dimmed
 					/>
 				</div>
+
 				<div
 					v-else
 					class="cds-multiselect__option"
@@ -128,6 +132,7 @@
 					{{ option[optionsField] }}
 				</div>
 			</template>
+
 			<template
 				#selection="{ values, isOpen }"
 			>
@@ -139,17 +144,20 @@
 				</span>
 				<span v-else />
 			</template>
+
 			<template
 				#noResult
 			>
 				Nenhum resultado encontrado para: "<strong>{{ queryString }} </strong>"
 			</template>
+
 			<template
 				#noOptions
 			>
 				Não há nenhuma opção para ser exibida.
 			</template>
 		</multiselect>
+
 		<div
 			v-if="errorState && !disabled"
 			class="clustered-multiselect__error-message"
@@ -178,15 +186,15 @@ export default {
 
 	props: {
 		/**
-		 * Guarda o valor selecionado do multiselect.
-		 */
+		* Guarda o valor selecionado do multiselect.
+		*/
 		modelValue: {
 			type: Array,
 			required: true,
 		},
 		/**
-		 * Especifica a label do input.
-		 */
+		* Especifica a label do input.
+		*/
 		label: {
 			type: String,
 			default: 'text',
@@ -196,29 +204,29 @@ export default {
 			default: 'value',
 		},
 		/**
-		 * Exibe asterisco de obrigatório (obs.: não faz a validação)
-		 */
+		* Exibe asterisco de obrigatório (obs.: não faz a validação)
+		*/
 		required: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		 * Desabilita o input.
-		 */
+		* Desabilita o input.
+		*/
 		disabled: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
-		 */
+		* Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+		*/
 		errorMessage: {
 			type: String,
 			default: 'Valor inválido',
 		},
 		/**
-		 * Especifica o estado do TextInput. As opções são 'default' e 'invalid'.
-		 */
+		* Especifica o estado do TextInput. As opções são 'default' e 'invalid'.
+		*/
 		state: {
 			type: String,
 			default: 'default',
@@ -228,17 +236,17 @@ export default {
 			required: true,
 		},
 		/**
-		 * Indica o nome da chave do objeto a ser considerada na renderização
-		 * das opções do select.
-		 */
+		* Indica o nome da chave do objeto a ser considerada na renderização
+		* das opções do select.
+		*/
 		optionsField: {
 			type: String,
 			default: 'value',
 			required: false,
 		},
 		/**
-		 * Permite ocultar o botão "selecionar todos" ou não
-		 */
+		* Permite ocultar o botão "selecionar todos" ou não
+		*/
 		hideSelectAll: {
 			type: Boolean,
 			default: false,
@@ -280,6 +288,7 @@ export default {
 			if (!this.hasSelectedValues) {
 				return 'Selecionar todos';
 			}
+
 			return 'Desfazer seleção';
 		},
 
@@ -295,6 +304,7 @@ export default {
 			if (this.$attrs.placeholder) {
 				return this.$attrs.placeholder;
 			}
+
 			return 'Selecione uma ou mais opções';
 		},
 
@@ -342,6 +352,7 @@ export default {
 				this.selectAllValue = false;
 				return;
 			}
+
 			if (newValue && !this.selectAllValue) {
 				this.selectAllValue = true;
 			}
@@ -356,6 +367,7 @@ export default {
 		this.updateRenderOptions();
 		this.indeterminate = this.hasSelectedValues && this.selectedValue.length < this.options.length;
 	},
+
 	methods: {
 		unselectItem(option) {
 			this.handleSelectItem(option);
@@ -384,6 +396,7 @@ export default {
 						item.isSelected = !item.isSelected;
 					}
 				});
+
 				this.internalOptions[NOT_SELECTED].options.forEach(item => {
 					if (item[this.optionsField] === option[this.optionsField]) {
 						item.isSelected = !item.isSelected;
@@ -405,6 +418,7 @@ export default {
 			} else {
 				this.selectedValue = [];
 			}
+
 			this.$nextTick().then(() => {
 				if (this.isGroupMode) {
 
@@ -451,25 +465,31 @@ export default {
 					...item,
 					isSelected: false,
 				})));
+
 				this.groupValues = null;
 				this.groupLabel = null;
 				return;
 			}
+
 			this.selectedValue.forEach((item) => {
 				item.isSelected = true;
 			});
+
 			let rawOptions = clone(this.options);
 			rawOptions = rawOptions.map((item) => {
 				const containsItem = this.selectedValue.some(
 					value => value[this.optionsField] === item[this.optionsField]
 				);
+
 				if (containsItem) {
 					item.isSelected = true;
 				} else {
 					item.isSelected = false;
 				}
+
 				return item;
 			});
+
 			this.internalOptions = [
 				{
 					$status: 'Selecionados',
@@ -480,10 +500,9 @@ export default {
 					options: [],
 				},
 			];
-			this.internalOptions[SELECTED]
-				.options = this.selectedValue;
-			this.internalOptions[NOT_SELECTED]
-				.options = rawOptions.filter(item => !item.isSelected);
+
+			this.internalOptions[SELECTED].options = this.selectedValue;
+			this.internalOptions[NOT_SELECTED].options = rawOptions.filter(item => !item.isSelected);
 			this.groupValues = 'options';
 			this.groupLabel = '$status';
 		},
