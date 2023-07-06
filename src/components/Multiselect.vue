@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<span
-		id="cds-multiselect"
+		class="cds-multiselect"
 		:data-cds-multiselect-identifier="uniqueKey"
 	>
 		<span>
@@ -14,7 +14,7 @@
 			<label
 				v-else
 				class="clustered-multiselect__label"
-				for="clustered-multiselect"
+				:for="`clustered-multiselect-${uniqueKey}`"
 			>
 				<span>
 					{{ label }}
@@ -31,7 +31,7 @@
 		</span>
 
 		<multiselect
-			id="clustered-multiselect"
+			:id="`clustered-multiselect-${uniqueKey}`"
 			ref="cds-multiselect"
 			v-bind="attrs"
 			v-model="selectedValue"
@@ -46,6 +46,7 @@
 			select-label=""
 			deselect-label=""
 			selected-label=""
+			:disabled="disabled"
 			:placeholder="computedPlaceholder"
 			:block-keys="['Delete', 'Enter']"
 			@close="handleClose"
@@ -89,7 +90,7 @@
 
 					<div
 						v-if="!isGroupMode"
-						class="test"
+						class="cds-multiselect__grouped-divider"
 					>
 						<cds-divider dimmed />
 					</div>
@@ -171,6 +172,7 @@
 import Multiselect from 'vue-multiselect';
 import { generateKey } from '../utils';
 import CdsDivider from './Divider.vue';
+import sassColorVariables from '../assets/sass/colors.module.scss';
 
 const SELECTED = 0;
 const NOT_SELECTED = 1;
@@ -199,19 +201,22 @@ export default {
 			type: String,
 			default: 'text',
 		},
+		/**
+		* Utilizada para comparar objetos. Seu valor deve ser único.
+		*/
 		trackBy: {
 			type: String,
 			default: 'value',
 		},
 		/**
-		* Exibe asterisco de obrigatório (obs.: não faz a validação)
+		* Exibe asterisco indicativo de obrigatoriedade (obs.: não faz a validação)
 		*/
 		required: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		* Desabilita o input.
+		* Desabilita o Multiselect.
 		*/
 		disabled: {
 			type: Boolean,
@@ -231,13 +236,15 @@ export default {
 			type: String,
 			default: 'default',
 		},
+		/**
+		* Lista de opções do Multiselect.
+		*/
 		options: {
 			type: Array,
 			required: true,
 		},
 		/**
-		* Indica o nome da chave do objeto a ser considerada na renderização
-		* das opções do select.
+		* Indica o nome da chave do objeto a ser considerada na renderização das opções do select.
 		*/
 		optionsField: {
 			type: String,
@@ -245,7 +252,7 @@ export default {
 			required: false,
 		},
 		/**
-		* Permite ocultar o botão "selecionar todos" ou não
+		* Permite ocultar o botão "selecionar todos"
 		*/
 		hideSelectAll: {
 			type: Boolean,
@@ -262,6 +269,7 @@ export default {
 			selectAllValue: false,
 			queryString: '',
 			indeterminate: false,
+			sassColorVariables,
 			uniqueKey: generateKey(),
 		};
 	},
@@ -317,17 +325,12 @@ export default {
 			const { label, trackBy, options, ...attrs } = this.$attrs;
 			return attrs;
 		},
+
+		inputBackgroundColor() {
+			return this.disabled ? this.sassColorVariables['n20'] : this.sassColorVariables['n0'];
+		},
 	},
 	watch: {
-		modelValue: {
-			handler(newValue, oldValue) {
-				if (newValue !== oldValue) {
-					this.selectedValue = newValue;
-				}
-			},
-			immediate: true,
-		},
-
 		selectedValue(values) {
 			const cleanedValues = clone(values);
 			cleanedValues.forEach((val) => delete val.isSelected);
@@ -363,7 +366,9 @@ export default {
 			input.indeterminate = newValue;
 		},
 	},
+
 	mounted() {
+		this.selectedValue = this.modelValue;
 		this.updateRenderOptions();
 		this.indeterminate = this.hasSelectedValues && this.selectedValue.length < this.options.length;
 	},
@@ -523,11 +528,27 @@ export default {
 <style lang="scss">
 @import '../assets/sass/tokens.scss';
 
-.test {
-	margin: mYX(2, 3);
-}
 
-#cds-multiselect {
+.cds-multiselect {
+	&__grouped-divider {
+		margin: mYX(2, 3);
+	}
+	.multiselect--disabled .multiselect__current, .multiselect--disabled .multiselect__select {
+		background-color: transparent !important;
+	}
+
+	.multiselect--disabled {
+		opacity: 1 !important;
+	}
+
+	.multiselect__tags {
+		background-color: v-bind(inputBackgroundColor);
+	}
+
+	.multiselect__input, .multiselect__single {
+		background-color: v-bind(inputBackgroundColor);
+	}
+
 	.multiselect__option--highlight {
 		background: $n-20!important;
 		outline: none!important;
@@ -605,12 +626,12 @@ export default {
 	}
 
 	.option__checkbox--checked {
-		background-color: $gp-500 !important;
+		background-color: $gp-400 !important;
 		border: none !important;
 	}
 
 	.option__checkbox--indeterminate {
-		background-color: $gp-500 !important;
+		background-color: $gp-400 !important;
 		border: none !important;
 	}
 
