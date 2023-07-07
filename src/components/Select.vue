@@ -33,7 +33,7 @@
 			:class="fluid ? 'select__container--fluid' : 'select__container--fit'"
 		>
 			<input
-				id="cds-select"
+				:id="$attrs.id || id"
 				ref="select-input"
 				v-model="localValue[optionsField]"
 				type="text"
@@ -110,6 +110,7 @@
 
 <script>
 import { widths } from '../utils';
+import { generateKey } from '../utils';
 import cloneDeep from 'lodash.clonedeep';
 import removeAccents from '../utils/methods/removeAccents';
 import CdsIcon from './Icon.vue';
@@ -243,6 +244,7 @@ export default {
 			localValue: '',
 			selectElement: '',
 			direction: 'down',
+			uniqueKey: generateKey(),
 		};
 	},
 
@@ -323,7 +325,7 @@ export default {
 	},
 
 	mounted() {
-		this.id = `select$-${this._uid}`;
+		this.id = `cds-select-${this.uniqueKey}`;
 		this.selectElement = this.$refs['cds-select'];
 	},
 
