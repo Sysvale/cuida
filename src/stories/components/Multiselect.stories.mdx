@@ -4,6 +4,25 @@ import Multiselect from '../../components/Multiselect.vue';
 <Meta
 	title="Componentes/Forms/Multiselect"
 	component={ Multiselect }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'turquoise',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+	}}
 	parameters={{
 		viewMode: 'docs',
 		previewTabs: { canvas: { hidden: true }},
@@ -90,6 +109,7 @@ export const options = [
 			label: 'Séries',
 			optionsField: 'title',
 			trackBy: 'title',
+			variant: 'green',
 		}}
 	>
 		{ Template.bind({}) }

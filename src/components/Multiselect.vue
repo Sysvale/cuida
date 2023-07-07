@@ -65,27 +65,15 @@
 						class="cds-multiselect__option multiselect__option"
 						@click="toggleSelectAll"
 					>
-						<div class="option__checkbox">
-							<input
-								id="select-all-input-id"
-								ref="select-all-ref"
+						<cds-spacer margin-left="2">
+							<cds-checkbox
+								:id="`select-all-input-id-${uniqueKey}`"
 								v-model="selectAllValue"
-								type="checkbox"
-								name="select-all-input-name"
-								:value="true"
-							>
-							<label
-								id="select-all-label"
-								for="select-all-input-name"
-								:class="{
-									'option__checkbox--checked': selectAllValue,
-									'option__checkbox--indeterminate': indeterminate,
-								}"
-								@click.stop="toggleSelectAll"
+								:label="selectAllFancyMessage"
+								:indeterminate="indeterminate"
+								:variant="variant"
 							/>
-						</div>
-						
-						{{ selectAllFancyMessage }}
+						</cds-spacer>
 					</div>
 
 					<div
@@ -117,16 +105,16 @@
 				>
 					<div class="option__checkbox">
 						<input
-							:id="`input-${option[optionsField]}`"
+							:id="`input-${option[optionsField]}-${uniqueKey}`"
 							v-model="option.isSelected"
 							type="checkbox"
-							:name="`input-${option[optionsField]}`"
+							:name="`input-${option[optionsField]}-${uniqueKey}`"
 							:value="true"
 						>
 						<label
 							:id="`checkbox-${option[optionsField]}`"
-							:for="`input-${option[optionsField]}`"
-							:class="{ 'option__checkbox--checked': option.isSelected }"
+							:for="`input-${option[optionsField]}-${uniqueKey}`"
+							:class="option.isSelected ? `option__checkbox--${variant}` : ''"
 							@click="addItemViaCustomCheckbox(option)"
 						/>
 					</div>
@@ -172,6 +160,8 @@
 import Multiselect from 'vue-multiselect';
 import { generateKey } from '../utils';
 import CdsDivider from './Divider.vue';
+import CdsCheckbox from './Checkbox.vue';
+import CdsSpacer from './Spacer.vue';
 import sassColorVariables from '../assets/sass/colors.module.scss';
 
 const SELECTED = 0;
@@ -184,6 +174,8 @@ export default {
 	components: {
 		Multiselect,
 		CdsDivider,
+		CdsCheckbox,
+		CdsSpacer,
 	},
 
 	props: {
@@ -200,6 +192,14 @@ export default {
 		label: {
 			type: String,
 			default: 'text',
+		},
+		/**
+		* A variante da Checkbox. São 10 variantes: 'turquoise', 'green', 'blue',
+		* 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+		*/
+		variant: {
+			type: String,
+			default: 'green',
 		},
 		/**
 		* Utilizada para comparar objetos. Seu valor deve ser único.
@@ -362,7 +362,7 @@ export default {
 		},
 
 		indeterminate(newValue) {
-			const input = document.getElementById('select-all-input-id');
+			const input = document.getElementById(`select-all-input-id-${this.uniqueKey}`);
 			input.indeterminate = newValue;
 		},
 	},
@@ -528,7 +528,6 @@ export default {
 <style lang="scss">
 @import '../assets/sass/tokens.scss';
 
-
 .cds-multiselect {
 	&__grouped-divider {
 		margin: mYX(2, 3);
@@ -568,7 +567,6 @@ export default {
 
 	.cds-multiselect__option {
 		display: flex;
-		align-items: center;
 		gap: 8px;
 	}
 
@@ -584,11 +582,12 @@ export default {
 		position: relative;
 		margin-right: spacer(6);
 		margin-left: spacer(n3);
+
 		label {
 			cursor: pointer;
 			position: absolute;
-			width: 15px;
-			height: 15px;
+			width: 16px;
+			height: 16px;
 			top: 0;
 			border-radius: 4px;
 			border: 0.5px solid $n-500;
@@ -598,7 +597,7 @@ export default {
 				border-right: none;
 				content: "";
 				height: 5px;
-				left: 3.1px;
+				left: 4px;
 				opacity: 0;
 				position: absolute;
 				top: 4.4px;
@@ -623,16 +622,11 @@ export default {
 			width: 9px;
 			transform: rotate(0deg);
 		}
-	}
 
-	.option__checkbox--checked {
-		background-color: $gp-400 !important;
-		border: none !important;
-	}
-
-	.option__checkbox--indeterminate {
-		background-color: $gp-400 !important;
-		border: none !important;
+		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
+			background-color: $base-color !important;
+			border: none !important;
+		}
 	}
 
 	.multiselect__single {
