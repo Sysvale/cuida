@@ -35,19 +35,33 @@ $darkNeutralsTokens: '$n-500', '$n-600', '$n-700', '$n-800', '$n-900';
 
 $darkNeutralsMetaData: 'Dark Neutrals', $darkNeutralsShades, $darkNeutralsTokens;
 
-$gp-50: #F3FCF8;
-$gp-100: #DEF7EB;
-$gp-200: #ABEDD9;
-$gp-300: #6DDFBC;
-$gp-400: #2AC092;
-$gp-500: #239F78;
-$gp-600: #1B795B;
-$gp-700: #126349;
+$gp-50: #F3FCF7;
+$gp-100: #DEF7E9;
+$gp-200: #ABEDD5;
+$gp-300: #6DDFB5;
+$gp-400: #2AC089;
+$gp-500: #239F6F;
+$gp-600: #1B7955;
+$gp-700: #126344;
 
 $piccoloGreenShades: $gp-50, $gp-100, $gp-200, $gp-300, $gp-400, $gp-500, $gp-600, $gp-700;
 $piccoloGreenTokens: '$gp-50', '$gp-100', '$gp-200', '$gp-300', '$gp-400', '$gp-500', '$gp-600', '$gp-700';
 
 $greenMetaData: 'Piccolo Green', $piccoloGreenShades, $piccoloGreenTokens;
+
+$ta-50: #eefcfa;
+$ta-100: #d3f8f4;
+$ta-200: #a2f1e8;
+$ta-300: #51e6d5;
+$ta-400: #1dc9b5;
+$ta-500: #18aa99;
+$ta-600: #138678;
+$ta-700: #0e6258;
+
+$aquamanTealShades: $ta-50, $ta-100, $ta-200, $ta-300, $ta-400, $ta-500, $ta-600, $ta-700;
+$aquamanTealTokens: '$ta-50', '$ta-100', '$ta-200', '$ta-300', '$ta-400', '$ta-500', '$ta-600', '$ta-700';
+
+$tealMetaData: 'Aquaman Teal', $aquamanTealShades, $aquamanTealTokens;
 
 $ts-50: #F7FCFF;
 $ts-100: #E2F4FE;
@@ -64,13 +78,13 @@ $sulivanTurquoiseTokens: '$ts-50', '$ts-100', '$ts-200', '$ts-300', '$ts-400', '
 $turquoiseMetaData: 'Sulivan Turquoise', $sulivanTurquoiseShades, $sulivanTurquoiseTokens;
 
 $bn-50: #F8FAFE;
-$bn-100: #ECF1FE;
-$bn-200: #B6D1F7;
-$bn-300: #83ADE7;
-$bn-400: #4B88DD;
-$bn-500: #2C70CD;
-$bn-600: #1A55A8;
-$bn-700: #174382;
+$bn-100: #E6EFFE;
+$bn-200: #B5CEF8;
+$bn-300: #80A7EA;
+$bn-400: #4880E0;
+$bn-500: #2C67CD;
+$bn-600: #1A4EA8;
+$bn-700: #173E82;
 
 $nocturneBlueShades: $bn-50, $bn-100, $bn-200, $bn-300, $bn-400, $bn-500, $bn-600, $bn-700;
 $nocturneBlueTokens: '$bn-50', '$bn-100', '$bn-200', '$bn-300', '$bn-400', '$bn-500', '$bn-600', '$bn-700';
@@ -80,8 +94,8 @@ $blueMetaData: 'Nocturne Blue', $nocturneBlueShades, $nocturneBlueTokens;
 $in-50: #F5F6FF;
 $in-100: #E5EAFF;
 $in-200: #CED6FD;
-$in-300: #AAB7F8;
-$in-400: #7080D2;
+$in-300: #A9B7F9;
+$in-400: #6C7ED6;
 $in-500: #4D5DAC;
 $in-600: #384584;
 $in-700: #353D64;
@@ -162,6 +176,7 @@ $lisaAmberTokens: '$al-50', '$al-100', '$al-200', '$al-300', '$al-400', '$al-500
 $amberMetaData: 'Lisa Amber', $lisaAmberShades, $lisaAmberTokens;
 
 $palete: [$greenMetaData],
+	[$tealMetaData],
 	[$turquoiseMetaData],
 	[$blueMetaData],
 	[$indigoMetaData],
@@ -175,8 +190,9 @@ $palete: [$greenMetaData],
 	[$darkNeutralsMetaData];
 
 $baseColors: (
-	'turquoise': $ts-400,
 	'green': $gp-400,
+	'teal': $ta-400,
+	'turquoise': $ts-400,
 	'blue': $bn-400,
 	'indigo': $in-400,
 	'violet': $vr-400,
@@ -190,8 +206,9 @@ $baseColors: (
 );
 
 $disabledColors: (
-	'turquoise': $ts-300,
 	'green': $gp-300,
+	'teal': $ta-300,
+	'turquoise': $ts-300,
 	'blue': $bn-300,
 	'indigo': $in-300,
 	'violet': $vr-300,
@@ -205,8 +222,9 @@ $disabledColors: (
 );
 
 $mutedColors: (
-	'turquoise': $ts-200,
 	'green': $gp-200,
+	'teal': $ta-200,
+	'turquoise': $ts-200,
 	'blue': $bn-200,
 	'indigo': $in-200,
 	'violet': $vr-200,
@@ -220,8 +238,9 @@ $mutedColors: (
 );
 
 $hoverColors: (
-	'turquoise': $ts-500,
 	'green': $gp-500,
+	'teal': $ta-500,
+	'turquoise': $ts-500,
 	'blue': $bn-500,
 	'indigo': $in-500,
 	'violet': $vr-500,
@@ -236,6 +255,7 @@ $hoverColors: (
 
 $backgroundColors: (
 	'green': $gp-50,
+	'teal': $ta-50,
 	'turquoise': $ts-50,
 	'blue': $bn-50,
 	'indigo': $in-50,
@@ -257,6 +277,15 @@ $allColors: (
 	'gp-500': $gp-500,
 	'gp-600': $gp-600,
 	'gp-700': $gp-700,
+
+	'ta-50': $ta-50,
+	'ta-100': $ta-100,
+	'ta-200': $ta-200,
+	'ta-300': $ta-300,
+	'ta-400': $ta-400,
+	'ta-500': $ta-500,
+	'ta-600': $ta-600,
+	'ta-700': $ta-700,
 
 	'ts-50': $ts-50,
 	'ts-100': $ts-100,
@@ -379,6 +408,15 @@ $allColors: (
 	gp500: $gp-500;
 	gp600: $gp-600;
 	gp700: $gp-700;
+
+	ta50: $ta-50;
+	ta100: $ta-100;
+	ta200: $ta-200;
+	ta300: $ta-300;
+	ta400: $ta-400;
+	ta500: $ta-500;
+	ta600: $ta-600;
+	ta700: $ta-700;
 
 	ts50: $ts-50;
 	ts100: $ts-100;

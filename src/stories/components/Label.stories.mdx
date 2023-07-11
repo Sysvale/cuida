@@ -1,40 +1,9 @@
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import Badge from '../../components/Badge.vue';
+import Label from '../../components/Label.vue';
 
 <Meta
-	title="Componentes/Display/Badge"
-	component={ Badge }
-	argTypes={{
-		variant: {
-			control:{
-				type: 'select',
-				options: [
-					'green',
-					'teal',
-					'turquoise',
-					'blue',
-					'indigo',
-					'violet',
-					'pink',
-					'red',
-					'orange',
-					'amber',
-					'gray',
-					'white',
-				],
-			}
-		},
-		size: {
-			control:{
-				type: 'select',
-				options: [
-					'sm',
-					'md',
-					'lg',
-				],
-			}
-		},
-	}}
+	title="Componentes/Forms/Label"
+	component={ Label }
 	parameters={{
 		viewMode: 'docs',
 		previewTabs: { canvas: { hidden: true }},
@@ -55,17 +24,17 @@ import Badge from '../../components/Badge.vue';
 />
 
 export const Template = (args) => ({
-	components: { CdsBadge: Badge },
+	components: { CdsLabel: Label },
 	setup() {
 		return { args };
 	},
 	template: /*html*/ `
-		<cds-badge
+		<cds-label
 			v-bind="args"
 			@click="handleEmit"
 		>
 			Badge
-		</cds-badge>`,
+		</cds-label>`,
 	methods: {
 		handleEmit(value) { console.info('value: ', value); }
 	}
@@ -96,13 +65,14 @@ export const Template = (args) => ({
 
 <Canvas>
 	<Story
-		name="Badge"
+		name="Label"
 		args={{
-			variant: 'red',
+			label: 'Labeel',
+			required: true,
 		}}
 	>
 		{ Template.bind({}) }
 	</Story>
 </Canvas>
 
-<ArgsTable story="Badge" />
+<ArgsTable story="Label" />
