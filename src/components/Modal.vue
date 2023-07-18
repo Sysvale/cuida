@@ -35,10 +35,18 @@
 			</header>
 
 			<!-- @slot Slot usado para inserção de conteúdo dentro do Modal. -->
-			<section
-				:class="scrollable ? 'cds-modal__scroll' : ''"
-			>
-				<div class="cds-modal__body">
+			<section>
+				<cds-scrollable
+					v-if="scrollable"
+					max-height="600px"
+					class="cds-modal__body"
+				>
+					<slot />
+				</cds-scrollable>
+				<div
+					v-else
+					class="cds-modal__body"
+				>
 					<slot />
 				</div>
 			</section>
@@ -74,6 +82,7 @@
 import CdsIcon from '../components/Icon.vue';
 import CdsButton from '../components/Button.vue';
 import vClickOutside from 'click-outside-vue3';
+import CdsScrollable from '../components/Scrollable.vue';
 
 const predefinedColors = [
 	'teal',
@@ -95,6 +104,7 @@ export default {
 	components: {
 		CdsIcon,
 		CdsButton,
+		CdsScrollable
 	},
 	props: {
 		/**
