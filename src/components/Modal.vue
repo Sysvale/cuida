@@ -35,7 +35,9 @@
 			</header>
 
 			<!-- @slot Slot usado para inserção de conteúdo dentro do Modal. -->
-			<section>
+			<section
+				:class="scrollable ? 'cds-modal__scroll' : ''"
+			>
 				<div class="cds-modal__body">
 					<slot />
 				</div>
@@ -195,6 +197,13 @@ export default {
 			default: 'green',
 			validator: (value) => predefinedColors.includes(value),
 		},
+		/**
+		 * Define se o conteúdo do modal precisa ser "scrollado" e adiciona um scroll vertical quando a altura máxima é atingida
+		 */
+		scrollable: {
+			type: Boolean,
+			default: false,
+		}
 	},
 
 	data() {
@@ -310,6 +319,31 @@ export default {
 		margin-top: auto;
 		padding: pt(7);
 
+	}
+
+	&__scroll {
+		overflow-x: auto;
+
+		&::-webkit-scrollbar {
+			width: 12px;
+			border-radius: 20px;
+		}
+
+		&::-webkit-scrollbar-track {
+			background: transparent;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: $n-40;
+			border-radius: 12px;
+			border-right: 3px solid transparent;
+			border-left: 3px solid transparent;
+			background-clip: padding-box;
+		}
+
+		&::-webkit-scrollbar-thumb:hover {
+			background: $n-50;
+		}
 	}
 }
 
