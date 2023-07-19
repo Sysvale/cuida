@@ -38,7 +38,6 @@
 			<section>
 				<cds-scrollable
 					v-if="scrollable"
-					max-height="600px"
 					class="cds-modal__body"
 				>
 					<slot />
