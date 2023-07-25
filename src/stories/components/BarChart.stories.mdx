@@ -9,15 +9,15 @@ import BarChart from '../../components/BarChart.vue';
       control: {
         type: 'select',
         options: [
-          'Piccolo Green',
-          'Sulivan Turquoise',
-          'Nocturne Blue',
-          'Nightwing Indigo',
-          'Raven Violet',
-          'Peppa Pink',
-          'Carmen Red',
-          'Goku Orange',
-          'Lisa Amber',
+          'green',
+          'turquoise',
+          'blue',
+          'indigo',
+          'violet',
+          'pink',
+          'red',
+          'orange',
+          'amber',
           'Mid Neutrals',
           'Dark Neutrals'
         ]
@@ -33,13 +33,13 @@ import BarChart from '../../components/BarChart.vue';
         format: true,
         code: /*html*/`
 <cds-bar-chart
-  :chart-data="chartData"
+  :data="chartData"
   :variant="variant"
-  :chart-labels="chartLabels"
+  :labels="chartLabels"
   :chart-options="chartOptions"
   :choice-multiselect="choiceMultiselect"
   :label-select="labelSelect"
-  :index-axis="indexAxis"
+  :is-horizontal="indexAxis"
   :category-percentage:"categoryPercentage"
 >
 </cds-bar-chart>`
@@ -55,7 +55,7 @@ export const Template = (args) => ({
   },
   data() {
     return {
-      chartData: {
+      data: {
         datasets: args.chartData,
         // labels: args.chartData.labels = args.chartLabels,
       },
@@ -63,7 +63,7 @@ export const Template = (args) => ({
       variant: args.variant,
       choiceMultiselect: args.choiceMultiselect,
       labelSelect: args.labelSelect,
-      indexAxis: args.indexAxis,
+      isHorizontal: args.indexAxis,
       categoryPercentage: args.categoryPercentage,
     }
   },
@@ -97,9 +97,9 @@ export const Template = (args) => ({
   <Story
     name="BarChart"
     args={{
-      chartLabels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
+      labels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
       variant: 'Piccolo Green',
-      chartData: [
+      data: [
 				{				
           name: 'Ecocardiograma',
           datasets: [
@@ -152,7 +152,7 @@ export const Template = (args) => ({
           ]				
 				}
 			],
-      indexAxis: 'x',
+      isHorizontal: false,
       categoryPercentage: 0.9,
       choiceMultiselect: true,
       labelSelect: 'Exames',

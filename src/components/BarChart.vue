@@ -41,7 +41,7 @@ export default {
 		CdsMultiselect,
 	},
 	props: {
-		chartData: {
+		data: {
 			type: Object,
 			required: true,
 			default: () => ({
@@ -54,21 +54,21 @@ export default {
 			})
 		},
 		/**
-		 * A variante de cor. São 11 variantes implementadas:'Piccolo Green', 'Sulivan Turquoise',
-		 * 'Nocturne Blue', 'Nightwing Indigo', 'Raven Violet', 'Peppa Pink', 'Carmen Red', 'Goku Orange', 'Lisa Amber', 'Mid Neutrals', 'Dark Neutrals'.
+		 * Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:
+		 * `green`,`turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `Mid Neutrals`, `Dark Neutrals`.
 		 */
 		variant: {
 			type: String,
 			required: true,
 			default: 'green',
 			validator: (value) => {
-				return ['Piccolo Green', 'Sulivan Turquoise', 'Nocturne Blue', 'Nightwing Indigo', 'Raven Violet', 'Peppa Pink', 'Carmen Red', 'Goku Orange', 'Lisa Amber', 'Mid Neutrals', 'Dark Neutrals'].includes(value);
+				return ['green', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'Mid Neutrals', 'Dark Neutrals'].includes(value);
 			}
 		},
 		/**
 		 * Defina as labels do gráfico
 		 */
-		chartLabels: {
+		labels: {
 			type: Array,
 			required: true,
 			default: () => [],
@@ -88,16 +88,16 @@ export default {
 			default: 'Label'
 		},
 		/**
-         * Configura o eixo de exibição do gráfico. (x ou y)
+         * Configura o eixo de exibição do gráfico. Caso seja true os dados serão exibidos na orientação do eixo X, caso contrário, no eixo Y.
          */
-		indexAxis: {
-			type: String,
-			default: 'x'
+		isHorizontal: {
+			type: Boolean,
+			default: false,
 		},
 		/**
-			 * Configura a porcentagem ocupada pela barra do gráfico. (0.1-1).
-			 */
-		categoryPercentage: {
+         * Configura a porcentagem ocupada pela barra do gráfico. (0.1-1).
+         */
+		barWidth: {
 			type: Number,
 			default: 1,
 		},
@@ -114,9 +114,9 @@ export default {
 			selectedValues: [],
 			chartOptions: {
 				responsive: true,
-				maintainAspectRatio: true, // NOTE: Caso true manterá aspecto de proporção original, caso false, será dimensionado para preencher completamente o contêiner (Isso pode fazer com que o gráfico pareça distorcido se o container tiver proporção de aspecto diferente do gráfico original)
+				maintainAspectRatio: false, // NOTE: Caso true manterá aspecto de proporção original, caso false, será dimensionado para preencher completamente o contêiner (Isso pode fazer com que o gráfico pareça distorcido se o container tiver proporção de aspecto diferente do gráfico original)
 				indexAxis: this.indexAxis, //NOTE: Configura o eixo do gráfico.
-				categoryPercentage: this.categoryPercentage, //NOTE: Configura a porcentagem ocupada pela barra do gráfico. (0-1)
+				categoryPercentage: this.barWidth, //NOTE: Configura a porcentagem ocupada pela barra do gráfico. (0-1)
 				plugins: {
 					tooltip: {
 						callbacks: {
@@ -135,7 +135,6 @@ export default {
 			return this.options.map(option => ({ value: option.name }));
 		},
 
-
 		// NOTE: Computada responsável por definir qual tipo de dado vai ser exibido de acordo com o multiSelect ativado ou desativado
 		computedDataSet() {
 			return this.localSelect ? this.localChartData : this.verify;
@@ -143,7 +142,7 @@ export default {
 
 		// NOTE: Como modo de segurança, caso utilize um array de objetos irá exibir o primeiro objeto, caso não seja irá retornar somente o objeto passado	
 		verify() {
-			if (Array.isArray(this.chartData)) {
+			if (Array.isArray(this.data)) {
 				// eslint-disable-next-line vue/no-side-effects-in-computed-properties
 				this.multiOptions[0].isSelected = true;
 				const selectedOption = {
@@ -153,7 +152,7 @@ export default {
 				this.selectedValues = [selectedOption];
 				return this.localChartData;
 			}
-			return this.chartData;
+			return this.data;
 		},
 	},
 
@@ -172,7 +171,18 @@ export default {
 			immediate: true,
 		},
 
-		chartData: {
+		isHorizontal: {
+			handler(newValue) {
+				if (newValue === true) {
+					this.chartOptions.indexAxis = 'y'
+				} else {
+					this.chartOptions.indexAxis = 'x'
+				}
+			},
+			immediate: true,
+		},
+
+		data: {
 			handler(newValue, oldValue) {
 				this.options = newValue;
 				if (newValue === oldValue && Array.isArray(newValue) && newValue.length > 0) {
@@ -192,7 +202,7 @@ export default {
 			immediate: true,
 		},
 
-		chartLabels: {
+		labels: {
 			handler(newValue) {
 				this.localLabels = newValue
 			},
@@ -215,7 +225,7 @@ export default {
 		} else {
 			this.selectedValues = [];
 		}
-		this.typeOfData(this.chartData);
+		this.typeOfData(this.data);
 	},
 
 	methods: {
@@ -241,7 +251,7 @@ export default {
 
 		// NOTE: Adiciona campo dataset.name com o nome do objeto respectivo
 		addDataSetNames() {
-			this.chartData.forEach(item => {
+			this.data.forEach(item => {
 				item.datasets.forEach(dataset => {
 					dataset.name = item.name;
 				});
@@ -297,7 +307,8 @@ export default {
 
 		// NOTE: Função responsável por buscar a cor na paleta
 		generateBackgroundColor() {
-			const palletColor = this.palletColors.find(color => color.colorName === this.variant);
+			const variantLowercase = this.variant.toLowerCase();
+			const palletColor = this.palletColors.find(color => color.colorName.toLowerCase().includes(variantLowercase));
 			if (palletColor) {
 				return palletColor.colorShades;
 			}
