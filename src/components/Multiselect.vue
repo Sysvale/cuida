@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<span
-		id="cds-multiselect"
+		class="cds-multiselect"
 		:data-cds-multiselect-identifier="uniqueKey"
 	>
 		<span>
@@ -14,7 +14,7 @@
 			<label
 				v-else
 				class="clustered-multiselect__label"
-				for="clustered-multiselect"
+				:for="`clustered-multiselect-${uniqueKey}`"
 			>
 				<span>
 					{{ label }}
@@ -31,7 +31,7 @@
 		</span>
 
 		<multiselect
-			id="clustered-multiselect"
+			:id="`clustered-multiselect-${uniqueKey}`"
 			ref="cds-multiselect"
 			v-bind="attrs"
 			v-model="selectedValue"
@@ -46,6 +46,7 @@
 			select-label=""
 			deselect-label=""
 			selected-label=""
+			:disabled="disabled"
 			:placeholder="computedPlaceholder"
 			:block-keys="['Delete', 'Enter']"
 			@close="handleClose"
@@ -64,35 +65,26 @@
 						class="cds-multiselect__option multiselect__option"
 						@click="toggleSelectAll"
 					>
-						<div class="option__checkbox">
-							<input
-								id="select-all-input-id"
-								ref="select-all-ref"
+						<cds-spacer margin-left="2">
+							<cds-checkbox
+								:id="`select-all-input-id-${uniqueKey}`"
 								v-model="selectAllValue"
-								type="checkbox"
-								name="select-all-input-name"
-								:value="true"
-							>
-							<label
-								id="select-all-label"
-								for="select-all-input-name"
-								:class="{
-									'option__checkbox--checked': selectAllValue,
-									'option__checkbox--indeterminate': indeterminate,
-								}"
-								@click.stop="toggleSelectAll"
+								:label="selectAllFancyMessage"
+								:indeterminate="indeterminate"
+								:variant="variant"
 							/>
-						</div>
-						{{ selectAllFancyMessage }}
+						</cds-spacer>
 					</div>
+
 					<div
 						v-if="!isGroupMode"
-						class="test"
+						class="cds-multiselect__grouped-divider"
 					>
 						<cds-divider dimmed />
 					</div>
 				</div>
 			</template>
+
 			<template
 				#option="{ option }"
 			>
@@ -106,28 +98,30 @@
 						dimmed
 					/>
 				</div>
+
 				<div
 					v-else
 					class="cds-multiselect__option"
 				>
 					<div class="option__checkbox">
 						<input
-							:id="`input-${option[optionsField]}`"
+							:id="`input-${option[optionsField]}-${uniqueKey}`"
 							v-model="option.isSelected"
 							type="checkbox"
-							:name="`input-${option[optionsField]}`"
+							:name="`input-${option[optionsField]}-${uniqueKey}`"
 							:value="true"
 						>
 						<label
 							:id="`checkbox-${option[optionsField]}`"
-							:for="`input-${option[optionsField]}`"
-							:class="{ 'option__checkbox--checked': option.isSelected }"
+							:for="`input-${option[optionsField]}-${uniqueKey}`"
+							:class="option.isSelected ? `option__checkbox--${variant}` : ''"
 							@click="addItemViaCustomCheckbox(option)"
 						/>
 					</div>
 					{{ option[optionsField] }}
 				</div>
 			</template>
+
 			<template
 				#selection="{ values, isOpen }"
 			>
@@ -139,17 +133,20 @@
 				</span>
 				<span v-else />
 			</template>
+
 			<template
 				#noResult
 			>
 				Nenhum resultado encontrado para: "<strong>{{ queryString }} </strong>"
 			</template>
+
 			<template
 				#noOptions
 			>
 				Não há nenhuma opção para ser exibida.
 			</template>
 		</multiselect>
+
 		<div
 			v-if="errorState && !disabled"
 			class="clustered-multiselect__error-message"
@@ -163,6 +160,9 @@
 import Multiselect from 'vue-multiselect';
 import { generateKey } from '../utils';
 import CdsDivider from './Divider.vue';
+import CdsCheckbox from './Checkbox.vue';
+import CdsSpacer from './Spacer.vue';
+import sassColorVariables from '../assets/sass/colors.module.scss';
 
 const SELECTED = 0;
 const NOT_SELECTED = 1;
@@ -174,71 +174,86 @@ export default {
 	components: {
 		Multiselect,
 		CdsDivider,
+		CdsCheckbox,
+		CdsSpacer,
 	},
 
 	props: {
 		/**
-		 * Guarda o valor selecionado do multiselect.
-		 */
+		* Guarda o valor selecionado do multiselect.
+		*/
 		modelValue: {
 			type: Array,
 			required: true,
 		},
 		/**
-		 * Especifica a label do input.
-		 */
+		* Especifica a label do input.
+		*/
 		label: {
 			type: String,
 			default: 'text',
 		},
+		/**
+		* A variante da Checkbox. São 10 variantes: 'turquoise', 'green', 'blue',
+		* 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+		*/
+		variant: {
+			type: String,
+			default: 'green',
+		},
+		/**
+		* Utilizada para comparar objetos. Seu valor deve ser único.
+		*/
 		trackBy: {
 			type: String,
 			default: 'value',
 		},
 		/**
-		 * Exibe asterisco de obrigatório (obs.: não faz a validação)
-		 */
+		* Exibe asterisco indicativo de obrigatoriedade (obs.: não faz a validação)
+		*/
 		required: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		 * Desabilita o input.
-		 */
+		* Desabilita o Multiselect.
+		*/
 		disabled: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
-		 */
+		* Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+		*/
 		errorMessage: {
 			type: String,
 			default: 'Valor inválido',
 		},
 		/**
-		 * Especifica o estado do TextInput. As opções são 'default' e 'invalid'.
-		 */
+		* Especifica o estado do TextInput. As opções são 'default' e 'invalid'.
+		*/
 		state: {
 			type: String,
 			default: 'default',
 		},
+		/**
+		* Lista de opções do Multiselect.
+		*/
 		options: {
 			type: Array,
 			required: true,
 		},
 		/**
-		 * Indica o nome da chave do objeto a ser considerada na renderização
-		 * das opções do select.
-		 */
+		* Indica o nome da chave do objeto a ser considerada na renderização das opções do select.
+		*/
 		optionsField: {
 			type: String,
 			default: 'value',
 			required: false,
 		},
 		/**
-		 * Permite ocultar o botão "selecionar todos" ou não
-		 */
+		* Permite ocultar o botão "selecionar todos"
+		*/
 		hideSelectAll: {
 			type: Boolean,
 			default: false,
@@ -254,6 +269,7 @@ export default {
 			selectAllValue: false,
 			queryString: '',
 			indeterminate: false,
+			sassColorVariables,
 			uniqueKey: generateKey(),
 		};
 	},
@@ -280,6 +296,7 @@ export default {
 			if (!this.hasSelectedValues) {
 				return 'Selecionar todos';
 			}
+
 			return 'Desfazer seleção';
 		},
 
@@ -295,6 +312,7 @@ export default {
 			if (this.$attrs.placeholder) {
 				return this.$attrs.placeholder;
 			}
+
 			return 'Selecione uma ou mais opções';
 		},
 
@@ -307,17 +325,12 @@ export default {
 			const { label, trackBy, options, ...attrs } = this.$attrs;
 			return attrs;
 		},
+
+		inputBackgroundColor() {
+			return this.disabled ? this.sassColorVariables['n20'] : this.sassColorVariables['n0'];
+		},
 	},
 	watch: {
-		modelValue: {
-			handler(newValue, oldValue) {
-				if (newValue !== oldValue) {
-					this.selectedValue = newValue;
-				}
-			},
-			immediate: true,
-		},
-
 		selectedValue(values) {
 			const cleanedValues = clone(values);
 			cleanedValues.forEach((val) => delete val.isSelected);
@@ -342,20 +355,24 @@ export default {
 				this.selectAllValue = false;
 				return;
 			}
+
 			if (newValue && !this.selectAllValue) {
 				this.selectAllValue = true;
 			}
 		},
 
 		indeterminate(newValue) {
-			const input = document.getElementById('select-all-input-id');
+			const input = document.getElementById(`select-all-input-id-${this.uniqueKey}`);
 			input.indeterminate = newValue;
 		},
 	},
+
 	mounted() {
+		this.selectedValue = this.modelValue;
 		this.updateRenderOptions();
 		this.indeterminate = this.hasSelectedValues && this.selectedValue.length < this.options.length;
 	},
+
 	methods: {
 		unselectItem(option) {
 			this.handleSelectItem(option);
@@ -384,6 +401,7 @@ export default {
 						item.isSelected = !item.isSelected;
 					}
 				});
+
 				this.internalOptions[NOT_SELECTED].options.forEach(item => {
 					if (item[this.optionsField] === option[this.optionsField]) {
 						item.isSelected = !item.isSelected;
@@ -405,6 +423,7 @@ export default {
 			} else {
 				this.selectedValue = [];
 			}
+
 			this.$nextTick().then(() => {
 				if (this.isGroupMode) {
 
@@ -451,25 +470,31 @@ export default {
 					...item,
 					isSelected: false,
 				})));
+
 				this.groupValues = null;
 				this.groupLabel = null;
 				return;
 			}
+
 			this.selectedValue.forEach((item) => {
 				item.isSelected = true;
 			});
+
 			let rawOptions = clone(this.options);
 			rawOptions = rawOptions.map((item) => {
 				const containsItem = this.selectedValue.some(
 					value => value[this.optionsField] === item[this.optionsField]
 				);
+
 				if (containsItem) {
 					item.isSelected = true;
 				} else {
 					item.isSelected = false;
 				}
+
 				return item;
 			});
+
 			this.internalOptions = [
 				{
 					$status: 'Selecionados',
@@ -480,10 +505,9 @@ export default {
 					options: [],
 				},
 			];
-			this.internalOptions[SELECTED]
-				.options = this.selectedValue;
-			this.internalOptions[NOT_SELECTED]
-				.options = rawOptions.filter(item => !item.isSelected);
+
+			this.internalOptions[SELECTED].options = this.selectedValue;
+			this.internalOptions[NOT_SELECTED].options = rawOptions.filter(item => !item.isSelected);
 			this.groupValues = 'options';
 			this.groupLabel = '$status';
 		},
@@ -504,11 +528,26 @@ export default {
 <style lang="scss">
 @import '../assets/sass/tokens.scss';
 
-.test {
-	margin: mYX(2, 3);
-}
+.cds-multiselect {
+	&__grouped-divider {
+		margin: mYX(2, 3);
+	}
+	.multiselect--disabled .multiselect__current, .multiselect--disabled .multiselect__select {
+		background-color: transparent !important;
+	}
 
-#cds-multiselect {
+	.multiselect--disabled {
+		opacity: 1 !important;
+	}
+
+	.multiselect__tags {
+		background-color: v-bind(inputBackgroundColor);
+	}
+
+	.multiselect__input, .multiselect__single {
+		background-color: v-bind(inputBackgroundColor);
+	}
+
 	.multiselect__option--highlight {
 		background: $n-20!important;
 		outline: none!important;
@@ -528,7 +567,6 @@ export default {
 
 	.cds-multiselect__option {
 		display: flex;
-		align-items: center;
 		gap: 8px;
 	}
 
@@ -544,11 +582,12 @@ export default {
 		position: relative;
 		margin-right: spacer(6);
 		margin-left: spacer(n3);
+
 		label {
 			cursor: pointer;
 			position: absolute;
-			width: 15px;
-			height: 15px;
+			width: 16px;
+			height: 16px;
 			top: 0;
 			border-radius: 4px;
 			border: 0.5px solid $n-500;
@@ -558,7 +597,7 @@ export default {
 				border-right: none;
 				content: "";
 				height: 5px;
-				left: 3.1px;
+				left: 4px;
 				opacity: 0;
 				position: absolute;
 				top: 4.4px;
@@ -583,16 +622,11 @@ export default {
 			width: 9px;
 			transform: rotate(0deg);
 		}
-	}
 
-	.option__checkbox--checked {
-		background-color: $gp-500 !important;
-		border: none !important;
-	}
-
-	.option__checkbox--indeterminate {
-		background-color: $gp-500 !important;
-		border: none !important;
+		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
+			background-color: $base-color !important;
+			border: none !important;
+		}
 	}
 
 	.multiselect__single {

@@ -84,7 +84,7 @@ export default {
 	margin: mb(1);
 }
 .divider {
-	background-color: $n-100;
+	background-color: $n-200;
 	border: 0;
 	height: 1px;
 	width: v-bind(sanitizedWidth);
@@ -97,9 +97,11 @@ export default {
 		}
 
 		&--inline > div {
+			@include overline;
+			color: $n-500;
 			width: max-content;
 			white-space: nowrap;
-			margin: mTRBL(0, 4, 1, 0);
+			margin: mTRBL(0, 2, 1, 0);
 		}
 	}
 
