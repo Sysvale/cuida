@@ -76,14 +76,14 @@ export default {
 		/**
          * Ativa ou desativa o componente multiselect. Quando definido como verdadeiro (true), espera-se que 'chartData' seja uma lista de objetos. Quando definido como falso (false), espera-se apenas um objeto.
          */
-		choiceMultiselect: {
+		withSelect: {
 			type: Boolean,
 			default: true
 		},
 		/**
          * Label do MultiSelect.
          */
-		labelSelect: {
+		selectLabel: {
 			type: String,
 			default: 'Label'
 		},
@@ -150,14 +150,14 @@ export default {
 	},
 
 	watch: {
-		choiceMultiselect: {
+		withSelect: {
 			handler(newValue) {
 				this.localSelect = newValue;
 			},
 			immediate: true,
 		},
 
-		labelSelect: {
+		selectLabel: {
 			handler(newValue) {
 				this.label = newValue
 			},
@@ -209,7 +209,7 @@ export default {
 	},
 
 	created() {
-		if (this.choiceMultiselect && this.multiOptions.length > 0) {
+		if (this.withSelect && this.multiOptions.length > 0) {
 			this.multiOptions[0].isSelected = true;
 			const selectedOption = {
 				value: this.multiOptions[0].value,
