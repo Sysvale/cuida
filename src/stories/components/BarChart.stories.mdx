@@ -37,8 +37,8 @@ import BarChart from '../../components/BarChart.vue';
   :variant="variant"
   :labels="chartLabels"
   :chart-options="chartOptions"
-  :choice-multiselect="choiceMultiselect"
-  :label-select="labelSelect"
+  :choice-multiselect="withSelect"
+  :label-select="selectLabel"
   :category-percentage:"categoryPercentage"
 >
 </cds-bar-chart>`
@@ -60,8 +60,8 @@ export const Template = (args) => ({
       },
       chartOptions: args.chartOptions,
       variant: args.variant,
-      choiceMultiselect: args.choiceMultiselect,
-      labelSelect: args.labelSelect,
+      withSelect: args.withSelect,
+      selectLabel: args.selectLabel,
       categoryPercentage: args.categoryPercentage,
     }
   },
@@ -151,8 +151,8 @@ export const Template = (args) => ({
 				}
 			],
       categoryPercentage: 0.9,
-      choiceMultiselect: true,
-      labelSelect: 'Exames',
+      withSelect: true,
+      selectLabel: 'Exames',
     }}
   >
     { Template.bind({}) }
