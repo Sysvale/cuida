@@ -109,7 +109,7 @@ export default {
 			chartOptions: {
 				responsive: true,
 				maintainAspectRatio: false, // NOTE: Caso true manterá aspecto de proporção original, caso false, será dimensionado para preencher completamente o contêiner (Isso pode fazer com que o gráfico pareça distorcido se o container tiver proporção de aspecto diferente do gráfico original)
-				categoryPercentage: this.barWidth, //NOTE: Configura a porcentagem ocupada pela barra do gráfico. (0-1)
+				categoryPercentage: null, //NOTE: Configura a porcentagem ocupada pela barra do gráfico. (0-1)
 				plugins: {
 					tooltip: {
 						callbacks: {
@@ -187,6 +187,17 @@ export default {
 		labels: {
 			handler(newValue) {
 				this.localLabels = newValue
+			},
+			immediate: true,
+		},
+
+		barWidth: {
+			handler(newValue) {
+				if (newValue >= 0,1 && newValue <= 1) {
+					this.chartOptions.categoryPercentage = newValue;
+				} else {
+					this.chartOptions.categoryPercentage = 1;
+				}
 			},
 			immediate: true,
 		},
