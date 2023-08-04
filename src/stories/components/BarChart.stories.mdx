@@ -39,7 +39,6 @@ import BarChart from '../../components/BarChart.vue';
   :chart-options="chartOptions"
   :choice-multiselect="choiceMultiselect"
   :label-select="labelSelect"
-  :is-horizontal="indexAxis"
   :category-percentage:"categoryPercentage"
 >
 </cds-bar-chart>`
@@ -63,12 +62,11 @@ export const Template = (args) => ({
       variant: args.variant,
       choiceMultiselect: args.choiceMultiselect,
       labelSelect: args.labelSelect,
-      isHorizontal: args.indexAxis,
       categoryPercentage: args.categoryPercentage,
     }
   },
   template: /*html*/ `
-    <div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px;">
+    <div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px; height: 600px;">
       <cds-bar-chart
         v-bind="args"
       />
@@ -152,7 +150,6 @@ export const Template = (args) => ({
           ]				
 				}
 			],
-      isHorizontal: false,
       categoryPercentage: 0.9,
       choiceMultiselect: true,
       labelSelect: 'Exames',

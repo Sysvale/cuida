@@ -88,13 +88,6 @@ export default {
 			default: 'Label'
 		},
 		/**
-         * Configura o eixo de exibição do gráfico. Caso seja true os dados serão exibidos na orientação do eixo X, caso contrário, no eixo Y.
-         */
-		isHorizontal: {
-			type: Boolean,
-			default: false,
-		},
-		/**
          * Configura a porcentagem ocupada pela barra do gráfico. (0.1-1).
          */
 		barWidth: {
@@ -105,6 +98,7 @@ export default {
 	data() {
 		return {
 			sassColorVariables,
+			chartInstance: null,
 			localChartData: {},
 			localLabels: [],
 			palletColors: [],
@@ -115,7 +109,6 @@ export default {
 			chartOptions: {
 				responsive: true,
 				maintainAspectRatio: false, // NOTE: Caso true manterá aspecto de proporção original, caso false, será dimensionado para preencher completamente o contêiner (Isso pode fazer com que o gráfico pareça distorcido se o container tiver proporção de aspecto diferente do gráfico original)
-				indexAxis: this.indexAxis, //NOTE: Configura o eixo do gráfico.
 				categoryPercentage: this.barWidth, //NOTE: Configura a porcentagem ocupada pela barra do gráfico. (0-1)
 				plugins: {
 					tooltip: {
@@ -167,17 +160,6 @@ export default {
 		labelSelect: {
 			handler(newValue) {
 				this.label = newValue
-			},
-			immediate: true,
-		},
-
-		isHorizontal: {
-			handler(newValue) {
-				if (newValue === true) {
-					this.chartOptions.indexAxis = 'y'
-				} else {
-					this.chartOptions.indexAxis = 'x'
-				}
 			},
 			immediate: true,
 		},
