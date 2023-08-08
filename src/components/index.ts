@@ -15,6 +15,7 @@ import Checkbox from './Checkbox.vue';
 import Chevron from './Chevron.vue';
 import Clickable from './Clickable.vue';
 import CollapsibleContainer from './CollapsibleContainer.vue';
+import ColorPicker from './ColorPicker.vue';
 import DashboardCard from './DashboardCard.vue';
 import DateInput from './DateInput.vue';
 import Divider from './Divider.vue';
@@ -93,6 +94,7 @@ export default {
 		app.component('CdsChevron', Chevron); //NOTE: Testado no SB
 		app.component('CdsClickable', Clickable); //NOTE: Testado no SB
 		app.component('CdsCollapsibleContainer', CollapsibleContainer); //NOTE: Testado no SB. !Reativo!
+		app.component('CdsColorPicker', ColorPicker); //NOTE: Testado no SB.
 		app.component('CdsDashboardCard', DashboardCard);
 		app.component('CdsDateInput', DateInput); //NOTE: Testado no SB
 		app.component('CdsDivider', Divider); //NOTE: Testado no SB
