@@ -3,7 +3,7 @@
 		<div class="color-picker__label">
 			{{ label }}
 		</div>
-	
+
 		<div
 			v-for="(swatchline, i) in swatch"
 			:key="i"
@@ -79,6 +79,7 @@ import CdsPopover from './Popover.vue';
 import CdsIcon from './Icon.vue';
 import sassColorVariables from '../assets/sass/colors.module.scss';
 import ContrastChecker from '../utils/methods/contrastChecker';
+import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
 export default {
 	components: {
@@ -137,21 +138,50 @@ export default {
 			return this.ContrastChecker(this.selectedColor, '#FFFFFF', 'POOR') 
 				? 'swatch__icon--white'
 				: 'swatch__icon--black';
-		}
+		},
+
+		palete() {
+			return this.paleteBuilder(this.sassColorVariables.palete);
+		},
+	},
+
+	watch: {
+		modelValue: {
+			handler(newValue, oldValue) {
+				if (newValue !== oldValue) {
+					this.selectedColor = newValue;
+				}
+			},
+			immediate: true,
+		},
 	},
 
 	methods:{
+		paleteBuilder,
 		ContrastChecker,
 
 		SwatchSelection(color) {
+			let selectedVariant = '';
+
 			this.selectedColor = this.sassColorVariables[color.replace(/-|\$/gi, '')];
+			this.palete.forEach(paleteColor => {
+				if (paleteColor.colorTokens.find(token => token === color)) {
+					selectedVariant = paleteColor.variantName.toLowerCase();
+				}
+			});
 
 			/**
-			 * Evento utilizado para emitir a cor selecionada. A cor é emitida como uma string no formato HEX.
+			 * **Implementa v-model**. Evento utilizado para emitir a *cor* selecionada. A cor é emitida como uma string no formato HEX.
 			 * @event update:modelValue
 			 * @type {Event}
 			*/
 			this.$emit('update:modelValue', this.selectedColor);
+			/**
+			 * Evento utilizado para emitir a *variante* da cor selecionada. A variante é emitida como uma string. ⚠️ Importante: a variante emitida só irá mudar se a cor mudar. A mudança de shade dentro da mesma cor não altera a variante. Ex.: $gp-400 e $gp-600 emitirão a mesta variante, a saber, "green".
+			 * @event update:colorVariant
+			 * @type {Event}
+			*/
+			this.$emit('variant-chosen', selectedVariant);
 		},
 
 		isCurrentColorSelected(color) {
