@@ -57,14 +57,14 @@ export default {
 		},
 		/**
 		 * Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:
-		 * `green`,`turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `Mid Neutrals`, `Dark Neutrals`.
+		 * `green`,`turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `mid`, `dark`.
 		 */
 		variant: {
 			type: String,
 			required: true,
 			default: 'green',
 			validator: (value) => {
-				return ['green', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'Mid Neutrals', 'Dark Neutrals'].includes(value);
+				return ['green', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'mid', 'dark'].includes(value);
 			}
 		},
 		/**
@@ -234,9 +234,17 @@ export default {
 		// NOTE: Função responsável por remover os dois primeiros elementos da paleta para quando não é Mid ou Dark Neutrals
 		removeFirstTwoElements() {
 			for (let i = 0; i < this.palletColors.length; i++) {
+
 				const color = this.palletColors[i];
 
-				if (color.colorName !== 'Mid Neutrals' && color.colorName !== 'Dark Neutrals') {
+				let colorBlack = '';
+				if (this.variant === 'mid') {
+					colorBlack = 'Mid Neutrals';
+				} else if(this.variant === 'dark') {
+					colorBlack = 'Dark Neutrals'
+				}
+                
+				if (color.colorName !== colorBlack && color.colorName !== colorBlack) {
 					color.colorShades.splice(0, 2);
 					color.colorTokens.splice(0, 2);
 					color.colorData.splice(0, 2);

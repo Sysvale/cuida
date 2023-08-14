@@ -18,8 +18,8 @@ import BarChart from '../../components/BarChart.vue';
           'red',
           'orange',
           'amber',
-          'Mid Neutrals',
-          'Dark Neutrals'
+          'mid',
+          'dark'
         ]
       }
     }
@@ -39,7 +39,7 @@ import BarChart from '../../components/BarChart.vue';
   :chart-options="chartOptions"
   :choice-multiselect="withSelect"
   :label-select="selectLabel"
-  :category-percentage:"categoryPercentage"
+  :category-percentage:"barWidth"
 >
 </cds-bar-chart>`
       },
@@ -62,7 +62,7 @@ export const Template = (args) => ({
       variant: args.variant,
       withSelect: args.withSelect,
       selectLabel: args.selectLabel,
-      categoryPercentage: args.categoryPercentage,
+      barWidth: args.barWidth,
     }
   },
   template: /*html*/ `
@@ -96,7 +96,7 @@ export const Template = (args) => ({
     name="BarChart"
     args={{
       labels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
-      variant: 'Piccolo Green',
+      variant: 'green',
       data: [
 				{				
           name: 'Ecocardiograma',
@@ -150,7 +150,7 @@ export const Template = (args) => ({
           ]				
 				}
 			],
-      categoryPercentage: 0.9,
+      barWidth: 1,
       withSelect: true,
       selectLabel: 'Exames',
     }}
