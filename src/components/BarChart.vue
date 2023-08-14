@@ -106,8 +106,9 @@ export default {
 			palletColors: [],
 			localSelect: '',
 			label: '', // NOTE: Label do multiselect
-			options: [], 			// NOTE: Options do multiselect
+			options: [], // NOTE: Options do multiselect
 			selectedValues: [],
+			deleteFirstTwoColors: false, //NOTE: Responsável por garantir que as cores mid e dark da paleta não serão removidos os dois primeiros elementos
 			chartOptions: {
 				responsive: true,
 				maintainAspectRatio: false, // NOTE: Caso true manterá aspecto de proporção original, caso false, será dimensionado para preencher completamente o contêiner (Isso pode fazer com que o gráfico pareça distorcido se o container tiver proporção de aspecto diferente do gráfico original)
@@ -203,6 +204,17 @@ export default {
 			},
 			immediate: true,
 		},
+
+		variant: {
+			handler(newValue) {
+				if (newValue === 'mid' || newValue === 'dark')  {
+					this.deleteFirstTwoColors = true;
+				} else {
+					this.deleteFirstTwoColors = false;
+				}
+			},
+			immediate: true,
+		},
 	},
 
 	mounted() {
@@ -234,17 +246,9 @@ export default {
 		// NOTE: Função responsável por remover os dois primeiros elementos da paleta para quando não é Mid ou Dark Neutrals
 		removeFirstTwoElements() {
 			for (let i = 0; i < this.palletColors.length; i++) {
-
 				const color = this.palletColors[i];
-
-				let colorBlack = '';
-				if (this.variant === 'mid') {
-					colorBlack = 'Mid Neutrals';
-				} else if(this.variant === 'dark') {
-					colorBlack = 'Dark Neutrals'
-				}
                 
-				if (color.colorName !== colorBlack && color.colorName !== colorBlack) {
+				if (this.deleteFirstTwoColors === false) {
 					color.colorShades.splice(0, 2);
 					color.colorTokens.splice(0, 2);
 					color.colorData.splice(0, 2);
