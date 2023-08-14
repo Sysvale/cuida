@@ -196,7 +196,7 @@ export default {
 
 		barWidth: {
 			handler(newValue) {
-				if (newValue >= 0,1 && newValue <= 1) {
+				if (newValue >= 0.1 && newValue <= 1) {
 					this.chartOptions.categoryPercentage = newValue;
 				} else {
 					this.chartOptions.categoryPercentage = 1;
