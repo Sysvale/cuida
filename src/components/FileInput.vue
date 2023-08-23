@@ -490,15 +490,15 @@ export default {
 	&__name {
 		color: $n-700;
 		display: flex;
-		font-weight: $font-weight-semibold;
 		@include body-1;
+		font-weight: $font-weight-semibold;
 	}
 
 	&__size {
 		color: $n-600;
-		font-weight: $font-weight-regular;
 		margin: mt(1);
 		@include body-2;
+		font-weight: $font-weight-regular;
 	}
 
 	&__container {
