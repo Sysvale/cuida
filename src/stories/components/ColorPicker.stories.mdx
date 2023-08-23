@@ -51,6 +51,7 @@ export const Template = (args) => ({
 					v-bind="args"
 					v-model="color"
 					@change="handleEmit"
+					@variant-chosen="handleVariantChosen"
 				/>
 			</div>
 			<div>
@@ -59,7 +60,8 @@ export const Template = (args) => ({
 			</div>
 		</div>`,
 	methods: {
-		handleEmit(value) { console.info('value: ', value); }
+		handleEmit(value) { console.info('value: ', value); },
+		handleVariantChosen(value) { console.info('%cv-model:colorVariant ', 'color: #2C70CD;', value); }
 	},
 	updated() {
 		console.info('%cv-model: ', 'color: #2C70CD;', this.color);

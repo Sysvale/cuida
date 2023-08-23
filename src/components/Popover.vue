@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div
-		id="cds-popover"
+		:id="$attrs.id || id"
 		v-on-click-outside="hide"
 		class="popover"
 	>
@@ -21,6 +21,7 @@
 import CdsScrollable from './Scrollable.vue';
 import vClickOutside from 'click-outside-vue3';
 import { createPopper } from '@popperjs/core';
+import { generateKey } from '../utils';
 
 export default {
 	components: {
@@ -89,9 +90,11 @@ export default {
 
 	data() {
 		return {
+			id: '',
 			target: '',
 			popover: '',
 			popperInstance: null,
+			uniqueKey: generateKey(),
 		};
 	},
 
@@ -128,30 +131,33 @@ export default {
 	},
 
 	mounted() {
+		this.id = `cds-popover-${this.uniqueKey}`;
 		this.setPopper(this.targetId);
 	},
 
 	methods: {
 		setPopper(id) {
-			this.target = document.querySelector(`[id='${id}']`);
-			this.popover = document.querySelector('#cds-popover');
-			
-			this.popperInstance = createPopper(this.target, this.popover, {
-				placement: `bottom-${this.variationPlacement}`,
-				modifiers: [
-					{
-						name: 'offset',
-						options: {
-							offset: [0, 8],
+			this.$nextTick(() => {
+				this.target = document.querySelector(`[id='${id}']`);
+				this.popover = document.querySelector(`#${this.id}`);
+
+				this.popperInstance = createPopper(this.target, this.popover, {
+					placement: `bottom-${this.variationPlacement}`,
+					modifiers: [
+						{
+							name: 'offset',
+							options: {
+								offset: [0, 8],
+							},
 						},
-					},
-					{
-						name: 'flip',
-						options: {
-							fallbackPlacements: [`top-${this.variationPlacement}`],
+						{
+							name: 'flip',
+							options: {
+								fallbackPlacements: [`top-${this.variationPlacement}`],
+							},
 						},
-					},
-				],
+					],
+				});
 			});
 		},
 
@@ -177,21 +183,23 @@ export default {
 		},
 
 		hide() {
-			this.popover.removeAttribute('data-show');
+			this.$nextTick(() => {
+				this.popover.removeAttribute('data-show');
 
-			this.popperInstance.setOptions((options) => ({
-				...options,
-				modifiers: [
-					...options.modifiers,
-					{ name: 'eventListeners', enabled: false },
-				],
-			}));
-			/**
-			* Evento utilizado para implementar o v-model.
-			* @event update:modelValue
-			* @type {Event}
-			*/
-			this.$emit('update:modelValue', false);
+				this.popperInstance.setOptions((options) => ({
+					...options,
+					modifiers: [
+						...options.modifiers,
+						{ name: 'eventListeners', enabled: false },
+					],
+				}));
+				/**
+				* Evento utilizado para implementar o v-model.
+				* @event update:modelValue
+				* @type {Event}
+				*/
+				this.$emit('update:modelValue', false);
+			});
 		}
 	},
 }
