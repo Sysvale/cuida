@@ -441,7 +441,6 @@ export default {
 	border: 2px dashed $n-40;
 	box-sizing: border-box;
 	justify-content: space-between;
-	// min-width: 510px;
 	container-name: fileInput;
 	container-type: inline-size;
 	overflow: hidden;
@@ -451,7 +450,6 @@ export default {
 		box-sizing: border-box;
 		display: flex;
 		justify-content: v-bind(textAlignmentResolver) !important;
-		// min-width: 510px;
 		overflow: hidden;
 	}
 
