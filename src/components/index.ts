@@ -50,6 +50,7 @@ import Scrollable from './Scrollable.vue';
 import SearchInput from './SearchInput.vue';
 import SegmentedControl from './SegmentedControl.vue';
 import Select from './Select.vue';
+import SideBar from './SideBar.vue';
 import SideSheet from './SideSheet.vue';
 import SkeletonText from './SkeletonText.vue';
 import Slider from './Slider.vue';
@@ -129,6 +130,7 @@ export default {
 		app.component('CdsSearchInput', SearchInput);
 		app.component('CdsSegmentedControl', SegmentedControl);
 		app.component('CdsSelect', Select); //NOTE: Testado no SB. !Reativo!
+		app.component('CdsSideBar', SideBar);
 		app.component('CdsSideSheet', SideSheet);
 		app.component('CdsSkeletonText', SkeletonText); //NOTE: Testado no SB
 		// app.component('CdsSlider', Slider);
