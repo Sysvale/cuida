@@ -288,7 +288,6 @@ export default {
 		// Chama a função mergeChartData para mesclar os dados das opções selecionadas para atualizar localChartData
 		handleSelectedValues(selectedValues) {
 			this.selectedValues = selectedValues;
-			this.numberOfSelectedValues = selectedValues.length;
 
 			let mergedData = { labels: this.localLabels, datasets: [] };
 
@@ -340,6 +339,8 @@ export default {
 			if (this.selectedValues.length > 1) {
 				const colors = {};
 
+				this.chartOptions.plugins.legend.display = true;
+
 				datasets.forEach(dataset => {
 					const objectName = dataset.name;
 
@@ -353,6 +354,7 @@ export default {
 			} else {
 				datasets.forEach((dataset, index) => {
 					let colorIndex;
+
 					if (datasets.length === 1 && this.numberOfSelectedValues === 1) {
 						colorIndex = 2;
 						this.chartOptions.plugins.legend.display = false;
