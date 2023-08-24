@@ -22,7 +22,15 @@ import BarChart from '../../components/BarChart.vue';
 		  'dark'
 		]
 	  }
-	}
+	},
+	barWidth: {
+		control: {
+			type: 'range',
+			min: 0,
+			max: 1,
+			step: 0.01,
+		},
+	},
 	}}
   parameters={{
 	viewMode: 'docs',
@@ -66,7 +74,7 @@ export const Template = (args) => ({
 	}
   },
   template: /*html*/ `
-	<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px;">
+	<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px; height: 300px">
 	  <cds-bar-chart
 		v-bind="args"
 	  />
@@ -98,7 +106,7 @@ export const Template = (args) => ({
 		labels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
 		variant: 'green',
 		data: [
-				{				
+				{
 					name: 'Ecocardiograma',
 					datasets: [
 						{
@@ -113,9 +121,9 @@ export const Template = (args) => ({
 						label: 'Não realizado',
 						data: [38, 84, 120, 90, 185],
 						}
-					]					
+					]
 				},
-				{ 			
+				{
 					name: 'Raio-X',
 					datasets: [
 						{
@@ -130,9 +138,9 @@ export const Template = (args) => ({
 						label: 'Não realizado',
 						data: [49, 84, 120, 78, 130],
 						}
-					]				
+					]
 				},
-				{ 					
+				{
 					name: 'Tomografia',
 					datasets: [
 						{
@@ -147,7 +155,7 @@ export const Template = (args) => ({
 						label: 'Não realizado',
 						data: [38, 84, 120, 90, 45],
 						}
-					]				
+					]
 				}
 			],
 		barWidth: 1,
