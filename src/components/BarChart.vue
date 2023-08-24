@@ -4,7 +4,7 @@
 		<div
 			v-if="localSelect"
 			class="cds-multiselect"
-		>	
+		>
 			<cds-multiselect
 				v-model="selectedValues"
 				:options="multiOptions"
@@ -24,7 +24,7 @@
 		</div>
 	</span>
 </template>
-  
+
 <script>
 import { Chart, registerables } from 'chart.js';
 import { Bar } from 'vue-chartjs'
@@ -126,6 +126,9 @@ export default {
 							}
 						}
 					},
+					legend: {
+						display: true,
+					},
 				}
 			},
 		}
@@ -141,7 +144,7 @@ export default {
 			return this.localSelect ? this.localChartData : this.checkIfArrayOfObjects;
 		},
 
-		// NOTE: Como modo de segurança, caso utilize um array de objetos irá exibir o primeiro objeto, caso não seja irá retornar somente o objeto passado	
+		// NOTE: Como modo de segurança, caso utilize um array de objetos irá exibir o primeiro objeto, caso não seja irá retornar somente o objeto passado
 		checkIfArrayOfObjects() {
 			if (Array.isArray(this.data)) {
 				// eslint-disable-next-line vue/no-side-effects-in-computed-properties
@@ -252,7 +255,7 @@ export default {
 		removeFirstTwoElements() {
 			for (let i = 0; i < this.palletColors.length; i++) {
 				const color = this.palletColors[i];
-				
+
 				if (this.deleteFirstTwoColors === false) {
 					color.colorShades.splice(0, 2);
 					color.colorTokens.splice(0, 2);
@@ -298,7 +301,7 @@ export default {
 			}
 			this.localChartData = mergedData;
 		},
-  
+
 		// NOTE: Função que recebe a matriz de dados dos gráficos das opções selecionadas e mescla em um único objeto de dados. (MultiSelect: True)
 		mergeChartData(data) {
 			return data.reduce((mergedData, chartData) => {
@@ -310,7 +313,7 @@ export default {
 		},
 
 		// NOTE: Função que recebe uma matriz de dados dos gráfico. (MultiSelect: False)
-		mergeChartDataNoSelect(data) {		
+		mergeChartDataNoSelect(data) {
 			data.labels = this.localLabels;
 			const backgroundColor = this.generateBackgroundColor();
 			this.setColors(data.datasets, backgroundColor);
@@ -326,7 +329,7 @@ export default {
 			}
 			return [];
 		},
-  
+
 		// NOTE: Função responsável por setar backgroundColor, bordeWidth e name
 		// Ocorre essa verificação para garantir que o mesmo conjunto de dados para mais de um item selecionado tenha a mesma cor
 		setColors(datasets, backgroundColor) {
@@ -341,21 +344,29 @@ export default {
 						colors[objectName] = backgroundColor[colorIndex];
 					}
 					dataset.backgroundColor = colors[objectName];
-					dataset.borderRadius = 4;
+					dataset.borderRadius = 6;
 				});
 			} else {
 				datasets.forEach((dataset, index) => {
-					const colorIndex = index % backgroundColor.length;
+					let colorIndex;
+
+					if (datasets.length === 1) {
+						colorIndex = 2;
+						this.chartOptions.plugins.legend.display = false;
+					} else {
+						colorIndex = index % backgroundColor.length
+					}
+
 					const color = backgroundColor[colorIndex];
 					dataset.backgroundColor = color;
-					dataset.borderRadius = 4;
+					dataset.borderRadius = 6;
 				});
 			}
 		},
 	}
 }
 </script>
-  
+
 <style lang="scss" scoped>
 @import './../assets/sass/tokens.scss';
 
