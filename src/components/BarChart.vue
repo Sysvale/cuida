@@ -1,9 +1,9 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-	<span id="cds-bar-chart">
+	<span>
 		<div
 			v-if="localSelect"
-			id="cds-multiselect"
+			class="cds-multiselect"
 		>	
 			<cds-multiselect
 				v-model="selectedValues"
@@ -43,6 +43,12 @@ export default {
 		CdsMultiselect,
 	},
 	props: {
+		/**
+		 * Define o conjunto de dados a serem mostrados no gráfico.
+		 * O objeto deve conter o parâmetro `name` (para identificar o conjunto de dados)
+		 * e `datasets`, array de objetos que apresentará `label` (indicar o rótulo do dado) e
+		 * `data` (array com os valores númericos).
+		 */
 		data: {
 			type: Object,
 			required: true,
@@ -76,22 +82,22 @@ export default {
 			default: () => [],
 		},
 		/**
-         * Ativa ou desativa o componente multiselect. Quando definido como verdadeiro (true), espera-se que 'chartData' seja uma lista de objetos. Quando definido como falso (false), espera-se apenas um objeto.
-         */
+		 * Ativa ou desativa o componente multiselect. Quando definido como verdadeiro (true), espera-se que 'chartData' seja uma lista de objetos. Quando definido como falso (false), espera-se apenas um objeto.
+		 */
 		withSelect: {
 			type: Boolean,
 			default: true
 		},
 		/**
-         * Label do MultiSelect.
-         */
+		 * Label do MultiSelect.
+		 */
 		selectLabel: {
 			type: String,
 			default: 'Label'
 		},
 		/**
-         * Configura a porcentagem ocupada pela barra do gráfico. (0.1-1).
-         */
+		 * Configura a porcentagem ocupada pela barra do gráfico. (0.1-1).
+		 */
 		barWidth: {
 			type: Number,
 			default: 1,
@@ -100,7 +106,6 @@ export default {
 	data() {
 		return {
 			sassColorVariables,
-			chartInstance: null,
 			localChartData: {},
 			localLabels: [],
 			palletColors: [],
@@ -133,11 +138,11 @@ export default {
 
 		// NOTE: Computada responsável por definir qual tipo de dado vai ser exibido de acordo com o multiSelect ativado ou desativado
 		computedDataSet() {
-			return this.localSelect ? this.localChartData : this.verify;
+			return this.localSelect ? this.localChartData : this.checkIfArrayOfObjects;
 		},
 
 		// NOTE: Como modo de segurança, caso utilize um array de objetos irá exibir o primeiro objeto, caso não seja irá retornar somente o objeto passado	
-		verify() {
+		checkIfArrayOfObjects() {
 			if (Array.isArray(this.data)) {
 				// eslint-disable-next-line vue/no-side-effects-in-computed-properties
 				this.multiOptions[0].isSelected = true;
@@ -247,7 +252,7 @@ export default {
 		removeFirstTwoElements() {
 			for (let i = 0; i < this.palletColors.length; i++) {
 				const color = this.palletColors[i];
-                
+				
 				if (this.deleteFirstTwoColors === false) {
 					color.colorShades.splice(0, 2);
 					color.colorTokens.splice(0, 2);
@@ -354,12 +359,12 @@ export default {
 <style lang="scss" scoped>
 @import './../assets/sass/tokens.scss';
 
-#cds-multiselect {
+.cds-multiselect {
 	width: 300px;
 }
 
 .responsive-container{
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 </style>
