@@ -1,10 +1,10 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-	<span id="cds-bar-chart">
+	<span>
 		<div
 			v-if="localSelect"
-			id="cds-multiselect"
-		>	
+			class="cds-multiselect"
+		>
 			<cds-multiselect
 				v-model="selectedValues"
 				:options="multiOptions"
@@ -13,7 +13,9 @@
 				@input="handleSelectedValues"
 			/>
 		</div>
-		<div>
+		<div
+			class="responsive-container"
+		>
 			<Bar
 				:is="'bar'"
 				:data="computedDataSet"
@@ -22,18 +24,16 @@
 		</div>
 	</span>
 </template>
-  
+
 <script>
 import { Chart, registerables } from 'chart.js';
 import { Bar } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 import CdsMultiselect from './Multiselect.vue';
 import sassColorVariables from '../assets/sass/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
-// Registrar o elemento "point" no registro (Torna-se necessário para Line e Pie que necessita de marcações de ponto)
+// Registrar o elemento "point" no registro (Torna-se necessário para marcações de ponto)
 Chart.register(...registerables);
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
 export default {
 	components: {
@@ -41,7 +41,13 @@ export default {
 		CdsMultiselect,
 	},
 	props: {
-		chartData: {
+		/**
+		 * Define o conjunto de dados a serem mostrados no gráfico.
+		 * O objeto deve conter o parâmetro `name` (para identificar o conjunto de dados)
+		 * e `datasets`, array de objetos que apresentará `label` (indicar o rótulo do dado) e
+		 * `data` (array com os valores númericos).
+		 */
+		data: {
 			type: Object,
 			required: true,
 			default: () => ({
@@ -54,50 +60,43 @@ export default {
 			})
 		},
 		/**
-		 * A variante de cor. São 11 variantes implementadas:'Piccolo Green', 'Sulivan Turquoise',
-		 * 'Nocturne Blue', 'Nightwing Indigo', 'Raven Violet', 'Peppa Pink', 'Carmen Red', 'Goku Orange', 'Lisa Amber', 'Mid Neutrals', 'Dark Neutrals'.
+		 * Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:
+		 * `green`,`turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `mid`, `dark`.
 		 */
 		variant: {
 			type: String,
 			required: true,
 			default: 'green',
 			validator: (value) => {
-				return ['Piccolo Green', 'Sulivan Turquoise', 'Nocturne Blue', 'Nightwing Indigo', 'Raven Violet', 'Peppa Pink', 'Carmen Red', 'Goku Orange', 'Lisa Amber', 'Mid Neutrals', 'Dark Neutrals'].includes(value);
+				return ['green', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'mid', 'dark'].includes(value);
 			}
 		},
 		/**
 		 * Defina as labels do gráfico
 		 */
-		chartLabels: {
+		labels: {
 			type: Array,
 			required: true,
 			default: () => [],
 		},
 		/**
-         * Ativa ou desativa o componente multiselect. Quando definido como verdadeiro (true), espera-se que 'chartData' seja uma lista de objetos. Quando definido como falso (false), espera-se apenas um objeto.
-         */
-		choiceMultiselect: {
+		 * Ativa ou desativa o componente multiselect. Quando definido como verdadeiro (true), espera-se que 'chartData' seja uma lista de objetos. Quando definido como falso (false), espera-se apenas um objeto.
+		 */
+		withSelect: {
 			type: Boolean,
 			default: true
 		},
 		/**
-         * Label do MultiSelect.
-         */
-		labelSelect: {
+		 * Label do MultiSelect.
+		 */
+		selectLabel: {
 			type: String,
 			default: 'Label'
 		},
 		/**
-         * Configura o eixo de exibição do gráfico. (x ou y)
-         */
-		indexAxis: {
-			type: String,
-			default: 'x'
-		},
-		/**
-			 * Configura a porcentagem ocupada pela barra do gráfico. (0.1-1).
-			 */
-		categoryPercentage: {
+		 * Configura a porcentagem ocupada pela barra do gráfico. (0.1-1).
+		 */
+		barWidth: {
 			type: Number,
 			default: 1,
 		},
@@ -110,13 +109,13 @@ export default {
 			palletColors: [],
 			localSelect: '',
 			label: '', // NOTE: Label do multiselect
-			options: [], 			// NOTE: Options do multiselect
+			options: [], // NOTE: Options do multiselect
 			selectedValues: [],
+			deleteFirstTwoColors: false, //NOTE: Responsável por garantir que as cores mid e dark da paleta não serão removidos os dois primeiros elementos
 			chartOptions: {
 				responsive: true,
 				maintainAspectRatio: false, // NOTE: Caso true manterá aspecto de proporção original, caso false, será dimensionado para preencher completamente o contêiner (Isso pode fazer com que o gráfico pareça distorcido se o container tiver proporção de aspecto diferente do gráfico original)
-				indexAxis: this.indexAxis, //NOTE: Configura o eixo do gráfico.
-				categoryPercentage: this.categoryPercentage, //NOTE: Configura a porcentagem ocupada pela barra do gráfico. (0-1)
+				categoryPercentage: null, //NOTE: Configura a porcentagem ocupada pela barra do gráfico. (0-1)
 				plugins: {
 					tooltip: {
 						callbacks: {
@@ -125,8 +124,12 @@ export default {
 							}
 						}
 					},
+					legend: {
+						display: true,
+					},
 				}
 			},
+			numberOfSelectedValues: 0,
 		}
 	},
 	computed: {
@@ -135,44 +138,37 @@ export default {
 			return this.options.map(option => ({ value: option.name }));
 		},
 
-
 		// NOTE: Computada responsável por definir qual tipo de dado vai ser exibido de acordo com o multiSelect ativado ou desativado
 		computedDataSet() {
-			return this.localSelect ? this.localChartData : this.verify;
+			return this.localSelect ? this.localChartData : this.checkIfArrayOfObjects;
 		},
 
-		// NOTE: Como modo de segurança, caso utilize um array de objetos irá exibir o primeiro objeto, caso não seja irá retornar somente o objeto passado	
-		verify() {
-			if (Array.isArray(this.chartData)) {
-				// eslint-disable-next-line vue/no-side-effects-in-computed-properties
-				this.multiOptions[0].isSelected = true;
-				const selectedOption = {
-					value: this.multiOptions[0].value,
-				};
-				// eslint-disable-next-line vue/no-side-effects-in-computed-properties
-				this.selectedValues = [selectedOption];
+		// NOTE: Como modo de segurança, caso utilize um array de objetos irá exibir o primeiro objeto, caso não seja irá retornar somente o objeto passado
+		checkIfArrayOfObjects() {
+			if (Array.isArray(this.data)) {
+				this.selectedFirstOfOptions()
 				return this.localChartData;
 			}
-			return this.chartData;
+			return this.data;
 		},
 	},
 
 	watch: {
-		choiceMultiselect: {
+		withSelect: {
 			handler(newValue) {
 				this.localSelect = newValue;
 			},
 			immediate: true,
 		},
 
-		labelSelect: {
+		selectLabel: {
 			handler(newValue) {
 				this.label = newValue
 			},
 			immediate: true,
 		},
 
-		chartData: {
+		data: {
 			handler(newValue, oldValue) {
 				this.options = newValue;
 				if (newValue === oldValue && Array.isArray(newValue) && newValue.length > 0) {
@@ -186,15 +182,38 @@ export default {
 
 		selectedValues: {
 			handler(newValue) {
+				this.numberOfSelectedValues = newValue.length;
 				this.handleSelectedValues(newValue);
 			},
 			deep: true,
 			immediate: true,
 		},
 
-		chartLabels: {
+		labels: {
 			handler(newValue) {
 				this.localLabels = newValue
+			},
+			immediate: true,
+		},
+
+		barWidth: {
+			handler(newValue) {
+				if (newValue >= 0.1 && newValue <= 1) {
+					this.chartOptions.categoryPercentage = newValue;
+				} else {
+					this.chartOptions.categoryPercentage = 1;
+				}
+			},
+			immediate: true,
+		},
+
+		variant: {
+			handler(newValue) {
+				if (newValue === 'mid' || newValue === 'dark')  {
+					this.deleteFirstTwoColors = true;
+				} else {
+					this.deleteFirstTwoColors = false;
+				}
 			},
 			immediate: true,
 		},
@@ -206,7 +225,7 @@ export default {
 	},
 
 	created() {
-		if (this.choiceMultiselect && this.multiOptions.length > 0) {
+		if (this.withSelect && this.multiOptions.length > 0) {
 			this.multiOptions[0].isSelected = true;
 			const selectedOption = {
 				value: this.multiOptions[0].value,
@@ -215,7 +234,7 @@ export default {
 		} else {
 			this.selectedValues = [];
 		}
-		this.typeOfData(this.chartData);
+		this.typeOfData(this.data);
 	},
 
 	methods: {
@@ -226,12 +245,20 @@ export default {
 			this.removeFirstTwoElements();
 		},
 
+		selectedFirstOfOptions() {
+			this.multiOptions[0].isSelected = true;
+			const selectedOption = {
+				value: this.multiOptions[0].value,
+			};
+			this.selectedValues = [selectedOption];
+		},
+
 		// NOTE: Função responsável por remover os dois primeiros elementos da paleta para quando não é Mid ou Dark Neutrals
 		removeFirstTwoElements() {
 			for (let i = 0; i < this.palletColors.length; i++) {
 				const color = this.palletColors[i];
 
-				if (color.colorName !== 'Mid Neutrals' && color.colorName !== 'Dark Neutrals') {
+				if (this.deleteFirstTwoColors === false) {
 					color.colorShades.splice(0, 2);
 					color.colorTokens.splice(0, 2);
 					color.colorData.splice(0, 2);
@@ -241,7 +268,7 @@ export default {
 
 		// NOTE: Adiciona campo dataset.name com o nome do objeto respectivo
 		addDataSetNames() {
-			this.chartData.forEach(item => {
+			this.data.forEach(item => {
 				item.datasets.forEach(dataset => {
 					dataset.name = item.name;
 				});
@@ -261,6 +288,7 @@ export default {
 		// Chama a função mergeChartData para mesclar os dados das opções selecionadas para atualizar localChartData
 		handleSelectedValues(selectedValues) {
 			this.selectedValues = selectedValues;
+
 			let mergedData = { labels: this.localLabels, datasets: [] };
 
 			if (Array.isArray(selectedValues)) {
@@ -276,7 +304,7 @@ export default {
 			}
 			this.localChartData = mergedData;
 		},
-  
+
 		// NOTE: Função que recebe a matriz de dados dos gráficos das opções selecionadas e mescla em um único objeto de dados. (MultiSelect: True)
 		mergeChartData(data) {
 			return data.reduce((mergedData, chartData) => {
@@ -288,7 +316,7 @@ export default {
 		},
 
 		// NOTE: Função que recebe uma matriz de dados dos gráfico. (MultiSelect: False)
-		mergeChartDataNoSelect(data) {		
+		mergeChartDataNoSelect(data) {
 			data.labels = this.localLabels;
 			const backgroundColor = this.generateBackgroundColor();
 			this.setColors(data.datasets, backgroundColor);
@@ -297,18 +325,21 @@ export default {
 
 		// NOTE: Função responsável por buscar a cor na paleta
 		generateBackgroundColor() {
-			const palletColor = this.palletColors.find(color => color.colorName === this.variant);
+			const variantLowercase = this.variant.toLowerCase();
+			const palletColor = this.palletColors.find(color => color.colorName.toLowerCase().includes(variantLowercase));
 			if (palletColor) {
 				return palletColor.colorShades;
 			}
 			return [];
 		},
-  
+
 		// NOTE: Função responsável por setar backgroundColor, bordeWidth e name
 		// Ocorre essa verificação para garantir que o mesmo conjunto de dados para mais de um item selecionado tenha a mesma cor
 		setColors(datasets, backgroundColor) {
 			if (this.selectedValues.length > 1) {
 				const colors = {};
+
+				this.chartOptions.plugins.legend.display = true;
 
 				datasets.forEach(dataset => {
 					const objectName = dataset.name;
@@ -318,25 +349,38 @@ export default {
 						colors[objectName] = backgroundColor[colorIndex];
 					}
 					dataset.backgroundColor = colors[objectName];
-					dataset.borderRadius = 4;
+					dataset.borderRadius = 6;
 				});
 			} else {
 				datasets.forEach((dataset, index) => {
-					const colorIndex = index % backgroundColor.length;
+					let colorIndex;
+
+					if (datasets.length === 1 && this.numberOfSelectedValues === 1) {
+						colorIndex = 2;
+						this.chartOptions.plugins.legend.display = false;
+					} else {
+						colorIndex = index % backgroundColor.length
+					}
+
 					const color = backgroundColor[colorIndex];
 					dataset.backgroundColor = color;
-					dataset.borderRadius = 4;
+					dataset.borderRadius = 6;
 				});
 			}
 		},
 	}
 }
 </script>
-  
+
 <style lang="scss" scoped>
 @import './../assets/sass/tokens.scss';
 
-#cds-multiselect {
+.cds-multiselect {
 	width: 300px;
+}
+
+.responsive-container{
+	width: 100%;
+	height: 100%;
 }
 </style>
