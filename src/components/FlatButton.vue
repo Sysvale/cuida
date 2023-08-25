@@ -44,8 +44,9 @@ export default {
 	data() {
 		return {
 			predefinedColors: [
-				'teal',
 				'green',
+				'teal',
+				'turquoise',
 				'blue',
 				'indigo',
 				'violet',

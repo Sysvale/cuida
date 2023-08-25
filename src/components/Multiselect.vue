@@ -623,7 +623,7 @@ export default {
 			transform: rotate(0deg);
 		}
 
-		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
+		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $dimed, $background, $hover, $text) {
 			background-color: $base-color !important;
 			border: none !important;
 		}

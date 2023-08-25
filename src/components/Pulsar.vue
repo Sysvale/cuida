@@ -50,7 +50,7 @@ export default {
 		background-color: $bn-400;
 		animation: innerPulse  2.5s cubic-bezier(0, 0, 0.58, 1) both infinite;
 	
-		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
+		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $dimed, $background, $hover, $text) {
 			@extend .pulsar__inner-circle;
 			background-color: $base-color;
 		}
@@ -66,7 +66,7 @@ export default {
 		border-radius: $border-radius-circle;
 		animation: outerPulse 2.5s cubic-bezier(0, 0, 0.58, 1) both infinite;
 	
-		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
+		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $dimed, $background, $hover, $text) {
 			@extend .pulsar__outer-circle;
 			background-color: $muted;
 		}

@@ -56,7 +56,7 @@ export default {
 	background: transparent;
 	border-style: solid;
 
-	@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
+	@include variantResolver using ($color-name, $base-color, $disabled, $muted, $dimed, $background, $hover, $text) {
 		@extend .spin;
 		border-left-color: $base-color;
 		border-bottom-color: lighten($base-color, 5%);

@@ -35,14 +35,14 @@ $darkNeutralsTokens: '$n-500', '$n-600', '$n-700', '$n-800', '$n-900';
 
 $darkNeutralsMetaData: 'Dark Neutrals', $darkNeutralsShades, $darkNeutralsTokens;
 
-$gp-50: #F3FCF7;
-$gp-100: #DEF7E9;
-$gp-200: #ABEDD5;
-$gp-300: #6DDFB5;
-$gp-400: #2AC089;
-$gp-500: #239F6F;
-$gp-600: #1B7955;
-$gp-700: #126344;
+$gp-50: #f3fcf8;
+$gp-100: #e2f8ef;
+$gp-200: #abedd3;
+$gp-300: #6ddfb1;
+$gp-400: #2db981;
+$gp-500: #239f6d;
+$gp-600: #1c7d56;
+$gp-700: #136746;
 
 $piccoloGreenShades: $gp-50, $gp-100, $gp-200, $gp-300, $gp-400, $gp-500, $gp-600, $gp-700;
 $piccoloGreenTokens: '$gp-50', '$gp-100', '$gp-200', '$gp-300', '$gp-400', '$gp-500', '$gp-600', '$gp-700';
@@ -50,132 +50,136 @@ $piccoloGreenTokens: '$gp-50', '$gp-100', '$gp-200', '$gp-300', '$gp-400', '$gp-
 $greenMetaData: 'Piccolo Green', $piccoloGreenShades, $piccoloGreenTokens;
 
 $ta-50: #eefcfa;
-$ta-100: #d3f8f4;
-$ta-200: #a2f1e8;
-$ta-300: #51e6d5;
-$ta-400: #1dc9b5;
-$ta-500: #18aa99;
-$ta-600: #138678;
-$ta-700: #0e6258;
+$ta-100: #dcf9f6;
+$ta-200: #a2f1e5;
+$ta-300: #51e6d0;
+$ta-400: #20c5ad;
+$ta-500: #18aa94;
+$ta-600: #138675;
+$ta-700: #0f6b5d;
 
 $aquamanTealShades: $ta-50, $ta-100, $ta-200, $ta-300, $ta-400, $ta-500, $ta-600, $ta-700;
 $aquamanTealTokens: '$ta-50', '$ta-100', '$ta-200', '$ta-300', '$ta-400', '$ta-500', '$ta-600', '$ta-700';
 
 $tealMetaData: 'Aquaman Teal', $aquamanTealShades, $aquamanTealTokens;
 
-$ts-50: #F7FCFF;
-$ts-100: #E2F4FE;
+$ts-50: #f5fbff;
+$ts-100: #e6f6fe;
 $ts-200: #C2EDFF;
 $ts-300: #7BD0F4;
 $ts-400: #42AAD7;
 $ts-500: #1F86B2;
 $ts-600: #18698B;
-$ts-700: #13526D;
+$ts-700: #155875;
 
 $sulivanTurquoiseShades: $ts-50, $ts-100, $ts-200, $ts-300, $ts-400, $ts-500, $ts-600, $ts-700;
 $sulivanTurquoiseTokens: '$ts-50', '$ts-100', '$ts-200', '$ts-300', '$ts-400', '$ts-500', '$ts-600', '$ts-700';
 
 $turquoiseMetaData: 'Sulivan Turquoise', $sulivanTurquoiseShades, $sulivanTurquoiseTokens;
 
-$bn-50: #F8FAFE;
-$bn-100: #E6EFFE;
-$bn-200: #B5CEF8;
-$bn-300: #80A7EA;
-$bn-400: #4880E0;
-$bn-500: #2C67CD;
-$bn-600: #1A4EA8;
-$bn-700: #173E82;
+$bn-50: #f6f9fe;
+$bn-100: #e6effe;
+$bn-200: #b4cdf8;
+$bn-300: #729ee9;
+$bn-400: #467bd8;
+$bn-500: #2f64c1;
+$bn-600: #2051a7;
+$bn-700: #19438a;
 
 $nocturneBlueShades: $bn-50, $bn-100, $bn-200, $bn-300, $bn-400, $bn-500, $bn-600, $bn-700;
 $nocturneBlueTokens: '$bn-50', '$bn-100', '$bn-200', '$bn-300', '$bn-400', '$bn-500', '$bn-600', '$bn-700';
 
 $blueMetaData: 'Nocturne Blue', $nocturneBlueShades, $nocturneBlueTokens;
 
-$in-50: #F5F6FF;
-$in-100: #E5EAFF;
+$in-50: #f5f6ff;
+$in-100: #ebefff;
 $in-200: #CED6FD;
-$in-300: #A9B7F9;
-$in-400: #6C7ED6;
-$in-500: #4D5DAC;
-$in-600: #384584;
-$in-700: #353D64;
+$in-300: #9bacf8;
+$in-400: #6a7cd7;
+$in-500: #4b5caf;
+$in-600: #374486;
+$in-700: #2f396f;
 
 $nightwingIndigoShades: $in-50, $in-100, $in-200, $in-300, $in-400, $in-500, $in-600, $in-700;
 $nightwingIndigoTokens: '$in-50', '$in-100', '$in-200', '$in-300', '$in-400', '$in-500', '$in-600', '$in-700';
 
 $indigoMetaData: 'Nightwing Indigo', $nightwingIndigoShades, $nightwingIndigoTokens;
 
-$vr-50: #FBF7FF;
-$vr-100: #F5EBFF;
+$vr-50: #faf5ff;
+$vr-100: #f7f0ff;
 $vr-200: #E6D2F9;
 $vr-300: #CEABED;
-$vr-400: #A975D7;
+$vr-400: #a772d5;
 $vr-500: #8955B9;
 $vr-600: #6B3A98;
-$vr-700: #4F2673;
+$vr-700: #5c3082;
 
 $ravenVioletShades: $vr-50, $vr-100, $vr-200, $vr-300, $vr-400, $vr-500, $vr-600, $vr-700;
 $ravenVioletTokens: '$vr-50', '$vr-100', '$vr-200', '$vr-300', '$vr-400', '$vr-500', '$vr-600', '$vr-700';
 
 $violetMetaData: 'Raven Violet', $ravenVioletShades, $ravenVioletTokens;
 
-$pp-50: #FFF7FC;
-$pp-100: #FFEBF7;
+$pp-50: #fff5fb;
+$pp-100: #ffebf7;
 $pp-200: #F9C8E2;
 $pp-300: #EF8FC0;
 $pp-400: #DA629F;
 $pp-500: #BE377C;
 $pp-600: #A12663;
-$pp-700: #701A48;
+$pp-700: #88255a;
 
 $peppaPinkShades: $pp-50, $pp-100, $pp-200, $pp-300, $pp-400, $pp-500, $pp-600, $pp-700;
 $peppaPinkTokens: '$pp-50', '$pp-100', '$pp-200', '$pp-300', '$pp-400', '$pp-500', '$pp-600', '$pp-700';
 
 $pinkMetaData: 'Peppa Pink', $peppaPinkShades, $peppaPinkTokens;
 
-$rc-50: #FEF5F6;
-$rc-100: #FFE6E9;
+$rc-50: #fef6f7;
+$rc-100: #ffebed;
 $rc-200: #FABDC5;
 $rc-300: #F98B98;
 $rc-400: #F3596C;
 $rc-500: #E03E52;
 $rc-600: #C92C3F;
-$rc-700: #A42333;
+$rc-700: #b22435;
 
 $carmenRedShades: $rc-50, $rc-100, $rc-200, $rc-300, $rc-400, $rc-500, $rc-600, $rc-700;
 $carmenRedTokens: '$rc-50', '$rc-100', '$rc-200', '$rc-300', '$rc-400', '$rc-500', '$rc-600', '$rc-700';
 
 $redMetaData: 'Carmen Red', $carmenRedShades, $carmenRedTokens;
 
-$og-50: #FEF9F8;
-$og-100: #FFEBE5;
+$og-50: #fef7f6;
+$og-100: #ffefeb;
 $og-200: #FFD6CC;
 $og-300: #FDAF9B;
 $og-400: #FF8567;
 $og-500: #F06442;
 $og-600: #D64B29;
-$og-700: #AB3C21;
+$og-700: #bc4224;
 
 $gokuOrangeShades: $og-50, $og-100, $og-200, $og-300, $og-400, $og-500, $og-600, $og-700;
 $gokuOrangeTokens: '$og-50', '$og-100', '$og-200', '$og-300', '$og-400', '$og-500', '$og-600', '$og-700';
 
 $orangeMetaData: 'Goku Orange', $gokuOrangeShades, $gokuOrangeTokens;
 
-$al-50: #fefbf5;
-$al-100: #fff1dc;
-$al-200: #FFE2B8;
-$al-300: #FDCD87;
-$al-400: #FFB952;
-$al-500: #EEA22F;
-$al-600: #D38817;
-$al-700: #A56A12;
+$al-50: #fefbf6;
+$al-100: #fdf3e2;
+$al-200: #ffe5b8;
+$al-300: #fdd286;
+$al-400: #f6bd5a;
+$al-500: #eda831;
+$al-600: #d89013;
+$al-700: #c08011;
 
 $lisaAmberShades: $al-50, $al-100, $al-200, $al-300, $al-400, $al-500, $al-600, $al-700;
 $lisaAmberTokens: '$al-50', '$al-100', '$al-200', '$al-300', '$al-400', '$al-500', '$al-600', '$al-700';
 
 $amberMetaData: 'Lisa Amber', $lisaAmberShades, $lisaAmberTokens;
 
-$palete: [$greenMetaData],
+$palete:
+	[$lightNeutralMetaData],
+	[$midNeutralsMetaData],
+	[$darkNeutralsMetaData],
+	[$greenMetaData],
 	[$tealMetaData],
 	[$turquoiseMetaData],
 	[$blueMetaData],
@@ -184,40 +188,36 @@ $palete: [$greenMetaData],
 	[$pinkMetaData],
 	[$redMetaData],
 	[$orangeMetaData],
-	[$amberMetaData],
-	[$lightNeutralMetaData],
-	[$midNeutralsMetaData],
-	[$darkNeutralsMetaData];
+	[$amberMetaData];
 
-$baseColors: (
-	'green': $gp-400,
-	'teal': $ta-400,
-	'turquoise': $ts-400,
-	'blue': $bn-400,
-	'indigo': $in-400,
-	'violet': $vr-400,
-	'pink': $pp-400,
-	'red': $rc-400,
-	'orange': $og-400,
-	'amber': $al-400,
-	'dark': $n-600,
-	'gray': $n-30,
-	'white': $n-0,
+$backgroundColors: (
+	'green': $gp-50,
+	'teal': $ta-50,
+	'turquoise': $ts-50,
+	'blue': $bn-50,
+	'indigo': $in-50,
+	'violet': $vr-50,
+	'pink': $pp-50,
+	'red': $rc-50,
+	'orange': $og-50,
+	'amber': $al-50,
+	'dark': $n-30,
+	'gray': $n-0,
 );
 
-$disabledColors: (
-	'green': $gp-300,
-	'teal': $ta-300,
-	'turquoise': $ts-300,
-	'blue': $bn-300,
-	'indigo': $in-300,
-	'violet': $vr-300,
-	'pink': $pp-300,
-	'red': $rc-300,
-	'orange': $og-300,
-	'amber': $al-300,
-	'dark': $n-400,
-	'gray': $n-10,
+$dimmedColors: (
+	'green': $gp-100,
+	'teal': $ta-100,
+	'turquoise': $ts-100,
+	'blue': $bn-100,
+	'indigo': $in-100,
+	'violet': $vr-100,
+	'pink': $pp-100,
+	'red': $rc-100,
+	'orange': $og-100,
+	'amber': $al-100,
+	'dark': $n-500,
+	'gray': $n-30,
 	'white': $n-0,
 );
 
@@ -237,6 +237,38 @@ $mutedColors: (
 	'white': $n-0,
 );
 
+$disabledColors: (
+	'green': $gp-300,
+	'teal': $ta-300,
+	'turquoise': $ts-300,
+	'blue': $bn-300,
+	'indigo': $in-300,
+	'violet': $vr-300,
+	'pink': $pp-300,
+	'red': $rc-300,
+	'orange': $og-300,
+	'amber': $al-300,
+	'dark': $n-400,
+	'gray': $n-10,
+	'white': $n-0,
+);
+
+$baseColors: (
+	'green': $gp-400,
+	'teal': $ta-400,
+	'turquoise': $ts-400,
+	'blue': $bn-400,
+	'indigo': $in-400,
+	'violet': $vr-400,
+	'pink': $pp-400,
+	'red': $rc-400,
+	'orange': $og-400,
+	'amber': $al-400,
+	'dark': $n-600,
+	'gray': $n-30,
+	'white': $n-0,
+);
+
 $hoverColors: (
 	'green': $gp-500,
 	'teal': $ta-500,
@@ -253,19 +285,20 @@ $hoverColors: (
 	'white': $n-0,
 );
 
-$backgroundColors: (
-	'green': $gp-50,
-	'teal': $ta-50,
-	'turquoise': $ts-50,
-	'blue': $bn-50,
-	'indigo': $in-50,
-	'violet': $vr-50,
-	'pink': $pp-50,
-	'red': $rc-50,
-	'orange': $og-50,
-	'amber': $al-50,
-	'dark': $n-30,
-	'gray': $n-0,
+$textColors: (
+	'green': $gp-600,
+	'teal': $ta-600,
+	'turquoise': $ts-600,
+	'blue': $bn-600,
+	'indigo': $in-600,
+	'violet': $vr-600,
+	'pink': $pp-600,
+	'red': $rc-600,
+	'orange': $og-600,
+	'amber': $al-600,
+	'dark': $n-800,
+	'gray': $n-200,
+	'white': $n-0,
 );
 
 $allColors: (
@@ -382,9 +415,11 @@ $allColors: (
 		$muted: map-get($mutedColors , $color-name);
 		$background: map-get($backgroundColors , $color-name);
 		$hover: map-get($hoverColors , $color-name);
+		$dimmed: map-get($dimmedColors , $color-name);
+		$text: map-get($textColors , $color-name);
 
 		&--#{$color-name} {
-			@content($color-name, $base-color, $disabled, $muted, $background, $hover);
+			@content($color-name, $base-color, $disabled, $muted, $dimmed, $background, $hover, $text);
 		}
 	}
 }

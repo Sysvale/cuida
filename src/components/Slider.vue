@@ -165,7 +165,7 @@ export default {
 }
 
 .slider {
-	@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
+	@include variantResolver using ($color-name, $base-color, $disabled, $muted, $dimed, $background, $hover, $text) {
 
 		& > .vue-slider-rail > .vue-slider-process {
 			background-color: $disabled !important;

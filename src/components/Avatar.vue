@@ -150,7 +150,7 @@ export default {
 		display: flex;
 		justify-content: center;
 
-		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
+		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $dimed, $background, $hover, $text) {
 			background-color: $base-color;
 
 			@if ($color-name == 'white' or $color-name == 'gray') {

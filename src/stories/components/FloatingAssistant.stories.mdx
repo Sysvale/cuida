@@ -4,6 +4,25 @@ import FloatingAssistant from '../../components/FloatingAssistant.vue';
 <Meta
 	title="Componentes/Display/FloatingAssistant"
 	component={ FloatingAssistant }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+				],
+			}
+		},
+	}}
 	parameters={{
 		viewMode: 'docs',
 		previewTabs: { canvas: { hidden: true }},

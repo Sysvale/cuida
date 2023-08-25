@@ -22,7 +22,7 @@
 				</router-link>
 
 				<div
-					:class="isActive(item) ? 'item__indicator--active' : ''"
+					:class="indicatorClass(item)"
 					:style="activeBorderStyle"
 				/>
 			</li>
@@ -129,6 +129,10 @@ export default {
 		routerPushTo(item) {
 			return this.resolveRoute(item) ? this.resolveRoute(item).path : null;
 		},
+
+		indicatorClass(item) {
+			return this.isActive(item) ? `item__indicator--active--${this.variant}` : '';
+		},
 	},
 };
 </script>
@@ -191,10 +195,12 @@ export default {
 	}
 
 	.item__indicator--active {
-		height: 4px;
-		width: 100%;
-		background-color: var(--indicatorColor);
-		transition: all 0.3s ease-out;
+		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $dimed, $background, $hover, $text) {
+			height: 4px;
+			width: 100%;
+			background-color: $base-color;
+			transition: all 0.3s ease-out;
+		}
 	}
 }
 </style>

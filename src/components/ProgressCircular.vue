@@ -2,11 +2,7 @@
 	<svg
 		class="progress-circular"
 		viewBox="0 0 36 36"
-		:class="{
-			'progress-circular--sm': size === 'sm',
-			'progress-circular--md': size === 'md',
-			'progress-circular--lg': size === 'lg',
-		}"
+		:class="`progress-circular--${size}`"
 	>
 		<path
 			class="progress-circular__ring-background"
@@ -18,7 +14,7 @@
 		/>
 
 		<path
-			class="progress-circular__ring-progress"
+			:class="`progress-circular__ring-progress--${variant}`"
 			:stroke-dasharray="normalizedDashArray"
 			:stroke-width="stroke-1"
 			:style="circleIndicatorStyle"
@@ -180,10 +176,12 @@ export default {
 	}
 
 	&__ring-progress {
-		fill: none;
-		stroke-linecap: round;
-		animation: progress 1s ease-out forwards;
-		stroke: var(--indicatorColor);
+		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $dimed, $background, $hover, $text) {
+			fill: none;
+			stroke-linecap: round;
+			animation: progress 1s ease-out forwards;
+			stroke: $base-color;
+		}
 	}
 
 	@keyframes progress {
