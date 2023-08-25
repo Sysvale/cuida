@@ -39,16 +39,15 @@ import BarChart from '../../components/BarChart.vue';
 	  source: {
 		language: 'html',
 		format: true,
-		code: /*html*/`
-<cds-bar-chart
+		code: /*html*/
+`<cds-bar-chart
   :data="chartData"
   :variant="variant"
   :labels="chartLabels"
   :with-select: "withSelect"
   :select-label="selectLabel"
   :bar-width="barWidth"
->
-</cds-bar-chart>`
+/>`
 	  },
 	}
   }}
@@ -62,13 +61,13 @@ export const Template = (args) => ({
   data() {
 	return {
 	  data: {
-		datasets: args.chartData,
+		datasets: chartData,
 	  },
-	  chartLabels: args.labels,
-	  variant: args.variant,
-	  withSelect: args.withSelect,
-	  selectLabel: args.selectLabel,
-	  barWidth: args.barWidth,
+	  chartLabels: labels,
+	  variant: variant,
+	  withSelect: withSelect,
+	  selectLabel: selectLabel,
+	  barWidth: barWidth,
 	}
   },
   template: /*html*/ `
