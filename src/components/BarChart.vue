@@ -28,14 +28,12 @@
 <script>
 import { Chart, registerables } from 'chart.js';
 import { Bar } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 import CdsMultiselect from './Multiselect.vue';
 import sassColorVariables from '../assets/sass/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
-// Registrar o elemento "point" no registro (Torna-se necessário para Line e Pie que necessita de marcações de ponto)
+// Registrar o elemento "point" no registro (Torna-se necessário para marcações de ponto)
 Chart.register(...registerables);
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
 export default {
 	components: {
