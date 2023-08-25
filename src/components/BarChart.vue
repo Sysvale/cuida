@@ -148,13 +148,7 @@ export default {
 		// NOTE: Como modo de segurança, caso utilize um array de objetos irá exibir o primeiro objeto, caso não seja irá retornar somente o objeto passado
 		checkIfArrayOfObjects() {
 			if (Array.isArray(this.data)) {
-				// eslint-disable-next-line vue/no-side-effects-in-computed-properties
-				this.multiOptions[0].isSelected = true;
-				const selectedOption = {
-					value: this.multiOptions[0].value,
-				};
-				// eslint-disable-next-line vue/no-side-effects-in-computed-properties
-				this.selectedValues = [selectedOption];
+				this.selectedFirstOfOptions()
 				return this.localChartData;
 			}
 			return this.data;
@@ -251,6 +245,14 @@ export default {
 		palete() {
 			this.palletColors = this.paleteBuilder(this.sassColorVariables.palete);
 			this.removeFirstTwoElements();
+		},
+
+		selectedFirstOfOptions() {
+			this.multiOptions[0].isSelected = true;
+			const selectedOption = {
+				value: this.multiOptions[0].value,
+			};
+			this.selectedValues = [selectedOption];
 		},
 
 		// NOTE: Função responsável por remover os dois primeiros elementos da paleta para quando não é Mid ou Dark Neutrals
