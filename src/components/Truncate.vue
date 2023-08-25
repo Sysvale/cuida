@@ -27,7 +27,7 @@ export default {
 <style lang="scss">
 .truncate__container {
 	text-overflow: ellipsis;
-	width: v-bind(widthResolver);
+	max-width: v-bind(widthResolver);
 	white-space: nowrap;
 	overflow: hidden;
 }
