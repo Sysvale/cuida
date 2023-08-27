@@ -5,7 +5,6 @@
 			class="responsive-container"
 		>
 			<PolarArea
-				:is="'polar-area'"
 				:data="localChartData"
 				:options="chartOptions"
 			/>
@@ -180,7 +179,7 @@ export default {
 			data.forEach(obj => {
 				obj.datasets.forEach(state => {
 					const dataset = {
-						label: state.label,
+												label: this.showLabelName ? state.name :state.label,
 						data: state.data,
 						name: state.name,
 						borderRadius: 6,

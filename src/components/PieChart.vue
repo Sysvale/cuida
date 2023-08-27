@@ -5,7 +5,6 @@
 			class="responsive-container"
 		>
 			<Pie
-				:is="'pie'"
 				:data="localChartData"
 				:options="chartOptions"
 			/>
