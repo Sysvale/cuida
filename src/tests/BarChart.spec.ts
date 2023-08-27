@@ -64,7 +64,6 @@ describe('BarChart', () => {
 				variant: 'green',
 				data: mockedData,
 				barWidth: 1,
-				withSelect: false,
 			},
 		});
 
