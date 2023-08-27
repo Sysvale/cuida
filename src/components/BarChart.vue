@@ -26,6 +26,7 @@ export default {
 	components: {
 		Bar,
 	},
+
 	props: {
 		/**
 		 * Define o conjunto de dados a serem mostrados no gráfico.
@@ -73,12 +74,12 @@ export default {
 			default: 1,
 		},
 	},
+
 	data() {
 		return {
 			sassColorVariables,
 			localChartData: {},
 			localLabels: [],
-			selectedColor: '',
 			palletColors: [],
 			deleteFirstTwoColors: false, //NOTE: Responsável por garantir que as cores mid e dark da paleta não serão removidos os dois primeiros elementos
 			chartOptions: {
@@ -139,10 +140,6 @@ export default {
 		},
 	},
 
-	mounted() {
-		this.addDataSetNames();
-	},
-
 	methods: {
 		paleteBuilder,
 
@@ -173,11 +170,10 @@ export default {
 			});
 		},
 
-		// NOTE: Função que recebe uma matriz de dados dos gráfico. (MultiSelect: False)
+		// NOTE: Função que recebe uma matriz de dados dos gráfico.
 		mergeChartDataNoSelect(data) {
 			// data.labels = this.localLabels;
 			const mergedData = { labels: this.localLabels, datasets: [] };
-            //Rever porque nao esta sendo precarregado addDataSetNames e palet no mounted antes do observer
 			this.addDataSetNames();
 			data.forEach(obj => {
 				obj.datasets.forEach(state => {
@@ -192,7 +188,7 @@ export default {
 			});
 			this.palete();
 			const backgroundColor = this.generateBackgroundColor();
-			// this.setColors(data, backgroundColor);
+			this.setColors(mergedData.datasets, backgroundColor);
 			this.localChartData = mergedData;
 		},
 
@@ -206,40 +202,32 @@ export default {
 			return [];
 		},
 
-		// NOTE: Função responsável por setar backgroundColor, bordeWidth e name
+		// NOTE: Função responsável por setar backgroundColor
 		// Ocorre essa verificação para garantir que o mesmo conjunto de dados para mais de um item selecionado tenha a mesma cor
 		setColors(datasets, backgroundColor) {
-			if (this.selectedValues.length > 1) {
-				const colors = {};
 
-				this.chartOptions.plugins.legend.display = true;
+			const colors = {};
 
-				datasets.forEach(dataset => {
-					const objectName = dataset.name;
+			this.chartOptions.plugins.legend.display = true;
 
-					if (!colors[objectName]) {
-						const colorIndex = Object.keys(colors).length % backgroundColor.length;
-						colors[objectName] = backgroundColor[colorIndex];
-					}
-					dataset.backgroundColor = colors[objectName];
-					dataset.borderRadius = 6;
-				});
-			} else {
-				datasets.forEach((dataset, index) => {
-					let colorIndex;
+			datasets.forEach(dataset => {
+				const objectName = dataset.name;
+				let colorIndex;
 
-					if (datasets.length === 1) {
-						colorIndex = 2;
-						this.chartOptions.plugins.legend.display = false;
-					} else {
-						colorIndex = index % backgroundColor.length
-					}
+				if (datasets.length === 1) {
+					colorIndex = 2;
+					colors[objectName] = backgroundColor[colorIndex];
+					this.chartOptions.plugins.legend.display = false;
+				}
 
-					const color = backgroundColor[colorIndex];
-					dataset.backgroundColor = color;
-					dataset.borderRadius = 6;
-				});
-			}
+				if (!colors[objectName]) {
+					colorIndex = Object.keys(colors).length % backgroundColor.length;
+					colors[objectName] = backgroundColor[colorIndex];
+				}
+
+				dataset.backgroundColor = colors[objectName];
+				dataset.borderRadius = 6;
+			});
 		},
 	}
 }
