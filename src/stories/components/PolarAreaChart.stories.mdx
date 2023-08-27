@@ -36,7 +36,7 @@ import PolarAreaChart from '../../components/PolarAreaChart.vue';
 	:data="chartData"
 	:variant="variant"
 	:labels="chartLabels"
-    :is-visible-point-names="isVisiblePointNames"
+	:is-visible-point-names="isVisiblePointNames"
 />`
 			},
 		}
@@ -82,7 +82,7 @@ export const Template = (args) => ({
 		args={{
 			labels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
 			variant: 'green',
-            isVisiblePointNames: false,
+			isVisiblePointNames: true,
 			data: [
 				{
 					name: 'Ecocardiograma',
