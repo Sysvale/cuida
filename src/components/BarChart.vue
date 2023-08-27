@@ -2,23 +2,11 @@
 <template>
 	<span>
 		<div
-			v-if="localSelect"
-			class="cds-multiselect"
-		>
-			<cds-multiselect
-				v-model="selectedValues"
-				:options="multiOptions"
-				:label="label"
-				:options-field="options.name"
-				@input="handleSelectedValues"
-			/>
-		</div>
-		<div
 			class="responsive-container"
 		>
 			<Bar
 				:is="'bar'"
-				:data="computedDataSet"
+				:data="localChartData"
 				:options="chartOptions"
 			/>
 		</div>
@@ -28,7 +16,6 @@
 <script>
 import { Chart, registerables } from 'chart.js';
 import { Bar } from 'vue-chartjs'
-import CdsMultiselect from './Multiselect.vue';
 import sassColorVariables from '../assets/sass/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
@@ -38,7 +25,6 @@ Chart.register(...registerables);
 export default {
 	components: {
 		Bar,
-		CdsMultiselect,
 	},
 	props: {
 		/**
@@ -80,20 +66,6 @@ export default {
 			default: () => [],
 		},
 		/**
-		 * Ativa ou desativa o componente multiselect. Quando definido como verdadeiro (true), espera-se que 'chartData' seja uma lista de objetos. Quando definido como falso (false), espera-se apenas um objeto.
-		 */
-		withSelect: {
-			type: Boolean,
-			default: true
-		},
-		/**
-		 * Label do MultiSelect.
-		 */
-		selectLabel: {
-			type: String,
-			default: 'Label'
-		},
-		/**
 		 * Configura a porcentagem ocupada pela barra do gráfico. (0.1-1).
 		 */
 		barWidth: {
@@ -106,11 +78,8 @@ export default {
 			sassColorVariables,
 			localChartData: {},
 			localLabels: [],
+			selectedColor: '',
 			palletColors: [],
-			localSelect: '',
-			label: '', // NOTE: Label do multiselect
-			options: [], // NOTE: Options do multiselect
-			selectedValues: [],
 			deleteFirstTwoColors: false, //NOTE: Responsável por garantir que as cores mid e dark da paleta não serão removidos os dois primeiros elementos
 			chartOptions: {
 				responsive: true,
@@ -129,80 +98,13 @@ export default {
 					},
 				}
 			},
-			numberOfSelectedValues: 0,
 		}
-	},
-	computed: {
-		// NOTE: Computada do multiselect responsável para exibir lista dos options pelo name
-		multiOptions() {
-			return this.options.map(option => ({ value: option.name }));
-		},
-
-		// NOTE: Computada responsável por definir qual tipo de dado vai ser exibido de acordo com o multiSelect ativado ou desativado
-		computedDataSet() {
-			return this.localSelect ? this.localChartData : this.checkIfArrayOfObjects;
-		},
-
-		// NOTE: Como modo de segurança, caso utilize um array de objetos irá exibir o primeiro objeto, caso não seja irá retornar somente o objeto passado
-		checkIfArrayOfObjects() {
-			if (Array.isArray(this.data)) {
-				this.selectedFirstOfOptions()
-				return this.localChartData;
-			}
-			return this.data;
-		},
 	},
 
 	watch: {
-		withSelect: {
-			handler(newValue) {
-				this.localSelect = newValue;
-			},
-			immediate: true,
-		},
-
-		selectLabel: {
-			handler(newValue) {
-				this.label = newValue
-			},
-			immediate: true,
-		},
-
-		data: {
-			handler(newValue, oldValue) {
-				this.options = newValue;
-				if (newValue === oldValue && Array.isArray(newValue) && newValue.length > 0) {
-					this.options = newValue[0];
-					return;
-				}
-				this.localChartData = newValue;
-			},
-			immediate: true,
-		},
-
-		selectedValues: {
-			handler(newValue) {
-				this.numberOfSelectedValues = newValue.length;
-				this.handleSelectedValues(newValue);
-			},
-			deep: true,
-			immediate: true,
-		},
-
 		labels: {
 			handler(newValue) {
 				this.localLabels = newValue
-			},
-			immediate: true,
-		},
-
-		barWidth: {
-			handler(newValue) {
-				if (newValue >= 0.1 && newValue <= 1) {
-					this.chartOptions.categoryPercentage = newValue;
-				} else {
-					this.chartOptions.categoryPercentage = 1;
-				}
 			},
 			immediate: true,
 		},
@@ -217,24 +119,28 @@ export default {
 			},
 			immediate: true,
 		},
+
+		data: {
+			handler(newValue) {
+				this.mergeChartDataNoSelect(newValue);
+			},
+			immediate: true,
+		},
+
+		barWidth: {
+			handler(newValue) {
+				if (newValue >= 0.1 && newValue <= 1) {
+					this.chartOptions.categoryPercentage = newValue;
+				} else {
+					this.chartOptions.categoryPercentage = 1;
+				}
+			},
+			immediate: true,
+		},
 	},
 
 	mounted() {
 		this.addDataSetNames();
-		this.palete();
-	},
-
-	created() {
-		if (this.withSelect && this.multiOptions.length > 0) {
-			this.multiOptions[0].isSelected = true;
-			const selectedOption = {
-				value: this.multiOptions[0].value,
-			};
-			this.selectedValues = [selectedOption];
-		} else {
-			this.selectedValues = [];
-		}
-		this.typeOfData(this.data);
 	},
 
 	methods: {
@@ -243,14 +149,6 @@ export default {
 		palete() {
 			this.palletColors = this.paleteBuilder(this.sassColorVariables.palete);
 			this.removeFirstTwoElements();
-		},
-
-		selectedFirstOfOptions() {
-			this.multiOptions[0].isSelected = true;
-			const selectedOption = {
-				value: this.multiOptions[0].value,
-			};
-			this.selectedValues = [selectedOption];
 		},
 
 		// NOTE: Função responsável por remover os dois primeiros elementos da paleta para quando não é Mid ou Dark Neutrals
@@ -275,58 +173,33 @@ export default {
 			});
 		},
 
-		// NOTE: Verifica o tipo de dado que está sendo inserido
-		typeOfData(chartData) {
-			if (!Array.isArray(chartData) && !this.localSelect) {
-				// Redireciona para a função de merge do objeto quando o multiselect está desativado
-				this.mergeChartDataNoSelect(chartData);
-			}
-		},
-
-		// NOTE: Responsável por lidar com os valores selecionados do multiselect, mapeando cada valor para encontrar os dados correspondentes nas opções disponíveis;
-		// Em seguida define setColors para atribuir as cores dos datasets das opções selecionadas;
-		// Chama a função mergeChartData para mesclar os dados das opções selecionadas para atualizar localChartData
-		handleSelectedValues(selectedValues) {
-			this.selectedValues = selectedValues;
-
-			let mergedData = { labels: this.localLabels, datasets: [] };
-
-			if (Array.isArray(selectedValues)) {
-				const selectedDatasets = selectedValues.flatMap(selected => {
-					const option = this.options.find(element => element.name === selected.value);
-					return option ? option.datasets : [];
-				});
-
-				const backgroundColor = this.generateBackgroundColor();
-				this.setColors(selectedDatasets, backgroundColor);
-
-				mergedData.datasets = selectedDatasets;
-			}
-			this.localChartData = mergedData;
-		},
-
-		// NOTE: Função que recebe a matriz de dados dos gráficos das opções selecionadas e mescla em um único objeto de dados. (MultiSelect: True)
-		mergeChartData(data) {
-			return data.reduce((mergedData, chartData) => {
-				if (chartData) {
-					mergedData.datasets.push(...chartData.datasets);
-				}
-				return mergedData;
-			}, { labels: this.localLabels, datasets: [] });
-		},
-
 		// NOTE: Função que recebe uma matriz de dados dos gráfico. (MultiSelect: False)
 		mergeChartDataNoSelect(data) {
-			data.labels = this.localLabels;
+			// data.labels = this.localLabels;
+			const mergedData = { labels: this.localLabels, datasets: [] };
+            //Rever porque nao esta sendo precarregado addDataSetNames e palet no mounted antes do observer
+			this.addDataSetNames();
+			data.forEach(obj => {
+				obj.datasets.forEach(state => {
+					const dataset = {
+						label: state.label,
+						data: state.data,
+						name: state.name,
+						borderRadius: 6,
+					};
+					mergedData.datasets.push(dataset);
+				});
+			});
+			this.palete();
 			const backgroundColor = this.generateBackgroundColor();
-			this.setColors(data.datasets, backgroundColor);
-			this.localChartData = data;
+			// this.setColors(data, backgroundColor);
+			this.localChartData = mergedData;
 		},
 
 		// NOTE: Função responsável por buscar a cor na paleta
 		generateBackgroundColor() {
 			const variantLowercase = this.variant.toLowerCase();
-			const palletColor = this.palletColors.find(color => color.colorName.toLowerCase().includes(variantLowercase));
+			const palletColor = this.palletColors.find(color => color.variantName.toLowerCase().includes(variantLowercase));
 			if (palletColor) {
 				return palletColor.colorShades;
 			}
@@ -355,7 +228,7 @@ export default {
 				datasets.forEach((dataset, index) => {
 					let colorIndex;
 
-					if (datasets.length === 1 && this.numberOfSelectedValues === 1) {
+					if (datasets.length === 1) {
 						colorIndex = 2;
 						this.chartOptions.plugins.legend.display = false;
 					} else {
@@ -374,11 +247,6 @@ export default {
 
 <style lang="scss" scoped>
 @import './../assets/sass/tokens.scss';
-
-.cds-multiselect {
-	width: 300px;
-}
-
 .responsive-container{
 	width: 100%;
 	height: 100%;
