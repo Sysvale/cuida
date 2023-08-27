@@ -14,13 +14,10 @@
 </template>
 
 <script>
-import { Chart, registerables } from 'chart.js';
 import { Pie } from 'vue-chartjs'
 import sassColorVariables from '../assets/sass/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
-// Registrar o elemento "point" no registro (Torna-se necessário para marcações de ponto)
-Chart.register(...registerables);
 
 export default {
 	components: {
@@ -78,14 +75,23 @@ export default {
 			chartOptions: {
 				responsive: true,
 				maintainAspectRatio: false, // NOTE: Caso true manterá aspecto de proporção original, caso false, será dimensionado para preencher completamente o contêiner (Isso pode fazer com que o gráfico pareça distorcido se o container tiver proporção de aspecto diferente do gráfico original)
+				pieceLabel: {
+					mode: 'percentage',
+					precision: 1
+				},
 				plugins: {
 					tooltip: {
 						callbacks: {
 							beforeTitle: function (context) {
 								return `${context[0].dataset.name}`;
-							}
+							},
 						}
 					},
+					datalabels: {
+						formatter: (value, context) => {
+							console.log(context);
+						}
+					}
 				}
 			},
 		}
