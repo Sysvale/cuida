@@ -1,0 +1,123 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import LineChart from '../../components/LineChart.vue';
+
+<Meta
+	title="Componentes/Charts/LineChart"
+	component={ LineChart }
+	argTypes={{
+		variant: {
+			control: {
+				type: 'select',
+				options: [
+				'green',
+				'turquoise',
+				'blue',
+				'indigo',
+				'violet',
+				'pink',
+				'red',
+				'orange',
+				'amber',
+				'mid',
+				'dark'
+				]
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format: true,
+				code: /*html*/
+`<cds-line-chart
+	:data="chartData"
+	:variant="variant"
+	:labels="chartLabels"
+	:show-label-name="showLabelName"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsLineChart: LineChart },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px; height: 300px">
+			<cds-line-chart
+				v-bind="args"
+			/>
+		</div>
+	`
+});
+
+# LineChart
+
+### Um componente de gráfico reutilizável para exibir dados visualmente.
+---
+<br />
+
+## Quando usar:
+- Exibir dados em formatos visuais;
+- Ideal para mostrar tendências ao longo do tempo;
+- Comparação de múltiplas séries.
+
+<br />
+
+## Quando não usar:
+- Para informações simples que podem ser exibidas em um formato tabular ou em texto;
+- Dados discretos sem sequência lógica;
+- Grande quantidade de série de dados.
+
+## Preview
+
+<Canvas>
+	<Story
+		name="LineChart"
+		args={{
+			labels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
+			variant: 'green',
+			showLabelName: true,
+			data: [
+				{
+					name: 'Ecocardiograma',
+					datasets: [
+						{
+							label: 'Realizado',
+							data: [50, 50, 50, 50, 50],
+						},
+					]
+				},
+				{
+					name: 'Raio-X',
+					datasets: [
+						{
+							label: 'Realizado',
+							data: [120, 220, 180, 320, 150],
+						},
+					]
+				},
+				{
+					name: 'Tomografia',
+					datasets: [
+						{
+							label: 'Realizado',
+							data: [55, 40, 33, 90, 120],
+						},
+					]
+				}
+			],
+	}}
+>
+	{ Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="LineChart" />
+
