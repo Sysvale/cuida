@@ -1,0 +1,66 @@
+// Vitest Snapshot v1
+
+exports[`BarChart > renders correctly 1`] = `
+VueWrapper {
+  "__app": {
+    "_component": [Object],
+    "_container": <div … />,
+    "_context": [Object],
+    "_instance": [Object],
+    "_props": null,
+    "_uid": 0,
+    "component": [Function],
+    "config": [Object],
+    "directive": [Function],
+    "mixin": [Function],
+    "mount": [Function],
+    "provide": [Function],
+    "unmount": [Function],
+    "use": [Function],
+    "version": "3.2.37",
+  },
+  "__setProps": [Function],
+  "componentVM": {
+    "addDataSetNames": [Function],
+    "barWidth": 1,
+    "chartOptions": [Object],
+    "checkIfArrayOfObjects": [Object],
+    "computedDataSet": [Object],
+    "data": [Array],
+    "deleteFirstTwoColors": false,
+    "generateBackgroundColor": [Function],
+    "handleSelectedValues": [Function],
+    "hasOwnProperty": [Function],
+    "label": "Label",
+    "labels": [Array],
+    "localChartData": [Object],
+    "localLabels": [Array],
+    "localSelect": false,
+    "mergeChartData": [Function],
+    "mergeChartDataNoSelect": [Function],
+    "multiOptions": [Array],
+    "numberOfSelectedValues": 1,
+    "options": [Array],
+    "palete": [Function],
+    "paleteBuilder": [Function],
+    "palletColors": [Array],
+    "removeFirstTwoElements": [Function],
+    "sassColorVariables": [Object],
+    "selectLabel": "Label",
+    "selectedFirstOfOptions": [Function],
+    "selectedValues": [Array],
+    "setColors": [Function],
+    "typeOfData": [Function],
+    "variant": "green",
+    "withSelect": false,
+  },
+  "isDisabled": [Function],
+  "rootVM": {},
+  "wrapperElement": <span
+    data-v-9fd181ea=""
+  >
+    <!--v-if-->
+    <div … />
+  </span>,
+}
+`;

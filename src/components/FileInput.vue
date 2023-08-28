@@ -441,7 +441,8 @@ export default {
 	border: 2px dashed $n-40;
 	box-sizing: border-box;
 	justify-content: space-between;
-	min-width: 550px;
+	container-name: fileInput;
+	container-type: inline-size;
 	overflow: hidden;
 
 	&--without-data {
@@ -449,7 +450,6 @@ export default {
 		box-sizing: border-box;
 		display: flex;
 		justify-content: v-bind(textAlignmentResolver) !important;
-		min-width: 550px;
 		overflow: hidden;
 	}
 
@@ -488,17 +488,18 @@ export default {
 	}
 
 	&__name {
+		align-items: center;
 		color: $n-700;
 		display: flex;
-		font-weight: $font-weight-semibold;
 		@include body-1;
+		font-weight: $font-weight-semibold;
 	}
 
 	&__size {
 		color: $n-600;
-		font-weight: $font-weight-regular;
 		margin: mt(1);
 		@include body-2;
+		font-weight: $font-weight-regular;
 	}
 
 	&__container {
@@ -642,6 +643,34 @@ export default {
 			color: $bn-200 !important;
 			cursor: default !important;
 		}
+	}
+}
+
+@container fileInput (max-width: 550px) {
+	.file-input__name {
+		@include body-2;
+		font-weight: $font-weight-semibold;
+	}
+
+	.file-input__size {
+		@include caption;
+		margin-top: 2px;
+	}
+}
+
+@container fileInput (max-width: 495px) {
+	.truncate__container {
+		max-width: 150px !important;
+	}
+
+	.file-input__preview {
+		margin: mr(1)
+	}
+}
+
+@container fileInput (max-width: 395px) {
+	.file-input__size {
+		display: none;
 	}
 }
 
