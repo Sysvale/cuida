@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-	<span class="cds-radio">
+	<span class="cds-radio__container">
 		<!--
 			Evento emitido quando o Radio muda seu estado.
 			@event change
@@ -9,12 +9,15 @@
 		<input
 			:id="value"
 			type="radio"
+			class="cds-radio"
+			:class="`cds-radio--${variant}`"
 			:value="value"
 			:disabled="disabled"
 			:name="$attrs.name"
 			:checked="isChecked"
 			@change="$emit('update:modelValue', $event.target.value)"
 		>
+
 		<label
 			class="cds-radio__label"
 			:for="value"
@@ -51,6 +54,14 @@ export default {
 			required: true,
 		},
 		/**
+		* A variante da Checkbox. São 10 variantes: 'teal', 'green', 'blue',
+		* 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+		*/
+		variant: {
+			type: String,
+			default: 'green',
+		},
+		/**
 		 * Define a label do input, o conteúdo que é exibido para descrever o Radio
 		 */
 		label: {
@@ -70,6 +81,10 @@ export default {
 		isChecked() {
 			return this.modelValue === this.value;
 		},
+
+		cursorType() {
+			return this.disabled ? 'default' : 'pointer';
+		}
 	},
 };
 </script>
@@ -77,57 +92,59 @@ export default {
 <style lang="scss">
 @import '../assets/sass/tokens.scss';
 
-.cds-radio {
+.cds-radio__container {
 	display: flex;
 	align-items: flex-start;
 }
 
 .cds-radio__label {
-	@include body-2;    
-	margin-left: 10px;
-	[disabled="disabled"] {
-		color: $n-300;
-	}
+	cursor: v-bind(cursorType);
+	@include body-2;
+	margin: ml(2);
 }
 
-input[type="radio"] {
+.cds-radio {
+	cursor: v-bind(cursorType);
 	-webkit-appearance: none;
 	appearance: none;
 	margin: 0;
 	font: inherit;
 	width: 16px;
 	height: 16px;
-	border: 1px solid $n-50;
+	border: 1px solid $n-400;
 	border-radius: 50%;
 	margin-top: 1.4px;
 	display: grid;
 	place-content: center;
-}
 
-input[type="radio"]:checked {
-	border: 1px solid $gp-500;
-}
+	@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
+		&:checked {
+			border: 1px solid $base-color;
+		}
 
-input[type="radio"]::before {
-	content: "";
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	transform: scale(0);
-	transition: 120ms transform ease-in-out;
-	background: $gp-500;
-}
+		&::before {
+			content: "";
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			transform: scale(0);
+			transition: 120ms transform ease-in-out;
+			background: $base-color;
+		}
 
-input[type="radio"]:checked::before {
-	transform: scale(1);
-}
+		&[disabled][checked] {
+			background: $muted;
+			border: 1px solid $muted;
+		}
 
-input[type="radio"][disabled="disabled"] {
-	border: 1px solid $n-50;
-	background: $n-20;
-}
+		&[disabled]:not(checked) {
+			background: $n-20;
+			border: 1px solid $n-100;
+		}
+	}
 
-input[type="radio"][disabled="disabled"]::before {
-	background: $n-20;
+	&:checked::before {
+		transform: scale(1);
+	}
 }
 </style>

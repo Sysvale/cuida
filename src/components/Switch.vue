@@ -14,13 +14,16 @@
 			<span
 				tabindex="0"
 				class="switch__slider"
-				:class="{
-					'switch__slider--active-focused': (internalFocus && isActive) && !disabled,
-					'switch__slider--inactive-focused': (internalFocus && !isActive) && !disabled,
-					'switch__slider--small': small && small !== large,
-					'switch__slider--large': large && small !== large,
-					'switch__slider--medium': small === large,
-				}"
+				:class="[
+					`switch__slider--${variant}`,
+					{
+						[`switch__slider--active-focused--${variant}`]: (internalFocus && isActive) && !disabled,
+						'switch__slider--inactive-focused': (internalFocus && !isActive) && !disabled,
+						'switch__slider--small': small && small !== large,
+						'switch__slider--large': large && small !== large,
+						'switch__slider--medium': small === large,
+					}
+				]"
 				@focusout="internalFocus = false"
 				@focusin="internalFocus = true"
 			/>
@@ -45,6 +48,14 @@ export default {
 		small: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		* A variante da Checkbox. São 10 variantes: 'teal', 'green', 'blue',
+		* 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+		*/
+		variant: {
+			type: String,
+			default: 'green',
 		},
 		/**
 		* Torna o ToggleSwitch grande.
@@ -137,7 +148,9 @@ export default {
 		height: 0;
 
 		&:checked + .switch__slider {
-			background-color: $gp-400;
+			@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
+				background-color: $base-color !important;
+			}
 		}
 
 		&:checked + .switch__slider--small:before {
@@ -242,11 +255,13 @@ export default {
 		}
 
 		&--active-focused {
-			box-shadow: 0 0 0 0.2rem rgba($gp-300, 45);
+			@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
+				box-shadow: 0 0 0 0.2rem $muted;
+			}
 		}
 
 		&--inactive-focused {
-			box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);
+			box-shadow: 0 0 0 0.2rem $n-40;
 		}
 	}
 }

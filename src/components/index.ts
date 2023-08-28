@@ -5,6 +5,7 @@ import AlertCard from './AlertCard.vue';
 import AppBar from './AppBar.vue';
 import Avatar from './Avatar.vue';
 import Badge from './Badge.vue';
+import BarChart from './BarChart.vue';
 import Box from './Box.vue';
 import Breadcrumb from './Breadcrumb.vue';
 import Button from './Button.vue';
@@ -15,6 +16,7 @@ import Checkbox from './Checkbox.vue';
 import Chevron from './Chevron.vue';
 import Clickable from './Clickable.vue';
 import CollapsibleContainer from './CollapsibleContainer.vue';
+import ColorPicker from './ColorPicker.vue';
 import DashboardCard from './DashboardCard.vue';
 import DateInput from './DateInput.vue';
 import Divider from './Divider.vue';
@@ -49,6 +51,7 @@ import Scrollable from './Scrollable.vue';
 import SearchInput from './SearchInput.vue';
 import SegmentedControl from './SegmentedControl.vue';
 import Select from './Select.vue';
+import SideBar from './SideBar.vue';
 import SideSheet from './SideSheet.vue';
 import SkeletonText from './SkeletonText.vue';
 import Slider from './Slider.vue';
@@ -83,6 +86,7 @@ export default {
 		app.component('CdsAppBar', AppBar); //NOTE: Testado no SB
 		app.component('CdsAvatar', Avatar); //NOTE: Testado no SB
 		app.component('CdsBadge', Badge); //NOTE: Testado no SB
+		app.component('CdsBarChart', BarChart);
 		app.component('CdsBox', Box);
 		app.component('CdsBreadcrumb', Breadcrumb);
 		app.component('CdsButton', Button); //NOTE: Testado no SB
@@ -93,6 +97,7 @@ export default {
 		app.component('CdsChevron', Chevron); //NOTE: Testado no SB
 		app.component('CdsClickable', Clickable); //NOTE: Testado no SB
 		app.component('CdsCollapsibleContainer', CollapsibleContainer); //NOTE: Testado no SB. !Reativo!
+		app.component('CdsColorPicker', ColorPicker); //NOTE: Testado no SB.
 		app.component('CdsDashboardCard', DashboardCard);
 		app.component('CdsDateInput', DateInput); //NOTE: Testado no SB
 		app.component('CdsDivider', Divider); //NOTE: Testado no SB
@@ -127,6 +132,7 @@ export default {
 		app.component('CdsSearchInput', SearchInput);
 		app.component('CdsSegmentedControl', SegmentedControl);
 		app.component('CdsSelect', Select); //NOTE: Testado no SB. !Reativo!
+		app.component('CdsSideBar', SideBar);
 		app.component('CdsSideSheet', SideSheet);
 		app.component('CdsSkeletonText', SkeletonText); //NOTE: Testado no SB
 		// app.component('CdsSlider', Slider);

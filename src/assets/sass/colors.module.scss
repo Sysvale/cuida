@@ -11,7 +11,7 @@ $n-40: #DFE5EC;
 $lightNeutralsShades: $n-0, $n-10, $n-20, $n-30, $n-40;
 $lightNeutralsTokens: '$n-0', '$n-10', '$n-20', '$n-30', '$n-40';
 
-$lightNeutralMetaData: 'Light Neutrals', $lightNeutralsShades, $lightNeutralsTokens;
+$lightNeutralMetaData: 'Light Neutrals', 'Light', $lightNeutralsShades, $lightNeutralsTokens;
 
 $n-50: #D6DCE3;
 $n-100: #C3CCD5;
@@ -22,7 +22,7 @@ $n-400: #8794A1;
 $midNeutralsShades: $n-50, $n-100, $n-200, $n-300, $n-400;
 $midNeutralsTokens: '$n-50', '$n-100', '$n-200', '$n-300', '$n-400';
 
-$midNeutralsMetaData: 'Mid Neutrals', $midNeutralsShades, $midNeutralsTokens;
+$midNeutralsMetaData: 'Mid Neutrals', 'Mid', $midNeutralsShades, $midNeutralsTokens;
 
 $n-500: #647382;
 $n-600: #52616F;
@@ -33,7 +33,7 @@ $n-900: #1D262F;
 $darkNeutralsShades: $n-500, $n-600, $n-700, $n-800, $n-900;
 $darkNeutralsTokens: '$n-500', '$n-600', '$n-700', '$n-800', '$n-900';
 
-$darkNeutralsMetaData: 'Dark Neutrals', $darkNeutralsShades, $darkNeutralsTokens;
+$darkNeutralsMetaData: 'Dark Neutrals', 'Dark', $darkNeutralsShades, $darkNeutralsTokens;
 
 $gp-50: #f3fcf8;
 $gp-100: #e2f8ef;
@@ -47,7 +47,7 @@ $gp-700: #136746;
 $piccoloGreenShades: $gp-50, $gp-100, $gp-200, $gp-300, $gp-400, $gp-500, $gp-600, $gp-700;
 $piccoloGreenTokens: '$gp-50', '$gp-100', '$gp-200', '$gp-300', '$gp-400', '$gp-500', '$gp-600', '$gp-700';
 
-$greenMetaData: 'Piccolo Green', $piccoloGreenShades, $piccoloGreenTokens;
+$greenMetaData: 'Piccolo Green', 'Green', $piccoloGreenShades, $piccoloGreenTokens;
 
 $ta-50: #eefcfa;
 $ta-100: #dcf9f6;
@@ -75,7 +75,7 @@ $ts-700: #155875;
 $sulivanTurquoiseShades: $ts-50, $ts-100, $ts-200, $ts-300, $ts-400, $ts-500, $ts-600, $ts-700;
 $sulivanTurquoiseTokens: '$ts-50', '$ts-100', '$ts-200', '$ts-300', '$ts-400', '$ts-500', '$ts-600', '$ts-700';
 
-$turquoiseMetaData: 'Sulivan Turquoise', $sulivanTurquoiseShades, $sulivanTurquoiseTokens;
+$turquoiseMetaData: 'Sulivan Turquoise', 'Turquoise', $sulivanTurquoiseShades, $sulivanTurquoiseTokens;
 
 $bn-50: #f6f9fe;
 $bn-100: #e6effe;
@@ -89,7 +89,7 @@ $bn-700: #19438a;
 $nocturneBlueShades: $bn-50, $bn-100, $bn-200, $bn-300, $bn-400, $bn-500, $bn-600, $bn-700;
 $nocturneBlueTokens: '$bn-50', '$bn-100', '$bn-200', '$bn-300', '$bn-400', '$bn-500', '$bn-600', '$bn-700';
 
-$blueMetaData: 'Nocturne Blue', $nocturneBlueShades, $nocturneBlueTokens;
+$blueMetaData: 'Nocturne Blue', 'Blue', $nocturneBlueShades, $nocturneBlueTokens;
 
 $in-50: #f5f6ff;
 $in-100: #ebefff;
@@ -103,7 +103,7 @@ $in-700: #2f396f;
 $nightwingIndigoShades: $in-50, $in-100, $in-200, $in-300, $in-400, $in-500, $in-600, $in-700;
 $nightwingIndigoTokens: '$in-50', '$in-100', '$in-200', '$in-300', '$in-400', '$in-500', '$in-600', '$in-700';
 
-$indigoMetaData: 'Nightwing Indigo', $nightwingIndigoShades, $nightwingIndigoTokens;
+$indigoMetaData: 'Nightwing Indigo', 'Indigo', $nightwingIndigoShades, $nightwingIndigoTokens;
 
 $vr-50: #faf5ff;
 $vr-100: #f7f0ff;
@@ -117,7 +117,7 @@ $vr-700: #5c3082;
 $ravenVioletShades: $vr-50, $vr-100, $vr-200, $vr-300, $vr-400, $vr-500, $vr-600, $vr-700;
 $ravenVioletTokens: '$vr-50', '$vr-100', '$vr-200', '$vr-300', '$vr-400', '$vr-500', '$vr-600', '$vr-700';
 
-$violetMetaData: 'Raven Violet', $ravenVioletShades, $ravenVioletTokens;
+$violetMetaData: 'Raven Violet', 'Violet', $ravenVioletShades, $ravenVioletTokens;
 
 $pp-50: #fff5fb;
 $pp-100: #ffebf7;
@@ -131,7 +131,7 @@ $pp-700: #88255a;
 $peppaPinkShades: $pp-50, $pp-100, $pp-200, $pp-300, $pp-400, $pp-500, $pp-600, $pp-700;
 $peppaPinkTokens: '$pp-50', '$pp-100', '$pp-200', '$pp-300', '$pp-400', '$pp-500', '$pp-600', '$pp-700';
 
-$pinkMetaData: 'Peppa Pink', $peppaPinkShades, $peppaPinkTokens;
+$pinkMetaData: 'Peppa Pink', 'Pink', $peppaPinkShades, $peppaPinkTokens;
 
 $rc-50: #fef6f7;
 $rc-100: #ffebed;
@@ -145,7 +145,7 @@ $rc-700: #b22435;
 $carmenRedShades: $rc-50, $rc-100, $rc-200, $rc-300, $rc-400, $rc-500, $rc-600, $rc-700;
 $carmenRedTokens: '$rc-50', '$rc-100', '$rc-200', '$rc-300', '$rc-400', '$rc-500', '$rc-600', '$rc-700';
 
-$redMetaData: 'Carmen Red', $carmenRedShades, $carmenRedTokens;
+$redMetaData: 'Carmen Red', 'Red', $carmenRedShades, $carmenRedTokens;
 
 $og-50: #fef7f6;
 $og-100: #ffefeb;
@@ -159,7 +159,7 @@ $og-700: #bc4224;
 $gokuOrangeShades: $og-50, $og-100, $og-200, $og-300, $og-400, $og-500, $og-600, $og-700;
 $gokuOrangeTokens: '$og-50', '$og-100', '$og-200', '$og-300', '$og-400', '$og-500', '$og-600', '$og-700';
 
-$orangeMetaData: 'Goku Orange', $gokuOrangeShades, $gokuOrangeTokens;
+$orangeMetaData: 'Goku Orange', 'Orange', $gokuOrangeShades, $gokuOrangeTokens;
 
 $al-50: #fefbf6;
 $al-100: #fdf3e2;
@@ -173,7 +173,7 @@ $al-700: #c08011;
 $lisaAmberShades: $al-50, $al-100, $al-200, $al-300, $al-400, $al-500, $al-600, $al-700;
 $lisaAmberTokens: '$al-50', '$al-100', '$al-200', '$al-300', '$al-400', '$al-500', '$al-600', '$al-700';
 
-$amberMetaData: 'Lisa Amber', $lisaAmberShades, $lisaAmberTokens;
+$amberMetaData: 'Lisa Amber', 'Amber', $lisaAmberShades, $lisaAmberTokens;
 
 $palete:
 	[$lightNeutralMetaData],

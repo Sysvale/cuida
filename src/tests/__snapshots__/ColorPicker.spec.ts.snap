@@ -29,6 +29,8 @@ VueWrapper {
     "isCurrentColorSelected": [Function],
     "label": "Label",
     "modelValue": "#000000",
+    "palete": [Array],
+    "paleteBuilder": [Function],
     "popoverHeight": 190,
     "sassColorVariables": [Object],
     "selectedColor": "#000000",

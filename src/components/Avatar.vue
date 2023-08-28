@@ -175,8 +175,8 @@ export default {
 		}
 
 		&--lg {
-			height: 64px;
-			width: 64px;
+			height: 44px;
+			width: 44px;
 
 			@extend .avatar__container;
 		}
@@ -201,8 +201,8 @@ export default {
 		}
 
 		&--lg {
-			height: 65px;
-			width: 65px;
+			height: 45px;
+			width: 45px;
 
 			@extend .avatar__image;
 		}
