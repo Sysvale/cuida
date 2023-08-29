@@ -21,17 +21,19 @@ VueWrapper {
   },
   "__setProps": [Function],
   "componentVM": {
+    "cursorType": "pointer",
     "disabled": false,
     "hasOwnProperty": [Function],
     "isChecked": false,
     "label": "Opção 1",
     "modelValue": null,
     "value": "option-1",
+    "variant": "green",
   },
   "isDisabled": [Function],
   "rootVM": {},
   "wrapperElement": <span
-    class="cds-radio"
+    class="cds-radio__container"
   >
     <!--
 			Evento emitido quando o Radio muda seu estado.

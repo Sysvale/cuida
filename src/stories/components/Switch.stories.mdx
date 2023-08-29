@@ -4,6 +4,25 @@ import Switch from '../../components/Switch.vue';
 <Meta
 	title="Componentes/Forms/Switch"
 	component={ Switch }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'turquoise',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+	}}
 	parameters={{
 		viewMode: 'docs',
 		previewTabs: { canvas: { hidden: true }},
