@@ -4,6 +4,25 @@ import Radio from '../../components/Radio.vue';
 <Meta
 	title="Componentes/Forms/Radio"
 	component={ Radio }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'turquoise',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+	}}
 	parameters={{
 		viewMode: 'docs',
 		previewTabs: { canvas: { hidden: true }},
@@ -31,44 +50,17 @@ export const Template = (args) => ({
 	},
 	data() {
 		return {
-			selected: 'option-3',
-			option2 : {
-				value: 'option-2',
-				label: 'Opção 2',
-				disabled: false,
-			},
-			option3 : {
-				value: 'option-3',
-				label: 'Opção 3',
-				disabled: true,
-			},
+			selected: '',
 		};
 	},
 	template: /*html*/ `
 		<div>
-			<div style="display: flex;">
-				<cds-radio
-					v-model="selected"
-					v-bind="args"
-					style="margin-right: 4px; margin-left: 4px"
-				>
-					Opção de <strong> destaque </strong>
-				</cds-radio>
-				<cds-radio
-					v-model="selected"
-					v-bind="option2"
-					style="margin-right: 4px; margin-left: 4px"
-				/>
-				<cds-radio
-					v-model="selected"
-					v-bind="option3"
-					style="margin-right: 4px; margin-left: 4px"
-				/>
-			</div>
-			<br>
-			<small>
-				Opção selecionada: {{ selected }}
-			</small>
+			<cds-radio
+				v-model="selected"
+				v-bind="args"
+			>
+				Radio label
+			</cds-radio>
 		</div>
 	`,
 });
