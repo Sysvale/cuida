@@ -335,14 +335,14 @@ export default {
 			@include button-2;
 			color: $n-0;
 
-			@include variantResolver using ($color-name, $base-color, $disabled, $muted, $dimed, $background, $hover, $text) {
+			@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 				@extend .pagination__button--active;
 				background-color: $base-color;
 				border-color: $base-color;
 	
 				&:hover {
-					background-color: $hover !important;
-					border-color: $hover !important;
+					background-color: $shade-500 !important;
+					border-color: $shade-500 !important;
 				}
 			}
 		}

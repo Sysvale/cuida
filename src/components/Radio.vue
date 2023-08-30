@@ -117,7 +117,7 @@ export default {
 	display: grid;
 	place-content: center;
 
-	@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
+	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 		&:checked {
 			border: 1px solid $base-color;
 		}
@@ -133,8 +133,8 @@ export default {
 		}
 
 		&[disabled][checked] {
-			background: $muted;
-			border: 1px solid $muted;
+			background: $shade-200;
+			border: 1px solid $shade-200;
 		}
 
 		&[disabled]:not(checked) {

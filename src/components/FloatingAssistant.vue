@@ -316,10 +316,10 @@ export default {
 	}
 
 	&__title {
-		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $dimed, $background, $hover, $text) {
+		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			width: max-content;
 			@include caption;
-			color: $hover;
+			color: $shade-500;
 			font-weight: $font-weight-bold;
 			width: 162px;
 			text-overflow: ellipsis;
@@ -356,8 +356,8 @@ export default {
 	}
 
 	&__link {
-		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $dimed, $background, $hover, $text) {
-			color: $hover;
+		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+			color: $shade-500;
 			cursor: pointer;
 		}
 	}

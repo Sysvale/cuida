@@ -10,10 +10,10 @@
 		</span>
 
 		<div
-			class="bar__content"
+			class="progress-bar__content"
 		>
 			<div
-				:class="`bar__indicator--${variant}`"
+				:class="`progress-bar__indicator--${variant}`"
 				:style="progressIndicatorStyle"
 			/>
 		</div>
@@ -92,7 +92,7 @@ export default {
 	}
 
 	&__indicator {
-		@include variantResolver using ($color-name, $base-color, $disabled, $muted, $dimed, $background, $hover, $text) {
+		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			background-color: $base-color;
 			border-radius: $border-radius-extra-large;
 			height: 7px;

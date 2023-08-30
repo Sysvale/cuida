@@ -22,7 +22,7 @@ $n-400: #8794A1;
 $midNeutralsShades: $n-50, $n-100, $n-200, $n-300, $n-400;
 $midNeutralsTokens: '$n-50', '$n-100', '$n-200', '$n-300', '$n-400';
 
-$midNeutralsMetaData: 'Mid Neutrals', 'Mid', $midNeutralsShades, $midNeutralsTokens;
+$midNeutralsMetaData: 'Mid Neutrals', 'Gray', $midNeutralsShades, $midNeutralsTokens;
 
 $n-500: #647382;
 $n-600: #52616F;
@@ -61,7 +61,7 @@ $ta-700: #0f6b5d;
 $aquamanTealShades: $ta-50, $ta-100, $ta-200, $ta-300, $ta-400, $ta-500, $ta-600, $ta-700;
 $aquamanTealTokens: '$ta-50', '$ta-100', '$ta-200', '$ta-300', '$ta-400', '$ta-500', '$ta-600', '$ta-700';
 
-$tealMetaData: 'Aquaman Teal', $aquamanTealShades, $aquamanTealTokens;
+$tealMetaData: 'Aquaman Teal', 'Teal', $aquamanTealShades, $aquamanTealTokens;
 
 $ts-50: #f5fbff;
 $ts-100: #e6f6fe;
@@ -190,7 +190,7 @@ $palete:
 	[$orangeMetaData],
 	[$amberMetaData];
 
-$backgroundColors: (
+$shades50: (
 	'green': $gp-50,
 	'teal': $ta-50,
 	'turquoise': $ts-50,
@@ -205,7 +205,7 @@ $backgroundColors: (
 	'gray': $n-0,
 );
 
-$dimmedColors: (
+$shades100: (
 	'green': $gp-100,
 	'teal': $ta-100,
 	'turquoise': $ts-100,
@@ -221,7 +221,7 @@ $dimmedColors: (
 	'white': $n-0,
 );
 
-$mutedColors: (
+$shades200: (
 	'green': $gp-200,
 	'teal': $ta-200,
 	'turquoise': $ts-200,
@@ -237,7 +237,7 @@ $mutedColors: (
 	'white': $n-0,
 );
 
-$disabledColors: (
+$shades300: (
 	'green': $gp-300,
 	'teal': $ta-300,
 	'turquoise': $ts-300,
@@ -253,7 +253,7 @@ $disabledColors: (
 	'white': $n-0,
 );
 
-$baseColors: (
+$shades400: (
 	'green': $gp-400,
 	'teal': $ta-400,
 	'turquoise': $ts-400,
@@ -269,7 +269,7 @@ $baseColors: (
 	'white': $n-0,
 );
 
-$hoverColors: (
+$shades500: (
 	'green': $gp-500,
 	'teal': $ta-500,
 	'turquoise': $ts-500,
@@ -285,7 +285,7 @@ $hoverColors: (
 	'white': $n-0,
 );
 
-$textColors: (
+$shades600: (
 	'green': $gp-600,
 	'teal': $ta-600,
 	'turquoise': $ts-600,
@@ -410,16 +410,16 @@ $allColors: (
 );
 
 @mixin variantResolver {
-	@each $color-name, $base-color in $baseColors {
-		$disabled: map-get($disabledColors , $color-name);
-		$muted: map-get($mutedColors , $color-name);
-		$background: map-get($backgroundColors , $color-name);
-		$hover: map-get($hoverColors , $color-name);
-		$dimmed: map-get($dimmedColors , $color-name);
-		$text: map-get($textColors , $color-name);
+	@each $color-name, $base-color in $shades400 {
+		$shade-50: map-get($shades50 , $color-name);
+		$shade-100: map-get($shades100 , $color-name);
+		$shade-200: map-get($shades200 , $color-name);
+		$shade-300: map-get($shades300 , $color-name);
+		$shade-500: map-get($shades500 , $color-name);
+		$shade-600: map-get($shades600 , $color-name);
 
 		&--#{$color-name} {
-			@content($color-name, $base-color, $disabled, $muted, $dimmed, $background, $hover, $text);
+			@content($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600);
 		}
 	}
 }
