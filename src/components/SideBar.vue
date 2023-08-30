@@ -19,7 +19,32 @@
 						class="side-bar__item-container"
 						:class="isActive(item) ? 'side-bar__item-container--active' : 'side-bar__item-container--inactive'"
 					>
+						<div
+							v-if="!!item.items"
+							class="side-bar__item"
+							:class="isActive(item) ? 'side-bar__item--active' : 'side-bar__item--inactive'"
+							@click="(event) => handleClick(event, item)"
+						>
+							<div>
+								<cds-icon
+									:name="item.icon"
+									width="20"
+									height="20"
+								/>
+								<span>{{ item.label }}</span>
+							</div>
+
+							<cds-icon
+								v-if="!!item.items && item.items.length > 0"
+								name="caret-down-outline"
+								:class="{'item__caret': isActive(item)}"
+								width="16"
+								height="16"
+							/>
+						</div>
+
 						<router-link
+							v-else
 							:to="routerPushTo(item)"
 							class="side-bar__item"
 							:class="isActive(item) ? 'side-bar__item--active' : 'side-bar__item--inactive'"
