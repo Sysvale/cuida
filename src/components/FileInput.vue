@@ -218,7 +218,7 @@ export default {
 			isOnDragEnterState: false,
 			isValid: true,
 			internalState: this.state,
-			filePreview: null,
+			filePreview: '',
 		};
 	},
 
