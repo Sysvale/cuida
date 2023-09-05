@@ -20,7 +20,7 @@
 						:class="isActive(item) ? 'side-bar__item-container--active' : 'side-bar__item-container--inactive'"
 					>
 						<div
-							v-if="!!item.items"
+							v-if="!!item.items || item.type === 'link'"
 							class="side-bar__item"
 							:class="isActive(item) ? 'side-bar__item--active' : 'side-bar__item--inactive'"
 							@click="(event) => handleClick(event, item)"

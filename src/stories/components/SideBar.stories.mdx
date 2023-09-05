@@ -89,6 +89,7 @@ export const items = [
 	{
 		label: 'Dashboard',
 		icon: 'dashboard-outline',
+		type: 'route',
 		route: {
 			path: '/dashboard',
 			name: 'dashboard'
@@ -97,30 +98,37 @@ export const items = [
 	{
 		label: 'Atendimento',
 		icon: 'clipboard-text-outline',
+		type: 'route',
 		route: {
 			path: '/attendance',
-			name: 'pagina1'
+			name: 'attendance'
 		},
 	},
 	{
 		label: 'Links',
 		icon: 'link-outline',
+		type: 'route',
 		items: [
 			{
 				label: 'Painel (Tv)',
-				path: '/tv-link',
-				name: 'painel-tv'
+				route: {
+					path: '/tv-link',
+					name: 'painel-tv'
+				},
 			},
 			{
 				label: 'Totem',
-				path: '/totem-link',
-				name: 'totem'
+				route: {
+					path: '/totem-link',
+					name: 'totem'
+				},
 			},
 		]
 	},
 	{
 		label: 'Relatórios',
 		icon: 'printer-outline',
+		type: 'route',
 		route: {
 			path: '/reports',
 			name: 'pagina2'
@@ -129,49 +137,53 @@ export const items = [
 	{
 		label: 'Configurações',
 		icon: 'settings-outline',
+		type: 'route',
 		items: [
 			{
 				label: 'Painel (Tv)',
-				path: '/tv',
-				name: 'tv'
+				route: {
+					path: '/tv',
+					name: 'tv'
+				}
 			},
 			{
 				label: 'Totem',
-				path: '/totem',
-				name: 'totem'
+				route: {
+					path: '/totem',
+					name: 'totem',
+				},
 			},
 			{
 				label: 'Serviços',
-				path: '/services',
-				name: 'serviços'
+				route: {
+					path: '/services',
+					name: 'serviços',
+				},
 			},
 			{
 				label: 'Categorias',
-				path: '/categories',
-				name: 'categorias'
+				route: {
+					path: '/categories',
+					name: 'categorias',
+				}
 			},
 			{
 				label: 'Prioridades',
-				path: '/priorities',
-				name: 'prioridades'
+				route: {
+					path: '/priorities',
+					name: 'prioridades',
+				},
 			},
 		]
 	},
 	{
 		label: 'Suporte',
 		icon: 'lifebuoy-outline',
-		items: [
-			{
-				label: 'Ticket',
-				path: '/ticket',
-				name: 'ticket'
-			},
-			{
-				label: 'Integra',
-				path: '/integra',
-				name: 'integra'
-			},
-		]
+		type: 'link',
+		route: {
+			path: '/support',
+			name: 'support',
+		},
 	},
 ];
 
