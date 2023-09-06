@@ -85,6 +85,7 @@
 									@click="(event) => handleClick(event, subitem)"
 								>	
 									<router-link
+										class="side-bar__subitem-link"
 										:to="routerPushTo(subitem)"
 									>
 										{{ subitem.label }}
@@ -316,6 +317,11 @@ export default {
 		&-container {
 			padding: pl(7);
 			margin: mt(2);
+		}
+
+		&-link {
+			width: 100%;
+			display: block;
 		}
 	}
 
