@@ -104,13 +104,17 @@ export default {
 	}
 
 	$colors: (
-		'--teal': (
-			'active': $ts-500,
-			'disabled': $ts-300,
-		),
 		'--green': (
 			'active': $gp-500,
 			'disabled': $gp-300,
+		),
+		'--teal': (
+			'active': $ta-500,
+			'disabled': $ta-300,
+		),
+		'--turquoise': (
+			'active': $ts-500,
+			'disabled': $ts-300,
 		),
 		'--blue': (
 			'active': $bn-500,
