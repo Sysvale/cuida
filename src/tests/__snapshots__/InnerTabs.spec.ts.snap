@@ -28,6 +28,7 @@ VueWrapper {
     "getSlotName": [Function],
     "handleClick": [Function],
     "hasOwnProperty": [Function],
+    "indicatorClass": [Function],
     "internalActiveTab": [Object],
     "isActive": [Function],
     "tabs": [Array],

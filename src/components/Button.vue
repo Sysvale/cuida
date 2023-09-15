@@ -90,8 +90,9 @@ export default {
 	data() {
 		return {
 			predefinedColors: [
-				'teal',
 				'green',
+				'teal',
+				'turquoise',
 				'blue',
 				'indigo',
 				'violet',
@@ -197,13 +198,17 @@ export default {
 	}
 
 	$colors: (
-		'--teal': (
-			'active': $ts-400,
-			'disabled': $ts-300,
-		),
 		'--green': (
 			'active': $gp-400,
 			'disabled': $gp-300,
+		),
+		'--teal': (
+			'active': $ta-400,
+			'disabled': $ta-300,
+		),
+		'--turquoise': (
+			'active': $ts-400,
+			'disabled': $ts-300,
 		),
 		'--blue': (
 			'active': $bn-400,

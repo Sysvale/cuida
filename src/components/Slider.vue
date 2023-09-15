@@ -165,10 +165,10 @@ export default {
 }
 
 .slider {
-	@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
+	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 
 		& > .vue-slider-rail > .vue-slider-process {
-			background-color: $disabled !important;
+			background-color: $shade-300 !important;
 		}
 
 		& > .vue-slider-rail > .vue-slider-dot > .vue-slider-dot-handle {

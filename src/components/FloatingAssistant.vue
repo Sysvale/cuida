@@ -7,6 +7,7 @@
 		<cds-pulsar
 			:id="pulsarId"
 			:target-id="targetId"
+			:variant="variant"
 		/>
 		<div
 			:id="containerId"
@@ -25,20 +26,20 @@
 				<div v-if="waitingConfirmation">
 					Ocultar dica para sempre?
 					<span
-						class="floating-assistant__link"
+						:class="`floating-assistant__link--${variant}`"
 						@click="confirmationHandle(true)"
 					>
 						Sim
 					</span> /
 					<span
-						class="floating-assistant__link"
+						:class="`floating-assistant__link--${variant}`"
 						@click="confirmationHandle(false)"
 					>
 						Não
 					</span>
 				</div>
 				<div v-else>
-					<span class="floating-assistant__title">
+					<span :class="`floating-assistant__title--${variant}`">
 						{{ title }}
 					</span>
 					<div
@@ -51,7 +52,7 @@
 						<span class="floating-assistant__footer">
 							Você pode saber mais
 							<a
-								class="floating-assistant__link"
+								:class="`floating-assistant__link--${variant}`"
 								:href="url"
 								target="_blank"
 							>
@@ -122,6 +123,14 @@ export default {
 			type: String,
 			default: '',
 			required: true,
+		},
+		/**
+		* A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',
+		* 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
+		*/
+		variant: {
+			type: String,
+			default: 'green',
 		},
 		/**
 		* Id do elemento que será referência para a renderização do FloatingAssistant.
@@ -267,9 +276,9 @@ export default {
 	}
 
 	&__dropdown {
-		@include overline;
+		@include caption;
 		display: none;
-		color: $n-500;
+		color: $n-600;
 		background-color: $n-0;
 		border-radius: $border-radius-small;
 		outline: 1px solid $n-20;
@@ -277,9 +286,9 @@ export default {
 		position: absolute;
 		margin: ml(3);
 		padding: pYX(2, 5);
-		z-index: 999999999;
-		max-width: 336px;
-		max-height: 46px;
+		z-index: $z-index-tooltip;
+		max-width: 400px;
+		max-height: 56px;
 		transition : 0.3s ease-in-out;
 
 		&--expanded {
@@ -296,24 +305,30 @@ export default {
 
 		&--confirmation {
 			width: auto !important;
-
 			animation-name: collapseCard;
 			animation-duration: 5s;
 			animation-fill-mode: forwards;
+
+			span {
+				font-weight: $font-weight-bold;
+			}
 		}
 	}
 
 	&__title {
-		width: max-content;
-		@include caption;
-		color: $gp-400;
-		font-weight: $font-weight-bold;
-		width: 162px;
-		text-overflow: ellipsis;
-		overflow: hidden;
-		display: -webkit-box;
-		-webkit-line-clamp: 2;
-		-webkit-box-orient: vertical;
+		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+			width: max-content;
+			@include caption;
+			color: $shade-500;
+			font-weight: $font-weight-bold;
+			width: 162px;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			margin: mb(2);
+		}
 	}
 
 	&__subtitle {
@@ -328,8 +343,8 @@ export default {
 
 	&__content {
 		margin: mt(1);
-		width: 276px;
-
+		width: 304px;
+		line-height: 132%;
 		animation: fadeInContent ease 1s;
 		animation-iteration-count: 1;
 		animation-fill-mode: forwards;
@@ -337,12 +352,14 @@ export default {
 
 	&__footer {
 		display: block;
-		margin: mt(1);
+		margin: mt(2);
 	}
 
 	&__link {
-		color: $gp-400;
-		cursor: pointer;
+		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+			color: $shade-500;
+			cursor: pointer;
+		}
 	}
 
 	&__close-button {
@@ -384,21 +401,21 @@ export default {
 
 @keyframes showCard {
 	from { width: 0; }
-	to { width: 202px; }
+	to { width: 220px; }
 }
 
 @keyframes expandCard {
 	from {
-		width: 202px;
+		width: 220px;
 	}
 	to {
-		width: 336px;
+		width: 356px;
 	}
 }
 
 @keyframes collapseCard {
 	from {
-		width: 336px;
+		width: 356px;
 	}
 	to {
 		width: 206px;

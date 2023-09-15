@@ -60,8 +60,9 @@ export default {
 	data() {
 		return {
 			predefinedColors: [
-				'turquoise',
 				'green',
+				'teal',
+				'turquoise',
 				'blue',
 				'indigo',
 				'violet',
@@ -135,13 +136,13 @@ export default {
 		}
 	}
 
-	@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
-		color: $base-color;
-		background-color: $background;
+	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		color: darken($shade-500, 4%);
+		background-color: $shade-100;
 	}
 
 	&--amber {
-		color: $al-600;
+		color: $al-700;
 		background-color: $al-100;
 	}
 

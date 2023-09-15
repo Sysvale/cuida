@@ -21,7 +21,7 @@
 					</a>
 	
 					<div
-						:class="isActive(tab) ? 'tab__indicator--active' : ''"
+						:class="indicatorClass(tab)"
 						:style="activeBorderStyle"
 					/>
 				</li>
@@ -139,6 +139,10 @@ export default {
 		isActive(item) {
 			return isEqual(this.internalActiveTab, item);
 		},
+
+		indicatorClass(item) {
+			return this.isActive(item) ? `tab__indicator--active--${this.variant}` : '';
+		},
 	},
 };
 </script>
@@ -159,10 +163,11 @@ export default {
 
 			&-container {
 				overflow-x: scroll;
+				margin-bottom: -1px;
 
 				/* width */
 				&::-webkit-scrollbar {
-					height: 4px;
+					height: 5px;
 					border-radius: 8px;
 				}
 
@@ -223,7 +228,8 @@ export default {
 		&__content {
 			background-color: $n-0;
 			padding: pa(5);
-			border-radius: $border-radius-button;
+			border-bottom-right-radius: 8px;
+			border-bottom-left-radius: 8px;
 		
 			> .content__pane--inactive {
 				display: none;
@@ -236,12 +242,14 @@ export default {
 	}
 
 	.tab__indicator--active {
-		height: 4px;
-		width: 100%;
-		border-top-right-radius: 4px;
-		border-top-left-radius: 4px;
-		background-color: var(--indicatorColor);
-		transition: all 0.3s ease-out;
+		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+			height: 4px;
+			width: 100%;
+			border-top-right-radius: 4px;
+			border-top-left-radius: 4px;
+			background-color: $base-color;
+			transition: all 0.3s ease-out;
+		}
 	}
 }
 </style>

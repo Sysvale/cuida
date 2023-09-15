@@ -21,7 +21,6 @@ VueWrapper {
   },
   "__setProps": [Function],
   "componentVM": {
-    "colorHexCode": [Function],
     "formatedvalue": "0%",
     "hasOwnProperty": [Function],
     "progressIndicatorStyle": [Object],
@@ -33,11 +32,13 @@ VueWrapper {
   },
   "isDisabled": [Function],
   "rootVM": {},
-  "wrapperElement": <span
-    id="progressBar"
+  "wrapperElement": <div
+    class="progress-bar"
+    data-v-84df1bb9=""
     percentage="0.67"
   >
+    <!--v-if-->
     <div … />
-  </span>,
+  </div>,
 }
 `;
