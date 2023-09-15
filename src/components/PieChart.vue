@@ -44,7 +44,7 @@ export default {
 		},
 		/**
 		 * Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:
-		 * `green`,`turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `mid`, `dark`.
+		 * `green`, `teal`, `turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `mid`, `dark`.
 		 */
 		variant: {
 			type: String,
