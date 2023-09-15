@@ -1,36 +1,31 @@
 <template>
-	<span
-		id="progressBar"
+	<div
+		class="progress-bar"
 	>
-		<div
-			class="bar"
+		<span
+			v-if="showText"
+			:class="textAside ? 'bar__text--aside' : 'bar__text'"
 		>
-			<span
-				v-if="showText"
-				:class="textAside ? 'bar__text--aside' : 'bar__text'"
-			>
-				{{ formatedvalue }}
-			</span>
+			{{ formatedvalue }}
+		</span>
 
+		<div
+			class="progress-bar__content"
+		>
 			<div
-				class="bar__content"
-			>
-				<div
-					class="bar__indicator"
-					:style="progressIndicatorStyle"
-				/>
-			</div>
+				:class="`progress-bar__indicator--${variant}`"
+				:style="progressIndicatorStyle"
+			/>
 		</div>
-	</span>
+	</div>
 </template>
 
 <script>
-import { colorHexCode } from '../utils/constants/colors';
 
 export default {
 	props: {
 		/**
-		 * A variante de cor. São 9 variantes implementadas: 'green', 'teal',
+		 * A variante de cor. São 9 variantes implementadas: 'green', 'teal', 'turquoise',
 		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'.
 		 */
 		variant: {
@@ -70,7 +65,6 @@ export default {
 		progressIndicatorStyle() {
 			return {
 				'--width': this.formatedvalue,
-				'--indicatorColor': this.colorHexCode(this.variant),
 				'--leftMargin': this.textAside ? '3' : '10',
 				'--bottomMargin': this.textAside ? '10' : '2',
 			};
@@ -80,41 +74,39 @@ export default {
 			return this.textAside ? 'row-reverse' : 'column';
 		},
 	},
-
-	methods: {
-		colorHexCode,
-	},
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import './../assets/sass/tokens.scss';
-#progressBar .bar {
+.progress-bar {
 	align-items: center;
 	display: flex;
 	flex-direction: v-bind(textDirection);
 
 	&__content {
 		background-color: $n-40;
-		border-radius: 80px;
+		border-radius: $border-radius-extra-large;
 		height: 7px;
 		width: 100%;
 	}
 
 	&__indicator {
-		background-color: var(--indicatorColor);
-		border-radius: 80px;
-		height: 7px;
-		width: var(--width);
+		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+			background-color: $base-color;
+			border-radius: $border-radius-extra-large;
+			height: 7px;
+			width: var(--width);
+		}
 	}
 
 	&__text--aside {
-		font-weight: 600;
+		font-weight: $font-weight-semibold;
 		margin: ml(3);
 	}
 
 	&__text {
-		font-weight: 600;
+		font-weight: $font-weight-semibold;
 		margin: mb(2);
 	}
 }

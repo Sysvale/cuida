@@ -148,7 +148,7 @@ export default {
 		height: 0;
 
 		&:checked + .switch__slider {
-			@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
+			@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 				background-color: $base-color !important;
 			}
 		}
@@ -255,8 +255,8 @@ export default {
 		}
 
 		&--active-focused {
-			@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
-				box-shadow: 0 0 0 0.2rem $muted;
+			@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+				box-shadow: 0 0 0 0.2rem $shade-200;
 			}
 		}
 
