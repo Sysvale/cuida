@@ -126,10 +126,10 @@ export default {
 		outline: 1px solid $n-30;
 	}
 
-	@include variantResolver using ($color-name, $base-color, $disabled, $muted, $background, $hover) {
+	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 		@extend .box;
 		outline: 1px solid $base-color;
-		background-color: $background;
+		background-color: $shade-50;
 	}
 }
 </style>
