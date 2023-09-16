@@ -45,8 +45,6 @@ import BarChart from '../../components/BarChart.vue';
 	:data="chartData"
 	:variant="variant"
 	:labels="chartLabels"
-	:with-select: "withSelect"
-	:select-label="selectLabel"
 	:bar-width="barWidth"
 />`
 			},
@@ -75,13 +73,15 @@ export const Template = (args) => ({
 <br />
 
 ## Quando usar:
-- Exibir dados em formatos visuais, como gráficos de barra, linha, pizza, rosquinha, área polar e radar;
+- Exibir dados em formatos visuais;
+- É eficaz ao exibir muitas categorias;
 - Visualizar tendências, proporções ou comparações em dados.
 
 <br />
 
 ## Quando não usar:
-- Para informações simples que podem ser exibidas em um formato tabular ou em texto.
+- Para informações simples que podem ser exibidas em um formato tabular ou em texto;
+- Não é recomendado para comparação percentual ou partes de um todo.
 
 ## Preview
 
@@ -145,8 +145,6 @@ export const Template = (args) => ({
 				}
 			],
 			barWidth: 1,
-			withSelect: true,
-			selectLabel: 'Exames',
 	}}
 >
 	{ Template.bind({}) }
