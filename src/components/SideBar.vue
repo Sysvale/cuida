@@ -83,8 +83,25 @@
 									class="side-bar__subitem"
 									:class="isActive(subitem) ? 'side-bar__subitem--active' : 'side-bar__subitem--inactive'"
 									@click="(event) => handleClick(event, subitem)"
-								>	
+								>
+									<a
+										v-if="!!subitem.type && subitem.type === 'external'"
+										class="side-bar__subitem-link"
+										target="_blank"
+										rel="noopener noreferrer"
+										:href="subitem.route.path"
+									>
+										{{ subitem.label }}
+										
+										<cds-icon
+											height="16"
+											width="16"
+											name="open-in-new-tab-outline"
+										/>
+									</a>
+
 									<router-link
+										v-else
 										class="side-bar__subitem-link"
 										:to="routerPushTo(subitem)"
 									>
@@ -322,6 +339,9 @@ export default {
 		&-link {
 			width: 100%;
 			display: block;
+			display: flex;
+			align-items: center;
+			gap: spacer(2);
 		}
 	}
 
