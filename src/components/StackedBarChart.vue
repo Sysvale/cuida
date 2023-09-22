@@ -234,7 +234,7 @@ export default {
 				}
 
 				dataset.backgroundColor = colors[objectName];
-				dataset.borderRadius = 2;
+				dataset.borderRadius = 6;
 			});
 		},
 	}
