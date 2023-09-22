@@ -223,14 +223,20 @@ export default {
 		},
 
 		// NOTE: Função responsável por buscar a cor na paleta
+		// Para definição da opacidade é aplicado hexadecimal (80 = 50%)
 		generateBackgroundColor() {
 			const variantLowercase = this.variant.toLowerCase();
 			const palletColor = this.palletColors.find(color => color.variantName.toLowerCase().includes(variantLowercase));
 			if (palletColor) {
+				if (this.fill) {
+					const withOpacity = palletColor.colorShades.map(color => color + '80');
+					return withOpacity;
+				}
 				return palletColor.colorShades;
 			}
 			return [];
 		},
+
 
 		// NOTE: Função responsável por setar backgroundColor
 		// Ocorre essa verificação para garantir que o mesmo conjunto de dados para mais de um item selecionado tenha a mesma cor
@@ -245,13 +251,14 @@ export default {
 				}
 
 				if (dataset.data.length > 0) {
-					dataset.backgroundColor = colors[objectName][index % colors[objectName].length]; // Use colors based on index
-					dataset.borderColor = colors[objectName][index % colors[objectName].length]; // Use the same color as borderColor
+					dataset.backgroundColor = colors[objectName][index % colors[objectName].length];
+					dataset.borderColor = colors[objectName][index % colors[objectName].length];
 				}
 
 				dataset.borderRadius = 6;
 			});
 		},
+
 
 		checkDashed() {
 			this.chartOptions.borderDash = [this.borderDash[0], this.borderDash[1]];
