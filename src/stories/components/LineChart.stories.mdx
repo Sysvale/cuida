@@ -24,6 +24,14 @@ import LineChart from '../../components/LineChart.vue';
 				]
 			}
 		},
+		smoothing: {
+			control: {
+				type: 'range',
+				min: 0,
+				max: 1,
+				step: 0.1,
+			},
+		},
 	}}
 	parameters={{
 		viewMode: 'docs',
@@ -38,6 +46,7 @@ import LineChart from '../../components/LineChart.vue';
 	:variant="variant"
 	:labels="chartLabels"
 	:show-label-name="showLabelName"
+	:smoothing="smoothing"
 	:fill="fill
 	:is-dashed="isDashed"
 	:border-dash="borderDash
@@ -90,6 +99,7 @@ export const Template = (args) => ({
 			fill: false,
 			isDashed: false,
 			borderDash: [5,5],
+			smoothing: 0.6,
 			showLabelName: true,
 			data: [
 				{

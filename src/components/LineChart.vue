@@ -92,13 +92,17 @@ export default {
 		},
 		/**
 		 * Defina efeito de linha tracejada. Especificamente, o valor [a, b] define o padrão
-         * de traços da linha, onde `a` representa o comprimento de cada traço sólido e `b`
-         * representa o comprimento de cada espaço entre os traços.
+		 * de traços da linha, onde `a` representa o comprimento de cada traço sólido e `b`
+		 * representa o comprimento de cada espaço entre os traços.
 		 */
 		borderDash: {
 			type: Array,
 			default: () => [],
 		},
+		smoothing: {
+			type: Number,
+			default: 0.6,
+		}
 	},
 
 	data() {
@@ -109,6 +113,27 @@ export default {
 			palletColors: [],
 			deleteFirstTwoColors: false, //NOTE: Responsável por garantir que as cores mid e dark da paleta não serão removidos os dois primeiros elementos
 			chartOptions: {
+				interaction: {
+					intersect: false,
+				},
+				scales: {
+					x: {
+						display: true,
+						title: {
+							display: true
+						}
+					},
+					y: {
+						display: true,
+						title: {
+							display: true,
+							text: 'Value'
+						},
+						suggestedMin: -10,
+						suggestedMax: 200
+					}
+				},
+				tension: this.smoothing,
 				responsive: true,
 				maintainAspectRatio: false, // NOTE: Caso true manterá aspecto de proporção original, caso false, será dimensionado para preencher completamente o contêiner (Isso pode fazer com que o gráfico pareça distorcido se o container tiver proporção de aspecto diferente do gráfico original)
 				pieceLabel: {
