@@ -42,6 +42,7 @@ VueWrapper {
     "sassColorVariables": [Object],
     "setColors": [Function],
     "showLabelName": true,
+    "smoothing": 0.6,
     "variant": "green",
   },
   "isDisabled": [Function],

@@ -43,6 +43,7 @@ describe('LineChart', () => {
 				fill: false,
 				isDashed: false,
 				borderDash: [5,5],
+				smoothing: 0.6,
 			},
 		});
 
