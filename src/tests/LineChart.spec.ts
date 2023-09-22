@@ -40,6 +40,9 @@ describe('LineChart', () => {
 				variant: 'green',
 				showLabelName: true,
 				data: mockedData,
+				fill: false,
+				isDashed: false,
+				borderDash: [5,5],
 			},
 		});
 
