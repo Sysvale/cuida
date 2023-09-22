@@ -76,6 +76,29 @@ export default {
 			required: true,
 			default: true,
 		},
+		/**
+		 * Defina se deve ser aplicado preenchimento ao gráfico.
+		*/
+		fill: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Defina se deve transformar o gráfico de linhas sólidas em linhas tracejadas.
+		*/
+		isDashed: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Defina efeito de linha tracejada. Especificamente, o valor [a, b] define o padrão
+         * de traços da linha, onde `a` representa o comprimento de cada traço sólido e `b`
+         * representa o comprimento de cada espaço entre os traços.
+		 */
+		borderDash: {
+			type: Array,
+			default: () => [],
+		},
 	},
 
 	data() {
@@ -105,7 +128,8 @@ export default {
 							console.log(context);
 						}
 					}
-				}
+				},
+				fill: this.fill,
 			},
 		}
 	},
@@ -132,6 +156,15 @@ export default {
 		data: {
 			handler(newValue) {
 				this.mergeChartDataNoSelect(newValue);
+			},
+			immediate: true,
+		},
+
+		isDashed: {
+			handler(newValue) {
+				if (newValue === true) {
+					this.checkDashed();
+				}
 			},
 			immediate: true,
 		},
@@ -219,6 +252,10 @@ export default {
 				dataset.borderRadius = 6;
 			});
 		},
+
+		checkDashed() {
+			this.chartOptions.borderDash = [this.borderDash[0], this.borderDash[1]];
+		}
 	}
 }
 </script>

@@ -38,6 +38,9 @@ import LineChart from '../../components/LineChart.vue';
 	:variant="variant"
 	:labels="chartLabels"
 	:show-label-name="showLabelName"
+	:fill="fill
+	:is-dashed="isDashed"
+	:border-dash="borderDash
 />`
 			},
 		}
@@ -84,6 +87,9 @@ export const Template = (args) => ({
 		args={{
 			labels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
 			variant: 'green',
+			fill: false,
+			isDashed: false,
+			borderDash: [5,5],
 			showLabelName: true,
 			data: [
 				{
