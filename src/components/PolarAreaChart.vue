@@ -149,7 +149,7 @@ export default {
 			this.removeFirstTwoElements();
 		},
 
-		// NOTE: Função responsável por remover os dois primeiros elementos da paleta para quando não é Mid ou Dark Neutrals
+		// NOTE: Função responsável por remover os dois primeiros elementos da paleta para quando não é gray ou Dark Neutrals
 		removeFirstTwoElements() {
 			for (let i = 0; i < this.palletColors.length; i++) {
 				const color = this.palletColors[i];
