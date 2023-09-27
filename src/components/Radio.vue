@@ -79,7 +79,7 @@ export default {
 
 	data() {
 		return {
-			uniqueId: Math.floor(Math.random() * 500),
+			uniqueId: Math.random(),
 		};
 	},
 
