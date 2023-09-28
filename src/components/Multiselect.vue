@@ -368,6 +368,10 @@ export default {
 	},
 
 	mounted() {
+		if (this.modelValue === null || this.modelValue.length === 0) {
+			return;
+		}
+
 		this.selectedValue = this.modelValue;
 		this.updateRenderOptions();
 		this.indeterminate = this.hasSelectedValues && this.selectedValue.length < this.options.length;

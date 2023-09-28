@@ -7,7 +7,7 @@
 			@type {Event}
 		-->
 		<input
-			:id="value"
+			:id="`${uniqueId}-${value}`"
 			type="radio"
 			class="cds-radio"
 			:class="`cds-radio--${variant}`"
@@ -20,7 +20,7 @@
 
 		<label
 			class="cds-radio__label"
-			:for="value"
+			:for="`${uniqueId}-${value}`"
 		>
 			<!-- @slot Slot padrão para renderização de conteúdo customizado da label -->
 			<slot>
@@ -75,6 +75,12 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+	},
+
+	data() {
+		return {
+			uniqueId: Math.random(),
+		};
 	},
 
 	computed: {
