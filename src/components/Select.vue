@@ -313,6 +313,12 @@ export default {
 
 		localValue: {
 			handler(currentValue) {
+				const compatibleOptions = this.localOptions.filter(
+					(option) => JSON.stringify(option) === JSON.stringify(currentValue),
+				);
+				if (compatibleOptions.length === 0) {
+					return;
+				}
 				/**
 				* Evento que indica que o valor do Select foi alterado
 				* @event input
