@@ -24,6 +24,15 @@ import BarChart from '../../components/BarChart.vue';
 				]
 			}
 		},
+		captionStyle: {
+			control: {
+				type: 'select',
+				options: [
+				'circle',
+				'rectRounded'
+				]
+			}
+		},
 		barWidth: {
 			control: {
 				type: 'range',
@@ -43,6 +52,7 @@ import BarChart from '../../components/BarChart.vue';
 				code: /*html*/
 `<cds-bar-chart
 	:data="chartData"
+	:caption-style="captionStyle"
 	:variant="variant"
 	:labels="chartLabels"
 	:bar-width="barWidth"
@@ -91,6 +101,7 @@ export const Template = (args) => ({
 		args={{
 			labels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
 			variant: 'green',
+			captionStyle: 'rectRounded',
 			data: [
 				{
 					name: 'Ecocardiograma',

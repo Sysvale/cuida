@@ -24,6 +24,15 @@ import PieChart from '../../components/PieChart.vue';
 				]
 			}
 		},
+		captionStyle: {
+			control: {
+				type: 'select',
+				options: [
+				'circle',
+				'rectRounded'
+				]
+			}
+		},
 	}}
 	parameters={{
 		viewMode: 'docs',
@@ -36,6 +45,7 @@ import PieChart from '../../components/PieChart.vue';
 `<cds-pie-chart
 	:data="chartData"
 	:variant="variant"
+	:caption-style="captionStyle"
 	:labels="chartLabels"
 />`
 			},
@@ -84,6 +94,7 @@ export const Template = (args) => ({
 		args={{
 			labels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
 			variant: 'green',
+			captionStyle: 'rectRounded',
 			data: [
 				{
 					name: 'Ecocardiograma',

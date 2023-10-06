@@ -24,6 +24,15 @@ import LineChart from '../../components/LineChart.vue';
 				]
 			}
 		},
+		captionStyle: {
+			control: {
+				type: 'select',
+				options: [
+				'circle',
+				'rectRounded'
+				]
+			}
+		},
 		smoothing: {
 			control: {
 				type: 'range',
@@ -44,6 +53,7 @@ import LineChart from '../../components/LineChart.vue';
 `<cds-line-chart
 	:data="chartData"
 	:variant="variant"
+	:caption-style="captionStyle"
 	:labels="chartLabels"
 	:show-label-name="showLabelName"
 	:smoothing="smoothing"
@@ -96,6 +106,7 @@ export const Template = (args) => ({
 		args={{
 			labels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
 			variant: 'green',
+			captionStyle: 'rectRounded',
 			fill: false,
 			isDashed: false,
 			borderDash: [5,5],

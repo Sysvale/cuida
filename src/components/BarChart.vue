@@ -73,6 +73,14 @@ export default {
 			type: Number,
 			default: 1,
 		},
+		/**
+		 * Defina o estilo da legenda. Ao definir como circle, a caixa da legenda terá forma de um
+		 * círculo. Caso defina como rectRounded, terá forma de retângulo com bordas arredondadas.
+		 */
+		captionStyle: {
+			type: String,
+			default: 'rectRounded',
+		}
 	},
 
 	data() {
@@ -97,17 +105,8 @@ export default {
 					legend: {
 						display: true,
 						labels: {
-							generateLabels: function(chart) {
-								return chart.data.datasets.map(function(dataset, datasetIndex) {
-									return {
-										text: dataset.label,
-										fillStyle: dataset.backgroundColor,
-										datasetIndex: datasetIndex,
-										borderRadius: 2,
-										strokeStyle : dataset.backgroundColor
-									};
-								});
-							}
+							usePointStyle: true,
+							pointStyle: this.captionStyle,
 						},
 					},
 				}

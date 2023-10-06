@@ -24,6 +24,15 @@ import StackedBarChart from '../../components/StackedBarChart.vue';
 				]
 			}
 		},
+		captionStyle: {
+			control: {
+				type: 'select',
+				options: [
+				'circle',
+				'rectRounded'
+				]
+			}
+		},
 		barWidth: {
 			control: {
 				type: 'range',
@@ -44,6 +53,7 @@ import StackedBarChart from '../../components/StackedBarChart.vue';
 `<cds-stacked-bar-chart
 	:data="chartData"
 	:variant="variant"
+	:caption-style="captionStyle"
 	:labels="chartLabels"
 	:bar-width="barWidth"
 />`
@@ -92,6 +102,7 @@ export const Template = (args) => ({
 		args={{
 			labels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
 			variant: 'green',
+			captionStyle: 'rectRounded',
 			data: [
 				{
 					name: 'Ecocardiograma',
