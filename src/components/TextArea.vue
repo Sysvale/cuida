@@ -35,7 +35,7 @@
 			<textarea
 				id="textarea"
 				v-model="internalValue"
-				class="textarea__input"
+				:class="inputClass"
 				:placeholder="placeholder"
 				:disabled="disabled"
 			/>
@@ -177,7 +177,7 @@ export default {
 		},
 
 		inputClass() {
-			return this.fluid ? 'textarea__field--fluid' : 'textarea__field';
+			return this.fluid ? 'textarea__input--fluid' : 'textarea__input';
 		},
 	},
 
@@ -254,6 +254,23 @@ textarea {
 			border: 1px solid $bn-300;
 			box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);
 		}
+
+		&--fluid {
+			@extend .textarea__input;
+			width: 100%;
+
+			.textarea__input {
+				width: 100%;
+			}
+
+			.textarea__icon--alert-circle-icon, 
+			.textarea__icon--check-icon {
+				left: 1149px;
+			}
+			.textarea__icon--spinner-icon {
+				left: 1140px;
+			}
+		}
 	}
 
 	&__icon-container {
@@ -280,26 +297,10 @@ textarea {
 		left: 420px;
 	}
 
-	&--fluid {
-		@extend .textarea;
-		width: 100%;
-
-		.textarea__input {
-			width: 100%;
-		}
-
-		.textarea__icon--alert-circle-icon, 
-		.textarea__icon--check-icon {
-			left: 1149px;
-		}
-		.textarea__icon--spinner-icon {
-			left: 1140px;
-		}
-	}
+	
 
 	&__label {
 		@include label;
-
 		&--required-indicator {
 			color: $rc-600;
 		}
@@ -318,7 +319,7 @@ textarea {
 		}
 
 		&--fluid {
-			@extend .textarea__field;
+			@extend .textarea__input;
 			width: 100%;
 		}
 	}
