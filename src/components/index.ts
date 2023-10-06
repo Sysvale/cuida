@@ -6,6 +6,7 @@ import AppBar from './AppBar.vue';
 import Avatar from './Avatar.vue';
 import Badge from './Badge.vue';
 import BarChart from './BarChart.vue';
+import StackedBarChart from './StackedBarChart.vue';
 import Box from './Box.vue';
 import Breadcrumb from './Breadcrumb.vue';
 import Button from './Button.vue';
@@ -137,6 +138,7 @@ export default {
 		app.component('CdsSkeletonText', SkeletonText); //NOTE: Testado no SB
 		// app.component('CdsSlider', Slider);
 		app.component('CdsSpinner', Spinner); //NOTE: Testado no SB
+        app.component('CdsStackedBarChart', StackedBarChart);
 		app.component('CdsStepper', Stepper);
 		app.component('CdsStepperInput', StepperInput); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsSwitch', Switch); //NOTE: Testado no SB

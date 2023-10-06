@@ -4,8 +4,7 @@
 		<div
 			class="responsive-container"
 		>
-			<Bar
-				:is="'bar'"
+			<PolarArea
 				:data="localChartData"
 				:options="chartOptions"
 			/>
@@ -14,17 +13,14 @@
 </template>
 
 <script>
-import { Chart, registerables } from 'chart.js';
-import { Bar } from 'vue-chartjs'
+import { PolarArea } from 'vue-chartjs'
 import sassColorVariables from '../assets/sass/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
-// Registrar o elemento "point" no registro (Torna-se necessário para marcações de ponto)
-Chart.register(...registerables);
 
 export default {
 	components: {
-		Bar,
+		PolarArea,
 	},
 
 	props: {
@@ -67,11 +63,11 @@ export default {
 			default: () => [],
 		},
 		/**
-		 * Configura a porcentagem ocupada pela barra do gráfico. (0.1-1).
+		 * Exibe o nome das labels centralizadas aos dados
 		 */
-		barWidth: {
-			type: Number,
-			default: 1,
+		isVisiblePointNames: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
@@ -84,14 +80,28 @@ export default {
 			deleteFirstTwoColors: false, //NOTE: Responsável por garantir que as cores gray e dark da paleta não serão removidos os dois primeiros elementos
 			chartOptions: {
 				responsive: true,
+				scales: {
+					r: {
+						pointLabels: {
+							display: this.isVisiblePointNames,
+							centerPointLabels: true,
+							font: {
+								size: 12
+							}
+						}
+					}
+				},
 				maintainAspectRatio: false, // NOTE: Caso true manterá aspecto de proporção original, caso false, será dimensionado para preencher completamente o contêiner (Isso pode fazer com que o gráfico pareça distorcido se o container tiver proporção de aspecto diferente do gráfico original)
-				categoryPercentage: null, //NOTE: Configura a porcentagem ocupada pela barra do gráfico. (0-1)
+				pieceLabel: {
+					mode: 'percentage',
+					precision: 1
+				},
 				plugins: {
 					tooltip: {
 						callbacks: {
 							beforeTitle: function (context) {
 								return `${context[0].dataset.name}`;
-							}
+							},
 						}
 					},
 					legend: {
@@ -128,17 +138,6 @@ export default {
 		data: {
 			handler(newValue) {
 				this.mergeChartDataNoSelect(newValue);
-			},
-			immediate: true,
-		},
-
-		barWidth: {
-			handler(newValue) {
-				if (newValue >= 0.1 && newValue <= 1) {
-					this.chartOptions.categoryPercentage = newValue;
-				} else {
-					this.chartOptions.categoryPercentage = 1;
-				}
 			},
 			immediate: true,
 		},
@@ -182,7 +181,7 @@ export default {
 			data.forEach(obj => {
 				obj.datasets.forEach(state => {
 					const dataset = {
-						label: state.label,
+						label: this.showLabelName ? state.name :state.label,
 						data: state.data,
 						name: state.name,
 						borderRadius: 6,
@@ -209,27 +208,16 @@ export default {
 		// NOTE: Função responsável por setar backgroundColor
 		// Ocorre essa verificação para garantir que o mesmo conjunto de dados para mais de um item selecionado tenha a mesma cor
 		setColors(datasets, backgroundColor) {
-
 			const colors = {};
-
-			this.chartOptions.plugins.legend.display = true;
 
 			datasets.forEach(dataset => {
 				const objectName = dataset.name;
-				let colorIndex;
-
-				if (datasets.length === 1) {
-					colorIndex = 2;
-					colors[objectName] = backgroundColor[colorIndex];
-					this.chartOptions.plugins.legend.display = false;
-				}
 
 				if (!colors[objectName]) {
-					colorIndex = Object.keys(colors).length % backgroundColor.length;
-					colors[objectName] = backgroundColor[colorIndex];
+					colors[objectName] = backgroundColor.slice();
 				}
 
-				dataset.backgroundColor = colors[objectName];
+				dataset.backgroundColor = colors[objectName].splice(0, dataset.data.length);
 				dataset.borderRadius = 6;
 			});
 		},

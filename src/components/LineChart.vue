@@ -4,8 +4,7 @@
 		<div
 			class="responsive-container"
 		>
-			<Bar
-				:is="'bar'"
+			<Line
 				:data="localChartData"
 				:options="chartOptions"
 			/>
@@ -14,8 +13,8 @@
 </template>
 
 <script>
+import { Line } from 'vue-chartjs'
 import { Chart, registerables } from 'chart.js';
-import { Bar } from 'vue-chartjs'
 import sassColorVariables from '../assets/sass/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
@@ -24,7 +23,8 @@ Chart.register(...registerables);
 
 export default {
 	components: {
-		Bar,
+		// eslint-disable-next-line vue/no-reserved-component-names
+		Line,
 	},
 
 	props: {
@@ -67,11 +67,44 @@ export default {
 			default: () => [],
 		},
 		/**
-		 * Configura a porcentagem ocupada pela barra do gráfico. (0.1-1).
+		 * Defina o texto a ser exibido para a legenda. Quando definido como verdadeiro
+		 * (true), espera-se que exiba o nome do data. Quando definido
+		 * como falso (false), será definido o nome do dataset
+		*/
+		showLabelName: {
+			type: Boolean,
+			required: true,
+			default: true,
+		},
+		/**
+		 * Defina se deve ser aplicado preenchimento ao gráfico.
+		*/
+		fill: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Defina se deve transformar o gráfico de linhas sólidas em linhas tracejadas.
+		*/
+		isDashed: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Defina efeito de linha tracejada. Especificamente, o valor [a, b] define o padrão
+		 * de traços da linha, onde `a` representa o comprimento de cada traço sólido e `b`
+		 * representa o comprimento de cada espaço entre os traços.
 		 */
-		barWidth: {
+		borderDash: {
+			type: Array,
+			default: () => [],
+		},
+		/**
+		 * Defina o nível de suavização das linhas do gráfico.
+		 */
+		smoothing: {
 			type: Number,
-			default: 1,
+			default: 0.3,
 		},
 	},
 
@@ -83,15 +116,39 @@ export default {
 			palletColors: [],
 			deleteFirstTwoColors: false, //NOTE: Responsável por garantir que as cores gray e dark da paleta não serão removidos os dois primeiros elementos
 			chartOptions: {
+				interaction: {
+					intersect: false,
+				},
+				scales: {
+					x: {
+						display: true,
+						title: {
+							display: true
+						}
+					},
+					y: {
+						display: true,
+						title: {
+							display: true,
+							text: 'Value'
+						},
+						suggestedMin: -10,
+						suggestedMax: 200
+					}
+				},
+				tension: this.smoothing,
 				responsive: true,
 				maintainAspectRatio: false, // NOTE: Caso true manterá aspecto de proporção original, caso false, será dimensionado para preencher completamente o contêiner (Isso pode fazer com que o gráfico pareça distorcido se o container tiver proporção de aspecto diferente do gráfico original)
-				categoryPercentage: null, //NOTE: Configura a porcentagem ocupada pela barra do gráfico. (0-1)
+				pieceLabel: {
+					mode: 'percentage',
+					precision: 1
+				},
 				plugins: {
 					tooltip: {
 						callbacks: {
 							beforeTitle: function (context) {
 								return `${context[0].dataset.name}`;
-							}
+							},
 						}
 					},
 					legend: {
@@ -101,7 +158,8 @@ export default {
 							pointStyle: 'rectRounded',
 						},
 					},
-				}
+				},
+				fill: this.fill,
 			},
 		}
 	},
@@ -132,12 +190,10 @@ export default {
 			immediate: true,
 		},
 
-		barWidth: {
+		isDashed: {
 			handler(newValue) {
-				if (newValue >= 0.1 && newValue <= 1) {
-					this.chartOptions.categoryPercentage = newValue;
-				} else {
-					this.chartOptions.categoryPercentage = 1;
+				if (newValue === true) {
+					this.checkDashed();
 				}
 			},
 			immediate: true,
@@ -182,7 +238,7 @@ export default {
 			data.forEach(obj => {
 				obj.datasets.forEach(state => {
 					const dataset = {
-						label: state.label,
+						label: this.showLabelName ? state.name :state.label,
 						data: state.data,
 						name: state.name,
 						borderRadius: 6,
@@ -197,42 +253,46 @@ export default {
 		},
 
 		// NOTE: Função responsável por buscar a cor na paleta
+		// Para definição da opacidade é aplicado hexadecimal (80 = 50%)
 		generateBackgroundColor() {
 			const variantLowercase = this.variant.toLowerCase();
 			const palletColor = this.palletColors.find(color => color.variantName.toLowerCase().includes(variantLowercase));
 			if (palletColor) {
+				if (this.fill) {
+					const withOpacity = palletColor.colorShades.map(color => color + '80');
+					return withOpacity;
+				}
 				return palletColor.colorShades;
 			}
 			return [];
 		},
 
+
 		// NOTE: Função responsável por setar backgroundColor
 		// Ocorre essa verificação para garantir que o mesmo conjunto de dados para mais de um item selecionado tenha a mesma cor
 		setColors(datasets, backgroundColor) {
-
 			const colors = {};
 
-			this.chartOptions.plugins.legend.display = true;
-
-			datasets.forEach(dataset => {
+			datasets.forEach((dataset, index) => {
 				const objectName = dataset.name;
-				let colorIndex;
-
-				if (datasets.length === 1) {
-					colorIndex = 2;
-					colors[objectName] = backgroundColor[colorIndex];
-					this.chartOptions.plugins.legend.display = false;
-				}
 
 				if (!colors[objectName]) {
-					colorIndex = Object.keys(colors).length % backgroundColor.length;
-					colors[objectName] = backgroundColor[colorIndex];
+					colors[objectName] = backgroundColor.slice();
 				}
 
-				dataset.backgroundColor = colors[objectName];
+				if (dataset.data.length > 0) {
+					dataset.backgroundColor = colors[objectName][index % colors[objectName].length];
+					dataset.borderColor = colors[objectName][index % colors[objectName].length];
+				}
+
 				dataset.borderRadius = 6;
 			});
 		},
+
+
+		checkDashed() {
+			this.chartOptions.borderDash = [this.borderDash[0], this.borderDash[1]];
+		}
 	}
 }
 </script>

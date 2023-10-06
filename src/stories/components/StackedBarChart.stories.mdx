@@ -1,9 +1,9 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
-import BarChart from '../../components/BarChart.vue';
+import StackedBarChart from '../../components/StackedBarChart.vue';
 
 <Meta
-	title="Componentes/Charts/BarChart"
-	component={ BarChart }
+	title="Componentes/Charts/StackedBarChart"
+	component={ StackedBarChart }
 	argTypes={{
 		variant: {
 			control: {
@@ -41,7 +41,7 @@ import BarChart from '../../components/BarChart.vue';
 				language: 'html',
 				format: true,
 				code: /*html*/
-`<cds-bar-chart
+`<cds-stacked-bar-chart
 	:data="chartData"
 	:variant="variant"
 	:labels="chartLabels"
@@ -53,20 +53,20 @@ import BarChart from '../../components/BarChart.vue';
 />
 
 export const Template = (args) => ({
-	components: { CdsBarChart: BarChart },
+	components: { CdsStackedBarChart: StackedBarChart },
 	setup() {
 		return { args };
 	},
 	template: /*html*/ `
 		<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px; height: 300px">
-			<cds-bar-chart
+			<cds-stacked-bar-chart
 				v-bind="args"
 			/>
 		</div>
 	`
 });
 
-# BarChart
+# StackedBarChart
 
 ### Um componente de gráfico reutilizável para exibir dados visualmente.
 ---
@@ -74,20 +74,21 @@ export const Template = (args) => ({
 
 ## Quando usar:
 - Exibir dados em formatos visuais;
-- É eficaz ao exibir muitas categorias;
-- Visualizar tendências, proporções ou comparações em dados.
+- Comparação de dados como um todo;
+- Tendências ao longo do tempo.
 
 <br />
 
 ## Quando não usar:
 - Para informações simples que podem ser exibidas em um formato tabular ou em texto;
-- Não é recomendado para comparação percentual ou partes de um todo.
+- Comparação absoluta;
+- Muitas categorias.
 
 ## Preview
 
 <Canvas>
 	<Story
-		name="BarChart"
+		name="StackedBarChart"
 		args={{
 			labels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
 			variant: 'green',
@@ -99,27 +100,11 @@ export const Template = (args) => ({
 							label: 'Realizado',
 							data: [50, 50, 50, 50, 50],
 						},
-						{
-							label: 'Pendente',
-							data: [200, 180, 250, 190, 280],
-						},
-						{
-							label: 'Não realizado',
-							data: [38, 84, 120, 90, 185],
-						}
 					]
 				},
 				{
 					name: 'Raio-X',
 					datasets: [
-						{
-							label: 'Realizado',
-							data: [120, 220, 180, 320, 150],
-						},
-						{
-							label: 'Pendente',
-							data: [98, 145, 160, 190, 175],
-						},
 						{
 							label: 'Não realizado',
 							data: [49, 84, 120, 78, 130],
@@ -129,14 +114,6 @@ export const Template = (args) => ({
 				{
 					name: 'Tomografia',
 					datasets: [
-						{
-							label: 'Realizado',
-							data: [55, 40, 33, 90, 120],
-						},
-						{
-							label: 'Pendente',
-							data: [25, 30, 90, 45, 20],
-						},
 						{
 							label: 'Não realizado',
 							data: [38, 84, 120, 90, 45],
@@ -151,5 +128,4 @@ export const Template = (args) => ({
   </Story>
 </Canvas>
 
-<ArgsTable story="BarChart" />
-
+<ArgsTable story="StackedBarChart" />

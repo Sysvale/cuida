@@ -83,6 +83,14 @@ export default {
 			palletColors: [],
 			deleteFirstTwoColors: false, //NOTE: Responsável por garantir que as cores gray e dark da paleta não serão removidos os dois primeiros elementos
 			chartOptions: {
+				scales: {
+					x: {
+						stacked: true,
+					},
+					y: {
+						stacked: true,
+					},
+				},
 				responsive: true,
 				maintainAspectRatio: false, // NOTE: Caso true manterá aspecto de proporção original, caso false, será dimensionado para preencher completamente o contêiner (Isso pode fazer com que o gráfico pareça distorcido se o container tiver proporção de aspecto diferente do gráfico original)
 				categoryPercentage: null, //NOTE: Configura a porcentagem ocupada pela barra do gráfico. (0-1)
@@ -101,7 +109,7 @@ export default {
 							pointStyle: 'rectRounded',
 						},
 					},
-				}
+				},
 			},
 		}
 	},

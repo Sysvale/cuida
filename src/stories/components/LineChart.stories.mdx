@@ -1,9 +1,9 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
-import BarChart from '../../components/BarChart.vue';
+import LineChart from '../../components/LineChart.vue';
 
 <Meta
-	title="Componentes/Charts/BarChart"
-	component={ BarChart }
+	title="Componentes/Charts/LineChart"
+	component={ LineChart }
 	argTypes={{
 		variant: {
 			control: {
@@ -24,12 +24,12 @@ import BarChart from '../../components/BarChart.vue';
 				]
 			}
 		},
-		barWidth: {
+		smoothing: {
 			control: {
 				type: 'range',
 				min: 0,
 				max: 1,
-				step: 0.01,
+				step: 0.1,
 			},
 		},
 	}}
@@ -41,11 +41,15 @@ import BarChart from '../../components/BarChart.vue';
 				language: 'html',
 				format: true,
 				code: /*html*/
-`<cds-bar-chart
+`<cds-line-chart
 	:data="chartData"
 	:variant="variant"
 	:labels="chartLabels"
-	:bar-width="barWidth"
+	:show-label-name="showLabelName"
+	:smoothing="smoothing"
+	:fill="fill
+	:is-dashed="isDashed"
+	:border-dash="borderDash
 />`
 			},
 		}
@@ -53,20 +57,20 @@ import BarChart from '../../components/BarChart.vue';
 />
 
 export const Template = (args) => ({
-	components: { CdsBarChart: BarChart },
+	components: { CdsLineChart: LineChart },
 	setup() {
 		return { args };
 	},
 	template: /*html*/ `
 		<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px; height: 300px">
-			<cds-bar-chart
+			<cds-line-chart
 				v-bind="args"
 			/>
 		</div>
 	`
 });
 
-# BarChart
+# LineChart
 
 ### Um componente de gráfico reutilizável para exibir dados visualmente.
 ---
@@ -74,23 +78,29 @@ export const Template = (args) => ({
 
 ## Quando usar:
 - Exibir dados em formatos visuais;
-- É eficaz ao exibir muitas categorias;
-- Visualizar tendências, proporções ou comparações em dados.
+- Ideal para mostrar tendências ao longo do tempo;
+- Comparação de múltiplas séries.
 
 <br />
 
 ## Quando não usar:
 - Para informações simples que podem ser exibidas em um formato tabular ou em texto;
-- Não é recomendado para comparação percentual ou partes de um todo.
+- Dados discretos sem sequência lógica;
+- Grande quantidade de série de dados.
 
 ## Preview
 
 <Canvas>
 	<Story
-		name="BarChart"
+		name="LineChart"
 		args={{
 			labels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
 			variant: 'green',
+			fill: false,
+			isDashed: false,
+			borderDash: [5,5],
+			smoothing: 0.3,
+			showLabelName: true,
 			data: [
 				{
 					name: 'Ecocardiograma',
@@ -99,14 +109,6 @@ export const Template = (args) => ({
 							label: 'Realizado',
 							data: [50, 50, 50, 50, 50],
 						},
-						{
-							label: 'Pendente',
-							data: [200, 180, 250, 190, 280],
-						},
-						{
-							label: 'Não realizado',
-							data: [38, 84, 120, 90, 185],
-						}
 					]
 				},
 				{
@@ -116,14 +118,6 @@ export const Template = (args) => ({
 							label: 'Realizado',
 							data: [120, 220, 180, 320, 150],
 						},
-						{
-							label: 'Pendente',
-							data: [98, 145, 160, 190, 175],
-						},
-						{
-							label: 'Não realizado',
-							data: [49, 84, 120, 78, 130],
-						}
 					]
 				},
 				{
@@ -133,23 +127,14 @@ export const Template = (args) => ({
 							label: 'Realizado',
 							data: [55, 40, 33, 90, 120],
 						},
-						{
-							label: 'Pendente',
-							data: [25, 30, 90, 45, 20],
-						},
-						{
-							label: 'Não realizado',
-							data: [38, 84, 120, 90, 45],
-						}
 					]
 				}
 			],
-			barWidth: 1,
 	}}
 >
 	{ Template.bind({}) }
   </Story>
 </Canvas>
 
-<ArgsTable story="BarChart" />
+<ArgsTable story="LineChart" />
 
