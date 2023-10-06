@@ -96,6 +96,19 @@ export default {
 					},
 					legend: {
 						display: true,
+						labels: {
+							generateLabels: function(chart) {
+								return chart.data.datasets.map(function(dataset, datasetIndex) {
+									return {
+										text: dataset.label,
+										fillStyle: dataset.backgroundColor,
+										datasetIndex: datasetIndex,
+										borderRadius: 2,
+										strokeStyle : dataset.backgroundColor
+									};
+								});
+							}
+						},
 					},
 				}
 			},
