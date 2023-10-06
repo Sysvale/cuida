@@ -55,7 +55,7 @@ export default {
 			required: true,
 			default: 'green',
 			validator: (value) => {
-				return ['green', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'grayf', 'dark'].includes(value);
+				return ['green', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray', 'dark'].includes(value);
 			}
 		},
 		/**
