@@ -44,14 +44,14 @@ export default {
 		},
 		/**
 		 * Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:
-		 * `green`, `teal`, `turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `mid`, `dark`.
+		 * `green`, `teal`, `turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `gray`, `dark`.
 		 */
 		variant: {
 			type: String,
 			required: true,
 			default: 'green',
 			validator: (value) => {
-				return ['green', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'mid', 'dark'].includes(value);
+				return ['green', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray', 'dark'].includes(value);
 			}
 		},
 		/**
@@ -77,7 +77,7 @@ export default {
 			localChartData: {},
 			localLabels: [],
 			palletColors: [],
-			deleteFirstTwoColors: false, //NOTE: Responsável por garantir que as cores mid e dark da paleta não serão removidos os dois primeiros elementos
+			deleteFirstTwoColors: false, //NOTE: Responsável por garantir que as cores gray e dark da paleta não serão removidos os dois primeiros elementos
 			chartOptions: {
 				responsive: true,
 				scales: {
@@ -126,7 +126,7 @@ export default {
 
 		variant: {
 			handler(newValue) {
-				if (newValue === 'mid' || newValue === 'dark')  {
+				if (newValue === 'gray' || newValue === 'dark')  {
 					this.deleteFirstTwoColors = true;
 				} else {
 					this.deleteFirstTwoColors = false;
