@@ -69,14 +69,6 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-		/**
-		 * Defina o estilo da legenda. Ao definir como circle, a caixa da legenda terá forma de um
-		 * círculo. Caso defina como rectRounded, terá forma de retângulo com bordas arredondadas.
-		 */
-		captionStyle: {
-			type: String,
-			default: 'rectRounded',
-		}
 	},
 
 	data() {
@@ -116,7 +108,7 @@ export default {
 						display: true,
 						labels: {
 							usePointStyle: true,
-							pointStyle: this.captionStyle,
+							pointStyle: 'rectRounded',
 						},
 					},
 				}
