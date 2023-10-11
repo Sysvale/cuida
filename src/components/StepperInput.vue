@@ -10,19 +10,22 @@
 			<label
 				v-else
 				class="stepper-input__label"
-				for="stepper-input"
 			>
-				<span>
-					{{ label }}
-				</span>
-	
-				<span
-					v-if="required"
-					class="stepper-input__label--required-indicator"
+				<div
+					class="label__content"
+					for="stepper-input"
 				>
-					*
-				</span>
-	
+					<span>
+						{{ label }}
+					</span>
+
+					<span
+						v-if="required"
+						class="label__required-indicator"
+					>
+						*
+					</span>
+				</div>
 			</label>
 		</span>
 
@@ -260,6 +263,16 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
 
+.label {
+	&__required-indicator {
+		color: $rc-600;
+	}
+
+	&__content {
+		margin: mb(1);
+	}
+}
+
 .stepper-input {
 	display: flex;
 	outline: 1px solid $n-50;
@@ -272,12 +285,8 @@ export default {
 		@include caption;
 		font-weight: $font-weight-semibold;
 		margin: mb(1);
-		display: block;
+		display: flex;
 		color: $n-700;
-
-		&--required-indicator {
-			color: $rc-600;
-		}
 	}
 
 	&__icon-container {
