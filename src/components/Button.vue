@@ -185,10 +185,10 @@ export default {
 	}
 
 	&__container {
+		font-family: Satoshi, Inter, Avenir, Helvetica, Arial, sans-serif;
 		display: flex;
 		align-items: center;
 		width: max-content;
-		font-weight: $font-weight-semibold;
 		border: none;
 		cursor: pointer;
 
@@ -269,19 +269,19 @@ export default {
 
 .button-size {
 	&--sm {
-		font-size: 12px;
+		@include button-3;
 		padding: pYX(2, 4);
 		border-radius: $border-radius-lil;
 	}
 
 	&--md {
-		font-size: 14px;
+		@include button-2;
 		padding: pYX(3, 6);
 		border-radius: $border-radius-extra-small;
 	}
 
 	&--lg {
-		font-size: 18px;
+		@include button-1;
 		padding: pYX(3, 6);
 		border-radius: $border-radius-extra-small;
 	}
