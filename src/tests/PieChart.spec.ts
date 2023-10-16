@@ -14,6 +14,8 @@ const mockedData =[
 	},
 ];
 
+const mockedColors = ['teal', 'violet', 'amber', 'blue', 'red'];
+
 describe('PieChart', () => {
 	test('renders correctly', async () => {
 		const wrapper = shallowMount(PieChart, {
@@ -25,5 +27,12 @@ describe('PieChart', () => {
 		});
 
 		expect(wrapper).toMatchSnapshot();
+	});
+
+	test('it accepts valid colors', () => {
+		const validator = PieChart.props.colors.validator;
+		const invalidColors = [...mockedColors, 'silver'];
+		expect(validator(mockedColors)).toBe(true);
+		expect(validator(invalidColors)).toBe(false);
 	});
 });

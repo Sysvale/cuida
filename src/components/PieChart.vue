@@ -51,7 +51,7 @@ export default {
 			required: true,
 			default: 'green',
 			validator: (value) => {
-				return ['green', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray', 'dark'].includes(value);
+				return ['green', 'teal', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray', 'dark'].includes(value);
 			},
 		},
 		/**
@@ -70,7 +70,7 @@ export default {
 			type: Array,
 			default: () => [],
 			validator: (value) => {
-				const variants = ['green', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray', 'dark'];
+				const variants = ['green', 'teal', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray', 'dark'];
 				return value.every((color) => variants.includes(color));
 			},
 		},
