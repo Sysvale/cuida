@@ -15,19 +15,22 @@
 			<label
 				v-else
 				class="textarea__label"
-				for="cds-text-area"
 			>
-				<span>
-					{{ label }}
-				</span>
-	
-				<span
-					v-if="required"
-					class="textarea__label--required-indicator"
+				<div
+					class="label__content"
+					for="cds-text-area"
 				>
-					*
-				</span>
-	
+					<span>
+						{{ label }}
+					</span>
+
+					<span
+						v-if="required"
+						class="label__required-indicator"
+					>
+						*
+					</span>
+				</div>
 			</label>
 		</span>
 
@@ -235,6 +238,17 @@ textarea {
 		background: $n-50;
 	}
 }
+
+.label {
+	&__required-indicator {
+		color: $rc-600;
+	}
+
+	&__content {
+		margin: mb(1);
+	}
+}
+
 .textarea {
 	display: flex;
 	border-radius: $border-radius-extra-small;
@@ -301,9 +315,7 @@ textarea {
 
 	&__label {
 		@include label;
-		&--required-indicator {
-			color: $rc-600;
-		}
+		display: flex;
 	}
 
 	&__field {

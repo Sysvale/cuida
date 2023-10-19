@@ -6,27 +6,31 @@
 	>
 		<label
 			class="select__label"
-			for="cds-select"
 		>
-			<span>
-				{{ label }}
-			</span>
-
-			<span
-				v-if="required"
-				class="select--required"
+			<div
+				class="label__content"
+				for="cds-select"
 			>
-				*
-			</span>
+				<span>
+					{{ label }}
+				</span>
 
-			<cds-icon
-				v-if="tooltip"
-				v-cdstip="tooltip"
-				:name="tooltipIcon"
-				height="20"
-				width="20"
-				class="select__icon"
-			/>
+				<span
+					v-if="required"
+					class="label__required-indicator"
+				>
+					*
+				</span>
+
+				<cds-icon
+					v-if="tooltip"
+					v-cdstip="tooltip"
+					:name="tooltipIcon"
+					height="20"
+					width="20"
+					class="label__icon"
+				/>
+			</div>
 		</label>
 		<div
 			class="select__container"
@@ -462,6 +466,21 @@ export default {
 	user-select: none;
 }
 
+.label {
+	&__required-indicator {
+		color: $rc-600;
+	}
+
+	&__icon {
+		margin: mTRBL(0, 0, n1, 1);
+		cursor: pointer;
+	}
+
+	&__content {
+		margin: mb(1);
+	}
+}
+
 .select {
 	&__input {
 		height: 40px;
@@ -542,13 +561,9 @@ export default {
 		}
 	}
 
-	&--required {
-		color: $rc-600;
-		font-weight: $font-weight-semibold;
-	}
-
 	&__label {
 		@include label;
+		display: flex;
 	}
 
 	&__container {
@@ -673,12 +688,6 @@ export default {
 		color: $rc-600;
 		margin: mt(1);
 	}
-
-	&__icon {
-		margin: ml(1);
-		cursor: pointer;
-	}
-
 }
 
 .option {
