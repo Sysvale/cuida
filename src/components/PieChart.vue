@@ -120,7 +120,7 @@ export default {
 			return this.colors.map((bgColor) => {
 				const palletColor = this.palletColors.find(color => color.variantName.toLowerCase().includes(bgColor));
 				if (palletColor) {
-					return palletColor.colorBase;
+					return palletColor.color400;
 				}
 			});
 		},
