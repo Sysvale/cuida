@@ -1,17 +1,23 @@
 <template>
 	<div>
 		<label
-			:for="id"
 			class="input__label"
 		>
-			{{ label }}
-
-			<span
-				v-if="required"
-				class="input--required"
+			<div
+				class="label__content"
+				:for="id"
 			>
-				*
-			</span>
+				<span>
+					{{ label }}
+				</span>
+
+				<span
+					v-if="required"
+					class="label__required-indicator"
+				>
+					*
+				</span>
+			</div>
 		</label>
 		<div
 			:id="id"
@@ -340,6 +346,16 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
 
+.label {
+	&__required-indicator {
+		color: $rc-600;
+	}
+
+	&__content {
+		margin: mb(1);
+	}
+}
+
 .input {
 	&__container {
 		color: $n-400;
@@ -395,13 +411,9 @@ export default {
 		}
 	}
 
-	&--required {
-		color: $rc-600;
-		font-weight: $font-weight-semibold;
-	}
-
 	&__label {
 		@include label;
+		display: flex;
 	}
 
 	&__message {
@@ -414,12 +426,12 @@ export default {
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+	-webkit-appearance: none;
+	margin: 0;
 }
 
 /* Firefox */
 input[type=number] {
-  -moz-appearance: textfield;
+	-moz-appearance: textfield;
 }
 </style>

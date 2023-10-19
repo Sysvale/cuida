@@ -14,19 +14,22 @@
 			<label
 				v-else
 				class="clustered-multiselect__label"
-				:for="`clustered-multiselect-${uniqueKey}`"
 			>
-				<span>
-					{{ label }}
-				</span>
-
-				<span
-					v-if="required"
-					class="clustered-multiselect__label--required-indicator"
+				<div
+					class="label__content"
+					:for="`clustered-multiselect-${uniqueKey}`"
 				>
-					*
-				</span>
+					<span>
+						{{ label }}
+					</span>
 
+					<span
+						v-if="required"
+						class="label__required-indicator"
+					>
+						*
+					</span>
+				</div>
 			</label>
 		</span>
 
@@ -532,6 +535,16 @@ export default {
 <style lang="scss">
 @import '../assets/sass/tokens.scss';
 
+.label {
+	&__required-indicator {
+		color: $rc-600;
+	}
+
+	&__content {
+		margin: mb(1);
+	}
+}
+
 .cds-multiselect {
 	&__grouped-divider {
 		margin: mYX(2, 3);
@@ -734,10 +747,7 @@ export default {
 	.clustered-multiselect {
 		&__label {
 			@include label;
-
-			&--required-indicator {
-				color: $rc-600;
-			}
+			display: flex;
 		}
 	}
 

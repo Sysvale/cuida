@@ -11,19 +11,22 @@
 			<label
 				v-else
 				class="date-input__label"
-				for="cds-date-input"
 			>
-				<span>
-					{{ label }}
-				</span>
-	
-				<span
-					v-if="required"
-					class="date-input__label--required-indicator"
+				<div
+					class="label__content"
+					for="cds-text-input"
 				>
-					*
-				</span>
-	
+					<span>
+						{{ label }}
+					</span>
+
+					<span
+						v-if="required"
+						class="label__required-indicator"
+					>
+						*
+					</span>
+				</div>
 			</label>
 		</span>
 
@@ -307,16 +310,24 @@ export default {
 
 	&__label {
 		@include label;
-
-		&--required-indicator {
-			color: $rc-600;
-		}
+		display: flex;
+		justify-content: space-between;
 	}
 
 	&__error-message {
 		@include caption;
 		color: $rc-600;
 		margin: mt(1);
+	}
+}
+
+.label {
+	&__required-indicator {
+		color: $rc-600;
+	}
+
+	&__content {
+		margin: mb(1);
 	}
 }
 
