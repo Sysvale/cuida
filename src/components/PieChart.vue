@@ -51,8 +51,8 @@ export default {
 			required: true,
 			default: 'green',
 			validator: (value) => {
-				return ['green', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray', 'dark'].includes(value);
-			}
+				return ['green', 'teal', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray', 'dark'].includes(value);
+			},
 		},
 		/**
 		 * Defina as labels do gráfico
@@ -61,6 +61,18 @@ export default {
 			type: Array,
 			required: true,
 			default: () => [],
+		},
+		/**
+		 * Defina as cores do gráfico. Essa prop sobrescreve as shades da variante.
+		 * A prop espera um Array de variantes de cor. Ex.: ['green', 'turquoise']
+		 */
+		colors: {
+			type: Array,
+			default: () => [],
+			validator: (value) => {
+				const variants = ['green', 'teal', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray', 'dark'];
+				return value.every((color) => variants.includes(color));
+			},
 		},
 	},
 
@@ -98,10 +110,26 @@ export default {
 		}
 	},
 
+	computed: {
+		isColorsSet() {
+			return this.colors && this.colors.length > 0;
+		},
+
+		// NOTE: Função responsável por buscar a cor na paleta
+		computedBackgroundColors() {
+			return this.colors.map((bgColor) => {
+				const palletColor = this.palletColors.find(color => color.variantName.toLowerCase().includes(bgColor));
+				if (palletColor) {
+					return palletColor.color400;
+				}
+			});
+		},
+	},
+
 	watch: {
 		labels: {
 			handler(newValue) {
-				this.localLabels = newValue
+				this.localLabels = newValue;
 			},
 			immediate: true,
 		},
@@ -172,7 +200,7 @@ export default {
 				});
 			});
 			this.palete();
-			const backgroundColor = this.generateBackgroundColor();
+			const backgroundColor = this.isColorsSet ? this.computedBackgroundColors : this.generateBackgroundColor();
 			this.setColors(mergedData.datasets, backgroundColor);
 			this.localChartData = mergedData;
 		},

@@ -13,6 +13,7 @@ export default (rawPalete) => {
 
 		colorSwatch.colorName = properties[0].trim().replace(/"/g,'');
 		colorSwatch.variantName = properties[1].trim().replace(/"/g,'');
+		colorSwatch.color400 = properties[6];
 		colorSwatch.colorShades = [];
 		colorSwatch.colorTokens = [];
 		colorSwatch.colorData = [];

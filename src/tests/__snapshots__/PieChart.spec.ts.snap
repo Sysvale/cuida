@@ -23,10 +23,13 @@ VueWrapper {
   "componentVM": {
     "addDataSetNames": [Function],
     "chartOptions": [Object],
+    "colors": [Array],
+    "computedBackgroundColors": [Array],
     "data": [Array],
     "deleteFirstTwoColors": false,
     "generateBackgroundColor": [Function],
     "hasOwnProperty": [Function],
+    "isColorsSet": false,
     "labels": [Array],
     "localChartData": [Object],
     "localLabels": [Array],
