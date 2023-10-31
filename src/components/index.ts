@@ -6,6 +6,9 @@ import AppBar from './AppBar.vue';
 import Avatar from './Avatar.vue';
 import Badge from './Badge.vue';
 import BarChart from './BarChart.vue';
+import LineChart from './LineChart.vue';
+import PieChart from './PieChart.vue';
+import PolarAreaChart from './PolarAreaChart.vue';
 import StackedBarChart from './StackedBarChart.vue';
 import Box from './Box.vue';
 import Breadcrumb from './Breadcrumb.vue';
@@ -112,6 +115,7 @@ export default {
 		app.component('CdsIconButton', IconButton); //NOTE: Testado no SB
 		app.component('CdsImage', Image);
 		app.component('CdsInnerTabs', InnerTabs); //NOTE: Testado no SB
+		app.component('CdsLineChart', LineChart);
 		app.component('CdsLink', Link); //NOTE: Testado no SB
 		app.component('CdsLoadingBar', LoadingBar); //NOTE: Testado no SB
 		app.component('CdsModal', Modal); //NOTE: Testado no SB
@@ -138,7 +142,7 @@ export default {
 		app.component('CdsSkeletonText', SkeletonText); //NOTE: Testado no SB
 		// app.component('CdsSlider', Slider);
 		app.component('CdsSpinner', Spinner); //NOTE: Testado no SB
-        app.component('CdsStackedBarChart', StackedBarChart);
+		app.component('CdsStackedBarChart', StackedBarChart);
 		app.component('CdsStepper', Stepper);
 		app.component('CdsStepperInput', StepperInput); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsSwitch', Switch); //NOTE: Testado no SB
@@ -151,7 +155,9 @@ export default {
 		app.component('CdsTimeline', Timeline);
 		app.component('CdsTimelineItem', TimelineItem);
 		app.component('CdsTruncate', Truncate); //NOTE: Testado no SB
-        app.component('CdsPasswordInput', PasswordInput);
+		app.component('CdsPasswordInput', PasswordInput);
+		app.component('CdsPieChart', PieChart);
+		app.component('CdsPolarAreaChart', PolarAreaChart);
 		app.component('CdsWizard', Wizard);
 	},
 }
