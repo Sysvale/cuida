@@ -1,6 +1,6 @@
 {
 	"name": "@sysvale/cuida",
-	"version": "3.0.0-beta.108",
+	"version": "3.0.0-beta.109",
 	"description": "A design system built by Sysvale, using storybook and Vue components",
 	"repository": {
 		"type": "git",
