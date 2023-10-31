@@ -390,6 +390,9 @@ export default {
 			font-weight: 700;
 			padding: spacer(3) spacer(4);
 			text-align: inherit;
+			overflow: auto;
+			word-wrap: break-word;
+			white-space: pre-line;
 
 			&--first {
 				border-top-left-radius: $border-radius-extra-small;
@@ -423,6 +426,9 @@ export default {
 		max-width: 400px;
 		padding: pa(4);
 		vertical-align: top;
+		overflow: auto;
+		word-wrap: break-word;
+		white-space: pre-line; 
 
 		&--first {
 			border-bottom: none;
