@@ -130,7 +130,6 @@ export default {
 						display: true,
 						title: {
 							display: true,
-							text: 'Value'
 						},
 					}
 				},
