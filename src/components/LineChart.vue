@@ -132,8 +132,6 @@ export default {
 							display: true,
 							text: 'Value'
 						},
-						suggestedMin: -10,
-						suggestedMax: 200
 					}
 				},
 				tension: this.smoothing,
