@@ -180,6 +180,9 @@ export default {
 		},
 
 		inputClass() {
+			if(this.disabled){
+				return 'textarea__input--disabled';
+			}
 			return this.fluid ? 'textarea__input--fluid' : 'textarea__input';
 		},
 	},
@@ -285,6 +288,11 @@ textarea {
 				left: 1140px;
 			}
 		}
+
+		&--disabled {
+			@extend .textarea__input;
+			resize: none;
+		}
 	}
 
 	&__icon-container {
@@ -358,12 +366,6 @@ textarea {
 				box-shadow: 0 0 0 0.2rem rgba($rc-300, .45);
 			}
 		}
-	}
-
-	&--disabled {
-		background-color: $n-20;
-		pointer-events: none;
-		border: none;
 	}
 
 	&__error-message {
