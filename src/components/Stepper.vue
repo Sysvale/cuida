@@ -337,6 +337,7 @@ export default {
 	}
 
 	&__edge {
+		margin-top: 1px;
 		min-width: 30px;
 		min-height: 30px;
 		display: flex;
