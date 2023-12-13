@@ -1,0 +1,90 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import HalfCircularProgress from '../../components/HalfCircularProgress.vue';
+
+<Meta
+	title="Componentes/Display/HalfCircularProgress"
+	component={ HalfCircularProgress }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/
+`<cds-half-circular-progress
+	variant="green"
+	:size="300"
+	:value="79.2"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsHalfCircularProgress: HalfCircularProgress },
+	setup() {
+		return { args };
+	},
+	template: /*html*/
+		`<cds-half-circular-progress
+			v-bind="args"
+		/>`,
+});
+
+# HalfCircularProgress
+
+### HalfCircularProgresss são componentes que indicam o status/progresso de uma operação em andamento, em formato circular.
+---
+<br />
+
+## Quando usar:
+- For necessário transmitir a ideia de progresso ou percentual de uma operação em andamento.
+- For necessário transmitir a ideia de status de uma operação em andamento e que fração dela já foi concluída.
+- For necessário chamar a atenção do usuário para uma informação específica de maneira gráfica.
+
+<br />
+
+## Quanddo não usar:
+- For necessário representar fração de um processo com muitas etapas.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Progress circular"
+		args={{
+			value: 79.2,
+			variant: "green",
+			size: 300,
+			subtitle: 'aptos ao indicador'
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Progress circular" />
