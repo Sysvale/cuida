@@ -5,7 +5,7 @@
 			class="responsive-container"
 		>
 			<div
-				class="half-circular-progress"
+				class="gauge-chart"
 				:style="progressStyle"
 			>
 				<svg
@@ -67,7 +67,7 @@
 export default {
 	props: {
 		/**
-		 * Define o valor indicador de progresso do HalfCircularProgress.
+		 * Define o valor indicador de progresso do GaugeChart.
 		 * O valor deve ser entre 0 e 100.
 		 */
 		value: {
@@ -140,7 +140,7 @@ $stroke-progress: calc(198 * (1 - var(--value) / 100));
   initial-value: 198;
 }
 
-.half-circular-progress {
+.gauge-chart {
 	--percentage: #{$stroke-progress};
 
 	svg {

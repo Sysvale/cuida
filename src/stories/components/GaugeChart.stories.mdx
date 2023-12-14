@@ -1,9 +1,9 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
-import HalfCircularProgress from '../../components/HalfCircularProgress.vue';
+import GaugeChart from '../../components/GaugeChart.vue';
 
 <Meta
-	title="Componentes/Display/HalfCircularProgress"
-	component={ HalfCircularProgress }
+	title="Componentes/Charts/GaugeChart"
+	component={ GaugeChart }
 	argTypes={{
 		variant: {
 			control:{
@@ -40,7 +40,7 @@ import HalfCircularProgress from '../../components/HalfCircularProgress.vue';
 				language: 'html',
 				format:true,
 				code: /*html*/
-`<cds-half-circular-progress
+`<cds-gauge-chart
 	variant="green"
 	:size="300"
 	:value="79.2"
@@ -51,31 +51,30 @@ import HalfCircularProgress from '../../components/HalfCircularProgress.vue';
 />
 
 export const Template = (args) => ({
-	components: { CdsHalfCircularProgress: HalfCircularProgress },
+	components: { CdsGaugeChart: GaugeChart },
 	setup() {
 		return { args };
 	},
 	template: /*html*/
-		`<cds-half-circular-progress
+		`<cds-gauge-chart
 			v-bind="args"
 		/>`,
 });
 
-# HalfCircularProgress
+# GaugeChart
 
-### HalfCircularProgresss são componentes que indicam o status/progresso de uma operação em andamento, em formato circular.
+### O Gauge Chart é indicado para mostrar o progresso em direção a uma meta específica.
 ---
 <br />
 
 ## Quando usar:
-- For necessário transmitir a ideia de progresso ou percentual de uma operação em andamento.
-- For necessário transmitir a ideia de status de uma operação em andamento e que fração dela já foi concluída.
-- For necessário chamar a atenção do usuário para uma informação específica de maneira gráfica.
+- Use "Gauge charts" quando precisar monitorar e comunicar de forma visual o status de métricas-chave ou indicadores de desempenho;
+- Use "Gauge charts" para comunicar o estado geral de uma única métrica de maneira rápida e visualmente impactante.
 
 <br />
 
 ## Quanddo não usar:
-- For necessário representar fração de um processo com muitas etapas.
+- Evite o uso de "Gauge charts" para representar conjuntos de dados complexos ou multidimensionais. Esse tipo de gráfico é mais eficaz ao exibir uma única métrica em relação a uma escala.
 
 <br />
 
@@ -83,7 +82,7 @@ export const Template = (args) => ({
 
 <Canvas>
 	<Story
-		name="Progress circular"
+		name="Gauge Chart"
 		args={{
 			value: 79.2,
 			variant: "green",
@@ -95,4 +94,4 @@ export const Template = (args) => ({
 	</Story>
 </Canvas>
 
-<ArgsTable story="Progress circular" />
+<ArgsTable story="Gauge Chart" />
