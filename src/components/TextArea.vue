@@ -181,7 +181,7 @@ export default {
 
 		inputClass() {
 			if(this.disabled){
-				return 'textarea__input--disabled';
+				return `textarea__input--disabled ${this.fluid ? 'textarea__input--fluid' : '' }`;
 			}
 			return this.fluid ? 'textarea__input--fluid' : 'textarea__input';
 		},
@@ -203,7 +203,7 @@ export default {
 			* @event input
 			* @type {Event}
 			*/
-			this.internalValue = this.modelValue;
+			this.internalValue = value;
 		},
 	},
 };
