@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="dashboard-card"
+		:class="fluid ? 'dashboard-card--fluid' : 'dashboard-card'"
 	>
 		<div>
 			<div
@@ -26,17 +26,15 @@
 			</div>
 	
 			<p
-				v-if="description.length > 0"
-				class="dashboard-card__description"
+				:class="fluid ? 'dashboard-card__description--fluid' : 'dashboard-card__description'"
 			>
-				{{ description }}
-			</p>
-
-			<p
-				v-else
-				class="dashboard-card__description"
-			>
-				<slot name="description-slot" />
+				<span v-if="description.length > 0">
+					{{ description }}
+				</span>
+				<slot
+					v-else
+					name="description-slot"
+				/>
 			</p>
 		</div>
 
