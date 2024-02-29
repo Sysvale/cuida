@@ -137,6 +137,10 @@ export default {
 			@extend .action-list__item;
 			color: $n-200;
 			cursor: not-allowed;
+
+			&:hover {
+				background-color: unset;
+			}
 		}
 
 		&--right-bordered {
