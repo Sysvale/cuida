@@ -23,6 +23,7 @@ VueWrapper {
   "componentVM": {
     "action": [Array],
     "actions": [Array],
+    "handleClick": [Function],
     "hasOwnProperty": [Function],
     "internalNumberOfExpandedActions": 2,
     "itsBeingShown": false,
