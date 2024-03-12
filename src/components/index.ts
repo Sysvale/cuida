@@ -29,6 +29,7 @@ import EmptyState from './EmptyState.vue';
 import FileInput from './FileInput.vue';
 import FlatButton from './FlatButton.vue';
 import FloatingAssistant from './FloatingAssistant.vue';
+import GaugeChart from './GaugeChart.vue';
 import Highlight from './Highlight.vue';
 import Icon from './Icon.vue';
 import IconButton from './IconButton.vue';
@@ -110,6 +111,7 @@ export default {
 		app.component('CdsFileInput', FileInput); //NOTE: Testado no SB
 		app.component('CdsFlatButton', FlatButton); //NOTE: Testado no SB
 		app.component('CdsFloatingAssistant', FloatingAssistant);
+		app.component('CdsGaugeChart', GaugeChart); //NOTE: Testado no SB
 		app.component('CdsHighlight', Highlight); //NOTE: Testado no SB
 		app.component('CdsIcon', Icon); //NOTE: Testado no SB
 		app.component('CdsIconButton', IconButton); //NOTE: Testado no SB
