@@ -11,10 +11,12 @@ import SkeletonText from '../../components/SkeletonText.vue';
 			source: {
 				language: 'html',
 				format:true,
-				code: /*html*/ 
-`<cds-skeleton-text
-	:width="250"
-/>`
+				code: /*html*/
+`
+	<cds-skeleton-text
+		:width="250"
+	/>
+`
 			},
 		}
 	}}
@@ -26,10 +28,11 @@ export const Template = (args) => ({
 		return { args };
 	},
 	template: /*html*/ `
+	<div style="height: 100px">
 		<cds-skeleton-text
-			v-bind="args" 
+			v-bind="args"
 		/>
-	`,
+	</div>`,
 });
 
 # Skeleton Text

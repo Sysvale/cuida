@@ -11,16 +11,42 @@ export default {
 		width: {
 			type: String,
 			required: false,
+			default: '20',
 		},
+
 		height: {
 			type: String,
 			required: false,
 			default: '16',
-		}
+		},
+
+		fluid: {
+			type: Boolean,
+			default: false,
+		},
+
+		fitContent: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	computed: {
 		computedStyle() {
+			if (this.fluid) {
+				return {
+					'--width': '100%',
+					'--height': `${this.height}px`,
+				};
+			}
+
+			if (this.fitContent) {
+				return {
+					'--width': '100%',
+					'--height': '100%',
+				};
+			}
+
 			return  {
 				'--width': `${this.width}px`,
 				'--height': `${this.height}px`,
