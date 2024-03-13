@@ -58,6 +58,7 @@ import SegmentedControl from './SegmentedControl.vue';
 import Select from './Select.vue';
 import SideBar from './SideBar.vue';
 import SideSheet from './SideSheet.vue';
+import Skeleton from './Skeleton.vue';
 import SkeletonText from './SkeletonText.vue';
 import Slider from './Slider.vue';
 import Spinner from './Spinner.vue';
@@ -141,6 +142,7 @@ export default {
 		app.component('CdsSelect', Select); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsSideBar', SideBar);
 		app.component('CdsSideSheet', SideSheet);
+		app.component('CdsSkeleton', Skeleton);
 		app.component('CdsSkeletonText', SkeletonText); //NOTE: Testado no SB
 		// app.component('CdsSlider', Slider);
 		app.component('CdsSpinner', Spinner); //NOTE: Testado no SB
