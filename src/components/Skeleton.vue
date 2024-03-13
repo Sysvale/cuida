@@ -10,28 +10,18 @@ export default {
 	props: {
 		width: {
 			type: String,
-			required: false,
 			default: '20',
 		},
 
 		height: {
 			type: String,
-			required: false,
 			default: '16',
 		},
 
 		/**
-		 * Indica se o componente vai ocupar 100% da largura disponível. Não se aplica ao shape 'circle'
+		 *  Ajusta de acordo com o componente pai. Não se aplica ao shape 'circle'
 		 */
 		fluid: {
-			type: Boolean,
-			default: false,
-		},
-
-		/**
-		 * Ajusta de acordo com o componente pai. Não se aplica ao shape 'circle'
-		 */
-		fitContent: {
 			type: Boolean,
 			default: false,
 		},
@@ -58,14 +48,9 @@ export default {
 			if (this.fluid) {
 				return {
 					'--width': '100%',
-					'--height': `${this.height}px`,
-				};
-			}
-
-			if (this.fitContent) {
-				return {
-					'--width': '100%',
-					'--height': '100%',
+					'--height': this.height !== '16'
+						? `${this.height}px`
+						: '100%',
 				};
 			}
 
