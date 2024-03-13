@@ -1,0 +1,41 @@
+// Vitest Snapshot v1
+
+exports[`Skeleton > renders correctly 1`] = `
+VueWrapper {
+  "__app": {
+    "_component": [Object],
+    "_container": <div … />,
+    "_context": [Object],
+    "_instance": [Object],
+    "_props": null,
+    "_uid": 0,
+    "component": [Function],
+    "config": [Object],
+    "directive": [Function],
+    "mixin": [Function],
+    "mount": [Function],
+    "provide": [Function],
+    "unmount": [Function],
+    "use": [Function],
+    "version": "3.2.37",
+  },
+  "__setProps": [Function],
+  "componentVM": {
+    "computedStyle": [Object],
+    "fitContent": false,
+    "fluid": false,
+    "hasOwnProperty": [Function],
+    "height": "16",
+    "resolveShape": "50%",
+    "shape": "circle",
+    "width": "300",
+  },
+  "isDisabled": [Function],
+  "rootVM": {},
+  "wrapperElement": <div
+    class="skeleton__container"
+    data-v-38271e4e=""
+    style="--width: 300px; --height: 300px;"
+  />,
+}
+`;

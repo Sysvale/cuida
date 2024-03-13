@@ -1,13 +1,13 @@
 import { describe, test, expect } from 'vitest';
-import SkeletonText from '../components/SkeletonText.vue';
+import Skeleton from '../components/Skeleton.vue';
 import { mount } from '@vue/test-utils';
 
-describe('SkeletonText', () => {
+describe('Skeleton', () => {
 	test('renders correctly', async () => {
-		const wrapper = mount(SkeletonText, {
+		const wrapper = mount(Skeleton, {
 			props: {
 				width: '300',
-				height: '20',
+				shape: 'circle'
 			},
 		});
 
