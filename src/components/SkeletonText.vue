@@ -20,19 +20,41 @@ export default {
 			default: '16',
 		},
 
+		/**
+		 * Indica se o componente vai ocupar 100% da largura disponível. Não se aplica ao shape 'circle'
+		 */
 		fluid: {
 			type: Boolean,
 			default: false,
 		},
 
+		/**
+		 * Ajusta de acordo com o componente pai. Não se aplica ao shape 'circle'
+		 */
 		fitContent: {
 			type: Boolean,
 			default: false,
 		},
+
+		/**
+		 * Indica o shape do elemento. São duas opções: circle, square
+		 */
+		shape: {
+			type: String,
+			default: 'square',
+			validate: (value) => ['circle', 'square'].includes(value),
+		}
 	},
 
 	computed: {
 		computedStyle() {
+			if (this.shape === 'circle') {
+				return {
+					'--width': `${this.width}px`,
+					'--height': `${this.width}px`,
+				}
+			}
+
 			if (this.fluid) {
 				return {
 					'--width': '100%',
@@ -52,6 +74,10 @@ export default {
 				'--height': `${this.height}px`,
 			};
 		},
+
+		resolveShape() {
+			return this.shape === 'circle' ? '50%' : '6px';
+		},
 	},
 }
 </script>
@@ -66,7 +92,7 @@ export default {
 		height: var(--height);
 		width: var(--width);
 		background-color: $n-30;
-		border-radius: $border-radius-lil;
+		border-radius: v-bind(resolveShape);
 	}
 
 	.skeleton__container:after {

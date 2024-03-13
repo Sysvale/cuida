@@ -14,7 +14,7 @@ import SkeletonText from '../../components/SkeletonText.vue';
 				code: /*html*/
 `
 	<cds-skeleton-text
-		:width="250"
+		:width="100"
 	/>
 `
 			},
@@ -61,9 +61,8 @@ export const Template = (args) => ({
 <Canvas>
 	<Story
 		name="SkeletonText"
-		
 		args={{
-			width: "250"
+			width: "100"
 		}}
 	>
 		{ Template.bind({}) }
