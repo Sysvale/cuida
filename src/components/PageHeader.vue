@@ -60,10 +60,6 @@ export default {
 			align-items: flex-end;
 		}
 
-		&__text {
-			width: 80%;
-		}
-
 		&__title {
 			@include heading-3;
 			font-weight: $font-weight-bold;
