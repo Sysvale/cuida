@@ -44,6 +44,8 @@ VueWrapper {
     "showLabelName": true,
     "smoothing": 0.6,
     "variant": "green",
+    "xAxisRange": [Array],
+    "yAxisRange": [Array],
   },
   "isDisabled": [Function],
   "rootVM": {},
