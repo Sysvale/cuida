@@ -22,7 +22,6 @@ VueWrapper {
   "__setProps": [Function],
   "componentVM": {
     "computedStyle": [Object],
-    "fitContent": false,
     "fluid": false,
     "hasOwnProperty": [Function],
     "height": "16",
