@@ -47,6 +47,24 @@ export default {
 			})
 		},
 		/**
+		* Define os intervalos máximo e mínimo sugeridos para o eixo X.
+		* Caso os valores do dataset ultrapassem os intervalos sugeridos, 
+		* estes serão desconsiderados, prevalencendo o dataset.
+		*/
+		xAxisRange: {
+			type: Array,
+			default: () => [0, 100],
+		},
+		/**
+		* Define os intervalos máximo e mínimo sugeridos para o eixo Y.
+		* Caso os valores do dataset ultrapassem os intervalos sugeridos, 
+		* estes serão desconsiderados, prevalencendo o dataset.
+		*/
+		yAxisRange: {
+			type: Array,
+			default: () => [0, 100],
+		},
+		/**
 		 * Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:
 		 * `green`, `teal`, `turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `gray`, `dark`.
 		 */
@@ -121,12 +139,16 @@ export default {
 				},
 				scales: {
 					x: {
+						suggestedMin: this.xAxisRange[0],
+						suggestedMax: this.xAxisRange[1],
 						display: true,
 						title: {
 							display: true
 						}
 					},
 					y: {
+						suggestedMin: this.yAxisRange[0],
+						suggestedMax: this.yAxisRange[1],
 						display: true,
 						title: {
 							display: true,
@@ -285,7 +307,6 @@ export default {
 				dataset.borderRadius = 6;
 			});
 		},
-
 
 		checkDashed() {
 			this.chartOptions.borderDash = [this.borderDash[0], this.borderDash[1]];
