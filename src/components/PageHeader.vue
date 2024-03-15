@@ -2,9 +2,7 @@
 	<header
 		:class="compact ? 'page-header__container--compact' : 'page-header__container'"
 	>
-		<div
-			class="page-header__text"
-		>
+		<div>
 			<p class="page-header__title">
 				{{ title }}
 			</p>
@@ -58,10 +56,6 @@ export default {
 		&__aside-slot {
 			display: flex;
 			align-items: flex-end;
-		}
-
-		&__text {
-			width: 80%;
 		}
 
 		&__title {
