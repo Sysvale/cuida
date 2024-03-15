@@ -18,9 +18,15 @@
 						y1="0"
 						x2="0"
 						y2="100%"
+						gradientTransform="rotate(-340)"
 					>
 						<stop
-							offset="0%"
+							class="stop"
+							offset="1%"
+						/>
+						<stop
+							class="stop-2"
+							offset="99%"
 						/>
 					</linearGradient>
 
@@ -147,6 +153,7 @@ $stroke-progress: calc(198 * (1 - var(--value) / 100));
 		&.svg {
 			@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 				--variant: #{$shade-300};
+				--variant-dark: #{$shade-500};
 			}
 		}
 
@@ -186,8 +193,12 @@ $stroke-progress: calc(198 * (1 - var(--value) / 100));
 		overflow-wrap: break-word;
 	}
 
-	stop {
+	.stop {
 		stop-color: var(--variant);
+	}
+
+	.stop-2 {
+		stop-color: var(--variant-dark);
 	}
 }
 </style>
