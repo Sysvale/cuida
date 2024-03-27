@@ -14,8 +14,8 @@ export default {}
 
 .page-container__container {
 	width: 100%;
-	max-width: 1944px;
+	max-width: 1400px;
 	margin: 0 auto;
-	padding: pa(6);
+	padding: px(6);
 }
 </style>
