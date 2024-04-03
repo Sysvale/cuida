@@ -9,7 +9,8 @@
 				@click="clickHandler"
 			>
 				<cds-icon
-					:name="icon"
+					:key="inputControlPanel"
+					:name="internalIcon"
 					class="cds-icon-button__icon"
 				/>
 			</button>
@@ -65,12 +66,28 @@ export default {
 			type: String,
 			default: null,
 		},
+		/**
+		* Quando ativo, faz com que, após iteração do usuário, o ícone do botão seja temporariamente alterado.
+		*/
+		feedbackOnClick: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		* Ícone mostrado após clique do usuário.
+		*/
+		feedbackIcon: {
+			type: String,
+			default: 'check-outline',
+		},
 	},
 
 	data() {
 		return {
 			predefinedSizes,
 			innerTooltipText: this.tooltipText,
+			internalIcon: this.icon,
+			inputControlPanel: 0,
 		};
 	},
 
@@ -107,6 +124,18 @@ export default {
 			if (this.disabled) {
 				return;
 			}
+
+			if (this.feedbackOnClick) {
+				this.inputControlPanel += 1;
+				this.internalIcon = this.feedbackIcon;
+				setTimeout(() => {
+					this.internalIcon = this.icon;
+					this.inputControlPanel += 1;
+				}, 1000);
+
+				this.inputControlPanel += 1;
+			}
+
 			/**
 			* Evento que indica que o botão foi clicado
 			* @event cds-click
@@ -162,6 +191,7 @@ export default {
 		border-radius: $border-radius-lil;
 
 		.cds-icon-button__icon {
+			transition: $hover;
 			width: 16px;
 			height: 16px;
 		}
@@ -172,6 +202,7 @@ export default {
 		border-radius: $border-radius-extra-small;
 
 		.cds-icon-button__icon {
+			transition: $hover;
 			width: 20px;
 			height: 20px;
 		}
@@ -182,6 +213,7 @@ export default {
 		border-radius: $border-radius-extra-small;
 
 		.cds-icon-button__icon {
+			transition: $hover;
 			width: 24px;
 			height: 24px;
 		}
