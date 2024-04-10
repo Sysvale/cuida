@@ -70,7 +70,7 @@ export default {
 	width: auto;
 
 	a {
-		color: $bn-500;
+		color: $bn-400;
 		text-decoration: none;
 		transition: $interaction;
 		border-bottom: 1px solid transparent;
@@ -100,7 +100,7 @@ export default {
 	}
 
 	&--bold > a {
-		font-weight: $font-weight-semibold;
+		font-weight: $font-weight-bold;
 	}
 }
 </style>
