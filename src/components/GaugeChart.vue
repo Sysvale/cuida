@@ -113,6 +113,10 @@ export default {
 			};
 		},
 
+		chartProgressValue() {
+			return 198 * (1 - this.value / 100);
+		},
+
 		formatedValue() {
 			return `${this.value.toLocaleString('pt-br', {minimumFractionDigits: 1})}%`;
 		},
@@ -123,7 +127,7 @@ export default {
 <style lang="scss" scoped>
 @import './../assets/sass/tokens.scss';
 
-$stroke-progress: calc(198 * (1 - var(--value) / 100));
+$stroke-progress: v-bind(chartProgressValue);
 
 .responsive-container {
 	height: 100%;
