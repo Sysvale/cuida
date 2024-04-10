@@ -7,11 +7,31 @@
 				{{ title }}
 			</p>
 
-			<p
+			<div
+				v-if="splitedSubtitle.length > 0"
+				class="d-flex"
+			>
+				<span
+					class="page-header__subtitle"
+				>
+					{{ splitedSubtitle[0] }}
+
+					<cds-link
+						:href="url"
+						bold
+					>
+						{{ url }}
+					</cds-link>
+
+					{{ splitedSubtitle[1] }}
+				</span>
+			</div>
+			<div
+				v-else
 				class="page-header__subtitle"
 			>
 				{{ subtitle }}
-			</p>
+			</div>
 		</div>
 
 		<div class="page-header__aside-slot">
@@ -22,7 +42,13 @@
 	</header>
 </template>
 <script>
+import CdsLink from '../components/Link.vue';
+
 export default {
+	components: {
+		CdsLink,
+	},
+
 	props: {
 		title: {
 			type: String,
@@ -37,6 +63,31 @@ export default {
 			default: false,
 		},
 	},
+
+	data() {
+		return {
+			hasURL: false,
+			url: '',
+			splitedSubtitle: [],
+		};
+	},
+
+	mounted() {
+		this.computedSubtitle();
+	},
+
+	methods: {
+		computedSubtitle() {
+			const urlRegex = /\b(?:http:\/\/|https:\/\/)?[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,}(?:\/\S*)?/g;
+
+			const urls = this.subtitle.match(urlRegex);
+
+			if (urls && urls.length > 0) {
+				this.splitedSubtitle = this.subtitle.split(urls[0]);
+				this.url = urls[0];
+			}
+		}
+	}
 };
 </script>
 <style lang="scss">
@@ -56,6 +107,7 @@ export default {
 		&__aside-slot {
 			display: flex;
 			align-items: flex-end;
+			padding: pl(4);
 		}
 
 		&__title {
