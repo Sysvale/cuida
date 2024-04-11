@@ -20,7 +20,7 @@
 						:href="url"
 						bold
 					>
-						{{ url }}
+						{{ fancyUrl }}
 					</cds-link>
 
 					{{ splitedSubtitle[1] }}
@@ -50,14 +50,23 @@ export default {
 	},
 
 	props: {
+		/**
+		* O título das páginas nas quais o PageHeader será utilizado.
+		*/
 		title: {
 			type: String,
 			required: true,
 		},
+		/**
+		* O subtítulo das páginas nas quais o PageHeader será utilizado.
+		*/
 		subtitle: {
 			type: String,
 			default: null,
 		},
+		/**
+		* Quando ativa, define a largura do PageHeader como 50% do container.
+		*/
 		compact: {
 			type: Boolean,
 			default: false,
@@ -70,6 +79,12 @@ export default {
 			url: '',
 			splitedSubtitle: [],
 		};
+	},
+
+	computed:{
+		fancyUrl() {
+			return this.url.split(/http:\/\/|https:\/\//)[1];
+		},
 	},
 
 	mounted() {
