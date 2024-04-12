@@ -18,6 +18,6 @@ describe('TextInput', () => {
 			},
 		});
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.html()).toMatchSnapshot();
 	});
 });

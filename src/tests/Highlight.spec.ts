@@ -13,6 +13,6 @@ describe('Highlight', () => {
 			}
 		});
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.html()).toMatchSnapshot();
 	});
 });
