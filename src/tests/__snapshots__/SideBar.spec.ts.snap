@@ -1,48 +1,75 @@
 // Vitest Snapshot v1
 
 exports[`SideBar > renders correctly 1`] = `
-VueWrapper {
-  "__app": {
-    "_component": [Object],
-    "_container": <div … />,
-    "_context": [Object],
-    "_instance": [Object],
-    "_props": null,
-    "_uid": 0,
-    "component": [Function],
-    "config": [Object],
-    "directive": [Function],
-    "mixin": [Function],
-    "mount": [Function],
-    "provide": [Function],
-    "unmount": [Function],
-    "use": [Function],
-    "version": "3.2.37",
-  },
-  "__setProps": [Function],
-  "componentVM": {
-    "activeItem": [Object],
-    "colorHexCode": [Function],
-    "colorOptions": [Array],
-    "handleClick": [Function],
-    "hasOwnProperty": [Function],
-    "internalActiveItem": [Object],
-    "isActive": [Function],
-    "items": [Array],
-    "resolveRoute": [Function],
-    "routerPushTo": [Function],
-    "showLogout": true,
-    "userName": "Joana Mendes",
-    "userPicture": null,
-    "userRole": "Administradora",
-  },
-  "isDisabled": [Function],
-  "rootVM": {},
-  "wrapperElement": <div
-    class="side-bar"
-  >
-    <div … />
-    <div … />
-  </div>,
-}
+"<div class=\\"side-bar\\">
+  <div>
+    <div class=\\"side-bar__logo\\"></div>
+    <ul class=\\"side-bar__container\\">
+      <li role=\\"presentation\\">
+        <div class=\\"side-bar__item-container side-bar__item-container--inactive\\">
+          <router-link to=\\"/dashboard\\" class=\\"side-bar__item side-bar__item--inactive\\">
+            <div>
+              <cds-icon-stub name=\\"dashboard-outline\\" width=\\"20\\" height=\\"20\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub><span>Dashboard</span>
+            </div>
+            <!--v-if-->
+          </router-link>
+        </div>
+        <transition-stub appear=\\"false\\" persisted=\\"false\\" css=\\"true\\">
+          <!--v-if-->
+        </transition-stub>
+      </li>
+      <li role=\\"presentation\\">
+        <div class=\\"side-bar__item-container side-bar__item-container--inactive\\">
+          <div class=\\"side-bar__item side-bar__item--inactive\\">
+            <div>
+              <cds-icon-stub name=\\"link-outline\\" width=\\"20\\" height=\\"20\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub><span>Links</span>
+            </div>
+            <cds-icon-stub name=\\"caret-down-outline\\" width=\\"16\\" height=\\"16\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\" class=\\"\\"></cds-icon-stub>
+          </div>
+        </div>
+        <transition-stub appear=\\"false\\" persisted=\\"false\\" css=\\"true\\">
+          <!--v-if-->
+        </transition-stub>
+      </li>
+      <li role=\\"presentation\\">
+        <div class=\\"side-bar__item-container side-bar__item-container--inactive\\">
+          <router-link to=\\"/reports\\" class=\\"side-bar__item side-bar__item--inactive\\">
+            <div>
+              <cds-icon-stub name=\\"printer-outline\\" width=\\"20\\" height=\\"20\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub><span>Relatórios</span>
+            </div>
+            <!--v-if-->
+          </router-link>
+        </div>
+        <transition-stub appear=\\"false\\" persisted=\\"false\\" css=\\"true\\">
+          <!--v-if-->
+        </transition-stub>
+      </li>
+    </ul>
+  </div>
+  <div class=\\"side-bar__footer\\">
+    <div class=\\"side-bar__avatar\\">
+      <!--
+		Evento emitido quando o wrapper é clicado
+		@event cds-click
+		@type {Event}
+	-->
+      <div class=\\"clickable__container--not-clickable\\" id=\\"avatar-dropdown\\">
+        <div class=\\"avatar__container\\">
+          <div class=\\"avatar__container--white avatar__container--lg\\"><span class=\\"avatar__initials--lg\\">JM</span></div>
+          <!--v-if-->
+        </div>
+        <div data-v-eb14fb58=\\"\\" id=\\"\\" class=\\"popover\\"></div>
+      </div>
+      <div>
+        <p>Joana Mendes</p>
+        <p>Administradora</p>
+      </div>
+    </div>
+    <ul>
+      <li class=\\"side-bar__logout-button\\">
+        <cds-icon-stub name=\\"logout-outline\\" width=\\"20\\" height=\\"20\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub><span>Sair</span>
+      </li>
+    </ul>
+  </div>
+</div>"
 `;

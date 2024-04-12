@@ -1,62 +1,18 @@
 // Vitest Snapshot v1
 
 exports[`TextInput > renders correctly 1`] = `
-VueWrapper {
-  "__app": {
-    "_component": [Object],
-    "_container": <div … />,
-    "_context": [Object],
-    "_instance": [Object],
-    "_props": null,
-    "_uid": 0,
-    "component": [Function],
-    "config": [Object],
-    "directive": [Function],
-    "mixin": [Function],
-    "mount": [Function],
-    "provide": [Function],
-    "unmount": [Function],
-    "use": [Function],
-    "version": "3.2.37",
-  },
-  "__setProps": [Function],
-  "componentVM": {
-    "disabled": false,
-    "emitLazy": [Function],
-    "errorMessage": "Valor inválido",
-    "errorState": false,
-    "fluid": false,
-    "hasOwnProperty": [Function],
-    "hasSlots": false,
-    "inputClass": "text-input__field",
-    "internalValue": "",
-    "isBeingFocused": false,
-    "label": "Label",
-    "labelDynamicClass": "text-input__label",
-    "lazy": false,
-    "linkText": null,
-    "linkTextState": false,
-    "linkUrl": "https://cuida.framer.wiki/",
-    "loadingState": false,
-    "mask": null,
-    "modelValue": "",
-    "placeholder": "Digite aqui a informação",
-    "required": false,
-    "state": "default",
-    "stepperInputDynamicClass": "text-input",
-    "timeout": null,
-    "tooltip": null,
-    "tooltipIcon": "info-outline",
-    "validState": false,
-  },
-  "isDisabled": [Function],
-  "rootVM": {},
-  "wrapperElement": <div
-    data-v-d8d9f755=""
-  >
-    <span … />
-    <div … />
+"<div data-v-d8d9f755=\\"\\"><span data-v-d8d9f755=\\"\\"><label data-v-d8d9f755=\\"\\" class=\\"text-input__label\\"><div data-v-d8d9f755=\\"\\" class=\\"label__content\\" for=\\"cds-text-input\\"><span data-v-d8d9f755=\\"\\">Label</span>
+  <!--v-if-->
+  <!--v-if-->
+</div>
+<!--v-if--></label></span>
+<div data-v-d8d9f755=\\"\\" class=\\"text-input\\"><input data-v-d8d9f755=\\"\\" id=\\"cds-text-input\\" placeholder=\\"Digite aqui a informação\\" class=\\"text-input__field\\" type=\\"text\\">
+  <div data-v-d8d9f755=\\"\\" class=\\"text-input__icon-container\\">
     <!--v-if-->
-  </div>,
-}
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+</div>
+<!--v-if-->
+</div>"
 `;
