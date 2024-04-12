@@ -3,7 +3,8 @@
 	<cds-box
 		padding="0"
 		:clickable="clickable"
-		@boxClick="handleClick"
+		:fluid="fluid"
+		@box-click="handleClick"
 	>
 		<div class="card__extra-container">
 			<div class="card__extra">
@@ -12,7 +13,7 @@
 			</div>
 		</div>
 
-		<div :class="{'card--horizontal': this.horizontal}">
+		<div :class="{'card--horizontal': horizontal}">
 			<div
 				v-if="hasSlot($slots, 'image')"
 			>
@@ -51,10 +52,12 @@
 					<slot name="header" />
 				</div>
 
-				<div v-else="title">
-					<p class="card__header">{{ title }}</p>
+				<div v-else-if="title">
+					<p class="card__header">
+						{{ title }}
+					</p>
 				</div>
-		
+
 				<div
 					v-if="hasSlot($slots, 'body')"
 					class="card__body"
@@ -63,8 +66,10 @@
 					<slot name="body" />
 				</div>
 
-				<div v-else="content">
-					<p class="card__body">{{ content }}</p>
+				<div v-else-if="content">
+					<p class="card__body">
+						{{ content }}
+					</p>
 				</div>
 		
 				<div
@@ -155,15 +160,27 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Especifica se a largura do Card deve ser fluida.
+		 */
+		fluid: {
+			type: Boolean,
+			default: false,
+			required: false,
+		},
 	},
 
 	computed: {
 		imageWidthResolver() {
-			return this.horizontal ? 'fit-content' :  `${this.imageWidth}px`;
+			return this.horizontal ? `${this.imageWidth}px` : '-webkit-fill-available';
+		},
+
+		mainContainerWidthResolver() {
+			return (this.horizontal || this.fluid) ? '-webkit-fill-available' :  `${this.imageWidth}px`;
 		},
 
 		bodyWidthResolver() {
-			return `${this.bodyWidth}px`;
+			return this.fluid ? '-webkit-fill-available' : `${this.bodyWidth}px`;
 		},
 	},
 
@@ -205,6 +222,10 @@ export default {
 	
 	&__image {
 		display: flex;
+
+		img {
+			width: v-bind(imageWidthResolver);
+		}
 	}
 	
 	&--horizontal {
@@ -228,7 +249,7 @@ export default {
 	
 	&__spacer {
 		padding: pa(5);
-		max-width: v-bind(imageWidthResolver);
+		max-width: v-bind(mainContainerWidthResolver);
 	}
 	
 	&__footer {
