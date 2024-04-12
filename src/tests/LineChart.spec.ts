@@ -47,6 +47,6 @@ describe('LineChart', () => {
 			},
 		});
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.html()).toMatchSnapshot();
 	});
 });
