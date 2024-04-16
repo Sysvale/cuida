@@ -57,8 +57,8 @@
 				:disabled="disabled"
 				:class="inputClass"
 				type="text"
-				@focus="isBeingFocused = true"
-				@blur="isBeingFocused = false"
+				@focus="handleFocus"
+				@blur="handleBlur"
 			>
 
 			<input
@@ -69,8 +69,8 @@
 				:disabled="disabled"
 				:class="inputClass"
 				type="text"
-				@focus="isBeingFocused = true"
-				@blur="isBeingFocused = false"
+				@focus="handleFocus"
+				@blur="handleBlur"
 			>
 
 			<div class="text-input__icon-container">
@@ -333,7 +333,17 @@ export default {
 			this.timeout = setTimeout(function () {
 				that.$emit('update:modelValue', value);
 			}, 1000);
-		}
+		},
+
+		handleBlur() {
+			this.isBeingFocused = false;
+			this.$emit('blur', true);
+		},
+
+		handleFocus() {
+			this.isBeingFocused = true;
+			this.$emit('focus', true);
+		},
 	}
 };
 </script>

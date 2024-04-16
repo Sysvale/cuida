@@ -45,7 +45,17 @@ export const Template = (args) => ({
 		<cds-text-input
 			v-bind="args" 
 			v-model="value"
+			@blur="logBlur"
+			@focus="logFocus"
 		/>`,
+	methods: {
+		logBlur() {
+			console.info('blur event');
+		},
+		logFocus() {
+			console.info('focus event');
+		},
+	},
 	updated() {
 		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
 	},
