@@ -9,6 +9,7 @@
 			padding="5"
 			class="side-sheet__container"
 			elevated
+			fluid
 			@click.stop
 		>
 			<header>
