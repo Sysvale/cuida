@@ -47,7 +47,17 @@ export const Template = (args) => ({
 			v-bind="args" 
 			v-model="value"
 			v-model:unmaskedValue="unmaskedValue"
+			@blur="logBlur"
+			@focus="logFocus"
 		/>`,
+	methods: {
+		logBlur() {
+			console.info('blur event');
+		},
+		logFocus() {
+			console.info('focus event');
+		},
+	},
 	updated() {
 		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
 		console.info('%cv-model:unmaskedValue ', 'color: #2C70CD;', this.unmaskedValue);
