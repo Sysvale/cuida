@@ -19,6 +19,7 @@
 		</slot>
 	</button>
 </template>
+
 <script>
 import CdsSpinner from '../components/Spinner.vue';
 import Cdstip from '../utils/directives/cdstip';
@@ -48,6 +49,13 @@ export default {
 		size: {
 			type: String,
 			default: 'md',
+		},
+		/**
+		* Quando true, torna a largura do botão fluida
+		*/
+		block: {
+			type: Boolean,
+			default: false,
 		},
 		/**
 		 * Especifica o texto a ser apresentado no corpo do botão.
@@ -111,6 +119,9 @@ export default {
 	},
 
 	computed: {
+		widthResolver() {
+			return this.block ? '100%' : 'fit-content';
+		},
 
 		tooltipDisabled() {
 			return this.disabled && this.tooltipText !== '' ? this.tooltipText : null;
@@ -188,7 +199,8 @@ export default {
 		font-family: Satoshi, Inter, Avenir, Helvetica, Arial, sans-serif;
 		display: flex;
 		align-items: center;
-		width: max-content;
+		justify-content: center;
+		width: v-bind(widthResolver);
 		border: none;
 		cursor: pointer;
 
@@ -282,7 +294,7 @@ export default {
 
 	&--lg {
 		@include button-1;
-		padding: pYX(3, 6);
+		padding: pYX(4, 8);
 		border-radius: $border-radius-extra-small;
 	}
 }
