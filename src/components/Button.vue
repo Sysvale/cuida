@@ -120,7 +120,7 @@ export default {
 
 	computed: {
 		widthResolver() {
-			return this.block ? '100%' : 'fit-content';
+			return this.block ? '100%' : 'max-content';
 		},
 
 		tooltipDisabled() {
