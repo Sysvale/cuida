@@ -227,12 +227,21 @@ export default {
 			default: 'info-outline',
 		},
 		/**
-		 * Indica o nome da da chave do objeto a ser considerada na renderização
-		 * das opções do select.
-		 */
+		* Indica o nome da da chave do objeto a ser considerada na renderização
+		* das opções do select.
+		*/
 		optionsField: {
 			type: String,
 			default: 'value',
+			required: false,
+		},
+		/**
+		* Quando true, passa a retornar o optionsField no modelValue fora do objeto
+		* das opções do select.
+		*/
+		returnValue: {
+			type: Boolean,
+			default: false,
 			required: false,
 		},
 	},
@@ -290,7 +299,11 @@ export default {
 		modelValue: {
 			handler(newValue, oldValue) {
 				if (newValue !== oldValue) {
-					this.localValue = newValue;
+					if (newValue instanceof Object) {
+						this.localValue = newValue;
+					} else {
+						this.localValue = {id: newValue, value: newValue }
+					}
 				}
 			},
 			immediate: true,
@@ -323,12 +336,17 @@ export default {
 				if (compatibleOptions.length === 0) {
 					return;
 				}
-				/**
-				* Evento que indica que o valor do Select foi alterado
-				* @event input
-				* @type {Event}
-				*/
-				this.$emit('update:modelValue', currentValue);
+
+				if (this.returnValue) {
+					/**
+					* Evento que indica que o valor do Select foi alterado
+					* @event input
+					* @type {Event}
+					*/
+					this.$emit('update:modelValue', currentValue['optionsField']);
+				} else {
+					this.$emit('update:modelValue', currentValue);
+				}
 			},
 			deep: true,
 		},
