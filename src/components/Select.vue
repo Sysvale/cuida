@@ -343,7 +343,7 @@ export default {
 					* @event input
 					* @type {Event}
 					*/
-					this.$emit('update:modelValue', currentValue['optionsField']);
+					this.$emit('update:modelValue', currentValue[this.optionsField]);
 				} else {
 					this.$emit('update:modelValue', currentValue);
 				}
