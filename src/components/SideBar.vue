@@ -81,7 +81,7 @@
 									v-for="(subitem, idx) in item.items"
 									:key="`${idx}-${subitem.name}-item`"
 									class="side-bar__subitem"
-									:class="isActive(subitem) ? 'side-bar__subitem--active' : 'side-bar__subitem--inactive'"
+									:class="isActive(subitem) && (subitem?.type !== 'external') ? 'side-bar__subitem--active' : 'side-bar__subitem--inactive'"
 									@click="(event) => handleClick(event, subitem)"
 								>
 									<a
