@@ -35,7 +35,7 @@
 			v-model="internalDate"
 			locale="pt-BR"
 			:available-dates="availableDates"
-			:attributes="hideTodayMark ? {} : attributes"
+			:attributes="showTodayDot ? attributes: {}"
 			color="green"
 			:is-range="range"
 			@update:model-value="handleUpdateInput"
@@ -176,7 +176,7 @@ export default {
 		/**
 		 * Controla a marcação do dia atual no calendário.
 		 */
-		hideTodayMark: {
+		showTodayDot: {
 			type: Boolean,
 			default: false,
 		},
