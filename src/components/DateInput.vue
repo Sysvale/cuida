@@ -35,7 +35,10 @@
 			v-model="internalDate"
 			locale="pt-BR"
 			:available-dates="availableDates"
-			@update:modelValue="handleUpdateInput"
+			:attributes="hideTodayMark ? {} : attributes"
+			color="green"
+			:is-range="range"
+			@update:model-value="handleUpdateInput"
 		>
 			<template #header-left-button="{ page }">
 				<cds-chevron
@@ -52,7 +55,7 @@
 
 			<template #default="{ inputValue, togglePopover, inputEvents }">
 				<input
-					:value="inputValue"
+					:value="resolveInputValue(inputValue)"
 					:class="inputClass"
 					:disabled="disabled"
 					:placeholder="placeholder"
@@ -77,6 +80,7 @@
 import { DateTime } from 'luxon';
 import { DatePicker } from 'v-calendar';
 import 'v-calendar/dist/style.css';
+import { isEmpty } from 'lodash';
 import CdsChevron from './Chevron.vue';
 
 const dateStringValidator = (value) => /^(19|20)\d\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/.test(value);
@@ -89,12 +93,13 @@ export default {
 
 	props: {
 		/**
-		* Prop utilizada como v-model. Deve ser uma string no formato `yyyy-MM-dd`.
+		* Prop utilizada como v-model. Deve ser uma string no formato `yyyy-MM-dd`
+		* ou um objeto com as propriedades `start` e `end`, no mesmo formato.
 		*/
 		modelValue: {
-			type: String,
+			type: [String, Object],
 			default: '',
-			validator: (value) => value === '' || dateStringValidator(value),
+			validator: (value) => value === '' || typeof value === 'object' || dateStringValidator(value),
 		},
 		/**
 		 * Especifica a label do input.
@@ -116,6 +121,13 @@ export default {
 		state: {
 			type: String,
 			default: 'default',
+		},
+		/**
+		 * Controla o modo do input.
+		 */
+		range: {
+			type: Boolean,
+			default: false,
 		},
 		/**
 		 * Exibe asterisco de obrigatório (obs.: não faz a validação)
@@ -161,12 +173,26 @@ export default {
 			type: String,
 			default: 'Selecione uma data',
 		},
+		/**
+		 * Controla a marcação do dia atual no calendário.
+		 */
+		hideTodayMark: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
 		return {
 			internalDate: DateTime.now(),
 			isBeingFocused: false,
+			inputControl: 0,
+			attributes: [
+				{
+					dates: new Date(),
+					dot: true,
+				},
+			],
 		};
 	},
 
@@ -233,6 +259,18 @@ export default {
 
 	methods: {
 		handleUpdateInput(date) {
+			if (this.range) {
+				this.$emit(
+					'update:modelValue',
+					date.start && date.end
+						? {
+							start: DateTime.fromJSDate(date.start).toFormat('yyyy-MM-dd'),
+							end: DateTime.fromJSDate(date.end).toFormat('yyyy-MM-dd'),
+						}
+						: ''
+				);
+				return;
+			}
 			/**
 			* Evento emitido quando uma data é selecionada. Utilizado para implementar o v-model.
 			* @event update:modelValue
@@ -243,7 +281,20 @@ export default {
 
 		resolveInternalDate() {
 			if (!this.modelValue) {
-				this.internalDate = '';
+				this.internalDate = this.range ? null : '';
+				return;
+			}
+
+			if (this.range) {
+				this.internalDate = dateStringValidator(this.modelValue.start) && dateStringValidator(this.modelValue.end)
+					? {
+						start: DateTime.fromFormat(this.modelValue.start, 'yyyy-MM-dd'),
+						end: DateTime.fromFormat(this.modelValue.end, 'yyyy-MM-dd'),
+					}
+					: {
+						start: DateTime.now(),
+						end: DateTime.now(),
+					}
 				return;
 			}
 
@@ -251,6 +302,18 @@ export default {
 				? DateTime.fromFormat(this.modelValue, 'yyyy-MM-dd')
 				: DateTime.now();
 		},
+
+		resolveInputValue(value) {
+			if (typeof value !== 'object') {
+				return value;
+			}
+
+			if ((!value.start && !value.end) || isEmpty(value)) {
+				return null;
+			}
+
+			return `${value.start} a ${value.end}`;
+		}
 	},
 };
 </script>
@@ -351,6 +414,36 @@ export default {
 }
 
 .vc-title {
-	line-height: 24px !important;
+	line-height: 23px !important;
+	background-color: transparent;
+	font-size: 17px;
+	text-transform: capitalize;
+}
+
+.vc-weeks {
+	margin: mt(5);
+}
+
+.vc-header {
+	.vc-arrow {
+		border-radius: 10px;
+	}
+}
+
+.vc-nav-title {
+	@include body-1;
+	font-weight: 800;
+	background-color: transparent;
+}
+
+.vc-nav-arrow {
+	border-radius: 10px;
+}
+
+.vc-nav-item {
+	@include body-1;
+	background-color: transparent;
+	text-transform: capitalize;
+	font-weight: 430;
 }
 </style>
