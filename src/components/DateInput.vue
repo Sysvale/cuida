@@ -337,6 +337,7 @@ export default {
 	display: flex;
 	justify-content: space-between;
 	outline: 1px solid $n-50;
+	width: 266px;
 	height: 40px;
 	color: $n-600;
 	border-radius: $border-radius-extra-small !important;
