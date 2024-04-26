@@ -34,8 +34,12 @@
 			id="cds-date-input"
 			v-model="internalDate"
 			locale="pt-BR"
-			:available-dates="availableDates"
-			@update:modelValue="handleUpdateInput"
+			:min-date="minDate ? new Date(minDate) : null"
+			:max-date="maxDate ? new Date(maxDate) : null"
+			:attributes="showTodayDot ? attributes: {}"
+			color="green"
+			:is-range="range"
+			@update:model-value="handleUpdateInput"
 		>
 			<template #header-left-button="{ page }">
 				<cds-chevron
@@ -207,13 +211,6 @@ export default {
 			returningClass += this.fluid ? ' date-input--fluid' : ' date-input';
 
 			return returningClass;
-		},
-
-		availableDates() {
-			return {
-				start: this.minDate ? DateTime.fromISO(this.minDate) : null,
-				end: this.maxDate ? DateTime.fromISO(this.maxDate) : null,
-			};
 		},
 	},
 
