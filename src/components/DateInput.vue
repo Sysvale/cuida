@@ -54,17 +54,27 @@
 			</template>
 
 			<template #default="{ inputValue, togglePopover, inputEvents }">
-				<input
-					:value="resolveInputValue(inputValue)"
+				<div
 					:class="inputClass"
-					:disabled="disabled"
-					:placeholder="placeholder"
-					type="text"
-					v-on="inputEvents"
-					@click="togglePopover"
-					@focus="isBeingFocused = true"
-					@blur="isBeingFocused = false"
 				>
+					<input
+						:value="resolveInputValue(inputValue)"
+						:disabled="disabled"
+						:placeholder="placeholder"
+						type="text"
+						v-on="inputEvents"
+						@click="togglePopover"
+						@focus="isBeingFocused = true"
+						@blur="isBeingFocused = false"
+					>
+					<div class="date-input__icon">
+						<cds-icon
+							height="20"
+							width="20"
+							name="calendar-outline"
+						/>
+					</div>
+				</div>
 			</template>
 		</v-date-picker>
 		<div
@@ -82,6 +92,7 @@ import { DatePicker } from 'v-calendar';
 import 'v-calendar/dist/style.css';
 import { isEmpty } from 'lodash';
 import CdsChevron from './Chevron.vue';
+import CdsIcon from './Icon.vue';
 
 const dateStringValidator = (value) => /^(19|20)\d\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/.test(value);
 
@@ -89,6 +100,7 @@ export default {
 	components: {
 		VDatePicker: DatePicker,
 		CdsChevron,
+		CdsIcon,
 	},
 
 	props: {
@@ -322,12 +334,27 @@ export default {
 @import '../assets/sass/tokens.scss';
 
 .date-input {
+	display: flex;
+	justify-content: space-between;
 	outline: 1px solid $n-50;
-	border: none;
-	border-radius: $border-radius-extra-small !important;
-	padding: pa(3);
+	height: 40px;
 	color: $n-600;
+	border-radius: $border-radius-extra-small !important;
 	cursor: pointer;
+
+	input {
+		border: none;
+		outline: 0;
+		height: 100%;
+		width: 100%;
+		padding: pl(3);
+	}
+
+	&__icon {
+		display: grid;
+		place-items: center;
+		margin: mr(3);
+	}
 
 	&:focus {
 		@extend .date-input;
