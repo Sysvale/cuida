@@ -31,7 +31,7 @@
 							{{ option.text }}
 						</div>
 						<div
-							v-if="addDescription"
+							v-if="allowsExpand"
 							class="content-body"
 						>
 							{{ option.body }}
@@ -81,7 +81,7 @@ export default {
 		/**
 		 * Quando verdadeiro, faz com que o button se adapte a expansão, podendo agora, adicionar uma descrição
 		 */
-		addDescription: {
+		allowsExpand: {
 			type: Boolean,
 			default: false,
 			required: false,
@@ -97,8 +97,8 @@ export default {
 	computed: {
 		cssVars() {
 			return {
-				'--border-color-selected': this.addDescription ? '#2db981' : '#2051a7',
-				'--background-color': this.addDescription ? '#FAFCFE' : '#FFFFFF'
+				'--border-color-selected': this.allowsExpand ? '#2db981' : '#2051a7',
+				'--background-color': this.allowsExpand ? '#FAFCFE' : '#FFFFFF'
 			}
 		}
 	},
@@ -184,7 +184,7 @@ export default {
 	padding: pYX(3, 4);
 	border-radius: $border-radius-extra-small;
 	cursor: pointer;
-	display: flex;
+	display: inline-flex;
 	flex-direction: row;
 	margin: mb(2);
 
