@@ -9,7 +9,8 @@
 			<div
 				v-for="(option, i) in options"
 				:key="option.value"
-				:class="{'radio-button__container--vertical': inline && i > 0}"
+				:class="{'radio-button__container--vertical': inline && i >= 0}"
+				:style="allowsExpand ? 'width: 100%' : ''"
 			>
 				<label
 					class="radio-button"
@@ -98,7 +99,9 @@ export default {
 		cssVars() {
 			return {
 				'--border-color-selected': this.allowsExpand ? '#2db981' : '#2051a7',
-				'--background-color': this.allowsExpand ? '#FAFCFE' : '#FFFFFF'
+				'--background-color': this.allowsExpand ? '#FAFCFE' : '#FFFFFF',
+				'--display-vertical': this.allowsExpand ? 'flex' : 'inline-flex',
+				'--width-vertical': this.allowsExpand ? '100%' : null
 			}
 		}
 	},
@@ -184,12 +187,24 @@ export default {
 	padding: pYX(3, 4);
 	border-radius: $border-radius-extra-small;
 	cursor: pointer;
-	display: inline-flex;
+	display: var(--display-vertical);
 	flex-direction: row;
+	justify-content: space-between;
+	gap: 20px;
 	margin: mb(2);
 
 	&__container--vertical {
-		margin: ml(4);
+		margin: mr(4);
+		&:last-child {
+			margin-right: 0px;
+		}
+	}
+
+	&__container--vertical-expanded {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 100%;
 	}
 }
 
