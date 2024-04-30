@@ -51,6 +51,7 @@ export default {
 		 * A prop usada como v-model para monitorar a seleção do RadioButton
 		*/
 		modelValue: {
+			type: [String, null],
 			default: null,
 			required: true,
 		},
