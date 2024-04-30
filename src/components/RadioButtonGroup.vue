@@ -157,7 +157,7 @@ export default {
 #radioButton [type="radio"]:not(:checked) + label:after {
 	content: '';
 	width: 10px;
-	height: 10px;	
+	height: 10px;
 	background: var(--border-color-selected);
 	position: absolute;
 	top: 5px;
