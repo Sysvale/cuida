@@ -1,12 +1,16 @@
 <template>
-	<span id="radioButton">
+	<span
+		id="radioButton"
+		:style="cssVars"
+	>
 		<div
 			:class="{'button-group': inline }"
 		>
 			<div
 				v-for="(option, i) in options"
 				:key="option.value"
-				:class="{'radio-button__container--vertical': inline && i > 0}"
+				:class="{'radio-button__container--vertical': inline && i >= 0}"
+				:style="allowsExpand ? 'width: 100%' : ''"
 			>
 				<label
 					class="radio-button"
@@ -24,7 +28,15 @@
 						class="radio-button__content"
 						:for="option.value"
 					>
-						{{ option.text }}
+						<div class="content-title">
+							{{ option.text }}
+						</div>
+						<div
+							v-if="allowsExpand"
+							class="content-body"
+						>
+							{{ option.body }}
+						</div>
 					</label>
 				</label>
 			</div>
@@ -39,6 +51,7 @@ export default {
 		 * A prop usada como v-model para monitorar a seleção do RadioButton
 		*/
 		modelValue: {
+			type: [String, null],
 			default: null,
 			required: true,
 		},
@@ -67,12 +80,31 @@ export default {
 			description: `When true, the radio buttons will be displayed in a row.`,
 			required: false,
 		},
+		/**
+		 * Quando verdadeiro, faz com que o button se adapte a expansão, podendo agora, adicionar uma descrição
+		 */
+		allowsExpand: {
+			type: Boolean,
+			default: false,
+			required: false,
+		}
 	},
 
 	data() {
 		return {
 			selected: this.modelValue,
 		};
+	},
+
+	computed: {
+		cssVars() {
+			return {
+				'--border-color-selected': this.allowsExpand ? '#2db981' : '#2051a7',
+				'--background-color': this.allowsExpand ? '#FAFCFE' : '#FFFFFF',
+				'--display-vertical': this.allowsExpand ? 'flex' : 'inline-flex',
+				'--width-vertical': this.allowsExpand ? '100%' : null
+			}
+		}
 	},
 
 	watch: {
@@ -100,11 +132,13 @@ export default {
 
 #radioButton [type="radio"]:checked + label,
 #radioButton [type="radio"]:not(:checked) + label {
+	@include body-2;
 	position: relative;
 	padding: pl(7);
 	cursor: pointer;
 	line-height: 20px;
 	color: $n-600;
+	font-weight: $font-weight-semibold;
 }
 
 #radioButton [type="radio"]:checked + label:before,
@@ -124,7 +158,7 @@ export default {
 	content: '';
 	width: 10px;
 	height: 10px;
-	background: $bn-600;
+	background: var(--border-color-selected);
 	position: absolute;
 	top: 5px;
 	left: 4px;
@@ -154,11 +188,24 @@ export default {
 	padding: pYX(3, 4);
 	border-radius: $border-radius-extra-small;
 	cursor: pointer;
-	display: inline-block;
+	display: var(--display-vertical);
+	flex-direction: row;
+	justify-content: space-between;
+	gap: 20px;
 	margin: mb(2);
 
 	&__container--vertical {
-		margin: ml(4);
+		margin: mr(4);
+		&:last-child {
+			margin-right: 0px;
+		}
+	}
+
+	&__container--vertical-expanded {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 100%;
 	}
 }
 
@@ -183,5 +230,30 @@ export default {
 
 #radioButton .radio-button:has(input[type="radio"]:disabled) {
 	background-color: $n-20;
+}
+
+#radioButton .radio-button:has(input[type="radio"]:checked) {
+	border-color: var(--border-color-selected);
+	background-color: var(--background-color);
+}
+
+#radioButton .radio-button:has(input[type="radio"]:checked){
+	label::before {
+		border-color: var(--border-color-selected) !important;
+	}
+}
+
+#radioButton .radio-button:has(input[type="radio"]:disabled) {
+	label::before {
+		border-color: $n-300;
+	}
+
+	.content-title {
+		color: $n-300;
+	}
+}
+
+.content-body {
+	@include caption;
 }
 </style>

@@ -22,6 +22,7 @@ describe('RadioButtonGroup', () => {
 	test('renders correctly', async () => {
 		const wrapper = mount(RadioButtonGroup, {
 			props: {
+				modelValue: null,
 				value: '',
 				options,
 			},
