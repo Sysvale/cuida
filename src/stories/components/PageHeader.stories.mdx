@@ -87,6 +87,11 @@ export const Template = (args) => ({
 
 <br />
 
+## Observações:
+- ⚠️ Quando uma URL é colocada como parte do subtítulo, ela é renderizada como link no componente. Para tanto, a URL deve ser precedidada de http:// ou https://.
+
+<br />
+
 ## Preview
 
 <Canvas>
@@ -94,7 +99,7 @@ export const Template = (args) => ({
 		name="PageHeader"
 		args={{
 			title:"Procedimentos",
-			subtitle:"Gerencie os procedimentos cadastrados"
+			subtitle:"Crie painéis e os associe a serviços. Para acessar os painéis de modo externo, acesse https://short.sysvale.com/totem e insira a chave correspondente."
 		}}
 	>
 		{ Template.bind({}) }

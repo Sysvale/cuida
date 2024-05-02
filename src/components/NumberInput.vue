@@ -56,8 +56,8 @@
 				:placeholder="placeholder"
 				:disabled="disabled"
 				:class="inputClass"
-				@focus="isBeingFocused = true"
-				@blur="isBeingFocused = false"
+				@focus="handleFocus"
+				@blur="handleBlur"
 			>
 
 			<input
@@ -68,8 +68,8 @@
 				:disabled="disabled"
 				:class="inputClass"
 				type="number"
-				@focus="isBeingFocused = true"
-				@blur="isBeingFocused = false"
+				@focus="handleFocus"
+				@blur="handleBlur"
 			>
 
 			<div class="text-input__icon-container">
@@ -352,6 +352,18 @@ export default {
 			}
 		},
 	},
+
+	methods: {
+		handleBlur() {
+			this.isBeingFocused = false;
+			this.$emit('blur', true);
+		},
+
+		handleFocus() {
+			this.isBeingFocused = true;
+			this.$emit('focus', true);
+		},
+	}
 };
 </script>
 <style lang="scss" scoped>

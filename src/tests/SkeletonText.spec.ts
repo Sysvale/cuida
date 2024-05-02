@@ -1,16 +1,16 @@
 import { describe, test, expect } from 'vitest';
-import Scrollable from '../components/Scrollable.vue';
+import SkeletonText from '../components/SkeletonText.vue';
 import { mount } from '@vue/test-utils';
 
-describe('Scrollable', () => {
+describe('SkeletonText', () => {
 	test('renders correctly', async () => {
-		const wrapper = mount(Scrollable, {
+		const wrapper = mount(SkeletonText, {
 			props: {
 				width: '300',
 				height: '20',
 			},
 		});
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.html()).toMatchSnapshot();
 	});
 });

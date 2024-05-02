@@ -12,6 +12,6 @@ describe('Card snapshot test', () => {
 			}
 		});
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.html()).toMatchSnapshot();
 	});
 });

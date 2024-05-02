@@ -5,6 +5,26 @@ import IconButton from '../../components/IconButton.vue';
 	title="Componentes/Forms/IconButton"
 	component={ IconButton }
 	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'white',
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'gray',
+					'dark'
+				],
+			}
+		},
 		size: {
 			control:{
 				type: 'select',
@@ -77,8 +97,11 @@ Nesse caso, recomendamos o uso de links.
 		args={{
 			size: 'sm',
 			icon: 'trash-outline',
+			variant: 'white',
 			tooltipText: 'Excluir',
 			disabled: false,
+			feedbackOnClick: true,
+			feedbackIcon: 'check-outline',
 		}}
 	>
 		{ Template.bind({}) }

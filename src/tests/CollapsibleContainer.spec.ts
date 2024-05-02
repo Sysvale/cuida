@@ -11,6 +11,6 @@ describe('CollapsibleContainer', () => {
 			},
 		});
   
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.html()).toMatchSnapshot();
 	});
 });

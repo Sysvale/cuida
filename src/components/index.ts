@@ -29,6 +29,7 @@ import EmptyState from './EmptyState.vue';
 import FileInput from './FileInput.vue';
 import FlatButton from './FlatButton.vue';
 import FloatingAssistant from './FloatingAssistant.vue';
+import GaugeChart from './GaugeChart.vue';
 import Highlight from './Highlight.vue';
 import Icon from './Icon.vue';
 import IconButton from './IconButton.vue';
@@ -40,6 +41,7 @@ import Modal from './Modal.vue';
 import Multiselect from './Multiselect.vue';
 import NavBar from './NavBar.vue';
 import NumberInput from './NumberInput.vue';
+import PageContainer from './PageContainer.vue';
 import PageHeader from './PageHeader.vue';
 import Pagination from './Pagination.vue';
 import PanelCard from './PanelCard.vue';
@@ -57,6 +59,7 @@ import SegmentedControl from './SegmentedControl.vue';
 import Select from './Select.vue';
 import SideBar from './SideBar.vue';
 import SideSheet from './SideSheet.vue';
+import Skeleton from './Skeleton.vue';
 import SkeletonText from './SkeletonText.vue';
 import Slider from './Slider.vue';
 import Spinner from './Spinner.vue';
@@ -110,6 +113,7 @@ export default {
 		app.component('CdsFileInput', FileInput); //NOTE: Testado no SB
 		app.component('CdsFlatButton', FlatButton); //NOTE: Testado no SB
 		app.component('CdsFloatingAssistant', FloatingAssistant);
+		app.component('CdsGaugeChart', GaugeChart); //NOTE: Testado no SB
 		app.component('CdsHighlight', Highlight); //NOTE: Testado no SB
 		app.component('CdsIcon', Icon); //NOTE: Testado no SB
 		app.component('CdsIconButton', IconButton); //NOTE: Testado no SB
@@ -122,6 +126,7 @@ export default {
 		app.component('CdsMultiselect', Multiselect); //FIXME: Problema no SB
 		app.component('CdsNavBar', NavBar); //NOTE: Testado no SB
 		app.component('CdsNumberInput', NumberInput); //NOTE: Testado no SB. !Reativo!
+		app.component('CdsPageContainer', PageContainer); //NOTE: Testado no SB
 		app.component('CdsPageHeader', PageHeader); //NOTE: Testado no SB
 		app.component('CdsPagination', Pagination); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsPanelCard', PanelCard); //NOTE: Testado no SB
@@ -139,6 +144,7 @@ export default {
 		app.component('CdsSelect', Select); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsSideBar', SideBar);
 		app.component('CdsSideSheet', SideSheet);
+		app.component('CdsSkeleton', Skeleton);
 		app.component('CdsSkeletonText', SkeletonText); //NOTE: Testado no SB
 		// app.component('CdsSlider', Slider);
 		app.component('CdsSpinner', Spinner); //NOTE: Testado no SB
