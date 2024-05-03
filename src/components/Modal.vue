@@ -9,7 +9,6 @@
 			v-on-click-outside="noCloseOnBackdrop ? () => {} : closeHandle"
 			class="cds-modal"
 			:class="`cds-modal--${size}`"
-			:style="dynamicStyle"
 		>
 			<header
 				v-if="!noHeader"
