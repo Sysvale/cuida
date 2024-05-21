@@ -1,0 +1,56 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import SecondaryNavigation from '../../components/SecondaryNavigation.vue';
+
+<Meta
+	title="Componentes/Display/SecondaryNavigation"
+	component={ SecondaryNavigation }
+	argTypes={{
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/
+`<cds-badge
+	variant="red"
+	size="md"
+>
+	Badge
+</cds-badge>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsSecondaryNavigation: SecondaryNavigation },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-secondary-navigation
+			v-bind="args"
+			@click="handleEmit"
+		>
+			Badge
+		</cds-secondary-navigation>`,
+	methods: {
+		handleEmit(value) { console.info('value: ', value); }
+	}
+});
+
+<Canvas>
+	<Story
+		name="SecondaryNavigation"
+		args={{
+			variant: 'red',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="SecondaryNavigation" />
