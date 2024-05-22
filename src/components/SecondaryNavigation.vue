@@ -50,52 +50,60 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, defineProps } from 'vue';
 import Icon from './Icon.vue';
 
-const items = [
-	{
-		label: 'Item 1',
-		key: 'item-1',
-	},
-	{
-		label: 'Item 2',
-		key: 'item-2',
-		subitems: [
-			{
-				label: 'Item 2.1',
-				key: 'item-2.1',
-			},
-			{
-				label: 'Item 2.2',
-				key: 'item-2.2',
-			}
-		]
-	},
-	{
-		label: 'Item 3',
-		key: 'item-3',
-	},
-	{
-		label: 'Item 4',
-		key: 'item-4',
-		subitems: [
-			{
-				label: 'Item 4.1',
-				key: 'item-4.1',
 
+// define props
+const props = defineProps({
+	items: {
+		type: Array,
+		default: () => [
+			{
+				label: 'Item 1',
+				key: 'item-1',
 			},
 			{
-				label: 'Item 4.2',
-				key: 'item-4.2',
+				label: 'Item 2',
+				key: 'item-2',
+				subitems: [
+					{
+						label: 'Item 2.1',
+						key: 'item-2.1',
+					},
+					{
+						label: 'Item 2.2',
+						key: 'item-2.2',
+					}
+				]
 			},
 			{
-				label: 'Item 4.3',
-				key: 'item-4.3',
+				label: 'Relatórios de produtividade',
+				key: 'item-3',
 			},
-		]
+			{
+				label: 'Item 4',
+				key: 'item-4',
+				subitems: [
+					{
+						label: 'Item 4.1',
+						key: 'item-4.1',
+
+					},
+					{
+						label: 'Item 4.2',
+						key: 'item-4.2',
+					},
+					{
+						label: 'Item 4.3',
+						key: 'item-4.3',
+					},
+				]
+			},
+		],
 	},
-];
+});
+
 const activeItem = ref(0);
 const hoveredItem = ref(0);
 const activeSubItem = ref(null)
@@ -105,6 +113,7 @@ const onClickItem = (itemKey) => {
 		return;
 	}
 
+	activeSubItem.value = null;
 	activeItem.value = itemKey;
 }
 
@@ -122,7 +131,7 @@ const isActiveSubItem = (subItemKey) => {
 }
 
 const hasSubItems = (key) => {
-	return items.find((item) => {
+	return props.items.find((item) => {
 		if (item.key === key) {
 			if (item?.subitems?.length > 0) {
 				return true;
@@ -148,28 +157,34 @@ const onHover = (itemKey) => {
 	display: flex;
 	gap: spacer(5);
 	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: $z-index-toolbar;
 
 	&__item {
 		padding: pYX(2,3);
-		height: 100%;
+		min-width: 80px;
+		height: 54px;
 		color: $n-100;
 		cursor: pointer;
 		color: $n-0;
 		@include body-2;
+		display: flex;
 
 		&--active {
 			@include body-2;
-			font-weight: $font-weight-bold;
+			text-shadow:0px 0px 1px $n-0;
 		}
 	}
 
 	&__subitem {
 		@include body-2;
-		font-weight: $font-weight-regular;
+		text-shadow:0px 0px 0px $n-0;
 
 		&--active {
 			@include body-2;
-			font-weight: $font-weight-bold;
+			font-weight: $font-weight-semibold;
 		}
 	}
 
@@ -180,13 +195,14 @@ const onHover = (itemKey) => {
 
 	&__content {
 		gap: spacer(2);
+		height: 20px;
 		display: flex;
-		align-items: center;
+		align-self: center;
 		position: relative;
 	}
 
 	&__icon {
-		align-self: end;
+		align-self: center;
 	}
 
 	&__dropdown {
