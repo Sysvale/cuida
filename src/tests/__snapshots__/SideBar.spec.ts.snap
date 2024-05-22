@@ -1,9 +1,12 @@
 // Vitest Snapshot v1
 
 exports[`SideBar > renders correctly 1`] = `
-"<div class=\\"side-bar\\">
-  <div>
-    <div class=\\"side-bar__logo\\"></div>
+"<div class=\\"side-bar--dark\\">
+  <div class=\\"variant-resolver--green\\">
+    <div class=\\"side-bar__header\\">
+      <div class=\\"side-bar__logo\\"><img></div>
+      <!--v-if-->
+    </div>
     <ul class=\\"side-bar__container\\">
       <li role=\\"presentation\\">
         <div class=\\"side-bar__item-container side-bar__item-container--inactive\\">
@@ -60,14 +63,16 @@ exports[`SideBar > renders correctly 1`] = `
         </div>
         <div data-v-eb14fb58=\\"\\" id=\\"\\" class=\\"popover\\"></div>
       </div>
-      <div>
-        <p>Joana Mendes</p>
-        <p>Administradora</p>
-      </div>
+      <transition-stub name=\\"fade\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\">
+        <div>
+          <p>Joana Mendes</p>
+          <p>Administradora</p>
+        </div>
+      </transition-stub>
     </div>
     <ul>
       <li class=\\"side-bar__logout-button\\">
-        <cds-icon-stub name=\\"logout-outline\\" width=\\"20\\" height=\\"20\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub><span>Sair</span>
+        <cds-icon-stub name=\\"logout-outline\\" width=\\"20\\" height=\\"20\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub>
       </li>
     </ul>
   </div>
