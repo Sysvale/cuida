@@ -65,49 +65,7 @@ const props = defineProps({
 
 	items: {
 		type: Array,
-		default: () => [
-			{
-				label: 'Item 1',
-				key: 'item-1',
-			},
-			{
-				label: 'Item 2',
-				key: 'item-2',
-				subitems: [
-					{
-						label: 'Item 2.1',
-						key: 'item-2.1',
-					},
-					{
-						label: 'Item 2.2',
-						key: 'item-2.2',
-					}
-				]
-			},
-			{
-				label: 'Item 3',
-				key: 'item-3',
-			},
-			{
-				label: 'Item 4',
-				key: 'item-4',
-				subitems: [
-					{
-						label: 'Item 4.1',
-						key: 'item-4.1',
-
-					},
-					{
-						label: 'Item 4.2',
-						key: 'item-4.2',
-					},
-					{
-						label: 'Item 4.3',
-						key: 'item-4.3',
-					},
-				]
-			},
-		],
+		default: () => [],
 	},
 });
 
