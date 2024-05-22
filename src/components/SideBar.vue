@@ -104,21 +104,17 @@
 						</router-link>
 					</div>
 
-					<Transition>
+					<Transition
+						v-if="!collapsed"
+						name="fadeHeight"
+					>
 						<div
-							v-if="(!!item.items && item.items.length > 0) && isActive(item)"
+							v-if="(!!item.items && item.items.length > 0) && isActive(item) && showUncollapsedItems"
 							class="side-bar__subitem-container"
 						>
 							<div
 								class="side-bar__subitems"
 							>
-								<div
-									v-if="collapsed"
-									class="side-bar__subitems__title"
-								>
-									{{ item.label }}
-								</div>
-
 								<div
 									v-for="(subitem, idx) in item.items"
 									:key="`${idx}-${subitem.name}-item`"
@@ -170,10 +166,17 @@
 					size="lg"
 				/>
 
-				<div v-if="!collapsed">
-					<p>{{ userName }}</p>
-					<p>{{ userRole }}</p>
-				</div>
+				<transition
+					v-if="!collapsed"
+					name="fade"
+				>
+					<div
+						v-if="showUncollapsedItems"
+					>
+						<p>{{ userName }}</p>
+						<p>{{ userRole }}</p>
+					</div>
+				</transition>
 			</div>
 
 			<ul>
@@ -297,6 +300,7 @@ export default {
 		return {
 			internalActiveItem: {},
 			collapsed: false,
+			showUncollapsedItems: true,
 			colorOptions,
 		};
 	},
@@ -316,6 +320,17 @@ export default {
 			},
 			immediate: true,
 		},
+
+		collapsed(newValue) {
+			if (newValue) {
+				this.showUncollapsedItems = false;
+				return;
+			}
+
+			setTimeout(() => {
+				this.showUncollapsedItems = true;
+			}, 500);
+		},
 	},
 
 	mounted() {
@@ -327,6 +342,11 @@ export default {
 
 		handleClick(event, item) {
 			this.internalActiveItem = item;
+
+			if (!!item.items && item.items.length > 0) {
+				this.collapsed = false;
+			}
+
 			/**
 			 * Evento emitido quando um dos itens da SideBar é clicado
 			* @event sidebar-click
@@ -367,6 +387,22 @@ export default {
 
 <style lang="scss">
 @import '../assets/sass/tokens.scss';
+.fade-enter-active {
+	transition: opacity 0.5s ease;
+}
+
+.fade-enter-from {
+	opacity: 0;
+}
+
+.fadeHeight-enter-active {
+  transition: all 3s;
+  height: fit-content;
+}
+.fadeHeight-enter {
+  opacity: 0;
+  height: 0;
+}
 
 .v-enter-active,
 .v-leave-active {
@@ -696,33 +732,6 @@ export default {
 
 		&__logo {
 			max-width: 44px;
-		}
-
-		&__subitems {
-			position: absolute;
-			top: 0;
-			left: 68px;
-			width: 260px;
-			background-color: #3E4448;
-			border: 0;
-			padding: 0;
-			gap: 0;
-			border-radius: $border-radius-extra-small;
-
-			&__title {
-				padding: pa(5);
-				color: $n-0;
-				border-bottom: 1px solid #576169;
-			}
-		}
-
-		&__subitem {
-			padding: pa(5);
-			color: $n-0;
-
-			&--active {
-				background-color: #576169;
-			}
 		}
 	}
 }
