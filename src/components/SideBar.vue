@@ -104,10 +104,7 @@
 						</router-link>
 					</div>
 
-					<Transition
-						v-if="!collapsed"
-						name="fadeHeight"
-					>
+					<Transition v-if="!collapsed">
 						<div
 							v-if="(!!item.items && item.items.length > 0) && isActive(item) && showUncollapsedItems"
 							class="side-bar__subitem-container"
@@ -393,15 +390,6 @@ export default {
 
 .fade-enter-from {
 	opacity: 0;
-}
-
-.fadeHeight-enter-active {
-  transition: all 3s;
-  height: fit-content;
-}
-.fadeHeight-enter {
-  opacity: 0;
-  height: 0;
 }
 
 .v-enter-active,
