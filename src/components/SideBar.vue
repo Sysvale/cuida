@@ -1,13 +1,8 @@
 <template>
 	<div
-		:class="{
-			'side-bar--dark--collapsed': !light && collapsed,
-			'side-bar--dark': !light,
-			'side-bar--light': light,
-			'side-bar--light--collapsed': light && collapsed
-		}"
+		:class="mainClass"
 	>
-		<div>
+		<div :class="`variant-resolver--${variant}`">
 			<div class="side-bar__header">
 				<div class="side-bar__logo">
 					<slot
@@ -209,6 +204,15 @@ export default {
 
 	props: {
 		/**
+		 * A variante de cor. São 10 variantes implementadas: 'green', 'teal',
+		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.
+		 * A variante só terá efeito quando a SideBar estiver no modo light.
+		 */
+		variant: {
+			type: String,
+			default: 'green',
+		},
+		/**
 		 * Define a lista dos itens do SideBar a serem
 		 * mostrados. Os itens da lista devem ser
 		 * objetos com path ou route, e com uma label
@@ -300,6 +304,24 @@ export default {
 			showUncollapsedItems: true,
 			colorOptions,
 		};
+	},
+
+	computed: {
+		mainClass() {
+			if (this.light) {
+				if (this.collapsed) {
+					return 'side-bar--light--collapsed';
+				}
+
+				return 'side-bar--light';
+			}
+
+			if (this.collapsed) {
+				return 'side-bar--dark--collapsed';
+			}
+
+			return 'side-bar--dark';
+		}
 	},
 
 	watch: {
@@ -613,6 +635,14 @@ export default {
 .side-bar--light {
 	@extend .side-bar--dark;
 
+	.variant-resolver {
+		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+			--system-background-variant: #{$shade-50};
+			--system-border-variant: #{$shade-200};
+			--system-text-variant: #{$base-color};
+		}
+	}
+
 	background: $n-0;
 	border-right: 1px solid $n-30;
 	width: 245px;
@@ -622,21 +652,21 @@ export default {
 			color: $n-700;
 
 			&--active {
-				color: $in-400;
+				color: var(--system-text-variant);
 			}
 
 			&:hover {
-				color: $in-400;
+				color: var(--system-text-variant);
 			}
 		}
 
 		&__item {
 			&--active {
-				color: $in-400;
+				color: var(--system-text-variant);
 			}
 
 			&--active:hover {
-				color: $in-400;
+				color: var(--system-text-variant);
 			}
 
 			&--inactive {
@@ -650,8 +680,8 @@ export default {
 
 		&__item-container {
 			&--active {
-				background-color: $in-50;
-				border: 1px solid $in-200;
+				background-color: var(--system-background-variant);
+				border: 1px solid var(--system-border-variant);
 			}
 		}
 
@@ -672,18 +702,18 @@ export default {
 		}
 
 		&__logout-button:hover {
-			color: $in-400;
-			background-color: $in-50;
-			outline: 1px solid $in-200;
+			color: var(--system-text-variant);
+			background-color: var(--system-background-variant);
+			outline: 1px solid var(--system-border-variant);
 		}
 
 		&__collapsible {
 			color: $n-700;
 
 			&:hover {
-				background-color: $in-50;
-				outline: 1px solid $in-200;
-				color: $in-400;
+				background-color: var(--system-background-variant);
+				outline: 1px solid var(--system-border-variant);
+				color: var(--system-text-variant);
 			}
 		}
 	}
@@ -726,6 +756,7 @@ export default {
 
 .side-bar--light--collapsed {
 	@extend .side-bar--dark--collapsed;
+	@extend .side-bar--light;
 
 	width: 69px;
 }
