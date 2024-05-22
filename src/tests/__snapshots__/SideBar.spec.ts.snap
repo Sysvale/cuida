@@ -49,7 +49,7 @@ exports[`SideBar > renders correctly 1`] = `
       </li>
     </ul>
   </div>
-  <div class=\\"side-bar__footer\\">
+  <div class=\\"side-bar__footer variant-resolver--green\\">
     <div class=\\"side-bar__avatar\\">
       <!--
 		Evento emitido quando o wrapper é clicado
