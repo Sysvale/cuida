@@ -50,11 +50,9 @@
 </template>
 
 <script setup>
-import { ref, defineProps } from 'vue';
+import { ref, defineProps, defineEmits } from 'vue';
 import Icon from './Icon.vue';
 
-
-// define props
 const props = defineProps({
 	items: {
 		type: Array,
@@ -104,6 +102,8 @@ const props = defineProps({
 	},
 });
 
+const emit = defineEmits(['item-click']);
+
 const activeItem = ref(0);
 const hoveredItem = ref(0);
 const activeSubItem = ref(null)
@@ -115,11 +115,13 @@ const onClickItem = (itemKey) => {
 
 	activeSubItem.value = null;
 	activeItem.value = itemKey;
+	emit('item-click', itemKey);
 }
 
 const onClickSubItem = (subItemKey, itemKey) => {
 	activeSubItem.value = subItemKey;
 	activeItem.value = itemKey;
+	emit('item-click', subItemKey);
 }
 
 const isActiveItem = (itemKey) => {
