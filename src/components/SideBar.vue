@@ -104,7 +104,7 @@
 						</router-link>
 					</div>
 
-					<Transition v-if="!collapsed">
+					<Transition>
 						<div
 							v-if="(!!item.items && item.items.length > 0) && isActive(item)"
 							class="side-bar__subitem-container"
@@ -112,6 +112,13 @@
 							<div
 								class="side-bar__subitems"
 							>
+								<div
+									v-if="collapsed"
+									class="side-bar__subitems__title"
+								>
+									{{ item.label }}
+								</div>
+
 								<div
 									v-for="(subitem, idx) in item.items"
 									:key="`${idx}-${subitem.name}-item`"
@@ -689,6 +696,33 @@ export default {
 
 		&__logo {
 			max-width: 44px;
+		}
+
+		&__subitems {
+			position: absolute;
+			top: 0;
+			left: 68px;
+			width: 260px;
+			background-color: #3E4448;
+			border: 0;
+			padding: 0;
+			gap: 0;
+			border-radius: $border-radius-extra-small;
+
+			&__title {
+				padding: pa(5);
+				color: $n-0;
+				border-bottom: 1px solid #576169;
+			}
+		}
+
+		&__subitem {
+			padding: pa(5);
+			color: $n-0;
+
+			&--active {
+				background-color: #576169;
+			}
 		}
 	}
 }
