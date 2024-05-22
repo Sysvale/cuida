@@ -3,33 +3,44 @@
 	<div class="secondary-navigation">
 		<div class="secondary-navigation__container">
 			<div
-				v-for="(item, index) in items"
-				:key="index"
+				v-for="item in items"
+				:key="item.key"
 				class="secondary-navigation__item"
-				:class="{ 'secondary-navigation__item--active': isActive(index) }"
-				@click="onClick(index)"
-				@mouseover="onHover(index)"
+				:class="{ 'secondary-navigation__item--active': isActiveItem(item.key) }"
+				@click="onClickItem(item.key)"
+				@mouseover="onHover(item.key)"
+				@mouseleave="onHover(-1)"
 			>
 				<div class="secondary-navigation__content">
 					{{ item.label }}
 					<icon
-						v-if="hasSubItems(index)"
+						v-if="hasSubItems(item.key) && item.key != hoveredItem"
 						class="secondary-navigation__icon"
 						height="16"
 						width="16"
 						name="caret-down-outline"
 					/>
 					<div
-						v-if="hasSubItems(index) && index === hoveredItem"
-						class="secondary-navigation__dropdown"
-						@mouseout="onHover(-1)"
+						v-else-if="hasSubItems(item.key) && item.key == hoveredItem"
 					>
+						<icon
+							class="secondary-navigation__icon"
+							height="16"
+							width="16"
+							name="caret-up-outline"
+						/>
 						<div
-							v-for="subitem in item.subitems"
-							id="`subitem-${index}`"
-							:key="subitem.key"
+							class="secondary-navigation__dropdown"
 						>
-							{{ subitem.label }}
+							<div
+								v-for="subitem in item.subitems"
+								:key="subitem.key"
+								class="secondary-navigation__subitem"
+								:class="{ 'secondary-navigation__subitem--active': isActiveSubItem(subitem.key) }"
+								@click="onClickSubItem(subitem.key, item.key)"
+							>
+								{{ subitem.label }}
+							</div>
 						</div>
 					</div>
 				</div>
@@ -63,7 +74,7 @@ const items = [
 	},
 	{
 		label: 'Item 3',
-		key: 'item-4',
+		key: 'item-3',
 	},
 	{
 		label: 'Item 4',
@@ -87,27 +98,41 @@ const items = [
 ];
 const activeItem = ref(0);
 const hoveredItem = ref(0);
+const activeSubItem = ref(null)
 
-const onClick = (index) => {
-	activeItem.value = index;
-
-	if (hasSubItems(index)) {
+const onClickItem = (itemKey) => {
+	if (hasSubItems(itemKey)) {
 		return;
 	}
 
+	activeItem.value = itemKey;
 }
 
-const isActive = (index) => {
-	return activeItem.value === index;
+const onClickSubItem = (subItemKey, itemKey) => {
+	activeSubItem.value = subItemKey;
+	activeItem.value = itemKey;
 }
 
-const hasSubItems = (index) => {
-	return items[index]?.subitems?.length > 0;
+const isActiveItem = (itemKey) => {
+	return activeItem.value === itemKey;
 }
 
-const onHover = (index) => {
-	console.log('hover', index);
-	hoveredItem.value = index;
+const isActiveSubItem = (subItemKey) => {
+	return activeSubItem.value === subItemKey;
+}
+
+const hasSubItems = (key) => {
+	return items.find((item) => {
+		if (item.key === key) {
+			if (item?.subitems?.length > 0) {
+				return true;
+			}
+		}
+	})
+}
+
+const onHover = (itemKey) => {
+	hoveredItem.value = itemKey;
 }
 
 </script>
@@ -131,6 +156,16 @@ const onHover = (index) => {
 		cursor: pointer;
 		color: $n-0;
 		@include body-2;
+
+		&--active {
+			@include body-2;
+			font-weight: $font-weight-bold;
+		}
+	}
+
+	&__subitem {
+		@include body-2;
+		font-weight: $font-weight-regular;
 
 		&--active {
 			@include body-2;
@@ -162,6 +197,7 @@ const onHover = (index) => {
 		padding: pa(5);
 		min-width: 150px;
 		top: 0;
+		left: 0;
 		display: flex;
 		flex-direction: column;
 		gap: spacer(6);
