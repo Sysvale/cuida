@@ -146,7 +146,7 @@
 		</div>
 
 		<div
-			class="side-bar__footer"
+			:class="`side-bar__footer variant-resolver--${variant}`"
 		>
 			<div
 				class="side-bar__avatar"
