@@ -1,10 +1,40 @@
 <template>
 	<div
-		class="side-bar"
+		:class="mainClass"
 	>
-		<div>
-			<div class="side-bar__logo">
-				<slot name="logo" />
+		<div :class="`variant-resolver--${variant}`">
+			<div class="side-bar__header">
+				<div class="side-bar__logo">
+					<slot
+						v-if="!collapsed"
+						name="logo"
+					>
+						<img :src="logoImage">
+					</slot>
+
+					<slot
+						v-else
+						name="collapsed-logo"
+					>
+						<img :src="collapsedLogoImage">
+					</slot>
+				</div>
+
+				<div
+					v-if="collapsible"
+					class="side-bar__collapsible"
+					@click="handleCollapse"
+				>
+					<cds-icon
+						v-if="!collapsed"
+						name="caret-left-outline"
+					/>
+
+					<cds-icon
+						v-else
+						name="caret-right-outline"
+					/>
+				</div>
 			</div>
 
 			<ul
@@ -69,9 +99,9 @@
 						</router-link>
 					</div>
 
-					<Transition>
+					<Transition v-if="!collapsed">
 						<div
-							v-if="(!!item.items && item.items.length > 0) && isActive(item)"
+							v-if="(!!item.items && item.items.length > 0) && isActive(item) && showUncollapsedItems"
 							class="side-bar__subitem-container"
 						>
 							<div
@@ -92,7 +122,7 @@
 										:href="subitem.route.path"
 									>
 										{{ subitem.label }}
-										
+
 										<cds-icon
 											height="16"
 											width="16"
@@ -116,7 +146,7 @@
 		</div>
 
 		<div
-			class="side-bar__footer"
+			:class="`side-bar__footer variant-resolver--${variant}`"
 		>
 			<div
 				class="side-bar__avatar"
@@ -128,10 +158,17 @@
 					size="lg"
 				/>
 
-				<div>
-					<p>{{ userName }}</p>
-					<p>{{ userRole }}</p>
-				</div>
+				<transition
+					v-if="!collapsed"
+					name="fade"
+				>
+					<div
+						v-if="showUncollapsedItems"
+					>
+						<p>{{ userName }}</p>
+						<p>{{ userRole }}</p>
+					</div>
+				</transition>
 			</div>
 
 			<ul>
@@ -145,7 +182,6 @@
 						width="20"
 						height="20"
 					/>
-					<span>Sair</span>
 				</li>
 			</ul>
 		</div>
@@ -167,6 +203,15 @@ export default {
 	},
 
 	props: {
+		/**
+		 * A variante de cor. São 10 variantes implementadas: 'green', 'teal',
+		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.
+		 * A variante só terá efeito quando a SideBar estiver no modo light.
+		 */
+		variant: {
+			type: String,
+			default: 'green',
+		},
 		/**
 		 * Define a lista dos itens do SideBar a serem
 		 * mostrados. Os itens da lista devem ser
@@ -222,13 +267,61 @@ export default {
 			type: String,
 			default: null,
 		},
+		/**
+		 * Permite que a sidebar seja colapsada em uma versão mínima
+		*/
+		collapsible: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Imagem do logo que será renderizada
+		*/
+		logoImage: {
+			type: String,
+			default: null,
+		},
+		/**
+		 * Imagem do logo que será renderizada quando a sidebar estiver colapsada
+		*/
+		collapsedLogoImage: {
+			type: String,
+			default: null,
+		},
+		/**
+		 * Ativa o modo light da sidebar
+		*/
+		light: {
+			type: Boolean,
+			default: false,
+		}
 	},
 
 	data() {
 		return {
 			internalActiveItem: {},
+			collapsed: false,
+			showUncollapsedItems: true,
 			colorOptions,
 		};
+	},
+
+	computed: {
+		mainClass() {
+			if (this.light) {
+				if (this.collapsed) {
+					return 'side-bar--light--collapsed';
+				}
+
+				return 'side-bar--light';
+			}
+
+			if (this.collapsed) {
+				return 'side-bar--dark--collapsed';
+			}
+
+			return 'side-bar--dark';
+		}
 	},
 
 	watch: {
@@ -246,6 +339,17 @@ export default {
 			},
 			immediate: true,
 		},
+
+		collapsed(newValue) {
+			if (newValue) {
+				this.showUncollapsedItems = false;
+				return;
+			}
+
+			setTimeout(() => {
+				this.showUncollapsedItems = true;
+			}, 500);
+		},
 	},
 
 	mounted() {
@@ -257,6 +361,11 @@ export default {
 
 		handleClick(event, item) {
 			this.internalActiveItem = item;
+
+			if (!!item.items && item.items.length > 0) {
+				this.collapsed = false;
+			}
+
 			/**
 			 * Evento emitido quando um dos itens da SideBar é clicado
 			* @event sidebar-click
@@ -287,12 +396,23 @@ export default {
 		routerPushTo(item) {
 			return this.resolveRoute(item) ? this.resolveRoute(item).path : null;
 		},
+
+		handleCollapse() {
+			this.collapsed = !this.collapsed;
+		},
 	},
 };
 </script>
 
 <style lang="scss">
 @import '../assets/sass/tokens.scss';
+.fade-enter-active {
+	transition: opacity 0.5s ease;
+}
+
+.fade-enter-from {
+	opacity: 0;
+}
 
 .v-enter-active,
 .v-leave-active {
@@ -306,7 +426,7 @@ export default {
 	transform: translateY(40px);
 }
 
-.side-bar {
+.side-bar--dark {
 	background: linear-gradient(223deg, #4B545B 18.22%, #31393f 100%);
 	box-shadow: 0px 3.8957247734069824px 7.791449546813965px 0px rgba(16, 24, 64, 0.04);
 	display: flex;
@@ -314,160 +434,331 @@ export default {
 	height: 100vh;
 	justify-content: space-between;
 	padding: pTRBL(8, 3, 8, 3);
-	width: 232px;
+	width: 244px;
+	transition: width 0.5s;
 
-	&__subitem {
-		color: $n-100;
-		cursor: pointer;
-		padding: py(1);
-		@include caption;
-	
-		&--active {
-			color: $n-0;
-			font-weight: $font-weight-semibold;
-		}
+	.side-bar {
+		&__subitem {
+			color: $n-100;
+			cursor: pointer;
+			padding: py(1);
+			@include caption;
 
-		&:hover {
-			color: $n-40;
-		}
-		
-		&-container {
-			padding: pl(7);
-			margin: mt(2);
-		}
+			&--active {
+				color: $n-0;
+				font-weight: 700;
+			}
 
-		&-link {
-			width: 100%;
-			display: block;
-			display: flex;
-			align-items: center;
-			gap: spacer(2);
-		}
-	}
+			&:hover {
+				color: $n-0;
+			}
 
+			&-container {
+				padding: pl(7);
+				margin: mt(2);
+			}
 
-	&__subitems {
-		border-left: 1px solid $n-300;
-		display: flex;
-		flex-direction: column;
-		gap: spacer(3);
-		padding: pTRBL(1, 0, 1, 4);
-	}
-
-	&__logo > img {
-		margin-bottom: 40px;
-		padding: px(3);
-		width: 100%;
-	}
-
-	&__container {
-		display: flex;
-		flex-direction: column;
-		gap: spacer(2);
-		list-style: none;
-		padding: pa(0);
-	}
-
-	&__item-container {
-		&--active {
-			background-color: $appbar-color;
-			border: 1px solid rgba(100, 115, 130, 0.50);
-			border-radius: $border-radius-extra-small;
-			color: $n-10;
-			cursor: default;
-			height: fit-content;
-			padding: pTRBL(3, 4, 3, 4);
-			transition: $interaction;
-			width: 100%;
-		}
-
-		&--inactive {
-			background-color: transparent;
-			border: 1px solid transparent;
-			border-radius: $border-radius-extra-small;
-			padding: pTRBL(3, 4, 3, 4);
-			transition: $opening;
-		}
-	}
-
-	&__item > div{
-		align-items: center;
-		display: flex;
-		gap: spacer(2);
-	}
-
-	&__item {
-		align-items: center;
-		cursor: pointer;
-		display: flex;
-		justify-content: space-between;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		text-align: center;
-		text-decoration: none !important;
-		@include caption;
-
-		&--active {
-			color: $n-0;
-			font-weight: 550;
-		}
-
-		&--active:hover {
-			color: $n-0;
-		}
-
-		&--inactive {
-			color: $n-40;
-			height: fit-content;
-		}
-
-		&--inactive:hover {
-			color: $n-20;
-		}
-	}
-
-	&__logout-button:hover {
-		color: $n-0;
-		cursor: pointer;
-	}
-
-	&__footer {
-		display: flex;
-		flex-direction: column;
-		gap: spacer(8);
-		padding: pTRBL(2, 4, 2, 4);
-
-		& > ul {
-			margin: 0;
-			padding: 0;
-
-			& > li {
-				align-items: center;
-				color: $n-40;
+			&-link {
+				width: 100%;
+				display: block;
 				display: flex;
+				align-items: center;
 				gap: spacer(2);
 			}
 		}
+
+
+		&__subitems {
+			border-left: 1px solid $n-300;
+			display: flex;
+			flex-direction: column;
+			gap: spacer(4);
+			padding: pTRBL(1, 0, 1, 4);
+		}
+
+		&__header {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: spacer(4);
+			margin-bottom: 40px;
+		}
+
+		&__logo {
+			display: flex;
+			align-items: center;
+			max-width: 144px;
+		}
+
+		&__logo > img {
+			width: 100%;
+		}
+
+		&__container {
+			display: flex;
+			flex-direction: column;
+			gap: spacer(3);
+			list-style: none;
+			padding: pa(0);
+		}
+
+		&__item-container {
+			&--active {
+				background-color: $appbar-color;
+				border: 1px solid rgba(100, 115, 130, 0.50);
+				border-radius: $border-radius-extra-small;
+				color: $n-10;
+				cursor: default;
+				height: fit-content;
+				padding: pTRBL(3, 4, 3, 4);
+				transition: $interaction;
+				width: 100%;
+			}
+
+			&--inactive {
+				background-color: transparent;
+				border: 1px solid transparent;
+				border-radius: $border-radius-extra-small;
+				padding: pTRBL(3, 4, 3, 4);
+				transition: $opening;
+			}
+		}
+
+		&__item > div{
+			align-items: center;
+			display: flex;
+			gap: spacer(2);
+		}
+
+		&__item {
+			@include caption;
+			align-items: center;
+			cursor: pointer;
+			display: flex;
+			justify-content: space-between;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			text-align: center;
+			text-decoration: none !important;
+
+			&--active {
+				color: $n-0;
+				font-weight: 700;
+			}
+
+			&--active:hover {
+				color: $n-0;
+			}
+
+			&--inactive {
+				color: $n-10;
+				height: fit-content;
+			}
+
+			&--inactive:hover {
+				color: $n-0;
+			}
+		}
+
+		&__logout-button {
+			padding: pa(3);
+			border-radius: $border-radius-small;
+		}
+
+		&__logout-button:hover {
+			color: $n-0;
+			background-color: #576169;
+			outline: 1px solid rgba(#647382, 0.5);
+			cursor: pointer;
+		}
+
+		&__footer {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: spacer(2);
+			padding: pTRBL(2, 1, 2, 1);
+
+			& > ul {
+				margin: 0;
+				padding: 0;
+
+				& > li {
+					align-items: center;
+					color: $n-0;
+					display: flex;
+					gap: spacer(2);
+				}
+			}
+		}
+
+		&__avatar {
+			align-items: center;
+			display: flex;
+			gap: spacer(3);
+		}
+
+		&__avatar > div > p:nth-child(1) {
+			@include body-2;
+			color: $n-0;
+			font-weight: $font-weight-bold;
+			margin: mb(0);
+		}
+
+		&__avatar > div > p:nth-child(2) {
+			@include caption;
+			color: $n-0;
+			margin: 0;
+		}
+
+		&__collapsible {
+			padding: pa(3);
+			cursor: pointer;
+			border-radius: $border-radius-extra-small;
+			width: 42px;
+			height: 42px;
+			color: $n-0;
+
+			&:hover {
+				background-color: #576169;
+				outline: 1px solid rgba(#647382, 0.5);
+			}
+
+			svg {
+				width: 18px;
+				height: 18px;
+			}
+		}
+	}
+}
+
+.side-bar--light {
+	@extend .side-bar--dark;
+
+	.variant-resolver {
+		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+			--system-background-variant: #{$shade-50};
+			--system-border-variant: #{$shade-200};
+			--system-text-variant: #{$base-color};
+		}
 	}
 
-	&__avatar {
-		align-items: center;
-		display: flex;
-		gap: spacer(4);
-	}
+	background: $n-0;
+	border-right: 1px solid $n-30;
+	width: 245px;
 
-	&__avatar > div > p:nth-child(1) {
-		color: $n-30;
-		font-weight: $font-weight-semibold;
-		margin: mb(1);
-		@include body-1;
-	}
+	.side-bar {
+		&__subitem {
+			color: $n-700;
 
-	&__avatar > div > p:nth-child(2) {
-		color: $n-40;
-		margin: 0;
-		@include caption;
+			&--active {
+				color: var(--system-text-variant);
+			}
+
+			&:hover {
+				color: var(--system-text-variant);
+			}
+		}
+
+		&__item {
+			&--active {
+				color: var(--system-text-variant);
+			}
+
+			&--active:hover {
+				color: var(--system-text-variant);
+			}
+
+			&--inactive {
+				color: $n-700;
+			}
+
+			&--inactive:hover {
+				color: $n-700;
+			}
+		}
+
+		&__item-container {
+			&--active {
+				background-color: var(--system-background-variant);
+				border: 1px solid var(--system-border-variant);
+			}
+		}
+
+		&__avatar > div > p:nth-child(1) {
+			color: $n-700;
+		}
+
+		&__avatar > div > p:nth-child(2) {
+			color: $n-700;
+		}
+
+		&__footer {
+			& > ul {
+				& > li {
+					color: $n-700;
+				}
+			}
+		}
+
+		&__logout-button:hover {
+			color: var(--system-text-variant);
+			background-color: var(--system-background-variant);
+			outline: 1px solid var(--system-border-variant);
+		}
+
+		&__collapsible {
+			color: $n-700;
+
+			&:hover {
+				background-color: var(--system-background-variant);
+				outline: 1px solid var(--system-border-variant);
+				color: var(--system-text-variant);
+			}
+		}
 	}
+}
+
+.side-bar--dark--collapsed {
+	@extend .side-bar--dark;
+
+	width: 68px;
+	transition: width 0.5s;
+
+	.side-bar {
+		&__header {
+			flex-direction: column;
+			gap: spacer(6);
+		}
+
+		&__item-container {
+			&--active {
+				padding: pa(3);
+				transition: padding 0s;
+			}
+
+			&--inactive {
+				padding: pa(3);
+				transition: padding 0s;
+			}
+		}
+
+		&__footer {
+			flex-direction: column;
+			gap: spacer(4);
+		}
+
+		&__logo {
+			max-width: 44px;
+		}
+	}
+}
+
+.side-bar--light--collapsed {
+	@extend .side-bar--dark--collapsed;
+	@extend .side-bar--light;
+
+	width: 69px;
 }
 
 .item {
