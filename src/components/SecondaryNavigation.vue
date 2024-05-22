@@ -1,12 +1,15 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-	<div class="secondary-navigation">
+	<div
+		class="secondary-navigation"
+		:class="`secondary-navigation--${resolveBackground}`"
+	>
 		<div class="secondary-navigation__container">
 			<div
 				v-for="item in items"
 				:key="item.key"
 				class="secondary-navigation__item"
-				:class="{ 'secondary-navigation__item--active': isActiveItem(item.key) }"
+				:class="isActiveItem(item.key) ? `secondary-navigation__item--active-${resolveBackground}` : ''"
 				@click="onClickItem(item.key)"
 				@mouseover="onHover(item.key)"
 				@mouseleave="onHover(-1)"
@@ -31,6 +34,7 @@
 						/>
 						<div
 							class="secondary-navigation__dropdown"
+							:class="`secondary-navigation__dropdown--${resolveBackground}`"
 						>
 							<div
 								v-for="subitem in item.subitems"
@@ -50,10 +54,15 @@
 </template>
 
 <script setup>
-import { ref, defineProps, defineEmits } from 'vue';
+import { ref, defineProps, defineEmits, computed } from 'vue';
 import Icon from './Icon.vue';
 
 const props = defineProps({
+	light: {
+		type: Boolean,
+		default: false,
+	},
+
 	items: {
 		type: Array,
 		default: () => [
@@ -108,6 +117,10 @@ const activeItem = ref(0);
 const hoveredItem = ref(0);
 const activeSubItem = ref(null)
 
+const resolveBackground = computed(() => {
+	return (props.light) ? 'light' : 'dark';
+});
+
 const onClickItem = (itemKey) => {
 	if (hasSubItems(itemKey)) {
 		return;
@@ -152,7 +165,6 @@ const onHover = (itemKey) => {
 @import '../assets/sass/tokens.scss';
 
 .secondary-navigation {
-	background: $n-800;
 	width: 100%;
 	height:54px;
 	box-shadow: $shadow-sm;
@@ -164,21 +176,32 @@ const onHover = (itemKey) => {
 	left: 0;
 	z-index: $z-index-toolbar;
 
+	&--light {
+		background: $n-0;
+		color: $n-700;
+	}
+
+	&--dark {
+		background: $n-800;
+		color: $n-0;
+	}
+
 	&__item {
 		padding: pYX(2,3);
-		min-width: 80px;
 		height: 54px;
-		color: $n-100;
 		cursor: pointer;
-		color: $n-0;
 		@include body-2;
 		display: flex;
 
-		&--active {
-			@include body-2;
+		&--active-dark {
 			text-shadow:0px 0px 1px $n-0;
 		}
+
+		&--active-light {
+			text-shadow:0px 0px 1px $n-700;
+		}
 	}
+
 
 	&__subitem {
 		@include body-2;
@@ -208,7 +231,6 @@ const onHover = (itemKey) => {
 	}
 
 	&__dropdown {
-		background: $n-800;
 		box-shadow: $shadow-md;
 		border-radius: $border-radius-extra-small;
 		margin: mt(5);
@@ -220,6 +242,14 @@ const onHover = (itemKey) => {
 		flex-direction: column;
 		gap: spacer(6);
 		position:absolute;
+
+		&--dark {
+			background: $n-800;
+		}
+
+		&--light {
+			background: $n-0;
+		}
 	}
 
 }
