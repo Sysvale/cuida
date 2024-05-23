@@ -51,7 +51,7 @@ export const Template = (args) => ({
 			@sidebar-click="logClick"
 			@logout="logLogout"
 		>
-			<template>
+			<template #default>
 				Conteúdo da página
 			</template>
 		</cds-page-layout>`,
@@ -128,6 +128,16 @@ export const navigationItems = [
 	{
 		key: 'dashboard',
 		label: 'Dashboard',
+		route: {
+			name: 'dashboard',
+		},
+	},
+	{
+		key: 'home',
+		label: 'Inicio',
+		route: {
+			name: 'home',
+		},
 	},
 	{
 		key: 'reports',
@@ -135,11 +145,17 @@ export const navigationItems = [
 		subitems: [
 			{
 				key: 'productivity',
-				label: 'Produtividade',
+				label: 'Relatório de produtividade',
+				route: {
+					name: 'productivity',
+				},
 			},
 			{
 				key: 'time-sheet',
 				label: 'Folha de ponto',
+				route: {
+					name: 'timesheet',
+				},
 			}
 		],
 	},
