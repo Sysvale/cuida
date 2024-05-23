@@ -10,6 +10,8 @@
 			:items="sideBarItems"
 			:logo-image="logos.default"
 			:collapsed-logo-image="logos.collapsed"
+			@sidebar-click="emit('sidebar-item-click', $event)"
+			@logout="emit('sidebar-logout', $event)"
 		/>
 
 		<div class="page-layout__content">
@@ -20,6 +22,7 @@
 			/>
 
 			<page-container class="page-layout__container">
+				<!-- @slot Slot usado para inserção de conteúdo do PageLayout. -->
 				<slot />
 			</page-container>
 		</div>
@@ -64,21 +67,52 @@ defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	 * Define os itens da da barra lateral de navegação.
+	 */
 	sideBarItems: {
 		type: Array,
 		default: () => [],
 	},
+	/**
+	 * Define os itens da da barra de navegação secundária.
+	 */
 	navigationItems: {
 		type: Array,
 		default: () => [],
 	},
+	/** Define as logos da barra lateral de navegação, collapsible é a logo
+	 *  que aparecerá quando a sidebar estiver colapsada.
+	 */
 	logos: {
 		type: Object,
 		default: () => {},
 	}
 });
 
-const emit = defineEmits(['sidebar-item-click', 'navigation-item-click']);
+
+const emit = defineEmits([
+	/**
+	* Evento emitido quando um dos itens da SideBar é clicado
+	* @event sidebar-item-click
+	* @type {Event}
+	*/
+	'sidebar-item-click',
+
+	/**
+	* Evento emitido quando o icone de logout da SideBar é clicado
+	* @event sidebar-logout
+	* @type {Event}
+	*/
+	'sidebar-logout',
+
+	/**
+	* Evento emitido quando o icone da SecondaryNavbar é clicado
+	* @event navigation-item-click
+	* @type {Event}
+	*/
+	'navigation-item-click'
+]);
 </script>
 
 <style lang="scss" scoped>
