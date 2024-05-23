@@ -27,12 +27,12 @@
 				>
 					<cds-icon
 						v-if="!collapsed"
-						name="caret-left-outline"
+						name="sidebar-collapse-outline"
 					/>
 
 					<cds-icon
 						v-else
-						name="caret-right-outline"
+						name="sidebar-expand-outline"
 					/>
 				</div>
 			</div>

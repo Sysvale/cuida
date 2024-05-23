@@ -1,54 +1,70 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div
 		class="secondary-navigation"
 		:class="`secondary-navigation--${resolveBackground}`"
 	>
 		<div class="secondary-navigation__container">
-			<div
+			<template
 				v-for="item in items"
 				:key="item.key"
-				class="secondary-navigation__item"
-				:class="isActiveItem(item.key) ? `secondary-navigation__item--active-${resolveBackground}` : ''"
-				@click="onClickItem(item.key)"
-				@mouseover="onHover(item.key)"
-				@mouseleave="onHover(-1)"
 			>
-				<div class="secondary-navigation__content">
-					{{ item.label }}
-					<icon
-						v-if="hasSubItems(item.key) && item.key != hoveredItem"
-						class="secondary-navigation__icon"
-						height="16"
-						width="16"
-						name="caret-down-outline"
-					/>
+				<router-link
+					v-if="!hasSubItems(item.key)"
+					class="secondary-navigation__item"
+					:class="isActiveItem(item.key) ? `secondary-navigation__item--active-${resolveBackground}` : ''"
+					:to="resolveRoute(item)"
+					@click="onClickItem(item)"
+				>
+					<div class="secondary-navigation__content">
+						{{ item.label }}
+					</div>
+				</router-link>
+				<div v-else>
 					<div
-						v-else-if="hasSubItems(item.key) && item.key == hoveredItem"
+						class="secondary-navigation__item"
+						:class="isActiveItem(item.key) ? `secondary-navigation__item--active-${resolveBackground}` : ''"
+						@click="onClickItem(item)"
+						@mouseover="onHover(item.key)"
+						@mouseleave="onHover(-1)"
 					>
-						<icon
-							class="secondary-navigation__icon"
-							height="16"
-							width="16"
-							name="caret-up-outline"
-						/>
-						<div
-							class="secondary-navigation__dropdown"
-							:class="`secondary-navigation__dropdown--${resolveBackground}`"
-						>
+						<div class="secondary-navigation__content">
+							{{ item.label }}
+							<icon
+								v-if="item.key !== hoveredItem"
+								class="secondary-navigation__icon"
+								name="caret-down-outline"
+								height="16"
+								width="16"
+							/>
 							<div
-								v-for="subitem in item.subitems"
-								:key="subitem.key"
-								class="secondary-navigation__subitem"
-								:class="{ 'secondary-navigation__subitem--active': isActiveSubItem(subitem.key) }"
-								@click="onClickSubItem(subitem.key, item.key)"
+								v-else-if="item.key === hoveredItem"
 							>
-								{{ subitem.label }}
+								<icon
+									class="secondary-navigation__icon"
+									height="16"
+									width="16"
+									name="caret-up-outline"
+								/>
+								<div
+									class="secondary-navigation__dropdown"
+									:class="`secondary-navigation__dropdown--${resolveBackground}`"
+								>
+									<router-link
+										v-for="subitem in item.subitems"
+										:key="subitem.key"
+										:to="resolveRoute(subitem)"
+										class="secondary-navigation__subitem"
+										:class="{ 'secondary-navigation__subitem--active': isActiveSubItem(subitem.key) }"
+										@click="onClickSubItem(subitem.key, item.key)"
+									>
+										{{ subitem.label }}
+									</router-link>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</template>
 		</div>
 
 		<div class="secondary-navigation__overflow-left" />
@@ -57,13 +73,18 @@
 </template>
 
 <script setup>
-import { ref, defineProps, defineEmits, computed } from 'vue';
+import { ref, defineProps, defineEmits, computed, watch } from 'vue';
 import Icon from './Icon.vue';
 
 const props = defineProps({
 	light: {
 		type: Boolean,
 		default: false,
+	},
+
+	activeItem: {
+		type: Object,
+		default: () => {},
 	},
 
 	items: {
@@ -74,50 +95,63 @@ const props = defineProps({
 
 const emit = defineEmits(['item-click']);
 
-const activeItem = ref(0);
-const hoveredItem = ref(0);
+const internalActiveItem = ref(props.activeItem.key);
 const activeSubItem = ref(null)
+const hoveredItem = ref(0);
 
 const resolveBackground = computed(() => {
 	return (props.light) ? 'light' : 'dark';
 });
 
-const onClickItem = (itemKey) => {
-	if (hasSubItems(itemKey)) {
+watch(props.activeItem, (item) => {
+	internalActiveItem.value = item.key;
+});
+
+
+const onHover = (itemKey) => {
+	hoveredItem.value = itemKey;
+}
+
+const resolveRoute = (item) => {
+	if (!item.route) {
+		return null;
+	}
+
+	const { path, name } = item.route;
+
+	return path instanceof String ? { path } : { name };
+};
+
+const onClickItem = (item) => {
+	if (hasSubItems(item.key)) {
 		return;
 	}
 
 	activeSubItem.value = null;
-	activeItem.value = itemKey;
-	emit('item-click', itemKey);
+	internalActiveItem.value = item.key;
+
+	emit('item-click', item.key);
+}
+
+const isActiveItem = (itemKey) => {
+	return internalActiveItem.value === itemKey;
+}
+
+const hasSubItems = (key) => {
+	return props.items.find((item) => (
+		item.key === key && item?.subitems?.length > 0
+	));
 }
 
 const onClickSubItem = (subItemKey, itemKey) => {
 	activeSubItem.value = subItemKey;
-	activeItem.value = itemKey;
-	emit('item-click', subItemKey);
-}
+	internalActiveItem.value = itemKey;
 
-const isActiveItem = (itemKey) => {
-	return activeItem.value === itemKey;
+	emit('item-click', subItemKey);
 }
 
 const isActiveSubItem = (subItemKey) => {
 	return activeSubItem.value === subItemKey;
-}
-
-const hasSubItems = (key) => {
-	return props.items.find((item) => {
-		if (item.key === key) {
-			if (item?.subitems?.length > 0) {
-				return true;
-			}
-		}
-	})
-}
-
-const onHover = (itemKey) => {
-	hoveredItem.value = itemKey;
 }
 
 </script>
@@ -132,7 +166,6 @@ const onHover = (itemKey) => {
 	display: flex;
 	gap: spacer(5);
 	align-items: center;
-	position: relative;
 	top: 0;
 	left: 0;
 	z-index: $z-index-toolbar;
@@ -162,7 +195,6 @@ const onHover = (itemKey) => {
 			text-shadow:0px 0px 1px $n-700;
 		}
 	}
-
 
 	&__subitem {
 		@include body-2;
@@ -196,7 +228,7 @@ const onHover = (itemKey) => {
 		border-radius: $border-radius-extra-small;
 		margin: mt(5);
 		padding: pa(5);
-		min-width: 150px;
+		min-width: 250px;
 		top: 0;
 		left: 0;
 		display: flex;
@@ -210,49 +242,6 @@ const onHover = (itemKey) => {
 
 		&--light {
 			background: $n-0;
-		}
-	}
-}
-
-@media (max-width: 992px) {
-	.secondary-navigation {
-		gap: 0;
-		padding-right: 2px;
-
-		&__container {
-			display: flex;
-			padding: px(2);
-			overflow-x: scroll;
-			overflow-y: visible;
-
-			&::-webkit-scrollbar {
-				display: none;
-			}
-		}
-
-		&__item {
-			@include body-1;
-			white-space: nowrap;
-
-			&--active-light {
-				border-bottom: 3px solid $bn-400;
-			}
-		}
-
-		&__overflow-right {
-			position: absolute;
-			width: 30px;
-			height: 100%;
-			right: 0;
-			background: linear-gradient(90deg, rgba(255, 255, 255, 0) 20%, #FFFFFF 74.3%);
-		}
-
-		&__overflow-left {
-			position: absolute;
-			width: 30px;
-			height: 100%;
-			left: 0;
-			background: linear-gradient(-90deg, rgba(255, 255, 255, 0) 20%, #FFFFFF 74.3%);
 		}
 	}
 }

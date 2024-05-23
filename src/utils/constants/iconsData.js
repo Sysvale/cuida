@@ -78,6 +78,8 @@ export const iconsData = [
 			'more-horizontal-outline',
 			'more-vertical-outline',
 			'reorder-outline',
+			'sidebar-expand-outline',
+			'sidebar-collapse-outline',
 		],
 	},
 	{
