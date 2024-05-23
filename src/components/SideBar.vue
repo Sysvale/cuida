@@ -530,6 +530,12 @@ export default {
 			gap: spacer(2);
 		}
 
+		&__item span {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
 		&__item {
 			@include caption;
 			align-items: center;
