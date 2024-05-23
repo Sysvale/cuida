@@ -50,6 +50,9 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="secondary-navigation__overflow-left" />
+		<div class="secondary-navigation__overflow-right" />
 	</div>
 </template>
 
@@ -129,7 +132,7 @@ const onHover = (itemKey) => {
 	display: flex;
 	gap: spacer(5);
 	align-items: center;
-	position: fixed;
+	position: relative;
 	top: 0;
 	left: 0;
 	z-index: $z-index-toolbar;
@@ -209,7 +212,48 @@ const onHover = (itemKey) => {
 			background: $n-0;
 		}
 	}
-
 }
 
+@media (max-width: 992px) {
+	.secondary-navigation {
+		gap: 0;
+		padding-right: 2px;
+
+		&__container {
+			display: flex;
+			padding: px(2);
+			overflow-x: scroll;
+			overflow-y: visible;
+
+			&::-webkit-scrollbar {
+				display: none;
+			}
+		}
+
+		&__item {
+			@include body-1;
+			white-space: nowrap;
+
+			&--active-light {
+				border-bottom: 3px solid $bn-400;
+			}
+		}
+
+		&__overflow-right {
+			position: absolute;
+			width: 30px;
+			height: 100%;
+			right: 0;
+			background: linear-gradient(90deg, rgba(255, 255, 255, 0) 20%, #FFFFFF 74.3%);
+		}
+
+		&__overflow-left {
+			position: absolute;
+			width: 30px;
+			height: 100%;
+			left: 0;
+			background: linear-gradient(-90deg, rgba(255, 255, 255, 0) 20%, #FFFFFF 74.3%);
+		}
+	}
+}
 </style>

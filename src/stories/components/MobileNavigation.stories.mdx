@@ -1,0 +1,168 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import MobileNavigation from '../../components/MobileNavigation.vue';
+
+<Meta
+	title="Componentes/Navegação/MobileNavigation"
+	component={ MobileNavigation }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'turquoise',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'gray',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/
+`<cds-mobile-navigation
+	v-bind="args"
+	@click="logClick"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsMobileNavigation: MobileNavigation },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-mobile-navigation
+			v-bind="args"
+			@sidebar-click="logClick"
+			@logout="logLogout"
+		></cds-mobile-navigation>`,
+	methods: {
+		logClick(element) {
+			console.info('%clogItemClick: ', 'color: #2C70CD;', element);
+		},
+		logLogout(element) {
+			console.info('%clogLogout: ', 'color: #2C70CD;', element);
+		},
+	},
+});
+
+# MobileNavigation
+
+### MobileNavigations são componentes utilizados para criar soluções de navegação e menus.
+---
+<br />
+
+## Recomendamos o uso de NavBars quando:
+- For necessário separar o conteúdo por páginas e navergar por elas.
+- Não for o caso de utilizar soluções como tabs, sidebars, cards ou links como navegação.
+
+<br />
+
+## Não recomendamos o uso de NavBars quando:
+- Houver muitos itens a serem mostrados no menu.
+- For necessário mostrar os links verticalmente.
+
+<br />
+
+## Preview
+
+export const sideBarItems = [
+	{
+		label: 'Início',
+		icon: 'home-outline',
+		type: 'route',
+		route: {
+			path: '/home',
+			name: 'home'
+		},
+	},
+	{
+		label: 'Vigilância sanitária',
+		icon: 'shield-outline',
+		type: 'route',
+		route: {
+			path: '/visa',
+			name: 'visa'
+		},
+	},
+	{
+		label: 'Central de marcação',
+		icon: 'calendar-outline',
+		type: 'route',
+		route: {
+			path: '/regulation',
+			name: 'regulation'
+		},
+	},
+	{
+		label: 'Cuidados médicos',
+		icon: 'heart-rate-outline',
+		type: 'route',
+		route: {
+			path: '/medical-care',
+			name: 'medical-care',
+		},
+	},
+];
+
+export const navigationItems = [
+	{
+		key: 'requirements',
+		label: 'Requerimentos',
+	},
+	{
+		key: 'settings',
+		label: 'Configurações',
+		subitems: [
+			{
+				key: 'change-password',
+				label: 'Mudar Senha',
+			},
+			{
+				key: 'add-photo',
+				label: 'Adicionar foto'
+			}
+		],
+	},
+	{
+		key: 'medical-appointment',
+		label: 'Consulta médica',
+	},
+	{
+		key: 'reports',
+		label: 'Relatórios',
+	},
+];
+
+<Canvas>
+	<Story
+		name="MobileNavigation"
+		args={{
+			variant: 'indigo',
+			title: 'Vigilância sanitária',
+			light: true,
+			mainLogo: 'https://i.imgur.com/apHKi9L.png',
+			sideBarItems,
+			navigationItems,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="MobileNavigation" />
