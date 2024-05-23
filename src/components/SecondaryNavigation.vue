@@ -70,13 +70,18 @@
 </template>
 
 <script setup>
-import { ref, defineProps, defineEmits, computed } from 'vue';
+import { ref, defineProps, defineEmits, computed, watch } from 'vue';
 import Icon from './Icon.vue';
 
 const props = defineProps({
 	light: {
 		type: Boolean,
 		default: false,
+	},
+
+	activeItem: {
+		type: Object,
+		default: () => {},
 	},
 
 	items: {
@@ -87,13 +92,18 @@ const props = defineProps({
 
 const emit = defineEmits(['item-click']);
 
-const activeItem = ref(0);
+const internalActiveItem = ref(props.activeItem.key);
 const activeSubItem = ref(null)
 const hoveredItem = ref(0);
 
 const resolveBackground = computed(() => {
 	return (props.light) ? 'light' : 'dark';
 });
+
+watch(props.activeItem, (item) => {
+	internalActiveItem.value = item.key;
+});
+
 
 const onHover = (itemKey) => {
 	hoveredItem.value = itemKey;
@@ -115,13 +125,13 @@ const onClickItem = (item) => {
 	}
 
 	activeSubItem.value = null;
-	activeItem.value = item.key;
+	internalActiveItem.value = item.key;
 
 	emit('item-click', item.key);
 }
 
 const isActiveItem = (itemKey) => {
-	return activeItem.value === itemKey;
+	return internalActiveItem.value === itemKey;
 }
 
 const hasSubItems = (key) => {
@@ -132,7 +142,7 @@ const hasSubItems = (key) => {
 
 const onClickSubItem = (subItemKey, itemKey) => {
 	activeSubItem.value = subItemKey;
-	activeItem.value = itemKey;
+	internalActiveItem.value = itemKey;
 
 	emit('item-click', subItemKey);
 }

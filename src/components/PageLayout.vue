@@ -2,6 +2,7 @@
 	<div class="page-layout">
 		<side-bar
 			:variant="variant"
+			:active-item="sideBarActiveItem"
 			:light="light"
 			:user-name="user.name ?? ''"
 			:user-role="user.role ?? ''"
@@ -17,6 +18,7 @@
 		<div class="page-layout__content">
 			<secondary-navigation
 				:light="light"
+				:active-item="navigationActiveItem"
 				:items="navigationItems"
 				@item-click="emit('navigation-item-click', $event)"
 			/>
@@ -87,7 +89,17 @@ defineProps({
 	logos: {
 		type: Object,
 		default: () => {},
-	}
+	},
+	/** Define o item ativo da sideBar */
+	sideBarActiveItem: {
+		type: Object,
+		default: () => {},
+	},
+	/** Define o item ativo da navegação secundária */
+	navigationActiveItem: {
+		type: Object,
+		default: () => {},
+	},
 });
 
 
