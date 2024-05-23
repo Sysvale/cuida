@@ -48,12 +48,12 @@
 					<div
 						class="side-bar__item-container"
 						:class="isActive(item) ? 'side-bar__item-container--active' : 'side-bar__item-container--inactive'"
+						@click="(event) => handleClick(event, item)"
 					>
 						<div
 							v-if="!!item.items || item.type === 'link'"
 							class="side-bar__item"
 							:class="isActive(item) ? 'side-bar__item--active' : 'side-bar__item--inactive'"
-							@click="(event) => handleClick(event, item)"
 						>
 							<div>
 								<cds-icon
@@ -503,6 +503,8 @@ export default {
 		}
 
 		&__item-container {
+			cursor: pointer !important;
+
 			&--active {
 				background-color: $appbar-color;
 				border: 1px solid rgba(100, 115, 130, 0.50);
