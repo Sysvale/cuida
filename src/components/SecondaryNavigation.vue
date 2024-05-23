@@ -129,7 +129,7 @@ const onHover = (itemKey) => {
 	display: flex;
 	gap: spacer(5);
 	align-items: center;
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 	z-index: $z-index-toolbar;
