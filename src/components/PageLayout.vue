@@ -19,7 +19,7 @@
 				@item-click="emit('navigation-item-click', $event)"
 			/>
 
-			<page-container>
+			<page-container class="page-layout__container">
 				<slot />
 			</page-container>
 		</div>
@@ -88,6 +88,11 @@ const emit = defineEmits(['sidebar-item-click', 'navigation-item-click']);
 	&__content {
 		position: relative;
 		flex-grow: 1;
+	}
+
+	&__container {
+		max-height: calc(100vh - 54px);
+		overflow-y: auto;
 	}
 }
 </style>
