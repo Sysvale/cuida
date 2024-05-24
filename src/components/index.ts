@@ -24,6 +24,7 @@ import CollapsibleContainer from './CollapsibleContainer.vue';
 import ColorPicker from './ColorPicker.vue';
 import DashboardCard from './DashboardCard.vue';
 import DateInput from './DateInput.vue';
+import DialogModal from './DialogModal.vue';
 import Divider from './Divider.vue';
 import Dropdown from './Dropdown.vue';
 import EmptyState from './EmptyState.vue';
@@ -111,6 +112,7 @@ export default {
 		app.component('CdsColorPicker', ColorPicker); //NOTE: Testado no SB.
 		app.component('CdsDashboardCard', DashboardCard);
 		app.component('CdsDateInput', DateInput); //NOTE: Testado no SB
+		app.component('CdsDialogModal', DialogModal); //NOTE: Testado no SB
 		app.component('CdsDivider', Divider); //NOTE: Testado no SB
 		app.component('CdsDropdown', Dropdown); //NOTE: Testado no SB
 		app.component('CdsEmptyState', EmptyState); //NOTE: Testado no SB
