@@ -6,6 +6,35 @@ import Button from '../../components/Button.vue';
 	title="Componentes/Notificação/DialogModal"
 	component={ DialogModal }
 	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'warning',
+					'error',
+					'info',
+				],
+			}
+		},
+
+		actionButtonVariant: {
+			control: {
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				]
+			}
+		}
 	}}
 	parameters={{
 		viewMode: 'docs',
