@@ -1,0 +1,3 @@
+// Vitest Snapshot v1
+
+exports[`DialogModal > renders correctly 1`] = `"<!--v-if-->"`;
