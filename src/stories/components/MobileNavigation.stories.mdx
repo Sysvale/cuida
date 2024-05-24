@@ -46,11 +46,21 @@ export const Template = (args) => ({
 		return { args };
 	},
 	template: /*html*/ `
-		<cds-mobile-navigation
-			v-bind="args"
-			@sidebar-click="logClick"
-			@logout="logLogout"
-		></cds-mobile-navigation>`,
+		<div style="position: relative; overflow: hidden; height: 930px; width: 430px; border: 1px solid #CCC; margin: auto; border-radius: 20px; cursor: pointer">
+			<cds-mobile-navigation
+				v-bind="args"
+				:main-logo="args.light
+					? 'https://framerusercontent.com/images/9r26Llo7eNrs3keUxCNEGc8ttYE.png'
+					: 'https://framerusercontent.com/images/oZRv3aHh1IPreheg1xQCkBQjQ.png'
+				"
+				:sidebar-logo="args.light
+					? 'https://framerusercontent.com/images/9r26Llo7eNrs3keUxCNEGc8ttYE.png'
+					: 'https://framerusercontent.com/images/oZRv3aHh1IPreheg1xQCkBQjQ.png'
+				"
+				@item-click="logClick"
+				@logout="logLogout"
+			></cds-mobile-navigation>
+		</div>`,
 	methods: {
 		logClick(element) {
 			console.info('%clogItemClick: ', 'color: #2C70CD;', element);
@@ -120,45 +130,20 @@ export const sideBarItems = [
 	},
 ];
 
-export const navigationItems = [
-	{
-		key: 'requirements',
-		label: 'Requerimentos',
-	},
-	{
-		key: 'settings',
-		label: 'Configurações',
-		subitems: [
-			{
-				key: 'change-password',
-				label: 'Mudar Senha',
-			},
-			{
-				key: 'add-photo',
-				label: 'Adicionar foto'
-			}
-		],
-	},
-	{
-		key: 'medical-appointment',
-		label: 'Consulta médica',
-	},
-	{
-		key: 'reports',
-		label: 'Relatórios',
-	},
-];
-
 <Canvas>
 	<Story
 		name="MobileNavigation"
 		args={{
 			variant: 'indigo',
-			title: 'Vigilância sanitária',
 			light: true,
-			mainLogo: 'https://i.imgur.com/apHKi9L.png',
-			sideBarItems,
-			navigationItems,
+			mainLogo: 'https://framerusercontent.com/images/9r26Llo7eNrs3keUxCNEGc8ttYE.png',
+			sidebarLogo: 'https://framerusercontent.com/images/9r26Llo7eNrs3keUxCNEGc8ttYE.png',
+			items: sideBarItems,
+			activeItem: sideBarItems[1],
+			user: {
+				name: 'Joana Mendes',
+				role: 'Administradora',
+			},
 		}}
 	>
 		{ Template.bind({}) }
