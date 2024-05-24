@@ -44,6 +44,7 @@ import Multiselect from './Multiselect.vue';
 import NavBar from './NavBar.vue';
 import NumberInput from './NumberInput.vue';
 import PageContainer from './PageContainer.vue';
+import PageLayout from './PageLayout.vue';
 import PageHeader from './PageHeader.vue';
 import Pagination from './Pagination.vue';
 import PanelCard from './PanelCard.vue';
@@ -131,6 +132,7 @@ export default {
 		app.component('CdsNavBar', NavBar); //NOTE: Testado no SB
 		app.component('CdsNumberInput', NumberInput); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsPageContainer', PageContainer); //NOTE: Testado no SB
+		app.component('CdsPageLayout', PageLayout); //NOTE: Testado no SB
 		app.component('CdsPageHeader', PageHeader); //NOTE: Testado no SB
 		app.component('CdsPagination', Pagination); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsPanelCard', PanelCard); //NOTE: Testado no SB
