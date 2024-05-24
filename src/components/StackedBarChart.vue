@@ -8,6 +8,7 @@
 				:is="'bar'"
 				:data="localChartData"
 				:options="chartOptions"
+				:plugins="plugins"
 			/>
 		</div>
 	</span>
@@ -86,9 +87,15 @@ export default {
 				scales: {
 					x: {
 						stacked: true,
+						grid: {
+							color: 'transparent',
+						},
 					},
 					y: {
 						stacked: true,
+						grid: {
+							color: '#DFE5EC',
+						},
 					},
 				},
 				responsive: true,
@@ -107,10 +114,21 @@ export default {
 						labels: {
 							usePointStyle: true,
 							pointStyle: 'rectRounded',
+							padding: 50,
 						},
 					},
 				},
 			},
+			plugins: [{
+				id: 'custom_legend_margin',
+				beforeInit: function(chart) {
+					const originalFit = chart.legend.fit;
+					chart.legend.fit = function() {
+						originalFit.call(this);
+						this.height += 12;
+					};
+				}
+			}],
 		}
 	},
 
@@ -157,18 +175,18 @@ export default {
 
 		palete() {
 			this.palletColors = this.paleteBuilder(this.sassColorVariables.palete);
-			this.removeFirstTwoElements();
+			this.removeFirstElement();
 		},
 
 		// NOTE: Função responsável por remover os dois primeiros elementos da paleta para quando não é gray ou Dark Neutrals
-		removeFirstTwoElements() {
+		removeFirstElement() {
 			for (let i = 0; i < this.palletColors.length; i++) {
 				const color = this.palletColors[i];
 
 				if (this.deleteFirstTwoColors === false) {
-					color.colorShades.splice(0, 2);
+					color.colorShades.splice(0, 1);
 					color.colorTokens.splice(0, 2);
-					color.colorData.splice(0, 2);
+					color.colorData.splice(0, 1);
 				}
 			}
 		},
@@ -193,33 +211,65 @@ export default {
 						label: state.label,
 						data: state.data,
 						name: state.name,
+						variant: state.variant,
 						borderRadius: 6,
 					};
 					mergedData.datasets.push(dataset);
 				});
 			});
+
+			const isMulticolored = typeof this.data[0].datasets[0]?.variant !== 'undefined';
+
 			this.palete();
-			const backgroundColor = this.generateBackgroundColor();
-			this.setColors(mergedData.datasets, backgroundColor);
-			this.localChartData = mergedData;
+
+			if (isMulticolored) {
+				this.setMultiColors(mergedData.datasets);
+				this.localChartData = mergedData;
+			} else {
+				const backgroundColor = this.getPalete();
+				this.setColors(mergedData.datasets, backgroundColor);
+				this.localChartData = mergedData;
+			}
+
 		},
 
-		// NOTE: Função responsável por buscar a cor na paleta
-		generateBackgroundColor() {
-			const variantLowercase = this.variant.toLowerCase();
+		getPalete(variant = this.variant) {
+			const variantLowercase = variant.toLowerCase();
 			const palletColor = this.palletColors.find(color => color.variantName.toLowerCase().includes(variantLowercase));
+
 			if (palletColor) {
 				return palletColor.colorShades;
 			}
-			return [];
+		},
+
+		setMultiColors(datasets) {
+			const colors = {};
+			let shadePosition = 0;
+
+			this.chartOptions.plugins.legend.display = true;
+
+			datasets.forEach((dataset, index) => {
+				const objectName = dataset.name;
+				let colorIndex = 1;
+
+				if (index % 5 === 0) {
+					shadePosition = 0;
+				}
+
+				colorIndex += shadePosition;
+				shadePosition++;
+
+				colors[objectName] = this.getPalete(dataset.variant)[colorIndex];
+
+				dataset.backgroundColor = colors[objectName];
+				dataset.borderRadius = 6;
+			});
 		},
 
 		// NOTE: Função responsável por setar backgroundColor
 		// Ocorre essa verificação para garantir que o mesmo conjunto de dados para mais de um item selecionado tenha a mesma cor
 		setColors(datasets, backgroundColor) {
-
 			const colors = {};
-
 			this.chartOptions.plugins.legend.display = true;
 
 			datasets.forEach(dataset => {

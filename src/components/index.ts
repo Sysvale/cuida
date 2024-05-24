@@ -4,6 +4,7 @@ import Alert from './Alert.vue';
 import AlertCard from './AlertCard.vue';
 import AppBar from './AppBar.vue';
 import Avatar from './Avatar.vue';
+import AvatarGroup from './AvatarGroup.vue';
 import Badge from './Badge.vue';
 import BarChart from './BarChart.vue';
 import LineChart from './LineChart.vue';
@@ -92,6 +93,7 @@ export default {
 		app.component('CdsAlertCard', AlertCard);
 		app.component('CdsAppBar', AppBar); //NOTE: Testado no SB
 		app.component('CdsAvatar', Avatar); //NOTE: Testado no SB
+		app.component('CdsAvatarGroup', AvatarGroup); //NOTE: Testado no SB
 		app.component('CdsBadge', Badge); //NOTE: Testado no SB
 		app.component('CdsBarChart', BarChart);
 		app.component('CdsBox', Box);
