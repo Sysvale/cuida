@@ -45,7 +45,11 @@ import Button from '../../components/Button.vue';
 				code: /*html*/
 `<cds-dialog-modal
 	v-model="showModal"
-	variant="'warning'"
+	title="Tem certeza que deseja continuar?"
+	description="Esta ação afetará o sistema e
+			os arquivos associados. Ao prosseguir, você
+			confirma que está ciente e
+			concorda com as consequências. Deseja continuar?"
 	@close="showModal = false"
 	@ok="showModal = false"
 >
@@ -64,7 +68,7 @@ export const Template = (args) => ({
 			showModal: false,
 		};
 	},
-	components: { CdsModal: DialogModal, CdsButton: Button },
+	components: { CdsDialogModal: DialogModal, CdsButton: Button },
 	template: /*html*/ `
 		<div class="d-flex justify-content-center">
 			<cds-button
@@ -73,16 +77,16 @@ export const Template = (args) => ({
 			>
 				Click
 			</cds-button>
-			<cds-modal
+			<cds-dialog-modal
 				v-bind="args"
 				v-model="showModal"
+				title="Tem certeza que deseja continuar?"
+				description="Esta ação afetará o sistema e
+					os arquivos associados. Ao prosseguir, você
+					confirma que está ciente e
+					concorda com as consequências. Deseja continuar?"
 			>
-				<span>
-					Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
-					eu conheço uma cachacis que pode alegrar sua vidis.Paisis, filhis, espiritis santis.Leite de capivaris,
-					leite de mula manquis sem cabeça.
-				</span>
-			</cds-modal>
+			</cds-dialog-modal>
 		</div>
 	`,
 	updated() {
