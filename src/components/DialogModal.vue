@@ -151,10 +151,7 @@ export default {
 		 */
 		description: {
 			type: String,
-			default: `Esta ação afetará o sistema e
-			os arquivos associados. Ao prosseguir, você
-			confirma que está ciente e
-			concorda com as consequências. Deseja continuar?`,
+			required: true,
 		},
 		/**
 		 *  Controla a exibição do Dialog Modal.
@@ -169,7 +166,7 @@ export default {
 		 */
 		title: {
 			type: String,
-			default: 'Tem certeza que deseja continuar?',
+			required: true,
 		},
 		/**
 		 *  Define texto do botão de ação do Dialog Modal
@@ -200,13 +197,6 @@ export default {
 			innerValue: false,
 			tmp: '',
 		}
-	},
-
-	computed: {
-		maxBodyHeight() {
-			// 90% da largura subtraído o padding vertical (32 * 2) e subtraído o footer (68) e o header (64)
-			return `${ window.innerHeight * 0.9 - 32 * 2 - 68 - 64 }px`;
-		},
 	},
 
 	watch: {
