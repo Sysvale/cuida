@@ -24,6 +24,7 @@
 						/>
 						Atenção
 					</div>
+
 					<div
 						v-else-if="variant === 'error'"
 						class="cds-modal__header-title"
@@ -36,6 +37,7 @@
 						/>
 						Erro
 					</div>
+
 					<div
 						v-else-if="variant === 'info'"
 						class="cds-modal__header-title"
@@ -49,6 +51,7 @@
 						Informativo
 					</div>
 				</div>
+
 				<cds-icon
 					v-if="variant === 'warning'"
 					:class="`cds-modal__header-detail--${variant}`"
@@ -56,6 +59,7 @@
 					width="60"
 					name="warning-outline"
 				/>
+
 				<cds-icon
 					v-else-if="variant === 'error'"
 					:class="`cds-modal__header-detail--${variant}`"
@@ -63,6 +67,7 @@
 					width="60"
 					name="alert-outline"
 				/>
+
 				<cds-icon
 					v-else-if="variant === 'info'"
 					:class="`cds-modal__header-detail--${variant}`"
@@ -84,27 +89,21 @@
 			</div>
 
 			<footer
-				v-if="!noFooter"
 				class="cds-modal__footer"
 			>
-				<!-- @slot Slot usado para inserção de footer customizado. -->
-				<slot name="footer">
-					<cds-button
-						v-if="!noCancelButton"
-						:text="cancelButtonText"
-						secondary
-						:disabled="disableCancelButton"
-						@click="!disableCancelButton ? closeHandle() : false"
-					/>
+				<cds-button
+					v-if="variant === 'warning'"
+					:text="cancelButtonText"
+					secondary
+					@click="closeHandle()"
+				/>
 
-					<cds-button
-						class="footer__ok-button"
-						:text="okButtonText"
-						:variant="actionButtonVariant"
-						:disabled="disableOkButton"
-						@click="!disableOkButton ? okHandle() : false"
-					/>
-				</slot>
+				<cds-button
+					class="footer__ok-button"
+					:text="okButtonText"
+					:variant="actionButtonVariant"
+					@click="okHandle()"
+				/>
 			</footer>
 		</div>
 	</div>
@@ -127,6 +126,8 @@ const predefinedColors = [
 	'amber',
 ];
 
+const predefinedVariants = ['warning', 'error', 'info'];
+
 export default {
 	directives: {
 		'on-click-outside': vClickOutside.directive,
@@ -143,6 +144,7 @@ export default {
 		variant: {
 			type: String,
 			default: 'warning',
+			validator: (value) => predefinedVariants.includes(value),
 		},
 		/**
 		 *  Define a descrição do Dialog Modal.
@@ -174,7 +176,7 @@ export default {
 		 */
 		okButtonText: {
 			type: String,
-			default: 'Sim, continuar',
+			default: 'Continuar',
 		},
 		/**
 		 *  Define texto do botão de cancelar do Dialog Modal
@@ -236,11 +238,9 @@ export default {
 			* @event ok
 			* @type {Event}
 			*/
-			if (!this.noCloseOkButton) {
-				this.innerValue = !this.innerValue;
-				this.$emit('update:modelValue', false);
-			}
+			this.innerValue = !this.innerValue;
 			this.$emit('ok', true);
+			this.$emit('update:modelValue', false);
 		},
 	},
 };
