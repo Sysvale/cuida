@@ -1,0 +1,51 @@
+// Vitest Snapshot v1
+
+exports[`MobileNavigation > renders correctly 1`] = `
+"<div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation mobile-navigation--dark\\">
+  <div data-v-c1f5c1c8=\\"\\" class=\\"variant-resolver--green\\">
+    <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__header\\">
+      <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__logo\\">
+        <!-- @slot Slot para renderização do logo principal.--><img data-v-c1f5c1c8=\\"\\" src=\\"\\">
+      </div>
+      <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__title\\">Vigilância Sanitária</div>
+      <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__menu-btn\\">
+        <cds-icon-stub data-v-c1f5c1c8=\\"\\" name=\\"menu-outline\\" width=\\"24\\" height=\\"24\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub>
+      </div>
+    </div>
+    <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar\\">
+      <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar-header\\">
+        <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar-logo\\">
+          <!-- @slot Slot para renderização do logo da sidebar.--><img data-v-c1f5c1c8=\\"\\" src=\\"\\">
+        </div>
+        <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar-btn\\">
+          <cds-icon-stub data-v-c1f5c1c8=\\"\\" name=\\"menu-outline\\" width=\\"24\\" height=\\"24\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub>
+        </div>
+      </div>
+      <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar-content\\">
+        <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar-items\\">
+          <router-link data-v-c1f5c1c8=\\"\\" to=\\"/home\\" class=\\"mobile-navigation__sidebar-item\\">
+            <cds-icon-stub data-v-c1f5c1c8=\\"\\" name=\\"home-outline\\" width=\\"24\\" height=\\"24\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub><span data-v-c1f5c1c8=\\"\\">Início</span>
+          </router-link>
+          <router-link data-v-c1f5c1c8=\\"\\" to=\\"/visa\\" class=\\"mobile-navigation__sidebar-item mobile-navigation__sidebar-item--active\\">
+            <cds-icon-stub data-v-c1f5c1c8=\\"\\" name=\\"shield-outline\\" width=\\"24\\" height=\\"24\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub><span data-v-c1f5c1c8=\\"\\">Vigilância Sanitária</span>
+          </router-link>
+          <router-link data-v-c1f5c1c8=\\"\\" to=\\"/regulation\\" class=\\"mobile-navigation__sidebar-item\\">
+            <cds-icon-stub data-v-c1f5c1c8=\\"\\" name=\\"calendar-outline\\" width=\\"24\\" height=\\"24\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub><span data-v-c1f5c1c8=\\"\\">Central de marcação</span>
+          </router-link>
+        </div>
+        <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar-footer\\">
+          <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar-user-info\\">
+            <cds-avatar-stub data-v-c1f5c1c8=\\"\\" variant=\\"green\\" size=\\"lg\\" src=\\"\\" name=\\"Joana Mendes\\" clickable=\\"false\\"></cds-avatar-stub>
+            <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar-user-text\\">
+              <p data-v-c1f5c1c8=\\"\\">Joana Mendes</p>
+              <p data-v-c1f5c1c8=\\"\\">Administradora</p>
+            </div>
+          </div><button data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar-logout\\">
+            <cds-icon-stub data-v-c1f5c1c8=\\"\\" name=\\"logout-outline\\" width=\\"24\\" height=\\"24\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>"
+`;
