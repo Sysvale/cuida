@@ -1,0 +1,13 @@
+// Vitest Snapshot v1
+
+exports[`SecondaryNavigation > renders correctly 1`] = `
+"<div data-v-2b972645=\\"\\" class=\\"secondary-navigation secondary-navigation--dark\\">
+  <div data-v-2b972645=\\"\\" class=\\"secondary-navigation__container\\">
+    <div data-v-2b972645=\\"\\" class=\\"secondary-navigation__item\\">
+      <div data-v-2b972645=\\"\\" class=\\"secondary-navigation__content\\">Item 1
+        <!--v-if-->
+      </div>
+    </div>
+  </div>
+</div>"
+`;
