@@ -8,21 +8,67 @@
 			v-if="innerValue"
 			class="cds-modal"
 		>
-			<header class="cds-modal__header">
+			<header
+				:class="`cds-modal__header--${variant}`"
+			>
 				<div class="cds-modal__header-content">
-					<cds-icon
-						class="cds-modal__header-icon"
-						height="40"
-						width="40"
-						name="warning-outline"
-					/>
-					Atenção
+					<div
+						v-if="variant === 'warning'"
+						class="cds-modal__header-title"
+					>
+						<cds-icon
+							:class="`cds-modal__header-icon--${variant}`"
+							height="40"
+							width="40"
+							name="warning-outline"
+						/>
+						Atenção
+					</div>
+					<div
+						v-else-if="variant === 'error'"
+						class="cds-modal__header-title"
+					>
+						<cds-icon
+							:class="`cds-modal__header-icon--${variant}`"
+							height="40"
+							width="40"
+							name="alert-outline"
+						/>
+						Erro
+					</div>
+					<div
+						v-else-if="variant === 'info'"
+						class="cds-modal__header-title"
+					>
+						<cds-icon
+							:class="`cds-modal__header-icon--${variant}`"
+							height="40"
+							width="40"
+							name="info-outline"
+						/>
+						Informativo
+					</div>
 				</div>
 				<cds-icon
-					class="cds-modal__header-detail"
+					v-if="variant === 'warning'"
+					:class="`cds-modal__header-detail--${variant}`"
 					height="60"
 					width="60"
 					name="warning-outline"
+				/>
+				<cds-icon
+					v-else-if="variant === 'error'"
+					:class="`cds-modal__header-detail--${variant}`"
+					height="60"
+					width="60"
+					name="alert-outline"
+				/>
+				<cds-icon
+					v-else-if="variant === 'info'"
+					:class="`cds-modal__header-detail--${variant}`"
+					height="60"
+					width="60"
+					name="info-outline"
 				/>
 			</header>
 
@@ -30,13 +76,10 @@
 				class="cds-modal__body"
 			>
 				<span class="cds-modal__body-title">
-					Tem certeza que deseja continuar?
+					{{ title }}
 				</span>
 				<span class="cds-modal__body-description">
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-					Nostrum quo blanditiis debitis ratione placeat et adipisci,
-					quia eveniet, deleniti omnis reprehenderit commodi quaerat
-					quisquam minus ullam maxime libero veritatis aut.
+					{{ description }}
 				</span>
 			</div>
 
@@ -95,7 +138,24 @@ export default {
 	},
 	props: {
 		/**
-		 *  Controla a exibição do modal.
+		 *  Define a variante do Dialog Modal.
+		 */
+		variant: {
+			type: String,
+			default: 'warning',
+		},
+		/**
+		 *  Define a descrição do Dialog Modal.
+		 */
+		description: {
+			type: String,
+			default: `Esta ação afetará o sistema e
+			os arquivos associados. Ao prosseguir, você
+			confirma que está ciente e
+			concorda com as consequências. Deseja continuar?`,
+		},
+		/**
+		 *  Controla a exibição do Dialog Modal.
 		 */
 		modelValue: {
 			type: Boolean,
@@ -103,104 +163,34 @@ export default {
 			required: true,
 		},
 		/**
-		 * Define o título do modal exibido no header
+		 * Define o título do Dialog Modal exibido no header
 		 */
 		title: {
 			type: String,
-			default: 'Título',
+			default: 'Tem certeza que deseja continuar?',
 		},
 		/**
-		 * Especifica o tamanho do modal. São 3 tamanhos implementados: 'sm', 'md', 'lg' e 'xl'.
-		 */
-		size: {
-			type: String,
-			default: 'md',
-		},
-		/**
-		 * Define o estado do botão de ação do modal.
-		 */
-		disableOkButton: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Define o estado do botão de cancelar do modal.
-		 */
-		disableCancelButton: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 *  Controla a ação de fechar o modal ao clicar fora.
-		 */
-		noCloseOnBackdrop: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 *  Controla a ação de fechar o modal ao clicar no botão de ação.
-		 */
-		noCloseOkButton: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 *  Controla a exibição do botão de fechar do modal.
-		 */
-		noCloseButton: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 *  Controla a exibição do botão de cancelar do modal.
-		 */
-		noCancelButton: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 *  Controla a exibição do rodapé (footer) do modal.
-		 */
-		noFooter: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 *  Controla a exibição do cabeçalho (header) do modal.
-		 */
-		noHeader: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 *  Define texto do botão de ação do modal
+		 *  Define texto do botão de ação do Dialog Modal
 		 */
 		okButtonText: {
 			type: String,
-			default: 'Confirmar',
+			default: 'Sim, continuar',
 		},
 		/**
-		 *  Define texto do botão de cancelar do modal
+		 *  Define texto do botão de cancelar do Dialog Modal
 		 */
 		cancelButtonText: {
 			type: String,
 			default: 'Cancelar',
 		},
 		/**
-		 * Define a variante do botão de ação do Modal (segue as variantes do componente de botão do Cuida)
+		 * Define a variante do botão de ação do Dialog Modal (segue as variantes do componente de botão do Cuida)
 		 */
 		actionButtonVariant: {
 			type: String,
 			default: 'green',
 			validator: (value) => predefinedColors.includes(value),
 		},
-		/**
-		 * Define se o conteúdo do modal precisa ser "scrollado" e adiciona um scroll vertical quando a altura máxima é atingida
-		 */
-		scrollable: {
-			type: Boolean,
-			default: false,
-		}
 	},
 
 	data() {
@@ -255,6 +245,7 @@ export default {
 	},
 };
 </script>
+
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
 
@@ -294,11 +285,31 @@ export default {
 		display: flex;
 		max-height: 80px;
 		align-items: center;
-		background: linear-gradient(90deg, #FFF1D9 0%, #FFE5B8 100%);
 		@include subheading-1;
 		color: $n-800;
 		font-weight: $font-weight-semibold;
 		justify-content: space-between;
+
+		&--warning {
+			@extend .cds-modal__header;
+			background: linear-gradient(90deg, #FFF1D9 0%, #FFE5B8 100%);
+		}
+
+		&--info {
+			@extend .cds-modal__header;
+			background: linear-gradient(90deg, #DFEBFF 0%, #BDD5FF 100%);
+		}
+
+		&--error {
+			@extend .cds-modal__header;
+			background: linear-gradient(90deg, #FFE7E1 0%, #FFD6CC 100%);
+		}
+	}
+
+	&__header-title {
+		display: flex;
+		align-items: center;
+		gap: spacer(2);
 	}
 
 	&__header-content {
@@ -309,13 +320,38 @@ export default {
 	}
 
 	&__header-icon {
-		color: $al-500;
+
+		&--warning {
+			color: $al-500;
+		}
+
+		&--info {
+			color: $bn-500;
+		}
+
+		&--error {
+			color: $rc-500;
+		}
 	}
 
 	&__header-detail {
 		zoom: 2.4;
 		margin: spacer(n6);
-		color: rgba(242, 154, 0, 0.16)
+
+		&--warning {
+			@extend .cds-modal__header-detail;
+			color: rgba(242, 154, 0, 0.16)
+		}
+
+		&--error {
+			@extend .cds-modal__header-detail;
+			color: rgba(238, 45, 69, 0.11)
+		}
+
+		&--info {
+			@extend .cds-modal__header-detail;
+			color: rgba(47, 123, 255, 0.11)
+		}
 	}
 
 	&__body {
@@ -326,12 +362,14 @@ export default {
 
 		&-title {
 			@include subheading-1;
+			color: $n-800;
 			font-weight: $font-weight-bold;
 		}
 
 		&-description {
 			@include body-1;
 			font-weight: $font-weight-regular;
+			color: $n-800;
 		}
 	}
 
