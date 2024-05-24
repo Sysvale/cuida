@@ -20,7 +20,6 @@ export default (rawPalete) => {
 
 		let enteredTokensSection = false;
 
-
 		//NOTE: O idx3 é usado para retornar às primeiras posições do array para colocar na mesma posição
 		// valores HEX e os tokens 
 		for (let idx2 = 2, idx3 = 2; idx2 < properties.length; idx2++, idx3++) {
