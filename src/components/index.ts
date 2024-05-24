@@ -37,6 +37,7 @@ import InnerTabs from './InnerTabs.vue';
 import Image from './Image.vue';
 import Link from './Link.vue';
 import LoadingBar from './LoadingBar.vue';
+import MobileNavigation from './MobileNavigation.vue';
 import Modal from './Modal.vue';
 import Multiselect from './Multiselect.vue';
 import NavBar from './NavBar.vue';
@@ -122,6 +123,7 @@ export default {
 		app.component('CdsLineChart', LineChart);
 		app.component('CdsLink', Link); //NOTE: Testado no SB
 		app.component('CdsLoadingBar', LoadingBar); //NOTE: Testado no SB
+		app.component('CdsMobileNavigation', MobileNavigation); //NOTE: Testado no SB
 		app.component('CdsModal', Modal); //NOTE: Testado no SB
 		app.component('CdsMultiselect', Multiselect); //FIXME: Problema no SB
 		app.component('CdsNavBar', NavBar); //NOTE: Testado no SB
