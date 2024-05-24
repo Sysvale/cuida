@@ -66,6 +66,9 @@
 				</div>
 			</template>
 		</div>
+
+		<div class="secondary-navigation__overflow-left" />
+		<div class="secondary-navigation__overflow-right" />
 	</div>
 </template>
 
