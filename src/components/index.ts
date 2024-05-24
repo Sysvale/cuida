@@ -4,6 +4,7 @@ import Alert from './Alert.vue';
 import AlertCard from './AlertCard.vue';
 import AppBar from './AppBar.vue';
 import Avatar from './Avatar.vue';
+import AvatarGroup from './AvatarGroup.vue';
 import Badge from './Badge.vue';
 import BarChart from './BarChart.vue';
 import LineChart from './LineChart.vue';
@@ -43,6 +44,7 @@ import Multiselect from './Multiselect.vue';
 import NavBar from './NavBar.vue';
 import NumberInput from './NumberInput.vue';
 import PageContainer from './PageContainer.vue';
+import PageLayout from './PageLayout.vue';
 import PageHeader from './PageHeader.vue';
 import Pagination from './Pagination.vue';
 import PanelCard from './PanelCard.vue';
@@ -93,6 +95,7 @@ export default {
 		app.component('CdsAlertCard', AlertCard);
 		app.component('CdsAppBar', AppBar); //NOTE: Testado no SB
 		app.component('CdsAvatar', Avatar); //NOTE: Testado no SB
+		app.component('CdsAvatarGroup', AvatarGroup); //NOTE: Testado no SB
 		app.component('CdsBadge', Badge); //NOTE: Testado no SB
 		app.component('CdsBarChart', BarChart);
 		app.component('CdsBox', Box);
@@ -129,6 +132,7 @@ export default {
 		app.component('CdsNavBar', NavBar); //NOTE: Testado no SB
 		app.component('CdsNumberInput', NumberInput); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsPageContainer', PageContainer); //NOTE: Testado no SB
+		app.component('CdsPageLayout', PageLayout); //NOTE: Testado no SB
 		app.component('CdsPageHeader', PageHeader); //NOTE: Testado no SB
 		app.component('CdsPagination', Pagination); //NOTE: Testado no SB. !Reativo!
 		app.component('CdsPanelCard', PanelCard); //NOTE: Testado no SB
