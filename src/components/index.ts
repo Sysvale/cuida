@@ -27,6 +27,7 @@ import DateInput from './DateInput.vue';
 import DialogModal from './DialogModal.vue';
 import Divider from './Divider.vue';
 import Dropdown from './Dropdown.vue';
+import DonutChart from './DonutChart.vue';
 import EmptyState from './EmptyState.vue';
 import FileInput from './FileInput.vue';
 import FlatButton from './FlatButton.vue';
@@ -115,6 +116,7 @@ export default {
 		app.component('CdsDialogModal', DialogModal); //NOTE: Testado no SB
 		app.component('CdsDivider', Divider); //NOTE: Testado no SB
 		app.component('CdsDropdown', Dropdown); //NOTE: Testado no SB
+		app.component('CdsDonutChart', DonutChart); //NOTE: Testado no SB
 		app.component('CdsEmptyState', EmptyState); //NOTE: Testado no SB
 		app.component('CdsFileInput', FileInput); //NOTE: Testado no SB
 		app.component('CdsFlatButton', FlatButton); //NOTE: Testado no SB
