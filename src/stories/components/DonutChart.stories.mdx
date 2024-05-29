@@ -1,9 +1,9 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
-import PieChart from '../../components/PieChart.vue';
+import DonutChart from '../../components/DonutChart.vue';
 
 <Meta
-	title="Componentes/Charts/PieChart"
-	component={ PieChart }
+	title="Componentes/Charts/DonutChart"
+	component={ DonutChart }
 	argTypes={{
 		variant: {
 			control: {
@@ -33,7 +33,7 @@ import PieChart from '../../components/PieChart.vue';
 				language: 'html',
 				format: true,
 				code: /*html*/
-`<cds-pie-chart
+`<cds-donut-chart
 	:data="chartData"
 	:variant="variant"
 	:labels="chartLabels"
@@ -44,25 +44,32 @@ import PieChart from '../../components/PieChart.vue';
 />
 
 export const Template = (args) => ({
-	components: { CdsPieChart: PieChart },
+	components: { CdsDonutChart: DonutChart },
 	setup() {
 		return { args };
 	},
 	template: /*html*/ `
 		<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px; height: 300px">
-			<cds-pie-chart
+			<cds-donut-chart
 				v-bind="args"
+				@chart-click="logChartClick"
 			/>
 		</div>
-	`
+	`,
+	methods: {
+		logChartClick(e) {
+			console.info('logDonutChartClick: ', e);
+		},
+	},
 });
 
-# PieChart
+# DonutChart
 
-### Um componente de gráfico reutilizável para exibir dados visualmente.
+### Um componente de gráfico reutilizável para exibir dados visualmente, de modo um pouco mais legível que o PieChart.
 ---
+<br />
 
-⚠️ Esse componente vai ser substituído pelo DonutChart nas próximas versões do Cuida
+⚠️ Esse componente vai substituir o PieChart nas próximas versões do Cuida
 
 <br />
 
@@ -83,7 +90,7 @@ export const Template = (args) => ({
 
 <Canvas>
 	<Story
-		name="PieChart"
+		name="DonutChart"
 		args={{
 			labels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
 			colors: ['teal', 'violet', 'amber', 'blue', 'red'],
@@ -105,5 +112,5 @@ export const Template = (args) => ({
   </Story>
 </Canvas>
 
-<ArgsTable story="PieChart" />
+<ArgsTable story="DonutChart" />
 
