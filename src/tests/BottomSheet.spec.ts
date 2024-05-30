@@ -7,7 +7,6 @@ describe('BottomSheet', () => {
 		const wrapper = mount(BottomSheet, {
 			props: {
 				modelValue: true,
-				title: 'Qual o segredo da vida?',
 			},
 		});
 

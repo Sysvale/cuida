@@ -5,7 +5,7 @@ exports[`BottomSheet > renders correctly 1`] = `
   <div class=\\"backdrop__show\\" data-v-4053a7e3=\\"\\">
     <div class=\\"bottom-sheet__show\\" data-v-4053a7e3=\\"\\">
       <div class=\\"bottom-sheet__header\\" data-v-4053a7e3=\\"\\">
-        <div class=\\"bottom-sheet__title\\" data-v-4053a7e3=\\"\\">Qual o segredo da vida?</div>
+        <div class=\\"bottom-sheet__title\\" data-v-4053a7e3=\\"\\">Onde encontrar o meu CNS</div>
         <div class=\\"bottom-sheet__close-icon\\" data-v-4053a7e3=\\"\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20\\" height=\\"20\\" viewBox=\\"0 0 24 24\\" aria-labelledby=\\"x-outline\\" role=\\"presentation\\" data-v-4053a7e3=\\"\\">
             <g fill=\\"#29333D\\"></g>
           </svg></div>
