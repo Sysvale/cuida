@@ -1,0 +1,3 @@
+// Vitest Snapshot v1
+
+exports[`DonutChart > renders correctly 1`] = `"<span data-v-2c35dc11=\\"\\"><div data-v-2c35dc11=\\"\\" class=\\"responsive-container\\"><doughnut-stub data-v-2c35dc11=\\"\\" data=\\"[object Object]\\" options=\\"[object Object]\\" plugins=\\"\\" datasetidkey=\\"label\\"></doughnut-stub></div></span>"`;
