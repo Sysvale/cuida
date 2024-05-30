@@ -305,6 +305,10 @@ export default {
 		resolveLabel() {
 			return this.mobile ? 'mobile-label' : 'label';
 		},
+
+		resolveChevronTop() {
+			return this.mobile ? '9px' : '6px';
+		},
 	},
 
 	watch: {
@@ -688,7 +692,7 @@ export default {
 
 	&__chevron--closed {
 		position: absolute;
-		top: 6px;
+		top: v-bind(resolveChevronTop);
 		right: 2px;
 		display: block;
 		height: 32px;
@@ -718,7 +722,7 @@ export default {
 
 	&__chevron--opened {
 		position: absolute;
-		top: 6px;
+		top: v-bind(resolveChevronTop);
 		right: 2px;
 		display: block;
 		height: 32px;
