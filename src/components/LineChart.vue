@@ -77,6 +77,17 @@ export default {
 			}
 		},
 		/**
+		* Define o tema do gráfico.
+		*/
+		theme: {
+			type: String,
+			required: false,
+			default: '',
+			validator: (value) => {
+				return ['green', 'teal', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray', 'dark'].includes(value);
+			},
+		},
+		/**
 		 * Defina as labels do gráfico
 		 */
 		labels: {
@@ -223,8 +234,12 @@ export default {
 		paleteBuilder,
 
 		palete() {
-			this.palletColors = this.paleteBuilder(this.sassColorVariables.palete);
-			this.removeFirstTwoElements();
+			if (this.theme.length) {
+				this.palletColors = this.paleteBuilder(this.sassColorVariables.chartThemes);
+			} else {
+				this.palletColors = this.paleteBuilder(this.sassColorVariables.palete);
+				this.removeFirstTwoElements();
+			}
 		},
 
 		// NOTE: Função responsável por remover os dois primeiros elementos da paleta para quando não é gray ou Dark Neutrals
@@ -274,8 +289,16 @@ export default {
 		// NOTE: Função responsável por buscar a cor na paleta
 		// Para definição da opacidade é aplicado hexadecimal (80 = 50%)
 		generateBackgroundColor() {
-			const variantLowercase = this.variant.toLowerCase();
-			const palletColor = this.palletColors.find(color => color.variantName.toLowerCase().includes(variantLowercase));
+			let variantLowercase = this.variant.toLowerCase();
+
+			if (this.theme.length) {
+				variantLowercase = this.theme.toLowerCase();
+			}
+
+			const palletColor = this.palletColors.find(color => {
+				return color.variantName.toLowerCase() === variantLowercase
+			});
+
 			if (palletColor) {
 				if (this.fill) {
 					const withOpacity = palletColor.colorShades.map(color => color + '80');
@@ -285,7 +308,6 @@ export default {
 			}
 			return [];
 		},
-
 
 		// NOTE: Função responsável por setar backgroundColor
 		// Ocorre essa verificação para garantir que o mesmo conjunto de dados para mais de um item selecionado tenha a mesma cor
