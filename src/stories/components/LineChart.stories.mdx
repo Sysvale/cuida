@@ -24,6 +24,15 @@ import LineChart from '../../components/LineChart.vue';
 				]
 			}
 		},
+		theme: {
+			control: {
+				type: 'select',
+				options: [
+				'blue',
+				'indigo',
+				]
+			}
+		},
 		smoothing: {
 			control: {
 				type: 'range',
@@ -91,7 +100,7 @@ export const Template = (args) => ({
 		name="LineChart"
 		args={{
 			labels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
-			variant: 'green',
+			theme: 'blue',
 			fill: false,
 			isDashed: false,
 			borderDash: [5,5],

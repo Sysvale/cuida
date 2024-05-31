@@ -434,6 +434,22 @@ $allColors: (
 	}
 }
 
+$blueThemeShades: $bn-700, $ts-400, $ta-400, $bn-400, $in-500, $gp-300, $og-200, $og-100, $al-200, $al-300;
+$blueThemeTokens: '$bn-700', '$ts-400', '$ta-400', '$bn-400', '$in-500', '$gp-300', '$og-200', '$og-100', '$al-200', '$al-300';
+
+$blueThemeMetadata: 'Blue Theme', 'Blue', $blueThemeShades, $blueThemeTokens;
+
+
+$indigoThemeShades: $in-500, $vr-300, $og-300, $pp-100, $og-200, $in-400, $n-30, $pp-300, $vr-400, $n-700;
+$indigoThemeTokens: '$in-500', '$pp-100', '$og-200', '$vr-300', '$in-400', '$og-300', '$n-30', '$n-700', '$vr-400', '$pp-300';
+
+$IndigoThemeMetadata: 'Indigo Theme', 'Indigo', $indigoThemeShades, $indigoThemeTokens;
+
+
+$chartThemes:
+	[$blueThemeMetadata],
+	[$IndigoThemeMetadata];
+
 :export {
 	gp50: $gp-50;
 	gp100: $gp-100;
@@ -542,4 +558,5 @@ $allColors: (
 	n900: $n-900;
 
 	palete: $palete;
+	chartThemes: $chartThemes;
 }
