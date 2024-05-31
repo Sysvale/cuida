@@ -17,6 +17,7 @@ import { Line } from 'vue-chartjs'
 import { Chart, registerables } from 'chart.js';
 import sassColorVariables from '../assets/sass/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
+import 'chartjs-adapter-luxon';
 
 // Registrar o elemento "point" no registro (Torna-se necessário para marcações de ponto)
 Chart.register(...registerables);
@@ -77,6 +78,17 @@ export default {
 			}
 		},
 		/**
+		* Define o tema do gráfico.
+		*/
+		theme: {
+			type: String,
+			required: false,
+			default: '',
+			validator: (value) => {
+				return ['green', 'teal', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray', 'dark'].includes(value);
+			},
+		},
+		/**
 		 * Defina as labels do gráfico
 		 */
 		labels: {
@@ -124,6 +136,27 @@ export default {
 			type: Number,
 			default: 0.3,
 		},
+		/**
+		* Objeto de configuação de animation. O objeto sobrescreve a configuração padrão.
+		*/
+		scales: {
+			type: Object,
+			default: () => ({}),
+		},
+		/**
+		* Objeto de configuação de animation. O objeto sobrescreve a configuração padrão.
+		*/
+		animation: {
+			type: Object,
+			default: () => ({}),
+		},
+		/**
+		* Objeto de configuação de plugins. O objeto sobrescreve a configuração padrão.
+		*/
+		plugins : {
+			type: Object,
+			default: () => ({}),
+		}
 	},
 
 	data() {
@@ -144,7 +177,7 @@ export default {
 						display: true,
 						title: {
 							display: true
-						}
+						},
 					},
 					y: {
 						suggestedMin: this.yAxisRange[0],
@@ -153,7 +186,8 @@ export default {
 						title: {
 							display: true,
 						},
-					}
+					},
+					...this.scales,
 				},
 				tension: this.smoothing,
 				responsive: true,
@@ -177,8 +211,12 @@ export default {
 							pointStyle: 'rectRounded',
 						},
 					},
+					...this.plugins,
 				},
 				fill: this.fill,
+				animation: {
+					...this.animation,
+				}
 			},
 		}
 	},
@@ -219,12 +257,26 @@ export default {
 		},
 	},
 
+	mounted() {
+		console.log('🚀 -> file: LineChart.vue:257 -> this.scales:', this.scales);
+
+		this.chartOptions = {
+			...this.chartOptions,
+			...this.scales,
+		}
+		console.log('🚀 -> file: LineChart.vue:256 -> chartOptions:', this.chartOptions);
+	},
+
 	methods: {
 		paleteBuilder,
 
 		palete() {
-			this.palletColors = this.paleteBuilder(this.sassColorVariables.palete);
-			this.removeFirstTwoElements();
+			if (this.theme.length) {
+				this.palletColors = this.paleteBuilder(this.sassColorVariables.chartThemes);
+			} else {
+				this.palletColors = this.paleteBuilder(this.sassColorVariables.palete);
+				this.removeFirstTwoElements();
+			}
 		},
 
 		// NOTE: Função responsável por remover os dois primeiros elementos da paleta para quando não é gray ou Dark Neutrals
@@ -274,8 +326,16 @@ export default {
 		// NOTE: Função responsável por buscar a cor na paleta
 		// Para definição da opacidade é aplicado hexadecimal (80 = 50%)
 		generateBackgroundColor() {
-			const variantLowercase = this.variant.toLowerCase();
-			const palletColor = this.palletColors.find(color => color.variantName.toLowerCase().includes(variantLowercase));
+			let variantLowercase = this.variant.toLowerCase();
+
+			if (this.theme.length) {
+				variantLowercase = this.theme.toLowerCase();
+			}
+
+			const palletColor = this.palletColors.find(color => {
+				return color.variantName.toLowerCase() === variantLowercase
+			});
+
 			if (palletColor) {
 				if (this.fill) {
 					const withOpacity = palletColor.colorShades.map(color => color + '80');
@@ -285,7 +345,6 @@ export default {
 			}
 			return [];
 		},
-
 
 		// NOTE: Função responsável por setar backgroundColor
 		// Ocorre essa verificação para garantir que o mesmo conjunto de dados para mais de um item selecionado tenha a mesma cor
