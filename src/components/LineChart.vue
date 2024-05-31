@@ -17,6 +17,7 @@ import { Line } from 'vue-chartjs'
 import { Chart, registerables } from 'chart.js';
 import sassColorVariables from '../assets/sass/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
+import 'chartjs-adapter-luxon';
 
 // Registrar o elemento "point" no registro (Torna-se necessário para marcações de ponto)
 Chart.register(...registerables);
@@ -135,6 +136,27 @@ export default {
 			type: Number,
 			default: 0.3,
 		},
+		/**
+		* Objeto de configuação de animation. O objeto sobrescreve a configuração padrão.
+		*/
+		scales: {
+			type: Object,
+			default: () => ({}),
+		},
+		/**
+		* Objeto de configuação de animation. O objeto sobrescreve a configuração padrão.
+		*/
+		animation: {
+			type: Object,
+			default: () => ({}),
+		},
+		/**
+		* Objeto de configuação de plugins. O objeto sobrescreve a configuração padrão.
+		*/
+		plugins : {
+			type: Object,
+			default: () => ({}),
+		}
 	},
 
 	data() {
@@ -155,7 +177,7 @@ export default {
 						display: true,
 						title: {
 							display: true
-						}
+						},
 					},
 					y: {
 						suggestedMin: this.yAxisRange[0],
@@ -164,7 +186,8 @@ export default {
 						title: {
 							display: true,
 						},
-					}
+					},
+					...this.scales,
 				},
 				tension: this.smoothing,
 				responsive: true,
@@ -188,8 +211,12 @@ export default {
 							pointStyle: 'rectRounded',
 						},
 					},
+					...this.plugins,
 				},
 				fill: this.fill,
+				animation: {
+					...this.animation,
+				}
 			},
 		}
 	},
@@ -228,6 +255,16 @@ export default {
 			},
 			immediate: true,
 		},
+	},
+
+	mounted() {
+		console.log('🚀 -> file: LineChart.vue:257 -> this.scales:', this.scales);
+
+		this.chartOptions = {
+			...this.chartOptions,
+			...this.scales,
+		}
+		console.log('🚀 -> file: LineChart.vue:256 -> chartOptions:', this.chartOptions);
 	},
 
 	methods: {
