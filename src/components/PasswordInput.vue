@@ -149,6 +149,13 @@ export default {
 			type: String,
 			default: 'info-outline',
 		},
+		/**
+		 * Define o tipo do input, se true será um input adaptador para o mobile
+		 */
+		mobile: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -203,15 +210,23 @@ export default {
 		},
 
 		labelDynamicClass() {
-			return this.fluid ? 'password-input__label--fluid' : 'password-input__label';
+			const labelType = this.mobile ? 'mobile-label' : 'label';
+
+			return this.fluid ? `password-input__${labelType}--fluid` : `password-input__${labelType}`;
 		},
 
 		inputClass() {
-			return this.fluid ? 'password-input__field--fluid' : 'password-input__field';
+			const inputType = this.mobile ? 'mobile-field' : 'field';
+
+			return this.fluid ? `password-input__${inputType}--fluid` : `password-input__${inputType}`;
 		},
 
 		errorState() {
 			return this.state === 'invalid';
+		},
+
+		resolveInputWidth() {
+			return this.mobile ? '300px' : '266px';
 		},
 	},
 
@@ -239,8 +254,8 @@ export default {
 	methods: {
 		handleShowPassword() {
 			this.showPassword = !this.showPassword;
-		}
-	}
+		},
+	},
 };
 </script>
 
@@ -251,7 +266,7 @@ export default {
 	justify-content: space-between;
 	outline: 1px solid $n-50;
 	border-radius: $border-radius-extra-small;
-	width: 266px;
+	width: v-bind(resolveInputWidth);
 
 	&--fluid {
 		@extend .password-input;
@@ -284,6 +299,17 @@ export default {
 		}
 	}
 
+	&__mobile-label {
+		@extend .password-input__label;
+		font-size: 14px;
+		font-weight: 700;
+
+		&--fluid {
+			@extend .password-input__mobile-label;
+			width: 100%;
+		}
+	}
+
 	&__field {
 		padding: pa(3);
 		margin: mr(2);
@@ -299,6 +325,20 @@ export default {
 
 		&--fluid {
 			@extend .password-input__field;
+			width: 100%;
+		}
+	}
+
+	&__mobile-field {
+		@extend .password-input__field;
+		@include body-2;
+		font-weight: 400;
+		height: 48px !important;
+		border-radius: $border-radius-lil;
+
+
+		&--fluid {
+			@extend .password-input__mobile-field;
 			width: 100%;
 		}
 	}

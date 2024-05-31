@@ -5,7 +5,7 @@
 		class="select"
 	>
 		<label
-			class="select__label"
+			:class="`select__${resolveLabel}`"
 		>
 			<div
 				class="label__content"
@@ -244,6 +244,13 @@ export default {
 			default: false,
 			required: false,
 		},
+		/**
+		 * Define o tipo do input, se true será um input adaptador para o mobile
+		 */
+		mobile: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -268,30 +275,39 @@ export default {
 
 		inputClass() {
 			let returningClass = '';
+			const inputClass = this.mobile ? 'select__mobile-input' : 'select__input';
 
 			if (this.active && this.direction === 'down') {
-				returningClass = 'select__input--opened-down';
+				returningClass = `${inputClass}--opened-down`;
 			} else if (this.active && this.direction === 'up') {
-				returningClass = 'select__input--opened-up';
+				returningClass = `${inputClass}--opened-up`;
 			} else {
-				returningClass = 'select__input--closed';
+				returningClass = `${inputClass}--closed`;
 			}
 
 			if (!this.disabled) {
 				if (this.state === 'valid') {
-					returningClass += ' select__input--valid';
+					returningClass += ` ${inputClass}--valid`;
 				} else if (this.state === 'invalid') {
-					returningClass += ' select__input--invalid';
+					returningClass += ` ${inputClass}--invalid`;
 				}
 			} else {
-				returningClass += ' select__input--disabled';
+				returningClass += ` ${inputClass}--disabled`;
 			}
 
-			returningClass += ` select__input--${widths.find((item) => item === this.width)}`;
-			returningClass += this.fluid ? ' select__input--fluid' : ' select__input--fit';
-			returningClass += this.searchable ? ' select__input--searchable' : '';
+			returningClass += ` ${inputClass}--${widths.find((item) => item === this.width)}`;
+			returningClass += this.fluid ? ` ${inputClass}--fluid` : ` ${inputClass}--fit`;
+			returningClass += this.searchable ? ` ${inputClass}--searchable` : '';
 
 			return returningClass;
+		},
+
+		resolveLabel() {
+			return this.mobile ? 'mobile-label' : 'label';
+		},
+
+		resolveChevronTop() {
+			return this.mobile ? '9px' : '6px';
 		},
 	},
 
@@ -579,9 +595,87 @@ export default {
 		}
 	}
 
+	&__mobile-input {
+		@extend .select__input;
+		@include body-2;
+		height: 48px;
+		font-weight: 400;
+		border-radius: $border-radius-lil;
+
+		&:hover:not([disabled]):not(.select__mobile-input--invalid):not(.select__mobile-input--valid) {
+			outline: 1px solid $n-100;
+		}
+
+		&--closed {
+			@extend .select__mobile-input;
+			border-radius: $border-radius-extra-small !important;
+		}
+
+		&--opened-down {
+			@extend .select__mobile-input;
+			border-top-left-radius: $border-radius-extra-small !important;
+			border-top-right-radius: $border-radius-extra-small !important;
+		}
+
+		&--opened-up {
+			@extend .select__mobile-input;
+			border-bottom-left-radius: $border-radius-extra-small !important;
+			border-bottom-right-radius: $border-radius-extra-small !important;
+		}
+
+		&--searchable {
+			caret-color: $n-700;
+		}
+
+		&--thin {
+			width: 150px;
+		}
+
+		&--default {
+			width: 300px;
+		}
+
+		&--wide {
+			width: 600px;
+		}
+
+		&--fluid {
+			width: 100%;
+		}
+
+		&--disabled {
+			background-color: $n-20 !important;
+			pointer-events: none;
+			border: none;
+		}
+
+		&--valid {
+			outline: 1px solid $gp-500;
+		}
+
+		&--invalid {
+			outline: 1px solid $rc-600;
+		}
+
+		&::placeholder {
+			color: $n-300;
+			@include body-2;
+		}
+
+		&--disabled::placeholder {
+			color: $n-100;
+		}
+	}
+
 	&__label {
 		@include label;
 		display: flex;
+	}
+
+	&__mobile-label {
+		@extend .select__label;
+		font-size: 14px;
+		font-weight: 700;
 	}
 
 	&__container {
@@ -598,7 +692,7 @@ export default {
 
 	&__chevron--closed {
 		position: absolute;
-		top: 6px;
+		top: v-bind(resolveChevronTop);
 		right: 2px;
 		display: block;
 		height: 32px;
@@ -628,7 +722,7 @@ export default {
 
 	&__chevron--opened {
 		position: absolute;
-		top: 6px;
+		top: v-bind(resolveChevronTop);
 		right: 2px;
 		display: block;
 		height: 32px;
