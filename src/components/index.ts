@@ -12,6 +12,7 @@ import PieChart from './PieChart.vue';
 import PolarAreaChart from './PolarAreaChart.vue';
 import StackedBarChart from './StackedBarChart.vue';
 import Box from './Box.vue';
+import BottomSheet from './BottomSheet.vue';
 import Breadcrumb from './Breadcrumb.vue';
 import Button from './Button.vue';
 import Card from './Card.vue';
@@ -101,6 +102,7 @@ export default {
 		app.component('CdsBadge', Badge); //NOTE: Testado no SB
 		app.component('CdsBarChart', BarChart);
 		app.component('CdsBox', Box);
+		app.component('CdsBottomSheet', BottomSheet);
 		app.component('CdsBreadcrumb', Breadcrumb);
 		app.component('CdsButton', Button); //NOTE: Testado no SB
 		app.component('CdsCard', Card);

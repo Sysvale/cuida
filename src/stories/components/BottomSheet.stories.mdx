@@ -1,0 +1,89 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import BottomSheet from '../../components/BottomSheet.vue';
+import Button from '../../components/Button.vue';
+
+<Meta
+	title="Componentes/Overlays/BottomSheet"
+	component={ BottomSheet }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format: true,
+				code: /*html*/
+`<cds-bottom-sheet
+	v-model="showBottomSheet"
+	title="Onde encontrar o meu CNS"
+>
+	Conteúdo
+</cds-bottom-sheet>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsBottomSheet: BottomSheet, CdsButton: Button },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			showBottomSheet: false,
+		};
+	},
+	template: /*html*/ `
+		<div style="display: flex; justify-content: center">
+			<cds-button
+				style="margin: 12px;"
+				@click="showBottomSheet = true"
+			>
+				Click
+			</cds-button>
+			<cds-bottom-sheet
+				v-bind="args"
+				v-model="showBottomSheet"
+			>
+				Conteúdo
+			</cds-bottom-sheet>
+		</div>
+	`,
+});
+
+# Bottom Sheet
+
+### BottomSheets são componentes que exibem conteúdo adicional em uma camada sobreposta na parte inferior da página atual, fornecendo acesso rápido a informações ou ações complementares sem interromper o fluxo principal da interface.
+---
+<br />
+
+## Quando usar:
+- Para fornecer acesso rápido a opções ou controles adicionais sem obscurecer o conteúdo principal da página;
+- Quando há necessidade de apresentar informações contextuais relevantes sem exigir uma mudança de contexto para o usuário;
+- Para oferecer uma experiência de navegação fluida, permitindo que o usuário permaneça na mesma tela enquanto interage com o conteúdo adicional.
+
+
+<br />
+
+## Quando não usar:
+- Se o conteúdo ou as ações adicionais exigirem mais espaço do que a área disponível na parte inferior da tela.
+- Quando a presença de um BottomSheet interferiria na experiência do usuário ou causaria confusão ao sobrepor-se a outros elementos essenciais da interface.
+- Se houver necessidade de exibir uma quantidade significativa de informações ou fluxos complexos que não possam ser adequadamente contidos na parte inferior da tela.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="BottomSheet"
+		args={{
+			title: "Onde encontrar o meu CNS",
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="BottomSheet" />
