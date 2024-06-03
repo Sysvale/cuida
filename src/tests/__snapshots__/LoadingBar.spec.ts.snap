@@ -2,8 +2,8 @@
 
 exports[`LoadingBar > renders correctly 1`] = `
 "<div data-v-cc77174b=\\"\\">
-  <div class=\\"loading-bar__container\\" data-v-cc77174b=\\"\\">
-    <div class=\\"loading-bar\\" data-v-cc77174b=\\"\\"></div>
+  <div data-v-cc77174b=\\"\\" class=\\"loading-bar__container\\">
+    <div data-v-cc77174b=\\"\\" class=\\"loading-bar\\"></div>
   </div>
 </div>"
 `;

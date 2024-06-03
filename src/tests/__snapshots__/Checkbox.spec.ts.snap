@@ -1,7 +1,7 @@
 // Vitest Snapshot v1
 
 exports[`Button > renders correctly 1`] = `
-"<button class=\\"button__container button--green--active button-size--md\\" label=\\"checkbox test\\" value=\\"false\\" data-v-3c9d0845=\\"\\">
+"<button data-v-3c9d0845=\\"\\" class=\\"button__container button--green--active button-size--md\\" label=\\"checkbox test\\" value=\\"false\\">
   <!--v-if-->
   <!-- @slot Slot padrão utilizado para exibir texto do botão. -->Lorem ipsum
 </button>"

@@ -1,13 +1,13 @@
 // Vitest Snapshot v1
 
 exports[`TextInput > renders correctly 1`] = `
-"<div fields=\\"field1,field2,field3\\" items=\\"[object Object],[object Object]\\" data-v-d8d9f755=\\"\\"><span data-v-d8d9f755=\\"\\"><label class=\\"text-input__label\\" data-v-d8d9f755=\\"\\"><div class=\\"label__content\\" for=\\"cds-text-input\\" data-v-d8d9f755=\\"\\"><span data-v-d8d9f755=\\"\\">Label</span>
+"<div data-v-d8d9f755=\\"\\" fields=\\"field1,field2,field3\\" items=\\"[object Object],[object Object]\\"><span data-v-d8d9f755=\\"\\"><label data-v-d8d9f755=\\"\\" class=\\"text-input__label\\"><div data-v-d8d9f755=\\"\\" class=\\"label__content\\" for=\\"cds-text-input\\"><span data-v-d8d9f755=\\"\\">Label</span>
   <!--v-if-->
   <!--v-if-->
 </div>
 <!--v-if--></label></span>
-<div class=\\"text-input\\" data-v-d8d9f755=\\"\\"><input id=\\"cds-text-input\\" placeholder=\\"Digite aqui a informação\\" class=\\"text-input__field\\" type=\\"text\\" data-v-d8d9f755=\\"\\">
-  <div class=\\"text-input__icon-container\\" data-v-d8d9f755=\\"\\">
+<div data-v-d8d9f755=\\"\\" class=\\"text-input\\"><input data-v-d8d9f755=\\"\\" id=\\"cds-text-input\\" placeholder=\\"Digite aqui a informação\\" class=\\"text-input__field\\" type=\\"text\\">
+  <div data-v-d8d9f755=\\"\\" class=\\"text-input__icon-container\\">
     <!--v-if-->
     <!--v-if-->
     <!--v-if-->

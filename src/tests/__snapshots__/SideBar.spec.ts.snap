@@ -17,7 +17,7 @@ exports[`SideBar > renders correctly 1`] = `
             <!--v-if-->
           </router-link>
         </div>
-        <transition-stub>
+        <transition-stub appear=\\"false\\" persisted=\\"false\\" css=\\"true\\">
           <!--v-if-->
         </transition-stub>
       </li>
@@ -30,7 +30,7 @@ exports[`SideBar > renders correctly 1`] = `
             <cds-icon-stub name=\\"caret-down-outline\\" width=\\"16\\" height=\\"16\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\" class=\\"\\"></cds-icon-stub>
           </div>
         </div>
-        <transition-stub>
+        <transition-stub appear=\\"false\\" persisted=\\"false\\" css=\\"true\\">
           <!--v-if-->
         </transition-stub>
       </li>
@@ -43,7 +43,7 @@ exports[`SideBar > renders correctly 1`] = `
             <!--v-if-->
           </router-link>
         </div>
-        <transition-stub>
+        <transition-stub appear=\\"false\\" persisted=\\"false\\" css=\\"true\\">
           <!--v-if-->
         </transition-stub>
       </li>
@@ -61,9 +61,9 @@ exports[`SideBar > renders correctly 1`] = `
           <div class=\\"avatar__container--white avatar__container--lg\\"><span class=\\"avatar__initials--lg\\">JM</span></div>
           <!--v-if-->
         </div>
-        <div id=\\"\\" class=\\"popover\\" data-v-eb14fb58=\\"\\"></div>
+        <div data-v-eb14fb58=\\"\\" id=\\"\\" class=\\"popover\\"></div>
       </div>
-      <transition-stub>
+      <transition-stub name=\\"fade\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\">
         <div>
           <p>Joana Mendes</p>
           <p>Administradora</p>
