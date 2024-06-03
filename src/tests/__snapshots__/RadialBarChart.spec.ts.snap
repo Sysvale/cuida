@@ -1,0 +1,8 @@
+// Vitest Snapshot v1
+
+exports[`RadialBarChart > renders correctly 1`] = `
+"<span data-v-814a25f0=\\"\\"><div data-v-814a25f0=\\"\\" class=\\"responsive-container\\"><div data-v-814a25f0=\\"\\" class=\\"legend__container\\"><div data-v-814a25f0=\\"\\" class=\\"legend__item\\"><div data-v-814a25f0=\\"\\" class=\\"legend__square\\" style=\\"\\"></div><span data-v-814a25f0=\\"\\" class=\\"\\">Exames realizados</span></div>
+</div>
+<doughnut-stub data-v-814a25f0=\\"\\" data=\\"[object Object]\\" options=\\"[object Object]\\" plugins=\\"\\" datasetidkey=\\"label\\"></doughnut-stub>
+</div></span>"
+`;
