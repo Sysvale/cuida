@@ -1,7 +1,7 @@
 // Vitest Snapshot v1
 
 exports[`AlertCard snapshot test > renders correctly 1`] = `
-"<span data-v-45f89aca=\\"\\" id=\\"alert-card\\"><div data-v-45f89aca=\\"\\" class=\\"alert-card__container\\"><!--v-if--><div data-v-45f89aca=\\"\\" class=\\"alert-card__content-container\\"><span data-v-45f89aca=\\"\\" class=\\"alert-card__title--info\\">Título do AlertCard</span><!-- @slot Slot usado para inserção de conteúdo customizado no subtítulo. --><span data-v-45f89aca=\\"\\" class=\\"alert-card__subtitle mt-2\\">Subtítulo do AlertCard</span>
+"<span id=\\"alert-card\\" data-v-45f89aca=\\"\\"><div class=\\"alert-card__container\\" data-v-45f89aca=\\"\\"><!--v-if--><div class=\\"alert-card__content-container\\" data-v-45f89aca=\\"\\"><span class=\\"alert-card__title--info\\" data-v-45f89aca=\\"\\">Título do AlertCard</span><!-- @slot Slot usado para inserção de conteúdo customizado no subtítulo. --><span class=\\"alert-card__subtitle mt-2\\" data-v-45f89aca=\\"\\">Subtítulo do AlertCard</span>
 <!-- @slot Slot usado para inserção de conteúdo adicional no AlertCard
 					abaixo do subtítulo. -->
 </div>

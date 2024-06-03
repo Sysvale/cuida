@@ -1,47 +1,47 @@
 // Vitest Snapshot v1
 
 exports[`MobileNavigation > renders correctly 1`] = `
-"<div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation mobile-navigation--dark\\">
-  <div data-v-c1f5c1c8=\\"\\" class=\\"variant-resolver--green\\">
-    <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__header\\">
-      <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__logo\\">
-        <!-- @slot Slot para renderização do logo principal.--><img data-v-c1f5c1c8=\\"\\" src=\\"\\">
+"<div class=\\"mobile-navigation mobile-navigation--dark\\" data-v-c1f5c1c8=\\"\\">
+  <div class=\\"variant-resolver--green\\" data-v-c1f5c1c8=\\"\\">
+    <div class=\\"mobile-navigation__header\\" data-v-c1f5c1c8=\\"\\">
+      <div class=\\"mobile-navigation__logo\\" data-v-c1f5c1c8=\\"\\">
+        <!-- @slot Slot para renderização do logo principal.--><img src=\\"\\" data-v-c1f5c1c8=\\"\\">
       </div>
-      <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__title\\">Vigilância Sanitária</div>
-      <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__menu-btn\\">
-        <cds-icon-stub data-v-c1f5c1c8=\\"\\" name=\\"menu-outline\\" width=\\"24\\" height=\\"24\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub>
+      <div class=\\"mobile-navigation__title\\" data-v-c1f5c1c8=\\"\\">Vigilância Sanitária</div>
+      <div class=\\"mobile-navigation__menu-btn\\" data-v-c1f5c1c8=\\"\\">
+        <cds-icon-stub name=\\"menu-outline\\" width=\\"24\\" height=\\"24\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\" data-v-c1f5c1c8=\\"\\"></cds-icon-stub>
       </div>
     </div>
-    <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar\\">
-      <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar-header\\">
-        <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar-logo\\">
-          <!-- @slot Slot para renderização do logo da sidebar.--><img data-v-c1f5c1c8=\\"\\" src=\\"\\">
+    <div class=\\"mobile-navigation__sidebar\\" data-v-c1f5c1c8=\\"\\">
+      <div class=\\"mobile-navigation__sidebar-header\\" data-v-c1f5c1c8=\\"\\">
+        <div class=\\"mobile-navigation__sidebar-logo\\" data-v-c1f5c1c8=\\"\\">
+          <!-- @slot Slot para renderização do logo da sidebar.--><img src=\\"\\" data-v-c1f5c1c8=\\"\\">
         </div>
-        <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar-btn\\">
-          <cds-icon-stub data-v-c1f5c1c8=\\"\\" name=\\"menu-outline\\" width=\\"24\\" height=\\"24\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub>
+        <div class=\\"mobile-navigation__sidebar-btn\\" data-v-c1f5c1c8=\\"\\">
+          <cds-icon-stub name=\\"menu-outline\\" width=\\"24\\" height=\\"24\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\" data-v-c1f5c1c8=\\"\\"></cds-icon-stub>
         </div>
       </div>
-      <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar-content\\">
-        <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar-items\\">
-          <router-link data-v-c1f5c1c8=\\"\\" to=\\"/home\\" class=\\"mobile-navigation__sidebar-item\\">
-            <cds-icon-stub data-v-c1f5c1c8=\\"\\" name=\\"home-outline\\" width=\\"24\\" height=\\"24\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub><span data-v-c1f5c1c8=\\"\\">Início</span>
+      <div class=\\"mobile-navigation__sidebar-content\\" data-v-c1f5c1c8=\\"\\">
+        <div class=\\"mobile-navigation__sidebar-items\\" data-v-c1f5c1c8=\\"\\">
+          <router-link to=\\"/home\\" class=\\"mobile-navigation__sidebar-item\\" data-v-c1f5c1c8=\\"\\">
+            <cds-icon-stub name=\\"home-outline\\" width=\\"24\\" height=\\"24\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\" data-v-c1f5c1c8=\\"\\"></cds-icon-stub><span data-v-c1f5c1c8=\\"\\">Início</span>
           </router-link>
-          <router-link data-v-c1f5c1c8=\\"\\" to=\\"/visa\\" class=\\"mobile-navigation__sidebar-item mobile-navigation__sidebar-item--active\\">
-            <cds-icon-stub data-v-c1f5c1c8=\\"\\" name=\\"shield-outline\\" width=\\"24\\" height=\\"24\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub><span data-v-c1f5c1c8=\\"\\">Vigilância Sanitária</span>
+          <router-link to=\\"/visa\\" class=\\"mobile-navigation__sidebar-item mobile-navigation__sidebar-item--active\\" data-v-c1f5c1c8=\\"\\">
+            <cds-icon-stub name=\\"shield-outline\\" width=\\"24\\" height=\\"24\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\" data-v-c1f5c1c8=\\"\\"></cds-icon-stub><span data-v-c1f5c1c8=\\"\\">Vigilância Sanitária</span>
           </router-link>
-          <router-link data-v-c1f5c1c8=\\"\\" to=\\"/regulation\\" class=\\"mobile-navigation__sidebar-item\\">
-            <cds-icon-stub data-v-c1f5c1c8=\\"\\" name=\\"calendar-outline\\" width=\\"24\\" height=\\"24\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub><span data-v-c1f5c1c8=\\"\\">Central de marcação</span>
+          <router-link to=\\"/regulation\\" class=\\"mobile-navigation__sidebar-item\\" data-v-c1f5c1c8=\\"\\">
+            <cds-icon-stub name=\\"calendar-outline\\" width=\\"24\\" height=\\"24\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\" data-v-c1f5c1c8=\\"\\"></cds-icon-stub><span data-v-c1f5c1c8=\\"\\">Central de marcação</span>
           </router-link>
         </div>
-        <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar-footer\\">
-          <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar-user-info\\">
-            <cds-avatar-stub data-v-c1f5c1c8=\\"\\" variant=\\"green\\" size=\\"lg\\" src=\\"\\" name=\\"Joana Mendes\\" clickable=\\"false\\"></cds-avatar-stub>
-            <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar-user-text\\">
+        <div class=\\"mobile-navigation__sidebar-footer\\" data-v-c1f5c1c8=\\"\\">
+          <div class=\\"mobile-navigation__sidebar-user-info\\" data-v-c1f5c1c8=\\"\\">
+            <cds-avatar-stub variant=\\"green\\" size=\\"lg\\" src=\\"\\" name=\\"Joana Mendes\\" clickable=\\"false\\" data-v-c1f5c1c8=\\"\\"></cds-avatar-stub>
+            <div class=\\"mobile-navigation__sidebar-user-text\\" data-v-c1f5c1c8=\\"\\">
               <p data-v-c1f5c1c8=\\"\\">Joana Mendes</p>
               <p data-v-c1f5c1c8=\\"\\">Administradora</p>
             </div>
-          </div><button data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar-logout\\">
-            <cds-icon-stub data-v-c1f5c1c8=\\"\\" name=\\"logout-outline\\" width=\\"24\\" height=\\"24\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub>
+          </div><button class=\\"mobile-navigation__sidebar-logout\\" data-v-c1f5c1c8=\\"\\">
+            <cds-icon-stub name=\\"logout-outline\\" width=\\"24\\" height=\\"24\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\" data-v-c1f5c1c8=\\"\\"></cds-icon-stub>
           </button>
         </div>
       </div>

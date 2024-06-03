@@ -8,7 +8,7 @@ exports[`CalloutCard > renders correctly 1`] = `
 							Evento que indica que o Botão foi clicado
 							@event action-button-click
 							@type {Event}
-						--><button data-v-3c9d0845=\\"\\" class=\\"button__container button--green--active button-size--md\\" id=\\"content-button\\">
+						--><button class=\\"button__container button--green--active button-size--md\\" id=\\"content-button\\" data-v-3c9d0845=\\"\\">
     <!--v-if-->
     <!-- @slot Slot padrão utilizado para exibir texto do botão. -->Ok
   </button>
