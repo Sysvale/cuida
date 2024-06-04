@@ -57,6 +57,7 @@ import ProgressBar from './ProgressBar.vue';
 import ProgressCircular from './ProgressCircular.vue';
 import Pulsar from './Pulsar.vue';
 import Radio from './Radio.vue';
+import RadialBarChart from './RadialBarChart.vue';
 import RadioButtonGroup from './RadioButtonGroup.vue';
 import Spacer from './Spacer.vue';
 import Scrollable from './Scrollable.vue';
@@ -149,6 +150,7 @@ export default {
 		app.component('CdsPulsar', Pulsar);
 		app.component('CdsRadio', Radio); //NOTE: Testado no SB
 		app.component('CdsRadioButtonGroup', RadioButtonGroup); //NOTE: Testado no SB
+		app.component('CdsRadialBarChart', RadialBarChart); //NOTE: Testado no SB
 		app.component('CdsSpacer', Spacer);
 		app.component('CdsScrollable', Scrollable); //FIXME: Problema no SB
 		app.component('CdsSearchInput', SearchInput);
