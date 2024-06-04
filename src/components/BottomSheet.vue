@@ -7,6 +7,9 @@
 				v-on-click-outside="closeHandle"
 				:class="toggleAnimationClass ? 'bottom-sheet__show' : 'bottom-sheet__hide'"
 			>
+				<div class="bottom-sheet__header-border">
+					<div class="bottom-sheet__header-border-line" />
+				</div>
 				<div class="bottom-sheet__header">
 					<div class="bottom-sheet__title">
 						{{ title }}
@@ -149,6 +152,20 @@ export default {
 	background-color: $n-0;
 	padding: pa(6);
 	color: $n-800;
+
+	&__header-border {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: mTRBL(n2, 0, 4, 0);
+	}
+
+	&__header-border-line {
+		width: 30px;
+		height: 4px;
+		background: $n-40;
+		border-radius: $border-radius-large;
+	}
 
 	&__show {
 		@extend .bottom-sheet;
