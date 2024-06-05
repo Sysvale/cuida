@@ -93,6 +93,7 @@ export default {
 	watch: {
 		modelValue(newValue, oldValue) {
 			if (newValue !== oldValue) {
+				this.mustDisableExternalScrolls(newValue);
 				this.internalModelValue = newValue;
 			}
 		},
@@ -108,6 +109,10 @@ export default {
 				this.$emit('update:model-value', false);
 				this.$emit('close', true);
 			}, 300);
+		},
+
+		mustDisableExternalScrolls(value) {
+			document.body.style.overflow = value ? 'hidden' : 'auto';
 		},
 	},
 };
