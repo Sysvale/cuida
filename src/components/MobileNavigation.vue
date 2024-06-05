@@ -1,8 +1,5 @@
 <template>
-	<div
-		class="mobile-navigation"
-		:class="`mobile-navigation--${resolveMode}`"
-	>
+	<div :class="resolveMainClasses">
 		<div :class="`variant-resolver--${variant}`">
 			<div class="mobile-navigation__header">
 				<div class="mobile-navigation__logo">
@@ -108,7 +105,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, defineEmits, computed } from 'vue';
+import { ref, defineProps, defineEmits, computed, watch } from 'vue';
 import { isEqual, isEmpty } from 'lodash';
 import CdsIcon from './Icon.vue';
 import CdsAvatar from './Avatar.vue';
@@ -167,7 +164,14 @@ const props = defineProps({
 	user: {
 		type: Object,
 		default: () => {},
-	}
+	},
+	/**
+	 * Define se o componente estará no modo sticky
+	*/
+	sticky: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const emit = defineEmits([
@@ -198,6 +202,22 @@ const resolveMode = computed(() => {
 	return (props.light) ? 'light' : 'dark';
 });
 
+const resolveMainClasses = computed(() => {
+	let classes = `mobile-navigation mobile-navigation--${resolveMode.value}`;
+
+	if (props.sticky) {
+		classes += ' mobile-navigation--sticky';
+	}
+
+	return classes;
+});
+
+watch(openSidebar, async (newValue, oldValue) => {
+	if (newValue !== oldValue) {
+		mustDisableExternalScrolls(newValue);
+	}
+});
+
 const handleOpenSidebar = () => {
 	openSidebar.value = true;
 };
@@ -223,6 +243,10 @@ const resolveRoute = ({ route, path }) => {
 const routerPushTo = (item) => {
 	return resolveRoute(item) ? resolveRoute(item).path : null;
 };
+
+const mustDisableExternalScrolls = (value) => {
+	document.body.style.overflow = value ? 'hidden' : 'auto';
+};
 </script>
 
 <style lang="scss" scoped>
@@ -234,6 +258,10 @@ const routerPushTo = (item) => {
 	width: 100%;
 	z-index: 1000;
 	box-shadow: $shadow-sm;
+
+	&--sticky {
+		position: sticky;
+	}
 
 	&__header {
 		padding: pTRBL(2, 4, 5, 4);
@@ -268,7 +296,7 @@ const routerPushTo = (item) => {
 		left: 0;
 		position: absolute;
 		padding: pYX(4, 5);
-		height: 100%;
+		height: calc(100svh - 1px);
 		width: 100%;
 		margin-left: calc(0px - 100%);
 		transition: margin-left 0.3s ease;
