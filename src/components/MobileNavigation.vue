@@ -296,7 +296,7 @@ const mustDisableExternalScrolls = (value) => {
 		left: 0;
 		position: absolute;
 		padding: pYX(4, 5);
-		height: calc(100svh - 1px);
+		height: 100svh;
 		width: 100%;
 		margin-left: calc(0px - 100%);
 		transition: margin-left 0.3s ease;
