@@ -104,6 +104,10 @@ export default {
 		},
 	},
 
+	mounted() {
+		this.internalActiveItem = this.activeItem;
+	},
+
 	methods: {
 		colorHexCode,
 
