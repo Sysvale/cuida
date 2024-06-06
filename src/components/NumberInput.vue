@@ -61,6 +61,19 @@
 			>
 
 			<input
+				v-else-if="mask"
+				id="cds-text-input"
+				v-model="internalValue"
+				v-facade="mask"
+				:placeholder="placeholder"
+				:disabled="disabled"
+				:class="inputClass"
+				type="tel"
+				@focus="handleFocus"
+				@blur="handleBlur"
+			>
+
+			<input
 				v-else
 				id="cds-text-input"
 				v-model="internalValue"
@@ -81,7 +94,6 @@
 					class="text-input__icon--check-icon"
 				/>
 
-				
 				<cds-icon
 					v-if="errorState && !disabled"
 					height="20"
@@ -213,12 +225,12 @@ export default {
 		 * Indica se o input vai funcionar com a máscara de dinheiro.
 		 * A máscara utiliza `R$` como prefixo,` , ` como separador de decimais
 		 * e tem precisão de 2 dígitos.
-		 * 
-		 * 
+		 *
+		 *
 		 * Ao utilizar essa prop o `update:modelValue` vai deixar de emitir
 		 * `Number`e vai passar a emitir uma `String` contendo a máscara.
-		 * 
-		 * 
+		 *
+		 *
 		 * Para receber o valor sem máscara, utilize a prop `unmaskedValue`
 		 * com v-model: `v-model:unmaskedValue="nome da propriedade a ser atualizada"`
 		 */
@@ -239,6 +251,14 @@ export default {
 		linkUrl: {
 			type: String,
 			default: 'https://cuida.framer.wiki/',
+		},
+		/**
+		 * Especifica a máscara a ser aplicada ao TextInput.
+		 * Exemplo: "(##) #####-####"
+		 */
+		mask: {
+			type: [String, Array],
+			default: null,
 		},
 	},
 
@@ -338,6 +358,8 @@ export default {
 				 */
 				this.$emit('update:unmaskedValue', +sanitizedInput);
 				this.$emit('update:modelValue', stringifiedInput);
+			} else if (this.mask) {
+				this.internalValue = stringifiedInput;
 			} else if (stringifiedInput.length > 15) {
 				this.internalValue = +stringifiedInput.slice(0, 15);
 			} else {
