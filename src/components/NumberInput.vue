@@ -260,6 +260,13 @@ export default {
 			type: [String, Array],
 			default: null,
 		},
+		/**
+		 * Define o tipo do input, se true será um input adaptador para o mobile
+		 */
+		mobile: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -309,8 +316,11 @@ export default {
 			return stepperInputClass;
 		},
 
+
 		labelDynamicClass() {
-			return this.fluid ? 'text-input__label--fluid' : 'text-input__label';
+			const labelType = this.mobile ? 'mobile-label' : 'label';
+
+			return this.fluid ? `text-input__${labelType}--fluid` : `text-input__${labelType}`;
 		},
 
 		validState() {
@@ -326,7 +336,9 @@ export default {
 		},
 
 		inputClass() {
-			return this.fluid ? 'text-input__field--fluid' : 'text-input__field';
+			const inputType = this.mobile ? 'mobile-field' : 'field';
+
+			return this.fluid ? `text-input__${inputType}--fluid` : `text-input__${inputType}`;
 		},
 	},
 
@@ -416,6 +428,17 @@ export default {
 		}
 	}
 
+	&__mobile-label {
+		@extend .text-input__label;
+		font-size: 14px;
+		font-weight: 700;
+
+		&--fluid {
+			@extend .text-input__mobile-label;
+			width: 100%;
+		}
+	}
+
 	&__icon-container {
 		background-color: none;
 		display: flex;
@@ -440,6 +463,19 @@ export default {
 
 		&--fluid {
 			@extend .text-input__field;
+			width: 100%;
+		}
+	}
+
+	&__mobile-field {
+		@extend .text-input__field;
+		@include body-2;
+		font-weight: 400;
+		height: 48px !important;
+		border-radius: $border-radius-lil;
+
+		&--fluid {
+			@extend .text-input__mobile-field;
 			width: 100%;
 		}
 	}
