@@ -93,8 +93,13 @@ export default {
 	watch: {
 		modelValue(newValue, oldValue) {
 			if (newValue !== oldValue) {
+				if (!newValue) {
+					this.closeHandle();
+				} else {
+					this.internalModelValue = newValue;
+				}
+
 				this.mustDisableExternalScrolls(newValue);
-				this.internalModelValue = newValue;
 			}
 		},
 	},
