@@ -46,7 +46,9 @@ export const Template = (args) => ({
 		return { args };
 	},
 	template: /*html*/ `
-		<div style="position: relative; overflow: hidden; height: 930px; width: 430px; border: 1px solid #CCC; margin: auto; border-radius: 20px; cursor: pointer">
+		<div style="position: relative; overflow: auto; height: 930px;
+					width: 430px; border: 1px solid #CCC; margin: auto;
+					border-radius: 20px; cursor: pointer">
 			<cds-mobile-navigation
 				v-bind="args"
 				:main-logo="args.light
@@ -145,6 +147,7 @@ export const sideBarItems = [
 				name: 'Joana Mendes',
 				role: 'Administradora',
 			},
+			sticky: false,
 		}}
 	>
 		{ Template.bind({}) }
