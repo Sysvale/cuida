@@ -11,13 +11,6 @@
 					>
 						<img :src="logoImage">
 					</slot>
-
-					<slot
-						v-else
-						name="collapsed-logo"
-					>
-						<img :src="collapsedLogoImage">
-					</slot>
 				</div>
 
 				<div
@@ -278,13 +271,6 @@ export default {
 		 * Imagem do logo que será renderizada
 		*/
 		logoImage: {
-			type: String,
-			default: null,
-		},
-		/**
-		 * Imagem do logo que será renderizada quando a sidebar estiver colapsada
-		*/
-		collapsedLogoImage: {
 			type: String,
 			default: null,
 		},
@@ -736,7 +722,7 @@ export default {
 	.side-bar {
 		&__header {
 			flex-direction: column;
-			gap: spacer(6);
+			gap: 0;
 		}
 
 		&__item-container {
