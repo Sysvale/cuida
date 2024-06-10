@@ -251,6 +251,8 @@ const mustDisableExternalScrolls = (value) => {
 
 	&__header {
 		padding: pTRBL(5, 4, 5, 4);
+		background-color: rgba(#FFF, .87);
+		box-shadow: 0px 4px 8px 0px #1018400A;
 	}
 
 	&__title {
