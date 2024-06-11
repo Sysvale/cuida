@@ -85,6 +85,7 @@
 				v-for="(field, fieldIndex) in computedFields"
 				:key="fieldIndex"
 				:class="resolveContentItemClass(itemIndex, fieldIndex)"
+				:width="field.width ? field.width : 'auto'"
 			>
 				<!--
 					@slot Slot usado para renderizar itens personalizados para o conteúdo da tabela. Dados do item referente à linha podem ser acessados através da propriedade `data`, enquanto a key referente à coluna pode ser acessada através da propriedade `field`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ `data`, `field`, `rowIndex` e `colIndex` }
@@ -96,7 +97,7 @@
 					:row-index="itemIndex"
 					:col-index="fieldIndex"
 				>
-					{{ item[field.key] }}
+					{{ resolveValue(item, field) }}
 				</slot>
 			</td>
 		</tr>
@@ -350,6 +351,14 @@ export default {
 
 		resolveItemClass() {
 			return this.hover ? 'table__content--hoverable' : '';
+		},
+
+		resolveValue(item, field) {
+			if (field.formatter && typeof field.formatter === 'function') {	
+				return field.formatter(item[field.key]);
+			}
+
+			return item[field.key];
 		},
 	},
 };
