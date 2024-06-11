@@ -204,7 +204,7 @@ watch(openSidebar, async (newValue, oldValue) => {
 	}
 });
 
-watch(props.activeItem, (newValue, oldValue) => {
+watch(() => props.activeItem, (newValue, oldValue) => {
 	if (newValue !== oldValue) {
 		internalActiveItem.value = newValue;
 	}
