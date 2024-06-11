@@ -11,13 +11,6 @@
 					>
 						<img :src="logoImage">
 					</slot>
-
-					<slot
-						v-else
-						name="collapsed-logo"
-					>
-						<img :src="collapsedLogoImage">
-					</slot>
 				</div>
 
 				<div
@@ -107,19 +100,19 @@
 							<div
 								class="side-bar__subitems"
 							>
-								<div
+								<a
 									v-for="(subitem, idx) in item.items"
 									:key="`${idx}-${subitem.name}-item`"
 									class="side-bar__subitem"
 									:class="isActive(subitem) && (subitem?.type !== 'external') ? 'side-bar__subitem--active' : 'side-bar__subitem--inactive'"
+									:href="!!subitem.type && subitem.type === 'external' ? subitem.route.path : 'javascript:void(0)'"
 									@click="(event) => handleClick(event, subitem)"
 								>
-									<a
+									<div
 										v-if="!!subitem.type && subitem.type === 'external'"
 										class="side-bar__subitem-link"
 										target="_blank"
 										rel="noopener noreferrer"
-										:href="subitem.route.path"
 									>
 										{{ subitem.label }}
 
@@ -128,8 +121,7 @@
 											width="16"
 											name="open-in-new-tab-outline"
 										/>
-									</a>
-
+									</div>
 									<router-link
 										v-else
 										class="side-bar__subitem-link"
@@ -137,7 +129,7 @@
 									>
 										{{ subitem.label }}
 									</router-link>
-								</div>
+								</a>
 							</div>
 						</div>
 					</Transition>
@@ -278,13 +270,6 @@ export default {
 		 * Imagem do logo que será renderizada
 		*/
 		logoImage: {
-			type: String,
-			default: null,
-		},
-		/**
-		 * Imagem do logo que será renderizada quando a sidebar estiver colapsada
-		*/
-		collapsedLogoImage: {
 			type: String,
 			default: null,
 		},
@@ -736,7 +721,7 @@ export default {
 	.side-bar {
 		&__header {
 			flex-direction: column;
-			gap: spacer(6);
+			gap: 0;
 		}
 
 		&__item-container {
