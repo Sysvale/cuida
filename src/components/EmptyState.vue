@@ -151,4 +151,10 @@ export default {
 		margin: mt(4);
 	}
 }
+
+@media (max-width: 932px) {
+	.empty-state__text {
+		max-width: 100%;
+	}
+}
 </style>
