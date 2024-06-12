@@ -35,7 +35,7 @@
 						@click="handleCloseSidebar"
 					>
 						<cds-icon
-							name="menu-outline"
+							name="x-outline"
 						/>
 					</div>
 				</div>
