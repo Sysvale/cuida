@@ -258,13 +258,10 @@ export default {
 	},
 
 	mounted() {
-		console.log('🚀 -> file: LineChart.vue:257 -> this.scales:', this.scales);
-
 		this.chartOptions = {
 			...this.chartOptions,
 			...this.scales,
 		}
-		console.log('🚀 -> file: LineChart.vue:256 -> chartOptions:', this.chartOptions);
 	},
 
 	methods: {
@@ -309,7 +306,7 @@ export default {
 			data.forEach(obj => {
 				obj.datasets.forEach(state => {
 					const dataset = {
-						label: this.showLabelName ? state.name :state.label,
+						label: this.showLabelName ? state.name : state.label,
 						data: state.data,
 						name: state.name,
 						borderRadius: 6,

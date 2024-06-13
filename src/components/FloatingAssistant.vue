@@ -165,7 +165,6 @@ export default {
 		},
 
 		modelValue(newValue) {
-			console.log('v-model', newValue);
 			this.isActive = newValue;
 		},
 	},
