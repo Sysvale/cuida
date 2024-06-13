@@ -15,7 +15,7 @@ exports[`MobileNavigation > renders correctly 1`] = `
           <!-- @slot Slot para renderização do logo da sidebar.--><img data-v-c1f5c1c8=\\"\\" src=\\"\\">
         </div>
         <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar-btn\\">
-          <cds-icon-stub data-v-c1f5c1c8=\\"\\" name=\\"menu-outline\\" width=\\"24\\" height=\\"24\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub>
+          <cds-icon-stub data-v-c1f5c1c8=\\"\\" name=\\"x-outline\\" width=\\"24\\" height=\\"24\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub>
         </div>
       </div>
       <div data-v-c1f5c1c8=\\"\\" class=\\"mobile-navigation__sidebar-content\\">

@@ -104,13 +104,6 @@ export default {
 					precision: 1
 				},
 				plugins: {
-					tooltip: {
-						callbacks: {
-							beforeTitle: function (context) {
-								return `${context[0].dataset.name}`;
-							},
-						}
-					},
 					legend: {
 						display: true,
 						labels: {
@@ -195,20 +188,10 @@ export default {
 			}
 		},
 
-		// NOTE: Adiciona campo dataset.name com o nome do objeto respectivo
-		addDataSetNames() {
-			this.data.forEach(item => {
-				item.datasets.forEach(dataset => {
-					dataset.name = item.name;
-				});
-			});
-		},
 
 		// NOTE: Função que recebe uma matriz de dados dos gráfico.
 		mergeChartDataNoSelect(data) {
-			// data.labels = this.localLabels;
 			const mergedData = { labels: this.localLabels, datasets: [] };
-			this.addDataSetNames();
 			data.forEach(obj => {
 				obj.datasets.forEach(state => {
 					const dataset = {
