@@ -426,6 +426,9 @@ export default {
 		display: flex;
 		align-items: center;
 		cursor: pointer;
+		position: relative;
+		outline: 1px solid $n-50;
+		background: $n-0;
 		width: fit-content;
 
 		&:hover:not([disabled]) {
@@ -467,11 +470,11 @@ export default {
 		}
 
 		&--thin {
-			width: 180px;
+			width: 290px;
 		}
 
 		&--default {
-			width: 300px;
+			width: 400px;
 		}
 
 		&--wide {
@@ -512,13 +515,6 @@ export default {
 
 	&__label::after {
 		content: ": ";
-	}
-
-	&__container {
-		position: relative;
-		outline: 1px solid $n-50;
-		background: $n-0;
-		width: 100%;
 	}
 
 	&__chevron--closed {
