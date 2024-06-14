@@ -73,7 +73,10 @@
 				@blur="handleBlur"
 			>
 
-			<div class="text-input__icon-container">
+			<div
+				v-if="state !== 'default'"
+				class="text-input__icon-container"
+			>
 				<cds-icon
 					v-if="validState && !disabled"
 					height="20"
@@ -414,6 +417,7 @@ export default {
 		border: none;
 		text-align: start;
 		color: $n-600;
+		width: 100%;
 
 		&:focus {
 			outline: 0;
