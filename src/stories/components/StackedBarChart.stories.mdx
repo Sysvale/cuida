@@ -24,6 +24,15 @@ import StackedBarChart from '../../components/StackedBarChart.vue';
 				]
 			}
 		},
+		theme: {
+			control: {
+				type: 'select',
+				options: [
+					'blue',
+					'indigo',
+				]
+			}
+		},
 		barWidth: {
 			control: {
 				type: 'range',
@@ -58,7 +67,7 @@ export const Template = (args) => ({
 		return { args };
 	},
 	template: /*html*/ `
-		<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px; height: 500px">
+		<div style="background-color: #FCFCFC; padding: 16px; border-radius: 4px; height: 500px">
 			<cds-stacked-bar-chart
 				v-bind="args"
 			/>

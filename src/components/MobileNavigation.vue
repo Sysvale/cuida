@@ -2,13 +2,6 @@
 	<div :class="resolveMainClasses">
 		<div :class="`variant-resolver--${variant}`">
 			<div class="mobile-navigation__header">
-				<div class="mobile-navigation__logo">
-					<!-- @slot Slot para renderização do logo principal.-->
-					<slot name="main-logo">
-						<img :src="mainLogo">
-					</slot>
-				</div>
-
 				<div class="mobile-navigation__title">
 					{{ internalActiveItem.label ?? '' }}
 				</div>
@@ -42,7 +35,7 @@
 						@click="handleCloseSidebar"
 					>
 						<cds-icon
-							name="menu-outline"
+							name="x-outline"
 						/>
 					</div>
 				</div>
@@ -128,13 +121,6 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	 * Define a logo que vai aparecer no container principal da navegação
-	*/
-	mainLogo: {
-		type: String,
-		default: '',
-	},
-	/**
 	 * Define a logo que vai aparecer na barra lateral da navegação
 	*/
 	sidebarLogo: {
@@ -218,6 +204,12 @@ watch(openSidebar, async (newValue, oldValue) => {
 	}
 });
 
+watch(() => props.activeItem, (newValue, oldValue) => {
+	if (newValue !== oldValue) {
+		internalActiveItem.value = newValue;
+	}
+});
+
 const handleOpenSidebar = () => {
 	openSidebar.value = true;
 };
@@ -264,22 +256,14 @@ const mustDisableExternalScrolls = (value) => {
 	}
 
 	&__header {
-		padding: pTRBL(2, 4, 5, 4);
-	}
-
-	&__logo {
-		display: flex;
-		justify-content: center;
-		padding: pb(4);
-
-		& img {
-			width: 130px;
-		}
+		padding: pTRBL(5, 4, 5, 4);
+		background-color: rgba(#FFF, .87);
+		backdrop-filter: blur(5px);
 	}
 
 	&__title {
 		@include subheading-1;
-		margin: mt(3);
+		margin: mTRBL(0, 0, 0, 10);
 	}
 
 	&__menu-btn {
