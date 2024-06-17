@@ -31,6 +31,7 @@ import Dropdown from './Dropdown.vue';
 import DonutChart from './DonutChart.vue';
 import EmptyState from './EmptyState.vue';
 import FileInput from './FileInput.vue';
+import FilterSelect from './FilterSelect.vue';
 import FlatButton from './FlatButton.vue';
 import FloatingAssistant from './FloatingAssistant.vue';
 import GaugeChart from './GaugeChart.vue';
@@ -39,6 +40,7 @@ import Icon from './Icon.vue';
 import IconButton from './IconButton.vue';
 import InnerTabs from './InnerTabs.vue';
 import Image from './Image.vue';
+import InlineDateInput from './InlineDateInput.vue';
 import Link from './Link.vue';
 import LoadingBar from './LoadingBar.vue';
 import MobileNavigation from './MobileNavigation.vue';
@@ -122,6 +124,7 @@ export default {
 		app.component('CdsDonutChart', DonutChart); //NOTE: Testado no SB
 		app.component('CdsEmptyState', EmptyState); //NOTE: Testado no SB
 		app.component('CdsFileInput', FileInput); //NOTE: Testado no SB
+		app.component('CdsFilterSelect', FilterSelect); //NOTE: Testado no SB
 		app.component('CdsFlatButton', FlatButton); //NOTE: Testado no SB
 		app.component('CdsFloatingAssistant', FloatingAssistant);
 		app.component('CdsGaugeChart', GaugeChart); //NOTE: Testado no SB
@@ -132,6 +135,7 @@ export default {
 		app.component('CdsInnerTabs', InnerTabs); //NOTE: Testado no SB
 		app.component('CdsLineChart', LineChart);
 		app.component('CdsLink', Link); //NOTE: Testado no SB
+		app.component('CdsInlineDateInput', InlineDateInput);
 		app.component('CdsLoadingBar', LoadingBar); //NOTE: Testado no SB
 		app.component('CdsMobileNavigation', MobileNavigation); //NOTE: Testado no SB
 		app.component('CdsModal', Modal); //NOTE: Testado no SB
