@@ -237,7 +237,7 @@ export default {
 		}
 
 		&--xl {
-			@include subheading-2;
+			@include heading-3;
 		}
 	}
 }
