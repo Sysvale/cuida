@@ -14,7 +14,6 @@ exports[`SideBar > renders correctly 1`] = `
             <div>
               <cds-icon-stub name=\\"dashboard-outline\\" width=\\"20\\" height=\\"20\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub><span>Dashboard</span>
             </div>
-            <!--v-if-->
           </router-link>
         </div>
         <transition-stub appear=\\"false\\" persisted=\\"false\\" css=\\"true\\">
@@ -40,7 +39,6 @@ exports[`SideBar > renders correctly 1`] = `
             <div>
               <cds-icon-stub name=\\"printer-outline\\" width=\\"20\\" height=\\"20\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub><span>Relatórios</span>
             </div>
-            <!--v-if-->
           </router-link>
         </div>
         <transition-stub appear=\\"false\\" persisted=\\"false\\" css=\\"true\\">
