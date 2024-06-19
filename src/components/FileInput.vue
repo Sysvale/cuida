@@ -152,13 +152,6 @@ export default {
 			default: 'md',
 		},
 		/**
-		 * Especifica o estado do Select. As opções são 'default', 'valid', 'loading' e 'invalid'.
-		 */
-		state: {
-			type: String,
-			default: 'default',
-		},
-		/**
 		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
 		 */
 		textMessage: {
