@@ -49,7 +49,7 @@
 					}"
 				>
 					<div v-if="!isOnDragEnterState">
-						Arraste o arquivo aqui ou pesquise no seu dispositivo
+						{{ textMessage }}
 					</div>
 					<div v-else>
 						Solte aqui o seu arquivo
@@ -152,11 +152,11 @@ export default {
 			default: 'md',
 		},
 		/**
-		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+		 * Especifica o texto exibido como placeholder no componente
 		 */
 		textMessage: {
 			type: String,
-			default: '',
+			default: 'Arraste o arquivo aqui ou pesquise no seu dispositivo',
 		},
 		/**
 		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
