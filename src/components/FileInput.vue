@@ -49,18 +49,8 @@
 					}"
 				>
 					<div v-if="!isOnDragEnterState">
-						Arraste o arquivo aqui ou
-						<a
-							href="javascript:void(0)"
-							class="file-input__search-link"
-							:class="{
-								'file-input__search-link--disabled': disabled === true,
-							}"
-						>
-							pesquise no seu dispositivo
-						</a>
+						Arraste o arquivo aqui ou pesquise no seu dispositivo
 					</div>
-
 					<div v-else>
 						Solte aqui o seu arquivo
 					</div>
@@ -167,6 +157,13 @@ export default {
 		state: {
 			type: String,
 			default: 'default',
+		},
+		/**
+		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+		 */
+		textMessage: {
+			type: String,
+			default: '',
 		},
 		/**
 		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
@@ -339,6 +336,7 @@ export default {
 	border: 2px dashed $n-40;
 	box-sizing: border-box;
 	justify-content: v-bind(textAlignmentResolver);
+	cursor: pointer;
 
 	&__container {
 		display: flex;
@@ -419,24 +417,6 @@ export default {
 			justify-content: space-between;
 			width: 100%;
 			@include caption;
-		}
-	}
-
-	&__search-link {
-		color: $bn-400;
-		font-weight: 700;
-		cursor: pointer;
-
-		&:hover {
-			text-decoration: underline;
-		}
-
-		&--disabled {
-			cursor: default !important;
-			color: $bn-200 !important;
-		}
-		&--disabled:hover {
-			text-decoration: none;
 		}
 	}
 
