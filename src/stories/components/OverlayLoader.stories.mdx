@@ -1,0 +1,89 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import OverlayLoader from '../../components/OverlayLoader.vue';
+
+<Meta
+	title="Componentes/Loaders/OverlayLoader"
+	component={ OverlayLoader }
+	argTypes={{
+		size: {
+			control: {
+				type: 'select',
+				options: ['sm', 'md', 'lg'],
+			}
+		},
+		variant: {
+			control: {
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'white',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-overlay-loader
+	variant="green"
+	size="md"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsOverlayLoader: OverlayLoader },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-overlay-loader
+			v-bind="args"
+		/>
+	`,
+});
+
+# OverlayLoader
+
+### OverlayLoader é utilizado para indicar o carregamento de componentes internos de páginas, como cards e gráficos.
+---
+<br />
+
+## Quando usar:
+- Para indicar o carregamento de elementos de página que ainda não possuam skeleton implementado.
+
+<br />
+
+## Quando não usar:
+- Não utilize o OverlayLoader para carregamento de páginas. Nesses casos prefira o Spinner.
+- Não utilize o OverlayLoader para indicar carregameto de componentes que possuam skeletons implementados
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="OverlayLoader"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="OverlayLoader" />
