@@ -152,6 +152,13 @@ export default {
 			default: 'md',
 		},
 		/**
+		 * Especifica o estado do Select. As opções são 'default', 'valid', 'loading' e 'invalid'.
+		 */
+		state: {
+			type: String,
+			default: 'default',
+		},
+		/**
 		 * Especifica o texto exibido como placeholder no componente
 		 */
 		textMessage: {
