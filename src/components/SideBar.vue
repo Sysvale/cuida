@@ -59,7 +59,8 @@
 
 							<cds-icon
 								v-if="!!item.items && item.items.length > 0"
-								name="caret-down-outline"
+								:key="expandItemControl"
+								:name="resolveCollapsibleItemIcon(item)"
 								:class="{'item__caret': isActive(item)}"
 								width="16"
 								height="16"
@@ -81,20 +82,12 @@
 								/>
 								<span>{{ item.label }}</span>
 							</div>
-
-							<cds-icon
-								v-if="!!item.items && item.items.length > 0"
-								name="caret-down-outline"
-								:class="{'item__caret': isActive(item)}"
-								width="16"
-								height="16"
-							/>
 						</router-link>
 					</div>
 
 					<Transition v-if="!collapsed">
 						<div
-							v-if="(!!item.items && item.items.length > 0) && isActive(item) && showUncollapsedItems"
+							v-if="resolveItemCollapse(item)"
 							class="side-bar__subitem-container"
 						>
 							<div
@@ -150,17 +143,16 @@
 					size="lg"
 				/>
 
-				<transition
-					v-if="!collapsed"
+				<Transition
 					name="fade"
 				>
 					<div
-						v-if="showUncollapsedItems"
+						v-if="!collapsed"
 					>
 						<p>{{ userName }}</p>
 						<p>{{ userRole }}</p>
 					</div>
-				</transition>
+				</Transition>
 			</div>
 
 			<ul>
@@ -288,6 +280,7 @@ export default {
 			collapsed: false,
 			showUncollapsedItems: true,
 			colorOptions,
+			expandItemControl: 0,
 		};
 	},
 
@@ -348,7 +341,14 @@ export default {
 			this.internalActiveItem = item;
 
 			if (!!item.items && item.items.length > 0) {
-				this.collapsed = false;
+				this.showUncollapsedItems = !this.showUncollapsedItems;
+				this.expandItemControl += 1;
+				return;
+			}
+
+			if (item.icon) {
+				this.showUncollapsedItems = false;
+				this.expandItemControl += 1;
 			}
 
 			/**
@@ -384,6 +384,19 @@ export default {
 
 		handleCollapse() {
 			this.collapsed = !this.collapsed;
+		},
+
+		resolveItemCollapse(item) {
+			return (!!item.items && item.items.length > 0)
+				&& this.isActive(item)
+				&& this.showUncollapsedItems;
+		},
+
+		resolveCollapsibleItemIcon(item) {
+			console.log(this.resolveItemCollapse(item));
+			return this.resolveItemCollapse(item)
+				? 'caret-up-outline'
+				: 'caret-down-outline';
 		},
 	},
 };
