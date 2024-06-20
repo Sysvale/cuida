@@ -219,7 +219,10 @@ const handleCloseSidebar = () => {
 const isActive = (item) => isEqual(item, internalActiveItem.value);
 
 const handleItemClick = (item) => {
-	internalActiveItem.value = item;
+	if (isEmpty(props.activeItem)) {
+		internalActiveItem.value = item;
+	}
+
 	openSidebar.value = false;
 
 	emit('item-click', item);
