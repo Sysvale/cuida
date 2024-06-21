@@ -393,7 +393,6 @@ export default {
 		},
 
 		resolveCollapsibleItemIcon(item) {
-			console.log(this.resolveItemCollapse(item));
 			return this.resolveItemCollapse(item)
 				? 'caret-up-outline'
 				: 'caret-down-outline';
