@@ -419,6 +419,10 @@ export default {
 		color: $n-600;
 		width: 100%;
 
+		&::placeholder {
+			color: $n-300;
+		}
+
 		&:focus {
 			outline: 0;
 		}
