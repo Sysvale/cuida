@@ -9,8 +9,11 @@
 				:style="progressStyle"
 			>
 				<svg
+					id="chart"
 					:class="`svg--${variant}`"
 					viewBox="0 0 110 100"
+					@mouseover="showPopover = true"
+					@mouseleave="showPopover = false"
 				>
 					<linearGradient
 						id="gradient"
@@ -38,11 +41,21 @@
 						/>
 
 						<path
+							
 							fill="none"
 							class="indicator-progress"
 							d="M30,90 A40,40 0 1,1 80,90"
 						/>
 
+						<path
+							fill="none"
+							class="indicator-target"
+							:class="`indicator-target--${variant}`"
+							d="M30,90 A40,40 0 1,1 80,90"
+						/>
+					</g>
+
+					<g transform="scale(1.20) translate(-9.5 -12)">
 						<path
 							fill="none"
 							class="indicator-target"
@@ -72,13 +85,28 @@
 					</text>
 				</svg>
 			</div>
+
+			<cds-rich-tooltip
+				v-if="hasSlot($slots, 'popover')"
+				v-model="showPopover"
+				default-placement="top"
+				target-id="chart"
+			>
+				<slot name="popover" />
+			</cds-rich-tooltip>
 		</div>
 	</span>
 </template>
 
 <script>
+import CdsRichTooltip from './RichTooltip.vue';
+import hasSlot from '../utils/methods/hasSlot';
 
 export default {
+	components: {
+		CdsRichTooltip,
+	},
+
 	props: {
 		/**
 		 * Define o valor indicador de progresso do GaugeChart.
@@ -121,6 +149,12 @@ export default {
 		},
 	},
 
+	data() {
+		return {
+			showPopover: false,
+		};
+	},
+
 	computed: {
 		progressStyle() {
 			return {
@@ -144,6 +178,10 @@ export default {
 		formatedValue() {
 			return `${this.value.toLocaleString('pt-br', {minimumFractionDigits: 1})}%`;
 		},
+	},
+
+	methods: {
+		hasSlot,
 	},
 }
 </script>

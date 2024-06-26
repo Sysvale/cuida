@@ -50,6 +50,14 @@ export default {
 			type: String,
 			default: '',
 		},
+		/**
+		* Indica o posicionamento padrão do Popover.
+		* Quando não especificado é considerado o posicionamento "bottom"
+		*/
+		defaultPlacement: {
+			type: String,
+			default: null,
+		}
 	},
 
 	data() {
@@ -102,7 +110,7 @@ export default {
 				this.popover = document.querySelector(`#${this.id}`);
 
 				this.popperInstance = createPopper(this.target, this.popover, {
-					placement: `bottom`,
+					placement: this.defaultPlacement === null ? 'bottom' : this.defaultPlacement,
 					modifiers: [
 						{
 							name: 'offset',
@@ -113,7 +121,7 @@ export default {
 						{
 							name: 'flip',
 							options: {
-								fallbackPlacements: [`top`],
+								fallbackPlacements: ['top'],
 							},
 						},
 					],
@@ -123,6 +131,8 @@ export default {
 
 		show() {
 			this.popover.setAttribute('data-show', '');
+			this.popover.classList.remove('popover-hide');
+			this.popover.classList.add('popover-show');
 
 			this.popperInstance.setOptions((options) => ({
 				...options,
@@ -143,9 +153,13 @@ export default {
 		},
 
 		hide() {
-			this.$nextTick(() => {
+			this.popover.classList.remove('popover-show');
+			this.popover.classList.add('popover-hide');
+			setTimeout(() => {
 				this.popover.removeAttribute('data-show');
+			}, 350); // A duração deve coincidir com a duração da animação no CSS
 
+			this.$nextTick(() => {
 				this.popperInstance.setOptions((options) => ({
 					...options,
 					modifiers: [
@@ -167,6 +181,33 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeOut {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+.popover-show {
+	animation: fadeIn 0.35s forwards;
+}
+
+.popover-hide {
+	animation: fadeOut 0.35s forwards;
+}
+
 .richTooltip {
 	background-color: rgba($n-900, 0.90);
 	border-radius: $border-radius-medium;
