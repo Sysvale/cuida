@@ -42,6 +42,13 @@
 							class="indicator-progress"
 							d="M30,90 A40,40 0 1,1 80,90"
 						/>
+
+						<path
+							fill="none"
+							class="indicator-target"
+							:class="`indicator-target--${variant}`"
+							d="M30,90 A40,40 0 1,1 80,90"
+						/>
 					</g>
 
 					<text
@@ -70,6 +77,7 @@
 </template>
 
 <script>
+
 export default {
 	props: {
 		/**
@@ -103,6 +111,14 @@ export default {
 			type: String,
 			default: '',
 		},
+		/**
+		* Legenda do indicador de progresso.
+		*/
+		target: {
+			type: Number,
+			default: 0,
+			validator: (value) => value >= 0 && value <= 100,
+		},
 	},
 
 	computed: {
@@ -117,6 +133,14 @@ export default {
 			return 198 * (1 - this.value / 100);
 		},
 
+		targetValue() {
+			let innerTarget = this.target - 1;
+
+			if (innerTarget >= 98) innerTarget = 98; 
+
+			return (198 * (1 - innerTarget / 100));
+		},
+
 		formatedValue() {
 			return `${this.value.toLocaleString('pt-br', {minimumFractionDigits: 1})}%`;
 		},
@@ -128,6 +152,7 @@ export default {
 @import './../assets/sass/tokens.scss';
 
 $stroke-progress: v-bind(chartProgressValue);
+$target: v-bind(targetValue);
 
 .responsive-container {
 	height: 100%;
@@ -152,6 +177,7 @@ $stroke-progress: v-bind(chartProgressValue);
 
 .gauge-chart {
 	--percentage: #{$stroke-progress};
+	--target: #{$target};
 
 	svg {
 		&.svg {
@@ -167,12 +193,12 @@ $stroke-progress: v-bind(chartProgressValue);
 	}
 
 	path {
-		stroke-linecap: round;
 		stroke-width: 7.5;
 	}
 
 	path.indicator-bar {
 		stroke: $n-30;
+		stroke-linecap: round;
 	}
 
 	path.indicator-progress {
@@ -180,6 +206,17 @@ $stroke-progress: v-bind(chartProgressValue);
 		stroke-dasharray: 198;
 		stroke-dashoffset: var(--percentage);
 		animation: dash 1s ease-out;
+		stroke-linecap: round;
+	}
+
+	.indicator-target {
+		stroke-width: 7.5;
+		stroke-dasharray: 1.5, 198;
+		stroke-dashoffset: var(--target);
+
+		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+			stroke: $shade-600;
+		}
 	}
 
 	text.value {

@@ -31,6 +31,14 @@ import GaugeChart from '../../components/GaugeChart.vue';
 				step: 1,
 			}
 		},
+		target: {
+			control: {
+				type: 'range',
+				min: 0,
+				max: 100,
+				step: 1,
+			}
+		},
 	}}
 	parameters={{
 		viewMode: 'docs',
@@ -85,6 +93,7 @@ export const Template = (args) => ({
 		name="Gauge Chart"
 		args={{
 			value: 79.2,
+			target: 85,
 			variant: "green",
 			size: 300,
 			subtitle: 'aptos ao indicador'
