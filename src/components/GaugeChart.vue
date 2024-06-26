@@ -87,6 +87,7 @@
 			</div>
 
 			<cds-rich-tooltip
+				v-if="hasSlot($slots, 'popover')"
 				v-model="showPopover"
 				default-placement="top"
 				target-id="chart"
@@ -99,6 +100,7 @@
 
 <script>
 import CdsRichTooltip from './RichTooltip.vue';
+import hasSlot from '../utils/methods/hasSlot';
 
 export default {
 	components: {
@@ -176,6 +178,10 @@ export default {
 		formatedValue() {
 			return `${this.value.toLocaleString('pt-br', {minimumFractionDigits: 1})}%`;
 		},
+	},
+
+	methods: {
+		hasSlot,
 	},
 }
 </script>
