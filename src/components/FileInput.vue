@@ -270,9 +270,9 @@ export default {
 		isValid: {
 			handler(newValue) {
 				if (newValue) {
-					this.internalState = 'invalid';
-				} else {
 					this.internalState = 'valid';
+				} else {
+					this.internalState = 'invalid';
 				}
 			},
 			immediate: true,
