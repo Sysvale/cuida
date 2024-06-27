@@ -1,5 +1,8 @@
 <template>
-	<div class="date-input__container">
+	<div
+		class="inline-date-input__container"
+		:class="dateInputClassContainer"
+	>
 		<span>
 			<span
 				v-if="hasSlots"
@@ -10,34 +13,27 @@
 
 			<label
 				v-else
-				class="date-input__label"
+				class="inline-date-input__label"
 			>
 				<div
 					class="label__content"
 					for="cds-text-input"
 				>
 					<span>
-						{{ label }}
-					</span>
-
-					<span
-						v-if="required"
-						class="label__required-indicator"
-					>
-						*
+						{{ capitalizedLabel }}:
 					</span>
 				</div>
 			</label>
 		</span>
 
 		<v-date-picker
-			id="cds-date-input"
+			id="cds--inline-date-input"
 			v-model="internalDate"
 			locale="pt-BR"
 			:min-date="minDate ? new Date(minDate) : null"
 			:max-date="maxDate ? new Date(maxDate) : null"
 			:attributes="showTodayDot ? attributes: {}"
-			color="green"
+			:color="variant"
 			:is-range="range"
 			@update:model-value="handleUpdateInput"
 		>
@@ -68,7 +64,7 @@
 						@focus="isBeingFocused = true"
 						@blur="isBeingFocused = false"
 					>
-					<div class="date-input__icon">
+					<div class="inline-date-input__icon">
 						<cds-icon
 							height="20"
 							width="20"
@@ -78,12 +74,6 @@
 				</div>
 			</template>
 		</v-date-picker>
-		<div
-			v-if="errorState && !disabled"
-			class="date-input__error-message"
-		>
-			{{ errorMessage }}
-		</div>
 	</div>
 </template>
 
@@ -117,80 +107,59 @@ export default {
 			validator: (value) => value === '' || typeof value === 'object' || dateStringValidator(value),
 		},
 		/**
-		 * Especifica a label do input.
-		 */
+		* Especifica a label do input.
+		*/
 		label: {
 			type: String,
 			default: 'Date',
 		},
 		/**
-		 * Desabilita o input.
-		 */
+		* Desabilita o input.
+		*/
 		disabled: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		 * Especifica o estado do DateInput. As opções são 'default', 'valid' e 'invalid'.
-		 */
-		state: {
-			type: String,
-			default: 'default',
-		},
-		/**
-		 * Controla o modo do input.
-		 */
+		* Controla o modo do input.
+		*/
 		range: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		 * Exibe asterisco de obrigatório (obs.: não faz a validação)
-		 */
-		required: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
-		 */
-		errorMessage: {
-			type: String,
-			default: 'Valor inválido',
-		},
-		/**
-		 * Especifica se a largura do DateInput deve ser fluida.
-		 */
+		* Especifica se a largura do DateInput deve ser fluida.
+		*/
 		fluid: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		 * A data mínima selecionável no DateInput. Deve ser uma string no formato `yyyy-MM-dd`.
-		 */
+		* A data mínima selecionável no DateInput. Deve ser uma string no formato `yyyy-MM-dd`.
+		*/
 		minDate: {
 			type: String,
 			default: '',
 			validator: (value) => value === '' || dateStringValidator(value),
 		},
 		/**
-		 * A data máxima selecionável no DateInput. Deve ser uma string no formato `yyyy-MM-dd`.
-		 */
+		* A data máxima selecionável no DateInput. Deve ser uma string no formato `yyyy-MM-dd`.
+		*/
 		maxDate: {
 			type: String,
 			default: '',
 			validator: (value) => value === '' || dateStringValidator(value),
 		},
 		/**
-		 * Texto placeholder para o DateInput.
-		 */
+		* Texto placeholder para o DateInput.
+		*/
 		placeholder: {
 			type: String,
 			default: 'Selecione uma data',
 		},
 		/**
-		 * Controla a marcação do dia atual no calendário.
-		 */
+		* Controla a marcação do dia atual no calendário.
+		*/
 		showTodayDot: {
 			type: Boolean,
 			default: false,
@@ -230,6 +199,24 @@ export default {
 			return !!Object.keys(this.$slots).length;
 		},
 
+		capitalizedLabel() {
+			return this.label.charAt(0).toUpperCase() + this.label.slice(1);
+		},
+
+		dateInputClassContainer() {
+			let returningClass = '';
+
+			if (this.disabled) {
+				return this.fluid
+					? 'inline-date-input--disabled inline-date-input--fluid'
+					: 'inline-date-input--disabled';
+			}
+
+			returningClass += this.fluid ? ' date-input--fluid' : ' date-input';
+
+			return returningClass;
+		},
+
 		inputClass() {
 			let returningClass = '';
 
@@ -239,36 +226,20 @@ export default {
 					: 'date-input--disabled';
 			}
 
-			if (!this.isBeingFocused) {
-				if (!this.disabled) {
-					if (this.state === 'valid') {
-						returningClass += ' date-input--valid';
-					} else if (this.state === 'invalid') {
-						returningClass += ' date-input--invalid';
-					}
-				}
-			} else if (!this.disabled) {
-				if (this.state === 'valid') {
-					returningClass += ' date-input--focused-valid';
-				} else if (this.state === 'invalid') {
-					returningClass += ' date-input--focused-invalid';
-				}
-			}
-
 			returningClass += this.fluid ? ' date-input--fluid' : ' date-input';
 
 			return returningClass;
 		},
 
-		calendarDotColor() {
+		inlineCalendarDotColor() {
 			return this.variantColorData.colorData[4].shade;
 		},
 
-		calendarTextColor() {
+		inlineCalendarTextColor() {
 			return this.variantColorData.colorData[7].shade;
 		},
 
-		calendarTrailColor() {
+		inlineCalendarTrailColor() {
 			return this.variantColorData.colorData[1].shade;
 		},
 	},
@@ -294,7 +265,7 @@ export default {
 	created() {
 		this.updateColorData();
 	},
-	
+
 	mounted() {
 		this.resolveInternalDate();
 	},
@@ -369,23 +340,13 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
 
-.date-input {
-	display: flex;
-	justify-content: space-between;
+.inline-date-input {
 	outline: 1px solid $n-50;
-	width: 266px;
-	height: 40px;
+	min-width: 266px;
+	width: fit-content;
 	color: $n-600;
 	border-radius: $border-radius-extra-small !important;
 	cursor: pointer;
-
-	input {
-		border: none;
-		outline: 0;
-		height: 100%;
-		width: 100%;
-		padding: pl(3);
-	}
 
 	&__icon {
 		display: grid;
@@ -393,11 +354,42 @@ export default {
 		margin: mr(3);
 	}
 
-	&:focus {
-		@extend .date-input;
+	&--fluid {
+		@extend .inline-date-input;
+		width: 100%;
+	}
+
+	&--disabled {
+		@extend .inline-date-input;
+		background-color: $n-20 !important;
+		pointer-events: none;
+		border: none;
+	}
+
+	&__container {
+		@extend .inline-date-input;
+		display: flex;
+		align-items: center
+	}
+
+	&__label {
+		@include label;
+		display: flex;
+		justify-content: space-between;
+		margin: ml(3)
+	}
+}
+
+.date-input {
+	display: flex;
+	height: 40px;
+	color: $n-600;
+	cursor: pointer;
+
+	input {
+		border: none;
 		outline: 0;
-		outline: 1px solid $bn-300;
-		box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);
+		padding: pl(3);
 	}
 
 	&--fluid {
@@ -410,51 +402,6 @@ export default {
 		background-color: $n-20 !important;
 		pointer-events: none;
 		border: none;
-	}
-
-	&--valid {
-		outline: 1px solid $gp-500 !important;
-	}
-
-	&--invalid {
-		outline: 1px solid $rc-600 !important;
-	}
-
-	&--focused-valid {
-		@extend .date-input--valid;
-		box-shadow: 0 0 0 0.2rem rgba($gp-300, .45) !important;
-	}
-
-	&--focused-invalid {
-		@extend .date-input--invalid;
-		box-shadow: 0 0 0 0.2rem rgba($rc-300, .45) !important;
-	}
-
-	&__container {
-		display: flex;
-		flex-direction: column;
-	}
-
-	&__label {
-		@include label;
-		display: flex;
-		justify-content: space-between;
-	}
-
-	&__error-message {
-		@include caption;
-		color: $rc-600;
-		margin: mt(1);
-	}
-}
-
-.label {
-	&__required-indicator {
-		color: $rc-600;
-	}
-
-	&__content {
-		margin: mb(1);
 	}
 }
 
@@ -512,19 +459,19 @@ export default {
 }
 
 .vc-highlight-bg-light {
-	color: v-bind(calendarTrailColor);
-	background-color: v-bind(calendarTrailColor);
+	color: v-bind(inlineCalendarTrailColor);
+	background-color: v-bind(inlineCalendarTrailColor);
 }
 
 .vc-highlight-content-light, .vc-highlight-content-outline, .vc-highlight-content-none {
-	color: v-bind(calendarTextColor);
+	color: v-bind(inlineCalendarTextColor);
 }
 
 .vc-highlight-bg-solid {
-	background-color: v-bind(calendarDotColor);
+	background-color: v-bind(inlineCalendarDotColor);
 }
 
 .vc-highlight-bg-outline, .vc-highlight-bg-none {
-	border-color: v-bind(calendarDotColor);
+	border-color: v-bind(inlineCalendarDotColor);
 }
 </style>

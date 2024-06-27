@@ -7,11 +7,7 @@ exports[`TextInput > renders correctly 1`] = `
 </div>
 <!--v-if--></label></span>
 <div data-v-d8d9f755=\\"\\" class=\\"text-input\\"><input data-v-d8d9f755=\\"\\" id=\\"cds-text-input\\" placeholder=\\"Digite aqui a informação\\" class=\\"text-input__field\\" type=\\"text\\">
-  <div data-v-d8d9f755=\\"\\" class=\\"text-input__icon-container\\">
-    <!--v-if-->
-    <!--v-if-->
-    <!--v-if-->
-  </div>
+  <!--v-if-->
 </div>
 <!--v-if-->
 </div>"

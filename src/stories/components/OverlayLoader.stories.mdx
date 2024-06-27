@@ -1,9 +1,9 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
-import Spinner from '../../components/Spinner.vue';
+import OverlayLoader from '../../components/OverlayLoader.vue';
 
 <Meta
-	title="Componentes/Loaders/Spinner"
-	component={ Spinner }
+	title="Componentes/Loaders/OverlayLoader"
+	component={ OverlayLoader }
 	argTypes={{
 		size: {
 			control: {
@@ -38,7 +38,7 @@ import Spinner from '../../components/Spinner.vue';
 				language: 'html',
 				format:true,
 				code: /*html*/ 
-`<cds-spinner
+`<cds-overlay-loader
 	variant="green"
 	size="md"
 />`
@@ -48,30 +48,31 @@ import Spinner from '../../components/Spinner.vue';
 />
 
 export const Template = (args) => ({
-	components: { CdsSpinner: Spinner },
+	components: { CdsOverlayLoader: OverlayLoader },
 	setup() {
 		return { args };
 	},
 	template: /*html*/ `
-		<cds-spinner
+		<cds-overlay-loader
 			v-bind="args"
 		/>
 	`,
 });
 
-# Spinner
+# OverlayLoader
 
-### Spinners é um componente utilizado para indicar que o progresso de uma operação ainda não foi finalizado.
+### OverlayLoader é utilizado para indicar o carregamento de componentes internos de páginas, como cards e gráficos.
 ---
 <br />
 
 ## Quando usar:
-- For necessário impedir a visualização e navegação do conteúdo de páginas enquanto houver alguma pendência de operação.
+- Para indicar o carregamento de elementos de página que ainda não possuam skeleton implementado.
 
 <br />
 
 ## Quando não usar:
-- A visualização e navegação não puder ser interrompida.
+- Não utilize o OverlayLoader para carregamento de páginas. Nesses casos prefira o Spinner.
+- Não utilize o OverlayLoader para indicar carregameto de componentes que possuam skeletons implementados
 
 <br />
 
@@ -79,13 +80,10 @@ export const Template = (args) => ({
 
 <Canvas>
 	<Story
-		name="Spinner"
-		args={{
-			delay: 0,
-		}}
+		name="OverlayLoader"
 	>
 		{ Template.bind({}) }
 	</Story>
 </Canvas>
 
-<ArgsTable story="Spinner" />
+<ArgsTable story="OverlayLoader" />

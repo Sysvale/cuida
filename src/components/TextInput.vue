@@ -73,7 +73,10 @@
 				@blur="handleBlur"
 			>
 
-			<div class="text-input__icon-container">
+			<div
+				v-if="state !== 'default'"
+				class="text-input__icon-container"
+			>
 				<cds-icon
 					v-if="validState && !disabled"
 					height="20"
@@ -228,7 +231,7 @@ export default {
 			default: false,
 		},
 		/**
-		 * Define o tipo do input, se true será um input adaptador para o mobile
+		 * Define o tipo do input, se true será um input adaptado para o mobile
 		 */
 		mobile: {
 			type: Boolean,
@@ -414,6 +417,11 @@ export default {
 		border: none;
 		text-align: start;
 		color: $n-600;
+		width: 100%;
+
+		&::placeholder {
+			color: $n-300;
+		}
 
 		&:focus {
 			outline: 0;
