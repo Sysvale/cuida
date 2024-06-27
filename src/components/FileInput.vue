@@ -84,7 +84,7 @@
 						class="on-drag-content__container"
 						:class="{'on-drag-content__container--disabled': disabled === true}"
 					>
-						<div>{{ file.name }}</div>
+						<div>{{ formatFilename }}</div>
 						<div
 							class="x-icon__container"
 							@click.stop="handleRemove"
@@ -120,7 +120,7 @@
 </template>
 
 <script>
-import isEmpty from 'lodash.isempty';
+import { last, isEmpty } from 'lodash';
 import CdsIcon from './Icon.vue';
 
 export default {
@@ -233,6 +233,20 @@ export default {
 
 		textAlignmentResolver() {
 			return this.size === 'sm' ? 'flex-start' : 'center';
+		},
+
+		formatFilename() {
+			if (this.file instanceof File && this.file.name.length > 16) {
+				const splitedName = this.file.name.split('.');
+
+				if (splitedName.length > 2) {
+					return `arquivo.${last(splitedName)}`;
+				}
+
+				return `${splitedName[0].substring(0, 16)}....${splitedName[1]}`;
+			}
+
+			return this.file.name;
 		},
 	},
 
