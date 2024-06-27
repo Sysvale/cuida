@@ -56,7 +56,7 @@
 				:placeholder="placeholder"
 				:disabled="disabled"
 				:class="inputClass"
-				type="text"
+				type="{{ inputType }}"
 				@focus="handleFocus"
 				@blur="handleBlur"
 			>
@@ -157,6 +157,14 @@ export default {
 		state: {
 			type: String,
 			default: 'default',
+		},
+		/**
+		 * Especifica o tipo do TextInput. As opções são 'text' e 'email'.
+		 */
+		inputType: {
+			type: String,
+			default: 'text',
+			validator: (value) => ['text', 'email'].includes(value),
 		},
 		/**
 		 * Exibe asterisco de obrigatório (obs.: não faz a validação)
