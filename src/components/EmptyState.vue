@@ -123,7 +123,7 @@ export default {
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	margin: ma(12);
+	margin: mYX(12, 5);
 	position: relative;
 
 	&__image {
