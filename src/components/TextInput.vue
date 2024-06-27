@@ -231,7 +231,7 @@ export default {
 			default: false,
 		},
 		/**
-		 * Define o tipo do input, se true será um input adaptador para o mobile
+		 * Define o tipo do input, se true será um input adaptado para o mobile
 		 */
 		mobile: {
 			type: Boolean,
