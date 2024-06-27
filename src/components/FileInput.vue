@@ -120,7 +120,7 @@
 </template>
 
 <script>
-import isEmpty from 'lodash.isempty';
+import { last, isEmpty } from 'lodash';
 import CdsIcon from './Icon.vue';
 
 export default {
@@ -240,7 +240,7 @@ export default {
 				const splitedName = this.file.name.split('.');
 
 				if (splitedName.length > 2) {
-					return this.file.name;
+					return `arquivo.${last(splitedName)}`;
 				}
 
 				return `${splitedName[0].substring(0, 16)}....${splitedName[1]}`;
