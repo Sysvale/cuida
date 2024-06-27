@@ -37,7 +37,8 @@ export default {
 			default: false,
 		},
 		/**
-		 * Quando especificado, determina a largura do Divider.
+		 * Quando não especificado ou 0, o comportamento do
+		 * componente é fluid, com width 100%.
 		 */
 		width: {
 			type: [String, Number],
