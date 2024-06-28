@@ -1,5 +1,6 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import FileViewer from '../../components/FileViewer.vue';
+import { colors } from '../../utils/constants/colors.js';
 
 <Meta
 	title="Componentes/Notificação/FileViewer"
@@ -8,12 +9,7 @@ import FileViewer from '../../components/FileViewer.vue';
 		variant: {
 			control:{
 				type: 'select',
-				options: [
-					'info',
-					'success',
-					'warning',
-					'danger',
-				],
+				options: colors.map(( { name }) => name),
 			}
 		},
 	}}
@@ -73,7 +69,7 @@ export const Template = (args) => ({
 	<Story
 		name="FileViewer"
 		args={{
-			variant: 'info',
+			variant: 'green',
 			text: 'Texto do alerta',
 		}}
 	>
