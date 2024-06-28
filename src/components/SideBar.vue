@@ -383,6 +383,7 @@ export default {
 		},
 
 		handleCollapse() {
+			this.$emit('collapse-click', !this.collapsed);
 			this.collapsed = !this.collapsed;
 		},
 
