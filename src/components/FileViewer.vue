@@ -4,14 +4,28 @@
 			<span class="file-viewer__extension">.jpg</span>
 		</div>
 		<div class="file-viewer__info">
-			<div class="file-viewer__info--label">Label</div>
-			<div class="file-viewer__info--name">nome_arquivo.jpg</div>
+			<div class="file-viewer__info--label">{{ label }}</div>
+			<div class="file-viewer__info--file-name">{{ fileName }}</div>
 			<div class="file-viewer__info--download">Baixar arquivo</div>
 		</div>
 	</div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
+const props = defineProps({
+	label: {
+		type: String,
+		default: 'Arquivo anexado',
+	},
+	fileName: {
+		type: String,
+		default: 'nome_do_arquivo.jpg',
+	},
+})
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -19,6 +33,8 @@
 
 .file-viewer {
 	width: fit-content;
+	min-width: 280px;
+	max-width: 350px;
 	padding: pa(3);
 	border-radius: 12px;
 	border: 1px solid $n-30;
@@ -55,9 +71,14 @@
 			color: $n-800;
 		}
 
-		&--name {
+		&--file-name {
 			@include body-2;
 			color: $n-700;
+			width: 100%;
+			max-width: 246px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 		}
 
 		&--download {
