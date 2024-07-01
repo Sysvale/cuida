@@ -112,7 +112,7 @@
 	</div>
 
 	<div
-		v-if="internalState === 'invalid' && hasFile"
+		v-if="internalState === 'invalid' && !isValid"
 		class="file-input__alert-container"
 	>
 		{{ computedAllowedMessage }}
@@ -247,10 +247,6 @@ export default {
 			}
 
 			return this.file.name;
-		},
-
-		hasFile() {
-			return !isEmpty(this.file);
 		},
 	},
 
