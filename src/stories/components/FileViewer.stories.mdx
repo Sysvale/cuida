@@ -22,8 +22,8 @@ import { colors } from '../../utils/constants/colors.js';
 				format:true,
 				code: /*html*/ 
 `<cds-alert
-	variant="info",
-	text="Texto do alerta",
+	variant="green",
+	@download-click="logDownload"
 />`
 			},
 		}
@@ -31,17 +31,26 @@ import { colors } from '../../utils/constants/colors.js';
 />
 
 export const Template = (args) => ({
-	components: { CdsAlert: FileViewer },
+	components: { CdsFileViewer: FileViewer },
 	setup() {
 		return { args };
 	},
 	template: /*html*/ `
-		<cds-alert
-			v-bind="args" 
+		<cds-file-viewer
+			v-bind="args"
+			@download-click="logDownload"
+			@close="logClose"
 		>
-			Texto do alerta pelo slot
-		</cds-alert>
+		</cds-file-viewer>
 	`,
+	methods: {
+		logDownload(event) {
+			console.log('LogDownload: ', event);
+		},
+		logClose(event) {
+			console.log('logClose: ', event);
+		}
+	}
 });
 
 # Alert
@@ -70,7 +79,8 @@ export const Template = (args) => ({
 		name="FileViewer"
 		args={{
 			variant: 'green',
-			text: 'Texto do alerta',
+			label: 'Comprovante de residência',
+			fileUrl: "https://images.pexels.com/photos/1254140/pexels-photo-1254140.jpeg"
 		}}
 	>
 		{ Template.bind({}) }
