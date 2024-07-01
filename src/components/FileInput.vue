@@ -84,7 +84,7 @@
 						class="on-drag-content__container"
 						:class="{'on-drag-content__container--disabled': disabled === true}"
 					>
-						<div>{{ file.name }}</div>
+						<div>{{ formatFilename }}</div>
 						<div
 							class="x-icon__container"
 							@click.stop="handleRemove"
@@ -112,7 +112,7 @@
 	</div>
 
 	<div
-		v-if="internalState === 'invalid'"
+		v-if="internalState === 'invalid' && hasFile"
 		class="file-input__alert-container"
 	>
 		{{ computedAllowedMessage }}
@@ -120,7 +120,7 @@
 </template>
 
 <script>
-import isEmpty from 'lodash.isempty';
+import { last, isEmpty } from 'lodash';
 import CdsIcon from './Icon.vue';
 
 export default {
@@ -234,6 +234,24 @@ export default {
 		textAlignmentResolver() {
 			return this.size === 'sm' ? 'flex-start' : 'center';
 		},
+
+		formatFilename() {
+			if (this.file instanceof File && this.file.name.length > 16) {
+				const splitedName = this.file.name.split('.');
+
+				if (splitedName.length > 2) {
+					return `arquivo.${last(splitedName)}`;
+				}
+
+				return `${splitedName[0].substring(0, 16)}....${splitedName[1]}`;
+			}
+
+			return this.file.name;
+		},
+
+		hasFile() {
+			return !isEmpty(this.file);
+		},
 	},
 
 	watch: {
@@ -256,9 +274,9 @@ export default {
 		isValid: {
 			handler(newValue) {
 				if (newValue) {
-					this.internalState = 'invalid';
-				} else {
 					this.internalState = 'valid';
+				} else {
+					this.internalState = 'invalid';
 				}
 			},
 			immediate: true,

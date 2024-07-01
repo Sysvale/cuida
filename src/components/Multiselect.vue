@@ -13,7 +13,7 @@
 
 			<label
 				v-else
-				class="clustered-multiselect__label"
+				:class="mobile ? 'clustered-multiselect__mobile-label' : 'clustered-multiselect__label'"
 			>
 				<div
 					class="label__content"
@@ -261,6 +261,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Define o tipo do input, se true será um input adaptado para o mobile
+		 */
+		 mobile: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -331,6 +338,14 @@ export default {
 
 		inputBackgroundColor() {
 			return this.disabled ? this.sassColorVariables['n20'] : this.sassColorVariables['n0'];
+		},
+
+		resolveMultiselectHeight() {
+			return this.mobile ? '48px' : '40px';
+		},
+
+		resolveMultiselectTop() {
+			return this.mobile ? '6px' : '5px';
 		},
 	},
 	watch: {
@@ -651,13 +666,13 @@ export default {
 		color: $n-600 !important;
 	}
 
-	.multiselect__tags{
+	.multiselect__tags {
 		border-bottom-left-radius: 8px !important;
 		border-bottom-right-radius: 8px !important;
 		border-top-right-radius: 8px !important;
 		border-top-left-radius: 8px !important;
 		border: 1px solid $n-50;
-		height: 40px !important;
+		height: v-bind(resolveMultiselectHeight) !important;
 		align-items: center !important;
 		display: flex !important;
 		padding-right: spacer(8);
@@ -691,7 +706,7 @@ export default {
 	}
 
 	.multiselect__select {
-		top: 5px !important;
+		top: v-bind(resolveMultiselectTop) !important;
 	}
 
 	.multiselect__select:before {
@@ -748,6 +763,12 @@ export default {
 		&__label {
 			@include label;
 			display: flex;
+		}
+
+		&__mobile-label {
+			@extend .clustered-multiselect__label;
+			font-size: 14px;
+			font-weight: 700;
 		}
 	}
 
