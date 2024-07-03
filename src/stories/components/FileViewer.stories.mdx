@@ -9,7 +9,7 @@ import { colors } from '../../utils/constants/colors.js';
 		variant: {
 			control:{
 				type: 'select',
-				options: colors.map(( { name }) => name),
+				options: colors.filter(item => item.name != 'gray').map(({ name }) => name),
 			}
 		},
 	}}

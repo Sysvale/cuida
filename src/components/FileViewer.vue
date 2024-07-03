@@ -30,10 +30,18 @@
 		</div>
 		<div class="file-viewer__info">
 			<div class="file-viewer__label">
-				{{ label }}
+				<cds-truncate
+					width="246"
+				>
+					{{ trimmedLabel }}
+				</cds-truncate>
 			</div>
 			<div class="file-viewer__file-name">
-				{{ fileUrl }}
+				<cds-truncate
+					width="246"
+				>
+					{{ fileUrl }}
+				</cds-truncate>
 			</div>
 			<div>
 				<a
@@ -52,7 +60,7 @@
 	>
 		<div class="file-viewer__visualizer-header">
 			<div class="file-viewer__visualizer-label">
-				{{ label }}
+				{{ trimmedLabel }}
 			</div>
 			<div class="file-viewer__visualizer-actions">
 				<div
@@ -105,6 +113,7 @@ import CdsIcon from '../components/Icon.vue';
 import { computed, ref } from 'vue';
 import { colors } from '../utils/constants/colors';
 import CdsImage from '../components/Image.vue';
+import CdsTruncate from '../components/Truncate.vue';
 
 const emit = defineEmits(
 	[
@@ -126,11 +135,12 @@ const emit = defineEmits(
 
 const props = defineProps({
 	/**
-	 * Especifica a label do arquivo.
+	 * Especifica a label do arquivo. A label deve ter no máximo 50 caracteres.
 	 */
 	label: {
 		type: String,
 		required: true,
+		default: 'Comprovante de residência',
 	},
 
 	/**
@@ -140,6 +150,7 @@ const props = defineProps({
 	fileUrl: {
 		type: String,
 		required: true,
+		default: 'https://images.pexels.com/photos/1254140/pexels-photo-1254140.jpeg',
 	},
 
 	/**
@@ -165,6 +176,14 @@ const fileExtension = computed(() => {
 	}
 
 	return 'file';
+})
+
+const trimmedLabel = computed(() => {
+	if (props.label.length > 50) {
+		return props.label.substring(0, 50);
+	}
+
+	return props.label;
 })
 
 const handleMouseEnter = () => {
@@ -264,9 +283,6 @@ const mustDisableExternalScrolls = (value) => {
 		color: $n-700;
 		width: 100%;
 		max-width: 246px;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
 	}
 
 	&__download {
@@ -309,6 +325,7 @@ const mustDisableExternalScrolls = (value) => {
 		@include subheading-2;
 		font-weight: $font-weight-bold;
 		color: $n-0;
+		max-width: 1000px;
 	}
 
 	&__visualizer-actions {
