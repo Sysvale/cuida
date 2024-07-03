@@ -103,10 +103,13 @@ export default {
 		},
 
 		changeInputContent(event, index) {
-			this.$refs[`pin-input${index}`][0].value = event.key;
-
+			this.innerValue.splice(index - 1, 1, event.key);
 			if (index < this.length) {
 				this.$refs[`pin-input${index + 1}`][0].focus();
+			}
+
+			if (index === this.length) {
+				this.$emit('update:modelValue', this.innerValue.join(''));
 			}
 		}
 	},
