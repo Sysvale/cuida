@@ -125,7 +125,8 @@ const emit = defineEmits(
 		'close',
 
 		/**
-		* Evento que indica que a ação de download foi acionada.
+		* Evento que indica que a ação de download foi acionada. O componente não implementa a lógica
+		* de download. A lógica deve ser implementada pelo desenvolvedor.
 		* @event download-click
 		* @type {Event}
 		*/
