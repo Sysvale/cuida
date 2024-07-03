@@ -68,7 +68,7 @@
 				:placeholder="placeholder"
 				:disabled="disabled"
 				:class="inputClass"
-				type="inputType"
+				:type="inputType"
 				@focus="handleFocus"
 				@blur="handleBlur"
 			>
