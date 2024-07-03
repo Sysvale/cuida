@@ -220,7 +220,7 @@ export default {
 
 		computedAllowedMessage() {
 			if (this.allowedExtensions) {
-				if (this.file instanceof File) {
+				if (this.file) {
 					return this.errorMessage;
 				}
 
