@@ -35,11 +35,12 @@
 			<div class="file-viewer__file-name">
 				{{ fileUrl }}
 			</div>
-			<div
-				class="file-viewer__download"
-				:class="`file-viewer__download--${variant}`"
-			>
-				<a @click.stop="emit('download-click', true)">
+			<div>
+				<a
+					class="file-viewer__download"
+					:class="`file-viewer__download--${variant}`"
+					@click.stop="emit('download-click', true)"
+				>
 					Baixar arquivo
 				</a>
 			</div>
@@ -105,17 +106,45 @@ import { computed, ref } from 'vue';
 import { colors } from '../utils/constants/colors';
 import CdsImage from '../components/Image.vue';
 
-const emit = defineEmits(['close', 'download-click']);
+const emit = defineEmits(
+	[
+		/**
+		* Evento que indica que o backdrop foi fechado.
+		* @event close
+		* @type {Event}
+		*/
+		'close',
+
+		/**
+		* Evento que indica que a ação de download foi acionada.
+		* @event download-click
+		* @type {Event}
+		*/
+		'download-click'
+	]
+);
 
 const props = defineProps({
+	/**
+	 * Especifica a label do arquivo.
+	 */
 	label: {
 		type: String,
-		default: 'Arquivo anexado',
+		required: true,
 	},
+
+	/**
+	 * Especifica a URL do arquivo. A URL deve conter a extensão do arquivo
+	 * para que a pre-visualização seja gerada.
+	 */
 	fileUrl: {
 		type: String,
 		required: true,
 	},
+
+	/**
+	 * Especifica a variante de cor do componente.
+	 */
 	variant: {
 		type: String,
 		default: 'green',

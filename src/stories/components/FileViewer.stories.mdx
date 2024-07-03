@@ -20,7 +20,7 @@ import { colors } from '../../utils/constants/colors.js';
 			source: {
 				language: 'html',
 				format:true,
-				code: /*html*/ 
+				code: /*html*/
 `<cds-alert
 	variant="green",
 	@download-click="logDownload"
@@ -53,22 +53,30 @@ export const Template = (args) => ({
 	}
 });
 
-# Alert
+# FileViewer
 
-### Alerts são componentes utilizados para prover feedbacks contextuais e notificações em resposta a ações do usuário ou atividades do sistema.
+###  FileViewer é um componente que permite pré-visualizar ou fazer download de um arquivo.
 ---
 <br />
 
 ## Quando usar:
-- For necessário mostrar informações contextuais.
-- Para feedbacks urgentes.
+- Quando for necessário apresentar uma imagem ao usuário, possibilitando que ele visualize sem a necessidade de baixá-la.
+- Quando for necessário apresentar um arquivo ao usuário e permitir que ele faça o download.
+- Para apresentar pré-visualizações de arquivos de imagem antes de baixar.
+- Quando o usuário precisa revisar rapidamente um arquivo sem abrir um aplicativo separado.
 
 <br />
 
 ## Quando não usar:
-- Não cubra outros elementos da interface com um Alert.
-- For necessário mostrar informações de modo não intrusivo. Para esse caso, recomendamos o uso de b-toasts.
-- For necessário mostrar informações contextuais extensas. Para esse caso, recomendamos o uso de AlertCard.
+- Quando for mais conveniente para o usuário ver a imagem diretamente sem precisar clicar no componente. Nesse caso, use o componente Image.
+- Quando o conteúdo não necessita de interatividade, como um ícone simples ou uma miniatura sem funcionalidade adicional.
+- Para arquivos muito grandes que podem demorar para carregar na pré-visualização. Nesse caso, forneça apenas a opção de download.
+- Quando a pré-visualização pode comprometer a segurança ou privacidade dos dados contidos no arquivo.
+
+<br />
+
+## Observações:
+A URL fornecida para o componente deve conter no final qual é a extensão do arquivo. Apenas arquivos com extensões _png_, _jpg_, _jpeg_ e _webp_ terão a pré-visualização gerada.
 
 <br />
 
@@ -78,9 +86,9 @@ export const Template = (args) => ({
 	<Story
 		name="FileViewer"
 		args={{
-			variant: 'green',
 			label: 'Comprovante de residência',
-			fileUrl: "https://images.pexels.com/photos/1254140/pexels-photo-1254140.jpeg"
+			fileUrl: "https://images.pexels.com/photos/1254140/pexels-photo-1254140.jpeg",
+			variant: 'green',
 		}}
 	>
 		{ Template.bind({}) }
