@@ -220,6 +220,10 @@ export default {
 
 		computedAllowedMessage() {
 			if (this.allowedExtensions) {
+				if (this.file instanceof File) {
+					return this.errorMessage;
+				}
+
 				const splited = this.allowedExtensions.split(',');
 				const s = splited.length === 1 ? '' : 's';
 				const initial = `São aceitos apenas arquivo${s} do${s} seguinte${s} tipo${s}:`;

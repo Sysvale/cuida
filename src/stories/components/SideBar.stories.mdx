@@ -49,6 +49,7 @@ export const Template = (args) => ({
 		<cds-side-bar
 			v-bind="args"
 			@sidebar-click="logClick"
+			@collapse-click="logCollapseClick"
 			@logout="logLogout"
 		>
 			<template #logo>
@@ -65,6 +66,9 @@ export const Template = (args) => ({
 	methods: {
 		logClick(element) {
 			console.info('%clogItemClick: ', 'color: #2C70CD;', element);
+		},
+		logCollapseClick(element) {
+			console.info('%clogCollapseClick: ', 'color: #2C70CD;', element);
 		},
 		logLogout(element) {
 			console.info('%clogLogout: ', 'color: #2C70CD;', element);
