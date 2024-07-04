@@ -152,7 +152,7 @@ export default {
 
 .bottom-sheet {
 	width: 100%;
-    height: 100%;
+    height: 75vh;
     border-top-left-radius: $border-radius-extra-large;
     border-top-right-radius: $border-radius-extra-large;
 	position: absolute;
@@ -204,6 +204,8 @@ export default {
 
 	&__content {
 		margin: mt(6);
+		max-height: 75vh;
+		overflow-y: auto;
 	}
 }
 
