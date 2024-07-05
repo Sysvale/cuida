@@ -12,7 +12,6 @@
 			'chevron--lg': size === 'lg',
 			'chevron--light': light === true,
 		}"
-		@click="animationResolver"
 	/>
 </template>
 
@@ -53,6 +52,15 @@ export default {
 		return {
 			innerDirection: this.direction,
 		};
+	},
+
+	watch: {
+		direction: {
+			handler() {
+				this.animationResolver();
+			},
+			immediate: true,
+		},
 	},
 
 	methods: {
@@ -99,7 +107,7 @@ export default {
 	&::before {
 		border-left: 6px solid transparent;
 		border-right: 6px solid transparent;
-		border-bottom: 6px solid $n-300;
+		border-bottom: 6px solid $n-400;
 		border-radius: $border-radius-small;
 		transition: all 300ms ease-in-out;
 	}
@@ -124,7 +132,7 @@ export default {
 
 	&--light {
 		&::before {
-			border-bottom: 6px solid $n-100;
+			border-bottom: 6px solid $n-10;
 		}
 	}
 
