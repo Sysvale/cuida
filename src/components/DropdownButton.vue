@@ -85,7 +85,8 @@ export default {
 			default: 'gray',
 		},
 		/**
-		* Especifica se a versão do DropdownButton é a secundária.
+		* Especifica se a versão do DropdownButton é a secundária. Essa propriedade tem
+		* maior prevalência que a prop `variant`.
 		*/
 		secondary: {
 			type: Boolean,
