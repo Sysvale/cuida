@@ -187,6 +187,7 @@ export default {
 			isOnDragEnterState: false,
 			isValid: true,
 			internalState: this.state,
+			invalidExtensionError: null,
 		};
 	},
 
@@ -220,14 +221,15 @@ export default {
 
 		computedAllowedMessage() {
 			if (this.allowedExtensions) {
-				if (this.file instanceof File) {
-					return this.errorMessage;
+				if (this.invalidExtensionError) {
+					const splited = this.allowedExtensions.split(',');
+					const s = splited.length === 1 ? '' : 's';
+					const initial = `São aceitos apenas arquivo${s} do${s} seguinte${s} tipo${s}:`;
+					return `${initial} ${this.acceptString}.`;
 				}
 
-				const splited = this.allowedExtensions.split(',');
-				const s = splited.length === 1 ? '' : 's';
-				const initial = `São aceitos apenas arquivo${s} do${s} seguinte${s} tipo${s}:`;
-				return `${initial} ${this.acceptString}.`;
+				return this.errorMessage;
+
 			} else if (this.state === 'invalid') {
 				return this.errorMessage;
 			}
@@ -320,7 +322,11 @@ export default {
 			let uploaded = fileName.split('.');
 			uploaded = uploaded[uploaded.length - 1].trim();
 
-			return alloweds.filter((item) => item === uploaded).length > 0;
+			const valid = alloweds.filter((item) => item === uploaded).length > 0;
+
+			this.invalidExtensionError = !valid;
+
+			return valid;
 		},
 
 		handleFormFileChange(ev) {
@@ -334,6 +340,7 @@ export default {
 			}
 
 			this.isValid = false;
+
 			this.$nextTick().then(() => {
 				this.file = null;
 			});
