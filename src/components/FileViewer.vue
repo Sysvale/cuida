@@ -395,30 +395,31 @@ const isMobile = computed(() => {
 	.file-viewer {
 		width: 100%;
 		max-width: none;
+
+		&__visualizer-label {
+			width: 100%;
+			max-width: none;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		&__visualizer-image-container {
+			width: 100%;
+			max-width: 100%;
+			padding: pa(5);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		&__visualizer-image {
+			max-height: 100%;
+			max-width: 100%;
+			object-fit: cover;
+		}
 	}
 
-	.file-viewer__visualizer-label {
-		width: 100%;
-		max-width: none;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-
-	.file-viewer__visualizer-image-container {
-		width: 100%;
-		max-width: 100%;
-		padding: pa(5);
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.file-viewer__visualizer-image {
-		max-height: 100%;
-		max-width: 100%;
-		object-fit: cover;
-	}
 }
 
 </style>
