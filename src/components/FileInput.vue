@@ -49,18 +49,8 @@
 					}"
 				>
 					<div v-if="!isOnDragEnterState">
-						Arraste o arquivo aqui ou
-						<a
-							href="javascript:void(0)"
-							class="file-input__search-link"
-							:class="{
-								'file-input__search-link--disabled': disabled === true,
-							}"
-						>
-							pesquise no seu dispositivo
-						</a>
+						{{ textMessage }}
 					</div>
-
 					<div v-else>
 						Solte aqui o seu arquivo
 					</div>
@@ -94,7 +84,7 @@
 						class="on-drag-content__container"
 						:class="{'on-drag-content__container--disabled': disabled === true}"
 					>
-						<div>{{ file.name }}</div>
+						<div>{{ formatFilename }}</div>
 						<div
 							class="x-icon__container"
 							@click.stop="handleRemove"
@@ -130,7 +120,7 @@
 </template>
 
 <script>
-import isEmpty from 'lodash.isempty';
+import { last, isEmpty } from 'lodash';
 import CdsIcon from './Icon.vue';
 
 export default {
@@ -169,6 +159,13 @@ export default {
 			default: 'default',
 		},
 		/**
+		 * Especifica o texto exibido como placeholder no componente
+		 */
+		textMessage: {
+			type: String,
+			default: 'Arraste o arquivo aqui ou pesquise no seu dispositivo',
+		},
+		/**
 		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
 		 */
 		errorMessage: {
@@ -190,6 +187,7 @@ export default {
 			isOnDragEnterState: false,
 			isValid: true,
 			internalState: this.state,
+			invalidExtensionError: null,
 		};
 	},
 
@@ -223,10 +221,15 @@ export default {
 
 		computedAllowedMessage() {
 			if (this.allowedExtensions) {
-				const splited = this.allowedExtensions.split(',');
-				const s = splited.length === 1 ? '' : 's';
-				const initial = `São aceitos apenas arquivo${s} do${s} seguinte${s} tipo${s}:`;
-				return `${initial} ${this.acceptString}.`;
+				if (this.invalidExtensionError) {
+					const splited = this.allowedExtensions.split(',');
+					const s = splited.length === 1 ? '' : 's';
+					const initial = `São aceitos apenas arquivo${s} do${s} seguinte${s} tipo${s}:`;
+					return `${initial} ${this.acceptString}.`;
+				}
+
+				return this.errorMessage;
+
 			} else if (this.state === 'invalid') {
 				return this.errorMessage;
 			}
@@ -236,6 +239,20 @@ export default {
 
 		textAlignmentResolver() {
 			return this.size === 'sm' ? 'flex-start' : 'center';
+		},
+
+		formatFilename() {
+			if (this.file instanceof File && this.file.name.length > 16) {
+				const splitedName = this.file.name.split('.');
+
+				if (splitedName.length > 2) {
+					return `arquivo.${last(splitedName)}`;
+				}
+
+				return `${splitedName[0].substring(0, 16)}....${splitedName[1]}`;
+			}
+
+			return this.file.name;
 		},
 	},
 
@@ -259,9 +276,9 @@ export default {
 		isValid: {
 			handler(newValue) {
 				if (newValue) {
-					this.internalState = 'invalid';
-				} else {
 					this.internalState = 'valid';
+				} else {
+					this.internalState = 'invalid';
 				}
 			},
 			immediate: true,
@@ -305,7 +322,11 @@ export default {
 			let uploaded = fileName.split('.');
 			uploaded = uploaded[uploaded.length - 1].trim();
 
-			return alloweds.filter((item) => item === uploaded).length > 0;
+			const valid = alloweds.filter((item) => item === uploaded).length > 0;
+
+			this.invalidExtensionError = !valid;
+
+			return valid;
 		},
 
 		handleFormFileChange(ev) {
@@ -319,6 +340,7 @@ export default {
 			}
 
 			this.isValid = false;
+
 			this.$nextTick().then(() => {
 				this.file = null;
 			});
@@ -339,6 +361,7 @@ export default {
 	border: 2px dashed $n-40;
 	box-sizing: border-box;
 	justify-content: v-bind(textAlignmentResolver);
+	cursor: pointer;
 
 	&__container {
 		display: flex;
@@ -419,24 +442,6 @@ export default {
 			justify-content: space-between;
 			width: 100%;
 			@include caption;
-		}
-	}
-
-	&__search-link {
-		color: $bn-400;
-		font-weight: 700;
-		cursor: pointer;
-
-		&:hover {
-			text-decoration: underline;
-		}
-
-		&--disabled {
-			cursor: default !important;
-			color: $bn-200 !important;
-		}
-		&--disabled:hover {
-			text-decoration: none;
 		}
 	}
 

@@ -1,9 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-	<div
-		v-if="showSpinner"
-		:class="computedSpinnerClass"
-	/>
+	<div class="overlay">
+		<div :class="computedSpinnerClass" />
+	</div>
 </template>
 
 <script>
@@ -26,20 +25,6 @@ export default {
 			type: String,
 			default: 'green',
 		},
-		/**
-		*	Delay para exibição do spinner, em ms
-		*
-		*/
-		delay: {
-			type: Number,
-			default: 0,
-		},
-	},
-
-	data() {
-		return {
-			showSpinner: false,
-		};
 	},
 
 	computed: {
@@ -54,22 +39,6 @@ export default {
 		computedSpinnerClass() {
 			return `${this.computedSizeClass} ${this.computedColorClass}`;
 		},
-	},
-
-	mounted() {
-		if (this.delay > 0) {
-			setTimeout(() => {
-				this.showSpinner = true;
-			}, this.delay);
-
-			return;
-		}
-
-		this.showSpinner = true;
-	},
-
-	unmounted() {
-		this.showSpinner = false;
 	},
 };
 </script>
@@ -120,5 +89,19 @@ export default {
 	100% {
 		transform: rotate(360deg);
 	}
+}
+
+.overlay {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba($n-600, 0.30);
+	height: 100%;
+	position: absolute;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	left: 0;
+	top: 0;
 }
 </style>

@@ -11,13 +11,6 @@
 					>
 						<img :src="logoImage">
 					</slot>
-
-					<slot
-						v-else
-						name="collapsed-logo"
-					>
-						<img :src="collapsedLogoImage">
-					</slot>
 				</div>
 
 				<div
@@ -66,7 +59,8 @@
 
 							<cds-icon
 								v-if="!!item.items && item.items.length > 0"
-								name="caret-down-outline"
+								:key="expandItemControl"
+								:name="resolveCollapsibleItemIcon(item)"
 								:class="{'item__caret': isActive(item)}"
 								width="16"
 								height="16"
@@ -88,38 +82,30 @@
 								/>
 								<span>{{ item.label }}</span>
 							</div>
-
-							<cds-icon
-								v-if="!!item.items && item.items.length > 0"
-								name="caret-down-outline"
-								:class="{'item__caret': isActive(item)}"
-								width="16"
-								height="16"
-							/>
 						</router-link>
 					</div>
 
 					<Transition v-if="!collapsed">
 						<div
-							v-if="(!!item.items && item.items.length > 0) && isActive(item) && showUncollapsedItems"
+							v-if="resolveItemCollapse(item)"
 							class="side-bar__subitem-container"
 						>
 							<div
 								class="side-bar__subitems"
 							>
-								<div
+								<a
 									v-for="(subitem, idx) in item.items"
 									:key="`${idx}-${subitem.name}-item`"
 									class="side-bar__subitem"
 									:class="isActive(subitem) && (subitem?.type !== 'external') ? 'side-bar__subitem--active' : 'side-bar__subitem--inactive'"
+									:href="!!subitem.type && subitem.type === 'external' ? subitem.route.path : 'javascript:void(0)'"
 									@click="(event) => handleClick(event, subitem)"
 								>
-									<a
+									<div
 										v-if="!!subitem.type && subitem.type === 'external'"
 										class="side-bar__subitem-link"
 										target="_blank"
 										rel="noopener noreferrer"
-										:href="subitem.route.path"
 									>
 										{{ subitem.label }}
 
@@ -128,8 +114,7 @@
 											width="16"
 											name="open-in-new-tab-outline"
 										/>
-									</a>
-
+									</div>
 									<router-link
 										v-else
 										class="side-bar__subitem-link"
@@ -137,7 +122,7 @@
 									>
 										{{ subitem.label }}
 									</router-link>
-								</div>
+								</a>
 							</div>
 						</div>
 					</Transition>
@@ -158,17 +143,16 @@
 					size="lg"
 				/>
 
-				<transition
-					v-if="!collapsed"
+				<Transition
 					name="fade"
 				>
 					<div
-						v-if="showUncollapsedItems"
+						v-if="!collapsed"
 					>
 						<p>{{ userName }}</p>
 						<p>{{ userRole }}</p>
 					</div>
-				</transition>
+				</Transition>
 			</div>
 
 			<ul>
@@ -282,13 +266,6 @@ export default {
 			default: null,
 		},
 		/**
-		 * Imagem do logo que será renderizada quando a sidebar estiver colapsada
-		*/
-		collapsedLogoImage: {
-			type: String,
-			default: null,
-		},
-		/**
 		 * Ativa o modo light da sidebar
 		*/
 		light: {
@@ -303,6 +280,7 @@ export default {
 			collapsed: false,
 			showUncollapsedItems: true,
 			colorOptions,
+			expandItemControl: 0,
 		};
 	},
 
@@ -363,7 +341,14 @@ export default {
 			this.internalActiveItem = item;
 
 			if (!!item.items && item.items.length > 0) {
-				this.collapsed = false;
+				this.showUncollapsedItems = !this.showUncollapsedItems;
+				this.expandItemControl += 1;
+				return;
+			}
+
+			if (item.icon) {
+				this.showUncollapsedItems = false;
+				this.expandItemControl += 1;
 			}
 
 			/**
@@ -398,7 +383,20 @@ export default {
 		},
 
 		handleCollapse() {
+			this.$emit('collapse-click', !this.collapsed);
 			this.collapsed = !this.collapsed;
+		},
+
+		resolveItemCollapse(item) {
+			return (!!item.items && item.items.length > 0)
+				&& this.isActive(item)
+				&& this.showUncollapsedItems;
+		},
+
+		resolveCollapsibleItemIcon(item) {
+			return this.resolveItemCollapse(item)
+				? 'caret-up-outline'
+				: 'caret-down-outline';
 		},
 	},
 };
@@ -736,7 +734,7 @@ export default {
 	.side-bar {
 		&__header {
 			flex-direction: column;
-			gap: spacer(6);
+			gap: 0;
 		}
 
 		&__item-container {

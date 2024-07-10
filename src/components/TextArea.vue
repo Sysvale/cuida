@@ -267,6 +267,10 @@ textarea {
 		padding: pa(3);
 		box-sizing: border-box;
 
+		&::placeholder {
+			color: $n-300;
+		}
+
 		&:focus {
 			border: 1px solid $bn-300;
 			box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);

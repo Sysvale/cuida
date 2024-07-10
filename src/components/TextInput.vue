@@ -56,7 +56,7 @@
 				:placeholder="placeholder"
 				:disabled="disabled"
 				:class="inputClass"
-				type="text"
+				:type="inputType"
 				@focus="handleFocus"
 				@blur="handleBlur"
 			>
@@ -68,12 +68,15 @@
 				:placeholder="placeholder"
 				:disabled="disabled"
 				:class="inputClass"
-				type="text"
+				:type="inputType"
 				@focus="handleFocus"
 				@blur="handleBlur"
 			>
 
-			<div class="text-input__icon-container">
+			<div
+				v-if="state !== 'default'"
+				class="text-input__icon-container"
+			>
 				<cds-icon
 					v-if="validState && !disabled"
 					height="20"
@@ -156,6 +159,14 @@ export default {
 			default: 'default',
 		},
 		/**
+		 * Especifica o tipo do TextInput. As opções são 'text' e 'email'.
+		 */
+		inputType: {
+			type: String,
+			default: 'text',
+			validator: (value) => ['text', 'email'].includes(value),
+		},
+		/**
 		 * Exibe asterisco de obrigatório (obs.: não faz a validação)
 		 */
 		required: {
@@ -228,7 +239,7 @@ export default {
 			default: false,
 		},
 		/**
-		 * Define o tipo do input, se true será um input adaptador para o mobile
+		 * Define o tipo do input, se true será um input adaptado para o mobile
 		 */
 		mobile: {
 			type: Boolean,
@@ -414,6 +425,11 @@ export default {
 		border: none;
 		text-align: start;
 		color: $n-600;
+		width: 100%;
+
+		&::placeholder {
+			color: $n-300;
+		}
 
 		&:focus {
 			outline: 0;

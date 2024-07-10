@@ -49,6 +49,7 @@ export const Template = (args) => ({
 		<cds-side-bar
 			v-bind="args"
 			@sidebar-click="logClick"
+			@collapse-click="logCollapseClick"
 			@logout="logLogout"
 		>
 			<template #logo>
@@ -61,20 +62,13 @@ export const Template = (args) => ({
 					src="https://framerusercontent.com/images/cF8DHaPnyhgullDGcpLnyXwGUp4.png"
 				>
 			</template>
-			<template #collapsed-logo>
-				<img
-					v-if="!args.light"
-					src="https://i.imgur.com/iNqZGnr.png"
-				>
-				<img
-					v-else
-					src="https://i.imgur.com/aNrsz0h.png"
-				>
-			</template>
 		</cds-side-bar>`,
 	methods: {
 		logClick(element) {
 			console.info('%clogItemClick: ', 'color: #2C70CD;', element);
+		},
+		logCollapseClick(element) {
+			console.info('%clogCollapseClick: ', 'color: #2C70CD;', element);
 		},
 		logLogout(element) {
 			console.info('%clogLogout: ', 'color: #2C70CD;', element);
@@ -217,7 +211,6 @@ export const items = [
 			userPicture: 'https://this-person-does-not-exist.com/img/avatar-gen83fa18cdcd216e7220794a23e76fe0dc.jpg',
 			collapsible: true,
 			logoImage: 'https://framerusercontent.com/images/Xdjpf9nazmZOoS2SUnbbkwsaFk.png',
-			collapsedLogoImage: 'https://i.imgur.com/iNqZGnr.png',
 			light: false,
 		}}
 	>

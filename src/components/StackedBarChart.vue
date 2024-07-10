@@ -60,6 +60,17 @@ export default {
 			}
 		},
 		/**
+		* Define o tema do gráfico.
+		*/
+		theme: {
+			type: String,
+			required: false,
+			default: '',
+			validator: (value) => {
+				return ['green', 'teal', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray', 'dark'].includes(value);
+			},
+		},
+		/**
 		 * Defina as labels do gráfico
 		 */
 		labels: {
@@ -174,19 +185,23 @@ export default {
 		paleteBuilder,
 
 		palete() {
-			this.palletColors = this.paleteBuilder(this.sassColorVariables.palete);
-			this.removeFirstElement();
+			if (this.theme.length) {
+				this.palletColors = this.paleteBuilder(this.sassColorVariables.chartThemes);
+			} else {
+				this.palletColors = this.paleteBuilder(this.sassColorVariables.palete);
+				this.removeFirstTwoElements();
+			}
 		},
 
 		// NOTE: Função responsável por remover os dois primeiros elementos da paleta para quando não é gray ou Dark Neutrals
-		removeFirstElement() {
+		removeFirstTwoElements() {
 			for (let i = 0; i < this.palletColors.length; i++) {
 				const color = this.palletColors[i];
 
 				if (this.deleteFirstTwoColors === false) {
-					color.colorShades.splice(0, 1);
+					color.colorShades.splice(0, 2);
 					color.colorTokens.splice(0, 2);
-					color.colorData.splice(0, 1);
+					color.colorData.splice(0, 2);
 				}
 			}
 		},
@@ -211,26 +226,17 @@ export default {
 						label: state.label,
 						data: state.data,
 						name: state.name,
-						variant: state.variant,
 						borderRadius: 6,
 					};
 					mergedData.datasets.push(dataset);
 				});
 			});
 
-			const isMulticolored = typeof this.data[0].datasets[0]?.variant !== 'undefined';
-
 			this.palete();
 
-			if (isMulticolored) {
-				this.setMultiColors(mergedData.datasets);
-				this.localChartData = mergedData;
-			} else {
-				const backgroundColor = this.getPalete();
-				this.setColors(mergedData.datasets, backgroundColor);
-				this.localChartData = mergedData;
-			}
-
+			const backgroundColor = this.generateBackgroundColor();
+			this.setColors(mergedData.datasets, backgroundColor);
+			this.localChartData = mergedData;
 		},
 
 		getPalete(variant = this.variant) {
@@ -240,6 +246,27 @@ export default {
 			if (palletColor) {
 				return palletColor.colorShades;
 			}
+		},
+
+		generateBackgroundColor() {
+			let variantLowercase = this.variant.toLowerCase();
+
+			if (this.theme.length) {
+				variantLowercase = this.theme.toLowerCase();
+			}
+
+			const palletColor = this.palletColors.find(color => {
+				return color.variantName.toLowerCase() === variantLowercase
+			});
+
+			if (palletColor) {
+				if (this.fill) {
+					const withOpacity = palletColor.colorShades.map(color => color + '80');
+					return withOpacity;
+				}
+				return palletColor.colorShades;
+			}
+			return [];
 		},
 
 		setMultiColors(datasets) {
