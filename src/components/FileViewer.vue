@@ -30,18 +30,10 @@
 		</div>
 		<div class="file-viewer__info">
 			<div class="file-viewer__label">
-				<cds-truncate
-					width="246"
-				>
-					{{ trimmedLabel }}
-				</cds-truncate>
+				{{ trimmedLabel }}
 			</div>
 			<div class="file-viewer__file-name">
-				<cds-truncate
-					width="246"
-				>
-					{{ fileUrl }}
-				</cds-truncate>
+				{{ fileUrl }}
 			</div>
 			<div>
 				<a
@@ -72,7 +64,7 @@
 						width="24"
 						name="download-cloud-outline"
 					/>
-					Baixar arquivo
+					<span v-if="!isMobile"> Baixar arquivo </span>
 				</div>
 				<cds-icon
 					class="file-viewer__visualizer-close"
@@ -210,6 +202,10 @@ const mustDisableExternalScrolls = (value) => {
 	document.body.style.overflow = value ? 'hidden' : 'auto';
 }
 
+const isMobile = computed(() => {
+	return window.matchMedia('(max-width: 450px)').matches;
+});
+
 </script>
 
 <style lang="scss" scoped>
@@ -244,6 +240,7 @@ const mustDisableExternalScrolls = (value) => {
 	&__image {
 		width: 66px;
 		height: 66px;
+		min-width: 66px;
 		background-color: $n-20;
 		border-radius: $border-radius-small;
 		display: flex;
@@ -271,19 +268,28 @@ const mustDisableExternalScrolls = (value) => {
 		display: flex;
 		flex-direction: column;
 		gap: spacer(1);
+		width: calc(100% - 66px - 12px);
 	}
 
 	&__label {
 		@include body-2;
 		font-weight: $font-weight-semibold;
 		color: $n-800;
+		width: 100%;
+		max-width: none;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	&__file-name {
 		@include body-2;
 		color: $n-700;
 		width: 100%;
-		max-width: 246px;
+		max-width: none;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	&__download {
@@ -320,6 +326,7 @@ const mustDisableExternalScrolls = (value) => {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		gap: spacer(3);
 	}
 
 	&__visualizer-label {
@@ -382,6 +389,37 @@ const mustDisableExternalScrolls = (value) => {
 		@include subheading-3;
 		font-weight: $font-weight-regular;
 	}
+}
+
+@media (max-width: 450px) {
+	.file-viewer {
+		width: 100%;
+		max-width: none;
+
+		&__visualizer-label {
+			width: 100%;
+			max-width: none;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		&__visualizer-image-container {
+			width: 100%;
+			max-width: 100%;
+			padding: pa(5);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		&__visualizer-image {
+			max-height: 100%;
+			max-width: 100%;
+			object-fit: cover;
+		}
+	}
+
 }
 
 </style>
