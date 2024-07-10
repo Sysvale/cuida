@@ -30,18 +30,10 @@
 		</div>
 		<div class="file-viewer__info">
 			<div class="file-viewer__label">
-				<cds-truncate
-					width="246"
-				>
-					{{ trimmedLabel }}
-				</cds-truncate>
+				{{ trimmedLabel }}
 			</div>
 			<div class="file-viewer__file-name">
-				<cds-truncate
-					width="246"
-				>
-					{{ fileUrl }}
-				</cds-truncate>
+				{{ fileUrl }}
 			</div>
 			<div>
 				<a
@@ -244,6 +236,7 @@ const mustDisableExternalScrolls = (value) => {
 	&__image {
 		width: 66px;
 		height: 66px;
+		min-width: 66px;
 		background-color: $n-20;
 		border-radius: $border-radius-small;
 		display: flex;
@@ -271,19 +264,28 @@ const mustDisableExternalScrolls = (value) => {
 		display: flex;
 		flex-direction: column;
 		gap: spacer(1);
+		width: calc(100% - 66px - 12px);
 	}
 
 	&__label {
 		@include body-2;
 		font-weight: $font-weight-semibold;
 		color: $n-800;
+		width: 100%;
+		max-width: none;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	&__file-name {
 		@include body-2;
 		color: $n-700;
 		width: 100%;
-		max-width: 246px;
+		max-width: none;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	&__download {
@@ -381,6 +383,13 @@ const mustDisableExternalScrolls = (value) => {
 		color: $n-0;
 		@include subheading-3;
 		font-weight: $font-weight-regular;
+	}
+}
+
+@media (max-width: 450px) {
+	.file-viewer {
+		width: 100%;
+		max-width: none;
 	}
 }
 
