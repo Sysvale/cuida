@@ -64,7 +64,7 @@
 						width="24"
 						name="download-cloud-outline"
 					/>
-					Baixar arquivo
+					<span v-if="!isMobile"> Baixar arquivo </span>
 				</div>
 				<cds-icon
 					class="file-viewer__visualizer-close"
@@ -202,6 +202,10 @@ const mustDisableExternalScrolls = (value) => {
 	document.body.style.overflow = value ? 'hidden' : 'auto';
 }
 
+const isMobile = computed(() => {
+	return window.matchMedia('(max-width: 450px)').matches;
+});
+
 </script>
 
 <style lang="scss" scoped>
@@ -322,6 +326,7 @@ const mustDisableExternalScrolls = (value) => {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		gap: spacer(3);
 	}
 
 	&__visualizer-label {
@@ -390,6 +395,29 @@ const mustDisableExternalScrolls = (value) => {
 	.file-viewer {
 		width: 100%;
 		max-width: none;
+	}
+
+	.file-viewer__visualizer-label {
+		width: 100%;
+		max-width: none;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.file-viewer__visualizer-image-container {
+		width: 100%;
+		max-width: 100%;
+		padding: pa(5);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.file-viewer__visualizer-image {
+		max-height: 100%;
+		max-width: 100%;
+		object-fit: cover;
 	}
 }
 
