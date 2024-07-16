@@ -82,17 +82,24 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de NavBars quando:
+## Recomendamos o uso de SideBars quando:
 - For necessário separar o conteúdo por páginas e navergar por elas.
 - Não for o caso de utilizar soluções como tabs, sidebars, cards ou links como navegação.
 
 <br />
 
-## Não recomendamos o uso de NavBars quando:
+## Não recomendamos o uso de SideBars quando:
 - Houver muitos itens a serem mostrados no menu.
 - For necessário mostrar os links verticalmente.
 
 <br />
+
+### Obs.:
+- No objeto de configuração são aceitas as propriedades `label`, `icon`, `type`, `route` e `items`;
+- O `type` pode ser assumir 3 valores:
+	- **route**, para rotas internas (é renderizado um `router-link` com elas);
+	- **link** para elementos que não devem redirecionar para nenhnuma rota;
+	- **external** para links que devem ser abertos em uma nova guia;
 
 ## Preview
 
@@ -130,7 +137,7 @@ export const items = [
 			{
 				label: 'Totem',
 				route: {
-					path: '/totem-link',
+					path: 'https://www.wikipedia.org/',
 					name: 'totem',
 				},
 				type: 'external',
