@@ -164,7 +164,7 @@ const allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
 const fileExtension = computed(() => {
 	if (props.fileUrl) {
 		const fileNameParts = last(props.fileUrl.split('/'));
-		const matchedExtension = fileNameParts.match(/\.([A-z]{3,4})/);
+		const matchedExtension = fileNameParts.match(/\.([A-Za-z]{3,4})/);
 		const extension = get(matchedExtension, '1', null);
 
 		if (extension) {
