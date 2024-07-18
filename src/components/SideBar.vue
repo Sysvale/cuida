@@ -85,9 +85,12 @@
 						</router-link>
 					</div>
 
-					<Transition v-if="!collapsed">
+					<Transition
+						v-if="!collapsed"
+						name="collapse"
+					>
 						<div
-							v-if="resolveItemCollapse(item)"
+							v-show="resolveItemCollapse(item)"
 							class="side-bar__subitem-container"
 						>
 							<div
@@ -98,14 +101,14 @@
 									:key="`${idx}-${subitem.name}-item`"
 									class="side-bar__subitem"
 									:class="isActive(subitem) && (subitem?.type !== 'external') ? 'side-bar__subitem--active' : 'side-bar__subitem--inactive'"
-									:href="!!subitem.type && subitem.type === 'external' ? subitem.route.path : 'javascript:void(0)'"
+									:href="subitem?.type === 'external' ? subitem.route.path : 'javascript:void(0)'"
+									target="_blank"
+									rel="noopener noreferrer"
 									@click="(event) => handleClick(event, subitem)"
 								>
 									<div
-										v-if="!!subitem.type && subitem.type === 'external'"
+										v-if="subitem?.type === 'external'"
 										class="side-bar__subitem-link"
-										target="_blank"
-										rel="noopener noreferrer"
 									>
 										{{ subitem.label }}
 
@@ -338,7 +341,12 @@ export default {
 		colorHexCode,
 
 		handleClick(event, item) {
-			this.internalActiveItem = item;
+			if (!isEqual(this.internalActiveItem, item)) {
+				this.internalActiveItem = item;
+				this.showUncollapsedItems = true;
+				this.expandItemControl += 1;
+				return;
+			}
 
 			if (!!item.items && item.items.length > 0) {
 				this.showUncollapsedItems = !this.showUncollapsedItems;
@@ -412,16 +420,16 @@ export default {
 	opacity: 0;
 }
 
-.v-enter-active,
-.v-leave-active {
-	transition: all 0.2s ease;
+.collapse-enter-active,
+.collapse-leave-active {
+	transition: all 0.5s ease;
 }
 
-.v-enter-from,
-.v-leave-to {
-	display: none;
+.collapse-enter-from,
+.collapse-leave-to {
+	transition: all 0.35s ease;
 	opacity: 0;
-	transform: translateY(40px);
+	transform: translateY(-8px);
 }
 
 .side-bar--dark {
@@ -454,6 +462,7 @@ export default {
 			&-container {
 				padding: pl(7);
 				margin: mt(2);
+				transition: all 0.35s ease;
 			}
 
 			&-link {
@@ -497,6 +506,7 @@ export default {
 			flex-direction: column;
 			gap: spacer(3);
 			list-style: none;
+			transition: all 0.9s ease;
 			padding: pa(0);
 		}
 
