@@ -16,8 +16,10 @@ exports[`SideBar > renders correctly 1`] = `
             </div>
           </router-link>
         </div>
-        <transition-stub appear=\\"false\\" persisted=\\"false\\" css=\\"true\\">
-          <!--v-if-->
+        <transition-stub name=\\"collapse\\" appear=\\"false\\" persisted=\\"true\\" css=\\"true\\">
+          <div class=\\"side-bar__subitem-container\\" style=\\"display: none;\\">
+            <div class=\\"side-bar__subitems\\"></div>
+          </div>
         </transition-stub>
       </li>
       <li role=\\"presentation\\">
@@ -29,8 +31,14 @@ exports[`SideBar > renders correctly 1`] = `
             <cds-icon-stub name=\\"caret-down-outline\\" width=\\"16\\" height=\\"16\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\" class=\\"\\"></cds-icon-stub>
           </div>
         </div>
-        <transition-stub appear=\\"false\\" persisted=\\"false\\" css=\\"true\\">
-          <!--v-if-->
+        <transition-stub name=\\"collapse\\" appear=\\"false\\" persisted=\\"true\\" css=\\"true\\">
+          <div class=\\"side-bar__subitem-container\\" style=\\"display: none;\\">
+            <div class=\\"side-bar__subitems\\"><a class=\\"side-bar__subitem side-bar__subitem--inactive\\" href=\\"javascript:void(0)\\" target=\\"_blank\\" rel=\\"noopener noreferrer\\">
+                <router-link class=\\"side-bar__subitem-link\\">Painel (Tv)</router-link>
+              </a><a class=\\"side-bar__subitem side-bar__subitem--inactive\\" href=\\"javascript:void(0)\\" target=\\"_blank\\" rel=\\"noopener noreferrer\\">
+                <router-link class=\\"side-bar__subitem-link\\">Totem</router-link>
+              </a></div>
+          </div>
         </transition-stub>
       </li>
       <li role=\\"presentation\\">
@@ -41,8 +49,10 @@ exports[`SideBar > renders correctly 1`] = `
             </div>
           </router-link>
         </div>
-        <transition-stub appear=\\"false\\" persisted=\\"false\\" css=\\"true\\">
-          <!--v-if-->
+        <transition-stub name=\\"collapse\\" appear=\\"false\\" persisted=\\"true\\" css=\\"true\\">
+          <div class=\\"side-bar__subitem-container\\" style=\\"display: none;\\">
+            <div class=\\"side-bar__subitems\\"></div>
+          </div>
         </transition-stub>
       </li>
     </ul>
