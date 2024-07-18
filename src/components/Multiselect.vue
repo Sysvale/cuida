@@ -380,6 +380,7 @@ export default {
 		},
 
 		indeterminate(newValue) {
+			if (this.hideSelectAll) return;
 			const input = document.getElementById(`select-all-input-id-${this.uniqueKey}`);
 			input.indeterminate = newValue;
 		},
