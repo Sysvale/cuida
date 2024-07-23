@@ -386,6 +386,8 @@ export default {
 		activeSelection() {
 			if (this.disabled) return;
 
+			this.resetActiveSelection();
+
 			this.$nextTick().then(() => {
 				const element = this.localOptions[this.currentPos];
 				this.$refs[`${element[this.optionsField]}-${this.currentPos}`][0].classList.add('highlight');
@@ -396,6 +398,8 @@ export default {
 			if (this.disabled) return;
 
 			this.active = !this.active;
+
+			this.resetActiveSelection();
 
 			if (typeof this.localOptions[this.currentPos] === 'undefined') {
 				this.localOptions = this.pristineOptions;
@@ -487,6 +491,13 @@ export default {
 
 		unhighlightOnMouseOut() {
 			this.getLiInDOM(this.currentPos).classList.remove('highlight');
+		},
+
+		resetActiveSelection() {
+			this.localOptions.forEach((option, index) => {
+				const element = this.localOptions[index];
+				this.$refs[`${element[this.optionsField]}-${index}`][0].classList.remove('highlight');
+			})
 		},
 	},
 };
