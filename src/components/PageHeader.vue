@@ -95,7 +95,7 @@ export default {
 		computedSubtitle() {
 			const urlRegex = /\b(?:http:\/\/|https:\/\/)?[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,}(?:\/\S*)?/g;
 
-			const urls = this.subtitle.match(urlRegex);
+			const urls = this.subtitle?.match(urlRegex);
 
 			if (urls && urls.length > 0) {
 				this.splitedSubtitle = this.subtitle.split(urls[0]);
