@@ -191,19 +191,19 @@ export default {
 
 	props: {
 		/**
-		 * A variante de cor. São 10 variantes implementadas: 'green', 'teal',
-		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.
-		 * A variante só terá efeito quando a SideBar estiver no modo light.
-		 */
+		* A variante de cor. São 10 variantes implementadas: 'green', 'teal',
+		* 'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.
+		* A variante só terá efeito quando a SideBar estiver no modo light.
+		*/
 		variant: {
 			type: String,
 			default: 'green',
 		},
 		/**
-		 * Define a lista dos itens do SideBar a serem
-		 * mostrados. Os itens da lista devem ser
-		 * objetos com path ou route, e com uma label
-		 */
+		* Define a lista dos itens do SideBar a serem
+		* mostrados. Os itens da lista devem ser
+		* objetos com path ou route, e com uma label
+		*/
 		items: {
 			type: Array,
 			default: () => ([]),
@@ -255,9 +255,16 @@ export default {
 			default: null,
 		},
 		/**
-		 * Permite que a sidebar seja colapsada em uma versão mínima
+		* Permite que a sidebar seja colapsada em uma versão mínima
 		*/
 		collapsible: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		* Controla o estado da sidebar, se aberta ou colapsada.
+		*/
+		collapsibleState: {
 			type: Boolean,
 			default: false,
 		},
@@ -314,6 +321,13 @@ export default {
 			immediate: true,
 		},
 
+		collapsibleState: {
+			handler(newValue) {
+				this.collapsed = newValue;
+			},
+			immediate: true,
+		},
+
 		activeItem: {
 			handler(newValue) {
 				this.internalActiveItem = newValue;
@@ -335,6 +349,7 @@ export default {
 
 	mounted() {
 		this.internalActiveItem = this.activeItem;
+		this.collapsed = this.collapsibleState;
 	},
 
 	methods: {
