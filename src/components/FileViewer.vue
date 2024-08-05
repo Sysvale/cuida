@@ -106,7 +106,6 @@ import { get, last } from 'lodash';
 import { computed, ref } from 'vue';
 import { colors } from '../utils/constants/colors';
 import CdsImage from '../components/Image.vue';
-import CdsTruncate from '../components/Truncate.vue';
 
 const emit = defineEmits(
 	[
