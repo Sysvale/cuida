@@ -21,10 +21,11 @@ exports[`SideBar > renders correctly 1`] = `
             <div class=\\"side-bar__subitems\\"></div>
           </div>
         </transition-stub>
+        <!--v-if-->
       </li>
       <li role=\\"presentation\\">
         <div class=\\"side-bar__item-container side-bar__item-container--inactive\\">
-          <div class=\\"side-bar__item side-bar__item--inactive\\">
+          <div id=\\"Links\\" class=\\"side-bar__item side-bar__item--inactive\\">
             <div>
               <cds-icon-stub name=\\"link-outline\\" width=\\"20\\" height=\\"20\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub><span>Links</span>
             </div>
@@ -40,6 +41,7 @@ exports[`SideBar > renders correctly 1`] = `
               </a></div>
           </div>
         </transition-stub>
+        <!--v-if-->
       </li>
       <li role=\\"presentation\\">
         <div class=\\"side-bar__item-container side-bar__item-container--inactive\\">
@@ -54,6 +56,7 @@ exports[`SideBar > renders correctly 1`] = `
             <div class=\\"side-bar__subitems\\"></div>
           </div>
         </transition-stub>
+        <!--v-if-->
       </li>
     </ul>
   </div>
