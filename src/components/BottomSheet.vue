@@ -2,6 +2,7 @@
 	<div v-if="internalModelValue">
 		<div
 			:class="toggleAnimationClass ? 'backdrop__show' : 'backdrop__hide'"
+			@click.stop="!noCloseOnBackdrop ? closeHandle() : () => {}"
 		>
 			<div
 				v-on-click-outside="closeHandle"
@@ -64,6 +65,13 @@ export default {
 		title: {
 			type: String,
 			default: 'Onde encontrar o meu CNS',
+		},
+		/**
+		* Define se o BottomSheet vai ser fechado com o click no backdrop.
+		*/
+		noCloseOnBackdrop: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
