@@ -2,10 +2,9 @@
 	<div v-if="internalModelValue">
 		<div
 			:class="toggleAnimationClass ? 'backdrop__show' : 'backdrop__hide'"
-			@click.stop="!noCloseOnBackdrop ? closeHandle() : () => {}"
 		>
 			<div
-				v-on-click-outside="closeHandle"
+				v-on-click-outside="!noCloseOnBackdrop ? closeHandle : () => {}"
 				:class="toggleAnimationClass ? 'bottom-sheet__show' : 'bottom-sheet__hide'"
 			>
 				<div class="bottom-sheet__header-border">
