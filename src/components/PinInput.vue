@@ -42,6 +42,13 @@ export default {
 		visible: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Especifica se o PinInput deve ser versão mobile.
+		 */
+		mobile: {
+			type: Boolean,
+			default: false,
 		}
 	},
 
@@ -53,14 +60,20 @@ export default {
 
 	computed: {
 		computedClass() {
+			let classToUse = '';
+
 			switch (this.state) {
 				case 'valid':
-					return 'pin-input--valid';
+					classToUse = 'pin-input--valid';
+					break;
 				case 'invalid':
-					return 'pin-input--invalid';
+					classToUse = 'pin-input--invalid';
+					break;
 				default:
-					return 'pin-input';
+					classToUse = 'pin-input';
 			}
+
+			return this.mobile ? `${classToUse} pin-input--mobile` : classToUse;
 		},
 	},
 
@@ -127,6 +140,12 @@ export default {
 		text-align: center;
 		font-size: 1.5em;
 		transition: $interaction;
+
+		&--mobile {
+			@extend .pin-input;
+			height: 48px;
+			width: 42px;
+		}
 
 		&__container {
 			display: flex;
