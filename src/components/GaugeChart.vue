@@ -9,7 +9,7 @@
 				:style="progressStyle"
 			>
 				<svg
-					id="chart"
+					:id="uniqueKey"
 					:class="`svg--${variant}`"
 					viewBox="0 0 110 100"
 					@mouseover="showPopover = true"
@@ -82,7 +82,7 @@
 				v-if="hasSlot($slots, 'popover')"
 				v-model="showPopover"
 				default-placement="top"
-				target-id="chart"
+				:target-id="uniqueKey"
 			>
 				<slot name="popover" />
 			</cds-rich-tooltip>
@@ -93,6 +93,7 @@
 <script>
 import CdsRichTooltip from './RichTooltip.vue';
 import hasSlot from '../utils/methods/hasSlot';
+import { generateKey } from '../utils';
 
 export default {
 	components: {
@@ -151,6 +152,7 @@ export default {
 	data() {
 		return {
 			showPopover: false,
+			uniqueKey: generateKey(),
 		};
 	},
 
