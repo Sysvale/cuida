@@ -128,10 +128,17 @@ export default {
 
 		handleClick(event, item) {
 			/**
+			 * Evento emitido quando a aba é clicada
+			* @event tab-click
+			* @type {Event}
+			*/
+			this.$emit('tab-click', { event, item });
+			if(this.internalActiveTab.disableTabChange) return;
+			/**
 			 * Evento emitido quando a aba ativa é alterada
 			* @event change
 			* @type {Event}
-				*/
+			*/
 			this.$emit('change', { event, item });
 			this.internalActiveTab = item;
 		},
