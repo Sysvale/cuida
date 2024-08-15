@@ -1,0 +1,8 @@
+// Vitest Snapshot v1
+
+exports[`MobileStepperInput > renders correctly 1`] = `
+"<div data-v-962d09dd=\\"\\" class=\\"mobile__container\\"><input data-v-962d09dd=\\"\\" id=\\"mobile-stepper-input\\" class=\\"mobile__stepper\\" placeholder=\\"0\\" type=\\"number\\">
+  <icon-button-stub data-v-962d09dd=\\"\\" size=\\"lg\\" icon=\\"minus-outline\\" disabled=\\"false\\" feedbackonclick=\\"false\\" feedbackicon=\\"check-outline\\" variant=\\"white\\"></icon-button-stub>
+  <icon-button-stub data-v-962d09dd=\\"\\" size=\\"lg\\" icon=\\"plus-outline\\" disabled=\\"false\\" feedbackonclick=\\"false\\" feedbackicon=\\"check-outline\\" variant=\\"white\\"></icon-button-stub>
+</div>"
+`;
