@@ -1,20 +1,18 @@
 
-name: "RocketChat announcer 💬"
+name: "RocketChat Cuida News 🎉"
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [published]
 
 jobs:
-  test:
+  notify:
     runs-on: ubuntu-latest
-    name: Test
     steps:
-      - uses: actions/checkout@v1
-        with:
-          message: Testando Integracao
-          ROCKET_CHAT_HOOK: ${{ secrets.ROCKET_CHAT_HOOK }}
-          ROCKET_CHAT_URL: ${{ secrets.ROCKET_CHAT_HOST }}
-          BOT_NAME: 'Cuida'
-          BOT_AVATAR: 'https://framerusercontent.com/images/s79ZzWUDwmsYqL9DrfWrWIXaTHU.svg'
+    - name: Send notification to Rocket.Chat
+      env:
+        WEBHOOK_URL: ${{ secrets.ROCKET_CHAT_HOOK }}
+        RELEASE_TAG: ${{ github.event.release.tag_name }}
+        RELEASE_URL: ${{ github.event.release.html_url }}
+      run: |
+        curl -X POST -H 'Content-Type: application/json' --data "{\"text\":\"Nova release criada: ${RELEASE_TAG}\nLink: ${RELEASE_URL}\"}" ${WEBHOOK_URL}
