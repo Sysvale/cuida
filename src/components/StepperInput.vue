@@ -6,7 +6,6 @@
 			>
 				<slot name="label" />
 			</span>
-
 			<label
 				v-else
 				class="stepper-input__label"
@@ -28,8 +27,18 @@
 				</div>
 			</label>
 		</span>
-
-		<div :class="stepperInputDynamicClass">
+		<mobile-stepper-input
+			v-if="mobile"
+			v-model="internalValue"
+			:disabled="disabled"
+			:state="state"
+			@minus="changeValue(-1)"
+			@plus="changeValue(1)"
+		/>
+		<div
+			v-else
+			:class="stepperInputDynamicClass"
+		>
 			<input
 				id="stepper-input"
 				v-model="internalValue"
@@ -44,7 +53,6 @@
 				@focus="isBeingFocused = true"
 				@blur="isBeingFocused = false"
 			>
-
 			<div class="stepper-input__icon-container">
 				<button
 					v-longclick="() => changeValue(1)"
@@ -61,7 +69,6 @@
 						name="plus-outline"
 					/>
 				</button>
-
 				<button
 					v-longclick="() => changeValue(-1)"
 					:disabled="disabled"
@@ -79,7 +86,6 @@
 				</button>
 			</div>
 		</div>
-
 		<div
 			v-if="errorState && !disabled"
 			class="stepper-input__error-message"
@@ -91,14 +97,16 @@
 
 <script>
 import { longClickDirective } from '@sysvale/vue3-long-click';
-const longClickInstance = longClickDirective({ delay: 400, interval: 50 });
-
+import stateValidator from '../utils/validators/state';
+import MobileStepperInput from './MobileStepperInput.vue';
 import CdsIcon from './Icon.vue';
 
-export default {
+const longClickInstance = longClickDirective({ delay: 400, interval: 50 });
 
+export default {
 	components: {
 		CdsIcon,
+		MobileStepperInput,
 	},
 
 	directives: {
@@ -162,6 +170,7 @@ export default {
 		state: {
 			type: String,
 			default: 'default',
+			validator: stateValidator,
 		},
 		/**
 		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
@@ -169,6 +178,13 @@ export default {
 		errorMessage: {
 			type: String,
 			default: 'Valor inválido',
+		},
+		/**
+		 * Indica se o componente deve se comportar com foco em aplicações móveis
+		 */
+		mobile: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
