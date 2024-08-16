@@ -2,8 +2,9 @@
 name: "RocketChat Cuida News 🎉"
 
 on:
-  release:
-    types: [published, created, released]
+  push:
+    branches:
+      - main
 
 jobs:
   notify:
