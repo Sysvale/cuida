@@ -3,7 +3,7 @@ name: "RocketChat Cuida News 🎉"
 
 on:
   release:
-    types: [published, created, edited]
+    types: [published, created, released]
 
 jobs:
   notify:
