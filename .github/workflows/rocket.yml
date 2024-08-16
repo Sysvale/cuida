@@ -16,7 +16,7 @@ jobs:
     
     - name: Send notification to Rocket.Chat
       env:
-        WEBHOOK_URL: ${{ secrets.ROCKETCHAT_WEBHOOK }}
+        WEBHOOK_URL: ${{ secrets.ROCKET_CHAT_HOOK }}
         RELEASE_TAG: ${{ github.event.release.tag_name }}
         RELEASE_URL: ${{ github.event.release.html_url }}
       run: |
