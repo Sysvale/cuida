@@ -1,18 +1,55 @@
-
 name: "RocketChat Cuida News 🎉"
 
 on:
+  push:
+    branches:
+      - main
   release:
-    types: [published]
+    types: [published, created, edited]
 
 jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+
+    - name: Debug event information
+      run: |
+        echo "Event Name: ${{ github.event_name }}"
+        echo "Action: ${{ github.action }}"
+        echo "Ref: ${{ github.ref }}"
+        echo "Release Tag: ${{ github.event.release.tag_name }}"
+        echo "Release URL: ${{ github.event.release.html_url }}"
+
+    - name: Get the version
+      id: get_version
+      run: |
+        if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+          echo "Tag detected"
+          echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+        else
+          echo "No tag detected, using SHA"
+          echo ::set-output name=VERSION::${GITHUB_SHA::8}
+        fi
+
     - name: Send notification to Rocket.Chat
       env:
         WEBHOOK_URL: ${{ secrets.ROCKET_CHAT_HOOK }}
-        RELEASE_TAG: ${{ github.event.release.tag_name }}
-        RELEASE_URL: ${{ github.event.release.html_url }}
+        RELEASE_TAG: ${{ steps.get_version.outputs.VERSION }}
+        RELEASE_URL: ${{ github.event.release.html_url || github.event.repository.html_url }}
       run: |
-        curl -X POST -H 'Content-Type: application/json' --data "{\"text\":\"Nova release criada: ${RELEASE_TAG}\nLink: ${RELEASE_URL}\"}" ${WEBHOOK_URL}
+        echo "Enviando notificação com:"
+        echo "Tag: ${RELEASE_TAG}"
+        echo "URL: ${RELEASE_URL}"
+        MESSAGE="Nova atualização no repositório: ${RELEASE_TAG}"
+        if [[ "${{ github.event_name }}" == "release" ]]; then
+          MESSAGE="Nova release criada: ${RELEASE_TAG}"
+        fi
+        curl -X POST -H 'Content-Type: application/json' --data "{\"text\":\"${MESSAGE}\nLink: ${RELEASE_URL}\"}" ${WEBHOOK_URL}
+
+    - name: Output curl result
+      if: failure()
+      run: echo "Falha ao enviar notificação. Verifique se o webhook do Rocket.Chat está configurado corretamente."
