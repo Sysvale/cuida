@@ -13,14 +13,14 @@
 			v-for="option in options"
 			:key="option.value"
 			:class="resolveCheckboxClass(option.value)"
-			@click="handleCheckboxTrigger(option.value)"
+			@click="handleCheckboxClick(option.value)"
 		>
 			<cds-checkbox
+				:id="option.value"
 				:model-value="internalValue.includes(option.value)"
 				:label="option.label"
 				:disabled="disabled"
 				:variant="variant"
-				@update:model-value="handleCheckboxTrigger(option.value)"
 			/>
 		</div>
 		<div
@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, watch } from 'vue';
 import CdsCheckbox from './Checkbox.vue';
 import variantClassResolver from '../utils/methods/variantClassResolver';
 import variantValidator from '../utils/validators/variant';
@@ -102,12 +102,15 @@ const props = defineProps({
 const emits = defineEmits(['update:modelValue']);
 
 const internalValue = ref([]);
+const checkboxControl = ref(0);
+
+const isInvalid = computed(() => props.state === 'invalid');
+
+watch(internalValue, () => checkboxControl.value += 1);
 
 onMounted(() => {
 	internalValue.value = props.modelValue;
 });
-
-const isInvalid = computed(() => props.state === 'invalid');
 
 function resolveCheckboxClass(selectedOption) {
 	if (props.disabled) {
@@ -123,7 +126,7 @@ function resolveCheckboxClass(selectedOption) {
 		: `checkbox__item`;
 }
 
-function handleCheckboxTrigger(selectedOption) {
+function handleCheckboxClick(selectedOption) {
 	if (props.disabled) {
 		return;
 	}
