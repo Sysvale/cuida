@@ -19,6 +19,7 @@ import Card from './Card.vue';
 import CalloutCard from './CalloutCard.vue';
 import CarouselController from './CarouselController.vue';
 import Checkbox from './Checkbox.vue';
+import CheckboxGroup from './CheckboxGroup.vue';
 import Chevron from './Chevron.vue';
 import Clickable from './Clickable.vue';
 import CollapsibleContainer from './CollapsibleContainer.vue';
@@ -115,6 +116,7 @@ export default {
 		app.component('CdsCalloutCard', CalloutCard);
 		app.component('CdsCarouselController', CarouselController);
 		app.component('CdsCheckbox', Checkbox);
+		app.component('CdsCheckboxGroup', CheckboxGroup);
 		app.component('CdsChevron', Chevron);
 		app.component('CdsClickable', Clickable);
 		app.component('CdsCollapsibleContainer', CollapsibleContainer);
