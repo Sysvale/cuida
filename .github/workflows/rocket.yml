@@ -1,11 +1,11 @@
 name: "RocketChat Cuida News 🎉"
 
 on:
-  push:
-    branches:
-      - main
   release:
-    types: [published, created, edited]
+    types: 
+      - created
+      - edited
+      - published
 
 jobs:
   notify:
@@ -27,26 +27,24 @@ jobs:
     - name: Get the version
       id: get_version
       run: |
-        if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
-          echo "Tag detected"
-          echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
-        else
-          echo "No tag detected, using SHA"
-          echo ::set-output name=VERSION::${GITHUB_SHA::8}
-        fi
+        echo ::set-output name=VERSION::${{ github.event.release.tag_name }}
 
     - name: Send notification to Rocket.Chat
       env:
         WEBHOOK_URL: ${{ secrets.ROCKET_CHAT_HOOK }}
         RELEASE_TAG: ${{ steps.get_version.outputs.VERSION }}
-        RELEASE_URL: ${{ github.event.release.html_url || github.event.repository.html_url }}
+        RELEASE_URL: ${{ github.event.release.html_url }}
       run: |
         echo "Enviando notificação com:"
         echo "Tag: ${RELEASE_TAG}"
         echo "URL: ${RELEASE_URL}"
-        MESSAGE="Nova atualização no repositório: ${RELEASE_TAG}"
-        if [[ "${{ github.event_name }}" == "release" ]]; then
+        MESSAGE="Nova atualização na release: ${RELEASE_TAG}"
+        if [[ "${{ github.event.action }}" == "created" ]]; then
           MESSAGE="Nova release criada: ${RELEASE_TAG}"
+        elif [[ "${{ github.event.action }}" == "published" ]]; then
+          MESSAGE="Release publicada: ${RELEASE_TAG}"
+        elif [[ "${{ github.event.action }}" == "edited" ]]; then
+          MESSAGE="Release editada: ${RELEASE_TAG}"
         fi
         curl -X POST -H 'Content-Type: application/json' --data "{\"text\":\"${MESSAGE}\nLink: ${RELEASE_URL}\"}" ${WEBHOOK_URL}
 
