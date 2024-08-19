@@ -1,0 +1,19 @@
+// Vitest Snapshot v1
+
+exports[`CheckboxGroup > renders correctly 1`] = `
+"<div data-v-5505c754=\\"\\" class=\\"checkbox__container\\"><label data-v-5505c754=\\"\\" class=\\"checkbox__label\\">Checkbox Group Test
+    <!--v-if-->
+  </label>
+  <div data-v-5505c754=\\"\\" class=\\"checkbox__item\\">
+    <div data-v-75623c80=\\"\\" data-v-5505c754=\\"\\" class=\\"cds-checkbox__container\\">
+      <div data-v-75623c80=\\"\\" class=\\"cds-checkbox__input\\"><input data-v-75623c80=\\"\\" id=\\"cds-checkbox-option-input\\" type=\\"checkbox\\" name=\\"cds-checkbox-option\\" value=\\"false\\"><label data-v-75623c80=\\"\\" for=\\"cds-checkbox-option-input\\" class=\\"cds-checkbox__input--green cds-checkbox__input--unchecked\\"></label></div><label data-v-75623c80=\\"\\" class=\\"cds-checkbox__label\\" for=\\"cds-checkbox-option-input\\">Teste 1</label>
+    </div>
+  </div>
+  <div data-v-5505c754=\\"\\" class=\\"checkbox__item\\">
+    <div data-v-75623c80=\\"\\" data-v-5505c754=\\"\\" class=\\"cds-checkbox__container\\">
+      <div data-v-75623c80=\\"\\" class=\\"cds-checkbox__input\\"><input data-v-75623c80=\\"\\" id=\\"cds-checkbox-option-input\\" type=\\"checkbox\\" name=\\"cds-checkbox-option\\" value=\\"false\\"><label data-v-75623c80=\\"\\" for=\\"cds-checkbox-option-input\\" class=\\"cds-checkbox__input--green cds-checkbox__input--unchecked\\"></label></div><label data-v-75623c80=\\"\\" class=\\"cds-checkbox__label\\" for=\\"cds-checkbox-option-input\\">Teste 2</label>
+    </div>
+  </div>
+  <!--v-if-->
+</div>"
+`;
