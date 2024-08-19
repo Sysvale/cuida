@@ -1,0 +1,192 @@
+<template>
+	<div class="checkbox__container">
+		<label class="checkbox__label">
+			{{ label }}
+			<span
+				v-if="required"
+				class="checkbox__required"
+			>
+				*
+			</span>
+		</label>
+		<div
+			v-for="option in options"
+			:key="option.value"
+			:class="resolveCheckboxClass(option.value)"
+			@click="handleCheckboxTrigger(option.value)"
+		>
+			<cds-checkbox
+				:model-value="internalValue.includes(option.value)"
+				:label="option.label"
+				:disabled="disabled"
+				:variant="variant"
+				@update:model-value="handleCheckboxTrigger(option.value)"
+			/>
+		</div>
+		<div
+			v-if="isInvalid && !disabled"
+			class="checkbox__error-message"
+		>
+			{{ errorMessage }}
+		</div>
+	</div>
+</template>
+
+<script setup>
+import { ref, onMounted, computed } from 'vue';
+import CdsCheckbox from './Checkbox.vue';
+import variantClassResolver from '../utils/methods/variantClassResolver';
+import variantValidator from '../utils/validators/variant';
+
+const props = defineProps({
+	/**
+	* Prop usada como v-model para monitorar as seleções do CheckboxGroup
+	*/
+	modelValue: {
+		type: Array,
+		default: () => ([]),
+	},
+	/**
+	* Opções disponíveis para seleção na lista a ser renderizada pelo componente. Deve ser formada por objetos contendo `label` e `value`.
+	*/
+	options: {
+		type: Array,
+		default: () => ([]),
+	},
+	/**
+	* Etiqueta do componente.
+	*/
+	label: {
+		type: String,
+		default: 'Label',
+	},
+	/**
+	 * Exibe asterisco de obrigatório (obs.: não faz a validação)
+	 */
+	required: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* A variante do componente. São 10 variantes: 'teal', 'green', 'blue',
+	* 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+	*/
+	variant: {
+		type: String,
+		default: 'green',
+		validator: variantValidator,
+	},
+	/**
+	* Controla o status checkbox
+	*/
+	disabled: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	 * Especifica o estado do CheckboxGroup. As opções são 'default', 'valid' e 'invalid'.
+	 */
+	state: {
+		type: String,
+		default: 'default',
+	},
+	/**
+	 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+	 */
+	errorMessage: {
+		type: String,
+		default: 'Valor inválido',
+	},
+});
+
+const emits = defineEmits(['update:modelValue']);
+
+const internalValue = ref([]);
+
+onMounted(() => {
+	internalValue.value = props.modelValue;
+});
+
+const isInvalid = computed(() => props.state === 'invalid');
+
+function resolveCheckboxClass(selectedOption) {
+	if (props.disabled) {
+		return 'checkbox__item--disabled';
+	}
+
+	const variantClass = props.state === 'invalid'
+		? 'checkbox__item--error'
+		: variantClassResolver('checkbox__item', props.variant);
+
+	return internalValue.value.includes(selectedOption)
+		? `checkbox__item--selected ${variantClass}`
+		: `checkbox__item`;
+}
+
+function handleCheckboxTrigger(selectedOption) {
+	if (props.disabled) {
+		return;
+	}
+
+	if (internalValue.value.includes(selectedOption)) {
+		internalValue.value = internalValue.value.filter((option) => option !== selectedOption);
+		emits('update:modelValue', internalValue.value);
+		return;
+	}
+
+	internalValue.value.push(selectedOption);
+	emits('update:modelValue', internalValue.value);
+}
+</script>
+
+<style lang="scss" scoped>
+@import '../assets/sass/tokens.scss';
+
+.checkbox {
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: spacer(2);
+	}
+
+	&__label {
+		@include button-2;
+		margin: mb(2);
+	}
+
+	&__item {
+		cursor: pointer;
+		padding: pYX(4, 3);
+		@include body-2;
+		border: 1px solid $n-50;
+		border-radius: $border-radius-extra-small;
+
+		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+			border-color: $base-color !important;
+		}
+
+		&--error {
+			border-color: $rc-600;
+		}
+
+		&--selected {
+			@extend .checkbox__item;
+		}
+
+		&--disabled {
+			@extend .checkbox__item;
+			background-color: $n-10;
+		}
+	}
+
+	&__required {
+		color: $rc-600;
+	}
+
+	&__error-message {
+		@include caption;
+		color: $rc-600;
+		margin: mt(1);
+	}
+}
+</style>
