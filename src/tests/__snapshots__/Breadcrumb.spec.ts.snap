@@ -41,7 +41,7 @@ exports[`Breadcrumb snapshot test > renders correctly 1`] = `
 		@event cds-click
 		@type {Event}
 	-->
-          <div data-v-1a0f46d9=\\"\\" class=\\"clickable__container--clickable\\">Relatório de usuários</div>
+          <div data-v-1a0f46d9=\\"\\" class=\\"clickable__container--not-clickable\\">Relatório de usuários</div>
         </router-link>
       </div>
     </li>
