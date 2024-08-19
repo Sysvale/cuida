@@ -117,13 +117,13 @@ function resolveCheckboxClass(selectedOption) {
 		return 'checkbox__item--disabled';
 	}
 
-	const variantClass = props.state === 'invalid'
+	const variantClass = isInvalid.value
 		? 'checkbox__item--error'
 		: variantClassResolver('checkbox__item', props.variant);
 
 	return internalValue.value.includes(selectedOption)
 		? `checkbox__item--selected ${variantClass}`
-		: `checkbox__item`;
+		: `checkbox__item ${isInvalid.value ? variantClass : ''}`;
 }
 
 function handleCheckboxClick(selectedOption) {
