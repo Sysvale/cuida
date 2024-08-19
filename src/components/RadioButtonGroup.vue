@@ -45,6 +45,8 @@
 </template>
 
 <script>
+import { colorHexCode, colorLightestHexCode } from '../utils/constants/colors';
+
 export default {
 	props: {
 		/**
@@ -87,6 +89,14 @@ export default {
 			type: Boolean,
 			default: false,
 			required: false,
+		},
+		/**
+		* A variante da Checkbox. São 10 variantes: 'teal', 'green', 'blue',
+		* 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+		*/
+		variant: {
+			type: String,
+			default: 'blue',
 		}
 	},
 
@@ -99,12 +109,12 @@ export default {
 	computed: {
 		cssVars() {
 			return {
-				'--border-color-selected': this.allowsExpand ? '#2db981' : '#2051a7',
-				'--background-color': this.allowsExpand ? '#FAFCFE' : '#FFFFFF',
+				'--border-color-selected': colorHexCode(this.variant),
+				'--background-color': colorLightestHexCode(this.variant),
 				'--display-vertical': this.allowsExpand ? 'flex' : 'inline-flex',
 				'--width-vertical': this.allowsExpand ? '100%' : null
 			}
-		}
+		},
 	},
 
 	watch: {
@@ -121,7 +131,7 @@ export default {
 	},
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
 
 #radioButton [type="radio"]:checked,

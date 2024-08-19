@@ -4,6 +4,26 @@ import RadioButtonGroup from '../../components/RadioButtonGroup.vue';
 <Meta
 	title="Componentes/Forms/RadioButtonGroup"
 	component={ RadioButtonGroup }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+	}}
 	parameters={{
 		viewMode: 'docs',
 		previewTabs: { canvas: { hidden: true }},
@@ -82,6 +102,7 @@ export const options = [
 			options,
 			value,
 			disabled: false,
+			variant: 'green',
 			inline: false,
 		}}
 	>
