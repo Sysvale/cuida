@@ -51,7 +51,7 @@
 						:to="routerPushTo(item)"
 						class="breadcrumb__link"
 					>
-						<cds-clickable clickable>
+						<cds-clickable :clickable="index !== items.length - 1">
 							{{ item.label }}
 						</cds-clickable>
 					</router-link>
