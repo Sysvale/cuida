@@ -29,6 +29,7 @@ export default {
 		fallbackSrc: {
 			type: String,
 			required: false,
+			default: 'https://sysfront.nyc3.cdn.digitaloceanspaces.com/cuida/images/imagePlaceholder.png'
 		},
 		/**
 		* Largura da imagem. Quando não especificada, o valor `auto` é aplicado.
@@ -79,6 +80,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		* Torna a imagem redonda.
+		*/
+		round: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -89,6 +97,10 @@ export default {
 
 	computed: {
 		heightResolver() {
+			if (this.round) {
+				return `${this.width}px`;
+			}
+
 			return this.height ? `${this.height}px` : 'auto';
 		},
 
@@ -101,7 +113,14 @@ export default {
 		},
 
 		radiusResolver() {
-			return this.roundedCorners ? rounder(this.width) : '0px';
+			if (this.round) {
+				return '50%';
+			}
+
+			if (this.roundedCorners) {
+				return rounder(this.width);
+			}
+			return '0px';
 		},
 
 		grayScaleResolver() {
