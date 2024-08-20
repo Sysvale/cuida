@@ -20,7 +20,7 @@ jobs:
           node-version: '16'
 
       - name: Install conventional-changelog-cli
-        run: npm install -g conventional-changelog-cli
+        run: npm install -g conventional-changelog-cli@2.2.2
 
       - name: Generate changelog
         run: |
