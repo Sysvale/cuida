@@ -33,8 +33,7 @@ module.exports = {
 				subject: subject,
 				shortHash: shortHash,
 				body: commit.body || '',
-				breaking: Array.isArray(commit.notes) && commit.notes.some(note => note.title && note.title.toLowerCase().includes('breaking change')),
-				issues: Array.isArray(commit.references) ? commit.references.filter(ref => ref && ref.issue).map(ref => ref.issue) : [],
+				title: commit.header || '',
 			};
 		},
 		'groupBy': 'type',
