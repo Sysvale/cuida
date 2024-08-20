@@ -24,6 +24,8 @@ module.exports = {
 			const type = commit.type && typeMap[commit.type] ? typeMap[commit.type] : (commit.type || 'Other');
 			const shortHash = commit.hash ? commit.hash.substring(0, 7) : '';
 			const subject = commit.subject ? commit.subject.charAt(0).toLowerCase() + commit.subject.slice(1) : '';
+
+			console.log('commit: ', commit);
 		
 			return {
 				type: type,
