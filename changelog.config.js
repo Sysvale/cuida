@@ -21,29 +21,25 @@ module.exports = {
 				'revert': 'Reverts'
 			};
 		
-			const type = typeMap[commit.type] || commit.type;
-		
-			if (typeof commit.hash === 'string') {
-				commit.shortHash = commit.hash.substring(0, 7);
-			}
-		
-			if (typeof commit.subject === 'string') {
-				commit.subject = commit.subject.charAt(0).toLowerCase() + commit.subject.slice(1);
-			}
+			const type = commit.type && typeMap[commit.type] ? typeMap[commit.type] : (commit.type || 'Other');
+			const shortHash = commit.hash ? commit.hash.substring(0, 7) : '';
+			const subject = commit.subject ? commit.subject.charAt(0).toLowerCase() + commit.subject.slice(1) : '';
 		
 			return {
 				type: type,
 				scope: commit.scope || '',
-				subject: commit.subject || '',
+				subject: subject,
+				shortHash: shortHash,
 				body: commit.body || '',
-				breaking: commit.notes.some(note => note.title.toLowerCase().includes('breaking change')),
-				issues: commit.references.map(ref => ref.issue).filter(issue => issue),
+				breaking: Array.isArray(commit.notes) && commit.notes.some(note => note.title && note.title.toLowerCase().includes('breaking change')),
+				issues: Array.isArray(commit.references) ? commit.references.filter(ref => ref && ref.issue).map(ref => ref.issue) : [],
 			};
 		},
 		'groupBy': 'type',
 		'commitGroupsSort': 'title',
 		'commitsSort': ['scope', 'subject'],
 		'noteGroupsSort': 'title',
-		'notesSort': ['title', 'text'],
+		'notesSort': ['title', 'text']
 	}
 };
+  
