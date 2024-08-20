@@ -20,15 +20,30 @@ module.exports = {
 				'chore': 'Chores',
 				'revert': 'Reverts'
 			};
+		
 			const type = typeMap[commit.type] || commit.type;
+		
+			if (typeof commit.hash === 'string') {
+				commit.shortHash = commit.hash.substring(0, 7);
+			}
+		
+			if (typeof commit.subject === 'string') {
+				commit.subject = commit.subject.charAt(0).toLowerCase() + commit.subject.slice(1);
+			}
+		
 			return {
-				title: `${type}: ${commit.subject}`,
-				body: commit.body,
-				breaking: commit.breaking,
+				type: type,
+				scope: commit.scope || '',
+				subject: commit.subject || '',
+				body: commit.body || '',
+				breaking: commit.notes.some(note => note.title.toLowerCase().includes('breaking change')),
+				issues: commit.references.map(ref => ref.issue).filter(issue => issue),
 			};
 		},
 		'groupBy': 'type',
 		'commitGroupsSort': 'title',
-		'commitsSort': ['scope', 'subject']
+		'commitsSort': ['scope', 'subject'],
+		'noteGroupsSort': 'title',
+		'notesSort': ['title', 'text'],
 	}
 };
