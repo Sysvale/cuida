@@ -17,29 +17,29 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16' # Atualize a versão para 16 ou superior
-
+          node-version: '14'
+      
       - name: Install conventional-changelog-cli
         run: npm install -g conventional-changelog-cli
-
+      
       - name: Generate changelog
         run: |
-          conventional-changelog -p angular -i CHANGELOG.md -s -r 0
+          conventional-changelog -p angular -i CHANGELOG.md -s --release-count 1
           echo "CHANGELOG<<EOF" >> $GITHUB_ENV
           cat CHANGELOG.md >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-
+      
       - name: Creates tag
         uses: Klemensas/action-autotag@stable
         id: auto-tag
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           tag_prefix: "v"
-
+      
       - name: Read package.json
         uses: tyankatsu0105/read-package-version-actions@v1
         id: package-version
-
+      
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -50,7 +50,7 @@ jobs:
           release_name: "v${{ steps.package-version.outputs.version }}"
           body: |
             Mudanças nessa release:
-
+            
             ${{ env.CHANGELOG }}
           draft: false
           prerelease: false
