@@ -1,9 +1,11 @@
 name: "RocketChat Cuida News 🎉"
+
 on:
   release:
     types: 
       - published
       - edited
+
 jobs:
   notify:
     runs-on: ubuntu-latest
@@ -12,6 +14,7 @@ jobs:
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"
+
     - name: Debug event information
       run: |
         echo "Event Name: ${{ github.event_name }}"
@@ -19,28 +22,31 @@ jobs:
         echo "Ref: ${{ github.ref }}"
         echo "Release Tag: ${{ github.event.release.tag_name }}"
         echo "Release URL: ${{ github.event.release.html_url }}"
+
     - name: Get the version
       id: get_version
       run: |
         echo ::set-output name=VERSION::${{ github.event.release.tag_name }}
-    - name: Get release notes
-      id: get_release_notes
-      run: |
-        release_notes=$(curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github.v3+json" ${{ github.event.release.url }})
-        echo ::set-output name=RELEASE_NOTES::$release_notes
+
     - name: Send notification to Rocket.Chat
       env:
         WEBHOOK_URL: ${{ secrets.ROCKET_CHAT_HOOK }}
         RELEASE_TAG: ${{ steps.get_version.outputs.VERSION }}
         RELEASE_URL: ${{ github.event.release.html_url }}
-        RELEASE_NOTES: ${{ steps.get_release_notes.outputs.RELEASE_NOTES }}
       run: |
         echo "Enviando notificação com:"
         echo "Tag: ${RELEASE_TAG}"
         echo "URL: ${RELEASE_URL}"
-        echo "Notas de release: ${RELEASE_NOTES}"
-        MESSAGE="Nova release publicada: ${RELEASE_TAG}\n\n${RELEASE_NOTES}"
-        curl -X POST -H 'Content-Type: application/json' --data "{\"text\":\"${MESSAGE}\"}" ${WEBHOOK_URL}
+        MESSAGE="Nova atualização na release: ${RELEASE_TAG}"
+        if [[ "${{ github.event.action }}" == "created" ]]; then
+          MESSAGE="Nova release criada: ${RELEASE_TAG}"
+        elif [[ "${{ github.event.action }}" == "published" ]]; then
+          MESSAGE="Release publicada: ${RELEASE_TAG}"
+        elif [[ "${{ github.event.action }}" == "edited" ]]; then
+          MESSAGE="Release editada: ${RELEASE_TAG}"
+        fi
+        curl -X POST -H 'Content-Type: application/json' --data "{\"text\":\"${MESSAGE}\nLink: ${RELEASE_URL}\"}" ${WEBHOOK_URL}
+
     - name: Output curl result
       if: failure()
       run: echo "Falha ao enviar notificação. Verifique se o webhook do Rocket.Chat está configurado corretamente."
