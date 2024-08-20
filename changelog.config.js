@@ -38,7 +38,5 @@ module.exports = {
 		'groupBy': 'type',
 		'commitGroupsSort': 'header',
 		'commitsSort': ['scope', 'subject'],
-		'noteGroupsSort': 'header',
-		'notesSort': ['header', 'text']
 	}
 };
