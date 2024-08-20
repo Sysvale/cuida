@@ -27,12 +27,12 @@ module.exports = {
 
 			return {
 				type: type,
-				header: commit.header,
+				header: commit.header || '',
 				scope: commit.scope || '',
 				subject: subject,
 				shortHash: shortHash,
 				body: commit.body || '',
-				title: commit.header || ''
+				title: 'test'
 			};
 		},
 		'groupBy': 'type',
