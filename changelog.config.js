@@ -1,7 +1,7 @@
 module.exports = {
 	'parserOpts': {
 		'noteKeywords': ['BREAKING CHANGE', 'BREAKING CHANGES'],
-		'headerPattern': /^(\w*)(?:\((.*)\))?: (.*)$/,
+		'headerPattern': /^(\w*)\(?(\w*)\)?: (.*)$/,
 		'headerCorrespondence': ['type', 'scope', 'subject'],
 		'ticketPrefixes': ['PROJ-', 'TICKET-']
 	},
@@ -20,27 +20,25 @@ module.exports = {
 				'chore': 'Chores',
 				'revert': 'Reverts'
 			};
-		
+
 			const type = commit.type && typeMap[commit.type] ? typeMap[commit.type] : (commit.type || 'Other');
 			const shortHash = commit.hash ? commit.hash.substring(0, 7) : '';
 			const subject = commit.subject ? commit.subject.charAt(0).toLowerCase() + commit.subject.slice(1) : '';
 
-			console.log('commit: ', commit);
-		
 			return {
 				type: type,
+				header: commit.header,
 				scope: commit.scope || '',
 				subject: subject,
 				shortHash: shortHash,
 				body: commit.body || '',
-				title: commit.header || '',
+				title: commit.header || ''
 			};
 		},
 		'groupBy': 'type',
-		'commitGroupsSort': 'title',
+		'commitGroupsSort': 'header',
 		'commitsSort': ['scope', 'subject'],
-		'noteGroupsSort': 'title',
-		'notesSort': ['title', 'text']
+		'noteGroupsSort': 'header',
+		'notesSort': ['header', 'text']
 	}
 };
-  
