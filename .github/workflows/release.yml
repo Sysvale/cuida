@@ -4,49 +4,27 @@ on:
     branches:
       - main
       - v2.70-legacy
-
 jobs:
   build:
     name: Create Release
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
+      
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '16'
 
-      - name: Install dependencies
-        run: |
-          npm install -g conventional-changelog-cli@2.2.2
-          npm install conventional-changelog-angular
-      
-      - name: Debug - List files
-        run: ls -la
-
-
-      - name: Debug - Check changelog.config.js
-        run: cat changelog.config.js
-
-      - name: Debug - Check git log
-        run: git log -n 5 --pretty=format:"%h - %s (%cr) <%an>"
+      - name: Install conventional-changelog-cli
+        run: npm install -g conventional-changelog-cli@2.2.2
 
       - name: Generate changelog
         run: |
-          touch CHANGELOG.md
-          conventional-changelog -p angular -i CHANGELOG.md -s -r 0 --config changelog.config.js
-        continue-on-error: true
-
-      - name: Debug - Check CHANGELOG.md
-        run: cat CHANGELOG.md
-
-      - name: Set changelog to env
-        run: |
+          conventional-changelog -p angular -i CHANGELOG.md -s --release-count 1 --verbose
           echo "CHANGELOG<<EOF" >> $GITHUB_ENV
           cat CHANGELOG.md >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
@@ -71,6 +49,8 @@ jobs:
           tag_name: ${{ steps.auto-tag.outputs.tagname }}
           release_name: "v${{ steps.package-version.outputs.version }}"
           body: |
-            Mudanças nessa release: ${{ env.CHANGELOG }}
+            Mudanças nessa release:
+
+            ${{ env.CHANGELOG }}
           draft: false
           prerelease: false
