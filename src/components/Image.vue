@@ -29,6 +29,7 @@ export default {
 		fallbackSrc: {
 			type: String,
 			required: false,
+			default: 'https://sysfront.nyc3.cdn.digitaloceanspaces.com/cuida/images/imagePlaceholder.png'
 		},
 		/**
 		* Largura da imagem. Quando não especificada, o valor `auto` é aplicado.
