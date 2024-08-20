@@ -26,8 +26,9 @@ jobs:
 
       - name: Generate changelog
         run: |
-          conventional-changelog -p angular -i CHANGELOG.md -s --release-count 1 --verbose --config changelog.config.js
-          echo "CHANGELOG<> $GITHUB_ENV"
+          touch CHANGELOG.md
+          conventional-changelog -p angular -i CHANGELOG.md -s -r 0 --config changelog.config.js
+          echo "CHANGELOG<<EOF" >> $GITHUB_ENV
           cat CHANGELOG.md >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
