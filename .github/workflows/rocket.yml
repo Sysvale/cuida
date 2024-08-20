@@ -1,8 +1,9 @@
 name: "RocketChat Cuida News 🎉"
 
-on:
+on: 
   release:
     types: 
+      - created
       - published
       - edited
 
@@ -37,7 +38,11 @@ jobs:
         echo "Enviando notificação com:"
         echo "Tag: ${RELEASE_TAG}"
         echo "URL: ${RELEASE_URL}"
+
+        # Defina a mensagem base
         MESSAGE="Nova atualização na release: ${RELEASE_TAG}"
+
+        # Verifique a ação e ajuste a mensagem
         if [[ "${{ github.event.action }}" == "created" ]]; then
           MESSAGE="Nova release criada: ${RELEASE_TAG}"
         elif [[ "${{ github.event.action }}" == "published" ]]; then
@@ -45,6 +50,7 @@ jobs:
         elif [[ "${{ github.event.action }}" == "edited" ]]; then
           MESSAGE="Release editada: ${RELEASE_TAG}"
         fi
+
         curl -X POST -H 'Content-Type: application/json' --data "{\"text\":\"${MESSAGE}\nLink: ${RELEASE_URL}\"}" ${WEBHOOK_URL}
 
     - name: Output curl result
