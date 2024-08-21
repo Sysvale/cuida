@@ -1,6 +1,5 @@
 <template>
 	<span
-		:id="$attrs.id || id"
 		class="radio__button"
 		:style="cssVars"
 	>
@@ -16,10 +15,10 @@
 				<label
 					class="radio-button"
 					:disabled="option.disabled || disabled"
-					:for="option.value"
+					:for="`${id}-${option.value}`"
 				>
 					<input
-						:id="option.value"
+						:id="`${id}-${option.value}`"
 						v-model="selected"
 						type="radio"
 						:value="option.value"
@@ -27,7 +26,7 @@
 					>
 					<label
 						class="radio-button__content"
-						:for="option.value"
+						:for="`${id}-${option.value}`"
 					>
 						<div class="content-title">
 							{{ option.text }}
@@ -105,6 +104,7 @@ export default {
 	data() {
 		return {
 			selected: this.modelValue,
+			id: `radio-group$-${generateKey()}`,
 		};
 	},
 
@@ -130,10 +130,6 @@ export default {
 			},
 			immediate: true,
 		},
-	},
-
-	mounted() {
-		this.id = `radio-group$-${generateKey()}`;
 	},
 };
 </script>
