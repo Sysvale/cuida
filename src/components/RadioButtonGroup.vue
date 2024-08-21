@@ -1,6 +1,7 @@
 <template>
 	<span
 		:id="id"
+		class="radio__button"
 		:style="cssVars"
 	>
 		<div
@@ -18,7 +19,7 @@
 					:for="option.value"
 				>
 					<input
-						:id="id"
+						:id="option.value"
 						v-model="selected"
 						type="radio"
 						:value="option.value"
@@ -98,18 +99,12 @@ export default {
 			type: String,
 			default: 'blue',
 		},
-		/**
-		 * O id a ser utilizado pelo elemento HTML.
-		 */
-		id: {
-			type: String,
-			default: 'radio-button-group',
-		},
 	},
 
 	data() {
 		return {
 			selected: this.modelValue,
+			id: 'radio-button',
 		};
 	},
 
@@ -136,19 +131,23 @@ export default {
 			immediate: true,
 		},
 	},
+
+	mounted() {
+		this.id = `radio-group$-${this._uid}`;
+	},
 };
 </script>
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
 
-#radioButton [type="radio"]:checked,
-#radioButton [type="radio"]:not(:checked) {
+.radio__button [type="radio"]:checked,
+.radio__button [type="radio"]:not(:checked) {
 	position: absolute;
 	left: -9999px;
 }
 
-#radioButton [type="radio"]:checked + label,
-#radioButton [type="radio"]:not(:checked) + label {
+.radio__button [type="radio"]:checked + label,
+.radio__button [type="radio"]:not(:checked) + label {
 	@include body-2;
 	position: relative;
 	padding: pl(7);
@@ -158,8 +157,8 @@ export default {
 	font-weight: $font-weight-semibold;
 }
 
-#radioButton [type="radio"]:checked + label:before,
-#radioButton [type="radio"]:not(:checked) + label:before {
+.radio__button [type="radio"]:checked + label:before,
+.radio__button [type="radio"]:not(:checked) + label:before {
 	content: '';
 	position: absolute;
 	left: -0.5px;
@@ -170,8 +169,8 @@ export default {
 	border-radius: 100%;
 }
 
-#radioButton [type="radio"]:checked + label:after,
-#radioButton [type="radio"]:not(:checked) + label:after {
+.radio__button [type="radio"]:checked + label:after,
+.radio__button [type="radio"]:not(:checked) + label:after {
 	content: '';
 	width: 10px;
 	height: 10px;
@@ -184,23 +183,23 @@ export default {
 	transition: all 0.3s ease;
 }
 
-#radioButton [type="radio"]:not(:checked) + label:after {
+.radio__button [type="radio"]:not(:checked) + label:after {
 	opacity: 0;
 	-webkit-transform: scale(0);
 	transform: scale(0);
 }
 
-#radioButton [type="radio"]:checked + label:after {
+.radio__button [type="radio"]:checked + label:after {
 	opacity: 1;
 	-webkit-transform: scale(1);
 	transform: scale(1);
 }
 
-#radioButton .button-group {
+.radio__button .button-group {
 	display: flex;
 }
 
-#radioButton .radio-button {
+.radio__button .radio-button {
 	border: 1px solid $n-50;
 	padding: pYX(3, 4);
 	border-radius: $border-radius-extra-small;
@@ -226,41 +225,41 @@ export default {
 	}
 }
 
-#radioButton .radio-button:hover {
+.radio__button .radio-button:hover {
 	background-color: $n-10;
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 }
 
-#radioButton .radio-button:disabled {
+.radio__button .radio-button:disabled {
 	background-color: $n-100;
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 }
 
-#radioButton .radio-button:disabled
+.radio__button .radio-button:disabled
 	[type="radio"]:checked + label:before,
-#radioButton .radio-button:disabled
+.radio__button .radio-button:disabled
 	[type="radio"]:not(:checked) + label:before {
 	background: transparent;
 }
 
-#radioButton .radio-button:has(input[type="radio"]:disabled) {
+.radio__button .radio-button:has(input[type="radio"]:disabled) {
 	background-color: $n-20;
 }
 
-#radioButton .radio-button:has(input[type="radio"]:checked) {
+.radio__button .radio-button:has(input[type="radio"]:checked) {
 	border-color: var(--border-color-selected);
 	background-color: var(--background-color);
 }
 
-#radioButton .radio-button:has(input[type="radio"]:checked){
+.radio__button .radio-button:has(input[type="radio"]:checked){
 	label::before {
 		border-color: var(--border-color-selected) !important;
 	}
 }
 
-#radioButton .radio-button:has(input[type="radio"]:disabled) {
+.radio__button .radio-button:has(input[type="radio"]:disabled) {
 	label::before {
 		border-color: $n-300;
 	}
