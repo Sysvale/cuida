@@ -17,6 +17,7 @@
 
 		<div class="page-layout__content">
 			<secondary-navigation
+				v-if="navigationItems?.length > 0"
 				:light="light"
 				:active-item="navigationActiveItem"
 				:items="navigationItems"
