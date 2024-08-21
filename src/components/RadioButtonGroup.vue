@@ -15,10 +15,10 @@
 				<label
 					class="radio-button"
 					:disabled="option.disabled || disabled"
-					:for="`${id}-${option.value}`"
+					:for="`${$attrs.id || id}-${option.value}`"
 				>
 					<input
-						:id="`${id}-${option.value}`"
+						:id="`${$attrs.id || id}-${option.value}`"
 						v-model="selected"
 						type="radio"
 						:value="option.value"
@@ -26,7 +26,7 @@
 					>
 					<label
 						class="radio-button__content"
-						:for="`${id}-${option.value}`"
+						:for="`${$attrs.id || id}-${option.value}`"
 					>
 						<div class="content-title">
 							{{ option.text }}
