@@ -1,6 +1,6 @@
 <template>
 	<span
-		:id="id"
+		:id="$attrs.id || id"
 		class="radio__button"
 		:style="cssVars"
 	>
@@ -47,6 +47,7 @@
 
 <script>
 import { colorHexCode, colorLightestHexCode } from '../utils/constants/colors';
+import { generateKey } from '../utils';
 
 export default {
 	props: {
@@ -104,7 +105,6 @@ export default {
 	data() {
 		return {
 			selected: this.modelValue,
-			id: 'radio-button',
 		};
 	},
 
@@ -133,7 +133,7 @@ export default {
 	},
 
 	mounted() {
-		this.id = `radio-group$-${this._uid}`;
+		this.id = `radio-group$-${generateKey()}`;
 	},
 };
 </script>
