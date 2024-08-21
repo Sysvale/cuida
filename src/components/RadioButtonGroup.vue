@@ -1,6 +1,6 @@
 <template>
 	<span
-		id="radioButton"
+		:id="id"
 		:style="cssVars"
 	>
 		<div
@@ -18,7 +18,7 @@
 					:for="option.value"
 				>
 					<input
-						:id="option.value"
+						:id="id"
 						v-model="selected"
 						type="radio"
 						:value="option.value"
@@ -97,7 +97,14 @@ export default {
 		variant: {
 			type: String,
 			default: 'blue',
-		}
+		},
+		/**
+		 * O id a ser utilizado pelo elemento HTML.
+		 */
+		id: {
+			type: String,
+			default: 'radio-button-group',
+		},
 	},
 
 	data() {
