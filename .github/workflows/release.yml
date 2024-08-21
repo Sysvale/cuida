@@ -49,7 +49,7 @@ jobs:
           tag_name: ${{ steps.auto-tag.outputs.tagname }}
           release_name: "v${{ steps.package-version.outputs.version }}"
           body: |
-            Mudanças nessa release:
+            ## Mudanças nessa release:
 
             ${{ env.CHANGELOG }}
           draft: false
