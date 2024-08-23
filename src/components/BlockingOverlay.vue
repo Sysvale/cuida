@@ -112,7 +112,6 @@ watchEffect(() => {
 	if (!isMobile.value && !isLandscape.value) {
 		showOverlay.value = false;
 	}
-	console.log('showOverlay: ', showOverlay.value);
 })
 
 // Código
