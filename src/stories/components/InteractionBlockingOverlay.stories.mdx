@@ -7,7 +7,7 @@ import { colorOptions } from '../../utils/constants/colors.js'
 	title="Componentes/Overlays/InteractionBlockingOverlay"
 	component={ InteractionBlockingOverlay }
 	argTypes={{
-		block: {
+		blockInteraction: {
 			control:{
 				type: 'select',
 				options: [
@@ -32,7 +32,7 @@ import { colorOptions } from '../../utils/constants/colors.js'
 				format:true,
 				code: /*html*/
 `<cds-interaction-blocking-overlay
-	block="mobile"
+	block-interaction="mobile"
 />`
 			},
 		}

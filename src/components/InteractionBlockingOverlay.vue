@@ -11,7 +11,7 @@
 			<span class="landscape-overlay__title">{{ titleText }}</span>
 			<span class="landscape-overlay__subtitle">{{ descriptionText }}</span>
 			<div
-				v-if="block === 'mobile'"
+				v-if="block-interaction === 'mobile'"
 				class="landscape-overlay__button"
 			>
 				<cds-button
@@ -37,7 +37,7 @@ const props = defineProps({
 	/**
 	* Define qual critério vai ser usado para exibir o componente.
 	*/
-	block: {
+	blockInteraction: {
 		type: String,
 		required: true,
 		default: 'mobile',
@@ -58,7 +58,7 @@ const props = defineProps({
 		default: '',
 	},
 	/**
-	* Define qual é a variante de cor do botão exibido quando a propriedade 'block' for 'mobile'.
+	* Define qual é a variante de cor do botão exibido quando a propriedade 'block-interaction' for 'mobile'.
 	*/
 	buttonVariant: {
 		type: String,
@@ -66,7 +66,7 @@ const props = defineProps({
 		validator: (value) => colorOptions.includes(value.toLowerCase()),
 	},
 	/**
-	* Define qual o texto do botão exibido quando a propriedade 'block' for 'mobile'.
+	* Define qual o texto do botão exibido quando a propriedade 'block-interaction' for 'mobile'.
 	*/
 	buttonText: {
 		type: String,
@@ -115,14 +115,14 @@ watchEffect(() => {
 })
 
 // Código
-if (props.block === 'mobile') {
+if (props.blockInteraction === 'mobile') {
 	if (isMobile.value) {
 		showOverlay.value = true;
 		props.title === '' ? titleText.value = 'Acesse o conteúdo por um computador' : titleText.value = props.title;
 		props.description === '' ? descriptionText.value = 'Esta tela não é otimizada para navegação em celular.' : descriptionText.value = props.description;
 		imgSrc.value = '/img/page-not-responsive.svg';
 	}
-} else if (props.block === 'landscape') {
+} else if (props.blockInteraction === 'landscape') {
 	if  (isLandscape.value) {
 		showOverlay.value = true;
 		props.title === '' ? titleText.value = 'Rotacione seu dispositivo' : titleText.value = props.title;
