@@ -92,7 +92,7 @@ const imgSrc = ref('');
 
 // Variáveis computadas
 const isMobile = computed(() => {
-	return !isDeviceType('hd-screen') && !isDeviceType('fhd-screen') && !isDeviceType('uhd-screen');
+	return isDeviceType('smartphone') || isDeviceType('tablet');
 });
 
 const isLandscape = computed(() => {
