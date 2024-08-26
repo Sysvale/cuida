@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { computed, ref, watch, watchEffect } from 'vue';
+import { computed, onMounted, ref, watch, watchEffect } from 'vue';
 import isDeviceType from '../utils/methods/isDeviceType';
 import { colorOptions } from '../utils/constants/colors';
 import CdsButton from './Button.vue';
@@ -114,22 +114,28 @@ watchEffect(() => {
 	}
 })
 
-// Código
-if (props.blockInteraction === 'mobile') {
-	if (isMobile.value) {
-		showOverlay.value = true;
-		props.title === '' ? titleText.value = 'Acesse o conteúdo por um computador' : titleText.value = props.title;
-		props.description === '' ? descriptionText.value = 'Esta tela não é otimizada para navegação em celular.' : descriptionText.value = props.description;
-		imgSrc.value = '/img/page-not-responsive.svg';
+// Hooks de ciclo de vida
+onMounted(() => {
+	if (props.blockInteraction === 'mobile') {
+		if (isMobile.value) {
+			showOverlay.value = true;
+			props.title === '' ? titleText.value = 'Acesse o conteúdo por um computador' : titleText.value = props.title;
+			props.description === '' ? descriptionText.value = 'Esta tela não é otimizada para navegação em celular.' : descriptionText.value = props.description;
+			imgSrc.value = '/img/page-not-responsive.svg';
+		}
+		return
 	}
-} else if (props.blockInteraction === 'landscape') {
-	if  (isLandscape.value) {
-		showOverlay.value = true;
-		props.title === '' ? titleText.value = 'Rotacione seu dispositivo' : titleText.value = props.title;
-		props.description === '' ? descriptionText.value = 'Este conteúdo é otimizado para a visualização em modo retrato.' : descriptionText.value = props.description;
-		imgSrc.value = '/img/smartphone-rotation.svg';
+
+	if (props.blockInteraction === 'landscape') {
+		if  (isLandscape.value) {
+			showOverlay.value = true;
+			props.title === '' ? titleText.value = 'Rotacione seu dispositivo' : titleText.value = props.title;
+			props.description === '' ? descriptionText.value = 'Este conteúdo é otimizado para a visualização em modo retrato.' : descriptionText.value = props.description;
+			imgSrc.value = '/img/smartphone-rotation.svg';
+		}
 	}
-}
+})
+
 </script>
 
 <style lang="scss" scoped>
