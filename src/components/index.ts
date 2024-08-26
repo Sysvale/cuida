@@ -46,6 +46,7 @@ import Image from './Image.vue';
 import InlineDateInput from './InlineDateInput.vue';
 import Link from './Link.vue';
 import LoadingBar from './LoadingBar.vue';
+import LoadingIndicator from './LoadingIndicator.vue';
 import MobileNavigation from './MobileNavigation.vue';
 import Modal from './Modal.vue';
 import Multiselect from './Multiselect.vue';
@@ -98,7 +99,6 @@ export default {
 	install: (app: any, options: any) => {
 		app.directive('cdstip', Cdstip);
 		app.directive("cds-floatify", CdsFloatify);
-
 		app.component('CdsActionBar', ActionBar);
 		app.component('CdsActionsList', ActionsList);
 		app.component('CdsAlert', Alert);
@@ -144,6 +144,7 @@ export default {
 		app.component('CdsLink', Link);
 		app.component('CdsInlineDateInput', InlineDateInput);
 		app.component('CdsLoadingBar', LoadingBar);
+		app.component('CdsLoadingIndicator', LoadingIndicator);
 		app.component('CdsMobileNavigation', MobileNavigation);
 		app.component('CdsModal', Modal);
 		app.component('CdsMultiselect', Multiselect); //FIXME: Problema no SB
