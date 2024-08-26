@@ -143,7 +143,7 @@ if (props.blockInteraction === 'mobile') {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	z-index: 1000000;
+	z-index: $z-index-toast;
 	display: flex;
 	justify-content: center;
 	align-items: center;
