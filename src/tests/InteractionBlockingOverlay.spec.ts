@@ -1,10 +1,10 @@
 import { describe, test, expect } from 'vitest';
-import BlockingOverlay from '../components/BlockingOverlay.vue';
+import InteractionBlockingOverlay from '../components/InteractionBlockingOverlay.vue';
 import { mount } from '@vue/test-utils';
 
-describe('BlockingOverlay', () => {
+describe('InteractionBlockingOverlay', () => {
 	test('renders correctly', async () => {
-		const wrapper = mount(BlockingOverlay, {
+		const wrapper = mount(InteractionBlockingOverlay, {
 			props: {
 				block: 'mobile',
 			},

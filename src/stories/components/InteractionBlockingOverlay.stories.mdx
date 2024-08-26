@@ -1,11 +1,11 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
-import BlockingOverlay from '../../components/BlockingOverlay.vue';
+import InteractionBlockingOverlay from '../../components/InteractionBlockingOverlay.vue';
 import Button from '../../components/Button.vue';
 import { colorOptions } from '../../utils/constants/colors.js'
 
 <Meta
-	title="Componentes/Overlays/BlockingOverlay"
-	component={ BlockingOverlay }
+	title="Componentes/Overlays/InteractionBlockingOverlay"
+	component={ InteractionBlockingOverlay }
 	argTypes={{
 		block: {
 			control:{
@@ -31,10 +31,9 @@ import { colorOptions } from '../../utils/constants/colors.js'
 				language: 'html',
 				format:true,
 				code: /*html*/
-`<cds-blocking-overlay
+`<cds-interaction-blocking-overlay
 	block="mobile"
->
-</cds-blocking-overlay>`
+/>`
 			},
 		}
 	}}
@@ -44,22 +43,21 @@ export const Template = (args) => ({
 	setup() {
 		return { args };
 	},
-	components: { CdsBlockingOverlay: BlockingOverlay, CdsButton: Button },
+	components: { CdsInteractionBlockingOverlay: InteractionBlockingOverlay, CdsButton: Button },
 	template: /*html*/ `
 		<div class="d-flex justify-content-center">
 			<b>Teste o componente usando o devtools do navegador, alterando a resolução da tela para mobile ou landscape.</b>
-			<cds-blocking-overlay
+			<cds-interaction-blocking-overlay
 				v-bind="args"
 				@button-click="console.log('button-click')"
-			>
-			</cds-blocking-overlay>
+			/>
 		</div>
 	`,
 });
 
-# BlockingOverlay
+# InteractionBlockingOverlay
 
-### O BlockingOverlay é um componente utilizado para bloquear a interação do usuário em situações onde o sistema não está preparado para o uso, como em telas ou módulos que não possuem responsividade adequada para dispositivos móveis ou no modo paisagem (landscape).
+### O InteractionBlockingOverlay é um componente utilizado para bloquear a interação do usuário em situações onde o sistema não está preparado para o uso, como em telas ou módulos que não possuem responsividade adequada para dispositivos móveis ou no modo paisagem (landscape).
 ---
 <br />
 
@@ -81,10 +79,10 @@ export const Template = (args) => ({
 
 <Canvas>
 	<Story
-		name="DialogModal"
+		name="InteractionBlockingOverlay"
 	>
 		{ Template.bind({}) }
 	</Story>
 </Canvas>
 
-<ArgsTable story="DialogModal" />
+<ArgsTable story="InteractionBlockingOverlay" />
