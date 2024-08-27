@@ -42,6 +42,7 @@ import Highlight from './Highlight.vue';
 import Icon from './Icon.vue';
 import IconButton from './IconButton.vue';
 import InnerTabs from './InnerTabs.vue';
+import InteractionBlockingOverlay from './InteractionBlockingOverlay.vue';
 import Image from './Image.vue';
 import InlineDateInput from './InlineDateInput.vue';
 import Link from './Link.vue';
@@ -140,6 +141,7 @@ export default {
 		app.component('CdsIconButton', IconButton);
 		app.component('CdsImage', Image);
 		app.component('CdsInnerTabs', InnerTabs);
+		app.component('CdsInteractionBlockingOverlay', InteractionBlockingOverlay);
 		app.component('CdsLineChart', LineChart);
 		app.component('CdsLink', Link);
 		app.component('CdsInlineDateInput', InlineDateInput);
