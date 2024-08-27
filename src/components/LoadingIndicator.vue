@@ -4,6 +4,7 @@
 
 <script setup>
 import { computed, ref, watch } from 'vue';
+import isDeviceType from '../utils/methods/isDeviceType.js';
 
 // Props
 const props = defineProps({
@@ -36,6 +37,14 @@ const barPercentage = computed(() => {
 const disabledTransition = computed(() => {
 	return currentPercentage.value === 0 ? 'none' : 'width 0.5s';
 });
+
+const barHeight = computed(() => {
+	if (isDeviceType('smartphone') || isDeviceType('tablet')) {
+		return '4px';
+	}
+
+	return '3px';
+})
 
 // Watch
 watch(() => props.modelValue, (newValue) => {
@@ -83,7 +92,7 @@ function finish() {
 	top: 0;
 	left: 0;
 	width: v-bind(barPercentage);
-	height: 3px;
+	height: v-bind(barHeight);
 	display: flex;
 	justify-content: center;
 	align-items: center;
