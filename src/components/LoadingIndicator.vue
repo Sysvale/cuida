@@ -83,7 +83,7 @@ function finish() {
 	top: 0;
 	left: 0;
 	width: v-bind(barPercentage);
-	height: 2.5px;
+	height: 3px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
