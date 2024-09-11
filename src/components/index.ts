@@ -21,6 +21,7 @@ import CarouselController from './CarouselController.vue';
 import Checkbox from './Checkbox.vue';
 import CheckboxGroup from './CheckboxGroup.vue';
 import Chevron from './Chevron.vue';
+import Chip from './Chip.vue';
 import Clickable from './Clickable.vue';
 import CollapsibleContainer from './CollapsibleContainer.vue';
 import ColorPicker from './ColorPicker.vue';
@@ -119,6 +120,7 @@ export default {
 		app.component('CdsCheckbox', Checkbox);
 		app.component('CdsCheckboxGroup', CheckboxGroup);
 		app.component('CdsChevron', Chevron);
+		app.component('CdsChip', Chip);
 		app.component('CdsClickable', Clickable);
 		app.component('CdsCollapsibleContainer', CollapsibleContainer);
 		app.component('CdsColorPicker', ColorPicker);
