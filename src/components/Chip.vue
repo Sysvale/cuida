@@ -184,7 +184,7 @@ export default {
 			this.internalValue = !this.internalValue;
 		},
 		removeNotSelectedClass() {
-			let regex = new RegExp("chip--not-selected", 'g');
+			let regex = new RegExp('chip--not-selected', 'g');
 			return this.classList.replace(regex, '');
 		}
 	}
