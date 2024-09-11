@@ -11,7 +11,7 @@
 			<div
 				class="chip__content-container"
 				:style="{
-					maxWidth: maxWidth,
+					maxWidth,
 					...containerStyle,
 				}"
 			>
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import { colorOptions } from '../utils/constants/colors';
+import sizes from '../utils/constants/sizes';
 import CdsIcon from './Icon.vue'
 
 export default {
@@ -44,7 +46,7 @@ export default {
 		/**
 		 *  Controla a exibição do bottom sheet.
 		 */
-		 modelValue: {
+		modelValue: {
 			type: Boolean,
 			default: false,
 			required: true,
@@ -77,26 +79,8 @@ export default {
 
 	data() {
 		return {
-			predefinedColors: [
-				'green',
-				'teal',
-				'turquoise',
-				'blue',
-				'indigo',
-				'violet',
-				'pink',
-				'red',
-				'orange',
-				'amber',
-				'gray',
-				'white',
-				'dark',
-			],
-			predefinedSizes: [
-				'sm',
-				'md',
-				'lg',
-			],
+			predefinedColors: colorOptions,
+			predefinedSizes: sizes,
 			internalValue: this.modelValue,
 			classList: '',
 			shouldUpdatePadding: true,
