@@ -185,9 +185,9 @@ export default {
 	}
 
 	&--not-selected {
-		color: $n-400!important;
-		background-color: $n-20!important;
-		outline: none!important;
+		color: $n-400 !important;
+		background-color: $n-20 !important;
+		outline: none !important;
 	}
 
 
