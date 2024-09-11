@@ -263,7 +263,7 @@ export default {
 	&--white {
 		color: $n-800;
 		background-color: $n-0;
-		outline: 1px solid $n-100 !important;
+		outline: 1px solid $n-100;
 
 		&:hover {
 			color: darken($n-600, 10%) !important;
