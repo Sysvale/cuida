@@ -24,9 +24,9 @@
 						name="check-outline"
 					/>
 				</transition>
-				 <div id="slot-content">
-					 <slot />
-				 </div>
+				<div ref="slot-content">
+					<slot />
+				</div>
 			</div>
 		</div>
 	</div>
@@ -159,7 +159,7 @@ export default {
 	mounted() {
 		this.classList = this.predefinedStyle;
 		setTimeout(() => {
-			this.maxWidth = (document.querySelector('#slot-content')?.offsetWidth || 0) + 4 + this.icon.width + 'px';
+			this.maxWidth = (this.$refs['slot-content']?.offsetWidth || 0) + 4 + this.icon.width + 'px';
 		}, 100);
 	},
 
