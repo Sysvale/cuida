@@ -186,7 +186,6 @@ export default {
 	methods: {
 		handleClick() {
 			this.internalValue = !this.internalValue;
-			this.$emit('click', this.internalValue);
 		},
 		removeNotSelectedClass() {
 			let regex = new RegExp("chip--not-selected", 'g');
