@@ -6,11 +6,7 @@
 		@click="handleClick"
 	>
 		<div
-			:class="{
-				'chip__content--sm': size === 'sm',
-				'chip__content--md': size === 'md',
-				'chip__content--lg': size === 'lg',
-			}"
+			:class="`chip__content--${size}`"
 		>
 			<div
 				class="chip__content-container"
