@@ -181,7 +181,7 @@ export default {
 	&__container {
 		border-radius: 50px !important;
 		width: fit-content;
-		cursor: default;
+		cursor: pointer;
 	}
 
 	&--not-selected {
@@ -237,7 +237,6 @@ export default {
 		&:hover {
 			color: darken($shade-600, 10%) !important;
 			background-color: $shade-100 !important;
-			cursor: pointer;
 		}
 	}
 
@@ -248,7 +247,6 @@ export default {
 		&:hover {
 			color: darken($al-700, 10%) !important;
 			background-color: $al-100 !important;
-			cursor: pointer;
 		}
 	}
 
@@ -259,30 +257,28 @@ export default {
 		&:hover {
 			color: darken($n-600, 10%) !important;
 			background-color: $n-20 !important;
-			cursor: pointer;
 		}
 	}
 
 	&--white {
-		color: $n-600;
+		color: $n-800;
 		background-color: $n-0;
-		outline: 1px solid $n-50;
+		outline: 1px solid $n-100 !important;
 
 		&:hover {
 			color: darken($n-600, 10%) !important;
 			background-color: $n-0 !important;
-			cursor: pointer;
 		}
 	}
 
 	&--dark {
 		color: $n-10;
 		background-color: $n-700;
+		outline: 1px solid $n-800;
 
 		&:hover {
 			color: darken($n-10, 10%) !important;
 			background-color: $n-700 !important;
-			cursor: pointer;
 		}
 	}
 }

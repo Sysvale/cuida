@@ -72,6 +72,13 @@ export const colors = [
 		lighterHex: '#647382', // $n-500
 		lightestHex: '#99A6B2', // $n-300
 	},
+
+	{
+		name: 'white',
+		hex: '#FFFFFF', // $n-0
+		lighterHex: '#FAFCFE', // $n-10
+		lightestHex: '#F4F8FB', // $n-20
+	},
 ];
 
 export const colorOptions = colors.map((color) => color.name);
