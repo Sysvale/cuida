@@ -77,7 +77,7 @@ export default {
 		/**
 		 * Prop para exibir as barras na direção do eixo y
 		 */
-		verticalBar: {
+		horizontalBar: {
 			type: Boolean,
 			default: false,
 		},
@@ -153,7 +153,7 @@ export default {
 	},
 	
 	mounted() {
-		if(this.verticalBar) {
+		if(this.horizontalBar) {
 			this.chartOptions = {
 				...this.chartOptions,
 				indexAxis: 'y',
