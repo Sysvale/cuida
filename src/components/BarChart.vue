@@ -75,7 +75,7 @@ export default {
 		},
 
 		/**
-		 * Prop para exibir as barras na direção do eixo y
+		 * Prop para exibir as barras na direção do eixo x
 		 */
 		horizontalBar: {
 			type: Boolean,
