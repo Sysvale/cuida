@@ -73,6 +73,14 @@ export default {
 			type: Number,
 			default: 1,
 		},
+
+		/**
+		 * Prop para exibir as barras na direção do eixo y
+		 */
+		verticalBar: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -142,6 +150,20 @@ export default {
 			},
 			immediate: true,
 		},
+	},
+	
+	mounted() {
+		if(this.verticalBar) {
+			this.chartOptions = {
+				...this.chartOptions,
+				indexAxis: 'y',
+				scales: {
+					y: {
+						beginAtZero: true
+					}
+				},
+			};
+		}
 	},
 
 	methods: {
