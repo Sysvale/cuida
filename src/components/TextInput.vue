@@ -44,13 +44,12 @@
 					new-tab
 				/>
 			</label>
-
 		</span>
 
 		<div :class="stepperInputDynamicClass">
 			<input
 				v-if="mask"
-				id="cds-text-input"
+				:id="`cds-text-input-${generateKey()}`"
 				v-model="internalValue"
 				v-facade="mask"
 				:placeholder="placeholder"
@@ -63,7 +62,7 @@
 
 			<input
 				v-else
-				id="cds-text-input"
+				:id="`cds-text-input-${generateKey()}`"
 				v-model="internalValue"
 				:placeholder="placeholder"
 				:disabled="disabled"
@@ -116,6 +115,7 @@ import CdsLink from './Link.vue';
 import CdsIcon from './Icon.vue';
 import CdsSpinner from './Spinner.vue';
 import Cdstip from '../utils/directives/cdstip';
+import { generateKey } from '../utils';
 
 export default {
 	directives: {
@@ -344,6 +344,8 @@ export default {
 	},
 
 	methods: {
+		generateKey,
+
 		/**
 		 * Permite que o evento seja emitido apenas quando não houver digitação por 1 segundo.
 		 */
