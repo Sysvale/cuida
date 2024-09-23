@@ -51,7 +51,7 @@
 				v-if="mask"
 				:id="`cds-text-input-${$attrs.id || generateKey()}`"
 				v-model="internalValue"
-				v-facade="mask"
+				v-facade="internalMask"
 				:placeholder="placeholder"
 				:disabled="disabled"
 				:class="inputClass"
@@ -250,6 +250,7 @@ export default {
 	data() {
 		return {
 			internalValue: '',
+			internalMask: this.mask,
 			isBeingFocused: false,
 			timeout: null,
 		};
@@ -340,6 +341,10 @@ export default {
 			} else {
 				this.$emit('update:modelValue', value);
 			}
+		},
+
+		mask(newValue) {
+			this.internalMask = newValue;
 		},
 	},
 
