@@ -36,7 +36,7 @@
 
 		<div>
 			<textarea
-				:id="`cds-textarea-${generateKey()}`"
+				:id="`cds-textarea-${$attrs.id || generateKey()}`"
 				v-model="internalValue"
 				:class="inputClass"
 				:placeholder="placeholder"

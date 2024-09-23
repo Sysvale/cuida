@@ -50,7 +50,7 @@
 		<div :class="stepperInputDynamicClass">
 			<input
 				v-if="money"
-				:id="`cds-number-input-${generateKey()}`"
+				:id="`cds-number-input-${$attrs.id || generateKey()}`"
 				v-model.lazy="internalValue"
 				v-money="moneyDirectiveConfig"
 				:placeholder="placeholder"
@@ -62,7 +62,7 @@
 
 			<input
 				v-else-if="mask"
-				:id="`cds-number-input-${generateKey()}`"
+				:id="`cds-number-input-${$attrs.id || generateKey()}`"
 				v-model="internalValue"
 				v-facade="mask"
 				:placeholder="placeholder"
@@ -75,7 +75,7 @@
 
 			<input
 				v-else
-				:id="`cds-number-input-${generateKey()}`"
+				:id="`cds-number-input-${$attrs.id || generateKey()}`"
 				v-model="internalValue"
 				:placeholder="placeholder"
 				:disabled="disabled"

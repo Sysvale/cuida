@@ -33,7 +33,7 @@
 		</span>
 		<div :class="stepperInputDynamicClass">
 			<input
-				:id="`cds-password-input-${generateKey()}`"
+				:id="`cds-password-input-${$attrs.id || generateKey()}`"
 				v-model="internalValue"
 				:type="customInputType"
 				:placeholder="placeholder"

@@ -49,7 +49,7 @@
 		<div :class="stepperInputDynamicClass">
 			<input
 				v-if="mask"
-				:id="`cds-text-input-${generateKey()}`"
+				:id="`cds-text-input-${$attrs.id || generateKey()}`"
 				v-model="internalValue"
 				v-facade="mask"
 				:placeholder="placeholder"
@@ -62,7 +62,7 @@
 
 			<input
 				v-else
-				:id="`cds-text-input-${generateKey()}`"
+				:id="`cds-text-input-${$attrs.id || generateKey()}`"
 				v-model="internalValue"
 				:placeholder="placeholder"
 				:disabled="disabled"
