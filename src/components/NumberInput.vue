@@ -50,7 +50,7 @@
 		<div :class="stepperInputDynamicClass">
 			<input
 				v-if="money"
-				id="cds-text-input"
+				:id="`cds-number-input-${generateKey()}`"
 				v-model.lazy="internalValue"
 				v-money="moneyDirectiveConfig"
 				:placeholder="placeholder"
@@ -62,7 +62,7 @@
 
 			<input
 				v-else-if="mask"
-				id="cds-text-input"
+				:id="`cds-number-input-${generateKey()}`"
 				v-model="internalValue"
 				v-facade="mask"
 				:placeholder="placeholder"
@@ -75,7 +75,7 @@
 
 			<input
 				v-else
-				id="cds-text-input"
+				:id="`cds-number-input-${generateKey()}`"
 				v-model="internalValue"
 				:placeholder="placeholder"
 				:disabled="disabled"
@@ -126,6 +126,7 @@ import CdsLink from './Link.vue';
 import CdsIcon from './Icon.vue';
 import CdsSpinner from './Spinner.vue';
 import Cdstip from '../utils/directives/cdstip';
+import { generateKey } from '../utils';
 
 export default {
 
@@ -388,6 +389,8 @@ export default {
 	},
 
 	methods: {
+		generateKey,
+
 		handleBlur() {
 			this.isBeingFocused = false;
 			this.$emit('blur', true);
