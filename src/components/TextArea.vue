@@ -36,7 +36,7 @@
 
 		<div>
 			<textarea
-				id="textarea"
+				:id="`cds-textarea-${$attrs.id || generateKey()}`"
 				v-model="internalValue"
 				:class="inputClass"
 				:placeholder="placeholder"
@@ -79,6 +79,7 @@
 <script>
 import CdsIcon from './Icon.vue';
 import CdsSpinner from './Spinner.vue';
+import { generateKey } from '../utils';
 
 export default {
 
@@ -205,6 +206,10 @@ export default {
 			*/
 			this.internalValue = value;
 		},
+	},
+
+	methods: {
+		generateKey,
 	},
 };
 </script>

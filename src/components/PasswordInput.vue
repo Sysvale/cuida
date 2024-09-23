@@ -33,7 +33,7 @@
 		</span>
 		<div :class="stepperInputDynamicClass">
 			<input
-				id="cds-password-input"
+				:id="`cds-password-input-${$attrs.id || generateKey()}`"
 				v-model="internalValue"
 				:type="customInputType"
 				:placeholder="placeholder"
@@ -67,6 +67,8 @@
 <script>
 import CdsIcon from './Icon.vue';
 import Cdstip from '../utils/directives/cdstip';
+import { generateKey } from '../utils';
+
 
 export default {
 	directives: {
@@ -252,6 +254,8 @@ export default {
 	},
 
 	methods: {
+		generateKey,
+	
 		handleShowPassword() {
 			this.showPassword = !this.showPassword;
 		},
