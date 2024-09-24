@@ -33,12 +33,12 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from 'vue';
+import { defineProps, defineEmits, computed } from 'vue';
 import SideBar from './SideBar.vue';
 import SecondaryNavigation from './SecondaryNavigation.vue';
 import PageContainer from './PageContainer.vue';
 
-defineProps({
+const props = defineProps({
 	/**
 	 * A variante de cor. São 10 variantes implementadas: 'green', 'teal',
 	 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.
@@ -126,6 +126,9 @@ const emit = defineEmits([
 	*/
 	'navigation-item-click'
 ]);
+
+const hasNavigationItems = computed(() => props.navigationItems?.length > 0);
+const maxHeightCompensation = computed(() => hasNavigationItems.value ? '54px' : '0px');
 </script>
 
 <style lang="scss" scoped>
@@ -138,7 +141,7 @@ const emit = defineEmits([
 	}
 
 	&__container {
-		max-height: calc(100vh - 54px);
+		max-height: calc(100vh - v-bind(maxHeightCompensation));
 		overflow-y: auto;
 	}
 }
