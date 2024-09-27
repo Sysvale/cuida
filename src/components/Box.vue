@@ -73,6 +73,13 @@ export default {
 			type: String,
 			default: 'gray',
 		},
+		/**
+		* Quando true, oculta o overflow do componente.
+		*/
+		overflowVisible: {
+			type: Boolean,
+			default: false
+		}
 	},
 
 	data() {
@@ -88,6 +95,10 @@ export default {
 
 		borderRadiusResolver() {
 			return this.rounder(this.width, 12);
+		},
+
+		overflowResolver() {
+			return this.overflowVisible ? 'visible' : 'hidden';
 		},
 	},
 
@@ -113,7 +124,7 @@ export default {
 .box {
 	width: v-bind(widthResolver);
 	border-radius: v-bind(borderRadiusResolver);
-	overflow: hidden;
+	overflow: v-bind(overflowResolver);
 
 	&__container {
 		width: v-bind(widthResolver);
