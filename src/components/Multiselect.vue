@@ -245,6 +245,7 @@ export default {
 		options: {
 			type: Array,
 			required: true,
+			default: () => ([]),
 		},
 		/**
 		* Indica o nome da chave do objeto a ser considerada na renderização das opções do select.
@@ -264,7 +265,7 @@ export default {
 		/**
 		 * Define o tipo do input, se true será um input adaptado para o mobile
 		 */
-		 mobile: {
+		mobile: {
 			type: Boolean,
 			default: false,
 		},
