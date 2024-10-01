@@ -755,8 +755,15 @@ export default {
 	.variant-resolver {
 		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			--system-background-variant: #{$shade-50};
-			--system-border-variant: #{$shade-200};
-			--system-text-variant: #{$base-color};
+
+			@if ($color-name != 'gray') {
+				--system-border-variant: #{$shade-200};
+				--system-text-variant: #{$base-color};
+			} @else {
+				--system-border-variant: #{$shade-600};
+				--system-text-variant: #{$n-800};
+			}
+
 		}
 	}
 
