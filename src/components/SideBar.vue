@@ -108,7 +108,7 @@
 									class="side-bar__subitem"
 									:class="isActive(subitem) && (subitem?.type !== 'external') ? 'side-bar__subitem--active' : 'side-bar__subitem--inactive'"
 									:href="subitem?.type === 'external' ? subitem.route.path : 'javascript:void(0)'"
-									target="_blank"
+									:target="subitem?.type === 'external' ? '_blank' : '_self'"
 									rel="noopener noreferrer"
 									@click="(event) => handleClick(event, subitem)"
 								>
