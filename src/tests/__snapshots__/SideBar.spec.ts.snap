@@ -34,9 +34,9 @@ exports[`SideBar > renders correctly 1`] = `
         </div>
         <transition-stub name=\\"collapse\\" appear=\\"false\\" persisted=\\"true\\" css=\\"true\\">
           <div class=\\"side-bar__subitem-container\\" style=\\"display: none;\\">
-            <div class=\\"side-bar__subitems\\"><a class=\\"side-bar__subitem side-bar__subitem--inactive\\" href=\\"javascript:void(0)\\" target=\\"_blank\\" rel=\\"noopener noreferrer\\">
+            <div class=\\"side-bar__subitems\\"><a class=\\"side-bar__subitem side-bar__subitem--inactive\\" href=\\"javascript:void(0)\\" target=\\"_self\\" rel=\\"noopener noreferrer\\">
                 <router-link class=\\"side-bar__subitem-link\\">Painel (Tv)</router-link>
-              </a><a class=\\"side-bar__subitem side-bar__subitem--inactive\\" href=\\"javascript:void(0)\\" target=\\"_blank\\" rel=\\"noopener noreferrer\\">
+              </a><a class=\\"side-bar__subitem side-bar__subitem--inactive\\" href=\\"javascript:void(0)\\" target=\\"_self\\" rel=\\"noopener noreferrer\\">
                 <router-link class=\\"side-bar__subitem-link\\">Totem</router-link>
               </a></div>
           </div>
