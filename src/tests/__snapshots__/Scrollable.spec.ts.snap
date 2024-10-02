@@ -1,3 +1,9 @@
 // Vitest Snapshot v1
 
-exports[`Scrollable > renders correctly 1`] = `"<span data-v-5e315bd5=\\"\\" id=\\"scrollable\\"><div data-v-5e315bd5=\\"\\" class=\\"scrollable__container\\" style=\\"max-height: 200px; height: 200px;\\"><!-- @slot Slot com o conteúdo que você deseja que seja scrollable --></div></span>"`;
+exports[`Scrollable > renders correctly 1`] = `
+"<div data-v-5e315bd5=\\"\\" class=\\"scrollable\\">
+  <div data-v-5e315bd5=\\"\\" class=\\"scrollable__container\\" style=\\"max-height: 200px; height: 200px;\\">
+    <!-- @slot Slot com o conteúdo que você deseja que seja scrollable -->
+  </div>
+</div>"
+`;
