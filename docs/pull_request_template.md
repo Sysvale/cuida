@@ -9,6 +9,7 @@
 ### 2 - Tipo de pull request
 
 - [ ] 🧱 Novo componente
+- [ ] ✨ Nova feature ou melhoria
 - [ ] 🐛 Fix
 - [ ] 👨‍💻 Refatoração
 - [ ] 📝 Documentação
