@@ -86,6 +86,9 @@ export const Template = (args) => ({
 			<cds-side-sheet
 				v-model="show"
 				v-bind="$props"
+				@ok="okHandle"
+				@close="closeHandle"
+				@cancel="cancelHandle"
 			>
 				<p class="p-3">
 					Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
@@ -150,6 +153,17 @@ export const Template = (args) => ({
 	updated() {
 		console.info('%cv-model: ', 'color: #2C70CD;', this.show);
 	},
+	methods: {
+		okHandle(ev) {
+			console.info('%cok: ', 'color: #2C70CD;', ev);
+		},
+		closeHandle(ev) {
+			console.info('%cclose: ', 'color: #2C70CD;', ev);
+		},
+		cancelHandle(ev) {
+			console.info('%ccancel: ', 'color: #2C70CD;', ev);
+		}
+	},
 });
 
 # SideSheet
@@ -195,7 +209,9 @@ export const Template = (args) => ({
 			okButtonText: 'Confirmar',
 			cancelButtonText: 'Cancelar',
 			blockOkButton: true,
-			actionButtonVariant: 'blue'
+			actionButtonVariant: 'blue',
+			noCloseOkButton: false,
+			noCloseCancelButton: false
 		}}
 	>
 		{ Template.bind({}) }

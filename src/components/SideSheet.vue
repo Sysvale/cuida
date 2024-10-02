@@ -25,7 +25,6 @@
 									height="20"
 									width="20"
 									name="x-outline"
-									@click.stop="$emit('update:modelValue', !modelValue)"
 								/>
 							</cds-clickable>
 						</div>
@@ -184,6 +183,20 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		*  Controla a ação de fechar o modal ao clicar no botão de ação.
+		*/
+		noCloseOkButton: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		*  Controla a ação de fechar o modal ao clicar no botão de cancelar.
+		*/
+		noCloseCancelButton: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -274,23 +287,38 @@ export default {
 		
 		closeHandle() {
 			/**
-			 * Evento que indica se o SideSheet foi escondido.
-			 * @event close
+			 * Evento que indica se o botão de cancelar do SideSheet foi clicado.
+			 * @event cancel
 			 * @type {Event}
 			*/
-			this.$emit('close', true);
-			this.$emit('update:modelValue', false);
+			this.$emit('cancel', true);
+			if (!this.noCloseCancelButton) {
+				this.$emit('update:modelValue', false);
+				/**
+				* Evento que indica se a SideBar foi fechada.
+				* @event close
+				* @type {Event}
+				*/
+				this.$emit('close', true);
+			}
 		},
 
 		okHandle() {
+			if (!this.noCloseOkButton) {
+				this.$emit('update:modelValue', false);
+				/**
+				* Evento que indica se a SideBar foi fechada.
+				* @event close
+				* @type {Event}
+				*/
+				this.$emit('close', true);
+
+			}
 			/**
 			 * Evento que indica se o botão de ação do SideSheet foi clicado.
 			* @event ok
 			* @type {Event}
 			*/
-			if (!this.noCloseOkButton) {
-				this.$emit('update:modelValue', false);
-			}
 			this.$emit('ok', true);
 		},
 	},
