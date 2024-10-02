@@ -88,6 +88,7 @@ export const Template = (args) => ({
 				v-bind="$props"
 				@ok="okHandle"
 				@close="closeHandle"
+				@cancel="cancelHandle"
 			>
 				<p class="p-3">
 					Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
@@ -158,6 +159,9 @@ export const Template = (args) => ({
 		},
 		closeHandle(ev) {
 			console.info('%cclose: ', 'color: #2C70CD;', ev);
+		},
+		cancelHandle(ev) {
+			console.info('%ccancel: ', 'color: #2C70CD;', ev);
 		}
 	},
 });
