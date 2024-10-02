@@ -184,6 +184,20 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		*  Controla a ação de fechar o modal ao clicar no botão de ação.
+		*/
+		noCloseOkButton: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		*  Controla a ação de fechar o modal ao clicar no botão de cancelar.
+		*/
+		noCloseCancelButton: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -279,7 +293,9 @@ export default {
 			 * @type {Event}
 			*/
 			this.$emit('close', true);
-			this.$emit('update:modelValue', false);
+			if (!this.noCloseCancelButton) {
+				this.$emit('update:modelValue', false);
+			}
 		},
 
 		okHandle() {
