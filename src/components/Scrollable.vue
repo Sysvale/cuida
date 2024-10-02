@@ -1,6 +1,6 @@
 <template>
-	<span
-		id="scrollable"
+	<div
+		class="scrollable"
 	>
 		<div
 			:class="[
@@ -15,7 +15,7 @@
 			<!-- @slot Slot com o conteúdo que você deseja que seja scrollable -->
 			<slot />
 		</div>
-	</span>
+	</div>
 </template>
 
 <script>
@@ -49,7 +49,8 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
 
-#scrollable .scrollable {
+.scrollable {
+	display: contents;
 	&__container {
 		overflow-y: auto;
 		overflow-x: hidden;

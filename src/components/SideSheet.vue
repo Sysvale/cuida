@@ -5,11 +5,8 @@
 		tabindex="0"
 		@click="shouldCloseOnBackdrop"
 	>
-		<cds-box
-			padding="5"
+		<div
 			class="side-sheet__container"
-			elevated
-			fluid
 			@click.stop
 		>
 			<header>
@@ -36,25 +33,56 @@
 				</slot>
 			</header>
 
-			<!-- @slot Slot usado para mostrar o conteúdo dentro do componente. -->
-			<slot />
-		</cds-box>
+			<cds-scrollable
+				max-height="100%"
+			>
+				<!-- @slot Slot usado para mostrar o conteúdo dentro do componente. -->
+				<slot />
+			</cds-scrollable>
+
+			<footer
+				v-if="!noFooter"
+				class="side-sheet__footer"
+			>
+				<!-- @slot Slot usado para inserção de footer customizado. -->
+				<slot name="footer">
+					<cds-button
+						v-if="!noCancelButton"
+						:text="cancelButtonText"
+						secondary
+						:disabled="disableCancelButton"
+						@click="!disableCancelButton ? closeHandle() : false"
+					/>
+
+					<cds-button
+						class="footer__ok-button"
+						:text="okButtonText"
+						:variant="actionButtonVariant"
+						:disabled="disableOkButton"
+						:block="blockOkButton"
+						@click="!disableOkButton ? okHandle() : false"
+					/>
+				</slot>
+			</footer>
+		</div>
 	</div>
 </template>
 
 <script>
 import CdsIcon from '../components/Icon.vue';
 import CdsClickable from '../components/Clickable.vue';
-import CdsBox from '../components/Box.vue';
 import sassColorVariables from '../assets/sass/colors.module.scss';
 import hexToRgb from '../utils/methods/hexToRgb';
 import { KeyCodes } from '../utils';
+import CdsButton from '../components/Button.vue';
+import CdsScrollable from '../components/Scrollable.vue';
 
 export default {
 	components: {
 		CdsIcon,
-		CdsBox,
 		CdsClickable,
+		CdsButton,
+		CdsScrollable,
 	},
 	props: {
 		/**
@@ -97,6 +125,62 @@ export default {
 		* Define se o SideSheet vai ser fechado quando o usuário pressionar 'ESC'.
 		*/
 		noCloseOnEsc: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Define a variante do botão de ação do SideSheet (segue as variantes do componente de botão do Cuida)
+		 */
+		actionButtonVariant: {
+			type: String,
+			default: 'green',
+		},
+		/**
+		*  Controla a exibição do rodapé (footer) do SideSheet.
+		*/
+		noFooter: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		*  Controla a exibição do botão de cancelar do SideSheet.
+		*/
+		noCancelButton: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		* Define o estado do botão de ação do SideSheet.
+		*/
+		disableOkButton: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		* Define o estado do botão de cancelar do SideSheet.
+		*/
+		disableCancelButton: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 *  Define texto do botão de ação do SideSheet
+		 */
+		okButtonText: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		*  Define texto do botão de cancelar do SideSheet
+		*/
+		cancelButtonText: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		*  Altera o tipo de botão de confirmação para block
+		*/
+		blockOkButton: {
 			type: Boolean,
 			default: false,
 		},
@@ -193,6 +277,12 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
 
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
 .side-sheet {
 	&__overlay {
 		animation: fade;
@@ -231,6 +321,10 @@ export default {
 		float: right;
 		height: 100%;
 		width: v-bind(sideSheetWidth);
+		
+		padding: pa(5);
+		display: grid;
+		grid-template-rows: auto 1fr auto;
 	}
 
 	&__close-icon {
@@ -243,6 +337,19 @@ export default {
 		&:hover {
 			color: $n-700;
 		}
+	}
+
+	&__footer {
+		display: flex;
+		justify-content: end;
+		// margin-top: auto;
+		padding: pt(7);
+		gap: 32px;
+		// background-color: $n-0;
+
+		// background: rgba(255, 255, 255, 0.2);  /* Fundo branco com transparência */
+		backdrop-filter: blur(8px);            /* Efeito de blur no conteúdo atrás */
+		-webkit-backdrop-filter: blur(8px);    /* Para compatibilidade com Safari */
 	}
 }
 
