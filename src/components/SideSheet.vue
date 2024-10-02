@@ -271,6 +271,28 @@ export default {
 		dettachKeyupEvent() {
 			window.removeEventListener('keyup', this.keyupListener);
 		},
+		
+		closeHandle() {
+			/**
+			 * Evento que indica se o SideSheet foi escondido.
+			 * @event close
+			 * @type {Event}
+			*/
+			this.$emit('close', true);
+			this.$emit('update:modelValue', false);
+		},
+
+		okHandle() {
+			/**
+			 * Evento que indica se o botão de ação do SideSheet foi clicado.
+			* @event ok
+			* @type {Event}
+			*/
+			if (!this.noCloseOkButton) {
+				this.$emit('update:modelValue', false);
+			}
+			this.$emit('ok', true);
+		},
 	},
 };
 </script>
