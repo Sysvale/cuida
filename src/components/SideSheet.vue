@@ -364,14 +364,9 @@ export default {
 	&__footer {
 		display: flex;
 		justify-content: end;
-		// margin-top: auto;
 		padding: pt(7);
 		gap: 32px;
-		// background-color: $n-0;
-
-		// background: rgba(255, 255, 255, 0.2);  /* Fundo branco com transparência */
-		backdrop-filter: blur(8px);            /* Efeito de blur no conteúdo atrás */
-		-webkit-backdrop-filter: blur(8px);    /* Para compatibilidade com Safari */
+		background-color: $n-0;
 	}
 }
 
