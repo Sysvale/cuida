@@ -25,6 +25,7 @@
 									height="20"
 									width="20"
 									name="x-outline"
+									@click.stop="$emit('update:modelValue', !modelValue)"
 								/>
 							</cds-clickable>
 						</div>
