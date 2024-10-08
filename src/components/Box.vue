@@ -134,6 +134,7 @@ export default {
 
 .box {
 	width: v-bind(widthResolver);
+	height: v-bind(heightResolver);
 	border-radius: v-bind(borderRadiusResolver);
 	overflow: v-bind(overflowResolver);
 
