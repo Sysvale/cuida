@@ -50,6 +50,13 @@ export default {
 			default: false,
 		},
 		/**
+		* Indica se o componente deverá ocupar 100% da altura disponível.
+		*/
+		verticalFluid: {
+			type: Boolean,
+			default: false,
+		},
+		/**
 		* O valor setado é sempre multiplicado por 4, assim como nos tokens scss do Cuida.
 		* O valor mínimo aceito é 4 e o máximo aceito é 12.
 		*/
@@ -93,6 +100,10 @@ export default {
 			return this.fluid ? '100%' : 'fit-content';
 		},
 
+		heightResolver() {
+			return this.verticalFluid ? '100%' : 'fit-content';
+		},
+
 		borderRadiusResolver() {
 			return this.rounder(this.width, 12);
 		},
@@ -128,6 +139,7 @@ export default {
 
 	&__container {
 		width: v-bind(widthResolver);
+		height: v-bind(heightResolver);
 	}
 
 	&--elevated {
