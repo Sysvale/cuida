@@ -25,7 +25,6 @@
 									height="20"
 									width="20"
 									name="x-outline"
-									@click.stop="$emit('update:modelValue', !modelValue)"
 								/>
 							</cds-clickable>
 						</div>
@@ -51,7 +50,7 @@
 						:text="cancelButtonText"
 						secondary
 						:disabled="disableCancelButton"
-						@click="!disableCancelButton ? closeHandle() : false"
+						@click="!disableCancelButton ? cancelHandle() : false"
 					/>
 
 					<cds-button
@@ -287,6 +286,16 @@ export default {
 		},
 		
 		closeHandle() {
+			/**
+			 * Evento que indica se o botão de cancelar do SideSheet foi clicado.
+			 * @event cancel
+			 * @type {Event}
+			*/
+			this.$emit('close', true);
+			this.$emit('update:modelValue', false);
+		},
+
+		cancelHandle() {
 			/**
 			 * Evento que indica se o botão de cancelar do SideSheet foi clicado.
 			 * @event cancel
