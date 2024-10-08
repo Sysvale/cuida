@@ -57,11 +57,13 @@ export const Template = (args) => ({
 		return { args };
 	},
 	template: /*html*/ `
+	<div style="height: 250px">
 		<cds-box
 			v-bind="args"
 		>
 			2
 		</cds-box>
+	</div>
 	`,
 	methods: {
 		logClickableClick(event) {
