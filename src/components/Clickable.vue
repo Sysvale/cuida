@@ -10,7 +10,7 @@
 			'clickable__container--clickable': clickable,
 			'clickable__container--not-clickable': !clickable,
 		}"
-		@click.stop="$emit('cds-click', true)"
+		@click="$emit('cds-click', true)"
 	>
 		<slot />
 	</div>
