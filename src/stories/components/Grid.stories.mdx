@@ -1,0 +1,181 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Grid from '../../components/Grid.vue';
+import GridItem from '../../components/GridItem.vue';
+
+<Meta
+	title="Componentes/Containers/Grid"
+	component={ Grid }
+	argTypes={{
+		gap: {
+			control: {
+				type: 'range',
+				min: 0,
+				max: 32,
+				step: 4,
+			},
+		},
+		cols: {
+			control: {
+				type: 'range',
+				min: 1,
+				max: 12,
+				step: 1,
+			},
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-grid
+			v-bind="args"
+		>
+			<cds-grid-item
+				subGrid
+				gap="32px"
+				colSpan="3"
+				rowSpan="1"
+			>
+				<div style="font-size: 18px; font-weight: 550; background-color: #E7EDF3; padding: 12px; border-radius: 12px; display: flex; align-items: center; justify-content: center">
+					Cell 1
+				</div>
+				<div style="font-size: 18px; font-weight: 550; background-color: #E7EDF3; padding: 12px; border-radius: 12px; display: flex; align-items: center; justify-content: center">
+					Cell 3
+				</div>
+			</cds-grid-item>
+			<cds-grid-item
+				colSpan="3"
+				rowSpan="1"
+				style="font-size: 18px; font-weight: 550; background-color: #E7EDF3; padding: 12px; border-radius: 12px; display: flex; align-items: center; justify-content: center"
+			>
+				Cell 2
+			</cds-grid-item>
+			<cds-grid-item
+				subGrid
+				gap="32px"
+				colSpan="4"
+			>
+				<cds-grid
+					gap="32px"
+					cols="minmax(250px, auto) 1fr"
+				>
+					<div style="font-size: 18px; font-weight: 550; background-color: #E7EDF3; padding: 12px; border-radius: 12px; display: flex; align-items: center; justify-content: center">
+						Cell 4
+					</div>
+					<div style="font-size: 18px; font-weight: 550; background-color: #E7EDF3; padding: 12px; border-radius: 12px; display: flex; align-items: center; justify-content: center">
+						Cell 5
+					</div>
+				</cds-grid>
+				<div style="font-size: 18px; font-weight: 550; background-color: #E7EDF3; padding: 12px; border-radius: 12px; display: flex; align-items: center; justify-content: center">
+					Cell 6
+				</div>
+			</cds-grid-item>
+			<cds-grid-item
+				colSpan="2"
+				style="font-size: 18px; font-weight: 550; background-color: #E7EDF3; padding: 12px; border-radius: 12px; display: flex; align-items: center; justify-content: center"
+			>
+				Cell 7
+			</cds-grid-item>
+			<cds-grid-item
+				colSpan="6"
+				style="font-size: 18px; font-weight: 550; background-color: #E7EDF3; padding: 12px; border-radius: 12px; display: flex; align-items: center; justify-content: center"
+			>
+				Cell 8
+			</cds-grid-item>
+		</cds-grid>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsGrid: Grid, CdsGridItem: GridItem },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-grid
+			v-bind="args"
+		>
+			<cds-grid-item
+				subGrid
+				gap="32px"
+				colSpan="3"
+				rowSpan="1"
+			>
+				<div style="font-size: 18px; font-weight: 550; background-color: #E7EDF3; padding: 12px; border-radius: 12px; display: flex; align-items: center; justify-content: center">
+					Cell 1
+				</div>
+				<div style="font-size: 18px; font-weight: 550; background-color: #E7EDF3; padding: 12px; border-radius: 12px; display: flex; align-items: center; justify-content: center">
+					Cell 3
+				</div>
+			</cds-grid-item>
+			<cds-grid-item
+				colSpan="3"
+				rowSpan="1"
+				style="font-size: 18px; font-weight: 550; background-color: #E7EDF3; padding: 12px; border-radius: 12px; display: flex; align-items: center; justify-content: center"
+			>
+				Cell 2
+			</cds-grid-item>
+			<cds-grid-item
+				subGrid
+				gap="32px"
+				colSpan="4"
+			>
+				<cds-grid
+					gap="32px"
+					cols="minmax(250px, auto) 1fr"
+				>
+					<div style="font-size: 18px; font-weight: 550; background-color: #E7EDF3; padding: 12px; border-radius: 12px; display: flex; align-items: center; justify-content: center">
+						Cell 4
+					</div>
+					<div style="font-size: 18px; font-weight: 550; background-color: #E7EDF3; padding: 12px; border-radius: 12px; display: flex; align-items: center; justify-content: center">
+						Cell 5
+					</div>
+				</cds-grid>
+				<div style="font-size: 18px; font-weight: 550; background-color: #E7EDF3; padding: 12px; border-radius: 12px; display: flex; align-items: center; justify-content: center">
+					Cell 6
+				</div>
+			</cds-grid-item>
+			<cds-grid-item
+				colSpan="2"
+				style="font-size: 18px; font-weight: 550; background-color: #E7EDF3; padding: 12px; border-radius: 12px; display: flex; align-items: center; justify-content: center"
+			>
+				Cell 7
+			</cds-grid-item>
+			<cds-grid-item
+				colSpan="6"
+				style="font-size: 18px; font-weight: 550; background-color: #E7EDF3; padding: 12px; border-radius: 12px; display: flex; align-items: center; justify-content: center"
+			>
+				Cell 8
+			</cds-grid-item>
+		</cds-grid>
+	`,
+});
+
+# Grids
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Grid"
+		args={{
+			gap: 32,
+			rowGap: 20,
+			colGap: 48,
+			cols: 6,
+			rows: ['250px', '250px', '250px'],
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Grid" />
