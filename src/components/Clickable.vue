@@ -32,8 +32,7 @@ export default {
 
 <style lang="scss">
 .clickable__container {
-	width: 100%;
-	height: 100%;
+	width: fit-content;
 
 	&--clickable {
 		@extend .clickable__container;
