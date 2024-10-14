@@ -189,6 +189,8 @@
 		>
 			<div
 				class="side-bar__avatar"
+				id="menu-profile"
+				@click.stop="showPopover = !showPopover"
 			>
 				<cds-avatar
 					:src="userPicture"
@@ -223,6 +225,50 @@
 					/>
 				</li>
 			</ul>
+			<div v-if="showProfileMenu">
+				<cds-popover
+					:right-aligned="true"
+					target-id="menu-profile"
+					:fit-content-width="true"
+					v-model="showPopover"
+				>
+						<div
+							v-on-click-outside="hide"
+							class="dropdown-button__dropdown"
+						>
+							<div
+								v-for="(item, index) in popoverDropdownItems"
+								:key="index"
+							>
+								<div
+									class="dropdown__container"
+									@click="handleDropdownOptionClick(item)"
+								>
+									<cds-icon
+										class="dropdown__icon"
+										height="22"
+										width="22"
+										:name="item.icon"
+									/>
+									<span class="dropdown__text">{{ item.name }}</span>
+								</div>
+							</div>
+							<div>
+								<div
+									class="dropdown__container"
+									@click="$emit('logout', true)"
+								>
+									<cds-icon
+										name="logout-outline"
+										width="20"
+										height="20"
+									/>
+									<span class="dropdown__text">Sair</span>
+								</div>
+							</div>
+						</div>
+				</cds-popover>
+			</div>
 		</div>
 	</div>
 </template>
@@ -231,6 +277,7 @@
 import isEqual from 'lodash.isequal';
 import isEmpty from 'lodash.isempty';
 import CdsIcon from './Icon.vue';
+import CdsPopover from './Popover.vue';
 import CdsAvatar from './Avatar.vue';
 import CdsRichTooltip from './RichTooltip.vue';
 import Cdstip from '../utils/directives/cdstip';
@@ -246,6 +293,7 @@ export default {
 		CdsIcon,
 		CdsAvatar,
 		CdsRichTooltip,
+		CdsPopover,
 	},
 
 	props: {
@@ -277,6 +325,12 @@ export default {
 				return !invalidValues.length;
 			},
 		},
+
+		popoverDropdownItems: {
+			type: Array,
+			default: () => ([]),
+		},
+
 		/**
 		* O item ativo da SideBar
 		*/
@@ -291,6 +345,11 @@ export default {
 		showLogout: {
 			type: Boolean,
 			default: true,
+		},
+
+		showProfileMenu: {
+			type: Boolean,
+			default: false,
 		},
 		/**
 		* Nome do usuário logado. Essa informação é colocada ao lado do Avatar
@@ -352,6 +411,7 @@ export default {
 			expandItemControl: 0,
 			itemsWithVisibilityController: [],
 			logoutTooltipText: 'Sair',
+			showPopover: false,
 		};
 	},
 
@@ -494,6 +554,10 @@ export default {
 				? 'caret-up-outline'
 				: 'caret-down-outline';
 		},
+
+		handleDropdownOptionClick (actionName, index) {
+			this.$emit('popover-action-click', actionName);
+		}
 	},
 };
 </script>
@@ -811,10 +875,12 @@ export default {
 
 		&__avatar > div > p:nth-child(1) {
 			color: $n-700;
+			cursor: pointer;
 		}
 
 		&__avatar > div > p:nth-child(2) {
 			color: $n-700;
+			cursor: pointer;
 		}
 
 		&__footer {
@@ -897,6 +963,31 @@ export default {
 	.caret {
 		transform: rotate(-180deg);
 		transition: $opening;
+	}
+}
+
+.dropdown {
+	&__container {
+		display: flex;
+		gap: 12px;
+		align-items: center;
+		cursor: pointer;
+		border-radius: 6px;
+		padding: pa(2);
+
+		&:hover {
+			background-color: $n-20;
+		}
+	}
+
+	&__text {
+		color: $n-600;
+		@include body-2;
+		padding: py(1)
+	}
+
+	&__icon {
+		color: $n-600;
 	}
 }
 </style>
