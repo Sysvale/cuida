@@ -562,6 +562,7 @@ export default {
 			* @type {Event}
 			*/
 			this.$emit('profile-menu-option-click', actionName);
+			this.showPopover = false
 		}
 	},
 };
