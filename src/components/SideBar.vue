@@ -243,7 +243,7 @@
 						>
 							<div
 								class="dropdown__container"
-								@click="handleDropdownOptionClick(item)"
+								@click="handleProfileMenuOptionClick(item)"
 							>
 								<cds-icon
 									class="dropdown__icon"
@@ -555,8 +555,13 @@ export default {
 				: 'caret-down-outline';
 		},
 
-		handleDropdownOptionClick (actionName) {
-			this.$emit('popover-action-click', actionName);
+		handleProfileMenuOptionClick (actionName) {
+			/**
+			 * Evento emitido quando um dos itens do menu dropdown do perfil é clicado
+			* @event profile-menu-option-click
+			* @type {Event}
+			*/
+			this.$emit('profile-menu-option-click', actionName);
 		}
 	},
 };

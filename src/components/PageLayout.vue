@@ -13,7 +13,7 @@
 			:collapsed-logo-image="logos.collapsed"
 			:show-profile-menu="showProfileMenu"
 			:profile-menu-items="profileMenuItems"
-			@popover-action-click="emit('popover-item-click', $event)"
+			@profile-menu-option-click="emit('profile-menu-option-click', $event)"
 			@sidebar-click="emit('sidebar-item-click', $event)"
 			@logout="emit('sidebar-logout', $event)"
 			@settings="emit('sidebar-settings', $event)"
