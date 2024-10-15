@@ -11,8 +11,12 @@
 			:items="sideBarItems"
 			:logo-image="logos.default"
 			:collapsed-logo-image="logos.collapsed"
+			:show-profile-menu="showProfileMenu"
+			:profile-menu-items="profileMenuItems"
+			@profile-menu-option-click="emit('profile-menu-option-click', $event)"
 			@sidebar-click="emit('sidebar-item-click', $event)"
 			@logout="emit('sidebar-logout', $event)"
+			@settings="emit('sidebar-settings', $event)"
 		/>
 
 		<div class="page-layout__content">
@@ -70,12 +74,25 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+
+	showProfileMenu: {
+		type: Boolean,
+		default: false,
+	},
 	/**
 	 * Define os itens da da barra lateral de navegação.
 	 */
 	sideBarItems: {
 		type: Array,
 		default: () => [],
+	},
+
+	/**
+	 * Define os itens a serem exibidos no menu dropdown mostrado ao clicar no "perfil".
+	 */
+	profileMenuItems: {
+		type: Array,
+		default: () => ([]),
 	},
 	/**
 	 * Define os itens da da barra de navegação secundária.
@@ -118,6 +135,7 @@ const emit = defineEmits([
 	* @type {Event}
 	*/
 	'sidebar-logout',
+	'popover-item-click',
 
 	/**
 	* Evento emitido quando o icone da SecondaryNavbar é clicado

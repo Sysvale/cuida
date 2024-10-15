@@ -188,7 +188,9 @@
 			:class="`side-bar__footer variant-resolver--${variant}`"
 		>
 			<div
+				id="menu-profile"
 				class="side-bar__avatar"
+				@click.stop="showPopover = !showPopover"
 			>
 				<cds-avatar
 					:src="userPicture"
@@ -223,6 +225,38 @@
 					/>
 				</li>
 			</ul>
+			<div v-if="shouldShowProfileMenu">
+				<cds-popover
+					v-model="showPopover"
+					right-aligned
+					target-id="menu-profile"
+					width="160"
+					height="160"
+				>
+					<div
+						v-on-click-outside="hide"
+						class="dropdown-button__dropdown"
+					>
+						<div
+							v-for="(item, index) in profileMenuItems"
+							:key="index"
+						>
+							<div
+								class="dropdown__container"
+								@click="handleProfileMenuOptionClick(item)"
+							>
+								<cds-icon
+									class="dropdown__icon"
+									height="22"
+									width="22"
+									:name="item.icon"
+								/>
+								<span class="dropdown__text">{{ item.name }}</span>
+							</div>
+						</div>
+					</div>
+				</cds-popover>
+			</div>
 		</div>
 	</div>
 </template>
@@ -231,6 +265,7 @@
 import isEqual from 'lodash.isequal';
 import isEmpty from 'lodash.isempty';
 import CdsIcon from './Icon.vue';
+import CdsPopover from './Popover.vue';
 import CdsAvatar from './Avatar.vue';
 import CdsRichTooltip from './RichTooltip.vue';
 import Cdstip from '../utils/directives/cdstip';
@@ -246,6 +281,7 @@ export default {
 		CdsIcon,
 		CdsAvatar,
 		CdsRichTooltip,
+		CdsPopover,
 	},
 
 	props: {
@@ -277,6 +313,7 @@ export default {
 				return !invalidValues.length;
 			},
 		},
+
 		/**
 		* O item ativo da SideBar
 		*/
@@ -291,6 +328,20 @@ export default {
 		showLogout: {
 			type: Boolean,
 			default: true,
+		},
+		/**
+		* Controla exibição do menu/dropdown ao clicar nas informações de perfil
+		*/
+		showProfileMenu: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		* Controla os itens do menu/dropdown exibidos ao clicar nas informações de perfil
+		*/
+		profileMenuItems: {
+			type: Array,
+			default: () => ([]),
 		},
 		/**
 		* Nome do usuário logado. Essa informação é colocada ao lado do Avatar
@@ -352,6 +403,7 @@ export default {
 			expandItemControl: 0,
 			itemsWithVisibilityController: [],
 			logoutTooltipText: 'Sair',
+			showPopover: false,
 		};
 	},
 
@@ -374,6 +426,14 @@ export default {
 
 		collapsedTooltipClass() {
 			return this.collapsed ? 'Maximizar' : 'Minimizar';
+		},
+
+		shouldShowProfileMenu() {
+			return this.showProfileMenu && this.profileMenuItems?.length > 0;
+		},
+
+		avatarCursorResolver() {
+			return this.shouldShowProfileMenu ? 'pointer' : 'default';
 		},
 	},
 
@@ -494,6 +554,15 @@ export default {
 				? 'caret-up-outline'
 				: 'caret-down-outline';
 		},
+
+		handleProfileMenuOptionClick (actionName) {
+			/**
+			 * Evento emitido quando um dos itens do menu dropdown do perfil é clicado
+			* @event profile-menu-option-click
+			* @type {Event}
+			*/
+			this.$emit('profile-menu-option-click', actionName);
+		}
 	},
 };
 </script>
@@ -713,6 +782,7 @@ export default {
 			align-items: center;
 			display: flex;
 			gap: spacer(3);
+			cursor: v-bind(avatarCursorResolver);
 		}
 
 		&__avatar > div > p:nth-child(1) {
@@ -726,6 +796,12 @@ export default {
 			@include caption;
 			color: $n-0;
 			margin: 0;
+		}
+
+		/* Necessário para que o avatar fique com o cursor pointer sem que seja
+			exibido a ação de popover "nativa" do componente quando passada pra ele a prop clickable */
+		&__avatar > #avatar-dropdown {
+			cursor: v-bind(avatarCursorResolver)!important;
 		}
 
 		&__collapsible {
@@ -811,10 +887,12 @@ export default {
 
 		&__avatar > div > p:nth-child(1) {
 			color: $n-700;
+			cursor: pointer;
 		}
 
 		&__avatar > div > p:nth-child(2) {
 			color: $n-700;
+			cursor: pointer;
 		}
 
 		&__footer {
@@ -898,5 +976,35 @@ export default {
 		transform: rotate(-180deg);
 		transition: $opening;
 	}
+}
+
+.dropdown {
+	&__container {
+		display: flex;
+		gap: 12px;
+		align-items: center;
+		cursor: pointer;
+		border-radius: 6px;
+		padding: pa(2);
+
+		&:hover {
+			background-color: $n-20;
+		}
+	}
+
+	&__text {
+		color: $n-600;
+		@include body-2;
+		padding: py(1)
+	}
+
+	&__icon {
+		color: $n-600;
+	}
+}
+
+.popover {
+	display: flex;
+	align-items: center;
 }
 </style>
