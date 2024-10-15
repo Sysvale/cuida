@@ -9,10 +9,10 @@
 			:user-picture="user.picture ?? null"
 			:collapsible="collapsibleSideBar"
 			:items="sideBarItems"
-			:popover-dropdown-items="popoverDropdownItems"
 			:logo-image="logos.default"
 			:collapsed-logo-image="logos.collapsed"
 			:show-profile-menu="showProfileMenu"
+			:profile-menu-items="profileMenuItems"
 			@popover-action-click="emit('popover-item-click', $event)"
 			@sidebar-click="emit('sidebar-item-click', $event)"
 			@logout="emit('sidebar-logout', $event)"
@@ -87,7 +87,10 @@ const props = defineProps({
 		default: () => [],
 	},
 
-	popoverDropdownItems: {
+	/**
+	 * Define os itens a serem exibidos no menu dropdown mostrado ao clicar no "perfil".
+	 */
+	profileMenuItems: {
 		type: Array,
 		default: () => ([]),
 	},

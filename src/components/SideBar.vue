@@ -188,8 +188,8 @@
 			:class="`side-bar__footer variant-resolver--${variant}`"
 		>
 			<div
-				class="side-bar__avatar"
 				id="menu-profile"
+				class="side-bar__avatar"
 				@click.stop="showPopover = !showPopover"
 			>
 				<cds-avatar
@@ -225,49 +225,36 @@
 					/>
 				</li>
 			</ul>
-			<div v-if="showProfileMenu">
+			<div v-if="shouldShowProfileMenu">
 				<cds-popover
-					right-aligned="true"
+					v-model="showPopover"
+					right-aligned
 					target-id="menu-profile"
 					width="160"
 					height="160"
-					v-model="showPopover"
 				>
+					<div
+						v-on-click-outside="hide"
+						class="dropdown-button__dropdown"
+					>
 						<div
-							v-on-click-outside="hide"
-							class="dropdown-button__dropdown"
+							v-for="(item, index) in profileMenuItems"
+							:key="index"
 						>
 							<div
-								v-for="(item, index) in popoverDropdownItems"
-								:key="index"
+								class="dropdown__container"
+								@click="handleDropdownOptionClick(item)"
 							>
-								<div
-									class="dropdown__container"
-									@click="handleDropdownOptionClick(item)"
-								>
-									<cds-icon
-										class="dropdown__icon"
-										height="22"
-										width="22"
-										:name="item.icon"
-									/>
-									<span class="dropdown__text">{{ item.name }}</span>
-								</div>
-							</div>
-							<div>
-								<div
-									class="dropdown__container"
-									@click="$emit('logout', true)"
-								>
-									<cds-icon
-										name="logout-outline"
-										width="20"
-										height="20"
-									/>
-									<span class="dropdown__text">Sair</span>
-								</div>
+								<cds-icon
+									class="dropdown__icon"
+									height="22"
+									width="22"
+									:name="item.icon"
+								/>
+								<span class="dropdown__text">{{ item.name }}</span>
 							</div>
 						</div>
+					</div>
 				</cds-popover>
 			</div>
 		</div>
@@ -327,11 +314,6 @@ export default {
 			},
 		},
 
-		popoverDropdownItems: {
-			type: Array,
-			default: () => ([]),
-		},
-
 		/**
 		* O item ativo da SideBar
 		*/
@@ -347,10 +329,19 @@ export default {
 			type: Boolean,
 			default: true,
 		},
-
+		/**
+		* Controla exibição do menu/dropdown ao clicar nas informações de perfil
+		*/
 		showProfileMenu: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		* Controla os itens do menu/dropdown exibidos ao clicar nas informações de perfil
+		*/
+		profileMenuItems: {
+			type: Array,
+			default: () => ([]),
 		},
 		/**
 		* Nome do usuário logado. Essa informação é colocada ao lado do Avatar
@@ -435,6 +426,14 @@ export default {
 
 		collapsedTooltipClass() {
 			return this.collapsed ? 'Maximizar' : 'Minimizar';
+		},
+
+		shouldShowProfileMenu() {
+			return this.showProfileMenu && this.profileMenuItems?.length > 0;
+		},
+
+		avatarCursorResolver() {
+			return this.shouldShowProfileMenu ? 'pointer' : 'default';
 		},
 	},
 
@@ -556,7 +555,7 @@ export default {
 				: 'caret-down-outline';
 		},
 
-		handleDropdownOptionClick (actionName, index) {
+		handleDropdownOptionClick (actionName) {
 			this.$emit('popover-action-click', actionName);
 		}
 	},
@@ -778,6 +777,7 @@ export default {
 			align-items: center;
 			display: flex;
 			gap: spacer(3);
+			cursor: v-bind(avatarCursorResolver);
 		}
 
 		&__avatar > div > p:nth-child(1) {
@@ -791,6 +791,12 @@ export default {
 			@include caption;
 			color: $n-0;
 			margin: 0;
+		}
+
+		/* Necessário para que o avatar fique com o cursor pointer sem que seja
+			exibido a ação de popover "nativa" do componente quando passada pra ele a prop clickable */
+		&__avatar > #avatar-dropdown {
+			cursor: v-bind(avatarCursorResolver)!important;
 		}
 
 		&__collapsible {

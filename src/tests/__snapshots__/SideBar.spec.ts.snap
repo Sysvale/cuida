@@ -61,7 +61,7 @@ exports[`SideBar > renders correctly 1`] = `
     </ul>
   </div>
   <div class=\\"side-bar__footer variant-resolver--green\\">
-    <div class=\\"side-bar__avatar\\" id=\\"menu-profile\\">
+    <div id=\\"menu-profile\\" class=\\"side-bar__avatar\\">
       <!--
 		Evento emitido quando o wrapper é clicado
 		@event cds-click
