@@ -203,6 +203,14 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Boolean, quando true, os textos do header e valores da tabela não terão quebra de linha.
+		 * Por padrão, os textos do header e valores da tabela terão quebra de linha quando atingirem o tamanho máximo do container.
+		 */
+		noWrap: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -239,6 +247,9 @@ export default {
 				})
 				: [];
 		},
+		resolveNoWarp() {
+			return this.noWrap ? 'nowrap' : 'pre-line';
+		}
 	},
 
 	watch: {
@@ -401,7 +412,7 @@ export default {
 			text-align: inherit;
 			overflow: auto;
 			word-wrap: break-word;
-			white-space: pre-line;
+			white-space: v-bind('resolveNoWarp');
 
 			&--first {
 				border-top-left-radius: $border-radius-extra-small;
@@ -437,7 +448,7 @@ export default {
 		vertical-align: top;
 		overflow: auto;
 		word-wrap: break-word;
-		white-space: pre-line; 
+		white-space: v-bind('resolveNoWarp');
 
 		&--first {
 			border-bottom: none;
