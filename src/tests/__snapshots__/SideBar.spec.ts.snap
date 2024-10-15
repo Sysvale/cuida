@@ -61,7 +61,7 @@ exports[`SideBar > renders correctly 1`] = `
     </ul>
   </div>
   <div class=\\"side-bar__footer variant-resolver--green\\">
-    <div class=\\"side-bar__avatar\\">
+    <div class=\\"side-bar__avatar\\" id=\\"menu-profile\\">
       <!--
 		Evento emitido quando o wrapper é clicado
 		@event cds-click
@@ -86,6 +86,7 @@ exports[`SideBar > renders correctly 1`] = `
         <cds-icon-stub name=\\"logout-outline\\" width=\\"20\\" height=\\"20\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub>
       </li>
     </ul>
+    <!--v-if-->
   </div>
 </div>"
 `;

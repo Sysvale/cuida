@@ -227,9 +227,10 @@
 			</ul>
 			<div v-if="showProfileMenu">
 				<cds-popover
-					:right-aligned="true"
+					right-aligned="true"
 					target-id="menu-profile"
-					:fit-content-width="true"
+					width="160"
+					height="160"
 					v-model="showPopover"
 				>
 						<div
@@ -989,5 +990,10 @@ export default {
 	&__icon {
 		color: $n-600;
 	}
+}
+
+.popover {
+	display: flex;
+	align-items: center;
 }
 </style>
