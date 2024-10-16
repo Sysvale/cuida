@@ -2,7 +2,7 @@
 	<div
 		class="grid-item"
 	>
-		<!-- @slot Slot com o conteúdo que você deseja que seja scrollable -->
+		<!-- @slot Slot com o conteúdo interno do GridItem -->
 		<slot />
 	</div>
 </template>
@@ -11,76 +11,50 @@
 import { computed } from 'vue';
 
 const props = defineProps({
-	/**
-	* Define altura como 'auto' para o container até o limite máximo
-	*/
 	colSpan: {
 		type: [Number, String],
 		default: 'auto',
 	},
-	/**
-	* Torna o container scrollável horizontalmente
-	*/
 	rowSpan: {
 		type: [Number, String],
-		default: 'auto',
+		default: '1',
 	},
-	/**
-	* Define altura como 'auto' para o container até o limite máximo
-	*/
 	colStart: {
 		type: [Number, String],
 		default: 'auto',
 	},
-	/**
-	* Torna o container scrollável horizontalmente
-	*/
 	rowStart: {
 		type: [Number, String],
 		default: 'auto',
 	},
-	/**
-	* Altura máxima do container até ser scrollado
-	*/
 	gap: {
 		type: [Number, String],
 		default: 0,
 	},
-	/**
-	* Altura máxima do container até ser scrollado
-	*/
 	rowGap: {
 		type: [Number, String],
 		default: 0,
 	},
-	/**
-	* Altura máxima do container até ser scrollado
-	*/
 	colGap: {
 		type: [Number, String],
 		default: 0,
 	},
-	/**
-	* Altura máxima do container até ser scrollado
-	*/
 	subGrid: {
 		type: Boolean,
 		default: false,
 	},
-	/**
-	* Torna o container scrollável horizontalmente
-	*/
 	justify: {
 		type: String,
-		default: 'stretch',
+		default: 'auto',
 	},
-	/**
-	* Torna o container scrollável horizontalmente
-	*/
 	align: {
 		type: String,
-		default: 'stretch',
+		default: 'auto',
 	},
+	direction: {
+		type: String,
+		default: 'row',
+	}
 });
 
 const columnResolver = computed(() => {
@@ -150,5 +124,6 @@ const gapResolver = computed(() => {
 	grid-column: v-bind(columnResolver);
 	grid-row: v-bind(rowResolver);
 	justify-self: v-bind(justify);
+	grid-auto-flow: v-bind(direction);
 }
 </style>

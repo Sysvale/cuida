@@ -2,7 +2,7 @@
 	<div
 		class="grid"
 	>
-		<!-- @slot Slot com o conteúdo que você deseja que seja scrollable -->
+		<!-- @slot Slot com o conteúdo interno da grid -->
 		<slot />
 	</div>
 </template>
@@ -11,81 +11,70 @@
 import { computed } from 'vue';
 
 const props = defineProps({
-	/**
-	* Define altura como 'auto' para o container até o limite máximo
-	*/
 	cols: {
 		type: [Number, String, Array],
 		default: 1,
 	},
-	/**
-	* Torna o container scrollável horizontalmente
-	*/
 	rows: {
 		type: [Number, String, Array],
 		default: 1,
 	},
 	autoCols: {
-		type: [Number, String, Array],
+		type: [Number, String],
 		default: 1,
 	},
-	/**
-	* Torna o container scrollável horizontalmente
-	*/
 	autoRows: {
-		type: [Number, String, Array],
+		type: [Number, String],
 		default: 1,
 	},
-	/**
-	* Altura máxima do container até ser scrollado
-	*/
 	gap: {
 		type: [Number, String],
 		default: 0,
 	},
-	/**
-	* Altura máxima do container até ser scrollado
-	*/
 	rowGap: {
 		type: [Number, String],
 		default: 0,
 	},
-	/**
-	* Altura máxima do container até ser scrollado
-	*/
 	colGap: {
 		type: [Number, String],
 		default: 0,
 	},
-	/**
-	* Torna o container scrollável horizontalmente
-	*/
 	justify: {
 		type: String,
 		default: 'stretch',
 	},
-	/**
-	* Torna o container scrollável horizontalmente
-	*/
 	align: {
 		type: String,
 		default: 'stretch',
 	},
 });
 
+const gapAsStringResolver = (gap) => {
+	const match = gap.match(/^(\d+(\.\d+)?)(.*)$/);
+
+	if (!match) {
+		return null;
+	}
+
+	if (!match[3]) {
+		return match ? `${(parseFloat(match[1]) * 4)}px` : null
+	}
+
+	return gap;
+};
 
 const gapResolver = computed(() => {
 	let composedGap = '';
 
 	if (props.gap && props.gap !== 0 && props.gap !== '0') {
-		return Number.isFinite(props.gap) ? `${props.gap}px` : props.gap;
+		return Number.isFinite(props.gap) ? `${props.gap * 4}px` : gapAsStringResolver(props.gap);
 	}
 
 	if (props.rowGap) {
 		if (Number.isFinite(props.rowGap)) {
-			composedGap = `${props.rowGap}px`;
+			composedGap = `${props.rowGap * 4}px`;
 		} else {
-			composedGap = props.rowGap;
+			composedGap = gapAsStringResolver(props.rowGap);
 		}
 	} else {
 		composedGap = '0px';
@@ -93,9 +82,9 @@ const gapResolver = computed(() => {
 
 	if (props.colGap) {
 		if (Number.isFinite(props.colGap)) {
-			composedGap += ` ${props.colGap}px`;
+			composedGap += ` ${props.colGap * 4}px`;
 		} else {
-			composedGap += ` ${props.colGap}`;
+			composedGap += ` ${gapAsStringResolver(props.colGap)}`;
 		}
 	} else {
 		composedGap += ' 0px';
@@ -110,7 +99,7 @@ const gridResolver = (element) => {
 	}
 
 	if (Number.isFinite(element)) {
-		return `${(element + 'fr ').repeat(element)}`;
+		return `${('1fr ').repeat(element)}`;
 	}
 
 	return `${element}`;
@@ -144,6 +133,6 @@ const gridAutoRowsResolver = computed(() => {
 	grid-auto-rows: v-bind(gridAutoRowsResolver);
 	grid-template-columns: v-bind(gridTemplateColumnsResolver);
 	grid-template-rows: v-bind(gridTemplateRowsResolver);
-	justify-items: v-bind(justify);
+	justify-content: v-bind(justify);
 }
 </style>
