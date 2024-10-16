@@ -73,6 +73,7 @@ import RadioButtonGroup from './RadioButtonGroup.vue';
 import Spacer from './Spacer.vue';
 import Scrollable from './Scrollable.vue';
 import SearchInput from './SearchInput.vue';
+import SecondaryNavigation from './SecondaryNavigation.vue';
 import SegmentedControl from './SegmentedControl.vue';
 import Select from './Select.vue';
 import SideBar from './SideBar.vue';
@@ -175,6 +176,7 @@ export default {
 		app.component('CdsSpacer', Spacer);
 		app.component('CdsScrollable', Scrollable);
 		app.component('CdsSearchInput', SearchInput);
+		app.component('CdsSecondaryNavigation', SecondaryNavigation);
 		app.component('CdsSegmentedControl', SegmentedControl);
 		app.component('CdsSelect', Select);
 		app.component('CdsSideBar', SideBar);
