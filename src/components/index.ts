@@ -34,6 +34,7 @@ import DropdownButton from './DropdownButton.vue';
 import DonutChart from './DonutChart.vue';
 import EmptyState from './EmptyState.vue';
 import FileInput from './FileInput.vue';
+import Flexbox from './Flexbox.vue';
 import FileViewer from './FileViewer.vue';
 import FilterSelect from './FilterSelect.vue';
 import FlatButton from './FlatButton.vue';
@@ -139,6 +140,7 @@ export default {
 		app.component('CdsFileViewer', FileViewer);
 		app.component('CdsFilterSelect', FilterSelect);
 		app.component('CdsFlatButton', FlatButton);
+		app.component('CdsFlexbox', Flexbox);
 		app.component('CdsFloatingAssistant', FloatingAssistant);
 		app.component('CdsGaugeChart', GaugeChart);
 		app.component('CdsGrid', Grid);
