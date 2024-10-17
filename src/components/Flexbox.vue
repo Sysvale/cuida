@@ -1,0 +1,113 @@
+<template>
+	<div
+		class="flexbox"
+	>
+		<!-- @slot Slot com o conteúdo interno do FlexBox -->
+		<slot />
+	</div>
+</template>
+
+<script setup>
+import { computed } from 'vue';
+
+const props = defineProps({
+	/**
+	* Define a direção dos itens dentro do FlexBox. 
+	* Valores aceitos: 'row', 'row-reverse', 'column', 'column-reverse'.
+	*/
+	direction: {
+		type: String,
+		default: 'row',
+	},
+	/**
+	* Controla o comportamento de quebra de linha dos itens no FlexBox.
+	* Valores aceitos: 'nowrap', 'wrap', 'wrap-reverse'.
+	*/
+	wrap: {
+		type: String,
+		default: 'wrap',
+	},
+	/**
+	* Define o espaçamento entre os itens no FlexBox. 
+	* O valor setado é multiplicado por 4, assim como nos tokens scss do Cuida.
+	* O valor padrão é 0, mas pode ser configurado para outros valores numéricos ou strings.
+	*/
+	gap: {
+		type: [Number, String],
+		default: 0,
+	},
+	/**
+	* Controla a distribuição dos itens ao longo do eixo principal. 
+	* Valores aceitos: 'flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'space-evenly'.
+	*/
+	justify: {
+		type: String,
+		default: 'flex-start',
+	},
+	/**
+	* Define o alinhamento dos itens ao longo do eixo transversal.
+	* Valores aceitos: 'stretch', 'flex-start', 'flex-end', 'center', 'baseline'.
+	*/
+	align: {
+		type: String,
+		default: 'stretch',
+	},
+});
+
+const gapAsStringResolver = (gap) => {
+	const match = gap.match(/^(\d+(\.\d+)?)(.*)$/);
+
+	if (!match) {
+		return null;
+	}
+
+	if (!match[3]) {
+		return match ? `${(parseFloat(match[1]) * 4)}px` : null
+	}
+
+	return gap;
+};
+
+const gapResolver = computed(() => {
+	let composedGap = '';
+
+	if (props.gap && props.gap !== 0 && props.gap !== '0') {
+		return Number.isFinite(props.gap) ? `${props.gap * 4}px` : gapAsStringResolver(props.gap);
+	}
+
+	if (props.rowGap) {
+		if (Number.isFinite(props.rowGap)) {
+			composedGap = `${props.rowGap * 4}px`;
+		} else {
+			composedGap = gapAsStringResolver(props.rowGap);
+		}
+	} else {
+		composedGap = '0px';
+	}
+
+	if (props.colGap) {
+		if (Number.isFinite(props.colGap)) {
+			composedGap += ` ${props.colGap * 4}px`;
+		} else {
+			composedGap += ` ${gapAsStringResolver(props.colGap)}`;
+		}
+	} else {
+		composedGap += ' 0px';
+	}
+
+	return composedGap;
+});
+	
+</script>
+<style lang="scss" scoped>
+@import '../assets/sass/tokens.scss';
+
+.flexbox {
+	align-items: v-bind(align);
+	display: flex;
+	gap: v-bind(gapResolver);
+	justify-content: v-bind(justify);
+	flex-direction: v-bind(direction);
+	flex-wrap: v-bind(wrap);
+}
+</style>
