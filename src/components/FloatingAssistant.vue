@@ -174,50 +174,46 @@ export default {
 
 		modelValue(newValue) {
 			this.isActive = newValue;
+			this.handleEventAnimation();
 		},
 	},
 
-
 	mounted() {
-		this.id = `floating-assistant$-${this._uid}`;
-		this.pulsarId = `floating-assistant-pulsar$-${this._uid}`;
-		this.containerId = `floating-assistant-container$-${this._uid}`;
-
-		if (this.startOnScroll) {
-			window.addEventListener('scroll', this.startAnimation);
-		} else {
-			window.addEventListener('load', this.startAnimation);
-		}
+		this.handleEventAnimation();
 	},
 
 	methods: {
-		startAnimation() {
-			if (this.startOnScroll && !this.isScrolledIntoView()) {
-				return;
-			}
-
-			setTimeout(() => {
-				document.getElementById(this.id).classList.add('animation');
-			}, 1000);
+		handleEventAnimation() {
+			this.id = `floating-assistant$-${this._uid}`;
+			this.pulsarId = `floating-assistant-pulsar$-${this._uid}`;
+			this.containerId = `floating-assistant-container$-${this._uid}`;
 
 			if (this.startOnScroll) {
-				window.removeEventListener('scroll', this.startAnimation);
+				window.addEventListener('scroll', this.startAnimation);
+			} else {
+				this.startAnimation();
+			}
+		},
+
+		startAnimation() {
+			if (this.startOnScroll) {
+				if (this.isScrolledIntoView()) {
+					setTimeout(() => {
+						document.getElementById(this.id).classList.add('animation');
+						window.removeEventListener('scroll', this.startAnimation);
+					}, 1000);
+				}
+			} else {
+				setTimeout(() => {
+					document.getElementById(this.id).classList.add('animation');
+				}, 1000);
 			}
 		},
 
 		isScrolledIntoView() {
-			const scrollTop = window.scrollY;
-			const scrollBottom = scrollTop + window.innerHeight;
+			const { top, bottom } = document.getElementById(this.id).getBoundingClientRect();
 
-			// obtém posição e dimensões do elemento
-			const box = document.getElementById(this.id).getBoundingClientRect();
-			if (!this.boxTop) {
-				this.boxTop = box.top;
-			}
-			const elemTop = this.boxTop;
-			const elemBottom = elemTop + 18;
-
-			return ((elemBottom <= scrollBottom) && (elemTop >= scrollTop));
+			return (top >= 0 && bottom <= window.innerHeight);
 		},
 
 		expand() {
