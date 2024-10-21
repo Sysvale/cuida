@@ -116,6 +116,14 @@ export default {
 			validator: (value) => value.length <= 22,
 		},
 		/**
+		 * Define se a animação de exibição do componente vai começar apenas após a ação de scroll pelo usuário.
+		 */
+		startOnScroll: {
+			type: Boolean,
+			default: false,
+			required: false,
+		},
+		/**
 		 * A url para redirecionar para uma página externa ao clicar no
 		 * 'clicando aqui' para saber mais sobre o que é descrito no card
 		 */
@@ -169,21 +177,30 @@ export default {
 		},
 	},
 
+
 	mounted() {
 		this.id = `floating-assistant$-${this._uid}`;
 		this.pulsarId = `floating-assistant-pulsar$-${this._uid}`;
 		this.containerId = `floating-assistant-container$-${this._uid}`;
 
-		window.addEventListener('scroll', this.startAnimation, false);
+		if (this.startOnScroll) {
+			window.addEventListener('scroll', this.startAnimation);
+		} else {
+			window.addEventListener('load', this.startAnimation);
+		}
 	},
 
 	methods: {
 		startAnimation() {
-			// verifica se o elemento está visível
-			if (this.isScrolledIntoView()) {
-				// adiciona classe 'animation' se estiver visível
-				document.getElementById(this.id).classList.add('animation');
+			if (this.startOnScroll && !this.isScrolledIntoView()) {
+				return;
+			}
 
+			setTimeout(() => {
+				document.getElementById(this.id).classList.add('animation');
+			}, 1000);
+
+			if (this.startOnScroll) {
 				window.removeEventListener('scroll', this.startAnimation);
 			}
 		},
