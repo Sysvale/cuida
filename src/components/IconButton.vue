@@ -165,11 +165,7 @@ export default {
 		border: none !important;
 		border-radius: $border-radius-extra-small;
 		cursor: pointer;
-		box-sizing: border-box;
-
-		&:focus {
-			outline: none !important;
-		}
+		box-sizing: border-box;	
 
 		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			@extend .cds-icon-button__container;
@@ -191,6 +187,10 @@ export default {
 			} @else {
 				&:hover {
 					background-color: $shade-500;
+				}
+
+				&:focus {
+					outline: none !important;
 				}
 			}
 		}
