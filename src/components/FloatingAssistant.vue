@@ -300,7 +300,6 @@ export default {
 		padding: pYX(2, 5);
 		z-index: $z-index-tooltip;
 		max-width: 400px;
-		max-height: 56px;
 		transition : 0.3s ease-in-out;
 
 		&--expanded {
@@ -316,7 +315,6 @@ export default {
 		}
 
 		&--confirmation {
-			width: auto !important;
 			animation-name: collapseCard;
 			animation-duration: 5s;
 			animation-fill-mode: forwards;
