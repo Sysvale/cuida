@@ -28,6 +28,7 @@
 				>
 
 				<span
+					v-if="searchTerm"
 					class="global-search-bar__clear"
 					@click="clearSearchTerm"
 				>
@@ -42,7 +43,15 @@
 				wrap="nowrap"
 			>
 				<div
+					v-if="showEmptyState"
+					class="global-search-bar__empty-state"
+				>
+					Ainda não há nada aqui. Experimente fazer uma busca!
+				</div>
+
+				<div
 					v-for="item in items"
+					v-else
 					:key="item"
 				>
 					<cds-divider
@@ -76,7 +85,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 import CdsIcon from '../components/Icon.vue';
 import CdsFlexbox from '../components/Flexbox.vue';
 import CdsDivider from '../components/Divider.vue';
@@ -91,6 +100,11 @@ const props = defineProps({
 		type: Array,
 		required: false,
 		default: () => [],
+	},
+	recents: {
+		type: Array,
+		required: false,
+		default: () => [],
 	}
 })
 
@@ -100,6 +114,10 @@ const internalValue = ref(props.modelValue);
 const idTimeout = ref(null);
 const searchInput = ref(null);
 const searchTerm = ref('');
+
+const showEmptyState = computed(() => {
+	return !props.recents.length && !searchTerm.value;
+});
 
 watch(searchTerm, () => {
 	onChangeSearchTerm();
@@ -226,6 +244,14 @@ function onBackdropClick(event) {
 		max-height: 70svh;
 		box-shadow: $shadow-md;
 		overflow-y: scroll;
+	}
+
+	&__empty-state {
+		@include body-2;
+		font-weight: $font-weight-regular;
+		font-style: italic;
+		color: $n-400;
+		text-align: center;
 	}
 
 	&__divider {
