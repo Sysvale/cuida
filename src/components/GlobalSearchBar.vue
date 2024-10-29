@@ -27,6 +27,32 @@
 					Limpar
 				</span>
 			</cds-flexbox>
+
+			<cds-flexbox
+				direction="column"
+				gap="1"
+				class="global-search-bar__results"
+			>
+				<span class="global-search-bar__divider">
+					Gestantes
+				</span>
+
+				<cds-flexbox
+					v-for="n in 5"
+					:key="n"
+					gap="1"
+					direction="column"
+					class="global-search-bar__result-card"
+				>
+					<span class="global-search-bar__person-name">
+						Adriana Pequena
+					</span>
+
+					<span class="global-search-bar__person-secondary-info">
+						<b>CPF:</b> 222.222.222-22
+					</span>
+				</cds-flexbox>
+			</cds-flexbox>
 		</div>
 	</div>
 </template>
@@ -74,6 +100,7 @@ defineProps({
 		border-radius: $border-radius-medium;
 		border: 1px solid $n-30;
 		background-color: $n-0;
+		margin: mb(2);
 
 		input {
 			font-family: 'Satoshi', sans-serif;
@@ -94,6 +121,43 @@ defineProps({
 		font-weight: $font-weight-semibold;
 		color: $n-300;
 		cursor: pointer;
+	}
+
+	&__results {
+		background-color: $n-0;
+		border-radius: $border-radius-medium;
+		border: 1px solid $n-30;
+		padding: py(5);
+		width: 70%;
+		box-shadow: $shadow-md;
+	}
+
+	&__divider {
+		@include caption;
+		font-weight: $font-weight-semibold;
+		color: $n-600;
+		margin: ml(5);
+	}
+
+	&__result-card {
+		cursor: pointer;
+		padding: pYX(3, 5);
+
+		&:hover {
+			background-color: $n-20;
+		}
+	}
+
+	&__person-name {
+		@include body-1;
+		font-weight: $font-weight-regular;
+		color: $n-800;
+	}
+
+	&__person-secondary-info {
+		@include body-2;
+		font-weight: $font-weight-regular;
+		color: $n-700;
 	}
 }
 </style>
