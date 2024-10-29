@@ -1,0 +1,94 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import GlobalSearchBar from '../../components/GlobalSearchBar.vue';
+import Button from '../../components/Button.vue';
+
+<Meta
+	title="Componentes/Overlays/GlobalSearchBar"
+	component={ GlobalSearchBar }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'warning',
+					'error',
+					'info',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/
+`<cds-dialog-modal
+>
+</cds-dialog-modal>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			showSearchBar: false,
+		};
+	},
+	components: { CdsGlobalSearchBar: GlobalSearchBar, CdsButton: Button },
+	template: /*html*/ `
+		<div class="d-flex justify-content-center">
+			<cds-button
+				id="trigger-popover"
+				@click="showSearchBar = !showSearchBar"
+			>
+				Buscar
+			</cds-button>
+			<cds-global-search-bar
+				v-bind="args"
+				v-model="showSearchBar"
+			>
+			</cds-global-search-bar>
+		</div>
+	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.showModal);
+	},
+});
+
+# DialogModal
+
+### O DialogModal é um componente utilizado para interagir com o usuário em situações críticas ou informativas.
+---
+<br />
+
+## Quando usar:
+- Quando for necessário obter a confirmação do usuário para ações que podem ter consequências significativas, como excluir um item;
+- Quando ocorrer um erro no sistema e o usuário precisar ser notificado;
+- Quando for necessário informar o usuário sobre algo importante, mas que não requer uma ação imediata.
+
+<br />
+
+## Quando não usar:
+- Quando as mensagens a serem passadas ao usuário forem triviais e não exijam a atenção imediata do usuário. Nestes casos, considere usar notificações ou alertas.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="GlobalSearchBar"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="GlobalSearchBar" />
