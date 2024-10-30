@@ -80,37 +80,48 @@
 				</div>
 
 				<div
-					v-for="(item, index) in items"
+					v-for="(group, index) in groups"
 					v-else-if="whatToRender === 'renderResults'"
-					:key="item"
+					:key="index"
 					class="global-search-bar__results-block"
 				>
 					<cds-divider
-						v-if="item.results.length > 0"
-						:text="item.category"
+						v-if="group.results.length > 0"
+						:text="group.category"
 						inline
 						class="global-search-bar__divider"
 					/>
 
 					<div
-						v-for="result in slicedResults(index)"
-						:key="result"
-						class="global-search-bar__result-item"
-						@click="onItemClick(result)"
+						v-for="item in slicedResults(index)"
+						:key="item"
+						class="global-search-bar__result-item-wrapper"
+						@click="onItemClick(item)"
 					>
-						{{ result.title }}
+						<slot
+							v-if="hasSlot($slots, 'result-item')"
+							:data="item"
+							name="result-item"
+						/>
+
+						<div
+							v-else
+							class="global-search-bar__result-item"
+						>
+							{{ item.title }}
+						</div>
 					</div>
 
 					<cds-flexbox
-						v-if="item.results.length > 5"
+						v-if="group.results.length > 5"
 						class="global-search-bar__show-more"
 						align="center"
 						justify="start"
 						gap="1"
-						@click="onSeeMoreClick(item)"
+						@click="onSeeMoreClick(group)"
 					>
 						<span>
-							Ver todos os {{ item.results.length }} resultados em {{ item.category }}
+							Ver todos os {{ group.results.length }} resultados em <b>{{ group.category }}</b>
 						</span>
 
 						<cds-icon
@@ -131,6 +142,7 @@ import CdsIcon from '../components/Icon.vue';
 import CdsFlexbox from '../components/Flexbox.vue';
 import CdsDivider from '../components/Divider.vue';
 import CdsSkeleton from '../components/Skeleton.vue';
+import hasSlot from '../utils/methods/hasSlot';
 
 const props = defineProps({
 	modelValue: {
@@ -138,7 +150,7 @@ const props = defineProps({
 		required: true,
 		default: false,
 	},
-	items: {
+	groups: {
 		type: Array,
 		required: false,
 		default: () => [],
@@ -164,7 +176,7 @@ const searchInput = ref(null);
 const searchTerm = ref('');
 
 const whatToRender = computed(() => {
-	let hasResults = props.items.some(item => item.results && item.results.length > 0);
+	let hasResults = props.groups.some(item => item.results && item.results.length > 0);
 	let hasRecents = props.recents.length > 0;
 
 	if (hasResults && !isTyping.value) {
@@ -181,7 +193,7 @@ const whatToRender = computed(() => {
 });
 
 const slicedResults = computed(() => {
-	return (index) => props.items[index].results.slice(0, 5);
+	return (index) => props.groups[index].results.slice(0, 5);
 });
 
 watch(searchTerm, () => {
@@ -261,7 +273,7 @@ function onBackdropClick(event) {
 		flex-direction: column;
 		align-items: center;
 		position: fixed;
-		padding-top: 100px;
+		padding-top: 80px;
 		top: 0;
 		bottom: 0;
 		left: 0;
@@ -316,7 +328,7 @@ function onBackdropClick(event) {
 		border: 1px solid $n-30;
 		padding: py(5);
 		width: 70%;
-		max-height: 70svh;
+		max-height: 75svh;
 		box-shadow: $shadow-md;
 		overflow-y: scroll;
 	}
@@ -334,16 +346,22 @@ function onBackdropClick(event) {
 	}
 
 	&__results-block {
-		width: 100%;
-		margin: mb(4);
 
 		&:last-child {
-			margin: mb(n2);
+			margin: mb(n(3));
 		}
 	}
 
 	&__divider {
 		padding: px(5);
+	}
+
+	&__result-item-wrapper {
+		cursor: pointer;
+
+		&:last-child {
+			margin: mb(3);
+		}
 	}
 
 	&__result-item {
@@ -363,8 +381,9 @@ function onBackdropClick(event) {
 		color: $n-400;
 		text-align: left;
 		cursor: pointer;
-		height: 32px;
+		height: 40px;
 		padding: pl(5);
+		margin: mb(3);
 
 		&:hover {
 			background-color: $bn-50;
