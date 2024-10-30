@@ -41,126 +41,8 @@ export const Template = (args) => ({
 		return {
 			showSearchBar: false,
 			filteredItems: [],
-			recentsItems: [
-				{
-					title: 'Carla Santana',
-					cpf: '22233344405',
-				},
-				{
-					title: 'Carlota Oliveira',
-				},
-				{
-					title: 'Rodrigo Barboza',
-				},
-				{
-					title: 'Lucas Barbosa',
-					cpf: '22233344405',
-				},
-				{
-					title: 'Greg Uesley Silver',
-					cpf: '22233344405',
-				},
-				{
-					title: 'coração',
-				},
-			],
-			items: [
-				{
-					category: 'Gestantes',
-					results: [
-						{
-							title: 'Carla Santana',
-							cpf: '22233344405',
-							cns: '900098367891993'
-						},
-						{
-							title: 'Carliane Ferreira',
-							cpf: '22233344405',
-							cns: '900098367891993'
-						},
-						{
-							title: 'Fernanda Cardoso da Fonseca',
-							cpf: '22233344405',
-							cns: '900098367891993'
-						},
-						{
-							title: 'Rafael Assunção',
-							cpf: '22233344405',
-							cns: '900098367891993'
-						},
-						{
-							title: 'Alzira Monte',
-							cpf: '22233344405',
-							cns: '900098367891993'
-						},
-						{
-							title: 'Antônio de Almeida Castro Silva',
-							cpf: '22233344405',
-							cns: '900098367891993'
-						},
-						{
-							title: 'Marcela da Cunha',
-							cpf: '22233344405',
-							cns: '900098367891993'
-						},
-						{
-							title: 'Euclides do Amaral',
-							cpf: '22233344405',
-							cns: '900098367891993'
-						},
-						{
-							title: 'Constantino Xavier',
-							cpf: '22233344405',
-							cns: '900098367891993'
-						},
-					]
-				},
-				{
-					category: 'Métricas',
-					results: [
-						{
-							title: 'Nº de pessoas',
-							num: 398,
-						},
-						{
-							title: 'Nº de crianças',
-							num: 398,
-						},
-						{
-							title: 'Nº de cachorros',
-							num: 3,
-						},
-						{
-							title: 'Nº de gatos',
-							num: 0,
-						},
-						{
-							title: 'Média de pessoas',
-							num: 398,
-						},
-						{
-							title: 'Moda de animais por residência',
-							num: 398,
-						},
-						{
-							title: 'Moda de sertanejo',
-							num: 400,
-						},
-						{
-							title: 'Máximo de pessoas em uma residência',
-							num: 400,
-						},
-						{
-							title: 'Máximo de pessoas em um bairro',
-							num: 400,
-						},
-						{
-							title: 'Máximo de pessoas em uma cidade',
-							num: 400,
-						},
-					]
-				},
-			]
+			items,
+			recentsItems,
 		};
 	},
 	methods: {
@@ -230,9 +112,135 @@ export const Template = (args) => ({
 
 ## Preview
 
+export const recentsItems = [
+	{
+		title: 'Carla Santana',
+		cpf: '22233344405',
+	},
+	{
+		title: 'Carlota Oliveira',
+	},
+	{
+		title: 'Rodrigo Barboza',
+	},
+	{
+		title: 'Lucas Barbosa',
+		cpf: '22233344405',
+	},
+	{
+		title: 'Greg Uesley Silver',
+		cpf: '22233344405',
+	},
+	{
+		title: 'coração',
+	},
+];
+
+export const items = [
+	{
+		category: 'Gestantes',
+		results: [
+			{
+				title: 'Carla Santana',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Carliane Ferreira',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Fernanda Cardoso da Fonseca',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Rafael Assunção',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Alzira Monte',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Antônio de Almeida Castro Silva',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Marcela da Cunha',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Euclides do Amaral',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Constantino Xavier',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+		]
+	},
+	{
+		category: 'Métricas',
+		results: [
+			{
+				title: 'Nº de pessoas',
+				num: 398,
+			},
+			{
+				title: 'Nº de crianças',
+				num: 398,
+			},
+			{
+				title: 'Nº de cachorros',
+				num: 3,
+			},
+			{
+				title: 'Nº de gatos',
+				num: 0,
+			},
+			{
+				title: 'Média de pessoas',
+				num: 398,
+			},
+			{
+				title: 'Moda de animais por residência',
+				num: 398,
+			},
+			{
+				title: 'Moda de sertanejo',
+				num: 400,
+			},
+			{
+				title: 'Máximo de pessoas em uma residência',
+				num: 400,
+			},
+			{
+				title: 'Máximo de pessoas em um bairro',
+				num: 400,
+			},
+			{
+				title: 'Máximo de pessoas em uma cidade',
+				num: 400,
+			},
+		]
+	},
+];
+
 <Canvas>
 	<Story
 		name="GlobalSearchBar"
+		args={{
+			recentsItems,
+			items,
+		}}
 	>
 		{ Template.bind({}) }
 	</Story>

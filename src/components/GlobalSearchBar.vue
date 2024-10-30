@@ -90,6 +90,9 @@
 					class="global-search-bar__result-item"
 					@click="onItemClick(recentItem)"
 				>
+					<!--
+						@slot Slot usado para renderizar itens personalizados para os itens recentes. Dados do item podem ser acessados através da propriedade `recentItem`.
+					-->
 					<slot
 						v-if="hasSlot($slots, 'recent-item')"
 						name="recent-item"
@@ -147,6 +150,9 @@
 						class="global-search-bar__result-item-wrapper"
 						@click="onItemClick(item)"
 					>
+						<!--
+							@slot Slot usado para renderizar itens personalizados para os resultados da busca. Dados do item podem ser acessados através da propriedade `item`.
+						-->
 						<slot
 							v-if="hasSlot($slots, 'result-item')"
 							:data="item"
@@ -196,36 +202,58 @@ import CdsSkeleton from '../components/Skeleton.vue';
 import hasSlot from '../utils/methods/hasSlot';
 
 const props = defineProps({
+	/**
+	 *  Controla a exibição da barra de busca.
+	 */
 	modelValue: {
 		type: Boolean,
 		required: true,
 		default: false,
 	},
+	/**
+	 *  Informa ao componente se a requisição ainda está em curso ou já foi finalizada.
+	 */
 	loading: {
 		type: Boolean,
 		required: true,
 		default: false,
 	},
+	/**
+	 *  Resultados da busca a serem mostrados. Os objetos da lista devem ter uma chave "category" e uma lista "results".
+	 * Os itens de results devem ter um $key "title".
+	 */
 	groups: {
 		type: Array,
 		required: true,
 		default: () => [],
 	},
+	/**
+	 *  Itens de buscas recentes a serem mostrados no estado inicial do componente.
+	 */
 	recents: {
 		type: Array,
 		required: false,
 		default: () => [],
 	},
+	/**
+	 *  Define a quantidade máxima de itens recentes vão ser exibidos.
+	 */
 	numRecents: {
 		type: Number,
 		required: false,
 		default: 5,
 	},
+	/**
+	 *  Define o texto que será exibido no estado inicial quando não houver itens recentes.
+	 */
 	initialStateText: {
 		type: String,
 		required: false,
 		default: 'Ainda não há nada aqui. Experimente fazer uma busca!',
 	},
+	/**
+	 *  Define o texto que será exibido quando não houver resultados.
+	 */
 	emptyStateText: {
 		type: String,
 		required: false,
@@ -233,7 +261,56 @@ const props = defineProps({
 	},
 });
 
-const emits = defineEmits(['update:modelValue', 'search', 'onItemClick', 'onSeeMoreClick', 'close', 'onRemoveRecent', 'onEnterPress']);
+const emits = defineEmits([
+	/**
+	 * Evento que indica se a variável de controle de exibição foi alterada.
+	* @event ok
+	* @type {Event}
+	*/
+	'update:modelValue',
+
+	/**
+	 * Evento que indica a pausa na digitação no campo de busca e o disparo da busca.
+	* @event ok
+	* @type {Event}
+	*/
+	'search',
+
+	/**
+	 * Evento que indica qual item da lista de resultados foi clicado.
+	* @event ok
+	* @type {Event}
+	*/
+	'onItemClick',
+
+	/**
+	 * Evento que indica que o botão de ver mais foi clicado.
+	* @event ok
+	* @type {Event}
+	*/
+	'onSeeMoreClick',
+
+	/**
+	 * Evento que indica que a barra de busca foi fechada.
+	* @event ok
+	* @type {Event}
+	*/
+	'close',
+
+	/**
+	 * Evento que indica que o item de busca recente foi removido.
+	* @event ok
+	* @type {Event}
+	*/
+	'onRemoveRecent',
+
+	/**
+	 * Evento que indica se a tecla enter foi pressionada.
+	* @event ok
+	* @type {Event}
+	*/
+	'onEnterPress'
+]);
 
 const internalValue = ref(props.modelValue);
 const idTimeout = ref(null);
