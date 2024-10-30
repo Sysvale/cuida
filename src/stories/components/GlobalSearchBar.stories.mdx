@@ -41,6 +41,29 @@ export const Template = (args) => ({
 		return {
 			showSearchBar: false,
 			filteredItems: [],
+			recentsItems: [
+				{
+					title: 'Carla Santana',
+					cpf: '22233344405',
+				},
+				{
+					title: 'Carlota Oliveira',
+				},
+				{
+					title: 'Rodrigo Barboza',
+				},
+				{
+					title: 'Lucas Barbosa',
+					cpf: '22233344405',
+				},
+				{
+					title: 'Greg Uesley Silver',
+					cpf: '22233344405',
+				},
+				{
+					title: 'coração',
+				},
+			],
 			items: [
 				{
 					category: 'Gestantes',
@@ -171,7 +194,8 @@ export const Template = (args) => ({
 			<cds-global-search-bar
 				v-bind="args"
 				v-model="showSearchBar"
-				:items="filteredItems"
+				:groups="filteredItems"
+				:recents="recentsItems"
 				@search="filterItems"
 				@onItemClick="(console.log('Item clicado: ', $event))"
 				@onSeeMoreClick="(console.log('Ver mais clicado: ', $event))"

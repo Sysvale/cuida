@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/html-indent -->
 <template>
 	<div
 		v-if="internalValue"
@@ -78,6 +79,38 @@
 				>
 					Nenhum resultado encontrado
 				</div>
+
+				<cds-flexbox
+					v-for="recentItem in slicedRecents"
+					v-else-if="whatToRender === 'renderRecents'"
+					:key="recentItem"
+					direction="column"
+					gap="4"
+					class="global-search-bar__result-item"
+					@click="onItemClick(recentItem)"
+				>
+					<slot
+						v-if="hasSlot($slots, 'recent-item')"
+						name="recent-item"
+						:data="recentItem"
+					/>
+
+					<cds-flexbox
+						gap="2"
+						align="center"
+					>
+						<cds-icon
+							height="20"
+							width="20"
+							name="history-outline"
+							color="#52616F"
+						/>
+
+						<span>
+							{{ recentItem.title }}
+						</span>
+					</cds-flexbox>
+				</cds-flexbox>
 
 				<div
 					v-for="(group, index) in groups"
@@ -181,12 +214,18 @@ const whatToRender = computed(() => {
 
 	if (hasResults && !isTyping.value) {
 		return 'renderResults';
-	} else if (!isTyping.value && !hasRecents && searchTerm.value.length === 0) {
-		return 'renderInitialState';
-	} else if (isTyping.value || props.loading) {
-		return 'renderLoading';
-	} else if (!isTyping.value && !hasResults && hasRecents) {
+	}
+	if (!isTyping.value && !hasResults && searchTerm.value.length > 0) {
+		return 'renderEmptyState'
+	}
+	if (searchTerm.value.length === 0 && hasRecents) {
 		return 'renderRecents';
+	}
+	if (!isTyping.value && !hasRecents && searchTerm.value.length === 0) {
+		return 'renderInitialState';
+	}
+	if (isTyping.value || props.loading) {
+		return 'renderLoading';
 	}
 
 	return 'renderEmptyState';
@@ -194,6 +233,10 @@ const whatToRender = computed(() => {
 
 const slicedResults = computed(() => {
 	return (index) => props.groups[index].results.slice(0, 5);
+});
+
+const slicedRecents = computed(() => {
+	return props.recents.slice(0, 5);
 });
 
 watch(searchTerm, () => {
