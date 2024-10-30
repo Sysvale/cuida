@@ -25,9 +25,17 @@ import Button from '../../components/Button.vue';
 				language: 'html',
 				format:true,
 				code: /*html*/
-`<cds-dialog-modal
->
-</cds-dialog-modal>`
+`<cds-global-search-bar
+	v-bind="args"
+	v-model="showSearchBar"
+	:groups="filteredItems"
+	:recents="recentsItems"
+	@search="filterItems"
+	@onItemClick="console.log('Item clicado: ', $event)"
+	@onSeeMoreClick="console.log('Ver mais clicado: ', $event)"
+	@onRemoveRecent="console.log('Item removido:', $event)"
+	@onEnterPress="console.log('Enter clicado:', $event)"
+>`
 			},
 		}
 	}}
@@ -92,21 +100,22 @@ export const Template = (args) => ({
 	},
 });
 
-# DialogModal
+# GlobalSearchBar
 
-### O DialogModal é um componente utilizado para interagir com o usuário em situações críticas ou informativas.
+### O GlobalSearchBar é um componente de busca abrangente que permite ao usuário pesquisar informações gerais e específicas em diferentes áreas do sistema, como usuários cadastrados, métricas e palavras-chave, etc.
 ---
 <br />
 
 ## Quando usar:
-- Quando for necessário obter a confirmação do usuário para ações que podem ter consequências significativas, como excluir um item;
-- Quando ocorrer um erro no sistema e o usuário precisar ser notificado;
-- Quando for necessário informar o usuário sobre algo importante, mas que não requer uma ação imediata.
+- Quando o usuário precisar de uma busca completa e integrada que abranja diversas áreas e informações do sistema;
+- Quando é importante apresentar rapidamente resultados consolidados de várias origens sem que o usuário precise navegar entre diferentes seções;
+- Para simplificar o acesso a registros específicos, independentemente de onde estejam no sistema, como pessoas, dados analíticos, documentos e palavras-chave.
 
 <br />
 
 ## Quando não usar:
-- Quando as mensagens a serem passadas ao usuário forem triviais e não exijam a atenção imediata do usuário. Nestes casos, considere usar notificações ou alertas.
+- Quando o usuário necessita de um filtro ou busca específica dentro de uma seção restrita do sistema. Nesse caso, considere usar filtros ou campos de busca locais;
+- Para ações que requerem pouca atenção do usuário, como buscas triviais que não exigem visibilidade em tela cheia.
 
 <br />
 
