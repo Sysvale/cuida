@@ -42,16 +42,47 @@
 				class="global-search-bar__results"
 				wrap="nowrap"
 			>
+				<cds-flexbox
+					v-if="whatToRender === 'renderLoading'"
+					direction="column"
+					gap="4"
+				>
+					<cds-flexbox
+						v-for="n in 5"
+						:key="n"
+						direction="column"
+						gap="1"
+						class="global-search-bar__skeleton-card"
+					>
+						<cds-skeleton
+							:width="250"
+							:height="20"
+						/>
+
+						<cds-skeleton
+							:width="180"
+							:height="20"
+						/>
+					</cds-flexbox>
+				</cds-flexbox>
+
 				<div
-					v-if="showEmptyState"
+					v-else-if="whatToRender === 'renderInitialState'"
 					class="global-search-bar__empty-state"
 				>
 					Ainda não há nada aqui. Experimente fazer uma busca!
 				</div>
 
 				<div
+					v-else-if="whatToRender === 'renderEmptyState'"
+					class="global-search-bar__empty-state"
+				>
+					Nenhum resultado encontrado
+				</div>
+
+				<div
 					v-for="item in items"
-					v-else
+					v-else-if="whatToRender === 'renderResults'"
 					:key="item"
 				>
 					<cds-divider
@@ -89,12 +120,13 @@ import { ref, watch, computed } from 'vue';
 import CdsIcon from '../components/Icon.vue';
 import CdsFlexbox from '../components/Flexbox.vue';
 import CdsDivider from '../components/Divider.vue';
+import CdsSkeleton from '../components/Skeleton.vue';
 
 const props = defineProps({
 	modelValue: {
 		type: Boolean,
+		required: true,
 		default: false,
-		required: false,
 	},
 	items: {
 		type: Array,
@@ -105,6 +137,11 @@ const props = defineProps({
 		type: Array,
 		required: false,
 		default: () => [],
+	},
+	loading: {
+		type: Boolean,
+		required: true,
+		default: false,
 	}
 })
 
@@ -112,11 +149,25 @@ const emits = defineEmits(['update:modelValue', 'change', 'onItemClick', 'onSeeM
 
 const internalValue = ref(props.modelValue);
 const idTimeout = ref(null);
+const isTyping = ref(false);
 const searchInput = ref(null);
 const searchTerm = ref('');
 
-const showEmptyState = computed(() => {
-	return !props.recents.length && !searchTerm.value;
+const whatToRender = computed(() => {
+	let hasResults = props.items.some(item => item.results && item.results.length > 0);
+	let hasRecents = props.recents.length > 0;
+
+	if (hasResults) {
+		return 'renderResults';
+	} else if (!isTyping.value && !hasRecents && searchTerm.value.length === 0) {
+		return 'renderInitialState';
+	} else if (isTyping.value || props.loading) {
+		return 'renderLoading';
+	} else if (!isTyping.value && !hasResults && hasRecents) {
+		return 'renderRecents';
+	}
+
+	return 'renderEmptyState';
 });
 
 watch(searchTerm, () => {
@@ -154,8 +205,17 @@ function clearSearchTerm() {
 
 function onChangeSearchTerm() {
 	clearTimeout(idTimeout.value);
+	isTyping.value = true;
+
+	if (searchTerm.value.length === 0) {
+		isTyping.value = false;
+		emits('change', searchTerm.value);
+
+		return;
+	}
 
 	idTimeout.value = setTimeout(() => {
+		isTyping.value = false;
 		emits('change', searchTerm.value);
 	}, 1000);
 }
@@ -244,6 +304,10 @@ function onBackdropClick(event) {
 		max-height: 70svh;
 		box-shadow: $shadow-md;
 		overflow-y: scroll;
+	}
+
+	&__skeleton-card {
+		margin: ml(5);
 	}
 
 	&__empty-state {
