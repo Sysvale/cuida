@@ -80,9 +80,10 @@
 				</div>
 
 				<div
-					v-for="item in items"
+					v-for="(item, index) in items"
 					v-else-if="whatToRender === 'renderResults'"
 					:key="item"
+					class="global-search-bar__results-block"
 				>
 					<cds-divider
 						v-if="item.results.length > 0"
@@ -92,7 +93,7 @@
 					/>
 
 					<div
-						v-for="result in item.results.slice(0, 5)"
+						v-for="result in slicedResults(index)"
 						:key="result"
 						class="global-search-bar__result-item"
 						@click="onItemClick(result)"
@@ -104,10 +105,19 @@
 						v-if="item.results.length > 5"
 						class="global-search-bar__show-more"
 						align="center"
-						justify="center"
+						justify="start"
+						gap="1"
 						@click="onSeeMoreClick(item)"
 					>
-						Ver todos os {{ item.results.length }} resultados
+						<span>
+							Ver todos os {{ item.results.length }} resultados em {{ item.category }}
+						</span>
+
+						<cds-icon
+							height="16"
+							width="16"
+							name="arrow-right-outline"
+						/>
 					</cds-flexbox>
 				</div>
 			</cds-flexbox>
@@ -168,6 +178,10 @@ const whatToRender = computed(() => {
 	}
 
 	return 'renderEmptyState';
+});
+
+const slicedResults = computed(() => {
+	return (index) => props.items[index].results.slice(0, 5);
 });
 
 watch(searchTerm, () => {
@@ -319,6 +333,15 @@ function onBackdropClick(event) {
 		text-align: center;
 	}
 
+	&__results-block {
+		width: 100%;
+		margin: mb(4);
+
+		&:last-child {
+			margin: mb(n2);
+		}
+	}
+
 	&__divider {
 		padding: px(5);
 	}
@@ -333,18 +356,15 @@ function onBackdropClick(event) {
 		&:hover {
 			background-color: $n-20;
 		}
-
-		&:last-child {
-			margin: mb(3);
-		}
 	}
 
 	&__show-more {
 		@include caption;
 		color: $n-400;
-		text-align: center;
+		text-align: left;
 		cursor: pointer;
-		height: 40px;
+		height: 32px;
+		padding: pl(5);
 
 		&:hover {
 			background-color: $bn-50;
