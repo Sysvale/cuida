@@ -189,7 +189,7 @@ export const Template = (args) => ({
 				id="trigger-popover"
 				@click="showSearchBar = !showSearchBar"
 			>
-				Buscar
+				Abrir barra de busca
 			</cds-button>
 			<cds-global-search-bar
 				v-bind="args"
@@ -197,8 +197,10 @@ export const Template = (args) => ({
 				:groups="filteredItems"
 				:recents="recentsItems"
 				@search="filterItems"
-				@onItemClick="(console.log('Item clicado: ', $event))"
-				@onSeeMoreClick="(console.log('Ver mais clicado: ', $event))"
+				@onItemClick="console.log('Item clicado: ', $event)"
+				@onSeeMoreClick="console.log('Ver mais clicado: ', $event)"
+				@onRemoveRecent="console.log('Item removido:', $event)"
+				@onEnterPress="console.log('Enter clicado:', $event)"
 			>
 			</cds-global-search-bar>
 		</div>

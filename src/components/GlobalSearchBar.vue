@@ -8,6 +8,7 @@
 			class="global-search-bar__backdrop"
 			@click="onBackdropClick"
 			@keyup.esc="internalValue = false"
+			@keyup.enter="onEnterPress"
 		>
 			<cds-flexbox
 				gap="3"
@@ -70,14 +71,14 @@
 					v-else-if="whatToRender === 'renderInitialState'"
 					class="global-search-bar__empty-state"
 				>
-					Ainda não há nada aqui. Experimente fazer uma busca!
+					{{ initialStateText }}
 				</div>
 
 				<div
 					v-else-if="whatToRender === 'renderEmptyState'"
 					class="global-search-bar__empty-state"
 				>
-					Nenhum resultado encontrado
+					{{ emptyStateText }}
 				</div>
 
 				<cds-flexbox
@@ -96,19 +97,34 @@
 					/>
 
 					<cds-flexbox
-						gap="2"
+						v-else
+						justify="space-between"
 						align="center"
 					>
+						<cds-flexbox
+							align="center"
+							gap="2"
+						>
+							<cds-icon
+								height="20"
+								width="20"
+								name="history-outline"
+								color="#52616F"
+							/>
+
+							<span>
+								{{ recentItem.title }}
+							</span>
+						</cds-flexbox>
+
 						<cds-icon
 							height="20"
 							width="20"
-							name="history-outline"
+							name="trash-outline"
 							color="#52616F"
+							class="global-search-bar__remove-recent-icon"
+							@click.stop="onRemoveRecentClick(recentItem)"
 						/>
-
-						<span>
-							{{ recentItem.title }}
-						</span>
 					</cds-flexbox>
 				</cds-flexbox>
 
@@ -161,6 +177,8 @@
 							height="16"
 							width="16"
 							name="arrow-right-outline"
+							color="#52616F"
+							class="global-search-bar__search-icon"
 						/>
 					</cds-flexbox>
 				</div>
@@ -183,9 +201,14 @@ const props = defineProps({
 		required: true,
 		default: false,
 	},
+	loading: {
+		type: Boolean,
+		required: true,
+		default: false,
+	},
 	groups: {
 		type: Array,
-		required: false,
+		required: true,
 		default: () => [],
 	},
 	recents: {
@@ -193,14 +216,24 @@ const props = defineProps({
 		required: false,
 		default: () => [],
 	},
-	loading: {
-		type: Boolean,
-		required: true,
-		default: false,
-	}
-})
+	numRecents: {
+		type: Number,
+		required: false,
+		default: 5,
+	},
+	initialStateText: {
+		type: String,
+		required: false,
+		default: 'Ainda não há nada aqui. Experimente fazer uma busca!',
+	},
+	emptyStateText: {
+		type: String,
+		required: false,
+		default: 'Nenhum resultado encontrado',
+	},
+});
 
-const emits = defineEmits(['update:modelValue', 'search', 'onItemClick', 'onSeeMoreClick', 'close']);
+const emits = defineEmits(['update:modelValue', 'search', 'onItemClick', 'onSeeMoreClick', 'close', 'onRemoveRecent', 'onEnterPress']);
 
 const internalValue = ref(props.modelValue);
 const idTimeout = ref(null);
@@ -236,7 +269,7 @@ const slicedResults = computed(() => {
 });
 
 const slicedRecents = computed(() => {
-	return props.recents.slice(0, 5);
+	return props.recents.slice(0, props.numRecents);
 });
 
 watch(searchTerm, () => {
@@ -304,6 +337,19 @@ function onBackdropClick(event) {
 	}
 }
 
+function onRemoveRecentClick(item) {
+	emits('onRemoveRecent', item);
+	searchInput.value?.focus();
+}
+
+function onEnterPress() {
+	if (searchTerm.value.length > 0) {
+		emits('onEnterPress', searchTerm.value);
+	}
+
+	return;
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -321,7 +367,7 @@ function onBackdropClick(event) {
 		bottom: 0;
 		left: 0;
 		right: 0;
-		background-color: rgba(0, 0, 0, 0.45);
+		background-color: rgba(0, 0, 0, 0.35);
 		z-index: $z-index-modal;
 		animation: zoom-in ease .3s;
 	}
@@ -363,6 +409,11 @@ function onBackdropClick(event) {
 		&:hover {
 			color: $n-500;
 		}
+	}
+
+	&__remove-recent-icon {
+		display: none;
+		cursor: pointer;
 	}
 
 	&__results {
@@ -416,6 +467,10 @@ function onBackdropClick(event) {
 
 		&:hover {
 			background-color: $n-20;
+
+			.global-search-bar__remove-recent-icon {
+				display: block;
+			}
 		}
 	}
 
