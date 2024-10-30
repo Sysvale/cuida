@@ -40,7 +40,111 @@ export const Template = (args) => ({
 	data() {
 		return {
 			showSearchBar: false,
+			filteredItems: [],
+			items: [
+				{
+					category: 'Gestantes',
+					results: [
+						{
+							title: 'Carla Santana',
+							cpf: '22233344405',
+							cns: '900098367891993'
+						},
+						{
+							title: 'Fernanda Cardoso da Fonseca',
+							cpf: '22233344405',
+							cns: '900098367891993'
+						},
+						{
+							title: 'Rafael Assunção',
+							cpf: '22233344405',
+							cns: '900098367891993'
+						},
+						{
+							title: 'Alzira Monte',
+							cpf: '22233344405',
+							cns: '900098367891993'
+						},
+						{
+							title: 'Antônio de Almeida Castro Silva',
+							cpf: '22233344405',
+							cns: '900098367891993'
+						},
+						{
+							title: 'Marcela da Cunha',
+							cpf: '22233344405',
+							cns: '900098367891993'
+						},
+						{
+							title: 'Euclides do Amaral',
+							cpf: '22233344405',
+							cns: '900098367891993'
+						},
+						{
+							title: 'Constantino Xavier',
+							cpf: '22233344405',
+							cns: '900098367891993'
+						},
+					]
+				},
+				{
+					category: 'Métricas',
+					results: [
+						{
+							title: 'Nº de pessoas',
+							num: 398,
+						},
+						{
+							title: 'Nº de crianças',
+							num: 398,
+						},
+						{
+							title: 'Nº de cachorros',
+							num: 3,
+						},
+						{
+							title: 'Nº de gatos',
+							num: 0,
+						},
+						{
+							title: 'Média de pessoas',
+							num: 398,
+						},
+						{
+							title: 'Moda de animais por residência',
+							num: 398,
+						},
+						{
+							title: 'Moda de sertanejo',
+							num: 400,
+						},
+						{
+							title: 'Máximo de pessoas em uma residência',
+							num: 400,
+						},
+					]
+				},
+			]
 		};
+	},
+	methods: {
+		filterItems(searchTerm) {
+			if (searchTerm === '') {
+				this.filteredItems = this.items.map(item => {
+					return {
+						...item,
+						results: []
+					}
+				});
+				return;
+			}
+			this.filteredItems = this.items.map(item => {
+				return {
+					...item,
+					results: item.results.filter(n => n.title.toLowerCase().includes(searchTerm.toLowerCase()))
+				}
+			});
+		}
 	},
 	components: { CdsGlobalSearchBar: GlobalSearchBar, CdsButton: Button },
 	template: /*html*/ `
@@ -54,6 +158,10 @@ export const Template = (args) => ({
 			<cds-global-search-bar
 				v-bind="args"
 				v-model="showSearchBar"
+				:items="filteredItems"
+				@search="filterItems"
+				@onItemClick="(console.log('Item clicado: ', $event))"
+				@onSeeMoreClick="(console.log('Ver mais clicado: ', $event))"
 			>
 			</cds-global-search-bar>
 		</div>

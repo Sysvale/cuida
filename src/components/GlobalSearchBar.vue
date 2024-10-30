@@ -38,7 +38,6 @@
 
 			<cds-flexbox
 				direction="column"
-				gap="4"
 				class="global-search-bar__results"
 				wrap="nowrap"
 			>
@@ -86,6 +85,7 @@
 					:key="item"
 				>
 					<cds-divider
+						v-if="item.results.length > 0"
 						:text="item.category"
 						inline
 						class="global-search-bar__divider"
@@ -145,7 +145,7 @@ const props = defineProps({
 	}
 })
 
-const emits = defineEmits(['update:modelValue', 'change', 'onItemClick', 'onSeeMoreClick', 'close']);
+const emits = defineEmits(['update:modelValue', 'search', 'onItemClick', 'onSeeMoreClick', 'close']);
 
 const internalValue = ref(props.modelValue);
 const idTimeout = ref(null);
@@ -157,7 +157,7 @@ const whatToRender = computed(() => {
 	let hasResults = props.items.some(item => item.results && item.results.length > 0);
 	let hasRecents = props.recents.length > 0;
 
-	if (hasResults) {
+	if (hasResults && !isTyping.value) {
 		return 'renderResults';
 	} else if (!isTyping.value && !hasRecents && searchTerm.value.length === 0) {
 		return 'renderInitialState';
@@ -200,6 +200,7 @@ function mustDisableExternalScrolls(value) {
 
 function clearSearchTerm() {
 	searchTerm.value = '';
+	searchInput.value?.focus();
 	onChangeSearchTerm();
 }
 
@@ -209,14 +210,14 @@ function onChangeSearchTerm() {
 
 	if (searchTerm.value.length === 0) {
 		isTyping.value = false;
-		emits('change', searchTerm.value);
+		emits('search', searchTerm.value);
 
 		return;
 	}
 
 	idTimeout.value = setTimeout(() => {
 		isTyping.value = false;
-		emits('change', searchTerm.value);
+		emits('search', searchTerm.value);
 	}, 1000);
 }
 
@@ -331,6 +332,10 @@ function onBackdropClick(event) {
 
 		&:hover {
 			background-color: $n-20;
+		}
+
+		&:last-child {
+			margin: mb(3);
 		}
 	}
 
