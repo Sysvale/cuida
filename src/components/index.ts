@@ -68,6 +68,7 @@ import Popover from './Popover.vue';
 import ProgressBar from './ProgressBar.vue';
 import ProgressCircular from './ProgressCircular.vue';
 import Pulsar from './Pulsar.vue';
+import QuickActionBar from './QuickActionBar.vue';
 import Radio from './Radio.vue';
 import RadialBarChart from './RadialBarChart.vue';
 import RadioButtonGroup from './RadioButtonGroup.vue';
@@ -172,6 +173,7 @@ export default {
 		app.component('CdsProgressBar', ProgressBar);
 		app.component('CdsProgressCircular', ProgressCircular);
 		app.component('CdsPulsar', Pulsar);
+		app.component('CdsQuickActionBar', QuickActionBar);
 		app.component('CdsRadio', Radio);
 		app.component('CdsRadioButtonGroup', RadioButtonGroup);
 		app.component('CdsRadialBarChart', RadialBarChart);
