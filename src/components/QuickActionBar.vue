@@ -2,24 +2,24 @@
 <template>
 	<div
 		v-if="internalValue"
-		class="global-search-bar"
+		class="quick_action_bar"
 	>
 		<div
-			class="global-search-bar__backdrop"
+			class="quick_action_bar__backdrop"
 			@click="onBackdropClick"
 			@keyup.esc="internalValue = false"
 			@keyup.enter="onEnterPress"
 		>
 			<cds-flexbox
 				gap="3"
-				class="global-search-bar__input"
+				class="quick_action_bar__input"
 				align="center"
 			>
 				<cds-icon
 					height="24"
 					width="24"
 					name="search-outline"
-					class="global-search-bar__search-icon"
+					class="quick_action_bar__search-icon"
 				/>
 
 				<input
@@ -31,7 +31,7 @@
 
 				<span
 					v-if="searchTerm"
-					class="global-search-bar__clear"
+					class="quick_action_bar__clear"
 					@click="clearSearchTerm"
 				>
 					Limpar
@@ -40,7 +40,7 @@
 
 			<cds-flexbox
 				direction="column"
-				class="global-search-bar__results"
+				class="quick_action_bar__results"
 				wrap="nowrap"
 			>
 				<cds-flexbox
@@ -53,7 +53,7 @@
 						:key="n"
 						direction="column"
 						gap="1"
-						class="global-search-bar__skeleton-card"
+						class="quick_action_bar__skeleton-card"
 					>
 						<cds-skeleton
 							:width="250"
@@ -69,14 +69,14 @@
 
 				<div
 					v-else-if="whatToRender === 'renderInitialState'"
-					class="global-search-bar__empty-state"
+					class="quick_action_bar__empty-state"
 				>
 					{{ initialStateText }}
 				</div>
 
 				<div
 					v-else-if="whatToRender === 'renderEmptyState'"
-					class="global-search-bar__empty-state"
+					class="quick_action_bar__empty-state"
 				>
 					{{ emptyStateText }}
 				</div>
@@ -87,7 +87,7 @@
 					:key="recentItem"
 					direction="column"
 					gap="4"
-					class="global-search-bar__result-item"
+					class="quick_action_bar__result-item"
 					@click="onItemClick(recentItem)"
 				>
 					<!--
@@ -125,7 +125,7 @@
 							width="20"
 							name="trash-outline"
 							color="#52616F"
-							class="global-search-bar__remove-recent-icon"
+							class="quick_action_bar__remove-recent-icon"
 							@click.stop="onRemoveRecentClick(recentItem)"
 						/>
 					</cds-flexbox>
@@ -135,19 +135,19 @@
 					v-for="(group, index) in groups"
 					v-else-if="whatToRender === 'renderResults'"
 					:key="index"
-					class="global-search-bar__results-block"
+					class="quick_action_bar__results-block"
 				>
 					<cds-divider
 						v-if="group.results.length > 0"
 						:text="group.category"
 						inline
-						class="global-search-bar__divider"
+						class="quick_action_bar__divider"
 					/>
 
 					<div
 						v-for="item in slicedResults(index)"
 						:key="item"
-						class="global-search-bar__result-item-wrapper"
+						class="quick_action_bar__result-item-wrapper"
 						@click="onItemClick(item)"
 					>
 						<!--
@@ -161,7 +161,7 @@
 
 						<div
 							v-else
-							class="global-search-bar__result-item"
+							class="quick_action_bar__result-item"
 						>
 							{{ item.title }}
 						</div>
@@ -169,7 +169,7 @@
 
 					<cds-flexbox
 						v-if="group.results.length > 5"
-						class="global-search-bar__show-more"
+						class="quick_action_bar__show-more"
 						align="center"
 						justify="start"
 						gap="1"
@@ -184,7 +184,7 @@
 							width="16"
 							name="arrow-right-outline"
 							color="#52616F"
-							class="global-search-bar__search-icon"
+							class="quick_action_bar__search-icon"
 						/>
 					</cds-flexbox>
 				</div>
@@ -195,10 +195,10 @@
 
 <script setup>
 import { ref, watch, computed } from 'vue';
-import CdsIcon from '../components/Icon.vue';
-import CdsFlexbox from '../components/Flexbox.vue';
-import CdsDivider from '../components/Divider.vue';
-import CdsSkeleton from '../components/Skeleton.vue';
+import CdsIcon from './Icon.vue';
+import CdsFlexbox from './Flexbox.vue';
+import CdsDivider from './Divider.vue';
+import CdsSkeleton from './Skeleton.vue';
 import hasSlot from '../utils/methods/hasSlot';
 
 const props = defineProps({
@@ -432,7 +432,7 @@ function onEnterPress() {
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
 
-.global-search-bar {
+.quick_action_bar {
 
 	&__backdrop {
 		display: flex;
@@ -545,7 +545,7 @@ function onEnterPress() {
 		&:hover {
 			background-color: $n-20;
 
-			.global-search-bar__remove-recent-icon {
+			.quick_action_bar__remove-recent-icon {
 				display: block;
 			}
 		}

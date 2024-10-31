@@ -1,10 +1,10 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
-import GlobalSearchBar from '../../components/GlobalSearchBar.vue';
+import QuickActionBar from '../../components/QuickActionBar.vue';
 import Button from '../../components/Button.vue';
 
 <Meta
-	title="Componentes/Overlays/GlobalSearchBar"
-	component={ GlobalSearchBar }
+	title="Componentes/Overlays/QuickActionBar"
+	component={ QuickActionBar }
 	argTypes={{
 		variant: {
 			control:{
@@ -25,11 +25,11 @@ import Button from '../../components/Button.vue';
 				language: 'html',
 				format:true,
 				code: /*html*/
-`<cds-global-search-bar
+`<cds-quick-action-bar
 	v-bind="args"
 	v-model="showSearchBar"
 	:groups="filteredItems"
-	:recents="recentsItems"
+	:recents="recents"
 	@search="filterItems"
 	@onItemClick="console.log('Item clicado: ', $event)"
 	@onSeeMoreClick="console.log('Ver mais clicado: ', $event)"
@@ -49,14 +49,14 @@ export const Template = (args) => ({
 		return {
 			showSearchBar: false,
 			filteredItems: [],
-			items,
-			recentsItems,
+			groups,
+			recents,
 		};
 	},
 	methods: {
 		filterItems(searchTerm) {
 			if (searchTerm === '') {
-				this.filteredItems = this.items.map(item => {
+				this.filteredItems = this.groups.map(item => {
 					return {
 						...item,
 						results: []
@@ -64,7 +64,7 @@ export const Template = (args) => ({
 				});
 				return;
 			}
-			this.filteredItems = this.items.map(item => {
+			this.filteredItems = this.groups.map(item => {
 				return {
 					...item,
 					results: item.results.filter(n => n.title.toLowerCase().includes(searchTerm.toLowerCase()))
@@ -72,7 +72,7 @@ export const Template = (args) => ({
 			});
 		}
 	},
-	components: { CdsGlobalSearchBar: GlobalSearchBar, CdsButton: Button },
+	components: { CdsQuickActionBar: QuickActionBar, CdsButton: Button },
 	template: /*html*/ `
 		<div class="d-flex justify-content-center">
 			<cds-button
@@ -81,18 +81,18 @@ export const Template = (args) => ({
 			>
 				Abrir barra de busca
 			</cds-button>
-			<cds-global-search-bar
+			<cds-quick-action-bar
 				v-bind="args"
 				v-model="showSearchBar"
 				:groups="filteredItems"
-				:recents="recentsItems"
+				:recents="recents"
 				@search="filterItems"
 				@onItemClick="console.log('Item clicado: ', $event)"
 				@onSeeMoreClick="console.log('Ver mais clicado: ', $event)"
 				@onRemoveRecent="console.log('Item removido:', $event)"
 				@onEnterPress="console.log('Enter clicado:', $event)"
 			>
-			</cds-global-search-bar>
+			</cds-quick-action-bar>
 		</div>
 	`,
 	updated() {
@@ -100,9 +100,9 @@ export const Template = (args) => ({
 	},
 });
 
-# GlobalSearchBar
+# QuickActionBar
 
-### O GlobalSearchBar é um componente de busca abrangente que permite ao usuário pesquisar informações gerais e específicas em diferentes áreas do sistema, como usuários cadastrados, métricas e palavras-chave.
+### O QuickActionBar é um componente de busca abrangente que permite ao usuário pesquisar informações gerais e específicas em diferentes áreas do sistema, como usuários cadastrados, métricas e palavras-chave.
 ---
 <br />
 
@@ -121,7 +121,7 @@ export const Template = (args) => ({
 
 ## Preview
 
-export const recentsItems = [
+export const recents = [
 	{
 		title: 'Carla Santana',
 		cpf: '22233344405',
@@ -145,7 +145,7 @@ export const recentsItems = [
 	},
 ];
 
-export const items = [
+export const groups = [
 	{
 		category: 'Gestantes',
 		results: [
@@ -245,14 +245,14 @@ export const items = [
 
 <Canvas>
 	<Story
-		name="GlobalSearchBar"
+		name="QuickActionBar"
 		args={{
-			recentsItems,
-			items,
+			recents,
+			groups,
 		}}
 	>
 		{ Template.bind({}) }
 	</Story>
 </Canvas>
 
-<ArgsTable story="GlobalSearchBar" />
+<ArgsTable story="QuickActionBar" />

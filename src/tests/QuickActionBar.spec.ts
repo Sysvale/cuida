@@ -1,10 +1,10 @@
 import { describe, test, expect } from 'vitest';
-import GlobalSearchBar from '../components/GlobalSearchBar.vue';
+import QuickActionBar from '../components/QuickActionBar.vue';
 import { mount } from '@vue/test-utils';
 
-describe('GlobalSearchBar', () => {
+describe('QuickActionBar', () => {
 	test('renders correctly', async () => {
-		const wrapper = mount(GlobalSearchBar, {
+		const wrapper = mount(QuickActionBar, {
 			props: {
 				modelValue: true,
 				loading: false,
