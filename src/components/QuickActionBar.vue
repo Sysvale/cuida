@@ -219,8 +219,8 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	 *  Resultados da busca a serem mostrados. Os objetos da lista devem ter uma chave "category" e uma lista "results".
-	 * Os itens de results devem ter um $key "title".
+	 *  Resultados da busca a serem mostrados. Os objetos da lista devem ter, obrigatoriamente, uma chave "category" e uma lista "results".
+	 * Os itens de results devem ter, obrigatoriamente, uma key chamada "title".
 	 */
 	groups: {
 		type: Array,
@@ -228,7 +228,7 @@ const props = defineProps({
 		default: () => [],
 	},
 	/**
-	 *  Itens de buscas recentes a serem mostrados no estado inicial do componente.
+	 *  Itens de buscas recentes a serem mostrados no estado inicial do componente. Os itens devem ter, obrigatoriamente, uma key chamada "title".
 	 */
 	recents: {
 		type: Array,
@@ -236,12 +236,13 @@ const props = defineProps({
 		default: () => [],
 	},
 	/**
-	 *  Define a quantidade máxima de itens recentes vão ser exibidos.
+	 *  Define a quantidade máxima de itens recentes vão ser exibidos. O mínimo de itens é 1 e o máximo é 10.
 	 */
 	numRecents: {
 		type: Number,
 		required: false,
 		default: 5,
+		validator: (n) => n > 0 && n <= 10,
 	},
 	/**
 	 *  Define o texto que será exibido no estado inicial quando não houver itens recentes.
@@ -270,7 +271,7 @@ const emits = defineEmits([
 	'update:modelValue',
 
 	/**
-	 * Evento que indica a pausa na digitação no campo de busca e o disparo da busca.
+	 * Evento disparado quando há uma pausa na digitação e retorna o texto da busca.
 	* @event ok
 	* @type {Event}
 	*/
@@ -284,7 +285,7 @@ const emits = defineEmits([
 	'onItemClick',
 
 	/**
-	 * Evento que indica que o botão de ver mais foi clicado.
+	 * Evento que indica que o botão de "Ver mais" foi clicado.
 	* @event ok
 	* @type {Event}
 	*/
@@ -298,14 +299,14 @@ const emits = defineEmits([
 	'close',
 
 	/**
-	 * Evento que indica que o item de busca recente foi removido.
+	 * Evento que retorna o item a ser removido.
 	* @event ok
 	* @type {Event}
 	*/
 	'onRemoveRecent',
 
 	/**
-	 * Evento que indica se a tecla enter foi pressionada.
+	 * Evento que indica se a tecla enter foi pressionada no campo de busca.
 	* @event ok
 	* @type {Event}
 	*/
