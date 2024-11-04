@@ -72,6 +72,7 @@ import QuickActionBar from './QuickActionBar.vue';
 import Radio from './Radio.vue';
 import RadialBarChart from './RadialBarChart.vue';
 import RadioButtonGroup from './RadioButtonGroup.vue';
+import RichTooltip from './RichTooltip.vue';
 import Spacer from './Spacer.vue';
 import Scrollable from './Scrollable.vue';
 import SearchInput from './SearchInput.vue';
@@ -177,6 +178,7 @@ export default {
 		app.component('CdsRadio', Radio);
 		app.component('CdsRadioButtonGroup', RadioButtonGroup);
 		app.component('CdsRadialBarChart', RadialBarChart);
+		app.component('CdsRichTooltip', RichTooltip);
 		app.component('CdsSpacer', Spacer);
 		app.component('CdsScrollable', Scrollable);
 		app.component('CdsSearchInput', SearchInput);
