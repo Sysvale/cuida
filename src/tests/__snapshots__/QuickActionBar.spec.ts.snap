@@ -11,55 +11,37 @@ exports[`QuickActionBar > renders correctly 1`] = `
     </div>
     <div data-v-c2ac4e6d=\\"\\" data-v-ee265e08=\\"\\" class=\\"flexbox quick_action_bar__results\\">
       <!-- @slot Slot com o conteúdo interno do FlexBox -->
-      <div data-v-ee265e08=\\"\\" class=\\"quick_action_bar__results-block\\">
-        <div data-v-ee265e08=\\"\\" class=\\"divider__container divider__container--inline quick_action_bar__divider\\">
-          <div>Gestantes</div>
-          <hr class=\\"divider\\">
+      <div data-v-c2ac4e6d=\\"\\" data-v-ee265e08=\\"\\" class=\\"flexbox quick_action_bar__result-item\\">
+        <!-- @slot Slot com o conteúdo interno do FlexBox -->
+        <!--
+						@slot Slot usado para renderizar itens personalizados para os itens recentes. Dados do item podem ser acessados através da propriedade \`recentItem\`.
+					-->
+        <div data-v-c2ac4e6d=\\"\\" data-v-ee265e08=\\"\\" class=\\"flexbox\\">
+          <!-- @slot Slot com o conteúdo interno do FlexBox -->
+          <div data-v-c2ac4e6d=\\"\\" data-v-ee265e08=\\"\\" class=\\"flexbox\\">
+            <!-- @slot Slot com o conteúdo interno do FlexBox --><svg data-v-ee265e08=\\"\\" xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20\\" height=\\"20\\" viewBox=\\"0 0 24 24\\" aria-labelledby=\\"history-outline\\" role=\\"presentation\\">
+              <g fill=\\"#52616F\\"></g>
+            </svg><span data-v-ee265e08=\\"\\">coração</span>
+          </div><svg data-v-ee265e08=\\"\\" xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20\\" height=\\"20\\" viewBox=\\"0 0 24 24\\" aria-labelledby=\\"trash-outline\\" role=\\"presentation\\" class=\\"quick_action_bar__remove-recent-icon\\">
+            <g fill=\\"#52616F\\"></g>
+          </svg>
         </div>
-        <div data-v-ee265e08=\\"\\" class=\\"quick_action_bar__result-item-wrapper\\">
-          <!--
-							@slot Slot usado para renderizar itens personalizados para os resultados da busca. Dados do item podem ser acessados através da propriedade \`item\`.
-						-->
-          <div data-v-ee265e08=\\"\\" class=\\"quick_action_bar__result-item\\">Carla Santana</div>
-        </div>
-        <div data-v-ee265e08=\\"\\" class=\\"quick_action_bar__result-item-wrapper\\">
-          <!--
-							@slot Slot usado para renderizar itens personalizados para os resultados da busca. Dados do item podem ser acessados através da propriedade \`item\`.
-						-->
-          <div data-v-ee265e08=\\"\\" class=\\"quick_action_bar__result-item\\">Carliane Ferreira</div>
-        </div>
-        <div data-v-ee265e08=\\"\\" class=\\"quick_action_bar__result-item-wrapper\\">
-          <!--
-							@slot Slot usado para renderizar itens personalizados para os resultados da busca. Dados do item podem ser acessados através da propriedade \`item\`.
-						-->
-          <div data-v-ee265e08=\\"\\" class=\\"quick_action_bar__result-item\\">Fernanda Cardoso da Fonseca</div>
-        </div>
-        <div data-v-ee265e08=\\"\\" class=\\"quick_action_bar__result-item-wrapper\\">
-          <!--
-							@slot Slot usado para renderizar itens personalizados para os resultados da busca. Dados do item podem ser acessados através da propriedade \`item\`.
-						-->
-          <div data-v-ee265e08=\\"\\" class=\\"quick_action_bar__result-item\\">Rafael Assunção</div>
-        </div>
-        <!--v-if-->
       </div>
-      <div data-v-ee265e08=\\"\\" class=\\"quick_action_bar__results-block\\">
-        <div data-v-ee265e08=\\"\\" class=\\"divider__container divider__container--inline quick_action_bar__divider\\">
-          <div>Métricas</div>
-          <hr class=\\"divider\\">
+      <div data-v-c2ac4e6d=\\"\\" data-v-ee265e08=\\"\\" class=\\"flexbox quick_action_bar__result-item\\">
+        <!-- @slot Slot com o conteúdo interno do FlexBox -->
+        <!--
+						@slot Slot usado para renderizar itens personalizados para os itens recentes. Dados do item podem ser acessados através da propriedade \`recentItem\`.
+					-->
+        <div data-v-c2ac4e6d=\\"\\" data-v-ee265e08=\\"\\" class=\\"flexbox\\">
+          <!-- @slot Slot com o conteúdo interno do FlexBox -->
+          <div data-v-c2ac4e6d=\\"\\" data-v-ee265e08=\\"\\" class=\\"flexbox\\">
+            <!-- @slot Slot com o conteúdo interno do FlexBox --><svg data-v-ee265e08=\\"\\" xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20\\" height=\\"20\\" viewBox=\\"0 0 24 24\\" aria-labelledby=\\"history-outline\\" role=\\"presentation\\">
+              <g fill=\\"#52616F\\"></g>
+            </svg><span data-v-ee265e08=\\"\\">Carlota Oliveira</span>
+          </div><svg data-v-ee265e08=\\"\\" xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20\\" height=\\"20\\" viewBox=\\"0 0 24 24\\" aria-labelledby=\\"trash-outline\\" role=\\"presentation\\" class=\\"quick_action_bar__remove-recent-icon\\">
+            <g fill=\\"#52616F\\"></g>
+          </svg>
         </div>
-        <div data-v-ee265e08=\\"\\" class=\\"quick_action_bar__result-item-wrapper\\">
-          <!--
-							@slot Slot usado para renderizar itens personalizados para os resultados da busca. Dados do item podem ser acessados através da propriedade \`item\`.
-						-->
-          <div data-v-ee265e08=\\"\\" class=\\"quick_action_bar__result-item\\">Nº de pessoas</div>
-        </div>
-        <div data-v-ee265e08=\\"\\" class=\\"quick_action_bar__result-item-wrapper\\">
-          <!--
-							@slot Slot usado para renderizar itens personalizados para os resultados da busca. Dados do item podem ser acessados através da propriedade \`item\`.
-						-->
-          <div data-v-ee265e08=\\"\\" class=\\"quick_action_bar__result-item\\">Nº de crianças</div>
-        </div>
-        <!--v-if-->
       </div>
     </div>
   </div>
