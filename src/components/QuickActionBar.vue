@@ -309,7 +309,6 @@ const internalValue = ref(props.modelValue);
 const internalGroups = ref([]);
 const idTimeout = ref(null);
 const isTyping = ref(false);
-const isLoading = ref(false);
 const searchInput = ref(null);
 const searchTerm = ref('');
 
@@ -320,6 +319,9 @@ const whatToRender = computed(() => {
 	if (hasResults && !isTyping.value) {
 		return 'renderResults';
 	}
+	if (isTyping.value || props.loading) {
+		return 'renderLoading';
+	}
 	if (!isTyping.value && !hasResults && searchTerm.value.length > 0) {
 		return 'renderEmptyState'
 	}
@@ -328,9 +330,6 @@ const whatToRender = computed(() => {
 	}
 	if (!isTyping.value && !hasRecents && searchTerm.value.length === 0) {
 		return 'renderInitialState';
-	}
-	if (isTyping.value || isLoading.value) {
-		return 'renderLoading';
 	}
 
 	return 'renderEmptyState';
@@ -366,10 +365,6 @@ watch(internalValue, (newValue) => {
 
 	emits('update:modelValue', newValue);
 	mustDisableExternalScrolls(newValue);
-});
-
-watch(() => props.loading, (newValue) => {
-	isLoading.value = newValue;
 });
 
 watch(() => props.groups, (newValue) => {
