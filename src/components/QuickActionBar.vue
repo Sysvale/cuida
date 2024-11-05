@@ -145,7 +145,7 @@
 					/>
 
 					<div
-						v-for="item in slicedResults(index)"
+						v-for="item in sliceResultsByGroup(group.results)"
 						:key="item"
 						class="quick_action_bar__result-item-wrapper"
 						@click="onItemClick(item)"
@@ -335,10 +335,6 @@ const whatToRender = computed(() => {
 	return 'renderEmptyState';
 });
 
-const slicedResults = computed(() => {
-	return (index) => props.groups[index].results.slice(0, 5);
-});
-
 const slicedRecents = computed(() => {
 	return props.recents.slice(0, props.numRecents);
 });
@@ -384,10 +380,10 @@ function clearSearchTerm() {
 function onChangeSearchTerm() {
 	clearTimeout(idTimeout.value);
 	isTyping.value = true;
+	internalGroups.value = [];
 
 	if (searchTerm.value.length === 0) {
 		isTyping.value = false;
-		internalGroups.value = [];
 
 		return;
 	}
@@ -423,6 +419,10 @@ function onEnterPress() {
 	}
 
 	return;
+}
+
+function sliceResultsByGroup(results) {
+	return results.slice(0, 5);
 }
 
 </script>
