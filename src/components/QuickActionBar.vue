@@ -132,7 +132,7 @@
 				</cds-flexbox>
 
 				<div
-					v-for="(group, index) in groups"
+					v-for="(group, index) in internalGroups"
 					v-else-if="whatToRender === 'renderResults'"
 					:key="index"
 					class="quick_action_bar__results-block"
@@ -178,14 +178,6 @@
 						<span>
 							Ver todos os {{ group.results.length }} resultados em <b>{{ group.category }}</b>
 						</span>
-
-						<cds-icon
-							height="16"
-							width="16"
-							name="arrow-right-outline"
-							color="#52616F"
-							class="quick_action_bar__search-icon"
-						/>
 					</cds-flexbox>
 				</div>
 			</cds-flexbox>
@@ -314,13 +306,15 @@ const emits = defineEmits([
 ]);
 
 const internalValue = ref(props.modelValue);
+const internalGroups = ref([]);
 const idTimeout = ref(null);
 const isTyping = ref(false);
+const isLoading = ref(false);
 const searchInput = ref(null);
 const searchTerm = ref('');
 
 const whatToRender = computed(() => {
-	let hasResults = props.groups.some(item => item.results && item.results.length > 0);
+	let hasResults = internalGroups.value.some(item => item.results && item.results.length > 0);
 	let hasRecents = props.recents.length > 0;
 
 	if (hasResults && !isTyping.value) {
@@ -335,7 +329,7 @@ const whatToRender = computed(() => {
 	if (!isTyping.value && !hasRecents && searchTerm.value.length === 0) {
 		return 'renderInitialState';
 	}
-	if (isTyping.value || props.loading) {
+	if (isTyping.value || isLoading.value) {
 		return 'renderLoading';
 	}
 
@@ -374,6 +368,14 @@ watch(internalValue, (newValue) => {
 	mustDisableExternalScrolls(newValue);
 });
 
+watch(() => props.loading, (newValue) => {
+	isLoading.value = newValue;
+});
+
+watch(() => props.groups, (newValue) => {
+	internalGroups.value = newValue.filter(item => item.results.length > 0);
+});
+
 function mustDisableExternalScrolls(value) {
 	document.body.style.overflow = value ? 'hidden' : 'auto';
 }
@@ -390,7 +392,7 @@ function onChangeSearchTerm() {
 
 	if (searchTerm.value.length === 0) {
 		isTyping.value = false;
-		emits('search', searchTerm.value);
+		internalGroups.value = [];
 
 		return;
 	}
