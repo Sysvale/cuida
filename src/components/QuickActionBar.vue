@@ -455,7 +455,7 @@ function onEnterPress() {
 	}
 
 	&__input {
-		width: 70%;
+		width: 50%;
 		padding: pa(4);
 		background-color: $n-0;
 		border-radius: $border-radius-medium;
@@ -499,7 +499,7 @@ function onEnterPress() {
 		border-radius: $border-radius-medium;
 		border: 1px solid $n-30;
 		padding: py(5);
-		width: 70%;
+		width: 50%;
 		max-height: 75svh;
 		box-shadow: $shadow-md;
 		overflow-y: scroll;
