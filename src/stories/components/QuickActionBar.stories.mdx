@@ -41,10 +41,12 @@ export const Template = (args) => ({
 			filteredItems: [],
 			groups,
 			recents,
+			loading: false,
 		};
 	},
 	methods: {
 		filterItems(searchTerm) {
+			this.loading = true;
 			if (searchTerm === '') {
 				this.filteredItems = this.groups.map(item => {
 					return {
@@ -54,12 +56,15 @@ export const Template = (args) => ({
 				});
 				return;
 			}
-			this.filteredItems = this.groups.map(item => {
-				return {
-					...item,
-					results: item.results.filter(n => n.title.toLowerCase().includes(searchTerm.toLowerCase()))
-				}
-			});
+			setTimeout(() => {
+				this.filteredItems = this.groups.map(item => {
+					return {
+						...item,
+						results: item.results.filter(n => n.title.toLowerCase().includes(searchTerm.toLowerCase()))
+					}
+				});
+				this.loading = false;
+			}, 800);
 		}
 	},
 	components: { CdsQuickActionBar: QuickActionBar, CdsButton: Button },
@@ -76,6 +81,7 @@ export const Template = (args) => ({
 				v-model="showSearchBar"
 				:groups="filteredItems"
 				:recents="recents"
+				:loading="loading"
 				@search="filterItems"
 				@onItemClick="console.log('Item clicado: ', $event)"
 				@onSeeMoreClick="console.log('Ver mais clicado: ', $event)"
