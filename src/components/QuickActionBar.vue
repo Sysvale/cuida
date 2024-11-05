@@ -373,7 +373,7 @@ watch(() => props.loading, (newValue) => {
 });
 
 watch(() => props.groups, (newValue) => {
-	internalGroups.value = newValue;
+	internalGroups.value = newValue.filter(item => item.results.length > 0);
 });
 
 function mustDisableExternalScrolls(value) {
