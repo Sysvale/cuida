@@ -38,21 +38,21 @@
 					>
 						{{ field.label }}
 						<cds-icon
-							v-if="sortable && field.key !== localSortBy"
+							v-if="(sortable && field.label) && field.key !== localSortBy"
 							class="table__sort-icon"
 							height="13"
 							width="13"
 							name="swap-vertical-arrows-outline"
 						/>
 						<cds-icon
-							v-else-if="sortable && localSortDesc"
+							v-else-if="(sortable && field.label) && localSortDesc"
 							class="table__sort-icon"
 							height="13"
 							width="13"
 							name="sort-descending-duotone"
 						/>
 						<cds-icon
-							v-else-if="sortable"
+							v-else-if="(sortable && field.label)"
 							class="table__sort-icon"
 							height="13"
 							width="13"
@@ -328,6 +328,9 @@ export default {
 		},
 
 		handleSortBy(sortBy) {
+			if (!this.sortable) {
+				return;
+			}
 			this.resetSelect();
 			if (this.localSortBy === sortBy && this.localSortDesc) {
 				this.localSortBy = null;
