@@ -45,7 +45,7 @@ import Highlight from '../../components/Highlight.vue';
 	:duration="1"
 	:delay="0"
 >
-	<span> Texto bem importante</span>
+	O rato roeu a roupa do rei de roma
 </cds-highlight>`
 			},
 		}
@@ -59,7 +59,7 @@ export const Template = (args) => ({
 	},
 	template: /*html*/ `
 		<cds-highlight v-bind="args">
-			<span> Texto bem importante</span>
+			O rato roeu a roupa do rei de roma
 		</cds-highlight>
 	`,
 });
@@ -93,6 +93,7 @@ export const Template = (args) => ({
 			animated: true,
 			duration: 1,
 			delay: 0,
+			highlightedText: 'roupa do rei',
 		}}
 	>
 		{ Template.bind({}) }
