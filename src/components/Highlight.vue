@@ -8,7 +8,7 @@
 		:class="dynamicHighlightClass"
 		:style="dynamicStyle"
 	>
-		<template v-if="highlightedText">
+		<template v-if="highlightedText && isAValidSubstring">
 			{{ highlightedText }}
 		</template>
 		<template v-else>
@@ -54,7 +54,7 @@ export default {
 			default: 0,
 		},
 		/**
-		* Define uma substring específica do texto enviada por slot que deve receber o destaque (highlight).
+		* Define uma substring específica do texto enviada por slot que deve receber o destaque (highlight). ⚠️ Essa prop funciona de modo Case Sensitive.
 		*/
 		highlightedText: {
 			type: [String, null],
@@ -72,6 +72,18 @@ export default {
 	computed: {
 		hasSlots() {
 			return !!Object.keys(this.$slots).length;
+		},
+
+		isAValidSubstring() {
+			return this.$slots.default()[0].children.includes(this.highlightedText);
+		},
+
+		paddingResolver() {
+			if (this.highlightedText) {
+				return '4px 0px';
+			}
+
+			return '4px';
 		},
 
 		dynamicHighlightClass() {
@@ -113,7 +125,7 @@ export default {
 
 	methods: {
 		splitContent() {
-			if (this.hasSlots && this.highlightedText ) {
+			if (this.hasSlots && this.highlightedText && this.isAValidSubstring) {
 				[this.firstHalf, this.secondHalf] = this.$slots.default()[0].children.split(this.highlightedText);
 			}
 		},
@@ -126,7 +138,7 @@ export default {
 .highlight__container {
 	background-size: 200%;
 	border-radius: 4px;
-	padding: pa(1);
+	padding: v-bind(paddingResolver);
 
 	&--highlighted {
 		animation: highlight var(--duration) ease-in var(--delay) backwards;
