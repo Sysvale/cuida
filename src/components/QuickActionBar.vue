@@ -163,7 +163,11 @@
 							v-else
 							class="quick_action_bar__result-item"
 						>
-							{{ item.title }}
+							<cds-highlight
+								:highlighted-text="searchTerm"
+							>
+								{{ item.title }}
+							</cds-highlight>
 						</div>
 					</div>
 
@@ -192,6 +196,7 @@ import CdsFlexbox from './Flexbox.vue';
 import CdsDivider from './Divider.vue';
 import CdsSkeleton from './Skeleton.vue';
 import hasSlot from '../utils/methods/hasSlot';
+import CdsHighlight from './Highlight.vue';
 
 const props = defineProps({
 	/**
