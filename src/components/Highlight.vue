@@ -1,24 +1,35 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-	<template v-if="firstHalf">
-		{{ firstHalf }}
+	<template
+		v-if="highlightedText && isAValidSubstring"
+	>
+		<template
+			v-for="(element) in substrings"
+			:key="element.id"
+		>
+			<mark
+				v-if="element.highlighted"
+				class="highlight__container"
+				:class="dynamicHighlightClass"
+				:style="dynamicStyle"
+			>
+				{{ element.string }}
+			</mark>
+			<template v-else>
+				{{ element.string }}
+			</template>
+		</template>
 	</template>
-	<span
+
+	<mark
+		v-else
 		class="highlight__container"
 		:class="dynamicHighlightClass"
 		:style="dynamicStyle"
 	>
-		<template v-if="highlightedText && isAValidSubstring">
-			{{ highlightedText }}
-		</template>
-		<template v-else>
-			<!-- @slot Slot usado para especificar o texto que receberá o highlight. -->
-			<slot />
-		</template>
-	</span>
-	<template v-if="secondHalf">
-		{{ secondHalf }}
-	</template>
+		<!-- @slot Slot usado para especificar o texto que receberá o highlight. -->
+		<slot />
+	</mark>
 </template>
 
 <script>
@@ -54,18 +65,24 @@ export default {
 			default: 0,
 		},
 		/**
-		* Define uma substring específica do texto enviada por slot que deve receber o destaque (highlight). ⚠️ Essa prop funciona de modo Case Sensitive.
+		* Define uma substring específica do texto enviada por slot que deve receber o destaque (highlight).
 		*/
 		highlightedText: {
 			type: [String, null],
 			default: null,
 		},
+		/**
+		* Informa se o highlight vai ser Case Sensitive.
+		*/
+		caseSensitive: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
 		return {
-			firstHalf: '',
-			secondHalf: '',
+			substrings: [],
 		}
 	},
 
@@ -74,13 +91,27 @@ export default {
 			return !!Object.keys(this.$slots).length;
 		},
 
+		slotString() {
+			return this.hasSlots ? this.$slots.default()[0].children : '';
+		},
+
+		sanitizedSlotString() {
+			return this.slotString.toLowerCase();
+		},
+
+		sanitizedHighlightedText() {
+			return this.highlightedText?.toLowerCase();
+		},
+
 		isAValidSubstring() {
-			return this.$slots.default()[0].children.includes(this.highlightedText);
+			return this.caseSensitive ? 
+				this.slotString.includes(this.highlightedText)
+				: this.sanitizedSlotString.includes(this.sanitizedHighlightedText);
 		},
 
 		paddingResolver() {
 			if (this.highlightedText) {
-				return '4px 0px';
+				return '4px 1px';
 			}
 
 			return '4px';
@@ -125,15 +156,29 @@ export default {
 
 	methods: {
 		splitContent() {
-			if (this.hasSlots && this.highlightedText && this.isAValidSubstring) {
-				[this.firstHalf, this.secondHalf] = this.$slots.default()[0].children.split(this.highlightedText);
-			}
+			let regexFlag = this.caseSensitive ? 'g' : 'gi';
+			let expression = new RegExp(`(${this.highlightedText})`, regexFlag)
+			let matchResult = this.slotString.split(expression);
+
+			this.substrings = matchResult.map((string, index) => {
+				return { 
+					string,
+					highlighted: this.sanitizedHighlightedText === string.toLowerCase(),
+					id: index,
+				};
+			});
+				
+			
 		},
 	},
 };
 </script>
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
+
+mark {
+	all: unset;
+}
 
 .highlight__container {
 	background-size: 200%;
