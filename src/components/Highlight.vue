@@ -24,7 +24,7 @@
 	<mark
 		v-else
 		class="highlight__container"
-		:class="dynamicHighlightClass"
+		:class="{ dynamicHighlightClass: isAValidSubstring }"
 		:style="dynamicStyle"
 	>
 		<!-- @slot Slot usado para especificar o texto que receberá o highlight. -->
@@ -95,18 +95,16 @@ export default {
 			return this.hasSlots ? this.$slots.default()[0].children : '';
 		},
 
-		sanitizedSlotString() {
-			return this.slotString.toLowerCase();
+		normalizedSlotString() {
+			return this.normalize(this.slotString);
 		},
 
-		sanitizedHighlightedText() {
-			return this.highlightedText?.toLowerCase();
+		normalizedHighlightText() {
+			return this.normalize(this.highlightedText);
 		},
 
 		isAValidSubstring() {
-			return this.caseSensitive ? 
-				this.slotString.includes(this.highlightedText)
-				: this.sanitizedSlotString.includes(this.sanitizedHighlightedText);
+			return this.normalizedSlotString.includes(this.normalizedHighlightText);
 		},
 
 		paddingResolver() {
@@ -155,21 +153,84 @@ export default {
 	},
 
 	methods: {
+		normalize(string) {
+			const accentedChars = {
+				'a': '[aáàâã]',
+				'á': '[aáàâã]',
+				'à': '[aáàâã]',
+				'â': '[aáàâã]',
+				'ã': '[aáàâã]',
+				'e': '[eéê]',
+				'é': '[eéê]',
+				'ê': '[eéê]',
+				'i': '[ií]',
+				'í': '[ií]',
+				'o': '[oóôõ]',
+				'ó': '[oóôõ]',
+				'ô': '[oóôõ]',
+				'õ': '[oóôõ]',
+				'u': '[uúü]',
+				'ú': '[uúü]',
+				'ü': '[uúü]',
+			};
+
+			const caseSensitiveAccentedChars = {
+				'a': '[aáàâã]',
+				'á': '[aáàâã]',
+				'à': '[aáàâã]',
+				'â': '[aáàâã]',
+				'ã': '[aáàâã]',
+				'e': '[eéê]',
+				'é': '[eéê]',
+				'ê': '[eéê]',
+				'i': '[ií]',
+				'í': '[ií]',
+				'o': '[oóôõ]',
+				'ó': '[oóôõ]',
+				'ô': '[oóôõ]',
+				'õ': '[oóôõ]',
+				'u': '[uúü]',
+				'ú': '[uúü]',
+				'ü': '[uúü]',
+				'A': '[AÁÀÂÃ]',
+				'Á': '[AÁÀÂÃ]',
+				'À': '[AÁÀÂÃ]',
+				'Â': '[AÁÀÂÃ]',
+				'Ã': '[AÁÀÂÃ]',
+				'E': '[EÉÊ]',
+				'É': '[EÉÊ]',
+				'Ê': '[EÉÊ]',
+				'I': '[IÍ]',
+				'Í': '[IÍ]',
+				'O': '[OÓÔÕ]',
+				'Ó': '[OÓÔÕ]',
+				'Ô': '[OÓÔÕ]',
+				'Õ': '[OÓÔÕ]',
+				'U': '[UÚÜ]',
+				'Ú': '[UÚÜ]',
+				'Ü': '[UÚÜ]',
+			};
+
+			if (this.caseSensitive) {
+				return string?.replace(/[aáàâãeéêiíoóôõuúüAÁÀÂÃEÉÊIÍOÓÔÕUÚÜ]/g, match => caseSensitiveAccentedChars[match] || match);
+			}
+
+			return string?.toLowerCase().replace(/[aáàâãeéêiíoóôõuúü]/g, match => accentedChars[match] || match);
+		},
+
 		splitContent() {
 			let regexFlag = this.caseSensitive ? 'g' : 'gi';
-			let expression = new RegExp(`(${this.highlightedText})`, regexFlag)
+			let expression = new RegExp(`(${this.normalizedHighlightText})`, regexFlag);
 			let matchResult = this.slotString.split(expression);
 
 			this.substrings = matchResult.map((string, index) => {
-				return { 
+				return {
 					string,
-					highlighted: this.sanitizedHighlightedText === string.toLowerCase(),
+					highlighted: new RegExp(`^${this.normalizedHighlightText}$`, regexFlag).test(this.caseSensitive ? string : string?.toLowerCase()),
 					id: index,
 				};
 			});
-				
-			
-		},
+		}
 	},
 };
 </script>
