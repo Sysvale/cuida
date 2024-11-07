@@ -165,7 +165,6 @@
 						>
 							<cds-highlight
 								:highlighted-text="searchTerm"
-								animated
 							>
 								{{ item.title }}
 							</cds-highlight>
