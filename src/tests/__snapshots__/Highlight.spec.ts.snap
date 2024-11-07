@@ -1,7 +1,7 @@
 // Vitest Snapshot v1
 
 exports[`Highlight > renders correctly 1`] = `
-"<!--v-if-->
-<span data-v-eddeabb9=\\"\\" class=\\"highlight__container highlight__container--success\\" style=\\"--duration: 1s; --delay: 0s;\\"><!-- @slot Slot usado para especificar o texto que receberá o highlight. -->Texto</span>
-<!--v-if-->"
+"<mark data-v-eddeabb9=\\"\\" class=\\"highlight__container highlight__container--success\\" style=\\"--duration: 1s; --delay: 0s;\\">
+  <!-- @slot Slot usado para especificar o texto que receberá o highlight. -->Texto
+</mark>"
 `;
