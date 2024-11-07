@@ -321,7 +321,7 @@ const whatToRender = computed(() => {
 	let hasResults = internalGroups.value.some(item => item.results && item.results.length > 0);
 	let hasRecents = props.recents.length > 0;
 
-	if (hasResults && !isTyping.value) {
+	if (hasResults && !isTyping.value && !props.loading) {
 		return 'renderResults';
 	}
 	if (isTyping.value || props.loading) {
