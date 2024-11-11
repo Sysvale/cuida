@@ -387,7 +387,7 @@ function onChangeSearchTerm() {
 	isTyping.value = true;
 	internalGroups.value = [];
 
-	if (searchTerm.value.length === 0) {
+	if (searchTerm.value.trim().length === 0) {
 		isTyping.value = false;
 
 		return;
@@ -419,7 +419,7 @@ function onRemoveRecentClick(item) {
 }
 
 function onEnterPress() {
-	if (searchTerm.value.length > 0) {
+	if (searchTerm.value.trim().length > 0) {
 		emits('onEnterPress', searchTerm.value);
 	}
 
