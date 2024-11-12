@@ -172,7 +172,7 @@
 					</div>
 
 					<cds-flexbox
-						v-if="group.results.length > 5"
+						v-if="group.results.length > props.numResults"
 						class="quick_action_bar__show-more"
 						align="center"
 						justify="start"
@@ -233,13 +233,22 @@ const props = defineProps({
 		default: () => [],
 	},
 	/**
-	 *  Define a quantidade máxima de itens recentes vão ser exibidos. O mínimo de itens é 1 e o máximo é 10.
+	 *  Define a quantidade máxima de itens recentes que serão exibidos. O mínimo de itens é 1 e o máximo é 10.
 	 */
 	numRecents: {
 		type: Number,
 		required: false,
 		default: 5,
 		validator: (n) => n > 0 && n <= 10,
+	},
+	/**
+	 *  Define a quantidade máxima de itens de busca que serão exibidos.
+	 */
+	numResults: {
+		type: Number,
+		required: false,
+		default: 5,
+		validator: (n) => n > 0,
 	},
 	/**
 	 *  Define o texto que será exibido no estado inicial quando não houver itens recentes.
@@ -427,7 +436,7 @@ function onEnterPress() {
 }
 
 function sliceResultsByGroup(results) {
-	return results.slice(0, 5);
+	return results.slice(0, props.numResults);
 }
 
 </script>
