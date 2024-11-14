@@ -7,6 +7,7 @@ exports[`SideBar > renders correctly 1`] = `
       <div class=\\"side-bar__logo\\"><img></div>
       <!--v-if-->
     </div>
+    <!--v-if-->
     <ul class=\\"side-bar__container\\">
       <li role=\\"presentation\\">
         <div class=\\"side-bar__item-container side-bar__item-container--inactive\\">
