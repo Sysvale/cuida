@@ -49,7 +49,10 @@
 						<!-- @slot Slot usado para inserção de conteúdo dentro do card do FloatingAssistant
 							quando estiver expandido -->
 						<slot />
-						<span class="floating-assistant__footer">
+						<span
+							v-if="url"
+							class="floating-assistant__footer"
+						>
 							Você pode saber mais
 							<a
 								:class="`floating-assistant__link--${variant}`"
