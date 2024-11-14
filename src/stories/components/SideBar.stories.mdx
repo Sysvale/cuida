@@ -49,6 +49,7 @@ export const Template = (args) => ({
 		<cds-side-bar
 			v-bind="args"
 			@sidebar-click="logClick"
+			@search-button-click="logSearchButtonClick"
 			@collapse-click="logCollapseClick"
 			@logout="logLogout"
 		>
@@ -72,6 +73,9 @@ export const Template = (args) => ({
 		},
 		logLogout(element) {
 			console.info('%clogLogout: ', 'color: #2C70CD;', element);
+		},
+		logSearchButtonClick(element) {
+			console.info('%clogSearchButtonClick: ', 'color: #2C70CD;', element);
 		},
 	},
 });
@@ -220,6 +224,7 @@ export const items = [
 			collapsibleState: false,
 			logoImage: 'https://framerusercontent.com/images/Xdjpf9nazmZOoS2SUnbbkwsaFk.png',
 			light: false,
+			searchButton: false,
 		}}
 	>
 		{ Template.bind({}) }
