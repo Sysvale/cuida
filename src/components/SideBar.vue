@@ -31,6 +31,36 @@
 				</div>
 			</div>
 
+
+
+			<div
+				v-if="searchButton"
+				class="side-bar__search-button"
+				:class="{'side-bar__search-button--light': light}"
+				@click="$emit('search-button-click')"
+			>
+				<div
+					class="search-button__text-container"
+				>
+					<cds-icon
+						height="20"
+						width="20"
+						name="search-outline"
+					/>
+					
+					<span>Busca</span>
+				</div>
+
+				<span
+					class="side-bar__search-shortcut"
+					:class="{'side-bar__search-shortcut--light': light}"
+				>
+					Ctrl + K
+				</span>
+			</div>
+
+
+
 			<ul
 				:class="{'side-bar__container': items.length >= 1}"
 			>
@@ -391,7 +421,14 @@ export default {
 		light: {
 			type: Boolean,
 			default: false,
-		}
+		},
+		/**
+		 * Ativa o modo light da sidebar
+		*/
+		searchButton: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -591,7 +628,7 @@ export default {
 }
 
 .side-bar--dark {
-	background: linear-gradient(223deg, #4B545B 18.22%, #31393f 100%);
+	background: #333B42;
 	box-shadow: 0px 3.8957247734069824px 7.791449546813965px 0px rgba(16, 24, 64, 0.04);
 	display: flex;
 	flex-direction: column;
@@ -685,7 +722,7 @@ export default {
 			cursor: pointer !important;
 
 			&--active {
-				background-color: $appbar-color;
+				background-color: $n-600;
 				border: 1px solid rgba(100, 115, 130, 0.50);
 				border-radius: $border-radius-extra-small;
 				color: $n-10;
@@ -1006,6 +1043,57 @@ export default {
 
 .popover {
 	display: flex;
+	align-items: center;
+}
+
+.side-bar__search-button {
+	display: flex;
+	gap: 12px;
+	color: $n-400;
+	outline: 1px solid $n-600;
+	border-radius: $border-radius-lil;
+	background-color: #414C57;
+	padding: pa(2);
+	cursor: pointer;
+	align-items: center;
+	justify-content: space-between;
+	@include button-2;
+	font-weight: $font-weight-semibold;
+	transition: $hover;
+
+	&:hover {
+		color: $n-200;
+		outline: 1px solid $n-300;
+		transition: $hover;
+	}
+
+	&--light {
+		background-color: $n-0;
+		color: $n-400;
+		outline: 1px solid $n-100;
+
+		&:hover {
+			color: $n-600;
+			outline: 1px solid $n-500;
+			transition: $hover;
+		}
+	}
+}
+
+.side-bar__search-shortcut {
+	@include overline;
+	border: 1px solid $n-400;
+	padding: 2px 4px;
+	border-radius: 4px;
+
+	&--light {
+		border: 1px solid $n-300;
+	}
+}
+
+.search-button__text-container {
+	display: flex;
+	gap: 4px;
 	align-items: center;
 }
 </style>
