@@ -133,7 +133,6 @@ export default {
 		url: {
 			type: String,
 			default: '',
-			required: true,
 		},
 		/**
 		* A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',
