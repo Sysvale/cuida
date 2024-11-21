@@ -44,11 +44,7 @@
 				v-model="internalValue"
 				:disabled="disabled"
 				class="stepper-input__field"
-				:class="{
-					'stepper-input__field--thin': width === 'thin',
-					'stepper-input__field--default': width === 'default',
-					'stepper-input__field--wide': width =='wide',
-				}"
+				:class="`stepper-input__field--${width}`"
 				type="number"
 				@focus="isBeingFocused = true"
 				@blur="isBeingFocused = false"
@@ -231,6 +227,10 @@ export default {
 
 			return stepperInputClass;
 		},
+
+		widthResolver() {
+			return this.width === 'fluid' ? '100%' : 'fit-content';
+		}
 	},
 
 	watch: {
@@ -294,8 +294,7 @@ export default {
 	outline: 1px solid $n-50;
 	border-radius: 6px;
 	height: 40px;
-	width: fit-content;
-	width: -moz-fit-content;
+	width: v-bind(widthResolver);
 
 	&__label {
 		@include caption;
@@ -331,6 +330,10 @@ export default {
 
 		&--wide {
 			width: 284px;
+		}
+
+		&--fluid {
+			width: 100%;
 		}
 
 		&:focus {
