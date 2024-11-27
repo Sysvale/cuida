@@ -26,7 +26,7 @@
 					ref="searchInput"
 					v-model="searchTerm"
 					type="text"
-					placeholder="Buscar por nome, CPF ou CNS..."
+					:placeholder="placeholder"
 				>
 
 				<span
@@ -184,6 +184,15 @@
 						</span>
 					</cds-flexbox>
 				</div>
+
+					<!--
+						@slot Slot usado para renderizar o footer da barra de busca.
+					-->
+					<slot
+						v-if="whatToRender === 'renderResults' || whatToRender === 'renderEmptyState'"
+						name="footer"
+						class="quick_action_bar__footer"
+					/>
 			</cds-flexbox>
 		</div>
 	</div>
@@ -249,6 +258,14 @@ const props = defineProps({
 		required: false,
 		default: 5,
 		validator: (n) => n > 0,
+	},
+	/**
+	 *  Define o texto que será exibido placeholder do componente.
+	 */
+	placeholder: {
+		type: String,
+		required: false,
+		default: 'Buscar por nome, CPF ou CNS...',
 	},
 	/**
 	 *  Define o texto que será exibido no estado inicial quando não houver itens recentes.
@@ -576,6 +593,11 @@ function sliceResultsByGroup(results) {
 			background-color: $bn-50;
 			color: $bn-400;
 		}
+	}
+
+	&__footer {
+		width: 100%;
+		margin: mb(2);
 	}
 }
 

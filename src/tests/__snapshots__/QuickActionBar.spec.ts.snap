@@ -43,6 +43,10 @@ exports[`QuickActionBar > renders correctly 1`] = `
           </svg>
         </div>
       </div>
+      <!--
+						@slot Slot usado para renderizar o footer da barra de busca.
+					-->
+      <!--v-if-->
     </div>
   </div>
 </div>"
