@@ -36,11 +36,7 @@
 			</div>
 		</template>
 		<template #tooltip="tooltip">
-			<!-- @slot Scoped slot para renderização customizada dos tooltips.
-				A propriedade 'tooltip', que pode ser acessada através do slot,
-				contém pos (posição do componente em %), index (o índice do slider),
-				value (o valor do slider), focus (se o slider está no estado de focus ou não),
-				disabled (se o slider está disabilitado ou não)
+			<!-- @slot Scoped slot para renderização customizada dos tooltips. A propriedade 'tooltip', que pode ser acessada através do slot, contém pos (posição do componente em %), index (o índice do slider), value (o valor do slider), focus (se o slider está no estado de focus ou não), disabled (se o slider está disabilitado ou não).
 			-->
 			<slot
 				name="tooltip"
@@ -121,6 +117,11 @@ export default {
 		},
 
 		innerValue(value) {
+			/**
+			 * Evento utilizado para implementar o v-model.
+			 * @event update:modelValue
+			 * @type {Event}
+			 */
 			this.$emit('update:modelValue', value);
 		},
 	},

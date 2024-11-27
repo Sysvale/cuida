@@ -3,7 +3,7 @@
 	<span class="cds-radio__container">
 		<!--
 			Evento emitido quando o Radio muda seu estado.
-			@event change
+			@event update:modelValue
 			@type {Event}
 		-->
 		<input

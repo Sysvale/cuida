@@ -112,7 +112,7 @@ export default {
 		handleClick() {
 			/**
 			 * Evento utilizado para implementar o v-model.
-			* @event input
+			* @event update:modelValue
 			* @type {Event}
 				*/
 			this.$emit('update:modelValue', !this.isActive);
