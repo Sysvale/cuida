@@ -26,7 +26,7 @@
 					ref="searchInput"
 					v-model="searchTerm"
 					type="text"
-					placeholder="Buscar por nome, CPF ou CNS..."
+					:placeholder="placeholder"
 				>
 
 				<span
@@ -258,6 +258,14 @@ const props = defineProps({
 		required: false,
 		default: 5,
 		validator: (n) => n > 0,
+	},
+	/**
+	 *  Define o texto que será exibido placeholder do componente.
+	 */
+	placeholder: {
+		type: String,
+		required: false,
+		default: 'Buscar por nome, CPF ou CNS...',
 	},
 	/**
 	 *  Define o texto que será exibido no estado inicial quando não houver itens recentes.
