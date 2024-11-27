@@ -48,10 +48,11 @@
 						name="search-outline"
 					/>
 					
-					<span>Busca</span>
+					<span v-if="showSearchButtonShortCut">Busca</span>
 				</div>
 
 				<span
+					v-if="showSearchButtonShortCut"
 					class="side-bar__search-shortcut"
 					:class="{'side-bar__search-shortcut--light': light}"
 				>
@@ -441,6 +442,7 @@ export default {
 			itemsWithVisibilityController: [],
 			logoutTooltipText: 'Sair',
 			showPopover: false,
+			showSearchButtonShortCut: true,
 		};
 	},
 
@@ -472,6 +474,10 @@ export default {
 		avatarCursorResolver() {
 			return this.shouldShowProfileMenu ? 'pointer' : 'default';
 		},
+
+		computedSearchButtonJustify() {
+			return this.collapsed ? 'center' : 'space-between'
+		}
 	},
 
 	watch: {
@@ -500,12 +506,17 @@ export default {
 		collapsed(newValue) {
 			if (newValue) {
 				this.showUncollapsedItems = false;
+				this.showSearchButtonShortCut = false;
 				return;
 			}
 
 			setTimeout(() => {
 				this.showUncollapsedItems = true;
 			}, 500);
+
+			setTimeout(() => {
+				this.showSearchButtonShortCut = true;
+			}, 250);
 		},
 	},
 
@@ -1056,10 +1067,11 @@ export default {
 	padding: pa(2);
 	cursor: pointer;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: v-bind(computedSearchButtonJustify);
 	@include button-2;
 	font-weight: $font-weight-semibold;
 	transition: $hover;
+	min-height: 44px;
 
 	&:hover {
 		color: $n-200;
