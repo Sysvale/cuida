@@ -184,6 +184,15 @@
 						</span>
 					</cds-flexbox>
 				</div>
+
+					<!--
+						@slot Slot usado para renderizar o footer da barra de busca.
+					-->
+					<slot
+						v-if="whatToRender === 'renderResults' || whatToRender === 'renderEmptyState'"
+						name="footer"
+						class="quick_action_bar__footer"
+					/>
 			</cds-flexbox>
 		</div>
 	</div>
@@ -576,6 +585,11 @@ function sliceResultsByGroup(results) {
 			background-color: $bn-50;
 			color: $bn-400;
 		}
+	}
+
+	&__footer {
+		width: 100%;
+		margin: mb(2);
 	}
 }
 
