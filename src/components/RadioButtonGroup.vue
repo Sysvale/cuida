@@ -121,6 +121,11 @@ export default {
 
 	watch: {
 		selected(value) {
+			/**
+			 * Evento utilizado para implementar o v-model.
+			 * @event update:modelValue
+			 * @type {Event}
+			 */
 			this.$emit('update:modelValue', value);
 		},
 

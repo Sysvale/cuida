@@ -330,15 +330,15 @@ export default {
 		},
 
 		internalValue(value) {
-			/**
-			 * Evento utilizado para implementar o v-model.
-			 * @event input
-			 * @type {Event}
-			 */
-
+			
 			if (this.lazy) {
 				this.emitLazy(value)
 			} else {
+				/**
+				 * Evento utilizado para implementar o v-model.
+				 * @event update:modelValue
+				 * @type {Event}
+				 */
 				this.$emit('update:modelValue', value);
 			}
 		},
@@ -366,11 +366,21 @@ export default {
 
 		handleBlur() {
 			this.isBeingFocused = false;
+			/**
+			 * Evento emitido quando o componente deixa de ser focado.
+			 * @event blur
+			 * @type {Event}
+			*/
 			this.$emit('blur', true);
 		},
 
 		handleFocus() {
 			this.isBeingFocused = true;
+			/**
+			 * Evento emitido quando o componente é focado.
+			 * @event focus
+			 * @type {Event}
+			*/
 			this.$emit('focus', true);
 		},
 	}

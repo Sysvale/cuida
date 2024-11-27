@@ -277,7 +277,7 @@ export default {
 				if (this.returnValue) {
 					/**
 					* Evento que indica que o valor do Select foi alterado
-					* @event input
+					* @event update:modelValue
 					* @type {Event}
 					*/
 					this.$emit('update:modelValue', currentValue[this.optionsField]);

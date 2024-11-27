@@ -261,7 +261,7 @@ export default {
 			} else {
 				/**
 				* Evento utilizado para implementar o v-model.
-				* @event input
+				* @event update:modelValue
 				* @type {Event}
 				*/
 				this.$emit('update:modelValue', parseInt(value, 10));

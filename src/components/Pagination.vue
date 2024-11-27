@@ -222,7 +222,7 @@ export default {
 					* Altera o valor do v-model.
 					*
 					* Emite o número referente à página selecionada.
-					* @event input
+					* @event update:modelValue
 					* @type {Event}
 					*/
 					this.$emit('update:modelValue', 1);
