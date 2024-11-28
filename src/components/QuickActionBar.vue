@@ -39,8 +39,10 @@
 			</cds-flexbox>
 
 			<cds-flexbox
+				id="contentResults"
 				direction="column"
 				class="quick_action_bar__results"
+				:class="{ 'quick_action_bar__results--with-overflow-y': mustBeScrollable }"
 				wrap="nowrap"
 			>
 				<cds-flexbox
@@ -342,10 +344,13 @@ const idTimeout = ref(null);
 const isTyping = ref(false);
 const searchInput = ref(null);
 const searchTerm = ref('');
+const currentResultHeight = ref(0);
 
 const whatToRender = computed(() => {
 	let hasResults = internalGroups.value.some(item => item.results && item.results.length > 0);
 	let hasRecents = props.recents.length > 0;
+
+	verifyResultsHeight();
 
 	if (hasResults && !isTyping.value && !props.loading) {
 		return 'renderResults';
@@ -369,6 +374,8 @@ const whatToRender = computed(() => {
 const slicedRecents = computed(() => {
 	return props.recents.slice(0, props.numRecents);
 });
+
+const mustBeScrollable = computed(() => currentResultHeight.value > 400);
 
 watch(searchTerm, () => {
 	onChangeSearchTerm();
@@ -456,6 +463,10 @@ function sliceResultsByGroup(results) {
 	return results.slice(0, props.numResults);
 }
 
+function verifyResultsHeight() {
+	currentResultHeight.value = document.querySelector('#contentResults')?.offsetHeight;
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -530,7 +541,10 @@ function sliceResultsByGroup(results) {
 		width: 50%;
 		max-height: 75svh;
 		box-shadow: $shadow-md;
-		overflow-y: scroll;
+
+		&--with-overflow-y {
+			overflow-y: scroll;
+		}
 	}
 
 	&__skeleton-card {

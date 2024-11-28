@@ -9,7 +9,7 @@ exports[`QuickActionBar > renders correctly 1`] = `
       </svg><input data-v-ee265e08=\\"\\" type=\\"text\\" placeholder=\\"Buscar por nome, CPF ou CNS...\\">
       <!--v-if-->
     </div>
-    <div data-v-c2ac4e6d=\\"\\" data-v-ee265e08=\\"\\" class=\\"flexbox quick_action_bar__results\\">
+    <div data-v-c2ac4e6d=\\"\\" data-v-ee265e08=\\"\\" class=\\"flexbox quick_action_bar__results\\" id=\\"contentResults\\">
       <!-- @slot Slot com o conteúdo interno do FlexBox -->
       <div data-v-c2ac4e6d=\\"\\" data-v-ee265e08=\\"\\" class=\\"flexbox quick_action_bar__result-item\\">
         <!-- @slot Slot com o conteúdo interno do FlexBox -->
