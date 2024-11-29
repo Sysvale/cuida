@@ -401,7 +401,7 @@ watch(internalValue, (newValue) => {
 
 watch(() => props.groups, (newValue) => {
 	internalGroups.value = newValue.filter(item => item.results.length > 0);
-	verifyResultsHeight();
+	setTimeout(() => verifyResultsHeight(), 100);
 });
 
 function mustDisableExternalScrolls(value) {
