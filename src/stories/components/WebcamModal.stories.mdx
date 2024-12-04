@@ -1,10 +1,10 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
-import WebcamInput from '../../components/WebcamInput.vue';
+import WebcamModal from '../../components/WebcamModal.vue';
 import Button from '../../components/Button.vue';
 
 <Meta
-	title="Componentes/Forms/WebcamInput"
-	component={ WebcamInput }
+	title="Componentes/Forms/WebcamModal"
+	component={ WebcamModal }
 	parameters={{
 		viewMode: 'docs',
 		previewTabs: { canvas: { hidden: true }},
@@ -13,7 +13,7 @@ import Button from '../../components/Button.vue';
 				language: 'html',
 				format:true,
 				code: /*html*/
-`<cds-webcam-input
+`<cds-webcam-modal
 	v-model="showModal"
 	title="Tirar uma foto"
 	variant="dark"
@@ -33,7 +33,7 @@ export const Template = (args) => ({
 			showModal: false,
 		};
 	},
-	components: { CdsWebcamInput: WebcamInput, CdsButton: Button },
+	components: { CdsWebcamModal: WebcamModal, CdsButton: Button },
 	template: /*html*/ `
 		<div class="d-flex justify-content-center">
 			<cds-button
@@ -51,7 +51,7 @@ export const Template = (args) => ({
 	`,
 });
 
-# WebcamInput
+# WebcamModal
 
 ### Um componente para capturar fotos diretamente da webcam do dispositivo, ao capturar uma foto o componente emite um File.
 
@@ -78,10 +78,10 @@ export const Template = (args) => ({
 
 <Canvas>
 	<Story
-		name="WebcamInput"
+		name="WebcamModal"
 	>
 		{ Template.bind({}) }
 	</Story>
 </Canvas>
 
-<ArgsTable story="WebcamInput" />
+<ArgsTable story="WebcamModal" />

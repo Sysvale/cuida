@@ -1,10 +1,10 @@
 import { describe, test, expect } from 'vitest';
-import WebcamInput from '../components/WebcamInput.vue';
+import WebcamModal from '../components/WebcamModal.vue';
 import { mount } from '@vue/test-utils';
 
-describe('WebcamInput', () => {
+describe('WebcamModal', () => {
 	test('renders correctly', async () => {
-		const wrapper = mount(WebcamInput, {
+		const wrapper = mount(WebcamModal, {
 			props: {
 				modelValue: true,
 				title: 'Olá, camera!',

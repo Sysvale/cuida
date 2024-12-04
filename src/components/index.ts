@@ -102,7 +102,7 @@ import Wizard from './Wizard.vue';
 
 import Cdstip from '../utils/directives/cdstip';
 import CdsFloatify from "../utils/directives/cdsFloatify";
-import WebcamInput from './WebcamInput.vue';
+import WebcamModal from './WebcamModal.vue';
 
 export default {
 	install: (app: any, options: any) => {
@@ -208,7 +208,7 @@ export default {
 		app.component('CdsPasswordInput', PasswordInput);
 		app.component('CdsPieChart', PieChart);
 		app.component('CdsPolarAreaChart', PolarAreaChart);
-		app.component('CdsWebcamInput', WebcamInput);
+		app.component('CdsWebcamModal', WebcamModal);
 		app.component('CdsWizard', Wizard);
 	},
 }
