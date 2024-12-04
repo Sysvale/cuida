@@ -357,7 +357,7 @@ export default {
 		right: 0;
 		top: 1;
 		width: 100%;
-		z-index: 999;
+		z-index: $z-index-sidesheet;
 	}
 
 	&__header {

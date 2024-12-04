@@ -5,6 +5,26 @@ import Button from '../../components/Button.vue';
 <Meta
 	title="Componentes/Forms/WebcamModal"
 	component={ WebcamModal }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+	}}
 	parameters={{
 		viewMode: 'docs',
 		previewTabs: { canvas: { hidden: true }},
@@ -44,7 +64,6 @@ export const Template = (args) => ({
 			<cds-webcam-modal
 				v-bind="args"
 				v-model="showModal"
-				variant="dark"
 				@on-take-photo="(file) => console.log('Foto tirada', file)"
 			/>
 		</div>
@@ -79,6 +98,9 @@ export const Template = (args) => ({
 <Canvas>
 	<Story
 		name="WebcamModal"
+		args={{
+			variant: 'green',
+		}}
 	>
 		{ Template.bind({}) }
 	</Story>
