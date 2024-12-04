@@ -47,7 +47,7 @@
 </template>
 <script>
 /* eslint-disable no-unused-vars */
-import vueSlider from 'vue-slider-component';
+import vueSlider from 'vue-3-slider-component';
 import 'vue-slider-component/theme/default.css';
 
 export default {
