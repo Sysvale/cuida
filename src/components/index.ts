@@ -160,7 +160,7 @@ export default {
 		app.component('CdsLoadingIndicator', LoadingIndicator);
 		app.component('CdsMobileNavigation', MobileNavigation);
 		app.component('CdsModal', Modal);
-		app.component('CdsMultiselect', Multiselect); //FIXME: Problema no SB
+		app.component('CdsMultiselect', Multiselect);
 		app.component('CdsNavBar', NavBar);
 		app.component('CdsNumberInput', NumberInput);
 		app.component('CdsOverlayLoader', OverlayLoader);
@@ -189,7 +189,7 @@ export default {
 		app.component('CdsSideSheet', SideSheet);
 		app.component('CdsSkeleton', Skeleton);
 		app.component('CdsSkeletonText', SkeletonText);
-		// app.component('CdsSlider', Slider); //FIXME: Problema com a dependência do Slider no Vue3 
+		app.component('CdsSlider', Slider);
 		app.component('CdsSpinner', Spinner);
 		app.component('CdsStackedBarChart', StackedBarChart);
 		app.component('CdsStepper', Stepper);
