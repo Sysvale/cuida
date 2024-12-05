@@ -72,7 +72,7 @@
 					:variant="variant"
 					:disabled="!isCameraActive"
 					secondary
-					@click="takePhoto"
+					@click.prevent="takePhoto"
 				>
 					{{ takePhotoButtonText }}
 				</cds-button>
@@ -83,7 +83,7 @@
 					:variant="variant"
 					:disabled="!isCameraActive"
 					secondary
-					@click="removePhoto"
+					@click.prevent="removePhoto"
 				>
 					{{ takeAnotherPhotoButtonText }}
 				</cds-button>
@@ -92,7 +92,7 @@
 					size="lg"
 					:variant="variant"
 					:disabled="!photoUrl"
-					@click="savePhoto"
+					@click.prevent="savePhoto"
 				>
 					{{ savePhotoButtonText }}
 				</cds-button>
@@ -143,7 +143,6 @@ const props = defineProps({
 		type: String,
 		default: 'Camera',
 	},
-
 
 	/**
 	 * Texto de feedback ao tirar uma foto
