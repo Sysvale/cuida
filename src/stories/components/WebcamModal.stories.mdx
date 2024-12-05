@@ -1,0 +1,109 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import WebcamModal from '../../components/WebcamModal.vue';
+import Button from '../../components/Button.vue';
+
+<Meta
+	title="Componentes/Forms/WebcamModal"
+	component={ WebcamModal }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/
+`<cds-webcam-modal
+	v-model="showModal"
+	title="Tirar uma foto"
+	variant="dark"
+	@on-take-photo="(file) => console.log('Foto tirada', file)"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			showModal: false,
+		};
+	},
+	components: { CdsWebcamModal: WebcamModal, CdsButton: Button },
+	template: /*html*/ `
+		<div class="d-flex justify-content-center">
+			<cds-button
+				@click="showModal = true"
+			>
+				Click
+			</cds-button>
+			<cds-webcam-modal
+				v-bind="args"
+				v-model="showModal"
+				@on-take-photo="(file) => console.log('Foto tirada', file)"
+			/>
+		</div>
+	`,
+});
+
+# WebcamModal
+
+### Um componente para capturar fotos diretamente da webcam do dispositivo, ao capturar uma foto o componente emite um File.
+
+---
+
+<br />
+
+## Quando usar:
+- É necessário capturar uma imagem diretamente do dispositivo do usuário, como para envio de documentos ou selfies.
+- Deseja-se integrar a captura de imagens com outros fluxos do sistema sem exigir uma aplicação externa.
+
+<br />
+
+## Quando não usar:
+- Não há acesso a permissões de câmera no dispositivo do usuário (como em alguns navegadores ou ambientes com restrições).
+- É necessário capturar vídeos em vez de imagens estáticas.
+- A interface do usuário exige múltiplas interações modais (cascatas ou modais aninhados).
+
+---
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="WebcamModal"
+		args={{
+			variant: 'green',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="WebcamModal" />
