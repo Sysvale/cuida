@@ -54,6 +54,13 @@
 					autoplay
 				/>
 			</div>
+			<cds-flexbox
+				class="camera-container__feedback-text"
+				:class="{ 'camera-container__feedback-text--hidden': !filePhoto }"
+				align="center"
+			>
+				{{ feedbackText }}
+			</cds-flexbox>
 			<flexbox
 				gap="2"
 				class="camera-container__buttons"
@@ -135,6 +142,15 @@ const props = defineProps({
 	title: {
 		type: String,
 		default: 'Camera',
+	},
+
+
+	/**
+	 * Texto de feedback ao tirar uma foto
+	 */
+	feedbackText: {
+		type: String,
+		default: 'Foto capturada',
 	},
 
 	/**
@@ -267,11 +283,24 @@ function savePhoto() {
 
 .camera-container {
     width: 100%;
+	height: 570px;
     transition: all .3s ease;
     border-radius: 20px;
     border: 2px dashed $n-40 !important;
 	color: $n-300;
 	padding: pa(2);
+
+	&__feedback-text {
+		margin: my(2);
+		color: $n-600;
+		font-style: italic;
+		font-weight: $font-weight-semibold;
+		@include caption;
+
+		&--hidden {
+			visibility: hidden;
+		}
+	}
 
     &__loading, &__failed {
         height: 450px;
