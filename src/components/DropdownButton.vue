@@ -146,8 +146,8 @@ export default {
 		},
 
 		dropDownButtonClasses() {
-			if (this.compact) {
-				return 'dropdown-button__container--compact ';
+			if (this.ghost) {
+				return 'dropdown-button__container--ghost ';
 			}
 
 			if (this.secondary) {
@@ -246,7 +246,7 @@ export default {
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
-		
+
 	}
 }
 
@@ -258,18 +258,18 @@ export default {
 		cursor: pointer;
 		border-radius: 6px;
 		padding: pa(2);
-	
+
 		&:hover {
 			background-color: $n-20;
 		}
 	}
-	
+
 	&__text {
 		color: $n-600;
 		@include body-2;
 		padding: py(1)
 	}
-	
+
 	&__icon {
 		color: $n-600;
 	}
