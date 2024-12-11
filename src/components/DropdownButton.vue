@@ -12,7 +12,7 @@
 			<cds-chevron
 				animate
 				size="sm"
-				:light="!secondary"
+				:light="!secondary && !ghost"
 				:direction="isActive ? 'bottom' : 'top'"
 			/>
 		</span>
@@ -93,6 +93,13 @@ export default {
 			default: false,
 		},
 		/**
+		* Especifica se o componente deve ser exibido na sua versão ghost.
+		*/
+		ghost: {
+			type: Boolean,
+			default: false,
+		},
+		/**
 		* Conteúdo do Dropdown.
 		*/
 		text: {
@@ -139,6 +146,10 @@ export default {
 		},
 
 		dropDownButtonClasses() {
+			if (this.compact) {
+				return 'dropdown-button__container--compact ';
+			}
+
 			if (this.secondary) {
 				return 'dropdown-button__container--secondary ';
 			}
@@ -201,6 +212,17 @@ export default {
 			color: $n-700;
 			outline: 1px solid $n-100;
 			background-color: $n-10;
+		}
+
+		&--ghost {
+			padding: px(5);
+			background: none;
+			color: $n-800;
+			cursor: pointer;
+
+			&:hover {
+				background-color: $n-10;
+			}
 		}
 	}
 
