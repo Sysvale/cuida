@@ -36,6 +36,7 @@ describe('MobileNavigation', () => {
 				stubs: {
 					'cds-icon': true,
 					'cds-avatar': true,
+					'router-link': true,
 				},
 			},
 			props: {
