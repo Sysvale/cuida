@@ -22,6 +22,7 @@ describe('RadialBarChart', () => {
 			props: {
 				labels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
 				variant: 'green',
+				theme: 'green',
 				data: mockedData,
 			},
 		});

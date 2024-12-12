@@ -38,6 +38,7 @@ describe('StackedBarChart', () => {
 			props: {
 				labels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
 				variant: 'green',
+				theme: 'green',
 				data: mockedData,
 				barWidth: 1,
 			},

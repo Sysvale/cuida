@@ -23,6 +23,7 @@ describe('DonutChart', () => {
 				labels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
 				variant: 'green',
 				data: mockedData,
+				theme: 'green',
 			},
 		});
 

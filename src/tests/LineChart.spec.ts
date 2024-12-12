@@ -44,6 +44,7 @@ describe('LineChart', () => {
 				isDashed: false,
 				borderDash: [5,5],
 				smoothing: 0.6,
+				theme: 'green',
 			},
 		});
 
