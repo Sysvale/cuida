@@ -67,6 +67,7 @@
 <script>
 import CdsIcon from './Icon.vue';
 import Cdstip from '../utils/directives/cdstip';
+import CdsClickable from './Clickable.vue';
 import { generateKey } from '../utils';
 
 
@@ -76,7 +77,8 @@ export default {
 	},
 
 	components: {
-		CdsIcon
+		CdsIcon,
+		CdsClickable,
 	},
 
 	props: {

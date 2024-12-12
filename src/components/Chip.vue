@@ -3,6 +3,7 @@
 	<div
 		class="chip__container"
 		:class="classList"
+		data-testid="chip-container"
 		@click="handleClick"
 	>
 		<div
@@ -44,7 +45,7 @@ export default {
 
 	props: {
 		/**
-		 *  Controla a exibição do bottom sheet.
+		 *  Controla o estado de seleção da chip.
 		 */
 		modelValue: {
 			type: Boolean,

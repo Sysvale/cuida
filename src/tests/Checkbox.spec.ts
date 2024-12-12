@@ -6,7 +6,7 @@ describe('Checkbox', () => {
 	test('renders correctly', async () => {
 		const wrapper = mount(Checkbox, {
 			props: {
-				value: false,
+				modelValue: false,
 				label: 'checkbox test'
 			},
 		});

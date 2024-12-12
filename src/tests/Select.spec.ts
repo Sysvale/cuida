@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
-import Scrollable from '../components/Scrollable.vue';
-import { mount } from '@vue/test-utils';
+import Select from '../components/Select.vue';
+import { shallowMount } from '@vue/test-utils';
 
 const options = [
 	{
@@ -17,13 +17,13 @@ const options = [
 
 const value = {};
 
-describe('Scrollable', () => {
+describe('Select', () => {
 	test('renders correctly', async () => {
-		const wrapper = mount(Scrollable, {
+		const wrapper = shallowMount(Select, {
 			props: {
 				label: 'Label',
 				options,
-				value,
+				modelValue: value,
 			},
 		});
 

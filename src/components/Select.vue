@@ -118,10 +118,15 @@ import { generateKey } from '../utils';
 import cloneDeep from 'lodash.clonedeep';
 import removeAccents from '../utils/methods/removeAccents';
 import CdsIcon from './Icon.vue';
+import Cdstip from '../utils/directives/cdstip';
 
 export default {
 	components: {
 		CdsIcon,
+	},
+
+	directives: {
+		cdstip: Cdstip,
 	},
 
 	props: {

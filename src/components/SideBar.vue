@@ -31,8 +31,6 @@
 				</div>
 			</div>
 
-
-
 			<div
 				v-if="searchButton"
 				class="side-bar__search-button"
@@ -59,8 +57,6 @@
 					Ctrl + K
 				</span>
 			</div>
-
-
 
 			<ul
 				:class="{'side-bar__container': items.length >= 1}"
@@ -300,12 +296,14 @@ import CdsPopover from './Popover.vue';
 import CdsAvatar from './Avatar.vue';
 import CdsRichTooltip from './RichTooltip.vue';
 import Cdstip from '../utils/directives/cdstip';
+import vClickOutside from 'click-outside-vue3';
 
 import { colorOptions, colorHexCode } from '../utils/constants/colors';
 
 export default {
 	directives: {
 		cdstip: Cdstip,
+		'on-click-outside': vClickOutside.directive,
 	},
 
 	components: {

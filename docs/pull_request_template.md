@@ -1,6 +1,6 @@
 #### Por favor, verifique se o seu pull request está de acordo com o checklist abaixo:
 
-- [x] A implementação feita possui testes (Caso haja um motivo para não haver testes, descrever abaixo)
+- [x] A implementação feita possui testes (Caso haja um motivo para não haver testes/haver apenas testes de snapshot, descrever abaixo)
 - [x] A documentação no mdx foi feita ou atualizada, caso necessário
 - [x] O eslint passou localmente
 
