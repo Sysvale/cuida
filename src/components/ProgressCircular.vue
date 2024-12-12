@@ -6,7 +6,6 @@
 	>
 		<path
 			class="progress-circular__ring-background"
-			:stroke="backgroundColor"
 			:stroke-width="stroke"
 			d="M18 2.0845
 			a 15.9155 15.9155 0 0 1 0 31.831
@@ -35,7 +34,7 @@
 </template>
 
 <script>
-import { colorOptions, colorHexCode } from '../utils/constants/colors';
+import { colorHexCode } from '../utils/constants/colors';
 
 export default {
 	props: {
