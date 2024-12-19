@@ -4,7 +4,10 @@
 	>
 		<div :class="`variant-resolver--${variant}`">
 			<div class="side-bar__header">
-				<div class="side-bar__logo">
+				<div
+					class="side-bar__logo"
+					@click="handleLogoClick"
+				>
 					<slot
 						v-if="!collapsed"
 						name="logo"
@@ -611,7 +614,16 @@ export default {
 			*/
 			this.$emit('profile-menu-option-click', actionName);
 			this.showPopover = false
-		}
+		},
+
+		handleLogoClick() {
+			/**
+			 * Evento emitido quando um o logo da SideBar é clicado
+			* @event logo-click
+			* @type {Event}
+			*/
+			this.$emit('logo-click');
+		},
 	},
 };
 </script>
@@ -714,6 +726,7 @@ export default {
 			display: flex;
 			align-items: center;
 			max-width: 144px;
+			cursor: pointer;
 		}
 
 		&__logo > img {
