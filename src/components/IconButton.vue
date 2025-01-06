@@ -112,23 +112,6 @@ export default {
 		},
 	},
 
-	watch: {
-		disabled: {
-			handler(newValue, oldValue) {
-				if (newValue === oldValue) {
-					return;
-				}
-
-				if (newValue === true) {
-					this.innerTooltipText = null;
-				} else {
-					this.innerTooltipText = this.tooltipText;
-				}
-			},
-			immediate: true,
-		},
-	},
-
 	methods: {
 		clickHandler(e) {
 			if (this.disabled) {
