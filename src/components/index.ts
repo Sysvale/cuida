@@ -1,3 +1,4 @@
+/* COMPONENTS */
 import ActionBar from './ActionBar.vue';
 import ActionsList from './ActionsList.vue';
 import Alert from './Alert.vue';
@@ -98,11 +99,19 @@ import TimelineItem from './TimelineItem.vue';
 import Tooltip from './Tooltip.vue';
 import Truncate from './Truncate.vue';
 import PasswordInput from './PasswordInput.vue';
+import WebcamModal from './WebcamModal.vue';
 import Wizard from './Wizard.vue';
 
+/* DIRECTIVES */
 import Cdstip from '../utils/directives/cdstip';
 import CdsFloatify from "../utils/directives/cdsFloatify";
-import WebcamModal from './WebcamModal.vue';
+
+/* UTILS */
+import contrastChecker from '@/utils/methods/contrastChecker';
+import hasSlot from '@/utils/methods/hasSlot';
+import removeAccents from '@/utils/methods/removeAccents';
+import hexToRgb from '@/utils/methods/hexToRgb';
+import isDeviceType from '@/utils/methods/isDeviceType';
 
 export default {
 	install: (app: any, options: any) => {
@@ -210,5 +219,12 @@ export default {
 		app.component('CdsPolarAreaChart', PolarAreaChart);
 		app.component('CdsWebcamModal', WebcamModal);
 		app.component('CdsWizard', Wizard);
+	},
+	utils: {
+		contrastChecker,
+		hasSlot,
+		removeAccents,
+		hexToRgb,
+		isDeviceType
 	},
 }
