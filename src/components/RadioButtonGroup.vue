@@ -3,6 +3,17 @@
 		class="radio__button"
 		:style="cssVars"
 	>
+		<div class="radio-button__label">
+			<span>{{ label }}</span>
+
+			<span
+				v-if="required && label"
+				class="radio-button__required"
+			>
+				*
+			</span>
+		</div>
+
 		<div
 			:class="{'button-group': inline }"
 		>
@@ -57,6 +68,20 @@ export default {
 			type: [String, null],
 			default: null,
 			required: true,
+		},
+		/**
+		 * Especifica o título do grupo de radio buttons
+		 */
+		label: {
+			type: String,
+			default: 'Label',
+		},
+		/**
+		 * Especifica se o grupo de radio buttons é obrigatório
+		 */
+		required: {
+			type: Boolean,
+			default: false,
 		},
 		/**
 		 * O número de radio buttons a ser renderizado no grupo
@@ -210,6 +235,16 @@ export default {
 	justify-content: space-between;
 	gap: 20px;
 	margin: mb(2);
+
+	&__label {
+		@include label;
+		margin: mb(3);
+		color: $n-700;
+	}
+
+	&__required {
+		color: $rc-600;
+	}
 
 	&__container--vertical {
 		margin: mr(4);
