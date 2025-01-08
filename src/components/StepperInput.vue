@@ -295,6 +295,7 @@ export default {
 	border-radius: 6px;
 	height: 40px;
 	width: v-bind(widthResolver);
+	background: $n-0;
 
 	&__label {
 		@include caption;

@@ -185,6 +185,7 @@ export default {
 	width: fit-content;
 	width: -moz-fit-content;
 	margin: mt(2);
+	background: $n-0;
 
 	&--fluid {
 		@extend .search-input;
