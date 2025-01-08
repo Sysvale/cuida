@@ -203,6 +203,13 @@ export default {
 			type: String,
 			default: 'green',
 		},
+		/**
+		* Define o tipo do input, se true será um input adaptado para o mobile.
+		*/
+		mobile: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -271,6 +278,10 @@ export default {
 		calendarTrailColor() {
 			return this.variantColorData.colorData[1].shade;
 		},
+
+		resolveMobile() {
+			return this.mobile ? '48px' : '40px';
+		}
 	},
 
 	watch: {
@@ -374,7 +385,7 @@ export default {
 	justify-content: space-between;
 	outline: 1px solid $n-50;
 	width: 266px;
-	height: 40px;
+	height: v-bind(resolveMobile);
 	color: $n-600;
 	border-radius: $border-radius-extra-small !important;
 	cursor: pointer;
