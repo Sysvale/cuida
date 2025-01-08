@@ -1,10 +1,11 @@
 <template>
-	<div
+	<component
+		:is="tag"
 		class="flexbox"
 	>
 		<!-- @slot Slot com o conteúdo interno do FlexBox -->
 		<slot />
-	</div>
+	</component>
 </template>
 
 <script setup>
@@ -51,6 +52,15 @@ const props = defineProps({
 	align: {
 		type: String,
 		default: 'stretch',
+	},
+	/**
+	* Define a tag que o componente deve utilizar na sua renderização. Valores aceitos: 'div', 'span', 'main', 'ul',  e 'li'.
+	* Por padrão o componente renderiza uma div.
+	*/
+	tag: {
+		type: String,
+		default: 'div',
+		validator: (value) => ['div', 'span', 'main', 'ul', 'li'].includes(value),
 	},
 });
 
