@@ -378,6 +378,8 @@ export default {
 	color: $n-600;
 	border-radius: $border-radius-extra-small !important;
 	cursor: pointer;
+	background: $n-0;
+	overflow: hidden;
 
 	input {
 		border: none;

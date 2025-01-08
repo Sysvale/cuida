@@ -388,6 +388,8 @@ export default {
 		border-radius: $border-radius-extra-small;
 		border-spacing: 0px;
 		width: 100%;
+		background: $n-0;
+
 	}
 
 	&__select-item {
