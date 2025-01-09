@@ -410,7 +410,7 @@ export default {
 		*/
 		collapsibleState: {
 			type: Boolean,
-			default: false,
+			default: null,
 		},
 		/**
 		 * Imagem do logo que será renderizada
@@ -525,7 +525,6 @@ export default {
 
 	created() {
 		this.internalActiveItem = this.activeItem;
-		this.collapsed = this.collapsibleState;
 
 		this.items.forEach((item, idx) => {
 			this.itemsWithVisibilityController.push({
@@ -534,6 +533,17 @@ export default {
 				show: false,
 			})
 		});
+
+		if (!this.collapsible) {
+			return;
+		}
+
+		if (this.collapsibleState !== null) {
+			this.collapsed = this.collapsibleState;
+			return;
+		}
+
+		this.collapsed = window.localStorage.getItem('cdsSidebarCollapsed') ?? false;
 	},
 
 	methods: {
@@ -592,6 +602,7 @@ export default {
 		handleCollapse() {
 			this.$emit('collapse-click', !this.collapsed);
 			this.collapsed = !this.collapsed;
+			window.localStorage.setItem('cdsSidebarCollapsed', this.collapsed);	
 		},
 
 		resolveItemCollapse(item) {
