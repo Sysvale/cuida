@@ -1514,7 +1514,6 @@ A prop direction aceita os seguintes valores:
 - __row (padrão):__ os itens são organizados em linhas, ocupando a largura do container antes de avançar para a próxima linha.
 - __column:__ os itens são organizados em colunas, ocupando a altura do container antes de avançar para a próxima coluna.
 
-
 <Story
 	name="subgrid"
 >
@@ -1544,4 +1543,29 @@ A prop direction aceita os seguintes valores:
 	</cds-grid>
 `
 ```
+<br />
+
+
+
+### __Tag renderizada__
+
+A prop `tag` permite definir a tag que o componente renderiza. Essa propriedade é utilizada para permitir que o componente 
+seja utilizado em diferentes contextos, como por exemplo, em um `footer` ou em um `header`.
+
+###### Comportamento padrão
+
+O valor default da propriedade é `div`, o que significa que o componente renderiza uma div.
+
+###### Valores Aceitos
+A prop tag é uma propriedade string que aceita os seguintes valores:
+- __div (padrão):__ renderiza uma div.
+- __span:__ renderiza uma span.
+- __main:__ renderiza um main.
+- __footer:__ renderiza um footer.
+- __form:__ renderiza um form.
+- __header:__ renderiza um header.
+- __aside:__ renderiza um aside.
+- __ul:__ renderiza uma ul.
+- __li:__ renderiza uma li.
+
 <br />
