@@ -24,7 +24,7 @@
 	<mark
 		v-else
 		class="highlight__container"
-		:class="{ dynamicHighlightClass: isAValidSubstring }"
+		:class="dynamicHighlightClass"
 		:style="dynamicStyle"
 	>
 		<!-- @slot Slot usado para especificar o texto que receberá o highlight. -->
