@@ -1,6 +1,6 @@
 {
 	"name": "@sysvale/cuida",
-	"version": "3.75.1",
+	"version": "3.75.2",
 	"description": "A design system built by Sysvale, using storybook and Vue components",
 	"repository": {
 		"type": "git",
@@ -43,7 +43,7 @@
 		"tippy.js": "^6.3.7",
 		"v-calendar": "^3.0.0-alpha.8",
 		"v-money3": "^3.22.3",
-		"vue": "^3.2.37",
+		"vue": "^3.4.0",
 		"vue-3-slider-component": "^1.0.1",
 		"vue-chartjs": "^5.2.0",
 		"vue-input-facade": "^3.0.0-beta.1",
