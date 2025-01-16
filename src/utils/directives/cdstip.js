@@ -4,6 +4,10 @@ import 'tippy.js/animations/shift-away-subtle.css';
 
 export default {
 	mounted(el, binding) {
+		if (!binding.value || (typeof binding.value !== 'string' && !binding.value.content)) {
+			return;
+		}
+
 		const generateRandomId = () => {
 			const s4 = () =>
 				Math.floor((1 + Math.random()) * 0x10000)
