@@ -16,6 +16,17 @@ import Tooltip from '../../components/Tooltip.vue';
 				],
 			}
 		},
+		borderRadius: {
+			control:{
+				type: 'select',
+				options: [
+					'small',
+					'medium',
+					'large',
+					'extra-large',
+				],
+			}
+		},
 	}}
 		parameters={{
 		viewMode: 'docs',
@@ -24,7 +35,7 @@ import Tooltip from '../../components/Tooltip.vue';
 			source: {
 				language: 'html',
 				format:true,
-				code: /*html*/ 
+				code: /*html*/
 `<cds-tooltip
 	text="Texto do tooltip"
 >
@@ -81,7 +92,8 @@ export const Template = (args) => ({
 	<Story
 		name="Tooltip"
 		args={{
-			text: 'Texto do tooltip'
+			text: 'Texto do tooltip',
+			borderRadius: 'small',
 		}}
 	>
 		{ Template.bind({}) }

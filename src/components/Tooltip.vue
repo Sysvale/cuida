@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div
-		v-cdstip="text"
+		v-cdstip="tooltipConfig"
 		class="tooltip"
 		:data-tippy-placement="position"
 		:data-tippy-content="content"
@@ -34,31 +34,77 @@ export default {
 		slim: {
 			type: Boolean,
 			default: false,
-		}
+		},
+		/**
+		 * Define o arredondamento da borda do tooltip. As opções são: extra-small, small, medium, large e extra-large.
+		 */
+		borderRadius: {
+			type: String,
+			default: 'extra-large',
+			validator: (value) =>
+				['small', 'medium', 'large', 'extra-large'].includes(value),
+		},
 	},
 
 	computed: {
-		content() {
-			return this.slim ? `<span style="font-size: 11px; padding: 0px;">${this.text}</span>`
-				: `<span style="font-size: 13px; padding: 0px 2px">${this.text}</span>`;
+		tooltipConfig() {
+			return {
+				content: this.slim
+					? `<span style="font-size: 11px; padding: 0px;">${this.text}</span>`
+					: `<span style="font-size: 13px; padding: 0px 2px">${this.text}</span>`,
+				options: {
+					placement: this.position,
+					theme: 'light',
+					arrow: true,
+					delay: 100,
+					animation: 'shift-away-subtle',
+					allowHTML: true,
+					onShow: (instance) => {
+						const tippyBox = instance.popper.querySelector('.tippy-box');
+						if (tippyBox) {
+							tippyBox.style.borderRadius = this.resolveBorderRadius;
+						}
+					},
+				},
+			};
+		},
+
+		resolveBorderRadius() {
+			switch (this.borderRadius) {
+				case 'extra-small':
+					return '8px';
+				case 'small':
+					return '12px';
+				case 'medium':
+					return '16px';
+				case 'large':
+					return '20px';
+				case 'extra-large':
+				default:
+					return '24px';
+			}
 		},
 	},
-}
+};
 </script>
 
 <style lang="scss">
 @import '../assets/sass/tokens.scss';
+
 .tooltip {
 	width: fit-content;
 }
 
 .tippy-box {
-	border-radius: $border-radius-extra-large !important;
 	background-color: $n-900 !important;
 	color: $n-0 !important;
 	display: flex;
 	align-items: center;
 	font-weight: $font-weight-semibold !important;
 	font-family: Satoshi, Inter, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.tippy-arrow {
+	display: none !important;
 }
 </style>
