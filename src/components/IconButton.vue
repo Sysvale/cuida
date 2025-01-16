@@ -1,6 +1,7 @@
 <template>
 	<span id="cds-icon-button">
-		<cds-tooltip
+		<component
+			:is="tooltipText ? 'cds-tooltip' : 'span'"
 			:text="innerTooltipText"
 		>
 			<button
@@ -14,7 +15,7 @@
 					class="cds-icon-button__icon"
 				/>
 			</button>
-		</cds-tooltip>
+		</component>
 	</span>
 </template>
 

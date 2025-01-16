@@ -20,12 +20,12 @@ export default {
 		el.setAttribute('data-tippy', tippyId);
 
 		el._tippyInstance = tippy(el, {
-			content: binding.value.content || '',
+			content: typeof binding.value === 'string' ? binding.value : binding.value?.content || '',
 			arrow: false,
 			animation: 'shift-away-subtle',
 			delay: 100,
 			allowHTML: true,
-			...binding.value.options,
+			...binding.value.options || {},
 		});
 	},
 
