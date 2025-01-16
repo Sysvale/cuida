@@ -8,39 +8,50 @@ export default {
 			return;
 		}
 
-		const generateRandomId = () => {
-			const s4 = () =>
-				Math.floor((1 + Math.random()) * 0x10000)
-					.toString(16)
-					.substring(1);
-			return `${s4()}-${s4()}`;
-		};
-
-		const tippyId = generateRandomId();
-		el.setAttribute('data-tippy', tippyId);
+		const content = typeof binding.value === 'string' ? binding.value : binding.value.content || '';
 
 		el._tippyInstance = tippy(el, {
-			content: typeof binding.value === 'string' ? binding.value : binding.value?.content || '',
+			content,
 			arrow: false,
 			animation: 'shift-away-subtle',
 			delay: 100,
 			allowHTML: true,
-			...binding.value.options || {},
+			...(binding.value.options || {}),
 		});
 	},
 
 	updated(el, binding) {
+		if (!binding.value || (typeof binding.value !== 'string' && !binding.value.content)) {
+			if (el._tippyInstance) {
+				el._tippyInstance.destroy();
+				el._tippyInstance = null;
+			}
+			return;
+		}
+
+		const content = typeof binding.value === 'string' ? binding.value : binding.value.content || '';
+
 		if (el._tippyInstance) {
 			el._tippyInstance.setProps({
-				content: binding.value.content || '',
-				...binding.value.options,
+				content,
+				...(binding.value.options || {}),
+			});
+		} else {
+			el._tippyInstance = tippy(el, {
+				content,
+				arrow: false,
+				animation: 'shift-away-subtle',
+				delay: 100,
+				allowHTML: true,
+				...(binding.value.options || {}),
 			});
 		}
 	},
 
-	unmounted(el) {
+	beforeUnmount(el) {
 		if (el._tippyInstance) {
 			el._tippyInstance.destroy();
+			el._tippyInstance = null;
 		}
 	},
 };

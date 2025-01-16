@@ -83,7 +83,7 @@ exports[`SideBar > renders correctly 1`] = `
       </transition-stub>
     </div>
     <ul>
-      <li class=\\"side-bar__logout-button\\" data-tippy=\\"235f-fdd1\\">
+      <li class=\\"side-bar__logout-button\\">
         <cds-icon-stub name=\\"logout-outline\\" width=\\"20\\" height=\\"20\\" color=\\"currentColor\\" dark=\\"false\\" light=\\"false\\"></cds-icon-stub>
       </li>
     </ul>
