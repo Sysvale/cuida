@@ -38,11 +38,9 @@ export default {
 		/**
 		 * Define o arredondamento da borda do tooltip. As opções são: extra-small, small, medium, large e extra-large.
 		 */
-		borderRadius: {
-			type: String,
-			default: 'extra-large',
-			validator: (value) =>
-				['small', 'medium', 'large', 'extra-large'].includes(value),
+		rounded: {
+			type: Boolean,
+			default: true,
 		},
 	},
 
@@ -70,19 +68,7 @@ export default {
 		},
 
 		resolveBorderRadius() {
-			switch (this.borderRadius) {
-				case 'extra-small':
-					return '8px';
-				case 'small':
-					return '12px';
-				case 'medium':
-					return '16px';
-				case 'large':
-					return '20px';
-				case 'extra-large':
-				default:
-					return '24px';
-			}
+			return this.rounded ? '28px' : '8px';
 		},
 	},
 };

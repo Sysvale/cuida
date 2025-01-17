@@ -16,17 +16,6 @@ import Tooltip from '../../components/Tooltip.vue';
 				],
 			}
 		},
-		borderRadius: {
-			control:{
-				type: 'select',
-				options: [
-					'small',
-					'medium',
-					'large',
-					'extra-large',
-				],
-			}
-		},
 	}}
 		parameters={{
 		viewMode: 'docs',
@@ -93,7 +82,6 @@ export const Template = (args) => ({
 		name="Tooltip"
 		args={{
 			text: 'Texto do tooltip',
-			borderRadius: 'small',
 		}}
 	>
 		{ Template.bind({}) }
