@@ -84,4 +84,10 @@ export default {
 		}
 	}
 }
+
+@media (max-width: 992px) {
+	.scrollable__container::-webkit-scrollbar {
+		display: none;
+	}
+}
 </style>
