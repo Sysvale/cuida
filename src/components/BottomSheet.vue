@@ -148,12 +148,12 @@ export default {
 
 	&__show {
 		@extend .backdrop;
-		animation: zoom-in ease .5s;
+		animation: zoom-in ease .3s;
 	}
 
 	&__hide {
 		@extend .backdrop;
-		animation: zoom-out ease .5s;
+		animation: zoom-out ease .3s;
 	}
 }
 
@@ -186,12 +186,12 @@ export default {
 
 	&__show {
 		@extend .bottom-sheet;
-		animation: slide-up ease .5s;
+		animation: slide-up ease .3s;
 	}
 
 	&__hide {
 		@extend .bottom-sheet;
-		animation: slide-down ease .5s;
+		animation: slide-down ease .3s;
 	}
 
 	&__header {
