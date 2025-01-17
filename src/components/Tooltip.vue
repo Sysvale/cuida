@@ -36,7 +36,7 @@ export default {
 			default: false,
 		},
 		/**
-		 * Define o arredondamento da borda do tooltip. As opções são: extra-small, small, medium, large e extra-large.
+		 * Define o arredondamento da borda do tooltip.
 		 */
 		rounded: {
 			type: Boolean,
