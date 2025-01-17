@@ -68,7 +68,7 @@ export default {
 		},
 
 		resolveBorderRadius() {
-			return this.rounded ? '28px' : '8px';
+			return this.rounded ? '20px' : '8px';
 		},
 	},
 };
