@@ -2,30 +2,56 @@ import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/shift-away-subtle.css';
 
-export default (el, binding) => {
-	setTimeout(() => {
-		const generateRandomId = () => {
-			const s4 = () => {
-				return Math.floor((1 + Math.random()) * 0x10000)
-					.toString(16)
-					.substring(1);
-			};
+export default {
+	mounted(el, binding) {
+		if (!binding.value || (typeof binding.value !== 'string' && !binding.value.content)) {
+			return;
+		}
 
-			return `${s4()}-${s4()}`;
-		};
+		const content = typeof binding.value === 'string' ? binding.value : binding.value.content || '';
 
-		if (binding.value === null || binding.value === undefined) return;
-
-		const tippyId = generateRandomId();
-		el.setAttribute('data-tippy', tippyId);
-
-		const elementQueryString = `${el.tagName.toLowerCase()}[data-tippy="${tippyId}"]`;
-
-		tippy(elementQueryString, {
-			content: binding.value,
+		el._tippyInstance = tippy(el, {
+			content,
 			arrow: false,
 			animation: 'shift-away-subtle',
 			delay: 100,
+			allowHTML: true,
+			...(binding.value.options || {}),
 		});
-	}, 500);
+	},
+
+	updated(el, binding) {
+		if (!binding.value || (typeof binding.value !== 'string' && !binding.value.content)) {
+			if (el._tippyInstance) {
+				el._tippyInstance.destroy();
+				el._tippyInstance = null;
+			}
+			return;
+		}
+
+		const content = typeof binding.value === 'string' ? binding.value : binding.value.content || '';
+
+		if (el._tippyInstance) {
+			el._tippyInstance.setProps({
+				content,
+				...(binding.value.options || {}),
+			});
+		} else {
+			el._tippyInstance = tippy(el, {
+				content,
+				arrow: false,
+				animation: 'shift-away-subtle',
+				delay: 100,
+				allowHTML: true,
+				...(binding.value.options || {}),
+			});
+		}
+	},
+
+	beforeUnmount(el) {
+		if (el._tippyInstance) {
+			el._tippyInstance.destroy();
+			el._tippyInstance = null;
+		}
+	},
 };
