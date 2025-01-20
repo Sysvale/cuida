@@ -33,8 +33,7 @@ jobs:
         uses: Klemensas/action-autotag@stable
         id: auto-tag
         with:
-          GITHUB_TOKEN: "${{ secrets.RELEASE_SECRET }}"
-          tag_prefix: "v"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Read package.json
         uses: tyankatsu0105/read-package-version-actions@v1
@@ -44,7 +43,7 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_SECRET }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.auto-tag.outputs.tagname }}
           release_name: "v${{ steps.package-version.outputs.version }}"
