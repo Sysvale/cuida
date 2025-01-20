@@ -49,6 +49,7 @@ jobs:
           release_name: "v${{ steps.package-version.outputs.version }}"
           body: |
             ## Mudanças nessa release:
+
             ${{ env.CHANGELOG }}
           draft: false
           prerelease: false
