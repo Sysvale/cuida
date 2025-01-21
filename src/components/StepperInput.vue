@@ -1,80 +1,85 @@
 <template>
 	<div>
-		<span>
-			<span
-				v-if="hasSlots"
-			>
-				<slot name="label" />
-			</span>
-			<label
-				v-else
-				class="stepper-input__label"
-			>
-				<div
-					class="label__content"
-					for="stepper-input"
-				>
-					<span>
-						{{ label }}
-					</span>
+		<template
+			v-if="hasSlots"
+		>
+			<slot name="label" />
+		</template>
 
-					<span
-						v-if="required"
-						class="label__required-indicator"
-					>
-						*
-					</span>
-				</div>
-			</label>
-		</span>
-		<mobile-stepper-input
+		<label
+			v-else
+			class="stepper-input__label"
+			for="stepper-input"
+		>
+			<span
+				class="label__content"
+			>
+				{{ label }}
+
+				<CdsRequiredIndicator v-if="required" />
+			</span>
+		</label>
+
+		<CdsMobileStepperInput
 			v-if="mobile"
 			v-model="internalValue"
-			:disabled="disabled"
-			:state="state"
-			@minus="changeValue(-1)"
-			@plus="changeValue(1)"
+			v-bind="props"
+			@add="changeValue(step)"
+			@subtract="changeValue(-step)"
 		/>
 		<div
 			v-else
-			:class="stepperInputDynamicClass"
+			:class="stepperInputStatusClasses"
+			@click="emitClick"
 		>
 			<input
-				id="stepper-input"
+				ref="stepper-input"
 				v-model="internalValue"
 				:disabled="disabled"
 				class="stepper-input__field"
-				:class="`stepper-input__field--${width}`"
+				:class="inputWidthClass"
 				type="number"
-				@focus="isBeingFocused = true"
-				@blur="isBeingFocused = false"
+				@focus="handleFocus"
+				@blur="handleBlur"
 			>
+
+			<span
+				v-if="suffix"
+				class="stepper-input__suffix"
+			>
+				<!-- @slot Slot e prop de mesmo nome utilizados para adicionar sufixo ao stepperInput. O valor padrão é `%`. O valor passado por slot tem maior precedência que o valor enviado para a prop.-->
+				<slot name="suffix">
+					{{ suffix }}
+				</slot>
+			</span>
+
 			<div class="stepper-input__icon-container">
 				<button
-					v-longclick="() => changeValue(1)"
+					v-long-click="() => changeValue(step)"
 					:disabled="disabled"
 					class="stepper-input__icon--plus"
 					tabindex="-1"
-					@focus="isBeingFocused = true"
-					@blur="isBeingFocused = false"
-					@click="changeValue(1)"
+					@focus="handleFocus"
+					@blur="handleBlur"
+					@click="changeValue(step)"
 				>
-					<cds-icon
+					<CdsIcon
 						height="16"
 						width="16"
 						name="plus-outline"
 					/>
 				</button>
+
 				<button
-					v-longclick="() => changeValue(-1)"
+					v-long-click="() => changeValue(-step)"
 					:disabled="disabled"
 					class="stepper-input__icon--minus"
 					tabindex="-1"
-					@focus="isBeingFocused = true"
-					@blur="isBeingFocused = false"
-					@click="changeValue(-1)"
+					@focus="handleFocus"
+					@blur="handleBlur"
+					@click="changeValue(-step)"
 				>
-					<cds-icon
+					<CdsIcon
 						height="16"
 						width="16"
 						name="minus-outline"
@@ -91,199 +96,225 @@
 	</div>
 </template>
 
-<script>
+<script setup>
+import { ref, computed, watch, useTemplateRef } from 'vue';
+import { useHasSlots } from '../utils/composables/useHasSlots.js';
+import {
+	nativeEvents,
+	nativeEmits,
+} from '../utils/composables/useComponentEmits.js';
+import { useInputStatusClasses } from '../utils/composables/useInputStatusClasses.js';
 import { longClickDirective } from '@sysvale/vue3-long-click';
-import stateValidator from '../utils/validators/state';
-import MobileStepperInput from './MobileStepperInput.vue';
+
+import CdsMobileStepperInput from './MobileStepperInput.vue';
 import CdsIcon from './Icon.vue';
+import CdsRequiredIndicator from './RequiredIndicator.vue';
 
-const longClickInstance = longClickDirective({ delay: 400, interval: 50 });
+import stateValidator from '../utils/validators/state';
 
-export default {
-	components: {
-		CdsIcon,
-		MobileStepperInput,
+const hasSlots = useHasSlots();
+const vLongClick = longClickDirective({ delay: 400, interval: 50 });
+const model = defineModel('modelValue', { type: Number });
+
+const componentRef = useTemplateRef('stepper-input');
+
+defineExpose({
+	componentRef,
+});
+
+const emits = defineEmits({
+	/**
+	* Evento emitido quando o valor do modelValue está fora dos limites definidos pelas props `min` e `max`.
+	* @event invalid-number
+	* @type {Event}
+	*/
+	'invalid-number': null,
+	/**
+	* Evento emitido quando o valor da prop `Step` está fora dos limites definidos pelas props `min` e `max`.
+	* @event step-out-of-bounds
+	* @type {Event}
+	*/
+	'step-out-of-bounds': null,
+	...nativeEvents
+});
+
+const { emitFocus, emitBlur, emitChange, emitClick } = nativeEmits(emits);
+
+const props = defineProps({
+	/**
+	* Especifica o menor valor que o StepperInput deve aceitar.
+	*/
+	min: {
+		type: [Number, String],
+		default: Number.MIN_SAFE_INTEGER,
 	},
-
-	directives: {
-		'longclick': longClickInstance,
+	/**
+	* Especifica o menor valor que o StepperInput deve aceitar.
+	*/
+	max: {
+		type: [Number, String],
+		default: Number.MAX_SAFE_INTEGER,
 	},
+	/**
+	* Indica passo usado no incremento e decremento do valor do StepperInput.
+	*/
+	step: {
+		type: Number,
+		default: 1,
+	},
+	/**
+	* A label do StepperInput.
+	*/
+	label: {
+		type: String,
+		default: 'Label',
+	},
+	/**
+	* Exibe asterisco indicativo de campo obrigatório.
+	*/
+	required: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* <span className="deprecated-warning">[DEPRECATED]</span> Define a largura do StepperInput. As opções são 'thin', 'default', 'wide' e 'fluid'.
+	*/
+	width: {
+		type: String,
+		default: 'default',
+		validator: (value) => ['thin', 'default', 'wide', 'fluid'].includes(value)
+	},
+	/**
+	* Indica se o componente deverá ocupar 100% da largura disponível.
+	*/
+	fluid: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Desabilita o StepperInput.
+	*/
+	disabled: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Especifica o estado do StepperInput. As opções são 'default', 'valid' e 'invalid'.
+	*/
+	state: {
+		type: String,
+		default: 'default',
+		validator: stateValidator,
+	},
+	/**
+	* Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+	*/
+	errorMessage: {
+		type: String,
+		default: 'Valor inválido',
+	},
+	/**
+	* Indica se o componente deve ter sua apresentação ajustada a aplicações móveis.
+	*/
+	mobile: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Quando ativo adiciona sufixo que indica ao usuário que ele está manipulando dados com caracterísitcas específicas, como porcentagem, milhares, pesos, etc.
+	*/
+	suffix: {
+		type: String,
+		default: '',
+	},
+});
 
-	props: {
+const internalValue = ref(model.value);
+const isBeingFocused = ref(false);
+
+const stepperInputStatusClasses = useInputStatusClasses('stepper-input', props.state, props.disabled, isBeingFocused);
+
+const widthResolver = computed(() => {
+	return (props.width === 'fluid') || props.fluid ? '100%' : 'fit-content';
+});
+
+const errorState = computed(() => {
+	return props.state === 'invalid';
+});
+
+const inputWidthClass = computed(() => {
+	if (props.fluid) return `stepper-input__field--fluid`;
+	return `stepper-input__field--${props.width}`;
+});
+
+const inputPadding = computed(() => {
+	if (props.suffix) return '8px 2px 8px 8px';
+	return '8px';
+});
+
+const inputMargin = computed(() => {
+	if (props.suffix) return '0';
+	return '8px';
+});
+
+watch(model, (value) => {
+	internalValue.value = value;
+});
+
+watch(internalValue, (value) => {
+	if (!value) {
+		internalValue.value = 0;
+	}
+
+	if (typeof value === 'string') {
+		internalValue.value = +internalValue.value;
+	}
+
+	if (value < props.min) {
+		internalValue.value = props.min;
 		/**
-		* Prop utilizada como v-model. Controla a visibilidade do popover .
+		* Evento que indica que o valor informado está fora do intervalo aceito.
+		* @event invalid number
+		* @type {Event}
 		*/
-		modelValue: {
-			type: [Number, String],
-			default: 0,
-		},
-		/**
-		 * Especifica o maior valor que o StepperInput deve aceitar.
-		 */
-		max: {
-			type: [Number, String],
-			default: Number.MAX_SAFE_INTEGER,
-		},
-		/**
-		 * Especifica o menor valor que o StepperInput deve aceitar.
-		 */
-		min: {
-			type: [Number, String],
-			default: Number.MIN_SAFE_INTEGER,
-		},
-		/**
-		 * Especifica a label do input.
-		 */
-		label: {
-			type: String,
-			default: 'Label',
-		},
-		/**
-		 * Exibe asterisco de obrigatório (obs.: não faz a validação)
-		 */
-		required: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Define a largura do Select. As opções são 'thin', 'default' e 'wide'.
-		 */
-		width: {
-			type: String,
-			default: 'default',
-			required: false,
-		},
-		/**
-		 * Desabilita o input.
-		 */
-		disabled: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Especifica o estado do StepperInput. As opções são 'default', 'valid' e 'invalid'.
-		 */
-		state: {
-			type: String,
-			default: 'default',
-			validator: stateValidator,
-		},
-		/**
-		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
-		 */
-		errorMessage: {
-			type: String,
-			default: 'Valor inválido',
-		},
-		/**
-		 * Indica se o componente deve se comportar com foco em aplicações móveis
-		 */
-		mobile: {
-			type: Boolean,
-			default: false,
-		},
-	},
+		emits('invalid-number', `'O campo não pode ser menor que ${parseInt(props.min, 10)}.'`);
+	} else if (value > props.max) {
+		internalValue.value = props.max;
+		emits('invalid-number', `'O campo não pode ser maior que ${parseInt(props.max, 10)}.'`);
+	} else {
+		model.value = parseInt(value, 10);
+	}
+});
 
-	data() {
-		return {
-			internalValue: this.modelValue,
-			isBeingFocused: false,
-		};
-	},
+watch(() => props.step, (step) => { 
+	if (step > props.max || step < props.min) {
+		console.warn('A propriedade step está fora dos limites definidos por min e max.');
+		emits('step-out-of-bounds');
+	}
+}, {
+	immediate: true,
+});
 
-	computed: {
-		hasSlots() {
-			return !!Object.keys(this.$slots).length;
-		},
+function changeValue(amount) {
+	internalValue.value = parseInt(internalValue.value) + amount;
+	emitChange();
+}
 
-		errorState() {
-			return this.state === 'invalid';
-		},
+function handleFocus() {
+	isBeingFocused.value = true;
+	emitFocus();
+}
 
-		stepperInputDynamicClass() {
-			let stepperInputClass = '';
-
-			if (!this.isBeingFocused) {
-				stepperInputClass = 'stepper-input';
-
-				if (!this.disabled) {
-					if (this.state === 'valid') {
-						stepperInputClass += ' stepper-input--valid';
-					} else if (this.state === 'invalid') {
-						stepperInputClass += ' stepper-input--invalid';
-					}
-				} else {
-					stepperInputClass += ' stepper-input--disabled';
-				}
-			} else if (!this.disabled) {
-				if (this.state === 'default') {
-					stepperInputClass += ' stepper-input--focused';
-				} else if (this.state === 'valid') {
-					stepperInputClass += ' stepper-input--focused-valid';
-				} else if (this.state === 'invalid') {
-					stepperInputClass += ' stepper-input--focused-invalid';
-				}
-			}
-
-			return stepperInputClass;
-		},
-
-		widthResolver() {
-			return this.width === 'fluid' ? '100%' : 'fit-content';
-		}
-	},
-
-	watch: {
-		modelValue(value) {
-			this.internalValue = value;
-		},
-
-		internalValue(value) {
-			if (!value) {
-				this.internalValue = 0;
-			}
-
-			if (typeof value === 'string') {
-				this.internalValue = +this.internalValue;
-			}
-
-			if (value < this.min) {
-				/**
-				* Evento que indica que o valor informado está fora do intervalo aceito.
-				* @event invalid number
-				* @type {Event}
-				*/
-				this.internalValue = this.min;
-				this.$emit('invalid-number', `'O campo não pode ser menor que ${parseInt(this.min, 10)}.'`);
-			} else if (value > this.max) {
-				this.internalValue = this.max;
-				this.$emit('invalid-number', `'O campo não pode ser maior que ${parseInt(this.max, 10)}.'`);
-			} else {
-				/**
-				* Evento utilizado para implementar o v-model.
-				* @event update:modelValue
-				* @type {Event}
-				*/
-				this.$emit('update:modelValue', parseInt(value, 10));
-			}
-		},
-	},
-
-	methods: {
-		changeValue(amount) {
-			this.internalValue = parseInt(this.internalValue) + amount;
-		},
-	},
-};
+function handleBlur() {
+	isBeingFocused.value = false;
+	emitBlur();
+}
 </script>
+
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
 
 .label {
-	&__required-indicator {
-		color: $rc-600;
-	}
-
 	&__content {
 		margin: mb(1);
 	}
@@ -305,6 +336,15 @@ export default {
 		color: $n-700;
 	}
 
+	&__suffix {
+		color: $n-600;
+		display: flex;
+		align-items: center;
+		padding: pTRBL(2, 2, 2, 0);
+		margin: mr(2);
+		@include caption;
+	}
+
 	&__icon-container {
 		background-color: $n-20;
 		display: flex;
@@ -314,8 +354,8 @@ export default {
 	}
 
 	&__field {
-		padding: pa(2);
-		margin: mr(2);
+		padding: v-bind(inputPadding);
+		margin-right: v-bind(inputMargin);
 		border-radius: 6px;
 		border: none;
 		text-align: end;
@@ -436,10 +476,6 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
 	-moz-appearance: textfield;
-}
-
-input[type=number]{
-	// width: 68px;
 }
 
 input:disabled {
