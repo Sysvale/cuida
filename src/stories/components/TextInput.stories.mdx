@@ -92,6 +92,21 @@ export const Template = (args) => ({
 <Canvas>
 	<Story
 		name="TextInput"
+		args={{
+			disabled: false,
+			state: 'default',
+			inputType: 'text',
+			required: false,
+			placeholder: 'Digite algo...',
+			errorMessage: 'Campo obrigatório',
+			fluid: false,
+			mask: null,
+			tooltip: '',
+			tooltipIcon: 'info-outline',
+			linkText: '',
+			mobile: false,
+			lazy: false,
+		}}
 	>
 		{ Template.bind({}) }
 	</Story>
