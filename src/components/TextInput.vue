@@ -10,21 +10,14 @@
 			<label
 				v-else
 				:class="labelDynamicClass"
+				for="cds-text-input"
 			>
-				<div
+				<span
 					class="label__content"
-					for="cds-text-input"
 				>
-					<span>
-						{{ label }}
-					</span>
+					{{ label }}
 
-					<span
-						v-if="required"
-						class="label__required-indicator"
-					>
-						*
-					</span>
+					<CdsRequiredIndicator v-if="required" />
 
 					<cds-icon
 						v-if="tooltip"
@@ -34,7 +27,7 @@
 						width="20"
 						class="label__icon"
 					/>
-				</div>
+				</span>
 
 				<cds-link
 					v-if="linkTextState"
@@ -49,7 +42,7 @@
 		<div :class="stepperInputDynamicClass">
 			<input
 				v-if="mask"
-				:id="`cds-text-input-${$attrs.id || generateKey()}`"
+				:id="`cds-text-input-${$attrs.id}`"
 				v-model="internalValue"
 				v-facade="internalMask"
 				:placeholder="placeholder"
@@ -62,7 +55,7 @@
 
 			<input
 				v-else
-				:id="`cds-text-input-${$attrs.id || generateKey()}`"
+				:id="`cds-text-input-${$attrs.id}`"
 				v-model="internalValue"
 				:placeholder="placeholder"
 				:disabled="disabled"
@@ -109,281 +102,247 @@
 	</div>
 </template>
 
-<script>
+<script setup>
+import { ref, computed, watch } from 'vue';
 import { facade } from 'vue-input-facade';
 import CdsLink from './Link.vue';
 import CdsIcon from './Icon.vue';
 import CdsSpinner from './Spinner.vue';
 import Cdstip from '../utils/directives/cdstip';
+import CdsRequiredIndicator from './RequiredIndicator.vue';
 import { generateKey } from '../utils';
+import { useHasSlots } from '../utils/composables/useHasSlots.js';
 
-export default {
-	directives: {
-		cdstip: Cdstip,
-		facade,
+const vFacade = facade;
+const vCdstip = Cdstip;
+
+const model = defineModel('modelValue', {
+	type: String,
+});
+
+const props = defineProps({
+	/**
+	 * Especifica a label do input.
+	 */
+	label: {
+		type: String,
+		default: 'Label',
 	},
-
-	components: {
-		CdsLink,
-		CdsIcon,
-		CdsSpinner,
+	/**
+	 * Desabilita o input.
+	 */
+	disabled: {
+		type: Boolean,
+		default: false,
 	},
-
-	props: {
-		/**
-		* Prop utilizada como v-model.
-		*/
-		modelValue: {
-			type: String,
-			default: '',
-		},
-		/**
-		 * Especifica a label do input.
-		 */
-		label: {
-			type: String,
-			default: 'Label',
-		},
-		/**
-		 * Desabilita o input.
-		 */
-		disabled: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
-		 */
-		state: {
-			type: String,
-			default: 'default',
-		},
-		/**
-		 * Especifica o tipo do TextInput. As opções são 'text' e 'email'.
-		 */
-		inputType: {
-			type: String,
-			default: 'text',
-			validator: (value) => ['text', 'email'].includes(value),
-		},
-		/**
-		 * Exibe asterisco de obrigatório (obs.: não faz a validação)
-		 */
-		required: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Especifica o placeholder do input
-		 */
-		placeholder: {
-			type: String,
-			default: 'Digite aqui a informação',
-		},
-		/**
-		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
-		 */
-		errorMessage: {
-			type: String,
-			default: 'Valor inválido',
-		},
-		/**
-		 * Especifica se a largura do TextInput deve ser fluida.
-		 */
-		fluid: {
-			type: Boolean,
-			default: false,
-			required: false,
-		},
-		/**
-		 * Especifica a máscara a ser aplicada ao TextInput.
-		 * Exemplo: "(##) #####-####"
-		 */
-		mask: {
-			type: [String, Array],
-			default: null,
-		},
-		/**
-		 * Define exibição e texto do tooltip do input
-		 */
-		tooltip: {
-			type: String,
-			default: null,
-		},
-		/**
-		 * Especifica ícone do tooltip do TextInput.
-		 */
-		tooltipIcon: {
-			type: String,
-			default: 'info-outline',
-		},
-		/**
-		 * Define texto do link do input (localizado à direita da label).
-		 */
-		linkText: {
-			type: String,
-			default: null,
-		},
-		/**
-		 * Define a url a ser acessada no clique do link (no caso do link ser exibido).
-		 */
-		linkUrl: {
-			type: String,
-			default: 'https://cuida.framer.wiki/',
-		},
-		/**
-		 * Define a utilização de lazy para debouncer.
-		 */
-		lazy: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Define o tipo do input, se true será um input adaptado para o mobile
-		 */
-		mobile: {
-			type: Boolean,
-			default: false,
-		},
+	/**
+	 * Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	 */
+	state: {
+		type: String,
+		default: 'default',
 	},
-
-	data() {
-		return {
-			internalValue: '',
-			internalMask: this.mask,
-			isBeingFocused: false,
-			timeout: null,
-		};
+	/**
+	 * Especifica o tipo do TextInput. As opções são 'text' e 'email'.
+	 */
+	inputType: {
+		type: String,
+		default: 'text',
+		validator: (value) => ['text', 'email'].includes(value),
 	},
+	/**
+	 * Exibe asterisco de obrigatório (obs.: não faz a validação)
+	 */
+	required: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	 * Especifica o placeholder do input
+	 */
+	placeholder: {
+		type: String,
+		default: 'Digite aqui a informação',
+	},
+	/**
+	 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+	 */
+	errorMessage: {
+		type: String,
+		default: 'Valor inválido',
+	},
+	/**
+	 * Especifica se a largura do TextInput deve ser fluida.
+	 */
+	fluid: {
+		type: Boolean,
+		default: false,
+		required: false,
+	},
+	/**
+	 * Especifica a máscara a ser aplicada ao TextInput.
+	 * Exemplo: "(##) #####-####"
+	 */
+	mask: {
+		type: [String, Array],
+		default: null,
+	},
+	/**
+	 * Define exibição e texto do tooltip do input
+	 */
+	tooltip: {
+		type: String,
+		default: null,
+	},
+	/**
+	 * Especifica ícone do tooltip do TextInput.
+	 */
+	tooltipIcon: {
+		type: String,
+		default: 'info-outline',
+	},
+	/**
+	 * Define texto do link do input (localizado à direita da label).
+	 */
+	linkText: {
+		type: String,
+		default: null,
+	},
+	/**
+	 * Define a url a ser acessada no clique do link (no caso do link ser exibido).
+	 */
+	linkUrl: {
+		type: String,
+		default: 'https://cuida.framer.wiki/',
+	},
+	/**
+	 * Define a utilização de lazy para debouncer.
+	 */
+	lazy: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	 * Define o tipo do input, se true será um input adaptado para o mobile
+	 */
+	mobile: {
+		type: Boolean,
+		default: false,
+	},
+});
 
-	computed: {
-		hasSlots() {
-			return !!Object.keys(this.$slots).length;
-		},
+const emits = defineEmits({
+	'blur': null,
+	'focus': null,
+});
 
-		stepperInputDynamicClass() {
-			let stepperInputClass = this.fluid ? 'text-input--fluid' : 'text-input';
+const internalValue = ref('');
+const internalMask = ref(props.mask);
+const isBeingFocused = ref(false);
+const timeout = ref(null);
+const hasSlots = useHasSlots();
 
-			if (!this.isBeingFocused) {
-				if (!this.disabled) {
-					if (this.state === 'valid') {
-						stepperInputClass += ' text-input--valid';
-					} else if (this.state === 'invalid') {
-						stepperInputClass += ' text-input--invalid';
-					}
-				} else {
-					stepperInputClass += ' text-input--disabled';
-				}
-			} else if (!this.disabled) {
-				if (this.state === 'default') {
-					stepperInputClass += ' text-input--focused';
-				} else if (this.state === 'valid') {
-					stepperInputClass += ' text-input--focused-valid';
-				} else if (this.state === 'invalid') {
-					stepperInputClass += ' text-input--focused-invalid';
-				} else if (this.state === 'loading') {
-					stepperInputClass += ' text-input--focused-loading';
-				}
+const stepperInputDynamicClass = computed(() => {
+	let stepperInputClass = props.fluid ? 'text-input--fluid' : 'text-input';
+
+	if (!isBeingFocused.value) {
+		if (!props.disabled) {
+			if (props.state === 'valid') {
+				stepperInputClass += ' text-input--valid';
+			} else if (props.state === 'invalid') {
+				stepperInputClass += ' text-input--invalid';
 			}
-
-			return stepperInputClass;
-		},
-
-		labelDynamicClass() {
-			const labelType = this.mobile ? 'mobile-label' : 'label';
-
-			return this.fluid ? `text-input__${labelType}--fluid` : `text-input__${labelType}`;
-		},
-
-		validState() {
-			return this.state === 'valid';
-		},
-
-		errorState() {
-			return this.state === 'invalid';
-		},
-
-		loadingState(){
-			return this.state === 'loading';
-		},
-
-		inputClass() {
-			const inputType = this.mobile ? 'mobile-field' : 'field';
-
-			return this.fluid ? `text-input__${inputType}--fluid` : `text-input__${inputType}`;
-		},
-
-		linkTextState() {
-			return this.linkText ? true : false;
+		} else {
+			stepperInputClass += ' text-input--disabled';
 		}
-	},
-
-	watch: {
-		modelValue: {
-			handler(newValue, oldValue) {
-				if (newValue !== oldValue) {
-					this.internalValue = newValue;
-				}
-			},
-
-			immediate: true,
-		},
-
-		internalValue(value) {
-			
-			if (this.lazy) {
-				this.emitLazy(value)
-			} else {
-				/**
-				 * Evento utilizado para implementar o v-model.
-				 * @event update:modelValue
-				 * @type {Event}
-				 */
-				this.$emit('update:modelValue', value);
-			}
-		},
-
-		mask(newValue) {
-			this.internalMask = newValue;
-		},
-	},
-
-	methods: {
-		generateKey,
-
-		/**
-		 * Permite que o evento seja emitido apenas quando não houver digitação por 1 segundo.
-		 */
-		emitLazy(value) {
-			clearTimeout(this.timeout);
-
-			const that = this;
-
-			this.timeout = setTimeout(function () {
-				that.$emit('update:modelValue', value);
-			}, 1000);
-		},
-
-		handleBlur() {
-			this.isBeingFocused = false;
-			/**
-			 * Evento emitido quando o componente deixa de ser focado.
-			 * @event blur
-			 * @type {Event}
-			*/
-			this.$emit('blur', true);
-		},
-
-		handleFocus() {
-			this.isBeingFocused = true;
-			/**
-			 * Evento emitido quando o componente é focado.
-			 * @event focus
-			 * @type {Event}
-			*/
-			this.$emit('focus', true);
-		},
+	} else if (!props.disabled) {
+		if (props.state === 'default') {
+			stepperInputClass += ' text-input--focused';
+		} else if (props.state === 'valid') {
+			stepperInputClass += ' text-input--focused-valid';
+		} else if (props.state === 'invalid') {
+			stepperInputClass += ' text-input--focused-invalid';
+		} else if (props.state === 'loading') {
+			stepperInputClass += ' text-input--focused-loading';
+		}
 	}
+
+	return stepperInputClass;
+});
+
+const labelDynamicClass = computed(() => {
+	const labelType = props.mobile ? 'mobile-label' : 'label';
+
+	return props.fluid ? `text-input__${labelType}--fluid` : `text-input__${labelType}`;
+});
+
+const validState = computed(() => {
+	return props.state === 'valid';
+});
+
+const errorState = computed(() => {
+	return props.state === 'invalid';
+});
+
+const loadingState = computed(() => { 
+	return props.state === 'loading';
+});
+
+const inputClass = computed(() => {
+	const inputType = props.mobile ? 'mobile-field' : 'field';
+
+	return props.fluid ? `text-input__${inputType}--fluid` : `text-input__${inputType}`;
+});
+
+const linkTextState = computed(() => {
+	return props.linkText ? true : false;
+});
+
+watch(props.mask, (newValue) => internalMask.value = newValue);
+
+watch(model, (newValue, oldValue) => {
+	if (newValue !== oldValue) {
+		internalValue.value = newValue;
+	}
+}, {immediate: true});
+
+watch(internalValue, (value) => {
+	if (props.lazy) {
+		emitLazy(value);
+	} else {
+		model.value = value;
+	}
+});
+
+/**
+ * Permite que o evento seja emitido apenas quando não houver digitação por 1 segundo.
+ */
+function emitLazy(value) {
+	clearTimeout(timeout.value);
+
+	timeout.value = setTimeout(function () {
+		model.value = value;
+	}, 1000);
+};
+
+function handleBlur() {
+	isBeingFocused.value = false;
+	/**
+	 * Evento emitido quando o componente deixa de ser focado.
+	 * @event blur
+	 * @type {Event}
+	*/
+	emits('blur', true);
+};
+
+function handleFocus() {
+	isBeingFocused.value = true;
+	/**
+	 * Evento emitido quando o componente é focado.
+	 * @event focus
+	 * @type {Event}
+	*/
+	emits('focus', true);
 };
 </script>
 <style lang="scss" scoped>
@@ -445,8 +404,12 @@ export default {
 		color: $n-600;
 		width: 100%;
 
+		&::hover {
+			cursor: not-allowed;
+		}
+
 		&::placeholder {
-			color: $n-300;
+			color: $n-400;
 		}
 
 		&:focus {
@@ -499,9 +462,11 @@ export default {
 	}
 
 	&--disabled {
-		background-color: $n-20;
+		background-color: hsl(214 25% 98% / 1);
 		pointer-events: none;
 		border: none;
+		cursor: not-allowed !important;
+
 	}
 
 	&__icon--check-icon {
