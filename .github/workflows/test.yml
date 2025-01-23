@@ -5,15 +5,17 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18, 20, 22]
     steps:
       - name: 📚 Checkout
         uses: actions/checkout@v2
       - name: 🟢 Node
         uses: actions/setup-node@v2.1.4
         with:
-          node-version: 16.10.0
+          node-version: ${{ matrix.node-version }}
       - name: 🔧 Build
-        run:
-          npm i
+        run: npm i
       - name: 🚀 Test
         run: npm run test
