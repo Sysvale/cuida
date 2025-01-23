@@ -34,6 +34,6 @@ module.exports = {
 				allowTemplateLiterals: true,
 			},
 		],
-		semi: ['error', 'always'],
+		'no-extra-semi': 'off',
 	},
 };
