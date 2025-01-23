@@ -347,6 +347,7 @@ export default {
 	color: $n-600;
 	border-radius: $border-radius-extra-small !important;
 	cursor: pointer;
+	background: $n-0;
 
 	&__icon {
 		display: grid;

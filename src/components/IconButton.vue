@@ -1,6 +1,7 @@
 <template>
 	<span id="cds-icon-button">
-		<cds-tooltip
+		<component
+			:is="tooltipText ? 'cds-tooltip' : 'span'"
 			:text="innerTooltipText"
 		>
 			<button
@@ -14,7 +15,7 @@
 					class="cds-icon-button__icon"
 				/>
 			</button>
-		</cds-tooltip>
+		</component>
 	</span>
 </template>
 
@@ -109,23 +110,6 @@ export default {
 			const variantClass = `cds-icon-button__container--${this.variant}`;
 
 			return `${status} ${this.predefinedSize} ${variantClass}`;
-		},
-	},
-
-	watch: {
-		disabled: {
-			handler(newValue, oldValue) {
-				if (newValue === oldValue) {
-					return;
-				}
-
-				if (newValue === true) {
-					this.innerTooltipText = null;
-				} else {
-					this.innerTooltipText = this.tooltipText;
-				}
-			},
-			immediate: true,
 		},
 	},
 

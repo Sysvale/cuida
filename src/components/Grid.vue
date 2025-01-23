@@ -1,10 +1,11 @@
 <template>
-	<div
+	<component
+		:is="tag"
 		class="grid"
 	>
 		<!-- @slot Slot com o conteúdo interno da grid -->
 		<slot />
-	</div>
+	</component>
 </template>
 
 <script setup>
@@ -46,6 +47,11 @@ const props = defineProps({
 	align: {
 		type: String,
 		default: 'stretch',
+	},
+	tag: {
+		type: String,
+		default: 'div',
+		validator: (value) => ['div', 'span', 'main', 'footer', 'form', 'header', 'aside', 'ul', 'li'].includes(value),
 	},
 });
 

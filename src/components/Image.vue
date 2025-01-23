@@ -134,6 +134,12 @@ export default {
 		},
 	},
 
+	watch: {
+		src(newValue) {
+			this.innerSrc = newValue;
+		},
+	},
+
 	methods: {
 		rounder,
 

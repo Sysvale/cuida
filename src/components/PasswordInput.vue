@@ -273,6 +273,7 @@ export default {
 	outline: 1px solid $n-50;
 	border-radius: $border-radius-extra-small;
 	width: v-bind(resolveInputWidth);
+	background: $n-0;
 
 	&--fluid {
 		@extend .password-input;

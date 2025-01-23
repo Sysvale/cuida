@@ -34,7 +34,13 @@ import '@sysvale/cuida/dist/style.css';
 - E instale o Cuida:
 
 ```js
-Vue.use(Cuida);
+app.use(Cuida);
+```
+
+- Exponha os utils do Cuida:
+
+```js
+app.provide('cdsUtils', cdsUtils);
 ```
 
 - Agora para utilizar os componentes, basta usá-los no seu template. Como exemplo, para usar a
