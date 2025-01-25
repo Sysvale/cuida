@@ -280,6 +280,7 @@ export default {
 				prefix: 'R$ ',
 				precision: 2,
 				masked: false,
+				focusOnRight: true,
 			},
 		};
 	},
