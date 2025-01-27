@@ -24,6 +24,13 @@ const props = defineProps({
 		type: String,
 		default: 'green',
 	},
+	/**
+	 * Define o tempo, em ms, do intervalo de mudança da barra de progresso.
+	 */
+	intervalTime: {
+		type: Number,
+		default: 500,
+	},
 });
 
 // Variáveis reativas
@@ -71,7 +78,7 @@ function increment() {
 			return;
 		}
 
-		setTimeout(increment, Math.floor(Math.random() * (1300 - 500 + 1) + 500));
+		setTimeout(increment, Math.floor(Math.random() * ((props.intervalTime * 2) - props.intervalTime + 1) + props.intervalTime));
 	}
 }
 
