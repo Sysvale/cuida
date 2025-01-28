@@ -78,7 +78,8 @@ function increment() {
 			return;
 		}
 
-		setTimeout(increment, Math.floor(Math.random() * ((props.intervalTime * 2) - props.intervalTime + 1) + props.intervalTime));
+		let randomInterval = Math.floor(Math.random() * ((props.intervalTime * 1.4) - (props.intervalTime * 0.5)) + (props.intervalTime * 0.5));
+		setTimeout(increment, randomInterval);
 	}
 }
 
