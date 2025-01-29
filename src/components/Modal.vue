@@ -60,7 +60,7 @@
 						:text="cancelButtonText"
 						secondary
 						:disabled="disableCancelButton"
-						@click="!disableCancelButton ? closeHandle() : false"
+						@click="!disableCancelButton ? cancelHandle() : false"
 					/>
 
 					<cds-button
@@ -156,6 +156,13 @@ export default {
 			default: false,
 		},
 		/**
+		 *  Controla a ação de fechar o modal ao clicar no botão de cancelar.
+		 */
+		noCloseCancelButton: {
+			type: Boolean,
+			default: false,
+		},
+		/**
 		 *  Controla a exibição do botão de fechar do modal.
 		 */
 		noCloseButton: {
@@ -218,7 +225,7 @@ export default {
 		return {
 			innerValue: false,
 			tmp: '',
-		}
+		};
 	},
 
 	computed: {
@@ -262,6 +269,20 @@ export default {
 				this.$emit('update:modelValue', false);
 			}
 			this.$emit('ok', true);
+		},
+
+		cancelHandle() {
+			/**
+			 * Evento que indica se o botão de cancelamento do modal foi clicado.
+			 * @event cancel
+			 * @type {Event}
+			*/
+			if (!this.noCloseCancelButton) {
+				this.innerValue = !this.innerValue;
+				this.$emit('close', true);
+				this.$emit('update:modelValue', false);
+			}
+			this.$emit('cancel');
 		},
 	},
 };
