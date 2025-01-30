@@ -1,7 +1,7 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Timeline > renders correctly 1`] = `
-"<div class=\\"cds-timeline\\" history=\\"[object Object],[object Object],[object Object],[object Object],[object Object]\\">
+"<div class="cds-timeline" history="[object Object],[object Object],[object Object],[object Object],[object Object]">
   <!-- @slot Conteúdo a ser colocar na Timeline. Suporta o \`TimelineItem\` como subcomponente.  -->
 </div>"
 `;

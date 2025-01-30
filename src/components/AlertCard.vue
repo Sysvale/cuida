@@ -66,6 +66,27 @@ export default {
 			default: 'info',
 		},
 		/**
+		 * Define se o AlertCard é selecionável.
+		 */
+		selectable: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Variante de estilo muted do componente.
+		 */
+		muted: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Controla exibição do título do AlertCard.
+		 */
+		noTitle: {
+			type: Boolean,
+			default: false,
+		},
+		/**
 		 * O título do alerta. O título também pode ser usado com o slot.
 		 */
 		title: {

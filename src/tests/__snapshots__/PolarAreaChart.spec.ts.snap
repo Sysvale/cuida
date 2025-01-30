@@ -1,3 +1,3 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`PolarAreaChart > renders correctly 1`] = `"<span data-v-d3067411=\\"\\"><div data-v-d3067411=\\"\\" class=\\"responsive-container\\"><polar-area-stub data-v-d3067411=\\"\\" data=\\"[object Object]\\" options=\\"[object Object]\\" plugins=\\"\\" datasetidkey=\\"label\\"></polar-area-stub></div></span>"`;
+exports[`PolarAreaChart > renders correctly 1`] = `"<span data-v-d3067411=""><div data-v-d3067411="" class="responsive-container"><polar-area-stub data-v-d3067411="" data="[object Object]" options="[object Object]" plugins="" datasetidkey="label"></polar-area-stub></div></span>"`;

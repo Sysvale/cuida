@@ -1,8 +1,12 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`CollapsibleContainer > renders correctly 1`] = `
-"<span id=\\"collapsible-container\\" value=\\"true\\"><div class=\\"collapsible-container__item\\"><span class=\\"collapsible-container__chevron--closed\\"></span>
+"<span id="collapsible-container"><div class="collapsible-container__item"><span class="collapsible-container__chevron--opened"></span>
 <!-- @slot Slot para renderização do conteúdo do header/title customizado do item
-			--><span class=\\"collapsible-container__title\\">Seu universo expandido</span></div>
-<!--v-if--></span>"
+			--><span class="collapsible-container__title">Seu universo expandido</span></div>
+<div class="collapsible-container__content" data-testid="collapsible-content">
+  <!-- @slot Slot para renderização conteúdo do container
+				quando o componente está expandido
+			-->
+</div></span>"
 `;

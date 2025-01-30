@@ -20,6 +20,7 @@
 		<div
 			v-if="internalValue"
 			class="collapsible-container__content"
+			data-testid="collapsible-content"
 		>
 			<!-- @slot Slot para renderização conteúdo do container
 				quando o componente está expandido
