@@ -35,16 +35,16 @@ export default {
 		 * `data` (array com os valores númericos).
 		 */
 		data: {
-			type: Object,
+			type: Array,
 			required: true,
-			default: () => ({
+			default: () => ([{
 				datasets: [
 					{
 						label: '',
 						data: [],
 					}
 				]
-			})
+			}])
 		},
 		/**
 		 * Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:

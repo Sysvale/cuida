@@ -1,19 +1,19 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Select > renders correctly 1`] = `
-"<div data-v-96b70cc4=\\"\\" class=\\"select\\"><label data-v-96b70cc4=\\"\\" class=\\"select__label\\">
-    <div data-v-96b70cc4=\\"\\" class=\\"label__content\\" for=\\"cds-select\\"><span data-v-96b70cc4=\\"\\">Label</span>
+"<div data-v-96b70cc4="" class="select"><label data-v-96b70cc4="" class="select__label">
+    <div data-v-96b70cc4="" class="label__content" for="cds-select"><span data-v-96b70cc4="">Label</span>
       <!--v-if-->
       <!--v-if-->
     </div>
   </label>
-  <div data-v-96b70cc4=\\"\\" class=\\"select__container select__container--fit\\"><input data-v-96b70cc4=\\"\\" type=\\"text\\" autocomplete=\\"off\\" onkeypress=\\"return false;\\" class=\\"select__input--closed select__input--default select__input--fit\\" placeholder=\\"Selecione...\\" readonly=\\"\\">
-    <div data-v-96b70cc4=\\"\\" class=\\"select__options select__options--default select__options--down\\" style=\\"display: none;\\">
-      <ul data-v-96b70cc4=\\"\\" class=\\"option__container\\">
-        <li data-v-96b70cc4=\\"\\" class=\\"option__text\\">foo</li>
-        <li data-v-96b70cc4=\\"\\" class=\\"option__text\\">bar</li>
+  <div data-v-96b70cc4="" class="select__container select__container--fit"><input data-v-96b70cc4="" type="text" autocomplete="off" onkeypress="return false;" class="select__input--closed select__input--default select__input--fit" placeholder="Selecione..." readonly="">
+    <div data-v-96b70cc4="" class="select__options select__options--default select__options--down" style="display: none;">
+      <ul data-v-96b70cc4="" class="option__container">
+        <li data-v-96b70cc4="" class="option__text">foo</li>
+        <li data-v-96b70cc4="" class="option__text">bar</li>
       </ul>
-    </div><span data-v-96b70cc4=\\"\\" class=\\"select__chevron--closed\\"></span>
+    </div><span data-v-96b70cc4="" class="select__chevron--closed"></span>
   </div>
   <!--v-if-->
 </div>"

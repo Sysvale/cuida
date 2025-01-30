@@ -1,45 +1,45 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`QuickActionBar > renders correctly 1`] = `
-"<div data-v-ee265e08=\\"\\" class=\\"quick_action_bar\\" description=\\"Esta ação afetará o sistema e os arquivos associados.\\">
-  <div data-v-ee265e08=\\"\\" class=\\"quick_action_bar__backdrop\\">
-    <div data-v-c2ac4e6d=\\"\\" data-v-ee265e08=\\"\\" class=\\"flexbox quick_action_bar__input\\">
-      <!-- @slot Slot com o conteúdo interno do FlexBox --><svg data-v-ee265e08=\\"\\" xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24\\" height=\\"24\\" viewBox=\\"0 0 24 24\\" aria-labelledby=\\"search-outline\\" role=\\"presentation\\" class=\\"quick_action_bar__search-icon\\">
-        <g fill=\\"currentColor\\"></g>
-      </svg><input data-v-ee265e08=\\"\\" type=\\"text\\" placeholder=\\"Buscar por nome, CPF ou CNS...\\">
+"<div data-v-ee265e08="" class="quick_action_bar" description="Esta ação afetará o sistema e os arquivos associados.">
+  <div data-v-ee265e08="" class="quick_action_bar__backdrop">
+    <div data-v-c2ac4e6d="" data-v-ee265e08="" class="flexbox quick_action_bar__input">
+      <!-- @slot Slot com o conteúdo interno do FlexBox --><svg data-v-ee265e08="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="search-outline" role="presentation" class="quick_action_bar__search-icon">
+        <g fill="currentColor"></g>
+      </svg><input data-v-ee265e08="" type="text" placeholder="Buscar por nome, CPF ou CNS...">
       <!--v-if-->
     </div>
-    <div data-v-c2ac4e6d=\\"\\" data-v-ee265e08=\\"\\" class=\\"flexbox quick_action_bar__results\\" id=\\"contentResults\\">
+    <div data-v-c2ac4e6d="" data-v-ee265e08="" class="flexbox quick_action_bar__results" id="contentResults">
       <!-- @slot Slot com o conteúdo interno do FlexBox -->
-      <div data-v-c2ac4e6d=\\"\\" data-v-ee265e08=\\"\\" class=\\"flexbox quick_action_bar__result-item\\">
+      <div data-v-c2ac4e6d="" data-v-ee265e08="" class="flexbox quick_action_bar__result-item">
         <!-- @slot Slot com o conteúdo interno do FlexBox -->
         <!--
 						@slot Slot usado para renderizar itens personalizados para os itens recentes. Dados do item podem ser acessados através da propriedade \`recentItem\`.
 					-->
-        <div data-v-c2ac4e6d=\\"\\" data-v-ee265e08=\\"\\" class=\\"flexbox\\">
+        <div data-v-c2ac4e6d="" data-v-ee265e08="" class="flexbox">
           <!-- @slot Slot com o conteúdo interno do FlexBox -->
-          <div data-v-c2ac4e6d=\\"\\" data-v-ee265e08=\\"\\" class=\\"flexbox\\">
-            <!-- @slot Slot com o conteúdo interno do FlexBox --><svg data-v-ee265e08=\\"\\" xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20\\" height=\\"20\\" viewBox=\\"0 0 24 24\\" aria-labelledby=\\"history-outline\\" role=\\"presentation\\">
-              <g fill=\\"#52616F\\"></g>
-            </svg><span data-v-ee265e08=\\"\\">coração</span>
-          </div><svg data-v-ee265e08=\\"\\" xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20\\" height=\\"20\\" viewBox=\\"0 0 24 24\\" aria-labelledby=\\"trash-outline\\" role=\\"presentation\\" class=\\"quick_action_bar__remove-recent-icon\\">
-            <g fill=\\"#52616F\\"></g>
+          <div data-v-c2ac4e6d="" data-v-ee265e08="" class="flexbox">
+            <!-- @slot Slot com o conteúdo interno do FlexBox --><svg data-v-ee265e08="" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="history-outline" role="presentation">
+              <g fill="#52616F"></g>
+            </svg><span data-v-ee265e08="">coração</span>
+          </div><svg data-v-ee265e08="" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="trash-outline" role="presentation" class="quick_action_bar__remove-recent-icon">
+            <g fill="#52616F"></g>
           </svg>
         </div>
       </div>
-      <div data-v-c2ac4e6d=\\"\\" data-v-ee265e08=\\"\\" class=\\"flexbox quick_action_bar__result-item\\">
+      <div data-v-c2ac4e6d="" data-v-ee265e08="" class="flexbox quick_action_bar__result-item">
         <!-- @slot Slot com o conteúdo interno do FlexBox -->
         <!--
 						@slot Slot usado para renderizar itens personalizados para os itens recentes. Dados do item podem ser acessados através da propriedade \`recentItem\`.
 					-->
-        <div data-v-c2ac4e6d=\\"\\" data-v-ee265e08=\\"\\" class=\\"flexbox\\">
+        <div data-v-c2ac4e6d="" data-v-ee265e08="" class="flexbox">
           <!-- @slot Slot com o conteúdo interno do FlexBox -->
-          <div data-v-c2ac4e6d=\\"\\" data-v-ee265e08=\\"\\" class=\\"flexbox\\">
-            <!-- @slot Slot com o conteúdo interno do FlexBox --><svg data-v-ee265e08=\\"\\" xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20\\" height=\\"20\\" viewBox=\\"0 0 24 24\\" aria-labelledby=\\"history-outline\\" role=\\"presentation\\">
-              <g fill=\\"#52616F\\"></g>
-            </svg><span data-v-ee265e08=\\"\\">Carlota Oliveira</span>
-          </div><svg data-v-ee265e08=\\"\\" xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20\\" height=\\"20\\" viewBox=\\"0 0 24 24\\" aria-labelledby=\\"trash-outline\\" role=\\"presentation\\" class=\\"quick_action_bar__remove-recent-icon\\">
-            <g fill=\\"#52616F\\"></g>
+          <div data-v-c2ac4e6d="" data-v-ee265e08="" class="flexbox">
+            <!-- @slot Slot com o conteúdo interno do FlexBox --><svg data-v-ee265e08="" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="history-outline" role="presentation">
+              <g fill="#52616F"></g>
+            </svg><span data-v-ee265e08="">Carlota Oliveira</span>
+          </div><svg data-v-ee265e08="" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="trash-outline" role="presentation" class="quick_action_bar__remove-recent-icon">
+            <g fill="#52616F"></g>
           </svg>
         </div>
       </div>
