@@ -1,14 +1,14 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`CalloutCard > renders correctly 1`] = `
-"<span id=\\"callout-card\\"><div class=\\"callout-card__container\\"><div class=\\"image__container\\"><img class=\\"image__content\\" src=\\"https://cdn-icons-png.flaticon.com/512/7486/7486747.png\\" alt=\\"Imagem de CalloutCard\\"></div><div class=\\"content__container\\"><div class=\\"content\\"><p class=\\"content__title\\">Título do CalloutCard</p><span class=\\"content__text\\"><!-- @slot Slot usado para inserção de conteúdo customizado no texto. -->Texto do CalloutCar</span></div>
+"<span id="callout-card"><div class="callout-card__container"><div class="image__container"><img class="image__content" src="https://cdn-icons-png.flaticon.com/512/7486/7486747.png" alt="Imagem de CalloutCard"></div><div class="content__container"><div class="content"><p class="content__title">Título do CalloutCard</p><span class="content__text"><!-- @slot Slot usado para inserção de conteúdo customizado no texto. -->Texto do CalloutCar</span></div>
 <div>
   <!-- @slot Slot usado para inserção de conteúdo customizado no lugar do botão de ação. -->
   <!--
 							Evento que indica que o Botão foi clicado
 							@event action-button-click
 							@type {Event}
-						--><button data-v-3c9d0845=\\"\\" class=\\"button__container button--green--active button-size--md\\" id=\\"content-button\\">
+						--><button data-v-3c9d0845="" class="button__container button--green--active button-size--md" id="content-button">
     <!--v-if-->
     <!-- @slot Slot padrão utilizado para exibir texto do botão. -->Ok
   </button>

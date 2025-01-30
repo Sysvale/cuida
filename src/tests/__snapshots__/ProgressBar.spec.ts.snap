@@ -1,10 +1,10 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`ProgressBar > renders correctly 1`] = `
-"<div data-v-84df1bb9=\\"\\" class=\\"progress-bar\\" percentage=\\"0.67\\">
+"<div data-v-84df1bb9="" class="progress-bar">
   <!--v-if-->
-  <div data-v-84df1bb9=\\"\\" class=\\"progress-bar__content\\">
-    <div data-v-84df1bb9=\\"\\" class=\\"progress-bar__indicator--green\\" style=\\"--width: 0%; --leftMargin: 10; --bottomMargin: 2;\\"></div>
+  <div data-v-84df1bb9="" class="progress-bar__content">
+    <div data-v-84df1bb9="" class="progress-bar__indicator--green" style="--width: 67%; --leftMargin: 10; --bottomMargin: 2;"></div>
   </div>
 </div>"
 `;

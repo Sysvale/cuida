@@ -1,28 +1,28 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Card snapshot test > renders correctly 1`] = `
-"<div data-v-f9290560=\\"\\" data-v-c6c3362a=\\"\\" class=\\"box--gray\\">
+"<div data-v-f9290560="" data-v-c6c3362a="" class="box--gray">
   <!--
 		Evento emitido quando o wrapper é clicado
 		@event cds-click
 		@type {Event}
 	-->
-  <div data-v-f9290560=\\"\\" class=\\"clickable__container--not-clickable box__container\\">
+  <div data-v-f9290560="" class="clickable__container--not-clickable box__container">
     <!-- @slot Slot utilizado para renderização do conteúdo interno do Box.-->
-    <div data-v-9cc3ee57=\\"\\" data-v-f9290560=\\"\\" class=\\"spacer\\">
-      <div data-v-c6c3362a=\\"\\" class=\\"card__extra-container\\">
-        <div data-v-c6c3362a=\\"\\" class=\\"card__extra\\">
+    <div data-v-9cc3ee57="" data-v-f9290560="" class="spacer">
+      <div data-v-c6c3362a="" class="card__extra-container">
+        <div data-v-c6c3362a="" class="card__extra">
           <!-- @slot Slot para incluir conteúdo adicional no canto superior direito do card.-->
         </div>
       </div>
-      <div data-v-c6c3362a=\\"\\" class=\\"\\">
+      <div data-v-c6c3362a="" class="">
         <!--v-if-->
-        <div data-v-c6c3362a=\\"\\" class=\\"card__spacer\\">
-          <div data-v-c6c3362a=\\"\\">
-            <p data-v-c6c3362a=\\"\\" class=\\"card__header\\">Card Title</p>
+        <div data-v-c6c3362a="" class="card__spacer">
+          <div data-v-c6c3362a="">
+            <p data-v-c6c3362a="" class="card__header">Card Title</p>
           </div>
-          <div data-v-c6c3362a=\\"\\">
-            <p data-v-c6c3362a=\\"\\" class=\\"card__body\\">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <div data-v-c6c3362a="">
+            <p data-v-c6c3362a="" class="card__body">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           </div>
           <!--v-if-->
         </div>
