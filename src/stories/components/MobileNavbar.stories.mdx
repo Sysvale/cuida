@@ -5,6 +5,23 @@ import MobileNavbar from '../../components/MobileNavbar.vue';
 	title="Componentes/Navegação/MobileNavbar"
 	component={ MobileNavbar }
 	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'blue',
+					'green',
+					'indigo',
+					'pink',
+					'purple',
+					'red',
+					'teal',
+					'violet',
+					'yellow',
+					'gray',
+				],
+			}
+		},
 	}}
 	parameters={{
 		viewMode: 'docs',
@@ -33,7 +50,7 @@ export const Template = (args) => ({
 			/>
 			<cds-mobile-navbar
 				style="position: absolute; bottom: 0; left: 0; width: 100%;"
-				v-bind="args" 
+				v-bind="args"
 			/>
 		</div>
 	`,
@@ -61,6 +78,14 @@ export const Template = (args) => ({
 <Canvas>
 	<Story
 		name="MobileNavbar"
+		args={{
+			items: [
+				{ icon: 'home-outline', label: 'Início', route: { name: 'Google', path: 'www.google.com' } },
+				{ icon: 'search-outline', label: 'Busca', route: { name: 'Google', path: 'www.google.com' }  },
+				{ icon: 'notification-bell-outline', label: 'Notificações', route: { name: 'Google', path: 'www.google.com' }  },
+				{ icon: 'user-outline', label: 'Perfil', route: { name: 'Google', path: 'www.google.com' }  },
+			],
+		}}
 	>
 		{ Template.bind({}) }
 	</Story>
