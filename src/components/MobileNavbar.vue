@@ -1,19 +1,19 @@
 <template>
 	<div class="mobile-navbar">
 		<div class="mobile-navbar__items">
-			<div
+			<router-link
 				v-for="(item, index) in items"
 				:key="item"
-				class="mobile-navbar__item"
-				:class="{
-					'mobile-navbar__item--active': activeItem?.label === item.label,
-					[`mobile-navbar__item--active--${variant}`]: activeItem?.label === item.label,
-				}"
+				class="mobile-navbar__item-link"
+				:to="routerPushTo(item)"
+				@click="onItemClick(item, index)"
 			>
-				<router-link
-					class="mobile-navbar__item-link"
-					:to="routerPushTo(item)"
-					@click="onItemClick(item, index)"
+				<div
+					class="mobile-navbar__item"
+					:class="{
+						'mobile-navbar__item--active': activeItem?.label === item.label,
+						[`mobile-navbar__item--active--${variant}`]: activeItem?.label === item.label,
+					}"
 				>
 					<icon
 						height="20"
@@ -24,8 +24,8 @@
 					<div class="mobile-navbar__item-text">
 						{{ item.label }}
 					</div>
-				</router-link>
-			</div>
+				</div>
+			</router-link>
 
 			<div
 				class="mobile-navbar__indicator"
@@ -123,7 +123,6 @@ function onItemClick(item, index) {
 		min-width: 0;
 		height: 100%;
 		padding: pYX(3, 1);
-		cursor: pointer;
 		position: relative;
 		color: $n-600;
 		z-index: 1;
@@ -142,6 +141,7 @@ function onItemClick(item, index) {
 		gap: spacer(1);
 		align-items: center;
 		justify-content: center;
+		cursor: pointer;
 	}
 
 	&__item-text {
