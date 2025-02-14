@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BaseInput > renders correctly 1`] = `
+"<div data-v-82c69faf=""><label data-v-82c69faf="" class="base-input__label" for="cds-base-input-e050d62c-36bf-4e3c-8b88-4bf0dd6860ce"><span data-v-82c69faf="" class="label__content">Label <!--v-if--><!--v-if--></span>
+    <!--v-if-->
+  </label>
+  <div data-v-82c69faf="" class="base-input base-input--default">
+    <!--v-if--><input data-v-82c69faf="" id="cds-base-input-e050d62c-36bf-4e3c-8b88-4bf0dd6860ce" placeholder="Digite aqui..." class="base-input__field" type="text">
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+  <!--v-if-->
+  <!--v-if-->
+</div>"
+`;
