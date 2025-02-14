@@ -1,5 +1,5 @@
 @mixin label {
-	@include caption;
+	font-size: 14px;
 	font-weight: $font-weight-semibold;
 	color: $n-700;
 	display: block;
