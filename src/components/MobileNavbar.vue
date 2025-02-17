@@ -28,8 +28,7 @@
 			</router-link>
 
 			<div
-				class="mobile-navbar__indicator"
-				:class="`mobile-navbar__indicator--${variant}`"
+				:class="computedClass"
 				:style="indicatorStyle"
 			/>
 		</div>
@@ -72,6 +71,24 @@ const indicatorStyle = computed(() => {
 		width: `${itemWidth}%`,
 		transform: `translateX(${activeIndex.value * 100}%)`,
 	};
+});
+
+const computedClass = computed(() => {
+	let classString = '';
+
+	switch (activeIndex.value) {
+		case 0:
+			classString += `mobile-navbar__indicator--first `;
+			break;
+		case props.items.length - 1:
+			classString += `mobile-navbar__indicator--last `;
+			break;
+		default:
+			classString += `mobile-navbar__indicator `;
+			break;
+	}
+
+	return classString.concat(`mobile-navbar__indicator--${props.variant}`);
 });
 
 function routerPushTo(item) {
@@ -122,7 +139,7 @@ function onItemClick(item, index) {
 		flex: 1;
 		min-width: 0;
 		height: 100%;
-		padding: pYX(3, 1);
+		padding: pYX(2, 1);
 		position: relative;
 		color: $n-600;
 		z-index: 1;
@@ -159,10 +176,21 @@ function onItemClick(item, index) {
 		top: 0;
 		left: 0;
 		height: 100%;
-		background-color: rgba(#fff, .65);
 		transition: transform 0.3s ease;
+		border-radius: 8px 8px 0 0;
+
+		&--first {
+			@extend .mobile-navbar__indicator;
+			border-radius: 0 8px 0 0;
+		}
+
+		&--last {
+			@extend .mobile-navbar__indicator;
+			border-radius: 8px 0 0 0;
+		}
 
 		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+			background-color: $shade-50;
 			color: $shade-500;
 		}
 
