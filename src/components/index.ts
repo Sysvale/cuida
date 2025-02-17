@@ -53,6 +53,7 @@ import InlineDateInput from './InlineDateInput.vue';
 import Link from './Link.vue';
 import LoadingBar from './LoadingBar.vue';
 import LoadingIndicator from './LoadingIndicator.vue';
+import MobileNavbar from './MobileNavbar.vue';
 import MobileNavigation from './MobileNavigation.vue';
 import Modal from './Modal.vue';
 import Multiselect from './Multiselect.vue';
@@ -168,6 +169,7 @@ export default {
 		app.component('CdsInlineDateInput', InlineDateInput);
 		app.component('CdsLoadingBar', LoadingBar);
 		app.component('CdsLoadingIndicator', LoadingIndicator);
+		app.component('CdsMobileNavbar', MobileNavbar);
 		app.component('CdsMobileNavigation', MobileNavigation);
 		app.component('CdsModal', Modal);
 		app.component('CdsMultiselect', Multiselect);
