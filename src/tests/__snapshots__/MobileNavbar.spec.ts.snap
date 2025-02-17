@@ -7,7 +7,7 @@ exports[`MobileNavbar > renders correctly 1`] = `
     <router-link-stub data-v-659a37c0="" class="mobile-navbar__item-link" to="[object Object]"></router-link-stub>
     <router-link-stub data-v-659a37c0="" class="mobile-navbar__item-link" to="[object Object]"></router-link-stub>
     <router-link-stub data-v-659a37c0="" class="mobile-navbar__item-link" to="[object Object]"></router-link-stub>
-    <div data-v-659a37c0="" class="mobile-navbar__indicator mobile-navbar__indicator--blue" style="width: 25%; transform: translateX(0%);"></div>
+    <div data-v-659a37c0="" class="mobile-navbar__indicator--first mobile-navbar__indicator--blue" style="width: 25%; transform: translateX(0%);"></div>
   </div>
 </div>"
 `;
