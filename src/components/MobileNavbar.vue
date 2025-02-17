@@ -84,21 +84,21 @@ const indicatorStyle = computed(() => {
 });
 
 const computedClass = computed(() => {
-	let classString = '';
+	let stringona = '';
 
 	switch (activeIndex.value) {
 		case 0:
-			classString += `mobile-navbar__indicator--first `;
+			stringona += `mobile-navbar__indicator--first `;
 			break;
 		case props.items.length - 1:
-			classString += `mobile-navbar__indicator--last `;
+			stringona += `mobile-navbar__indicator--last `;
 			break;
 		default:
-			classString += `mobile-navbar__indicator `;
+			stringona += `mobile-navbar__indicator `;
 			break;
 	}
 
-	return classString.concat(`mobile-navbar__indicator--${props.variant}`);
+	return stringona.concat(`mobile-navbar__indicator--${props.variant}`);
 });
 
 function routerPushTo(item) {
