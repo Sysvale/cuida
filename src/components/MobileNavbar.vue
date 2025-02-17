@@ -121,6 +121,7 @@ function onItemClick(item, index) {
 @import '../assets/sass/tokens.scss';
 
 .mobile-navbar {
+	position: absolute;
 	bottom: 0;
 	left: 0;
 	width: 100%;
