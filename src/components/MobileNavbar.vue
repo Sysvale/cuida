@@ -21,7 +21,10 @@
 						:name="item.icon"
 					/>
 
-					<div class="mobile-navbar__item-text">
+					<div
+						v-if="!noLabel"
+						class="mobile-navbar__item-text"
+					>
 						{{ item.label }}
 					</div>
 				</div>
@@ -57,6 +60,13 @@ const props = defineProps({
 	variant: {
 		type: String,
 		default: 'blue',
+	},
+	/**
+	 * Remove as labels dos itens da navbar.
+	 */
+	noLabel: {
+		type: Boolean,
+		default: true,
 	},
 });
 
@@ -139,6 +149,7 @@ function onItemClick(item, index) {
 		flex: 1;
 		min-width: 0;
 		height: 100%;
+		min-height: 45px;
 		padding: pYX(2, 1);
 		position: relative;
 		color: $n-600;
