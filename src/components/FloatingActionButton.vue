@@ -1,20 +1,31 @@
 <template>
 	<div class="floating-action-button__container">
-		<div
-			v-for="subitem in 3"
-			:key="subitem"
-			class="floating-action-button__subitem"
+		<template
+			v-if="showSubitems"
 		>
-			<icon
-				name="home-outline"
-				height="32"
-				width="32"
-			/>
-		</div>
+			<div
+				v-for="subitem in 3"
+				:key="subitem"
+				class="floating-action-button__subitem-container"
+			>
+				<div class="floating-action-button__subitem-label">
+					Escrever mensagem
+				</div>
+
+				<div class="floating-action-button__subitem">
+					<icon
+						name="home-outline"
+						height="32"
+						width="32"
+					/>
+				</div>
+			</div>
+		</template>
 
 		<div
 			class="floating-action-button__main-button"
 			:class="`floating-action-button__main-button--${variant}`"
+			@click="showSubitems = !showSubitems"
 		>
 			<icon
 				:name="icon"
@@ -26,6 +37,7 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import Icon from '../components/Icon.vue';
 
 const props = defineProps({
@@ -44,7 +56,13 @@ const props = defineProps({
 		type: String,
 		default: 'plus-outline',
 	},
+	subitems: {
+		type: Array,
+		default: () => [],
+	},
 });
+
+const showSubitems = ref(false);
 
 </script>
 
@@ -60,7 +78,7 @@ const props = defineProps({
 		margin: 0 16px 20px 0;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
+		align-items: end;
 		gap: spacer(3);
 	}
 
@@ -98,6 +116,35 @@ const props = defineProps({
 		&:active::before {
 			opacity: 1;
 		}
+	}
+
+	&__subitem-container {
+		display: flex;
+		align-items: flex-start;
+		gap: spacer(1);
+		margin: mr(2);
+		animation: slide-in 0.5s ease-in-out forwards;
+	}
+
+	@keyframes slide-in {
+		0% {
+			transform: translateY(30px);
+			opacity: 0;
+		}
+		100% {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+
+	&__subitem-label {
+		font-size: 9.5px;
+		font-weight: $font-weight-semibold;
+		margin-top: 2px;
+		padding: pYX(1, 2);
+		color: $n-0;
+		background-color: rgba(black, 0.4);
+		border-radius: $border-radius-lil;
 	}
 
 	&__subitem {
