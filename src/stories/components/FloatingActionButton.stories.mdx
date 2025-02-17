@@ -1,9 +1,9 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
-import FloatingButton from '../../components/FloatingActionButton.vue';
+import FloatingActionButton from '../../components/FloatingActionButton.vue';
 
 <Meta
-	title="Componentes/Forms/FloatingButton"
-	component={ FloatingButton }
+	title="Componentes/Forms/FloatingActionButton"
+	component={ FloatingActionButton }
 	argTypes={{
 		variant: {
 			control:{
@@ -31,25 +31,24 @@ import FloatingButton from '../../components/FloatingActionButton.vue';
 				language: 'html',
 				format:true,
 				code: /*html*/ 
-`<cds-mobile-navbar />`
+`<cds-floating-action-button />`
 			},
 		}
 	}}
 />
 
 export const Template = (args) => ({
-	components: { CdsMobileNavbar: MobileNavbar },
+	components: { CdsFloatingActionButton: FloatingActionButton },
 	setup() {
 		return { args };
 	},
 	template: /*html*/ `
 		<div style="position: relative">
 			<img
-				src="https://images.unsplash.com/photo-1705437917228-3f971a25de6a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+				src="https://images.unsplash.com/photo-1488342994276-7c3bc0742042?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 				style="width: 100%; height: 100%;"
 			/>
-			<cds-floating-button
-				style="position: absolute; bottom: 0; left: 0; width: 100%;"
+			<cds-floating-action-button
 				v-bind="args"
 			/>
 		</div>
@@ -79,18 +78,11 @@ export const Template = (args) => ({
 
 <Canvas>
 	<Story
-		name="MobileNavbar"
-		args={{
-			items: [
-				{ icon: 'home-outline', label: 'Início', route: { name: 'Google', path: 'www.google.com' } },
-				{ icon: 'search-outline', label: 'Busca', route: { name: 'Google', path: 'www.google.com' }  },
-				{ icon: 'notification-bell-outline', label: 'Notificações', route: { name: 'Google', path: 'www.google.com' }  },
-				{ icon: 'user-outline', label: 'Perfil', route: { name: 'Google', path: 'www.google.com' }  },
-			],
-		}}
+		name="FloatingActionButton"
+		args={{}}
 	>
 		{ Template.bind({}) }
 	</Story>
 </Canvas>
 
-<ArgsTable story="MobileNavbar" />
+<ArgsTable story="FloatingActionButton" />
