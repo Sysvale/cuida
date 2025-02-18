@@ -14,7 +14,7 @@ import Icon from '../../components/Icon.vue';
 				format:true,
 				code: /*html*/ `
 <cds-top-app-ba
-	title="Titulo legal"
+	title="Título legal"
 	show-menu-icon
 />`
 			},
@@ -35,7 +35,7 @@ export const Template = (args) => ({
 			/>
 			<cds-top-app-bar
 				v-bind="args"
-				title="Titulo"
+				title="Título"
 				show-menu-icon
 				@on-menu-click="console.log('Clique no menu!')"
 			>
@@ -73,7 +73,7 @@ export const Template = (args) => ({
 	<Story
 		name="TopAppBar"
 		args={{
-			title: 'Titulo bacana',
+			title: 'Título bacana',
 		}}
 	>
 		{ Template.bind({}) }

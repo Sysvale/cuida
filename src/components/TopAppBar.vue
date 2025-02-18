@@ -63,7 +63,7 @@ const props = defineProps({
 	},
 
 	/**
-	 * URL da imagem do logo. Quando definida o titulo será substituído pela logo
+	 * URL da imagem do logo. Quando definida o título será substituído pela logo
 	 */
 	logoUrl: {
 		type: String,
@@ -131,7 +131,6 @@ function handleRouterBack() {
     align-items: center;
     backdrop-filter: blur(10px);
     background-color: rgba($n-0, .85);
-    background: $n-50;
     color: $n-700;
     display: flex;
     height: 74px;
