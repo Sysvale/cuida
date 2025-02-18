@@ -9,14 +9,20 @@ import CdsRequiredIndicator from '../components/RequiredIndicator.vue';
 describe('BaseMobileInput', () => {
 	test('renders correctly', () => {
 		const wrapper = mount(BaseMobileInput, {
-			props: {}
+			props: {
+				id: 'base-mobile-input',
+			}
 		});
 
 		expect(wrapper.html()).toMatchSnapshot();
 	});
 
 	test('renders correctly with default props', () => {
-		const wrapper = mount(BaseMobileInput);
+		const wrapper = mount(BaseMobileInput, {
+			props: {
+				id: 'base-mobile-input',
+			}
+		});
 		expect(wrapper.find('input').exists()).toBe(true);
 		expect(wrapper.find('label').text()).toBe('Nome');
 	});
@@ -24,6 +30,7 @@ describe('BaseMobileInput', () => {
 	test('renders with a required indicator', () => {
 		const wrapper = mount(BaseMobileInput, {
 			props: {
+				id: 'base-mobile-input',
 				required: true,
 			},
 		});
@@ -33,6 +40,7 @@ describe('BaseMobileInput', () => {
 	test('renders with disabled attribute when disabled prop is true', () => {
 		const wrapper = mount(BaseMobileInput, {
 			props: {
+				id: 'base-mobile-input',
 				disabled: true,
 			},
 		});
@@ -44,6 +52,7 @@ describe('BaseMobileInput', () => {
 	test('does not render with disabled attribute when disabled prop is false', () => {
 		const wrapper = mount(BaseMobileInput, {
 			props: {
+				id: 'base-mobile-input',
 				disabled: false,
 			},
 		});
@@ -55,6 +64,7 @@ describe('BaseMobileInput', () => {
 	test('does not allow input interaction when disabled is true', async () => {
 		const wrapper = mount(BaseMobileInput, {
 			props: {
+				id: 'base-mobile-input',
 				disabled: true,
 			},
 		});
@@ -72,6 +82,7 @@ describe('BaseMobileInput', () => {
 	test('applies disabled class when disabled is true', () => {
 		const wrapper = mount(BaseMobileInput, {
 			props: {
+				id: 'base-mobile-input',
 				disabled: true,
 			},
 		});
@@ -83,6 +94,7 @@ describe('BaseMobileInput', () => {
 	test('applies fluid class and styles when fluid prop is true', () => {
 		const wrapper = mount(BaseMobileInput, {
 			props: {
+				id: 'base-mobile-input',
 				fluid: true,
 			},
 		});
@@ -95,6 +107,7 @@ describe('BaseMobileInput', () => {
 	test('applies default class and styles when state is default', () => {
 		const wrapper = mount(BaseMobileInput, {
 			props: {
+				id: 'base-mobile-input',
 				state: 'default',
 			},
 		});
@@ -107,6 +120,7 @@ describe('BaseMobileInput', () => {
 	test('applies valid class and styles when state is valid', () => {
 		const wrapper = mount(BaseMobileInput, {
 			props: {
+				id: 'base-mobile-input',
 				state: 'valid',
 			},
 		});
@@ -119,6 +133,7 @@ describe('BaseMobileInput', () => {
 	test('applies invalid class and styles when state is invalid', () => {
 		const wrapper = mount(BaseMobileInput, {
 			props: {
+				id: 'base-mobile-input',
 				state: 'invalid',
 			},
 		});
@@ -131,6 +146,7 @@ describe('BaseMobileInput', () => {
 	test('renders with a custom label', () => {
 		const wrapper = mount(BaseMobileInput, {
 			props: {
+				id: 'base-mobile-input',
 				label: 'Custom Label',
 			},
 		});
@@ -140,6 +156,7 @@ describe('BaseMobileInput', () => {
 	test('renders with a leading icon', () => {
 		const wrapper = mount(BaseMobileInput, {
 			props: {
+				id: 'base-mobile-input',
 				leadingIcon: 'search-outline',
 				hasLeadingIcon: true,
 			},
@@ -151,6 +168,7 @@ describe('BaseMobileInput', () => {
 	test('renders with a trailing icon', () => {
 		const wrapper = mount(BaseMobileInput, {
 			props: {
+				id: 'base-mobile-input',
 				trailingIcon: 'calendar-outline',
 				hasTrailingIcon: true,
 			},
@@ -162,6 +180,7 @@ describe('BaseMobileInput', () => {
 	test('renders with a spinner when loading', () => {
 		const wrapper = mount(BaseMobileInput, {
 			props: {
+				id: 'base-mobile-input',
 				state: 'loading',
 			},
 		});
@@ -171,6 +190,7 @@ describe('BaseMobileInput', () => {
 	test('renders with an error message', () => {
 		const wrapper = mount(BaseMobileInput, {
 			props: {
+				id: 'base-mobile-input',
 				state: 'invalid',
 				errorMessage: 'Invalid input',
 			},
@@ -179,32 +199,52 @@ describe('BaseMobileInput', () => {
 	});
 
 	test('emits click event when clicked', async () => {
-		const wrapper = mount(BaseMobileInput);
+		const wrapper = mount(BaseMobileInput, {
+			props: {
+				id: 'base-mobile-input',
+			}
+		});
 		await wrapper.find('input').trigger('click');
 		expect(wrapper.emitted('click')).toBeTruthy();
 	});
 
 	test('emits focus event when focused', async () => {
-		const wrapper = mount(BaseMobileInput);
+		const wrapper = mount(BaseMobileInput, {
+			props: {
+				id: 'base-mobile-input',
+			}
+		});
 		await wrapper.find('input').trigger('focus');
 		expect(wrapper.emitted('focus')).toBeTruthy();
 	});
 
 	test('emits blur event when blurred', async () => {
-		const wrapper = mount(BaseMobileInput);
+		const wrapper = mount(BaseMobileInput, {
+			props: {
+				id: 'base-mobile-input',
+			}
+		});
 		await wrapper.find('input').trigger('blur');
 		expect(wrapper.emitted('blur')).toBeTruthy();
 	});
 
 	test('updates the model value when input changes', async () => {
-		const wrapper = mount(BaseMobileInput);
+		const wrapper = mount(BaseMobileInput, {
+			props: {
+				id: 'base-mobile-input',
+			}
+		});
 		const input = wrapper.find('input');
 		await input.setValue('new value');
 		expect(wrapper.vm.internalValue).toBe('new value');
 	});
 
 	test('emits keydown event when a key is pressed', async () => {
-		const wrapper = mount(BaseMobileInput);
+		const wrapper = mount(BaseMobileInput, {
+			props: {
+				id: 'base-mobile-input',
+			}
+		});
 
 		const input = wrapper.find('input');
 
@@ -215,7 +255,11 @@ describe('BaseMobileInput', () => {
 	});
 
 	test('emits keydown event with correct key data', async () => {
-		const wrapper = mount(BaseMobileInput);
+		const wrapper = mount(BaseMobileInput, {
+			props: {
+				id: 'base-mobile-input',
+			}
+		});
 
 		const input = wrapper.find('input');
 
@@ -227,6 +271,7 @@ describe('BaseMobileInput', () => {
 	test('renders with a support link', () => {
 		const wrapper = mount(BaseMobileInput, {
 			props: {
+				id: 'base-mobile-input',
 				supportLink: 'Support Link',
 				supportLinkUrl: 'https://example.com',
 			},
