@@ -1,20 +1,21 @@
 <template>
 	<div class="floating-action-button__container">
 		<template
-			v-if="showSubitems"
+			v-if="showSubItems"
 		>
 			<div
-				v-for="subitem in 3"
-				:key="subitem"
+				v-for="subItem in subItems"
+				:key="subItem"
 				class="floating-action-button__subitem-container"
+				@click="onSubItemClick(subItem)"
 			>
 				<div class="floating-action-button__subitem-label">
-					Escrever mensagem
+					{{ subItem?.label }}
 				</div>
 
 				<div class="floating-action-button__subitem">
 					<icon
-						name="home-outline"
+						:name="subItem?.icon"
 						height="32"
 						width="32"
 					/>
@@ -25,13 +26,27 @@
 		<div
 			class="floating-action-button__main-button"
 			:class="`floating-action-button__main-button--${variant}`"
-			@click="showSubitems = !showSubitems"
+			@click="onMainButtonClick"
 		>
-			<icon
-				:name="icon"
-				height="20"
-				width="20"
-			/>
+			<transition
+				name="icon-transition"
+				mode="out-in"
+			>
+				<icon
+					v-if="showSubItems"
+					key="close-icon"
+					name="x-outline"
+					height="20"
+					width="20"
+				/>
+				<icon
+					v-else
+					key="main-icon"
+					:name="icon"
+					height="20"
+					width="20"
+				/>
+			</transition>
 		</div>
 	</div>
 </template>
@@ -56,13 +71,34 @@ const props = defineProps({
 		type: String,
 		default: 'plus-outline',
 	},
-	subitems: {
+	/**
+	 * Lista de ações do subMenu. Cada item deve conter os atributos `label` e `icon`.
+	 */
+	subItems: {
 		type: Array,
 		default: () => [],
+		validator: (value) => {
+			return value.length <= 5;
+		},
 	},
 });
 
-const showSubitems = ref(false);
+const emits = defineEmits(['main-button-click', 'sub-item-click']);
+
+const showSubItems = ref(false);
+
+function onMainButtonClick() {
+	if (props.subItems.length > 0) {
+		showSubItems.value = !showSubItems.value;
+		return;
+	}
+
+	emits('main-button-click');
+}
+
+function onSubItemClick(subItem) {
+	emits('sub-item-click', subItem);
+}
 
 </script>
 
@@ -75,7 +111,7 @@ const showSubitems = ref(false);
 		position: absolute;
 		bottom: 0;
 		right: 0;
-		margin: 0 16px 20px 0;
+		margin: 0 16px 16px 0;
 		display: flex;
 		flex-direction: column;
 		align-items: end;
@@ -85,8 +121,8 @@ const showSubitems = ref(false);
 	&__main-button {
 		position: relative;
 		border-radius: $border-radius-medium;
-		width: 50px;
-		height: 50px;
+		width: 56px;
+		height: 56px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -122,7 +158,7 @@ const showSubitems = ref(false);
 		display: flex;
 		align-items: flex-start;
 		gap: spacer(1);
-		margin: mr(2);
+		margin-right: 12px;
 		animation: slide-in 0.5s ease-in-out forwards;
 	}
 
@@ -138,7 +174,7 @@ const showSubitems = ref(false);
 	}
 
 	&__subitem-label {
-		font-size: 9.5px;
+		font-size: 10px;
 		font-weight: $font-weight-semibold;
 		margin-top: 2px;
 		padding: pYX(1, 2);
@@ -152,13 +188,13 @@ const showSubitems = ref(false);
 		border-radius: $border-radius-small;
 		width: 30px;
 		height: 30px;
-		margin: mt(n1);
+		margin-top: -2px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		padding: pa(2);
 		background-color: $n-0;
-		color: $n-800;
+		color: $n-700;
 		box-shadow: $shadow-sm;
 		cursor: pointer;
 		transition: background-color 0.2s ease;
@@ -180,6 +216,31 @@ const showSubitems = ref(false);
 			opacity: 1;
 		}
 	}
+}
+
+.icon-transition-enter-active,
+.icon-transition-leave-active {
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.icon-transition-enter-from {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.icon-transition-enter-to {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.icon-transition-leave-from {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.icon-transition-leave-to {
+    opacity: 0;
+    transform: scale(0.8);
 }
 
 </style>

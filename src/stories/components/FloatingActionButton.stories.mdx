@@ -79,7 +79,22 @@ export const Template = (args) => ({
 <Canvas>
 	<Story
 		name="FloatingActionButton"
-		args={{}}
+		args={{
+			subItems: [
+				{
+					icon: 'document-outline',
+					label: 'Documentos',
+				},
+				{
+					icon: 'home-outline',
+					label: 'Início',
+				},
+				{
+					icon: 'edit-outline',
+					label: 'Editar',
+				}
+			]
+		}}
 	>
 		{ Template.bind({}) }
 	</Story>
