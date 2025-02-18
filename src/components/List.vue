@@ -13,7 +13,10 @@
 		/>
 		<template v-else>
 			<div class="list__body">
-				<div :class="`list__title--${variant}`">
+				<div
+					class="list__title"
+					:class="`list__title--${variant}`"
+				>
 					{{ item.title }}
 				</div>
 				<div class="list__content">
@@ -112,6 +115,7 @@ function resolveListClick(item) {
 
     &__body {
 		@include caption;
+		color: $n-800;
 		padding: px(2);
 		display: flex;
 		flex-direction: column;
@@ -122,7 +126,6 @@ function resolveListClick(item) {
 
 	&__title {
 		@include body-2;
-		color: $bn-500;
 		font-weight: $font-weight-semibold;
 		display: flex;
 		gap: spacer(2);
