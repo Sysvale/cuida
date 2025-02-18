@@ -1,11 +1,11 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`BaseInput > renders correctly 1`] = `
-"<div data-v-82c69faf=""><label data-v-82c69faf="" class="base-input__label" for="cds-base-input-71520eb0-030a-4a1d-84b9-96b8b349c3db"><span data-v-82c69faf="" class="label__content">Label <!--v-if--><!--v-if--></span>
+"<div data-v-82c69faf=""><label data-v-82c69faf="" class="base-input__label" for="cds-base-input-48844072-f508-41c5-acc8-ddc391dc8efa"><span data-v-82c69faf="" class="label__content">Label <!--v-if--><!--v-if--></span>
     <!--v-if-->
   </label>
   <div data-v-82c69faf="" class="base-input base-input--default">
-    <!--v-if--><input data-v-82c69faf="" id="cds-base-input-71520eb0-030a-4a1d-84b9-96b8b349c3db" placeholder="Digite aqui..." class="base-input__field" type="text">
+    <!--v-if--><input data-v-82c69faf="" id="cds-base-input-48844072-f508-41c5-acc8-ddc391dc8efa" placeholder="Digite aqui..." class="base-input__field" type="text">
     <!--v-if-->
     <!--v-if-->
   </div>
