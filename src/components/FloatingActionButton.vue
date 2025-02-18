@@ -81,6 +81,9 @@ const props = defineProps({
 			return value.length <= 5;
 		},
 	},
+	/**
+	 * Define o tamanho do botão. São 3 variantes implementadas: 'sm', 'md' e 'lg'.
+	 */
 	size: {
 		type: String,
 		default: 'md',
