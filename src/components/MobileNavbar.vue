@@ -66,7 +66,7 @@ const props = defineProps({
 	 */
 	noLabel: {
 		type: Boolean,
-		default: true,
+		default: false,
 	},
 });
 
