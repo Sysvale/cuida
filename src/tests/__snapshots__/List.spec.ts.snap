@@ -1,0 +1,28 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`List snapshot test > renders correctly 1`] = `
+"<div data-v-b7ac1dbf="" class="list">
+  <!-- @slot Slot utilizado para renderização de conteúdo de listagem. -->
+  <div data-v-b7ac1dbf="" class="list__body">
+    <div data-v-b7ac1dbf="" class="list__title list__title--green">List Title 1</div>
+    <div data-v-b7ac1dbf="" class="list__content">Some quick example text to build on the List title and make up the bulk of the List's content.</div>
+  </div>
+  <div data-v-b7ac1dbf="" class="list__actions">
+    <div data-v-b7ac1dbf="">
+      <!-- @slot Slot utilizado para renderização de botões de ação para listagem desktop. -->
+    </div>
+  </div>
+</div>
+<div data-v-b7ac1dbf="" class="list">
+  <!-- @slot Slot utilizado para renderização de conteúdo de listagem. -->
+  <div data-v-b7ac1dbf="" class="list__body">
+    <div data-v-b7ac1dbf="" class="list__title list__title--green">List Title 2</div>
+    <div data-v-b7ac1dbf="" class="list__content">Some quick example text to build on the List title and make up the bulk of the List's content.</div>
+  </div>
+  <div data-v-b7ac1dbf="" class="list__actions">
+    <div data-v-b7ac1dbf="">
+      <!-- @slot Slot utilizado para renderização de botões de ação para listagem desktop. -->
+    </div>
+  </div>
+</div>"
+`;
