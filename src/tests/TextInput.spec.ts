@@ -6,7 +6,7 @@ describe('TextInput', () => {
 	test('renders correctly', async () => {
 		const wrapper = mount(TextInput, {
 			props: {
-				id: 'test-input',
+				id: 'text-input',
 			},
 		});
 
