@@ -39,6 +39,7 @@
 					height="20"
 					width="20"
 				/>
+
 				<icon
 					v-else
 					key="main-icon"
@@ -52,7 +53,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import Icon from '../components/Icon.vue';
 
 const props = defineProps({
@@ -81,11 +82,41 @@ const props = defineProps({
 			return value.length <= 5;
 		},
 	},
+	size: {
+		type: String,
+		default: 'md',
+	}
 });
 
 const emits = defineEmits(['main-button-click', 'sub-item-click']);
 
 const showSubItems = ref(false);
+
+const resolvedSize = computed(() => {
+	switch (props.size) {
+		case 'sm':
+			return '44px';
+		case 'md':
+			return '56px';
+		case 'lg':
+			return '60px';
+		default:
+			return '56px';
+	}
+});
+
+const resolvedSubItemsMargin = computed(() => {
+	switch (props.size) {
+		case 'sm':
+			return '6px';
+		case 'md':
+			return '12px';
+		case 'lg':
+			return '12px';
+		default:
+			return '12px';
+	}
+});
 
 function onMainButtonClick() {
 	if (props.subItems.length > 0) {
@@ -115,14 +146,14 @@ function onSubItemClick(subItem) {
 		display: flex;
 		flex-direction: column;
 		align-items: end;
-		gap: spacer(3);
+		gap: spacer(4);
 	}
 
 	&__main-button {
 		position: relative;
 		border-radius: $border-radius-medium;
-		width: 56px;
-		height: 56px;
+		width: v-bind(resolvedSize);
+		height: v-bind(resolvedSize);
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -155,10 +186,11 @@ function onSubItemClick(subItem) {
 	}
 
 	&__subitem-container {
+		position: relative;
 		display: flex;
-		align-items: flex-start;
+		align-items: center;
 		gap: spacer(1);
-		margin-right: 12px;
+		margin-right: v-bind(resolvedSubItemsMargin);
 		animation: slide-in 0.5s ease-in-out forwards;
 	}
 
@@ -176,26 +208,26 @@ function onSubItemClick(subItem) {
 	&__subitem-label {
 		font-size: 10px;
 		font-weight: $font-weight-semibold;
-		margin-top: 2px;
 		padding: pYX(1, 2);
+		margin-bottom: 3px;
 		color: $n-0;
-		background-color: rgba(black, 0.4);
+		background-color: rgba(black, 0.6);
 		border-radius: $border-radius-lil;
 	}
 
 	&__subitem {
 		position: relative;
 		border-radius: $border-radius-small;
-		width: 30px;
-		height: 30px;
-		margin-top: -2px;
+		width: 32px;
+		height: 32px;
+		margin: mt(n1);
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		padding: pa(2);
 		background-color: $n-0;
 		color: $n-700;
-		box-shadow: $shadow-sm;
+		box-shadow: $shadow-md;
 		cursor: pointer;
 		transition: background-color 0.2s ease;
 

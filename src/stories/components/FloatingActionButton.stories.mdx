@@ -22,6 +22,16 @@ import FloatingActionButton from '../../components/FloatingActionButton.vue';
 				],
 			}
 		},
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
 	}}
 	parameters={{
 		viewMode: 'docs',
@@ -45,7 +55,7 @@ export const Template = (args) => ({
 	template: /*html*/ `
 		<div style="position: relative">
 			<img
-				src="https://images.unsplash.com/photo-1739481913094-b85f7bdabf77?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+				src="https://images.unsplash.com/photo-1738526787238-96d5352c2ba9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 				style="width: 100%; height: 100%;"
 			/>
 			<cds-floating-action-button
