@@ -1,10 +1,10 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`BaseMobileInput > renders correctly 1`] = `
-"<div data-v-c2ac4e6d="" data-v-06760eb7="" class="flexbox">
+"<div data-v-c2ac4e6d="" data-v-06760eb7="" class="flexbox" id="base-mobile-input">
   <!-- @slot Slot com o conteúdo interno do FlexBox -->
   <div data-v-06760eb7="" class="base-mobile-input base-mobile-input--default">
-    <!--v-if--><label data-v-06760eb7="" class="base-mobile-input__label" for="cds-base-mobile-input-cb645e01-e0f4-4073-b0cb-05d0a088830d"><span data-v-06760eb7="" class="label__content">Nome <!--v-if--></span></label><input data-v-06760eb7="" id="cds-base-mobile-input-cb645e01-e0f4-4073-b0cb-05d0a088830d" class="base-mobile-input__field" type="text">
+    <!--v-if--><label data-v-06760eb7="" class="base-mobile-input__label" for="cds-base-mobile-input-base-mobile-input"><span data-v-06760eb7="" class="label__content">Nome <!--v-if--></span></label><input data-v-06760eb7="" id="cds-base-mobile-input-base-mobile-input" class="base-mobile-input__field" type="text">
     <!--v-if-->
     <!--v-if-->
   </div>
