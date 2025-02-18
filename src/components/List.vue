@@ -3,7 +3,7 @@
 		v-for="(item, index) in items"
 		:key="index"
 		class="list"
-		@click="resolveListClick"
+		@click="resolveListClick(item)"
 	>
 		<!-- @slot Slot utilizado para renderização de conteúdo de listagem. -->
 		<slot
