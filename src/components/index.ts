@@ -51,6 +51,7 @@ import InteractionBlockingOverlay from './InteractionBlockingOverlay.vue';
 import Image from './Image.vue';
 import InlineDateInput from './InlineDateInput.vue';
 import Link from './Link.vue';
+import List from './List.vue';
 import LoadingBar from './LoadingBar.vue';
 import LoadingIndicator from './LoadingIndicator.vue';
 import MobileNavigation from './MobileNavigation.vue';
@@ -166,6 +167,7 @@ export default {
 		app.component('CdsInteractionBlockingOverlay', InteractionBlockingOverlay);
 		app.component('CdsLineChart', LineChart);
 		app.component('CdsLink', Link);
+		app.component('CdsList', List);
 		app.component('CdsInlineDateInput', InlineDateInput);
 		app.component('CdsLoadingBar', LoadingBar);
 		app.component('CdsLoadingIndicator', LoadingIndicator);
