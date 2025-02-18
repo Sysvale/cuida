@@ -98,6 +98,7 @@ import TimeInput from './TimeInput.vue';
 import Timeline from './Timeline.vue';
 import TimelineItem from './TimelineItem.vue';
 import Tooltip from './Tooltip.vue';
+import TopAppBar from './TopAppBar.vue';
 import Truncate from './Truncate.vue';
 import PasswordInput from './PasswordInput.vue';
 import WebcamModal from './WebcamModal.vue';
@@ -213,6 +214,7 @@ export default {
 		app.component('CdsTextInput', TextInput);
 		app.component('CdsTimeInput', TimeInput);
 		app.component('CdsTooltip', Tooltip);
+		app.component('CdsTopAppBar', TopAppBar);
 		app.component('CdsTimeline', Timeline);
 		app.component('CdsTimelineItem', TimelineItem);
 		app.component('CdsTruncate', Truncate);
