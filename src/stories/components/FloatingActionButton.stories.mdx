@@ -58,8 +58,40 @@ export const Template = (args) => ({
 				src="https://images.unsplash.com/photo-1738526787238-96d5352c2ba9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 				style="width: 100%; height: 100%;"
 			/>
+			<div
+				style="position: absolute; bottom: 0; right: 0; margin-bottom: 76px;"
+			>
+				<cds-floating-action-button
+					icon="search-outline"
+					size="sm"
+					variant="white"
+					@main-button-click="console.info('Main button clicked!')"
+				/>
+			</div>
+			<cds-floating-action-button
+				icon="plus-outline"
+				size="md"
+				variant="green"
+				@main-button-click="console.info('Main button clicked!')"
+			/>
+		</div>
+	`,
+});
+
+export const TemplateSubItems = (args) => ({
+	components: { CdsFloatingActionButton: FloatingActionButton },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div style="position: relative">
+			<img
+				src="https://images.unsplash.com/photo-1738526787238-96d5352c2ba9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+				style="width: 100%; height: 100%;"
+			/>
 			<cds-floating-action-button
 				v-bind="args"
+				@sub-item-click="console.info('Sub item clicked!', $event)"
 			/>
 		</div>
 	`,
@@ -86,6 +118,8 @@ export const Template = (args) => ({
 
 ## Preview
 
+### Uso dois botões na mesma tela
+
 <Canvas>
 	<Story
 		name="FloatingActionButton"
@@ -109,5 +143,31 @@ export const Template = (args) => ({
 		{ Template.bind({}) }
 	</Story>
 </Canvas>
+
+### Uso de um botão com sub-itens
+
+<br />
+
+<Story
+	name="FloatingActionButton2"
+	args={{
+		subItems: [
+			{
+				icon: 'document-outline',
+				label: 'Documentos',
+			},
+			{
+				icon: 'home-outline',
+				label: 'Início',
+			},
+			{
+				icon: 'edit-outline',
+				label: 'Editar',
+			}
+		]
+	}}
+>
+	{ TemplateSubItems.bind({}) }
+</Story>
 
 <ArgsTable story="FloatingActionButton" />
