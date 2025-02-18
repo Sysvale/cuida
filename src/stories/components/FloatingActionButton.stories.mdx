@@ -1,5 +1,6 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import FloatingActionButton from '../../components/FloatingActionButton.vue';
+import { colorOptions } from '../../utils/constants/colors';
 
 <Meta
 	title="Componentes/Forms/FloatingActionButton"
@@ -8,18 +9,7 @@ import FloatingActionButton from '../../components/FloatingActionButton.vue';
 		variant: {
 			control:{
 				type: 'select',
-				options: [
-					'blue',
-					'green',
-					'indigo',
-					'pink',
-					'violet',
-					'red',
-					'teal',
-					'orange',
-					'yellow',
-					'gray',
-				],
+				options: colorOptions,
 			}
 		},
 		size: {
@@ -41,7 +31,27 @@ import FloatingActionButton from '../../components/FloatingActionButton.vue';
 				language: 'html',
 				format:true,
 				code: /*html*/ 
-`<cds-floating-action-button />`
+`
+<cds-floating-action-button
+	icon="plus-outline"
+	size="md"
+	variant="green"
+	:sub-items="[
+		{
+			icon: 'document-outline',
+			label: 'Documentos',
+		},
+		{
+			icon: 'home-outline',
+			label: 'Início',
+		},
+		{
+			icon: 'edit-outline',
+			label: 'Editar',
+		}
+	]"
+/>
+`
 			},
 		}
 	}}
@@ -97,28 +107,41 @@ export const TemplateSubItems = (args) => ({
 	`,
 });
 
-# MobileNavbar
+# FloatingActionButton (FAB)
 
-### MobileNavbar é uma barra de navegação móvel localizada na parte inferior da tela.
+### O FloatingActionButton é um botão que flutua sobre a interface do usuário, sempre visível, usado para promover uma ação primária ou frequente em um aplicativo.
 ---
 <br />
 
 ## Quando usar:
-- Em aplicações móveis ou responsivas que exigem uma navegação simples e acessível.
-- Quando for necessário fornecer acesso rápido a seções principais do aplicativo.
-- Para substituir navegações complexas em telas pequenas, mantendo a usabilidade.
+- Para destacar a ação principal ou mais importante em uma tela.
+- Em aplicações móveis ou responsivas onde é necessário um acesso rápido a uma funcionalidade específica.
+- Quando a interface precisa de um elemento de ação que seja altamente visível e de fácil acesso.
+- Em telas onde o espaço é limitado e um botão tradicional ocuparia muito espaço ou distrairia o usuário.
 
 <br />
 
 ## Quando não usar:
-- Em telas grandes (desktop), onde uma navbar lateral ou superior é mais apropriada.
-- Quando o número de itens de navegação é muito grande (mais de 5 itens).
+- Quando há múltiplas ações principais com a mesma importância, pois o FAB é destinado a uma única ação primária.
+- Em telas onde a ação não é crítica ou não é frequentemente utilizada pelo usuário.
+- Em interfaces que já possuem muitos elementos flutuantes ou sobrepostos, para evitar poluição visual.
+- Em telas grandes (desktop), onde um botão tradicional ou outro componente de interface pode ser mais apropriado.
 
 <br />
 
 ## Preview
 
-### Uso dois botões na mesma tela
+### Uso de dois botões na mesma tela
+
+<Canvas>
+	<Story
+		name="FloatingActionButton1"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+### Uso de um botão com sub-itens
 
 <Canvas>
 	<Story
@@ -137,37 +160,11 @@ export const TemplateSubItems = (args) => ({
 					icon: 'edit-outline',
 					label: 'Editar',
 				}
-			]
+			],
 		}}
 	>
-		{ Template.bind({}) }
+		{ TemplateSubItems.bind({}) }
 	</Story>
 </Canvas>
-
-### Uso de um botão com sub-itens
-
-<br />
-
-<Story
-	name="FloatingActionButton2"
-	args={{
-		subItems: [
-			{
-				icon: 'document-outline',
-				label: 'Documentos',
-			},
-			{
-				icon: 'home-outline',
-				label: 'Início',
-			},
-			{
-				icon: 'edit-outline',
-				label: 'Editar',
-			}
-		]
-	}}
->
-	{ TemplateSubItems.bind({}) }
-</Story>
 
 <ArgsTable story="FloatingActionButton" />
