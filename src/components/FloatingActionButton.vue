@@ -108,13 +108,13 @@ const resolvedSize = computed(() => {
 const resolvedSubItemsMargin = computed(() => {
 	switch (props.size) {
 		case 'sm':
-			return '6px';
+			return '4px';
 		case 'md':
-			return '12px';
+			return '10px';
 		case 'lg':
 			return '12px';
 		default:
-			return '12px';
+			return '10px';
 	}
 });
 
@@ -146,7 +146,7 @@ function onSubItemClick(subItem) {
 		display: flex;
 		flex-direction: column;
 		align-items: end;
-		gap: spacer(4);
+		gap: spacer(6);
 	}
 
 	&__main-button {
@@ -189,7 +189,7 @@ function onSubItemClick(subItem) {
 		position: relative;
 		display: flex;
 		align-items: center;
-		gap: spacer(1);
+		gap: 6px;
 		margin-right: v-bind(resolvedSubItemsMargin);
 		animation: slide-in 0.5s ease-in-out forwards;
 	}
@@ -206,10 +206,10 @@ function onSubItemClick(subItem) {
 	}
 
 	&__subitem-label {
-		font-size: 10px;
+		@include overline;
 		font-weight: $font-weight-semibold;
 		padding: pYX(1, 2);
-		margin-bottom: 3px;
+		margin: mb(1);
 		color: $n-0;
 		background-color: rgba(black, 0.6);
 		border-radius: $border-radius-lil;
@@ -218,9 +218,9 @@ function onSubItemClick(subItem) {
 	&__subitem {
 		position: relative;
 		border-radius: $border-radius-small;
-		width: 32px;
-		height: 32px;
-		margin: mt(n1);
+		width: 36px;
+		height: 36px;
+		margin-top: -6px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
