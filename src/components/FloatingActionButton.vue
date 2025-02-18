@@ -37,6 +37,7 @@
 					name="x-outline"
 					height="20"
 					width="20"
+					:style="{ '--rotation-direction': rotationDirection }"
 				/>
 
 				<icon
@@ -45,6 +46,7 @@
 					:name="icon"
 					height="20"
 					width="20"
+					:style="{ '--rotation-direction': rotationDirection }"
 				/>
 			</transition>
 		</div>
@@ -94,6 +96,7 @@ const emits = defineEmits(['main-button-click', 'sub-item-click']);
 
 const showSubItems = ref(false);
 const isExiting = ref(false);
+const rotationDirection = ref(-1);
 
 const resolvedSize = computed(() => {
 	switch (props.size) {
@@ -140,6 +143,7 @@ watch(showSubItems, (newVal) => {
 
 function onMainButtonClick() {
 	if (props.subItems.length > 0) {
+		rotationDirection.value = showSubItems.value ? -1 : 1;
 		showSubItems.value = !showSubItems.value;
 		return;
 	}
@@ -148,6 +152,7 @@ function onMainButtonClick() {
 }
 
 function onSubItemClick(subItem) {
+	showSubItems.value = false;
 	emits('sub-item-click', subItem);
 }
 
@@ -213,10 +218,10 @@ function onSubItemClick(subItem) {
 		gap: 6px;
 		margin-right: v-bind(resolvedSubItemsMargin);
 		z-index: $z-index-tooltip;
-		animation: slide-in 0.5s ease-in-out forwards;
+		animation: slide-in 0.3s ease-in-out forwards;
 
 		&.exiting {
-			animation: slide-out 0.5s ease-in-out forwards;
+			animation: slide-out 0.3s ease-in-out forwards;
 		}
 	}
 
@@ -232,7 +237,7 @@ function onSubItemClick(subItem) {
 	}
 
 	&__subitem-label {
-		@include overline;
+		@include caption;
 		font-weight: $font-weight-semibold;
 		padding: pYX(1, 2);
 		margin: mb(1);
@@ -278,27 +283,27 @@ function onSubItemClick(subItem) {
 
 .icon-transition-enter-active,
 .icon-transition-leave-active {
-	transition: opacity 0.15s ease, transform 0.15s ease;
+    transition: opacity 0.25s ease, rotate 0.3s ease;
 }
 
 .icon-transition-enter-from {
-	opacity: 0;
-	transform: scale(0.8);
+    opacity: 0;
+    rotate: 0deg;
 }
 
 .icon-transition-enter-to {
-	opacity: 1;
-	transform: scale(1);
+    opacity: 1;
+    rotate: 0deg;
 }
 
 .icon-transition-leave-from {
-	opacity: 1;
-	transform: scale(1);
+    opacity: 1;
+    rotate: 0deg;
 }
 
 .icon-transition-leave-to {
-	opacity: 0;
-	transform: scale(0.8);
+    opacity: 0;
+    rotate: calc(-170deg * var(--rotation-direction, 1));
 }
 
 @keyframes slide-in {
