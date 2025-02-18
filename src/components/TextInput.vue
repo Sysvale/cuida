@@ -8,7 +8,7 @@
 		:support-link="supportLink || linkText"
 		:floating-label="floatingLabel || mobile"
 		@click="emitClick"
-		@change="handleChange"
+		@change="emitChange"
 		@focus="emitFocus"
 		@blur="emitBlur"
 		@keydown="emitKeydown"
@@ -188,15 +188,8 @@ watch(model, (newValue, oldValue) => {
 }, {immediate: true});
 
 watch(internalValue, (value) => {
-	if (!props.lazy) {
-		model.value = value;
-	}
+	model.value = value;
 });
-
-function handleChange() {
-	model.value = internalValue.value;
-	emitChange();
-}
 
 /* EXPOSE */
 defineExpose({
