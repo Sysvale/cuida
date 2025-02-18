@@ -1,12 +1,11 @@
 <template>
 	<div class="floating-action-button__container">
-		<template
-			v-if="showSubItems"
-		>
+		<template v-if="showSubItems || isExiting">
 			<div
 				v-for="subItem in subItems"
 				:key="subItem"
 				class="floating-action-button__subitem-container"
+				:class="{ 'exiting': isExiting }"
 				@click="onSubItemClick(subItem)"
 			>
 				<div class="floating-action-button__subitem-label">
@@ -53,7 +52,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import Icon from '../components/Icon.vue';
 
 const props = defineProps({
@@ -91,6 +90,7 @@ const props = defineProps({
 const emits = defineEmits(['main-button-click', 'sub-item-click']);
 
 const showSubItems = ref(false);
+const isExiting = ref(false);
 
 const resolvedSize = computed(() => {
 	switch (props.size) {
@@ -115,6 +115,23 @@ const resolvedSubItemsMargin = computed(() => {
 			return '12px';
 		default:
 			return '10px';
+	}
+});
+
+const resolvedIconColor = computed(() => {
+	if (props.variant === 'white' || props.variant === 'gray') {
+		return '#3B4754';
+	}
+
+	return '#fff';
+});
+
+watch(showSubItems, (newVal) => {
+	if (!newVal) {
+		isExiting.value = true;
+		setTimeout(() => {
+			isExiting.value = false;
+		}, 500);
 	}
 });
 
@@ -147,6 +164,7 @@ function onSubItemClick(subItem) {
 		flex-direction: column;
 		align-items: end;
 		gap: spacer(6);
+		z-index: $z-index-tooltip;
 	}
 
 	&__main-button {
@@ -158,7 +176,7 @@ function onSubItemClick(subItem) {
 		align-items: center;
 		justify-content: center;
 		padding: pa(3);
-		color: $n-0;
+		color: v-bind(resolvedIconColor);
 		box-shadow: $shadow-md;
 		cursor: pointer;
 		transition: background-color 0.2s ease;
@@ -191,7 +209,12 @@ function onSubItemClick(subItem) {
 		align-items: center;
 		gap: 6px;
 		margin-right: v-bind(resolvedSubItemsMargin);
+		z-index: $z-index-tooltip;
 		animation: slide-in 0.5s ease-in-out forwards;
+
+		&.exiting {
+			animation: slide-out 0.5s ease-in-out forwards;
+		}
 	}
 
 	@keyframes slide-in {
@@ -252,27 +275,49 @@ function onSubItemClick(subItem) {
 
 .icon-transition-enter-active,
 .icon-transition-leave-active {
-    transition: opacity 0.15s ease, transform 0.15s ease;
+	transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
 .icon-transition-enter-from {
-    opacity: 0;
-    transform: scale(0.8);
+	opacity: 0;
+	transform: scale(0.8);
 }
 
 .icon-transition-enter-to {
-    opacity: 1;
-    transform: scale(1);
+	opacity: 1;
+	transform: scale(1);
 }
 
 .icon-transition-leave-from {
-    opacity: 1;
-    transform: scale(1);
+	opacity: 1;
+	transform: scale(1);
 }
 
 .icon-transition-leave-to {
-    opacity: 0;
-    transform: scale(0.8);
+	opacity: 0;
+	transform: scale(0.8);
+}
+
+@keyframes slide-in {
+	0% {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slide-out {
+	0% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(30px);
+	}
 }
 
 </style>
