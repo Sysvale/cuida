@@ -97,10 +97,10 @@ function resolveListClick(item) {
 @import '../assets/sass/tokens.scss';
 
 .list {
-    border-bottom: none;
+	border-bottom: none;
 	padding: pYX(7, 3);
-    display: flex;
-    justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 
 	&:last-child {
 		border-bottom: none;
@@ -111,12 +111,12 @@ function resolveListClick(item) {
 	}
 
     &__body {
-        @include caption;
-        padding: px(2);
-        display: flex;
-        flex-direction: column;
+		@include caption;
+		padding: px(2);
+		display: flex;
+		flex-direction: column;
 		justify-content: center;
-        gap: spacer(2);
+		gap: spacer(2);
 		width: 100%;
 	}
 
@@ -137,9 +137,9 @@ function resolveListClick(item) {
 	}
 
     &__actions {
-        justify-self: flex-end;
-        align-self: center;
-        margin: mr(3);
+		justify-self: flex-end;
+		align-self: center;
+		margin: mr(3);
 		color: $n-700;
 		width: 170px;
     }
@@ -148,7 +148,7 @@ function resolveListClick(item) {
 @media screen and (max-width: 450px) {
 	.list {
 		padding: pYX(7, 0);
-        border-bottom: 1px solid #E7EDF3;
+		border-bottom: 1px solid #E7EDF3;
 		cursor: pointer;
 	}
 
