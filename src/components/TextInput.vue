@@ -22,7 +22,6 @@ import {
 	nativeEmits,
 } from '../utils/composables/useComponentEmits.js';
 import { facade } from 'vue-input-facade';
-
 import CdsBaseInput from './BaseInput.vue';
 
 const vFacade = facade;
@@ -198,4 +197,14 @@ function handleChange() {
 	model.value = internalValue.value;
 	emitChange();
 }
+
+/* EXPOSE */
+defineExpose({
+	componentRef: baseInputRef.value?.componentRef,
+	isFocused: baseInputRef.value?.isFocused,
+	focus: () => baseInputRef.value?.focus(),
+	blur: () => baseInputRef.value?.blur(),
+	clear: () => baseInputRef.value?.clear(),
+	select: () => baseInputRef.value?.select(),
+});
 </script>

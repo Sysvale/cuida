@@ -10,14 +10,20 @@ import CdsBaseMobileInput from '../components/BaseMobileInput.vue';
 describe('BaseInput', () => {
 	test('renders correctly', () => {
 		const wrapper = mount(BaseInput, {
-			props: {}
+			props: {
+				id: 'base-input',
+			}
 		});
 
 		expect(wrapper.html()).toMatchSnapshot();
 	});
 
 	test('renders correctly with default props', () => {
-		const wrapper = mount(BaseInput);
+		const wrapper = mount(BaseInput, {
+			props: {
+				id: 'base-input',
+			}
+		});
 		expect(wrapper.find('input').exists()).toBe(true);
 		expect(wrapper.find('label').text()).toBe('Label');
 		expect(wrapper.find('input').attributes('placeholder')).toBe('Digite aqui...');
@@ -26,6 +32,7 @@ describe('BaseInput', () => {
 	test('renders with a required indicator', () => {
 		const wrapper = mount(BaseInput, {
 			props: {
+				id: 'base-input',
 				required: true,
 			},
 		});
@@ -35,6 +42,7 @@ describe('BaseInput', () => {
 	test('renders with disabled attribute when disabled prop is true', () => {
 		const wrapper = mount(BaseInput, {
 			props: {
+				id: 'base-input',
 				disabled: true,
 			},
 		});
@@ -46,6 +54,7 @@ describe('BaseInput', () => {
 	test('does not render with disabled attribute when disabled prop is false', () => {
 		const wrapper = mount(BaseInput, {
 			props: {
+				id: 'base-input',
 				disabled: false,
 			},
 		});
@@ -57,6 +66,7 @@ describe('BaseInput', () => {
 	test('does not allow input interaction when disabled is true', async () => {
 		const wrapper = mount(BaseInput, {
 			props: {
+				id: 'base-input',
 				disabled: true,
 			},
 		});
@@ -74,6 +84,7 @@ describe('BaseInput', () => {
 	test('applies disabled class when disabled is true', () => {
 		const wrapper = mount(BaseInput, {
 			props: {
+				id: 'base-input',
 				disabled: true,
 			},
 		});
@@ -85,6 +96,7 @@ describe('BaseInput', () => {
 	test('applies fluid class and styles when fluid prop is true', () => {
 		const wrapper = mount(BaseInput, {
 			props: {
+				id: 'base-input',
 				fluid: true,
 			},
 		});
@@ -97,6 +109,7 @@ describe('BaseInput', () => {
 	test('applies default class and styles when state is default', () => {
 		const wrapper = mount(BaseInput, {
 			props: {
+				id: 'base-input',
 				state: 'default',
 			},
 		});
@@ -109,6 +122,7 @@ describe('BaseInput', () => {
 	test('applies valid class and styles when state is valid', () => {
 		const wrapper = mount(BaseInput, {
 			props: {
+				id: 'base-input',
 				state: 'valid',
 			},
 		});
@@ -121,6 +135,7 @@ describe('BaseInput', () => {
 	test('applies invalid class and styles when state is invalid', () => {
 		const wrapper = mount(BaseInput, {
 			props: {
+				id: 'base-input',
 				state: 'invalid',
 			},
 		});
@@ -133,6 +148,7 @@ describe('BaseInput', () => {
 	test('renders with a custom label', () => {
 		const wrapper = mount(BaseInput, {
 			props: {
+				id: 'base-input',
 				label: 'Custom Label',
 			},
 		});
@@ -142,6 +158,7 @@ describe('BaseInput', () => {
 	test('renders with a leading icon', () => {
 		const wrapper = mount(BaseInput, {
 			props: {
+				id: 'base-input',
 				leadingIcon: 'search-outline',
 			},
 		});
@@ -152,6 +169,7 @@ describe('BaseInput', () => {
 	test('renders with a trailing icon', () => {
 		const wrapper = mount(BaseInput, {
 			props: {
+				id: 'base-input',
 				trailingIcon: 'calendar-outline',
 			},
 		});
@@ -162,6 +180,7 @@ describe('BaseInput', () => {
 	test('renders with a spinner when loading', () => {
 		const wrapper = mount(BaseInput, {
 			props: {
+				id: 'base-input',
 				state: 'loading',
 			},
 		});
@@ -171,6 +190,7 @@ describe('BaseInput', () => {
 	test('renders with an error message', () => {
 		const wrapper = mount(BaseInput, {
 			props: {
+				id: 'base-input',
 				state: 'invalid',
 				errorMessage: 'Invalid input',
 			},
@@ -179,32 +199,52 @@ describe('BaseInput', () => {
 	});
 
 	test('emits click event when clicked', async () => {
-		const wrapper = mount(BaseInput);
+		const wrapper = mount(BaseInput, {
+			props: {
+				id: 'base-input',
+			}
+		});
 		await wrapper.find('input').trigger('click');
 		expect(wrapper.emitted('click')).toBeTruthy();
 	});
 
 	test('emits focus event when focused', async () => {
-		const wrapper = mount(BaseInput);
+		const wrapper = mount(BaseInput, {
+			props: {
+				id: 'base-input',
+			}
+		});
 		await wrapper.find('input').trigger('focus');
 		expect(wrapper.emitted('focus')).toBeTruthy();
 	});
 
 	test('emits blur event when blurred', async () => {
-		const wrapper = mount(BaseInput);
+		const wrapper = mount(BaseInput, {
+			props: {
+				id: 'base-input',
+			}
+		});
 		await wrapper.find('input').trigger('blur');
 		expect(wrapper.emitted('blur')).toBeTruthy();
 	});
 
 	test('updates the model value when input changes', async () => {
-		const wrapper = mount(BaseInput);
+		const wrapper = mount(BaseInput, {
+			props: {
+				id: 'base-input',
+			}
+		});
 		const input = wrapper.find('input');
 		await input.setValue('new value');
 		expect(wrapper.vm.internalValue).toBe('new value');
 	});
 
 	test('emits keydown event when a key is pressed', async () => {
-		const wrapper = mount(BaseInput);
+		const wrapper = mount(BaseInput, {
+			props: {
+				id: 'base-input',
+			}
+		});
 
 		const input = wrapper.find('input');
 
@@ -215,7 +255,11 @@ describe('BaseInput', () => {
 	});
 
 	test('emits keydown event with correct key data', async () => {
-		const wrapper = mount(BaseInput);
+		const wrapper = mount(BaseInput, {
+			props: {
+				id: 'base-input',
+			}
+		});
 
 		const input = wrapper.find('input');
 
@@ -227,6 +271,7 @@ describe('BaseInput', () => {
 	test('renders with a floating label when floatingLabel prop is true', () => {
 		const wrapper = mount(BaseInput, {
 			props: {
+				id: 'base-input',
 				floatingLabel: true,
 			},
 		});
@@ -236,6 +281,7 @@ describe('BaseInput', () => {
 	test('renders with a support link', () => {
 		const wrapper = mount(BaseInput, {
 			props: {
+				id: 'base-input',
 				supportLink: 'Support Link',
 				supportLinkUrl: 'https://example.com',
 			},
