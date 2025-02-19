@@ -1,5 +1,6 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import MobileNavbar from '../../components/MobileNavbar.vue';
+import { colorOptions } from '../../utils/constants/colors';
 
 <Meta
 	title="Componentes/Navegação/MobileNavbar"
@@ -8,18 +9,7 @@ import MobileNavbar from '../../components/MobileNavbar.vue';
 		variant: {
 			control:{
 				type: 'select',
-				options: [
-					'blue',
-					'green',
-					'indigo',
-					'pink',
-					'violet',
-					'red',
-					'teal',
-					'orange',
-					'yellow',
-					'gray',
-				],
+				options: colorOptions,
 			}
 		},
 	}}
