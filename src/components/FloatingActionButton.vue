@@ -1,20 +1,20 @@
 <template>
 	<div class="floating-action-button__container">
-		<template v-if="showSubItems || isExiting">
+		<template v-if="showActions || isExiting">
 			<div
-				v-for="subItem in subItems"
-				:key="subItem"
+				v-for="action in actions"
+				:key="action"
 				class="floating-action-button__subitem-container"
 				:class="{ 'exiting': isExiting }"
-				@click="onSubItemClick(subItem)"
+				@click="onSubItemClick(action)"
 			>
 				<div class="floating-action-button__subitem-label">
-					{{ subItem?.label }}
+					{{ action?.label }}
 				</div>
 
 				<div class="floating-action-button__subitem">
 					<icon
-						:name="subItem?.icon"
+						:name="action?.icon"
 						height="32"
 						width="32"
 					/>
@@ -32,7 +32,7 @@
 				mode="out-in"
 			>
 				<icon
-					v-if="showSubItems"
+					v-if="showActions"
 					key="close-icon"
 					name="x-outline"
 					height="20"
@@ -76,7 +76,7 @@ const props = defineProps({
 	/**
 	 * Lista de ações do subMenu. Cada item deve conter os atributos `label` e `icon`.
 	 */
-	subItems: {
+	actions: {
 		type: Array,
 		default: () => [],
 		validator: (value) => {
@@ -92,9 +92,9 @@ const props = defineProps({
 	}
 });
 
-const emits = defineEmits(['main-button-click', 'sub-item-click']);
+const emits = defineEmits(['main-button-click', 'action-click']);
 
-const showSubItems = ref(false);
+const showActions = ref(false);
 const isExiting = ref(false);
 const rotationDirection = ref(-1);
 
@@ -105,24 +105,37 @@ const resolvedSize = computed(() => {
 		case 'md':
 			return '56px';
 		case 'lg':
-			return '60px';
+			return '68px';
 		default:
 			return '56px';
 	}
 });
 
-const resolvedSubItemsMargin = computed(() => {
+const resolvedActionsMargin = computed(() => {
 	switch (props.size) {
 		case 'sm':
 			return '4px';
 		case 'md':
 			return '10px';
 		case 'lg':
-			return '12px';
+			return '16px';
 		default:
 			return '10px';
 	}
 });
+
+const resolvedBorderRadius = computed(() => {
+	switch (props.size) {
+		case 'sm':
+			return '12px';
+		case 'md':
+			return '16px';
+		case 'lg':
+			return '20px';
+		default:
+			return '16px';
+	}
+})
 
 const resolvedIconColor = computed(() => {
 	if (props.variant === 'white' || props.variant === 'gray') {
@@ -132,7 +145,7 @@ const resolvedIconColor = computed(() => {
 	return '#fff';
 });
 
-watch(showSubItems, (newVal) => {
+watch(showActions, (newVal) => {
 	if (!newVal) {
 		isExiting.value = true;
 		setTimeout(() => {
@@ -142,18 +155,18 @@ watch(showSubItems, (newVal) => {
 });
 
 function onMainButtonClick() {
-	if (props.subItems.length > 0) {
-		rotationDirection.value = showSubItems.value ? -1 : 1;
-		showSubItems.value = !showSubItems.value;
+	if (props.actions.length > 0) {
+		rotationDirection.value = showActions.value ? -1 : 1;
+		showActions.value = !showActions.value;
 		return;
 	}
 
 	emits('main-button-click');
 }
 
-function onSubItemClick(subItem) {
-	showSubItems.value = false;
-	emits('sub-item-click', subItem);
+function onSubItemClick(action) {
+	showActions.value = false;
+	emits('action-click', action);
 }
 
 </script>
@@ -177,7 +190,7 @@ function onSubItemClick(subItem) {
 
 	&__main-button {
 		position: relative;
-		border-radius: $border-radius-medium;
+		border-radius: v-bind(resolvedBorderRadius);
 		width: v-bind(resolvedSize);
 		height: v-bind(resolvedSize);
 		display: flex;
@@ -216,7 +229,7 @@ function onSubItemClick(subItem) {
 		display: flex;
 		align-items: center;
 		gap: 6px;
-		margin-right: v-bind(resolvedSubItemsMargin);
+		margin-right: v-bind(resolvedActionsMargin);
 		z-index: $z-index-tooltip;
 		animation: slide-in 0.3s ease-in-out forwards;
 

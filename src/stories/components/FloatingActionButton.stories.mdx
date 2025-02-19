@@ -3,7 +3,7 @@ import FloatingActionButton from '../../components/FloatingActionButton.vue';
 import { colorOptions } from '../../utils/constants/colors';
 
 <Meta
-	title="Componentes/Forms/FloatingActionButton"
+	title="Componentes/Forms/FloatingActionButton (FAB)"
 	component={ FloatingActionButton }
 	argTypes={{
 		variant: {
@@ -36,7 +36,7 @@ import { colorOptions } from '../../utils/constants/colors';
 	icon="plus-outline"
 	size="md"
 	variant="green"
-	:sub-items="[
+	:actions="[
 		{
 			icon: 'document-outline',
 			label: 'Documentos',
@@ -75,14 +75,14 @@ export const Template = (args) => ({
 					icon="search-outline"
 					size="sm"
 					variant="white"
-					@main-button-click="console.info('Main button clicked!')"
+					@main-button-click="console.info('⚡ %cMain button clicked!', 'color: rgb(37, 227, 139);');"
 				/>
 			</div>
 			<cds-floating-action-button
 				icon="plus-outline"
 				size="md"
 				variant="green"
-				@main-button-click="console.info('Main button clicked!')"
+				@main-button-click="console.info('⚡ %cMain button clicked!', 'color: rgb(37, 227, 139);');"
 			/>
 		</div>
 	`,
@@ -101,7 +101,7 @@ export const TemplateSubItems = (args) => ({
 			/>
 			<cds-floating-action-button
 				v-bind="args"
-				@sub-item-click="console.info('Sub item clicked!', $event)"
+				@action-click="console.info('Action clicked!', $event)"
 			/>
 		</div>
 	`,
@@ -147,7 +147,7 @@ export const TemplateSubItems = (args) => ({
 	<Story
 		name="FloatingActionButton"
 		args={{
-			subItems: [
+			actions: [
 				{
 					icon: 'document-outline',
 					label: 'Documentos',
@@ -161,6 +161,8 @@ export const TemplateSubItems = (args) => ({
 					label: 'Editar',
 				}
 			],
+			variant: 'green',
+			size: 'md',
 		}}
 	>
 		{ TemplateSubItems.bind({}) }
