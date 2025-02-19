@@ -439,7 +439,7 @@ watch(model, (newValue, oldValue) => {
 	}
 	
 	if (newValue === 0 || newValue === '0' || newValue === '' || newValue === null || newValue === undefined) {
-		internalValue.value = props.money ? 'R$ 0,00' : 0;
+		internalValue.value = (props.money || attrs.money) ? 'R$ 0,00' : '';
 	}
 }, { immediate: true });
 

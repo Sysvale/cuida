@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FloatingActionButton > renders correctly 1`] = `
+"<div data-v-a12b75dd="" class="floating-action-button__container" subitems="[object Object],[object Object],[object Object]">
+  <!--v-if-->
+  <div data-v-a12b75dd="" class="floating-action-button__main-button floating-action-button__main-button--green">
+    <transition-stub data-v-a12b75dd="" name="icon-transition" mode="out-in" appear="false" persisted="false" css="true"><svg data-v-a12b75dd="" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="plus-outline" role="presentation" style="--rotation-direction: -1;">
+        <g fill="currentColor"></g>
+      </svg></transition-stub>
+  </div>
+</div>"
+`;
