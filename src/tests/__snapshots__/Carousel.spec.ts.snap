@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Carousel > renders correctly 1`] = `
+"<div data-v-f2893689="" class="carousel-container">
+  <!--v-if-->
+  <div data-v-f2893689="" class="carousel">
+    <div data-v-f2893689="" class="carousel__item">
+      <!-- @slot Slot utilizado para renderização de cada item do carrossel. Os dados do escopo do slot podem ser acessados no formato a seguir: \`\`\`slot={ item, index }\`\`\` -->Texto
+    </div>
+    <div data-v-f2893689="" class="carousel__item">
+      <!-- @slot Slot utilizado para renderização de cada item do carrossel. Os dados do escopo do slot podem ser acessados no formato a seguir: \`\`\`slot={ item, index }\`\`\` -->Texto
+    </div>
+    <div data-v-f2893689="" class="carousel__item">
+      <!-- @slot Slot utilizado para renderização de cada item do carrossel. Os dados do escopo do slot podem ser acessados no formato a seguir: \`\`\`slot={ item, index }\`\`\` -->Texto
+    </div>
+    <div data-v-f2893689="" class="carousel__item">
+      <!-- @slot Slot utilizado para renderização de cada item do carrossel. Os dados do escopo do slot podem ser acessados no formato a seguir: \`\`\`slot={ item, index }\`\`\` -->Texto
+    </div>
+    <div data-v-f2893689="" class="carousel__item">
+      <!-- @slot Slot utilizado para renderização de cada item do carrossel. Os dados do escopo do slot podem ser acessados no formato a seguir: \`\`\`slot={ item, index }\`\`\` -->Texto
+    </div>
+    <div data-v-f2893689="" class="carousel__item">
+      <!-- @slot Slot utilizado para renderização de cada item do carrossel. Os dados do escopo do slot podem ser acessados no formato a seguir: \`\`\`slot={ item, index }\`\`\` -->Texto
+    </div>
+    <div data-v-f2893689="" class="carousel__item">
+      <!-- @slot Slot utilizado para renderização de cada item do carrossel. Os dados do escopo do slot podem ser acessados no formato a seguir: \`\`\`slot={ item, index }\`\`\` -->Texto
+    </div>
+  </div>
+  <!--v-if-->
+</div>"
+`;
