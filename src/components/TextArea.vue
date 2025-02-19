@@ -1,6 +1,5 @@
 <template>
 	<div>
-		{{ internalValue }}
 		<CdsBaseInput
 			ref="baseInput"
 			v-model="internalValue"

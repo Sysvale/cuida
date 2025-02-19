@@ -81,7 +81,8 @@
 					</slot>
 				</div>
 	
-				<input
+				<component
+					:is="computedInput"
 					:id="componentId"
 					ref="htmlInput"
 					v-model="internalValue"
@@ -93,7 +94,7 @@
 					@focus="handleFocus"
 					@blur="handleBlur"
 					@keydown="handleKeydown"
-				>
+				/>
 	
 				<div
 					v-if="isLoading && !disabled"
@@ -331,6 +332,18 @@ const baseInputClass = computed(() => {
 	return inputClass;
 });
 
+const computedInput = computed(() => {
+	return props.type === 'textarea' ? 'textarea' : 'input';
+});
+
+const inputHeight = computed(() => {
+	return props.type === 'textarea' ? 'auto' : '40px';
+});
+
+const inputMinHeight = computed(() => {
+	return props.type === 'textarea' ? '120px' : 'auto';
+});
+
 const hasError = computed(() => {
 	return props.state === 'invalid';
 });
@@ -499,14 +512,47 @@ defineExpose({
 	&__field {
 		padding: pTRBL(0, 2, 3, 2);
 		padding-top: 14px;
-		height: 40px !important;
+		height: v-bind(inputHeight);
+		min-height: v-bind(inputMinHeight);
 		border-radius: $border-radius-extra-small;
 		border: none;
 		text-align: start;
 		color: $n-600;
 		width: 100%;
+		resize: vertical;
 		cursor: v-bind(computedCursor);
 		background-color: transparent;
+		line-height: 1.5;
+
+		&::placeholder {
+			@extend %placeholder;
+		}
+
+		&::-webkit-scrollbar {
+			width: 12px;
+			border-radius: $border-radius-lil;
+		}
+
+		&::-webkit-scrollbar-track {
+			background: transparent;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: $n-100;
+			border-radius: $border-radius-lil;
+			border-right: 3px solid transparent;
+			border-left: 3px solid transparent;
+			background-clip: padding-box;
+		}
+		
+		&::-webkit-scrollbar-thumb:hover {
+			background: $n-200;
+			border-radius: $border-radius-lil;
+			border-right: 3px solid transparent;
+			border-left: 3px solid transparent;
+			background-clip: padding-box;
+			cursor: default;
+		}
 
 		&::placeholder {
 			@extend %placeholder;
