@@ -1,0 +1,100 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Carousel from '../../components/Carousel.vue';
+import Image from '../../components/Image.vue';
+
+<Meta
+	title="Componentes/Display/Carousel"
+	component={ Carousel }
+	argTypes={{
+		snapTo: {
+			control:{
+				type: 'select',
+				options: [
+					'start',
+					'center',
+					'end',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-floating-assistant
+	v-model="showTip"
+	targetId="floating-assistant-target"
+	title="Nova funcionalidade!"
+	url="https://medium.com/cidade-saud%C3%A1vel"
+>
+	Conteúdo a ser exibido quando o card for clicado
+</cds-floating-assistant>`
+},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsCarousel: Carousel, CdsImage: Image },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-carousel
+			v-bind="args"
+			v-slot="{ item }"
+		>
+			<cds-image :src="item" width="300" height="400" />
+		</cds-carousel>
+	`,
+	methods: {},
+});
+
+# Carousel
+
+### Floating Assistant é um componente flutuante que pode ser utilizado para fornecer dicas de usabilidade ou informações específicas sobre o conteúdo da página.
+---
+<br />
+
+## Quando usar:
+- Houver necessidade de fornecer dicas ou informações adicionais sobre um determinado elemento ou seção da página.
+- For necessário direcionar o usuário para uma página externa que contenha informações/tutoriais adicionais sobre o conteúdo.
+- O objetivo for reduzir a quantidade de informações exibidas na tela, mantendo o foco do usuário no elemento relevante.
+
+
+<br />
+
+## Quando não usar:
+- O componente se tornar intrusivo e atrapalhar a navegação e experiência do usuário.
+- Não houver espaço suficiente para exibição do componente e ele puder ser confundido com o conteúdo da página.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Carousel"
+		args={{
+			gap: 2,
+			snapTo: 'start',
+			items: [
+				'https://picsum.photos/600/800?random=1',
+				'https://picsum.photos/600/800?random=2',
+				'https://picsum.photos/600/800?random=3',
+				'https://picsum.photos/600/800?random=4',
+				'https://picsum.photos/600/800?random=5',
+				'https://picsum.photos/600/800?random=6',
+				'https://picsum.photos/600/800?random=7',
+			]
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Carousel" />
