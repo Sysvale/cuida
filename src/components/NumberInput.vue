@@ -230,37 +230,40 @@ let cdsBrlBiding = {};
 
 
 /* WATCHERS */
-watch(internalValue, (value) => {
-	let stringifiedInput = String(value);
-	if (props.money) {
-		/**
-		* Evento utilizado para implementar o v-model para atualização
-		* de valores sem máscara de dinheiro.
-		* @event update:unmaskedValue
-		* @type {Event}
-		*/
-		unmaskedValue.value = unmaskBRL(stringifiedInput);
-		/**
-		* Evento utilizado para implementar o v-model padrão do componente.
-		* @event update:modelValue
-		* @type {Event}
-		*/
-		model.value = stringifiedInput;
-	} else if (props.mask) {
-		internalValue.value = stringifiedInput;
-		model.value = stringifiedInput;
-		unmaskedValue.value = +stringifiedInput.replace(/\D/g, '');
-	} else if (stringifiedInput.length > 15) {
-		internalValue.value = +stringifiedInput.slice(0, 15);
-	} else {
-		model.value = +stringifiedInput;
-		unmaskedValue.value = +stringifiedInput;
+watch(internalValue, (value, oldValue) => {
+	if (value !== oldValue) {
+		let stringifiedInput = String(value);
+
+		if (props.money) {
+			/**
+			* Evento utilizado para implementar o v-model para atualização
+			* de valores sem máscara de dinheiro.
+			* @event update:unmaskedValue
+			* @type {Event}
+			*/
+			unmaskedValue.value = unmaskBRL(stringifiedInput);
+			/**
+			* Evento utilizado para implementar o v-model padrão do componente.
+			* @event update:modelValue
+			* @type {Event}
+			*/
+			model.value = stringifiedInput;
+		} else if (props.mask) {
+			internalValue.value = stringifiedInput;
+			model.value = stringifiedInput;
+			unmaskedValue.value = +stringifiedInput.replace(/\D/g, '');
+		} else if (stringifiedInput.length > 15) {
+			internalValue.value = +stringifiedInput.slice(0, 15);
+		} else {
+			model.value = +stringifiedInput;
+			unmaskedValue.value = +stringifiedInput;
+		}
 	}
 });
 
 /* HOOKS */
 onMounted(() => {
-	if (baseInputRef.value && baseInputRef.value.componentRef) {
+	if (props.money && baseInputRef.value && baseInputRef.value.componentRef) {
 		cdsBrlBiding =  {
 			value: model.value,
 			oldValue: '',
