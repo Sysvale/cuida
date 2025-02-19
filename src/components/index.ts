@@ -18,6 +18,7 @@ import Breadcrumb from './Breadcrumb.vue';
 import Button from './Button.vue';
 import Card from './Card.vue';
 import CalloutCard from './CalloutCard.vue';
+import Carousel from './Carousel.vue';
 import CarouselController from './CarouselController.vue';
 import Checkbox from './Checkbox.vue';
 import CheckboxGroup from './CheckboxGroup.vue';
@@ -134,6 +135,7 @@ export default {
 		app.component('CdsButton', Button);
 		app.component('CdsCard', Card);
 		app.component('CdsCalloutCard', CalloutCard);
+		app.component('CdsCarousel', Carousel);
 		app.component('CdsCarouselController', CarouselController);
 		app.component('CdsCheckbox', Checkbox);
 		app.component('CdsCheckboxGroup', CheckboxGroup);
