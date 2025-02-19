@@ -25,14 +25,21 @@ import Image from '../../components/Image.vue';
 				language: 'html',
 				format:true,
 				code: /*html*/ 
-`<cds-floating-assistant
-	v-model="showTip"
-	targetId="floating-assistant-target"
-	title="Nova funcionalidade!"
-	url="https://medium.com/cidade-saud%C3%A1vel"
+`
+<cds-carousel
+	v-slot="{ item }"
+	:items="[
+		'https://picsum.photos/600/800?random=1',
+		'https://picsum.photos/600/800?random=2',
+		'https://picsum.photos/600/800?random=3',
+		'https://picsum.photos/600/800?random=4',
+	]
+	:gap="0"
+	:snap-to="'start'"
 >
-	Conteúdo a ser exibido quando o card for clicado
-</cds-floating-assistant>`
+	<cds-image :src="item" width="300" height="400" />
+</cds-carousel>
+`
 },
 		}
 	}}
@@ -56,21 +63,27 @@ export const Template = (args) => ({
 
 # Carousel
 
-### Floating Assistant é um componente flutuante que pode ser utilizado para fornecer dicas de usabilidade ou informações específicas sobre o conteúdo da página.
+### O Carousel é um componente que permite a exibição de uma série de conteúdos (imagens, textos, cards, etc.) em um formato deslizante, em que o usuário pode navegar entre os itens de forma sequencial.
 ---
 <br />
 
 ## Quando usar:
-- Houver necessidade de fornecer dicas ou informações adicionais sobre um determinado elemento ou seção da página.
-- For necessário direcionar o usuário para uma página externa que contenha informações/tutoriais adicionais sobre o conteúdo.
-- O objetivo for reduzir a quantidade de informações exibidas na tela, mantendo o foco do usuário no elemento relevante.
-
+- Quando há necessidade de exibir vários itens (como imagens, produtos, cards informativos) em um espaço reduzido, sem sobrecarregar a interface.
+- Para destacar conteúdos importantes de forma dinâmica, como promoções, destaques ou novidades.
+- Quando a ordem de exibição dos itens é relevante e a navegação sequencial faz sentido para o contexto.
 
 <br />
 
 ## Quando não usar:
-- O componente se tornar intrusivo e atrapalhar a navegação e experiência do usuário.
-- Não houver espaço suficiente para exibição do componente e ele puder ser confundido com o conteúdo da página.
+- Quando o conteúdo for uma informação crítica e não deve ficar escondida.
+- Se a quantidade de itens for muito pequena (menos de 3), pois a navegação pode parecer desnecessária.
+- Em interfaces onde a acessibilidade é uma prioridade e o carousel pode dificultar a experiência para usuários com deficiências visuais ou motoras.
+- Quando o espaço disponível na tela é insuficiente para exibir os itens de forma clara e legível.
+
+<br />
+
+## Obs:
+- Quando o carrossel for utilizado para exibir imagens, é recomendado usar o componente `Image` em vez da tag `<img>` nativa. Isso permite que todas as funcionalidades do <b>Image</b>, como <i>dimmed</i> e <i>opacity</i>, sejam utilizadas.
 
 <br />
 
@@ -80,8 +93,6 @@ export const Template = (args) => ({
 	<Story
 		name="Carousel"
 		args={{
-			gap: 2,
-			snapTo: 'start',
 			items: [
 				'https://picsum.photos/600/800?random=1',
 				'https://picsum.photos/600/800?random=2',
@@ -90,7 +101,11 @@ export const Template = (args) => ({
 				'https://picsum.photos/600/800?random=5',
 				'https://picsum.photos/600/800?random=6',
 				'https://picsum.photos/600/800?random=7',
-			]
+			],
+			gap: 0,
+			snapTo: 'start',
+			showArrows: false,
+			darkArrows: false,
 		}}
 	>
 		{ Template.bind({}) }

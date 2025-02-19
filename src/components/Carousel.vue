@@ -1,24 +1,54 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
-	<div
-		ref="carousel"
-		class="carousel"
-		@mousedown="startDrag"
-		@mousemove="onDrag"
-		@mouseup="stopDrag"
-		@mouseleave="stopDrag"
-		@touchstart="startDrag"
-		@touchmove="onDrag"
-		@touchend="stopDrag"
-	>
+	<div class="carousel-container">
 		<div
-			v-for="(item, index) in items"
-			:key="item"
-			class="carousel__item"
+			v-if="showArrows"
+			class="carousel__arrow carousel__arrow--left"
+			:class="{ 'carousel__arrow--dark': darkArrows }"
+			@click="scrollToPrevious"
 		>
-			<slot
-				:item="item"
-				:index="index"
-				name="default"
+			<icon
+				name="arrow-left-outline"
+				width="20"
+				height="20"
+			/>
+		</div>
+
+		<div
+			ref="carousel"
+			class="carousel"
+			@mousedown="startDrag"
+			@mousemove="onDrag"
+			@mouseup="stopDrag"
+			@mouseleave="stopDrag"
+			@touchstart="startDrag"
+			@touchmove="onDrag"
+			@touchend="stopDrag"
+		>
+			<div
+				v-for="(item, index) in items"
+				:key="item"
+				class="carousel__item"
+			>
+				<!-- @slot Slot utilizado para renderização de cada item do carrossel. Os dados do escopo do slot podem ser acessados no formato a seguir: ```slot={ item, index }``` -->
+				<slot
+					:item="item"
+					:index="index"
+					name="default"
+				/>
+			</div>
+		</div>
+
+		<div
+			v-if="showArrows"
+			class="carousel__arrow carousel__arrow--right"
+			:class="{ 'carousel__arrow--dark': darkArrows }"
+			@click="scrollToNext"
+		>
+			<icon
+				name="arrow-right-outline"
+				width="20"
+				height="20"
 			/>
 		</div>
 	</div>
@@ -26,31 +56,53 @@
 
 <script setup>
 import { ref, computed } from 'vue';
+import Icon from './Icon.vue';
 
 const props = defineProps({
+	/**
+	 * Array de itens a serem exibidos no carousel.
+	 */
 	items: {
 		type: Array,
 		default: () => [],
 	},
+	/**
+	 * Define a posição em que os itens serão alinhados quando for feita a ação de rolagem no carrossel.
+	 */
 	snapTo: {
 		type: String,
 		default: 'start',
-		validator: (value) => ['start', 'center', 'end'].includes(value)
+		validator: (value) => ['start', 'center', 'end'].includes(value),
 	},
+	/**
+	 * Define o espaçamento entre os itens do carrossel.
+	 */
 	gap: {
 		type: Number,
 		default: 0,
-	}
+	},
+	/**
+	 * Controla a exibição das setas de rolagem.
+	 */
+	showArrows: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	 * Define se a cor das setas de rolagem deve ser escura.
+	 */
+	darkArrows: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const carousel = ref(null);
 let isDragging = false;
 let startX, scrollLeft;
 
-const resolvedSnap = computed(() => props.snapTo)
-const resolvedGap = computed(() => {
-	return `${props.gap * 4}px`;
-});
+const resolvedSnap = computed(() => props.snapTo);
+const resolvedGap = computed(() => `${props.gap * 4}px`);
 
 function startDrag(event) {
 	isDragging = true;
@@ -78,9 +130,34 @@ function stopDrag() {
 		carousel.value.style.scrollBehavior = 'auto';
 	}, 300);
 }
+
+function scrollToNext() {
+	const carouselElement = carousel.value;
+	const itemWidth = carouselElement.querySelector('.carousel__item').offsetWidth + props.gap * 4;
+	carouselElement.scrollBy({
+		left: itemWidth,
+		behavior: 'smooth',
+	});
+}
+
+function scrollToPrevious() {
+	const carouselElement = carousel.value;
+	const itemWidth = carouselElement.querySelector('.carousel__item').offsetWidth + props.gap * 4;
+	carouselElement.scrollBy({
+		left: -itemWidth,
+		behavior: 'smooth',
+	});
+}
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/sass/tokens.scss';
+
+.carousel-container {
+	position: relative;
+	width: 100%;
+}
+
 .carousel {
 	display: flex;
 	overflow-x: auto;
@@ -103,6 +180,40 @@ function stopDrag() {
 		flex: none;
 		scroll-snap-align: v-bind(resolvedSnap);
 	}
+
+	&__arrow {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 1000;
+		background-color: $n-0;
+		color: $n-700;
+		border-radius: 1000px;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		box-shadow: $shadow-md;
+		cursor: pointer;
+
+		&--left {
+			left: 0;
+			margin: ml(3);
+		}
+
+		&--right {
+			right: 0;
+			margin: mr(3);
+		}
+
+		&--dark {
+			background-color: $n-800;
+			opacity: 0.85;
+			color: $n-10;
+		}
+	}
+
 }
 
 </style>
