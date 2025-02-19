@@ -40,6 +40,7 @@ import FileViewer from './FileViewer.vue';
 import FilterSelect from './FilterSelect.vue';
 import FlatButton from './FlatButton.vue';
 import FloatingAssistant from './FloatingAssistant.vue';
+import FloatingActionButton from './FloatingActionButton.vue';
 import GaugeChart from './GaugeChart.vue';
 import Grid from './Grid.vue';
 import GridItem from './GridItem.vue';
@@ -157,6 +158,7 @@ export default {
 		app.component('CdsFlatButton', FlatButton);
 		app.component('CdsFlexbox', Flexbox);
 		app.component('CdsFloatingAssistant', FloatingAssistant);
+		app.component('CdsFloatingActionButton', FloatingActionButton);
 		app.component('CdsGaugeChart', GaugeChart);
 		app.component('CdsGrid', Grid);
 		app.component('CdsGridItem', GridItem);
