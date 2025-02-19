@@ -22,7 +22,7 @@
 					/>
 
 					<div
-						v-if="!noLabel"
+						v-if="showLabel"
 						class="mobile-navbar__item-text"
 					>
 						{{ item.label }}
@@ -59,12 +59,12 @@ const props = defineProps({
 	 */
 	variant: {
 		type: String,
-		default: 'blue',
+		default: 'green',
 	},
 	/**
 	 * Remove as labels dos itens da navbar.
 	 */
-	noLabel: {
+	showLabel: {
 		type: Boolean,
 		default: false,
 	},
@@ -121,6 +121,7 @@ function onItemClick(item, index) {
 @import '../assets/sass/tokens.scss';
 
 .mobile-navbar {
+	position: absolute;
 	bottom: 0;
 	left: 0;
 	width: 100%;
@@ -149,7 +150,7 @@ function onItemClick(item, index) {
 		flex: 1;
 		min-width: 0;
 		height: 100%;
-		min-height: 45px;
+		min-height: 50px;
 		padding: pYX(2, 1);
 		position: relative;
 		color: $n-600;

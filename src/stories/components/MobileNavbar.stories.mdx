@@ -21,7 +21,16 @@ import { colorOptions } from '../../utils/constants/colors';
 				language: 'html',
 				format:true,
 				code: /*html*/ 
-`<cds-mobile-navbar />`
+`<cds-mobile-navbar
+	:items=[
+		{ icon: 'home-outline', label: 'Início', route: { name: 'Google', path: 'www.google.com' } },
+		{ icon: 'search-outline', label: 'Busca', route: { name: 'Google', path: 'www.google.com' }  },
+		{ icon: 'notification-bell-outline', label: 'Notificações', route: { name: 'Google', path: 'www.google.com' }  },
+		{ icon: 'user-outline', label: 'Perfil', route: { name: 'Google', path: 'www.google.com' }  },
+	],
+	variant="green",
+	show-label
+/>`
 			},
 		}
 	}}
@@ -41,6 +50,7 @@ export const Template = (args) => ({
 			<cds-mobile-navbar
 				style="position: absolute; bottom: 0; left: 0; width: 100%;"
 				v-bind="args"
+				@item-click="console.info('item-click: ', $event)"
 			/>
 		</div>
 	`,
@@ -77,6 +87,8 @@ export const Template = (args) => ({
 				{ icon: 'notification-bell-outline', label: 'Notificações', route: { name: 'Google', path: 'www.google.com' }  },
 				{ icon: 'user-outline', label: 'Perfil', route: { name: 'Google', path: 'www.google.com' }  },
 			],
+			variant: 'green',
+			showLabel: false,
 		}}
 	>
 		{ Template.bind({}) }
