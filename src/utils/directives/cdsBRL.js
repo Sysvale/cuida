@@ -1,6 +1,7 @@
 export const vCdsBrl = {
 	mounted(el, binding) {
 		const formatValue = (value) => {
+			if (value == 0) return 'R$ 0,00';
 			if (!value) return '';
 
 			let onlyNumbers = String(value).replace(/\D/g, '');
@@ -69,7 +70,7 @@ export const vCdsBrl = {
 	},
 };
 
-export const unformat = (value) => {
+export const unmaskBRL = (value) => {
 	let sanitizedValue = value.replace('R$', '');
 	sanitizedValue = sanitizedValue.replaceAll('.', '');
 	sanitizedValue = sanitizedValue.replace(/(.*),(\d{2})/g, '$1.$2');
