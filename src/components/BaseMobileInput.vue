@@ -334,6 +334,13 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	* Quando true, o v-model é atualizado com o evento `change` no lugar do `input`.
+	*/
+	lazy: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const emits = defineEmits({
@@ -437,7 +444,9 @@ watch(model, (newValue, oldValue) => {
 }, { immediate: true });
 
 watch(internalValue, (value) => {
-	model.value = value;
+	if (!props.lazy) {
+		model.value = value;
+	}
 });
 
 /* FUNCTIONS */
@@ -472,6 +481,7 @@ function handleBlur() {
 	emitBlur();
 
 	if(previousInternalValue.value !== internalValue.value) {
+		model.value = internalValue.value;
 		emitChange();
 	}
 	previousInternalValue.value = internalValue.value;
