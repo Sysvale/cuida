@@ -80,9 +80,9 @@
 						/>
 					</slot>
 				</div>
-	
-				<component
-					:is="computedInput"
+
+				<textarea
+					v-if="type === 'textarea'"
 					:id="componentId"
 					ref="htmlInput"
 					v-model="internalValue"
@@ -96,9 +96,24 @@
 					@keydown="handleKeydown"
 				/>
 	
+				<input
+					v-else
+					:id="componentId"
+					ref="htmlInput"
+					v-model="internalValue"
+					:required="required"
+					:placeholder="placeholder"
+					:disabled="disabled"
+					:class="inputClass"
+					:type="type"
+					@focus="handleFocus"
+					@blur="handleBlur"
+					@keydown="handleKeydown"
+				>
+	
 				<div
 					v-if="isLoading && !disabled"
-					class="base-input__trailing-icon-container"
+					class="base-input__spinner-container"
 				>
 					<CdsSpinner
 						size="sm"
@@ -121,7 +136,7 @@
 					</slot>
 				</div>
 			</div>
-	
+
 			<div
 				v-if="hasError && !disabled"
 				class="base-input__error-text"
@@ -332,16 +347,16 @@ const baseInputClass = computed(() => {
 	return inputClass;
 });
 
-const computedInput = computed(() => {
-	return props.type === 'textarea' ? 'textarea' : 'input';
-});
-
 const inputHeight = computed(() => {
 	return props.type === 'textarea' ? 'auto' : '40px';
 });
 
 const inputMinHeight = computed(() => {
 	return props.type === 'textarea' ? '120px' : 'auto';
+});
+
+const inputTopPadding = computed(() => {
+	return props.type === 'textarea' ? '8px' : '14px';
 });
 
 const hasError = computed(() => {
@@ -373,6 +388,10 @@ const hasLeadingIcon = computed(() => {
 
 const hasTrailingIcon = computed(() => {
 	return props.trailingIcon || useHasSlot('trailing-icon');
+});
+
+const spinnerXPosition = computed(() => {
+	return hasTrailingIcon.value ? '36px' : '9px';
 });
 
 /* WATCHERS */
@@ -435,6 +454,7 @@ function handleBlur() {
 		model.value = internalValue.value;
 		emitChange();
 	}
+
 	previousInternalValue.value = internalValue.value;
 }
 
@@ -467,6 +487,7 @@ defineExpose({
 	@extend %input;
 	display: flex;
 	justify-content: space-between;
+	position: relative;
 	cursor: v-bind(computedCursor);
 
 	&__supporting-text-container {
@@ -509,9 +530,17 @@ defineExpose({
 		min-width: 15px;
 	}
 
+	&__spinner-container {
+		background-color: none;
+		min-width: 15px;
+		position: absolute;
+		right: v-bind(spinnerXPosition);
+		top: 12px;
+	}
+
 	&__field {
 		padding: pTRBL(0, 2, 3, 2);
-		padding-top: 14px;
+		padding-top: v-bind(inputTopPadding);
 		height: v-bind(inputHeight);
 		min-height: v-bind(inputMinHeight);
 		border-radius: $border-radius-extra-small;
