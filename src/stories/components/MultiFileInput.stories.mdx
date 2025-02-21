@@ -1,0 +1,120 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import MultiFileInput from '../../components/MultiFileInput.vue';
+
+<Meta
+	title="Componentes/Forms/MultiFileInput"
+	component={ MultiFileInput }
+	argTypes={{
+		snapTo: {
+			control:{
+				type: 'select',
+				options: [
+					'start',
+					'center',
+					'end',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`
+<cds-carousel
+	v-slot="{ item }"
+	:items="[
+		'https://picsum.photos/600/800?random=1',
+		'https://picsum.photos/600/800?random=2',
+		'https://picsum.photos/600/800?random=3',
+		'https://picsum.photos/600/800?random=4',
+	]
+	:gap="0"
+	:snap-to="'start'"
+>
+	<cds-image :src="item" width="300" height="400" />
+</cds-carousel>
+`
+},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsMultiFileInput: MultiFileInput },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-multi-file-input
+			size="lg"
+		/>
+	`,
+	methods: {},
+});
+
+# MultiFileInput
+
+### O MultiFileInput é um componente que permite a exibição de uma série de conteúdos (imagens, textos, cards, etc.) em um formato deslizante, em que o usuário pode navegar entre os itens de forma sequencial.
+---
+<br />
+
+## Quando usar:
+- Quando há necessidade de exibir vários itens (como imagens, produtos, cards informativos) em um espaço reduzido, sem sobrecarregar a interface.
+- Para destacar conteúdos importantes de forma dinâmica, como promoções, destaques ou novidades.
+- Quando a ordem de exibição dos itens é relevante e a navegação sequencial faz sentido para o contexto.
+
+<br />
+
+## Quando não usar:
+- Quando o conteúdo for uma informação crítica e não deve ficar escondida.
+- Se a quantidade de itens for muito pequena (menos de 3), pois a navegação pode parecer desnecessária.
+- Em interfaces onde a acessibilidade é uma prioridade e o carousel pode dificultar a experiência para usuários com deficiências visuais ou motoras.
+- Quando o espaço disponível na tela é insuficiente para exibir os itens de forma clara e legível.
+
+<br />
+
+## Obs:
+- Quando o carrossel for utilizado para exibir imagens, é recomendado usar o componente `Image` em vez da tag `<img>` nativa. Isso permite que todas as funcionalidades do <b>Image</b>, como <i>dimmed</i> e <i>opacity</i>, sejam utilizadas.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="MultiFileInput"
+		args={{
+			badges:[
+				{
+					name: 'Comprovante de residência',
+					description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+					required: true,
+				},
+				{
+					name: 'Guia de encaminhamento',
+					description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+					required: false,
+				},
+				{
+					name: 'RG',
+					description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+					required: false,
+				},
+				{
+					name: 'Passaporte',
+					description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+					required: true,
+				}
+			]
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="MultiFileInput" />
