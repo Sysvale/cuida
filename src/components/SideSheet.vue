@@ -385,6 +385,7 @@ export default {
 		padding: pa(5);
 		display: grid;
 		grid-template-rows: auto 1fr auto;
+		border-left: 1px solid $n-30;
 	}
 
 	&__close-icon {
