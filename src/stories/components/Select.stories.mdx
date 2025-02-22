@@ -61,8 +61,30 @@ export const Template = (args) => ({
 		<cds-select
 			v-bind="args" 
 			v-model="value"
+			@click="logClick"
+			@change="logChange"
+			@focus="logFocus"
+			@blur="logBlur"
+			@keydown="logKeydown"
 		/>
 	`,
+	methods: {
+		logClick() {
+			console.info('⚡ %cClick emitted', 'color: rgb(37, 227, 139);');
+		},
+		logChange() {
+			console.info('⚡ %cChange emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logFocus() {
+			console.info('⚡ %cFocus emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logBlur() {
+			console.info('⚡ %cBlur emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logKeydown(e) {
+			console.info('⚡ %cKeydown emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+	},
 	updated() {
 		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
 	},
@@ -107,7 +129,7 @@ export const options = [
 		id: '1',
 	},
 	{
-		value: 'Game of Thrones ',
+		value: 'Game of Thrones',
 		id: '2',
 	},
 	{
@@ -119,48 +141,32 @@ export const options = [
 		id: '4',
 	},
 	{
-		value: 'Breaking Bad',
+		value: 'Dark',
 		id: '5',
 	},
 	{
-		value: 'Game of Thrones ',
+		value: 'Borat: o segundo melhor repórter do glorioso país Cazaquistão viaja à América',
 		id: '6',
 	},
 	{
-		value: 'Dark',
+		value: 'Black Mirror',
 		id: '7',
 	},
 	{
-		value: '👀 Borat: o segundo melhor repórter do glorioso país Cazaquistão viaja à América',
+		value: 'Westworld',
 		id: '8',
 	},
 	{
-		value: 'The Office',
+		value: 'Avatar: A Lenda de Aang',
 		id: '9',
 	},
 	{
-		value: 'Black Mirror',
+		value: 'Vikings',
 		id: '10',
 	},
 	{
-		value: 'Westworld ',
-		id: '11',
-	},
-	{
-		value: 'Avatar: A Lenda de Aang',
-		id: '12',
-	},
-	{
-		value: 'The Boys',
-		id: '13',
-	},
-	{
-		value: 'Vikings',
-		id: '14',
-	},
-	{
 		value: 'Arcane',
-		id: '15',
+		id: '11',
 	},
 ];
 
@@ -177,13 +183,13 @@ export const options = [
 			disabled: false,
 			state: 'default',
 			required: false,
+			searchable: false,
 			fluid: false,
 			mobile: false,
 			floatingLabel: false,
 			errorMessage: 'Campo obrigatório',
 			tooltip: '',
 			tooltipIcon: 'info-outline',
-			searchable: false,
 			linkText: '',
 			linkUrl: '',
 			supportingText: null,
