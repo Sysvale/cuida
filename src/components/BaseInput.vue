@@ -328,7 +328,7 @@ const isFocused = ref(false);
 const { emitClick, emitFocus, emitBlur, emitKeydown, emitChange } = nativeEmits(emits);
 const htmlInputRef = useTemplateRef('htmlInput');
 const baseMobileInputRef = useTemplateRef('mobileInput');
-const componentId = `cds-base-input-${attrs.id || generateKey()}`;
+const componentId = `cds-base-input-${props.type}-${attrs.id || generateKey()}`;
 
 /* COMPUTED */
 const baseInputClass = computed(() => {
