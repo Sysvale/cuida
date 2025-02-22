@@ -502,6 +502,15 @@ function resetActiveSelection() {
 	})
 }
 
+/* EXPOSE */
+defineExpose({
+	componentRef: select.value?.componentRef,
+	isFocused: select.value?.isFocused,
+	focus: () => select.value?.focus(),
+	blur: () => select.value?.blur(),
+	clear: () => select.value?.clear(),
+	select: () => select.value?.select(),
+});
 </script>
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
