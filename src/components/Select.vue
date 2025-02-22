@@ -522,168 +522,6 @@ defineExpose({
 }
 
 .select {
-	&__input {
-		height: 40px;
-		border: none;
-		outline: 1px solid $n-50;
-		background: $n-0;
-		padding-right: spacer(8);
-		padding-left: spacer(3);
-		color: $n-600;
-		caret-color: transparent;
-		cursor: pointer;
-		background-color: $n-0;
-		@include body-2;
-		text-overflow: ellipsis;
-
-		&:hover:not([disabled]):not(.select__input--invalid):not(.select__input--valid) {
-			outline: 1px solid $n-100;
-		}
-
-		&--closed {
-			@extend .select__input;
-			border-radius: $border-radius-extra-small !important;
-		}
-
-		&--opened-down {
-			@extend .select__input;
-			border-top-left-radius: $border-radius-extra-small !important;
-			border-top-right-radius: $border-radius-extra-small !important;
-		}
-
-		&--opened-up {
-			@extend .select__input;
-			border-bottom-left-radius: $border-radius-extra-small !important;
-			border-bottom-right-radius: $border-radius-extra-small !important;
-		}
-
-		&--searchable {
-			caret-color: $n-700;
-		}
-
-		&--thin {
-			width: 150px;
-		}
-
-		&--default {
-			width: 300px;
-		}
-
-		&--wide {
-			width: 600px;
-		}
-
-		&--fluid {
-			width: 100%;
-		}
-
-		&--disabled {
-			background-color: $n-20 !important;
-			pointer-events: none;
-			border: none;
-		}
-
-		&--valid {
-			outline: 1px solid $gp-500;
-		}
-
-		&--invalid {
-			outline: 1px solid $rc-600;
-		}
-
-		&::placeholder {
-			color: $n-300;
-			@include body-2;
-		}
-
-		&--disabled::placeholder {
-			color: $n-100;
-		}
-	}
-
-	&__mobile-input {
-		@extend .select__input;
-		@include body-2;
-		height: 48px;
-		font-weight: 400;
-		border-radius: $border-radius-lil;
-
-		&:hover:not([disabled]):not(.select__mobile-input--invalid):not(.select__mobile-input--valid) {
-			outline: 1px solid $n-100;
-		}
-
-		&--closed {
-			@extend .select__mobile-input;
-			border-radius: $border-radius-extra-small !important;
-		}
-
-		&--opened-down {
-			@extend .select__mobile-input;
-			border-top-left-radius: $border-radius-extra-small !important;
-			border-top-right-radius: $border-radius-extra-small !important;
-		}
-
-		&--opened-up {
-			@extend .select__mobile-input;
-			border-bottom-left-radius: $border-radius-extra-small !important;
-			border-bottom-right-radius: $border-radius-extra-small !important;
-		}
-
-		&--searchable {
-			caret-color: $n-700;
-		}
-
-		&--thin {
-			width: 150px;
-		}
-
-		&--default {
-			width: 300px;
-		}
-
-		&--wide {
-			width: 600px;
-		}
-
-		&--fluid {
-			width: 100%;
-		}
-
-		&--disabled {
-			background-color: $n-20 !important;
-			pointer-events: none;
-			border: none;
-		}
-
-		&--valid {
-			outline: 1px solid $gp-500;
-		}
-
-		&--invalid {
-			outline: 1px solid $rc-600;
-		}
-
-		&::placeholder {
-			color: $n-300;
-			@include body-2;
-		}
-
-		&--disabled::placeholder {
-			color: $n-100;
-		}
-	}
-
-	&__label {
-		@include label;
-		display: flex;
-	}
-
-	&__mobile-label {
-		@extend .select__label;
-		font-size: 14px;
-		font-weight: 700;
-	}
-
 	&__container {
 		position: relative;
 
@@ -697,7 +535,6 @@ defineExpose({
 	}
 
 	&__chevron--closed {
-		//position: absolute;
 		top: v-bind(resolveChevronTop);
 		right: 2px;
 		display: block;
@@ -771,6 +608,7 @@ defineExpose({
 		z-index: 999;
 		background-color: $n-0;
 		border-radius: $border-radius-extra-small;
+		animation: slide-down 0.2s ease-in-out;
 
 		&--thin {
 			width: 150px;
@@ -809,24 +647,25 @@ defineExpose({
 			background: $n-50;
 		}
 
-		&--up { /////TODO: fix this
+		&--up {
 			bottom: 40px;
 			width: 100%;
-			border-top-left-radius: $border-radius-extra-small;
-			border-top-right-radius: $border-radius-extra-small;
 		}
 
-		&--down { /////TODO: fix this
+		&--down {
 			width: 100%;
-			border-bottom-left-radius: $border-radius-extra-small;
-			border-bottom-right-radius: $border-radius-extra-small;
 		}
 	}
+}
 
-	&__error-message {
-		@include caption;
-		color: $rc-600;
-		margin: mt(1);
+@keyframes slide-down {
+	0% {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
 	}
 }
 
