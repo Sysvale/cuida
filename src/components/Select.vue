@@ -31,7 +31,6 @@
 				@blur="hide"
 			>
 				<template #trailing-icon>
-					<!-- opa -->
 					<span
 						:class="active ? 'select__chevron--opened' : 'select__chevron--closed'"
 					/>
@@ -107,7 +106,6 @@ const props = defineProps({
 	label: {
 		type: String,
 		default: 'Label',
-		required: true,
 	},
 	/**
 	 * Indica o texto que instrui o usuário a como interagir com o select.
@@ -264,6 +262,10 @@ const props = defineProps({
 	},
 });
 
+const emits = defineEmits({
+	...nativeEvents
+});
+
 
 const currentPos = ref(0);
 const active = ref(false);
@@ -280,46 +282,7 @@ const select = useTemplateRef('baseInput');
 const cdsSelect = useTemplateRef('cds-select');
 const selectOptions = useTemplateRef('select-options');
 const liRefs = ref({});
-
-
-
-
-const errorState = computed(() => {
-	return props.state === 'invalid';
-});
-
-const inputClass = computed(() => {
-	let returningClass = '';
-	const inputClass = props.mobile ? 'select__mobile-input' : 'select__input';
-
-	if (active.value && direction.value === 'down') {
-		returningClass = `${inputClass}--opened-down`;
-	} else if (active.value && direction.value === 'up') {
-		returningClass = `${inputClass}--opened-up`;
-	} else {
-		returningClass = `${inputClass}--closed`;
-	}
-
-	if (!props.disabled) {
-		if (props.state === 'valid') {
-			returningClass += ` ${inputClass}--valid`;
-		} else if (props.state === 'invalid') {
-			returningClass += ` ${inputClass}--invalid`;
-		}
-	} else {
-		returningClass += ` ${inputClass}--disabled`;
-	}
-
-	returningClass += ` ${inputClass}--${widths.find((item) => item === props.width)}`;
-	returningClass += props.fluid ? ` ${inputClass}--fluid` : ` ${inputClass}--fit`;
-	returningClass += props.searchable ? ` ${inputClass}--searchable` : '';
-
-	return returningClass;
-});
-
-const resolveLabel = computed(() => {
-	return props.mobile ? 'mobile-label' : 'label';
-});
+const { emitClick, emitChange, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
 
 const resolveChevronTop = computed(() => {
 	return props.mobile ? '9px' : '6px';
@@ -391,6 +354,7 @@ function activeSelection() {
 		// this.$refs[`${element[props.optionsField]}-${currentPos.value}`][0].classList.add('highlight');
 		// liRefs.value[`${element[props.optionsField]}-${currentPos.value}`].classList.add('highlight');
 	});
+	emitFocus();
 }
 
 function activateSelectionOnEnter() {
@@ -406,7 +370,7 @@ function activateSelectionOnEnter() {
 		localValue.value = cloneDeep(localOptions.value[currentPos.value]);
 	}
 
-	select.value.focus();
+	select.value.blur();
 }
 
 function activateSelectionOnClick() {
@@ -421,11 +385,16 @@ function activateSelectionOnClick() {
 	if (props.disabled) return;
 
 	active.value = !active.value;
+	emitClick();
 }
 
 function hide() {
+	localValue.value = props.options.some(item => item[props.optionsField]?.toLowerCase() === localValue.value[props.optionsField]?.toLowerCase())
+		? localValue.value
+		: {};
 	localOptions.value = pristineOptions.value;
 	active.value = false;
+	emitBlur();
 }
 
 function selectItem() {
@@ -434,7 +403,6 @@ function selectItem() {
 
 function getLiInDOM(position) {
 	const element = localOptions.value[position];
-	// return this.$refs[`${element[props.optionsField]}-${position}`][0];
 	return liRefs.value[`${element[props.optionsField]}-${position}`];
 }
 
@@ -498,7 +466,6 @@ function resetActiveSelection() {
 		const element = localOptions.value[index];
 		// this.$refs[`${element[props.optionsField]}-${index}`][0].classList.remove('highlight');
 		// liRefs.value[`${element[props.optionsField]}-${currentPos.value}`].classList.remove('highlight');
-
 	})
 }
 
