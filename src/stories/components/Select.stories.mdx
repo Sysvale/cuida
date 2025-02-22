@@ -5,6 +5,17 @@ import Select from '../../components/Select.vue';
 	title="Componentes/Forms/Select"
 	component={ Select }
 	argTypes={{
+		state: {
+			control:{
+				type: 'select',
+				options: [
+					'default',
+					'valid',
+					'invalid',
+					'loading',
+				],
+			}
+		},
 		width: { 
 			control: { 
 				type: 'select',
@@ -160,10 +171,24 @@ export const options = [
 		args={{
 			options,
 			width: 'wide',
-			id: "idzera",
 			label: 'Séries',
 			placeholder: 'Selecione uma das séries',
 			required: true,
+			disabled: false,
+			state: 'default',
+			required: false,
+			fluid: false,
+			mobile: false,
+			floatingLabel: false,
+			errorMessage: 'Campo obrigatório',
+			tooltip: '',
+			tooltipIcon: 'info-outline',
+			searchable: false,
+			linkText: '',
+			linkUrl: '',
+			supportingText: null,
+			supportLink: '',
+			supportLinkUrl: '',
 		}}
 	>
 		{ Template.bind({}) }

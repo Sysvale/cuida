@@ -4,47 +4,18 @@
 		ref="cds-select"
 		class="select"
 	>
-		<label
-			:class="`select__${resolveLabel}`"
-		>
-			<div
-				class="label__content"
-				for="cds-select"
-			>
-				<span>
-					{{ label }}
-				</span>
-
-				<span
-					v-if="required"
-					class="label__required-indicator"
-				>
-					*
-				</span>
-
-				<cds-icon
-					v-if="tooltip"
-					v-cdstip="tooltip"
-					:name="tooltipIcon"
-					height="20"
-					width="20"
-					class="label__icon"
-				/>
-			</div>
-		</label>
-
 		<div
 			class="select__container"
 			:class="fluid ? 'select__container--fluid' : 'select__container--fit'"
 		>
-			<input
+			<CdsBaseInput
 				:id="$attrs.id || id"
-				ref="select-input"
+				ref="baseInput"
+				v-bind="{...$attrs, ...props}"
 				v-model="localValue[optionsField]"
 				type="text"
 				autocomplete="off"
 				:onkeypress="`return ${allowSearch};`"
-				:class="inputClass"
 				:placeholder="placeholder"
 				:disabled="disabled"
 				:readonly="!searchable"
@@ -56,6 +27,13 @@
 				@focus="activeSelection"
 				@blur="hide"
 			>
+				<template #trailing-icon>
+					<!-- opa -->
+					<span
+						:class="active ? 'select__chevron--opened' : 'select__chevron--closed'"
+					/>
+				</template>
+			</CdsBaseInput>
 
 			<div
 				v-show="active"
@@ -98,17 +76,6 @@
 					</li>
 				</ul>
 			</div>
-
-			<span
-				:class="active ? 'select__chevron--opened' : 'select__chevron--closed'"
-			/>
-		</div>
-
-		<div
-			v-if="errorState && !disabled"
-			class="select__error-message"
-		>
-			{{ errorMessage }}
 		</div>
 	</div>
 </template>
@@ -123,8 +90,8 @@ import { widths } from '../utils';
 import { generateKey } from '../utils';
 import cloneDeep from 'lodash.clonedeep';
 import removeAccents from '../utils/methods/removeAccents';
-import CdsIcon from './Icon.vue';
-import Cdstip from '../utils/directives/cdstip';
+import CdsBaseInput from './BaseInput.vue';
+
 
 const model = defineModel('modelValue', {
 	type: [Array, Object],
@@ -188,7 +155,7 @@ const props = defineProps({
 		required: false,
 	},
 	/**
-	 * Define a largura do Select. As opções são 'thin', 'default' e 'wide'.
+	 * <span className="deprecated-warning">[DEPRECATED]</span> Define a largura do Select. As opções são 'thin', 'default' e 'wide'.
 	 */
 	width: {
 		type: String,
@@ -244,9 +211,51 @@ const props = defineProps({
 		required: false,
 	},
 	/**
-	 * Define o tipo do input, se true será um input adaptador para o mobile
-	 */
+	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela `supportLink` na v4. Define texto do link do input (localizado à direita da label).
+	*/
+	linkText: {
+		type: String,
+		default: null,
+	},
+	/**
+	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela `supportLinkUrl` na v4. Define a url a ser acessada no clique do link (no caso do link ser exibido).
+	*/
+	linkUrl: {
+		type: String,
+		default: 'https://cuida.framer.wiki/',
+	},
+	/**
+	* Controla a exibição e o conteúdo do link de suporte exibido ao lado da label.
+	*/
+	supportLink: {
+		type: String,
+		default: null,
+	},
+	/**
+	* Especifica mensagem de auxílio.
+	*/
+	supportingText: {
+		type: [String, Array],
+		default: '',
+	},
+	/**
+	* Define a url a ser acessada no clique do link de suporte.
+	*/
+	supportLinkUrl: {
+		type: String,
+		default: 'https://cuida.framer.wiki/',
+	},
+	/**
+	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile
+	*/
 	mobile: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Define o tipo do input, se true será um input adaptado para o mobile
+	*/
+	floatingLabel: {
 		type: Boolean,
 		default: false,
 	},
@@ -264,7 +273,7 @@ const selectElement = ref('');
 const direction = ref('down');
 const uniqueKey = ref(generateKey());
 
-const select = useTemplateRef('select-input');
+const select = useTemplateRef('baseInput');
 const cdsSelect = useTemplateRef('cds-select');
 const selectOptions = useTemplateRef('select-options');
 const liRefs = ref({});
@@ -500,21 +509,6 @@ function resetActiveSelection() {
 	user-select: none;
 }
 
-.label {
-	&__required-indicator {
-		color: $rc-600;
-	}
-
-	&__icon {
-		margin: mTRBL(0, 0, n1, 1);
-		cursor: pointer;
-	}
-
-	&__content {
-		margin: mb(1);
-	}
-}
-
 .select {
 	&__input {
 		height: 40px;
@@ -691,7 +685,7 @@ function resetActiveSelection() {
 	}
 
 	&__chevron--closed {
-		position: absolute;
+		//position: absolute;
 		top: v-bind(resolveChevronTop);
 		right: 2px;
 		display: block;
@@ -721,7 +715,7 @@ function resetActiveSelection() {
 	}
 
 	&__chevron--opened {
-		position: absolute;
+		//position: absolute;
 		top: v-bind(resolveChevronTop);
 		right: 2px;
 		display: block;
@@ -753,10 +747,10 @@ function resetActiveSelection() {
 	&__options {
 		@include body-2;
 		color: $n-700;
-		outline: 1px solid $n-50;
+		outline: 1px solid $n-40;
 		display: flex;
 		flex-direction: column;
-		margin-top: 1px;
+		margin-top: 6px;
 		justify-items: center;
 		text-overflow: ellipsis;
 		max-height: 296px;
@@ -764,6 +758,7 @@ function resetActiveSelection() {
 		position: absolute;
 		z-index: 999;
 		background-color: $n-0;
+		border-radius: $border-radius-extra-small;
 
 		&--thin {
 			width: 150px;
@@ -781,14 +776,35 @@ function resetActiveSelection() {
 			width: 100%;
 		}
 
-		&--up {
+		&::-webkit-scrollbar {
+			width: 12px;
+			border-radius: 20px;
+		}
+
+		&::-webkit-scrollbar-track {
+			background: transparent;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: $n-100;
+			border-radius: 5px;
+			border-right: 3px solid transparent;
+			border-left: 3px solid transparent;
+			background-clip: padding-box;
+		}
+		
+		&::-webkit-scrollbar-thumb:hover {
+			background: $n-50;
+		}
+
+		&--up { /////TODO: fix this
 			bottom: 40px;
 			width: 100%;
 			border-top-left-radius: $border-radius-extra-small;
 			border-top-right-radius: $border-radius-extra-small;
 		}
 
-		&--down {
+		&--down { /////TODO: fix this
 			width: 100%;
 			border-bottom-left-radius: $border-radius-extra-small;
 			border-bottom-right-radius: $border-radius-extra-small;
@@ -821,7 +837,7 @@ function resetActiveSelection() {
 }
 
 .highlight{
-	background-color: $n-20;
+	background-color: $n-10;
 	cursor: pointer;
 }
 </style>

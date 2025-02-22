@@ -42,7 +42,9 @@
 			<input
 				:id="componentId"
 				ref="htmlInput"
+				v-bind="{...$attrs, ...props}"
 				v-model="internalValue"
+				placeholder=""
 				:required="required"
 				:disabled="disabled"
 				:class="inputClass"
@@ -341,6 +343,13 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	* Quando true, o input é somente leitura.
+	*/
+	readonly: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const emits = defineEmits({
@@ -428,6 +437,7 @@ const labelColor = computed(() => {
 const computedCursor = computed(() => {
 	if(props.disabled) return 'not-allowed';
 	if(isLoading.value) return 'progress';
+	if(props.readonly) return 'pointer';
 
 	return 'text';
 });
