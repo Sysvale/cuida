@@ -32,6 +32,7 @@
 				/>
 			</div>
 		</label>
+
 		<div
 			class="select__container"
 			:class="fluid ? 'select__container--fluid' : 'select__container--fit'"
@@ -76,7 +77,7 @@
 					<li
 						v-for="(option, index) in localOptions"
 						:key="index"
-						:ref="`${option[optionsField]}-${index}`"
+						:ref="(el) => { liRefs[`${option[optionsField]}-${index}`] = el }"
 						class="option__text"
 						@mousedown="selectItem"
 						@mouseover="highlightOnMouseOver(index)"
@@ -112,7 +113,12 @@
 	</div>
 </template>
 
-<script>
+<script setup>
+import { ref, watch, computed, useTemplateRef, onMounted, nextTick  } from 'vue';
+import {
+	nativeEvents,
+	nativeEmits,
+} from '../utils/composables/useComponentEmits.js';
 import { widths } from '../utils';
 import { generateKey } from '../utils';
 import cloneDeep from 'lodash.clonedeep';
@@ -120,392 +126,370 @@ import removeAccents from '../utils/methods/removeAccents';
 import CdsIcon from './Icon.vue';
 import Cdstip from '../utils/directives/cdstip';
 
-export default {
-	components: {
-		CdsIcon,
-	},
+const model = defineModel('modelValue', {
+	type: [Array, Object],
+});
 
-	directives: {
-		cdstip: Cdstip,
+const props = defineProps({
+	/**
+	 * Especifica o título do select.
+	 */
+	label: {
+		type: String,
+		default: 'Label',
+		required: true,
 	},
+	/**
+	 * Indica o texto que instrui o usuário a como interagir com o select.
+	 */
+	placeholder: {
+		type: String,
+		default: 'Selecione...',
+		required: false,
+	},
+	/**
+	 * Array de objetos que especifica a lista de opções do select. Os valores
+	 * a serem mostrado como opções do select devem estar atribuídos a chave
+	 * `value` do objeto.
+	 */
+	options: {
+		type: Array,
+		default: () => [],
+		required: true,
+	},
+	/**
+	 * Especifica o estado do Select. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	 */
+	state: {
+		type: String,
+		default: 'default',
+	},
+	/**
+	 * Controla a exibição do asterísco indicativo de campo obrigatório.
+	 */
+	required: {
+		type: Boolean,
+		default: false,
+		required: false,
+	},
+	/**
+	 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+	 */
+	errorMessage: {
+		type: String,
+		default: 'Valor inválido',
+	},
+	/**
+	 * Indica se vai ser possível fazer buscas no select.
+	 */
+	searchable: {
+		type: Boolean,
+		default: false,
+		required: false,
+	},
+	/**
+	 * Define a largura do Select. As opções são 'thin', 'default' e 'wide'.
+	 */
+	width: {
+		type: String,
+		default: 'default',
+		required: false,
+	},
+	/**
+	 * Especifica se a largura do select deve ser fluida.
+	 */
+	fluid: {
+		type: Boolean,
+		default: false,
+		required: false,
+	},
+	/**
+	 * Especifica o status de interação do select.
+	 */
+	disabled: {
+		type: Boolean,
+		default: false,
+		required: false,
+	},
+	/**
+	 * Define exibição e texto do tooltip do select
+	 */
+	tooltip: {
+		type: String,
+		default: null,
+	},
+	/**
+	 * Especifica ícone do tooltip do Select.
+	 */
+	tooltipIcon: {
+		type: String,
+		default: 'info-outline',
+	},
+	/**
+	* Indica o nome da da chave do objeto a ser considerada na renderização
+	* das opções do select.
+	*/
+	optionsField: {
+		type: String,
+		default: 'value',
+		required: false,
+	},
+	/**
+	* Quando true, passa a retornar o optionsField no modelValue fora do objeto
+	* das opções do select.
+	*/
+	returnValue: {
+		type: Boolean,
+		default: false,
+		required: false,
+	},
+	/**
+	 * Define o tipo do input, se true será um input adaptador para o mobile
+	 */
+	mobile: {
+		type: Boolean,
+		default: false,
+	},
+});
 
-	props: {
+
+const currentPos = ref(0);
+const active = ref(false);
+const id = ref(null);
+const allowSearch = ref(false);
+const localOptions = ref([]);
+const pristineOptions = ref([]);
+const localValue = ref({});
+const selectElement = ref('');
+const direction = ref('down');
+const uniqueKey = ref(generateKey());
+
+const select = useTemplateRef('select-input');
+const cdsSelect = useTemplateRef('cds-select');
+const selectOptions = useTemplateRef('select-options');
+const liRefs = ref({});
+
+
+
+
+const errorState = computed(() => {
+	return props.state === 'invalid';
+});
+
+const inputClass = computed(() => {
+	let returningClass = '';
+	const inputClass = props.mobile ? 'select__mobile-input' : 'select__input';
+
+	if (active.value && direction.value === 'down') {
+		returningClass = `${inputClass}--opened-down`;
+	} else if (active.value && direction.value === 'up') {
+		returningClass = `${inputClass}--opened-up`;
+	} else {
+		returningClass = `${inputClass}--closed`;
+	}
+
+	if (!props.disabled) {
+		if (props.state === 'valid') {
+			returningClass += ` ${inputClass}--valid`;
+		} else if (props.state === 'invalid') {
+			returningClass += ` ${inputClass}--invalid`;
+		}
+	} else {
+		returningClass += ` ${inputClass}--disabled`;
+	}
+
+	returningClass += ` ${inputClass}--${widths.find((item) => item === props.width)}`;
+	returningClass += props.fluid ? ` ${inputClass}--fluid` : ` ${inputClass}--fit`;
+	returningClass += props.searchable ? ` ${inputClass}--searchable` : '';
+
+	return returningClass;
+});
+
+const resolveLabel = computed(() => {
+	return props.mobile ? 'mobile-label' : 'label';
+});
+
+const resolveChevronTop = computed(() => {
+	return props.mobile ? '9px' : '6px';
+});
+
+watch(() => props.searchable, (newValue, oldValue) => {
+	if (newValue !== oldValue) {
+		allowSearch.value = newValue;
+	}
+}, { immediate: true });
+
+watch(() => props.options, (newValue, oldValue) => {
+	if (newValue !== oldValue) {
+		localOptions.value = newValue;
+		pristineOptions.value = newValue;
+	}
+}, { immediate: true });
+
+watch(() => model, (newValue, oldValue) => { 
+	if (newValue !== oldValue) {
+		if (newValue instanceof Object) {
+			localValue.value = newValue.value;
+		} else {
+			localValue.value = {id: newValue, value: newValue }
+		}
+	}
+}, { immediate: true });
+
+watch(localValue, (currentValue) => {
+	const compatibleOptions = localOptions.value.filter(
+		(option) => JSON.stringify(option) === JSON.stringify(currentValue),
+	);
+	if (compatibleOptions.length === 0) {
+		return;
+	}
+	if (props.returnValue) {
 		/**
-		 * Especifica o título do select.
-		 */
-		label: {
-			type: String,
-			default: 'Label',
-			required: true,
-		},
-		/**
-		 * Indica o texto que instrui o usuário a como interagir com o select.
-		 */
-		placeholder: {
-			type: String,
-			default: 'Selecione...',
-			required: false,
-		},
-		/**
-		 * Array de objetos que especifica a lista de opções do select. Os valores
-		 * a serem mostrado como opções do select devem estar atribuídos a chave
-		 * `value` do objeto.
-		 */
-		options: {
-			type: Array,
-			default: () => [],
-			required: true,
-		},
-		/**
-		 * Guarda o valor selecionado do select.
-		 */
-		modelValue: {
-			type: [Array, Object],
-			required: true,
-		},
-		/**
-		 * Especifica o estado do Select. As opções são 'default', 'valid', 'loading' e 'invalid'.
-		 */
-		state: {
-			type: String,
-			default: 'default',
-		},
-		/**
-		 * Controla a exibição do asterísco indicativo de campo obrigatório.
-		 */
-		required: {
-			type: Boolean,
-			default: false,
-			required: false,
-		},
-		/**
-		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
-		 */
-		errorMessage: {
-			type: String,
-			default: 'Valor inválido',
-		},
-		/**
-		 * Indica se vai ser possível fazer buscas no select.
-		 */
-		searchable: {
-			type: Boolean,
-			default: false,
-			required: false,
-		},
-		/**
-		 * Define a largura do Select. As opções são 'thin', 'default' e 'wide'.
-		 */
-		width: {
-			type: String,
-			default: 'default',
-			required: false,
-		},
-		/**
-		 * Especifica se a largura do select deve ser fluida.
-		 */
-		fluid: {
-			type: Boolean,
-			default: false,
-			required: false,
-		},
-		/**
-		 * Especifica o status de interação do select.
-		 */
-		disabled: {
-			type: Boolean,
-			default: false,
-			required: false,
-		},
-		/**
-		 * Define exibição e texto do tooltip do select
-		 */
-		tooltip: {
-			type: String,
-			default: null,
-		},
-		/**
-		 * Especifica ícone do tooltip do Select.
-		 */
-		tooltipIcon: {
-			type: String,
-			default: 'info-outline',
-		},
-		/**
-		* Indica o nome da da chave do objeto a ser considerada na renderização
-		* das opções do select.
+		* Evento que indica que o valor do Select foi alterado
+		* @event update:modelValue
+		* @type {Event}
 		*/
-		optionsField: {
-			type: String,
-			default: 'value',
-			required: false,
-		},
-		/**
-		* Quando true, passa a retornar o optionsField no modelValue fora do objeto
-		* das opções do select.
-		*/
-		returnValue: {
-			type: Boolean,
-			default: false,
-			required: false,
-		},
-		/**
-		 * Define o tipo do input, se true será um input adaptador para o mobile
-		 */
-		mobile: {
-			type: Boolean,
-			default: false,
-		},
-	},
+		model.value = currentValue[props.optionsField];
+	} else {
+		model.value = currentValue;
+	}
+}, { deep: true });
 
-	data() {
-		return {
-			currentPos: 0,
-			active: false,
-			id: null,
-			allowSearch: false,
-			localOptions: [],
-			pristineOptions: [],
-			localValue: '',
-			selectElement: '',
-			direction: 'down',
-			uniqueKey: generateKey(),
-		};
-	},
+onMounted(() => {
+	id.value = `cds-select-${uniqueKey.value}`;
+	selectElement.value = cdsSelect.value;
+});
 
-	computed: {
-		errorState() {
-			return this.state === 'invalid';
-		},
+function filterOptions() {
+	const sanitizedString = removeAccents(localValue.value[props.optionsField]);
+	const regexExp = new RegExp(sanitizedString, 'i');
 
-		inputClass() {
-			let returningClass = '';
-			const inputClass = this.mobile ? 'select__mobile-input' : 'select__input';
+	localOptions.value = props.options.filter(
+		(option) => removeAccents(option[props.optionsField]).search(regexExp) >= 0,
+	);
+}
 
-			if (this.active && this.direction === 'down') {
-				returningClass = `${inputClass}--opened-down`;
-			} else if (this.active && this.direction === 'up') {
-				returningClass = `${inputClass}--opened-up`;
-			} else {
-				returningClass = `${inputClass}--closed`;
-			}
+function activeSelection() {
+	if (props.disabled) return;
 
-			if (!this.disabled) {
-				if (this.state === 'valid') {
-					returningClass += ` ${inputClass}--valid`;
-				} else if (this.state === 'invalid') {
-					returningClass += ` ${inputClass}--invalid`;
-				}
-			} else {
-				returningClass += ` ${inputClass}--disabled`;
-			}
+	resetActiveSelection();
 
-			returningClass += ` ${inputClass}--${widths.find((item) => item === this.width)}`;
-			returningClass += this.fluid ? ` ${inputClass}--fluid` : ` ${inputClass}--fit`;
-			returningClass += this.searchable ? ` ${inputClass}--searchable` : '';
+	nextTick().then(() => {
+		const element = localOptions.value[currentPos.value];
+		// this.$refs[`${element[props.optionsField]}-${currentPos.value}`][0].classList.add('highlight');
+		// liRefs.value[`${element[props.optionsField]}-${currentPos.value}`].classList.add('highlight');
+	});
+}
 
-			return returningClass;
-		},
+function activateSelectionOnEnter() {
+	if (props.disabled) return;
 
-		resolveLabel() {
-			return this.mobile ? 'mobile-label' : 'label';
-		},
+	active.value = !active.value;
 
-		resolveChevronTop() {
-			return this.mobile ? '9px' : '6px';
-		},
-	},
+	resetActiveSelection();
 
-	watch: {
-		modelValue: {
-			handler(newValue, oldValue) {
-				if (newValue !== oldValue) {
-					if (newValue instanceof Object) {
-						this.localValue = newValue;
-					} else {
-						this.localValue = {id: newValue, value: newValue }
-					}
-				}
-			},
-			immediate: true,
-		},
+	if (typeof localOptions.value[currentPos.value] === 'undefined') {
+		localOptions.value = pristineOptions.value;
+	} else {
+		localValue.value = cloneDeep(localOptions.value[currentPos.value]);
+	}
 
-		options: {
-			handler(newValue, oldValue) {
-				if (newValue !== oldValue) {
-					this.localOptions = newValue;
-					this.pristineOptions = newValue;
-				}
-			},
-			immediate: true,
-		},
+	select.value.focus();
+}
 
-		searchable: {
-			handler(newValue, oldValue) {
-				if (newValue !== oldValue) {
-					this.allowSearch = newValue;
-				}
-			},
-			immediate: true,
-		},
+function activateSelectionOnClick() {
+	let boundingRect = selectElement.value.getBoundingClientRect();
 
-		localValue: {
-			handler(currentValue) {
-				const compatibleOptions = this.localOptions.filter(
-					(option) => JSON.stringify(option) === JSON.stringify(currentValue),
-				);
-				if (compatibleOptions.length === 0) {
-					return;
-				}
+	if ((boundingRect.top + boundingRect.height + 286) < window.innerHeight) {
+		direction.value = 'down';
+	} else {
+		direction.value = 'up';
+	}
 
-				if (this.returnValue) {
-					/**
-					* Evento que indica que o valor do Select foi alterado
-					* @event update:modelValue
-					* @type {Event}
-					*/
-					this.$emit('update:modelValue', currentValue[this.optionsField]);
-				} else {
-					this.$emit('update:modelValue', currentValue);
-				}
-			},
-			deep: true,
-		},
-	},
+	if (props.disabled) return;
 
-	mounted() {
-		this.id = `cds-select-${this.uniqueKey}`;
-		this.selectElement = this.$refs['cds-select'];
-	},
+	active.value = !active.value;
+}
 
-	methods: {
-		filterOptions() {
-			const sanitizedString = removeAccents(this.localValue[this.optionsField]);
-			const regexExp = new RegExp(sanitizedString, 'i');
+function hide() {
+	localOptions.value = pristineOptions.value;
+	active.value = false;
+}
 
-			this.localOptions = this.options.filter(
-				(option) => removeAccents(option[this.optionsField]).search(regexExp) >= 0,
-			);
-		},
+function selectItem() {
+	localValue.value = cloneDeep(localOptions.value[currentPos.value]);
+}
 
-		activeSelection() {
-			if (this.disabled) return;
+function getLiInDOM(position) {
+	const element = localOptions.value[position];
+	// return this.$refs[`${element[props.optionsField]}-${position}`][0];
+	return liRefs.value[`${element[props.optionsField]}-${position}`];
+}
 
-			this.resetActiveSelection();
+function handleOptionVisibility(option, amount, direction) {
+	const optionDOMRect = option.getBoundingClientRect();
+	const optionsContainer = selectOptions.value;
+	const optionsContainerDOMRect = optionsContainer.getBoundingClientRect();
 
-			this.$nextTick().then(() => {
-				const element = this.localOptions[this.currentPos];
-				this.$refs[`${element[this.optionsField]}-${this.currentPos}`][0].classList.add('highlight');
-			});
-		},
+	if (
+		direction === 'up'
+		&& optionDOMRect.top <= optionsContainerDOMRect.top
+	) {
+		optionsContainer.scrollTop += amount;
+	}
 
-		activateSelectionOnEnter() {
-			if (this.disabled) return;
+	if (
+		direction === 'down'
+		&& optionDOMRect.top >= optionsContainerDOMRect.bottom
+	) {
+		optionsContainer.scrollTop += amount;
+	}
+}
 
-			this.active = !this.active;
+function highlightOnArrowDown() {
+	if (currentPos.value === localOptions.value.length - 1) return;
 
-			this.resetActiveSelection();
+	currentPos.value += 1;
+	const selectedOption = getLiInDOM(currentPos.value);
+	const previousOption = getLiInDOM(currentPos.value - 1);
 
-			if (typeof this.localOptions[this.currentPos] === 'undefined') {
-				this.localOptions = this.pristineOptions;
-			} else {
-				this.localValue = cloneDeep(this.localOptions[this.currentPos]);
-			}
+	selectedOption.classList.add('highlight');
+	previousOption.classList.remove('highlight');
 
-			this.$refs['select-input'].blur();
-		},
+	handleOptionVisibility(selectedOption, 37, 'down');
+}
 
-		activateSelectionOnClick() {
-			let boundingRect = this.selectElement.getBoundingClientRect();
+function highlightOnArrowUp() {
+	if (currentPos.value === 0) return;
 
-			if ((boundingRect.top + boundingRect.height + 286) < window.innerHeight) {
-				this.direction = 'down';
-			} else {
-				this.direction = 'up';
-			}
+	const selectedOption = getLiInDOM(currentPos.value);
+	const previousOption = getLiInDOM(currentPos.value - 1);
 
-			if (this.disabled) return;
+	selectedOption.classList.remove('highlight');
+	previousOption.classList.add('highlight');
 
-			this.active = !this.active;
-		},
+	handleOptionVisibility(selectedOption, -37, 'up');
+	currentPos.value -= 1;
+}
 
-		hide() {
-			this.localOptions = this.pristineOptions;
-			this.active = false;
-		},
+function highlightOnMouseOver(index) {
+	currentPos.value = index;
+	getLiInDOM(currentPos.value).classList.add('highlight');
+}
 
-		selectItem() {
-			this.localValue = cloneDeep(this.localOptions[this.currentPos]);
-		},
+function unhighlightOnMouseOut() {
+	getLiInDOM(currentPos.value).classList.remove('highlight');
+}
 
-		getLiInDOM(position) {
-			const element = this.localOptions[position];
-			return this.$refs[`${element[this.optionsField]}-${position}`][0];
-		},
+function resetActiveSelection() {
+	localOptions.value.forEach((option, index) => {
+		const element = localOptions.value[index];
+		// this.$refs[`${element[props.optionsField]}-${index}`][0].classList.remove('highlight');
+		// liRefs.value[`${element[props.optionsField]}-${currentPos.value}`].classList.remove('highlight');
 
-		handleOptionVisibility(option, amount, direction) {
-			const optionDOMRect = option.getBoundingClientRect();
-			const optionsContainer = this.$refs['select-options'];
-			const optionsContainerDOMRect = optionsContainer.getBoundingClientRect();
+	})
+}
 
-			if (
-				direction === 'up'
-				&& optionDOMRect.top <= optionsContainerDOMRect.top
-			) {
-				optionsContainer.scrollTop += amount;
-			}
-
-			if (
-				direction === 'down'
-				&& optionDOMRect.top >= optionsContainerDOMRect.bottom
-			) {
-				optionsContainer.scrollTop += amount;
-			}
-		},
-
-		highlightOnArrowDown() {
-			if (this.currentPos === this.localOptions.length - 1) return;
-
-			this.currentPos += 1;
-			const selectedOption = this.getLiInDOM(this.currentPos);
-			const previousOption = this.getLiInDOM(this.currentPos - 1);
-
-			selectedOption.classList.add('highlight');
-			previousOption.classList.remove('highlight');
-
-			this.handleOptionVisibility(selectedOption, 37, 'down');
-		},
-
-		highlightOnArrowUp() {
-			if (this.currentPos === 0) return;
-
-			const selectedOption = this.getLiInDOM(this.currentPos);
-			const previousOption = this.getLiInDOM(this.currentPos - 1);
-
-			selectedOption.classList.remove('highlight');
-			previousOption.classList.add('highlight');
-
-			this.handleOptionVisibility(selectedOption, -37, 'up');
-			this.currentPos -= 1;
-		},
-
-		highlightOnMouseOver(index) {
-			this.currentPos = index;
-			this.getLiInDOM(this.currentPos).classList.add('highlight');
-		},
-
-		unhighlightOnMouseOut() {
-			this.getLiInDOM(this.currentPos).classList.remove('highlight');
-		},
-
-		resetActiveSelection() {
-			this.localOptions.forEach((option, index) => {
-				const element = this.localOptions[index];
-				this.$refs[`${element[this.optionsField]}-${index}`][0].classList.remove('highlight');
-			})
-		},
-	},
-};
 </script>
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
