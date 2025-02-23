@@ -66,8 +66,8 @@ export const Template = (args) => ({
 		logBlur() {
 			console.info('⚡ %cBlur emitted', 'color: hsl(152, 77.20%, 51.80%);');
 		},
-		logKeydown(e) {
-			console.info('⚡ %cKeydown emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		logKeydown(event) {
+			console.info('⚡ %cKeydown emitted: ', 'color: hsl(152, 77.20%, 51.80%);', event);
 		},
 	},
 	updated() {

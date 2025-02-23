@@ -6,7 +6,7 @@ exports[`CdsNumberInput > renders correctly 1`] = `
       <!--v-if-->
     </label>
     <div data-v-82c69faf="" class="base-input base-input--default">
-      <!--v-if--><input data-v-82c69faf="" id="cds-base-input-number-input" placeholder="Digite aqui a informação" class="base-input__field" type="number">
+      <!--v-if--><input data-v-82c69faf="" id="number-input" money="false" linkurl="https://cuida.framer.wiki/" mobile="false" modelvalue="" label="Valor" state="default" type="number" placeholder="Digite aqui a informação" errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" supportlinkurl="https://cuida.framer.wiki/" floatinglabel="false" lazy="false" class="base-input__field">
       <!--v-if-->
       <!--v-if-->
     </div>
