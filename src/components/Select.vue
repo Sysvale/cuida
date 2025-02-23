@@ -262,6 +262,7 @@ const emits = defineEmits({
 	...nativeEvents
 });
 
+/* REACTIVE DATA */
 const currentPos = ref(0);
 const active = ref(false);
 const id = ref(null);
@@ -272,13 +273,13 @@ const localValue = ref({});
 const selectElement = ref('');
 const direction = ref('down');
 const uniqueKey = ref(generateKey());
-
 const select = useTemplateRef('baseInput');
 const cdsSelect = useTemplateRef('cds-select');
 const selectOptions = useTemplateRef('select-options');
 const liRefs = ref({});
 const { emitClick, emitChange, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
 
+/* COMPUTED */
 const resolveChevronTop = computed(() => {
 	return props.mobile ? '9px' : '6px';
 });
@@ -309,6 +310,7 @@ const computedFluid = computed(() => {
 	return widths.some((item) => item === props.width) || props.fluid;
 });
 
+/* WATCHERS */
 watch(() => props.searchable, (newValue, oldValue) => {
 	if (newValue !== oldValue) {
 		allowSearch.value = newValue;
@@ -336,9 +338,11 @@ watch(localValue, (currentValue) => {
 	const compatibleOptions = localOptions.value.filter(
 		(option) => JSON.stringify(option) === JSON.stringify(currentValue),
 	);
+
 	if (compatibleOptions.length === 0) {
 		return;
 	}
+
 	if (props.returnValue) {
 		/**
 		* Evento que indica que o valor do Select foi alterado
@@ -346,16 +350,20 @@ watch(localValue, (currentValue) => {
 		* @type {Event}
 		*/
 		model.value = currentValue[props.optionsField];
+		emitChange();
 	} else {
 		model.value = currentValue;
+		emitChange();
 	}
 }, { deep: true });
 
+/* HOOKS */
 onMounted(() => {
 	id.value = `cds-select-${uniqueKey.value}`;
 	selectElement.value = cdsSelect.value;
 });
 
+/* FUNCTIONS */
 function filterOptions() {
 	const sanitizedString = removeAccents(localValue.value[props.optionsField]);
 	const regexExp = new RegExp(sanitizedString, 'i');
