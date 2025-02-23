@@ -1,1 +1,1 @@
-export default ['text', 'email', 'password', 'tel', 'number', 'search', 'url'];
+export default ['text', 'textarea', 'email', 'password', 'tel', 'number', 'search', 'url'];

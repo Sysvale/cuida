@@ -6,13 +6,14 @@ import TextArea from '../../components/TextArea.vue';
 	component={ TextArea }
 	argTypes={{
 		state: {
-			control: {
+			control:{
 				type: 'select',
-					options: [
-						'default',
-						'valid',
-						'invalid',
-					],
+				options: [
+					'default',
+					'valid',
+					'invalid',
+					'loading',
+				],
 			}
 		},
 	}}
@@ -44,8 +45,30 @@ export const Template = (args) => ({
 		<cds-text-area
 			v-bind="args" 
 			v-model="value"
+			@click="logClick"
+			@change="logChange"
+			@focus="logFocus"
+			@blur="logBlur"
+			@keydown="logKeydown"
 		/>
 	`,
+	methods: {
+		logClick() {
+			console.info('⚡ %cClick emitted', 'color: rgb(37, 227, 139);');
+		},
+		logChange() {
+			console.info('⚡ %cChange emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logFocus() {
+			console.info('⚡ %cFocus emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logBlur() {
+			console.info('⚡ %cBlur emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logKeydown(e) {
+			console.info('⚡ %cKeydown emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+	},
 	updated() {
 		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
 	},
@@ -72,7 +95,22 @@ export const Template = (args) => ({
 <Canvas>
 	<Story
 		name="TextArea"
-		args={{}}
+		args={{
+			disabled: false,
+			state: 'default',
+			required: false,
+			fluid: false,
+			floatingLabel: false,
+			lazy: false,
+			label: 'Texto',
+			placeholder: 'Digite algo...',
+			errorMessage: 'Campo obrigatório',
+			tooltip: '',
+			tooltipIcon: 'info-outline',
+			supportingText: 'supportingTex',
+			supportLink: '',
+			supportLinkUrl: '',
+		}}
 	>
 		{ Template.bind({}) }
 	</Story>
