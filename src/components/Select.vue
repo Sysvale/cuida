@@ -22,9 +22,12 @@
 				:support-link-url="supportLinkUrl || linkUrl"
 				:support-link="supportLink || linkText"
 				:floating-label="floatingLabel || mobile"
+				:class="inputClass"
+				:fluid="computedFluid"
 				@keydown.enter.prevent="activateSelectionOnEnter"
 				@keydown.arrow-down.prevent="highlightOnArrowDown"
 				@keydown.arrow-up.prevent="highlightOnArrowUp"
+				@keydown="emitKeydown"
 				@click="activateSelectionOnClick"
 				@input="filterOptions"
 				@focus="activeSelection"
@@ -41,14 +44,7 @@
 				v-show="active"
 				ref="select-options"
 				class="select__options"
-				:class="{
-					'select__options--thin': width === 'thin',
-					'select__options--default': width === 'default',
-					'select__options--wide': width === 'wide',
-					'select__options--fluid': fluid,
-					'select__options--down': direction === 'down',
-					'select__options--up': direction === 'up',
-				}"
+				:class="selectOptionsClass"
 			>
 				<ul
 					v-if="localOptions.length > 0"
@@ -56,7 +52,7 @@
 				>
 					<li
 						v-for="(option, index) in localOptions"
-						:key="index"
+						:key="option.id || option"
 						:ref="(el) => { liRefs[`${option[optionsField]}-${index}`] = el }"
 						class="option__text"
 						@mousedown="selectItem"
@@ -266,7 +262,6 @@ const emits = defineEmits({
 	...nativeEvents
 });
 
-
 const currentPos = ref(0);
 const active = ref(false);
 const id = ref(null);
@@ -286,6 +281,32 @@ const { emitClick, emitChange, emitFocus, emitBlur, emitKeydown } = nativeEmits(
 
 const resolveChevronTop = computed(() => {
 	return props.mobile ? '9px' : '6px';
+});
+
+const inputClass = computed(() => {
+	let returningClass = '';
+	const inputClass = props.mobile ? 'select__mobile-input' : 'select__input';
+
+	returningClass += ` ${inputClass}--${widths.find((item) => item === props.width)}`;
+	returningClass += props.fluid ? ` ${inputClass}--fluid` : ` ${inputClass}--fit`;
+	returningClass += props.searchable ? ` ${inputClass}--searchable` : '';
+
+	return returningClass;
+});
+
+const selectOptionsClass = computed(() => ({
+	'select__options--thin': props.width === 'thin',
+	'select__options--default': props.width === 'default',
+	'select__options--wide': props.width === 'wide',
+	'select__options--fluid': props.fluid,
+	'select__options--down': direction.value === 'down',
+	'select__options--up': direction.value === 'up',
+}));
+
+
+//NOTE: Essa computada vai ser removida junto com a descontinuação da prop width na V4
+const computedFluid = computed(() => {
+	return widths.some((item) => item === props.width) || props.fluid;
 });
 
 watch(() => props.searchable, (newValue, oldValue) => {
@@ -351,8 +372,7 @@ function activeSelection() {
 
 	nextTick().then(() => {
 		const element = localOptions.value[currentPos.value];
-		// this.$refs[`${element[props.optionsField]}-${currentPos.value}`][0].classList.add('highlight');
-		// liRefs.value[`${element[props.optionsField]}-${currentPos.value}`].classList.add('highlight');
+		liRefs.value[`${element[props.optionsField]}-${currentPos.value}`].classList.add('highlight');
 	});
 	emitFocus();
 }
@@ -464,8 +484,7 @@ function unhighlightOnMouseOut() {
 function resetActiveSelection() {
 	localOptions.value.forEach((option, index) => {
 		const element = localOptions.value[index];
-		// this.$refs[`${element[props.optionsField]}-${index}`][0].classList.remove('highlight');
-		// liRefs.value[`${element[props.optionsField]}-${currentPos.value}`].classList.remove('highlight');
+		liRefs.value[`${element[props.optionsField]}-${index}`].classList.remove('highlight');
 	})
 }
 
@@ -482,13 +501,29 @@ defineExpose({
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
 
-#cds-select {
-	-webkit-user-select: none; /* Safari */
-	-ms-user-select: none; /* IE 10 and IE 11 */
-	user-select: none;
-}
-
 .select {
+	&__input {
+		&--searchable {
+			caret-color: $n-700;
+		}
+
+		&--thin {
+			width: 150px !important;
+		}
+
+		&--default {
+			width: 266px !important;
+		}
+
+		&--wide {
+			width: 600px !important;
+		}
+
+		&--fluid {
+			width: 100%;
+		}
+	}
+
 	&__container {
 		position: relative;
 
@@ -531,7 +566,6 @@ defineExpose({
 	}
 
 	&__chevron--opened {
-		//position: absolute;
 		top: v-bind(resolveChevronTop);
 		right: 2px;
 		display: block;
