@@ -93,7 +93,6 @@ describe('Select', () => {
 	test('renders with a custom label', () => {
 		const wrapper = mount(Select, {
 			props: {
-				label: 'label',
 				id: 'select-input',
 				options: [{ value: 'Option 1' }, { value: 'Option 2' }],
 				label: 'Custom Label',
