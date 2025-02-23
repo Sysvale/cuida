@@ -19,7 +19,12 @@ import Select from '../../components/Select.vue';
 		width: { 
 			control: { 
 				type: 'select',
-				options: ['thin', 'default', 'wide']
+				options: [
+					'none',
+					'thin',
+					'default',
+					'wide'
+				]
 			}
 		},
 	}}
@@ -81,8 +86,8 @@ export const Template = (args) => ({
 		logBlur() {
 			console.info('⚡ %cBlur emitted', 'color: hsl(152, 77.20%, 51.80%);');
 		},
-		logKeydown(e) {
-			console.info('⚡ %cKeydown emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		logKeydown(event) {
+			console.info('⚡ %cKeydown emitted: ', 'color: hsl(152, 77.20%, 51.80%);', event);
 		},
 	},
 	updated() {
@@ -176,7 +181,7 @@ export const options = [
 		name="Select"
 		args={{
 			options,
-			width: 'wide',
+			width: 'none',
 			label: 'Séries',
 			placeholder: 'Selecione uma das séries',
 			required: true,
