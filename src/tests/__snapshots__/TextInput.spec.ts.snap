@@ -5,11 +5,7 @@ exports[`TextInput > renders correctly 1`] = `
     <!--v-if-->
   </label>
   <div data-v-82c69faf="" class="base-input base-input--default">
-<<<<<<< HEAD
     <!--v-if--><input data-v-82c69faf="" id="text-input" inputtype="text" linkurl="https://cuida.framer.wiki/" mobile="false" label="Label" state="default" type="text" placeholder="Digite aqui a informação" errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" supportlinkurl="https://cuida.framer.wiki/" floatinglabel="false" lazy="false" class="base-input__field">
-=======
-    <!--v-if--><input data-v-82c69faf="" id="cds-base-input-text-text-input" placeholder="Digite aqui a informação" class="base-input__field" type="text">
->>>>>>> 9e59de0a4e7a0bfbe59f025aea81ecdd92bbd4b8
     <!--v-if-->
     <!--v-if-->
   </div>
