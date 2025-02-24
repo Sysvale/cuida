@@ -97,7 +97,7 @@
 					:disabled="!shouldEnableButton"
 					@button-click="submit"
 				>
-					Adicionar arquivo
+					{{ submitButtonText }}
 				</cds-button>
 			</div>
 		</div>
@@ -112,7 +112,7 @@ import Icon from './Icon.vue';
 import CdsIconButton from './IconButton.vue';
 import CdsButton from './Button.vue';
 import CdsSelect from './Select.vue';
-import { kebabCase } from 'lodash';
+import generateKey from '../utils/methods/uuidv4';
 
 const props = defineProps({
 	/**
@@ -130,6 +130,11 @@ const props = defineProps({
 		type: String,
 		default: 'green',
 	},
+	/** Especifica o texto do botão de submit. */
+	submitButtonText: {
+		type: String,
+		default: 'Enviar',
+	},
 	/**
 	 * Especifica se o botão de submit é do tipo secundário.
 	 */
@@ -146,7 +151,7 @@ const newFile = ref({});
 const addedFilesList = ref([]);
 const filesOptions = ref(
 	props.documents.map((badge) => ({
-		id: kebabCase(badge.name),
+		id: generateKey(),
 		value: badge.name,
 		required: badge.required,
 		active: false,
@@ -255,6 +260,7 @@ function allRequiredLabelsAreSelected() {
 	&__badges_section {
 		display: flex;
 		flex-direction: row;
+		flex-wrap: wrap;
 		gap: spacer(1);
 		align-items: center;
 		width: 100%;
