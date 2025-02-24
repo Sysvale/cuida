@@ -60,6 +60,7 @@ import MobileNavbar from './MobileNavbar.vue';
 import MobileNavigation from './MobileNavigation.vue';
 import Modal from './Modal.vue';
 import Multiselect from './Multiselect.vue';
+import MultiFileInput from './MultiFileInput.vue';
 import NavBar from './NavBar.vue';
 import NumberInput from './NumberInput.vue';
 import OverlayLoader from './OverlayLoader.vue';
@@ -179,6 +180,7 @@ export default {
 		app.component('CdsMobileNavbar', MobileNavbar);
 		app.component('CdsMobileNavigation', MobileNavigation);
 		app.component('CdsModal', Modal);
+		app.component('CdsMultiFileInput', MultiFileInput);
 		app.component('CdsMultiselect', Multiselect);
 		app.component('CdsNavBar', NavBar);
 		app.component('CdsNumberInput', NumberInput);
