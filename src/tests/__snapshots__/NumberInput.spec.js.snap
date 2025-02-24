@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CdsNumberInput > renders correctly 1`] = `
+"<div id="number-input">
+  <div data-v-82c69faf="" id="number-input" money="false" linkurl="https://cuida.framer.wiki/" mobile="false"><label data-v-82c69faf="" class="base-input__label" for="cds-base-input-number-number-input"><span data-v-82c69faf="" class="label__content">Valor <!--v-if--><!--v-if--></span>
+      <!--v-if-->
+    </label>
+    <div data-v-82c69faf="" class="base-input base-input--default">
+      <!--v-if--><input data-v-82c69faf="" id="cds-base-input-number-number-input" placeholder="Digite aqui a informação" class="base-input__field" type="number">
+      <!--v-if-->
+      <!--v-if-->
+    </div>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+</div>"
+`;
