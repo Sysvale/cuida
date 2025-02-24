@@ -1,7 +1,7 @@
 export function nativeEmits(emits = null) {
 	const emitBlur = () => emits('blur');
 	const emitChange = () => emits('change');
-	const emitClick = () => emits('click');
+	const emitClick = (event) => emits('click', event);
 	const emitFocus = () => emits('focus');
 	const emitKeydown = (event) => emits('keydown', event);
 	const emitMouseenter = () => emits('mouseenter');
