@@ -1,0 +1,46 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import OverlayLoader from '../../components/OverlayLoader.vue';
+import * as OverlayLoaderStories from './OverlayLoader.stories';
+
+<Meta of={OverlayLoaderStories} />
+
+export const Template = (args) => ({
+	components: { CdsOverlayLoader: OverlayLoader },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-overlay-loader
+			v-bind="args"
+		/>
+	`,
+});
+
+# OverlayLoader
+
+### OverlayLoader é utilizado para indicar o carregamento de componentes internos de páginas, como cards e gráficos.
+
+***
+
+<br />
+
+## Quando usar:
+
+* Para indicar o carregamento de elementos de página que ainda não possuam skeleton implementado.
+
+<br />
+
+## Quando não usar:
+
+* Não utilize o OverlayLoader para carregamento de páginas. Nesses casos prefira o Spinner.
+* Não utilize o OverlayLoader para indicar carregameto de componentes que possuam skeletons implementados
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={OverlayLoaderStories.OverlayLoader} />
+</Canvas>
+
+<Controls />

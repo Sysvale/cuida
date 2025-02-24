@@ -1,6 +1,5 @@
 //NOTE: nem todos os parâmetros estão funcionando aqui
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
   viewMode: "docs",
   options: {
     previewTabs: {
@@ -47,3 +46,4 @@ import CdsFloatify from "../src/utils/directives/cdsFloatify";
 app.directive("cdstip", Cdstip);
 app.directive("cds-floatify", CdsFloatify);
 app.mount("#app");
+export const tags = ["autodocs"];

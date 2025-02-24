@@ -1,0 +1,42 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import Box from '../../components/Box.vue';
+import * as BoxStories from './Box.stories';
+
+<Meta of={BoxStories} />
+
+export const Template = (args) => ({
+	components: { CdsBox: Box },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div style="height: 200px">
+			<cds-box
+				v-bind="args"
+			>
+				2
+			</cds-box>
+		</div>
+	`,
+	methods: {
+		logClickableClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+# Box
+
+### Boxes são componentes básicos de container que encapsulam conteúdo com o estilo padrão de borda, de sombra e de padding do cuida. Podem ser utilizados como componente primivo para cards, popovers, modais, etc.
+
+***
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={BoxStories.Box} />
+</Canvas>
+
+<Controls />

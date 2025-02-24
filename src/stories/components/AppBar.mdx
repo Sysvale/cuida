@@ -1,0 +1,61 @@
+import { Controls, Canvas, Meta, Story } from '@storybook/blocks';
+import AppBar from '../../components/AppBar.vue';
+import Icon from '../../components/Icon.vue';
+import * as AppBarStories from './AppBar.stories';
+
+<Meta of={AppBarStories} />
+
+export const Template = (args) => ({
+	components: { CdsAppBar: AppBar, CdsIcon: Icon },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-app-bar
+			v-bind="args"
+			@settings-click="logClick"
+			@help-click="logClick"
+			@notification-click="logClick"
+			@avatar-click="logClick"
+			@app-switcher-click="logClick"
+		>
+			<template #app-info>
+				<div>
+					<cds-icon
+						height="24"
+						width="24"
+						light
+						name="calendar-outline"
+					/>
+					<p class="app-name">
+						Central de marcação
+					</p>
+				</div>
+			</template>
+            <template #dropdown-content>
+				Conteúdo do dropdown
+			</template>
+		</cds-app-bar>
+	`,
+	methods: {
+		logClick(element) {
+			console.info('%clogAction: ', 'color: #2C70CD;', element);
+		},
+	},
+});
+
+# AppBar
+
+### AppBars são componentes de navegação horizontal para produtos Sysvale e Cidade saudável.
+
+***
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={AppBarStories.AppBar} />
+</Canvas>
+
+<Controls />

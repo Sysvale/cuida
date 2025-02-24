@@ -1,0 +1,71 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import PageHeader from '../../components/PageHeader.vue';
+import Button from '../../components/Button.vue';
+import * as PageHeaderStories from './PageHeader.stories';
+
+<Meta of={PageHeaderStories} />
+
+export const Template = (args) => ({
+	components: { CdsPageHeader: PageHeader, CdsButton: Button },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-page-header
+			v-bind="args"
+		>
+			<template
+				#aside
+			>
+				<cds-button
+					secondary
+					@click="logClick('Btn 1')"
+					text="Button 1"
+				/>
+				<cds-button
+					class="d-flex align-items-center ml-4"
+					variant="success"
+					@click="logClick('Btn 2')"
+					text="Button 2"
+				/>
+			</template>
+		</cds-page-header>
+	`,
+	methods: { logClick(btnName) { console.info(btnName) } }
+});
+
+# PageHeader
+
+### PageHeader são componentes utilizados para adicionar título, subtítulo e ações em páginas.
+
+***
+
+<br />
+
+## Quando usar:
+
+* Precisar colocar headers em páginas.
+* Precisar adicionar botões de ação a nível de página.
+* Precisar adicionar cards informativos no topo de páginas.
+
+<br />
+
+## Quando não usar:
+
+* Fora do topo de páginas.
+
+<br />
+
+## Observações:
+
+* ⚠️ Quando uma URL é colocada como parte do subtítulo, ela é renderizada como link no componente. Para tanto, a URL deve ser precedidada de http:// ou https://.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={PageHeaderStories.PageHeader} />
+</Canvas>
+
+<Controls />

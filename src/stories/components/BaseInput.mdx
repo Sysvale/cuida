@@ -1,0 +1,83 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import BaseInput from '../../components/BaseInput.vue';
+import * as BaseInputStories from './BaseInput.stories';
+
+<Meta of={BaseInputStories} />
+
+export const Template = (args) => ({
+	components: { CdsBaseInput: BaseInput },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			value: '',
+		};
+	},
+	template: /*html*/ `
+		<cds-base-input
+			v-bind="args" 
+			v-model="value"
+			@click="logClick"
+			@focus="logFocus"
+			@blur="logBlur"
+			@keydown="logKeydown"
+		>
+			<template #trailing-icon2>
+				OPA
+			</template>
+			<template #leading-icon2>
+				UPA
+			</template>
+		</cds-base-input>`,
+	methods: {
+		logBlur() {
+			console.info('blur event');
+		},
+		logFocus() {
+			console.info('focus event');
+		},
+		logClick() {
+			console.info('click event');
+		},
+		logKeydown(e) {
+			console.info('keydown event -> ', e);
+		},
+	},
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
+});
+
+# BaseInput
+
+### BaseInput é o componente base para todos os tipos de inputs, fornecendo a estrutura e funcionalidades comuns.
+
+***
+
+O BaseInput deve ser utilizado como base para a criação de novos componentes de input.
+Ele fornece a estrutura básica e funcionalidades comuns, como gerenciamento de estado, validação e estilização, etc.
+
+<br />
+
+## Quando usar:
+
+* Na implementação de componentes do tipo input, com exceção de checkboxes, radios, ranges e files.
+
+<br />
+
+## Quando não usar:
+
+* ⚠️ **Atenção:** Este componente **não deve** ser utilizado diretamente na aplicação, mas sim como base para a criação de novos componentes de input..
+
+<br />
+
+## Preview
+
+export const supportingText = ['We’ll use this address if', 'Ask for help'];
+
+<Canvas>
+  <Story of={BaseInputStories.BaseInput} />
+</Canvas>
+
+<Controls />

@@ -1,0 +1,49 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import LineChart from '../../components/LineChart.vue';
+import * as LineChartStories from './LineChart.stories';
+
+<Meta of={LineChartStories} />
+
+export const Template = (args) => ({
+	components: { CdsLineChart: LineChart },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px; height: 300px">
+			<cds-line-chart
+				v-bind="args"
+			/>
+		</div>
+	`
+});
+
+# LineChart
+
+### Um componente de gráfico reutilizável para exibir dados visualmente.
+
+***
+
+<br />
+
+## Quando usar:
+
+* Exibir dados em formatos visuais;
+* Ideal para mostrar tendências ao longo do tempo;
+* Comparação de múltiplas séries.
+
+<br />
+
+## Quando não usar:
+
+* Para informações simples que podem ser exibidas em um formato tabular ou em texto;
+* Dados discretos sem sequência lógica;
+* Grande quantidade de série de dados.
+
+## Preview
+
+<Canvas>
+  <Story of={LineChartStories.LineChart} />
+</Canvas>
+
+<Controls />

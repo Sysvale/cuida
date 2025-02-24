@@ -1,0 +1,70 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import RadioButtonGroup from '../../components/RadioButtonGroup.vue';
+import * as RadioButtonGroupStories from './RadioButtonGroup.stories';
+
+<Meta of={RadioButtonGroupStories} />
+
+export const Template = (args) => ({
+	components: { CdsRadioButtonGroup: RadioButtonGroup },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-radio-button-group
+			v-bind="args" 
+		/>
+	`,
+});
+
+# RadioButtonGroup
+
+### RadioButtonsGroup são radio buttons customizados para facilitar a seleção e feedback.
+
+***
+
+<br />
+
+## Quando usar:
+
+* As opções que o componente busca prover são mutuamente exclusivas.
+* For necessário utilizar um `<input type="radio"` />.
+
+<br />
+
+## Quando não usar:
+
+* Duas ou mais opções puderem ser selecionadas ao mesmo tempo.
+* Houver 4 ou mais opções. Prefira Dropdowns nesses casos.
+
+## Obs.:
+
+* Você pode desabilitar cada um dos radio buttons passando a propriedade `disable: true`, no respectivo objeto
+  no array de opções. Caso você queira desabilitar todo o grupo, você pode setar a prop `disabled` como true no componente.
+
+<br />
+
+## Preview
+
+export const value = '';
+export const options = [
+	{
+		text: 'Opção desabilitada',
+		value: 'value1',
+		disabled: true,
+	},
+	{
+		text: 'Opção habilitada 1',
+		body: 'Adicione um texto descritivo/explicativo referente a essa opção',
+		value: 'value2',
+	},
+	{
+		text: 'Opção habilitada 2',
+		value: 'value3',
+	},
+];
+
+<Canvas>
+  <Story of={RadioButtonGroupStories.RadioButtonGroup} />
+</Canvas>
+
+<Controls />

@@ -1,0 +1,80 @@
+import { Meta, Story, Props, Controls, Canvas, Preview, Source } from '@storybook/blocks';
+import ActionsList from '../../components/ActionsList.vue';
+import * as ActionsListStories from './ActionsList.stories';
+
+<Meta of={ActionsListStories} />
+
+export const Template = (args) => ({
+	components: { CdsActionsList: ActionsList },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-actions-list
+			v-bind="args"
+			@actionClicked="logActionClick"
+			@expanded="logExpansion"
+		>
+			<template
+				#action="{ list }"
+			>
+				{{ list.title }}
+			</template>
+		</cds-actions-list>
+	`,
+	methods: {
+		logActionClick(action) {
+			console.info('logActionClick: ', action);
+		},
+		logExpansion(event) {
+			console.info('isExpanded: ', event);
+		},
+	},
+});
+
+# ActionsList
+
+### Actions lists são componentes usados para mostrar uma lista de ações em linha, podendo algumas delas serem ocultas.
+
+***
+
+<br />
+
+## Quando usar:
+
+* Houver ações associadas a um item de uma lista ou linha de tabela.
+* Houver várias ações possíveis em determinada situação, mas algumas delas puderem ser colapsadas.
+
+<br />
+
+## Quando não usar:
+
+* For necessário o uso de botões.
+* For necessário construir componentes de navegação (Menu, navbar, etc).
+* As ações listadas afetam toda a view ou mais que um conjunto de dados relacionados.
+
+<br />
+
+## Preview
+
+export const actions = [
+	{
+		"title": "Icon1",
+		"disabled": true
+	},
+	{
+		"title": "Icon2",
+	},
+	{
+		"title": "Icon3",
+	},
+	{
+		"title": "Icon4",
+	}
+];
+
+<Canvas>
+  <Story of={ActionsListStories.ActionsList} />
+</Canvas>
+
+<Controls />

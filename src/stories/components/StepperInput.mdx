@@ -1,0 +1,79 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import StepperInput from '../../components/StepperInput.vue';
+import * as StepperInputStories from './StepperInput.stories';
+
+<Meta of={StepperInputStories} />
+
+export const Template = (args) => ({
+	components: { CdsStepperInput: StepperInput },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			value: 0,
+		};
+	},
+	template: /*html*/ `
+		<cds-stepper-input
+			v-bind="args"
+			v-model="value"
+			@click="logClick"
+			@focus="logFocus"
+			@blur="logBlur"
+			@change="logChange"
+		/>
+	`,
+	methods: {
+		logClick() {
+			console.info('⚡ %cClick emitted', 'color:rgb(188, 140, 255);');
+		},
+		logFocus() {
+			console.info('⚡ %cFocus emitted', 'color:rgb(249, 120, 232);');
+		},
+		logBlur() {
+			console.info('⚡ %cBlur emitted', 'color:rgb(37, 227, 139);');
+		},
+		logChange() {
+			console.info('⚡ %cChange emitted', 'color:rgb(228, 235, 104);');
+		},
+	},
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
+});
+
+# StepperInput
+
+### StepperInputs são inputs numéricos com botões de incremento e decremento sempre visíveis.
+
+***
+
+<br />
+
+## Quando usar:
+
+* For necessário precisar de um input do tipo número.
+* O número a ser adicionado ao StepperInput for pequeno ou de poucos dígitos.
+
+<br />
+
+## Quando não usar:
+
+* O dado a ser utilizado no componente não for numérico.
+* O dado a ser utilizado  no componente for muito grande.
+* O dado a ser utilizado no componente não for incremental.
+
+## Observações:
+
+* A propriedade `width` não tem efeito quando a propriedade `mobile` está configurada para `true`.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={StepperInputStories.StepperInput} />
+</Canvas>
+
+<Controls />

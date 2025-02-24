@@ -1,0 +1,47 @@
+import { Controls, Canvas, Meta, Story } from '@storybook/blocks';
+import Dropdown from '../../components/Dropdown.vue';
+import * as DropdownStories from './Dropdown.stories';
+
+<Meta of={DropdownStories} />
+
+export const Template = (args) => ({
+	components: { CdsDropdown: Dropdown },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-dropdown
+			v-bind="$props"
+		>
+			<p>Slot do dropdown do Dropdown</p>
+		</cds-dropdown>`,
+});
+
+# Dropdown
+
+### Dropdown são componentes utilizados para ativar popovers contendo filtros para listas e views.
+
+***
+
+<br />
+
+## Quando usar:
+
+* Para utilizar com filtros.
+* Houver popovers contendo opções de filtragem.
+
+<br />
+
+## Quando não usar:
+
+* Em substituição à um Multiselect ou Select.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={DropdownStories.Dropdown} />
+</Canvas>
+
+<Controls />

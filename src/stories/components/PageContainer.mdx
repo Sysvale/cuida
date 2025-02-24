@@ -1,0 +1,49 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import PageContainer from '../../components/PageContainer.vue';
+import * as PageContainerStories from './PageContainer.stories';
+
+<Meta of={PageContainerStories} />
+
+export const Template = (args) => ({
+	components: { CdsPageContainer: PageContainer },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div class="d-flex justify-content-center">
+			<cds-page-container
+				style="background: silver"
+			>
+				Componente interno
+			</cds-page-container>
+		</div>
+	`,
+});
+
+# PageContainer
+
+### PageContainers são blocos básicos de estrutura no Cuida. Eles provêm padding e alinhamento de conteúdo.
+
+***
+
+<br />
+
+## Quando usar:
+
+* PageContainers devem ser usados sempre na construção das páginas, com o conteúdo sendo colocado como slot no componente.
+
+<br />
+
+## Quando não usar:
+
+* Não devem ser usados PageContainers aninhados.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={PageContainerStories.PageContainer} />
+</Canvas>
+
+<Controls />

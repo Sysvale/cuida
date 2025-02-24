@@ -1,0 +1,45 @@
+import { Controls, Canvas, Meta, Story } from '@storybook/blocks';
+import Avatar from '../../components/Avatar.vue';
+import * as AvatarStories from './Avatar.stories';
+
+<Meta of={AvatarStories} />
+
+export const Template = (args) => ({
+	components: { CdsAvatar: Avatar },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-avatar
+			v-bind="args" 
+		>
+			<template #dropdown-content>
+				Conteúdo do dropdown
+			</template>
+		</cds-avatar>
+	`,
+});
+
+# Avatar
+
+### Avatares são componentes utilizados para exibir representações visuais de usuários, como imagens ou nome.
+
+***
+
+<br />
+
+## Quando usar:
+
+* Recomenda-se o uso de avatares quando o usuário ou lista de usuários possuir
+  imagens ou nomes definidos.
+* É geralmente usado em conjunto com Headers, NavBars, Tabelas, Cards e Listas
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={AvatarStories.Avatar} />
+</Canvas>
+
+<Controls />

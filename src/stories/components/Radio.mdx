@@ -1,0 +1,56 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import Radio from '../../components/Radio.vue';
+import * as RadioStories from './Radio.stories';
+
+<Meta of={RadioStories} />
+
+export const Template = (args) => ({
+	components: { CdsRadio: Radio },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			selected: '',
+		};
+	},
+	template: /*html*/ `
+		<div>
+			<cds-radio
+				v-model="selected"
+				v-bind="args"
+			>
+				Radio label
+			</cds-radio>
+		</div>
+	`,
+});
+
+# Radio
+
+### O Radio permite que os usuários selecionem uma opção de um conjunto.
+
+***
+
+<br />
+
+## Quando usar:
+
+* As opções que o componente busca prover são mutuamente exclusivas.
+
+<br />
+
+## Quando não usar:
+
+* Duas ou mais opções puderem ser selecionadas ao mesmo tempo.
+* Houver 4 ou mais opções. Você pode usar o componente `Dropdown` nesses casos.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={RadioStories.Radio} />
+</Canvas>
+
+<Controls />

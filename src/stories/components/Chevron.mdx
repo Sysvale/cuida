@@ -1,0 +1,54 @@
+import { Controls, Canvas, Meta, Story } from '@storybook/blocks';
+import Chevron from '../../components/Chevron.vue';
+import * as ChevronStories from './Chevron.stories';
+
+<Meta of={ChevronStories} />
+
+export const Template = (args) => ({
+	components: { CdsChevron: Chevron },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div
+			style="width: 15px;
+			height: 15px;
+			position: absolute;
+			top: 35px;
+			left: 40px;"
+		>
+			<cds-chevron
+				v-bind="args" 
+			/>
+		</div>`,
+});
+
+# Chevron
+
+### Chevrons são elementos gráficos usados em interfaces para indicar possibilidade de interação.
+
+***
+
+<br />
+
+## Quando usar:
+
+* Parte de um elemento pode ser oculta o visível,
+* Indicar ações como `play`, `next` e `fastfoward`
+
+<br />
+
+## Quando não usar:
+
+* Como ícones.
+* Evite usar chevrons sem a propriedade `animate` ativa
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={ChevronStories.Chevron} />
+</Canvas>
+
+<Controls />

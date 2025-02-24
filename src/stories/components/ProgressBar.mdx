@@ -1,0 +1,45 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import ProgressBar from '../../components/ProgressBar.vue';
+import * as ProgressBarStories from './ProgressBar.stories';
+
+<Meta of={ProgressBarStories} />
+
+export const Template = (args) => ({
+	components: { CdsProgressBar: ProgressBar },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `<cds-progress-bar v-bind="args"/>`,
+});
+
+# ProgressBar
+
+### ProgressBars são componentes utilizados para indicar o status e progresso de algo aos usuários.
+
+***
+
+<br />
+
+## Quando usar:
+
+* For necessário transmitir a ideia do progresso de algo.
+* For necessário transmitir a ideia do status de algo.
+* Se deseja chamar a atenção do usuário para uma informação específica de maneira gráfica.
+
+<br />
+
+## Quando não usar:
+
+* For necessário criar loaders.
+* For necessária muita precisão ao mostrar os números ou progresso.
+* For necessário criar steppers.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={ProgressBarStories.ProgressBar} />
+</Canvas>
+
+<Controls />

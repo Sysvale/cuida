@@ -1,0 +1,52 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import CarouselController from '../../components/CarouselController.vue';
+import * as CarouselControllerStories from './CarouselController.stories';
+
+<Meta of={CarouselControllerStories} />
+
+export const Template = (args) => ({
+	components: { CdsCarouselController: CarouselController },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-carousel-controller
+			v-bind="args"
+			@click-forward="handleClickForwardEvent"
+			@click-back="handleClickBackEvent"
+		/>
+	`,
+	methods: { 
+		handleClickForwardEvent() { console.info('clicked forward'); },
+		handleClickBackEvent() { console.info('clicked back'); }
+	},
+});
+
+# CarouselController
+
+### CarouselControllers são componentes utilizados para controlar a exibição de elementos em carrosséis.
+
+***
+
+<br />
+
+## Quando usar:
+
+* Você possuir uma categoria de elementos da interface que se repetem e que podem ser exibidos em forma de carrossel.
+
+<br />
+
+## Quando não usar:
+
+* Você estiver trabalhando com tabelas. Nesses casos recomendamos o uso de paginação (TODO).
+* Todo o conteúdo a ser gerenciado puder ser exibido de uma só vez. Nesse caso não há necessidade de controle de páginas e do uso do componente;
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={CarouselControllerStories.CarouselController} />
+</Canvas>
+
+<Controls />

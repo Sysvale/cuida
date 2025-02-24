@@ -1,0 +1,38 @@
+import { Controls, Canvas, Meta, Story } from '@storybook/blocks';
+import Divider from '../../components/Divider.vue';
+import * as DividerStories from './Divider.stories';
+
+<Meta of={DividerStories} />
+
+export const Template = (args) => ({
+	components: { CdsDivider: Divider },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-divider
+			v-bind="args" 
+		/>`,
+});
+
+# Divider
+
+### Dividers são componentes utilizados para separar ou agrupar conteúdo.
+
+***
+
+<br />
+
+## Obs.:
+
+* A prop `vertical` ocualta o texto do divider.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={DividerStories.Divider} />
+</Canvas>
+
+<Controls />

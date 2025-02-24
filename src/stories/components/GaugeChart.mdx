@@ -1,0 +1,51 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import GaugeChart from '../../components/GaugeChart.vue';
+import * as GaugeChartStories from './GaugeChart.stories';
+
+<Meta of={GaugeChartStories} />
+
+export const Template = (args) => ({
+	components: { CdsGaugeChart: GaugeChart },
+	setup() {
+		return { args };
+	},
+	template: /*html*/
+		`<cds-gauge-chart
+			v-bind="args"
+		>
+			<template #popover>
+				<p style="margin: 0;"><strong>Em atendimento:</strong> 280</p>
+				<p style="margin: 0;"><strong>Pendentes:</strong> 60</p>
+				<p style="margin: 0;"><strong>Em acompanhamento:</strong> 600</p>
+			</template>
+		</cds-gauge-chart>`,
+});
+
+# GaugeChart
+
+### O Gauge Chart é indicado para mostrar o progresso em direção a uma meta específica.
+
+***
+
+<br />
+
+## Quando usar:
+
+* Use "Gauge charts" quando precisar monitorar e comunicar de forma visual o status de métricas-chave ou indicadores de desempenho;
+* Use "Gauge charts" para comunicar o estado geral de uma única métrica de maneira rápida e visualmente impactante.
+
+<br />
+
+## Quando não usar:
+
+* Evite o uso de "Gauge charts" para representar conjuntos de dados complexos ou multidimensionais. Esse tipo de gráfico é mais eficaz ao exibir uma única métrica em relação a uma escala.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={GaugeChartStories.GaugeChart} />
+</Canvas>
+
+<Controls />

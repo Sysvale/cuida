@@ -1,0 +1,42 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import Image from '../../components/Image.vue';
+import * as ImageStories from './Image.stories';
+
+<Meta of={ImageStories} />
+
+export const Template = (args) => ({
+	components: { CdsImage: Image },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-image
+			v-bind="args"
+		/>
+	`,
+	methods: {
+		logClickableClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+# Image
+
+### Image é um componente utilitário utilizado para renderizar imagens com fallback.
+
+***
+
+<br />
+
+## Obs:
+
+* ⚠️ Quando a prop `round` for true, o tamanho da imagem vai ser setado como igual à largura.
+
+## Preview
+
+<Canvas>
+  <Story of={ImageStories.Image} />
+</Canvas>
+
+<Controls />

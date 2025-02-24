@@ -1,0 +1,45 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import Spinner from '../../components/Spinner.vue';
+import * as SpinnerStories from './Spinner.stories';
+
+<Meta of={SpinnerStories} />
+
+export const Template = (args) => ({
+	components: { CdsSpinner: Spinner },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-spinner
+			v-bind="args"
+		/>
+	`,
+});
+
+# Spinner
+
+### Spinners é um componente utilizado para indicar que o progresso de uma operação ainda não foi finalizado.
+
+***
+
+<br />
+
+## Quando usar:
+
+* For necessário impedir a visualização e navegação do conteúdo de páginas enquanto houver alguma pendência de operação.
+
+<br />
+
+## Quando não usar:
+
+* A visualização e navegação não puder ser interrompida.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={SpinnerStories.Spinner} />
+</Canvas>
+
+<Controls />

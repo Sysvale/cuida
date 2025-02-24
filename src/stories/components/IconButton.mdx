@@ -1,0 +1,52 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import IconButton from '../../components/IconButton.vue';
+import * as IconButtonStories from './IconButton.stories';
+
+<Meta of={IconButtonStories} />
+
+export const Template = (args) => ({
+	components: { CdsIconButton: IconButton },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-icon-button
+			v-bind="args"
+			@cds-click="logIconButtonClick"
+		/>`,
+	methods: {
+		logIconButtonClick(event) {
+			console.info('%con click: ', 'color: #2C70CD;', event);
+		},
+	},
+});
+
+# IconButton
+
+### IconButtons são componentes que permitem que o usuário execute uma ação com um toque.
+
+***
+
+<br />
+
+## Quando usar:
+
+* For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em diálogos, janelas modais, formulários, cards, etc.
+
+<br />
+
+## Quando não usar:
+
+* For necessário dar a opção de executar uma ação como um detalhe pequeno na interface.
+  Nesse caso, recomendamos o uso de links.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={IconButtonStories.IconButton} />
+</Canvas>
+
+<Controls />

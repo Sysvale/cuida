@@ -1,0 +1,51 @@
+import { Meta, Story, Controls, Canvas,  Source } from '@storybook/blocks';
+import TimelineItem from '../../components/TimelineItem.vue';
+import * as TimelineItemStories from './TimelineItem.stories';
+
+import dedent from 'ts-dedent';
+
+<Meta of={TimelineItemStories} />
+
+export const Template = (args) => ({
+	components: { CdsTimelineItem: TimelineItem },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-timeline-item
+			v-bind="args"
+		>
+			<template #opposite>
+				24/01/20202
+			</template>
+			<template #title>
+				Denis Ritchie
+			</template>
+			<template #content>
+				Criador da linguagem de programação C
+			</template>
+		</cds-timeline-item>
+	`,
+});
+
+# TimelineItem
+
+### TimelineItems são componentes auxiliares utilizados para montar Timelines.
+
+***
+
+<br />
+
+## Quando não usar:
+
+* Fora de componentes `Timeline`.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={TimelineItemStories.TimelineItem} />
+</Canvas>
+
+<Controls />
