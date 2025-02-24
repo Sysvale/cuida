@@ -86,6 +86,7 @@
 					ref="htmlInput"
 					v-model="internalValue"
 					:required="required"
+					:readonly="readonly"
 					:placeholder="placeholder"
 					:disabled="disabled"
 					:class="inputClass"
@@ -297,6 +298,10 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	readonly: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const emits = defineEmits({
@@ -389,13 +394,13 @@ onMounted(() => {
 });
 
 /* FUNCTIONS */
-function handleClick() {
+function handleClick(event) {
 	/**
 	* Evento emitido quando o componente é clicado.
 	* @event click
 	* @type {Event}
 	*/
-	emitClick();
+	emitClick(event);
 }
 
 function handleFocus() {

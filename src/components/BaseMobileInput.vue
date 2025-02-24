@@ -46,6 +46,7 @@
 				:required="required"
 				:disabled="disabled"
 				:class="inputClass"
+				:readonly="readonly"
 				:type="type"
 				@focus="handleFocus"
 				@blur="handleBlur"
@@ -205,7 +206,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, useTemplateRef, useAttrs } from 'vue';
+import { ref, computed, watch, useTemplateRef, useAttrs, readonly } from 'vue';
 import {
 	nativeEvents,
 	nativeEmits,
@@ -341,6 +342,10 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	readonly: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const emits = defineEmits({
@@ -450,13 +455,13 @@ watch(internalValue, (value) => {
 });
 
 /* FUNCTIONS */
-function handleClick() {
+function handleClick(event) {
 	/**
 	* Evento emitido quando o componente é clicado.
 	* @event click
 	* @type {Event}
 	*/
-	emitClick();
+	emitClick(event);
 	componentRef.value.focus();
 }
 
