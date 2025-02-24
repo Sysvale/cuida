@@ -261,7 +261,7 @@ function allRequiredLabelsAreSelected() {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		gap: spacer(1);
+		gap: spacer(2);
 		align-items: center;
 		width: 100%;
 		margin: mt(3);
