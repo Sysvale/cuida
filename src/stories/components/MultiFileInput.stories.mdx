@@ -1,18 +1,15 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
 import MultiFileInput from '../../components/MultiFileInput.vue';
+import { colorOptions } from '../../utils/constants/colors';
 
 <Meta
 	title="Componentes/Forms/MultiFileInput"
 	component={ MultiFileInput }
 	argTypes={{
-		snapTo: {
+		variant: {
 			control:{
 				type: 'select',
-				options: [
-					'start',
-					'center',
-					'end',
-				],
+				options: colorOptions.filter(color => color !== 'white' && color !== 'gray'),
 			}
 		},
 	}}
@@ -23,21 +20,25 @@ import MultiFileInput from '../../components/MultiFileInput.vue';
 			source: {
 				language: 'html',
 				format:true,
-				code: /*html*/ 
+				code: /*html*/
 `
-<cds-carousel
-	v-slot="{ item }"
-	:items="[
-		'https://picsum.photos/600/800?random=1',
-		'https://picsum.photos/600/800?random=2',
-		'https://picsum.photos/600/800?random=3',
-		'https://picsum.photos/600/800?random=4',
-	]
-	:gap="0"
-	:snap-to="'start'"
->
-	<cds-image :src="item" width="300" height="400" />
-</cds-carousel>
+<cds-multi-file-input
+	documents="[
+		{
+			name: 'Comprovante de residência',
+			required: true,
+		},
+		{
+			name: 'Guia de encaminhamento',
+			required: false,
+		},
+		{
+			name: 'RG',
+			required: false,
+		},
+	]",
+	size="md"
+/>
 `
 },
 		}
@@ -51,7 +52,8 @@ export const Template = (args) => ({
 	},
 	template: /*html*/ `
 		<cds-multi-file-input
-			size="lg"
+			size="md"
+			@submit="console.info('Submit click')"
 		/>
 	`,
 	methods: {},
@@ -59,27 +61,26 @@ export const Template = (args) => ({
 
 # MultiFileInput
 
-### O MultiFileInput é um componente que permite a exibição de uma série de conteúdos (imagens, textos, cards, etc.) em um formato deslizante, em que o usuário pode navegar entre os itens de forma sequencial.
+### O MultiFileInput é um componente que permite ao usuário selecionar e carregar múltiplos arquivos de forma organizada.
 ---
 <br />
 
 ## Quando usar:
-- Quando há necessidade de exibir vários itens (como imagens, produtos, cards informativos) em um espaço reduzido, sem sobrecarregar a interface.
-- Para destacar conteúdos importantes de forma dinâmica, como promoções, destaques ou novidades.
-- Quando a ordem de exibição dos itens é relevante e a navegação sequencial faz sentido para o contexto.
+- Quando o usuário precisa enviar múltiplos arquivos em um único formulário.
+- Para situações onde é importante visualizar a lista de arquivos selecionados antes de finalizar o envio.
+- Quando o espaço na interface é limitado, mas a seleção de vários arquivos é um requisito.
 
 <br />
 
 ## Quando não usar:
-- Quando o conteúdo for uma informação crítica e não deve ficar escondida.
-- Se a quantidade de itens for muito pequena (menos de 3), pois a navegação pode parecer desnecessária.
-- Em interfaces onde a acessibilidade é uma prioridade e o carousel pode dificultar a experiência para usuários com deficiências visuais ou motoras.
-- Quando o espaço disponível na tela é insuficiente para exibir os itens de forma clara e legível.
+- Quando apenas um único arquivo precisa ser enviado (nesse caso, um input de arquivo simples é suficiente).
+- Se a lista de arquivos selecionados pode se tornar muito longa, ocupando espaço excessivo na tela e prejudicando a usabilidade.
+- Em interfaces onde a complexidade do componente pode confundir o usuário, especialmente se o envio de múltiplos arquivos não for uma necessidade comum.
 
 <br />
 
 ## Obs:
-- Quando o carrossel for utilizado para exibir imagens, é recomendado usar o componente `Image` em vez da tag `<img>` nativa. Isso permite que todas as funcionalidades do <b>Image</b>, como <i>dimmed</i> e <i>opacity</i>, sejam utilizadas.
+- O **MultiFileInput** é derivado do `FileInput` e possui todos os atributos e eventos dele.
 
 <br />
 
@@ -89,28 +90,26 @@ export const Template = (args) => ({
 	<Story
 		name="MultiFileInput"
 		args={{
-			badges:[
+			documents:[
 				{
 					name: 'Comprovante de residência',
-					description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 					required: true,
 				},
 				{
 					name: 'Guia de encaminhamento',
-					description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 					required: false,
 				},
 				{
 					name: 'RG',
-					description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 					required: false,
 				},
 				{
 					name: 'Passaporte',
-					description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 					required: true,
 				}
-			]
+			],
+			variant: 'green',
+			buttonSecondary: false,
 		}}
 	>
 		{ Template.bind({}) }
