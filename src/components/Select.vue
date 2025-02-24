@@ -413,7 +413,9 @@ function activateSelectionOnClick() {
 	if (props.disabled) return;
 
 	active.value = !active.value;
+
 	emitClick();
+	select.value.focus();
 }
 
 function hide() {
