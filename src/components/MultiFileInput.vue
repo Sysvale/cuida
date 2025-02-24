@@ -18,7 +18,7 @@
 				<badge
 					v-for="badge in filesOptions"
 					:key="badge"
-					:variant="badge.active ? 'green' : 'gray'"
+					:variant="badge.active ? variant : 'gray'"
 				>
 					<div class="multi-file-input__badge-content">
 						<icon
@@ -29,7 +29,7 @@
 						/>
 
 						<div>
-							{{ badge.value }}
+							{{ badge.value }} {{ badge.required ? '*' : '' }}
 						</div>
 					</div>
 				</badge>
@@ -56,7 +56,10 @@
 						:key="item"
 						class="multi-file-input__list-item"
 					>
-						<div class="multi-file-input__item">
+						<div
+							class="multi-file-input__item"
+							:class="`multi-file-input__item--${variant}`"
+						>
 							{{ item.file.name }}
 
 							<div>
@@ -86,6 +89,17 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="multi-file-input__footer">
+				<cds-button
+					:secondary="buttonSecondary"
+					:variant="variant"
+					:disabled="!shouldEnableButton"
+					@button-click="submit"
+				>
+					Adicionar arquivo
+				</cds-button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -96,24 +110,42 @@ import FileInput from './FileInput.vue';
 import Badge from './Badge.vue';
 import Icon from './Icon.vue';
 import CdsIconButton from './IconButton.vue';
+import CdsButton from './Button.vue';
 import CdsSelect from './Select.vue';
 import { kebabCase } from 'lodash';
 
 const props = defineProps({
 	/**
-	 * Especifica os itens que serão exibidos nas badges.
+	 * Especifica os itens que serão exibidos nas opções de arquivos. os itens devem conter, ao menos, os atributos `name` e `required`.
 	 */
-	badges: {
+	documents: {
 		type: Array,
 		required: true,
 	},
+	/**
+	 * Especifica a principal do componente. Essa cor será aplicada aos detalhes de estilo do componente, bem como em seu botão principal.
+	 * São 10 variantes: 'teal', 'green', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+	 */
+	variant: {
+		type: String,
+		default: 'green',
+	},
+	/**
+	 * Especifica se o botão de submit é do tipo secundário.
+	 */
+	buttonSecondary: {
+		type: Boolean,
+		default: false,
+	},
 });
+
+const emits = defineEmits(['submit']);
 
 const fileInputKey = ref(0);
 const newFile = ref({});
 const addedFilesList = ref([]);
 const filesOptions = ref(
-	props.badges.map((badge) => ({
+	props.documents.map((badge) => ({
 		id: kebabCase(badge.name),
 		value: badge.name,
 		required: badge.required,
@@ -147,6 +179,10 @@ const repeatedBadges = computed(() => {
 	return repeated;
 });
 
+const shouldEnableButton = computed(() => {
+	return allFilesHaveSelectedLabels() && repeatedBadges.value.length == 0 && allRequiredLabelsAreSelected();
+});
+
 watch(() => addedFilesList.value, () => {
 	filesOptions.value.forEach((item) => {
 		item.active = activeBadges.value.includes(item.id);
@@ -170,6 +206,18 @@ function removeFile(item) {
 
 function showAlert(item) {
 	return repeatedBadges.value.includes(item.selectedLabel?.id)
+}
+
+function submit() {
+	emits('submit', addedFilesList.value);
+}
+
+function allFilesHaveSelectedLabels() {
+	return addedFilesList.value.every((item) => item.selectedLabel?.id);
+}
+
+function allRequiredLabelsAreSelected() {
+	return filesOptions.value.filter((item) => item.required).every((item) => item.active);
 }
 
 </script>
@@ -259,7 +307,10 @@ function showAlert(item) {
 		align-items: center;
 		@include body-1;
 		font-weight: $font-weight-semibold;
-		color: $bn-600;
+
+		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+			color: $shade-600;
+		}
 	}
 
 	&__actions {
@@ -272,6 +323,14 @@ function showAlert(item) {
 		@include overline;
 		color: $rc-500;
 		margin: mt(1);
+	}
+
+	&__footer {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		width: 100%;
+		margin: mt(5);
 	}
 }
 
