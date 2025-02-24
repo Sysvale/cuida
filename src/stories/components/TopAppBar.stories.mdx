@@ -33,11 +33,18 @@ export const Template = (args) => ({
 				src="https://images.unsplash.com/photo-1738526787238-96d5352c2ba9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 				style="width: 100%; height: 100%;"
 			/>
-			<cds-top-app-bar v-bind="args" />
+			<cds-top-app-bar
+				v-bind="args"
+				@on-menu-click="logMenuClick"
+			/>
 		</div>
 	`,
+	methods: {
+		logMenuClick() {
+			console.info('Menu click emitted');
+		},
+	},
 });
-
 
 # TopAppBar
 
@@ -50,7 +57,6 @@ export const Template = (args) => ({
 - Quando houver necessidade de um botão de menu ou de navegação para melhorar a experiência do usuário.
 - Quando for necessário exibir um logotipo ou título na parte superior da interface.
 - Quando houver ações que precisam estar sempre acessíveis na barra superior.
-
 
 <br />
 
@@ -68,6 +74,10 @@ export const Template = (args) => ({
 		name="TopAppBar"
 		args={{
 			title: 'Título bacana',
+			logoUrl: 'https://framerusercontent.com/images/xz7CrU73qctPY2Vm79XMnTAVM.svg',
+			showMenuIcon: true,
+			showBackNavigation: false,
+			defaultRoute: { name: 'rota-default' },
 		}}
 	>
 		{ Template.bind({}) }
