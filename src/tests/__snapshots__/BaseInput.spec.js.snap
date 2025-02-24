@@ -1,11 +1,15 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`BaseInput > renders correctly 1`] = `
-"<div data-v-82c69faf="" id="base-input"><label data-v-82c69faf="" class="base-input__label" for="cds-base-input-base-input"><span data-v-82c69faf="" class="label__content">Label <!--v-if--><!--v-if--></span>
+"<div data-v-82c69faf="" id="base-input"><label data-v-82c69faf="" class="base-input__label" for="cds-base-input-text-base-input"><span data-v-82c69faf="" class="label__content">Label <!--v-if--><!--v-if--></span>
     <!--v-if-->
   </label>
   <div data-v-82c69faf="" class="base-input base-input--default">
+<<<<<<< HEAD
     <!--v-if--><input data-v-82c69faf="" id="base-input" label="Label" state="default" type="text" placeholder="Digite aqui..." errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" supportlinkurl="https://cuida.framer.wiki/" floatinglabel="false" lazy="false" class="base-input__field">
+=======
+    <!--v-if--><input data-v-82c69faf="" id="cds-base-input-text-base-input" placeholder="Digite aqui..." class="base-input__field" type="text">
+>>>>>>> 9e59de0a4e7a0bfbe59f025aea81ecdd92bbd4b8
     <!--v-if-->
     <!--v-if-->
   </div>

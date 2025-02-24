@@ -39,7 +39,23 @@
 				</span>
 			</label>
 
+			<textarea
+				v-if="type === 'textarea'"
+				:id="componentId"
+				ref="htmlInput"
+				v-model="internalValue"
+				:required="required"
+				:placeholder="placeholder"
+				:disabled="disabled"
+				:class="inputClass"
+				:type="type"
+				@focus="handleFocus"
+				@blur="handleBlur"
+				@keydown="handleKeydown"
+			/>
+
 			<input
+				v-else
 				:id="componentId"
 				ref="htmlInput"
 				v-bind="{...$attrs, ...props}"
@@ -56,7 +72,7 @@
 
 			<div
 				v-if="isLoading && !disabled"
-				class="base-mobile-input__trailing-icon-container"
+				class="base-mobile-input__spinner-container"
 			>
 				<CdsSpinner
 					size="sm"
@@ -362,7 +378,7 @@ const isFocused = ref(false);
 const attrs = useAttrs();
 const { emitClick, emitFocus, emitBlur, emitKeydown, emitChange } = nativeEmits(emits);
 const componentRef = useTemplateRef('htmlInput');
-const componentId = `cds-base-mobile-input-${attrs.id || generateKey()}`;
+const componentId = `cds-base-mobile-input-${props.type}-${attrs.id || generateKey()}`;
 internalValue.value = model.value;
 
 /* COMPUTED */
@@ -399,7 +415,6 @@ const computedSupportText = computed(() => {
 	return text;
 });
 
-/* COMPUTED */
 const hasError = computed(() => {
 	return props.state === 'invalid';
 });
@@ -418,11 +433,28 @@ const hasSupportLink = computed(() => {
 	return props.supportLink ? true : false;
 });
 
+const inputHeight = computed(() => {
+	return props.type === 'textarea' ? 'auto' : '40px';
+});
+
+const inputMinHeight = computed(() => {
+	return props.type === 'textarea' ? '120px' : 'auto';
+});
+
+const inputTopPadding = computed(() => {
+	return props.type === 'textarea' ? '16px' : '12px';
+});
+
+const spinnerXPosition = computed(() => {
+	return props.hasTrailingIcon ? '36px' : '9px';
+});
+
 const labelSize = computed(() => {
 	return isFocused.value || internalValue.value || internalValue.value === 0 ? '12px' : '14.5px';
 });
 
 const labelBottomPosition = computed(() => {
+	if (props.type === 'textarea') return 'auto';
 	return isFocused.value || internalValue.value || internalValue.value === 0 ? '25px' : '14px';
 });
 
@@ -574,14 +606,25 @@ defineExpose({
 		min-width: 15px;
 	}
 
+	&__spinner-container {
+		background-color: none;
+		min-width: 15px;
+		position: absolute;
+		right: v-bind(spinnerXPosition);
+		top: 12px;
+	}
+
 	&__field {
 		padding: pTRBL(3, 1, 0, 2);
-		height: 40px !important;
+		padding-top: v-bind(inputTopPadding);
+		height: v-bind(inputHeight);
+		min-height: v-bind(inputMinHeight);
 		border-radius: $border-radius-extra-small;
 		border: none;
 		text-align: start;
 		color: $n-700;
 		width: 100%;
+		resize: vertical;
         font-size: 14.5px;
 		cursor: v-bind(computedCursor);	
 
