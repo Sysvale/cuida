@@ -1,0 +1,53 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import Button from '../../components/Button.vue';
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+export const Template = (args) => ({
+	components: { CdsButton: Button },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-button
+			v-bind="args"
+            @button-click="logButtonClick"
+		>
+		</cds-button>`,
+    methods: {
+		logButtonClick(event) {
+			console.info('%con click: ', 'color: #2C70CD;', event);
+		},
+	},
+});
+
+# Button
+
+### Buttons são componentes que permitem que o usuário execute uma ação com um toque.
+
+***
+
+<br />
+
+## Quando usar:
+
+* For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em diálogos, janelas modais, formulários, cards, etc.
+
+<br />
+
+## Quando não usar:
+
+* For necessário dar a opção de executar uma ação como um detalhe pequeno na interface.
+  Nesse caso, recomendamos o uso de links.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={ButtonStories.Button} />
+</Canvas>
+
+<Controls />

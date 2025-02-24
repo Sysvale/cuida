@@ -1,0 +1,53 @@
+import { Controls, Canvas, Meta, Story } from '@storybook/blocks';
+import Badge from '../../components/Badge.vue';
+import * as BadgeStories from './Badge.stories';
+
+<Meta of={BadgeStories} />
+
+export const Template = (args) => ({
+	components: { CdsBadge: Badge },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-badge
+			v-bind="args"
+			@click="handleEmit"
+		>
+			Badge
+		</cds-badge>`,
+	methods: {
+		handleEmit(value) { console.info('value: ', value); }
+	}
+});
+
+# Badge
+
+### Badge são indicadores de status utilizados para tornar evidentes metadados importates.
+
+***
+
+<br />
+
+## Quando usar:
+
+* For necessário mostrar status associados com a lógica de negócio ou ações do usuário.
+* O conteúdo a ser mostrado for *readonly*.
+* For preciso categorizar algo.
+
+<br />
+
+## Quando não usar:
+
+* O conteúdo que a badge representa puder ser setado ou removido pelo usuário.
+* O click no componente precisar executar uma ação ou funcionalidade.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={BadgeStories.Badge} />
+</Canvas>
+
+<Controls />

@@ -1,0 +1,33 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import FlatButton from '../../components/FlatButton.vue';
+import * as FlatButtonStories from './FlatButton.stories';
+
+<Meta of={FlatButtonStories} />
+
+export const Template = (args) => ({
+	components: { CdsFlatButton: FlatButton },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-flat-button
+			v-bind="args" 
+		>
+		</cds-flat-button>`,
+});
+
+# FlatButton
+
+### FlatButtons são componentes semelhantes a links, mas que funcionam como botões.
+
+***
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={FlatButtonStories.FlatButton} />
+</Canvas>
+
+<Controls />

@@ -1,0 +1,56 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import DateInput from '../../components/DateInput.vue';
+import * as DateInputStories from './DateInput.stories';
+
+<Meta of={DateInputStories} />
+
+export const Template = (args) => ({
+	components: { CdsDateInput: DateInput },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			value: '2000-01-01',
+		};
+	},
+	template: /*html*/ `
+		<cds-date-input
+			v-bind="args"
+			v-model="value"
+		/>`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
+});
+
+# DateInput
+
+### DateInputs são componentes para escolha de datas e horas dentro de formulários.
+
+***
+
+<br />
+
+## Recomendamos o uso de DateInputs quando:
+
+* Houver a necessidade de oferecer opções de datas dentro de um grupo de inputs de um formulário.
+
+<br />
+
+## Não recomendamos o uso de DateInputs quando:
+
+* For necessário exibir informações adicionais condicionais no calendário (ex.: datas que já estejam ocupadas).
+* For necessário que o calendário seja exibido constantemente.
+* For necessário alterar dinamicamente o estado da tela exibida, baseado na data escolhida. Para estes casos,
+  recomenda-se o uso de <a href="https://sysvale.github.io/cuida/?path=/docs/componentes-forms-calendar--calendar">Calendar</a>.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={DateInputStories.DateInput} />
+</Canvas>
+
+<Controls />

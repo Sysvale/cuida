@@ -1,0 +1,71 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import StackedBarChart from '../../components/StackedBarChart.vue';
+import * as StackedBarChartStories from './StackedBarChart.stories';
+
+<Meta of={StackedBarChartStories} />
+
+export const Template = (args) => ({
+	components: { CdsStackedBarChart: StackedBarChart },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div style="background-color: #FCFCFC; padding: 16px; border-radius: 4px; height: 500px">
+			<cds-stacked-bar-chart
+				v-bind="args"
+			/>
+		</div>
+	`
+});
+
+# StackedBarChart
+
+### Um componente de gráfico reutilizável para exibir dados visualmente.
+
+***
+
+<br />
+
+## Quando usar:
+
+* Exibir dados em formatos visuais;
+* Comparação de dados como um todo;
+* Tendências ao longo do tempo.
+
+<br />
+
+## Quando não usar:
+
+* Para informações simples que podem ser exibidas em um formato tabular ou em texto;
+* Comparação absoluta;
+* Muitas categorias.
+
+## Preview
+
+### **Stacked bar monocromática**
+
+Quando a prop `variant` é especificada e não há propriedade de cor indicada no objeto de configuração,
+o gráfico é gerado no modo monocromático, com as shades de variant mudando para cada dataset.
+
+<br />
+
+<Canvas>
+  <Story of={StackedBarChartStories.StackedBarChart} />
+</Canvas>
+
+<Controls />
+
+### **Stacked bar com múltiplas cores**
+
+Para gerar gráficos com múltiplas cores, basta enviar em cada `dataset` a propriedade `variant`.
+Os shades vão escurecendo a cada dataset até chegar ao 700, quando então voltam a decrescer até o shade 50, quando o ciclo se repete.
+
+⚠️ Ao especificar variantes através do objeto de configuração, a variant por prop vai ser sobrescrita
+
+<br />
+
+<Canvas>
+  <Story of={StackedBarChartStories.StackedBarChart2} />
+</Canvas>
+
+<Controls />

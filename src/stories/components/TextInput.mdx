@@ -1,0 +1,78 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import TextInput from '../../components/TextInput.vue';
+import * as TextInputStories from './TextInput.stories';
+
+<Meta of={TextInputStories} />
+
+export const Template = (args) => ({
+	components: { CdsTextInput: TextInput },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			value: '',
+		};
+	},
+	template: /*html*/ `
+		<cds-text-input
+			v-bind="args" 
+			v-model="value"
+			@click="logClick"
+			@change="logChange"
+			@focus="logFocus"
+			@blur="logBlur"
+			@keydown="logKeydown"
+		/>`,
+	methods: {
+		logClick() {
+			console.info('⚡ %cClick emitted', 'color: rgb(37, 227, 139);');
+		},
+		logChange() {
+			console.info('⚡ %cChange emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logFocus() {
+			console.info('⚡ %cFocus emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logBlur() {
+			console.info('⚡ %cBlur emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logKeydown(e) {
+			console.info('⚡ %cKeydown emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+	},
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
+});
+
+# TextInput
+
+### TextInputs permitem que os usuários insiram texto em uma interface
+
+***
+
+<br />
+
+## Quando usar:
+
+* Necessitar de um campo de texto para inserir informações.
+
+<br />
+
+## Quando não usar:
+
+* O dado a ser utilizado no componente for numérico.
+* Houver a necessidade de selecionar múltiplos itens.
+
+<br />
+
+## Preview
+
+export const supportingText = ['Essa informação vai ser usada para recuperar sua conta caso esqueça a senha.', 'O text deve ter até 100 caracteres'];
+
+<Canvas>
+  <Story of={TextInputStories.TextInput} />
+</Canvas>
+
+<Controls />

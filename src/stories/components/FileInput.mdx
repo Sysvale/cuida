@@ -1,0 +1,46 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import FileInput from '../../components/FileInput.vue';
+import * as FileInputStories from './FileInput.stories';
+
+<Meta of={FileInputStories} />
+
+export const Template = (args) => ({
+	components: { CdsFileInput: FileInput },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-file-input
+			v-bind="args" 
+		/>
+	`,
+});
+
+# FileInput
+
+### FileInput é um input customizado de arquivos.
+
+***
+
+<br />
+
+## Quando usar:
+
+* For necessário que o usuário faça uploads do seu computador para a plataforma.
+* For necessário prover uma experiência de arrasta e solta para upload de arquivos.
+
+<br />
+
+## Quando não usar:
+
+* Se tratar de uma experiência mobile-first.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={FileInputStories.FileInput} />
+</Canvas>
+
+<Controls />

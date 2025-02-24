@@ -1,0 +1,65 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import RadialBarChart from '../../components/RadialBarChart.vue';
+import * as RadialBarChartStories from './RadialBarChart.stories';
+
+<Meta of={RadialBarChartStories} />
+
+export const Template = (args) => ({
+	components: { CdsRadialBarChart: RadialBarChart },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px; height: 340px">
+			<div style="height: 280px">
+				<cds-radial-bar-chart
+					v-bind="args"
+					@chart-click="logChartClick"
+				/>
+			</div>
+		</div>
+	`,
+	methods: {
+		logChartClick(e) {
+			console.info('logDonutChartClick: ', e);
+		},
+	},
+});
+
+# RadialBarChart
+
+### Um RadialBarChart é uma variação do BarChart plotado em um sistema de coordenadas polares, em vez de cartesiano.
+
+***
+
+<br />
+
+## Quando usar:
+
+* Exibir dados com apelo gráfico;
+* Comparar dados;
+
+<br />
+
+## Quando não usar:
+
+* Quando for necessária uma fidelidade elevada na exibição das informações, com o objetivo de realizar comparações precisas entre os dados;
+* Quando os dados apresentarem categorias ou subcategorias;
+
+***
+
+<br />
+
+## Preview
+
+Enviando um array de cores para a prop colors, as cores do RadialBarChart serão definidas
+a partir desse array, com cada segemento do gráfico correspondendo à cor definida
+na posição correspondente do array.
+
+<Canvas>
+  <Story of={RadialBarChartStories.RadialBarChart} />
+</Canvas>
+
+<Controls />
+
+<br />

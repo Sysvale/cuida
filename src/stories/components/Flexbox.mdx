@@ -1,0 +1,62 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import Flexbox from '../../components/Flexbox.vue';
+import Spacer from '../../components/Spacer.vue';
+import * as FlexboxStories from './Flexbox.stories';
+
+<Meta of={FlexboxStories} />
+
+export const Template = (args) => ({
+	components: { CdsFlexbox: Flexbox },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-flexbox
+			v-bind="args"
+			class="grid-background"
+		>
+			<div style="height: 50px; width: 300px" class="docs-grid-cell"> FlexItem 1 </div>
+			<div style="height: 50px; width: 300px" class="docs-grid-cell"> FlexItem 2 </div>
+			<div style="height: 50px; width: 300px" class="docs-grid-cell"> FlexItem 3 </div>
+			<div style="height: 50px; width: 300px" class="docs-grid-cell"> FlexItem 4 </div>
+		</cds-flexbox>
+	`,
+	methods: {
+		logClickableClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+# FlexBox
+
+### Flexbox é um componente que usa a API de Flexbox do CSS para fornecer controle sobre o alinhamento e distribuição de elementos em uma única dimensão (linha ou coluna).
+
+***
+
+<br />
+
+## Quando usar:
+
+* Para alinhar elementos em uma única dimensão, seja em linha ou coluna.
+* Quando for necessário distribuir o espaço entre itens de forma responsiva, adaptando-se ao tamanho da tela.
+* Para centralizar elementos horizontal ou verticalmente dentro de um contêiner.
+* Quando for necessário controlar o crescimento, encolhimento e espaçamento de elementos filhos em relação ao contêiner pai.
+
+<br />
+
+## Quando não usar:
+
+* Quando o layout requer organização em duas dimensões (linhas e colunas simultaneamente). Para esses casos, utilize o `<cds-grid>`.
+* Para cenários que envolvem estruturas complexas de layout, como Dashboards ou Galerias de Imagens, onde o controle bidimensional é necessário.
+* Em situações onde o posicionamento fixo ou absoluto é necessário para controlar o layout do conteúdo.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={FlexboxStories.Flexbox} />
+</Canvas>
+
+<Controls />

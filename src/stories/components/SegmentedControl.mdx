@@ -1,0 +1,45 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import SegmentedControl from '../../components/SegmentedControl.vue';
+import Icon from '../../components/Icon.vue';
+import * as SegmentedControlStories from './SegmentedControl.stories';
+
+<Meta of={SegmentedControlStories} />
+
+export const Template = (args) => ({
+	components: { CdsSegmentedControl: SegmentedControl, CdsIcon: Icon },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-segmented-control
+			v-bind="args"
+			@click="handleEmit"
+		>
+		</cds-segmented-control>
+	`,
+	methods: {
+		handleEmit(value, index) { console.info('value: ', value); }
+	}
+});
+
+# SegmentedControl
+
+### SegmentedControls são componentes que permitem que o usuário visualize versões alternativas de uma feature ou interface
+
+***
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={SegmentedControlStories.SegmentedControl1} />
+</Canvas>
+
+<Controls />
+
+<Canvas>
+  <Story of={SegmentedControlStories.SegmentedControl2} />
+</Canvas>
+
+<Controls />

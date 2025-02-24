@@ -1,0 +1,47 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import LoadingBar from '../../components/LoadingBar.vue';
+import * as LoadingBarStories from './LoadingBar.stories';
+
+<Meta of={LoadingBarStories} />
+
+export const Template = (args) => ({
+	components: { CdsLoadingBar: LoadingBar },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<center>
+			<cds-loading-bar
+				v-bind="args"
+			/>
+		</center>
+	`,
+});
+
+# LoadingBar
+
+### LoadingBars é um componente utilizado para indicar que o progresso de uma operação ainda não foi finalizado.
+
+***
+
+<br />
+
+## Quando usar:
+
+* For necessário impedir a visualização e navegação do conteúdo de páginas enquanto houver alguma pendência de operação.
+
+<br />
+
+## Quando não usar:
+
+* A visualização e navegação não puder ser interrompida.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={LoadingBarStories.LoadingBar} />
+</Canvas>
+
+<Controls />

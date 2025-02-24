@@ -1,0 +1,80 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import Tabs from '../../components/Tabs.vue';
+import * as TabsStories from './Tabs.stories';
+
+<Meta of={TabsStories} />
+
+export const Template = (args) => ({
+	components: { CdsTabs: Tabs },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px;">
+			<cds-tabs
+				v-bind="args"
+				@tabs-change="logTabsChange"
+			>
+				<template #room-42>
+					Sala de Psicologia
+				</template>
+				<template #room-51>
+					Sala de Fisioterapia
+				</template>
+				<template #room-13>
+					Sala de Otorrinolaringologista
+				</template>
+			</cds-tabs>
+	</div>
+	`,
+	methods: {
+		logTabsChange(event) {
+			console.info('%ctabs-change: ', 'color: #2C70CD;', event);
+		},
+	},
+});
+
+# Tabs
+
+### Tabs são componentes utilizados para criar soluções de navegação internas.
+
+***
+
+<br />
+
+## Quando usar:
+
+* For necessário separar o conteúdo por abas e navergar por elas.
+* Não for o caso de utilizar soluções como navbars, sidebars, cards ou links como navegação.
+
+<br />
+
+## Quando não usar:
+
+* Houver muitos itens a serem mostrados como abas.
+* Quando a ação de clique realizada pelo usuário o levar para outra página.
+
+<br />
+
+## Preview
+
+export const items = [
+	{
+		title: 'Psicologia',
+		name: 'room-42',
+	},
+	{
+		title: 'Fisioterapia',
+		name: 'room-51',
+	},
+	{
+		title: 'Otorrinolaringologista',
+		name: 'room-13',
+	},
+];
+
+<Canvas>
+  <Story of={TabsStories.Tabs} />
+</Canvas>
+
+<Controls />

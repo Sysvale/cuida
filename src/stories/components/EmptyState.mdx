@@ -1,0 +1,54 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import EmptyState from '../../components/EmptyState.vue';
+import * as EmptyStateStories from './EmptyState.stories';
+
+<Meta of={EmptyStateStories} />
+
+export const Template = (args) => ({
+	components: { CdsEmptyState: EmptyState },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-empty-state
+			v-bind="args" 
+			@actionButtonClick="logButtonClick"
+		/>
+	`,
+	methods: {
+		logButtonClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+# EmptyState
+
+### EmptyStates são componentes utilizados em momentos instrutivos aos usuários.
+
+***
+
+<br />
+
+## Quando usar:
+
+* For necessário instruir o usuário sobre o funcionamento de uma determinada página.
+* Uma página ou componente não possuir conteúdo padrão a ser mostrado.
+* Uma determinada ação resultar em erro.
+
+<br />
+
+## Quando não usar:
+
+* Utilizado como um loader.
+* Utilizado apenas com título.
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={EmptyStateStories.EmptyState} />
+</Canvas>
+
+<Controls />

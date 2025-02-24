@@ -1,0 +1,52 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import PieChart from '../../components/PieChart.vue';
+import * as PieChartStories from './PieChart.stories';
+
+<Meta of={PieChartStories} />
+
+export const Template = (args) => ({
+	components: { CdsPieChart: PieChart },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px; height: 300px">
+			<cds-pie-chart
+				v-bind="args"
+			/>
+		</div>
+	`
+});
+
+# PieChart
+
+### Um componente de gráfico reutilizável para exibir dados visualmente.
+
+***
+
+⚠️ Esse componente vai ser substituído pelo DonutChart nas próximas versões do Cuida
+
+<br />
+
+## Quando usar:
+
+* Exibir dados em formatos visuais;
+* Visualizar tendências, proporções ou comparações em dados;
+* Exibir proporções ou partes de um todo, onde cada fatia representa uma parcela do total;
+* Funciona bem com categorias mutuamente exclusivas;
+
+<br />
+
+## Quando não usar:
+
+* Para informações simples que podem ser exibidas em um formato tabular ou em texto;
+* Quando os dados apresentarem muitas categorias ou subcategorias;
+* Não é apropriado para dados contínuos ou dados temporais.
+
+## Preview
+
+<Canvas>
+  <Story of={PieChartStories.PieChart} />
+</Canvas>
+
+<Controls />

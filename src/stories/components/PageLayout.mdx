@@ -1,0 +1,136 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import PageLayout from '../../components/PageLayout.vue';
+import * as PageLayoutStories from './PageLayout.stories';
+
+<Meta of={PageLayoutStories} />
+
+export const Template = (args) => ({
+	components: { CdsPageLayout: PageLayout },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-page-layout
+			v-bind="args"
+			@navigation-item-click="logClick"
+			@sidebar-item-click="logClick"
+			@sidebar-logout="logLogout"
+		>
+			<template #default>
+				Conteúdo da página
+			</template>
+		</cds-page-layout>`,
+	methods: {
+		logClick(element) {
+			console.info('%clogItemClick: ', 'color: #2C70CD;', element);
+		},
+		logLogout(element) {
+			console.info('%clogLogout: ', 'color: #2C70CD;', element);
+		},
+	},
+});
+
+# PageLayout
+
+### O PageLayout é uma coleção de componentes que permite a criação de telas padronizadas com navegação primária na vertical e navegação secundária na horizontal.
+
+***
+
+<br />
+
+## Recomendamos o uso do PageLayout quando:
+
+* Quando for necessário usar uma navegação primária disposta verticalmente. Para mais detalhes sobre como configurar a navegação primária dessa forma, consulte a documentação do componente Sidebar.
+* Quando for necessário incluir uma navegação secundária que se dispõe horizontalmente na parte superior da tela.
+
+<br />
+
+## Não recomendamos o uso do PageLayout quando:
+
+* Quando for necessário usar uma navegação primária disposta horizontalmente.
+
+<br />
+
+## Preview
+
+export const sideBarItems = [
+	{
+		label: 'Início',
+		icon: 'home-outline',
+		type: 'route',
+		route: {
+			path: '/home',
+			name: 'home'
+		},
+	},
+	{
+		label: 'Vigilância Sanitária',
+		icon: 'shield-outline',
+		type: 'route',
+		route: {
+			path: '/visa',
+			name: 'visa'
+		},
+	},
+	{
+		label: 'Central de marcação',
+		icon: 'calendar-outline',
+		type: 'route',
+		route: {
+			path: '/regulation',
+			name: 'regulation'
+		},
+	},
+	{
+		label: 'Cuidados médicos',
+		icon: 'heart-rate-outline',
+		type: 'route',
+		route: {
+			path: '/medical-care',
+			name: 'medical-care'
+		},
+	}
+];
+
+export const navigationItems = [
+	{
+		key: 'dashboard',
+		label: 'Dashboard',
+		route: {
+			name: 'dashboard',
+		},
+	},
+	{
+		key: 'home',
+		label: 'Inicio',
+		route: {
+			name: 'home',
+		},
+	},
+	{
+		key: 'reports',
+		label: 'Relatórios',
+		subitems: [
+			{
+				key: 'productivity',
+				label: 'Relatório de produtividade',
+				route: {
+					name: 'productivity',
+				},
+			},
+			{
+				key: 'time-sheet',
+				label: 'Folha de ponto',
+				route: {
+					name: 'timesheet',
+				},
+			}
+		],
+	},
+];
+
+<Canvas>
+  <Story of={PageLayoutStories.PageLayout} />
+</Canvas>
+
+<Controls />

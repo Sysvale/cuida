@@ -1,0 +1,42 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import PinInput from '../../components/PinInput.vue';
+import * as PinInputStories from './PinInput.stories';
+
+<Meta of={PinInputStories} />
+
+export const Template = (args) => ({
+	components: { CdsPinInput: PinInput },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			value: '',
+		};
+	},
+	template: /*html*/ `
+		<cds-pin-input
+			v-bind="args"
+			v-model="value"
+		/>
+	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
+});
+
+# PinInput
+
+### PinInputs são componentes utilizados para adição de one-time passwords e códigos de 2FA
+
+***
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={PinInputStories.PinInput} />
+</Canvas>
+
+<Controls />

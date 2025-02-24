@@ -1,0 +1,40 @@
+import { Meta, Story, Props, Controls, Canvas, Preview } from '@storybook/blocks';
+import Truncate from '../../components/Truncate.vue';
+import * as TruncateStories from './Truncate.stories';
+
+<Meta of={TruncateStories} />
+
+export const Template = (args) => ({
+	components: { CdsTruncate: Truncate },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-truncate
+			v-bind="args"
+		>
+			Texto longo para testar o truncate
+		</cds-truncate>
+	`,
+	methods: {
+		logClickableClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+# Truncate
+
+### Componente auxiliar utilizado para truncar texto adicionando a ele reticências
+
+***
+
+<br />
+
+## Preview
+
+<Canvas>
+  <Story of={TruncateStories.Truncate} />
+</Canvas>
+
+<Controls />
