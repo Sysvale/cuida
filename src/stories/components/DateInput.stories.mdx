@@ -62,16 +62,33 @@ export const Template = (args) => ({
 	},
 	data() {
 		return {
-			value: '2000-01-01',
+			modelValue: null,
 		};
 	},
 	template: /*html*/ `
 		<cds-date-input
 			v-bind="args"
-			v-model="value"
+			v-model="modelValue"
 		/>`,
+	methods: {
+		logClick() {
+			console.info('⚡ %cClick emitted', 'color: rgb(37, 227, 139);');
+		},
+		logChange() {
+			console.info('⚡ %cChange emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logFocus() {
+			console.info('⚡ %cFocus emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logBlur() {
+			console.info('⚡ %cBlur emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logKeydown(e) {
+			console.info('⚡ %cKeydown emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+	},
 	updated() {
-		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+		console.info('%cv-model: ', 'color: #2C70CD;', this.modelValue);
 	},
 });
 
@@ -100,8 +117,19 @@ recomenda-se o uso de <a href="https://sysvale.github.io/cuida/?path=/docs/compo
 	<Story
 		name="DateInput"
 		args={{
-			required: true,
 			variant: 'green',
+			disabled: false,
+			state: 'default',
+			label: 'Data',
+			required: false,
+			fluid: false,
+			mobile: true,
+			floatingLabel: false,
+			tooltip: '',
+			tooltipIcon: 'info-outline',
+			supportingText: 'supportingText',
+			supportLink: '',
+			supportLinkUrl: '',
 		}}
 	>
 		{ Template.bind({}) }
