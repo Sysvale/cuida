@@ -457,6 +457,7 @@ function handleOptionVisibility(option, amount, direction) {
 }
 
 function highlightOnArrowDown() {
+	if (!active.value) return;
 	if (currentPos.value === localOptions.value.length - 1) return;
 
 	currentPos.value += 1;
@@ -470,6 +471,7 @@ function highlightOnArrowDown() {
 }
 
 function highlightOnArrowUp() {
+	if (!active.value) return;
 	if (currentPos.value === 0) return;
 
 	const selectedOption = getLiInDOM(currentPos.value);
