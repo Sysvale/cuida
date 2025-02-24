@@ -100,6 +100,7 @@
 					v-else
 					:id="componentId"
 					ref="htmlInput"
+					v-bind="{...$attrs, ...props}"
 					v-model="internalValue"
 					:required="required"
 					:placeholder="placeholder"
@@ -313,6 +314,13 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	* Quando true, o input é somente leitura.
+	*/
+	readonly: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const emits = defineEmits({
@@ -378,6 +386,7 @@ const inputClass = computed(() => {
 const computedCursor = computed(() => {
 	if(props.disabled) return 'not-allowed';
 	if(isLoading.value) return 'progress';
+	if(props.readonly) return 'pointer';
 
 	return 'text';
 });
