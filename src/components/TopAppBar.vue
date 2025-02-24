@@ -1,35 +1,38 @@
 <template>
 	<div class="top-app-bar">
-		<icon
-			v-if="showMenuIcon"
-			class="top-app-bar__menu"
-			name="menu-outline"
-			:width="iconSize"
-			:height="iconSize"
-			@click="emit('on-menu-click')"
-		/>
-		<router-link
-			v-else-if="showBackNavigation"
-			:to="handleRouterBack"
-		>
+		<div class="top-app-bar__menu-container">
 			<icon
-				name="arrow-left-outline"
+				v-if="showMenuIcon"
+				class="top-app-bar__menu"
+				name="menu-outline"
 				:width="iconSize"
 				:height="iconSize"
+				@click="emit('on-menu-click')"
 			/>
-		</router-link>
-		<img
-			v-if="logoUrl"
-			class="top-app-bar__logo-image"
-			:src="logoUrl"
-			:alt="title"
-		>
-		<h2
-			v-else
-			class="top-app-bar__title"
-		>
-			{{ title }}
-		</h2>
+			<router-link
+				v-else-if="showBackNavigation"
+				:to="handleRouterBack"
+			>
+				<icon
+					class="top-app-bar__back-arrow"
+					name="arrow-left-outline"
+					:width="iconSize"
+					:height="iconSize"
+				/>
+			</router-link>
+			<img
+				v-if="logoUrl"
+				class="top-app-bar__logo-image"
+				:src="logoUrl"
+				:alt="title"
+			>
+			<h2
+				v-else
+				class="top-app-bar__title"
+			>
+				{{ title }}
+			</h2>
+		</div>
 		<div class="top-app-bar__actions">
 			<!-- @slot Slot utilizado para os botões de action do lado direito-->
 			<slot name="actions" />
@@ -141,9 +144,15 @@ function handleRouterBack() {
     width: 100%;
 	z-index: $z-index-modal;
 
-    &__menu {
+    &__menu, &__back-arrow {
         cursor: pointer;
     }
+
+	&__menu-container {
+		display: flex;
+		align-items: center;
+		gap: spacer(6);
+	}
 
 	&__title {
 		@include subheading-2;
@@ -155,7 +164,7 @@ function handleRouterBack() {
     }
 
     &__logo-image {
-        height: 100%;
+        height: 50px;
     }
 }
 
