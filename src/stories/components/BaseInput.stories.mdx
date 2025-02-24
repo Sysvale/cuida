@@ -73,8 +73,8 @@ export const Template = (args) => ({
 		logClick() {
 			console.info('click event');
 		},
-		logKeydown(e) {
-			console.info('keydown event -> ', e);
+		logKeydown(event) {
+			console.info('⚡ %cKeydown emitted: ', 'color: hsl(152, 77.20%, 51.80%);', event);
 		},
 	},
 	updated() {
