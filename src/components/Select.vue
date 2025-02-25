@@ -514,6 +514,8 @@ defineExpose({
 @import '../assets/sass/tokens.scss';
 
 .select {
+	width: fit-content;
+
 	&__input {
 		&--searchable {
 			caret-color: $n-700;
