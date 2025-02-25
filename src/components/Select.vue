@@ -156,7 +156,7 @@ const props = defineProps({
 	 */
 	width: {
 		type: String,
-		default: 'default',
+		default: '',
 		required: false,
 	},
 	/**
