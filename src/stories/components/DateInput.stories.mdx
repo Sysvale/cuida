@@ -30,6 +30,7 @@ import DateInput from '../../components/DateInput.vue';
 					'default',
 					'valid',
 					'invalid',
+					'loading',
 				],
 			}
 		},
@@ -67,8 +68,14 @@ export const Template = (args) => ({
 	},
 	template: /*html*/ `
 		<cds-date-input
+			ref="dateInput"
 			v-bind="args"
 			v-model="modelValue"
+			@click="logClick"
+			@change="logChange"
+			@focus="logFocus"
+			@blur="logBlur"
+			@keydown="logKeydown"
 		/>`,
 	methods: {
 		logClick() {
@@ -89,6 +96,11 @@ export const Template = (args) => ({
 	},
 	updated() {
 		console.info('%cv-model: ', 'color: #2C70CD;', this.modelValue);
+		console.info('%cgetDMYFormat: ', 'color: #2C70CD;', this.$refs.dateInput.getDMYFormat());
+		console.info('%ctoISO: ', 'color: #2C70CD;', this.$refs.dateInput.toISO());
+		console.info('%ctoString: ', 'color: #2C70CD;', this.$refs.dateInput.toString());
+		console.info('%ctoJSDate: ', 'color: #2C70CD;', this.$refs.dateInput.toJSDate());
+		console.info('%ctoDateTime: ', 'color: #2C70CD;', this.$refs.dateInput.toDateTime());
 	},
 });
 
@@ -123,7 +135,8 @@ recomenda-se o uso de <a href="https://sysvale.github.io/cuida/?path=/docs/compo
 			label: 'Data',
 			required: false,
 			fluid: false,
-			mobile: true,
+			mobile: false,
+			range: true,
 			floatingLabel: false,
 			tooltip: '',
 			tooltipIcon: 'info-outline',
