@@ -161,7 +161,8 @@ export default {
 	.inner-tabs {
 		&__header {
 			display: flex;
-			justify-content: flex-start;
+			width: 100%;
+			justify-content: space-around;
 			gap: spacer(4);
 			padding: pl(0);
 			margin: mb(0);
@@ -197,7 +198,7 @@ export default {
 		}
 
 		&__tab {
-			width: max-content;
+			width: 100%;
 			min-width: 140px;
 			@include caption;
 			font-weight: $font-weight-regular;
