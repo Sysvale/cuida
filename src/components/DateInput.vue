@@ -1,544 +1,470 @@
 <template>
-	<div class="date-input__container">
-		<span>
-			<span
-				v-if="hasSlots"
-			>
-				<!-- @slot Slot para renderização customizada da label. -->
-				<slot name="label" />
-			</span>
-
-			<label
-				v-else
-				class="date-input__label"
-			>
-				<div
-					class="label__content"
-					for="cds-text-input"
-				>
-					<span>
-						{{ label }}
-					</span>
-
-					<span
-						v-if="required"
-						class="label__required-indicator"
-					>
-						*
-					</span>
-				</div>
-			</label>
-		</span>
-
-		<v-date-picker
-			id="cds-date-input"
-			v-model="internalDate"
-			locale="pt-BR"
-			:popover="{ visibility: 'click' }"
-			:min-date="minDate ? new Date(minDate) : null"
-			:max-date="maxDate ? new Date(maxDate) : null"
-			:attributes="showTodayDot ? attributes: {}"
-			color="green"
-			:is-range="range"
-			@update:model-value="handleUpdateInput"
+	<div class="date-picker">
+		<CdsBaseInput
+			ref="baseInput"
+			:value="formattedDate"
+			type="text"
+			v-bind="{...$attrs, ...props}"
+			readonly
+			placeholder="Selecione um range de datas"
+			@click="toggleDatePicker"
+			@change="emitChange"
+			@focus="emitFocus"
+			@blur="handleBlur"
+			@keydown="emitKeydown"
 		>
-			<template #header-left-button="{ page }">
-				<cds-chevron
-					direction="left"
-					@click="page.movePrevMonth()"
-				/>
-			</template>
-			<template #header-right-button="{ page }">
-				<cds-chevron
-					direction="right"
-					@click="page.moveNextMonth()"
-				/>
-			</template>
-
-			<template #default="{ inputValue, togglePopover, inputEvents }">
-				<div
-					:class="inputClass"
-				>
-					<input
-						:value="resolveInputValue(inputValue)"
-						:disabled="disabled"
-						:placeholder="placeholder"
-						type="text"
-						v-on="inputEvents"
-						@click="togglePopover"
-						@focus="isBeingFocused = true"
-						@blur="isBeingFocused = false"
-					>
-					<div class="date-input__icon">
-						<cds-icon
-							height="20"
-							width="20"
-							name="calendar-outline"
-						/>
-					</div>
+			<template #trailing-icon>
+				<div class="date-input__icon">
+					<cds-icon
+						height="20"
+						width="20"
+						name="calendar-outline"
+					/>
 				</div>
 			</template>
-		</v-date-picker>
+		</CdsBaseInput>
+
 		<div
-			v-if="errorState && !disabled"
-			class="date-input__error-message"
+			v-if="isOpen"
+			class="calendar"
 		>
-			{{ errorMessage }}
+			<div class="calendar-header">
+				<CdsIcon
+					height="20"
+					width="20"
+					name="caret-left-outline"
+					class="calendar-caret"
+					@click="previousMonth"
+				/>
+
+				<span class="calendar-header__month">{{ currentMonthYear }}</span>
+
+				<CdsIcon
+					height="20"
+					width="20"
+					name="caret-right-outline"
+					class="calendar-caret"
+					@click="nextMonth"
+				/>
+			</div>
+			<div class="calendar-grid">
+				<div
+					v-for="day in weekDaysLetters"
+					:key="day"
+					class="week-day"
+				>
+					{{ day }}
+				</div>
+				<div
+					v-for="emptyDay in emptyDays"
+					:key="'empty-' + emptyDay"
+					class="calendar-day2"
+				/>
+				<div
+					v-for="day in daysInMonth"
+					:key="day"
+					class="calendar-day"
+					:class="computedSelectedDate(day)"
+					@click="selectDate(day)"
+				>
+					{{ day }}
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
 
-<script>
+<script setup>
+import { ref, computed, watch, useTemplateRef, nextTick } from 'vue';
 import { DateTime } from 'luxon';
-import { DatePicker } from 'v-calendar';
-import 'v-calendar/dist/style.css';
-import { isEmpty } from 'lodash';
-import CdsChevron from './Chevron.vue';
+import CdsBaseInput from './BaseInput.vue';
 import CdsIcon from './Icon.vue';
-import sassColorVariables from '../assets/sass/colors.module.scss';
-import paleteBuilder from '../utils/methods/paleteBuilder.js';
+import {
+	nativeEvents,
+	nativeEmits,
+} from '../utils/composables/useComponentEmits.js';
 
-const dateStringValidator = (value) => /^(19|20)\d\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/.test(value);
+const model = defineModel('modelValue', {
+	type: [String, Object],
+});
 
-export default {
-	components: {
-		VDatePicker: DatePicker,
-		CdsChevron,
-		CdsIcon,
+const baseInputRef = useTemplateRef('baseInput');
+
+const props = defineProps({
+	/**
+	* Especifica a label do input.
+	*/
+	label: {
+		type: String,
+		default: 'Label',
 	},
-
-	props: {
-		/**
-		* Prop utilizada como v-model. Deve ser uma string no formato `yyyy-MM-dd`
-		* ou um objeto com as propriedades `start` e `end`, no mesmo formato.
-		*/
-		modelValue: {
-			type: [String, Object],
-			default: '',
-			validator: (value) => value === '' || typeof value === 'object' || dateStringValidator(value),
-		},
-		/**
-		 * Especifica a label do input.
-		 */
-		label: {
-			type: String,
-			default: 'Date',
-		},
-		/**
-		 * Desabilita o input.
-		 */
-		disabled: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Especifica o estado do DateInput. As opções são 'default', 'valid' e 'invalid'.
-		 */
-		state: {
-			type: String,
-			default: 'default',
-		},
-		/**
-		 * Controla o modo do input.
-		 */
-		range: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Exibe asterisco de obrigatório (obs.: não faz a validação)
-		 */
-		required: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
-		 */
-		errorMessage: {
-			type: String,
-			default: 'Valor inválido',
-		},
-		/**
-		 * Especifica se a largura do DateInput deve ser fluida.
-		 */
-		fluid: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * A data mínima selecionável no DateInput. Deve ser uma string no formato `yyyy-MM-dd`.
-		 */
-		minDate: {
-			type: String,
-			default: '',
-			validator: (value) => value === '' || dateStringValidator(value),
-		},
-		/**
-		 * A data máxima selecionável no DateInput. Deve ser uma string no formato `yyyy-MM-dd`.
-		 */
-		maxDate: {
-			type: String,
-			default: '',
-			validator: (value) => value === '' || dateStringValidator(value),
-		},
-		/**
-		 * Texto placeholder para o DateInput.
-		 */
-		placeholder: {
-			type: String,
-			default: 'Selecione uma data',
-		},
-		/**
-		 * Controla a marcação do dia atual no calendário.
-		 */
-		showTodayDot: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		* A variante de cor. São 9 variantes implementadas: 'green', 'teal',
-		* 'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'.
-		*/
-		variant: {
-			type: String,
-			default: 'green',
-		},
-		/**
-		* Define o tipo do input, se true será um input adaptado para o mobile.
-		*/
-		mobile: {
-			type: Boolean,
-			default: false,
-		},
+	/**
+	 * A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',
+	 * 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
+	 */
+	variant: {
+		type: String,
+		default: 'gray',
 	},
-
-	data() {
-		return {
-			sassColorVariables,
-			internalDate: DateTime.now(),
-			isBeingFocused: false,
-			inputControl: 0,
-			attributes: [
-				{
-					dates: new Date(),
-					dot: true,
-				},
-			],
-			variantColorData: {},
-		};
+	/**
+	* Exibe asterisco de obrigatório (obs.: não faz a validação)
+	*/
+	required: {
+		type: Boolean,
+		default: false,
 	},
+	/**
+	* Controla o modo do input.
+	*/
+	range: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Especifica se a largura do TextInput deve ser fluida.
+	*/
+	fluid: {
+		type: Boolean,
+		default: false,
+		required: false,
+	},
+	/**
+	* Desabilita o input.
+	*/
+	disabled: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	*/
+	state: {
+		type: String,
+		default: 'default',
+	},
+	/**
+	* Define exibição e texto do tooltip do input
+	*/
+	tooltip: {
+		type: String,
+		default: null,
+	},
+	/**
+	* Especifica ícone do tooltip do TextInput.
+	*/
+	tooltipIcon: {
+		type: String,
+		default: 'info-outline',
+	},
+	/**
+	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela `supportLink` na v4. Define texto do link do input (localizado à direita da label).
+	*/
+	linkText: {
+		type: String,
+		default: null,
+	},
+	/**
+	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela `supportLinkUrl` na v4. Define a url a ser acessada no clique do link (no caso do link ser exibido).
+	*/
+	linkUrl: {
+		type: String,
+		default: 'https://cuida.framer.wiki/',
+	},
+	/**
+	* Controla a exibição e o conteúdo do link de suporte exibido ao lado da label.
+	*/
+	supportLink: {
+		type: String,
+		default: null,
+	},
+});
 
-	computed: {
-		errorState() {
-			return this.state === 'invalid';
-		},
+const emits = defineEmits({
+	...nativeEvents
+});
 
-		hasSlots() {
-			return !!Object.keys(this.$slots).length;
-		},
+const isOpen = ref(false);
+const currentDate = ref(DateTime.now().setLocale('pt-BR'));
+const startDate = ref(null);
+const endDate = ref(null);
+const weekDaysLetters = ref(['S', 'T', 'Q', 'Q', 'S', 'S', 'D']);
+const { emitClick, emitChange, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
 
-		inputClass() {
-			let returningClass = '';
+const formattedDate = computed(() => {
+	if (props.range && startDate.value && endDate.value) {
+		return `${startDate.value.toFormat('dd/MM/yyyy')} - ${endDate.value.toFormat('dd/MM/yyyy')}`;
+	}
+	if (startDate.value && typeof startDate.value.toFormat === 'function') {
+		return startDate.value.toFormat('dd/MM/yyyy');
+	}
+  
+	return '';
+});
 
-			if (this.disabled) {
-				return this.fluid
-					? 'date-input--disabled date-input--fluid'
-					: 'date-input--disabled';
-			}
+const currentMonthYear = computed(() => {
+	return currentDate.value.toFormat('MMMM yyyy');
+});
 
-			if (!this.isBeingFocused) {
-				if (!this.disabled) {
-					if (this.state === 'valid') {
-						returningClass += ' date-input--valid';
-					} else if (this.state === 'invalid') {
-						returningClass += ' date-input--invalid';
-					}
-				}
-			} else if (!this.disabled) {
-				if (this.state === 'valid') {
-					returningClass += ' date-input--focused-valid';
-				} else if (this.state === 'invalid') {
-					returningClass += ' date-input--focused-invalid';
-				}
-			}
+const daysInMonth = computed(() => {
+	const days = [];
+	const firstDay = currentDate.value.startOf('month');
+	const lastDay = currentDate.value.endOf('month');
 
-			returningClass += this.fluid ? ' date-input--fluid' : ' date-input';
+	for (let day = firstDay; day <= lastDay; day = day.plus({ days: 1 })) {
+		days.push(day.day);
+	}
 
-			return returningClass;
-		},
+	return days;
+});
 
-		calendarDotColor() {
-			return this.variantColorData.colorData[4].shade;
-		},
+const emptyDays = computed(() => {
+	const firstDayOfMonth = currentDate.value.startOf('month');
+	const weekDay = firstDayOfMonth.weekday;
+	return weekDay - 1;
+});
 
-		calendarTextColor() {
-			return this.variantColorData.colorData[7].shade;
-		},
+watch(model, (newValue, oldValue) => {
+	if (newValue === oldValue) {
+		return;
+	}
 
-		calendarTrailColor() {
-			return this.variantColorData.colorData[1].shade;
-		},
+	if (typeof newValue === 'string' && newValue) {
+		startDate.value = DateTime.fromISO(newValue);
+	} else if (props.range && newValue && typeof newValue === 'object') {
+		startDate.value = DateTime.fromISO(newValue.start);
+		endDate.value = DateTime.fromISO(newValue.end);
+	} else {
+		startDate.value = null;
+	}
+});
 
-		resolveMobile() {
-			return this.mobile ? '48px' : '40px';
+function toggleDatePicker() {
+	if (props.range && startDate.value && endDate.value) {
+		isOpen.value = !isOpen.value;
+	} else {
+		isOpen.value = !isOpen.value;
+	}
+}
+
+function previousMonth() {
+	currentDate.value = currentDate.value.minus({ months: 1 });
+}
+
+function nextMonth() {
+	currentDate.value = currentDate.value.plus({ months: 1 });
+}
+
+function selectDate(day) {
+	const selectedDate = currentDate.value.set({ day });
+
+
+	if (props.range) {
+		if (!startDate.value || (startDate.value && endDate.value)) {
+			startDate.value = selectedDate;
+			endDate.value = null;
+		} else if (selectedDate < startDate.value) {
+			startDate.value = selectedDate;
+		} else {
+			endDate.value = selectedDate;
 		}
-	},
 
-	watch: {
-		modelValue(newValue, oldValue) {
-			if (newValue === oldValue) {
-				return;
-			}
-
-			this.resolveInternalDate();
-		},
-
-		variant(newValue, oldValue) {
-			if (newValue === oldValue) {
-				return;
-			}
-
-			this.updateColorData();
-		},
-	},
-
-	created() {
-		this.updateColorData();
-	},
-	
-	mounted() {
-		this.resolveInternalDate();
-	},
-
-	methods: {
-		paleteBuilder,
-
-		updateColorData() {
-			this.variantColorData = this.paleteBuilder(sassColorVariables.palete).find((item) => item.variantName.toLowerCase() === this.variant);
-		},
-
-		handleUpdateInput(date) {
-			if (this.range) {
-				this.$emit(
-					'update:modelValue',
-					date.start && date.end
-						? {
-							start: DateTime.fromJSDate(date.start).toFormat('yyyy-MM-dd'),
-							end: DateTime.fromJSDate(date.end).toFormat('yyyy-MM-dd'),
-						}
-						: ''
-				);
-				return;
-			}
-			/**
-			* Evento emitido quando uma data é selecionada. Utilizado para implementar o v-model.
-			* @event update:modelValue
-			* @type {Event}
-			*/
-			this.$emit('update:modelValue', date ? DateTime.fromJSDate(date).toFormat('yyyy-MM-dd') : '');
-		},
-
-		resolveInternalDate() {
-			if (!this.modelValue) {
-				this.internalDate = this.range ? null : '';
-				return;
-			}
-
-			if (this.range) {
-				this.internalDate = dateStringValidator(this.modelValue.start) && dateStringValidator(this.modelValue.end)
-					? {
-						start: DateTime.fromFormat(this.modelValue.start, 'yyyy-MM-dd'),
-						end: DateTime.fromFormat(this.modelValue.end, 'yyyy-MM-dd'),
-					}
-					: {
-						start: DateTime.now(),
-						end: DateTime.now(),
-					}
-				return;
-			}
-
-			this.internalDate = dateStringValidator(this.modelValue)
-				? DateTime.fromFormat(this.modelValue, 'yyyy-MM-dd')
-				: DateTime.now();
-		},
-
-		resolveInputValue(value) {
-			if (typeof value !== 'object') {
-				return value;
-			}
-
-			if ((!value.start && !value.end) || isEmpty(value)) {
-				return null;
-			}
-
-			return `${value.start} a ${value.end}`;
+		if (startDate.value && endDate.value) {
+			model.value = {
+				start: startDate.value.toFormat('yyyy-MM-dd'),
+				end: endDate.value.toFormat('yyyy-MM-dd')
+			};
+			isOpen.value = false;
 		}
-	},
-};
+	} else {
+		startDate.value = selectedDate;
+		endDate.value = null;
+		isOpen.value = false;
+		emitChange();
+		model.value = startDate.value.toFormat('yyyy-MM-dd');
+	}
+}
+
+function computedSelectedDate(day) {
+	const selectedDate = currentDate.value.set({ day });
+
+	if (props.range) {
+		if (startDate.value && selectedDate.toFormat('dd/MM/yyyy') === startDate.value.toFormat('dd/MM/yyyy')) { 
+			return `between-day--${props.variant}`;
+		}
+		else if (endDate.value && selectedDate.toFormat('dd/MM/yyyy') === endDate.value.toFormat('dd/MM/yyyy')) { 
+			return `between-day--${props.variant}`;
+		}
+		else if (startDate.value &&
+				endDate.value &&
+				selectedDate > startDate.value &&
+				selectedDate < endDate.value) {
+			return `selected-day--${props.variant}`;
+		}
+		else {
+			return '';
+		}
+	} else {
+		if (!startDate.value) return false;
+		return startDate.value && selectedDate.toFormat('dd/MM/yyyy') === startDate.value.toFormat('dd/MM/yyyy') ? `selected-day--${props.variant}` : '';
+	}
+}
+
+function clearSelection() {
+	startDate.value = null;
+	endDate.value = null;
+}
+
+function applySelection() {
+	isOpen.value = false;
+}
+
+function handleBlur() {
+	emitBlur();
+
+	nextTick(() => {
+		// toggleDatePicker();
+	});
+}
+
+/* EXPOSE */
+defineExpose({
+	componentRef: baseInputRef.value?.componentRef,
+	isFocused: baseInputRef.value?.isFocused,
+	focus: () => baseInputRef.value?.focus(),
+	blur: () => baseInputRef.value?.blur(),
+	clear: () => baseInputRef.value?.clear(),
+	select: () => baseInputRef.value?.select(),
+	getDMYFormat: () => startDate.value?.toFormat('dd/MM/yyyy'),
+	toISO: () => startDate.value?.toISO(),
+	toString: () => startDate.value?.toString(),
+	toJSDate: () => startDate.value?.toJSDate(),
+	toDateTime: () => startDate.value,
+});
 </script>
 
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
 
-.date-input {
+.date-picker {
+	position: relative;
+}
+
+.date-input__icon {
+	color: $n-700;
+	margin: mt(1);
+}
+
+.calendar {
+	margin: mt(2);
+	position: absolute;
+	top: 100%;
+	left: 0;
+	background: $n-0;
+	border: 1px solid $n-30;
+	box-shadow: $shadow-md;
+	border-radius: $border-radius-extra-small;
+	padding: pa(3);
+	min-height: 312px;
+	width: 266px;
+	animation: slide-down 0.2s ease-in-out;
+}
+
+@keyframes slide-down {
+	0% {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.calendar-header {
 	display: flex;
 	justify-content: space-between;
-	outline: 1px solid $n-50;
-	width: 266px;
-	height: v-bind(resolveMobile);
-	color: $n-600;
-	border-radius: $border-radius-extra-small !important;
+	align-items: center;
+	margin-bottom: 16px;
+	margin-top: 4px;
+}
+
+.calendar-grid {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 5px;
+}
+
+.calendar-day {
+	padding: 6px 6px;
+	text-align: center;
 	cursor: pointer;
-	background: $n-0;
-	overflow: hidden;
+	@include body-2;
+	font-size: 14.5px;
+	color: $n-800;
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
 
-	input {
-		border: none;
-		outline: 0;
-		height: 100%;
-		width: 100%;
-		padding: pl(3);
-	}
+.calendar-day2 {
+	padding: 8px 5px;
+	text-align: center;
+	cursor: default;
+	@include body-2;
+	color: $n-800;
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
 
-	&__icon {
-		display: grid;
-		place-items: center;
-		margin: mr(3);
-	}
+.calendar-day:hover {
+	background: $bn-50;
+	border-radius: $border-radius-lil;
+}
 
-	&:focus {
-		@extend .date-input;
-		outline: 0;
-		outline: 1px solid $bn-300;
-		box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);
-	}
+.selected-day {
+	background-color: $bn-50;
+	border-radius: $border-radius-lil;
+	font-weight: bold;
 
-	&--fluid {
-		@extend .date-input;
-		width: 100%;
-	}
-
-	&--disabled {
-		@extend .date-input;
-		background-color: $n-20 !important;
-		pointer-events: none;
-		border: none;
-	}
-
-	&--valid {
-		outline: 1px solid $gp-500 !important;
-	}
-
-	&--invalid {
-		outline: 1px solid $rc-600 !important;
-	}
-
-	&--focused-valid {
-		@extend .date-input--valid;
-		box-shadow: 0 0 0 0.2rem rgba($gp-300, .45) !important;
-	}
-
-	&--focused-invalid {
-		@extend .date-input--invalid;
-		box-shadow: 0 0 0 0.2rem rgba($rc-300, .45) !important;
-	}
-
-	&__container {
-		display: flex;
-		flex-direction: column;
-	}
-
-	&__label {
-		@include label;
-		display: flex;
-		justify-content: space-between;
-	}
-
-	&__error-message {
-		@include caption;
-		color: $rc-600;
-		margin: mt(1);
+	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@extend .selected-day;
+		color: darken($shade-500, 4%);
+		background-color: $shade-100;
 	}
 }
 
-.label {
-	&__required-indicator {
-		color: $rc-600;
-	}
+.between-day {
+	background-color: $bn-50;
+	border-radius: $border-radius-lil;
+	font-weight: bold;
 
-	&__content {
-		margin: mb(1);
-	}
-}
-
-.vc-popover-caret {
-	display: none !important;
-}
-
-.vc-container {
-	outline: 1px solid $n-30 !important;
-	border: none !important;
-	border-radius: $border-radius-extra-small !important;
-}
-
-.vc-popover-content {
-	box-shadow: none !important;
-	box-shadow: 0px 0px 8px rgba($n-900, .08) !important;
-}
-
-.vc-arrows-container {
-	padding: 12px 10px !important
-}
-
-.vc-title {
-	line-height: 23px !important;
-	background-color: transparent;
-	font-size: 17px;
-	text-transform: capitalize;
-}
-
-.vc-weeks {
-	margin: mt(5);
-}
-
-.vc-header {
-	.vc-arrow {
-		border-radius: 10px;
+	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@extend .selected-day;
+		color: darken($shade-100, 4%);
+		background-color: $base-color;
 	}
 }
 
-.vc-nav-title {
-	@include body-1;
-	font-weight: 800;
-	background-color: transparent;
+.week-day {
+	padding: 8px 5px;
+	text-align: center;
+	cursor: pointer;
+	font-size: 13.5px;
+	font-weight: $font-weight-semibold;
+	color: $n-700;
 }
 
-.vc-nav-arrow {
-	border-radius: 10px;
+.calendar-header__month {
+	font-weight: $font-weight-semibold;
+	color: $n-700;
+	font-size: 16px;
 }
 
-.vc-nav-item {
-	@include body-1;
-	background-color: transparent;
-	text-transform: capitalize;
-	font-weight: 430;
-}
-
-.vc-highlight-bg-light {
-	color: v-bind(calendarTrailColor);
-	background-color: v-bind(calendarTrailColor);
-}
-
-.vc-highlight-content-light, .vc-highlight-content-outline, .vc-highlight-content-none {
-	color: v-bind(calendarTextColor);
-}
-
-.vc-highlight-bg-solid {
-	background-color: v-bind(calendarDotColor);
-}
-
-.vc-highlight-bg-outline, .vc-highlight-bg-none {
-	border-color: v-bind(calendarDotColor);
+.calendar-caret {
+	cursor: pointer;
+	color: $n-500;
 }
 </style>

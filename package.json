@@ -41,7 +41,7 @@
 		"lodash.isequal": "^4.5.0",
 		"luxon": "^3.4.4",
 		"tippy.js": "^6.3.7",
-		"v-calendar": "^3.0.0-alpha.8",
+		"v-calendar": "^3.1.2",
 		"v-money3": "^3.22.3",
 		"vue": "^3.5.0",
 		"vue-3-slider-component": "^1.0.1",
