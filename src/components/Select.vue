@@ -304,6 +304,10 @@ const selectOptionsClass = computed(() => ({
 	'select__options--up': direction.value === 'up',
 }));
 
+const selectContainerWidth = computed(() => {
+	return props.fluid ? '100%' : 'fit-content';
+})
+
 
 //NOTE: Essa computada vai ser removida junto com a descontinuação da prop width na V4
 const computedFluid = computed(() => {
@@ -514,6 +518,8 @@ defineExpose({
 @import '../assets/sass/tokens.scss';
 
 .select {
+	width: v-bind(selectContainerWidth);
+
 	&__input {
 		&--searchable {
 			caret-color: $n-700;
