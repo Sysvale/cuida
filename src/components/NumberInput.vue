@@ -228,6 +228,11 @@ const internalValue = ref('');
 const { emitClick, emitChange, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
 let cdsBrlBiding = {};
 
+watch(model, (newValue, oldValue) => {
+	if (newValue !== oldValue) {
+		internalValue.value = newValue;
+	}
+}, {immediate: true});
 
 /* WATCHERS */
 watch(internalValue, (value, oldValue) => {
