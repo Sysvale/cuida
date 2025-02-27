@@ -12,6 +12,7 @@ describe('DateInput', () => {
 			props: {
 				label: 'Selecione uma data',
 				placeholder: 'dd/MM/yyyy',
+				id: 'text-input',
 			},
 		});
 	});
