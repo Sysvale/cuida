@@ -16,12 +16,12 @@
 
 		<div
 			ref="carousel"
+			v-long-click="startDrag"
 			class="carousel"
 			@mousedown="startDrag"
 			@mousemove="onDrag"
 			@mouseup="stopDrag"
 			@mouseleave="stopDrag"
-			@touchstart="startDrag"
 			@touchmove="onDrag"
 			@touchend="stopDrag"
 		>
@@ -29,6 +29,7 @@
 				v-for="(item, index) in items"
 				:key="item"
 				class="carousel__item"
+				@click="handleClick(item)"
 			>
 				<!-- @slot Slot utilizado para renderização de cada item do carrossel. Os dados do escopo do slot podem ser acessados no formato a seguir: ```slot={ item, index }``` -->
 				<slot
@@ -55,6 +56,8 @@
 </template>
 
 <script setup>
+import { longClickDirective } from '@sysvale/vue3-long-click';
+import useIsMobile from '../utils/composables/useIsMobile';
 import { ref, computed } from 'vue';
 import Icon from './Icon.vue';
 
@@ -95,8 +98,26 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	 * Define se os itens do carrossel devem ser clicáveis.
+	 */
+	clickable: {
+		type: Boolean,
+		default: false,
+	},
 });
 
+const emit = defineEmits([
+	/**
+		* Evento emitido quando algum item do carrossel é clicado.
+		* @event item-click
+		* @type {Event}
+	*/
+	'item-click',
+]);
+
+const { isMobile } = useIsMobile();
+const vLongClick = longClickDirective({ delay: 1000, interval: 100 });
 const carousel = ref(null);
 let isDragging = false;
 let startX, scrollLeft;
@@ -105,6 +126,10 @@ const resolvedSnap = computed(() => props.snapTo);
 const resolvedGap = computed(() => `${props.gap * 4}px`);
 
 function startDrag(event) {
+	if (isMobile.value) {
+		return;
+	}
+
 	isDragging = true;
 	startX = (event.pageX || event.touches[0].pageX) - carousel.value.offsetLeft;
 	scrollLeft = carousel.value.scrollLeft;
@@ -147,6 +172,14 @@ function scrollToPrevious() {
 		left: -itemWidth,
 		behavior: 'smooth',
 	});
+}
+
+function handleClick(item) {
+	if (!props.clickable) {
+		return;
+	}
+
+	emit('item-click', item);
 }
 </script>
 
