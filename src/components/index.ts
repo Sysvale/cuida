@@ -98,6 +98,7 @@ import Table from './Table.vue';
 import Tabs from './Tabs.vue';
 import TextArea from './TextArea.vue';
 import TextInput from './TextInput.vue';
+import Tile from './Tile.vue';
 import TimeInput from './TimeInput.vue';
 import Timeline from './Timeline.vue';
 import TimelineItem from './TimelineItem.vue';
@@ -220,6 +221,7 @@ export default {
 		app.component('CdsTabs', Tabs);
 		app.component('CdsTextArea', TextArea);
 		app.component('CdsTextInput', TextInput);
+		app.component('CdsTile', Tile);
 		app.component('CdsTimeInput', TimeInput);
 		app.component('CdsTooltip', Tooltip);
 		app.component('CdsTopAppBar', TopAppBar);

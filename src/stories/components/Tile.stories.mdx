@@ -1,0 +1,121 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Tile from '../../components/Tile.vue';
+import Image from '../../components/Image.vue';
+
+<Meta
+	title="Componentes/Forms/Tile"
+	component={ Tile }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'white',
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'gray',
+					'dark'
+				],
+			}
+		},
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/
+`<cds-tile
+	size="sm"
+	icon="trash-outline"
+>
+<template #extra>
+		<cds-badge>Action</cds-badge>
+	</template>
+</cds-tile>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsTile: Tile, CdsImage: Image },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-tile
+			v-bind="args"
+			@cds-click="logTileClick"
+		>
+			<template #extra>
+				<cds-image
+					src="https://cidadesaudavel.com/images/CS-icon.png"
+					width="20"
+				/>
+			</template>
+		</cds-tile>`,
+	methods: {
+		logTileClick(event) {
+			console.info('%con click: ', 'color: #2C70CD;', event);
+		},
+	},
+});
+
+# Tile
+
+### Tiles são componentes que permitem que o usuário execute uma ação com um toque.
+---
+<br />
+
+## Quando usar:
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+seja em diálogos, janelas modais, formulários, cards, etc.
+
+
+<br />
+
+## Quando não usar:
+- For necessário dar a opção de executar uma ação como um detalhe pequeno na interface.
+Nesse caso, recomendamos o uso de links.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Tile"
+		args={{
+			size: 'sm',
+			icon: 'trash-outline',
+			variant: 'green',
+			disabled: false,
+			title: 'Excluir',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Tile" />
