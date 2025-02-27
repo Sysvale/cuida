@@ -192,7 +192,7 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser renomeada para prop `highlightToday` na v4. Controla a marcação do dia atual no calendário.
+	* Controla a marcação do dia atual no calendário.
 	*/
 	highlightToday: {
 		type: Boolean,
