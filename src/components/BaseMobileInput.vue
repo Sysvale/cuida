@@ -28,7 +28,7 @@
 					'base-mobile-input__label--fluid': fluid,
 				}"
 				:for="componentId"
-				@click.stop="handleClick"
+				@click.stop.prevent="handleClick"
 			>
 				<span
 					class="label__content"
@@ -494,6 +494,7 @@ watch(internalValue, (value) => {
 
 /* FUNCTIONS */
 function handleClick(event) {
+	console.log('no click mobile');
 	/**
 	* Evento emitido quando o componente é clicado.
 	* @event click
@@ -506,6 +507,7 @@ function handleClick(event) {
 }
 
 function handleFocus(event) {
+	console.log('tendi n');
 	isFocused.value = true;
 	previousInternalValue.value = internalValue.value;
 	/**
@@ -517,6 +519,7 @@ function handleFocus(event) {
 }
 
 function handleBlur(event) {
+	console.log('como blur?');
 	isFocused.value = false;
 	/**
 	* Evento emitido quando o componente deixa de ser focado.
