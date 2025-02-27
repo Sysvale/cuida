@@ -11,7 +11,7 @@
 					id="select-all-rows"
 					v-model="selectAll"
 					class="table__select-checkbox"
-					no-text
+					label=""
 					:variant="selectionVariant"
 					@update:model-value="handleSelectAll"
 				/>
@@ -76,7 +76,7 @@
 					:id="`select-row-${itemIndex}`"
 					v-model="select[itemIndex]"
 					class="table__select-checkbox"
-					no-text
+					label=""
 					:variant="selectionVariant"
 					@update:model-value="handleSelectRow"
 				/>
