@@ -224,7 +224,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, useTemplateRef, useAttrs, readonly } from 'vue';
+import { ref, computed, watch, useTemplateRef, useAttrs, nextTick } from 'vue';
 import {
 	nativeEvents,
 	nativeEmits,
@@ -500,7 +500,9 @@ function handleClick(event) {
 	* @type {Event}
 	*/
 	emitClick(event);
-	componentRef.value.focus();
+	nextTick(() => {
+		componentRef.value.focus();
+	});
 }
 
 function handleFocus(event) {
