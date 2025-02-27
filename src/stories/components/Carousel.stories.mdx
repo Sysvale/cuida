@@ -36,6 +36,7 @@ import Image from '../../components/Image.vue';
 	]
 	:gap="0"
 	:snap-to="'start'"
+	@item-click="logClick"
 >
 	<cds-image :src="item" width="300" height="400" />
 </cds-carousel>
@@ -54,11 +55,16 @@ export const Template = (args) => ({
 		<cds-carousel
 			v-bind="args"
 			v-slot="{ item }"
+			@item-click="logClick"
 		>
 			<cds-image :src="item" width="300" height="400" />
 		</cds-carousel>
 	`,
-	methods: {},
+	methods: {
+		logClick(item) {
+			console.info('item-click:', item);
+		}
+	},
 });
 
 # Carousel
@@ -106,6 +112,7 @@ export const Template = (args) => ({
 			snapTo: 'start',
 			showArrows: false,
 			darkArrows: false,
+			clickable: false,
 		}}
 	>
 		{ Template.bind({}) }
