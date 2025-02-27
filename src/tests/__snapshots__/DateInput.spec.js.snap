@@ -1,0 +1,32 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DateInput > renders correctly 1`] = `
+"<div data-v-fcd39cd1="" class="date-input">
+  <div data-v-82c69faf="" data-v-fcd39cd1="" variant="gray" range="false" mobile="false" showtodaydot="false" highlighttoday="false" mindate="" maxdate=""><label data-v-82c69faf="" class="base-input__label" for="cds-base-input-text-12b5dc00-6237-45b1-926f-73f43f3eb93e"><span data-v-82c69faf="" class="label__content">Selecione uma data <!--v-if--><!--v-if--></span>
+      <!--v-if-->
+    </label>
+    <div data-v-82c69faf="" class="base-input base-input--default">
+      <!--v-if--><input data-v-82c69faf="" id="cds-base-input-text-12b5dc00-6237-45b1-926f-73f43f3eb93e" variant="gray" range="false" mobile="false" showtodaydot="false" highlighttoday="false" mindate="" maxdate="" modelvalue="" label="Selecione uma data" state="default" type="text" placeholder="dd/MM/yyyy" errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" supportlinkurl="https://cuida.framer.wiki/" floatinglabel="false" lazy="false" class="base-input__field">
+      <!--v-if-->
+      <div data-v-82c69faf="" class="base-input__trailing-icon-container">
+        <div data-v-fcd39cd1="" class="date-input__icon"><svg data-v-fcd39cd1="" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="calendar-outline" role="presentation">
+            <g fill="currentColor">
+              <g class="calendar-outline">
+                <g class="Vector">
+                  <path fill-rule="evenodd" d="M6 4h12a4 4 0 014 4v10a4 4 0 01-4 4H6a4 4 0 01-4-4V8a4 4 0 014-4zm0 2a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V8a2 2 0 00-2-2H6z" clip-rule="evenodd"></path>
+                  <path fill-rule="evenodd" d="M3 10a1 1 0 011-1h16a1 1 0 110 2H4a1 1 0 01-1-1zm5-8a1 1 0 011 1v4a1 1 0 01-2 0V3a1 1 0 011-1zm8 0a1 1 0 011 1v4a1 1 0 11-2 0V3a1 1 0 011-1z" clip-rule="evenodd"></path>
+                  <path d="M8 13a1 1 0 11-2 0 1 1 0 012 0zm0 4a1 1 0 11-2 0 1 1 0 012 0zm5-4a1 1 0 11-2 0 1 1 0 012 0zm0 4a1 1 0 11-2 0 1 1 0 012 0zm5-4a1 1 0 11-2 0 1 1 0 012 0zm0 4a1 1 0 11-2 0 1 1 0 012 0z"></path>
+                </g>
+              </g>
+            </g>
+          </svg></div>
+      </div>
+    </div>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+  <transition-stub data-v-fcd39cd1="" name="calendar-animation" appear="false" persisted="false" css="true">
+    <!--v-if-->
+  </transition-stub>
+</div>"
+`;
