@@ -2,11 +2,11 @@
 
 exports[`DateInput > renders correctly 1`] = `
 "<div data-v-fcd39cd1="" class="date-input">
-  <div data-v-82c69faf="" data-v-fcd39cd1="" variant="gray" range="false" mobile="false" showtodaydot="false" highlighttoday="false" mindate="" maxdate=""><label data-v-82c69faf="" class="base-input__label" for="cds-base-input-text-12b5dc00-6237-45b1-926f-73f43f3eb93e"><span data-v-82c69faf="" class="label__content">Selecione uma data <!--v-if--><!--v-if--></span>
+  <div data-v-82c69faf="" data-v-fcd39cd1="" variant="gray" range="false" mobile="false" showtodaydot="false" highlighttoday="false" mindate="" maxdate=""><label data-v-82c69faf="" class="base-input__label" for="cds-base-input-text-2dd45948-b418-49d8-b5b1-63a9f5d1d942"><span data-v-82c69faf="" class="label__content">Selecione uma data <!--v-if--><!--v-if--></span>
       <!--v-if-->
     </label>
     <div data-v-82c69faf="" class="base-input base-input--default">
-      <!--v-if--><input data-v-82c69faf="" id="cds-base-input-text-12b5dc00-6237-45b1-926f-73f43f3eb93e" variant="gray" range="false" mobile="false" showtodaydot="false" highlighttoday="false" mindate="" maxdate="" modelvalue="" label="Selecione uma data" state="default" type="text" placeholder="dd/MM/yyyy" errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" supportlinkurl="https://cuida.framer.wiki/" floatinglabel="false" lazy="false" class="base-input__field">
+      <!--v-if--><input data-v-82c69faf="" id="cds-base-input-text-2dd45948-b418-49d8-b5b1-63a9f5d1d942" variant="gray" range="false" mobile="false" showtodaydot="false" highlighttoday="false" mindate="" maxdate="" modelvalue="" label="Selecione uma data" state="default" type="text" placeholder="dd/MM/yyyy" errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" supportlinkurl="https://cuida.framer.wiki/" floatinglabel="false" lazy="false" class="base-input__field">
       <!--v-if-->
       <div data-v-82c69faf="" class="base-input__trailing-icon-container">
         <div data-v-fcd39cd1="" class="date-input__icon"><svg data-v-fcd39cd1="" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="calendar-outline" role="presentation">
