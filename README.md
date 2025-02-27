@@ -15,7 +15,7 @@
 - O Cuida pode ser instalado com o npm:
 
 ```bash
-npm i @sysvale/cuida;
+npm i @sysvale/cuida
 ```
 
 ## Usando
@@ -40,6 +40,7 @@ app.use(Cuida);
 - Exponha os utils do Cuida:
 
 ```js
+const cdsUtils = Cuida.utils;
 app.provide('cdsUtils', cdsUtils);
 ```
 
