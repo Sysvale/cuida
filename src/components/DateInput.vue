@@ -1,544 +1,933 @@
 <template>
-	<div class="date-input__container">
-		<span>
-			<span
-				v-if="hasSlots"
-			>
-				<!-- @slot Slot para renderização customizada da label. -->
-				<slot name="label" />
-			</span>
-
-			<label
-				v-else
-				class="date-input__label"
-			>
-				<div
-					class="label__content"
-					for="cds-text-input"
-				>
-					<span>
-						{{ label }}
-					</span>
-
-					<span
-						v-if="required"
-						class="label__required-indicator"
-					>
-						*
-					</span>
-				</div>
-			</label>
-		</span>
-
-		<v-date-picker
-			id="cds-date-input"
-			v-model="internalDate"
-			locale="pt-BR"
-			:popover="{ visibility: 'click' }"
-			:min-date="minDate ? new Date(minDate) : null"
-			:max-date="maxDate ? new Date(maxDate) : null"
-			:attributes="showTodayDot ? attributes: {}"
-			color="green"
-			:is-range="range"
-			@update:model-value="handleUpdateInput"
+	<div
+		ref="calendar"
+		class="date-input"
+	>
+		<CdsBaseInput
+			ref="baseInput"
+			v-bind="{...$attrs, ...props}"
+			v-model="internalValue"
+			type="text"
+			:floating-label="floatingLabel || mobile"
+			:readonly="props.range"
+			@click="toggleDatePicker"
+			@change="emitChange"
+			@focus="emitFocus"
+			@blur="handleBlur"
+			@keydown="emitKeydown"
+			@keydown.enter.prevent="applySelection"
 		>
-			<template #header-left-button="{ page }">
-				<cds-chevron
-					direction="left"
-					@click="page.movePrevMonth()"
-				/>
+			<template #trailing-icon>
+				<div class="date-input__icon">
+					<cds-icon
+						height="20"
+						width="20"
+						name="calendar-outline"
+					/>
+				</div>
 			</template>
-			<template #header-right-button="{ page }">
-				<cds-chevron
-					direction="right"
-					@click="page.moveNextMonth()"
-				/>
-			</template>
+		</CdsBaseInput>
 
-			<template #default="{ inputValue, togglePopover, inputEvents }">
-				<div
-					:class="inputClass"
+		<Transition name="calendar-animation">
+			<div
+				v-if="isCalendarOpen"
+				class="date-input__calendar"
+				@mousedown.prevent="handleCalendarMouseDown"
+			>
+				<div class="calendar__header">
+					<CdsIcon
+						height="20"
+						width="20"
+						name="caret-left-outline"
+						class="calendar__left-caret"
+						:class="{ 'calendar__caret--disabled': !allowPreviousMonthNavigation }"
+						@click="previousMonth"
+					/>
+
+					<span class="calendar__month-and-title">
+						{{ currentMonthAndYear }}
+					</span>
+
+					<CdsIcon
+						height="20"
+						width="20"
+						name="caret-right-outline"
+						class="calendar__right-caret"
+						:class="{ 'calendar__caret--disabled': !allowNextMonthNavigation }"
+						@click="nextMonth"
+					/>
+				</div>
+
+				<CdsGrid
+					:cols="7"
+					gap="5px"
+					@mouseleave="handleCalendarMouseLeave"
 				>
-					<input
-						:value="resolveInputValue(inputValue)"
-						:disabled="disabled"
-						:placeholder="placeholder"
-						type="text"
-						v-on="inputEvents"
-						@click="togglePopover"
-						@focus="isBeingFocused = true"
-						@blur="isBeingFocused = false"
+					<div
+						v-for="day in weekDaysLetters"
+						:key="day"
+						class="calendar__week-day"
 					>
-					<div class="date-input__icon">
-						<cds-icon
-							height="20"
-							width="20"
-							name="calendar-outline"
-						/>
+						{{ day }}
 					</div>
-				</div>
-			</template>
-		</v-date-picker>
-		<div
-			v-if="errorState && !disabled"
-			class="date-input__error-message"
-		>
-			{{ errorMessage }}
-		</div>
+					<div
+						v-for="emptyDay in emptyDays"
+						:key="'empty-' + emptyDay"
+						class="calendar__empty-day"
+					/>
+					<div
+						v-for="day in daysInMonth"
+						:key="day"
+						class="calendar__day"
+						:class="getDayClasses(day)"
+						:disabled="isDateDisabled(day)"
+						@click="selectDate(day)"
+						@mouseenter="handleHover(day)"
+					>
+						{{ day }}
+					</div>
+				</CdsGrid>
+			</div>
+		</Transition>
 	</div>
 </template>
 
-<script>
+<script setup>
+import { ref, computed, watch, useTemplateRef } from 'vue';
 import { DateTime } from 'luxon';
-import { DatePicker } from 'v-calendar';
-import 'v-calendar/dist/style.css';
-import { isEmpty } from 'lodash';
-import CdsChevron from './Chevron.vue';
+import CdsBaseInput from './BaseInput.vue';
 import CdsIcon from './Icon.vue';
-import sassColorVariables from '../assets/sass/colors.module.scss';
-import paleteBuilder from '../utils/methods/paleteBuilder.js';
+import CdsGrid from './Grid.vue';
+import {
+	nativeEvents,
+	nativeEmits,
+} from '../utils/composables/useComponentEmits.js';
+import { useClickOutside } from '../utils/composables/useClickOutside.js';
 
-const dateStringValidator = (value) => /^(19|20)\d\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/.test(value);
+const WEEK_DAYS = ['S', 'T', 'Q', 'Q', 'S', 'S', 'D'];
+const DATE_FORMATS = [
+	'dd/MM/yyyy',
+	'MM/dd/yyyy',
+	'yyyy-MM-dd',
+	'dd-MM-yyyy',
+	'dd.MM.yyyy',
+	'dd MMM yyyy',
+	'MMM dd yyyy',
+];
 
-export default {
-	components: {
-		VDatePicker: DatePicker,
-		CdsChevron,
-		CdsIcon,
+const model = defineModel('modelValue', {
+	type: [String, Object],
+});
+
+const props = defineProps({
+	/**
+	* Especifica a label do input.
+	*/
+	label: {
+		type: String,
+		default: 'Label',
 	},
-
-	props: {
-		/**
-		* Prop utilizada como v-model. Deve ser uma string no formato `yyyy-MM-dd`
-		* ou um objeto com as propriedades `start` e `end`, no mesmo formato.
-		*/
-		modelValue: {
-			type: [String, Object],
-			default: '',
-			validator: (value) => value === '' || typeof value === 'object' || dateStringValidator(value),
-		},
-		/**
-		 * Especifica a label do input.
-		 */
-		label: {
-			type: String,
-			default: 'Date',
-		},
-		/**
-		 * Desabilita o input.
-		 */
-		disabled: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Especifica o estado do DateInput. As opções são 'default', 'valid' e 'invalid'.
-		 */
-		state: {
-			type: String,
-			default: 'default',
-		},
-		/**
-		 * Controla o modo do input.
-		 */
-		range: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Exibe asterisco de obrigatório (obs.: não faz a validação)
-		 */
-		required: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
-		 */
-		errorMessage: {
-			type: String,
-			default: 'Valor inválido',
-		},
-		/**
-		 * Especifica se a largura do DateInput deve ser fluida.
-		 */
-		fluid: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * A data mínima selecionável no DateInput. Deve ser uma string no formato `yyyy-MM-dd`.
-		 */
-		minDate: {
-			type: String,
-			default: '',
-			validator: (value) => value === '' || dateStringValidator(value),
-		},
-		/**
-		 * A data máxima selecionável no DateInput. Deve ser uma string no formato `yyyy-MM-dd`.
-		 */
-		maxDate: {
-			type: String,
-			default: '',
-			validator: (value) => value === '' || dateStringValidator(value),
-		},
-		/**
-		 * Texto placeholder para o DateInput.
-		 */
-		placeholder: {
-			type: String,
-			default: 'Selecione uma data',
-		},
-		/**
-		 * Controla a marcação do dia atual no calendário.
-		 */
-		showTodayDot: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		* A variante de cor. São 9 variantes implementadas: 'green', 'teal',
-		* 'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'.
-		*/
-		variant: {
-			type: String,
-			default: 'green',
-		},
-		/**
-		* Define o tipo do input, se true será um input adaptado para o mobile.
-		*/
-		mobile: {
-			type: Boolean,
-			default: false,
-		},
+	/**
+	* A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',
+	* 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
+	*/
+	variant: {
+		type: String,
+		default: 'gray',
 	},
-
-	data() {
-		return {
-			sassColorVariables,
-			internalDate: DateTime.now(),
-			isBeingFocused: false,
-			inputControl: 0,
-			attributes: [
-				{
-					dates: new Date(),
-					dot: true,
-				},
-			],
-			variantColorData: {},
-		};
+	/**
+	* Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	*/
+	state: {
+		type: String,
+		default: 'default',
 	},
+	/**
+	* Quando true, o usuário poderá selecionar um intervalo de datas.
+	*/
+	range: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Exibe asterisco de obrigatório (obs.: não faz a validação)
+	*/
+	required: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Desabilita o input.
+	*/
+	disabled: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Especifica se a largura do DateInput deve ser fluida.
+	*/
+	fluid: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile
+	*/
+	mobile: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Define o tipo do input, se true será um input adaptado para o mobile
+	*/
+	floatingLabel: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser renomeada para prop `highlightToday` na v4. Controla a marcação do dia atual no calendário.
+	*/
+	showTodayDot: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Controla a marcação do dia atual no calendário.
+	*/
+	highlightToday: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Texto placeholder para o DateInput.
+	*/
+	placeholder: {
+		type: String,
+		default: 'Selecione uma data',
+	},
+	/**
+	* Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+	*/
+	errorMessage: {
+		type: String,
+		default: 'Valor inválido',
+	},
+	/**
+	* A data mínima selecionável no DateInput. Deve ser uma string no formato `yyyy-MM-dd`.
+	*/
+	minDate: {
+		type: String,
+		default: '',
+	},
+	/**
+	* A data máxima selecionável no DateInput. Deve ser uma string no formato `yyyy-MM-dd`.
+	*/
+	maxDate: {
+		type: String,
+		default: '',
+	},
+	/**
+	* Define exibição e texto do tooltip do input
+	*/
+	tooltip: {
+		type: String,
+		default: null,
+	},
+	/**
+	* Especifica ícone do tooltip do TextInput.
+	*/
+	tooltipIcon: {
+		type: String,
+		default: 'info-outline',
+	},
+	/**
+	* Especifica mensagem de auxílio.
+	*/
+	supportingText: {
+		type: [String, Array],
+		default: '',
+	},
+	/**
+	* Controla a exibição e o conteúdo do link de suporte exibido ao lado da label.
+	*/
+	supportLink: {
+		type: String,
+		default: null,
+	},
+	/**
+	* Define a url a ser acessada no clique do link de suporte.
+	*/
+	supportLinkUrl: {
+		type: String,
+		default: 'https://cuida.framer.wiki/',
+	},
+});
 
-	computed: {
-		errorState() {
-			return this.state === 'invalid';
-		},
+const emits = defineEmits({
+	...nativeEvents
+});
 
-		hasSlots() {
-			return !!Object.keys(this.$slots).length;
-		},
+/* REACTIVE DATA */
+const baseInputRef = useTemplateRef('baseInput');
+const calendarRef = useTemplateRef('calendar');
+const { emitClick, emitChange, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
+const { clickedOutside, setTargetElement } = useClickOutside();
+const isCalendarOpen = ref(false);
+const currentDate = ref(DateTime.now().setLocale('pt-BR'));
+const startDate = ref(null);
+const endDate = ref(null);
+const hoverDate = ref(null);
+const isHoveringCalendar = ref(false);
+const weekDaysLetters = ref(WEEK_DAYS);
+const internalValue = ref('');
+const isCalendarInteraction = ref(false);
 
-		inputClass() {
-			let returningClass = '';
+/* COMPUTED */
+const currentMonthAndYear = computed(() => {
+	return currentDate.value.setLocale('pt-BR').toFormat('MMMM yyyy');
+});
 
-			if (this.disabled) {
-				return this.fluid
-					? 'date-input--disabled date-input--fluid'
-					: 'date-input--disabled';
-			}
+const emptyDays = computed(() => {
+	const firstDayOfMonth = currentDate.value.startOf('month');
+	return firstDayOfMonth.weekday - 1;
+});
 
-			if (!this.isBeingFocused) {
-				if (!this.disabled) {
-					if (this.state === 'valid') {
-						returningClass += ' date-input--valid';
-					} else if (this.state === 'invalid') {
-						returningClass += ' date-input--invalid';
-					}
-				}
-			} else if (!this.disabled) {
-				if (this.state === 'valid') {
-					returningClass += ' date-input--focused-valid';
-				} else if (this.state === 'invalid') {
-					returningClass += ' date-input--focused-invalid';
-				}
-			}
+const daysInMonth = computed(() => {
+	const days = [];
+	const daysInCurrentMonth = currentDate.value.daysInMonth;
 
-			returningClass += this.fluid ? ' date-input--fluid' : ' date-input';
+	for (let i = 1; i <= daysInCurrentMonth; i++) {
+		days.push(i);
+	}
 
-			return returningClass;
-		},
+	return days;
+});
 
-		calendarDotColor() {
-			return this.variantColorData.colorData[4].shade;
-		},
+const minDateObj = computed(() => {
+	if (!props.minDate) return null;
+	return DateTime.fromFormat(props.minDate, 'yyyy-MM-dd');
+});
 
-		calendarTextColor() {
-			return this.variantColorData.colorData[7].shade;
-		},
+const maxDateObj = computed(() => {
+	if (!props.maxDate) return null;
+	return DateTime.fromFormat(props.maxDate, 'yyyy-MM-dd');
+});
 
-		calendarTrailColor() {
-			return this.variantColorData.colorData[1].shade;
-		},
+const allowPreviousMonthNavigation = computed(() => {
+	if (!minDateObj.value) return true;
 
-		resolveMobile() {
-			return this.mobile ? '48px' : '40px';
+	const previousMonth = currentDate.value.minus({ months: 1 });
+	return previousMonth.startOf('month') >= minDateObj.value.startOf('month');
+});
+
+const allowNextMonthNavigation = computed(() => {
+	if (!maxDateObj.value) return true;
+
+	const nextMonth = currentDate.value.plus({ months: 1 });
+	return nextMonth.startOf('month') <= maxDateObj.value.startOf('month');
+});
+
+const dateInputContainerWidth = computed(() => {
+	return props.fluid ? '100%' : 'fit-content';
+})
+
+/* WATCHERS */
+watch(model, (newValue) => {
+	if (!newValue) {
+		startDate.value = null;
+		endDate.value = null;
+		internalValue.value = '';
+		currentDate.value = DateTime.now().setLocale('pt-BR');
+		return;
+	}
+
+	if (typeof newValue === 'string') {
+		startDate.value = DateTime.fromISO(newValue);
+		internalValue.value = startDate.value.toFormat('dd/MM/yyyy');
+		currentDate.value = startDate.value.startOf('month');
+	} else if (props.range && typeof newValue === 'object') {
+		if (newValue.start) {
+			startDate.value = DateTime.fromISO(newValue.start);
 		}
-	},
 
-	watch: {
-		modelValue(newValue, oldValue) {
-			if (newValue === oldValue) {
-				return;
+		if (newValue.end) {
+			endDate.value = DateTime.fromISO(newValue.end);
+		}
+
+		if (startDate.value && endDate.value) {
+			internalValue.value = `De ${startDate.value.toFormat('dd/MM/yyyy')} a ${endDate.value.toFormat('dd/MM/yyyy')}`;
+			currentDate.value = endDate.value.startOf('month');
+		} else if (startDate.value) {
+			currentDate.value = startDate.value.startOf('month');
+		}
+	}
+}, { immediate: true });
+
+watch(clickedOutside, (newValue) => {
+	if (newValue && isCalendarOpen.value) {
+		isCalendarOpen.value = false;
+	}
+});
+
+watch(calendarRef, (newValue) => {
+	if (newValue) {
+		setTargetElement(newValue);
+	}
+});
+
+/* FUNCTIONS */
+function isDateDisabled(day) {
+	const dateToCheck = currentDate.value.set({ day });
+
+	if (minDateObj.value && dateToCheck < minDateObj.value) {
+		return true;
+	}
+
+	if (maxDateObj.value && dateToCheck > maxDateObj.value) {
+		return true;
+	}
+
+	return false;
+}
+
+function isToday(day) {
+	const today = DateTime.now();
+	const dateToCheck = currentDate.value.set({ day });
+
+	return dateToCheck.hasSame(today, 'day');
+}
+
+function toggleDatePicker() {
+	if (props.disabled) {
+		return;
+	}
+
+	isCalendarOpen.value = !isCalendarOpen.value;
+
+	if (isCalendarOpen.value) {
+		if (props.range && endDate.value) {
+			currentDate.value = endDate.value.startOf('month');
+		} else if (startDate.value) {
+			currentDate.value = startDate.value.startOf('month');
+		}
+	}
+
+	emitClick();
+}
+
+function previousMonth() {
+	if (allowPreviousMonthNavigation.value) {
+		currentDate.value = currentDate.value.minus({ months: 1 });
+	}
+}
+
+function nextMonth() {
+	if (allowNextMonthNavigation.value) {
+		currentDate.value = currentDate.value.plus({ months: 1 });
+	}
+}
+
+function handleHover(day) {
+	if (props.range && startDate.value && !endDate.value && !isDateDisabled(day)) {
+		hoverDate.value = currentDate.value.set({ day });
+		isHoveringCalendar.value = true;
+	}
+}
+
+function handleCalendarMouseLeave() {
+	isHoveringCalendar.value = false;
+	hoverDate.value = null;
+}
+
+function getDayClasses(day) {
+	const classes = [];
+	const selectedDate = currentDate.value.set({ day });
+
+	if (isToday(day) && (props.showTodayDot || props.highlightToday)) {
+		classes.push(`today--${props.variant}`);
+	}
+
+	if (isDateDisabled(day)) {
+		classes.push('disabled-day');
+		return classes;
+	}
+
+	if (props.range) {
+		const isStartDate = startDate.value && selectedDate.hasSame(startDate.value, 'day');
+		const isEndDate = endDate.value && selectedDate.hasSame(endDate.value, 'day');
+
+		if (isStartDate || isEndDate) {
+			classes.push(`selected-day--${props.variant}`);
+		} else if (startDate.value && endDate.value &&
+				selectedDate > startDate.value &&
+				selectedDate < endDate.value) {
+			classes.push(`between-day--${props.variant}`);
+		} else if (startDate.value && !endDate.value && hoverDate.value && isHoveringCalendar.value) {
+			if ((hoverDate.value < startDate.value &&
+				selectedDate < startDate.value &&
+				selectedDate >= hoverDate.value) ||
+				(hoverDate.value > startDate.value &&
+				selectedDate > startDate.value &&
+				selectedDate <= hoverDate.value)) {
+				classes.push(`between-day--${props.variant}`);
+			}
+		}
+	} else if (startDate.value && selectedDate.hasSame(startDate.value, 'day')) {
+		classes.push(`selected-day--${props.variant}`);
+	}
+
+	return classes;
+}
+
+function selectDate(day) {
+	if (isDateDisabled(day)) {
+		return;
+	}
+
+	const selectedDate = currentDate.value.set({ day });
+
+	if (props.range) {
+		if (!startDate.value || (startDate.value && endDate.value)) {
+			startDate.value = selectedDate;
+			endDate.value = null;
+		} else {
+			if (selectedDate < startDate.value) {
+				endDate.value = startDate.value;
+				startDate.value = selectedDate;
+			} else {
+				endDate.value = selectedDate;
 			}
 
-			this.resolveInternalDate();
-		},
-
-		variant(newValue, oldValue) {
-			if (newValue === oldValue) {
-				return;
+			if (startDate.value && endDate.value) {
+				updateRangeModel();
+				isCalendarOpen.value = false;
 			}
+		}
+	} else {
+		startDate.value = selectedDate;
+		model.value = startDate.value.toFormat('yyyy-MM-dd');
+		internalValue.value = startDate.value.toFormat('dd/MM/yyyy');
+		isCalendarOpen.value = false;
+		emitChange();
+	}
 
-			this.updateColorData();
-		},
-	},
+	hoverDate.value = null;
+}
 
-	created() {
-		this.updateColorData();
-	},
-	
-	mounted() {
-		this.resolveInternalDate();
-	},
+function updateRangeModel() {
+	if (!startDate.value || !endDate.value) return;
 
-	methods: {
-		paleteBuilder,
+	model.value = {
+		start: startDate.value.toFormat('yyyy-MM-dd'),
+		end: endDate.value.toFormat('yyyy-MM-dd')
+	};
 
-		updateColorData() {
-			this.variantColorData = this.paleteBuilder(sassColorVariables.palete).find((item) => item.variantName.toLowerCase() === this.variant);
-		},
+	internalValue.value = `De ${startDate.value.toFormat('dd/MM/yyyy')} a ${endDate.value.toFormat('dd/MM/yyyy')}`;
 
-		handleUpdateInput(date) {
-			if (this.range) {
-				this.$emit(
-					'update:modelValue',
-					date.start && date.end
-						? {
-							start: DateTime.fromJSDate(date.start).toFormat('yyyy-MM-dd'),
-							end: DateTime.fromJSDate(date.end).toFormat('yyyy-MM-dd'),
-						}
-						: ''
-				);
-				return;
-			}
-			/**
-			* Evento emitido quando uma data é selecionada. Utilizado para implementar o v-model.
-			* @event update:modelValue
-			* @type {Event}
-			*/
-			this.$emit('update:modelValue', date ? DateTime.fromJSDate(date).toFormat('yyyy-MM-dd') : '');
-		},
+	emitChange();
+}
 
-		resolveInternalDate() {
-			if (!this.modelValue) {
-				this.internalDate = this.range ? null : '';
-				return;
-			}
+function parseUserDate() {
+	if (!internalValue.value) return null;
 
-			if (this.range) {
-				this.internalDate = dateStringValidator(this.modelValue.start) && dateStringValidator(this.modelValue.end)
-					? {
-						start: DateTime.fromFormat(this.modelValue.start, 'yyyy-MM-dd'),
-						end: DateTime.fromFormat(this.modelValue.end, 'yyyy-MM-dd'),
-					}
-					: {
-						start: DateTime.now(),
-						end: DateTime.now(),
-					}
-				return;
-			}
+	if (props.range && internalValue.value.includes('a')) {
+		const datePattern = /De\s+(\d{2}\/\d{2}\/\d{4})\s+a\s+(\d{2}\/\d{2}\/\d{4})/;
+		const matches = internalValue.value.match(datePattern);
 
-			this.internalDate = dateStringValidator(this.modelValue)
-				? DateTime.fromFormat(this.modelValue, 'yyyy-MM-dd')
-				: DateTime.now();
-		},
+		if (matches && matches.length === 3) {
+			const startStr = matches[1];
+			const endStr = matches[2];
 
-		resolveInputValue(value) {
-			if (typeof value !== 'object') {
-				return value;
-			}
+			const start = DateTime.fromFormat(startStr, 'dd/MM/yyyy');
+			const end = DateTime.fromFormat(endStr, 'dd/MM/yyyy');
 
-			if ((!value.start && !value.end) || isEmpty(value)) {
+			if (start.isValid && end.isValid) {
+				if (isDateInValidRange(start) && isDateInValidRange(end)) {
+					return { start, end: end < start ? start : end };
+				}
 				return null;
 			}
-
-			return `${value.start} a ${value.end}`;
 		}
-	},
-};
+
+		return parseRangeSplitByHyphen();
+	} else {
+		return parseSingleDate();
+	}
+}
+
+function parseRangeSplitByHyphen() {
+	const [startStr, endStr] = internalValue.value.split('-').map(d => d.trim());
+	let parsedStart = null;
+	let parsedEnd = null;
+
+	for (const format of DATE_FORMATS) {
+		const start = DateTime.fromFormat(startStr, format);
+		if (start.isValid) {
+			parsedStart = start;
+			break;
+		}
+	}
+
+	for (const format of DATE_FORMATS) {
+		const end = DateTime.fromFormat(endStr, format);
+		if (end.isValid) {
+			parsedEnd = end;
+			break;
+		}
+	}
+
+	if (parsedStart && parsedEnd) {
+		if (isDateInValidRange(parsedStart) && isDateInValidRange(parsedEnd)) {
+			return {
+				start: parsedStart > parsedEnd ? parsedEnd : parsedStart,
+				end: parsedStart > parsedEnd ? parsedStart : parsedEnd
+			};
+		}
+	}
+
+	return null;
+}
+
+function parseSingleDate() {
+	for (const format of DATE_FORMATS) {
+		const date = DateTime.fromFormat(internalValue.value, format);
+		if (date.isValid && isDateInValidRange(date)) {
+			return date;
+		}
+	}
+
+	const ISODate = DateTime.fromISO(internalValue.value);
+	if (ISODate.isValid && isDateInValidRange(ISODate)) {
+		return ISODate;
+	}
+
+	return null;
+}
+
+function isDateInValidRange(date) {
+	if ((minDateObj.value && date < minDateObj.value) ||
+		(maxDateObj.value && date > maxDateObj.value)) {
+		return false;
+	}
+	return true;
+}
+
+function handleBlur() {
+	if (isCalendarInteraction.value) {
+		isCalendarInteraction.value = false;
+		return;
+	}
+
+	const parsedResult = parseUserDate();
+
+	if (parsedResult) {
+		if (props.range && typeof parsedResult === 'object') {
+			startDate.value = parsedResult.start;
+			endDate.value = parsedResult.end;
+			updateRangeModel();
+			currentDate.value = endDate.value;
+		} else {
+			startDate.value = parsedResult;
+			endDate.value = null;
+
+			model.value = startDate.value.toFormat('yyyy-MM-dd');
+			internalValue.value = startDate.value.toFormat('dd/MM/yyyy');
+			currentDate.value = startDate.value;
+		}
+	} else if (internalValue.value) {
+		console.warn('Formato de data não reconhecido');
+	}
+
+	emitBlur();
+}
+
+function handleCalendarMouseDown(event) {
+	event.preventDefault();
+	isCalendarInteraction.value = true;
+}
+
+function applySelection() {
+	const parsedResult = parseUserDate();
+
+	if (parsedResult) {
+		if (props.range && typeof parsedResult === 'object') {
+			startDate.value = parsedResult.start;
+			endDate.value = parsedResult.end;
+			updateRangeModel();
+			currentDate.value = endDate.value;
+		} else {
+			startDate.value = parsedResult;
+			endDate.value = null;
+
+			model.value = startDate.value.toFormat('yyyy-MM-dd');
+			internalValue.value = startDate.value.toFormat('dd/MM/yyyy');
+			currentDate.value = startDate.value;
+		}
+	}
+
+	isCalendarOpen.value = false;
+}
+
+function clearSelection() {
+	startDate.value = null;
+	endDate.value = null;
+	internalValue.value = '';
+	model.value = props.range ? { start: null, end: null } : null;
+}
+
+function getDMYFormat() {
+	if (props.range && startDate.value && endDate.value) {
+		return {
+			start: startDate.value.toFormat('dd/MM/yyyy'),
+			end: endDate.value.toFormat('dd/MM/yyyy')
+		};
+	}
+
+	return startDate.value?.toFormat('dd/MM/yyyy');
+}
+
+function toISO() {
+	if (props.range && startDate.value && endDate.value) {
+		return {
+			start: startDate.value.toISO(),
+			end: endDate.value.toISO()
+		};
+	}
+
+	return startDate.value?.toISO();
+}
+
+function toString() {
+	if (props.range && startDate.value && endDate.value) {
+		return {
+			start: startDate.value.toString(),
+			end: endDate.value.toString()
+		};
+	}
+
+	return startDate.value?.toString();
+}
+
+function toJSDate() {
+	if (props.range && startDate.value && endDate.value) {
+		return {
+			start: startDate.value.toJSDate(),
+			end: endDate.value.toJSDate()
+		};
+	}
+
+	return startDate.value?.toJSDate();
+}
+
+function toDateTime() {
+	if (props.range && startDate.value && endDate.value) {
+		return {
+			start: startDate.value,
+			end: endDate.value
+		};
+	}
+
+	return startDate.value;
+}
+
+/* EXPOSE */
+defineExpose({
+	componentRef: baseInputRef.value?.componentRef,
+	isFocused: baseInputRef.value?.isFocused,
+	focus: () => baseInputRef.value?.focus(),
+	blur: () => baseInputRef.value?.blur(),
+	clear: () => baseInputRef.value?.clear(),
+	select: () => baseInputRef.value?.select(),
+	getDMYFormat,
+	toISO,
+	toString,
+	toJSDate,
+	toDateTime,
+	clearSelection,
+});
 </script>
 
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
+@import '../assets/sass/placeholders.scss';
 
 .date-input {
-	display: flex;
-	justify-content: space-between;
-	outline: 1px solid $n-50;
-	width: 266px;
-	height: v-bind(resolveMobile);
-	color: $n-600;
-	border-radius: $border-radius-extra-small !important;
-	cursor: pointer;
-	background: $n-0;
-	overflow: hidden;
-
-	input {
-		border: none;
-		outline: 0;
-		height: 100%;
-		width: 100%;
-		padding: pl(3);
-	}
+	position: relative;
+	width: v-bind(dateInputContainerWidth);
 
 	&__icon {
-		display: grid;
-		place-items: center;
-		margin: mr(3);
-	}
-
-	&:focus {
-		@extend .date-input;
-		outline: 0;
-		outline: 1px solid $bn-300;
-		box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);
-	}
-
-	&--fluid {
-		@extend .date-input;
-		width: 100%;
-	}
-
-	&--disabled {
-		@extend .date-input;
-		background-color: $n-20 !important;
-		pointer-events: none;
-		border: none;
-	}
-
-	&--valid {
-		outline: 1px solid $gp-500 !important;
-	}
-
-	&--invalid {
-		outline: 1px solid $rc-600 !important;
-	}
-
-	&--focused-valid {
-		@extend .date-input--valid;
-		box-shadow: 0 0 0 0.2rem rgba($gp-300, .45) !important;
-	}
-
-	&--focused-invalid {
-		@extend .date-input--invalid;
-		box-shadow: 0 0 0 0.2rem rgba($rc-300, .45) !important;
-	}
-
-	&__container {
-		display: flex;
-		flex-direction: column;
-	}
-
-	&__label {
-		@include label;
-		display: flex;
-		justify-content: space-between;
-	}
-
-	&__error-message {
-		@include caption;
-		color: $rc-600;
+		color: $n-700;
 		margin: mt(1);
 	}
-}
 
-.label {
-	&__required-indicator {
-		color: $rc-600;
-	}
-
-	&__content {
-		margin: mb(1);
-	}
-}
-
-.vc-popover-caret {
-	display: none !important;
-}
-
-.vc-container {
-	outline: 1px solid $n-30 !important;
-	border: none !important;
-	border-radius: $border-radius-extra-small !important;
-}
-
-.vc-popover-content {
-	box-shadow: none !important;
-	box-shadow: 0px 0px 8px rgba($n-900, .08) !important;
-}
-
-.vc-arrows-container {
-	padding: 12px 10px !important
-}
-
-.vc-title {
-	line-height: 23px !important;
-	background-color: transparent;
-	font-size: 17px;
-	text-transform: capitalize;
-}
-
-.vc-weeks {
-	margin: mt(5);
-}
-
-.vc-header {
-	.vc-arrow {
-		border-radius: 10px;
+	&__calendar {
+		margin: mt(2);
+		position: absolute;
+		top: 100%;
+		left: 0;
+		background: $n-0;
+		border: 1px solid $n-30;
+		box-shadow: $shadow-md;
+		border-radius: $border-radius-extra-small;
+		padding: pa(3);
+		min-height: 312px;
+		width: 266px;
+		z-index: 500;
 	}
 }
 
-.vc-nav-title {
-	@include body-1;
-	font-weight: 800;
-	background-color: transparent;
+.calendar {
+	&__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 16px;
+		margin-top: 4px;
+	}
+
+	&__day {
+		padding: 6px 6px;
+		text-align: center;
+		cursor: pointer;
+		@include body-2;
+		font-size: 14.5px;
+		color: $n-800;
+
+		transition: all 0.2s ease;
+		border-radius: $border-radius-lil;
+		z-index: 1;
+		position: relative;
+		@extend %user-select-none;
+	}
+
+	&__empty-day {
+		padding: 8px 5px;
+		text-align: center;
+		cursor: default;
+		@include body-2;
+		color: $n-800;
+		@extend %user-select-none;
+	}
+
+	&__week-day {
+		padding: 8px 5px;
+		text-align: center;
+		font-size: 13.5px;
+		font-weight: $font-weight-semibold;
+		color: $n-700;
+		@extend %user-select-none;
+	}
+
+	&__month-and-title {
+		font-weight: $font-weight-semibold;
+		color: $n-700;
+		font-size: 16px;
+		@extend %user-select-none;
+	}
+
+	&__caret {
+		cursor: pointer;
+		color: $n-500;
+		transition: color 0.2s ease;
+		padding: 6px 6px;
+		
+		&:hover {
+			color: $n-700;
+			background: $bn-50;
+			border-radius: $border-radius-lil;
+			transition: all 0.2s ease;
+			padding: 6px 6px;
+		}
+	}
+
+	&__left-caret {
+		@extend .calendar__caret;
+		margin: ml(n1);
+	}
+
+	&__right-caret {
+		@extend .calendar__caret;
+		margin: mr(n1);
+	}
+
+	&__caret--disabled {
+		color: $n-400;
+		cursor: not-allowed;
+		opacity: 0.5;
+	}
 }
 
-.vc-nav-arrow {
-	border-radius: 10px;
+.calendar-animation {
+	&-enter-active {
+		transition: opacity 0.2s ease, transform 0.2s ease;
+	}
+
+	&-leave-active {
+		transition: opacity 0.25s ease, transform 0.28s ease;
+	}
 }
 
-.vc-nav-item {
-	@include body-1;
-	background-color: transparent;
-	text-transform: capitalize;
-	font-weight: 430;
+.calendar-animation-enter-from,
+.calendar-animation-leave-to {
+	opacity: 0;
+	transform: translateY(-10px);
 }
 
-.vc-highlight-bg-light {
-	color: v-bind(calendarTrailColor);
-	background-color: v-bind(calendarTrailColor);
+.disabled-day {
+	color: $n-300 !important;
+	cursor: not-allowed !important;
+	pointer-events: none;
 }
 
-.vc-highlight-content-light, .vc-highlight-content-outline, .vc-highlight-content-none {
-	color: v-bind(calendarTextColor);
+.disabled-day:hover {
+	background: transparent !important;
 }
 
-.vc-highlight-bg-solid {
-	background-color: v-bind(calendarDotColor);
+.calendar-day:hover {
+	background: $bn-50;
+	border-radius: $border-radius-lil;
+	transition: all 0.2s ease;
 }
 
-.vc-highlight-bg-outline, .vc-highlight-bg-none {
-	border-color: v-bind(calendarDotColor);
+.today {
+	position: relative;
+	border-radius: $border-radius-lil;
+
+	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		border: 1px solid $shade-300;
+	}
+}
+
+.between-day {
+	background-color: $bn-50;
+	border-radius: $border-radius-lil;
+	font-weight: bold;
+
+	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@extend .between-day;
+		color: $shade-600;
+		background-color: $shade-100;
+
+		&:hover {
+			background-color: $shade-200;
+			transition: all 0.2s ease;
+		}
+	}
+}
+
+.selected-day {
+	background-color: $bn-50;
+	border-radius: $border-radius-lil;
+	font-weight: bold;
+
+	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@extend .selected-day;
+		color: $shade-50;
+		background-color: $base-color;
+
+		&:hover {
+			background-color: darken($base-color, 5%);
+		}
+	}
 }
 </style>
