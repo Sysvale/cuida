@@ -63,3 +63,10 @@
     content: '•';
     margin-right: 8px;
 }
+
+%user-select-none {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

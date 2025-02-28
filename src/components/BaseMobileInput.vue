@@ -28,7 +28,7 @@
 					'base-mobile-input__label--fluid': fluid,
 				}"
 				:for="componentId"
-				@click.stop="handleClick"
+				@click.stop.prevent="handleClick"
 			>
 				<span
 					class="label__content"
@@ -64,6 +64,7 @@
 				:required="required"
 				:disabled="disabled"
 				:class="inputClass"
+				:readonly="readonly"
 				:type="type"
 				@focus="handleFocus"
 				@blur="handleBlur"
@@ -223,7 +224,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, useTemplateRef, useAttrs } from 'vue';
+import { ref, computed, watch, useTemplateRef, useAttrs, nextTick } from 'vue';
 import {
 	nativeEvents,
 	nativeEmits,
@@ -492,17 +493,19 @@ watch(internalValue, (value) => {
 });
 
 /* FUNCTIONS */
-function handleClick() {
+function handleClick(event) {
 	/**
 	* Evento emitido quando o componente é clicado.
 	* @event click
 	* @type {Event}
 	*/
-	emitClick();
-	componentRef.value.focus();
+	emitClick(event);
+	nextTick(() => {
+		componentRef.value.focus();
+	});
 }
 
-function handleFocus() {
+function handleFocus(event) {
 	isFocused.value = true;
 	previousInternalValue.value = internalValue.value;
 	/**
@@ -510,17 +513,17 @@ function handleFocus() {
 	* @event focus
 	* @type {Event}
 	*/
-	emitFocus();
+	emitFocus(event);
 }
 
-function handleBlur() {
+function handleBlur(event) {
 	isFocused.value = false;
 	/**
 	* Evento emitido quando o componente deixa de ser focado.
 	* @event blur
 	* @type {Event}
 	*/
-	emitBlur();
+	emitBlur(event);
 
 	if(previousInternalValue.value !== internalValue.value) {
 		model.value = internalValue.value;

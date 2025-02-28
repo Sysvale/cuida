@@ -103,6 +103,7 @@
 					v-bind="{...$attrs, ...props}"
 					v-model="internalValue"
 					:required="required"
+					:readonly="readonly"
 					:placeholder="placeholder"
 					:disabled="disabled"
 					:class="inputClass"
@@ -430,16 +431,16 @@ onMounted(() => {
 });
 
 /* FUNCTIONS */
-function handleClick() {
+function handleClick(event) {
 	/**
 	* Evento emitido quando o componente é clicado.
 	* @event click
 	* @type {Event}
 	*/
-	emitClick();
+	emitClick(event);
 }
 
-function handleFocus() {
+function handleFocus(event) {
 	isFocused.value = true;
 	previousInternalValue.value = internalValue.value;
 	/**
@@ -447,17 +448,17 @@ function handleFocus() {
 	* @event focus
 	* @type {Event}
 	*/
-	emitFocus();
+	emitFocus(event);
 }
 
-function handleBlur() {
+function handleBlur(event) {
 	isFocused.value = false;
 	/**
 	* Evento emitido quando o componente deixa de ser focado.
 	* @event blur
 	* @type {Event}
 	*/
-	emitBlur();
+	emitBlur(event);
 
 	if(previousInternalValue.value !== internalValue.value) {
 		model.value = internalValue.value;
