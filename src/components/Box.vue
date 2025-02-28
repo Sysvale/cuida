@@ -2,7 +2,7 @@
 <template>
 	<div
 		ref="cds-box"
-		:class="elevated ? 'box--elevated' : `box--${variant}`"
+		:class="computedClass"
 	>
 		<cds-clickable
 			class="box__container"
@@ -81,6 +81,13 @@ export default {
 			default: 'gray',
 		},
 		/**
+		* Aplica uma versão mais suave da variante de cor.
+		*/
+		light: {
+			type: Boolean,
+			default: false,
+		},
+		/**
 		* Quando true, oculta o overflow do componente.
 		*/
 		overflowVisible: {
@@ -110,6 +117,14 @@ export default {
 
 		overflowResolver() {
 			return this.overflowVisible ? 'visible' : 'hidden';
+		},
+
+		computedClass() {
+			if (this.elevated) {
+				return 'box--elevated';
+			}
+
+			return this.light ? `box--${this.variant}--light` : `box--${this.variant}`;
 		},
 	},
 
@@ -154,6 +169,12 @@ export default {
 		@extend .box;
 		outline: 1px solid $base-color;
 		background-color: $shade-50;
+
+		&--light {
+			@extend .box;
+			outline: 1px solid $shade-100;
+			background-color: $n-0;
+		}
 	}
 }
 </style>
