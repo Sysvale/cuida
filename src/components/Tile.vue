@@ -7,44 +7,39 @@
 		light
 		@box-click="handleClick"
 	>
-		<div class="cds-tile__extra-container">
+		<div
+			v-if="!loading"
+			class="cds-tile__extra-container"
+		>
 			<div class="cds-tile__extra">
 				<!-- @slot Slot para incluir conteúdo adicional no canto superior direito da tile.-->
 				<slot name="extra" />
 			</div>
 		</div>
-		<div :class="computedImageClass">
-			<skeleton
-				v-if="loading"
-				:width="computedIconWidth"
-				:height="computedIconWidth"
-			/>
-			<icon
-				v-else-if="computedIconType === 'icon'"
-				class="cds-tile__icon"
-				:name="icon"
-			/>
-			<cds-image
-				v-else
-				:src="icon"
-				:width="computedIconWidth"
-				rounded-corners
-				opacity="0.5"
-			/>
-		</div>
 		<div
 			v-if="loading"
-			class="cds-tile__text--loading"
+			:class="computedLoaderClass"
 		>
-			<skeleton-text
-				:width="computedIconWidth"
-			/>
+			<skeleton fluid	/>
 		</div>
-		<div
-			v-else
-			:class="computedTextClass"
-		>
-			{{ title }}
+		<div v-else>
+			<div :class="computedImageClass">
+				<icon
+					v-if="computedIconType === 'icon'"
+					class="cds-tile__icon"
+					:name="icon"
+				/>
+				<cds-image
+					v-else
+					:src="icon"
+					:width="computedIconWidth"
+					rounded-corners
+					opacity="0.5"
+				/>
+			</div>
+			<div :class="computedTextClass">
+				{{ title }}
+			</div>
 		</div>
 	</box>
 </template>
@@ -56,7 +51,6 @@ import Box from './Box.vue';
 import Icon from './Icon.vue';
 import CdsImage from './Image.vue';
 import Skeleton from './Skeleton.vue';
-import SkeletonText from './SkeletonText.vue';
 
 const props = defineProps({
 	/**
@@ -122,6 +116,8 @@ const computedVariant = computed(() => {
 
 	return props.variant;
 });
+
+const computedLoaderClass = computed(() => `cds-tile__loader--${props.size}`);
 const computedImageClass = computed(() => `cds-tile__image--${computedVariant.value} cds-tile__image--${props.size}`);
 const computedTextClass = computed(() => `cds-tile__text--${computedVariant.value} cds-tile__text--${props.size}`);
 const computedIconType = computed(() => (props.icon.includes('http') ? 'img' : 'icon'));
@@ -216,13 +212,6 @@ function handleClick() {
 			color: $n-300;
 		}
 
-		&--loading {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			padding: pa(2);
-		}
-
 		&--sm {
 			@include overline;
 			padding: pYX(2,4);
@@ -248,6 +237,23 @@ function handleClick() {
 		position: absolute;
 		right: spacer(2);
 		z-index: 9999;
+	}
+
+	&__loader {
+		&--sm {
+			width: 96px;
+			height: 102px;
+		}
+
+		&--md {
+			width: 106px;
+			height: 114px;
+		}
+
+		&--lg {
+			width: 116px;
+			height: 126px;
+		}
 	}
 }
 </style>

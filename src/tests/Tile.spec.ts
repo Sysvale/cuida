@@ -4,7 +4,6 @@ import Tile from '../components/Tile.vue';
 import Icon from '../components/Icon.vue';
 import Image from '../components/Image.vue';
 import Skeleton from '../components/Skeleton.vue';
-import SkeletonText from '../components/SkeletonText.vue';
 import { mount, flushPromises } from '@vue/test-utils';
 
 describe('Tile', () => {
@@ -38,7 +37,6 @@ describe('Tile', () => {
 		});
 
 		expect(wrapper.findComponent(Skeleton).exists()).toBeTruthy();
-		expect(wrapper.findComponent(SkeletonText).exists()).toBeTruthy();
 
 		wrapper.setProps({
 			title: 'Tile content',
@@ -49,6 +47,5 @@ describe('Tile', () => {
 		await flushPromises();
 
 		expect(wrapper.findComponent(Skeleton).exists()).toBeFalsy();
-		expect(wrapper.findComponent(SkeletonText).exists()).toBeFalsy();
 	});
 });
