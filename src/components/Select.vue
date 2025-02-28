@@ -269,7 +269,10 @@ const id = ref(null);
 const allowSearch = ref(false);
 const localOptions = ref([]);
 const pristineOptions = ref([]);
-const localValue = ref({});
+const localValue = ref({
+	value: '',
+	id: '',
+});
 const selectElement = ref('');
 const direction = ref('down');
 const uniqueKey = ref(generateKey());
@@ -328,10 +331,10 @@ watch(() => props.options, (newValue, oldValue) => {
 	}
 }, { immediate: true });
 
-watch(() => model, (newValue, oldValue) => { 
+watch(model, (newValue, oldValue) => { 
 	if (newValue !== oldValue) {
 		if (newValue instanceof Object) {
-			localValue.value = newValue.value;
+			localValue.value = newValue;
 		} else {
 			localValue.value = {id: newValue, value: newValue }
 		}
