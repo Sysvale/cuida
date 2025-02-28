@@ -1,34 +1,45 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<box
-		:variant="computedVariant"
+		:variant="computedBoxVariant"
 		:clickable="!disabled"
 		padding="0"
 		light
 		@box-click="handleClick"
 	>
-		<div class="cds-tile__extra-container">
+		<div
+			v-if="!loading"
+			class="cds-tile__extra-container"
+		>
 			<div class="cds-tile__extra">
 				<!-- @slot Slot para incluir conteúdo adicional no canto superior direito da tile.-->
 				<slot name="extra" />
 			</div>
 		</div>
-		<div :class="computedImageClass">
-			<icon
-				v-if="computedIconType === 'icon'"
-				class="cds-tile__icon"
-				:name="icon"
-			/>
-			<cds-image
-				v-else
-				:src="icon"
-				:width="computedIconWidth"
-				rounded-corners
-				opacity="0.5"
-			/>
+		<div
+			v-if="loading"
+			:class="computedLoaderClass"
+		>
+			<skeleton fluid	/>
 		</div>
-		<div :class="computedTextClass">
-			{{ title }}
+		<div v-else>
+			<div :class="computedImageClass">
+				<icon
+					v-if="computedIconType === 'icon'"
+					class="cds-tile__icon"
+					:name="icon"
+				/>
+				<cds-image
+					v-else
+					:src="icon"
+					:width="computedIconWidth"
+					rounded-corners
+					opacity="0.5"
+				/>
+			</div>
+			<div :class="computedTextClass">
+				{{ title }}
+			</div>
 		</div>
 	</box>
 </template>
@@ -39,6 +50,7 @@ import variantValidator from '../utils/validators/variant';
 import Box from './Box.vue';
 import Icon from './Icon.vue';
 import CdsImage from './Image.vue';
+import Skeleton from './Skeleton.vue';
 
 const props = defineProps({
 	/**
@@ -46,14 +58,14 @@ const props = defineProps({
 	 */
 	icon: {
 		type: String,
-		required: true,
+		default: 'settings-outline',
 	},
 	/**
 	 * Texto a ser exibido no componente.
 	 */
 	title: {
 		type: String,
-		required: true,
+		default: '',
 	},
 	/**
 	 * Especifica o tamanho do botão. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
@@ -79,6 +91,13 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	 * Controla o estado de carregamento do componente.
+	*/
+	loading: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const emit = defineEmits([
@@ -97,6 +116,9 @@ const computedVariant = computed(() => {
 
 	return props.variant;
 });
+
+const computedBoxVariant = computed(() => (props.loading ? 'gray' : computedVariant.value));
+const computedLoaderClass = computed(() => `cds-tile__loader--${props.size}`);
 const computedImageClass = computed(() => `cds-tile__image--${computedVariant.value} cds-tile__image--${props.size}`);
 const computedTextClass = computed(() => `cds-tile__text--${computedVariant.value} cds-tile__text--${props.size}`);
 const computedIconType = computed(() => (props.icon.includes('http') ? 'img' : 'icon'));
@@ -112,7 +134,7 @@ const computedIconWidth = computed(() => {
 })
 
 function handleClick() {
-	if (props.disabled) {
+	if (props.disabled || props.loading) {
 		return;
 	}
 
@@ -192,8 +214,8 @@ function handleClick() {
 		}
 
 		&--sm {
-			padding: pYX(2,4);
 			@include overline;
+			padding: pYX(2,4);
 		}
 
 		&--md {
@@ -201,8 +223,8 @@ function handleClick() {
 		}
 
 		&--lg {
-			padding: pYX(2,7);
 			@include body-2;
+			padding: pYX(2,7);
 			font-weight: $font-weight-semibold;
 		}
 	}
@@ -216,6 +238,23 @@ function handleClick() {
 		position: absolute;
 		right: spacer(2);
 		z-index: 9999;
+	}
+
+	&__loader {
+		&--sm {
+			width: 96px;
+			height: 102px;
+		}
+
+		&--md {
+			width: 106px;
+			height: 114px;
+		}
+
+		&--lg {
+			width: 116px;
+			height: 126px;
+		}
 	}
 }
 </style>

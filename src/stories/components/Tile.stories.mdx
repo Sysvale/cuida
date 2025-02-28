@@ -80,7 +80,7 @@ export const Template = (args) => ({
 		</cds-tile>`,
 	methods: {
 		logTileClick(event) {
-			console.info('%con click: ', 'color: #2C70CD;', event);
+			console.info('%cFoi clicado ', 'color: #2C70CD;');
 		},
 	},
 });
@@ -116,6 +116,7 @@ export const Template = (args) => ({
 			icon: 'trash-outline',
 			variant: 'green',
 			disabled: false,
+			loading: false,
 			title: 'Excluir',
 		}}
 	>
