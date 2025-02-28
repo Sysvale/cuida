@@ -92,7 +92,7 @@ const emit = defineEmits([
 
 const computedVariant = computed(() => {
 	if (props.disabled) {
-		return 'gray';
+		return 'disabled';
 	}
 
 	return props.variant;
@@ -130,6 +130,14 @@ function handleClick() {
 		display: flex;
 		align-items: center;
 		justify-content: center;
+
+		&--disabled {
+			@extend .cds-tile__image;
+			background-color: $n-100;
+			color: $n-300;
+			border-top-left-radius: 16px;
+			border-top-right-radius: 16px;
+		}
 
 		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			@extend .cds-tile__image;
@@ -176,6 +184,11 @@ function handleClick() {
 			@if ($color-name == 'gray' or $color-name == 'white') {
 				color: $n-500;
 			}
+		}
+
+		&--disabled {
+			@extend .cds-tile__text;
+			color: $n-300;
 		}
 
 		&--sm {
