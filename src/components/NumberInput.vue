@@ -230,6 +230,12 @@ let cdsBrlBiding = {};
 
 
 /* WATCHERS */
+watch(model, (newValue, oldValue) => {
+	if (newValue !== oldValue) {
+		internalValue.value = newValue;
+	}
+}, {immediate: true});
+
 watch(internalValue, (value, oldValue) => {
 	if (value !== oldValue) {
 		let stringifiedInput = String(value);
