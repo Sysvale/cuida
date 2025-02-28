@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<box
-		:variant="computedVariant"
+		:variant="computedBoxVariant"
 		:clickable="!disabled"
 		padding="0"
 		light
@@ -117,6 +117,7 @@ const computedVariant = computed(() => {
 	return props.variant;
 });
 
+const computedBoxVariant = computed(() => (props.loading ? 'gray' : computedVariant.value));
 const computedLoaderClass = computed(() => `cds-tile__loader--${props.size}`);
 const computedImageClass = computed(() => `cds-tile__image--${computedVariant.value} cds-tile__image--${props.size}`);
 const computedTextClass = computed(() => `cds-tile__text--${computedVariant.value} cds-tile__text--${props.size}`);
