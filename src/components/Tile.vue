@@ -135,6 +135,11 @@ function handleClick() {
 			@extend .cds-tile__image;
 			background-color: $shade-100;
 			color: $base-color;
+
+			@if ($color-name == 'gray' or $color-name == 'white') {
+				background-color: $shade-100;
+				color: $n-500;
+			}
 		}
 
 		&--sm {
@@ -167,6 +172,10 @@ function handleClick() {
 		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			@extend .cds-tile__text;
 			color: $base-color;
+
+			@if ($color-name == 'gray' or $color-name == 'white') {
+				color: $n-500;
+			}
 		}
 
 		&--sm {
