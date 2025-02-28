@@ -137,7 +137,7 @@ const computedIconWidth = computed(() => {
 })
 
 function handleClick() {
-	if (props.disabled) {
+	if (props.disabled || props.loading) {
 		return;
 	}
 
