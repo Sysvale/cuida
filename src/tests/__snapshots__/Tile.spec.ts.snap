@@ -15,10 +15,12 @@ exports[`Tile > renders correctly 1`] = `
           <!-- @slot Slot para incluir conteúdo adicional no canto superior direito da tile.-->
         </div>
       </div>
-      <div class="cds-tile__image--green cds-tile__image--md"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="trash-outline" role="presentation" class="cds-tile__icon">
-          <g fill="currentColor"></g>
-        </svg></div>
-      <div class="cds-tile__text--green cds-tile__text--md">Tile content</div>
+      <div>
+        <div class="cds-tile__image--green cds-tile__image--md"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="trash-outline" role="presentation" class="cds-tile__icon">
+            <g fill="currentColor"></g>
+          </svg></div>
+        <div class="cds-tile__text--green cds-tile__text--md">Tile content</div>
+      </div>
     </div>
   </div>
 </div>"
