@@ -34,7 +34,20 @@ import IconButton from '../../components/IconButton.vue';
 				format:true,
 				code: /*html*/ 
 `<cds-
-	:items="items"
+	:items="[
+		{
+			title: 'Goku o maior de todos os tempos',
+			content: 'Todo mundo sabe que ele é o mais forte do mundo (não é atoa o filme 2)'
+		},
+		{
+			title: 'Invejosos dirão que é o Gohan',
+			content: 'Mas também todo mundo sabe que ele é um banana depois da saga do Cell'
+		},
+		{
+			title: 'Todo mundo gosta do Vegeta',
+			content: 'Claro que sim, não tem como não gostar'
+		},
+	]",
 />`
 			},
 		}
@@ -49,6 +62,7 @@ export const Template = (args) => ({
 	template: /*html*/`
 		<cds-list
 			v-bind="args"
+			@click="console.info('click:', $event)"
 		>
 			<template #actions>
 				<cds-icon-button icon="edit-outline" />
@@ -96,7 +110,10 @@ export const items = [
 <Canvas>
 	<Story
 		name="List"
-		args={{ items }}
+		args={{
+				items,
+				clickable: false,
+			}}
 	>
 		{ Template.bind({}) }
 	</Story>

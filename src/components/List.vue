@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div
 		v-for="(item, index) in items"
@@ -33,13 +34,17 @@
 			/>
 			<div v-else>
 				<!-- @slot Slot utilizado para renderização de botões de ação para listagem desktop. -->
-				<slot name="actions" />
+				<slot
+					name="actions"
+					:item="item"
+				/>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import { colorOptions } from '../utils/constants/colors';
 import { useHasSlot } from '../utils/composables/useHasSlot';
 import Icon from './Icon.vue';
@@ -49,13 +54,12 @@ const { isMobile } = useIsMobile();
 
 const emit = defineEmits([
 	/**
-	 * Evento que indica que um item da listagem foi clicado
-	 * (emitido apenas no mobile).
+	 * Evento que indica que um item da listagem foi clicado. A prop __clickable__ tem que estar definida como __true__.
 	 */
-	'on-item-click'
+	'click'
 ]);
 
-defineProps({
+const props = defineProps({
 	/**
 	 * Lista de itens a serem exibidos no componente. Cada item deve seguir o formato padrão:
 	 *
@@ -84,14 +88,23 @@ defineProps({
 		default: 'blue',
 		validator: (value) => colorOptions.includes(value),
 	},
+	/**
+	 * Indica se o componente deve ser clicável ou não.
+	 */
+	clickable: {
+		type: Boolean,
+		default: false,
+	},
 });
 
+const resolveHover = computed(() => props.clickable ? 'pointer' : '');
+
 function resolveListClick(item) {
-	if (!isMobile.value) {
+	if (!props.clickable && !isMobile.value) {
 		return;
 	}
 
-	emit('on-item-click', item);
+	emit('click', item);
 }
 
 </script>
@@ -111,6 +124,7 @@ function resolveListClick(item) {
 
 	&:hover {
 		background: $n-10;
+		cursor: v-bind(resolveHover);
 	}
 
     &__body {
