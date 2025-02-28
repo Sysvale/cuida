@@ -14,8 +14,13 @@
 			</div>
 		</div>
 		<div :class="computedImageClass">
+			<skeleton
+				v-if="loading"
+				:width="computedIconWidth"
+				:height="computedIconWidth"
+			/>
 			<icon
-				v-if="computedIconType === 'icon'"
+				v-else-if="computedIconType === 'icon'"
 				class="cds-tile__icon"
 				:name="icon"
 			/>
@@ -27,7 +32,18 @@
 				opacity="0.5"
 			/>
 		</div>
-		<div :class="computedTextClass">
+		<div
+			v-if="loading"
+			class="cds-tile__text--loading"
+		>
+			<skeleton-text
+				:width="computedIconWidth"
+			/>
+		</div>
+		<div
+			v-else
+			:class="computedTextClass"
+		>
 			{{ title }}
 		</div>
 	</box>
@@ -39,6 +55,8 @@ import variantValidator from '../utils/validators/variant';
 import Box from './Box.vue';
 import Icon from './Icon.vue';
 import CdsImage from './Image.vue';
+import Skeleton from './Skeleton.vue';
+import SkeletonText from './SkeletonText.vue';
 
 const props = defineProps({
 	/**
@@ -46,14 +64,14 @@ const props = defineProps({
 	 */
 	icon: {
 		type: String,
-		required: true,
+		default: 'settings-outline',
 	},
 	/**
 	 * Texto a ser exibido no componente.
 	 */
 	title: {
 		type: String,
-		required: true,
+		default: '',
 	},
 	/**
 	 * Especifica o tamanho do botão. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
@@ -76,6 +94,13 @@ const props = defineProps({
 	 * Controla o estado de desabilitação do componente.
 	*/
 	disabled: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	 * Controla o estado de carregamento do componente.
+	*/
+	loading: {
 		type: Boolean,
 		default: false,
 	},
@@ -191,9 +216,16 @@ function handleClick() {
 			color: $n-300;
 		}
 
+		&--loading {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: pa(2);
+		}
+
 		&--sm {
-			padding: pYX(2,4);
 			@include overline;
+			padding: pYX(2,4);
 		}
 
 		&--md {
@@ -201,8 +233,8 @@ function handleClick() {
 		}
 
 		&--lg {
-			padding: pYX(2,7);
 			@include body-2;
+			padding: pYX(2,7);
 			font-weight: $font-weight-semibold;
 		}
 	}
