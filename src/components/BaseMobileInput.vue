@@ -377,7 +377,7 @@ const internalValue = ref('');
 const previousInternalValue = ref('');
 const isFocused = ref(false);
 const attrs = useAttrs();
-const { emitClick, emitFocus, emitBlur, emitKeydown, emitChange } = nativeEmits(emits);
+const { emitClick, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
 const componentRef = useTemplateRef('htmlInput');
 const componentId = `cds-base-mobile-input-${props.type}-${attrs.id || generateKey()}`;
 internalValue.value = model.value;
@@ -527,8 +527,8 @@ function handleBlur(event) {
 
 	if(previousInternalValue.value !== internalValue.value) {
 		model.value = internalValue.value;
-		emitChange();
 	}
+
 	previousInternalValue.value = internalValue.value;
 }
 

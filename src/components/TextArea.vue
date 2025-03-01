@@ -23,7 +23,6 @@ import {
 	nativeEvents,
 	nativeEmits,
 } from '../utils/composables/useComponentEmits.js';
-import { facade } from 'vue-input-facade';
 import CdsBaseInput from './BaseInput.vue';
 
 const baseInputRef = useTemplateRef('baseInput');

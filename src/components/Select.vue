@@ -280,7 +280,7 @@ const select = useTemplateRef('baseInput');
 const cdsSelect = useTemplateRef('cds-select');
 const selectOptions = useTemplateRef('select-options');
 const liRefs = ref({});
-const { emitClick, emitChange, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
+const { emitClick, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
 
 /* COMPUTED */
 const resolveChevronTop = computed(() => {
@@ -357,10 +357,8 @@ watch(localValue, (currentValue) => {
 		* @type {Event}
 		*/
 		model.value = currentValue[props.optionsField];
-		emitChange();
 	} else {
 		model.value = currentValue;
-		emitChange();
 	}
 }, { deep: true });
 

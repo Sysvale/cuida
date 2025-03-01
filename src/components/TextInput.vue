@@ -1,14 +1,13 @@
 <template>
 	<CdsBaseInput
 		ref="baseInput"
+		v-bind="props"
 		v-model="internalValue"
 		v-facade="internalMask"
-		v-bind="{...$attrs, ...props}"
 		:support-link-url="supportLinkUrl || linkUrl"
 		:support-link="supportLink || linkText"
 		:floating-label="floatingLabel || mobile"
 		@click="emitClick"
-		@change="emitChange"
 		@focus="emitFocus"
 		@blur="emitBlur"
 		@keydown="emitKeydown"
@@ -177,9 +176,9 @@ const emits = defineEmits({
 
 const internalValue = ref('');
 const internalMask = ref(props.mask);
-const { emitClick, emitChange, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
+const { emitClick, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
 
-watch(props.mask, (newValue) => internalMask.value = newValue);
+watch(() => props.mask, (newValue) => internalMask.value = newValue);
 
 watch(model, (newValue, oldValue) => {
 	if (newValue !== oldValue) {
