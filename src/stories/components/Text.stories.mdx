@@ -1,0 +1,121 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Text from '../../components/Text.vue';
+
+<Meta
+	title="Componentes/Typography/Text"
+	component={ Text }
+	argTypes={{
+		as: {
+			control:{
+				type: 'select',
+				options: [
+					'h1',
+					'h2',
+					'h3',
+					'h4',
+					'h5',
+					'h6',
+                    'heading-1',
+					'heading-2',
+					'heading-3',
+                    'subheading-1',
+					'subheading-2',
+					'subheading-3',
+					'p',
+                    'q',
+					'span',
+                    'body-1',
+					'body-2',
+                    'caption',
+                    'overline',
+                    'strong',
+                    'em',
+                    'del',
+                    'small',
+					'legend',
+				],
+			}
+		},
+		'textAlign': {
+			control:{
+				type: 'select',
+				options: [
+					'start',
+					'center',
+					'end',
+                    'justify'
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-text
+    as="span"
+    textAlign='start'
+    :noMargin="false"
+>
+    O empenho em analisar o desenvolvimento contínuo de distintas formas de atuação obstaculiza a apreciação da importância do retorno esperado a longo prazo.
+</cds-text>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsText: Text },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-text
+			v-bind="args"
+		>
+			O empenho em analisar o desenvolvimento contínuo de distintas formas de atuação obstaculiza a apreciação da importância do retorno esperado a longo prazo.
+		</cds-text>`,
+	methods: {
+		handleEmit(value) { console.info('value: ', value); }
+	}
+});
+
+
+# Text
+
+### Componentes Text permitem renderizar texto com diferentes estilos e configurações.
+---
+<br />
+
+## Quando usar:
+- Quando quiser renderizar texto utilizando as definições tipográficas do design system para garantir consistência visual.
+- Quando quiser utilizar tags de texto HTML sem as margens padrão.
+
+<br />
+
+## Quando não usar:
+- Para exibir textos decorativos ou de realce dentro de botões e componentes interativos. Utilize a estilização apropriada para cada caso..
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Text"
+		args={{
+            'as': "span",
+            color: 'n-700',
+            textAlign: 'start',
+            noMargin: false,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Text" />
