@@ -47,10 +47,11 @@ import Text from '../../components/Text.vue';
 				format:true,
 				code: /*html*/ 
 `<cds-text
-	variant="red"
-	size="md"
+    as="span"
+    textAlign='start'
+    :noMargin="false"
 >
-	Text
+    O empenho em analisar o desenvolvimento contínuo de distintas formas de atuação obstaculiza a apreciação da importância do retorno esperado a longo prazo.
 </cds-text>`
 			},
 		}
@@ -65,7 +66,6 @@ export const Template = (args) => ({
 	template: /*html*/ `
 		<cds-text
 			v-bind="args"
-			@click="handleEmit"
 		>
 			O empenho em analisar o desenvolvimento contínuo de distintas formas de atuação obstaculiza a apreciação da importância do retorno esperado a longo prazo.
 		</cds-text>`,
