@@ -96,6 +96,7 @@ import StepperInput from './StepperInput.vue';
 import Switch from './Switch.vue';
 import Table from './Table.vue';
 import Tabs from './Tabs.vue';
+import Text from './Text.vue';
 import TextArea from './TextArea.vue';
 import TextInput from './TextInput.vue';
 import Tile from './Tile.vue';
@@ -219,6 +220,7 @@ export default {
 		app.component('CdsSwitch', Switch);
 		app.component('CdsTable', Table);
 		app.component('CdsTabs', Tabs);
+		app.component('CdsText', Text);
 		app.component('CdsTextArea', TextArea);
 		app.component('CdsTextInput', TextInput);
 		app.component('CdsTile', Tile);
