@@ -1,0 +1,110 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Text from '../../components/Text.vue';
+
+<Meta
+	title="Componentes/Typography/Text"
+	component={ Text }
+	argTypes={{
+		as: {
+			control:{
+				type: 'select',
+				options: [
+					'h1',
+					'h2',
+					'h3',
+					'h4',
+					'h5',
+					'h6',
+					'p',
+                    'q',
+					'span',
+                    'strong',
+                    'em',
+                    'del',
+                    'small',
+					'legend',
+				],
+			}
+		},
+		'textAlign': {
+			control:{
+				type: 'select',
+				options: [
+					'start',
+					'center',
+					'end',
+                    'justify'
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-text
+	variant="red"
+	size="md"
+>
+	Text
+</cds-text>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsText: Text },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-text
+			v-bind="args"
+			@click="handleEmit"
+		>
+			O empenho em analisar o desenvolvimento contínuo de distintas formas de atuação obstaculiza a apreciação da importância do retorno esperado a longo prazo.
+		</cds-text>`,
+	methods: {
+		handleEmit(value) { console.info('value: ', value); }
+	}
+});
+
+
+# Text
+
+### Componentes Text permitem renderizar texto com diferentes estilos e configurações.
+---
+<br />
+
+## Quando usar:
+- Quando quiser renderizar texto utilizando as definições tipográficas do design system para garantir consistência visual.
+- Quando quiser utilizar tags de texto HTML sem as margens padrão.
+
+<br />
+
+## Quando não usar:
+- Para exibir textos decorativos ou de realce dentro de botões e componentes interativos. Utilize a estilização apropriada para cada caso..
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Text"
+		args={{
+            'as': "span",
+            textAlign: 'start',
+            noMargin: false,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Text" />
