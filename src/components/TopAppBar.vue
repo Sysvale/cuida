@@ -9,17 +9,14 @@
 				:height="iconSize"
 				@click="emit('on-menu-click')"
 			/>
-			<router-link
+			<icon
 				v-else-if="showBackNavigation"
-				:to="handleRouterBack"
-			>
-				<icon
-					class="top-app-bar__back-arrow"
-					name="arrow-left-outline"
-					:width="iconSize"
-					:height="iconSize"
-				/>
-			</router-link>
+				class="top-app-bar__back-arrow"
+				name="arrow-left-outline"
+				:width="iconSize"
+				:height="iconSize"
+				@click="router.go(-1)"
+			/>
 			<img
 				v-if="logoUrl"
 				class="top-app-bar__logo-image"
@@ -44,8 +41,10 @@
 import { computed } from 'vue';
 import Icon from './Icon.vue';
 import useIsMobile from '../utils/composables/useIsMobile';
+import { useRouter } from 'vue-router';
 
 const { isMobile } = useIsMobile();
+const router = useRouter();
 
 const emit = defineEmits([
 	/**
@@ -55,7 +54,7 @@ const emit = defineEmits([
 	'on-menu-click'
 ]);
 
-const props = defineProps({
+defineProps({
 	/**
 	 * Título da sessão ou da página
 	 */
@@ -89,41 +88,9 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
-
-	/**
-	 * Rota default para quando a prop showBackNavigation estiver habilitada
-	 * Deve seguir o seguinte formato: { name: 'route-name', path: 'route-path' }
-	 * Obs: não é necessário fornecer name e path, apenas um já é o suficiente
-	 */
-	defaultRoute: {
-		type: Object,
-		default: () => ({}),
-	},
 });
 
 const iconSize = computed(() => (isMobile.value ? '24' : '34'));
-
-function resolveDefaultRoute() {
-	if (props.defaultRoute?.path) {
-		return props.defaultRoute.path;
-	}
-
-	if (props.defaultRoute?.name) {
-		return { name: props.defaultRoute.path };
-	}
-
-	return null;
-}
-
-function handleRouterBack() {
-	const defaultRoute = resolveDefaultRoute();
-
-	if (!defaultRoute) {
-		return window.history.back();
-	}
-
-	return defaultRoute;
-}
 
 </script>
 
@@ -131,22 +98,22 @@ function handleRouterBack() {
 @import '../assets/sass/tokens.scss';
 
 .top-app-bar {
-    align-items: center;
-    backdrop-filter: blur(10px);
-    background-color: rgba($n-0, .85);
-    color: $n-700;
-    display: flex;
-    height: 74px;
-    justify-content: space-between;
-    padding: pYX(4, 6);
-    position: absolute;
-    top: 0;
-    width: 100%;
+	align-items: center;
+	backdrop-filter: blur(10px);
+	background-color: rgba($n-0, .85);
+	color: $n-700;
+	display: flex;
+	height: 74px;
+	justify-content: space-between;
+	padding: pYX(4, 6);
+	position: absolute;
+	top: 0;
+	width: 100%;
 	z-index: $z-index-modal;
 
-    &__menu, &__back-arrow {
-        cursor: pointer;
-    }
+	&__menu, &__back-arrow {
+		cursor: pointer;
+	}
 
 	&__menu-container {
 		display: flex;
@@ -158,14 +125,14 @@ function handleRouterBack() {
 		@include subheading-2;
 	}
 
-    &__actions {
-        display: flex;
-        gap: spacer(4);
-    }
+	&__actions {
+		display: flex;
+		gap: spacer(4);
+	}
 
-    &__logo-image {
-        height: 50px;
-    }
+	&__logo-image {
+		height: 50px;
+	}
 }
 
 @media screen and (max-width: 932px) {
