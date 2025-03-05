@@ -11,7 +11,6 @@
 			:floating-label="floatingLabel || mobile"
 			:readonly="props.range"
 			@click="toggleDatePicker"
-			@change="emitChange"
 			@focus="emitFocus"
 			@blur="handleBlur"
 			@keydown="emitKeydown"
@@ -270,7 +269,7 @@ const emits = defineEmits({
 /* REACTIVE DATA */
 const baseInputRef = useTemplateRef('baseInput');
 const calendarRef = useTemplateRef('calendar');
-const { emitClick, emitChange, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
+const { emitClick, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
 const { clickedOutside, setTargetElement } = useClickOutside();
 const isCalendarOpen = ref(false);
 const currentDate = ref(DateTime.now().setLocale('pt-BR'));
@@ -508,7 +507,6 @@ function selectDate(day) {
 		model.value = startDate.value.toFormat('yyyy-MM-dd');
 		internalValue.value = startDate.value.toFormat('dd/MM/yyyy');
 		isCalendarOpen.value = false;
-		emitChange();
 	}
 
 	hoverDate.value = null;
@@ -523,8 +521,6 @@ function updateRangeModel() {
 	};
 
 	internalValue.value = `De ${startDate.value.toFormat('dd/MM/yyyy')} a ${endDate.value.toFormat('dd/MM/yyyy')}`;
-
-	emitChange();
 }
 
 function parseUserDate() {

@@ -3,11 +3,11 @@
 exports[`Select > renders correctly 1`] = `
 "<div data-v-96b70cc4="" class="select" id="select-input">
   <div data-v-96b70cc4="" class="select__container select__container--fit">
-    <div data-v-82c69faf="" data-v-96b70cc4="" id="select-input" options="[object Object],[object Object]" searchable="false" width="" optionsfield="value" returnvalue="false" linkurl="https://cuida.framer.wiki/" mobile="false" autocomplete="off" onkeypress="return false;" class="select__input--undefined select__input--fit"><label data-v-82c69faf="" class="base-input__label" for="cds-base-input-text-select-input"><span data-v-82c69faf="" class="label__content">label <!--v-if--><!--v-if--></span>
+    <div data-v-82c69faf="" data-v-96b70cc4="" options="[object Object],[object Object]" searchable="false" width="" optionsfield="value" returnvalue="false" linkurl="https://cuida.framer.wiki/" mobile="false" autocomplete="off" onkeypress="return false;" class="select__input--undefined select__input--fit"><label data-v-82c69faf="" class="base-input__label" for="cds-base-input-text-select-input"><span data-v-82c69faf="" class="label__content">label <!--v-if--><!--v-if--></span>
         <!--v-if-->
       </label>
       <div data-v-82c69faf="" class="base-input base-input--default">
-        <!--v-if--><input data-v-82c69faf="" id="select-input" options="[object Object],[object Object]" searchable="false" width="" optionsfield="value" returnvalue="false" linkurl="https://cuida.framer.wiki/" mobile="false" autocomplete="off" onkeypress="return false;" class="select__input--undefined select__input--fit base-input__field" label="label" state="default" type="text" placeholder="Selecione..." errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" supportlinkurl="https://cuida.framer.wiki/" floatinglabel="false" lazy="false" readonly="">
+        <!--v-if--><input data-v-82c69faf="" id="select-input" label="label" state="default" type="text" placeholder="Selecione..." errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" supportlinkurl="https://cuida.framer.wiki/" floatinglabel="false" lazy="false" readonly="" name="" class="base-input__field">
         <!--v-if-->
         <div data-v-82c69faf="" class="base-input__trailing-icon-container"><span data-v-96b70cc4="" class="select__chevron--closed"></span></div>
       </div>

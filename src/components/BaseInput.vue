@@ -3,7 +3,7 @@
 		<CdsBaseMobileInput
 			v-if="floatingLabel"
 			ref="mobileInput"
-			v-bind="{...$attrs, ...props}"
+			v-bind="props"
 			v-model="internalValue"
 			:has-leading-icon="hasLeadingIcon"
 			:has-trailing-icon="hasTrailingIcon"
@@ -20,14 +20,14 @@
 				<slot name="leading-icon" />
 			</template>
 		</CdsBaseMobileInput>
-	
+
 		<template v-else>
 			<template
 				v-if="useHasSlot('label')"
 			>
 				<slot name="label" />
 			</template>
-	
+
 			<label
 				v-else
 				:class="{
@@ -40,9 +40,9 @@
 					class="label__content"
 				>
 					{{ label }}
-	
+
 					<CdsRequiredIndicator v-if="required" />
-	
+
 					<CdsIcon
 						v-if="tooltip"
 						v-cdstip="tooltip"
@@ -52,7 +52,7 @@
 						class="label__icon"
 					/>
 				</span>
-	
+
 				<CdsLink
 					v-if="supportLink"
 					:href="supportLinkUrl"
@@ -61,7 +61,7 @@
 					new-tab
 				/>
 			</label>
-	
+
 			<div
 				:class="baseInputClass"
 				@click="handleClick"
@@ -95,12 +95,12 @@
 					@blur="handleBlur"
 					@keydown="handleKeydown"
 				/>
-	
+
 				<input
 					v-else
 					:id="componentId"
 					ref="htmlInput"
-					v-bind="{...$attrs, ...props}"
+					v-bind="props"
 					v-model="internalValue"
 					:required="required"
 					:readonly="readonly"
@@ -112,7 +112,7 @@
 					@blur="handleBlur"
 					@keydown="handleKeydown"
 				>
-	
+
 				<div
 					v-if="isLoading && !disabled"
 					class="base-input__spinner-container"
@@ -123,7 +123,7 @@
 						class="base-input__icon--spinner-icon"
 					/>
 				</div>
-	
+
 				<div
 					v-if="hasTrailingIcon"
 					class="base-input__trailing-icon-container"
@@ -145,7 +145,7 @@
 			>
 				{{ errorMessage }}
 			</div>
-	
+
 			<template
 				v-if="supportingText"
 			>
@@ -161,7 +161,7 @@
 						{{ text }}
 					</li>
 				</ul>
-	
+
 				<span
 					v-else
 					class="base-input__supporting-text"
@@ -174,7 +174,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, useTemplateRef, onMounted, useAttrs } from 'vue';
+import { ref, computed, watch, useTemplateRef, onMounted } from 'vue';
 import { useHasSlot } from '../utils/composables/useHasSlot.js';
 import {
 	nativeEvents,
@@ -194,6 +194,13 @@ const model = defineModel('modelValue', {
 });
 
 const props = defineProps({
+	/**
+	* ID do input.
+	*/
+	id: {
+		type: String,
+		default: '',
+	},
 	/**
 	* Especifica a label do input.
 	*/
@@ -322,6 +329,27 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	* Define o número máximo de caracteres do input.
+	*/
+	maxlength: {
+		type: Number,
+		default: null,
+	},
+	/**
+	* Define o número mínimo de caracteres do input.
+	*/
+	minlength: {
+		type: Number,
+		default: null,
+	},
+	/**
+	* Define o nome do input.
+	*/
+	name: {
+		type: String,
+		default: '',
+	},
 });
 
 const emits = defineEmits({
@@ -329,15 +357,14 @@ const emits = defineEmits({
 });
 
 /* REACTIVE DATA */
-const attrs = useAttrs();
 const componentRef = ref();
 const internalValue = ref('');
 const previousInternalValue = ref('');
 const isFocused = ref(false);
-const { emitClick, emitFocus, emitBlur, emitKeydown, emitChange } = nativeEmits(emits);
+const { emitClick, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
 const htmlInputRef = useTemplateRef('htmlInput');
 const baseMobileInputRef = useTemplateRef('mobileInput');
-const componentId = `cds-base-input-${props.type}-${attrs.id || generateKey()}`;
+const componentId = `cds-base-input-${props.type}-${props.id || generateKey()}`;
 
 /* COMPUTED */
 const baseInputClass = computed(() => {
@@ -372,7 +399,7 @@ const hasError = computed(() => {
 	return props.state === 'invalid';
 });
 
-const isLoading = computed(() => { 
+const isLoading = computed(() => {
 	return props.state === 'loading';
 });
 
@@ -425,7 +452,7 @@ watch(() => props.floatingLabel, () => {
 
 /* HOOKS */
 onMounted(() => {
-	componentRef.value = props.floatingLabel 
+	componentRef.value = props.floatingLabel
 		? baseMobileInputRef?.value?.componentRef
 		: htmlInputRef.value;
 });
@@ -462,7 +489,6 @@ function handleBlur(event) {
 
 	if(previousInternalValue.value !== internalValue.value) {
 		model.value = internalValue.value;
-		emitChange();
 	}
 
 	previousInternalValue.value = internalValue.value;
@@ -583,7 +609,7 @@ defineExpose({
 			border-left: 3px solid transparent;
 			background-clip: padding-box;
 		}
-		
+
 		&::-webkit-scrollbar-thumb:hover {
 			background: $n-200;
 			border-radius: $border-radius-lil;
