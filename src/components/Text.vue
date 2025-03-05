@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<component 
-		:is="as"
+		:is="computedAs"
 		ref="componentRef"
 		class="text-alignment"
 		:class="{'no-margin': noMargin}"
@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { useTemplateRef } from 'vue';
+import { computed, useTemplateRef } from 'vue';
 
 const props = defineProps({
 	/**
@@ -38,6 +38,48 @@ const props = defineProps({
 });	
 
 const componentRef = useTemplateRef('componentRef');
+
+const computedAs = computed(() => {
+	switch (props.as) {
+		case 'h1':
+		case 'h2':
+		case 'h3':
+		case 'h4':
+		case 'h5':
+		case 'h6':
+		case 'p':
+		case 'q':
+		case 'span':
+		case 'strong':
+		case 'em':
+		case 'del':
+		case 'small':
+		case 'legend':
+			return props.as;
+		case 'heading-1':
+			return 'h1';
+		case 'heading-2':
+			return 'h2';
+		case 'heading-3':
+			return 'h3';
+		case 'subheading-1':
+			return 'h4';
+		case 'subheading-2':
+			return 'h5';
+		case 'subheading-3':
+			return 'h6';
+		case 'body-1':
+			return 'p';
+		case 'body-2':
+			return 'span';
+		case 'caption':
+			return 'small';
+		case 'overline':
+			return 'legend';
+		default:
+			return 'span';
+	}
+});
 
 defineExpose({ componentRef });
 
