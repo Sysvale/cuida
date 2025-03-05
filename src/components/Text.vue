@@ -4,7 +4,10 @@
 		:is="computedAs"
 		ref="componentRef"
 		class="text-alignment"
-		:class="{'no-margin': noMargin}"
+		:class="{
+			'no-margin': noMargin,
+			[`${color}`]: color,
+		}"
 	>
 		<slot />
 	</component>
@@ -20,6 +23,13 @@ const props = defineProps({
 	as: {
 		type: String,
 		default: 'span',
+	},
+	/**
+	* Define a cor do texto. Aceita os tokes de cor do design system da shade 'neutrals'. Para cores fora da paleta neutra, utilize uma classe personalizada.
+	*/
+	color: {
+		type: String,
+		default: 'n-800',
 	},
 	/**
 	* Define o alinhamento do texto.
@@ -95,6 +105,66 @@ defineExpose({ componentRef });
 .no-margin {
 	margin-top: 0;
 	margin-bottom: 0;
+}
+
+.n-900 {
+	color: $n-900;
+}
+
+.n-800 {
+	color: $n-800;
+}
+
+.n-700 {
+	color: $n-700;
+}
+
+.n-600 {
+	color: $n-600;
+}
+
+.n-500 {
+	color: $n-500;
+}
+
+.n-400 {
+	color: $n-400;
+}
+
+.n-300 {
+	color: $n-300;
+}	
+
+.n-200 {
+	color: $n-200;
+}
+
+.n-100 {
+	color: $n-100;
+}
+
+.n-50 {
+	color: $n-50;
+}
+
+.n-40 {
+	color: $n-40;
+}
+
+.n-30 {
+	color: $n-30;
+}
+
+.n-20 {
+	color: $n-20;
+}
+
+.n-10 {
+	color: $n-10;
+}
+
+.n-0 {
+	color: $n-0;
 }
 
 h1 {
