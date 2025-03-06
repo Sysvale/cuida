@@ -19,7 +19,7 @@
 
 		<label
 			class="switch"
-			:class="toggleSwitchSize"
+			:class="switchSize"
 		>
 			<input
 				v-model="isActive"
@@ -90,7 +90,7 @@ const props = defineProps({
 		default: '',
 	},
 	/**
-	* Torna o ToggleSwitch pequeno.
+	* Torna o Switch pequeno.
 	*/
 	small: {
 		type: Boolean,
@@ -105,21 +105,21 @@ const props = defineProps({
 		default: 'green',
 	},
 	/**
-	* Torna o ToggleSwitch grande.
+	* Torna o Switch grande.
 	*/
 	large: {
 		type: Boolean,
 		default: false,
 	},
 	/**
-	 * Controla a disponibilidade do ToggleSwitch
+	 * Controla a disponibilidade do Switch
 	 */
 	disabled: {
 		type: Boolean,
 		default: false,
 	},
 	/**
-	 * Controla o focus do ToggleSwitch
+	 * Controla o focus do Switch
 	 */
 	focused: {
 		type: Boolean,
@@ -152,7 +152,7 @@ const isActive = ref(props.modelValue);
 const internalFocus = ref(props.focused);
 const componentRef = useTemplateRef('componentRef');
 
-const toggleSwitchSize = computed(() => {
+const switchSize = computed(() => {
 	if (props.small === props.large) {
 		return 'switch--medium';
 	}
