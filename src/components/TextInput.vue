@@ -25,7 +25,7 @@ import CdsBaseInput from './BaseInput.vue';
 
 const vFacade = facade;
 
-const baseInputRef = useTemplateRef('baseInput');
+const componentRef = useTemplateRef('baseInput');
 
 const model = defineModel('modelValue', {
 	type: String,
@@ -188,15 +188,16 @@ watch(model, (newValue, oldValue) => {
 
 watch(internalValue, (value) => {
 	model.value = value;
+	componentRef.value = componentRef.value?.componentRef;
 });
 
 /* EXPOSE */
 defineExpose({
-	componentRef: baseInputRef.value?.componentRef,
-	isFocused: baseInputRef.value?.isFocused,
-	focus: () => baseInputRef.value?.focus(),
-	blur: () => baseInputRef.value?.blur(),
-	clear: () => baseInputRef.value?.clear(),
-	select: () => baseInputRef.value?.select(),
+	componentRef,
+	isFocused: componentRef.value?.isFocused,
+	focus: () => componentRef.value?.focus(),
+	blur: () => componentRef.value?.blur(),
+	clear: () => componentRef.value?.clear(),
+	select: () => componentRef.value?.select(),
 });
 </script>
