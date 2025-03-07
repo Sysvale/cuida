@@ -1,9 +1,25 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div>
+		<span
+			class="switch__label"
+		>
+			{{ label }}
+
+			<CdsIcon
+				v-if="tooltip"
+				v-cdstip="tooltip"
+				:name="tooltipIcon"
+				height="18"
+				width="18"
+				class="label__icon"
+			/>
+		</span>
+
+
 		<label
 			class="switch"
-			:class="toggleSwitchSize"
+			:class="switchSize"
 		>
 			<input
 				v-model="isActive"
@@ -12,6 +28,7 @@
 				@click="handleClick"
 			>
 			<span
+				ref="componentRef"
 				tabindex="0"
 				class="switch__slider"
 				:class="[
@@ -26,106 +43,170 @@
 				]"
 				@focusout="internalFocus = false"
 				@focusin="internalFocus = true"
+				@keydown.enter="handleClick"
 			/>
 		</label>
+
+		<template
+			v-if="supportingText"
+		>
+			<ul
+				v-if="Array.isArray(supportingText)"
+				class="switch__supporting-text-container"
+			>
+				<li
+					v-for="text in supportingText"
+					:key="text"
+					class="switch__supporting-text-list"
+				>
+					{{ text }}
+				</li>
+			</ul>
+
+			<div
+				v-else
+				class="switch__supporting-text"
+			>
+				{{ supportingText }}
+			</div>
+		</template>
 	</div>
 </template>
 
-<script>
-export default {
-	props: {
-		/**
-		* Prop utilizada como v-model. Controla a o estado do ToggleSwitch.
-		*/
-		modelValue: {
-			type: Boolean,
-			default: false,
-			required: true,
-		},
-		/**
-		* Torna o ToggleSwitch pequeno.
-		*/
-		small: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		* A variante da Checkbox. São 10 variantes: 'teal', 'green', 'blue',
-		* 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
-		*/
-		variant: {
-			type: String,
-			default: 'green',
-		},
-		/**
-		* Torna o ToggleSwitch grande.
-		*/
-		large: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Controla a disponibilidade do ToggleSwitch
-		 */
-		disabled: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Controla o focus do ToggleSwitch
-		 */
-		focused: {
-			type: Boolean,
-			default: false,
-		},
-	},
-	data() {
-		return {
-			isActive: this.modelValue,
-			internalFocus: this.focused,
-		};
-	},
+<script setup>
+import { ref, computed, watch, useTemplateRef } from 'vue';
+import CdsIcon from './Icon.vue';
 
-	computed: {
-		toggleSwitchSize() {
-			if (this.small === this.large) {
-				return 'switch--medium';
-			}
+const model = defineModel('modelValue', {
+	type: Boolean,
+});
 
-			if (this.small) {
-				return 'switch--small';
-			}
-
-			return 'switch--large';
-		},
+const props = defineProps({
+	/**
+	* Especifica a label do Switch.
+	*/
+	label: {
+		type: String,
+		default: '',
 	},
-
-	watch: {
-		modelValue(newValue, oldValue) {
-			if (newValue !== oldValue) {
-				this.isActive = newValue;
-			}
-		},
+	/**
+	* Torna o Switch pequeno.
+	*/
+	small: {
+		type: Boolean,
+		default: false,
 	},
-
-	methods: {
-		handleClick() {
-			/**
-			 * Evento utilizado para implementar o v-model.
-			* @event update:modelValue
-			* @type {Event}
-				*/
-			this.$emit('update:modelValue', !this.isActive);
-		},
+	/**
+	* A variante da Checkbox. São 10 variantes: 'teal', 'green', 'blue',
+	* 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+	*/
+	variant: {
+		type: String,
+		default: 'green',
 	},
+	/**
+	* Torna o Switch grande.
+	*/
+	large: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	 * Controla a disponibilidade do Switch
+	 */
+	disabled: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	 * Controla o focus do Switch
+	 */
+	focused: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Define exibição e texto do tooltip do input
+	*/
+	tooltip: {
+		type: String,
+		default: null,
+	},
+	/**
+	* Especifica ícone do tooltip do TextInput.
+	*/
+	tooltipIcon: {
+		type: String,
+		default: 'info-outline',
+	},
+	/**
+	* Especifica mensagem de auxílio.
+	*/
+	supportingText: {
+		type: [String, Array],
+		default: '',
+	},
+});
+
+const isActive = ref(props.modelValue);
+const internalFocus = ref(props.focused);
+const componentRef = useTemplateRef('componentRef');
+
+const switchSize = computed(() => {
+	if (props.small === props.large) {
+		return 'switch--medium';
+	}
+
+	if (props.small) {
+		return 'switch--small';
+	}
+
+	return 'switch--large';
+});
+
+watch(model, (newValue, oldValue) => {
+	if (newValue !== oldValue) {
+		isActive.value = newValue;
+	}
+});
+
+function handleClick() {
+	model.value = !isActive.value;
 };
+
+defineExpose({ componentRef });
 </script>
+
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
+@import '../assets/sass/placeholders.scss';
 
 .switch {
 	position: relative;
 	display: inline-block;
+
+	&__supporting-text-container {
+		@extend %custom-ul;
+	}
+
+	&__supporting-text {
+		&:nth-child(1) {
+			margin: mt(2);
+		}
+
+		@include caption;
+		color: $n-600;
+		margin: mt(1);
+	}
+
+	&__supporting-text-list {
+		@extend .switch__supporting-text;
+		@extend %custom-li;
+	}
+
+	&__label {
+		@include label;
+	}
 
 	&--small {
 		width: 28px;
@@ -227,7 +308,7 @@ export default {
 				height: 18px;
 				width: 18px;
 				left: 3px;
-				bottom: 2.7px;
+				bottom: 3px;
 				background-color: $n-0;
 				-webkit-transition: .35s;
 				border-radius: $border-radius-circle;
@@ -264,5 +345,11 @@ export default {
 			box-shadow: 0 0 0 0.2rem $n-40;
 		}
 	}
+}
+
+.label__icon {
+	margin: mTRBL(0, 0, n1, 1);
+	cursor: default;
+	color: $n-700;
 }
 </style>

@@ -85,7 +85,14 @@ export const Template = (args) => ({
 <Canvas>
 	<Story
 		name="Switch"
-		args={{}}
+		args={{
+			variant: 'green',
+			label: 'Switch',
+			disabled: false,
+			tooltip: '',
+			tooltipIcon: 'info-outline',
+			supportingText: 'supportingText',
+		}}
 	>
 		{ Template.bind({}) }
 	</Story>

@@ -1,97 +1,98 @@
 <template>
-	<span id="cds-link-button">
-		<button
-			class="link-button__container"
-			:class="computedStyle"
-			@click="clickHandler()"
-		>
-			<!-- @slot Slot padrão utilizado para exibir texto do botão. -->
-			<slot>
-				{{ text }}
-			</slot>
-		</button>
-	</span>
+	<button
+		ref="componentRef"
+		class="flat-button__container"
+		:class="computedStyle"
+		@click="clickHandler"
+	>
+		<!-- @slot Slot padrão utilizado para exibir texto do botão. -->
+		<slot>
+			{{ text }}
+		</slot>
+	</button>
 </template>
 
-<script>
-export default {
+<script setup>
+import { computed, useTemplateRef } from 'vue';
 
-	props: {
-		/**
-		 * A variante de cor. São 9 variantes implementadas: 'green', 'teal',
-		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'.
-		 */
-		variant: {
-			type: String,
-			default: 'green',
-		},
-		/**
-		 * Especifica o texto a ser apresentado no corpo do botão.
-		 * Este texto será exibido apenas se o slot default não for utilizado.
-		 */
-		text: {
-			type: String,
-			default: 'Lorem ipsum',
-		},
-		/**
-		 * Controla a disponibilidade do Botão.
-		 */
-		disabled: {
-			type: Boolean,
-			default: false,
-		},
+const props = defineProps({
+	/**
+	* A variante de cor. São 11 variantes implementadas: 'green', 'teal', 'turquoise',
+	* 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+	*/
+	variant: {
+		type: String,
+		default: 'green',
 	},
-	data() {
-		return {
-			predefinedColors: [
-				'green',
-				'teal',
-				'turquoise',
-				'blue',
-				'indigo',
-				'violet',
-				'pink',
-				'red',
-				'orange',
-				'amber',
-			],
-		};
+	/**
+	* Especifica o texto a ser apresentado no corpo do botão.
+	* Este texto será exibido apenas se o slot default não for utilizado.
+	*/
+	text: {
+		type: String,
+		default: 'Flat Button',
 	},
-
-	computed: {
-		predefinedColor() {
-			if (this.predefinedColors.indexOf(this.variant) > -1) {
-				return `link-button--${this.variant}`;
-			}
-
-			return 'link-button--green';
-		},
-
-		computedStyle() {
-			const disabled = this.disabled ? '--disabled' : '--active';
-
-			return `${this.predefinedColor}${disabled}`;
-		},
+	/**
+	* Controla a disponibilidade do Botão.
+	*/
+	disabled: {
+		type: Boolean,
+		default: false,
 	},
+});
 
-	methods: {
-		clickHandler() {
-			if (this.disabled) {
-				return;
-			}
-			/**
-			* Evento que indica que o Botão foi clicado
-			* @event click
-			* @type {Event}
-			*/
-			this.$emit('click', true);
-		},
-	},
+const predefinedColors = [
+	'green',
+	'teal',
+	'turquoise',
+	'blue',
+	'indigo',
+	'violet',
+	'pink',
+	'red',
+	'orange',
+	'amber',
+	'dark',
+];
+
+const componentRef = useTemplateRef('componentRef');
+
+
+const predefinedColor = computed(() => {
+	if (predefinedColors.includes(props.variant)) {
+		return `flat-button--${props.variant}`;
+	}
+	return 'flat-button--green';
+});
+
+const computedStyle = computed(() => {
+	const disabled = props.disabled ? '--disabled' : '--active';
+	return `${predefinedColor.value}${disabled}`;
+});
+
+const emit = defineEmits(['click']);
+
+const clickHandler = () => {
+	if (props.disabled) {
+		return;
+	}
+	/**
+	* Evento que indica que o Flat Button foi clicado
+	* @event click
+	* @type {Event}
+	*/
+	emit('click', true);
 };
+
+/* EXPOSE */
+defineExpose({
+	componentRef,
+});
 </script>
+
 <style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
-.link-button {
+.flat-button {
 	&__container {
 		font-weight: $font-weight-semibold;
 		border: none;
@@ -143,6 +144,10 @@ export default {
 		'--amber': (
 			'active': $al-500,
 			'disabled': $al-300,
+		),
+		'--dark': (
+			'active': $n-800,
+			'disabled': $n-400,
 		),
 	);
 
