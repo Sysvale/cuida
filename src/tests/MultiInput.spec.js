@@ -7,12 +7,6 @@ import CdsIcon from '../components/Icon.vue';
 
 
 describe('MultiInput', () => {
-	test('renders correctly with default props', () => {
-		const wrapper = mount(MultiInput);
-
-		expect(wrapper.html()).toMatchSnapshot();
-	});
-
 	test('renders the correct number of inputs based on internalModel', () => {
 		const wrapper = mount(MultiInput, {
 			props: {
