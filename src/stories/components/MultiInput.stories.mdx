@@ -1,0 +1,75 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import MultiInput from '../../components/MultiInput.vue';
+
+<Meta
+	title="Componentes/Forms/MultiInput"
+	component={ MultiInput }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-multiInput
+	label="Nova opção"
+	buttonLabel="Adicionar"
+/>`,
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsMultiInput: MultiInput },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-multiInput
+			v-bind="args"
+		/>`,
+	methods: {
+		handleEmit(value) { console.info('value: ', value); }
+	}
+});
+
+
+# MultiInput
+
+### Permite que o usuário adicione, remova e edite múltiplos inputs em uma lista dinâmica.
+---
+<br />
+
+## Quando usar:
+- Quando o usuário precisar inserir uma quantidade variável de informações do mesmo tipo;
+- Para formulários que exigem múltiplas entradas do mesmo tipo (ex: números de telefone, emails adicionais, etc).
+
+<br />
+
+## Quando não usar:
+- A quantidade de campos for fixa e conhecida previamente.;
+- Quando for necessário coletar informações de diferentes tipos. Neste caso, utilize campos individuais;;
+- A complexidade da lista é alta, contendo vários inputs, e requer uma solução mais específica;
+
+<br />
+
+## Observações:
+⚠️ Importante: Certifique-se de que o modelValue seja passado como um array de objetos contendo id e value. O id é gerado automaticamente para cada novo item.
+
+## Preview
+
+<Canvas>
+	<Story
+		name="MultiInput"
+		args={{
+            label: 'Nova opção',
+			buttonLabel: 'Adicionar',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="MultiInput" />
