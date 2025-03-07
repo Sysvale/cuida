@@ -10,6 +10,7 @@
 			gap="3"
 		>
 			<CdsTextInput
+				:id="generateKey()"
 				v-model="item.value"
 				floating-label
 				:label="inputLabel"
