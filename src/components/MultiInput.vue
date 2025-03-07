@@ -5,12 +5,12 @@
 	>
 		<CdsFlexbox
 			v-for="(item, index) in internalModel"
-			:key="item.id"
+			:key="item.value"
 			align="center"
 			gap="3"
 		>
 			<CdsTextInput
-				v-model="item.value"
+				v-model="item.label"
 				floating-label
 				:label="inputLabel"
 			/>
@@ -61,8 +61,8 @@ const model = defineModel('modelValue', {
 	type: Array,
 	default: () => [
 		{
-			id: generateKey(),
-			value: '',
+			label: '',
+			value: generateKey(),
 		}
 	],
 });
@@ -99,8 +99,8 @@ watch(internalModel, (newValue) => {
 
 function addInput() {
 	internalModel.value.push({
-		id: generateKey(),
-		value: '',
+		value: generateKey(),
+		label: '',
 	});
 }
 
