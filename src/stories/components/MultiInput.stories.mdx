@@ -46,13 +46,26 @@ export const Template = (args) => ({
 	setup() {
 		return { args };
 	},
+	data() {
+		return {value: [
+			{
+				id: '1',
+				value: 'Opção 1',
+			},
+			{
+				id: '2',
+				value: 'Opção 2',
+			},
+		]};
+	},
 	template: /*html*/ `
 		<cds-multiInput
 			v-bind="args"
+			v-model="value"
 		/>`,
-	methods: {
-		handleEmit(value) { console.info('value: ', value); }
-	}
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
 });
 
 

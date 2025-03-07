@@ -85,13 +85,17 @@ defineProps({
 
 const internalModel = ref([]);
 
-watch(model, () => {
-	internalModel.value = model.value;
+watch(model, (newValue) => {
+	if (JSON.stringify(newValue) === JSON.stringify(internalModel.value)) return;
+
+	internalModel.value = JSON.parse(JSON.stringify(model.value));
 }, { immediate: true });
 
-watch(internalModel, () => {
-	model.value = internalModel.value;
-});
+watch(internalModel, (newValue) => {
+	if (JSON.stringify(newValue) === JSON.stringify(model.value)) return;
+
+	model.value = JSON.parse(JSON.stringify(internalModel.value));
+}, { deep: true });
 
 function addInput() {
 	internalModel.value.push({
