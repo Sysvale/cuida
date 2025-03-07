@@ -6,10 +6,10 @@ exports[`MultiInput > renders correctly with default props 1`] = `
   <div data-v-c2ac4e6d="" class="flexbox">
     <!-- @slot Slot com o conteúdo interno do FlexBox -->
     <div data-v-82c69faf="" inputtype="text" linkurl="https://cuida.framer.wiki/" mobile="false">
-      <div data-v-c2ac4e6d="" data-v-06760eb7="" data-v-82c69faf="" class="flexbox" id="" placeholder="Digite aqui a informação" floatinglabel="true" name="">
+      <div data-v-c2ac4e6d="" data-v-06760eb7="" data-v-82c69faf="" class="flexbox" id="1245433e-842d-4a56-9105-f10f39b0a5e8" placeholder="Digite aqui a informação" floatinglabel="true" name="">
         <!-- @slot Slot com o conteúdo interno do FlexBox -->
         <div data-v-06760eb7="" class="base-mobile-input base-mobile-input--default">
-          <!--v-if--><label data-v-06760eb7="" class="base-mobile-input__label" for="cds-base-mobile-input-text-789a5cd6-4181-4f7b-968e-88edc1daae61"><span data-v-06760eb7="" class="label__content">Nova opção <!--v-if--></span></label><input data-v-06760eb7="" id="" placeholder="" floatinglabel="true" name="" modelvalue="" label="Nova opção" state="default" type="text" errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" supportlinkurl="https://cuida.framer.wiki/" hasleadingicon="false" hastrailingicon="false" lazy="false" class="base-mobile-input__field">
+          <!--v-if--><label data-v-06760eb7="" class="base-mobile-input__label" for="cds-base-mobile-input-text-1245433e-842d-4a56-9105-f10f39b0a5e8"><span data-v-06760eb7="" class="label__content">Nova opção <!--v-if--></span></label><input data-v-06760eb7="" id="1245433e-842d-4a56-9105-f10f39b0a5e8" placeholder="" floatinglabel="true" name="" modelvalue="" label="Nova opção" state="default" type="text" errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" supportlinkurl="https://cuida.framer.wiki/" hasleadingicon="false" hastrailingicon="false" lazy="false" class="base-mobile-input__field">
           <!--v-if-->
           <!--v-if-->
         </div>
