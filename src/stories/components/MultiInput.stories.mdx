@@ -4,6 +4,26 @@ import MultiInput from '../../components/MultiInput.vue';
 <Meta
 	title="Componentes/Forms/MultiInput"
 	component={ MultiInput }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+	}}
 	parameters={{
 		viewMode: 'docs',
 		previewTabs: { canvas: { hidden: true }},
@@ -64,8 +84,9 @@ export const Template = (args) => ({
 	<Story
 		name="MultiInput"
 		args={{
-            label: 'Nova opção',
+            inputLabel: 'Nova opção',
 			buttonLabel: 'Adicionar',
+			variant: 'dark',
 		}}
 	>
 		{ Template.bind({}) }

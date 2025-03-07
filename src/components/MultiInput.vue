@@ -1,54 +1,51 @@
 <template>
-	<div>
+	<CdsFlexbox
+		direction="column"
+		gap="3"
+	>
 		<CdsFlexbox
-			direction="column"
+			v-for="(item, index) in internalModel"
+			:key="item.id"
+			align="center"
 			gap="3"
 		>
-			<CdsFlexbox
-				v-for="(item, index) in internalModel"
-				:key="item.id"
-				align="center"
-				gap="3"
-			>
-				<CdsTextInput
-					v-model="item.value"
-					floating-label
-					:label="inputLabel"
-				/>
-    
-				<CdsClickable
-					v-if="internalModel.length > 1"
-					clickable
-				>
-					<CdsIcon
-						height="20"
-						width="20"
-						name="x-outline"
-						@click="removeInput(index)"
-					/>
-				</CdsClickable>
-			</CdsFlexbox>
+			<CdsTextInput
+				v-model="item.value"
+				floating-label
+				:label="inputLabel"
+			/>
 
-			<CdsFlatButton
-				secondary
-				size="sm"
-				@click="addInput"
+			<CdsClickable
+				v-if="internalModel.length > 1"
+				clickable
 			>
-				<CdsFlexbox
-					align="center"
-					gap="2"
-				>
-					<CdsIcon
-						height="16"
-						width="16"
-						name="plus-outline"
-					/>
-    
-					{{ buttonLabel }}
-				</CdsFlexbox>
-			</CdsFlatButton>
+				<CdsIcon
+					height="20"
+					width="20"
+					name="x-outline"
+					@click="removeInput(index)"
+				/>
+			</CdsClickable>
 		</CdsFlexbox>
-	</div>
+
+		<CdsFlatButton
+			:variant="variant"
+			@click="addInput"
+		>
+			<CdsFlexbox
+				align="center"
+				gap="2"
+			>
+				<CdsIcon
+					height="16"
+					width="16"
+					name="plus-outline"
+				/>
+
+				{{ buttonLabel }}
+			</CdsFlexbox>
+		</CdsFlatButton>
+	</CdsFlexbox>
 </template>
 
 <script setup>
@@ -70,7 +67,7 @@ const model = defineModel('modelValue', {
 	],
 });
 
-const props = defineProps({
+defineProps({
 	inputLabel: {
 		type: String,
 		default: 'Nova opção',
@@ -78,6 +75,10 @@ const props = defineProps({
 	buttonLabel: {
 		type: String,
 		default: 'Adicionar',
+	},
+	variant: {
+		type: String,
+		default: 'dark',
 	},
 });
 
@@ -102,4 +103,12 @@ function addInput() {
 function removeInput(index) {
 	internalModel.value.splice(index, 1);
 }
+
+function arrayOfValues() {
+	return internalModel.value.map(item => item.value);
+}
+
+defineExpose({
+	arrayOfValues: arrayOfValues,
+});
 </script>
