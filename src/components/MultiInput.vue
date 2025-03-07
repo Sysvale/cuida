@@ -3,30 +3,33 @@
 		direction="column"
 		gap="3"
 	>
-		<CdsFlexbox
-			v-for="(item, index) in internalModel"
-			:key="item.value"
-			align="center"
-			gap="3"
-		>
-			<CdsTextInput
-				v-model="item.label"
-				floating-label
-				:label="inputLabel"
-			/>
-
-			<CdsClickable
-				v-if="internalModel.length > 1"
-				clickable
+		<TransitionGroup>
+			<CdsFlexbox
+				v-for="(item, index) in internalModel"
+				:key="item.value"
+				align="center"
+				gap="3"
 			>
-				<CdsIcon
-					height="20"
-					width="20"
-					name="x-outline"
-					@click="removeInput(index)"
+				<CdsTextInput
+					v-model="item.label"
+					floating-label
+					:label="inputLabel"
+					@keyup.enter="addInput"
 				/>
-			</CdsClickable>
-		</CdsFlexbox>
+	
+				<CdsClickable
+					v-if="internalModel.length > 1"
+					clickable
+				>
+					<CdsIcon
+						height="20"
+						width="20"
+						name="x-outline"
+						@click="removeInput(index)"
+					/>
+				</CdsClickable>
+			</CdsFlexbox>
+		</TransitionGroup>
 
 		<CdsFlatButton
 			:variant="variant"
@@ -116,3 +119,21 @@ defineExpose({
 	arrayOfValues: arrayOfValues,
 });
 </script>
+
+<style lang="scss" scoped>
+.v-move,
+.v-enter-active,
+.v-leave-active {
+	transition: all 0.3s ease-in-out;
+}
+.v-enter-from,
+.v-leave-to {
+	opacity: 0;
+	transform: translateY(-4px);
+}
+
+.v-leave-active {
+	position: absolute;
+	z-index: -1; 
+}
+</style>
