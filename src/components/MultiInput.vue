@@ -11,6 +11,7 @@
 				gap="3"
 			>
 				<CdsTextInput
+					:ref="(el) => { inputRefs[index] = el }"
 					v-model="item.label"
 					floating-label
 					:label="inputLabel"
@@ -52,7 +53,7 @@
 </template>
 
 <script setup>
-import { defineProps, ref, watch } from 'vue';
+import { defineProps, ref, watch, nextTick } from 'vue';
 import CdsTextInput from './TextInput.vue';
 import CdsIcon from './Icon.vue';
 import CdsFlexbox from './Flexbox.vue';
@@ -87,6 +88,7 @@ defineProps({
 
 
 const internalModel = ref([]);
+const inputRefs = ref([]);
 
 watch(model, (newValue) => {
 	if (JSON.stringify(newValue) === JSON.stringify(internalModel.value)) return;
@@ -101,9 +103,15 @@ watch(internalModel, (newValue) => {
 }, { deep: true });
 
 function addInput() {
+	if (internalModel.value[internalModel.value.length - 1].label === '') return;
+
 	internalModel.value.push({
 		value: generateKey(),
 		label: '',
+	});
+
+	nextTick(() => {
+		inputRefs.value[internalModel.value.length - 1]?.focus();
 	});
 }
 
