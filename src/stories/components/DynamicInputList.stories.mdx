@@ -1,11 +1,11 @@
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import MultiInput from '../../components/MultiInput.vue';
+import DynamicInputList from '../../components/DynamicInputList.vue';
 
 <Meta
-	title="Componentes/Forms/MultiInput"
-	component={ MultiInput }
+	title="Componentes/Forms/DynamicInputList"
+	component={ DynamicInputList }
 	argTypes={{
-		variant: {
+		buttonVariant: {
 			control:{
 				type: 'select',
 				options: [
@@ -32,7 +32,7 @@ import MultiInput from '../../components/MultiInput.vue';
 				language: 'html',
 				format:true,
 				code: /*html*/ 
-`<cds-multiInput
+`<cds-dynamic-input-list
 	label="Nova opção"
 	buttonLabel="Adicionar"
 />`,
@@ -42,24 +42,24 @@ import MultiInput from '../../components/MultiInput.vue';
 />
 
 export const Template = (args) => ({
-	components: { CdsMultiInput: MultiInput },
+	components: { CdsDynamicInputList: DynamicInputList },
 	setup() {
 		return { args };
 	},
 	data() {
 		return {value: [
 			{
-				value: '1',
 				label: 'Opção 1',
+				value: '1',
 			},
 			{
-				value: '2',
 				label: 'Opção 2',
+				value: '2',
 			},
 		]};
 	},
 	template: /*html*/ `
-		<cds-multiInput
+		<cds-dynamic-input-list
 			v-bind="args"
 			v-model="value"
 		/>`,
@@ -69,7 +69,7 @@ export const Template = (args) => ({
 });
 
 
-# MultiInput
+# DynamicInputList
 
 ### Permite que o usuário adicione, remova e edite múltiplos inputs em uma lista dinâmica.
 ---
@@ -95,15 +95,16 @@ export const Template = (args) => ({
 
 <Canvas>
 	<Story
-		name="MultiInput"
+		name="DynamicInputList"
 		args={{
+			label: 'Adicione opções',
             inputLabel: 'Nova opção',
-			buttonLabel: 'Adicionar',
-			variant: 'dark',
+			buttonVariant: 'dark',
+			buttonText: 'Adicionar',
 		}}
 	>
 		{ Template.bind({}) }
 	</Story>
 </Canvas>
 
-<ArgsTable story="MultiInput" />
+<ArgsTable story="DynamicInputList" />
