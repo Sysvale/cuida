@@ -46,6 +46,7 @@
 	
 			<CdsFlatButton
 				:variant="buttonVariant"
+				class="multiinput__add-button"
 				@click="addInput"
 			>
 				<CdsFlexbox
@@ -227,11 +228,17 @@ defineExpose({
 	z-index: -1; 
 }
 
-.multiinput__x-icon {
-	color: $n-800;
+.multiinput {
+	&__x-icon {
+		color: $n-800;
+	
+		&:hover {
+			color: $n-900;
+		}
+	}
 
-	&:hover {
-		color: $n-900;
+	&__add-button {
+		margin: mt(2);
 	}
 }
 </style>
