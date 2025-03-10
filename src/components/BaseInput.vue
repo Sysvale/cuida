@@ -28,39 +28,16 @@
 				<slot name="label" />
 			</template>
 
-			<label
-				v-else
-				:class="{
-					'base-input__label': !fluid,
-					'base-input__label--fluid': fluid,
-				}"
+			<CdsLabel
+				:text="label"
+				:fluid="fluid"
 				:for="componentId"
-			>
-				<span
-					class="label__content"
-				>
-					{{ label }}
-
-					<CdsRequiredIndicator v-if="required" />
-
-					<CdsIcon
-						v-if="tooltip"
-						v-cdstip="tooltip"
-						:name="tooltipIcon"
-						height="18"
-						width="18"
-						class="label__icon"
-					/>
-				</span>
-
-				<CdsLink
-					v-if="supportLink"
-					:href="supportLinkUrl"
-					:text="supportLink"
-					class="label__link"
-					new-tab
-				/>
-			</label>
+				:required="required"
+				:tooltip="tooltip"
+				:tooltip-icon="tooltipIcon"
+				:support-link="supportLink"
+				:support-link-url="supportLinkUrl"
+			/>
 
 			<div
 				:class="baseInputClass"
@@ -182,12 +159,10 @@ import {
 } from '../utils/composables/useComponentEmits.js';
 import generateKey from '../utils/methods/uuidv4';
 import inputTypeValidator from '../utils/validators/input';
-import vCdstip from '../utils/directives/cdstip';
-import CdsLink from './Link.vue';
 import CdsIcon from './Icon.vue';
 import CdsSpinner from './Spinner.vue';
-import CdsRequiredIndicator from './RequiredIndicator.vue';
 import CdsBaseMobileInput from './BaseMobileInput.vue';
+import CdsLabel from './Label.vue';
 
 const model = defineModel('modelValue', {
 	type: [String, Number],
