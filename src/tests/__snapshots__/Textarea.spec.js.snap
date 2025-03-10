@@ -2,7 +2,8 @@
 
 exports[`TextArea > renders correctly 1`] = `
 "<div id="text-area">
-  <div data-v-82c69faf=""><label data-v-82c69faf="" class="base-input__label" for="cds-base-input-textarea-text-area"><span data-v-82c69faf="" class="label__content">Label <!--v-if--><!--v-if--></span>
+  <div data-v-82c69faf="">
+    <!--v-if--><label data-v-c1eb01da="" data-v-82c69faf="" class="label"><span data-v-c1eb01da="" class="label__content">Label <!--v-if--><!--v-if--></span>
       <!--v-if-->
     </label>
     <div data-v-82c69faf="" class="base-input base-input--default">

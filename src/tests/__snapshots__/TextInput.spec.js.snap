@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`TextInput > renders correctly 1`] = `
-"<div data-v-82c69faf="" inputtype="text" linkurl="https://cuida.framer.wiki/" mobile="false"><label data-v-82c69faf="" class="base-input__label" for="cds-base-input-text-text-input"><span data-v-82c69faf="" class="label__content">Label <!--v-if--><!--v-if--></span>
+"<div data-v-82c69faf="" inputtype="text" linkurl="https://cuida.framer.wiki/" mobile="false">
+  <!--v-if--><label data-v-c1eb01da="" data-v-82c69faf="" class="label"><span data-v-c1eb01da="" class="label__content">Label <!--v-if--><!--v-if--></span>
     <!--v-if-->
   </label>
   <div data-v-82c69faf="" class="base-input base-input--default">
