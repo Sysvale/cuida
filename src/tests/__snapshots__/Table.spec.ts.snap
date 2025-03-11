@@ -9,7 +9,7 @@ exports[`Table > renders correctly 1`] = `
         <!--
 						@slot Slot usado para renderizar itens personalizados para o cabeçalho da tabela. Dados do item referente à coluna podem ser acessados através da propriedade \`data\`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ data }
 					-->
-        <cds-clickable-stub data-v-83c58b0d="" clickable="false" id="sort-icon-field1"></cds-clickable-stub>
+        <cds-clickable-stub data-v-83c58b0d="" clickable="false" fluid="false" id="sort-icon-field1"></cds-clickable-stub>
       </div>
     </th>
     <th data-v-83c58b0d="" class="table__header-item">
@@ -17,7 +17,7 @@ exports[`Table > renders correctly 1`] = `
         <!--
 						@slot Slot usado para renderizar itens personalizados para o cabeçalho da tabela. Dados do item referente à coluna podem ser acessados através da propriedade \`data\`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ data }
 					-->
-        <cds-clickable-stub data-v-83c58b0d="" clickable="false" id="sort-icon-field2"></cds-clickable-stub>
+        <cds-clickable-stub data-v-83c58b0d="" clickable="false" fluid="false" id="sort-icon-field2"></cds-clickable-stub>
       </div>
     </th>
     <th data-v-83c58b0d="" class="table__header-item--last">
@@ -25,7 +25,7 @@ exports[`Table > renders correctly 1`] = `
         <!--
 						@slot Slot usado para renderizar itens personalizados para o cabeçalho da tabela. Dados do item referente à coluna podem ser acessados através da propriedade \`data\`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ data }
 					-->
-        <cds-clickable-stub data-v-83c58b0d="" clickable="false" id="sort-icon-field3"></cds-clickable-stub>
+        <cds-clickable-stub data-v-83c58b0d="" clickable="false" fluid="false" id="sort-icon-field3"></cds-clickable-stub>
       </div>
     </th>
   </tr>
