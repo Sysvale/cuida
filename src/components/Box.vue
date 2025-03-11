@@ -7,6 +7,7 @@
 		<cds-clickable
 			class="box__container"
 			:clickable="clickable"
+			:fluid="fluid"
 			@click="handleClick"
 		>
 			<!-- @slot Slot utilizado para renderização do conteúdo interno do Box.-->
