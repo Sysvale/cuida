@@ -4,26 +4,6 @@ import Label from '../../components/Label.vue';
 <Meta
 	title="Componentes/Forms/Label"
 	component={ Label }
-	argTypes={{
-		variant: {
-			control:{
-				type: 'select',
-				options: [
-					'green',
-					'teal',
-					'turquoise',
-					'blue',
-					'indigo',
-					'violet',
-					'pink',
-					'red',
-					'orange',
-					'amber',
-					'dark'
-				],
-			}
-		},
-	}}
 	parameters={{
 		viewMode: 'docs',
 		previewTabs: { canvas: { hidden: true }},
@@ -100,8 +80,8 @@ export const Template = (args) => ({
 			required: false,
 			fluid: false,
 			for: 'input-id',
-			label: 'Label',
-            tooltip: '',
+			text: 'Label',
+			tooltip: '',
 			tooltipIcon: 'info-outline',
 			supportLink: '',
 			supportLinkUrl: '',
