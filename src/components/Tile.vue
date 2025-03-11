@@ -154,7 +154,7 @@ function handleClick() {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../assets/sass/tokens.scss';
 
 .cds-tile {
