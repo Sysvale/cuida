@@ -5,6 +5,7 @@
 		:clickable="!disabled"
 		padding="0"
 		light
+		:fluid="fluid"
 		@box-click="handleClick"
 	>
 		<div
@@ -97,6 +98,14 @@ const props = defineProps({
 	loading: {
 		type: Boolean,
 		default: false,
+	},
+	/**
+	 * Especifica se a largura do Tile deve ser fluida
+	 */
+	fluid: {
+		type: Boolean,
+		default: false,
+		required: false,
 	},
 });
 
@@ -215,16 +224,16 @@ function handleClick() {
 
 		&--sm {
 			@include overline;
-			padding: pYX(2,4);
+			padding: pYX(3,4);
 		}
 
 		&--md {
-			padding: pYX(2,7);
+			padding: pYX(3,7);
 		}
 
 		&--lg {
 			@include body-2;
-			padding: pYX(2,7);
+			padding: pYX(3,7);
 			font-weight: $font-weight-semibold;
 		}
 	}
