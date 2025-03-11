@@ -5,6 +5,7 @@
 		:clickable="!disabled"
 		padding="0"
 		light
+		:fluid="fluid"
 		@box-click="handleClick"
 	>
 		<div
@@ -98,6 +99,14 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	 * Especifica se a largura do Tile deve ser fluida
+	 */
+	fluid: {
+		type: Boolean,
+		default: false,
+		required: false,
+	},
 });
 
 const emit = defineEmits([
@@ -118,7 +127,10 @@ const computedVariant = computed(() => {
 });
 
 const computedBoxVariant = computed(() => (props.loading ? 'gray' : computedVariant.value));
-const computedLoaderClass = computed(() => `cds-tile__loader--${props.size}`);
+const computedLoaderClass = computed(() => {
+	const className = `cds-tile__loader--${props.size}`;
+	return props.fluid ? `${className} cds-tile__loader--fluid` : className;
+});
 const computedImageClass = computed(() => `cds-tile__image--${computedVariant.value} cds-tile__image--${props.size}`);
 const computedTextClass = computed(() => `cds-tile__text--${computedVariant.value} cds-tile__text--${props.size}`);
 const computedIconType = computed(() => (props.icon.includes('http') ? 'img' : 'icon'));
@@ -192,6 +204,12 @@ function handleClick() {
 				height: 60px;
 			}
 		}
+
+		&--fluid {
+			.cds-tile__icon {
+				width: 100%;
+			}
+		}
 	}
 
 	&__text {
@@ -215,16 +233,16 @@ function handleClick() {
 
 		&--sm {
 			@include overline;
-			padding: pYX(2,4);
+			padding: pYX(3,4);
 		}
 
 		&--md {
-			padding: pYX(2,7);
+			padding: pYX(3,7);
 		}
 
 		&--lg {
 			@include body-2;
-			padding: pYX(2,7);
+			padding: pYX(3,7);
 			font-weight: $font-weight-semibold;
 		}
 	}
@@ -254,6 +272,10 @@ function handleClick() {
 		&--lg {
 			width: 116px;
 			height: 126px;
+		}
+
+		&--fluid {
+			width: 100%;
 		}
 	}
 }
