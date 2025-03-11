@@ -127,7 +127,10 @@ const computedVariant = computed(() => {
 });
 
 const computedBoxVariant = computed(() => (props.loading ? 'gray' : computedVariant.value));
-const computedLoaderClass = computed(() => `cds-tile__loader--${props.size}`);
+const computedLoaderClass = computed(() => {
+	const className = `cds-tile__loader--${props.size}`;
+	return props.fluid ? `${className} cds-tile__loader--fluid` : className;
+});
 const computedImageClass = computed(() => `cds-tile__image--${computedVariant.value} cds-tile__image--${props.size}`);
 const computedTextClass = computed(() => `cds-tile__text--${computedVariant.value} cds-tile__text--${props.size}`);
 const computedIconType = computed(() => (props.icon.includes('http') ? 'img' : 'icon'));
@@ -201,6 +204,12 @@ function handleClick() {
 				height: 60px;
 			}
 		}
+
+		&--fluid {
+			.cds-tile__icon {
+				width: 100%;
+			}
+		}
 	}
 
 	&__text {
@@ -263,6 +272,10 @@ function handleClick() {
 		&--lg {
 			width: 116px;
 			height: 126px;
+		}
+
+		&--fluid {
+			width: 100%;
 		}
 	}
 }
