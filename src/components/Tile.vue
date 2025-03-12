@@ -214,6 +214,10 @@ function handleClick() {
 
 	&__text {
 		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 50px;
 		@include caption;
 		font-weight: $font-weight-semibold;
 
