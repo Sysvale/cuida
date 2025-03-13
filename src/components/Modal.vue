@@ -6,7 +6,7 @@
 	>
 		<div
 			v-if="innerValue"
-			ref="modalRef"
+			v-cds-click-outside="closeHandle"
 			class="cds-modal"
 			:class="`cds-modal--${size}`"
 		>
@@ -238,12 +238,9 @@ export default {
 
 	mounted() {
 		this.innerValue = this.modelValue;
-
-		document.querySelector('body').addEventListener('click', this.closeModal);
 	},
 
 	methods: {
-
 		closeHandle() {
 			/**
 			 * Evento que indica se o modal foi escondido.
@@ -280,16 +277,6 @@ export default {
 				this.$emit('update:modelValue', false);
 			}
 			this.$emit('cancel');
-		},
-
-		closeModal(event) {
-			if (
-				!this.noCloseOnBackdrop
-				&& this.$refs.modalRef
-				&& !this.$refs.modalRef.contains(event.target)
-			) {
-				this.closeHandle();
-			}
 		},
 	},
 };
