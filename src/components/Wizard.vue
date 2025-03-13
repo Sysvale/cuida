@@ -2,12 +2,11 @@
 <template>
 	<div class="cds-wizard">
 		<div class="cds-wizard__container">
-			<cds-box
+			<div
 				v-for="(step, index) in steps"
 				:key="`wizard-step-${index}`"
-				:class="{ 'cds-wizard__empty-state-box': currentStep < index }"
-				:padding="5"
-				:elevated="currentStep === index"
+				class="cds-wizard__box"
+				:class="{ 'cds-wizard__empty-state-box': currentStep < index, 'cds-wizard__elevated': currentStep === index }"
 				fluid
 				:clickable="clickable"
 				@box-click="handleStepBoxClick(index)"
@@ -47,7 +46,7 @@
 						{{ emptyStateText(step.title) }}
 					</div>
 				</div>
-			</cds-box>
+			</div>
 		</div>
 		<div class="cds-wizard__buttons">
 			<cds-button
@@ -228,6 +227,19 @@ export default {
 	&__container {
 		display: flex;
 		gap: spacer(3);
+	}
+
+	&__box {
+		background-color: $n-0;
+		border: 1px solid $n-30;
+		border-radius: $border-radius-medium;
+		padding: pa(5);
+		height: inherit;
+		width: 100%;
+	}
+
+	&__elevated {
+		box-shadow: $shadow-sm;
 	}
 
 	&__empty-state {
