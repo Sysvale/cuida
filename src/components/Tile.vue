@@ -133,7 +133,7 @@ const computedIconWidth = computed(() => {
 	};
 })
 const truncatedTitle = computed(() => {
-	const length = props.size === 'md' || props.size === 'lg' ? 20 : 30;
+	const length = props.size === 'sm' ? 30 : 20;
 	return props.title.length > length ? props.title.substring(0, length) + '...' : props.title;
 });
 
