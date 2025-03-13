@@ -5,7 +5,6 @@
 		:clickable="!disabled"
 		padding="0"
 		light
-		:fluid="fluid"
 		@box-click="handleClick"
 	>
 		<div
@@ -39,7 +38,7 @@
 				/>
 			</div>
 			<div :class="computedTextClass">
-				{{ title }}
+				{{ truncatedTitle }}
 			</div>
 		</div>
 	</box>
@@ -99,14 +98,6 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
-	/**
-	 * Especifica se a largura do Tile deve ser fluida
-	 */
-	fluid: {
-		type: Boolean,
-		default: false,
-		required: false,
-	},
 });
 
 const emit = defineEmits([
@@ -127,10 +118,7 @@ const computedVariant = computed(() => {
 });
 
 const computedBoxVariant = computed(() => (props.loading ? 'gray' : computedVariant.value));
-const computedLoaderClass = computed(() => {
-	const className = `cds-tile__loader--${props.size}`;
-	return props.fluid ? `${className} cds-tile__loader--fluid` : className;
-});
+const computedLoaderClass = computed(() => `cds-tile__loader--${props.size}`);
 const computedImageClass = computed(() => `cds-tile__image--${computedVariant.value} cds-tile__image--${props.size}`);
 const computedTextClass = computed(() => `cds-tile__text--${computedVariant.value} cds-tile__text--${props.size}`);
 const computedIconType = computed(() => (props.icon.includes('http') ? 'img' : 'icon'));
@@ -144,6 +132,10 @@ const computedIconWidth = computed(() => {
 			return '60';
 	};
 })
+const truncatedTitle = computed(() => {
+	const length = props.size === 'md' || props.size === 'lg' ? 20 : 30;
+	return props.title.length > length ? props.title.substring(0, length) + '...' : props.title;
+});
 
 function handleClick() {
 	if (props.disabled || props.loading) {
@@ -204,12 +196,6 @@ function handleClick() {
 				height: 60px;
 			}
 		}
-
-		&--fluid {
-			.cds-tile__icon {
-				width: 100%;
-			}
-		}
 	}
 
 	&__text {
@@ -217,9 +203,10 @@ function handleClick() {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		height: 50px;
+		height: 50px !important;
 		@include caption;
 		font-weight: $font-weight-semibold;
+		flex-wrap: true;
 
 		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			@extend .cds-tile__text;
@@ -237,17 +224,20 @@ function handleClick() {
 
 		&--sm {
 			@include overline;
-			padding: pYX(3,4);
+			padding: pYX(2,4);
+			max-width: 96px;
 		}
 
 		&--md {
-			padding: pYX(3,7);
+			padding: pYX(2,7);
+			max-width: 106px;
 		}
 
 		&--lg {
 			@include body-2;
-			padding: pYX(3,7);
+			padding: pYX(2,7);
 			font-weight: $font-weight-semibold;
+			max-width: 116px;
 		}
 	}
 
@@ -276,10 +266,6 @@ function handleClick() {
 		&--lg {
 			width: 116px;
 			height: 126px;
-		}
-
-		&--fluid {
-			width: 100%;
 		}
 	}
 }
