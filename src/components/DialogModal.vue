@@ -3,9 +3,11 @@
 	<div
 		v-if="innerValue"
 		class="cds-modal__backdrop"
+		@click="closeDialogModal"
 	>
 		<div
 			v-if="innerValue"
+			ref="dialogModalRef"
 			class="cds-modal"
 		>
 			<header
@@ -112,7 +114,6 @@
 <script>
 import CdsIcon from '../components/Icon.vue';
 import CdsButton from '../components/Button.vue';
-import vClickOutside from 'click-outside-vue3';
 
 const predefinedColors = [
 	'teal',
@@ -129,10 +130,6 @@ const predefinedColors = [
 const predefinedVariants = ['warning', 'error', 'info'];
 
 export default {
-	directives: {
-		'on-click-outside': vClickOutside.directive,
-	},
-
 	components: {
 		CdsIcon,
 		CdsButton,
@@ -231,6 +228,12 @@ export default {
 			this.innerValue = !this.innerValue;
 			this.$emit('ok', true);
 			this.$emit('update:modelValue', false);
+		},
+
+		closeDialogModal(event) {
+			if (this.$refs.dialogModalRef && !this.$refs.dialogModalRef.contains(event.target)) {
+				this.closeHandle();
+			}
 		},
 	},
 };

@@ -6,7 +6,7 @@
 	>
 		<div
 			v-if="innerValue"
-			v-on-click-outside="noCloseOnBackdrop ? () => {} : closeHandle"
+			ref="modalRef"
 			class="cds-modal"
 			:class="`cds-modal--${size}`"
 		>
@@ -79,7 +79,6 @@
 <script>
 import CdsIcon from '../components/Icon.vue';
 import CdsButton from '../components/Button.vue';
-import vClickOutside from 'click-outside-vue3';
 import CdsScrollable from '../components/Scrollable.vue';
 
 const predefinedColors = [
@@ -95,10 +94,6 @@ const predefinedColors = [
 ];
 
 export default {
-	directives: {
-		'on-click-outside': vClickOutside.directive,
-	},
-
 	components: {
 		CdsIcon,
 		CdsButton,
@@ -243,6 +238,8 @@ export default {
 
 	mounted() {
 		this.innerValue = this.modelValue;
+
+		document.querySelector('body').addEventListener('click', this.closeModal);
 	},
 
 	methods: {
@@ -283,6 +280,16 @@ export default {
 				this.$emit('update:modelValue', false);
 			}
 			this.$emit('cancel');
+		},
+
+		closeModal(event) {
+			if (
+				!this.noCloseOnBackdrop
+				&& this.$refs.modalRef
+				&& !this.$refs.modalRef.contains(event.target)
+			) {
+				this.closeHandle();
+			}
 		},
 	},
 };

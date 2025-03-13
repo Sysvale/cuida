@@ -48,7 +48,6 @@
 						width="20"
 						name="search-outline"
 					/>
-					
 					<span v-if="showSearchButtonShortCut">Busca</span>
 				</div>
 
@@ -263,10 +262,7 @@
 					width="160"
 					height="160"
 				>
-					<div
-						v-on-click-outside="hide"
-						class="dropdown-button__dropdown"
-					>
+					<div class="dropdown-button__dropdown">
 						<div
 							v-for="(item, index) in profileMenuItems"
 							:key="index"
@@ -299,14 +295,12 @@ import CdsPopover from './Popover.vue';
 import CdsAvatar from './Avatar.vue';
 import CdsRichTooltip from './RichTooltip.vue';
 import Cdstip from '../utils/directives/cdstip';
-import vClickOutside from 'click-outside-vue3';
 
 import { colorOptions, colorHexCode } from '../utils/constants/colors';
 
 export default {
 	directives: {
 		cdstip: Cdstip,
-		'on-click-outside': vClickOutside.directive,
 	},
 
 	components: {

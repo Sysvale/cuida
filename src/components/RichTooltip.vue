@@ -2,7 +2,7 @@
 <template>
 	<div
 		:id="$attrs.id || id"
-		v-on-click-outside="hide"
+		ref="richTooltipRef"
 		class="richTooltip"
 	>
 		<slot />
@@ -10,15 +10,10 @@
 </template>
 
 <script>
-import vClickOutside from 'click-outside-vue3';
 import { createPopper } from '@popperjs/core';
 import { generateKey } from '../utils';
 
 export default {
-	directives: {
-		'on-click-outside': vClickOutside.directive,
-	},
-
 	props: {
 		/**
 		* Prop utilizada como v-model.
@@ -101,6 +96,8 @@ export default {
 	mounted() {
 		this.id = `cds-popover-${this.uniqueKey}`;
 		this.setPopper(this.targetId);
+
+		document.querySelector('body').addEventListener('click', this.closeRichTooltip);
 	},
 
 	methods: {
@@ -166,7 +163,16 @@ export default {
 				*/
 				this.$emit('update:modelValue', false);
 			});
-		}
+		},
+
+		closeRichTooltip(event) {
+			if (
+				this.$refs.richTooltipRef
+				&& !this.$refs.richTooltipRef.contains(event.target)
+			) {
+				this.hide();
+			}
+		},
 	},
 }
 </script>

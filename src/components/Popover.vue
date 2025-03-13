@@ -2,7 +2,7 @@
 <template>
 	<div
 		:id="$attrs.id || id"
-		v-on-click-outside="hide"
+		ref="popoverRef"
 		class="popover"
 	>
 		<cds-scrollable
@@ -19,17 +19,12 @@
 
 <script>
 import CdsScrollable from './Scrollable.vue';
-import vClickOutside from 'click-outside-vue3';
 import { createPopper } from '@popperjs/core';
 import { generateKey } from '../utils';
 
 export default {
 	components: {
 		CdsScrollable,
-	},
-
-	directives: {
-		'on-click-outside': vClickOutside.directive,
 	},
 
 	props: {
@@ -133,6 +128,8 @@ export default {
 	mounted() {
 		this.id = `cds-popover-${this.uniqueKey}`;
 		this.setPopper(this.targetId);
+
+		document.querySelector('body').addEventListener('click', this.closePopover);
 	},
 
 	methods: {
@@ -200,7 +197,16 @@ export default {
 				*/
 				this.$emit('update:modelValue', false);
 			});
-		}
+		},
+
+		closePopover(event) {
+			if (
+				this.$refs.popoverRef
+				&& !this.$refs.popoverRef.contains(event.target)
+			) {
+				this.hide();
+			}
+		},
 	},
 }
 </script>
