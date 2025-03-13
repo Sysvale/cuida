@@ -628,8 +628,9 @@ export default {
 			if (
 				this.$refs.sideBarRef
 				&& !this.$refs.sideBarRef.contains(event.target)
+				&& this.showPopover
 			) {
-				this.hide();
+				this.showPopover = false;
 			}
 		},
 	},
