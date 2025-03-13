@@ -102,6 +102,15 @@ const props = defineProps({
 });
 
 const iconSize = computed(() => (isMobile.value ? '24' : '34'));
+const handleRouterBack = computed(() => {
+	const defaultRoute = resolveDefaultRoute();
+
+	if (!defaultRoute) {
+		return -1;
+	}
+
+	return defaultRoute;
+});
 
 function resolveDefaultRoute() {
 	if (props.defaultRoute?.path) {
@@ -115,15 +124,7 @@ function resolveDefaultRoute() {
 	return null;
 }
 
-function handleRouterBack() {
-	const defaultRoute = resolveDefaultRoute();
 
-	if (!defaultRoute) {
-		return window.history.back();
-	}
-
-	return defaultRoute;
-}
 
 </script>
 
