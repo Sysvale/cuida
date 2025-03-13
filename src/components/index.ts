@@ -114,6 +114,7 @@ import Wizard from './Wizard.vue';
 /* DIRECTIVES */
 import Cdstip from '../utils/directives/cdstip';
 import CdsFloatify from "../utils/directives/cdsFloatify";
+import CdsClickOutside from '../utils/directives/cdsClickOutside';
 
 /* UTILS */
 import contrastChecker from '@/utils/methods/contrastChecker';
@@ -126,6 +127,7 @@ export default {
 	install: (app: any, options: any) => {
 		app.directive('cdstip', Cdstip);
 		app.directive("cds-floatify", CdsFloatify);
+		app.directive("cds-click-outside", CdsClickOutside);
 		app.component('CdsActionBar', ActionBar);
 		app.component('CdsActionsList', ActionsList);
 		app.component('CdsAlert', Alert);
