@@ -48,7 +48,6 @@
 						width="20"
 						name="search-outline"
 					/>
-					
 					<span v-if="showSearchButtonShortCut">Busca</span>
 				</div>
 
@@ -264,7 +263,7 @@
 					height="160"
 				>
 					<div
-						v-on-click-outside="hide"
+						ref="sideBarRef"
 						class="dropdown-button__dropdown"
 					>
 						<div
@@ -299,14 +298,12 @@ import CdsPopover from './Popover.vue';
 import CdsAvatar from './Avatar.vue';
 import CdsRichTooltip from './RichTooltip.vue';
 import Cdstip from '../utils/directives/cdstip';
-import vClickOutside from 'click-outside-vue3';
 
 import { colorOptions, colorHexCode } from '../utils/constants/colors';
 
 export default {
 	directives: {
 		cdstip: Cdstip,
-		'on-click-outside': vClickOutside.directive,
 	},
 
 	components: {
@@ -534,6 +531,10 @@ export default {
 		});
 	},
 
+	mounted() {
+		document.querySelector('body').addEventListener('click', this.closeSideBar);
+	},
+
 	methods: {
 		colorHexCode,
 
@@ -621,6 +622,15 @@ export default {
 			* @type {Event}
 			*/
 			this.$emit('logo-click');
+		},
+
+		closeSideBar(event) {
+			if (
+				this.$refs.sideBarRef
+				&& !this.$refs.sideBarRef.contains(event.target)
+			) {
+				this.hide();
+			}
 		},
 	},
 };

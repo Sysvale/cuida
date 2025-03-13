@@ -2,15 +2,16 @@
 	<div
 		v-if="internalShow"
 		class="cds-modal__backdrop"
+		@click="closeDialog"
 	>
 		<div
 			v-if="internalShow"
+			ref="closeDialog"
 			class="cds-modal"
 			:class="`cds-modal--${size}`"
 			:style="dynamicStyle"
-			v-on-click-outside="noCloseOnBackdrop ? () => {} : closeHandle"
 		>
-			<header 
+			<header
 				v-if="!noHeader"
 			>
 				<!-- @slot Slot usado para utilização de header customizado. -->
@@ -74,13 +75,8 @@
 import CdsIcon from '../components/Icon.vue';
 import CdsButton from '../components/Button.vue';
 import CdsScrollable from '../components/Scrollable.vue';
-import vClickOutside from 'click-outside-vue3';
 
 export default {
-	directives: {
-		'on-click-outside': vClickOutside.directive,
-	},
-
 	components: {
 		CdsIcon,
 		CdsButton,
@@ -209,6 +205,16 @@ export default {
 			*/
 			this.$emit('ok', true);
 			this.internalShow = !this.internalShow;
+		},
+
+		closeDialog(event) {
+			if (this.noCloseOnBackdrop) {
+				return;
+			}
+
+			if (this.$refs.dialogRef && !this.$refs.dialogRef.contains(event.target)) {
+				this.closeHandle();
+			}
 		},
 	},
 };

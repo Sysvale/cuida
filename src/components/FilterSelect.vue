@@ -5,7 +5,7 @@
 		class="filter-select"
 	>
 		<div
-			v-on-click-outside="hide"
+			ref="filterSelectRef"
 			class="filter-select__container"
 			:class="inputClass"
 			@keydown.enter.prevent="activateSelectionOnEnter"
@@ -95,13 +95,8 @@ import { widths } from '../utils';
 import { generateKey } from '../utils';
 import cloneDeep from 'lodash.clonedeep';
 import removeAccents from '../utils/methods/removeAccents';
-import vClickOutside from 'click-outside-vue3';
 
 export default {
-	directives: {
-		'on-click-outside': vClickOutside.directive,
-	},
-
 	props: {
 		/**
 		 * Especifica o título do FilterSelect.
@@ -292,6 +287,8 @@ export default {
 	mounted() {
 		this.id = `cds-filter-select-${this.uniqueKey}`;
 		this.selectElement = this.$refs['cds-filter-select'];
+
+		document.querySelector('body').addEventListener('click', this.closeFilterSelect);
 	},
 
 	methods: {
@@ -408,6 +405,15 @@ export default {
 
 		unhighlightOnMouseOut() {
 			this.getLiInDOM(this.currentPos).classList.remove('highlight');
+		},
+
+		closeFilterSelect(event) {
+			if (
+				this.$refs.filterSelectRef
+				&& !this.$refs.filterSelectRef.contains(event.target)
+			) {
+				this.hide();
+			}
 		},
 	},
 };

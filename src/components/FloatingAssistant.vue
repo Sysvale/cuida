@@ -15,7 +15,7 @@
 			class="floating-assistant__container"
 		>
 			<div
-				v-on-click-outside="collapse"
+				ref="floatingAssistantRef"
 				class="floating-assistant__dropdown"
 				:class="{
 					'floating-assistant__dropdown--expanded': isExpanded,
@@ -86,7 +86,6 @@
 </template>
 
 <script>
-import vClickOutside from 'click-outside-vue3';
 import CdsPulsar from './Pulsar.vue';
 import CdsIcon from './Icon.vue';
 
@@ -94,10 +93,6 @@ export default {
 	components: {
 		CdsPulsar,
 		CdsIcon,
-	},
-
-	directives: {
-		'on-click-outside': vClickOutside.directive,
 	},
 
 	props: {
@@ -182,6 +177,8 @@ export default {
 
 	mounted() {
 		this.handleEventAnimation();
+
+		document.querySelector('body').addEventListener('click', this.closeFloatingAssistant);
 	},
 
 	methods: {
@@ -246,7 +243,16 @@ export default {
 			*/
 			this.$emit('disable-tip', true);
 			this.isActive = false;
-		}
+		},
+
+		closeFloatingAssistant(event) {
+			if (
+				this.$refs.floatingAssistantRef
+				&& !this.$refs.floatingAssistantRef.contains(event.target)
+			) {
+				this.collapse();
+			}
+		},
 	},
 };
 </script>
