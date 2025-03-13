@@ -3,6 +3,7 @@
 	<div>
 		<span
 			:id="id"
+			ref="dropdownButtonRef"
 			:class="dropDownButtonClasses"
 			class="dropdown-button__container"
 			@click="activeSelection"
@@ -19,7 +20,7 @@
 
 		<div
 			v-if="isActive"
-			v-on-click-outside="hide"
+			ref="dropdownRef"
 			:style="dynamicStyle"
 			class="dropdown-button__dropdown"
 		>
@@ -51,7 +52,6 @@
 
 <script>
 /* eslint-disable no-underscore-dangle */
-import vClickOutside from 'click-outside-vue3';
 import CdsChevron from './Chevron.vue';
 import CdsIcon from './Icon.vue';
 
@@ -59,10 +59,6 @@ export default {
 	components: {
 		CdsIcon,
 		CdsChevron,
-	},
-
-	directives: {
-		'on-click-outside': vClickOutside.directive,
 	},
 
 	props: {
@@ -160,6 +156,8 @@ export default {
 
 	mounted() {
 		this.id = `dropdown-button$-${this._uid}`;
+
+		document.querySelector('body').addEventListener('click', this.closeDropdownButton);
 	},
 
 	methods: {
@@ -185,7 +183,18 @@ export default {
 		handleOptionClick(actionName, index) {
 			this.isActive = !this.isActive;
 			this.$emit('action-click', [actionName, index]);
-		}
+		},
+
+		closeDropdownButton(event) {
+			if (
+				this.$refs.dropdownRef
+				&& !this.$refs.dropdownRef.contains(event.target)
+				&& this.$refs.dropdownButtonRef
+				&& !this.$refs.dropdownButtonRef.contains(event.target)
+			) {
+				this.hide();
+			}
+		},
 	},
 };
 </script>

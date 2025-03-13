@@ -3,6 +3,7 @@
 	<div>
 		<span
 			:id="id"
+			ref="dropdownButtonRef"
 			:class="{
 				'filter-pill__container--disabled' : disabled,
 				'filter-pill__container--active': isActive && !disabled,
@@ -23,7 +24,7 @@
 
 		<div
 			v-if="isActive"
-			v-on-click-outside="hide"
+			ref="dropdownRef"
 			:style="dynamicStyle"
 			class="filter-pill__dropdown"
 		>
@@ -35,16 +36,11 @@
 
 <script>
 /* eslint-disable no-underscore-dangle */
-import vClickOutside from 'click-outside-vue3';
 import CdsChevron from './Chevron.vue';
 
 export default {
 	components: {
 		CdsChevron,
-	},
-
-	directives: {
-		'on-click-outside': vClickOutside.directive,
 	},
 
 	props: {
@@ -112,6 +108,8 @@ export default {
 
 	mounted() {
 		this.id = `filter-pill$-${this._uid}`;
+
+		document.querySelector('body').addEventListener('click', this.closeDropdown);
 	},
 
 	methods: {
@@ -132,6 +130,17 @@ export default {
 
 		hide() {
 			this.isActive = !this.isActive;
+		},
+
+		closeDropdown(event) {
+			if (
+				this.$refs.dropdownRef
+				&& !this.$refs.dropdownRef.contains(event.target)
+				&& this.$refs.dropdownButtonRef
+				&& !this.$refs.dropdownButtonRef.contains(event.target)
+			) {
+				this.hide();
+			}
 		},
 	},
 };
