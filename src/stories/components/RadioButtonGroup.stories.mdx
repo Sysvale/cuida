@@ -23,6 +23,16 @@ import RadioButtonGroup from '../../components/RadioButtonGroup.vue';
 				],
 			}
 		},
+		state: {
+			control:{
+				type: 'select',
+				options: [
+					'default',
+					'valid',
+					'invalid',
+				],
+			}
+		},
 	}}
 	parameters={{
 		viewMode: 'docs',
@@ -46,11 +56,20 @@ export const Template = (args) => ({
 	setup() {
 		return { args };
 	},
+	data() {
+		return {
+			value: '',
+		};
+	},
 	template: /*html*/ `
 		<cds-radio-button-group
-			v-bind="args" 
+			v-bind="args"
+			v-model="value"
 		/>
 	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
 });
 
 # RadioButtonGroup
@@ -77,20 +96,22 @@ no array de opções. Caso você queira desabilitar todo o grupo, você pode set
 
 ## Preview
 
-export const value = '';
 export const options = [
 	{
 		text: 'Opção desabilitada',
+		label: 'Opção desabilitada',
 		value: 'value1',
 		disabled: true,
 	},
 	{
 		text: 'Opção habilitada 1',
+		label: 'Opção habilitada 1',
 		body: 'Adicione um texto descritivo/explicativo referente a essa opção',
 		value: 'value2',
 	},
 	{
 		text: 'Opção habilitada 2',
+		label: 'Opção habilitada 2',
 		value: 'value3',
 	},
 ];
@@ -100,11 +121,19 @@ export const options = [
 		name="Radio button group"
 		args={{
 			options,
-			value,
 			disabled: false,
+			required: false,
 			variant: 'green',
+			state: 'default',
+			errorMessage: 'Valor inválido',
 			inline: false,
-			label: 'Label'
+			label: 'Label',
+			supportLink: '',
+			supportLinkUrl: '',
+			tooltip: '',
+			tooltipIcon: 'info-outline',
+			allowsExpand: false,
+			fluid: false,
 		}}
 	>
 		{ Template.bind({}) }
