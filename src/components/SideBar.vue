@@ -262,10 +262,7 @@
 					width="160"
 					height="160"
 				>
-					<div
-						ref="sideBarRef"
-						class="dropdown-button__dropdown"
-					>
+					<div class="dropdown-button__dropdown">
 						<div
 							v-for="(item, index) in profileMenuItems"
 							:key="index"
@@ -531,10 +528,6 @@ export default {
 		});
 	},
 
-	mounted() {
-		document.querySelector('body').addEventListener('click', this.closeSideBar);
-	},
-
 	methods: {
 		colorHexCode,
 
@@ -622,16 +615,6 @@ export default {
 			* @type {Event}
 			*/
 			this.$emit('logo-click');
-		},
-
-		closeSideBar(event) {
-			if (
-				this.$refs.sideBarRef
-				&& !this.$refs.sideBarRef.contains(event.target)
-				&& this.showPopover
-			) {
-				this.showPopover = false;
-			}
 		},
 	},
 };
