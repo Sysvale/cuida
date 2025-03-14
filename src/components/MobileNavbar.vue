@@ -2,11 +2,11 @@
 	<div class="mobile-navbar">
 		<div class="mobile-navbar__items">
 			<router-link
-				v-for="(item, index) in items"
+				v-for="item in items"
 				:key="item"
 				class="mobile-navbar__item-link"
 				:to="routerPushTo(item)"
-				@click="onItemClick(item, index)"
+				@click="onItemClick(item)"
 			>
 				<div
 					class="mobile-navbar__item"
@@ -39,7 +39,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, watchEffect, watch } from 'vue';
 import Icon from '../components/Icon.vue';
 
 const props = defineProps({
@@ -68,6 +68,14 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	 * O item ativo da NavBar
+	 */
+	activeItem: {
+		type: Object,
+		default: () => ({}),
+		required: true,
+	},
 });
 
 const emits = defineEmits(['item-click']);
@@ -84,22 +92,32 @@ const indicatorStyle = computed(() => {
 });
 
 const computedClass = computed(() => {
-	let stringona = '';
+	let resolvedClass = '';
 
 	switch (activeIndex.value) {
 		case 0:
-			stringona += `mobile-navbar__indicator--first `;
+			resolvedClass += `mobile-navbar__indicator--first `;
 			break;
 		case props.items.length - 1:
-			stringona += `mobile-navbar__indicator--last `;
+			resolvedClass += `mobile-navbar__indicator--last `;
 			break;
 		default:
-			stringona += `mobile-navbar__indicator `;
+			resolvedClass += `mobile-navbar__indicator `;
 			break;
 	}
 
-	return stringona.concat(`mobile-navbar__indicator--${props.variant}`);
+	return resolvedClass.concat(`mobile-navbar__indicator--${props.variant}`);
 });
+
+watchEffect(() => {
+	activeIndex.value = props.items.findIndex(item => item.label === activeItem.value.label);
+});
+
+watch(props.activeItem, (item) => {
+	activeItem.value = item;
+});
+
+onMounted(() => activeItem.value = props.activeItem || props.items[0]);
 
 function routerPushTo(item) {
 	if (item.route.name) {
@@ -109,9 +127,8 @@ function routerPushTo(item) {
 	return { path: item.route.path };
 }
 
-function onItemClick(item, index) {
+function onItemClick(item) {
 	activeItem.value = item;
-	activeIndex.value = index;
 	emits('item-click', item);
 }
 
