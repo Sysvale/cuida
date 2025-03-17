@@ -6,7 +6,7 @@
 	>
 		<div
 			v-if="innerValue"
-			v-cds-click-outside="closeHandle"
+			v-cds-click-outside="noCloseOnBackdrop ? () => {} : closeHandle"
 			class="cds-modal"
 			:class="`cds-modal--${size}`"
 		>
