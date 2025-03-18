@@ -378,11 +378,11 @@ watch(calendarRef, (newValue) => {
 function isDateDisabled(day) {
 	const dateToCheck = currentDate.value.set({ day });
 
-	if (minDateObj.value && dateToCheck < minDateObj.value) {
+	if (minDateObj.value && dateToCheck.startOf('day') < minDateObj.value) {
 		return true;
 	}
 
-	if (maxDateObj.value && dateToCheck > maxDateObj.value) {
+	if (maxDateObj.value && dateToCheck.startOf('day') > maxDateObj.value) {
 		return true;
 	}
 
