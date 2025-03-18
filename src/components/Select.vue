@@ -332,7 +332,7 @@ watch(() => props.options, (newValue, oldValue) => {
 }, { immediate: true });
 
 watch(model, (newValue, oldValue) => { 
-	if (newValue !== oldValue) {
+	if (newValue !== oldValue && newValue !== localValue.value) {
 		if (newValue instanceof Object) {
 			localValue.value = newValue;
 		} else {
@@ -342,6 +342,8 @@ watch(model, (newValue, oldValue) => {
 }, { immediate: true });
 
 watch(localValue, (currentValue) => {
+	if (currentValue === model.value) return;
+
 	const compatibleOptions = localOptions.value.filter(
 		(option) => JSON.stringify(option) === JSON.stringify(currentValue),
 	);
