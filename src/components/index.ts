@@ -115,6 +115,7 @@ import Wizard from './Wizard.vue';
 import Cdstip from '../utils/directives/cdstip';
 import CdsFloatify from "../utils/directives/cdsFloatify";
 import CdsClickOutside from '../utils/directives/cdsClickOutside';
+import { unmaskBRL } from '@/utils/directives/cdsBRL';
 
 /* UTILS */
 import contrastChecker from '@/utils/methods/contrastChecker';
@@ -122,6 +123,9 @@ import hasSlot from '@/utils/methods/hasSlot';
 import removeAccents from '@/utils/methods/removeAccents';
 import hexToRgb from '@/utils/methods/hexToRgb';
 import isDeviceType from '@/utils/methods/isDeviceType';
+import useIsMobile from '@/utils/composables/useIsMobile';
+import { useHasSlot } from '@/utils/composables/useHasSlot';
+import { useHasSlots } from '@/utils/composables/useHasSlots';
 
 export default {
 	install: (app: any, options: any) => {
@@ -245,6 +249,10 @@ export default {
 		hasSlot,
 		removeAccents,
 		hexToRgb,
-		isDeviceType
+		isDeviceType,
+		useIsMobile,
+		useHasSlot,
+		useHasSlots,
+		unmaskBRL,
 	},
 }
