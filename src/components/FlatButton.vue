@@ -72,7 +72,7 @@ const computedStyle = computed(() => {
 
 const emit = defineEmits(['click']);
 
-const clickHandler = () => {
+const clickHandler = (event) => {
 	if (props.disabled) {
 		return;
 	}
@@ -81,7 +81,7 @@ const clickHandler = () => {
 	* @event click
 	* @type {Event}
 	*/
-	emit('click', true);
+	emit('click', event);
 };
 
 /* EXPOSE */
