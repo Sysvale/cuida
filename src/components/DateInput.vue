@@ -5,7 +5,7 @@
 	>
 		<CdsBaseInput
 			ref="baseInput"
-			v-bind="{...$attrs, ...props}"
+			v-bind="props"
 			v-model="internalValue"
 			type="text"
 			:floating-label="floatingLabel || mobile"
