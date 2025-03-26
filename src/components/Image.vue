@@ -98,18 +98,18 @@ export default {
 	computed: {
 		heightResolver() {
 			if (this.round) {
-				return `${this.width}px`;
+				return this.resolveSizeUnit(this.width);
 			}
 
-			return this.height ? `${this.height}px` : 'auto';
+			return this.height ? this.resolveSizeUnit(this.height) : 'auto';
 		},
 
 		widthResolver() {
-			return this.width ? `${this.width}px` : 'auto';
+			return this.width ? this.resolveSizeUnit(this.width) : 'auto';
 		},
 
 		opacityResolver() {
-			return this.width ? `${this.width}px` : 'auto';
+			return this.width ? this.resolveSizeUnit(this.width) : 'auto';
 		},
 
 		radiusResolver() {
@@ -145,6 +145,14 @@ export default {
 
 		imageSrcResolver() {
 			this.innerSrc = this.fallbackSrc;
+		},
+
+		resolveSizeUnit(size) {
+			if (!Number.isNaN(Number(size))) {
+				return `${size}px`;
+			}
+
+			return size;
 		},
 	},
 }
