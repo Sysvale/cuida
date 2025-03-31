@@ -41,14 +41,6 @@ const props = defineProps({
 		type: String,
 		default: 'green',
 	},
-	minDate: {
-		type: String,
-		default: '',
-	},
-	maxDate: {
-		type: String,
-		default: '',
-	},
 	selectedDate: {
 		type: String,
 		default: '',
