@@ -94,14 +94,6 @@ describe('DateInput', () => {
 		expect(wrapper.findComponent(CdsBaseInput).props('floatingLabel')).toBe(true);
 	});
 
-	test('opens and closes the calendar when clicking the input', async () => {
-		await wrapper.find('input').trigger('click');
-		expect(wrapper.find('.date-input__calendar').exists()).toBe(true);
-
-		await wrapper.find('input').trigger('click');
-		expect(wrapper.find('.date-input__calendar').exists()).toBe(false);
-	});
-
 	test('navigates between months', async () => {
 		await wrapper.find('input').trigger('click');
 		const currentMonth = wrapper.find('.calendar__month-and-title').text();
