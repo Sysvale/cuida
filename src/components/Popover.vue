@@ -113,7 +113,6 @@ export default {
 
 	watch: {
 		modelValue(isTrue) {
-			console.log('must show: ', isTrue);
 			if (isTrue) {
 				this.show();
 			} else {
