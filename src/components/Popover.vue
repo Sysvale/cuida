@@ -2,7 +2,7 @@
 <template>
 	<div
 		:id="$attrs.id || id"
-		ref="popoverRef"
+		v-cds-click-outside="hide"
 		class="popover"
 	>
 		<cds-scrollable
@@ -113,6 +113,7 @@ export default {
 
 	watch: {
 		modelValue(isTrue) {
+			console.log('must show: ', isTrue);
 			if (isTrue) {
 				this.show();
 			} else {
@@ -128,8 +129,6 @@ export default {
 	mounted() {
 		this.id = `cds-popover-${this.uniqueKey}`;
 		this.setPopper(this.targetId);
-
-		document.querySelector('body').addEventListener('click', this.closePopover);
 	},
 
 	methods: {
@@ -197,15 +196,6 @@ export default {
 				*/
 				this.$emit('update:modelValue', false);
 			});
-		},
-
-		closePopover(event) {
-			if (
-				this.$refs.popoverRef
-				&& !this.$refs.popoverRef.contains(event.target)
-			) {
-				this.hide();
-			}
 		},
 	},
 }
