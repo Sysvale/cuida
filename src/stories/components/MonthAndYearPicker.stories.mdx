@@ -1,0 +1,151 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import MonthAndYearPicker from '../../components/MonthAndYearPicker.vue';
+
+<Meta
+	title="Componentes/Display/MonthAndYearPicker"
+	component={ MonthAndYearPicker }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark',
+				],
+			}
+		},
+		state: {
+			control:{
+				type: 'select',
+				options: [
+					'default',
+					'valid',
+					'invalid',
+					'loading',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-badge
+	variant="red"
+	size="md"
+>
+	MonthAndYearPicker
+</cds-badge>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsMonthAndYearPicker: MonthAndYearPicker },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			modelValue: '2025-05',
+		};
+	},
+	template: /*html*/ `
+		<CdsMonthAndYearPicker
+			v-model="modelValue"
+			v-bind="args"
+			@click="logClick"
+			@change="logChange"
+			@focus="logFocus"
+			@blur="logBlur"
+			@keydown="logKeydown"
+		>
+			MonthAndYearPicker
+		</CdsMonthAndYearPicker>`,
+	methods: {
+		logClick() {
+			console.info('⚡ %cClick emitted', 'color: rgb(37, 227, 139);');
+		},
+		logChange() {
+			console.info('⚡ %cChange emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logFocus(event) {
+			console.info('⚡ %cFocus emitted', 'color: hsl(152, 77.20%, 51.80%);' );
+		},
+		logBlur(event) {
+			console.info('⚡ %cBlur emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logKeydown(e) {
+			console.info('⚡ %cKeydown emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+	},
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.modelValue);
+	},
+});
+
+
+# MonthAndYearPicker
+
+### MonthAndYearPicker são indicadores de status utilizados para tornar evidentes metadados importates.
+---
+<br />
+
+## Quando usar:
+- For necessário mostrar status associados com a lógica de negócio ou ações do usuário.
+- O conteúdo a ser mostrado for *readonly*.
+- For preciso categorizar algo.
+
+
+<br />
+
+## Quando não usar:
+- O conteúdo que a badge representa puder ser setado ou removido pelo usuário.
+- O click no componente precisar executar uma ação ou funcionalidade.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="MonthAndYearPicker"
+		args={{
+			label: 'Mês',
+			variant: 'green',
+			state: 'default',
+			required: false,
+			disabled: false,
+			fluid: false,
+			mobile: false,
+			floatingLabel: false,
+			placeholder: 'Escolha um mês...',
+			errorMessage: 'Campo obrigatório',
+			tooltip: '',
+			tooltipIcon: 'info-outline',
+			supportingText: 'supportingText',
+			supportLink: '',
+			supportLinkUrl: '',
+			maxDate: "2026-06-06",
+			minDate: "2023-01-01"
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="MonthAndYearPicker" />
