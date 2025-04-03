@@ -32,7 +32,7 @@
 			<div
 				v-show="isCalendarOpen"
 				ref="calendar"
-				:class="`date-input__calendar--${direction}`"
+				:class="`date-input__calendar--${dropdownDirection}`"
 				@mousedown.prevent="handleCalendarMouseDown"
 			>
 				<div class="calendar__header">
@@ -140,6 +140,7 @@ import CdsBaseInput from './BaseInput.vue';
 import CdsIcon from './Icon.vue';
 import CdsFlexbox from './Flexbox.vue';
 import CdsGrid from './Grid.vue';
+import { direction, dropdownTopPosition, dropdownBottomPosition } from '../utils/composables/useDropdownPosition.js';
 import MonthSelectorGrid from './InternalComponents/MonthSelectorGrid.vue';
 import YearSelectorGrid from './InternalComponents/YearSelectorGrid.vue';
 import {
@@ -329,8 +330,7 @@ const internalValue = ref('');
 const isCalendarInteraction = ref(false);
 const showMonthPicker = ref(false);
 const showYearPicker = ref(false);
-const direction = ref('down');
-const calendarElement = ref('');
+const dropdownDirection = ref('down');
 const dateMask = ref(null);
 
 /* COMPUTED */
@@ -464,15 +464,7 @@ function toggleDatePicker() {
 	}
 
 	isCalendarOpen.value = !isCalendarOpen.value;
-	calendarElement.value = datePickerRef.value;
-
-	let boundingRect = calendarElement.value.getBoundingClientRect();
-
-	if ((boundingRect.top + boundingRect.height + 340) < window.innerHeight) {
-		direction.value = 'down';
-	} else {
-		direction.value = 'up';
-	}
+	dropdownDirection.value = direction(datePickerRef, 340, (props.mobile || props.floatingLabel));
 
 	if (isCalendarOpen.value) {
 		if (props.range && endDate.value) {
@@ -872,11 +864,12 @@ defineExpose({
 
 		&--up {
 			@extend .date-input__calendar;
-			bottom: 68px;
+			bottom: v-bind(dropdownBottomPosition);
 		}
-
+		
 		&--down {
 			@extend .date-input__calendar;
+			top: v-bind(dropdownTopPosition);
 		}
 	}
 }
