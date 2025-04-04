@@ -73,6 +73,23 @@
 					@keydown="handleKeydown"
 				/>
 
+				<div
+					v-else-if="type === 'date'"
+					tabindex="0"
+					:id="componentId"
+					ref="htmlInput"
+					v-bind="props"
+					:placeholder="placeholder"
+					:disabled="disabled"
+					:class="inputClass"
+					:type="type"
+					@focus="handleFocus"
+					@blur="handleBlur"
+					@keydown="handleKeydown"
+				>
+					<small class="base-input__date-text">{{ internalValue || placeholder }}</small>
+				</div>
+
 				<input
 					v-else
 					:id="componentId"
@@ -521,6 +538,13 @@ defineExpose({
 			@extend .base-input__label;
 			width: 100%;
 		}
+	}
+
+	&__date-text {
+		display: block;
+		font-weight: 460;
+		letter-spacing: 0.1px;
+		margin-top: -1px;
 	}
 
 	&__leading-icon-container {
