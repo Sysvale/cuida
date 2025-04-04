@@ -62,8 +62,8 @@
 				<MonthSelectorGrid
 					ref="monthPicker"
 					:selected-date="model"
-					:min-date="minDate"
-					:max-date="maxDate"
+					:min-date="dynamicMinDate"
+					:max-date="dynamicMaxDate"
 					:variant="variant"
 					@click="handleMonthSelection"
 				/>
@@ -222,6 +222,18 @@ const currentYear = computed(() => {
 
 const monthAndYear = computed(() => {
 	return internalValue.value.toFormat('MMMM/yyyy');
+});
+
+const dynamicMinDate = computed(() => {
+	let isTheSameYear = DateTime.fromFormat(props.minDate, 'yyyy-MM-dd').toFormat('yyyy') === currentYear.value;
+
+	return isTheSameYear ? props.minDate : DateTime.fromFormat(`${currentYear.value}-01-01`, 'yyyy-MM-dd').setLocale('pt-BR').toFormat('yyyy-MM-dd');
+});
+
+const dynamicMaxDate = computed(() => {
+	let isTheSameYear = DateTime.fromFormat(props.maxDate, 'yyyy-MM-dd').toFormat('yyyy') === currentYear.value;
+
+	return isTheSameYear ? props.maxDate : DateTime.fromFormat(`${currentYear.value}-12-31`, 'yyyy-MM-dd').setLocale('pt-BR').toFormat('yyyy-MM-dd');
 });
 
 watch(clickedOutside, (newValue) => {
