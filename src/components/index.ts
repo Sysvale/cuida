@@ -60,6 +60,7 @@ import LoadingIndicator from './LoadingIndicator.vue';
 import MobileNavbar from './MobileNavbar.vue';
 import MobileNavigation from './MobileNavigation.vue';
 import Modal from './Modal.vue';
+import MonthAndYearPicker from './MonthAndYearPicker.vue';
 import MultiFileInput from './MultiFileInput.vue';
 import Multiselect from './Multiselect.vue';
 import NavBar from './NavBar.vue';
@@ -189,6 +190,7 @@ export default {
 		app.component('CdsMobileNavbar', MobileNavbar);
 		app.component('CdsMobileNavigation', MobileNavigation);
 		app.component('CdsModal', Modal);
+		app.component('CdsMonthAndYearPicker', MonthAndYearPicker);
 		app.component('CdsMultiselect', Multiselect);
 		app.component('CdsDynamicInputList', DynamicInputList);
 		app.component('CdsMultiFileInput', MultiFileInput);
