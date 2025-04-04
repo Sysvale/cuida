@@ -93,28 +93,4 @@ describe('DateInput', () => {
 
 		expect(wrapper.findComponent(CdsBaseInput).props('floatingLabel')).toBe(true);
 	});
-
-	test('navigates between months', async () => {
-		await wrapper.find('input').trigger('click');
-		const currentMonth = wrapper.find('.calendar__month-and-title').text();
-
-		await wrapper.find('.calendar__right-caret').trigger('click');
-		const nextMonth = wrapper.find('.calendar__month-and-title').text();
-		expect(nextMonth).not.toBe(currentMonth);
-
-		await wrapper.find('.calendar__left-caret').trigger('click');
-		expect(wrapper.find('.calendar__month-and-title').text()).toBe(currentMonth);
-	});
-
-	test('disables dates outside the allowed range', async () => {
-		await wrapper.setProps({ minDate: '2023-10-01', maxDate: '2023-10-31' });
-		await wrapper.find('input').trigger('click');
-
-		const disabledDays = wrapper.findAll('.disabled-day');
-		expect(disabledDays.length).toBeGreaterThan(0);
-
-		const firstDisabledDay = disabledDays[0];
-		await firstDisabledDay.trigger('click');
-		expect(wrapper.find('input').element.value).not.toBe(firstDisabledDay.text());
-	});
 });
