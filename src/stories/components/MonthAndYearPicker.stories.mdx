@@ -43,12 +43,29 @@ import MonthAndYearPicker from '../../components/MonthAndYearPicker.vue';
 				language: 'html',
 				format:true,
 				code: /*html*/ 
-`<cds-badge
-	variant="red"
-	size="md"
->
-	MonthAndYearPicker
-</cds-badge>`
+`<CdsMonthAndYearPicker
+	v-model="modelValue"
+	label="Mês"
+	variant="green"
+	state="default"
+	:required="false"
+	:disabled="false"
+	:fluid="false"
+	:mobile="false"
+	:floatingLabel="true"
+	placeholder="Escolha um mês..."
+	errorMessage="Campo obrigatório"
+	tooltip=""
+	tooltipIcon="info-outline"
+	supportingText="supportingText"
+	supportLink=""
+	supportLinkUrl=""
+	@click="logClick"
+	@change="logChange"
+	@focus="logFocus"
+	@blur="logBlur"
+	@keydown="logKeydown"
+/>`
 			},
 		}
 	}}
