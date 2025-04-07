@@ -121,20 +121,32 @@
 							@click="addItemViaCustomCheckbox(option)"
 						/>
 					</div>
-					{{ option[optionsField] }}
+					<slot
+						name="option"
+						:option="option"
+						:option-field="optionsField"
+					>
+						{{ option[optionsField] }}
+					</slot>
 				</div>
 			</template>
 
 			<template
 				#selection="{ values, isOpen }"
 			>
-				<span
-					v-if="values.length && !isOpen"
-					class="multiselect__single"
+				<slot
+					name="selection"
+					:values="values"
+					:is-open="isOpen"
 				>
-					{{ selectedFancyMessage(values.length) }}
-				</span>
-				<span v-else />
+					<span
+						v-if="values.length && !isOpen"
+						class="multiselect__single"
+					>
+						{{ selectedFancyMessage(values.length) }}
+					</span>
+					<span v-else />
+				</slot>
 			</template>
 
 			<template
