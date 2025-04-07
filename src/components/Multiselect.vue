@@ -138,6 +138,7 @@
 					name="selection"
 					:values="values"
 					:is-open="isOpen"
+					:unselect-item="unselectItem"
 				>
 					<span
 						v-if="values.length && !isOpen"
