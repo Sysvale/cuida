@@ -10,9 +10,10 @@
 		>
 			<CdsBaseInput
 				:id="$attrs.id || id"
+				:key="baseInputControl"
 				ref="baseInput"
 				v-bind="{...$attrs, ...props}"
-				v-model="localValue[optionsField]"
+				:model-value="get(localValue, optionsField)"
 				type="text"
 				autocomplete="off"
 				:onkeypress="`return ${allowSearch};`"
@@ -29,7 +30,7 @@
 				@keydown.arrow-up.prevent="highlightOnArrowUp"
 				@keydown="emitKeydown"
 				@click="activateSelectionOnClick"
-				@input="filterOptions"
+				@update:model-value="filterOptions"
 				@focus="activeSelection"
 				@blur="hide"
 			>
@@ -87,6 +88,7 @@ import {
 import { widths } from '../utils';
 import { generateKey } from '../utils';
 import cloneDeep from 'lodash.clonedeep';
+import { get } from 'lodash';
 import removeAccents from '../utils/methods/removeAccents';
 import CdsBaseInput from './BaseInput.vue';
 
@@ -281,6 +283,7 @@ const cdsSelect = useTemplateRef('cds-select');
 const selectOptions = useTemplateRef('select-options');
 const liRefs = ref({});
 const { emitClick, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
+const baseInputControl = ref(0);
 
 /* COMPUTED */
 const resolveChevronTop = computed(() => {
@@ -331,7 +334,7 @@ watch(() => props.options, (newValue, oldValue) => {
 	}
 }, { immediate: true });
 
-watch(model, (newValue, oldValue) => { 
+watch(model, (newValue, oldValue) => {
 	if (newValue !== oldValue && newValue !== localValue.value) {
 		if (newValue instanceof Object) {
 			localValue.value = newValue;
@@ -371,8 +374,8 @@ onMounted(() => {
 });
 
 /* FUNCTIONS */
-function filterOptions() {
-	const sanitizedString = removeAccents(localValue.value[props.optionsField]);
+function filterOptions(value) {
+	const sanitizedString = removeAccents(String(value) || '');
 	const regexExp = new RegExp(sanitizedString, 'i');
 
 	localOptions.value = props.options.filter(
@@ -387,7 +390,7 @@ function activeSelection() {
 
 	nextTick().then(() => {
 		const element = localOptions.value[currentPos.value];
-		liRefs.value[`${element[props.optionsField]}-${currentPos.value}`].classList.add('highlight');
+		liRefs.value[`${get(element, props.optionsField)}-${currentPos.value}`]?.classList.add('highlight');
 	});
 	emitFocus();
 }
@@ -400,11 +403,12 @@ function activateSelectionOnEnter() {
 	resetActiveSelection();
 
 	if (typeof localOptions.value[currentPos.value] === 'undefined') {
-		localOptions.value = pristineOptions.value;
+		localValue.value = cloneDeep(localOptions.value[0]);
 	} else {
 		localValue.value = cloneDeep(localOptions.value[currentPos.value]);
 	}
 
+	baseInputControl.value += 1;
 	select.value.blur();
 }
 
@@ -426,7 +430,7 @@ function activateSelectionOnClick() {
 }
 
 function hide() {
-	localValue.value = props.options.some(item => item[props.optionsField]?.toLowerCase() === localValue.value[props.optionsField]?.toLowerCase())
+	localValue.value = props.options.some(item => item[props.optionsField]?.toLowerCase() === get(localValue.value, props.optionsField)?.toLowerCase())
 		? localValue.value
 		: {};
 	localOptions.value = pristineOptions.value;
@@ -664,7 +668,7 @@ defineExpose({
 			border-left: 3px solid transparent;
 			background-clip: padding-box;
 		}
-		
+
 		&::-webkit-scrollbar-thumb:hover {
 			background: $n-50;
 		}
