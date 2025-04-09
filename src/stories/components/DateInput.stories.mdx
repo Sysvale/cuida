@@ -120,6 +120,14 @@ export const SingleDate = (args) => ({
 				@keydown="logKeydown"
 			/>
 		</div>`,
+		updated() {
+			console.info('%cv-model: ', 'color: #2C70CD;', this.modelValue);
+			console.info('%cgetDMYFormat: ', 'color: #2C70CD;', this.$refs.dateInput.getDMYFormat());
+			console.info('%ctoISO: ', 'color: #2C70CD;', this.$refs.dateInput.toISO());
+			console.info('%ctoString: ', 'color: #2C70CD;', this.$refs.dateInput.toString());
+			console.info('%ctoJSDate: ', 'color: #2C70CD;', this.$refs.dateInput.toJSDate());
+			console.info('%ctoDateTime: ', 'color: #2C70CD;', this.$refs.dateInput.toDateTime());
+		},
 });
 
 export const Range = (args) => ({
@@ -273,6 +281,56 @@ export const Mobile = (args) => ({
 				@keydown="logKeydown"
 			/>
 		</div>`,
+});
+
+export const TypingMode = (args) => ({
+	components: { CdsDateInput: DateInput },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			modelValue: '',
+		};
+	},
+	template: /*html*/ `
+		<div class="preview-container">
+			<CdsDateInput
+				ref="dateInput"
+				v-model="modelValue"
+				label="Data"
+				variant="green"
+				state="default"
+				:range="false"
+				:required="false"
+				:disabled="false"
+				:fluid="false"
+				:floatingLabel="false"
+				:showTodayDot="true"
+				:highlightToday="true"
+				placeholder="Insira uma data..."
+				errorMessage="Campo obrigatório"
+				mode="typing"
+				tooltip=""
+				tooltipIcon="info-outline"
+				supportingText="supportingText"
+				supportLink=""
+				supportLinkUrl=""
+				@click="logClick"
+				@change="logChange"
+				@focus="logFocus"
+				@blur="logBlur"
+				@keydown="logKeydown"
+			/>
+		</div>`,
+	updated() {
+			console.info('%cv-model: ', 'color: #2C70CD;', this.modelValue);
+			console.info('%cgetDMYFormat: ', 'color: #2C70CD;', this.$refs.dateInput.getDMYFormat());
+			console.info('%ctoISO: ', 'color: #2C70CD;', this.$refs.dateInput.toISO());
+			console.info('%ctoString: ', 'color: #2C70CD;', this.$refs.dateInput.toString());
+			console.info('%ctoJSDate: ', 'color: #2C70CD;', this.$refs.dateInput.toJSDate());
+			console.info('%ctoDateTime: ', 'color: #2C70CD;', this.$refs.dateInput.toDateTime());
+		},
 });
 
 export const DefaultTemplate = (args) => ({
@@ -540,6 +598,50 @@ Controla o estilo visual do input, ativando o comportamento de "label flutuante"
 <br />
 
 
+### __Digitação__
+
+O modo de digitação é ativado passando-se o valor `typing` para a prop `mode`.
+Nesse deixa de ser possível selecionar a data pelo picker.
+
+
+<Story
+	name="typing"
+>
+	{ TypingMode.bind({}) }
+</Story>
+
+```html
+	<CdsDateInput
+		ref="dateInput"
+		v-model="modelValue"
+		label="Data"
+		variant="green"
+		state="default"
+		:range="false"
+		:required="false"
+		:disabled="false"
+		:fluid="false"
+		:mobile="true"
+		:floatingLabel="false"
+		:showTodayDot="true"
+		:highlightToday="true"
+		placeholder="Insira uma data..."
+		errorMessage="Campo obrigatório"
+		tooltip=""
+		mode="typing"
+		tooltipIcon="info-outline"
+		supportingText="supportingText"
+		supportLink=""
+		supportLinkUrl=""
+		@click="logClick"
+		@change="logChange"
+		@focus="logFocus"
+		@blur="logBlur"
+		@keydown="logKeydown"
+	/>
+```
+<br />
+
 ## Preview
 
 <Canvas>
@@ -554,6 +656,7 @@ Controla o estilo visual do input, ativando o comportamento de "label flutuante"
 			disabled: false,
 			fluid: false,
 			mobile: false,
+			mode: 'typing',
 			floatingLabel: false,
 			showTodayDot: true,
 			highlightToday: true,
