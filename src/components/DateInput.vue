@@ -17,7 +17,7 @@
 		/>
 
 		<CdsBaseInput
-			v-if="mode === 'picking'"
+			v-if="mode !== 'typing'"
 			ref="baseInput"
 			v-bind="props"
 			v-model="internalValue"
@@ -41,7 +41,7 @@
 			</template>
 		</CdsBaseInput>
 
-		<Transition v-if="mode === 'picking'" name="calendar-animation">
+		<Transition v-if="mode !== 'typing'" name="calendar-animation">
 			<div
 				v-show="isCalendarOpen"
 				ref="calendar"
