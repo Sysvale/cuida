@@ -4,6 +4,20 @@
 		class="date-input"
 	>
 		<CdsBaseInput
+			v-if="mode === 'typing'"
+			ref="baseInput"
+			v-bind="props"
+			v-model="internalValue"
+			type="text"
+			v-facade="'##/##/####'"
+			:floating-label="floatingLabel || mobile"
+			@blur="handleTypeUpdate"
+			@keydown.enter.prevent="handleTypeUpdate"
+			@keydown.tab.prevent="handleTypeUpdate"
+		/>
+
+		<CdsBaseInput
+			v-if="mode !== 'typing'"
 			ref="baseInput"
 			v-bind="props"
 			v-model="internalValue"
@@ -27,7 +41,7 @@
 			</template>
 		</CdsBaseInput>
 
-		<Transition name="calendar-animation">
+		<Transition v-if="mode !== 'typing'" name="calendar-animation">
 			<div
 				v-show="isCalendarOpen"
 				ref="calendar"
@@ -306,6 +320,22 @@ const props = defineProps({
 	supportLinkUrl: {
 		type: String,
 		default: 'https://cuida.framer.wiki/',
+	},
+	/**
+	* Controla a marcação do dia atual no calendário.
+	*/
+	highlightToday: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Define o modo de interação com o DateInput. Quando definido como 'typing', o componente permite apenas
+	* digitação. No modo 'picking', a data deve ser selecionada através do date picker, desabilitando a digitação direta.
+	*/
+	mode: {
+		type: String,
+		default: 'picking',
+		validator: (value) => (['typing', 'picking']).includes(value),
 	},
 });
 
@@ -818,6 +848,11 @@ function toggleYearPickerDisplay() {
 	if (props.range) return;
 	showMonthPicker.value = false;
 	showYearPicker.value = !showYearPicker.value;
+}
+
+function handleTypeUpdate() {
+	model.value =  DateTime.fromFormat(internalValue.value, 'dd/MM/yyyy')
+		.setLocale('pt-BR').toFormat('yyyy-MM-dd');
 }
 
 /* EXPOSE */
