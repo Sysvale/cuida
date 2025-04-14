@@ -10,6 +10,7 @@
 			type="date"
 			:floating-label="floatingLabel || mobile"
 			:readonly="props.range"
+			disableAutocomplete
 			@click="toggleDatePicker"
 			@focus="emitFocus"
 			@blur="handleBlur"

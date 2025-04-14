@@ -10,6 +10,7 @@
 			type="text"
 			:floating-label="floatingLabel || mobile"
 			:readonly="true"
+			disableAutocomplete
 			@click="toggleDatePicker"
 		>
 			<template #trailing-icon>

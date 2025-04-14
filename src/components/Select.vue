@@ -15,7 +15,7 @@
 				v-bind="{...$attrs, ...props}"
 				:model-value="get(localValue, optionsField)"
 				type="text"
-				autocomplete="off"
+				disableAutocomplete
 				:onkeypress="`return ${allowSearch};`"
 				:placeholder="placeholder"
 				:disabled="disabled"
