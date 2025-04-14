@@ -83,6 +83,7 @@
 					:disabled="disabled"
 					:class="inputClass"
 					:type="type"
+					:disableAutocomplete="computedAutocompleteProp"
 					@focus="handleFocus"
 					@blur="handleBlur"
 					@keydown="handleKeydown"
@@ -101,6 +102,7 @@
 					:placeholder="placeholder"
 					:disabled="disabled"
 					:class="inputClass"
+					:disableAutocomplete="computedAutocompleteProp"
 					:type="type"
 					@focus="handleFocus"
 					@blur="handleBlur"
@@ -342,6 +344,13 @@ const props = defineProps({
 		type: String,
 		default: '',
 	},
+	/**
+	* Desabilita autocomplete do browser.
+	*/
+	disableAutocomplete: {
+		type: Boolean,
+		default: true,
+	},
 });
 
 const emits = defineEmits({
@@ -359,6 +368,8 @@ const baseMobileInputRef = useTemplateRef('mobileInput');
 const componentId = `cds-base-input-${props.type}-${props.id || generateKey()}`;
 
 /* COMPUTED */
+const computedAutocompleteProp = computed(() => props.disableAutocomplete ? 'off' : 'on');
+
 const baseInputClass = computed(() => {
 	let inputClass = props.fluid ? 'base-input--fluid' : 'base-input';
 
