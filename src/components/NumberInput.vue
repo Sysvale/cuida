@@ -25,7 +25,6 @@
 			:floating-label="floatingLabel || mobile"
 			:support-link="supportLink || linkText"
 			:support-link-url="supportLinkUrl || linkUrl"
-			disableAutocomplete
 			@click="emitClick"
 			@change="handleChange"
 			@focus="handleFocus"
