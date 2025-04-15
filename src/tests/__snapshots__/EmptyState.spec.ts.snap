@@ -15,7 +15,9 @@ exports[`EmptyState > renders correctly 1`] = `
 			@type {Event}
 		--><button data-v-3c9d0845="" data-v-f262d0f3="" class="button__container button--green--active button-size--md empty-state__button">
     <!--v-if-->
+    <!--v-if-->
     <!-- @slot Slot padrão utilizado para exibir texto do botão. -->Finalizar
+    <!--v-if-->
   </button>
 </div>"
 `;

@@ -23,6 +23,16 @@ import DropdownButton from '../../components/DropdownButton.vue';
 				],
 			}
 		},
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
 	}}
 	parameters={{
 		viewMode: 'docs',
@@ -108,6 +118,7 @@ export const items = [
 		args={{
 			text: 'Finalizar solicitação',
 			items: items,
+			size: 'md',
 			variant: 'green',
 			secondary: true,
 		}}
