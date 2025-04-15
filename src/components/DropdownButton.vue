@@ -1,22 +1,23 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div>
-		<span
+		<cds-button
 			:id="id"
-			ref="dropdownButtonRef"
-			:class="dropDownButtonClasses"
-			class="dropdown-button__container"
+			:variant="variant"
+			:size="size"
+			:text="text"
+			:secondary="secondary"
+			:ghost="ghost"
 			@click="activeSelection"
 		>
-			<span class="dropdown-button__text">{{ text }} </span>
-
-			<cds-chevron
-				animate
-				size="sm"
-				:light="!secondary && !ghost"
-				:direction="isActive ? 'bottom' : 'top'"
-			/>
-		</span>
+			<template #append>
+				<cds-chevron
+					animate
+					size="sm"
+					:light="!secondary && !ghost"
+					:direction="isActive ? 'bottom' : 'top'"
+				/>
+			</template>
+		</cds-button>
 
 		<div
 			v-if="isActive"
@@ -51,12 +52,13 @@
 </template>
 
 <script>
-/* eslint-disable no-underscore-dangle */
+import CdsButton from './Button.vue';
 import CdsChevron from './Chevron.vue';
 import CdsIcon from './Icon.vue';
 
 export default {
 	components: {
+		CdsButton,
 		CdsIcon,
 		CdsChevron,
 	},
@@ -111,6 +113,16 @@ export default {
 			type: Number,
 			default: 0,
 		},
+		/**
+		 * Especifica o tamanho do botão. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
+		 */
+		size: {
+			type: String,
+			default: 'md',
+			validator(value) {
+				return ['sm', 'md', 'lg'].includes(value);
+			},
+		},
 	},
 
 	data() {
@@ -140,18 +152,6 @@ export default {
 				'--width': `${this.dropdownWidth}px`,
 			};
 		},
-
-		dropDownButtonClasses() {
-			if (this.ghost) {
-				return 'dropdown-button__container--ghost ';
-			}
-
-			if (this.secondary) {
-				return 'dropdown-button__container--secondary ';
-			}
-
-			return `dropdown-button__container--${this.variant}`;
-		}
 	},
 
 	mounted() {
@@ -202,45 +202,6 @@ export default {
 @import '../assets/sass/tokens.scss';
 
 .dropdown-button {
-	&__container {
-		display: inline-flex;
-		align-items: center;
-		padding: px(5);
-		border-radius: $border-radius-extra-small;
-		cursor: pointer;
-		height: 40px;
-		background-color: $n-10;
-
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
-			color: $n-0;
-			background-color: $base-color;
-			outline: 1px solid $shade-500;
-		}
-
-		&--secondary {
-			color: $n-700;
-			outline: 1px solid $n-100;
-			background-color: $n-10;
-		}
-
-		&--ghost {
-			padding: px(5);
-			background: none;
-			color: $n-800;
-			cursor: pointer;
-
-			&:hover {
-				background-color: $n-10;
-			}
-		}
-	}
-
-	&__text {
-		@include body-2;
-		font-weight: $font-weight-semibold;
-		margin: mr(2);
-	}
-
 	&__dropdown {
 		min-width: var(--width);
 		background-color: $n-0;
@@ -255,7 +216,6 @@ export default {
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
-
 	}
 }
 
