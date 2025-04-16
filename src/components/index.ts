@@ -120,6 +120,7 @@ import { unmaskBRL } from '@/utils/directives/cdsBRL';
 
 /* UTILS */
 import contrastChecker from '@/utils/methods/contrastChecker';
+import uuidv4 from '@/utils/methods/uuidv4';
 import hasSlot from '@/utils/methods/hasSlot';
 import removeAccents from '@/utils/methods/removeAccents';
 import hexToRgb from '@/utils/methods/hexToRgb';
@@ -256,5 +257,6 @@ export default {
 		useHasSlot,
 		useHasSlots,
 		unmaskBRL,
+		uuidv4,
 	},
 }
