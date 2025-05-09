@@ -75,9 +75,9 @@
 
 				<div
 					v-else-if="type === 'date'"
-					tabindex="0"
 					:id="componentId"
 					ref="htmlInput"
+					tabindex="0"
 					v-bind="props"
 					:placeholder="placeholder"
 					:disabled="disabled"
@@ -91,23 +91,34 @@
 					<small class="base-input__date-text">{{ internalValue || placeholder }}</small>
 				</div>
 
-				<input
+				<div 
 					v-else
-					:id="componentId"
-					ref="htmlInput"
-					v-bind="props"
-					v-model="internalValue"
-					:required="required"
-					:readonly="readonly"
-					:placeholder="placeholder"
-					:disabled="disabled"
-					:class="inputClass"
-					:autocomplete="computedAutocompleteProp"
-					:type="type"
-					@focus="handleFocus"
-					@blur="handleBlur"
-					@keydown="handleKeydown"
+					style="width: 100%;"
 				>
+					<div
+						v-if="enableTopContent"
+						class="base-input__top-content"
+					>
+						<slot name="top-content" />
+					</div>
+
+					<input
+						:id="componentId"
+						ref="htmlInput"
+						v-bind="props"
+						v-model="internalValue"
+						:required="required"
+						:readonly="readonly"
+						:placeholder="placeholder"
+						:disabled="disabled"
+						:class="inputClass"
+						:autocomplete="computedAutocompleteProp"
+						:type="type"
+						@focus="handleFocus"
+						@blur="handleBlur"
+						@keydown="handleKeydown"
+					>
+				</div>
 
 				<div
 					v-if="isLoading && !disabled"
@@ -351,6 +362,13 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	 * Habilita exibição de conteudo na parte superior do input
+	 */
+	enableTopContent: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const emits = defineEmits({
@@ -528,6 +546,14 @@ defineExpose({
 	justify-content: space-between;
 	position: relative;
 	cursor: v-bind(computedCursor);
+
+	&__top-content {
+		padding: pa(1);
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: spacer(2);
+	}
 
 	&__supporting-text-container {
 		@extend %custom-ul;
