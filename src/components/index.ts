@@ -63,6 +63,7 @@ import Modal from './Modal.vue';
 import MonthAndYearPicker from './MonthAndYearPicker.vue';
 import MultiFileInput from './MultiFileInput.vue';
 import Multiselect from './Multiselect.vue';
+import Combobox from './Combobox.vue';
 import NavBar from './NavBar.vue';
 import NumberInput from './NumberInput.vue';
 import OverlayLoader from './OverlayLoader.vue';
@@ -193,6 +194,7 @@ export default {
 		app.component('CdsModal', Modal);
 		app.component('CdsMonthAndYearPicker', MonthAndYearPicker);
 		app.component('CdsMultiselect', Multiselect);
+        app.component('CdsCombobox', Combobox);
 		app.component('CdsDynamicInputList', DynamicInputList);
 		app.component('CdsMultiFileInput', MultiFileInput);
 		app.component('CdsNavBar', NavBar);
