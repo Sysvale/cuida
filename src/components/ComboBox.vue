@@ -68,7 +68,7 @@
 					>
 						<cds-check-box
 							:variant="variant"
-							:label="option.value"
+							:label="option[optionsValueField]"
 							:prominent="isSelected(option[optionsKeyField])"
 							:model-value="isSelected(option[optionsKeyField])"
 						/>
