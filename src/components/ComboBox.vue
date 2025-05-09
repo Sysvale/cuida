@@ -1,7 +1,6 @@
 <template>
 	<div
 		ref="cds-combobox"
-		v-cds-click-outside="onClickOutside"
 		class="combobox"
 	>
 		<div
@@ -9,7 +8,7 @@
 			:class="fluid ? 'combobox__container--fluid' : 'combobox__container--fit'"
 		>
 			<cds-base-input
-				v-model="searchTerm"
+				:model-value="searchTerm"
 				:enable-top-content="modelValue.length > 0"
 				:label="label"
 				:placeholder="`Buscar ${label.toLowerCase()}`"
@@ -23,8 +22,7 @@
 				@keydown.enter="handleKeyDown"
 				@click="handleClick"
 				@focus="openDropdownIfNeeded"
-				@blur="emitBlur"
-				@input="(e) => searchTerm = e.target.value"
+				@update:model-value="(value) => searchTerm = value"
 			>
 				<template #top-content>
 					<div
@@ -90,7 +88,8 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, useTemplateRef } from 'vue';
+import { onClickOutside } from '@vueuse/core';
 import CdsBaseInput from './BaseInput.vue';
 import CdsDivider from './Divider.vue';
 import CdsCheckBox from './Checkbox.vue';
@@ -203,7 +202,7 @@ const isOpen = ref(false);
 const searchTerm = ref('');
 
 const modelValue = defineModel({ type: Array, default: () => [] });
-
+const componentContainer = useTemplateRef('cds-combobox');
 
 /* COMPUTED */
 const selectContainerWidth = computed(() => {
@@ -256,6 +255,11 @@ watch(selected, () => {
 	modelValue.value = localOptions.value.filter(option => selected.value.has(option[props.optionsKeyField]))
 }, { deep: true })
 
+onClickOutside(componentContainer, () => {
+	isOpen.value = false;
+	searchTerm.value = '';
+});
+
 /* FUNCTIONS */
 const isSelected = (option) => selected.value.has(option);
 
@@ -292,11 +296,6 @@ const toggleAddNewOption = () => {
 const handleKeyDown = () => {
 	toggleAddNewOption();
 };
-
-const onClickOutside = () => {
-	isOpen.value = false;
-	searchTerm.value = '';
-}
 
 const toggleDropdown = () => {
 	isOpen.value = !isOpen.value;
