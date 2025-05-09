@@ -20,7 +20,7 @@
 				:fluid="fluid"
 				:tooltip="tooltip"
 				:tooltip-icon="tooltipIcon"
-				@keydown="handleKeyDown"
+				@keydown.enter="handleKeyDown"
 				@click="handleClick"
 				@focus="openDropdownIfNeeded"
 				@blur="emitBlur"
@@ -32,6 +32,7 @@
 						:key="option[optionsKeyField] || index"
 					>
 						<cds-badge
+							style="cursor: pointer;"
 							:variant="variant"
 							size="md"
 							@click="toggleSelection(option)"
@@ -275,8 +276,12 @@ const deselectAll = () => {
 };
 
 const toggleAddNewOption = () => {
+	if (!searchTerm.value.trim()) {
+		return;
+	}
+
 	const newOption = {
-		[props.optionsValueField]: searchTerm.value,
+		[props.optionsValueField]: searchTerm.value.trim(),
 		[props.optionsKeyField]: searchTerm.value.toLowerCase().trim().replace(/ /g, '-'),
 	};
 	selected.value.add(newOption[props.optionsKeyField]);
@@ -284,12 +289,8 @@ const toggleAddNewOption = () => {
 	searchTerm.value = '';
 };
 
-const handleKeyDown = (event) => {
-	if (event.key === 'Enter'
-		&& searchTerm.value.trim() !== ''
-		&& !showAddNewOption.value) {
-		toggleAddNewOption();
-	}
+const handleKeyDown = () => {
+	toggleAddNewOption();
 };
 
 const onClickOutside = () => {
@@ -302,9 +303,11 @@ const toggleDropdown = () => {
 };
 
 const openDropdownIfNeeded = () => {
-	if (!isOpen.value && (!searchTerm.value || searchTerm.value.trim() !== '')) {
-		isOpen.value = true;
+	if (isOpen.value || (searchTerm.value && searchTerm.value.trim() === '')) {
+		return;
 	}
+
+	isOpen.value = true;
 };
 
 const handleClick = () => {
@@ -451,6 +454,7 @@ const handleClick = () => {
 
 	&__button {
 		@extend .option__text;
+		cursor: pointer;
 		border-top: 1px solid $n-30;
 		font-weight: $font-weight-semibold;
 		background-color: $n-20;
