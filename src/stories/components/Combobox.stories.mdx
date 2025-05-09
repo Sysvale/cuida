@@ -1,9 +1,9 @@
 import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
-import Combobox from '../../components/Combobox.vue';
+import ComboBox from '../../components/ComboBox.vue';
 
 <Meta
-	title="Componentes/Forms/Combobox"
-	component={ Combobox }
+	title="Componentes/Forms/ComboBox"
+	component={ ComboBox }
 	argTypes={{
 		variant: {
 			control:{
@@ -33,7 +33,7 @@ import Combobox from '../../components/Combobox.vue';
 				language: 'html',
 				format:true,
 				code: /*html*/ 
-`<cds-combobox
+`<cds-combo-box
 	:value="value"
 	:options="options"
 	:optionsKeyField="optionsKeyField"
@@ -49,7 +49,7 @@ import Combobox from '../../components/Combobox.vue';
 />
 
 export const Template = (args) => ({
-	components: { CdsCombobox: Combobox },
+	components: { CdsComboBox: ComboBox },
 	setup() {
 		return { args };
 	},
@@ -59,7 +59,7 @@ export const Template = (args) => ({
 		};
 	},
 	template: /*html*/ `
-		<cds-combobox
+		<cds-combo-box
 			v-bind="args" 
 			v-model="value"
 			@click="logClick"
@@ -91,9 +91,9 @@ export const Template = (args) => ({
 	},
 });
 
-# Combobox
+# ComboBox
 
-### O Combobox é um componente que permite ao usuário selecionar múltiplas opções filtráveis e opcionalmente, adicionar novas opções.
+### O ComboBox é um componente que permite ao usuário selecionar múltiplas opções filtráveis e opcionalmente, adicionar novas opções.
 
 ---
 

@@ -10,7 +10,7 @@
 		>
 			<cds-base-input
 				v-model="searchTerm"
-				enable-top-content
+				:enable-top-content="modelValue.length > 0"
 				:label="label"
 				:placeholder="`Buscar ${label.toLowerCase()}`"
 				:state="state"
@@ -65,13 +65,13 @@
 						:key="option[optionsKeyField] || index"
 						class="option__text"
 						:class="{ 'option__text--selected': isSelected(option[optionsKeyField]) }"
+						@click="toggleSelection(option, isSelected(option[optionsKeyField]))"
 					>
 						<cds-check-box
 							:variant="variant"
 							:label="option.value"
 							:prominent="isSelected(option[optionsKeyField])"
 							:model-value="isSelected(option[optionsKeyField])"
-							@update:model-value="checked => toggleSelection(option, checked)"
 						/>
 					</div>
 				</div>
@@ -446,6 +446,7 @@ const handleClick = () => {
 		list-style-type: none;
 		margin: 0;
 		padding: 0;
+		cursor: pointer;
 	}
 
 	&__button {
