@@ -74,7 +74,6 @@
 						/>
 					</div>
 				</div>
-
 				<div
 					v-if="!showAddNewOption && searchTerm.length !== 0"
 					class="option__button"
@@ -240,7 +239,7 @@ const filteredOptions = computed(() => {
 const showAddNewOption = computed(() => {
 	return localOptions.value.some(option => 
 		option[props.optionsValueField]
-			.toLowerCase() === searchTerm.value.toLowerCase()
+			.toLowerCase() === searchTerm.value.trim().toLowerCase()
 	);
 });
 
@@ -254,6 +253,15 @@ watch(() => props.options, (newValue, oldValue) => {
 watch(selected, () => {
 	modelValue.value = localOptions.value.filter(option => selected.value.has(option[props.optionsKeyField]))
 }, { deep: true })
+
+watch(props.modelValue, (newValue) => {
+	if (newValue && newValue.length > 0) {
+		const preSelected = new Set(
+			newValue.map(item => item[props.optionsKeyField])
+		);
+		selected.value = preSelected;
+	}
+}, { immediate: true });
 
 onClickOutside(componentContainer, () => {
 	isOpen.value = false;
@@ -280,7 +288,7 @@ const deselectAll = () => {
 };
 
 const toggleAddNewOption = () => {
-	if (!searchTerm.value.trim()) {
+	if (showAddNewOption.value) {
 		return;
 	}
 

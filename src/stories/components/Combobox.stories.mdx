@@ -55,7 +55,12 @@ export const Template = (args) => ({
 	},
 	data() {
 		return {
-			value: []
+			value: [
+				{
+					value: 'Breaking Bad',
+					name: 'breaking-bad',
+				},
+			]
 		};
 	},
 	template: /*html*/ `
@@ -131,7 +136,6 @@ export const options = [
 		name: 'game-of-thrones',
 	},
 ];
-
 
 <Canvas>
 	<Story
