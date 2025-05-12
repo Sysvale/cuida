@@ -7,7 +7,7 @@
 			class="combobox__container"
 			:class="fluid ? 'combobox__container--fluid' : 'combobox__container--fit'"
 		>
-			<cds-base-input
+			<CdsBaseInput
 				:model-value="searchTerm"
 				:enable-top-content="modelValue.length > 0"
 				:label="label"
@@ -29,17 +29,27 @@
 						v-for="(option, index) in modelValue"
 						:key="option[optionsKeyField] || index"
 					>
-						<cds-badge
+						<CdsBadge
 							style="cursor: pointer;"
 							:variant="variant"
 							size="md"
 							@click="toggleSelection(option)"
 						>
-							{{ option[optionsValueField] }}
-						</cds-badge>
+							<div class="badge">
+								<CdsTruncate width="220">
+									{{ option[optionsValueField] }}
+								</CdsTruncate>
+								<CdsIcon
+									class="badge__icon"
+									name="x-outline"
+									height="12"
+									width="12"
+								/>
+							</div>
+						</CdsBadge>
 					</div>
 				</template>
-			</cds-base-input>
+			</CdsBaseInput>
 			<div
 				v-if="isOpen"
 				ref="combobox-options"
@@ -50,7 +60,7 @@
 					v-if="localOptions.length > 0"
 					class="option__container"
 				>
-					<cds-check-box
+					<CdsCheckBox
 						class="option__text"
 						:variant="variant"
 						:label="selectAllFancyMessage"
@@ -58,7 +68,7 @@
 						:indeterminate="notAllSelect"
 						@update:model-value="hasSelect ? deselectAll() : selectAll()"
 					/>
-					<cds-divider light />
+					<CdsDivider light />
 					<div
 						v-for="(option, index) in filteredOptions"
 						:key="option[optionsKeyField] || index"
@@ -66,7 +76,7 @@
 						:class="{ 'option__text--selected': isSelected(option[optionsKeyField]) }"
 						@click="toggleSelection(option, isSelected(option[optionsKeyField]))"
 					>
-						<cds-check-box
+						<CdsCheckBox
 							:variant="variant"
 							:label="option[optionsValueField]"
 							:prominent="isSelected(option[optionsKeyField])"
@@ -75,7 +85,13 @@
 					</div>
 				</div>
 				<div
-					v-if="!showAddNewOption && searchTerm.length !== 0"
+					v-if="isOpen && localOptions.length === 0 && searchTerm.length === 0"
+					class="combobox__empty"
+				>
+					Nenhuma opção encontrada
+				</div>
+				<div
+					v-if="!searchTermIsOnOptions && hasValueOnSearchTeam"
 					class="option__button"
 					@click="toggleAddNewOption"
 				>
@@ -93,6 +109,8 @@ import CdsBaseInput from './BaseInput.vue';
 import CdsDivider from './Divider.vue';
 import CdsCheckBox from './Checkbox.vue';
 import CdsBadge from './Badge.vue';
+import CdsTruncate from './Truncate.vue';
+import CdsIcon from './Icon.vue';
 
 const props = defineProps({
 	/**
@@ -212,10 +230,6 @@ const optionContainerWidth = computed(() => {
 	return props.fluid ? '100%' : '266px';
 });
 
-const optionContainerHeight = computed(() => {
-	return props.options.length !== 0 ? 'auto' : '44px'
-});
-
 const selectAllFancyMessage = computed(() => {
 	return modelValue.value.length >= 1
 		? 'Desfazer seleção'
@@ -236,11 +250,13 @@ const filteredOptions = computed(() => {
 	);
 });
 
-const showAddNewOption = computed(() => {
+const hasValueOnSearchTeam = computed(() => !!searchTerm.value.trim());
+
+const searchTermIsOnOptions = computed(() => {
 	return localOptions.value.some(option => 
 		option[props.optionsValueField]
 			.toLowerCase() === searchTerm.value.trim().toLowerCase()
-	);
+	)
 });
 
 /* WATCHERS */
@@ -288,7 +304,7 @@ const deselectAll = () => {
 };
 
 const toggleAddNewOption = () => {
-	if (showAddNewOption.value) {
+	if (!hasValueOnSearchTeam.value || searchTermIsOnOptions.value) {
 		return;
 	}
 
@@ -340,10 +356,15 @@ const handleClick = () => {
 			}
 		}
 
+		&__empty {
+			padding: spacer(3);
+			color: $n-300;
+		}
+
 		&__options {
 			@include body-2;
 			width: v-bind(optionContainerWidth);
-			height: v-bind(optionContainerHeight) !important;
+			height: auto;
 			color: $n-700;
 			outline: 1px solid $n-40;
 			display: flex;
@@ -468,6 +489,17 @@ const handleClick = () => {
 		position: sticky; 
 		bottom: 0;
 		z-index: 1;
+	}
+}
+
+.badge {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: spacer(1);
+
+	&__icon {
+		margin-top: 2px;
 	}
 }
 </style>
