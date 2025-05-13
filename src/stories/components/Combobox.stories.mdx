@@ -34,7 +34,7 @@ import ComboBox from '../../components/ComboBox.vue';
 				format:true,
 				code: /*html*/ 
 `<cds-combo-box
-	:value="value"
+	v-model="value"
 	:options="options"
 	:optionsKeyField="optionsKeyField"
 	:optionsValueField="optionsValueField"
@@ -56,11 +56,11 @@ export const Template = (args) => ({
 	data() {
 		return {
 			value: [
-				{
-					value: 'Breaking Bad',
-					name: 'breaking-bad',
-				},
-			]
+                {
+                    value: 'Breaking Bad',
+                    name: 'breaking-bad',
+                },
+            ]
 		};
 	},
 	template: /*html*/ `
