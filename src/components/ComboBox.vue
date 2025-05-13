@@ -42,8 +42,8 @@
 								<CdsIcon
 									class="badge__icon"
 									name="x-outline"
-									height="14"
-									width="14"
+									height="12"
+									width="12"
 								/>
 							</div>
 						</CdsBadge>
@@ -287,6 +287,15 @@ watchEffect(() => {
 		selected.value = newSelected;
 	}
 });
+
+watch(props.modelValue, (newValue) => {
+	if (newValue && newValue.length > 0) {
+		const preSelected = new Set(
+			newValue.map(item => item[props.optionsKeyField])
+		);
+		selected.value = preSelected;
+	}
+}, { immediate: true });
 
 onClickOutside(componentContainer, () => {
 	isOpen.value = false;
