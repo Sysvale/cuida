@@ -210,7 +210,7 @@ const props = defineProps({
 	},
 });
 
-defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue']);
 
 /* REACTIVE DATA */
 const localOptions = ref([]);
@@ -296,6 +296,10 @@ watch(props.modelValue, (newValue) => {
 		selected.value = preSelected;
 	}
 }, { immediate: true });
+
+watch(selected, () => {
+	emit('update:modelValue', Array.from(selected.value));
+}, { deep: true, immediate: true })
 
 onClickOutside(componentContainer, () => {
 	isOpen.value = false;
