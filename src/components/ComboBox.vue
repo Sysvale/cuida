@@ -78,7 +78,7 @@
 					>
 						<CdsCheckBox
 							:variant="variant"
-							:label="option.value"
+							:label="option[optionsValueField]"
 							:prominent="isSelected(option)"
 							:model-value="isSelected(option)"
 						/>
