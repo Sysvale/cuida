@@ -9,7 +9,7 @@
 		>
 			<CdsBaseInput
 				:model-value="searchTerm"
-				:enable-top-content="modelValue.length > 0"
+				:enable-top-content="selected.size > 0"
 				:label="label"
 				:placeholder="`Buscar ${label.toLowerCase()}`"
 				:state="state"
@@ -26,8 +26,8 @@
 			>
 				<template #top-content>
 					<div
-						v-for="(option, index) in modelValue"
-						:key="option[optionsKeyField] || index"
+						v-for="(option, index) in selected"
+						:key="index"
 					>
 						<CdsBadge
 							style="cursor: pointer;"
@@ -78,9 +78,9 @@
 					>
 						<CdsCheckBox
 							:variant="variant"
-							:label="option[optionsValueField]"
-							:prominent="isSelected(option[optionsKeyField])"
-							:model-value="isSelected(option[optionsKeyField])"
+							:label="option.value"
+							:prominent="isSelected(option)"
+							:model-value="isSelected(option)"
 						/>
 					</div>
 				</div>
@@ -103,7 +103,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, useTemplateRef } from 'vue';
+import { ref, computed, watch, useTemplateRef, watchEffect } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 import CdsBaseInput from './BaseInput.vue';
 import CdsDivider from './Divider.vue';
@@ -231,14 +231,14 @@ const optionContainerWidth = computed(() => {
 });
 
 const selectAllFancyMessage = computed(() => {
-	return modelValue.value.length >= 1
+	return selected.value.size >= 1
 		? 'Desfazer seleção'
 		: 'Selecionar todos'
 });
 
-const hasSelect = computed(() => modelValue.value.length > 0);
+const hasSelect = computed(() => selected.value.size > 0);
 
-const allSelect = computed(() => modelValue.value.length === localOptions.value.length);
+const allSelect = computed(() => selected.value.size === localOptions.value.length);
 const notAllSelect = computed(() => hasSelect.value && !allSelect.value);
 
 const filteredOptions = computed(() => {
@@ -266,9 +266,27 @@ watch(() => props.options, (newValue, oldValue) => {
 	}
 }, { immediate: true });
 
-watch(selected, () => {
-	modelValue.value = localOptions.value.filter(option => selected.value.has(option[props.optionsKeyField]))
-}, { deep: true })
+watchEffect(() => {
+	// Monitorando variáveis reativas : localOptions, modelValue e optionsKeyField
+	const newSelected = new Set(
+		localOptions.value.filter(option =>
+			modelValue.value.some(
+				item => item[props.optionsKeyField] === option[props.optionsKeyField]
+			)
+		)
+	);
+
+	// Monitorando alterações na variável reativa selected (Verifica se é diferente do que já está selecionado)
+	const isDifferent = [...newSelected].some(option =>
+		![...selected.value].some(
+			sel => sel[props.optionsKeyField] === option[props.optionsKeyField]
+		)
+	);
+
+	if (isDifferent) {
+		selected.value = newSelected;
+	}
+});
 
 watch(props.modelValue, (newValue) => {
 	if (newValue && newValue.length > 0) {
@@ -288,15 +306,15 @@ onClickOutside(componentContainer, () => {
 const isSelected = (option) => selected.value.has(option);
 
 const toggleSelection = (option) => {
-	if (isSelected(option[props.optionsKeyField])) {
-		selected.value.delete(option[props.optionsKeyField])
+	if (isSelected(option)) {
+		selected.value.delete(option)
 		return;
 	}
-	selected.value.add(option[props.optionsKeyField]);
+	selected.value.add(option);
 };
 
 const selectAll = () => {
-	selected.value = new Set(localOptions.value.map(option => option[props.optionsKeyField]));
+	selected.value = new Set(localOptions.value);
 };
 
 const deselectAll = () => {
@@ -312,7 +330,8 @@ const toggleAddNewOption = () => {
 		[props.optionsValueField]: searchTerm.value.trim(),
 		[props.optionsKeyField]: searchTerm.value.toLowerCase().trim().replace(/ /g, '-'),
 	};
-	selected.value.add(newOption[props.optionsKeyField]);
+
+	selected.value.add(newOption);
 	localOptions.value.push(newOption);
 	searchTerm.value = '';
 };
@@ -499,7 +518,7 @@ const handleClick = () => {
 	gap: spacer(1);
 
 	&__icon {
-		margin-top: 2px;
+		margin-top: 1px;
 	}
 }
 </style>
