@@ -92,6 +92,14 @@ export default {
 				return colorOptions.includes(value);
 			},
 		},
+		/**
+		* Define se as abas devem ser alinhadas à esquerda. Caso `false`, o container das abas
+		* tomará todo o espaço disponível.
+		*/
+		headerLeft: {
+			type: Boolean,
+			default: false,
+		}
 	},
 
 	data() {
@@ -107,6 +115,9 @@ export default {
 				'--indicatorColor': this.colorHexCode(this.variant),
 			};
 		},
+		computedWidth() {
+			return this.headerLeft? 'fit-content' : '100%';
+		}
 	},
 
 	watch: {
@@ -161,7 +172,7 @@ export default {
 	.inner-tabs {
 		&__header {
 			display: flex;
-			width: 100%;
+			width: v-bind(computedWidth);
 			justify-content: space-around;
 			gap: spacer(4);
 			padding: pl(0);
