@@ -74,7 +74,7 @@
 					</li>
 				</ul>
 				<div
-					v-if="searchable && addable && searchString.trim().length > 0"
+					v-if="showAddOption"
 					class="option__add"
 					@mousedown="handleAddOption"
 				>
@@ -325,7 +325,14 @@ const selectOptionsClass = computed(() => ({
 
 const selectContainerWidth = computed(() => {
 	return props.fluid ? '100%' : 'fit-content';
-})
+});
+
+const showAddOption = computed(() => {
+	return props.searchable
+		&& props.addable
+		&& searchString.value.trim().length > 0
+		&& !localOptions.value.some(option => option[props.optionsField]?.toLowerCase() === searchString.value.toLowerCase());
+});
 
 
 //NOTE: Essa computada vai ser removida junto com a descontinuação da prop width na V4
