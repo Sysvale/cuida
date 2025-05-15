@@ -264,7 +264,7 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	* Indica se vai ser possível adicionar novas opções ao Select. Só tem efeito se a prop `searchable` for true.
+	* Indica se vai ser possível adicionar novas opções ao Select. Só tem efeito se a prop `searchable` for `true`.
 	*/
 	addable: {
 		type: Boolean,
