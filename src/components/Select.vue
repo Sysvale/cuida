@@ -73,6 +73,13 @@
 						Nenhuma opção encontrada
 					</li>
 				</ul>
+				<div
+					v-if="searchable && addable && searchString"
+					class="option__add"
+					@mousedown="handleAddOption"
+				>
+					Adicionar "{{ searchString }}"
+				</div>
 			</div>
 		</div>
 	</div>
@@ -86,8 +93,7 @@ import {
 } from '../utils/composables/useComponentEmits.js';
 import { widths } from '../utils';
 import { generateKey } from '../utils';
-import cloneDeep from 'lodash.clonedeep';
-import { get } from 'lodash';
+import { get, cloneDeep } from 'lodash';
 import removeAccents from '../utils/methods/removeAccents';
 import CdsBaseInput from './BaseInput.vue';
 
@@ -257,6 +263,13 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	* Indica se vai ser possível adicionar novas opções ao Select. Só tem efeito se a prop `searchable` for true.
+	*/
+	addable: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const emits = defineEmits({
@@ -283,6 +296,7 @@ const selectOptions = useTemplateRef('select-options');
 const liRefs = ref({});
 const { emitClick, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
 const baseInputControl = ref(0);
+const searchString = ref('');
 
 /* COMPUTED */
 const resolveChevronTop = computed(() => {
@@ -374,10 +388,14 @@ onMounted(() => {
 
 /* FUNCTIONS */
 function filterOptions(value) {
+	if (props.searchable && props.addable) {
+		searchString.value = value;
+	}
+
 	const sanitizedString = removeAccents(String(value) || '');
 	const regexExp = new RegExp(sanitizedString, 'i');
 
-	localOptions.value = props.options.filter(
+	localOptions.value = pristineOptions.value.filter(
 		(option) => removeAccents(option[props.optionsField]).search(regexExp) >= 0,
 	);
 }
@@ -407,6 +425,7 @@ function activateSelectionOnEnter() {
 		localValue.value = cloneDeep(localOptions.value[currentPos.value]);
 	}
 
+	searchString.value = '';
 	baseInputControl.value += 1;
 	select.value.blur();
 }
@@ -429,15 +448,20 @@ function activateSelectionOnClick() {
 }
 
 function hide() {
-	localValue.value = props.options.some(item => item[props.optionsField]?.toLowerCase() === get(localValue.value, props.optionsField)?.toLowerCase())
-		? localValue.value
-		: {};
+	if (!searchString.value) {
+		localValue.value = localOptions.value.some(item => item[props.optionsField]?.toLowerCase() === get(localValue.value, props.optionsField)?.toLowerCase())
+			? localValue.value
+			: {};
+	}
+
 	localOptions.value = pristineOptions.value;
+	searchString.value = '';
 	active.value = false;
 	emitBlur();
 }
 
 function selectItem() {
+	searchString.value = '';
 	localValue.value = cloneDeep(localOptions.value[currentPos.value]);
 }
 
@@ -508,6 +532,21 @@ function resetActiveSelection() {
 		const element = localOptions.value[index];
 		liRefs.value[`${element[props.optionsField]}-${index}`].classList.remove('highlight');
 	})
+}
+
+function handleAddOption() {
+	if (!props.addable || !searchString.value) {
+		return;
+	}
+
+	const newOption = {
+		id: searchString.value.toLowerCase().trim().replace(/ /g, '-'),
+		[props.optionsField]: searchString.value,
+	};
+
+	localOptions.value = [...props.options, newOption];
+	pristineOptions.value = localOptions.value;
+	localValue.value = newOption;
 }
 
 /* EXPOSE */
@@ -695,6 +734,13 @@ defineExpose({
 }
 
 .option {
+	&__add {
+		cursor: pointer;
+		font-weight: $font-weight-semibold;
+		background-color: $n-20;
+		padding: pa(3);
+	}
+
 	&__text {
 		padding: pa(3);
 		text-overflow: ellipsis;
