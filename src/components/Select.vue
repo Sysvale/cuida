@@ -74,7 +74,7 @@
 					</li>
 				</ul>
 				<div
-					v-if="searchable && addable && searchString"
+					v-if="searchable && addable && searchString.trim().length > 0"
 					class="option__add"
 					@mousedown="handleAddOption"
 				>
@@ -541,7 +541,7 @@ function handleAddOption() {
 
 	const newOption = {
 		id: searchString.value.toLowerCase().trim().replace(/ /g, '-'),
-		[props.optionsField]: searchString.value,
+		[props.optionsField]: searchString.value.trim(),
 	};
 
 	localOptions.value = [...props.options, newOption];
