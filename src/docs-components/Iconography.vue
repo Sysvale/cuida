@@ -16,6 +16,7 @@
 		>
 			<div
 				v-for="category in filteredCategories(iconsData)"
+				:key="category.categoryName"
 			>
 				<div
 					class="icon__category"
@@ -56,17 +57,15 @@
 </template>
 
 <script>
-import { completeIconSet } from "@sysvale/cuida-icons/dist";
+import { completeIconSet } from '@sysvale/cuida-icons/dist';
 import { iconsData } from '../utils/constants/iconsData.js';
 import CdsIcon from '../components/Icon.vue';
-import CdsActionBar from '../components/ActionBar.vue';
 import CdsSearchInput from '../components/SearchInput.vue';
 import CopyToken from '../docs-components/CopyToken.vue';
 
 export default {
 	components: {
 		CdsIcon,
-		CdsActionBar,
 		CopyToken,
 		CdsSearchInput,
 	},
@@ -91,12 +90,6 @@ export default {
 			copyCodeButtonText: 'Copiar código',
 			iconsData: iconsData,
 		};
-	},
-
-	computed: {
-		// customIconList() {
-		// 	return
-		// },
 	},
 
 	methods: {
@@ -203,7 +196,6 @@ code {
 		justify-content: center;
 		outline: 1px solid $n-0;
 		border-radius: $border-radius-extra-small;
-		// transition: transform .5s, box-shadow .2s ease-out;
 		transition: all .2s ease-in-out;
 		box-sizing: content-box;
 	}
@@ -214,10 +206,8 @@ code {
 	}
 
 	&__tile:hover {
-		// box-shadow: 0px 4.1899px 25.1394px -4.1899px rgba(42, 78, 172, 0.08), 0px 8px 20px -20px rgba(42, 78, 172, 0.09), 0px 8.3798px 16.7596px -16px rgba(42, 78, 172, 0.07);
 		padding: pa(2);
 		border-radius: $border-radius-extra-small;
-		// transition: transform .5s, box-shadow .2s ease-out;
 		transition: all .2s ease-in-out;
 		outline: 1px solid $gp-300;
 	}

@@ -48,6 +48,22 @@ export const iconsData = [
 		],
 	},
 	{
+		categoryName: 'Type & content',
+		icons: [
+			'heading-1-outline',
+			'heading-2-outline',
+			'heading-3-outline',
+			'text-outline',
+			'divider-outline',
+			'number-outline',
+			'long-text-outline',
+			'short-text-outline',
+			'at-outline',
+			'hashtag-outline',
+			'bullet-list-outline',
+		],
+	},
+	{
 		categoryName: 'Notifications',
 		icons: [
 			'notification-bell-outline',
@@ -60,6 +76,7 @@ export const iconsData = [
 			'warning-outline',
 			'mail-outline',
 			'checkbox-checked-outlined',
+			'single-select-outline',
 			'flag-outline',
 			'sparks-outline',
 			'lamp-outline',
@@ -117,6 +134,9 @@ export const iconsData = [
 			'shuffle-outline',
 			'unfold-vertical-outline',
 			'unfold-horizontal-outline',
+			'shrink-outline',
+			'maximize-outline',
+			'dropdown-outline',
 		],
 	},
 	{
