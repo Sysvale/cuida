@@ -1,6 +1,6 @@
 {
 	"name": "@sysvale/cuida",
-	"version": "3.111.0",
+	"version": "3.112.0",
 	"description": "A design system built by Sysvale, using storybook and Vue components",
 	"repository": {
 		"type": "git",
@@ -29,7 +29,7 @@
 	},
 	"dependencies": {
 		"@popperjs/core": "^2.11.6",
-		"@sysvale/cuida-icons": "^1.15.1",
+		"@sysvale/cuida-icons": "^1.16.0",
 		"@sysvale/vue3-long-click": "^0.2.0",
 		"@vueuse/core": "^13.1.0",
 		"chart.js": "^4.3.0",
