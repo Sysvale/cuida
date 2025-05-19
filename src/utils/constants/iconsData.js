@@ -61,6 +61,7 @@ export const iconsData = [
 			'at-outline',
 			'hashtag-outline',
 			'bullet-list-outline',
+			'paragraph-outline',
 		],
 	},
 	{
