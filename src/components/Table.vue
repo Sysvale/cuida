@@ -260,6 +260,9 @@ export default {
 		resolveFixedHeader() {
 			return this.fixedHeader ? 'sticky' : '';
 		},
+		resolveHeaderShadow() {
+			return this.fixedHeader ? '0px 1px 5px rgba(0, 0, 0, 0.07)' : '';
+		}
 	},
 
 	watch: {
@@ -420,6 +423,8 @@ export default {
 		background-color: $n-10;
 		position: v-bind('resolveFixedHeader');
 		top: 0;
+		box-shadow: v-bind('resolveHeaderShadow');
+		z-index: $z-index-modal;
 
 		&-item {
 			@include body-2;
