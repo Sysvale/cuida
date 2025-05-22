@@ -211,6 +211,8 @@ watch(model, (newValue) => {
 @import '../assets/sass/tokens.scss';
 
 .radio-button {
+	min-height: 46px;
+
 	&__error-text {
 		@include caption;
 		color: $rc-600;
