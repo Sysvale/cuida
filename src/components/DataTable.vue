@@ -33,6 +33,7 @@
 		ok-button-text="Salvar"
 		cancel-button-text="Cancelar"
 		:action-button-variant="selectionVariant"
+		:disable-ok-button="shouldDisableOkButton"
 		no-close-on-esc
 		block-ok-button
 		with-overlay
@@ -88,7 +89,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import CdsButton from './Button.vue';
 import CdsTable from './Table.vue';
 import CdsSideSheet from './SideSheet.vue';
@@ -126,6 +127,8 @@ const emits = defineEmits(['update-columns-list']);
 
 const showSideSheet = ref(false);
 const internalCustomColumnsList = ref(cloneDeep(props.customColumnsList));
+
+const shouldDisableOkButton = computed(() => !internalCustomColumnsList.value.some(column => column.visible));
 
 function handleCancel() {
 	internalCustomColumnsList.value = cloneDeep(props.customColumnsList);
