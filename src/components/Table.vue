@@ -424,7 +424,7 @@ export default {
 		position: v-bind('resolveFixedHeader');
 		top: 0;
 		box-shadow: v-bind('resolveHeaderShadow');
-		z-index: $z-index-modal;
+		z-index: $z-index-backdrop;
 
 		&-item {
 			@include body-2;
