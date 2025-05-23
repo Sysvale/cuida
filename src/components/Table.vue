@@ -196,6 +196,13 @@ export default {
 			default: null,
 		},
 		/**
+		 * Especifica se o cabeçalho da tabela deve ser fixo ou não.
+		 */
+		fixedHeader: {
+			type: Boolean,
+			default: false,
+		},
+		/**
 		 * Boolean, informa que a ordenação deve ser descendente, por padrão
 		 * a ordenação é ascendente (`sortDesc: false`).
 		 */
@@ -249,6 +256,12 @@ export default {
 		},
 		resolveNoWarp() {
 			return this.noWrap ? 'nowrap' : 'pre-line';
+		},
+		resolveFixedHeader() {
+			return this.fixedHeader ? 'sticky' : '';
+		},
+		resolveHeaderShadow() {
+			return this.fixedHeader ? '0px 1px 5px rgba(0, 0, 0, 0.07)' : '';
 		}
 	},
 
@@ -368,7 +381,7 @@ export default {
 		},
 
 		resolveValue(item, field) {
-			if (field.formatter && typeof field.formatter === 'function') {	
+			if (field.formatter && typeof field.formatter === 'function') {
 				return field.formatter(item[field.key]);
 			}
 
@@ -383,13 +396,13 @@ export default {
 
 .table {
 	&__container {
+		position: relative;
 		border: 1px solid $n-30;
 		border-collapse: separate;
 		border-radius: $border-radius-extra-small;
 		border-spacing: 0px;
 		width: 100%;
 		background: $n-0;
-
 	}
 
 	&__select-item {
@@ -408,6 +421,10 @@ export default {
 
 	&__header {
 		background-color: $n-10;
+		position: v-bind('resolveFixedHeader');
+		top: 0;
+		box-shadow: v-bind('resolveHeaderShadow');
+		z-index: $z-index-modal;
 
 		&-item {
 			@include body-2;

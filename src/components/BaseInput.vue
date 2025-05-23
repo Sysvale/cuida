@@ -73,22 +73,52 @@
 					@keydown="handleKeydown"
 				/>
 
-				<input
-					v-else
+				<div
+					v-else-if="type === 'date'"
 					:id="componentId"
 					ref="htmlInput"
+					tabindex="0"
 					v-bind="props"
-					v-model="internalValue"
-					:required="required"
-					:readonly="readonly"
 					:placeholder="placeholder"
 					:disabled="disabled"
 					:class="inputClass"
 					:type="type"
+					:autocomplete="computedAutocompleteProp"
 					@focus="handleFocus"
 					@blur="handleBlur"
 					@keydown="handleKeydown"
 				>
+					<small class="base-input__date-text">{{ internalValue || placeholder }}</small>
+				</div>
+
+				<div 
+					v-else
+					style="width: 100%;"
+				>
+					<div
+						v-if="enableTopContent"
+						class="base-input__top-content"
+					>
+						<slot name="top-content" />
+					</div>
+
+					<input
+						:id="componentId"
+						ref="htmlInput"
+						v-bind="props"
+						v-model="internalValue"
+						:required="required"
+						:readonly="readonly"
+						:placeholder="placeholder"
+						:disabled="disabled"
+						:class="inputClass"
+						:autocomplete="computedAutocompleteProp"
+						:type="type"
+						@focus="handleFocus"
+						@blur="handleBlur"
+						@keydown="handleKeydown"
+					>
+				</div>
 
 				<div
 					v-if="isLoading && !disabled"
@@ -325,6 +355,20 @@ const props = defineProps({
 		type: String,
 		default: '',
 	},
+	/**
+	* Habilita autocomplete do browser.
+	*/
+	enableAutocomplete: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	 * Habilita exibição de conteudo na parte superior do input
+	 */
+	enableTopContent: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const emits = defineEmits({
@@ -342,6 +386,8 @@ const baseMobileInputRef = useTemplateRef('mobileInput');
 const componentId = `cds-base-input-${props.type}-${props.id || generateKey()}`;
 
 /* COMPUTED */
+const computedAutocompleteProp = computed(() => props.enableAutocomplete ? 'on' : 'off');
+
 const baseInputClass = computed(() => {
 	let inputClass = props.fluid ? 'base-input--fluid' : 'base-input';
 
@@ -501,6 +547,14 @@ defineExpose({
 	position: relative;
 	cursor: v-bind(computedCursor);
 
+	&__top-content {
+		padding: pa(1);
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: spacer(2);
+	}
+
 	&__supporting-text-container {
 		@extend %custom-ul;
 	}
@@ -521,6 +575,13 @@ defineExpose({
 			@extend .base-input__label;
 			width: 100%;
 		}
+	}
+
+	&__date-text {
+		display: block;
+		font-weight: 460;
+		letter-spacing: 0.1px;
+		margin-top: -1px;
 	}
 
 	&__leading-icon-container {

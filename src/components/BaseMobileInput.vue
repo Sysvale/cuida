@@ -54,6 +54,24 @@
 				@keydown="handleKeydown"
 			/>
 
+			<div
+				v-else-if="type === 'date'"
+				tabindex="0"
+				:id="componentId"
+				ref="htmlInput"
+				v-bind="props"
+				:placeholder="placeholder"
+				:disabled="disabled"
+				:class="inputClass"
+				:type="type"
+				:autocomplete="computedAutocompleteProp"
+				@focus="handleFocus"
+				@blur="handleBlur"
+				@keydown="handleKeydown"
+			>
+				<small class="base-mobile-input__date-text">{{ internalValue || placeholder }}</small>
+			</div>
+
 			<input
 				v-else
 				:id="componentId"
@@ -66,6 +84,7 @@
 				:class="inputClass"
 				:readonly="readonly"
 				:type="type"
+				:autocomplete="computedAutocompleteProp"
 				@focus="handleFocus"
 				@blur="handleBlur"
 				@keydown="handleKeydown"
@@ -367,6 +386,13 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	* Habilita autocomplete do browser.
+	*/
+	enableAutocomplete: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const emits = defineEmits({
@@ -383,6 +409,8 @@ const componentId = `cds-base-mobile-input-${props.type}-${attrs.id || generateK
 internalValue.value = model.value;
 
 /* COMPUTED */
+const computedAutocompleteProp = computed(() => props.enableAutocomplete ? 'on' : 'off');
+
 const baseMobileInputClass = computed(() => {
 	let mobileInputClass = props.fluid ? 'base-mobile-input--fluid' : 'base-mobile-input';
 
@@ -589,6 +617,11 @@ defineExpose({
 			@extend .base-mobile-input__label;
 			width: 100%;
 		}
+	}
+
+	&__date-text {
+		font-weight: 460;
+		letter-spacing: 0.1px;
 	}
 
 	&__trailing-icon-container {

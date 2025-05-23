@@ -113,6 +113,12 @@ export default {
 		},
 	},
 
+	watch: {
+		tooltipText() {
+			this.innerTooltipText = this.tooltipText;
+		},
+	},
+
 	methods: {
 		clickHandler(e) {
 			if (this.disabled) {

@@ -39,7 +39,7 @@
 						:for="`${$attrs.id || id}-${option.value}`"
 					>
 						<div class="content-title">
-							{{ option.label || option.text }}
+							{{ option.label }}
 						</div>
 						<div
 							v-if="allowsExpand || fluid"
@@ -211,6 +211,8 @@ watch(model, (newValue) => {
 @import '../assets/sass/tokens.scss';
 
 .radio-button {
+	min-height: 46px;
+
 	&__error-text {
 		@include caption;
 		color: $rc-600;

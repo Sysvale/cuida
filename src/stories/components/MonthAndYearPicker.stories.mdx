@@ -1,0 +1,379 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import MonthAndYearPicker from '../../components/MonthAndYearPicker.vue';
+
+<Meta
+	title="Componentes/Display/MonthAndYearPicker"
+	component={ MonthAndYearPicker }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark',
+				],
+			}
+		},
+		state: {
+			control:{
+				type: 'select',
+				options: [
+					'default',
+					'valid',
+					'invalid',
+					'loading',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<CdsMonthAndYearPicker
+	v-model="modelValue"
+	label="Mês"
+	variant="green"
+	state="default"
+	:required="false"
+	:disabled="false"
+	:fluid="false"
+	:mobile="false"
+	:floatingLabel="true"
+	placeholder="Escolha um mês..."
+	errorMessage="Campo obrigatório"
+	tooltip=""
+	tooltipIcon="info-outline"
+	supportingText="supportingText"
+	supportLink=""
+	supportLinkUrl=""
+	@click="logClick"
+	@change="logChange"
+	@focus="logFocus"
+	@blur="logBlur"
+	@keydown="logKeydown"
+/>`
+			},
+		}
+	}}
+/>
+
+export const DefaultTemplate = (args) => ({
+	components: { CdsMonthAndYearPicker: MonthAndYearPicker },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			modelValue: '2025-05',
+		};
+	},
+	template: /*html*/ `
+		<CdsMonthAndYearPicker
+			v-model="modelValue"
+			v-bind="args"
+			@click="logClick"
+			@change="logChange"
+			@focus="logFocus"
+			@blur="logBlur"
+			@keydown="logKeydown"
+		/>`,
+	methods: {
+		logClick() {
+			console.info('⚡ %cClick emitted', 'color: rgb(37, 227, 139);');
+		},
+		logChange() {
+			console.info('⚡ %cChange emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logFocus(event) {
+			console.info('⚡ %cFocus emitted', 'color: hsl(152, 77.20%, 51.80%);' );
+		},
+		logBlur(event) {
+			console.info('⚡ %cBlur emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logKeydown(e) {
+			console.info('⚡ %cKeydown emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+	},
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.modelValue);
+	},
+});
+
+export const MaxAndMinDate = (args) => ({
+	components: { CdsMonthAndYearPicker: MonthAndYearPicker },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			modelValue: '',
+		};
+	},
+	template: /*html*/ `
+		<div class="preview-container">
+			<CdsMonthAndYearPicker
+				v-model="modelValue"
+				label="Mês"
+				variant="green"
+				state="default"
+				:required="false"
+				:disabled="false"
+				:fluid="false"
+				:mobile="false"
+				:floatingLabel="false"
+				placeholder="Escolha um mês..."
+				errorMessage="Campo obrigatório"
+				tooltip=""
+				tooltipIcon="info-outline"
+				supportingText="supportingText"
+				supportLink=""
+				supportLinkUrl=""
+				maxDate="2026-06-06"
+				minDate="2023-01-01"
+				@click="logClick"
+				@change="logChange"
+				@focus="logFocus"
+				@blur="logBlur"
+				@keydown="logKeydown"
+			/>
+		</div>`,
+		methods: {
+			logClick() {
+				console.info('⚡ %cClick emitted', 'color: rgb(37, 227, 139);');
+			},
+			logChange() {
+				console.info('⚡ %cChange emitted', 'color: hsl(152, 77.20%, 51.80%);');
+			},
+			logFocus(event) {
+				console.info('⚡ %cFocus emitted', 'color: hsl(152, 77.20%, 51.80%);' );
+			},
+			logBlur(event) {
+				console.info('⚡ %cBlur emitted', 'color: hsl(152, 77.20%, 51.80%);');
+			},
+			logKeydown(e) {
+				console.info('⚡ %cKeydown emitted', 'color: hsl(152, 77.20%, 51.80%);');
+			},
+		},
+		updated() {
+			console.info('%cv-model: ', 'color: #2C70CD;', this.modelValue);
+		},
+});
+
+
+export const Mobile = (args) => ({
+	components: { CdsMonthAndYearPicker: MonthAndYearPicker },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			modelValue: '',
+		};
+	},
+	template: /*html*/ `
+		<div class="preview-container">
+			<CdsMonthAndYearPicker
+				v-model="modelValue"
+				label="Mês"
+				variant="green"
+				state="default"
+				:required="false"
+				:disabled="false"
+				:fluid="false"
+				:mobile="false"
+				:floatingLabel="true"
+				placeholder="Escolha um mês..."
+				errorMessage="Campo obrigatório"
+				tooltip=""
+				tooltipIcon="info-outline"
+				supportingText="supportingText"
+				supportLink=""
+				supportLinkUrl=""
+				@click="logClick"
+				@change="logChange"
+				@focus="logFocus"
+				@blur="logBlur"
+				@keydown="logKeydown"
+			/>
+		</div>`,
+		methods: {
+			logClick() {
+				console.info('⚡ %cClick emitted', 'color: rgb(37, 227, 139);');
+			},
+			logChange() {
+				console.info('⚡ %cChange emitted', 'color: hsl(152, 77.20%, 51.80%);');
+			},
+			logFocus(event) {
+				console.info('⚡ %cFocus emitted', 'color: hsl(152, 77.20%, 51.80%);' );
+			},
+			logBlur(event) {
+				console.info('⚡ %cBlur emitted', 'color: hsl(152, 77.20%, 51.80%);');
+			},
+			logKeydown(e) {
+				console.info('⚡ %cKeydown emitted', 'color: hsl(152, 77.20%, 51.80%);');
+			},
+		},
+		updated() {
+			console.info('%cv-model: ', 'color: #2C70CD;', this.modelValue);
+		},
+});
+
+
+# MonthAndYearPicker
+
+### MonthAndYearPickers permitem que o usuário selecione um mês e ano através de um campo de texto e um seletor interativo.
+---
+<br />
+
+## Quando usar:
+- O usuário precisar selecionar apenas o mês e ano, sem especificar o dia
+
+<br />
+
+## Quando não usar:
+- O usuário precisar selecionar uma data específica com dia, mês e ano (use DateInput).
+- O usuário precisar selecionar um intervalo de datas (use DateInput com a propriedade range).
+- For necessário selecionar apenas o ano, sem o mês.
+
+## ⚠️ Observações:
+- O `v-model`  recebe e retorna uma string no formato ('yyyy-MM').
+- Por padrão, o componente exibe o mês e ano atual ao abrir, a menos que um valor seja fornecido.
+- O componente aplica automaticamente restrições de navegação baseadas nas propriedades minDate e maxDate.
+
+<br />
+
+### __Com Limites de Data__
+O MonthAndYearPicker permite definir datas mínimas e máximas para restringir a seleção.
+
+###### Funcionamento:
+- As props minDate e maxDate limitam o período disponível para seleção.
+- A navegação entre anos é automaticamente limitada com base nesses valores.
+- Meses fora do intervalo permitido são desabilitados e não podem ser selecionados.
+- Os valores de `minDate` e de `maxDate` devem ser fornecidos no formato ISO ('yyyy-MM-dd').
+
+<br />
+
+<Story
+	name="maxAndMinDate"
+>
+	{ MaxAndMinDate.bind({}) }
+</Story>
+
+```html
+	<CdsMonthAndYearPicker
+		v-model="modelValue"
+		label="Mês"
+		variant="green"
+		state="default"
+		:required="false"
+		:disabled="false"
+		:fluid="false"
+		:mobile="false"
+		:floatingLabel="false"
+		placeholder="Escolha um mês..."
+		errorMessage="Campo obrigatório"
+		tooltip=""
+		tooltipIcon="info-outline"
+		supportingText="supportingText"
+		supportLink=""
+		supportLinkUrl=""
+		maxDate="2026-06-06"
+		minDate="2023-01-01"
+		@click="logClick"
+		@change="logChange"
+		@focus="logFocus"
+		@blur="logBlur"
+		@keydown="logKeydown"
+	/>
+```
+<br />
+
+### __Floating Label__
+Controla o estilo visual do input, ativando o comportamento de "label flutuante".
+
+<Story
+	name="mobile"
+>
+	{ Mobile.bind({}) }
+</Story>
+
+```html
+	<CdsMonthAndYearPicker
+		v-model="modelValue"
+		label="Mês"
+		variant="green"
+		state="default"
+		:required="false"
+		:disabled="false"
+		:fluid="false"
+		:mobile="false"
+		:floatingLabel="true"
+		placeholder="Escolha um mês..."
+		errorMessage="Campo obrigatório"
+		tooltip=""
+		tooltipIcon="info-outline"
+		supportingText="supportingText"
+		supportLink=""
+		supportLinkUrl=""
+		@click="logClick"
+		@change="logChange"
+		@focus="logFocus"
+		@blur="logBlur"
+		@keydown="logKeydown"
+	/>
+```
+
+### __Base__
+Este é o modo de operação padrão do MonthAndYearPicker que permite ao usuário selecionar um mês e ano no seletor.
+
+###### Funcionamento:
+- O v-model recebe e retorna uma string no formato ('yyyy-MM').
+- Ao clicar no input, um seletor de meses é exibido organizado em grade, com o ano atual no cabeçalho.
+- O usuário pode navegar entre anos usando os botões de seta no cabeçalho.
+- Ao selecionar um mês, o seletor fecha automaticamente e atualiza o valor.
+
+
+## Preview
+
+<Canvas>
+	<Story
+		name="MonthAndYearPicker"
+		args={{
+			label: 'Mês',
+			variant: 'green',
+			state: 'default',
+			required: false,
+			disabled: false,
+			fluid: false,
+			mobile: false,
+			floatingLabel: false,
+			placeholder: 'Escolha um mês...',
+			errorMessage: 'Campo obrigatório',
+			tooltip: '',
+			tooltipIcon: 'info-outline',
+			supportingText: 'supportingText',
+			supportLink: '',
+			supportLinkUrl: '',
+			maxDate: "2026-06-06",
+			minDate: "2023-01-01"
+		}}
+	>
+		{ DefaultTemplate.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="MonthAndYearPicker" />

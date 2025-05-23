@@ -60,8 +60,10 @@ import LoadingIndicator from './LoadingIndicator.vue';
 import MobileNavbar from './MobileNavbar.vue';
 import MobileNavigation from './MobileNavigation.vue';
 import Modal from './Modal.vue';
+import MonthAndYearPicker from './MonthAndYearPicker.vue';
 import MultiFileInput from './MultiFileInput.vue';
 import Multiselect from './Multiselect.vue';
+import ComboBox from './ComboBox.vue';
 import NavBar from './NavBar.vue';
 import NumberInput from './NumberInput.vue';
 import OverlayLoader from './OverlayLoader.vue';
@@ -119,6 +121,7 @@ import { unmaskBRL } from '@/utils/directives/cdsBRL';
 
 /* UTILS */
 import contrastChecker from '@/utils/methods/contrastChecker';
+import uuidv4 from '@/utils/methods/uuidv4';
 import hasSlot from '@/utils/methods/hasSlot';
 import removeAccents from '@/utils/methods/removeAccents';
 import hexToRgb from '@/utils/methods/hexToRgb';
@@ -189,7 +192,9 @@ export default {
 		app.component('CdsMobileNavbar', MobileNavbar);
 		app.component('CdsMobileNavigation', MobileNavigation);
 		app.component('CdsModal', Modal);
+		app.component('CdsMonthAndYearPicker', MonthAndYearPicker);
 		app.component('CdsMultiselect', Multiselect);
+        app.component('CdsComboBox', ComboBox);
 		app.component('CdsDynamicInputList', DynamicInputList);
 		app.component('CdsMultiFileInput', MultiFileInput);
 		app.component('CdsNavBar', NavBar);
@@ -254,5 +259,6 @@ export default {
 		useHasSlot,
 		useHasSlots,
 		unmaskBRL,
+		uuidv4,
 	},
 }

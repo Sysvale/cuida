@@ -3,7 +3,7 @@
 	<cds-clickable
 		id="avatar-dropdown"
 		:clickable="clickable"
-		@click="toggleDropdown"
+		@click.stop="toggleDropdown"
 	>
 		<div class="avatar__container">
 			<div

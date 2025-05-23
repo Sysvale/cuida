@@ -15,6 +15,7 @@ describe('InnerTabs', () => {
 			props: {
 				tabs: mockedData,
 				activeTab: mockedData[0],
+				headerLeft: false,
 			},
 		});
 
