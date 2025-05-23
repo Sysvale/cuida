@@ -1,13 +1,27 @@
 <template>
 	<div
-		ref="calendar"
+		ref="datePicker"
 		class="date-input"
 	>
 		<CdsBaseInput
+			v-if="mode === 'typing'"
 			ref="baseInput"
 			v-bind="props"
 			v-model="internalValue"
 			type="text"
+			v-facade="'##/##/####'"
+			:floating-label="floatingLabel || mobile"
+			@blur="handleTypeUpdate"
+			@keydown.enter.prevent="handleTypeUpdate"
+			@keydown.tab.prevent="handleTypeUpdate"
+		/>
+
+		<CdsBaseInput
+			v-if="mode !== 'typing'"
+			ref="baseInput"
+			v-bind="props"
+			v-model="internalValue"
+			type="date"
 			:floating-label="floatingLabel || mobile"
 			:readonly="props.range"
 			@click="toggleDatePicker"
@@ -27,37 +41,59 @@
 			</template>
 		</CdsBaseInput>
 
-		<Transition name="calendar-animation">
+		<Transition v-if="mode !== 'typing'" name="calendar-animation">
 			<div
-				v-if="isCalendarOpen"
-				class="date-input__calendar"
+				v-show="isCalendarOpen"
+				ref="calendar"
+				:class="`date-input__calendar--${dropdownDirection}`"
 				@mousedown.prevent="handleCalendarMouseDown"
 			>
 				<div class="calendar__header">
-					<CdsIcon
-						height="20"
-						width="20"
-						name="caret-left-outline"
-						class="calendar__left-caret"
-						:class="{ 'calendar__caret--disabled': !allowPreviousMonthNavigation }"
-						@click="previousMonth"
-					/>
+					<CdsFlexbox gap="0">
+						<span
+							:class="{
+								'calendar__month-and-title--no-hover': range,
+								'calendar__month-and-title': !range
+							}"
+							@click="toggleMonthPickerDisplay"
+						>
+							{{ currentMonth }}
+						</span>
+	
+						<span
+							:class="{
+								'calendar__month-and-title--no-hover': range,
+								'calendar__month-and-title': !range
+							}"
+							@click="toggleYearPickerDisplay"
+						>
+							{{ currenYear }}
+						</span>
+					</CdsFlexbox>
 
-					<span class="calendar__month-and-title">
-						{{ currentMonthAndYear }}
-					</span>
-
-					<CdsIcon
-						height="20"
-						width="20"
-						name="caret-right-outline"
-						class="calendar__right-caret"
-						:class="{ 'calendar__caret--disabled': !allowNextMonthNavigation }"
-						@click="nextMonth"
-					/>
+					<CdsFlexbox>
+						<CdsIcon
+							height="20"
+							width="20"
+							name="caret-up-outline"
+							class="calendar__right-caret"
+							:class="{ 'calendar__caret--disabled': !allowPreviousMonthNavigation }"
+							@click="previousMonth"
+						/>
+	
+						<CdsIcon
+							height="20"
+							width="20"
+							name="caret-down-outline"
+							class="calendar__left-caret"
+							:class="{ 'calendar__caret--disabled': !allowNextMonthNavigation }"
+							@click="nextMonth"
+						/>
+					</CdsFlexbox>
 				</div>
 
 				<CdsGrid
+					v-if="!showMonthPicker && !showYearPicker"
 					:cols="7"
 					gap="5px"
 					@mouseleave="handleCalendarMouseLeave"
@@ -77,7 +113,6 @@
 					<div
 						v-for="day in daysInMonth"
 						:key="day"
-						class="calendar__day"
 						:class="getDayClasses(day)"
 						:disabled="isDateDisabled(day)"
 						@click="selectDate(day)"
@@ -86,6 +121,26 @@
 						{{ day }}
 					</div>
 				</CdsGrid>
+
+				<MonthSelectorGrid
+					v-show="!range && showMonthPicker"
+					ref="monthPicker"
+					:selected-date="model"
+					:min-date="minDate"
+					:max-date="maxDate"
+					:variant="variant"
+					@click="handleMonthSelection"
+				/>
+
+				<YearSelectorGrid
+					v-show="!range && showYearPicker"
+					ref="monthPicker"
+					:selected-date="model"
+					:min-date="minDate"
+					:max-date="maxDate"
+					:variant="variant"
+					@click="handleYearSelection"
+				/>
 			</div>
 		</Transition>
 	</div>
@@ -96,12 +151,18 @@ import { ref, computed, watch, useTemplateRef } from 'vue';
 import { DateTime } from 'luxon';
 import CdsBaseInput from './BaseInput.vue';
 import CdsIcon from './Icon.vue';
+import CdsFlexbox from './Flexbox.vue';
 import CdsGrid from './Grid.vue';
+import { direction, dropdownTopPosition, dropdownBottomPosition } from '../utils/composables/useDropdownPosition.js';
+import MonthSelectorGrid from './InternalComponents/MonthSelectorGrid.vue';
+import YearSelectorGrid from './InternalComponents/YearSelectorGrid.vue';
 import {
 	nativeEvents,
 	nativeEmits,
 } from '../utils/composables/useComponentEmits.js';
 import { useClickOutside } from '../utils/composables/useClickOutside.js';
+import { facade } from 'vue-input-facade';
+const vFacade = facade;
 
 const WEEK_DAYS = ['S', 'T', 'Q', 'Q', 'S', 'S', 'D'];
 const DATE_FORMATS = [
@@ -132,7 +193,7 @@ const props = defineProps({
 	*/
 	variant: {
 		type: String,
-		default: 'gray',
+		default: 'green',
 	},
 	/**
 	* Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
@@ -260,6 +321,22 @@ const props = defineProps({
 		type: String,
 		default: 'https://cuida.framer.wiki/',
 	},
+	/**
+	* Controla a marcação do dia atual no calendário.
+	*/
+	highlightToday: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Define o modo de interação com o DateInput. Quando definido como 'typing', o componente permite apenas
+	* digitação. No modo 'picking', a data deve ser selecionada através do date picker, desabilitando a digitação direta.
+	*/
+	mode: {
+		type: String,
+		default: 'picking',
+		validator: (value) => (['typing', 'picking']).includes(value),
+	},
 });
 
 const emits = defineEmits({
@@ -268,7 +345,7 @@ const emits = defineEmits({
 
 /* REACTIVE DATA */
 const baseInputRef = useTemplateRef('baseInput');
-const calendarRef = useTemplateRef('calendar');
+const datePickerRef = useTemplateRef('datePicker');
 const { emitClick, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
 const { clickedOutside, setTargetElement } = useClickOutside();
 const isCalendarOpen = ref(false);
@@ -280,10 +357,18 @@ const isHoveringCalendar = ref(false);
 const weekDaysLetters = ref(WEEK_DAYS);
 const internalValue = ref('');
 const isCalendarInteraction = ref(false);
+const showMonthPicker = ref(false);
+const showYearPicker = ref(false);
+const dropdownDirection = ref('down');
+const dateMask = ref(null);
 
 /* COMPUTED */
-const currentMonthAndYear = computed(() => {
-	return currentDate.value.setLocale('pt-BR').toFormat('MMMM yyyy');
+const currentMonth = computed(() => {
+	return currentDate.value.setLocale('pt-BR').toFormat('MMMM');
+});
+
+const currenYear = computed(() => {
+	return currentDate.value.setLocale('pt-BR').toFormat('yyyy');
 });
 
 const emptyDays = computed(() => {
@@ -313,6 +398,7 @@ const maxDateObj = computed(() => {
 });
 
 const allowPreviousMonthNavigation = computed(() => {
+	if (showMonthPicker.value || showYearPicker.value) return false;
 	if (!minDateObj.value) return true;
 
 	const previousMonth = currentDate.value.minus({ months: 1 });
@@ -320,6 +406,7 @@ const allowPreviousMonthNavigation = computed(() => {
 });
 
 const allowNextMonthNavigation = computed(() => {
+	if (showMonthPicker.value || showYearPicker.value) return false;
 	if (!maxDateObj.value) return true;
 
 	const nextMonth = currentDate.value.plus({ months: 1 });
@@ -368,11 +455,15 @@ watch(clickedOutside, (newValue) => {
 	}
 });
 
-watch(calendarRef, (newValue) => {
+watch(datePickerRef, (newValue) => {
 	if (newValue) {
 		setTargetElement(newValue);
 	}
 });
+
+watch(() => props.range, () => {
+	dateMask.value = props.range ? null : '##/##/####';
+}, { immediate: true });
 
 /* FUNCTIONS */
 function isDateDisabled(day) {
@@ -402,6 +493,7 @@ function toggleDatePicker() {
 	}
 
 	isCalendarOpen.value = !isCalendarOpen.value;
+	dropdownDirection.value = direction(datePickerRef, 340, (props.mobile || props.floatingLabel));
 
 	if (isCalendarOpen.value) {
 		if (props.range && endDate.value) {
@@ -439,7 +531,7 @@ function handleCalendarMouseLeave() {
 }
 
 function getDayClasses(day) {
-	const classes = [];
+	const classes = [`calendar__day--${props.variant}`];
 	const selectedDate = currentDate.value.set({ day });
 
 	if (isToday(day) && (props.showTodayDot || props.highlightToday)) {
@@ -726,6 +818,43 @@ function toDateTime() {
 	return startDate.value;
 }
 
+function handleMonthSelection(selectedMonth) {
+	internalValue.value = internalValue.value ? internalValue.value : DateTime.now().setLocale('pt-BR').toFormat('dd/MM/yyyy');
+	showMonthPicker.value = !showMonthPicker.value;
+	let [day, month, year] = internalValue.value.split('/');
+	month = selectedMonth.index;
+	let daysInMonth = DateTime.local(+year, +month).daysInMonth;
+
+	day = daysInMonth < day ? daysInMonth : day;
+
+	currentDate.value = DateTime.fromFormat(`${day}/${month}/${year}`, 'dd/MM/yyyy');
+}
+
+function handleYearSelection(selectedYear) {
+	internalValue.value = internalValue.value ? internalValue.value : DateTime.now().setLocale('pt-BR').toFormat('dd/MM/yyyy');
+	showYearPicker.value = !showYearPicker.value;
+	let [day, month, year] = internalValue.value.split('/');
+
+	currentDate.value = DateTime.fromFormat(`${day}/${month}/${selectedYear}`, 'dd/MM/yyyy');
+}
+
+function toggleMonthPickerDisplay() {
+	if (props.range) return;
+	showYearPicker.value = false;
+	showMonthPicker.value = !showMonthPicker.value;
+}
+
+function toggleYearPickerDisplay() {
+	if (props.range) return;
+	showMonthPicker.value = false;
+	showYearPicker.value = !showYearPicker.value;
+}
+
+function handleTypeUpdate() {
+	model.value =  DateTime.fromFormat(internalValue.value, 'dd/MM/yyyy')
+		.setLocale('pt-BR').toFormat('yyyy-MM-dd');
+}
+
 /* EXPOSE */
 defineExpose({
 	componentRef: baseInputRef.value?.componentRef,
@@ -757,18 +886,25 @@ defineExpose({
 	}
 
 	&__calendar {
-		margin: mt(2);
 		position: absolute;
-		top: 100%;
-		left: 0;
 		background: $n-0;
 		border: 1px solid $n-30;
 		box-shadow: $shadow-md;
 		border-radius: $border-radius-extra-small;
 		padding: pa(3);
-		min-height: 312px;
 		width: 266px;
 		z-index: 500;
+		transition: all 0.2s ease;
+
+		&--up {
+			@extend .date-input__calendar;
+			bottom: v-bind(dropdownBottomPosition);
+		}
+		
+		&--down {
+			@extend .date-input__calendar;
+			top: v-bind(dropdownTopPosition);
+		}
 	}
 }
 
@@ -794,6 +930,15 @@ defineExpose({
 		z-index: 1;
 		position: relative;
 		@extend %user-select-none;
+
+		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+			@extend .calendar__day;
+			&:hover {
+				background-color: $shade-200;
+				color: $shade-600;
+				transition: all 0.2s ease;
+			}
+		}
 	}
 
 	&__empty-day {
@@ -818,6 +963,25 @@ defineExpose({
 		font-weight: $font-weight-semibold;
 		color: $n-700;
 		font-size: 16px;
+		padding: 4px;
+		transition: all 0.2s ease;
+		@extend %user-select-none;
+
+		&:hover {
+			background: $n-20;
+			border-radius: $border-radius-lil;
+			color: $n-900;
+			transition: all 0.2s ease;
+			cursor: pointer;
+		}
+	}
+
+	&__month-and-title--no-hover {
+		font-weight: $font-weight-semibold;
+		color: $n-700;
+		font-size: 16px;
+		padding: 4px;
+		transition: all 0.2s ease;
 		@extend %user-select-none;
 	}
 
@@ -918,11 +1082,12 @@ defineExpose({
 
 	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 		@extend .selected-day;
-		color: $shade-50;
+		color: $shade-50 !important;
 		background-color: $base-color;
 
 		&:hover {
 			background-color: darken($base-color, 5%);
+			transition: all 0.2s ease;
 		}
 	}
 }

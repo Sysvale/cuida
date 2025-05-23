@@ -6,7 +6,10 @@ exports[`BaseInput > renders correctly 1`] = `
     <!--v-if-->
   </label>
   <div data-v-82c69faf="" class="base-input base-input--default">
-    <!--v-if--><input data-v-82c69faf="" id="base-input" label="Label" state="default" type="text" placeholder="Digite aqui..." errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" supportlinkurl="https://cuida.framer.wiki/" floatinglabel="false" lazy="false" name="" class="base-input__field">
+    <!--v-if-->
+    <div data-v-82c69faf="" style="width: 100%;">
+      <!--v-if--><input data-v-82c69faf="" id="base-input" label="Label" state="default" type="text" placeholder="Digite aqui..." errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" supportlinkurl="https://cuida.framer.wiki/" floatinglabel="false" lazy="false" name="" enableautocomplete="false" enabletopcontent="false" class="base-input__field" autocomplete="off">
+    </div>
     <!--v-if-->
     <!--v-if-->
   </div>
