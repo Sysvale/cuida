@@ -51,7 +51,7 @@
 
 			<div>
 				<div
-					v-for="column in internalCustomColumnsList"
+					v-for="column in internalCustomFieldsList"
 					:key="column"
 					class="side-sheet__column-item"
 					:class="[
@@ -117,7 +117,7 @@ const props = defineProps({
 	/**
 	* Lista de colunas que serão exibidas na tabela personalizada.
 	*/
-	customColumnsList: {
+	customFieldsList: {
 		type: Array,
 		default: () => [],
 	}
@@ -126,16 +126,16 @@ const props = defineProps({
 const emits = defineEmits(['update-columns-list']);
 
 const showSideSheet = ref(false);
-const internalCustomColumnsList = ref(cloneDeep(props.customColumnsList));
+const internalCustomFieldsList = ref(cloneDeep(props.customFieldsList));
 
-const shouldDisableOkButton = computed(() => !internalCustomColumnsList.value.some(column => column.visible));
+const shouldDisableOkButton = computed(() => !internalCustomFieldsList.value.some(column => column.visible));
 
 function handleCancel() {
-	internalCustomColumnsList.value = cloneDeep(props.customColumnsList);
+	internalCustomFieldsList.value = cloneDeep(props.customFieldsList);
 }
 
 function handleOk() {
-	emits('update-columns-list', internalCustomColumnsList.value);
+	emits('update-columns-list', internalCustomFieldsList.value);
 }
 
 </script>

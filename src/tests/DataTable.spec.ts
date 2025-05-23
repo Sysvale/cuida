@@ -4,7 +4,7 @@ import DataTable from '../components/DataTable.vue';
 import { shallowMount } from '@vue/test-utils';
 
 const fields = ['field1', 'field2', 'field3'];
-const customColumns = [
+const customFields = [
 	{
 		label: 'Nome',
 		id: '1',
@@ -44,7 +44,7 @@ describe('DataTable', () => {
 				fields,
 				selectionVariant: 'green',
 				totalItems: 200,
-				customColumnsList: customColumns,
+				customFieldsList: customFields,
 				items: [
 					{
 						field1: 'field 1 content',
