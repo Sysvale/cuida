@@ -10,8 +10,8 @@ describe('Select', () => {
 				id: 'select-input',
 				label: 'label',
 				options: [
-					{ value: 'Option 1' },
-					{ value: 'Option 2' }
+					{ label: 'Option 1' },
+					{ label: 'Option 2' }
 				],
 				modelValue: {},
 			},
@@ -24,7 +24,7 @@ describe('Select', () => {
 		const wrapper = mount(Select, {
 			props: {
 				id: 'select-input',
-				options: [{ value: 'Option 1' }, { value: 'Option 2' }],
+				options: [{ label: 'Option 1' }, { label: 'Option 2' }],
 				modelValue: {},
 			},
 		});
@@ -39,7 +39,7 @@ describe('Select', () => {
 			props: {
 				label: 'label',
 				id: 'select-input',
-				options: [{ value: 'Option 1' }, { value: 'Option 2' }],
+				options: [{ label: 'Option 1' }, { label: 'Option 2' }],
 				required: true,
 				modelValue: {},
 			},
@@ -53,7 +53,7 @@ describe('Select', () => {
 			props: {
 				label: 'label',
 				id: 'select-input',
-				options: [{ value: 'Option 1' }, { value: 'Option 2' }],
+				options: [{ label: 'Option 1' }, { label: 'Option 2' }],
 				disabled: true,
 				modelValue: {},
 			},
@@ -67,7 +67,7 @@ describe('Select', () => {
 			props: {
 				label: 'label',
 				id: 'select-input',
-				options: [{ value: 'Option 1' }, { value: 'Option 2' }],
+				options: [{ label: 'Option 1' }, { label: 'Option 2' }],
 				disabled: false,
 				modelValue: {},
 			},
@@ -81,7 +81,7 @@ describe('Select', () => {
 			props: {
 				label: 'label',
 				id: 'select-input',
-				options: [{ value: 'Option 1' }, { value: 'Option 2' }],
+				options: [{ label: 'Option 1' }, { label: 'Option 2' }],
 				fluid: true,
 				modelValue: {},
 			},
@@ -94,7 +94,7 @@ describe('Select', () => {
 		const wrapper = mount(Select, {
 			props: {
 				id: 'select-input',
-				options: [{ value: 'Option 1' }, { value: 'Option 2' }],
+				options: [{ label: 'Option 1' }, { label: 'Option 2' }],
 				label: 'Custom Label',
 				modelValue: {},
 			},
@@ -108,7 +108,7 @@ describe('Select', () => {
 			props: {
 				label: 'label',
 				id: 'select-input',
-				options: [{ value: 'Option 1' }, { value: 'Option 2' }],
+				options: [{ label: 'Option 1' }, { label: 'Option 2' }],
 				supportLink: 'Support Link',
 				supportLinkUrl: 'https://example.com',
 				modelValue: {},
@@ -124,7 +124,7 @@ describe('Select', () => {
 			props: {
 				label: 'label',
 				id: 'select-input',
-				options: [{ value: 'Option 1' }, { value: 'Option 2' }],
+				options: [{ label: 'Option 1' }, { label: 'Option 2' }],
 				floatingLabel: true,
 				modelValue: {},
 			},
@@ -138,13 +138,13 @@ describe('Select', () => {
 			props: {
 				label: 'label',
 				id: 'select-input',
-				options: [{ value: 'Option 1' }, { value: 'Option 2' }],
+				options: [{ label: 'Option 1' }, { label: 'Option 2' }],
 				modelValue: {},
 			},
 		});
 
 		await wrapper.find('.option__text').trigger('mousedown');
-		expect(wrapper.vm.localValue.value).toBe('Option 1');
+		expect(wrapper.vm.localValue.label).toBe('Option 1');
 	});
 
 	test('filters options based on search input', async () => {
@@ -152,7 +152,7 @@ describe('Select', () => {
 			props: {
 				label: 'label',
 				id: 'select-input',
-				options: [{ value: 'Option 1' }, { value: 'Option 2' }],
+				options: [{ label: 'Option 1' }, { label: 'Option 2' }],
 				searchable: true,
 				modelValue: {},
 			},
@@ -161,7 +161,7 @@ describe('Select', () => {
 		await wrapper.find('input').setValue('Option 1');
 		await wrapper.findComponent(CdsBaseInput).trigger('input');
 		expect(wrapper.vm.localOptions.length).toBe(1);
-		expect(wrapper.vm.localOptions[0].value).toBe('Option 1');
+		expect(wrapper.vm.localOptions[0].label).toBe('Option 1');
 	});
 
 	test('hides options when input is blurred', async () => {
@@ -169,7 +169,7 @@ describe('Select', () => {
 			props: {
 				label: 'label',
 				id: 'select-input',
-				options: [{ value: 'Option 1' }, { value: 'Option 2' }],
+				options: [{ label: 'Option 1' }, { label: 'Option 2' }],
 				modelValue: {},
 			},
 		});

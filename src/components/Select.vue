@@ -52,7 +52,7 @@
 				>
 					<li
 						v-for="(option, index) in localOptions"
-						:key="option.id || option"
+						:key="option.value || option"
 						:ref="(el) => { liRefs[`${option[optionsField]}-${index}`] = el }"
 						class="option__text"
 						@mousedown="selectItem"
@@ -202,7 +202,7 @@ const props = defineProps({
 	*/
 	optionsField: {
 		type: String,
-		default: 'value',
+		default: 'label',
 		required: false,
 	},
 	/**
@@ -285,7 +285,7 @@ const localOptions = ref([]);
 const pristineOptions = ref([]);
 const localValue = ref({
 	value: '',
-	id: '',
+	label: '',
 });
 const selectElement = ref('');
 const direction = ref('down');
@@ -359,7 +359,7 @@ watch(model, (newValue, oldValue) => {
 		if (newValue instanceof Object) {
 			localValue.value = newValue;
 		} else {
-			localValue.value = {id: newValue, value: newValue }
+			localValue.value = {value: newValue, label: newValue }
 		}
 	}
 }, { immediate: true });
@@ -547,7 +547,7 @@ function handleAddOption() {
 	}
 
 	const newOption = {
-		id: searchString.value.toLowerCase().trim().replace(/ /g, '-'),
+		value: searchString.value.toLowerCase().trim().replace(/ /g, '-'),
 		[props.optionsField]: searchString.value.trim(),
 	};
 

@@ -50,7 +50,16 @@ export const Template = (args) => ({
 	},
 	data() {
 		return {
-			value: [{ title: 'Naruto'}, {title: 'Pokemon'}],
+			value: [
+				{
+					label: 'Naruto',
+					value: 'id2',
+				},
+				{
+					label: 'Pokemon',
+					value: 'id6',
+				},
+			],
 		};
 	},
 	template: /*html*/ `
@@ -92,14 +101,14 @@ leitura da documentação.
 ## Preview
 
 export const options = [
-	{ title: 'Avengers',},
-	{ title: 'Naruto',},
-	{ title: 'X-men',},
-	{ title: 'The Simpsons',},
-	{ title: 'Bananas de pijamas',},
-	{ title: 'Pokemon',},
-	{ title: 'Digimon',},
-	{ title: 'Megamente',},
+	{ label: 'Avengers', value: 'id1'},
+	{ label: 'Naruto', value: 'id2'},
+	{ label: 'X-men', value: 'id3'},
+	{ label: 'The Simpsons', value: 'id4'},
+	{ label: 'Bananas de pijamas', value: 'id5'},
+	{ label: 'Pokemon', value: 'id6'},
+	{ label: 'Digimon', value: 'id7'},
+	{ label: 'Megamente', value: 'id8'},
 ];
 
 <Canvas>
@@ -108,8 +117,7 @@ export const options = [
 		args={{
 			options,
 			label: 'Séries',
-			optionsField: 'title',
-			trackBy: 'title',
+			optionsField: 'label',
 			variant: 'green',
 		}}
 	>

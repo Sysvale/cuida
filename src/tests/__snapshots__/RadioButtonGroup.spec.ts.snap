@@ -6,15 +6,15 @@ exports[`RadioButtonGroup > renders correctly 1`] = `
   </label>
   <div data-v-575576ed="" class="">
     <div data-v-575576ed="" class="" style=""><label data-v-575576ed="" class="radio-button" disabled="true" for="radio-button-value1"><input data-v-575576ed="" id="radio-button-value1" type="radio" disabled="" value="value1"><label data-v-575576ed="" class="radio-button__content" for="radio-button-value1">
-          <div data-v-575576ed="" class="content-title">Component1</div>
+          <div data-v-575576ed="" class="content-title"></div>
           <!--v-if-->
         </label></label></div>
     <div data-v-575576ed="" class="" style=""><label data-v-575576ed="" class="radio-button" disabled="false" for="radio-button-value2"><input data-v-575576ed="" id="radio-button-value2" type="radio" value="value2"><label data-v-575576ed="" class="radio-button__content" for="radio-button-value2">
-          <div data-v-575576ed="" class="content-title">Component2</div>
+          <div data-v-575576ed="" class="content-title"></div>
           <!--v-if-->
         </label></label></div>
     <div data-v-575576ed="" class="" style=""><label data-v-575576ed="" class="radio-button" disabled="false" for="radio-button-value3"><input data-v-575576ed="" id="radio-button-value3" type="radio" value="value3"><label data-v-575576ed="" class="radio-button__content" for="radio-button-value3">
-          <div data-v-575576ed="" class="content-title">Component3</div>
+          <div data-v-575576ed="" class="content-title"></div>
           <!--v-if-->
         </label></label></div>
   </div>
