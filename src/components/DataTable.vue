@@ -123,7 +123,7 @@ const props = defineProps({
 	}
 });
 
-const emits = defineEmits(['update-columns-list']);
+const emits = defineEmits(['update-fields-list']);
 
 const showSideSheet = ref(false);
 const internalCustomFieldsList = ref(cloneDeep(props.customFieldsList));
@@ -135,7 +135,7 @@ function handleCancel() {
 }
 
 function handleOk() {
-	emits('update-columns-list', internalCustomFieldsList.value);
+	emits('update-fields-list', internalCustomFieldsList.value);
 }
 
 </script>

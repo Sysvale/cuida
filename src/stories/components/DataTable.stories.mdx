@@ -55,7 +55,7 @@ export const Template = (args) => ({
 		`<cds-data-table
 			v-model="selected"
 			v-bind="args"
-			@update-columns-list="console.log('List updated: ', $event)"
+			@update-fields-list="console.log('List updated: ', $event)"
 		>
 		</cds-data-table>
 		<br>
