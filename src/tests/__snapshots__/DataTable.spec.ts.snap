@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DataTable > renders correctly 1`] = `
+"<div data-v-046d4556="" fields="field1,field2,field3" items="[object Object],[object Object]">
+  <div data-v-046d4556="" class="data-table">
+    <div data-v-046d4556="" class="data-table__header">
+      <div data-v-046d4556="" class="data-table__items-counter">200 registros encontrados </div><!-- @slot Slot para renderização de conteúdo à direita do DataTable header. -->
+      <div data-v-046d4556="">
+        <cds-button-stub data-v-046d4556="" variant="green" size="sm" block="false" text="Lorem ipsum" disabled="false" secondary="true" loading="false"></cds-button-stub>
+      </div>
+    </div>
+    <cds-table-stub data-v-046d4556="" modelvalue="" items="[object Object],[object Object]" fields="field1,field2,field3" hover="false" allowselection="false" selectionvariant="green" sortable="false" fixedheader="false" sortdesc="false" nowrap="false"></cds-table-stub>
+  </div>
+  <cds-side-sheet-stub data-v-046d4556="" title="Personalizar tabela" modelvalue="false" withoverlay="true" size="md" nocloseonbackdrop="true" nocloseonesc="true" actionbuttonvariant="green" nofooter="false" nocancelbutton="false" disableokbutton="false" disablecancelbutton="false" okbuttontext="Salvar" cancelbuttontext="Cancelar" blockokbutton="true" nocloseokbutton="false" noclosecancelbutton="false"></cds-side-sheet-stub>
+</div>"
+`;
