@@ -58,9 +58,6 @@ export const Template = (args) => ({
 			v-bind="args"
 			@update-fields-list="console.log('List updated: ', $event)"
 		>
-			<template #table-item="data">
-				{{ data }}
-			</template>
 		</cds-data-table>
 		<br>
 		`,
