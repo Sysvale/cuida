@@ -24,29 +24,31 @@
 				</cds-flexbox>
 			</div>
 
-			<cds-table
-				v-bind="$attrs"
-				:selection-variant="selectionVariant"
-			>
-				<template
-					v-if="hasHeaderSlot"
-					#header-item="{ data, field }"
+			<div class="data-table__table-container">
+				<cds-table
+					v-bind="$attrs"
+					:selection-variant="selectionVariant"
 				>
-					<slot
-						name="header-item"
-						:data="data"
-						:field="field"
-					/>
-				</template>
+					<template
+						v-if="hasHeaderSlot"
+						#header-item="{ data, field }"
+					>
+						<slot
+							name="header-item"
+							:data="data"
+							:field="field"
+						/>
+					</template>
 
-				<template #table-item="{ data, field }">
-					<slot
-						name="table-item"
-						:data="data"
-						:field="field"
-					/>
-				</template>
-			</cds-table>
+					<template #table-item="{ data, field }">
+						<slot
+							name="table-item"
+							:data="data"
+							:field="field"
+						/>
+					</template>
+				</cds-table>
+			</div>
 		</div>
 
 		<cds-side-sheet
@@ -125,7 +127,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import CdsButton from './Button.vue';
 import CdsTable from './Table.vue';
 import CdsSideSheet from './SideSheet.vue';
@@ -166,6 +168,9 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	* Ativa o feedback de loading no sidesheet de personalizar tabela.
+	*/
 	loadingCustomFields: {
 		type: Boolean,
 		default: false,
@@ -178,6 +183,10 @@ const showSideSheet = ref(false);
 const internalCustomFieldsList = ref(cloneDeep(props.customFieldsList));
 
 const shouldDisableOkButton = computed(() => !internalCustomFieldsList.value.some(column => column.visible));
+
+watch(() => props.customFieldsList, () => {
+	internalCustomFieldsList.value = cloneDeep(props.customFieldsList);
+}, { immediate: true });
 
 function handleCustomizeButtonClick() {
 	emits('customize-click');
@@ -212,6 +221,10 @@ function handleOk() {
 	&__items-counter {
 		@include caption;
 		color: $n-600;
+	}
+
+	&__table-container {
+		overflow-x: auto;
 	}
 }
 
