@@ -30,18 +30,20 @@
 			>
 				<template
 					v-if="hasHeaderSlot"
-					#header-item="data"
+					#header-item="{ data, field }"
 				>
 					<slot
 						name="header-item"
 						:data="data"
+						:field="field"
 					/>
 				</template>
 
-				<template #table-item="data">
+				<template #table-item="{ data, field }">
 					<slot
 						name="table-item"
 						:data="data"
+						:field="field"
 					/>
 				</template>
 			</cds-table>
