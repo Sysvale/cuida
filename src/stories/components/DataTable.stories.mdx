@@ -56,12 +56,20 @@ export const Template = (args) => ({
 		`<cds-data-table
 			v-model="selected"
 			v-bind="args"
-			@customize-click="console.log('Customize click')"
-			@update-fields-list="console.log('List updated: ', $event)"
+			@customize-click="logCustomizeButtonClick"
+			@update-fields-list="logUpdateCustomFields($event)"
 		>
 		</cds-data-table>
 		<br>
 		`,
+	methods: {
+		logCustomizeButtonClick() {
+			console.info('%cCustomize click event', 'color:rgb(50, 125, 230);');
+		},
+		logUpdateCustomFields(event) {
+			console.info('%cUpdate custom fields event: ', 'color:rgb(52, 207, 200);', event);
+		},
+	},
 	updated() {
 		console.info('%cv-model: ', 'color: #2C70CD;', this.selected);
 	},
