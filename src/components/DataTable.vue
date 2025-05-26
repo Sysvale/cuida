@@ -6,26 +6,45 @@
 					{{ totalItems }} registros encontrados
 				</div>
 
-				<!-- @slot Slot para renderização de conteúdo à direita do DataTable header. -->
-				<div v-if="hasSlots">
+				<cds-flexbox
+					gap="3"
+					align="center"
+				>
+					<!-- @slot Slot para renderização de conteúdo à direita do DataTable header. -->
 					<slot name="right" />
-				</div>
 
-				<div v-else>
 					<cds-button
+						v-if="!hideCustomizeButton"
 						size="sm"
 						secondary
 						@button-click="showSideSheet = true"
 					>
 						Personalizar tabela
 					</cds-button>
-				</div>
+				</cds-flexbox>
 			</div>
 
 			<cds-table
 				v-bind="$attrs"
 				:selection-variant="selectionVariant"
-			/>
+			>
+				<template
+					v-if="hasHeaderSlot"
+					#header-item="data"
+				>
+					<slot
+						name="header-item"
+						:data="data"
+					/>
+				</template>
+
+				<template #table-item="data">
+					<slot
+						name="table-item"
+						:data="data"
+					/>
+				</template>
+			</cds-table>
 		</div>
 
 		<cds-side-sheet
@@ -97,10 +116,10 @@ import CdsTable from './Table.vue';
 import CdsSideSheet from './SideSheet.vue';
 import CdsIcon from './Icon.vue';
 import CdsFlexbox from './Flexbox.vue';
-import { useHasSlots } from '../utils/composables/useHasSlots';
+import { useHasSlot } from '../utils/composables/useHasSlot';
 import { cloneDeep } from 'lodash';
 
-const hasSlots = useHasSlots();
+const hasHeaderSlot = useHasSlot('header-item');
 
 const props = defineProps({
 	/**
@@ -123,7 +142,14 @@ const props = defineProps({
 	customFieldsList: {
 		type: Array,
 		default: () => [],
-	}
+	},
+	/**
+	* Especifica se o botão de personalizar tabela deve ser escondido.
+	*/
+	hideCustomizeButton: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const emits = defineEmits(['update-fields-list']);
