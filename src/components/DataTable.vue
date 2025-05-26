@@ -43,7 +43,7 @@
 	>
 		<cds-flexbox
 			direction="column"
-			gap="7"
+			gap="1"
 		>
 			<div class="side-sheet__description">
 				Selecione as colunas que deseja exibir na tabela.
@@ -94,6 +94,7 @@ import CdsButton from './Button.vue';
 import CdsTable from './Table.vue';
 import CdsSideSheet from './SideSheet.vue';
 import CdsIcon from './Icon.vue';
+import CdsFlexbox from './Flexbox.vue';
 import { useHasSlots } from '../utils/composables/useHasSlots';
 import { cloneDeep } from 'lodash';
 
