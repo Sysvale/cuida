@@ -4,10 +4,8 @@ exports[`DataTable > renders correctly 1`] = `
 "<div data-v-046d4556="" fields="field1,field2,field3" items="[object Object],[object Object]">
   <div data-v-046d4556="" class="data-table">
     <div data-v-046d4556="" class="data-table__header">
-      <div data-v-046d4556="" class="data-table__items-counter">200 registros encontrados </div><!-- @slot Slot para renderização de conteúdo à direita do DataTable header. -->
-      <div data-v-046d4556="">
-        <cds-button-stub data-v-046d4556="" variant="green" size="sm" block="false" text="Lorem ipsum" disabled="false" secondary="true" loading="false"></cds-button-stub>
-      </div>
+      <div data-v-046d4556="" class="data-table__items-counter">200 registros encontrados </div>
+      <cds-flexbox-stub data-v-046d4556="" direction="row" wrap="wrap" gap="3" justify="flex-start" align="center" tag="div"></cds-flexbox-stub>
     </div>
     <cds-table-stub data-v-046d4556="" modelvalue="" items="[object Object],[object Object]" fields="field1,field2,field3" hover="false" allowselection="false" selectionvariant="green" sortable="false" fixedheader="false" sortdesc="false" nowrap="false"></cds-table-stub>
   </div>
