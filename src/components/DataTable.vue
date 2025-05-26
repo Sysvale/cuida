@@ -17,7 +17,7 @@
 						v-if="!hideCustomizeButton"
 						size="sm"
 						secondary
-						@button-click="showSideSheet = true"
+						@button-click="handleCustomizeButtonClick"
 					>
 						Personalizar tabela
 					</cds-button>
@@ -71,7 +71,20 @@
 					Selecione as colunas que deseja exibir na tabela.
 				</div>
 
-				<div>
+				<cds-flexbox
+					v-if="loadingCustomFields"
+					direction="column"
+					gap="3"
+				>
+					<cds-skeleton
+						v-for="skeleton in 8"
+						:key="skeleton"
+						:height="60"
+						fluid
+					/>
+				</cds-flexbox>
+
+				<div v-else>
 					<div
 						v-for="column in internalCustomFieldsList"
 						:key="column"
@@ -118,6 +131,7 @@ import CdsTable from './Table.vue';
 import CdsSideSheet from './SideSheet.vue';
 import CdsIcon from './Icon.vue';
 import CdsFlexbox from './Flexbox.vue';
+import CdsSkeleton from './Skeleton.vue';
 import { useHasSlot } from '../utils/composables/useHasSlot';
 import { cloneDeep } from 'lodash';
 
@@ -152,14 +166,23 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	loadingCustomFields: {
+		type: Boolean,
+		default: false,
+	},
 });
 
-const emits = defineEmits(['update-fields-list']);
+const emits = defineEmits(['update-fields-list', 'customize-click']);
 
 const showSideSheet = ref(false);
 const internalCustomFieldsList = ref(cloneDeep(props.customFieldsList));
 
 const shouldDisableOkButton = computed(() => !internalCustomFieldsList.value.some(column => column.visible));
+
+function handleCustomizeButtonClick() {
+	emits('customize-click');
+	showSideSheet.value = true;
+}
 
 function handleCancel() {
 	internalCustomFieldsList.value = cloneDeep(props.customFieldsList);
