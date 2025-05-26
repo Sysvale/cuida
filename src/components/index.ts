@@ -28,6 +28,7 @@ import Clickable from './Clickable.vue';
 import CollapsibleContainer from './CollapsibleContainer.vue';
 import ColorPicker from './ColorPicker.vue';
 import DashboardCard from './DashboardCard.vue';
+import DataTable from './DataTable.vue';
 import DateInput from './DateInput.vue';
 import DialogModal from './DialogModal.vue';
 import DynamicInputList from './DynamicInputList.vue';
@@ -160,6 +161,7 @@ export default {
 		app.component('CdsCollapsibleContainer', CollapsibleContainer);
 		app.component('CdsColorPicker', ColorPicker);
 		app.component('CdsDashboardCard', DashboardCard);
+		app.component('CdsDataTable', DataTable);
 		app.component('CdsDateInput', DateInput);
 		app.component('CdsDialogModal', DialogModal);
 		app.component('CdsDivider', Divider);
