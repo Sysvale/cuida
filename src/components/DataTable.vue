@@ -1,91 +1,93 @@
 <template>
-	<div class="data-table">
-		<div class="data-table__header">
-			<div class="data-table__items-counter">
-				{{ totalItems }} registros encontrados
-			</div>
+	<div>
+		<div class="data-table">
+			<div class="data-table__header">
+				<div class="data-table__items-counter">
+					{{ totalItems }} registros encontrados
+				</div>
 
-			<!-- @slot Slot para renderização de conteúdo à direita do DataTable header. -->
-			<div v-if="hasSlots">
-				<slot name="right" />
-			</div>
+				<!-- @slot Slot para renderização de conteúdo à direita do DataTable header. -->
+				<div v-if="hasSlots">
+					<slot name="right" />
+				</div>
 
-			<div v-else>
-				<cds-button
-					size="sm"
-					secondary
-					@button-click="showSideSheet = true"
-				>
-					Personalizar tabela
-				</cds-button>
-			</div>
-		</div>
-
-		<cds-table
-			v-bind="$attrs"
-			:selection-variant="selectionVariant"
-		/>
-	</div>
-
-	<cds-side-sheet
-		v-model="showSideSheet"
-		title="Personalizar tabela"
-		ok-button-text="Salvar"
-		cancel-button-text="Cancelar"
-		:action-button-variant="selectionVariant"
-		:disable-ok-button="shouldDisableOkButton"
-		no-close-on-esc
-		block-ok-button
-		with-overlay
-		no-close-on-backdrop
-		@ok="handleOk"
-		@cancel="handleCancel"
-	>
-		<cds-flexbox
-			direction="column"
-			gap="1"
-		>
-			<div class="side-sheet__description">
-				Selecione as colunas que deseja exibir na tabela.
-			</div>
-
-			<div>
-				<div
-					v-for="column in internalCustomFieldsList"
-					:key="column"
-					class="side-sheet__column-item"
-					:class="[
-						{ [`side-sheet__column-item--active--${selectionVariant}`] : column.visible },
-						`side-sheet__column-item--${selectionVariant}`
-					]"
-					@click="column.visible = !column.visible"
-				>
-					<span
-						class="side-sheet__item-label"
-						:class="column.visible? `side-sheet__item-label--${selectionVariant}` : ''"
+				<div v-else>
+					<cds-button
+						size="sm"
+						secondary
+						@button-click="showSideSheet = true"
 					>
-						{{ column.label }}
-					</span>
-
-					<cds-icon
-						v-if="column.visible"
-						:class="`side-sheet__icon--${selectionVariant}`"
-						name="pin-outline"
-						width="16"
-						height="16"
-					/>
-
-					<cds-icon
-						v-else
-						class="side-sheet__icon"
-						name="pin-outline"
-						width="16"
-						height="16"
-					/>
+						Personalizar tabela
+					</cds-button>
 				</div>
 			</div>
-		</cds-flexbox>
-	</cds-side-sheet>
+
+			<cds-table
+				v-bind="$attrs"
+				:selection-variant="selectionVariant"
+			/>
+		</div>
+
+		<cds-side-sheet
+			v-model="showSideSheet"
+			title="Personalizar tabela"
+			ok-button-text="Salvar"
+			cancel-button-text="Cancelar"
+			:action-button-variant="selectionVariant"
+			:disable-ok-button="shouldDisableOkButton"
+			no-close-on-esc
+			block-ok-button
+			with-overlay
+			no-close-on-backdrop
+			@ok="handleOk"
+			@cancel="handleCancel"
+		>
+			<cds-flexbox
+				direction="column"
+				gap="1"
+			>
+				<div class="side-sheet__description">
+					Selecione as colunas que deseja exibir na tabela.
+				</div>
+
+				<div>
+					<div
+						v-for="column in internalCustomFieldsList"
+						:key="column"
+						class="side-sheet__column-item"
+						:class="[
+							{ [`side-sheet__column-item--active--${selectionVariant}`] : column.visible },
+							`side-sheet__column-item--${selectionVariant}`
+						]"
+						@click="column.visible = !column.visible"
+					>
+						<span
+							class="side-sheet__item-label"
+							:class="column.visible? `side-sheet__item-label--${selectionVariant}` : ''"
+						>
+							{{ column.label }}
+						</span>
+
+						<cds-icon
+							v-if="column.visible"
+							:class="`side-sheet__icon--${selectionVariant}`"
+							name="pin-outline"
+							width="16"
+							height="16"
+						/>
+
+						<cds-icon
+							v-else
+							class="side-sheet__icon"
+							name="pin-outline"
+							width="16"
+							height="16"
+						/>
+					</div>
+				</div>
+			</cds-flexbox>
+		</cds-side-sheet>
+	</div>
 </template>
 
 <script setup>
