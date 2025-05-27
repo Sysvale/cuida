@@ -3,12 +3,7 @@
 		<cds-side-sheet
 			v-model="modelValue"
 			title="Personalizar tabela"
-			ok-button-text="Salvar"
-			cancel-button-text="Cancelar"
-			:action-button-variant="selectionVariant"
-			:disable-ok-button="shouldDisableOkButton"
 			no-close-on-esc
-			block-ok-button
 			with-overlay
 			no-close-on-backdrop
 			@ok="handleOk"
@@ -19,7 +14,7 @@
 				gap="1"
 			>
 				<div class="side-sheet__description">
-					Selecione as colunas que deseja exibir na tabela.
+					{{ descriptionComputedText }}
 				</div>
 
 				<cds-flexbox
@@ -71,16 +66,38 @@
 					</div>
 				</div>
 			</cds-flexbox>
+
+			<template #footer>
+				<div class="side-sheet__footer">
+					<cds-button
+						secondary
+						@button-click="handleCancel"
+					>
+						Cancelar
+					</cds-button>
+
+					<cds-button
+						v-cdstip="shouldDisableOkButton ? descriptionComputedText : ''"
+						:variant="selectionVariant"
+						:disabled="shouldDisableOkButton"
+						block
+						@button-click="handleOk"
+					>
+						Salvar
+					</cds-button>
+				</div>
+			</template>
 		</cds-side-sheet>
 	</div>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 import CdsIcon from '../Icon.vue';
 import CdsSkeleton from '../Skeleton.vue';
 import CdsSideSheet from '../SideSheet.vue';
 import CdsFlexbox from '../Flexbox.vue';
+import CdsButton from '../Button.vue';
 import { cloneDeep } from 'lodash';
 
 const modelValue = defineModel({
@@ -104,12 +121,50 @@ const props = defineProps({
 	shouldDisableOkButton: {
 		type: Boolean,
 		default: false
-	}
+	},
+	minFields: {
+		type: Number,
+		required: true,
+	},
+	maxFields: {
+		type: Number,
+		required: true,
+	},
 });
 
 const emits = defineEmits(['update-fields-list', 'cancel', 'ok']);
 
 const internalCustomFieldsList = ref(cloneDeep(props.customFieldsList));
+
+const shouldDisableOkButton = computed(() => {
+	const visibleFieldsCount = internalCustomFieldsList.value.filter(field => field.visible).length;
+
+	return visibleFieldsCount < props.minFields || visibleFieldsCount > props.maxFields;
+});
+
+const descriptionComputedText = computed(() => {
+	const { minFields, maxFields } = props;
+
+	const getDescription = (min, max) => {
+		if (max === Infinity) {
+			return min === 1
+				? 'Selecione as colunas para exibir na tabela.'
+				: `Selecione ao menos ${min} colunas para exibir na tabela.`;
+		}
+
+		if (min === max) {
+			return min === 1
+				? 'Selecione 1 coluna para exibir na tabela.'
+				: `Selecione ${min} colunas para exibir na tabela.`;
+		}
+
+		if (min === 1) return `Selecione até ${max} colunas para exibir na tabela.`;
+
+		return `Selecione entre ${min} e ${max} colunas para exibir na tabela.`;
+	};
+
+	return getDescription(minFields, maxFields);
+});
 
 watch(() => props.customFieldsList, (newList) => {
 	internalCustomFieldsList.value = cloneDeep(newList);
@@ -117,6 +172,7 @@ watch(() => props.customFieldsList, (newList) => {
 
 function handleCancel() {
 	internalCustomFieldsList.value = cloneDeep(props.customFieldsList);
+	modelValue.value = false;
 	emits('cancel');
 }
 
@@ -178,6 +234,13 @@ function handleOk() {
 		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			color: $shade-300;
 		}
+	}
+
+	&__footer {
+		display: flex;
+		justify-content: space-between;
+		gap: spacer(3);
+		width: 100%;
 	}
 }
 
