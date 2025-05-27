@@ -58,6 +58,7 @@ export const Template = (args) => ({
 			v-bind="args"
 			@customize-click="logCustomizeButtonClick"
 			@update-fields-list="logUpdateCustomFields($event)"
+			@cancel="logCancelClick"
 		>
 		</cds-data-table>
 		<br>
@@ -65,6 +66,9 @@ export const Template = (args) => ({
 	methods: {
 		logCustomizeButtonClick() {
 			console.info('%cCustomize click event', 'color:rgb(50, 125, 230);');
+		},
+		logCancelClick() {
+			console.info('%cCancel click event', 'color:rgb(221, 177, 34);');
 		},
 		logUpdateCustomFields(event) {
 			console.info('%cUpdate custom fields event: ', 'color:rgb(52, 207, 200);', event);
