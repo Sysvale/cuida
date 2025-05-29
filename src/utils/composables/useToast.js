@@ -1,4 +1,4 @@
-// useToast.js
+import generateKey from '../methods/uuidv4';
 import { reactive } from 'vue'
 
 export const toastState = reactive({
@@ -15,7 +15,7 @@ export function useToast() {
 		autoDismissible = true,
 		light = false,
 	}) {
-		const id = Date.now();
+		const id = generateKey();
 
 		toastState.toasts.push({
 			id,
