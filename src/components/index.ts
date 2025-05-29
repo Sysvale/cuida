@@ -107,6 +107,8 @@ import Tile from './Tile.vue';
 import TimeInput from './TimeInput.vue';
 import Timeline from './Timeline.vue';
 import TimelineItem from './TimelineItem.vue';
+import Toast from './Toast.vue';
+import ToastContainer from './ToastContainer.vue';
 import Tooltip from './Tooltip.vue';
 import TopAppBar from './TopAppBar.vue';
 import Truncate from './Truncate.vue';
@@ -128,6 +130,7 @@ import removeAccents from '@/utils/methods/removeAccents';
 import hexToRgb from '@/utils/methods/hexToRgb';
 import isDeviceType from '@/utils/methods/isDeviceType';
 import useIsMobile from '@/utils/composables/useIsMobile';
+import { useToast } from '@/utils/composables/useToast';
 import { useHasSlot } from '@/utils/composables/useHasSlot';
 import { useHasSlots } from '@/utils/composables/useHasSlots';
 
@@ -240,6 +243,8 @@ export default {
 		app.component('CdsTextInput', TextInput);
 		app.component('CdsTile', Tile);
 		app.component('CdsTimeInput', TimeInput);
+		app.component('CdsToast', Toast);
+		app.component('CdsToastContainer', ToastContainer);
 		app.component('CdsTooltip', Tooltip);
 		app.component('CdsTopAppBar', TopAppBar);
 		app.component('CdsTimeline', Timeline);
@@ -260,6 +265,7 @@ export default {
 		useIsMobile,
 		useHasSlot,
 		useHasSlots,
+		useToast,
 		unmaskBRL,
 		uuidv4,
 	},
