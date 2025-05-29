@@ -11,6 +11,6 @@ exports[`DataTable > renders correctly 1`] = `
       <cds-table-stub data-v-046d4556="" modelvalue="" items="[object Object],[object Object]" fields="field1,field2,field3" hover="false" allowselection="false" selectionvariant="green" sortable="false" fixedheader="false" sortdesc="false" nowrap="false"></cds-table-stub>
     </div>
   </div>
-  <cds-side-sheet-stub data-v-046d4556="" title="Personalizar tabela" modelvalue="false" withoverlay="true" size="md" nocloseonbackdrop="true" nocloseonesc="true" actionbuttonvariant="green" nofooter="false" nocancelbutton="false" disableokbutton="false" disablecancelbutton="false" okbuttontext="Salvar" cancelbuttontext="Cancelar" blockokbutton="true" nocloseokbutton="false" noclosecancelbutton="false"></cds-side-sheet-stub>
+  <custom-fields-side-sheet-stub data-v-046d4556="" minfields="1" maxfields="Infinity" customfieldslist="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]" selectionvariant="green" loadingcustomfields="false" shoulddisableokbutton="false" modelvalue="false"></custom-fields-side-sheet-stub>
 </div>"
 `;
