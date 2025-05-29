@@ -1,0 +1,139 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Toast from '../../components/Toast.vue';
+import Button from '../../components/Button.vue';
+
+<Meta
+    title="Componentes/Notificação/Toast"
+    component={ Toast }
+    argTypes={{
+        variant: {
+			control:{
+				type: 'select',
+				options: [
+					'info',
+                    'success',
+					'warning',
+					'danger',
+				],
+			}
+		},
+        dismissAfter: { 
+			control: {
+				type: 'range',
+				min: 4000,
+				max: 12000,
+				step: 1000,
+			},
+		},
+    }}
+        parameters={{
+        viewMode: 'docs',
+        previewTabs: { canvas: { hidden: true }},
+        docs: {
+            source: {
+                language: 'html',
+                format:true,
+                code: /*html*/
+`<CdsToast
+    v-model="show"
+    title="Título do tooltip"
+    description="Breve feedback ou notificação"
+    variant="success"
+    :light="false"
+    :dismissible="true"
+    :dismissAfter="12000"
+    :autoDismissible="true"
+    @update:modelValue="logUpdate"
+    @dismiss="logDismissClick"
+/>`
+},
+        }
+    }}
+/>
+
+export const Template = (args) => ({
+    components: { CdsToast: Toast, CdsButton: Button },
+    setup() {
+        return { args };
+    },
+    data() {
+        return {
+            show: true,
+        };
+    },
+    template: /*html*/ `
+        <CdsToast
+            v-bind="args"
+            v-model="show"
+            @update:modelValue="logUpdate"
+            @dismiss="logDismissClick"
+        />
+        <br />
+        <CdsButton
+            v-if="!show"
+            id="trigger-popover"
+            @click="show = true"
+            secondary
+            size="sm"
+        >
+            Mostrar Toast
+        </CdsButton>
+    `,
+    methods: {
+        logDismissClick(event) {
+            console.info('logClick: ', event);
+        },
+        logUpdate(event) {
+            console.info('logUpdate: ', this.show);
+        },
+    },
+});
+
+# Toast
+
+### Toasts são componentes utilizados para prover feedback breve e notificações não intrusivas sobre o status de uma ação ou evento do sistema.
+---
+<br />
+
+## Quando usar:
+- Para exibir mensagens de feedback temporárias (ex: "Item salvo com sucesso", "Erro ao processar solicitação").
+- Para notificar o usuário sobre eventos do sistema que não exigem ação imediata (ex: "Arquivo processado com sucesso").
+- Quando a informação a ser exibida é importante, mas não crítica a ponto de interromper o fluxo do usuário.
+
+
+<br />
+
+## Quando não usar:
+- Para mensagens críticas que exigem a atenção e confirmação imediata do usuário (considere usar `Alert` ou `DialogModal`).
+- Quando a mensagem precisa permanecer visível indefinidamente até que o usuário a dispense manualmente (considere usar `Alert`).
+
+<br />
+
+## ⚠️ Observações:
+**Não é recomendado utilizar o Toast diretamente, mas sim de modo programático através do `cuidaToast`**,
+composable disponível em `src/utils/composables/useToast.js`, e do `ToastContainer`. Essa abordagem centraliza o
+gerenciamento de múltiplos toasts e previne conflitos de renderização quando mais de um toast é disparado
+simultaneamente na mesma interface.
+
+<br />
+
+## Preview
+
+<Canvas>
+    <Story
+        name="Toast"
+        args={{
+            variant: 'success',
+            light: false,
+            title: 'Título do tooltip',
+            description: 'Breve feedback ou notificação',
+            dismissible: true,
+            dismissAfter: 12000,
+            autoDismissible: true,
+        }}
+    >
+        { Template.bind({}) }
+    </Story>
+</Canvas>
+
+<ArgsTable story="Toast" />
