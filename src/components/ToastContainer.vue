@@ -57,7 +57,7 @@ const toasts = useToast().toastState.toasts;
 	transform: translateY(12px);
 }
 
-.v-leave-active { 
+.v-leave-active {
 	position: absolute;
 }
 </style>
