@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DataTable > renders correctly 1`] = `
+"<div data-v-046d4556="" fields="field1,field2,field3" items="[object Object],[object Object]">
+  <div data-v-046d4556="" class="data-table">
+    <div data-v-046d4556="" class="data-table__header">
+      <div data-v-046d4556="" class="data-table__items-counter">200 registros encontrados</div>
+      <cds-flexbox-stub data-v-046d4556="" direction="row" wrap="wrap" gap="3" justify="flex-start" align="center" tag="div" fluid="false"></cds-flexbox-stub>
+    </div>
+    <div data-v-046d4556="" class="data-table__table-container">
+      <cds-table-stub data-v-046d4556="" modelvalue="" items="[object Object],[object Object]" fields="field1,field2,field3" hover="false" allowselection="false" selectionvariant="green" sortable="false" fixedheader="false" sortdesc="false" nowrap="false"></cds-table-stub>
+    </div>
+  </div>
+  <custom-fields-side-sheet-stub data-v-046d4556="" minfields="1" maxfields="Infinity" customfieldslist="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]" selectionvariant="green" loadingcustomfields="false" shoulddisableokbutton="false" modelvalue="false"></custom-fields-side-sheet-stub>
+</div>"
+`;

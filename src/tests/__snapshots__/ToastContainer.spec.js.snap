@@ -1,0 +1,8 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ToastContainer snapshot test > renders correctly 1`] = `
+"<transition-group-stub data-v-358d1d79="" tag="div" appear="false" persisted="false" css="true" class="toast-container">
+  <cds-toast-stub data-v-358d1d79="" title="Sucesso" description="Ação realizada com sucesso!" dismissible="true" autodismissible="true" dismissafter="5000" variant="success" light="false" modelvalue="true" id="1"></cds-toast-stub>
+  <cds-toast-stub data-v-358d1d79="" title="Erro" description="Algo deu errado." dismissible="false" autodismissible="false" dismissafter="6000" variant="danger" light="true" modelvalue="true" id="2"></cds-toast-stub>
+</transition-group-stub>"
+`;

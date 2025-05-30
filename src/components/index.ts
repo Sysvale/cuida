@@ -28,6 +28,7 @@ import Clickable from './Clickable.vue';
 import CollapsibleContainer from './CollapsibleContainer.vue';
 import ColorPicker from './ColorPicker.vue';
 import DashboardCard from './DashboardCard.vue';
+import DataTable from './DataTable.vue';
 import DateInput from './DateInput.vue';
 import DialogModal from './DialogModal.vue';
 import DynamicInputList from './DynamicInputList.vue';
@@ -106,6 +107,8 @@ import Tile from './Tile.vue';
 import TimeInput from './TimeInput.vue';
 import Timeline from './Timeline.vue';
 import TimelineItem from './TimelineItem.vue';
+import Toast from './Toast.vue';
+import ToastContainer from './ToastContainer.vue';
 import Tooltip from './Tooltip.vue';
 import TopAppBar from './TopAppBar.vue';
 import Truncate from './Truncate.vue';
@@ -127,6 +130,7 @@ import removeAccents from '@/utils/methods/removeAccents';
 import hexToRgb from '@/utils/methods/hexToRgb';
 import isDeviceType from '@/utils/methods/isDeviceType';
 import useIsMobile from '@/utils/composables/useIsMobile';
+import { useToast } from '@/utils/composables/useToast';
 import { useHasSlot } from '@/utils/composables/useHasSlot';
 import { useHasSlots } from '@/utils/composables/useHasSlots';
 
@@ -160,6 +164,7 @@ export default {
 		app.component('CdsCollapsibleContainer', CollapsibleContainer);
 		app.component('CdsColorPicker', ColorPicker);
 		app.component('CdsDashboardCard', DashboardCard);
+		app.component('CdsDataTable', DataTable);
 		app.component('CdsDateInput', DateInput);
 		app.component('CdsDialogModal', DialogModal);
 		app.component('CdsDivider', Divider);
@@ -238,6 +243,8 @@ export default {
 		app.component('CdsTextInput', TextInput);
 		app.component('CdsTile', Tile);
 		app.component('CdsTimeInput', TimeInput);
+		app.component('CdsToast', Toast);
+		app.component('CdsToastContainer', ToastContainer);
 		app.component('CdsTooltip', Tooltip);
 		app.component('CdsTopAppBar', TopAppBar);
 		app.component('CdsTimeline', Timeline);
@@ -258,6 +265,7 @@ export default {
 		useIsMobile,
 		useHasSlot,
 		useHasSlots,
+		useToast,
 		unmaskBRL,
 		uuidv4,
 	},

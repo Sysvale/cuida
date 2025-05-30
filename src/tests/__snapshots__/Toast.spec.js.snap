@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Toast > renders correctly 1`] = `
+"<div data-v-c2ac4e6d="" data-v-7b6def48="" class="flexbox toast__container toast__container--info" role="alert" aria-live="assertive">
+  <!-- @slot Slot com o conteúdo interno do FlexBox -->
+  <div data-v-c2ac4e6d="" data-v-7b6def48="" class="flexbox">
+    <!-- @slot Slot com o conteúdo interno do FlexBox -->
+    <div data-v-c2ac4e6d="" data-v-7b6def48="" class="flexbox">
+      <!-- @slot Slot com o conteúdo interno do FlexBox --><svg data-v-7b6def48="" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="info-outline" role="presentation" class="toast__icon--info">
+        <g fill="currentColor"></g>
+      </svg>
+      <div data-v-7b6def48="" class="toast__text-container">
+        <div data-v-c2ac4e6d="" data-v-7b6def48="" class="flexbox">
+          <!-- @slot Slot com o conteúdo interno do FlexBox --><span data-v-3df5e145="" data-v-7b6def48="" class="text-alignment n-0 toast__title">Título do toast</span><span data-v-3df5e145="" data-v-7b6def48="" class="text-alignment n-30 toast__description">Descrição do toast, exibida abaixo do título</span>
+        </div>
+      </div>
+    </div>
+    <!--v-if-->
+  </div>
+  <!--v-if-->
+</div>"
+`;
