@@ -4,32 +4,38 @@ import ToastContainer from '../components/ToastContainer.vue'
 import CdsToast from '../components/Toast.vue'
 
 vi.mock('../utils/composables/useToast.js', () => {
+	const toastState = {
+		toasts: [
+			{
+				id: '1',
+				title: 'Sucesso',
+				description: 'Ação realizada com sucesso!',
+				dismissible: true,
+				autoDismissible: true,
+				dismissAfter: 5000,
+				variant: 'success',
+				light: false,
+			},
+			{
+				id: '2',
+				title: 'Erro',
+				description: 'Algo deu errado.',
+				dismissible: false,
+				autoDismissible: false,
+				dismissAfter: 6000,
+				variant: 'danger',
+				light: true,
+			},
+		],
+	};
+
 	return {
-		toastState: {
-			toasts: [
-				{
-					id: '1',
-					title: 'Sucesso',
-					description: 'Ação realizada com sucesso!',
-					dismissible: true,
-					autoDismissible: true,
-					dismissAfter: 5000,
-					variant: 'success',
-					light: false,
-				},
-				{
-					id: '2',
-					title: 'Erro',
-					description: 'Algo deu errado.',
-					dismissible: false,
-					autoDismissible: false,
-					dismissAfter: 6000,
-					variant: 'danger',
-					light: true,
-				},
-			]
-		}
-	}
+		useToast: () => ({
+			toastState,
+			fire: vi.fn(),
+			dismissToast: vi.fn(),
+		}),
+	};
 })
 
 describe('ToastContainer snapshot test', () => {
