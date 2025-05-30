@@ -79,7 +79,7 @@ export const Template = (args) => ({
 
 # ToastContainer
 
-### O ToastContainer é um componente global utilizado para gerenciar e exibir múltiplos Toasts na aplicação. Ele controla a posição, o enfileiramento e a animação dos Toasts.
+### O ToastContainer é um componente global utilizado para gerenciar e exibir múltiplos Toasts na aplicação.Ele controla a posição, o enfileiramento e a animação dos Toasts.
 ---
 <br />
 
@@ -98,8 +98,8 @@ export const Template = (args) => ({
 
 ## ⚠️ Observações:
 - O `ToastContainer` deve ser instanciado uma vez na aplicação, geralmente no App.vue. 
-Ele observará alterações na propriedade toastStat2 do o useToast e renderizará os Toasts de acordo com as configurações passadas.
-- Para que o componente funcione como esperado, é necessário importar o useToast e chamar o método fire.
+Ele observará alterações na propriedade toastState do o useToast e renderizará os Toasts de acordo com as configurações passadas.
+- Para que o componente funcione como esperado, é necessário importar o composable useToast e chamar o método fire().
 
 <br />
 
@@ -129,7 +129,7 @@ app.provide('useToast', cdsUtils.useToast);
 
 #### Disparando Toast na aplicação
 ```js
-import { useToast } from '../../utils/composables/useToast.js';
+const useToast = inject('useToast');
 
 useToast().fire({
     title: 'Processando dados',

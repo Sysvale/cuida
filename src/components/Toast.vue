@@ -30,9 +30,7 @@
 					width="20"
 				/>
 
-				<div
-					class="toast__text-container"
-				>
+				<div class="toast__text-container">
 					<CdsFlexbox
 						direction="column"
 						gap="1"
@@ -94,21 +92,21 @@ const model = defineModel('modelValue', {
 
 const props = defineProps({
 	/**
-	* Título do toast
+	* Título do toast.
 	*/
 	title: {
 		type: String,
-		default: 'Teste toast'
+		default: 'Título do toast'
 	},
 	/**
-	* Texto opcional apresentado abaixo do título do toast
+	* Texto opcional apresentado abaixo do título do toast.
 	*/
 	description: {
 		type: String,
-		default: 'Gerador de lero lero manual para ver se o toast funciona'
+		default: 'Descrição do toast, exibida abaixo do título'
 	},
 	/**
-	* Quando true, apresenta ícone para feixar o toast.
+	* Quando true, apresenta ícone para fechar o toast.
 	*/
 	dismissible: {
 		type: Boolean,

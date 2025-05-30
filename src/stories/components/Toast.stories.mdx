@@ -110,10 +110,10 @@ export const Template = (args) => ({
 <br />
 
 ## ⚠️ Observações:
-**Não é recomendado utilizar o Toast diretamente, mas sim de modo programático através do `cuidaToast`**,
-composable disponível em `src/utils/composables/useToast.js`, e do `ToastContainer`. Essa abordagem centraliza o
-gerenciamento de múltiplos toasts e previne conflitos de renderização quando mais de um toast é disparado
-simultaneamente na mesma interface.
+Evite usar o Toast diretamente. Em vez disso, utilize-o programaticamente através do composable useToast
+(disponível em src/utils/composables/useToast.js) em conjunto com o componente ToastContainer.
+Essa abordagem centraliza o gerenciamento de múltiplos toasts e evita conflitos de renderização
+vários toasts são disparados simultaneamente na mesma interface.
 
 <br />
 
