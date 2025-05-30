@@ -5,7 +5,7 @@ exports[`DataTable > renders correctly 1`] = `
   <div data-v-046d4556="" class="data-table">
     <div data-v-046d4556="" class="data-table__header">
       <div data-v-046d4556="" class="data-table__items-counter">200 registros encontrados</div>
-      <cds-flexbox-stub data-v-046d4556="" direction="row" wrap="wrap" gap="3" justify="flex-start" align="center" tag="div"></cds-flexbox-stub>
+      <cds-flexbox-stub data-v-046d4556="" direction="row" wrap="wrap" gap="3" justify="flex-start" align="center" tag="div" fluid="false"></cds-flexbox-stub>
     </div>
     <div data-v-046d4556="" class="data-table__table-container">
       <cds-table-stub data-v-046d4556="" modelvalue="" items="[object Object],[object Object]" fields="field1,field2,field3" hover="false" allowselection="false" selectionvariant="green" sortable="false" fixedheader="false" sortdesc="false" nowrap="false"></cds-table-stub>

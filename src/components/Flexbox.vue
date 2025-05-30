@@ -63,6 +63,13 @@ const props = defineProps({
 		default: 'div',
 		validator: (value) => ['div', 'span', 'main', 'footer', 'form', 'header', 'aside', 'ul', 'li'].includes(value),
 	},
+	/**
+	* Quando true, o flexbox irá ocupar 100% da largura disponível.
+	*/
+	fluid: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const gapAsStringResolver = (gap) => {
@@ -108,6 +115,10 @@ const gapResolver = computed(() => {
 
 	return composedGap;
 });
+
+const fluidResolver = computed(() => {
+	return props.fluid ? '100%' : 'fit-content';
+});
 	
 </script>
 <style lang="scss" scoped>
@@ -120,5 +131,6 @@ const gapResolver = computed(() => {
 	justify-content: v-bind(justify);
 	flex-direction: v-bind(direction);
 	flex-wrap: v-bind(wrap);
+	width: v-bind(fluidResolver);
 }
 </style>
