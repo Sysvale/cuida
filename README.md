@@ -51,8 +51,13 @@ app.provide('cdsUtils', cdsUtils);
 <cds-badge variant="gray"> Conteúdo </cds-badge>
 ```
 
-- Para utilizar os tokens, importe-os na sua tag script.
+- Para utilizar os tokens do Cuida instale o sass-embedded
 
+```bash
+npm install -D sass-embedded
+```
+
+e importe o arquivo de tokens na sua tag script.
 ```html
 <style lang="scss" scoped>
   @import 'node_modules/@sysvale/cuida/dist/@sysvale/tokens.scss';
