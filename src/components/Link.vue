@@ -11,7 +11,7 @@
 	>
 		<a
 			:href="href"
-			:target="newTab ? '_blank' : false"
+			:target="newTab ? '_blank' : null"
 		>
 			<!-- @slot Slot padrão para renderização de conteúdo customizado do texto do link. -->
 			<slot class="link__text">
