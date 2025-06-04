@@ -59,6 +59,7 @@
 		"@storybook/vue3": "^6.5.10",
 		"@types/vue": "^2.0.0",
 		"@vitejs/plugin-vue": "^5.1.4",
+		"@vitest/coverage-v8": "^3.2.1",
 		"@vue/test-utils": "^2.0.2",
 		"babel-loader": "^8.2.5",
 		"concat": "^1.0.3",
