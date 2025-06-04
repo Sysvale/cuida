@@ -143,7 +143,7 @@ function handleCheckboxClick(selectedOption) {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .checkbox {
 	&__container {
@@ -153,23 +153,23 @@ function handleCheckboxClick(selectedOption) {
 	}
 
 	&__label {
-		@include button-2;
+		@include tokens.button-2;
 		margin: mb(2);
 	}
 
 	&__item {
 		cursor: pointer;
 		padding: pYX(4, 3);
-		@include body-2;
-		border: 1px solid $n-50;
-		border-radius: $border-radius-extra-small;
+		@include tokens.body-2;
+		border: 1px solid tokens.$n-50;
+		border-radius: tokens.$border-radius-extra-small;
 
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			border-color: $base-color !important;
 		}
 
 		&--error {
-			border-color: $rc-600;
+			border-color: tokens.$rc-600;
 		}
 
 		&--selected {
@@ -178,17 +178,17 @@ function handleCheckboxClick(selectedOption) {
 
 		&--disabled {
 			@extend .checkbox__item;
-			background-color: $n-10;
+			background-color: tokens.$n-10;
 		}
 	}
 
 	&__required {
-		color: $rc-600;
+		color: tokens.$rc-600;
 	}
 
 	&__error-message {
-		@include caption;
-		color: $rc-600;
+		@include tokens.caption;
+		color: tokens.$rc-600;
 		margin: mt(1);
 	}
 }

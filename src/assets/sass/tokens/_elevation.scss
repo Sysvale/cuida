@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 $z-index-sunk: -1000;
 $z-index-base: 0;
 $z-index-backdrop: 1000;
@@ -9,7 +11,7 @@ $z-index-toast: 5000;
 
 $z-index: ();
 
-$z-index: map-merge(
+$z-index: map.merge(
 	(
 		'sunk': $z-index-sunk,
 		'base': $z-index-base,

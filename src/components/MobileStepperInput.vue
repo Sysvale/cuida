@@ -95,15 +95,15 @@ watch(model, (newValue) => {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .mobile-stepper-input {
 	display: flex;
-	outline: 1px solid $n-50;
+	outline: 1px solid tokens.$n-50;
 	border-radius: 6px;
 	height: 40px;
 	width: v-bind(widthResolver);
-	background: $n-0;
+	background: tokens.$n-0;
 
 	&__container {
 		display: flex;
@@ -112,12 +112,12 @@ watch(model, (newValue) => {
 	}
 
 	&__suffix {
-		color: $n-600;
+		color: tokens.$n-600;
 		display: flex;
 		align-items: center;
 		padding: pTRBL(2, 2, 2, 0);
 		margin: mr(2);
-		@include caption;
+		@include tokens.caption;
 	}
 
 	&__field {
@@ -126,7 +126,7 @@ watch(model, (newValue) => {
 		border-radius: 6px;
 		border: none;
 		text-align: end;
-		color: $n-600;
+		color: tokens.$n-600;
 
 		&--thin {
 			width: 72px;
@@ -151,32 +151,32 @@ watch(model, (newValue) => {
 
 	&--focused {
 		@extend .mobile-stepper-input;
-		outline: 1px solid $bn-300;
-		box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);
+		outline: 1px solid tokens.$bn-300;
+		box-shadow: 0 0 0 0.2rem rgba(tokens.$bn-300, .45);
 	}
 
 	&--valid {
 		@extend .mobile-stepper-input;
-		outline: 1px solid $gp-500;
+		outline: 1px solid tokens.$gp-500;
 	}
 
 	&--invalid {
 		@extend .mobile-stepper-input;
-		outline: 1px solid $rc-600;
+		outline: 1px solid tokens.$rc-600;
 	}
 
 	&--focused-valid {
 		@extend .mobile-stepper-input--valid;
-		box-shadow: 0 0 0 0.2rem rgba($gp-300, .45);
+		box-shadow: 0 0 0 0.2rem rgba(tokens.$gp-300, .45);
 	}
 
 	&--focused-invalid {
 		@extend .mobile-stepper-input--invalid;
-		box-shadow: 0 0 0 0.2rem rgba($rc-300, .45);
+		box-shadow: 0 0 0 0.2rem rgba(tokens.$rc-300, .45);
 	}
 
 	&--disabled {
-		background-color: $n-10;
+		background-color: tokens.$n-10;
 		pointer-events: none;
 	}
 	

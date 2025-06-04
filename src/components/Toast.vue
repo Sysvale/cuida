@@ -210,7 +210,7 @@ function dismiss() {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .toast__title {
 	font-size: 15.5px;
@@ -228,12 +228,12 @@ function dismiss() {
 }
 
 .toast__container {
-	@include caption;
+	@include tokens.caption;
 	padding: pa(4);
-	border-radius: $border-radius-medium;
-	font-weight: $font-weight-semibold;
-	box-shadow: $shadow-md;
-	z-index: $z-index-toast;
+	border-radius: tokens.$border-radius-medium;
+	font-weight: tokens.$font-weight-semibold;
+	box-shadow: tokens.$shadow-md;
+	z-index: tokens.$z-index-toast;
 	display: flex;
 	min-height: 42px;
 	max-width: 380px;
@@ -241,70 +241,70 @@ function dismiss() {
 	margin: mb(3);
 	position: relative;
 	overflow: hidden;
-	border: 1px solid $n-700;
+	border: 1px solid tokens.$n-700;
 
 	&--success {
 		@extend .toast__container;
-		background: linear-gradient(275deg, $n-900 82.5%, $gp-400 220%);
+		background: linear-gradient(275deg, tokens.$n-900 82.5%, tokens.$gp-400 220%);
 
 		&.toast__container--light {
 			@extend .toast__container;
-			background: linear-gradient(275deg, $n-0 75.5%, $gp-100 200%);
-			border: 2px solid $n-20;
+			background: linear-gradient(275deg, tokens.$n-0 75.5%, tokens.$gp-100 200%);
+			border: 2px solid tokens.$n-20;
 		}
 	}
 
 	&--info {
 		@extend .toast__container;
-		background: linear-gradient(275deg, $n-900 82.5%, $bn-100 220%);
+		background: linear-gradient(275deg, tokens.$n-900 82.5%, tokens.$bn-100 220%);
 
 		&.toast__container--light {
 			@extend .toast__container;
-			background: linear-gradient(275deg, $n-0 75.5%, $bn-100 200%);
-			border: 2px solid $n-20;
+			background: linear-gradient(275deg, tokens.$n-0 75.5%, tokens.$bn-100 200%);
+			border: 2px solid tokens.$n-20;
 		}
 	}
 
 	&--warning {
 		@extend .toast__container;
-		background: linear-gradient(275deg, $n-900 82.5%, $al-100 220%);
+		background: linear-gradient(275deg, tokens.$n-900 82.5%, tokens.$al-100 220%);
 
 		&.toast__container--light {
 			@extend .toast__container;
-			background: linear-gradient(275deg, $n-0 75.5%, $al-100 200%);
-			border: 2px solid $n-20;
+			background: linear-gradient(275deg, tokens.$n-0 75.5%, tokens.$al-100 200%);
+			border: 2px solid tokens.$n-20;
 		}
 	}
 
 	&--danger {
 		@extend .toast__container;
-		background: linear-gradient(275deg, $n-900 82.5%, $rc-100 220%);
+		background: linear-gradient(275deg, tokens.$n-900 82.5%, tokens.$rc-100 220%);
 
 		&.toast__container--light {
 			@extend .toast__container;
-			background: linear-gradient(275deg, $n-0 75.5%, $rc-100 200%);
-			border: 2px solid $n-20;
+			background: linear-gradient(275deg, tokens.$n-0 75.5%, tokens.$rc-100 200%);
+			border: 2px solid tokens.$n-20;
 		}
 	}
 }
 
 .dismiss__icon {
 	cursor: pointer;
-	color: $n-100;
+	color: tokens.$n-100;
 	transition: color 0.2s ease;
 
 	&:hover {
-		color: $n-10;
+		color: tokens.$n-10;
 		transition: color 0.2s ease;
 	}
 
 	&--light {
 		cursor: pointer;
-		color: $n-500;
+		color: tokens.$n-500;
 		transition: color 0.2s ease;
 
 		&:hover {
-			color: $n-700;
+			color: tokens.$n-700;
 			transition: color 0.2s ease;
 		}
 	}
@@ -312,34 +312,34 @@ function dismiss() {
 
 .toast__icon {
 	&--success {
-		color: $gp-300;
+		color: tokens.$gp-300;
 
 		&.toast__icon--light {
-			color: $gp-500;
+			color: tokens.$gp-500;
 		}
 	}
 
 	&--info {
-		color: $bn-300;
+		color: tokens.$bn-300;
 
 		&.toast__icon--light {
-			color: $bn-500;
+			color: tokens.$bn-500;
 		}
 	}
 
 	&--warning {
-		color: $al-300;
+		color: tokens.$al-300;
 
 		&.toast__icon--light {
-			color: $al-500;
+			color: tokens.$al-500;
 		}
 	}
 
 	&--danger {
-		color: $rc-300;
+		color: tokens.$rc-300;
 
 		&.toast__icon--light {
-			color: $rc-500;
+			color: tokens.$rc-500;
 		}
 	}
 }
@@ -354,41 +354,41 @@ function dismiss() {
 
 	&--success {
 		@extend .toast__countdown-indicator;
-		background-color: rgba($gp-200, 0.5);
+		background-color: rgba(tokens.$gp-200, 0.5);
 
 		&--light {
 			@extend .toast__countdown-indicator;
-			background-color: rgba($gp-700, 0.2);
+			background-color: rgba(tokens.$gp-700, 0.2);
 		}
 	}
 
 	&--info {
 		@extend .toast__countdown-indicator;
-		background-color: rgba($bn-200, 0.5);
+		background-color: rgba(tokens.$bn-200, 0.5);
 
 		&--light {
 			@extend .toast__countdown-indicator;
-			background-color: rgba($bn-700, 0.2);
+			background-color: rgba(tokens.$bn-700, 0.2);
 		}
 	}
 
 	&--warning {
 		@extend .toast__countdown-indicator;
-		background-color: rgba($al-200, 0.5);
+		background-color: rgba(tokens.$al-200, 0.5);
 
 		&--light {
 			@extend .toast__countdown-indicator;
-			background-color: rgba($al-700, 0.2);
+			background-color: rgba(tokens.$al-700, 0.2);
 		}
 	}
 
 	&--danger {
 		@extend .toast__countdown-indicator;
-		background-color: rgba($rc-200, 0.5);
+		background-color: rgba(tokens.$rc-200, 0.5);
 
 		&--light {
 			@extend .toast__countdown-indicator;
-			background-color: rgba($rc-700, 0.2);
+			background-color: rgba(tokens.$rc-700, 0.2);
 		}
 	}
 }

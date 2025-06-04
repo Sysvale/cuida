@@ -135,7 +135,7 @@ function onItemClick(item) {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .mobile-navbar {
 	position: absolute;
@@ -170,11 +170,11 @@ function onItemClick(item) {
 		min-height: 50px;
 		padding: pYX(2, 1);
 		position: relative;
-		color: $n-600;
+		color: tokens.$n-600;
 		z-index: 1;
 
 		&--active {
-			@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+			@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 				color: $shade-500;
 			}
 		}
@@ -192,7 +192,7 @@ function onItemClick(item) {
 
 	&__item-text {
 		font-size: 9.5px;
-		font-weight: $font-weight-semibold;
+		font-weight: tokens.$font-weight-semibold;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
@@ -218,7 +218,7 @@ function onItemClick(item) {
 			border-radius: 8px 0 0 0;
 		}
 
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			background-color: $shade-50;
 			color: $shade-500;
 		}

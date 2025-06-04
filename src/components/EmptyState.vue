@@ -117,7 +117,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .empty-state {
 	align-items: center;
@@ -134,17 +134,17 @@ export default {
 	}
 
 	&__title {
-		color: $n-600;
+		color: tokens.$n-600;
 		margin: mt(8);
-		@include subheading-2;
+		@include tokens.subheading-2;
 	}
 
 	&__text {
-		color: $n-500;
+		color: tokens.$n-500;
 		margin: mt(1);
 		max-width: 50%;
 		text-align: center;
-		@include body-1;
+		@include tokens.body-1;
 	}
 
 	&__button {

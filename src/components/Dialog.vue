@@ -220,7 +220,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .cds-modal {
 	display: flex;
@@ -231,7 +231,7 @@ export default {
 	height: auto;
 	background-color: white;
 	padding: pYX(8, 7);
-	border-radius: $border-radius-medium;
+	border-radius: tokens.$border-radius-medium;
 	box-shadow: 0px 0px 8px rgba(40, 90, 185, 0.2);
 	overflow-x: auto;
 	z-index: 999999999;
@@ -257,8 +257,8 @@ export default {
 		padding: pb(7);
 
 		h3 {
-			@include subheading-1;
-			color: $n-900;
+			@include tokens.subheading-1;
+			color: tokens.$n-900;
 		}
 	}
 

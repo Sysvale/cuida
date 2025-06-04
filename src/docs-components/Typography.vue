@@ -215,10 +215,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './../assets/sass/tokens.scss';
+@use './../assets/sass/tokens/index' as tokens;
 
 .text-sample {
-	color: $n-900;
+	color: tokens.$n-900;
 	font-size: var(--fontSize);
 	font-weight: var(--fontWeight);
 	letter-spacing: var(--letterSpacing);
@@ -230,12 +230,12 @@ export default {
 	letter-spacing: var(--letterSpacing);
 }
 
-@each $border-radius-name, $border-radius-token in $border-radius {
+@each $border-radius-name, $border-radius-token in tokens.$border-radius {
 	.#{$border-radius-name} {
 		border-radius: $border-radius-token;
 		width: 60px;
 		height: 60px;
-		background-color: $gp-400;
+		background-color: tokens.$gp-400;
 	}
 }
 
@@ -243,19 +243,19 @@ export default {
 	width: fit-content;
 	padding: pYX(2, 3);
 	border-radius: 16px;
-	border: 1px solid $n-0;
+	border: 1px solid tokens.$n-0;
 	transition: all .15s ease-in-out;
 	display: flex;
 	align-items: center;
 
 	&__icon {
 		margin: mr(3);
-		color: $n-500;
+		color: tokens.$n-500;
 	}
 }
 
 .copy-clip:hover {
-	border: 1px solid $gp-300;
+	border: 1px solid tokens.$gp-300;
 	cursor: pointer;
 	transition: all .15s ease-in-out;
 }

@@ -106,7 +106,7 @@
 <script>
 import CdsIcon from '../components/Icon.vue';
 import CopyToken from '../docs-components/CopyToken.vue';
-import sassColorVariables from '../assets/sass/colors.module.scss';
+import sassColorVariables from '../assets/sass/tokens/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
 import ContrastChecker from '../utils/methods/contrastChecker';
 
@@ -164,7 +164,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './../assets/sass/tokens.scss';
+@use './../assets/sass/tokens/index' as tokens;
 
 .color-swatch {
 	&:nth-child(1) {
@@ -186,12 +186,12 @@ export default {
 		display: flex;
 		align-items: center;
 		gap: 2px;
-		font-weight: $font-weight-semibold;
+		font-weight: tokens.$font-weight-semibold;
 	}
 
 	&__name {
 		font-weight: 700;
-		color: $n-800;
+		color: tokens.$n-800;
 	}
 
 	&__header {
@@ -205,10 +205,10 @@ export default {
 		gap: 4px;
 		height: -webkit-fill-available;
 		font-weight: 500;
-		color: $n-900 !important;
+		color: tokens.$n-900 !important;
 	}
 
-	@include paleteResolver using ($color) {
+	@include tokens.paleteResolver using ($color) {
 		background-color: $color;
 		width: 320px;
 		height: 72px;
@@ -230,11 +230,11 @@ export default {
 
 .gradient-container {
 	font-weight: 500;
-	background: linear-gradient($bg-gradient);
+	background: linear-gradient(tokens.$bg-gradient);
 	height: 388px;
 	width: 94%;
-	border-radius: $border-radius-medium;
-	outline: 1px solid $n-20;
+	border-radius: tokens.$border-radius-medium;
+	outline: 1px solid tokens.$n-20;
 	display: flex;
 	gap: 4px;
 	align-items: flex-end;
@@ -257,10 +257,10 @@ export default {
 }
 
 .font-color--white {
-	color: $n-0;
+	color: tokens.$n-0;
 }
 
 .font-color--black {
-	color: $n-900;
+	color: tokens.$n-900;
 }
 </style>

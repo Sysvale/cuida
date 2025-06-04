@@ -266,14 +266,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 .password-input {
 	display: flex;
 	justify-content: space-between;
-	outline: 1px solid $n-50;
-	border-radius: $border-radius-extra-small;
+	outline: 1px solid tokens.$n-50;
+	border-radius: tokens.$border-radius-extra-small;
 	width: v-bind(resolveInputWidth);
-	background: $n-0;
+	background: tokens.$n-0;
 
 	&--fluid {
 		@extend .password-input;
@@ -281,7 +281,7 @@ export default {
 	}
 
 	&__label {
-		@include label;
+		@include tokens.label;
 		display: flex;
 		align-items: flex-end;
 		justify-content: space-between;
@@ -293,7 +293,7 @@ export default {
 		}
 
 		&__required-indicator {
-			color: $rc-600;
+			color: tokens.$rc-600;
 		}
 
 		&__content {
@@ -321,13 +321,13 @@ export default {
 		padding: pa(3);
 		margin: mr(2);
 		height: 40px !important;
-		border-radius: $border-radius-extra-small;
+		border-radius: tokens.$border-radius-extra-small;
 		border: none;
 		text-align: start;
-		color: $n-600;
+		color: tokens.$n-600;
 
 		&::placeholder {
-			color: $n-300;
+			color: tokens.$n-300;
 		}
 
 		&:focus {
@@ -342,10 +342,10 @@ export default {
 
 	&__mobile-field {
 		@extend .password-input__field;
-		@include body-2;
+		@include tokens.body-2;
 		font-weight: 400;
 		height: 48px !important;
-		border-radius: $border-radius-lil;
+		border-radius: tokens.$border-radius-lil;
 
 
 		&--fluid {
@@ -358,45 +358,45 @@ export default {
 		display: flex;
 		align-items: center;
 		cursor: pointer;
-		color: $n-600;
+		color: tokens.$n-600;
 		padding: pr(4);
-		@include caption;
+		@include tokens.caption;
 	}
 
 	&__error-message {
-		@include caption;
-		color: $rc-600;
+		@include tokens.caption;
+		color: tokens.$rc-600;
 		margin: mt(1);
 	}
 
 	&--focused {
 		@extend .password-input;
-		outline: 1px solid $bn-300;
-		box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);
+		outline: 1px solid tokens.$bn-300;
+		box-shadow: 0 0 0 0.2rem rgba(tokens.$bn-300, .45);
 	}
 
 	&--valid {
 		@extend .password-input;
-		outline: 1px solid $gp-500;
+		outline: 1px solid tokens.$gp-500;
 	}
 
 	&--invalid {
 		@extend .password-input;
-		outline: 1px solid $rc-600;
+		outline: 1px solid tokens.$rc-600;
 	}
 
 	&--focused-valid {
 		@extend .password-input--valid;
-		box-shadow: 0 0 0 0.2rem rgba($gp-300, .45);
+		box-shadow: 0 0 0 0.2rem rgba(tokens.$gp-300, .45);
 	}
 
 	&--focused-invalid {
 		@extend .password-input--invalid;
-		box-shadow: 0 0 0 0.2rem rgba($rc-300, .45);
+		box-shadow: 0 0 0 0.2rem rgba(tokens.$rc-300, .45);
 	}
 
 	&--disabled {
-		background-color: $n-20;
+		background-color: tokens.$n-20;
 		pointer-events: none;
 		border: none;
 	}

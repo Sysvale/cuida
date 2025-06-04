@@ -172,7 +172,7 @@ function onSubItemClick(action) {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .floating-action-button {
 
@@ -185,7 +185,7 @@ function onSubItemClick(action) {
 		flex-direction: column;
 		align-items: end;
 		gap: spacer(6);
-		z-index: $z-index-tooltip;
+		z-index: tokens.$z-index-tooltip;
 	}
 
 	&__main-button {
@@ -198,11 +198,11 @@ function onSubItemClick(action) {
 		justify-content: center;
 		padding: pa(3);
 		color: v-bind(resolvedIconColor);
-		box-shadow: $shadow-md;
+		box-shadow: tokens.$shadow-md;
 		cursor: pointer;
 		transition: background-color 0.2s ease;
 
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			background-color: $base-color;
 		}
 
@@ -214,7 +214,7 @@ function onSubItemClick(action) {
 			width: 100%;
 			height: 100%;
 			background-color: rgba(0, 0, 0, 0.1);
-			border-radius: $border-radius-medium;
+			border-radius: tokens.$border-radius-medium;
 			opacity: 0;
 			transition: opacity 0.2s ease;
 		}
@@ -230,7 +230,7 @@ function onSubItemClick(action) {
 		align-items: center;
 		gap: 6px;
 		margin-right: v-bind(resolvedActionsMargin);
-		z-index: $z-index-tooltip;
+		z-index: tokens.$z-index-tooltip;
 		animation: slide-in 0.3s ease-in-out forwards;
 
 		&.exiting {
@@ -250,18 +250,18 @@ function onSubItemClick(action) {
 	}
 
 	&__subitem-label {
-		@include caption;
-		font-weight: $font-weight-semibold;
+		@include tokens.caption;
+		font-weight: tokens.$font-weight-semibold;
 		padding: pYX(1, 2);
 		margin: mb(1);
-		color: $n-0;
+		color: tokens.$n-0;
 		background-color: rgba(black, 0.6);
-		border-radius: $border-radius-lil;
+		border-radius: tokens.$border-radius-lil;
 	}
 
 	&__subitem {
 		position: relative;
-		border-radius: $border-radius-small;
+		border-radius: tokens.$border-radius-small;
 		width: 36px;
 		height: 36px;
 		margin-top: -6px;
@@ -269,9 +269,9 @@ function onSubItemClick(action) {
 		align-items: center;
 		justify-content: center;
 		padding: pa(2);
-		background-color: $n-0;
-		color: $n-700;
-		box-shadow: $shadow-md;
+		background-color: tokens.$n-0;
+		color: tokens.$n-700;
+		box-shadow: tokens.$shadow-md;
 		cursor: pointer;
 		transition: background-color 0.2s ease;
 
@@ -283,7 +283,7 @@ function onSubItemClick(action) {
 			width: 100%;
 			height: 100%;
 			background-color: rgba(0, 0, 0, 0.1);
-			border-radius: $border-radius-small;
+			border-radius: tokens.$border-radius-small;
 			opacity: 0;
 			transition: opacity 0.2s ease;
 		}

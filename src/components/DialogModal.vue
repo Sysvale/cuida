@@ -240,7 +240,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .cds-modal {
 	display: flex;
@@ -249,10 +249,10 @@ export default {
 	position: absolute;
 	width: 500px;
 	height: auto;
-	border-radius: $border-radius-medium;
+	border-radius: tokens.$border-radius-medium;
 	overflow: hidden;
 	background-color: white;
-	border-radius: $border-radius-medium;
+	border-radius: tokens.$border-radius-medium;
 	box-shadow: 0px 0px 8px rgba(40, 90, 185, 0.2);
 	overflow-x: visible;
 	z-index: 1060;
@@ -278,9 +278,9 @@ export default {
 		display: flex;
 		max-height: 80px;
 		align-items: center;
-		@include subheading-1;
-		color: $n-800;
-		font-weight: $font-weight-semibold;
+		@include tokens.subheading-1;
+		color: tokens.$n-800;
+		font-weight: tokens.$font-weight-semibold;
 		justify-content: space-between;
 
 		&--warning {
@@ -315,15 +315,15 @@ export default {
 	&__header-icon {
 
 		&--warning {
-			color: $al-500;
+			color: tokens.$al-500;
 		}
 
 		&--info {
-			color: $bn-500;
+			color: tokens.$bn-500;
 		}
 
 		&--error {
-			color: $rc-500;
+			color: tokens.$rc-500;
 		}
 	}
 
@@ -354,15 +354,15 @@ export default {
 		gap: spacer(3);
 
 		&-title {
-			@include subheading-1;
-			color: $n-800;
-			font-weight: $font-weight-bold;
+			@include tokens.subheading-1;
+			color: tokens.$n-800;
+			font-weight: tokens.$font-weight-bold;
 		}
 
 		&-description {
-			@include body-1;
-			font-weight: $font-weight-regular;
-			color: $n-800;
+			@include tokens.body-1;
+			font-weight: tokens.$font-weight-regular;
+			color: tokens.$n-800;
 		}
 	}
 

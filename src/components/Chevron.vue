@@ -88,7 +88,7 @@ export default {
 };
 </script>
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .chevron {
 	display: flex;
@@ -107,8 +107,8 @@ export default {
 	&::before {
 		border-left: 6px solid transparent;
 		border-right: 6px solid transparent;
-		border-bottom: 6px solid $n-400;
-		border-radius: $border-radius-small;
+		border-bottom: 6px solid tokens.$n-400;
+		border-radius: tokens.$border-radius-small;
 		transition: all 300ms ease-in-out;
 	}
 
@@ -132,7 +132,7 @@ export default {
 
 	&--light {
 		&::before {
-			border-bottom: 6px solid $n-10;
+			border-bottom: 6px solid tokens.$n-10;
 		}
 	}
 

@@ -81,7 +81,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .collapsible-container {
 	&__content {
@@ -99,7 +99,7 @@ export default {
 		height: 32px;
 		width: 32px;
 		pointer-events: none;
-		border-radius: $border-radius-small;
+		border-radius: tokens.$border-radius-small;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -114,8 +114,8 @@ export default {
 		&::before {
 			border-left: 6px solid transparent;
 			border-right: 6px solid transparent;
-			border-bottom: 6px solid $n-400;
-			border-radius: $border-radius-small;
+			border-bottom: 6px solid tokens.$n-400;
+			border-radius: tokens.$border-radius-small;
 			transition: all 300ms ease-in-out;
 			transform: rotate(-180deg);
 		}
@@ -128,7 +128,7 @@ export default {
 		height: 32px;
 		width: 32px;
 		pointer-events: none;
-		border-radius: $border-radius-small;
+		border-radius: tokens.$border-radius-small;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -143,8 +143,8 @@ export default {
 		&::before {
 			border-left: 6px solid transparent;
 			border-right: 6px solid transparent;
-			border-bottom: 6px solid $n-400;
-			border-radius: $border-radius-small;
+			border-bottom: 6px solid tokens.$n-400;
+			border-radius: tokens.$border-radius-small;
 			transition: all 300ms ease-in-out;
 			transform: rotate(0deg);
 		}
@@ -152,7 +152,7 @@ export default {
 
 	&__item {
 		font-size: 14px;
-		color: $n-600;
+		color: tokens.$n-600;
 		display: flex;
 		align-items: start;
 		cursor: pointer;
@@ -161,7 +161,7 @@ export default {
 		margin: ml(n2);
 
 		& hr {
-			border-color: $n-600 !important;
+			border-color: tokens.$n-600 !important;
 		}
 	}
 
@@ -170,7 +170,7 @@ export default {
 	}
 
 	&__icon--collapsed {
-		color: $n-600;
+		color: tokens.$n-600;
 		margin: mr(2);
 		transition: all 0.25s ease-in-out;
 	}

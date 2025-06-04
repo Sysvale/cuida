@@ -184,7 +184,7 @@ function handleClick(item) {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .carousel-container {
 	position: relative;
@@ -219,15 +219,15 @@ function handleClick(item) {
 		top: 50%;
 		transform: translateY(-50%);
 		z-index: 1000;
-		background-color: $n-0;
-		color: $n-700;
+		background-color: tokens.$n-0;
+		color: tokens.$n-700;
 		border-radius: 1000px;
 		width: 40px;
 		height: 40px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		box-shadow: $shadow-md;
+		box-shadow: tokens.$shadow-md;
 		cursor: pointer;
 
 		&--left {
@@ -241,9 +241,9 @@ function handleClick(item) {
 		}
 
 		&--dark {
-			background-color: $n-800;
+			background-color: tokens.$n-800;
 			opacity: 0.85;
-			color: $n-10;
+			color: tokens.$n-10;
 		}
 	}
 

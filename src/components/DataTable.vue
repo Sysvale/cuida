@@ -165,7 +165,7 @@ function handleOk(fieldsList) {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .data-table {
 	display: flex;
@@ -180,8 +180,8 @@ function handleOk(fieldsList) {
 	}
 
 	&__items-counter {
-		@include caption;
-		color: $n-600;
+		@include tokens.caption;
+		color: tokens.$n-600;
 	}
 
 	&__table-container {

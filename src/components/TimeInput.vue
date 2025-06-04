@@ -344,11 +344,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .label {
 	&__required-indicator {
-		color: $rc-600;
+		color: tokens.$rc-600;
 	}
 
 	&__content {
@@ -358,67 +358,67 @@ export default {
 
 .input {
 	&__container {
-		color: $n-400;
+		color: tokens.$n-400;
 		display: flex;
 		align-items: center;
 	}
 
 	&__separator {
-		@include caption;
+		@include tokens.caption;
 		margin: mx(3);
-		color: $n-600;
+		color: tokens.$n-600;
 	}
 
 	&__time {
-		@include caption;
-		border: 1px solid $n-50;
-		border-radius: $border-radius-lil;
+		@include tokens.caption;
+		border: 1px solid tokens.$n-50;
+		border-radius: tokens.$border-radius-lil;
 		width: 36px;
 		height: 40px;
 		text-align: center;
-		color: $n-600;
+		color: tokens.$n-600;
 
 		&::placeholder {
-			color: $n-200;
+			color: tokens.$n-200;
 		}
 
 		&:focus-visible {
-			outline-color: $bn-300;
+			outline-color: tokens.$bn-300;
 		}
 
 		&--disabled {
 			@extend .input__time;
-			background-color: $n-20 !important;
+			background-color: tokens.$n-20 !important;
 			pointer-events: none;
 		}
 
 		&--valid {
 			@extend .input__time;
-			border: 1px solid $gp-500;
+			border: 1px solid tokens.$gp-500;
 
 			&:focus-visible {
-				outline-color: $gp-500;
+				outline-color: tokens.$gp-500;
 			}
 		}
 
 		&--invalid {
 			@extend .input__time;
-			border: 1px solid $rc-500;
+			border: 1px solid tokens.$rc-500;
 
 			&:focus-visible {
-				outline-color: $rc-500;
+				outline-color: tokens.$rc-500;
 			}
 		}
 	}
 
 	&__label {
-		@include label;
+		@include tokens.label;
 		display: flex;
 	}
 
 	&__message {
-		@include caption;
-		color: $rc-500;
+		@include tokens.caption;
+		color: tokens.$rc-500;
 		margin: mt(2);
 	}
 }

@@ -208,14 +208,14 @@ watch(model, (newValue) => {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .radio-button {
 	min-height: 46px;
 
 	&__error-text {
-		@include caption;
-		color: $rc-600;
+		@include tokens.caption;
+		color: tokens.$rc-600;
 		margin: mt(1);
 	}
 }
@@ -228,13 +228,13 @@ watch(model, (newValue) => {
 
 .radio__button [type="radio"]:checked + label,
 .radio__button [type="radio"]:not(:checked) + label {
-	@include body-2;
+	@include tokens.body-2;
 	position: relative;
 	padding: pl(7);
 	cursor: pointer;
 	line-height: 20px;
-	color: $n-600;
-	font-weight: $font-weight-semibold;
+	color: tokens.$n-600;
+	font-weight: tokens.$font-weight-semibold;
 }
 
 .radio__button [type="radio"]:checked + label:before,
@@ -245,7 +245,7 @@ watch(model, (newValue) => {
 	top: 0.4px;
 	width: 19px;
 	height: 19px;
-	border: 1px solid $n-600;
+	border: 1px solid tokens.$n-600;
 	border-radius: 100%;
 }
 
@@ -280,9 +280,9 @@ watch(model, (newValue) => {
 }
 
 .radio__button .radio-button {
-	border: 1px solid $n-50;
+	border: 1px solid tokens.$n-50;
 	padding: pYX(3, 4);
-	border-radius: $border-radius-extra-small;
+	border-radius: tokens.$border-radius-extra-small;
 	cursor: pointer;
 	display: var(--display-vertical);
 	flex-direction: row;
@@ -307,13 +307,13 @@ watch(model, (newValue) => {
 }
 
 .radio__button .radio-button:hover {
-	background-color: $n-10;
+	background-color: tokens.$n-10;
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 }
 
 .radio__button .radio-button:disabled {
-	background-color: $n-100;
+	background-color: tokens.$n-100;
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 }
@@ -326,7 +326,7 @@ watch(model, (newValue) => {
 }
 
 .radio__button .radio-button:has(input[type="radio"]:disabled) {
-	background-color: $n-20;
+	background-color: tokens.$n-20;
 }
 
 .radio__button .radio-button:has(input[type="radio"]:checked) {
@@ -342,15 +342,15 @@ watch(model, (newValue) => {
 
 .radio__button .radio-button:has(input[type="radio"]:disabled) {
 	label::before {
-		border-color: $n-300;
+		border-color: tokens.$n-300;
 	}
 
 	.content-title {
-		color: $n-300;
+		color: tokens.$n-300;
 	}
 }
 
 .content-body {
-	@include caption;
+	@include tokens.caption;
 }
 </style>

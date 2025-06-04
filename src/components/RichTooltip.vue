@@ -178,7 +178,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 @keyframes fadeIn {
 	from {
@@ -207,10 +207,10 @@ export default {
 }
 
 .richTooltip {
-	background-color: $n-900;
-	border-radius: $border-radius-medium;
-	box-shadow: 0px 0px 8px rgba($n-900, .08);
-	color: $n-0;
+	background-color: tokens.$n-900;
+	border-radius: tokens.$border-radius-medium;
+	box-shadow: 0px 0px 8px rgba(tokens.$n-900, .08);
+	color: tokens.$n-0;
 	display: none;
 	max-width: 400px;
 	min-width: 100px;
@@ -218,7 +218,7 @@ export default {
 	padding: pa(4);
 	position: absolute;
 	width: v-bind(popoverWidth);
-	z-index: $z-index-tooltip;
+	z-index: tokens.$z-index-tooltip;
 
 	&[data-show] {
 		display: block;

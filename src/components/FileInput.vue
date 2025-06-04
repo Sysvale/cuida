@@ -355,10 +355,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .file-input {
-	border: 2px dashed $n-40;
+	border: 2px dashed tokens.$n-40;
 	box-sizing: border-box;
 	justify-content: v-bind(textAlignmentResolver);
 	cursor: pointer;
@@ -370,34 +370,34 @@ export default {
 
 	&--disabled {
 		cursor: default !important;
-		border: 2px dashed $n-40 !important;
-		color: $n-300;
+		border: 2px dashed tokens.$n-40 !important;
+		color: tokens.$n-300;
 	}
 
 	&--valid {
-		border: 2px dashed $gp-200;
+		border: 2px dashed tokens.$gp-200;
 	}
 
 	&--invalid {
-		border: 2px dashed $rc-200;
+		border: 2px dashed tokens.$rc-200;
 	}
 
 	&--sm {
 		height: 40px;
-		border-radius: $border-radius-small;
+		border-radius: tokens.$border-radius-small;
 		display: flex;
 		padding: px(2);
 	}
 
 	&--md {
 		padding: pYX(6, 4);
-		border-radius: $border-radius-small;
+		border-radius: tokens.$border-radius-small;
 		display: flex;
 	}
 
 	&--lg {
 		padding: pYX(12, 12);
-		border-radius: $border-radius-small;
+		border-radius: tokens.$border-radius-small;
 		display: flex;
 	}
 
@@ -405,16 +405,16 @@ export default {
 		margin: mr(2);
 
 		&-container {
-			@include caption;
+			@include tokens.caption;
 			margin: mt(2);
-			color: $rc-500;
+			color: tokens.$rc-500;
 		}
 	}
 
 	&__title {
 		&--disabled {
 			cursor: default !important;
-			color: $n-300;
+			color: tokens.$n-300;
 		}
 
 		&--lg {
@@ -423,7 +423,7 @@ export default {
 			align-items: center;
 			justify-content: space-between;
 			width: 100%;
-			@include subheading-2;
+			@include tokens.subheading-2;
 		}
 
 		&--md {
@@ -432,7 +432,7 @@ export default {
 			align-items: center;
 			justify-content: space-between;
 			width: 100%;
-			@include subheading-3;
+			@include tokens.subheading-3;
 		}
 
 		&--sm {
@@ -441,17 +441,17 @@ export default {
 			align-items: center;
 			justify-content: space-between;
 			width: 100%;
-			@include caption;
+			@include tokens.caption;
 		}
 	}
 
 	&__close-button {
-		color: $bn-400;
+		color: tokens.$bn-400;
 		cursor: pointer;
 
 		&--disabled {
 			cursor: default !important;
-			color: $bn-200 !important;
+			color: tokens.$bn-200 !important;
 		}
 
 		&--sm {
@@ -474,22 +474,22 @@ export default {
 	}
 
 	&--drag-state {
-		background-color: $n-10;
-		border: 2px dashed $n-40;
+		background-color: tokens.$n-10;
+		border: 2px dashed tokens.$n-40;
 
 		&--disabled {
 			cursor: default !important;
-			color: $bn-200 !important;
+			color: tokens.$bn-200 !important;
 		}
 	}
 }
 
 .icon-document {
-	color: $bn-500;
+	color: tokens.$bn-500;
 
 	&--disabled {
 		cursor: default !important;
-		color: $bn-200 !important;
+		color: tokens.$bn-200 !important;
 	}
 
 	&--sm {
@@ -512,11 +512,11 @@ export default {
 }
 
 .icon-upload {
-	color: $bn-500;
+	color: tokens.$bn-500;
 
 	&--disabled {
 		cursor: default !important;
-		color: $bn-200 !important;
+		color: tokens.$bn-200 !important;
 	}
 
 	&--sm {
@@ -546,7 +546,7 @@ export default {
 
 	&--disabled {
 		cursor: default !important;
-		color: $n-300;
+		color: tokens.$n-300;
 	}
 }
 

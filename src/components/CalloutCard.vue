@@ -129,12 +129,12 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 #callout-card .callout-card {
 	align-items: center;
 	display: flex;
-	border: 1px solid $n-40;
+	border: 1px solid tokens.$n-40;
 	border-radius: 16px;
 	padding: pa(7);
 
@@ -180,15 +180,15 @@ export default {
 	}
 
 	&__title {
-		color: $n-700;
+		color: tokens.$n-700;
 		display: block;
-		@include subheading-3;
+		@include tokens.subheading-3;
 		margin: mb(2);
 	}
 
 	&__text {
-		color: $n-700;
-		@include body-2;
+		color: tokens.$n-700;
+		@include tokens.body-2;
 	}
 
 	&__container {

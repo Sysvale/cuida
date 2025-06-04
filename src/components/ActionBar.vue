@@ -152,18 +152,19 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
+
 .toolbar {
 	align-items: center;
-	border-radius: $border-radius-small;
+	border-radius: tokens.$border-radius-small;
 	bottom: 72px;
-	box-shadow: $shadow-md;
+	box-shadow: tokens.$shadow-md;
 	display: flex;
 	justify-content: space-between;
 	min-width: 400px;
 	padding: pYX(3, 4);
 	width: fit-content;
-	z-index: $z-index-toolbar;
+	z-index: tokens.$z-index-toolbar;
 	
 	&__container {
 		display: flex;
@@ -183,17 +184,17 @@ export default {
 	}
 
 	&--dark {
-		background-color: $n-800;
-		border: 1px solid $n-700;
-		color: $n-10;
+		background-color: tokens.$n-800;
+		border: 1px solid tokens.$n-700;
+		color: tokens.$n-10;
 		
 		@extend .toolbar;
 	}
 
 	&--light {
-		background-color: $n-10;
-		border: 1px solid $n-30;
-		color: $n-800;
+		background-color: tokens.$n-10;
+		border: 1px solid tokens.$n-30;
+		color: tokens.$n-800;
 		
 		@extend .toolbar;
 	}
@@ -205,8 +206,8 @@ export default {
 	&__icon {
 		&--dark {
 			align-items: center;
-			background-color: $n-800;
-			border-radius: $border-radius-circle;
+			background-color: tokens.$n-800;
+			border-radius: tokens.$border-radius-circle;
 			cursor: pointer;
 			display: flex;
 			justify-content: center;
@@ -215,13 +216,13 @@ export default {
 		}
 		
 		&--dark:hover {
-			background-color: $n-900;
+			background-color: tokens.$n-900;
 		}
 		
 		&--light {
 			align-items: center;
-			background-color: $n-30;
-			border-radius: $border-radius-circle;
+			background-color: tokens.$n-30;
+			border-radius: tokens.$border-radius-circle;
 			cursor: pointer;
 			display: flex;
 			justify-content: center;
@@ -230,7 +231,7 @@ export default {
 		}
 		
 		&--light:hover {
-			background-color: $n-40;
+			background-color: tokens.$n-40;
 		}
 	}
 }

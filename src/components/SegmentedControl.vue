@@ -71,31 +71,31 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 .segment-control {
-	background-color: $n-20;
-	outline: 1px solid $n-40;
+	background-color: tokens.$n-20;
+	outline: 1px solid tokens.$n-40;
 	display: flex;
 	width: fit-content;
 	padding: pa(1);
-	border-radius: $border-radius-extra-small;
+	border-radius: tokens.$border-radius-extra-small;
 	
 	&__button {
 		max-width: 200px;
-		border-radius: $border-radius-extra-small;
+		border-radius: tokens.$border-radius-extra-small;
 		border: none;
 		background-color: transparent;
 		font-size: 14px;
 		cursor: pointer;
-		transition: $opening;
+		transition: tokens.$opening;
 		padding: pYX(2, 3);
 		
 		&--active {
-			background-color: $n-0;
-			color: $n-700;
-			transition: $opening;
+			background-color: tokens.$n-0;
+			color: tokens.$n-700;
+			transition: tokens.$opening;
 			box-shadow: 0px 4px 8px rgba(16, 24, 64, 0.04);
-			font-weight: $font-weight-semibold;
+			font-weight: tokens.$font-weight-semibold;
 			display: flex;
 			flex-direction: row;
 			align-items: center;
@@ -103,10 +103,10 @@ export default {
 		}
 		
 		&--inactive {
-			font-weight: $font-weight-semibold;
+			font-weight: tokens.$font-weight-semibold;
 			background-color: transparent;
-			color: $n-600;
-			transition: $opening;
+			color: tokens.$n-600;
+			transition: tokens.$opening;
 			display: flex;
 			flex-direction: row;
 			align-items: center;

@@ -582,8 +582,8 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
-@import '../assets/sass/placeholders.scss';
+@use '../assets/sass/tokens/index' as tokens;
+@use'../assets/sass/placeholders.scss';
 
 .base-mobile-input {
     position: relative;
@@ -610,7 +610,7 @@ defineExpose({
 		left: v-bind(labelLeftPosition);
         transition: all ease 0.2s;
         font-size: v-bind(labelSize);
-        font-weight: $font-weight-semibold;
+        font-weight: tokens.$font-weight-semibold;
 		cursor: v-bind(computedCursor);	
 
 		&--fluid {
@@ -655,10 +655,10 @@ defineExpose({
 		padding-top: v-bind(inputTopPadding);
 		height: v-bind(inputHeight);
 		min-height: v-bind(inputMinHeight);
-		border-radius: $border-radius-extra-small;
+		border-radius: tokens.$border-radius-extra-small;
 		border: none;
 		text-align: start;
-		color: $n-700;
+		color: tokens.$n-700;
 		width: 100%;
 		resize: vertical;
         font-size: 14.5px;
@@ -706,12 +706,12 @@ defineExpose({
 	}
 
 	&__icon--check-icon {
-		color: $gp-500;
+		color: tokens.$gp-500;
 		height: 50%;
 	}
 
 	&__icon {
-		color: $n-700;
+		color: tokens.$n-700;
 	}
 
 	&__icon--spinner-icon {
@@ -719,8 +719,8 @@ defineExpose({
 	}
 
 	&__error-message {
-		@include caption;
-		color: $rc-600;
+		@include tokens.caption;
+		color: tokens.$rc-600;
 		margin: mt(1);
 	}
 
@@ -729,8 +729,8 @@ defineExpose({
 			margin: mt(1);
 		}
 
-		@include caption;
-		color: $n-600;
+		@include tokens.caption;
+		color: tokens.$n-600;
 	}
 
 	&__supporting-text-list {
@@ -750,7 +750,7 @@ defineExpose({
 	}
 
 	&__link-icon {
-		color: $bn-500;
+		color: tokens.$bn-500;
 	}
 
 	&__content {

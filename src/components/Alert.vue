@@ -138,14 +138,14 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 #alert .alert {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: pa(4);
-	border-radius: $border-radius-extra-small;
+	border-radius: tokens.$border-radius-extra-small;
 
 	&__body {
 		display: flex;
@@ -157,30 +157,30 @@ export default {
 
 		&--info {
 			@extend .alert__container;
-			outline: 2px solid $bn-100;
-			background-color: $bn-50;
-			color: $bn-600;
+			outline: 2px solid tokens.$bn-100;
+			background-color: tokens.$bn-50;
+			color: tokens.$bn-600;
 		}
 
 		&--success {
 			@extend .alert__container;
-			outline: 2px solid $gp-100;
-			background-color: $gp-50;
-			color: $gp-600;
+			outline: 2px solid tokens.$gp-100;
+			background-color: tokens.$gp-50;
+			color: tokens.$gp-600;
 		}
 
 		&--warning {
 			@extend .alert__container;
-			outline: 2px solid $al-100;
-			background-color: $al-50;
-			color: $al-700;
+			outline: 2px solid tokens.$al-100;
+			background-color: tokens.$al-50;
+			color: tokens.$al-700;
 		}
 
 		&--danger {
 			@extend .alert__container;
-			outline: 2px solid $rc-100;
-			background-color: $rc-50;
-			color: $rc-600;
+			outline: 2px solid tokens.$rc-100;
+			background-color: tokens.$rc-50;
+			color: tokens.$rc-600;
 		}
 	}
 
@@ -190,28 +190,28 @@ export default {
 
 		&--info {
 			@extend .alert__icon;
-			color: $bn-600;
+			color: tokens.$bn-600;
 		}
 		&--success {
 			@extend .alert__icon;
-			color: $gp-600;
+			color: tokens.$gp-600;
 		}
 
 		&--warning {
 			@extend .alert__icon;
-			color: $al-700;
+			color: tokens.$al-700;
 		}
 
 		&--danger {
 			@extend .alert__icon;
-			color: $rc-600;
+			color: tokens.$rc-600;
 		}
 	}
 
 	&__text {
 		margin: ml(2);
-		@include body-2;
-		font-weight: $font-weight-semibold;
+		@include tokens.body-2;
+		font-weight: tokens.$font-weight-semibold;
 	}
 
 	&__close-button {

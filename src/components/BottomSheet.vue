@@ -125,7 +125,7 @@ function mustDisableExternalScrolls(value) {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .backdrop {
 	display: flex;
@@ -154,15 +154,15 @@ function mustDisableExternalScrolls(value) {
 .bottom-sheet {
 	width: 100%;
     height: 75vh;
-    border-top-left-radius: $border-radius-extra-large;
-    border-top-right-radius: $border-radius-extra-large;
+    border-top-left-radius: tokens.$border-radius-extra-large;
+    border-top-right-radius: tokens.$border-radius-extra-large;
 	position: absolute;
 	bottom: 0;
 	height: fit-content;
-	z-index: $z-index-modal;
-	background-color: $n-0;
+	z-index: tokens.$z-index-modal;
+	background-color: tokens.$n-0;
 	padding: pa(6);
-	color: $n-800;
+	color: tokens.$n-800;
 
 	&__header-border {
 		display: flex;
@@ -174,8 +174,8 @@ function mustDisableExternalScrolls(value) {
 	&__header-border-line {
 		width: 30px;
 		height: 4px;
-		background: $n-40;
-		border-radius: $border-radius-large;
+		background: tokens.$n-40;
+		border-radius: tokens.$border-radius-large;
 	}
 
 	&__show {
@@ -199,7 +199,7 @@ function mustDisableExternalScrolls(value) {
 	}
 
 	&__title {
-		@include button-1;
+		@include tokens.button-1;
 		font-weight: 700;
 	}
 

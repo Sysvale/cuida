@@ -100,7 +100,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .breadcrumb {
 	display: flex;
@@ -113,22 +113,22 @@ export default {
 
 	&__link {
 		@extend .breadcrumb;
-		@include caption;
-		color: $n-600;
-		border-radius: $border-radius-lil;
+		@include tokens.caption;
+		color: tokens.$n-600;
+		border-radius: tokens.$border-radius-lil;
 		padding: pa(1);
-		transition: $hover;
+		transition: tokens.$hover;
 
 		&:hover,
 		&:hover svg {
-			background-color: $bn-50;
-			color: $bn-600;
-			transition: $hover;
+			background-color: tokens.$bn-50;
+			color: tokens.$bn-600;
+			transition: tokens.$hover;
 		}
 	}
 
 	&__separator {
-		color: $n-600;
+		color: tokens.$n-600;
 	}
 }
 </style>

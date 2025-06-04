@@ -129,13 +129,13 @@ function resolveDefaultRoute() {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .top-app-bar {
     align-items: center;
     backdrop-filter: blur(10px);
-    background-color: rgba($n-0, .85);
-    color: $n-700;
+    background-color: rgba(tokens.$n-0, .85);
+    color: tokens.$n-700;
     display: flex;
     height: 74px;
     justify-content: space-between;
@@ -143,7 +143,7 @@ function resolveDefaultRoute() {
     position: absolute;
     top: 0;
     width: 100%;
-	z-index: $z-index-modal;
+	z-index: tokens.$z-index-modal;
 
     &__menu, &__back-arrow {
         cursor: pointer;
@@ -156,7 +156,7 @@ function resolveDefaultRoute() {
 	}
 
 	&__title {
-		@include subheading-2;
+		@include tokens.subheading-2;
 	}
 
     &__actions {
@@ -175,7 +175,7 @@ function resolveDefaultRoute() {
 	}
 
 	.top-app-bar__title {
-		@include subheading-3;
+		@include tokens.subheading-3;
 	}
 }
 

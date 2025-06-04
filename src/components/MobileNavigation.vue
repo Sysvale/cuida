@@ -243,14 +243,14 @@ const mustDisableExternalScrolls = (value) => {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .mobile-navigation {
 	top: 0;
 	left: 0;
 	width: 100%;
 	z-index: 1000;
-	box-shadow: $shadow-sm;
+	box-shadow: tokens.$shadow-sm;
 
 	&--sticky {
 		position: sticky;
@@ -263,7 +263,7 @@ const mustDisableExternalScrolls = (value) => {
 	}
 
 	&__title {
-		@include subheading-1;
+		@include tokens.subheading-1;
 		margin: mTRBL(0, 0, 0, 10);
 	}
 
@@ -321,7 +321,7 @@ const mustDisableExternalScrolls = (value) => {
 	}
 
 	&__sidebar-item {
-		@include body-1;
+		@include tokens.body-1;
 		display: flex;
 		align-items: center;
 		padding: pYX(4, 5);
@@ -357,12 +357,12 @@ const mustDisableExternalScrolls = (value) => {
 		}
 
 		& p:first-child {
-			@include body-1;
-			font-weight: $font-weight-bold;
+			@include tokens.body-1;
+			font-weight: tokens.$font-weight-bold;
 		}
 
 		& p:last-child {
-			@include body-2;
+			@include tokens.body-2;
 		}
 	}
 
@@ -377,33 +377,33 @@ const mustDisableExternalScrolls = (value) => {
 .mobile-navigation--dark {
 	&.mobile-navigation {
 		background: linear-gradient(183deg, #4B545B 26.25%, #262B2F 183.33%);
-		color: $n-0;
+		color: tokens.$n-0;
 	}
 
 	.mobile-navigation {
 		&__sidebar {
 			background: linear-gradient(183deg, #4B545B 26.25%, #262B2F 183.33%);
-			color: $n-0;
+			color: tokens.$n-0;
 		}
 
 		&__sidebar-item {
 			&--active {
 				background: #576169;
-				color: $n-0;
+				color: tokens.$n-0;
 				border: 1px solid #64738280;
 				transition: background 0.25s ease-in-out;
 			}
 		}
 
 		&__sidebar-logout {
-			color: $n-0;
+			color: tokens.$n-0;
 		}
 	}
 }
 
 .mobile-navigation--light {
 	.variant-resolver {
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			--system-background-variant: #{$shade-50};
 			--system-border-variant: #{$shade-200};
 			--system-text-variant: #{$base-color};
@@ -411,14 +411,14 @@ const mustDisableExternalScrolls = (value) => {
 	}
 
 	&.mobile-navigation {
-		background: $n-0;
-		color: $n-700;
+		background: tokens.$n-0;
+		color: tokens.$n-700;
 	}
 
 	.mobile-navigation {
 		&__sidebar {
-			background: $n-0;
-			color: $n-700;
+			background: tokens.$n-0;
+			color: tokens.$n-700;
 		}
 
 		&__sidebar-item {
@@ -430,7 +430,7 @@ const mustDisableExternalScrolls = (value) => {
 		}
 
 		&__sidebar-logout {
-			color: $n-700;
+			color: tokens.$n-700;
 		}
 	}
 }

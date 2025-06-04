@@ -106,7 +106,7 @@ export default {
 };
 </script>
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 	.page-header {
 		&__container {
 			display: flex;
@@ -126,16 +126,16 @@ export default {
 		}
 
 		&__title {
-			@include heading-3;
-			font-weight: $font-weight-bold;
-			color: $n-900;
+			@include tokens.heading-3;
+			font-weight: tokens.$font-weight-bold;
+			color: tokens.$n-900;
 			margin: mb(2);
 		}
 
 		&__subtitle {
-			@include subheading-3;
-			font-weight: $font-weight-regular;
-			color: $n-700;
+			@include tokens.subheading-3;
+			font-weight: tokens.$font-weight-regular;
+			color: tokens.$n-700;
 			margin: ma(0);
 		}
 	}

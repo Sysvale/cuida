@@ -210,7 +210,7 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .v-move,
 .v-enter-active,
@@ -230,10 +230,10 @@ defineExpose({
 
 .multiinput {
 	&__x-icon {
-		color: $n-800;
+		color: tokens.$n-800;
 	
 		&:hover {
-			color: $n-900;
+			color: tokens.$n-900;
 		}
 	}
 

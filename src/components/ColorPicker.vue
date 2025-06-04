@@ -77,7 +77,7 @@
 <script>
 import CdsPopover from './Popover.vue';
 import CdsIcon from './Icon.vue';
-import sassColorVariables from '../assets/sass/colors.module.scss';
+import sassColorVariables from '../assets/sass/tokens/colors.module.scss';
 import ContrastChecker from '../utils/methods/contrastChecker';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
@@ -117,7 +117,7 @@ export default {
 			default: 190,
 		},
 		/**
-		* Conjunto de cores a serem renderizadas no ColorPicker. A prop espera um Array de Array de tokens de cor. Ex.: $gp-400
+		* Conjunto de cores a serem renderizadas no ColorPicker. A prop espera um Array de Array de tokens de cor. Ex.: tokens.$gp-400
 		*/
 		swatch: {
 			type: Array,
@@ -177,7 +177,7 @@ export default {
 			*/
 			this.$emit('update:modelValue', this.selectedColor);
 			/**
-			 * Evento utilizado para emitir a *variante* da cor selecionada. A variante é emitida como uma string. ⚠️ Importante: a variante emitida só irá mudar se a cor mudar. A mudança de shade dentro da mesma cor não altera a variante. Ex.: $gp-400 e $gp-600 emitirão a mesta variante, a saber, "green".
+			 * Evento utilizado para emitir a *variante* da cor selecionada. A variante é emitida como uma string. ⚠️ Importante: a variante emitida só irá mudar se a cor mudar. A mudança de shade dentro da mesma cor não altera a variante. Ex.: tokens.$gp-400 e tokens.$gp-600 emitirão a mesta variante, a saber, "green".
 			 * @event update:colorVariant
 			 * @type {Event}
 			*/
@@ -192,7 +192,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .color-picker {
 	&__container {
@@ -201,11 +201,11 @@ export default {
 
 	&__label {
 		margin: mb(1);
-		@include label;
+		@include tokens.label;
 	}
 
 	&__swatch {
-		@include paleteResolver using ($color) {
+		@include tokens.paleteResolver using ($color) {
 			background-color: $color;
 			height: 24px;
 			width: 24px;
@@ -214,26 +214,26 @@ export default {
 			padding-top: 2px;
 			padding-left: 1px;
 			cursor: pointer;
-			transition: $interaction;
+			transition: tokens.$interaction;
 
 			&:hover {
 				transform: scale(1.1);
-				transition: $interaction;
+				transition: tokens.$interaction;
 			}
 		}
 	}
 
 	&__trigger {
 		padding: pa(1);
-		outline: 1px solid $n-50;
+		outline: 1px solid tokens.$n-50;
 		width: fit-content;
-		border-radius: $border-radius-lil;
-		transition: $hover;
+		border-radius: tokens.$border-radius-lil;
+		transition: tokens.$hover;
 		cursor: pointer;
 
 		&:hover {
-			outline: 1px solid $n-200;
-			transition: $hover;
+			outline: 1px solid tokens.$n-200;
+			transition: tokens.$hover;
 		}
 	}
 
@@ -248,11 +248,11 @@ export default {
 .swatch {
 	&__icon {
 		&--white {
-			color: $n-0;
+			color: tokens.$n-0;
 		}
 
 		&--black {
-			color: $n-900;
+			color: tokens.$n-900;
 		}
 	}
 }

@@ -1,6 +1,9 @@
 <template>
 	<div>
-		<copy-token :target="target" :value="target" />
+		<copy-token
+			:target="target"
+			:value="target"
+		/>
 
 		<cds-table
 			:items="items"
@@ -10,9 +13,9 @@
 			<template #table-item="{ data, field, rowIndex }">
 				<div
 					v-if="field === 'token'"
-					@click="target = data.token"
 					:id="data.token"
 					class="copy-clip"
+					@click="target = data.token"
 				>
 					<cds-icon
 						height="20"
@@ -30,7 +33,6 @@
 					<div :class="borderRadiusClass(rowIndex)" />
 				</div>
 			</template>
-
 		</cds-table>
 	</div>
 </template>
@@ -77,12 +79,6 @@ export default {
 		};
 	},
 
-	methods: {
-		borderRadiusClass(index) {
-			return this.borderVariables[index].replace('$border-radius-', '');
-		},
-	},
-
 	computed: {
 		items() {
 			const factors = [1, 1.5, 2, 3, 4, 5, 6];
@@ -96,19 +92,25 @@ export default {
 
 			return items;
 		},
+	},
+
+	methods: {
+		borderRadiusClass(index) {
+			return this.borderVariables[index].replace('$border-radius-', '');
+		},
 	}
 };
 </script>
 
 <style lang="scss" scoped>
-@import './../assets/sass/tokens.scss';
+@use './../assets/sass/tokens/index' as tokens;
 
-@each $border-radius-name, $border-radius-token in $border-radius {
+@each $border-radius-name, $border-radius-token in tokens.$border-radius {
 	.#{$border-radius-name} {
 		border-radius: $border-radius-token;
 		width: 60px;
 		height: 60px;
-		background-color: $gp-400;
+		background-color: tokens.$gp-400;
 	}
 }
 
@@ -116,19 +118,19 @@ export default {
 	width: fit-content;
 	padding: pYX(2, 3);
 	border-radius: 16px;
-	border: 1px solid $n-0;
+	border: 1px solid tokens.$n-0;
 	transition: all .15s ease-in-out;
 	display: flex;
 	align-items: center;
 
 	&__icon {
 		margin: mr(3);
-		color: $n-500;
+		color: tokens.$n-500;
 	}
 }
 
 .copy-clip:hover {
-	border: 1px solid $gp-300;
+	border: 1px solid tokens.$gp-300;
 	cursor: pointer;
 	transition: all .15s ease-in-out;
 }

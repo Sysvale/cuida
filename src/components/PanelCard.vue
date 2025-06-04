@@ -73,12 +73,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .panel-card {
 	&__divider {
 		margin: ma(0);
-		color: $n-300;
+		color: tokens.$n-300;
 	}
 
 	&__header {
@@ -97,14 +97,14 @@ export default {
 	}
 
 	&__title {
-		@include subheading-2;
+		@include tokens.subheading-2;
 		margin: mb(2);
-		color: $n-900;
+		color: tokens.$n-900;
 	}
 
 	&__subtitle {
-		@include body-2;
-		color: $n-500;
+		@include tokens.body-2;
+		color: tokens.$n-500;
 	}
 }
 </style>

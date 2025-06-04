@@ -78,35 +78,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './../assets/sass/tokens.scss';
+@use './../assets/sass/tokens/index' as tokens;
 .progress-bar {
 	align-items: center;
 	display: flex;
 	flex-direction: v-bind(textDirection);
 
 	&__content {
-		background-color: $n-40;
-		border-radius: $border-radius-extra-large;
+		background-color: tokens.$n-40;
+		border-radius: tokens.$border-radius-extra-large;
 		height: 7px;
 		width: 100%;
 	}
 
 	&__indicator {
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			background-color: $base-color;
-			border-radius: $border-radius-extra-large;
+			border-radius: tokens.$border-radius-extra-large;
 			height: 7px;
 			width: var(--width);
 		}
 	}
 
 	&__text--aside {
-		font-weight: $font-weight-semibold;
+		font-weight: tokens.$font-weight-semibold;
 		margin: ml(3);
 	}
 
 	&__text {
-		font-weight: $font-weight-semibold;
+		font-weight: tokens.$font-weight-semibold;
 		margin: mb(2);
 	}
 }

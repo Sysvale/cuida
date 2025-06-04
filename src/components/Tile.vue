@@ -147,11 +147,11 @@ function handleClick() {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .cds-tile {
 	&__image {
-		background-color: $n-20;
+		background-color: tokens.$n-20;
 		padding: pYX(4, 7);
 		display: flex;
 		align-items: center;
@@ -159,20 +159,20 @@ function handleClick() {
 
 		&--disabled {
 			@extend .cds-tile__image;
-			background-color: $n-100;
-			color: $n-300;
+			background-color: tokens.$n-100;
+			color: tokens.$n-300;
 			border-top-left-radius: 16px;
 			border-top-right-radius: 16px;
 		}
 
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			@extend .cds-tile__image;
 			background-color: $shade-100;
 			color: $base-color;
 
 			@if ($color-name == 'gray' or $color-name == 'white') {
 				background-color: $shade-100;
-				color: $n-500;
+				color: tokens.$n-500;
 			}
 		}
 
@@ -204,26 +204,26 @@ function handleClick() {
 		align-items: center;
 		justify-content: center;
 		height: 50px !important;
-		@include caption;
-		font-weight: $font-weight-semibold;
+		@include tokens.caption;
+		font-weight: tokens.$font-weight-semibold;
 		flex-wrap: true;
 
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			@extend .cds-tile__text;
 			color: $base-color;
 
 			@if ($color-name == 'gray' or $color-name == 'white') {
-				color: $n-500;
+				color: tokens.$n-500;
 			}
 		}
 
 		&--disabled {
 			@extend .cds-tile__text;
-			color: $n-300;
+			color: tokens.$n-300;
 		}
 
 		&--sm {
-			@include overline;
+			@include tokens.overline;
 			padding: pYX(2,4);
 			max-width: 96px;
 		}
@@ -234,9 +234,9 @@ function handleClick() {
 		}
 
 		&--lg {
-			@include body-2;
+			@include tokens.body-2;
 			padding: pYX(2,7);
-			font-weight: $font-weight-semibold;
+			font-weight: tokens.$font-weight-semibold;
 			max-width: 116px;
 		}
 	}

@@ -12,7 +12,7 @@
 					height="24"
 					width="24"
 					:name="dynamicIcon"
-					:class="`icon--${variant}`"
+					:class="`icon--tokens.${variant}`"
 				/>
 			</div>
 
@@ -21,7 +21,7 @@
 			>
 				<span
 					v-if="!noTitle"
-					:class="`alert-card__title--${variant}`"
+					:class="`alert-card__title--tokens.${variant}`"
 				>
 					{{ title }}
 				</span>
@@ -29,7 +29,7 @@
 				<!-- @slot Slot usado para inserção de conteúdo customizado no subtítulo. -->
 				<span
 					class="alert-card__subtitle"
-					:class="`${noTitle ? 'mt-0' : 'mt-2'}`"
+					:class="`tokens.${noTitle ? 'mt-0' : 'mt-2'}`"
 				>
 					<slot name="subTitle-slot">
 						{{ subTitle }}
@@ -145,7 +145,7 @@ export default {
 				}
 
 				if (this.isSelected) {
-					return `${dynamicClass} alert-card__container--selected-${this.variant}`;
+					return `tokens.${dynamicClass} alert-card__container--selected-tokens.${this.variant}`;
 				}
 			} else {
 				dynamicClass = 'alert-card__container--muted';
@@ -155,13 +155,13 @@ export default {
 		},
 
 		iconClass() {
-			return `icon__container--${this.variant} ${this.noTitle ? 'align-self-center' : ''}`;
+			return `icon__container--tokens.${this.variant} tokens.${this.noTitle ? 'align-self-center' : ''}`;
 		},
 	},
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 #alert-card .alert-card {
 	display: flex;
@@ -171,60 +171,60 @@ export default {
 
 	&__container {
 		@extend .alert-card;
-		border: 1px solid $n-40;
+		border: 1px solid tokens.$n-40;
 
 		&--selectable {
 			cursor: pointer;
 		}
 
 		&--muted {
-			background-color: $n-10;
+			background-color: tokens.$n-10;
 		}
 	}
 
 	&__container--selected-info {
 		@extend .alert-card;
-		border: 2px solid $bn-300;
+		border: 2px solid tokens.$bn-300;
 		box-shadow: 1px 1px 4px rgba(32, 110, 217, 0.5);
 	}
 
 	&__container--selected-warning {
 		@extend .alert-card;
-		border: 2px solid $al-300;
+		border: 2px solid tokens.$al-300;
 		box-shadow: 1px 1px 4px rgba(253, 210, 145, 0.5);
 	}
 
 	&__container--selected-danger {
 		@extend .alert-card;
-		border: 2px solid $rc-300;
+		border: 2px solid tokens.$rc-300;
 		box-shadow: 1px 1px 4px rgba(237, 59, 81, 0.5);
 	}
 
 	&__title {
-		@include subheading-3;
+		@include tokens.subheading-3;
 		margin: my(3);
 		display: block;
 
 		&--info {
 			@extend .alert-card__title;
-			color: $bn-400;
+			color: tokens.$bn-400;
 		}
 
 		&--warning {
 			@extend .alert-card__title;
-			color: $al-600;
+			color: tokens.$al-600;
 		}
 
 		&--danger {
 			@extend .alert-card__title;
-			color: $rc-500;
+			color: tokens.$rc-500;
 		}
 	}
 
 	&__subtitle {
-		@include body-2;
+		@include tokens.body-2;
 		display: block;
-		color: $n-600;
+		color: tokens.$n-600;
 	}
 
 	&__content {
@@ -241,17 +241,17 @@ export default {
 
 	&--info {
 		@extend .icon;
-		color: $bn-400;
+		color: tokens.$bn-400;
 	}
 
 	&--warning {
 		@extend .icon;
-		color: $al-600;
+		color: tokens.$al-600;
 	}
 
 	&--danger {
 		@extend .icon;
-		color: $rc-400;
+		color: tokens.$rc-400;
 	}
 
 	&__container {
@@ -263,17 +263,17 @@ export default {
 
 		&--info {
 			@extend .icon__container;
-			background-color: $bn-100;
+			background-color: tokens.$bn-100;
 		}
 
 		&--warning {
 			@extend .icon__container;
-			background-color: $al-100;
+			background-color: tokens.$al-100;
 		}
 
 		&--danger {
 			@extend .icon__container;
-			background-color: $rc-100;
+			background-color: tokens.$rc-100;
 		}
 	}
 }
@@ -293,10 +293,10 @@ export default {
 		height: 14px;
 		top: 0;
 		border-radius: 4px;
-		border: 1px solid $n-200;
+		border: 1px solid tokens.$n-200;
 
 		&:after {
-			border: 2px solid $n-0;
+			border: 2px solid tokens.$n-0;
 			border-top: none;
 			border-right: none;
 			content: "";
@@ -323,7 +323,7 @@ export default {
 }
 
 #alert-card .custom-checkbox--checked {
-	background-color: $bn-500 !important;
+	background-color: tokens.$bn-500 !important;
 	border: none !important;
 }
 

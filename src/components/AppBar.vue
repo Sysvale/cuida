@@ -276,12 +276,12 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .app-bar {
 	&__container {
 		align-items: center;
-		background-color: $appbar-color;
+		background-color: tokens.$appbar-color;
 		display: grid;
 		grid-template-areas: v-bind(gridTemplateAreasResolver);
 		grid-template-columns: v-bind(gridTemplateColumnsResolver);
@@ -320,20 +320,20 @@ export default {
 
 	&__container{
 		align-items: flex-end;
-		color: $n-0;
+		color: tokens.$n-0;
 		display: flex;
 		flex-direction: column;
 		margin: ml(4)
 	}
 
 	&__name {
-		@include caption;
-		font-weight: $font-weight-semibold;
+		@include tokens.caption;
+		font-weight: tokens.$font-weight-semibold;
 	}
 
 	&__description {
-		@include overline;
-		font-weight: $font-weight-regular;
+		@include tokens.overline;
+		font-weight: tokens.$font-weight-regular;
 	}
 }
 
@@ -350,9 +350,9 @@ export default {
 }
 
 .app-name {
-	color: $n-0;
-	font-weight: $font-weight-regular;
+	color: tokens.$n-0;
+	font-weight: tokens.$font-weight-regular;
 	margin: mTRBL(1, 0, 0, 2);
-	@include caption;
+	@include tokens.caption;
 }
 </style>

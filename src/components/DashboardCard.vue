@@ -103,13 +103,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .dashboard-card {
 	box-sizing: border-box;
-	background-color: $n-0;
-	border: 1px solid $n-40;
-	border-radius: $border-radius-small;
+	background-color: tokens.$n-0;
+	border: 1px solid tokens.$n-40;
+	border-radius: tokens.$border-radius-small;
 	padding: pa(4);
 	width: fit-content;
 	min-width: 272px;
@@ -131,7 +131,7 @@ export default {
 
 	&__title {
 		font-weight: 700;
-		color: $n-700;
+		color: tokens.$n-700;
 		font-size: 24px;
 		line-height: 28px;
 		letter-spacing: 0.15px;
@@ -140,7 +140,7 @@ export default {
 
 	&__description {
 		font-weight: 400;
-		color: $n-600;
+		color: tokens.$n-600;
 		font-size: 13.5px;
 		line-height: 17px;
 		letter-spacing: 0.4px;
@@ -159,8 +159,8 @@ export default {
 	}
 
 	&__action {
-		color: $n-800;
-		font-weight: $font-weight-semibold;
+		color: tokens.$n-800;
+		font-weight: tokens.$font-weight-semibold;
 		font-size: 12px;
 		line-height: 17px;
 		text-transform: uppercase;
@@ -171,7 +171,7 @@ export default {
 	}
 
 	&__action > * {
-		font-weight: $font-weight-semibold;
+		font-weight: tokens.$font-weight-semibold;
 	}
 }
 </style>

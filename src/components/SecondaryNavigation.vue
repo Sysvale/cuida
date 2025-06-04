@@ -157,52 +157,52 @@ const isActiveSubItem = (subItemKey) => {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .secondary-navigation {
 	width: 100%;
 	height:54px;
-	box-shadow: $shadow-sm;
+	box-shadow: tokens.$shadow-sm;
 	display: flex;
 	gap: spacer(5);
 	align-items: center;
 	top: 0;
 	left: 0;
-	z-index: $z-index-toolbar;
+	z-index: tokens.$z-index-toolbar;
 
 	&--light {
-		background: $n-0;
-		color: $n-700;
+		background: tokens.$n-0;
+		color: tokens.$n-700;
 	}
 
 	&--dark {
-		background: $n-800;
-		color: $n-0;
+		background: tokens.$n-800;
+		color: tokens.$n-0;
 	}
 
 	&__item {
 		padding: pYX(2,3);
 		height: 54px;
 		cursor: pointer;
-		@include body-2;
+		@include tokens.body-2;
 		display: flex;
 
 		&--active-dark {
-			text-shadow:0px 0px 1px $n-0;
+			text-shadow:0px 0px 1px tokens.$n-0;
 		}
 
 		&--active-light {
-			text-shadow:0px 0px 1px $n-700;
+			text-shadow:0px 0px 1px tokens.$n-700;
 		}
 	}
 
 	&__subitem {
-		@include body-2;
-		text-shadow:0px 0px 0px $n-0;
+		@include tokens.body-2;
+		text-shadow:0px 0px 0px tokens.$n-0;
 
 		&--active {
-			@include body-2;
-			font-weight: $font-weight-semibold;
+			@include tokens.body-2;
+			font-weight: tokens.$font-weight-semibold;
 		}
 	}
 
@@ -224,8 +224,8 @@ const isActiveSubItem = (subItemKey) => {
 	}
 
 	&__dropdown {
-		box-shadow: $shadow-md;
-		border-radius: $border-radius-extra-small;
+		box-shadow: tokens.$shadow-md;
+		border-radius: tokens.$border-radius-extra-small;
 		margin: mt(5);
 		padding: pa(5);
 		min-width: 250px;
@@ -237,11 +237,11 @@ const isActiveSubItem = (subItemKey) => {
 		position:absolute;
 
 		&--dark {
-			background: $n-800;
+			background: tokens.$n-800;
 		}
 
 		&--light {
-			background: $n-0;
+			background: tokens.$n-0;
 		}
 	}
 }

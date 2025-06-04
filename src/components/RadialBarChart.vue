@@ -14,7 +14,7 @@
 	
 					<div
 						class="legend__square"
-						:style="`background-color: ${legend.backgroundColor}`"
+						:style="`background-color: tokens.${legend.backgroundColor}`"
 					/>
 					<span
 						:class="{
@@ -38,7 +38,7 @@
 
 <script>
 import { Doughnut } from 'vue-chartjs'
-import sassColorVariables from '../assets/sass/colors.module.scss';
+import sassColorVariables from '../assets/sass/tokens/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
 export default {
@@ -357,7 +357,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './../assets/sass/tokens.scss';
+@use './../assets/sass/tokens/index' as tokens;
 .responsive-container{
 	width: 100%;
 	height: 100%;
@@ -372,16 +372,16 @@ export default {
 		height: 16px;
 		width: 16px;
 		border-radius: 4px;
-		outline: 3px solid $n-0;
+		outline: 3px solid tokens.$n-0;
 	}
 	
 	&__item {
 		display: flex;
 		gap: 8px;
 		align-items: center;
-		@include caption;
-		font-weight: $font-weight-regular;
-		color: $n-500;
+		@include tokens.caption;
+		font-weight: tokens.$font-weight-regular;
+		color: tokens.$n-500;
 		cursor: pointer;
 	}
 	

@@ -185,7 +185,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .card {
 	&__icon {
@@ -213,14 +213,14 @@ export default {
 	}
 	
 	&__header {
-		@include subheading-2;
-		color: $n-700;
+		@include tokens.subheading-2;
+		color: tokens.$n-700;
 		margin: ma(0);
 	}
 	
 	&__body {
-		@include body-2;
-		color: $n-500;
+		@include tokens.body-2;
+		color: tokens.$n-500;
 		line-height: 150%;
 		margin: mt(3);
 		max-width: v-bind(bodyWidthResolver);

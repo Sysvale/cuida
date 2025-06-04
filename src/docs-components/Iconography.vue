@@ -119,21 +119,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 .code {
-	border: 1px solid $n-400;
-	border-radius: $border-radius-small;
+	border: 1px solid tokens.$n-400;
+	border-radius: tokens.$border-radius-small;
 }
 
 pre {
 	display: flex;
 	justify-content: start;
 	margin: mb(10);
-	border-radius: $border-radius-small;
+	border-radius: tokens.$border-radius-small;
 }
 
 code {
-	border-radius: $border-radius-small;
+	border-radius: tokens.$border-radius-small;
 	width: 100%;
 	display: flex;
 	justify-content: flex-start;
@@ -150,8 +150,8 @@ code {
 
 .source-code {
 	&__container {
-		border: 1px solid $n-30;
-		border-radius: $border-radius-small;
+		border: 1px solid tokens.$n-30;
+		border-radius: tokens.$border-radius-small;
 		display: flex;
 		background-color: #fafafa;
 		height: 200px;
@@ -170,12 +170,12 @@ code {
 }
 
 .source-code__button {
-	background-color: $n-900;
-	color: $n-0;
+	background-color: tokens.$n-900;
+	color: tokens.$n-0;
 	border: none;
 	border-radius: 4px 0px 12px 4px;
 	padding: pYX(1, 2);
-	@include caption;
+	@include tokens.caption;
 	transition: all .3s ease-in-out;
 	align-self: flex-end;
 	width: 150px;
@@ -194,8 +194,8 @@ code {
 		cursor: pointer;
 		height: 72px;
 		justify-content: center;
-		outline: 1px solid $n-0;
-		border-radius: $border-radius-extra-small;
+		outline: 1px solid tokens.$n-0;
+		border-radius: tokens.$border-radius-extra-small;
 		transition: all .2s ease-in-out;
 		box-sizing: content-box;
 	}
@@ -207,14 +207,14 @@ code {
 
 	&__tile:hover {
 		padding: pa(2);
-		border-radius: $border-radius-extra-small;
+		border-radius: tokens.$border-radius-extra-small;
 		transition: all .2s ease-in-out;
-		outline: 1px solid $gp-300;
+		outline: 1px solid tokens.$gp-300;
 	}
 
 	&__name {
 		font-size: 12px;
-		color: $n-400;
+		color: tokens.$n-400;
 		text-align: center;
 		margin: mt(2);
 	}
@@ -238,7 +238,7 @@ code {
 	}
 
 	&__category-title {
-		@include subheading-2;
+		@include tokens.subheading-2;
 		grid-column: span 3;
 	}
 }

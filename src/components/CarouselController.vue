@@ -143,7 +143,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .carousel-controller {
 	position: relative;
@@ -159,15 +159,15 @@ export default {
 	&__text {
 		margin: ml(7);
 		font-size: 14px;
-		color: $n-500;
-		font-weight: $font-weight-semibold;
+		color: tokens.$n-500;
+		font-weight: tokens.$font-weight-semibold;
 	}
 
 	&__property {
 		margin: mTRBL(0, 7, 0, 2);
 		font-size: 14px;
-		color: $n-800;
-		font-weight: $font-weight-semibold;
+		color: tokens.$n-800;
+		font-weight: tokens.$font-weight-semibold;
 	}
 
 	&__previous-button {
@@ -175,7 +175,7 @@ export default {
 		height: 32px;
 		width: 32px;
 		cursor: pointer;
-		border-radius: $border-radius-small;
+		border-radius: tokens.$border-radius-small;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -190,8 +190,8 @@ export default {
 		&::before {
 			border-left: 6px solid transparent;
 			border-right: 6px solid transparent;
-			border-bottom: 6px solid $n-400;
-			border-radius: $border-radius-small;
+			border-bottom: 6px solid tokens.$n-400;
+			border-radius: tokens.$border-radius-small;
 			transition: all 100ms ease-in-out;
 			transform: rotate(-90deg);
 		}
@@ -209,8 +209,8 @@ export default {
 			&::before {
 				border-left: 6px solid transparent;
 				border-right: 6px solid transparent;
-				border-bottom: 6px solid $n-100;
-				border-radius: $border-radius-small;
+				border-bottom: 6px solid tokens.$n-100;
+				border-radius: tokens.$border-radius-small;
 				transition: all 100ms ease-in-out;
 				transform: rotate(-90deg);
 			}
@@ -222,7 +222,7 @@ export default {
 		height: 32px;
 		width: 32px;
 		cursor: pointer;
-		border-radius: $border-radius-small;
+		border-radius: tokens.$border-radius-small;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -237,8 +237,8 @@ export default {
 		&::before {
 			border-left: 6px solid transparent;
 			border-right: 6px solid transparent;
-			border-bottom: 6px solid $n-400;
-			border-radius: $border-radius-small;
+			border-bottom: 6px solid tokens.$n-400;
+			border-radius: tokens.$border-radius-small;
 			transition: all 100ms ease-in-out;
 			transform: rotate(90deg);
 		}
@@ -256,8 +256,8 @@ export default {
 			&::before {
 				border-left: 6px solid transparent;
 				border-right: 6px solid transparent;
-				border-bottom: 6px solid $n-100;
-				border-radius: $border-radius-small;
+				border-bottom: 6px solid tokens.$n-100;
+				border-radius: tokens.$border-radius-small;
 				transition: all 100ms ease-in-out;
 				transform: rotate(90deg);
 			}

@@ -184,21 +184,21 @@ function handleOk() {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/sass/tokens.scss';
+@use '../../assets/sass/tokens/index' as tokens;
 
 .side-sheet {
 
 	&__description {
-		@include body-2;
-		color: $n-600;
+		@include tokens.body-2;
+		color: tokens.$n-600;
 		margin: mb(3);
 	}
 
 	&__item-label {
-		@include body-2;
-		color: $n-700;
+		@include tokens.body-2;
+		color: tokens.$n-700;
 
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			color: $base-color;
 			font-weight: 550;
 		}
@@ -210,28 +210,28 @@ function handleOk() {
 		justify-content: space-between;
 		width: 100%;
 		padding: pa(5);
-		border: 1px solid $n-30;
-		border-radius: $border-radius-medium;
+		border: 1px solid tokens.$n-30;
+		border-radius: tokens.$border-radius-medium;
 		margin: mb(2);
 		cursor: pointer;
 
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			&:hover {
 				border: 1px solid $shade-300;
 			}
 		}
 
 		&--active {
-			@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+			@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 				border: 1px solid $shade-300;
 			}
 		}
 	}
 
 	&__icon {
-		color: $n-100;
+		color: tokens.$n-100;
 
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			color: $shade-300;
 		}
 	}

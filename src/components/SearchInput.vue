@@ -84,16 +84,16 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .search-input {
 	display: flex;
 	align-items: center;
-	outline: 1px solid $n-50;
-	border-radius: $border-radius-extra-small;
+	outline: 1px solid tokens.$n-50;
+	border-radius: tokens.$border-radius-extra-small;
 	width: fit-content;
 	width: -moz-fit-content;
-	background: $n-0;
+	background: tokens.$n-0;
 
 	&--fluid {
 		@extend .search-input;
@@ -101,28 +101,28 @@ onMounted(() => {
 	}
 
 	&__search-icon {
-		color: $n-300;
+		color: tokens.$n-300;
 		padding: pl(3);
 	}
 
 	&__close-icon {
-		color: $n-300;
+		color: tokens.$n-300;
 		padding: pr(3);
 		cursor: pointer;
 	}
 
 	&__close-icon:hover {
-		color: $n-400;
+		color: tokens.$n-400;
 	}
 
 	&__field {
 		padding: pTRBL(3, 3, 3, 2);
 		margin: mr(2);
 		height: 40px !important;
-		border-radius: $border-radius-extra-small;
+		border-radius: tokens.$border-radius-extra-small;
 		border: none;
 		text-align: start;
-		color: $n-600;
+		color: tokens.$n-600;
 		box-sizing: border-box;
 
 		&:focus {
@@ -136,7 +136,7 @@ onMounted(() => {
 	}
 
 	&--disabled {
-		background-color: $n-20;
+		background-color: tokens.$n-20;
 		pointer-events: none;
 		border: none;
 	}

@@ -116,7 +116,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .avatar-group {
 	&__container {
@@ -135,7 +135,7 @@ export default {
 		}
 	
 		& > * {
-			outline: 4px solid $n-0;
+			outline: 4px solid tokens.$n-0;
 		}
 	}
 
@@ -154,7 +154,7 @@ export default {
 }
 
 .tooltip {
-	border-radius: $border-radius-circle;
+	border-radius: tokens.$border-radius-circle;
 }
 
 .scrollable__container {

@@ -47,7 +47,7 @@ export default {
 };
 </script>
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 .cds-timeline {
 	padding: pa(5);
 	display: flex;

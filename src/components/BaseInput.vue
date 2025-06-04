@@ -537,8 +537,8 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
-@import '../assets/sass/placeholders.scss';
+@use '../assets/sass/tokens/index' as tokens;
+@use'../assets/sass/placeholders.scss';
 
 .base-input {
 	@extend %input;
@@ -565,7 +565,7 @@ defineExpose({
 	}
 
 	&__label {
-		@include label;
+		@include tokens.label;
 		display: flex;
 		align-items: flex-end;
 		justify-content: space-between;
@@ -615,10 +615,10 @@ defineExpose({
 		padding-top: v-bind(inputTopPadding);
 		height: v-bind(inputHeight);
 		min-height: v-bind(inputMinHeight);
-		border-radius: $border-radius-extra-small;
+		border-radius: tokens.$border-radius-extra-small;
 		border: none;
 		text-align: start;
-		color: $n-600;
+		color: tokens.$n-600;
 		width: 100%;
 		resize: vertical;
 		cursor: v-bind(computedCursor);
@@ -631,7 +631,7 @@ defineExpose({
 
 		&::-webkit-scrollbar {
 			width: 12px;
-			border-radius: $border-radius-lil;
+			border-radius: tokens.$border-radius-lil;
 		}
 
 		&::-webkit-scrollbar-track {
@@ -639,16 +639,16 @@ defineExpose({
 		}
 
 		&::-webkit-scrollbar-thumb {
-			background: $n-100;
-			border-radius: $border-radius-lil;
+			background: tokens.$n-100;
+			border-radius: tokens.$border-radius-lil;
 			border-right: 3px solid transparent;
 			border-left: 3px solid transparent;
 			background-clip: padding-box;
 		}
 
 		&::-webkit-scrollbar-thumb:hover {
-			background: $n-200;
-			border-radius: $border-radius-lil;
+			background: tokens.$n-200;
+			border-radius: tokens.$border-radius-lil;
 			border-right: 3px solid transparent;
 			border-left: 3px solid transparent;
 			background-clip: padding-box;
@@ -699,11 +699,11 @@ defineExpose({
 	}
 
 	&__icon {
-		color: $n-700;
+		color: tokens.$n-700;
 	}
 
 	&__icon--alert-circle-icon {
-		color: $rc-600;
+		color: tokens.$rc-600;
 		height: 50%;
 	}
 
@@ -712,8 +712,8 @@ defineExpose({
 	}
 
 	&__error-text {
-		@include caption;
-		color: $rc-600;
+		@include tokens.caption;
+		color: tokens.$rc-600;
 		margin: mt(1);
 	}
 
@@ -722,8 +722,8 @@ defineExpose({
 			margin: mt(2);
 		}
 
-		@include caption;
-		color: $n-600;
+		@include tokens.caption;
+		color: tokens.$n-600;
 		margin: mt(1);
 	}
 
@@ -737,7 +737,7 @@ defineExpose({
 	&__icon {
 		margin: mTRBL(0, 0, n1, 1);
 		cursor: default;
-		color: $n-700;
+		color: tokens.$n-700;
 	}
 
 	&__link {
@@ -745,7 +745,7 @@ defineExpose({
 	}
 
 	&__content {
-		color: $n-800;
+		color: tokens.$n-800;
 		margin: mb(1);
 	}
 }
