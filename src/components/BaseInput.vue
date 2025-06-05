@@ -29,6 +29,7 @@
 			</template>
 
 			<CdsLabel
+				v-if="showLabel"
 				:text="label"
 				:fluid="fluid"
 				:for="componentId"
@@ -451,6 +452,8 @@ const hasTrailingIcon = computed(() => {
 const spinnerXPosition = computed(() => {
 	return hasTrailingIcon.value ? '36px' : '9px';
 });
+
+const showLabel = computed(() => props.type !== 'search');
 
 /* WATCHERS */
 watch(model, (newValue, oldValue) => {
