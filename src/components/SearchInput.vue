@@ -36,6 +36,13 @@ const props = defineProps({
 		default: 'Busque...',
 	},
 	/**
+	 * Quando ativado a label não será exibida
+	 */
+	hideLabel: {
+		type: Boolean,
+		default: false,
+	},
+	/**
 	* Define o tipo do input, se true será um input adaptado para o mobile
 	*/
 	floatingLabel: {

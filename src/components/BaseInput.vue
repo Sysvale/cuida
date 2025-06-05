@@ -29,7 +29,7 @@
 			</template>
 
 			<CdsLabel
-				v-if="showLabel"
+				v-if="!hideLabelInput"
 				:text="label"
 				:fluid="fluid"
 				:for="componentId"
@@ -213,6 +213,13 @@ const props = defineProps({
 	label: {
 		type: String,
 		default: 'Label',
+	},
+	/**
+	 * Quando ativado e o tipo selecionado for for search a label não será exibida.
+	 */
+	hideLabel: {
+		type: Boolean,
+		default: false,
 	},
 	/**
 	* Desabilita o input.
@@ -453,7 +460,10 @@ const spinnerXPosition = computed(() => {
 	return hasTrailingIcon.value ? '36px' : '9px';
 });
 
-const showLabel = computed(() => props.type !== 'search');
+const hideLabelInput = computed(() => props.type === 'search'
+	&& props.hideLabel
+	&& !props.floatingLabel
+);
 
 /* WATCHERS */
 watch(model, (newValue, oldValue) => {
