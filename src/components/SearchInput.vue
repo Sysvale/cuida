@@ -63,8 +63,3 @@ watch(internalValue, (value) => {
 	componentRef.value = componentRef.value?.componentRef;
 });
 </script>
-
-<style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
-
-</style>
