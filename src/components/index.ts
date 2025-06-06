@@ -54,6 +54,7 @@ import InnerTabs from './InnerTabs.vue';
 import InteractionBlockingOverlay from './InteractionBlockingOverlay.vue';
 import Image from './Image.vue';
 import InlineDateInput from './InlineDateInput.vue';
+import Label from './Label.vue';
 import Link from './Link.vue';
 import List from './List.vue';
 import LoadingBar from './LoadingBar.vue';
@@ -189,9 +190,10 @@ export default {
 		app.component('CdsInnerTabs', InnerTabs);
 		app.component('CdsInteractionBlockingOverlay', InteractionBlockingOverlay);
 		app.component('CdsLineChart', LineChart);
+		app.component('CdsLabel', Label)
 		app.component('CdsLink', Link);
 		app.component('CdsList', List);
-		app.component('CdsInlineDateInput', InlineDateInput);
+		app.component('CdsInlineDateInput', InlineDateInput);la
 		app.component('CdsLoadingBar', LoadingBar);
 		app.component('CdsLoadingIndicator', LoadingIndicator);
 		app.component('CdsMobileNavbar', MobileNavbar);
@@ -199,7 +201,7 @@ export default {
 		app.component('CdsModal', Modal);
 		app.component('CdsMonthAndYearPicker', MonthAndYearPicker);
 		app.component('CdsMultiselect', Multiselect);
-        app.component('CdsComboBox', ComboBox);
+		app.component('CdsComboBox', ComboBox);
 		app.component('CdsDynamicInputList', DynamicInputList);
 		app.component('CdsMultiFileInput', MultiFileInput);
 		app.component('CdsNavBar', NavBar);
