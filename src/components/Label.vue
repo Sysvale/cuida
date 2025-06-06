@@ -103,16 +103,16 @@ defineProps({
 @import '../assets/sass/placeholders.scss';
 
 .label {
-    @include label;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    width: 266px;
+	@include label;
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	width: 266px;
 
-    &--fluid {
-        @extend .label;
-        width: 100%;
-    }
+	&--fluid {
+		@extend .label;
+		width: 100%;
+	}
 
 	&__icon {
 		margin: mTRBL(0, 0, n1, 1);
