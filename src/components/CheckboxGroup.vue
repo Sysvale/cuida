@@ -149,17 +149,17 @@ function handleCheckboxClick(selectedOption) {
 	&__container {
 		display: flex;
 		flex-direction: column;
-		gap: spacer(2);
+		gap: tokens.spacer(2);
 	}
 
 	&__label {
 		@include tokens.button-2;
-		margin: mb(2);
+		margin: tokens.mb(2);
 	}
 
 	&__item {
 		cursor: pointer;
-		padding: pYX(4, 3);
+		padding: tokens.pYX(4, 3);
 		@include tokens.body-2;
 		border: 1px solid tokens.$n-50;
 		border-radius: tokens.$border-radius-extra-small;
@@ -189,7 +189,7 @@ function handleCheckboxClick(selectedOption) {
 	&__error-message {
 		@include tokens.caption;
 		color: tokens.$rc-600;
-		margin: mt(1);
+		margin: tokens.mt(1);
 	}
 }
 </style>

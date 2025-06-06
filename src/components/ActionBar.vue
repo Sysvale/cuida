@@ -162,7 +162,7 @@ export default {
 	display: flex;
 	justify-content: space-between;
 	min-width: 400px;
-	padding: pYX(3, 4);
+	padding: tokens.pYX(3, 4);
 	width: fit-content;
 	z-index: tokens.$z-index-toolbar;
 	
@@ -175,12 +175,12 @@ export default {
 	&__buttons-container {
 		display: flex;
 		justify-content: space-between;
-		margin: ml(3);
+		margin: tokens.ml(3);
 	}
 
 	&__button {
-		margin: mx(1);
-		padding: px(2);
+		margin: tokens.mx(1);
+		padding: tokens.px(2);
 	}
 
 	&--dark {
@@ -211,8 +211,8 @@ export default {
 			cursor: pointer;
 			display: flex;
 			justify-content: center;
-			margin: ml(1);
-			padding: pa(1);
+			margin: tokens.ml(1);
+			padding: tokens.pa(1);
 		}
 		
 		&--dark:hover {
@@ -226,8 +226,8 @@ export default {
 			cursor: pointer;
 			display: flex;
 			justify-content: center;
-			margin: ml(1);
-			padding: pa(1);
+			margin: tokens.ml(1);
+			padding: tokens.pa(1);
 		}
 		
 		&--light:hover {

@@ -386,27 +386,27 @@ export default {
 		height: 40px;
 		border-radius: tokens.$border-radius-small;
 		display: flex;
-		padding: px(2);
+		padding: tokens.px(2);
 	}
 
 	&--md {
-		padding: pYX(6, 4);
+		padding: tokens.pYX(6, 4);
 		border-radius: tokens.$border-radius-small;
 		display: flex;
 	}
 
 	&--lg {
-		padding: pYX(12, 12);
+		padding: tokens.pYX(12, 12);
 		border-radius: tokens.$border-radius-small;
 		display: flex;
 	}
 
 	&__alert {
-		margin: mr(2);
+		margin: tokens.mr(2);
 
 		&-container {
 			@include tokens.caption;
-			margin: mt(2);
+			margin: tokens.mt(2);
 			color: tokens.$rc-500;
 		}
 	}
@@ -418,7 +418,7 @@ export default {
 		}
 
 		&--lg {
-			margin: ml(2);
+			margin: tokens.ml(2);
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
@@ -427,7 +427,7 @@ export default {
 		}
 
 		&--md {
-			margin: ml(2);
+			margin: tokens.ml(2);
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
@@ -436,7 +436,7 @@ export default {
 		}
 
 		&--sm {
-			margin: ml(2);
+			margin: tokens.ml(2);
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
@@ -551,7 +551,7 @@ export default {
 }
 
 .x-icon__container {
-	padding: px(1);
+	padding: tokens.px(1);
 	cursor: pointer;
 	display: grid;
 }

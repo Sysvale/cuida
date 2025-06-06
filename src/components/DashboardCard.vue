@@ -110,7 +110,7 @@ export default {
 	background-color: tokens.$n-0;
 	border: 1px solid tokens.$n-40;
 	border-radius: tokens.$border-radius-small;
-	padding: pa(4);
+	padding: tokens.pa(4);
 	width: fit-content;
 	min-width: 272px;
 	min-height: 120px;
@@ -135,7 +135,7 @@ export default {
 		font-size: 24px;
 		line-height: 28px;
 		letter-spacing: 0.15px;
-		margin: mb(1);
+		margin: tokens.mb(1);
 	}
 
 	&__description {
@@ -145,7 +145,7 @@ export default {
 		line-height: 17px;
 		letter-spacing: 0.4px;
 		max-width: 224px;
-		margin: mb(0);
+		margin: tokens.mb(0);
 		text-overflow: ellipsis;
 		overflow: hidden;
 		display: -webkit-box;
@@ -167,7 +167,7 @@ export default {
 		align-self: flex-end;
 		cursor: pointer;
 		display: inline;
-		margin: my(2);
+		margin: tokens.my(2);
 	}
 
 	&__action > * {

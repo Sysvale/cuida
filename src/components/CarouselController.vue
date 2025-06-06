@@ -157,14 +157,14 @@ export default {
 	}
 
 	&__text {
-		margin: ml(7);
+		margin: tokens.ml(7);
 		font-size: 14px;
 		color: tokens.$n-500;
 		font-weight: tokens.$font-weight-semibold;
 	}
 
 	&__property {
-		margin: mTRBL(0, 7, 0, 2);
+		margin: tokens.mTRBL(0, 7, 0, 2);
 		font-size: 14px;
 		color: tokens.$n-800;
 		font-weight: tokens.$font-weight-semibold;

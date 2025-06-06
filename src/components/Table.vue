@@ -430,7 +430,7 @@ export default {
 			@include tokens.body-2;
 			border-bottom: 1px solid tokens.$n-30;
 			font-weight: 700;
-			padding: spacer(3) spacer(4);
+			padding: tokens.spacer(3) tokens.spacer(4);
 			text-align: inherit;
 			overflow: auto;
 			word-wrap: break-word;
@@ -466,7 +466,7 @@ export default {
 		border-bottom: 1px solid tokens.$n-30;
 		font-size: 14px;
 		max-width: 400px;
-		padding: pa(4);
+		padding: tokens.pa(4);
 		vertical-align: top;
 		overflow: auto;
 		word-wrap: break-word;

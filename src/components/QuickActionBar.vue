@@ -494,12 +494,12 @@ function verifyResultsHeight() {
 
 	&__input {
 		width: 50%;
-		padding: pa(4);
+		padding: tokens.pa(4);
 		background-color: tokens.$n-0;
 		border-radius: tokens.$border-radius-medium;
 		border: 1px solid tokens.$n-30;
 		background-color: tokens.$n-0;
-		margin: mb(2);
+		margin: tokens.mb(2);
 		box-shadow: tokens.$shadow-md;
 
 		input {
@@ -536,7 +536,7 @@ function verifyResultsHeight() {
 		background-color: tokens.$n-0;
 		border-radius: tokens.$border-radius-medium;
 		border: 1px solid tokens.$n-30;
-		padding: py(5);
+		padding: tokens.py(5);
 		width: 50%;
 		max-height: 75svh;
 		box-shadow: tokens.$shadow-md;
@@ -547,7 +547,7 @@ function verifyResultsHeight() {
 	}
 
 	&__skeleton-card {
-		margin: ml(5);
+		margin: tokens.ml(5);
 	}
 
 	&__empty-state {
@@ -561,25 +561,25 @@ function verifyResultsHeight() {
 	&__results-block {
 
 		&:last-child {
-			margin: mb(n(3));
+			margin: tokens.mb(n(3));
 		}
 	}
 
 	&__divider {
-		padding: px(5);
+		padding: tokens.px(5);
 	}
 
 	&__result-item-wrapper {
 		cursor: pointer;
 
 		&:last-child {
-			margin: mb(3);
+			margin: tokens.mb(3);
 		}
 	}
 
 	&__result-item {
 		cursor: pointer;
-		padding: pYX(3, 5);
+		padding: tokens.pYX(3, 5);
 		@include tokens.body-1;
 		font-weight: tokens.$font-weight-regular;
 		color: tokens.$n-800;
@@ -599,8 +599,8 @@ function verifyResultsHeight() {
 		text-align: left;
 		cursor: pointer;
 		height: 40px;
-		padding: pl(5);
-		margin: mb(3);
+		padding: tokens.pl(5);
+		margin: tokens.mb(3);
 
 		&:hover {
 			background-color: tokens.$bn-50;
@@ -610,7 +610,7 @@ function verifyResultsHeight() {
 
 	&__footer {
 		width: 100%;
-		margin: mb(2);
+		margin: tokens.mb(2);
 	}
 }
 

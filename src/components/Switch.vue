@@ -191,12 +191,12 @@ defineExpose({ componentRef });
 
 	&__supporting-text {
 		&:nth-child(1) {
-			margin: mt(2);
+			margin: tokens.mt(2);
 		}
 
 		@include tokens.caption;
 		color: tokens.$n-600;
-		margin: mt(1);
+		margin: tokens.mt(1);
 	}
 
 	&__supporting-text-list {
@@ -348,7 +348,7 @@ defineExpose({ componentRef });
 }
 
 .label__icon {
-	margin: mTRBL(0, 0, n1, 1);
+	margin: tokens.mTRBL(0, 0, n1, 1);
 	cursor: default;
 	color: tokens.$n-700;
 }

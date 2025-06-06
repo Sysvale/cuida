@@ -200,7 +200,7 @@ export default {
 	}
 
 	&__label {
-		margin: mb(1);
+		margin: tokens.mb(1);
 		@include tokens.label;
 	}
 
@@ -210,7 +210,7 @@ export default {
 			height: 24px;
 			width: 24px;
 			border-radius: 4px;
-			margin: mTRBL(1, 1, 0, 0);
+			margin: tokens.mTRBL(1, 1, 0, 0);
 			padding-top: 2px;
 			padding-left: 1px;
 			cursor: pointer;
@@ -224,7 +224,7 @@ export default {
 	}
 
 	&__trigger {
-		padding: pa(1);
+		padding: tokens.pa(1);
 		outline: 1px solid tokens.$n-50;
 		width: fit-content;
 		border-radius: tokens.$border-radius-lil;

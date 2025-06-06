@@ -73,7 +73,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, defineEmits, computed, watch } from 'vue';
+import { ref, computed, watch } from 'vue';
 import Icon from './Icon.vue';
 
 const props = defineProps({
@@ -164,7 +164,7 @@ const isActiveSubItem = (subItemKey) => {
 	height:54px;
 	box-shadow: tokens.$shadow-sm;
 	display: flex;
-	gap: spacer(5);
+	gap: tokens.spacer(5);
 	align-items: center;
 	top: 0;
 	left: 0;
@@ -181,7 +181,7 @@ const isActiveSubItem = (subItemKey) => {
 	}
 
 	&__item {
-		padding: pYX(2,3);
+		padding: tokens.pYX(2,3);
 		height: 54px;
 		cursor: pointer;
 		@include tokens.body-2;
@@ -208,11 +208,11 @@ const isActiveSubItem = (subItemKey) => {
 
 	&__container {
 		display: flex;
-		padding: px(6);
+		padding: tokens.px(6);
 	}
 
 	&__content {
-		gap: spacer(2);
+		gap: tokens.spacer(2);
 		height: 20px;
 		display: flex;
 		align-self: center;
@@ -226,14 +226,14 @@ const isActiveSubItem = (subItemKey) => {
 	&__dropdown {
 		box-shadow: tokens.$shadow-md;
 		border-radius: tokens.$border-radius-extra-small;
-		margin: mt(5);
-		padding: pa(5);
+		margin: tokens.mt(5);
+		padding: tokens.pa(5);
 		min-width: 250px;
 		top: 0;
 		left: 0;
 		display: flex;
 		flex-direction: column;
-		gap: spacer(6);
+		gap: tokens.spacer(6);
 		position:absolute;
 
 		&--dark {

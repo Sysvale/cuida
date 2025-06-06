@@ -116,7 +116,7 @@ export default {
 
 .copy-clip {
 	width: fit-content;
-	padding: pYX(2, 3);
+	padding: tokens.pYX(2, 3);
 	border-radius: 16px;
 	border: 1px solid tokens.$n-0;
 	transition: all .15s ease-in-out;
@@ -124,7 +124,7 @@ export default {
 	align-items: center;
 
 	&__icon {
-		margin: mr(3);
+		margin: tokens.mr(3);
 		color: tokens.$n-500;
 	}
 }

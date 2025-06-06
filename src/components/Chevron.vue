@@ -96,7 +96,7 @@ export default {
 	width: 16px;
 	justify-content: center;
 	align-items: center;
-	padding: pa(1);
+	padding: tokens.pa(1);
 	transition: all 300ms ease-in-out;
 
 	&::before,

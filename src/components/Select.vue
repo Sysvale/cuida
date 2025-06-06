@@ -745,11 +745,11 @@ defineExpose({
 		cursor: pointer;
 		font-weight: tokens.$font-weight-semibold;
 		background-color: tokens.$n-20;
-		padding: pa(3);
+		padding: tokens.pa(3);
 	}
 
 	&__text {
-		padding: pa(3);
+		padding: tokens.pa(3);
 		text-overflow: ellipsis;
 
 		&--muted {

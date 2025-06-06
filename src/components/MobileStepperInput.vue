@@ -108,15 +108,15 @@ watch(model, (newValue) => {
 	&__container {
 		display: flex;
 		align-items: center;
-		gap: spacer(2);
+		gap: tokens.spacer(2);
 	}
 
 	&__suffix {
 		color: tokens.$n-600;
 		display: flex;
 		align-items: center;
-		padding: pTRBL(2, 2, 2, 0);
-		margin: mr(2);
+		padding: tokens.pTRBL(2, 2, 2, 0);
+		margin: tokens.mr(2);
 		@include tokens.caption;
 	}
 
@@ -185,7 +185,7 @@ watch(model, (newValue) => {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
-	margin: ma(0);
+	margin: tokens.ma(0);
 }
 
 input[type=number] {

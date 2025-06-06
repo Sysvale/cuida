@@ -232,12 +232,12 @@ function handleClick(item) {
 
 		&--left {
 			left: 0;
-			margin: ml(3);
+			margin: tokens.ml(3);
 		}
 
 		&--right {
 			right: 0;
-			margin: mr(3);
+			margin: tokens.mr(3);
 		}
 
 		&--dark {

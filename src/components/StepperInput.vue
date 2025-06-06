@@ -316,7 +316,7 @@ function handleBlur() {
 
 .label {
 	&__content {
-		margin: mb(1);
+		margin: tokens.mb(1);
 	}
 }
 
@@ -331,7 +331,7 @@ function handleBlur() {
 	&__label {
 		@include tokens.caption;
 		font-weight: tokens.$font-weight-semibold;
-		margin: mb(1);
+		margin: tokens.mb(1);
 		display: flex;
 		color: tokens.$n-700;
 	}
@@ -340,8 +340,8 @@ function handleBlur() {
 		color: tokens.$n-600;
 		display: flex;
 		align-items: center;
-		padding: pTRBL(2, 2, 2, 0);
-		margin: mr(2);
+		padding: tokens.pTRBL(2, 2, 2, 0);
+		margin: tokens.mr(2);
 		@include tokens.caption;
 	}
 
@@ -418,7 +418,7 @@ function handleBlur() {
 		border: none;
 		padding: 0;
 		outline: none;
-		padding: pt(1);
+		padding: tokens.pt(1);
 		display: flex;
 		color: tokens.$n-600;
 		transition: all 0.2s ease-out;
@@ -442,7 +442,7 @@ function handleBlur() {
 		border: none;
 		padding: 0;
 		outline: none;
-		padding: pt(1);
+		padding: tokens.pt(1);
 		display: flex;
 		color: tokens.$n-600;
 		transition: all 0.2s ease-out;
@@ -464,14 +464,14 @@ function handleBlur() {
 	&__error-message {
 		@include tokens.caption;
 		color: tokens.$rc-600;
-		margin: mt(1);
+		margin: tokens.mt(1);
 	}
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
-	margin: ma(0);
+	margin: tokens.ma(0);
 }
 
 input[type=number] {

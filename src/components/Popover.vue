@@ -214,7 +214,7 @@ export default {
 	min-width: 100px;
 	outline: 1px solid tokens.$n-30;
 	overflow: hidden;
-	padding: pa(4);
+	padding: tokens.pa(4);
 	position: absolute;
 	width: v-bind(popoverWidth);
 	z-index: tokens.$z-index-tooltip;

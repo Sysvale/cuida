@@ -199,10 +199,10 @@ export default {
 		&__header {
 			display: flex;
 			justify-content: flex-start;
-			padding: pl(0);
-			margin: mb(0);
+			padding: tokens.pl(0);
+			margin: tokens.mb(0);
 			list-style: none;
-			gap: spacer(2);
+			gap: tokens.spacer(2);
 		}
 
 		&__header-item {
@@ -221,7 +221,7 @@ export default {
 			-webkit-box-orient: vertical;
 			text-align: center;
 			text-decoration: none !important;
-			padding: pYX(5, 4);
+			padding: tokens.pYX(5, 4);
 			cursor: pointer;
 			background-color: tokens.$n-0;
 
@@ -265,7 +265,7 @@ export default {
 
 		&__content {
 			background-color: tokens.$n-0;
-			padding: pYX(6, 7);
+			padding: tokens.pYX(6, 7);
 			border-radius: tokens.$border-radius-button;
 
 			> .content__pane--inactive {
@@ -293,7 +293,7 @@ export default {
 			background-color: tokens.$n-0;
 			border: 1px solid tokens.$n-30 !important;
 			border-radius: tokens.$border-radius-extra-small;
-			padding: pa(1);
+			padding: tokens.pa(1);
 			transition: tokens.$interaction;
 
 			&:hover {

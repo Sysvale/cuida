@@ -128,7 +128,7 @@ export default {
 pre {
 	display: flex;
 	justify-content: start;
-	margin: mb(10);
+	margin: tokens.mb(10);
 	border-radius: tokens.$border-radius-small;
 }
 
@@ -137,7 +137,7 @@ code {
 	width: 100%;
 	display: flex;
 	justify-content: flex-start;
-	padding: pa(8);
+	padding: tokens.pa(8);
 }
 
 .copy-icon {
@@ -155,17 +155,17 @@ code {
 		display: flex;
 		background-color: #fafafa;
 		height: 200px;
-		margin: mt(4);
+		margin: tokens.mt(4);
 	}
 
 	&__title {
 		font-size: 20px;
-		margin: my(4) !important;
+		margin: tokens.my(4) !important;
 	}
 
 	&__title {
 		font-size: 20px;
-		margin: mt(12);
+		margin: tokens.mt(12);
 	}
 }
 
@@ -174,7 +174,7 @@ code {
 	color: tokens.$n-0;
 	border: none;
 	border-radius: 4px 0px 12px 4px;
-	padding: pYX(1, 2);
+	padding: tokens.pYX(1, 2);
 	@include tokens.caption;
 	transition: all .3s ease-in-out;
 	align-self: flex-end;
@@ -183,7 +183,7 @@ code {
 
 .icon {
 	&__search-input {
-		margin: mt(5);
+		margin: tokens.mt(5);
 	}
 
 	&__tile {
@@ -206,7 +206,7 @@ code {
 	}
 
 	&__tile:hover {
-		padding: pa(2);
+		padding: tokens.pa(2);
 		border-radius: tokens.$border-radius-extra-small;
 		transition: all .2s ease-in-out;
 		outline: 1px solid tokens.$gp-300;
@@ -216,7 +216,7 @@ code {
 		font-size: 12px;
 		color: tokens.$n-400;
 		text-align: center;
-		margin: mt(2);
+		margin: tokens.mt(2);
 	}
 
 	&__grid {
@@ -224,7 +224,7 @@ code {
 		grid-template-columns: 1fr 1fr;
 		justify-items: stretch;
 		gap: 32px;
-		margin: mt(12) !important;
+		margin: tokens.mt(12) !important;
 		row-gap: 150px;
 		column-gap: 120px;
 	}

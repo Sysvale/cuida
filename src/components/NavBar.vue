@@ -150,15 +150,15 @@ export default {
 		&__container {
 			display: flex;
 			flex-wrap: wrap;
-			padding: pTRBL(2, 2, 0, 2);
-			margin: mb(0);
+			padding: tokens.pTRBL(2, 2, 0, 2);
+			margin: tokens.mb(0);
 			list-style: none;
 			border-bottom: 1px solid tokens.$n-40;
 			background-color: color.adjust(tokens.$appbar-color, $lightness: -5%);
 		}
 
 		&__item-container {
-			margin: mx(2);
+			margin: tokens.mx(2);
 
 			&--active {
 				background-color: tokens.$appbar-color;
@@ -177,7 +177,7 @@ export default {
 			-webkit-box-orient: vertical;
 			text-align: center;
 			text-decoration: none !important;
-			padding: pYX(2, 3);
+			padding: tokens.pYX(2, 3);
 			cursor: pointer;
 
 			&--active {

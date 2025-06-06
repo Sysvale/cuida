@@ -139,7 +139,7 @@ function resolveDefaultRoute() {
     display: flex;
     height: 74px;
     justify-content: space-between;
-    padding: pYX(4, 6);
+    padding: tokens.pYX(4, 6);
     position: absolute;
     top: 0;
     width: 100%;
@@ -152,7 +152,7 @@ function resolveDefaultRoute() {
 	&__menu-container {
 		display: flex;
 		align-items: center;
-		gap: spacer(6);
+		gap: tokens.spacer(6);
 	}
 
 	&__title {
@@ -161,7 +161,7 @@ function resolveDefaultRoute() {
 
     &__actions {
         display: flex;
-        gap: spacer(4);
+        gap: tokens.spacer(4);
     }
 
     &__logo-image {

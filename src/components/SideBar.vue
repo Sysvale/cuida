@@ -649,7 +649,7 @@ export default {
 	flex-direction: column;
 	height: 100vh;
 	justify-content: space-between;
-	padding: pTRBL(8, 3, 8, 3);
+	padding: tokens.pTRBL(8, 3, 8, 3);
 	width: 244px;
 	transition: width 0.5s;
 
@@ -657,13 +657,13 @@ export default {
 		&__tooltip-title {
 			font-size: 16px;
 			font-weight: 600;
-			margin: my(2);
+			margin: tokens.my(2);
 		}
 
 		&__subitem {
 			color: tokens.$n-100;
 			cursor: pointer;
-			padding: py(1);
+			padding: tokens.py(1);
 			@include tokens.caption;
 
 			&--active {
@@ -676,8 +676,8 @@ export default {
 			}
 
 			&-container {
-				padding: pl(7);
-				margin: mt(2);
+				padding: tokens.pl(7);
+				margin: tokens.mt(2);
 				transition: all 0.35s ease;
 			}
 
@@ -686,7 +686,7 @@ export default {
 				display: block;
 				display: flex;
 				align-items: center;
-				gap: spacer(2);
+				gap: tokens.spacer(2);
 			}
 		}
 
@@ -695,14 +695,14 @@ export default {
 			border-left: 1px solid tokens.$n-300;
 			display: flex;
 			flex-direction: column;
-			gap: spacer(4);
-			padding: pTRBL(1, 0, 1, 4);
+			gap: tokens.spacer(4);
+			padding: tokens.pTRBL(1, 0, 1, 4);
 
 			&--collapsed {
 				display: flex;
 				flex-direction: column;
-				gap: spacer(2);
-				margin: ml(2);
+				gap: tokens.spacer(2);
+				margin: tokens.ml(2);
 			}
 		}
 
@@ -710,7 +710,7 @@ export default {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			gap: spacer(4);
+			gap: tokens.spacer(4);
 			margin-bottom: 40px;
 		}
 
@@ -728,10 +728,10 @@ export default {
 		&__container {
 			display: flex;
 			flex-direction: column;
-			gap: spacer(3);
+			gap: tokens.spacer(3);
 			list-style: none;
 			transition: all 0.9s ease;
-			padding: pa(0);
+			padding: tokens.pa(0);
 		}
 
 		&__item-container {
@@ -744,7 +744,7 @@ export default {
 				color: tokens.$n-10;
 				cursor: default;
 				height: fit-content;
-				padding: pTRBL(3, 4, 3, 4);
+				padding: tokens.pTRBL(3, 4, 3, 4);
 				transition: tokens.$interaction;
 				width: 100%;
 			}
@@ -753,7 +753,7 @@ export default {
 				background-color: transparent;
 				border: 1px solid transparent;
 				border-radius: tokens.$border-radius-extra-small;
-				padding: pTRBL(3, 4, 3, 4);
+				padding: tokens.pTRBL(3, 4, 3, 4);
 				transition: tokens.$opening;
 			}
 		}
@@ -761,7 +761,7 @@ export default {
 		&__item > div{
 			align-items: center;
 			display: flex;
-			gap: spacer(2);
+			gap: tokens.spacer(2);
 		}
 
 		&__item span {
@@ -801,7 +801,7 @@ export default {
 		}
 
 		&__logout-button {
-			padding: pa(3);
+			padding: tokens.pa(3);
 			border-radius: tokens.$border-radius-small;
 		}
 
@@ -816,8 +816,8 @@ export default {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			gap: spacer(2);
-			padding: pTRBL(2, 1, 2, 1);
+			gap: tokens.spacer(2);
+			padding: tokens.pTRBL(2, 1, 2, 1);
 
 			& > ul {
 				margin: 0;
@@ -827,7 +827,7 @@ export default {
 					align-items: center;
 					color: tokens.$n-0;
 					display: flex;
-					gap: spacer(2);
+					gap: tokens.spacer(2);
 				}
 			}
 		}
@@ -835,7 +835,7 @@ export default {
 		&__avatar {
 			align-items: center;
 			display: flex;
-			gap: spacer(3);
+			gap: tokens.spacer(3);
 			cursor: v-bind(avatarCursorResolver);
 		}
 
@@ -843,7 +843,7 @@ export default {
 			@include tokens.body-2;
 			color: tokens.$n-0;
 			font-weight: tokens.$font-weight-bold;
-			margin: mb(0);
+			margin: tokens.mb(0);
 		}
 
 		&__avatar > div > p:nth-child(2) {
@@ -859,7 +859,7 @@ export default {
 		}
 
 		&__collapsible {
-			padding: pa(3);
+			padding: tokens.pa(3);
 			cursor: pointer;
 			border-radius: tokens.$border-radius-extra-small;
 			width: 42px;
@@ -989,19 +989,19 @@ export default {
 
 		&__item-container {
 			&--active {
-				padding: pa(3);
+				padding: tokens.pa(3);
 				transition: padding 0s;
 			}
 
 			&--inactive {
-				padding: pa(3);
+				padding: tokens.pa(3);
 				transition: padding 0s;
 			}
 		}
 
 		&__footer {
 			flex-direction: column;
-			gap: spacer(4);
+			gap: tokens.spacer(4);
 		}
 
 		&__logo {
@@ -1039,7 +1039,7 @@ export default {
 		align-items: center;
 		cursor: pointer;
 		border-radius: 6px;
-		padding: pa(2);
+		padding: tokens.pa(2);
 
 		&:hover {
 			background-color: tokens.$n-20;
@@ -1049,7 +1049,7 @@ export default {
 	&__text {
 		color: tokens.$n-600;
 		@include tokens.body-2;
-		padding: py(1)
+		padding: tokens.py(1)
 	}
 
 	&__icon {
@@ -1069,7 +1069,7 @@ export default {
 	outline: 1px solid tokens.$n-600;
 	border-radius: tokens.$border-radius-lil;
 	background-color: #414C57;
-	padding: pa(2);
+	padding: tokens.pa(2);
 	cursor: pointer;
 	align-items: center;
 	justify-content: v-bind(computedSearchButtonJustify);

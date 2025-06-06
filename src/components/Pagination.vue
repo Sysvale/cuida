@@ -305,7 +305,7 @@ export default {
 	&__button {
 		cursor: pointer;
 		height: 34px;
-		padding: pYX(2,3);
+		padding: tokens.pYX(2,3);
 		width: 35px;
 		@include tokens.caption;
 		font-weight: tokens.$font-weight-semibold;
@@ -320,7 +320,7 @@ export default {
 		background-color: tokens.$n-0;
 		color: tokens.$n-600;
 		border: 1px solid tokens.$n-40;
-		margin: mx(1);
+		margin: tokens.mx(1);
 		border-radius: tokens.$border-radius-lil;
 		transition: tokens.$interaction;
 
@@ -366,11 +366,11 @@ export default {
 
 	&__double-chevron {
 		&--left {
-			margin: ml(n1)
+			margin: tokens.ml(n1)
 		}
 
 		&--right {
-			margin: mr(n1)
+			margin: tokens.mr(n1)
 		}
 	}
 }

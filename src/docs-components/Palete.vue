@@ -212,7 +212,7 @@ export default {
 		background-color: $color;
 		width: 320px;
 		height: 72px;
-		padding: pYX(4, 5);
+		padding: tokens.pYX(4, 5);
 		transform: scale(1);
 		transition: all .25s ease-in-out;
 		cursor: pointer;
@@ -239,7 +239,7 @@ export default {
 	gap: 4px;
 	align-items: flex-end;
 	justify-content: end;
-	padding: pa(4);
+	padding: tokens.pa(4);
 	cursor: pointer;
 	transform: scale(1);
 	transition: all .25s ease-in-out;
@@ -252,7 +252,7 @@ export default {
 	}
 
 	&__title {
-		margin: mTRBL(10, 0, 3, 0);
+		margin: tokens.mTRBL(10, 0, 3, 0);
 	}
 }
 

@@ -82,7 +82,7 @@ export default {
 @use '../assets/sass/tokens/index' as tokens;
 
 .divider__container > div {
-	margin: mb(1);
+	margin: tokens.mb(1);
 }
 .divider {
 	background-color: tokens.$n-200;
@@ -102,7 +102,7 @@ export default {
 			color: tokens.$n-500;
 			width: max-content;
 			white-space: nowrap;
-			margin: mTRBL(0, 2, 1, 0);
+			margin: tokens.mTRBL(0, 2, 1, 0);
 		}
 	}
 

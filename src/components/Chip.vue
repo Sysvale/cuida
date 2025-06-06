@@ -194,15 +194,15 @@ export default {
 
 
 	&--sm {
-		padding: pYX(1, 2);
+		padding: tokens.pYX(1, 2);
 	}
 
 	&--md {
-		padding: pYX(1, 2);
+		padding: tokens.pYX(1, 2);
 	}
 
 	&--lg {
-		padding: pYX(1, 3);
+		padding: tokens.pYX(1, 3);
 	}
 
 	&__content {
@@ -225,7 +225,7 @@ export default {
 	&__content-container {
 		display: flex;
 		align-items: center;
-		gap: spacer(1);
+		gap: tokens.spacer(1);
 		justify-content: center;
 		transition: all 0.3s ease;
 		white-space: nowrap;

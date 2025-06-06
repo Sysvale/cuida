@@ -77,28 +77,28 @@ export default {
 
 .panel-card {
 	&__divider {
-		margin: ma(0);
+		margin: tokens.ma(0);
 		color: tokens.$n-300;
 	}
 
 	&__header {
-		padding: pa(4);
+		padding: tokens.pa(4);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 	}
 
 	&__content {
-		padding: pa(4);
+		padding: tokens.pa(4);
 	}
 
 	&__content--no-padding {
-		padding: pa(4);
+		padding: tokens.pa(4);
 	}
 
 	&__title {
 		@include tokens.subheading-2;
-		margin: mb(2);
+		margin: tokens.mb(2);
 		color: tokens.$n-900;
 	}
 

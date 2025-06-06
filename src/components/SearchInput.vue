@@ -102,12 +102,12 @@ onMounted(() => {
 
 	&__search-icon {
 		color: tokens.$n-300;
-		padding: pl(3);
+		padding: tokens.pl(3);
 	}
 
 	&__close-icon {
 		color: tokens.$n-300;
-		padding: pr(3);
+		padding: tokens.pr(3);
 		cursor: pointer;
 	}
 
@@ -116,8 +116,8 @@ onMounted(() => {
 	}
 
 	&__field {
-		padding: pTRBL(3, 3, 3, 2);
-		margin: mr(2);
+		padding: tokens.pTRBL(3, 3, 3, 2);
+		margin: tokens.mr(2);
 		height: 40px !important;
 		border-radius: tokens.$border-radius-extra-small;
 		border: none;

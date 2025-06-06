@@ -152,7 +152,7 @@ function handleClick() {
 .cds-tile {
 	&__image {
 		background-color: tokens.$n-20;
-		padding: pYX(4, 7);
+		padding: tokens.pYX(4, 7);
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -224,18 +224,18 @@ function handleClick() {
 
 		&--sm {
 			@include tokens.overline;
-			padding: pYX(2,4);
+			padding: tokens.pYX(2,4);
 			max-width: 96px;
 		}
 
 		&--md {
-			padding: pYX(2,7);
+			padding: tokens.pYX(2,7);
 			max-width: 106px;
 		}
 
 		&--lg {
 			@include tokens.body-2;
-			padding: pYX(2,7);
+			padding: tokens.pYX(2,7);
 			font-weight: tokens.$font-weight-semibold;
 			max-width: 116px;
 		}
@@ -246,9 +246,9 @@ function handleClick() {
 	}
 
 	&__extra {
-		margin: mt(1);
+		margin: tokens.mt(1);
 		position: absolute;
-		right: spacer(2);
+		right: tokens.spacer(2);
 		z-index: 9999;
 	}
 

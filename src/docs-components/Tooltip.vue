@@ -72,8 +72,8 @@ export default {
 	background-color: tokens.$n-900;
 	color: tokens.$n-0;
 	position: absolute;
-	padding: pYX(1, 3);
-	margin: mt(0);
+	padding: tokens.pYX(1, 3);
+	margin: tokens.mt(0);
 	z-index: 999;
 	@include tokens.caption;
 

@@ -49,7 +49,7 @@ export default {
 <style lang="scss">
 @use '../assets/sass/tokens/index' as tokens;
 .cds-timeline {
-	padding: pa(5);
+	padding: tokens.pa(5);
 	display: flex;
 	flex-direction: v-bind(directionResolver);
 }

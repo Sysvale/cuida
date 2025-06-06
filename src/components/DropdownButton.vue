@@ -205,7 +205,7 @@ export default {
 	&__container {
 		display: inline-flex;
 		align-items: center;
-		padding: px(5);
+		padding: tokens.px(5);
 		border-radius: tokens.$border-radius-extra-small;
 		cursor: pointer;
 		height: 40px;
@@ -224,7 +224,7 @@ export default {
 		}
 
 		&--ghost {
-			padding: px(5);
+			padding: tokens.px(5);
 			background: none;
 			color: tokens.$n-800;
 			cursor: pointer;
@@ -238,20 +238,20 @@ export default {
 	&__text {
 		@include tokens.body-2;
 		font-weight: tokens.$font-weight-semibold;
-		margin: mr(2);
+		margin: tokens.mr(2);
 	}
 
 	&__dropdown {
 		min-width: var(--width);
 		background-color: tokens.$n-0;
-		padding: pa(2);
+		padding: tokens.pa(2);
 		border-radius: tokens.$border-radius-extra-small;
 		box-shadow: 0px 0px 8px rgba(tokens.$n-900, .08);
 		outline: 1px solid tokens.$n-30;
 		z-index: 999999999;
 		color: tokens.$n-700;
 		position: absolute;
-		margin: mt(2);
+		margin: tokens.mt(2);
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
@@ -266,7 +266,7 @@ export default {
 		align-items: center;
 		cursor: pointer;
 		border-radius: 6px;
-		padding: pa(2);
+		padding: tokens.pa(2);
 
 		&:hover {
 			background-color: tokens.$n-20;
@@ -276,7 +276,7 @@ export default {
 	&__text {
 		color: tokens.$n-600;
 		@include tokens.body-2;
-		padding: py(1)
+		padding: tokens.py(1)
 	}
 
 	&__icon {

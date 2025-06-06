@@ -106,7 +106,7 @@ export default {
 .cds-radio__label {
 	cursor: v-bind(cursorType);
 	@include tokens.body-2;
-	margin: ml(2);
+	margin: tokens.ml(2);
 }
 
 .cds-radio {

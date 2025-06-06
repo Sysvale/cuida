@@ -194,7 +194,7 @@ export default {
 	}
 
 	&__loader {
-		margin: mr(3);
+		margin: tokens.mr(3);
 	}
 
 	&__container {
@@ -284,19 +284,19 @@ export default {
 .button-size {
 	&--sm {
 		@include tokens.button-3;
-		padding: pYX(2, 4);
+		padding: tokens.pYX(2, 4);
 		border-radius: tokens.$border-radius-lil;
 	}
 
 	&--md {
 		@include tokens.button-2;
-		padding: pYX(3, 6);
+		padding: tokens.pYX(3, 6);
 		border-radius: tokens.$border-radius-extra-small;
 	}
 
 	&--lg {
 		@include tokens.button-1;
-		padding: pYX(4, 8);
+		padding: tokens.pYX(4, 8);
 		border-radius: tokens.$border-radius-extra-small;
 	}
 }

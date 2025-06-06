@@ -115,7 +115,7 @@ defineProps({
     }
 
 	&__icon {
-		margin: mTRBL(0, 0, n1, 1);
+		margin: tokens.mTRBL(0, 0, n1, 1);
 		cursor: default;
 		color: tokens.$n-700;
 	}
@@ -126,7 +126,7 @@ defineProps({
 
 	&__content {
 		color: tokens.$n-800;
-		margin: mb(1);
+		margin: tokens.mb(1);
 	}
 }
 </style>

@@ -111,7 +111,7 @@ export default {
 		&__container {
 			display: flex;
 			justify-content: space-between;
-			margin: mt(3);
+			margin: tokens.mt(3);
 
 			&--compact {
 				@extend .page-header__container;
@@ -122,21 +122,21 @@ export default {
 		&__aside-slot {
 			display: flex;
 			align-items: flex-end;
-			padding: pl(4);
+			padding: tokens.pl(4);
 		}
 
 		&__title {
 			@include tokens.heading-3;
 			font-weight: tokens.$font-weight-bold;
 			color: tokens.$n-900;
-			margin: mb(2);
+			margin: tokens.mb(2);
 		}
 
 		&__subtitle {
 			@include tokens.subheading-3;
 			font-weight: tokens.$font-weight-regular;
 			color: tokens.$n-700;
-			margin: ma(0);
+			margin: tokens.ma(0);
 		}
 	}
 </style>

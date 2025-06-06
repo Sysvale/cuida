@@ -184,7 +184,7 @@ function onSubItemClick(action) {
 		display: flex;
 		flex-direction: column;
 		align-items: end;
-		gap: spacer(6);
+		gap: tokens.spacer(6);
 		z-index: tokens.$z-index-tooltip;
 	}
 
@@ -196,7 +196,7 @@ function onSubItemClick(action) {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		padding: pa(3);
+		padding: tokens.pa(3);
 		color: v-bind(resolvedIconColor);
 		box-shadow: tokens.$shadow-md;
 		cursor: pointer;
@@ -252,8 +252,8 @@ function onSubItemClick(action) {
 	&__subitem-label {
 		@include tokens.caption;
 		font-weight: tokens.$font-weight-semibold;
-		padding: pYX(1, 2);
-		margin: mb(1);
+		padding: tokens.pYX(1, 2);
+		margin: tokens.mb(1);
 		color: tokens.$n-0;
 		background-color: rgba(black, 0.6);
 		border-radius: tokens.$border-radius-lil;
@@ -268,7 +268,7 @@ function onSubItemClick(action) {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		padding: pa(2);
+		padding: tokens.pa(2);
 		background-color: tokens.$n-0;
 		color: tokens.$n-700;
 		box-shadow: tokens.$shadow-md;

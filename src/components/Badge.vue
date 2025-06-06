@@ -110,15 +110,15 @@ export default {
 	}
 
 	&--sm {
-		padding: pYX(1, 2);
+		padding: tokens.pYX(1, 2);
 	}
 
 	&--md {
-		padding: pYX(1, 2);
+		padding: tokens.pYX(1, 2);
 	}
 
 	&--lg {
-		padding: pYX(1, 3);
+		padding: tokens.pYX(1, 3);
 	}
 
 	&__content {

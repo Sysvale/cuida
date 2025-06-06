@@ -67,7 +67,7 @@
 </template>
 
 <script setup>
-import { defineProps, ref, watch, nextTick } from 'vue';
+import { ref, watch, nextTick } from 'vue';
 import CdsTextInput from './TextInput.vue';
 import CdsIcon from './Icon.vue';
 import CdsFlexbox from './Flexbox.vue';
@@ -238,7 +238,7 @@ defineExpose({
 	}
 
 	&__add-button {
-		margin: mt(2);
+		margin: tokens.mt(2);
 	}
 }
 </style>

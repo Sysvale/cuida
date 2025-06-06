@@ -218,12 +218,12 @@ const isMobile = computed(() => {
 	width: fit-content;
 	min-width: 280px;
 	max-width: 350px;
-	padding: pa(3);
+	padding: tokens.pa(3);
 	border-radius: 12px;
 	border: 1px solid tokens.$n-30;
 	background: tokens.$n-0;
 	display: flex;
-	gap: spacer(3);
+	gap: tokens.spacer(3);
 	transition: 0.3s ease;
 
 	&:focus {
@@ -270,7 +270,7 @@ const isMobile = computed(() => {
 	&__info {
 		display: flex;
 		flex-direction: column;
-		gap: spacer(1);
+		gap: tokens.spacer(1);
 		width: calc(100% - 66px - 12px);
 	}
 
@@ -324,12 +324,12 @@ const isMobile = computed(() => {
 	&__visualizer-header {
 		height: 64px;
 		width: 100%;
-		padding: pYX(5, 8);
+		padding: tokens.pYX(5, 8);
 		background-color: rgba(0,0,0, 0.5);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		gap: spacer(3);
+		gap: tokens.spacer(3);
 	}
 
 	&__visualizer-label {
@@ -342,15 +342,15 @@ const isMobile = computed(() => {
 	&__visualizer-actions {
 		display: flex;
 		align-items: center;
-		gap: spacer(4);
+		gap: tokens.spacer(4);
 	}
 
 	&__visualizer-download {
 		display: flex;
 		align-items: center;
-		padding: pYX(2, 4);
+		padding: tokens.pYX(2, 4);
 		border-radius: tokens.$border-radius-lil;
-		gap: spacer(2);
+		gap: tokens.spacer(2);
 		@include tokens.body-1;
 		font-weight: tokens.$font-weight-semibold;
 		color: tokens.$n-0;
@@ -364,7 +364,7 @@ const isMobile = computed(() => {
 	&__visualizer-image-container {
 		width: 100%;
 		height: 90vh;
-		padding: pa(5);
+		padding: tokens.pa(5);
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -386,7 +386,7 @@ const isMobile = computed(() => {
 		text-align: center;
 		justify-content: center;
 		align-items: center;
-		gap: spacer(3);
+		gap: tokens.spacer(3);
 		max-width: 250px;
 		color: tokens.$n-0;
 		@include tokens.subheading-3;
@@ -410,7 +410,7 @@ const isMobile = computed(() => {
 		&__visualizer-image-container {
 			width: 100%;
 			max-width: 100%;
-			padding: pa(5);
+			padding: tokens.pa(5);
 			display: flex;
 			justify-content: center;
 			align-items: center;

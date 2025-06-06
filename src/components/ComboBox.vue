@@ -380,7 +380,7 @@ const handleClick = () => {
 		}
 
 		&__empty {
-			padding: spacer(3);
+			padding: tokens.spacer(3);
 			color: tokens.$n-300;
 		}
 
@@ -471,7 +471,7 @@ const handleClick = () => {
 
 .option {
 	&__text {
-		padding: pa(3);
+		padding: tokens.pa(3);
 		text-overflow: ellipsis;
 
 		&--selected {
@@ -519,7 +519,7 @@ const handleClick = () => {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	gap: spacer(1);
+	gap: tokens.spacer(1);
 
 	&__icon {
 		margin-top: 1px;

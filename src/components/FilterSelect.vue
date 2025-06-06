@@ -445,8 +445,8 @@ export default {
 	&__input {
 		height: 40px;
 		border: none;
-		padding-right: spacer(8);
-		padding-left: spacer(2);
+		padding-right: tokens.spacer(8);
+		padding-left: tokens.spacer(2);
 		color: tokens.$n-600;
 		caret-color: transparent;
 		cursor: pointer;
@@ -515,7 +515,7 @@ export default {
 		@include tokens.body-2;
 		font-weight: tokens.$font-weight-semibold;
 		display: flex;
-		margin: ml(3);
+		margin: tokens.ml(3);
 		cursor: pointer;
 	}
 
@@ -633,7 +633,7 @@ export default {
 
 .option {
 	&__text {
-		padding: pa(3);
+		padding: tokens.pa(3);
 		text-overflow: ellipsis;
 
 		&--muted {

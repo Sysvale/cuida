@@ -171,7 +171,7 @@ function handleOk(fieldsList) {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	gap: spacer(3);
+	gap: tokens.spacer(3);
 
 	&__header {
 		display: flex;

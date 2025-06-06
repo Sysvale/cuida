@@ -169,10 +169,10 @@ onMounted(() => {
 
 	&__container {
         display: flex;
-		padding: px(5);
+		padding: tokens.px(5);
         flex-direction: column;
         align-items: center;
-        gap: spacer(3);
+        gap: tokens.spacer(3);
 	}
 
 	&__image {
@@ -185,7 +185,7 @@ onMounted(() => {
 		justify-self: flex-end;
 		width: 100%;
 		height: 100%;
-		margin: mt(4);
+		margin: tokens.mt(4);
 	}
 }
 

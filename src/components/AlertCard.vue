@@ -12,7 +12,7 @@
 					height="24"
 					width="24"
 					:name="dynamicIcon"
-					:class="`icon--tokens.${variant}`"
+					:class="`icon--${variant}`"
 				/>
 			</div>
 
@@ -21,7 +21,7 @@
 			>
 				<span
 					v-if="!noTitle"
-					:class="`alert-card__title--tokens.${variant}`"
+					:class="`alert-card__title--${variant}`"
 				>
 					{{ title }}
 				</span>
@@ -29,7 +29,7 @@
 				<!-- @slot Slot usado para inserção de conteúdo customizado no subtítulo. -->
 				<span
 					class="alert-card__subtitle"
-					:class="`tokens.${noTitle ? 'mt-0' : 'mt-2'}`"
+					:class="`${noTitle ? 'mt-0' : 'mt-2'}`"
 				>
 					<slot name="subTitle-slot">
 						{{ subTitle }}
@@ -145,7 +145,7 @@ export default {
 				}
 
 				if (this.isSelected) {
-					return `tokens.${dynamicClass} alert-card__container--selected-tokens.${this.variant}`;
+					return `${dynamicClass} alert-card__container--selected-${this.variant}`;
 				}
 			} else {
 				dynamicClass = 'alert-card__container--muted';
@@ -155,7 +155,7 @@ export default {
 		},
 
 		iconClass() {
-			return `icon__container--tokens.${this.variant} tokens.${this.noTitle ? 'align-self-center' : ''}`;
+			return `icon__container--${this.variant} ${this.noTitle ? 'align-self-center' : ''}`;
 		},
 	},
 };
@@ -166,7 +166,7 @@ export default {
 #alert-card .alert-card {
 	display: flex;
 	align-items: center;
-	padding: pa(4);
+	padding: tokens.pa(4);
 	border-radius: 16px;
 
 	&__container {
@@ -202,7 +202,7 @@ export default {
 
 	&__title {
 		@include tokens.subheading-3;
-		margin: my(3);
+		margin: tokens.my(3);
 		display: block;
 
 		&--info {
@@ -228,7 +228,7 @@ export default {
 	}
 
 	&__content {
-		margin: mt(4);
+		margin: tokens.mt(4);
 	}
 
 	&__content-container {
@@ -256,9 +256,9 @@ export default {
 
 	&__container {
 		display: flex;
-		padding: pa(2);
+		padding: tokens.pa(2);
 		border-radius: 100%;
-		margin: mr(3);
+		margin: tokens.mr(3);
 		align-self: flex-start;
 
 		&--info {
@@ -279,12 +279,12 @@ export default {
 }
 
 #alert-card .custom-checkbox {
-	margin: mt(4);
+	margin: tokens.mt(4);
 	align-self: flex-start;
 	width: 14px;
 	position: relative;
-	margin-right: spacer(8);
-	margin-left: spacer(n2);
+	margin-right: tokens.spacer(8);
+	margin-left: tokens.spacer(n2);
 
 	label {
 		cursor: pointer;

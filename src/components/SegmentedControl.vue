@@ -77,7 +77,7 @@ export default {
 	outline: 1px solid tokens.$n-40;
 	display: flex;
 	width: fit-content;
-	padding: pa(1);
+	padding: tokens.pa(1);
 	border-radius: tokens.$border-radius-extra-small;
 	
 	&__button {
@@ -88,7 +88,7 @@ export default {
 		font-size: 14px;
 		cursor: pointer;
 		transition: tokens.$opening;
-		padding: pYX(2, 3);
+		padding: tokens.pYX(2, 3);
 		
 		&--active {
 			background-color: tokens.$n-0;

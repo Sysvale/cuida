@@ -883,7 +883,7 @@ defineExpose({
 
 	&__icon {
 		color: tokens.$n-700;
-		margin: mt(1);
+		margin: tokens.mt(1);
 	}
 
 	&__calendar {
@@ -892,7 +892,7 @@ defineExpose({
 		border: 1px solid tokens.$n-30;
 		box-shadow: tokens.$shadow-md;
 		border-radius: tokens.$border-radius-extra-small;
-		padding: pa(3);
+		padding: tokens.pa(3);
 		width: 266px;
 		z-index: 500;
 		transition: all 0.2s ease;
@@ -1003,12 +1003,12 @@ defineExpose({
 
 	&__left-caret {
 		@extend .calendar__caret;
-		margin: ml(n1);
+		margin: tokens.ml(n1);
 	}
 
 	&__right-caret {
 		@extend .calendar__caret;
-		margin: mr(n1);
+		margin: tokens.mr(n1);
 	}
 
 	&__caret--disabled {

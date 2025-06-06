@@ -114,7 +114,7 @@ function resolveListClick(item) {
 
 .list {
 	border-bottom: none;
-	padding: pYX(7, 3);
+	padding: tokens.pYX(7, 3);
 	display: flex;
 	justify-content: space-between;
 
@@ -130,11 +130,11 @@ function resolveListClick(item) {
     &__body {
 		@include tokens.caption;
 		color: tokens.$n-800;
-		padding: px(2);
+		padding: tokens.px(2);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		gap: spacer(2);
+		gap: tokens.spacer(2);
 		width: 100%;
 	}
 
@@ -142,7 +142,7 @@ function resolveListClick(item) {
 		@include tokens.body-2;
 		font-weight: tokens.$font-weight-semibold;
 		display: flex;
-		gap: spacer(2);
+		gap: tokens.spacer(2);
 
 		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			color: $shade-600;
@@ -156,7 +156,7 @@ function resolveListClick(item) {
     &__actions {
 		justify-self: flex-end;
 		align-self: center;
-		margin: mr(3);
+		margin: tokens.mr(3);
 		color: tokens.$n-700;
 		width: 170px;
     }
@@ -164,7 +164,7 @@ function resolveListClick(item) {
 
 @media screen and (max-width: 450px) {
 	.list {
-		padding: pYX(7, 0);
+		padding: tokens.pYX(7, 0);
 		border-bottom: 1px solid #E7EDF3;
 		cursor: pointer;
 	}
@@ -174,7 +174,7 @@ function resolveListClick(item) {
 	}
 
 	.list__title {
-		gap: spacer(1);
+		gap: tokens.spacer(1);
 	}
 
 	.list__body {

@@ -141,7 +141,7 @@ export default {
 
 .avatar {
 	&__chevron {
-		margin: ml(1);
+		margin: tokens.ml(1);
 	}
 
 	&__container {

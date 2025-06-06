@@ -123,7 +123,7 @@ export default {
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	margin: mYX(12, 5);
+	margin: tokens.mYX(12, 5);
 	position: relative;
 
 	&__image {
@@ -135,20 +135,20 @@ export default {
 
 	&__title {
 		color: tokens.$n-600;
-		margin: mt(8);
+		margin: tokens.mt(8);
 		@include tokens.subheading-2;
 	}
 
 	&__text {
 		color: tokens.$n-500;
-		margin: mt(1);
+		margin: tokens.mt(1);
 		max-width: 50%;
 		text-align: center;
 		@include tokens.body-1;
 	}
 
 	&__button {
-		margin: mt(4);
+		margin: tokens.mt(4);
 	}
 }
 

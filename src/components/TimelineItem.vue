@@ -90,19 +90,19 @@ export default {
 
 	&__opposite {
 		color: tokens.$n-600;
-		margin: mTRBL(n1, 6, 0, 0);
+		margin: tokens.mTRBL(n1, 6, 0, 0);
 		@include tokens.body-2;
 	}
 
 	&__content-container {
-		margin: mTRBL(n1, 0 , 8, 6);
+		margin: tokens.mTRBL(n1, 0 , 8, 6);
 
 	}
 
 	&__title {
 		color: tokens.$n-900;
 		font-weight: 600;
-		margin: mb(2);
+		margin: tokens.mb(2);
 	}
 	
 	&__text {

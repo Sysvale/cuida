@@ -102,12 +102,12 @@ export default {
 
 	&__text--aside {
 		font-weight: tokens.$font-weight-semibold;
-		margin: ml(3);
+		margin: tokens.ml(3);
 	}
 
 	&__text {
 		font-weight: tokens.$font-weight-semibold;
-		margin: mb(2);
+		margin: tokens.mb(2);
 	}
 }
 </style>

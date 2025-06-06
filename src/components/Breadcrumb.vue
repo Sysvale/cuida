@@ -105,7 +105,7 @@ export default {
 .breadcrumb {
 	display: flex;
 	align-items: center;
-	padding: pa(0);
+	padding: tokens.pa(0);
 
 	&__item {
 		@extend .breadcrumb;
@@ -116,7 +116,7 @@ export default {
 		@include tokens.caption;
 		color: tokens.$n-600;
 		border-radius: tokens.$border-radius-lil;
-		padding: pa(1);
+		padding: tokens.pa(1);
 		transition: tokens.$hover;
 
 		&:hover,

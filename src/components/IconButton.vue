@@ -205,7 +205,7 @@ export default {
 
 .cds-icon-button {
 	&--sm {
-		padding: pYX(2, 2);
+		padding: tokens.pYX(2, 2);
 		border-radius: tokens.$border-radius-lil;
 
 		.cds-icon-button__icon {
@@ -216,7 +216,7 @@ export default {
 	}
 
 	&--md {
-		padding: pYX(2, 2);
+		padding: tokens.pYX(2, 2);
 		border-radius: tokens.$border-radius-extra-small;
 
 		.cds-icon-button__icon {
@@ -227,7 +227,7 @@ export default {
 	}
 
 	&--lg {
-		padding: pYX(2, 2);
+		padding: tokens.pYX(2, 2);
 		border-radius: tokens.$border-radius-extra-small;
 
 		.cds-icon-button__icon {

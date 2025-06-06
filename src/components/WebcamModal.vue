@@ -287,10 +287,10 @@ function savePhoto() {
     border-radius: 20px;
     border: 2px dashed tokens.$n-40 !important;
 	color: tokens.$n-300;
-	padding: pa(2);
+	padding: tokens.pa(2);
 
 	&__feedback-text {
-		margin: my(2);
+		margin: tokens.my(2);
 		color: tokens.$n-600;
 		font-style: italic;
 		font-weight: tokens.$font-weight-semibold;

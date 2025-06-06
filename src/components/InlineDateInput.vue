@@ -352,7 +352,7 @@ export default {
 	&__icon {
 		display: grid;
 		place-items: center;
-		margin: mr(3);
+		margin: tokens.mr(3);
 	}
 
 	&--fluid {
@@ -377,7 +377,7 @@ export default {
 		@include tokens.label;
 		display: flex;
 		justify-content: space-between;
-		margin: ml(3)
+		margin: tokens.ml(3)
 	}
 }
 
@@ -390,7 +390,7 @@ export default {
 	input {
 		border: none;
 		outline: 0;
-		padding: pl(3);
+		padding: tokens.pl(3);
 	}
 
 	&--fluid {
@@ -433,7 +433,7 @@ export default {
 }
 
 .vc-weeks {
-	margin: mt(5);
+	margin: tokens.mt(5);
 }
 
 .vc-header {

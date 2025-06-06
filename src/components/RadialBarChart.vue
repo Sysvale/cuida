@@ -14,7 +14,7 @@
 	
 					<div
 						class="legend__square"
-						:style="`background-color: tokens.${legend.backgroundColor}`"
+						:style="`background-color: ${legend.backgroundColor}`"
 					/>
 					<span
 						:class="{

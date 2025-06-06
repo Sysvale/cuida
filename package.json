@@ -22,7 +22,7 @@
 	"scripts": {
 		"build": "vue-tsc --noEmit && vite build && node buildtokens.js",
 		"preview": "vite preview",
-		"storybook": "start-storybook --docs --no-manager-cache",
+		"storybook": "SASS_SILENCE_DEPRECATION_WARNING=1 start-storybook --docs --no-manager-cache",
 		"build-storybook": "build-storybook -s public --docs",
 		"test": "vitest",
 		"chromatic": "npx chromatic --project-token=a0f13ffc7d61"

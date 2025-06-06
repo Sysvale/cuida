@@ -131,7 +131,7 @@ export default {
 		}
 	
 		& > .tooltip:not(:first-child) {
-			margin: ml(n1);
+			margin: tokens.ml(n1);
 		}
 	
 		& > * {
@@ -140,7 +140,7 @@ export default {
 	}
 
 	&__counter {
-		margin: ml(n1);
+		margin: tokens.ml(n1);
 	}
 }
 
@@ -150,7 +150,7 @@ export default {
 }
 
 .avatar__name {
-	margin: ml(3);
+	margin: tokens.ml(3);
 }
 
 .tooltip {
@@ -159,13 +159,13 @@ export default {
 
 .scrollable__container {
 	& > .avatar__data:not(:first-child) {
-		margin: mt(4);
+		margin: tokens.mt(4);
 	}
 }
 
 .popover {
 	& > .avatar__data:not(:first-child) {
-		margin: mt(4);
+		margin: tokens.mt(4);
 	}
 }
 </style>

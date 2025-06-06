@@ -152,7 +152,7 @@ export default {
 	&__container {
 		display: inline-flex;
 		align-items: center;
-		padding: mx(4);
+		padding: tokens.mx(4);
 		border: 1px solid tokens.$n-50;
 		border-radius: tokens.$border-radius-extra-small;
 		cursor: pointer;
@@ -174,7 +174,7 @@ export default {
 	&__label {
 		@include tokens.body-2;
 		font-weight: tokens.$font-weight-regular;
-		margin: mr(1);
+		margin: tokens.mr(1);
 		color: tokens.$n-500;
 	}
 
@@ -182,20 +182,20 @@ export default {
 		@include tokens.body-2;
 		font-weight: tokens.$font-weight-semibold;
 		color: tokens.$n-700;
-		margin: mr(2);
+		margin: tokens.mr(2);
 	}
 
 	&__dropdown {
 		width: var(--width);
 		background-color: tokens.$n-0;
-		padding: pa(3);
+		padding: tokens.pa(3);
 		border-radius: tokens.$border-radius-extra-small;
 		box-shadow: 0px 0px 8px rgba(tokens.$n-900, .08);
 		outline: 1px solid tokens.$n-30;
 		z-index:999999999;
 		color: tokens.$n-700;
 		position: absolute;
-		margin: mt(2);
+		margin: tokens.mt(2);
 
 	}
 }

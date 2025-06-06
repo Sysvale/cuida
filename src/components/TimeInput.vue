@@ -352,7 +352,7 @@ export default {
 	}
 
 	&__content {
-		margin: mb(1);
+		margin: tokens.mb(1);
 	}
 }
 
@@ -365,7 +365,7 @@ export default {
 
 	&__separator {
 		@include tokens.caption;
-		margin: mx(3);
+		margin: tokens.mx(3);
 		color: tokens.$n-600;
 	}
 
@@ -419,7 +419,7 @@ export default {
 	&__message {
 		@include tokens.caption;
 		color: tokens.$rc-500;
-		margin: mt(2);
+		margin: tokens.mt(2);
 	}
 }
 

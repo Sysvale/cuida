@@ -144,7 +144,7 @@ export default {
 }
 
 .vue-slider-dot-tooltip-top {
-	top: spacer(n1);
+	top: tokens.spacer(n1);
 }
 
 .vue-slider-dot-tooltip-inner {

@@ -297,11 +297,11 @@ export default {
 		}
 
 		&__content {
-			margin: mb(1);
+			margin: tokens.mb(1);
 		}
 
 		&__icon {
-			margin: mTRBL(0, 0, n1, 1);
+			margin: tokens.mTRBL(0, 0, n1, 1);
 			cursor: pointer;
 		}
 	}
@@ -318,8 +318,8 @@ export default {
 	}
 
 	&__field {
-		padding: pa(3);
-		margin: mr(2);
+		padding: tokens.pa(3);
+		margin: tokens.mr(2);
 		height: 40px !important;
 		border-radius: tokens.$border-radius-extra-small;
 		border: none;
@@ -359,14 +359,14 @@ export default {
 		align-items: center;
 		cursor: pointer;
 		color: tokens.$n-600;
-		padding: pr(4);
+		padding: tokens.pr(4);
 		@include tokens.caption;
 	}
 
 	&__error-message {
 		@include tokens.caption;
 		color: tokens.$rc-600;
-		margin: mt(1);
+		margin: tokens.mt(1);
 	}
 
 	&--focused {

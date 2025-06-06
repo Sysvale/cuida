@@ -132,7 +132,7 @@ function mustDisableExternalScrolls(value) {
 	justify-content: center;
 	align-items: center;
 	position: fixed;
-	padding: px(4);
+	padding: tokens.px(4);
 	top: 0;
 	bottom: 0;
 	left: 0;
@@ -161,14 +161,14 @@ function mustDisableExternalScrolls(value) {
 	height: fit-content;
 	z-index: tokens.$z-index-modal;
 	background-color: tokens.$n-0;
-	padding: pa(6);
+	padding: tokens.pa(6);
 	color: tokens.$n-800;
 
 	&__header-border {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin: mTRBL(n2, 0, 4, 0);
+		margin: tokens.mTRBL(n2, 0, 4, 0);
 	}
 
 	&__header-border-line {
@@ -204,7 +204,7 @@ function mustDisableExternalScrolls(value) {
 	}
 
 	&__content {
-		margin: mt(6);
+		margin: tokens.mt(6);
 		max-height: 75vh;
 		overflow-y: auto;
 	}

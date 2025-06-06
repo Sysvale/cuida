@@ -16,6 +16,6 @@ export default {}
 	width: 100%;
 	max-width: 1600px;
 	margin: 0 auto;
-	padding: pa(6);
+	padding: tokens.pa(6);
 }
 </style>

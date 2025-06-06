@@ -233,7 +233,7 @@ function allRequiredLabelsAreSelected() {
 .multi-file-input {
 	display: flex;
 	flex-direction: column;
-	gap: spacer(5);
+	gap: tokens.spacer(5);
 	align-items: center;
 	justify-content: center;
 	width: 100%;
@@ -249,7 +249,7 @@ function allRequiredLabelsAreSelected() {
 		background-color: tokens.$n-0;
 		border: 1px solid tokens.$n-30;
 		border-radius: tokens.$border-radius-medium;
-		padding: pYX(5, 4);
+		padding: tokens.pYX(5, 4);
 	}
 
 	&__description {
@@ -261,23 +261,23 @@ function allRequiredLabelsAreSelected() {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		gap: spacer(2);
+		gap: tokens.spacer(2);
 		align-items: center;
 		width: 100%;
-		margin: mt(3);
+		margin: tokens.mt(3);
 	}
 
 	&__badge-content {
 		display: flex;
-		gap: spacer(1);
+		gap: tokens.spacer(1);
 		align-items: center;
 	}
 
 	&__list-container {
-		margin: mt(6);
+		margin: tokens.mt(6);
 		display: flex;
 		flex-direction: column;
-		gap: spacer(2);
+		gap: tokens.spacer(2);
 	}
 
 	&__empty-state {
@@ -299,7 +299,7 @@ function allRequiredLabelsAreSelected() {
 	&__list {
 		display: flex;
 		flex-direction: column;
-		gap: spacer(2);
+		gap: tokens.spacer(2);
 	}
 
 	&__item {
@@ -307,7 +307,7 @@ function allRequiredLabelsAreSelected() {
 		background-color: tokens.$n-10;
 		border: 1px solid tokens.$n-30;
 		border-radius: tokens.$border-radius-small;
-		padding: pYX(4, 4);
+		padding: tokens.pYX(4, 4);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -321,14 +321,14 @@ function allRequiredLabelsAreSelected() {
 
 	&__actions {
 		display: flex;
-		gap: spacer(2);
+		gap: tokens.spacer(2);
 		align-items: center;
 	}
 
 	&__alert {
 		@include tokens.overline;
 		color: tokens.$rc-500;
-		margin: mt(1);
+		margin: tokens.mt(1);
 	}
 
 	&__footer {
@@ -336,7 +336,7 @@ function allRequiredLabelsAreSelected() {
 		justify-content: flex-end;
 		align-items: center;
 		width: 100%;
-		margin: mt(5);
+		margin: tokens.mt(5);
 	}
 }
 

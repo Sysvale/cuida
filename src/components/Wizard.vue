@@ -226,14 +226,14 @@ export default {
 .cds-wizard {
 	&__container {
 		display: flex;
-		gap: spacer(3);
+		gap: tokens.spacer(3);
 	}
 
 	&__box {
 		background-color: tokens.$n-0;
 		border: 1px solid tokens.$n-30;
 		border-radius: tokens.$border-radius-medium;
-		padding: pa(5);
+		padding: tokens.pa(5);
 		height: inherit;
 		width: 100%;
 	}
@@ -248,12 +248,12 @@ export default {
 		text-align: center;
 		justify-content: center;
 		align-items: center;
-		margin: mYX(0, 10);
+		margin: tokens.mYX(0, 10);
 
 		&-title {
 			@include tokens.subheading-3;
 			color: tokens.$n-600;
-			margin: mb(2);
+			margin: tokens.mb(2);
 		}
 
 		&-subtitle {
@@ -264,31 +264,31 @@ export default {
 		&-image {
 			width: 75px;
 			height: auto;
-			margin: mb(5);
+			margin: tokens.mb(5);
 		}
 	}
 
 	&__buttons {
 		display: flex;
 		justify-content: flex-end;
-		margin: mt(5);
-		gap: spacer(3);
+		margin: tokens.mt(5);
+		gap: tokens.spacer(3);
 	}
 
 	&__title {
 		@include tokens.subheading-2;
 		color: tokens.$n-700;
-		margin: mb(1);
+		margin: tokens.mb(1);
 	}
 
 	&__subtitle {
 		@include tokens.body-2;
 		color: tokens.$n-400;
-		margin: ma(0);
+		margin: tokens.ma(0);
 	}
 
 	&__content {
-		margin: mYX(6, 0);
+		margin: tokens.mYX(6, 0);
 	}
 }
 

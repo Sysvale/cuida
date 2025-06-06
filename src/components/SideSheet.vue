@@ -363,12 +363,12 @@ export default {
 	&__header {
 		display: flex;
 		justify-content: space-between;
-		padding: pb(2);
+		padding: tokens.pb(2);
 
 		h3 {
 			color: tokens.$n-900;
 			@include tokens.subheading-1;
-			margin: mb(2);
+			margin: tokens.mb(2);
 		}
 	}
 
@@ -382,7 +382,7 @@ export default {
 		height: 100%;
 		width: v-bind(sideSheetWidth);
 		
-		padding: pa(5);
+		padding: tokens.pa(5);
 		display: grid;
 		grid-template-rows: auto 1fr auto;
 		border-left: 1px solid tokens.$n-30;
@@ -392,7 +392,7 @@ export default {
 		color: tokens.$n-600;
 		display: flex;
 		justify-content: end;
-		padding: pTRBL(0, 4, 4, 4);
+		padding: tokens.pTRBL(0, 4, 4, 4);
 		text-align: right;
 
 		&:hover {
@@ -403,7 +403,7 @@ export default {
 	&__footer {
 		display: flex;
 		justify-content: end;
-		padding: pt(7);
+		padding: tokens.pt(7);
 		gap: 32px;
 		background-color: tokens.$n-0;
 	}

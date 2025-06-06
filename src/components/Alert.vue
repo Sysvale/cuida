@@ -144,7 +144,7 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: pa(4);
+	padding: tokens.pa(4);
 	border-radius: tokens.$border-radius-extra-small;
 
 	&__body {
@@ -209,7 +209,7 @@ export default {
 	}
 
 	&__text {
-		margin: ml(2);
+		margin: tokens.ml(2);
 		@include tokens.body-2;
 		font-weight: tokens.$font-weight-semibold;
 	}

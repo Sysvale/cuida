@@ -587,7 +587,7 @@ defineExpose({
 
 .base-mobile-input {
     position: relative;
-	padding: pTRBL(2, 1, 0, 1);
+	padding: tokens.pTRBL(2, 1, 0, 1);
 	cursor: v-bind(computedCursor);	
 	@extend %input;
 
@@ -629,7 +629,7 @@ defineExpose({
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		margin: mTRBL(0, 2, 1, 0);
+		margin: tokens.mTRBL(0, 2, 1, 0);
 		min-width: 15px;
 	}
 
@@ -638,7 +638,7 @@ defineExpose({
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		margin: mTRBL(0, 1, 1, 1);
+		margin: tokens.mTRBL(0, 1, 1, 1);
 		min-width: 15px;
 	}
 
@@ -651,7 +651,7 @@ defineExpose({
 	}
 
 	&__field {
-		padding: pTRBL(3, 1, 0, 2);
+		padding: tokens.pTRBL(3, 1, 0, 2);
 		padding-top: v-bind(inputTopPadding);
 		height: v-bind(inputHeight);
 		min-height: v-bind(inputMinHeight);
@@ -721,12 +721,12 @@ defineExpose({
 	&__error-message {
 		@include tokens.caption;
 		color: tokens.$rc-600;
-		margin: mt(1);
+		margin: tokens.mt(1);
 	}
 
 	&__supporting-text {
 		&:nth-child(1) {
-			margin: mt(1);
+			margin: tokens.mt(1);
 		}
 
 		@include tokens.caption;
@@ -741,7 +741,7 @@ defineExpose({
 
 .label {
 	&__icon {
-		margin: mTRBL(0, 0, n1, 1);
+		margin: tokens.mTRBL(0, 0, n1, 1);
 		cursor: default;
 	}
 
@@ -755,14 +755,14 @@ defineExpose({
 
 	&__content {
 		color: v-bind(labelColor);
-		margin: ma(0);
+		margin: tokens.ma(0);
 	}
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
-	margin: ma(0);
+	margin: tokens.ma(0);
 }
 
 input:disabled {

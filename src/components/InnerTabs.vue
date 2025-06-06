@@ -174,9 +174,9 @@ export default {
 			display: flex;
 			width: v-bind(computedWidth);
 			justify-content: space-around;
-			gap: spacer(4);
-			padding: pl(0);
-			margin: mb(0);
+			gap: tokens.spacer(4);
+			padding: tokens.pl(0);
+			margin: tokens.mb(0);
 			list-style: none;
 			transition: tokens.$opening;
 
@@ -220,8 +220,8 @@ export default {
 			-webkit-box-orient: vertical;
 			text-align: center;
 			text-decoration: none !important;
-			margin: mTRBL(0, 2, 2, 0);
-			padding: pYX(2, 5);
+			margin: tokens.mTRBL(0, 2, 2, 0);
+			padding: tokens.pYX(2, 5);
 			cursor: pointer;
 
 			&--active {
@@ -246,7 +246,7 @@ export default {
 
 		&__content {
 			background-color: tokens.$n-0;
-			padding: pa(5);
+			padding: tokens.pa(5);
 			border-bottom-right-radius: 8px;
 			border-bottom-left-radius: 8px;
 		

@@ -191,7 +191,7 @@ function handleOk() {
 	&__description {
 		@include tokens.body-2;
 		color: tokens.$n-600;
-		margin: mb(3);
+		margin: tokens.mb(3);
 	}
 
 	&__item-label {
@@ -209,10 +209,10 @@ function handleOk() {
 		align-items: center;
 		justify-content: space-between;
 		width: 100%;
-		padding: pa(5);
+		padding: tokens.pa(5);
 		border: 1px solid tokens.$n-30;
 		border-radius: tokens.$border-radius-medium;
-		margin: mb(2);
+		margin: tokens.mb(2);
 		cursor: pointer;
 
 		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
@@ -239,7 +239,7 @@ function handleOk() {
 	&__footer {
 		display: flex;
 		justify-content: space-between;
-		gap: spacer(3);
+		gap: tokens.spacer(3);
 		width: 100%;
 	}
 }

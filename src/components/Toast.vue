@@ -229,7 +229,7 @@ function dismiss() {
 
 .toast__container {
 	@include tokens.caption;
-	padding: pa(4);
+	padding: tokens.pa(4);
 	border-radius: tokens.$border-radius-medium;
 	font-weight: tokens.$font-weight-semibold;
 	box-shadow: tokens.$shadow-md;
@@ -238,7 +238,7 @@ function dismiss() {
 	min-height: 42px;
 	max-width: 380px;
 	min-width: 100%;
-	margin: mb(3);
+	margin: tokens.mb(3);
 	position: relative;
 	overflow: hidden;
 	border: 1px solid tokens.$n-700;

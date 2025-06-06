@@ -158,11 +158,11 @@ export default {
 .cds-checkbox__container {
 	display: flex;
 	align-items: center;
-	gap: spacer(2);
+	gap: tokens.spacer(2);
 
 	input[type=checkbox] {
 		visibility: hidden;
-		margin-top: spacer(n8);
+		margin-top: tokens.spacer(n8);
 		position: absolute;
 	}
 

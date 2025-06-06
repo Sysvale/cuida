@@ -98,7 +98,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, defineEmits, computed, watch } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { isEqual, isEmpty } from 'lodash';
 import CdsIcon from './Icon.vue';
 import CdsAvatar from './Avatar.vue';
@@ -257,30 +257,30 @@ const mustDisableExternalScrolls = (value) => {
 	}
 
 	&__header {
-		padding: pTRBL(5, 4, 5, 4);
+		padding: tokens.pTRBL(5, 4, 5, 4);
 		background-color: rgba(#FFF, .87);
 		backdrop-filter: blur(5px);
 	}
 
 	&__title {
 		@include tokens.subheading-1;
-		margin: mTRBL(0, 0, 0, 10);
+		margin: tokens.mTRBL(0, 0, 0, 10);
 	}
 
 	&__menu-btn {
 		position: absolute;
-		top: spacer(6);
-		left: spacer(4);
+		top: tokens.spacer(6);
+		left: tokens.spacer(4);
 	}
 
 	&__sidebar {
 		display: flex;
 		flex-direction: column;
-		gap: spacer(6);
+		gap: tokens.spacer(6);
 		top: 0;
 		left: 0;
 		position: absolute;
-		padding: pYX(4, 5);
+		padding: tokens.pYX(4, 5);
 		height: 100svh;
 		width: 100%;
 		margin-left: calc(0px - 100%);
@@ -303,7 +303,7 @@ const mustDisableExternalScrolls = (value) => {
 	}
 
 	&__sidebar-btn {
-		margin-right: spacer(1);
+		margin-right: tokens.spacer(1);
 	}
 
 	&__sidebar-content {
@@ -311,20 +311,20 @@ const mustDisableExternalScrolls = (value) => {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		margin-bottom: spacer(8);
+		margin-bottom: tokens.spacer(8);
 	}
 
 	&__sidebar-items {
 		display: flex;
 		flex-direction: column;
-		gap: spacer(4);
+		gap: tokens.spacer(4);
 	}
 
 	&__sidebar-item {
 		@include tokens.body-1;
 		display: flex;
 		align-items: center;
-		padding: pYX(4, 5);
+		padding: tokens.pYX(4, 5);
 		border-radius: 10px;
 		gap: 10px;
 		background: none;
@@ -344,7 +344,7 @@ const mustDisableExternalScrolls = (value) => {
 	&__sidebar-user-info {
 		display: flex;
 		align-items: center;
-		gap: spacer(4);
+		gap: tokens.spacer(4);
 	}
 
 	&__sidebar-user-text {
@@ -367,7 +367,7 @@ const mustDisableExternalScrolls = (value) => {
 	}
 
 	&__sidebar-logout {
-		padding: pa(2);
+		padding: tokens.pa(2);
 		background: none;
 		border: none;
 		cursor: pointer;

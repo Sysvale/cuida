@@ -163,12 +163,12 @@ function onItemClick(item) {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		gap: spacer(1);
+		gap: tokens.spacer(1);
 		flex: 1;
 		min-width: 0;
 		height: 100%;
 		min-height: 50px;
-		padding: pYX(2, 1);
+		padding: tokens.pYX(2, 1);
 		position: relative;
 		color: tokens.$n-600;
 		z-index: 1;
@@ -184,7 +184,7 @@ function onItemClick(item) {
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		gap: spacer(1);
+		gap: tokens.spacer(1);
 		align-items: center;
 		justify-content: center;
 		cursor: pointer;

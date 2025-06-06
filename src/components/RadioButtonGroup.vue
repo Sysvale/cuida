@@ -216,7 +216,7 @@ watch(model, (newValue) => {
 	&__error-text {
 		@include tokens.caption;
 		color: tokens.$rc-600;
-		margin: mt(1);
+		margin: tokens.mt(1);
 	}
 }
 
@@ -230,7 +230,7 @@ watch(model, (newValue) => {
 .radio__button [type="radio"]:not(:checked) + label {
 	@include tokens.body-2;
 	position: relative;
-	padding: pl(7);
+	padding: tokens.pl(7);
 	cursor: pointer;
 	line-height: 20px;
 	color: tokens.$n-600;
@@ -281,18 +281,18 @@ watch(model, (newValue) => {
 
 .radio__button .radio-button {
 	border: 1px solid tokens.$n-50;
-	padding: pYX(3, 4);
+	padding: tokens.pYX(3, 4);
 	border-radius: tokens.$border-radius-extra-small;
 	cursor: pointer;
 	display: var(--display-vertical);
 	flex-direction: row;
 	justify-content: space-between;
 	gap: 20px;
-	margin: mb(2);
+	margin: tokens.mb(2);
 	width: v-bind(radioButtonGroupWidth);
 
 	&__container--vertical {
-		margin: mr(4);
+		margin: tokens.mr(4);
 		&:last-child {
 			margin-right: 0px;
 		}

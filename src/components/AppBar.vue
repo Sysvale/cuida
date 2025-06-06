@@ -286,7 +286,7 @@ export default {
 		grid-template-areas: v-bind(gridTemplateAreasResolver);
 		grid-template-columns: v-bind(gridTemplateColumnsResolver);
 		height: 60px;
-		padding: px(4);
+		padding: tokens.px(4);
 	}
 
 	&__logo {
@@ -307,7 +307,7 @@ export default {
 	&__icons-grid {
 		align-items: center;
 		display: flex;
-		gap: spacer(2);
+		gap: tokens.spacer(2);
 		grid-area: icons;
 		justify-self: end;
 	}
@@ -323,7 +323,7 @@ export default {
 		color: tokens.$n-0;
 		display: flex;
 		flex-direction: column;
-		margin: ml(4)
+		margin: tokens.ml(4)
 	}
 
 	&__name {
@@ -352,7 +352,7 @@ export default {
 .app-name {
 	color: tokens.$n-0;
 	font-weight: tokens.$font-weight-regular;
-	margin: mTRBL(1, 0, 0, 2);
+	margin: tokens.mTRBL(1, 0, 0, 2);
 	@include tokens.caption;
 }
 </style>

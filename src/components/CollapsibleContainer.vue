@@ -85,10 +85,10 @@ export default {
 
 .collapsible-container {
 	&__content {
-		padding: px(5);
+		padding: tokens.px(5);
 
 		& p {
-			margin: my(1);
+			margin: tokens.my(1);
 		}
 	}
 
@@ -158,7 +158,7 @@ export default {
 		cursor: pointer;
 		display: flex;
 		align-items: baseline;
-		margin: ml(n2);
+		margin: tokens.ml(n2);
 
 		& hr {
 			border-color: tokens.$n-600 !important;
@@ -171,7 +171,7 @@ export default {
 
 	&__icon--collapsed {
 		color: tokens.$n-600;
-		margin: mr(2);
+		margin: tokens.mr(2);
 		transition: all 0.25s ease-in-out;
 	}
 

@@ -263,7 +263,7 @@ export default {
 		justify-content: center;
 		align-items: center;
 		position: fixed;
-		padding: px(4);
+		padding: tokens.px(4);
 		top: 0;
 		bottom: 0;
 		left: 0;
@@ -302,14 +302,14 @@ export default {
 	&__header-title {
 		display: flex;
 		align-items: center;
-		gap: spacer(2);
+		gap: tokens.spacer(2);
 	}
 
 	&__header-content {
 		display: flex;
 		align-items: center;
-		gap: spacer(2);
-		padding: pYX(6,5)
+		gap: tokens.spacer(2);
+		padding: tokens.pYX(6,5)
 	}
 
 	&__header-icon {
@@ -329,7 +329,7 @@ export default {
 
 	&__header-detail {
 		zoom: 2.4;
-		margin: spacer(n6);
+		margin: tokens.spacer(n6);
 
 		&--warning {
 			@extend .cds-modal__header-detail;
@@ -348,10 +348,10 @@ export default {
 	}
 
 	&__body {
-		margin: ma(4);
+		margin: tokens.ma(4);
 		display: flex;
 		flex-direction: column;
-		gap: spacer(3);
+		gap: tokens.spacer(3);
 
 		&-title {
 			@include tokens.subheading-1;
@@ -368,9 +368,9 @@ export default {
 
 	&__footer {
 		display: flex;
-		gap: spacer(4);
+		gap: tokens.spacer(4);
 		justify-content: center;
-		padding: pYX(6, 0);
+		padding: tokens.pYX(6, 0);
 
 	}
 }

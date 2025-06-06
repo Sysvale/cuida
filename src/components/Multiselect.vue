@@ -571,13 +571,13 @@ export default {
 	}
 
 	&__content {
-		margin: mb(1);
+		margin: tokens.mb(1);
 	}
 }
 
 .cds-multiselect {
 	&__grouped-divider {
-		margin: mYX(2, 3);
+		margin: tokens.mYX(2, 3);
 	}
 	.multiselect--disabled .multiselect__current, .multiselect--disabled .multiselect__select {
 		background-color: transparent !important;
@@ -627,8 +627,8 @@ export default {
 	.option__checkbox {
 		width: 15px;
 		position: relative;
-		margin-right: spacer(6);
-		margin-left: spacer(n3);
+		margin-right: tokens.spacer(6);
+		margin-left: tokens.spacer(n3);
 
 		label {
 			cursor: pointer;
@@ -690,8 +690,8 @@ export default {
 		height: v-bind(resolveMultiselectHeight) !important;
 		align-items: center !important;
 		display: flex !important;
-		padding-right: spacer(8);
-		padding-left: spacer(3);
+		padding-right: tokens.spacer(8);
+		padding-left: tokens.spacer(3);
 	}
 
 	.multiselect--active > .multiselect__tags {
@@ -790,11 +790,11 @@ export default {
 	.clustered-multiselect__error-message {
 		@include tokens.caption;
 		color: tokens.$rc-600;
-		margin: mt(1);
+		margin: tokens.mt(1);
 	}
 
 	.multiselect__content:nth-child(1) {
-		margin: mt(3) !important;
+		margin: tokens.mt(3) !important;
 	}
 }
 </style>
