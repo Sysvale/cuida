@@ -12,6 +12,7 @@
 			<cds-flexbox
 				direction="column"
 				gap="1"
+				fluid
 			>
 				<div class="side-sheet__description">
 					{{ descriptionComputedText }}
