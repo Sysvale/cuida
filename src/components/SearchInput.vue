@@ -43,13 +43,6 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	* Define o tipo do input, se true será um input adaptado para o mobile
-	*/
-	floatingLabel: {
-		type: Boolean,
-		default: false,
-	},
-	/**
 	* Especifica se a largura do SearchInput deve ser fluida.
 	*/
 	fluid: {
