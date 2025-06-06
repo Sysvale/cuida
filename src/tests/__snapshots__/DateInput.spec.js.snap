@@ -9,7 +9,7 @@ exports[`DateInput > renders correctly 1`] = `
     </label>
     <div data-v-82c69faf="" class="base-input base-input--default">
       <!--v-if-->
-      <div data-v-82c69faf="" id="" tabindex="0" modelvalue="" label="Selecione uma data" disabled="false" state="default" type="date" required="false" placeholder="dd/MM/yyyy" errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" supportlinkurl="https://cuida.framer.wiki/" floatinglabel="false" lazy="false" name="" enableautocomplete="false" enabletopcontent="false" class="base-input__field" autocomplete="off"><small data-v-82c69faf="" class="base-input__date-text">dd/MM/yyyy</small></div>
+      <div data-v-82c69faf="" id="" tabindex="0" modelvalue="" label="Selecione uma data" hidelabel="false" disabled="false" state="default" type="date" required="false" placeholder="dd/MM/yyyy" errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" supportlinkurl="https://cuida.framer.wiki/" floatinglabel="false" lazy="false" name="" enableautocomplete="false" enabletopcontent="false" class="base-input__field" autocomplete="off"><small data-v-82c69faf="" class="base-input__date-text">dd/MM/yyyy</small></div>
       <!--v-if-->
       <div data-v-82c69faf="" class="base-input__trailing-icon-container">
         <div data-v-fcd39cd1="" class="date-input__icon"><svg data-v-fcd39cd1="" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="calendar-outline" role="presentation">
