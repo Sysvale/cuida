@@ -41,6 +41,9 @@ import CdsLink from './Link.vue';
 import CdsIcon from './Icon.vue';
 
 defineProps({
+	/**
+	 * ID de referência ao input.
+	 */
 	for: {
 		type: String,
 		default: '',
