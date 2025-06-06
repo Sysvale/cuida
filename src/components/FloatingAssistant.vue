@@ -259,7 +259,7 @@ export default {
 
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .floating-assistant {
 	&.animation {
@@ -296,22 +296,22 @@ export default {
 	}
 
 	&__dropdown {
-		@include caption;
+		@include tokens.caption;
 		display: none;
-		color: $n-600;
-		background-color: $n-0;
-		border-radius: $border-radius-small;
-		outline: 1px solid $n-20;
-		box-shadow: $shadow-md;
+		color: tokens.$n-600;
+		background-color: tokens.$n-0;
+		border-radius: tokens.$border-radius-small;
+		outline: 1px solid tokens.$n-20;
+		box-shadow: tokens.$shadow-md;
 		position: absolute;
-		margin: ml(3);
-		padding: pYX(2, 5);
-		z-index: $z-index-tooltip;
+		margin: tokens.ml(3);
+		padding: tokens.pYX(2, 5);
+		z-index: tokens.$z-index-tooltip;
 		max-width: 400px;
 		transition : 0.3s ease-in-out;
 
 		&--expanded {
-			padding: pYX(3, 5);
+			padding: tokens.pYX(3, 5);
 			width: 100%;
 			max-height: none;
 
@@ -328,31 +328,31 @@ export default {
 			animation-fill-mode: forwards;
 
 			span {
-				font-weight: $font-weight-bold;
+				font-weight: tokens.$font-weight-bold;
 			}
 		}
 	}
 
 	&__title {
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			width: max-content;
-			@include caption;
+			@include tokens.caption;
 			color: $shade-500;
-			font-weight: $font-weight-bold;
+			font-weight: tokens.$font-weight-bold;
 			width: 162px;
 			text-overflow: ellipsis;
 			overflow: hidden;
 			display: -webkit-box;
 			-webkit-line-clamp: 2;
 			-webkit-box-orient: vertical;
-			margin: mb(2);
+			margin: tokens.mb(2);
 		}
 	}
 
 	&__subtitle {
 		display: block;
 		width: max-content;
-		color: $n-400;
+		color: tokens.$n-400;
 
 		animation: fadeInTitle ease 1s;
 		animation-iteration-count: 1;
@@ -360,7 +360,7 @@ export default {
 	}
 
 	&__content {
-		margin: mt(1);
+		margin: tokens.mt(1);
 		width: 304px;
 		line-height: 132%;
 		animation: fadeInContent ease 1s;
@@ -370,18 +370,18 @@ export default {
 
 	&__footer {
 		display: block;
-		margin: mt(2);
+		margin: tokens.mt(2);
 	}
 
 	&__link {
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			color: $shade-500;
 			cursor: pointer;
 		}
 	}
 
 	&__close-button {
-		color: $n-600;
+		color: tokens.$n-600;
 		cursor: pointer;
 
 		animation: fadeInContent ease 2s;

@@ -11,7 +11,7 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 @mixin animation($animation) {
 	-webkit-animation: $animation;
@@ -40,13 +40,13 @@ export default {};
 .loading-bar__container {
 	display: flex;
 	overflow: hidden;
-	border-radius: $border-radius-small;
+	border-radius: tokens.$border-radius-small;
 	height: 12px;
 	transform: rotate(180deg);
 }
 
 .loading-bar {
-	background-color: $gp-500;
+	background-color: tokens.$gp-500;
 	background-size: 40px 40px;
 	width: 100%;
 	@include animation(loading-bar-stripes 2s linear infinite);

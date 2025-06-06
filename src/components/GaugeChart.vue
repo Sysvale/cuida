@@ -188,7 +188,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './../assets/sass/tokens.scss';
+@use './../assets/sass/tokens/index' as tokens;
 
 $stroke-progress: v-bind(chartProgressValue);
 $target: v-bind(targetValue);
@@ -220,7 +220,7 @@ $target: v-bind(targetValue);
 
 	svg {
 		&.svg {
-			@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+			@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 				--variant: #{$shade-300};
 				--variant-dark: #{$shade-500};
 			}
@@ -236,7 +236,7 @@ $target: v-bind(targetValue);
 	}
 
 	path.indicator-bar {
-		stroke: $n-30;
+		stroke: tokens.$n-30;
 		stroke-linecap: round;
 	}
 
@@ -253,22 +253,22 @@ $target: v-bind(targetValue);
 		stroke-dasharray: 1.5, 198;
 		stroke-dashoffset: var(--target);
 
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			stroke: $shade-600;
 		}
 	}
 
 	text.value {
-		@include heading-3;
-		fill: $n-700;
+		@include tokens.heading-3;
+		fill: tokens.$n-700;
 		font-size: 11px;
 		font-weight: 800;
 	}
 
 	text.subtitle {
-		@include subheading-1;
+		@include tokens.subheading-1;
 		font-size: 7px;
-		fill: $n-500;
+		fill: tokens.$n-500;
 		max-width: 50px;
 		overflow-wrap: break-word;
 	}

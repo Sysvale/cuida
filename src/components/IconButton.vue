@@ -148,31 +148,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .cds-icon-button {
 	&__container {
 		border: none !important;
-		border-radius: $border-radius-extra-small;
+		border-radius: tokens.$border-radius-extra-small;
 		cursor: pointer;
 		box-sizing: border-box;	
 
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			@extend .cds-icon-button__container;
 			background-color: $base-color;
-			color: $n-0;
+			color: tokens.$n-0;
 
 			@if ($color-name == 'gray') {
 				background-color: $shade-100;
-				color: $n-600;
+				color: tokens.$n-600;
 			}
 
 			@if ($color-name == 'white') {
-				color: $n-600;
-				outline: 1px solid $n-50 !important;
+				color: tokens.$n-600;
+				outline: 1px solid tokens.$n-50 !important;
 
 				&:hover {
-					background-color: $n-10;
+					background-color: tokens.$n-10;
 				}
 			} @else {
 				&:hover {
@@ -189,8 +189,8 @@ export default {
 	&--disabled {
 		box-sizing: border-box;
 		outline: 1px solid transparent !important;
-		color: $n-300 !important;
-		background-color: $n-20 !important;
+		color: tokens.$n-300 !important;
+		background-color: tokens.$n-20 !important;
 		cursor: default !important;
 
 		&:hover {
@@ -205,33 +205,33 @@ export default {
 
 .cds-icon-button {
 	&--sm {
-		padding: pYX(2, 2);
-		border-radius: $border-radius-lil;
+		padding: tokens.pYX(2, 2);
+		border-radius: tokens.$border-radius-lil;
 
 		.cds-icon-button__icon {
-			transition: $hover;
+			transition: tokens.$hover;
 			width: 16px;
 			height: 16px;
 		}
 	}
 
 	&--md {
-		padding: pYX(2, 2);
-		border-radius: $border-radius-extra-small;
+		padding: tokens.pYX(2, 2);
+		border-radius: tokens.$border-radius-extra-small;
 
 		.cds-icon-button__icon {
-			transition: $hover;
+			transition: tokens.$hover;
 			width: 20px;
 			height: 20px;
 		}
 	}
 
 	&--lg {
-		padding: pYX(2, 2);
-		border-radius: $border-radius-extra-small;
+		padding: tokens.pYX(2, 2);
+		border-radius: tokens.$border-radius-extra-small;
 
 		.cds-icon-button__icon {
-			transition: $hover;
+			transition: tokens.$hover;
 			width: 24px;
 			height: 24px;
 		}

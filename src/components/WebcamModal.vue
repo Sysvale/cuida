@@ -278,23 +278,23 @@ function savePhoto() {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .camera-container {
     width: 100%;
 	height: 570px;
     transition: all .3s ease;
     border-radius: 20px;
-    border: 2px dashed $n-40 !important;
-	color: $n-300;
-	padding: pa(2);
+    border: 2px dashed tokens.$n-40 !important;
+	color: tokens.$n-300;
+	padding: tokens.pa(2);
 
 	&__feedback-text {
-		margin: my(2);
-		color: $n-600;
+		margin: tokens.my(2);
+		color: tokens.$n-600;
 		font-style: italic;
-		font-weight: $font-weight-semibold;
-		@include caption;
+		font-weight: tokens.$font-weight-semibold;
+		@include tokens.caption;
 
 		&--hidden {
 			visibility: hidden;
@@ -310,7 +310,7 @@ function savePhoto() {
 		justify-content: center;
 		align-items: center;
 		font-weight: 700;
-		color: $rc-700;
+		color: tokens.$rc-700;
 	}
 
     &__photo, &__video {

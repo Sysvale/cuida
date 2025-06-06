@@ -146,7 +146,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './../assets/sass/tokens.scss';
+@use './../assets/sass/tokens/index' as tokens;
 
 .box {
 	width: v-bind(widthResolver);
@@ -161,12 +161,12 @@ export default {
 
 	&--elevated {
 		@extend .box;
-		box-shadow: $shadow-sm;
-		background-color: $n-0;
-		outline: 1px solid $n-30;
+		box-shadow: tokens.$shadow-sm;
+		background-color: tokens.$n-0;
+		outline: 1px solid tokens.$n-30;
 	}
 
-	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+	@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 		@extend .box;
 		outline: 1px solid $base-color;
 		background-color: $shade-50;
@@ -174,7 +174,7 @@ export default {
 		&--light {
 			@extend .box;
 			outline: 1px solid $shade-100;
-			background-color: $n-0;
+			background-color: tokens.$n-0;
 		}
 	}
 }

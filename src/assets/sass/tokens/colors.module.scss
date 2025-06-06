@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 $bg-gradient: 158.71deg, #FFFFFF -36.57%, #F1F5FB 156.92%;
 
 $appbar-color: #576169;
@@ -411,12 +413,12 @@ $allColors: (
 
 @mixin variantResolver {
 	@each $color-name, $base-color in $shades400 {
-		$shade-50: map-get($shades50 , $color-name);
-		$shade-100: map-get($shades100 , $color-name);
-		$shade-200: map-get($shades200 , $color-name);
-		$shade-300: map-get($shades300 , $color-name);
-		$shade-500: map-get($shades500 , $color-name);
-		$shade-600: map-get($shades600 , $color-name);
+		$shade-50: map.get($shades50 , $color-name);
+		$shade-100: map.get($shades100 , $color-name);
+		$shade-200: map.get($shades200 , $color-name);
+		$shade-300: map.get($shades300 , $color-name);
+		$shade-500: map.get($shades500 , $color-name);
+		$shade-600: map.get($shades600 , $color-name);
 
 		&--#{$color-name} {
 			@content($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600);

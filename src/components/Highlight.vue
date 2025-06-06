@@ -235,7 +235,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 mark {
 	all: unset;
@@ -251,15 +251,15 @@ mark {
 	}
 
 	&--info {
-		background-image: linear-gradient(to right, rgba($bn-300, .25) 50%, transparent 50%);
+		background-image: linear-gradient(to right, rgba(tokens.$bn-300, .25) 50%, transparent 50%);
 	}
 
 	&--success {
-		background-image: linear-gradient(to right, rgba($gp-300, .28) 50%, transparent 50%);
+		background-image: linear-gradient(to right, rgba(tokens.$gp-300, .28) 50%, transparent 50%);
 	}
 
 	&--danger {
-		background-image: linear-gradient(to right, rgba($rc-300, .22) 50%, transparent 50%);
+		background-image: linear-gradient(to right, rgba(tokens.$rc-300, .22) 50%, transparent 50%);
 	}
 }
 

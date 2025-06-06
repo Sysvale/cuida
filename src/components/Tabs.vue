@@ -192,17 +192,17 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 #tabs {
 	.inner-tabs {
 		&__header {
 			display: flex;
 			justify-content: flex-start;
-			padding: pl(0);
-			margin: mb(0);
+			padding: tokens.pl(0);
+			margin: tokens.mb(0);
 			list-style: none;
-			gap: spacer(2);
+			gap: tokens.spacer(2);
 		}
 
 		&__header-item {
@@ -210,9 +210,9 @@ export default {
 		}
 
 		&__tab {
-			@include caption;
+			@include tokens.caption;
 			width: 112px;
-			font-weight: $font-weight-regular;
+			font-weight: tokens.$font-weight-regular;
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
@@ -221,36 +221,36 @@ export default {
 			-webkit-box-orient: vertical;
 			text-align: center;
 			text-decoration: none !important;
-			padding: pYX(5, 4);
+			padding: tokens.pYX(5, 4);
 			cursor: pointer;
-			background-color: $n-0;
+			background-color: tokens.$n-0;
 
 			&--active {
 				cursor: default;
-				color: $n-800;
-				font-weight: $font-weight-semibold;
+				color: tokens.$n-800;
+				font-weight: tokens.$font-weight-semibold;
 				border-top: 5px solid var(--indicatorColor);
 				height: 72px;
-				border-top-left-radius: $border-radius-button;
-				border-top-right-radius: $border-radius-button;
+				border-top-left-radius: tokens.$border-radius-button;
+				border-top-right-radius: tokens.$border-radius-button;
 				transition: border-top 0.2s ease-in-out;
 			}
 
 			&--active:hover {
-				color: $n-800;
+				color: tokens.$n-800;
 			}
 
 			&--inactive {
-				color: $n-500;
-				font-weight: $font-weight-semibold;
-				border-radius: $border-radius-button;
-				border: 1px solid $n-30;
-				border-top: 5px solid $n-50;
+				color: tokens.$n-500;
+				font-weight: tokens.$font-weight-semibold;
+				border-radius: tokens.$border-radius-button;
+				border: 1px solid tokens.$n-30;
+				border-top: 5px solid tokens.$n-50;
 				transition: border-top 0.2s ease-in-out;
 			}
 
 			&--inactive:hover {
-				color: $n-500;
+				color: tokens.$n-500;
 			}
 		}
 
@@ -264,9 +264,9 @@ export default {
 
 
 		&__content {
-			background-color: $n-0;
-			padding: pYX(6, 7);
-			border-radius: $border-radius-button;
+			background-color: tokens.$n-0;
+			padding: tokens.pYX(6, 7);
+			border-radius: tokens.$border-radius-button;
 
 			> .content__pane--inactive {
 				display: none;
@@ -289,17 +289,17 @@ export default {
 			width: 30px;
 			align-items: center;
 			justify-content: center;
-			color: $n-200;
-			background-color: $n-0;
-			border: 1px solid $n-30 !important;
-			border-radius: $border-radius-extra-small;
-			padding: pa(1);
-			transition: $interaction;
+			color: tokens.$n-200;
+			background-color: tokens.$n-0;
+			border: 1px solid tokens.$n-30 !important;
+			border-radius: tokens.$border-radius-extra-small;
+			padding: tokens.pa(1);
+			transition: tokens.$interaction;
 
 			&:hover {
-				border-color: $n-100 !important;
-				color: $n-300 !important;
-				transition: $interaction;
+				border-color: tokens.$n-100 !important;
+				color: tokens.$n-300 !important;
+				transition: tokens.$interaction;
 			}
 		}
 	}

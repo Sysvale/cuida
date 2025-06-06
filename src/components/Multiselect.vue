@@ -178,7 +178,7 @@ import { generateKey } from '../utils';
 import CdsDivider from './Divider.vue';
 import CdsCheckbox from './Checkbox.vue';
 import CdsSpacer from './Spacer.vue';
-import sassColorVariables from '../assets/sass/colors.module.scss';
+import sassColorVariables from '../assets/sass/tokens/colors.module.scss';
 
 const SELECTED = 0;
 const NOT_SELECTED = 1;
@@ -563,21 +563,21 @@ export default {
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .label {
 	&__required-indicator {
-		color: $rc-600;
+		color: tokens.$rc-600;
 	}
 
 	&__content {
-		margin: mb(1);
+		margin: tokens.mb(1);
 	}
 }
 
 .cds-multiselect {
 	&__grouped-divider {
-		margin: mYX(2, 3);
+		margin: tokens.mYX(2, 3);
 	}
 	.multiselect--disabled .multiselect__current, .multiselect--disabled .multiselect__select {
 		background-color: transparent !important;
@@ -596,14 +596,14 @@ export default {
 	}
 
 	.multiselect__option--highlight {
-		background: $n-20!important;
+		background: tokens.$n-20!important;
 		outline: none!important;
-		color: $n-700!important;
+		color: tokens.$n-700!important;
 	}
 
 	.multiselect__option--disabled.multiselect__option--group {
-		background: $n-0 !important;
-		color: $n-100!important;
+		background: tokens.$n-0 !important;
+		color: tokens.$n-100!important;
 		text-transform: uppercase!important;
 		border-bottom: none!important;
 	}
@@ -618,17 +618,17 @@ export default {
 	}
 
 	.cds-multiselect__group-label {
-		@include caption;
-		color: $n-400;
+		@include tokens.caption;
+		color: tokens.$n-400;
 		text-transform: capitalize;
-		font-weight: $font-weight-bold;
+		font-weight: tokens.$font-weight-bold;
 	}
 
 	.option__checkbox {
 		width: 15px;
 		position: relative;
-		margin-right: spacer(6);
-		margin-left: spacer(n3);
+		margin-right: tokens.spacer(6);
+		margin-left: tokens.spacer(n3);
 
 		label {
 			cursor: pointer;
@@ -637,9 +637,9 @@ export default {
 			height: 16px;
 			top: 0;
 			border-radius: 4px;
-			border: 0.5px solid $n-500;
+			border: 0.5px solid tokens.$n-500;
 			&:after {
-				border: 2px solid $n-0;
+				border: 2px solid tokens.$n-0;
 				border-top: none;
 				border-right: none;
 				content: "";
@@ -670,15 +670,15 @@ export default {
 			transform: rotate(0deg);
 		}
 
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			background-color: $base-color !important;
 			border: none !important;
 		}
 	}
 
 	.multiselect__single {
-		@include body-2;
-		color: $n-600 !important;
+		@include tokens.body-2;
+		color: tokens.$n-600 !important;
 	}
 
 	.multiselect__tags {
@@ -686,12 +686,12 @@ export default {
 		border-bottom-right-radius: 8px !important;
 		border-top-right-radius: 8px !important;
 		border-top-left-radius: 8px !important;
-		border: 1px solid $n-50;
+		border: 1px solid tokens.$n-50;
 		height: v-bind(resolveMultiselectHeight) !important;
 		align-items: center !important;
 		display: flex !important;
-		padding-right: spacer(8);
-		padding-left: spacer(3);
+		padding-right: tokens.spacer(8);
+		padding-left: tokens.spacer(3);
 	}
 
 	.multiselect--active > .multiselect__tags {
@@ -700,24 +700,24 @@ export default {
 	}
 
 	.multiselect__tag {
-		background: $n-20!important;
-		color: $n-700!important;
-		border: 1px solid $n-100!important;
+		background: tokens.$n-20!important;
+		color: tokens.$n-700!important;
+		border: 1px solid tokens.$n-100!important;
 	}
 
 	.multiselect__tag-icon:after{
-		color: $n-700!important;
+		color: tokens.$n-700!important;
 	}
 
 	.multiselect__tag-icon:focus,
 	.multiselect__tag-icon:hover {
-		background: $n-0 !important;
-		color: $n-800!important;
+		background: tokens.$n-0 !important;
+		color: tokens.$n-800!important;
 	}
 
 	.multiselect__tag-icon:focus:after,
 	.multiselect__tag-icon:hover:after {
-		color: $n-800!important;
+		color: tokens.$n-800!important;
 	}
 
 	.multiselect__select {
@@ -725,31 +725,31 @@ export default {
 	}
 
 	.multiselect__select:before {
-		color: $n-100 !important;
-		border-color: $n-100 transparent transparent !important;
+		color: tokens.$n-100 !important;
+		border-color: tokens.$n-100 transparent transparent !important;
 	}
 
 	.multiselect__option--selected.multiselect__option--highlight {
-		background: $n-20!important;
-		color: $n-800;
+		background: tokens.$n-20!important;
+		color: tokens.$n-800;
 	}
 
 	.multiselect__option--selected.multiselect__option--highlight:after {
-		background: $n-20!important;
-		color: $n-800!important;
+		background: tokens.$n-20!important;
+		color: tokens.$n-800!important;
 	}
 
 	.multiselect__option:not(.multiselect__option--selected) {
-		background: $n-0 !important;
-		color: $n-700!important;
-		@include body-2;
+		background: tokens.$n-0 !important;
+		color: tokens.$n-700!important;
+		@include tokens.body-2;
 	}
 
 	.multiselect__option--selected {
-		background: $n-0 !important;
-		color: $n-800!important;
-		@include body-2;
-		font-weight: $font-weight-semibold;
+		background: tokens.$n-0 !important;
+		color: tokens.$n-800!important;
+		@include tokens.body-2;
+		font-weight: tokens.$font-weight-semibold;
 	}
 
 	.multiselect--disabled {
@@ -757,26 +757,26 @@ export default {
 	}
 
 	.multiselect__placeholder {
-		color: $n-300 !important;
-		@include body-2;
+		color: tokens.$n-300 !important;
+		@include tokens.body-2;
 	}
 
 	.multiselect__input {
 		background-color: transparent !important;
-		@include body-2;
-		color: $n-700 !important;
+		@include tokens.body-2;
+		color: tokens.$n-700 !important;
 	}
 
 	.multiselect__content-wrapper {
-		border-bottom-left-radius: $border-radius-extra-small !important;
-		border-bottom-right-radius: $border-radius-extra-small !important;
-		border: 1px solid $n-50;
+		border-bottom-left-radius: tokens.$border-radius-extra-small !important;
+		border-bottom-right-radius: tokens.$border-radius-extra-small !important;
+		border: 1px solid tokens.$n-50;
 		border-top: 0px !important;
 	}
 
 	.clustered-multiselect {
 		&__label {
-			@include label;
+			@include tokens.label;
 			display: flex;
 		}
 
@@ -788,13 +788,13 @@ export default {
 	}
 
 	.clustered-multiselect__error-message {
-		@include caption;
-		color: $rc-600;
-		margin: mt(1);
+		@include tokens.caption;
+		color: tokens.$rc-600;
+		margin: tokens.mt(1);
 	}
 
 	.multiselect__content:nth-child(1) {
-		margin: mt(3) !important;
+		margin: tokens.mt(3) !important;
 	}
 }
 </style>

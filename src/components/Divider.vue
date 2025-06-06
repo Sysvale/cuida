@@ -79,13 +79,13 @@ export default {
 };
 </script>
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .divider__container > div {
-	margin: mb(1);
+	margin: tokens.mb(1);
 }
 .divider {
-	background-color: $n-200;
+	background-color: tokens.$n-200;
 	border: 0;
 	height: 1px;
 	width: v-bind(sanitizedWidth);
@@ -98,11 +98,11 @@ export default {
 		}
 
 		&--inline > div {
-			@include overline;
-			color: $n-500;
+			@include tokens.overline;
+			color: tokens.$n-500;
 			width: max-content;
 			white-space: nowrap;
-			margin: mTRBL(0, 2, 1, 0);
+			margin: tokens.mTRBL(0, 2, 1, 0);
 		}
 	}
 
@@ -113,12 +113,12 @@ export default {
 
 	&--light {
 		@extend .divider;
-		background-color: $n-0;
+		background-color: tokens.$n-0;
 	}
 
 	&--dimmed {
 		@extend .divider;
-		background-color: $n-40;
+		background-color: tokens.$n-40;
 	}
 }
 </style>

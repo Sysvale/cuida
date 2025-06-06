@@ -1,40 +1,42 @@
+@use './tokens/index' as tokens;
+
 %input {
     display: flex;
 	justify-content: space-between;
-	outline: 1px solid $n-50;
-	border-radius: $border-radius-extra-small;
+	outline: 1px solid tokens.$n-50;
+	border-radius: tokens.$border-radius-extra-small;
 	width: 266px;
-	background: $n-0;
+	background: tokens.$n-0;
 }
 
 %placeholder {
-    color: $n-400;
+    color: tokens.$n-400;
 }
 
 %focused {
-    outline: 1px solid $bn-300;
+    outline: 1px solid tokens.$bn-300;
     transition: box-shadow ease-in-out 150ms, outline ease-in-out 100ms;
-    box-shadow: 0 0 0 0.1rem rgba($bn-300, 1);
+    box-shadow: 0 0 0 0.1rem rgba(tokens.$bn-300, 1);
 }
 
 %valid {
-    outline: 1px solid $gp-500;
+    outline: 1px solid tokens.$gp-500;
     transition: box-shadow ease-in-out 150ms, outline ease-in-out 100ms;
 }
 
 %invalid {
-    outline: 1px solid $rc-500;
+    outline: 1px solid tokens.$rc-500;
     transition: box-shadow ease-in-out 150ms, outline ease-in-out 100ms;
 }
 
 %focused-valid {
     transition: box-shadow ease-in-out 150ms, outline ease-in-out 100ms;
-    box-shadow: 0 0 0 0.1rem rgba($gp-500, 1);
+    box-shadow: 0 0 0 0.1rem rgba(tokens.$gp-500, 1);
 }
 
 %focused-invalid {
     transition: box-shadow ease-in-out 150ms, outline ease-in-out 100ms;
-    box-shadow: 0 0 0 0.1rem rgba($rc-500, 1);
+    box-shadow: 0 0 0 0.1rem rgba(tokens.$rc-500, 1);
 }
 
 %disabled {

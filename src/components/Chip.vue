@@ -176,7 +176,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use 'sass:color';
+@use '../assets/sass/tokens/index' as tokens;
 
 .chip {
 	&__container {
@@ -186,100 +187,100 @@ export default {
 	}
 
 	&--not-selected {
-		color: $n-400 !important;
-		background-color: $n-20 !important;
+		color: tokens.$n-400 !important;
+		background-color: tokens.$n-20 !important;
 		outline: none !important;
 	}
 
 
 	&--sm {
-		padding: pYX(1, 2);
+		padding: tokens.pYX(1, 2);
 	}
 
 	&--md {
-		padding: pYX(1, 2);
+		padding: tokens.pYX(1, 2);
 	}
 
 	&--lg {
-		padding: pYX(1, 3);
+		padding: tokens.pYX(1, 3);
 	}
 
 	&__content {
 		&--sm {
-			@include overline;
+			@include tokens.overline;
 		}
 
 		&--md {
-			@include caption;
-			font-weight: $font-weight-semibold;
+			@include tokens.caption;
+			font-weight: tokens.$font-weight-semibold;
 			line-height: 18px;
 		}
 
 		&--lg {
-			@include button-1;
-			font-weight: $font-weight-semibold;
+			@include tokens.button-1;
+			font-weight: tokens.$font-weight-semibold;
 		}
 	}
 
 	&__content-container {
 		display: flex;
 		align-items: center;
-		gap: spacer(1);
+		gap: tokens.spacer(1);
 		justify-content: center;
 		transition: all 0.3s ease;
 		white-space: nowrap;
 	}
 
-	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
-		color: darken($shade-500, 4%);
+	@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		color: color.adjust($shade-500, $lightness: -4%);
 		background-color: $shade-100;
 		outline: 1px solid $shade-600;
 
 		&:hover {
-			color: darken($shade-600, 10%) !important;
+			color: color.adjust($shade-600, $lightness: -10%) !important;
 			background-color: $shade-100 !important;
 		}
 	}
 
 	&--amber {
-		color: $al-700;
-		background-color: $al-100;
+		color: tokens.$al-700;
+		background-color: tokens.$al-100;
 
 		&:hover {
-			color: darken($al-700, 10%) !important;
-			background-color: $al-100 !important;
+			color: color.adjust(tokens.$al-700, $lightness: -10%) !important;
+			background-color: tokens.$al-100 !important;
 		}
 	}
 
 	&--gray {
-		color: $n-600;
-		background-color: $n-20;
+		color: tokens.$n-600;
+		background-color: tokens.$n-20;
 
 		&:hover {
-			color: darken($n-600, 10%) !important;
-			background-color: $n-20 !important;
+			color: color.adjust(tokens.$n-600, $lightness: -10%) !important;
+			background-color: tokens.$n-20 !important;
 		}
 	}
 
 	&--white {
-		color: $n-800;
-		background-color: $n-0;
-		outline: 1px solid $n-100;
+		color: tokens.$n-800;
+		background-color: tokens.$n-0;
+		outline: 1px solid tokens.$n-100;
 
 		&:hover {
-			color: darken($n-600, 10%) !important;
-			background-color: $n-0 !important;
+			color: color.adjust(tokens.$n-600, $lightness: -10%) !important;
+			background-color: tokens.$n-0 !important;
 		}
 	}
 
 	&--dark {
-		color: $n-10;
-		background-color: $n-700;
-		outline: 1px solid $n-800;
+		color: tokens.$n-10;
+		background-color: tokens.$n-700;
+		outline: 1px solid tokens.$n-800;
 
 		&:hover {
-			color: darken($n-10, 10%) !important;
-			background-color: $n-700 !important;
+			color: color.adjust(tokens.$n-10, $lightness: -10%) !important;
+			background-color: tokens.$n-700 !important;
 		}
 	}
 }

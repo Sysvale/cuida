@@ -276,17 +276,17 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .app-bar {
 	&__container {
 		align-items: center;
-		background-color: $appbar-color;
+		background-color: tokens.$appbar-color;
 		display: grid;
 		grid-template-areas: v-bind(gridTemplateAreasResolver);
 		grid-template-columns: v-bind(gridTemplateColumnsResolver);
 		height: 60px;
-		padding: px(4);
+		padding: tokens.px(4);
 	}
 
 	&__logo {
@@ -307,7 +307,7 @@ export default {
 	&__icons-grid {
 		align-items: center;
 		display: flex;
-		gap: spacer(2);
+		gap: tokens.spacer(2);
 		grid-area: icons;
 		justify-self: end;
 	}
@@ -320,20 +320,20 @@ export default {
 
 	&__container{
 		align-items: flex-end;
-		color: $n-0;
+		color: tokens.$n-0;
 		display: flex;
 		flex-direction: column;
-		margin: ml(4)
+		margin: tokens.ml(4)
 	}
 
 	&__name {
-		@include caption;
-		font-weight: $font-weight-semibold;
+		@include tokens.caption;
+		font-weight: tokens.$font-weight-semibold;
 	}
 
 	&__description {
-		@include overline;
-		font-weight: $font-weight-regular;
+		@include tokens.overline;
+		font-weight: tokens.$font-weight-regular;
 	}
 }
 
@@ -350,9 +350,9 @@ export default {
 }
 
 .app-name {
-	color: $n-0;
-	font-weight: $font-weight-regular;
-	margin: mTRBL(1, 0, 0, 2);
-	@include caption;
+	color: tokens.$n-0;
+	font-weight: tokens.$font-weight-regular;
+	margin: tokens.mTRBL(1, 0, 0, 2);
+	@include tokens.caption;
 }
 </style>

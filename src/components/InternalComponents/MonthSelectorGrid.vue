@@ -126,8 +126,9 @@ function handleClick(month, index) {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/sass/tokens.scss';
-@import '../../assets/sass/placeholders.scss';
+@use 'sass:color';
+@use '../../assets/sass/tokens/index' as tokens;
+@use'../../assets/sass/placeholders.scss';
 
 .month-selector {
     &__grid {
@@ -138,16 +139,16 @@ function handleClick(month, index) {
 		padding: 8px 20px;
 		text-align: center;
 		cursor: pointer;
-		@include body-1;
-		color: $n-800;
+		@include tokens.body-1;
+		color: tokens.$n-800;
 
 		transition: all 0.2s ease;
-		border-radius: $border-radius-lil;
+		border-radius: tokens.$border-radius-lil;
 		z-index: 1;
 		position: relative;
 		@extend %user-select-none;
 
-        @include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+        @include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
             @extend .month-selector__month;
 
             &:hover {
@@ -158,23 +159,23 @@ function handleClick(month, index) {
         }
 
         &--disabled {
-            color: $n-300;
+            color: tokens.$n-300;
             cursor: not-allowed;
             pointer-events: none;
         }
 
         &--selected {
-            background-color: $bn-50;
-            border-radius: $border-radius-lil;
+            background-color: tokens.$bn-50;
+            border-radius: tokens.$border-radius-lil;
             font-weight: bold;
 
-            @include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+            @include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
                 @extend .month-selector__month--selected;
                 color: $shade-50 !important;
                 background-color: $base-color;
 
                 &:hover {
-                    background-color: darken($base-color, 5%);
+                    background-color: color.adjust($base-color, $lightness: -5%);
                 }
             }
         }

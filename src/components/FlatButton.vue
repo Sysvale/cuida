@@ -91,10 +91,11 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use 'sass:color';
+@use '../assets/sass/tokens/index' as tokens;
 .flat-button {
 	&__container {
-		font-weight: $font-weight-semibold;
+		font-weight: tokens.$font-weight-semibold;
 		border: none;
 		cursor: pointer;
 		background-color: transparent;
@@ -106,48 +107,48 @@ defineExpose({
 
 	$colors: (
 		'--green': (
-			'active': $gp-500,
-			'disabled': $gp-300,
+			'active': tokens.$gp-500,
+			'disabled': tokens.$gp-300,
 		),
 		'--teal': (
-			'active': $ta-500,
-			'disabled': $ta-300,
+			'active': tokens.$ta-500,
+			'disabled': tokens.$ta-300,
 		),
 		'--turquoise': (
-			'active': $ts-500,
-			'disabled': $ts-300,
+			'active': tokens.$ts-500,
+			'disabled': tokens.$ts-300,
 		),
 		'--blue': (
-			'active': $bn-500,
-			'disabled': $bn-300,
+			'active': tokens.$bn-500,
+			'disabled': tokens.$bn-300,
 		),
 		'--indigo': (
-			'active': $in-500,
-			'disabled': $in-300,
+			'active': tokens.$in-500,
+			'disabled': tokens.$in-300,
 		),
 		'--violet': (
-			'active': $vr-500,
-			'disabled': $vr-300,
+			'active': tokens.$vr-500,
+			'disabled': tokens.$vr-300,
 		),
 		'--pink': (
-			'active': $pp-500,
-			'disabled': $pp-300,
+			'active': tokens.$pp-500,
+			'disabled': tokens.$pp-300,
 		),
 		'--red': (
-			'active': $rc-500,
-			'disabled': $rc-300,
+			'active': tokens.$rc-500,
+			'disabled': tokens.$rc-300,
 		),
 		'--orange': (
-			'active': $og-500,
-			'disabled': $og-300,
+			'active': tokens.$og-500,
+			'disabled': tokens.$og-300,
 		),
 		'--amber': (
-			'active': $al-500,
-			'disabled': $al-300,
+			'active': tokens.$al-500,
+			'disabled': tokens.$al-300,
 		),
 		'--dark': (
-			'active': $n-800,
-			'disabled': $n-400,
+			'active': tokens.$n-800,
+			'disabled': tokens.$n-400,
 		),
 	);
 
@@ -160,7 +161,7 @@ defineExpose({
 
 				@if $state == 'active' {
 					&--#{$state}:hover {
-						color: darken($disabled-color, 5%);
+						color: color.adjust($disabled-color, $lightness: -5%);
 					}
 				}
 			}

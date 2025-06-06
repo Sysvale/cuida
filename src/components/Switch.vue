@@ -178,8 +178,8 @@ defineExpose({ componentRef });
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
-@import '../assets/sass/placeholders.scss';
+@use '../assets/sass/tokens/index' as tokens;
+@use'../assets/sass/placeholders.scss';
 
 .switch {
 	position: relative;
@@ -191,12 +191,12 @@ defineExpose({ componentRef });
 
 	&__supporting-text {
 		&:nth-child(1) {
-			margin: mt(2);
+			margin: tokens.mt(2);
 		}
 
-		@include caption;
-		color: $n-600;
-		margin: mt(1);
+		@include tokens.caption;
+		color: tokens.$n-600;
+		margin: tokens.mt(1);
 	}
 
 	&__supporting-text-list {
@@ -205,7 +205,7 @@ defineExpose({ componentRef });
 	}
 
 	&__label {
-		@include label;
+		@include tokens.label;
 	}
 
 	&--small {
@@ -229,7 +229,7 @@ defineExpose({ componentRef });
 		height: 0;
 
 		&:checked + .switch__slider {
-			@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+			@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 				background-color: $base-color !important;
 			}
 		}
@@ -266,11 +266,11 @@ defineExpose({ componentRef });
 
 		&:disabled + .switch__slider {
 			cursor: default;
-			background-color: $n-40;
+			background-color: tokens.$n-40;
 		}
 
 		&:disabled + .switch__slider:before {
-			background-color: $n-30;
+			background-color: tokens.$n-30;
 		}
 	}
 
@@ -281,7 +281,7 @@ defineExpose({ componentRef });
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background-color: $n-50;
+		background-color: tokens.$n-50;
 		-webkit-transition: .35s;
 		transition: .35s;
 		border-radius: 80px;
@@ -294,9 +294,9 @@ defineExpose({ componentRef });
 				width: 12px;
 				left: 2px;
 				bottom: 2px;
-				background-color: $n-0;
+				background-color: tokens.$n-0;
 				-webkit-transition: .35s;
-				border-radius: $border-radius-circle;
+				border-radius: tokens.$border-radius-circle;
 				transition: .35s;
 			}
 		}
@@ -309,9 +309,9 @@ defineExpose({ componentRef });
 				width: 18px;
 				left: 3px;
 				bottom: 3px;
-				background-color: $n-0;
+				background-color: tokens.$n-0;
 				-webkit-transition: .35s;
-				border-radius: $border-radius-circle;
+				border-radius: tokens.$border-radius-circle;
 				transition: .35s;
 			}
 		}
@@ -324,9 +324,9 @@ defineExpose({ componentRef });
 				width: 24px;
 				left: 4px;
 				bottom: 3px;
-				background-color: $n-0;
+				background-color: tokens.$n-0;
 				-webkit-transition: .35s;
-				border-radius: $border-radius-circle;
+				border-radius: tokens.$border-radius-circle;
 				transition: .35s;
 			}
 		}
@@ -336,20 +336,20 @@ defineExpose({ componentRef });
 		}
 
 		&--active-focused {
-			@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+			@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 				box-shadow: 0 0 0 0.2rem $shade-200;
 			}
 		}
 
 		&--inactive-focused {
-			box-shadow: 0 0 0 0.2rem $n-40;
+			box-shadow: 0 0 0 0.2rem tokens.$n-40;
 		}
 	}
 }
 
 .label__icon {
-	margin: mTRBL(0, 0, n1, 1);
+	margin: tokens.mTRBL(0, 0, n1, 1);
 	cursor: default;
-	color: $n-700;
+	color: tokens.$n-700;
 }
 </style>

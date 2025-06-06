@@ -142,33 +142,34 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use 'sass:color';
+@use '../assets/sass/tokens/index' as tokens;
 
 #nav-bar {
 	.nav-bar {
 		&__container {
 			display: flex;
 			flex-wrap: wrap;
-			padding: pTRBL(2, 2, 0, 2);
-			margin: mb(0);
+			padding: tokens.pTRBL(2, 2, 0, 2);
+			margin: tokens.mb(0);
 			list-style: none;
-			border-bottom: 1px solid $n-40;
-			background-color: darken($appbar-color, 5%);
+			border-bottom: 1px solid tokens.$n-40;
+			background-color: color.adjust(tokens.$appbar-color, $lightness: -5%);
 		}
 
 		&__item-container {
-			margin: mx(2);
+			margin: tokens.mx(2);
 
 			&--active {
-				background-color: $appbar-color;
-				border-radius: $border-radius-button;
+				background-color: tokens.$appbar-color;
+				border-radius: tokens.$border-radius-button;
 				cursor: default;
-				color: $n-10;
+				color: tokens.$n-10;
 			}
 		}
 
 		&__item {
-			@include caption;
+			@include tokens.caption;
 			overflow: hidden;
 			text-overflow: ellipsis;
 			display: -webkit-box;
@@ -176,30 +177,30 @@ export default {
 			-webkit-box-orient: vertical;
 			text-align: center;
 			text-decoration: none !important;
-			padding: pYX(2, 3);
+			padding: tokens.pYX(2, 3);
 			cursor: pointer;
 
 			&--active {
 				cursor: default;
-				color: $n-10;
+				color: tokens.$n-10;
 			}
 
 			&--active:hover {
-				color: $n-0;
+				color: tokens.$n-0;
 			}
 
 			&--inactive {
-				color: $n-100;
+				color: tokens.$n-100;
 			}
 
 			&--inactive:hover {
-				color: $n-40;
+				color: tokens.$n-40;
 			}
 		}
 	}
 
 	.item__indicator--active {
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			height: 4px;
 			width: 100%;
 			background-color: $base-color;

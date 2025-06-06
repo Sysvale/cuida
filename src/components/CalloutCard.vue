@@ -129,14 +129,14 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 #callout-card .callout-card {
 	align-items: center;
 	display: flex;
-	border: 1px solid $n-40;
+	border: 1px solid tokens.$n-40;
 	border-radius: 16px;
-	padding: pa(7);
+	padding: tokens.pa(7);
 
 	&__container {
 		@extend .callout-card;
@@ -144,7 +144,7 @@ export default {
 
 		&--compact {
 			@extend .callout-card;
-			padding: pYX(2,6);
+			padding: tokens.pYX(2,6);
 		}
 	}
 
@@ -155,7 +155,7 @@ export default {
 
 #callout-card .image {
 	&__container {
-		margin: mr(7);
+		margin: tokens.mr(7);
 	}
 
 	&__content {
@@ -170,7 +170,7 @@ export default {
 }
 
 #callout-card .content {
-	margin: mb(4);
+	margin: tokens.mb(4);
 
 	&--compact {
 		display: flex;
@@ -180,15 +180,15 @@ export default {
 	}
 
 	&__title {
-		color: $n-700;
+		color: tokens.$n-700;
 		display: block;
-		@include subheading-3;
-		margin: mb(2);
+		@include tokens.subheading-3;
+		margin: tokens.mb(2);
 	}
 
 	&__text {
-		color: $n-700;
-		@include body-2;
+		color: tokens.$n-700;
+		@include tokens.body-2;
 	}
 
 	&__container {

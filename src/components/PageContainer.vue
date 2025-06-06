@@ -10,12 +10,12 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .page-container__container {
 	width: 100%;
 	max-width: 1600px;
 	margin: 0 auto;
-	padding: pa(6);
+	padding: tokens.pa(6);
 }
 </style>

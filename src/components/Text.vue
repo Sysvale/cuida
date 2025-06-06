@@ -96,7 +96,7 @@ defineExpose({ componentRef });
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .text-alignment {
 	text-align: v-bind(textAlign);
@@ -108,102 +108,102 @@ defineExpose({ componentRef });
 }
 
 .n-900 {
-	color: $n-900;
+	color: tokens.$n-900;
 }
 
 .n-800 {
-	color: $n-800;
+	color: tokens.$n-800;
 }
 
 .n-700 {
-	color: $n-700;
+	color: tokens.$n-700;
 }
 
 .n-600 {
-	color: $n-600;
+	color: tokens.$n-600;
 }
 
 .n-500 {
-	color: $n-500;
+	color: tokens.$n-500;
 }
 
 .n-400 {
-	color: $n-400;
+	color: tokens.$n-400;
 }
 
 .n-300 {
-	color: $n-300;
+	color: tokens.$n-300;
 }	
 
 .n-200 {
-	color: $n-200;
+	color: tokens.$n-200;
 }
 
 .n-100 {
-	color: $n-100;
+	color: tokens.$n-100;
 }
 
 .n-50 {
-	color: $n-50;
+	color: tokens.$n-50;
 }
 
 .n-40 {
-	color: $n-40;
+	color: tokens.$n-40;
 }
 
 .n-30 {
-	color: $n-30;
+	color: tokens.$n-30;
 }
 
 .n-20 {
-	color: $n-20;
+	color: tokens.$n-20;
 }
 
 .n-10 {
-	color: $n-10;
+	color: tokens.$n-10;
 }
 
 .n-0 {
-	color: $n-0;
+	color: tokens.$n-0;
 }
 
 h1 {
-	@include heading-1;
+	@include tokens.heading-1;
 }
 
 h2 {
-	@include heading-2;
+	@include tokens.heading-2;
 }
 
 h3 {
-	@include heading-3;
+	@include tokens.heading-3;
 }
 
 h4 {
-	@include subheading-1;
+	@include tokens.subheading-1;
 }
 
 h5 {
-	@include subheading-2;
+	@include tokens.subheading-2;
 }
 
 h6 {
-	@include subheading-3;
+	@include tokens.subheading-3;
 }
 
 p {
-	@include body-1;
+	@include tokens.body-1;
 }
 
 span {
-	@include body-2;
+	@include tokens.body-2;
 }
 
 small {
-	@include caption;
+	@include tokens.caption;
 }
 
 legend {
-	@include overline;
+	@include tokens.overline;
 }
 </style>

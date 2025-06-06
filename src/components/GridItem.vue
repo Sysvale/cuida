@@ -115,7 +115,7 @@ const gapResolver = computed(() => {
 
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .grid-item {
 	align-self: v-bind(align);

@@ -129,7 +129,7 @@ const gridAutoRowsResolver = computed(() => {
 	
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .grid {
 	align-items: v-bind(align);

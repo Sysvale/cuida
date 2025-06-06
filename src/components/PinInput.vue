@@ -130,16 +130,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 	.pin-input {
 		height: 40px;
 		box-sizing: border-box;
 		width: 36px;
-		border-radius: $border-radius-extra-small;
-		border: 1px solid $n-100;
+		border-radius: tokens.$border-radius-extra-small;
+		border: 1px solid tokens.$n-100;
 		text-align: center;
 		font-size: 1.5em;
-		transition: $interaction;
+		transition: tokens.$interaction;
 
 		&--mobile {
 			@extend .pin-input;
@@ -153,26 +153,26 @@ export default {
 		}
 
 		&:focus-visible {
-			outline-color: $bn-300;
-			color: $bn-300;
-			transition: $interaction;
+			outline-color: tokens.$bn-300;
+			color: tokens.$bn-300;
+			transition: tokens.$interaction;
 		}
 
 		&--valid {
 			@extend .pin-input;
-			border: 1px solid $gp-500;
+			border: 1px solid tokens.$gp-500;
 
 			&:focus-visible {
-				outline-color: $gp-500;
+				outline-color: tokens.$gp-500;
 			}
 		}
 
 		&--invalid {
 			@extend .pin-input;
-			border: 1px solid $rc-500;
+			border: 1px solid tokens.$rc-500;
 
 			&:focus-visible {
-				outline-color: $rc-500;
+				outline-color: tokens.$rc-500;
 			}
 		}
 	}

@@ -29,11 +29,11 @@ const toasts = useToast().toastState.toasts;
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .toast-container {
 	position: fixed;
-	z-index: $z-index-toast;
+	z-index: tokens.$z-index-toast;
 	bottom: 0px;
 	right: 0px;
 	display: flex;

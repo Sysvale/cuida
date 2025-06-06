@@ -133,7 +133,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .progress-circular {
 	display: block;
@@ -146,7 +146,7 @@ export default {
 		width: 48px;
 
 		& > .progress-circular__label {
-			font-weight: $font-weight-semibold;
+			font-weight: tokens.$font-weight-semibold;
 		}
 	}
 
@@ -155,7 +155,7 @@ export default {
 		width: 64px;
 
 		& > .progress-circular__label {
-			font-weight: $font-weight-semibold;
+			font-weight: tokens.$font-weight-semibold;
 		}
 	}
 
@@ -164,18 +164,18 @@ export default {
 		width: 80px;
 
 		& > .progress-circular__label {
-			font-weight: $font-weight-regular;
+			font-weight: tokens.$font-weight-regular;
 		}
 	}
 	
 
 	&__ring-background {
 		fill: none;
-		stroke: $n-50;
+		stroke: tokens.$n-50;
 	}
 
 	&__ring-progress {
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			fill: none;
 			stroke-linecap: round;
 			animation: progress 1s ease-out forwards;

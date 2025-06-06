@@ -137,26 +137,26 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .avatar {
 	&__chevron {
-		margin: ml(1);
+		margin: tokens.ml(1);
 	}
 
 	&__container {
 		align-items: center;
-		border-radius: $border-radius-circle;
+		border-radius: tokens.$border-radius-circle;
 		display: flex;
 		justify-content: center;
 
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			background-color: $base-color;
 
 			@if ($color-name == 'white' or $color-name == 'gray') {
-				color: $n-700;
+				color: tokens.$n-700;
 			} @else {
-				color: $n-0;
+				color: tokens.$n-0;
 			}
 		}
 
@@ -224,20 +224,20 @@ export default {
 
 	&__initials {
 		&--sm {
-			@include caption;
+			@include tokens.caption;
 		}
 
 		&--md {
-			@include caption;
-			font-weight: $font-weight-semibold;
+			@include tokens.caption;
+			font-weight: tokens.$font-weight-semibold;
 		}
 
 		&--lg {
-			@include subheading-2;
+			@include tokens.subheading-2;
 		}
 
 		&--xl {
-			@include heading-3;
+			@include tokens.heading-3;
 		}
 	}
 }

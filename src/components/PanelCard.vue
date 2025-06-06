@@ -73,38 +73,38 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .panel-card {
 	&__divider {
-		margin: ma(0);
-		color: $n-300;
+		margin: tokens.ma(0);
+		color: tokens.$n-300;
 	}
 
 	&__header {
-		padding: pa(4);
+		padding: tokens.pa(4);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 	}
 
 	&__content {
-		padding: pa(4);
+		padding: tokens.pa(4);
 	}
 
 	&__content--no-padding {
-		padding: pa(4);
+		padding: tokens.pa(4);
 	}
 
 	&__title {
-		@include subheading-2;
-		margin: mb(2);
-		color: $n-900;
+		@include tokens.subheading-2;
+		margin: tokens.mb(2);
+		color: tokens.$n-900;
 	}
 
 	&__subtitle {
-		@include body-2;
-		color: $n-500;
+		@include tokens.body-2;
+		color: tokens.$n-500;
 	}
 }
 </style>
