@@ -193,7 +193,7 @@ export default {
 		app.component('CdsLabel', Label)
 		app.component('CdsLink', Link);
 		app.component('CdsList', List);
-		app.component('CdsInlineDateInput', InlineDateInput);la
+		app.component('CdsInlineDateInput', InlineDateInput);
 		app.component('CdsLoadingBar', LoadingBar);
 		app.component('CdsLoadingIndicator', LoadingIndicator);
 		app.component('CdsMobileNavbar', MobileNavbar);
