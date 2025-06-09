@@ -214,7 +214,7 @@ function handleSearchInput(value) {
 	&__header {
 		display: grid;
 		grid-template-columns: 1fr auto;
-		column-gap: spacer(4);
+		column-gap: tokens.spacer(4);
 		width: 100%;
 		align-items: center;
 	}
@@ -227,7 +227,7 @@ function handleSearchInput(value) {
 
 		&--below {
 			@extend .data-table__items-counter;
-			margin: mt(3);
+			margin: tokens.mt(3);
 		}
 	}
 
