@@ -2,26 +2,44 @@
 	<div>
 		<div class="data-table">
 			<div class="data-table__header">
-				<div class="data-table__items-counter">
+				<CdsSearchInput
+					v-if="withSearch"
+					v-model="internalSearch"
+					hide-label
+					fluid
+					@update:model-value="handleSearchInput"
+				/>
+				<div
+					v-else
+					class="data-table__items-counter"
+				>
 					{{ totalItems }} {{ totalItems === 1 ? 'registro encontrado' : 'registros encontrados' }}
 				</div>
 
 				<cds-flexbox
+					class="data-table__actions"
 					gap="3"
 					align="center"
+					justify="flex-end"
 				>
 					<!-- @slot Slot para renderização de conteúdo à direita do DataTable header. -->
 					<slot name="right" />
 
 					<cds-button
 						v-if="!hideCustomizeButton"
-						size="sm"
+						:size="withSearch ? 'md' : 'sm'"
 						secondary
 						@button-click="handleCustomizeButtonClick"
 					>
 						Personalizar tabela
 					</cds-button>
 				</cds-flexbox>
+				<div
+					v-if="withSearch"
+					class="data-table__items-counter--below"
+				>
+					{{ totalItems }} {{ totalItems === 1 ? 'registro encontrado' : 'registros encontrados' }}
+				</div>
 			</div>
 
 			<div class="data-table__table-container">
@@ -68,12 +86,13 @@
 
 <script setup>
 import { ref, watch, computed } from 'vue';
+import { cloneDeep } from 'lodash';
+import { useHasSlot } from '../utils/composables/useHasSlot';
 import CdsButton from './Button.vue';
 import CdsTable from './Table.vue';
 import CustomFieldsSideSheet from './InternalComponents/CustomFieldsSideSheet.vue';
 import CdsFlexbox from './Flexbox.vue';
-import { useHasSlot } from '../utils/composables/useHasSlot';
-import { cloneDeep } from 'lodash';
+import CdsSearchInput from './SearchInput.vue';
 
 const hasHeaderSlot = useHasSlot('header-item');
 
@@ -129,11 +148,20 @@ const props = defineProps({
 		default: 0,
 		validator: (value) => value >= 0,
 	},
+	/**
+ 	* Especifica se a barra de busca da tabela deve ser exibida.
+	*/
+	withSearch: {
+		type: Boolean,
+		default: false,
+	},
 });
 
-const emits = defineEmits(['update-fields-list', 'customize-click']);
+const emits = defineEmits(['update-fields-list', 'customize-click', 'search']);
 
 const showSideSheet = ref(false);
+const internalSearch = ref('');
+const searchTimeout = ref(null);
 const internalCustomFieldsList = ref(cloneDeep(props.customFieldsList));
 
 const computedMaxVisibleFields = computed(() => {
@@ -162,6 +190,12 @@ function handleOk(fieldsList) {
 	emits('update-fields-list', fieldsList);
 }
 
+function handleSearchInput(value) {
+	clearTimeout(searchTimeout.value);
+	searchTimeout.value = setTimeout(() => {
+		emits('search', value);
+	}, 500);
+}
 </script>
 
 <style lang="scss" scoped>
@@ -173,15 +207,28 @@ function handleOk(fieldsList) {
 	justify-content: center;
 	gap: spacer(3);
 
+	&__actions {
+		width: 100%;
+	}
+
 	&__header {
-		display: flex;
-		justify-content: space-between;
-		align-items: flex-end;
+		display: grid;
+		grid-template-columns: 1fr auto;
+		column-gap: spacer(4);
+		width: 100%;
+		align-items: center;
 	}
 
 	&__items-counter {
 		@include caption;
 		color: $n-600;
+		display: flex;
+		align-items: flex-end;
+
+		&--below {
+			@extend .data-table__items-counter;
+			margin: mt(3);
+		}
 	}
 
 	&__table-container {
