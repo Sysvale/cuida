@@ -59,6 +59,7 @@ export const Template = (args) => ({
 			@customize-click="logCustomizeButtonClick"
 			@update-fields-list="logUpdateCustomFields($event)"
 			@cancel="logCancelClick"
+			@search="logSearchInput"
 		>
 		</cds-data-table>
 		<br>
@@ -72,6 +73,9 @@ export const Template = (args) => ({
 		},
 		logUpdateCustomFields(event) {
 			console.info('%cUpdate custom fields event: ', 'color:rgb(52, 207, 200);', event);
+		},
+		logSearchInput(event) {
+			console.info('%cSearch input event: ', 'color:rgb(42, 124, 34);', event);
 		},
 	},
 	updated() {
