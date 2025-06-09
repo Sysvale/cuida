@@ -139,40 +139,40 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .landscape-overlay {
-	background: rgba($color: $n-900, $alpha: 0.97);
-	color: $n-20;
+	background: rgba($color: tokens.$n-900, $alpha: 0.97);
+	color: tokens.$n-20;
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	z-index: $z-index-toast;
+	z-index: tokens.$z-index-toast;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 
     &__title {
-        @include heading-3;
-        font-weight: $font-weight-bold;
-        color: $n-20;
+        @include tokens.heading-3;
+        font-weight: tokens.$font-weight-bold;
+        color: tokens.$n-20;
 		text-align: center;
     }
 
     &__subtitle {
 		text-align: center;
-		@include body-2;
-        color: $n-20;
+		@include tokens.body-2;
+        color: tokens.$n-20;
     }
 
 	&__container {
         display: flex;
-		padding: px(5);
+		padding: tokens.px(5);
         flex-direction: column;
         align-items: center;
-        gap: spacer(3);
+        gap: tokens.spacer(3);
 	}
 
 	&__image {
@@ -185,7 +185,7 @@ onMounted(() => {
 		justify-self: flex-end;
 		width: 100%;
 		height: 100%;
-		margin: mt(4);
+		margin: tokens.mt(4);
 	}
 }
 

@@ -212,25 +212,25 @@ const isMobile = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .file-viewer {
 	width: fit-content;
 	min-width: 280px;
 	max-width: 350px;
-	padding: pa(3);
+	padding: tokens.pa(3);
 	border-radius: 12px;
-	border: 1px solid $n-30;
-	background: $n-0;
+	border: 1px solid tokens.$n-30;
+	background: tokens.$n-0;
 	display: flex;
-	gap: spacer(3);
+	gap: tokens.spacer(3);
 	transition: 0.3s ease;
 
 	&:focus {
 		outline: none;
 	}
 
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 
 				&:hover {
 					border: 1px solid $shade-300;
@@ -244,17 +244,17 @@ const isMobile = computed(() => {
 		width: 66px;
 		height: 66px;
 		min-width: 66px;
-		background-color: $n-20;
-		border-radius: $border-radius-small;
+		background-color: tokens.$n-20;
+		border-radius: tokens.$border-radius-small;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
 
 	&__extension {
-		@include body-1;
-		color: $n-700;
-		font-weight: $font-weight-bold;
+		@include tokens.body-1;
+		color: tokens.$n-700;
+		font-weight: tokens.$font-weight-bold;
 		justify-items: center;
 	}
 
@@ -262,7 +262,7 @@ const isMobile = computed(() => {
 		display: flex;
 		align-items: center;
 
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 				color: $base-color;
 			}
 	}
@@ -270,14 +270,14 @@ const isMobile = computed(() => {
 	&__info {
 		display: flex;
 		flex-direction: column;
-		gap: spacer(1);
+		gap: tokens.spacer(1);
 		width: calc(100% - 66px - 12px);
 	}
 
 	&__label {
-		@include body-2;
-		font-weight: $font-weight-semibold;
-		color: $n-800;
+		@include tokens.body-2;
+		font-weight: tokens.$font-weight-semibold;
+		color: tokens.$n-800;
 		width: 100%;
 		max-width: none;
 		white-space: nowrap;
@@ -286,8 +286,8 @@ const isMobile = computed(() => {
 	}
 
 	&__file-name {
-		@include body-2;
-		color: $n-700;
+		@include tokens.body-2;
+		color: tokens.$n-700;
 		width: 100%;
 		max-width: none;
 		white-space: nowrap;
@@ -296,10 +296,10 @@ const isMobile = computed(() => {
 	}
 
 	&__download {
-		@include body-2;
+		@include tokens.body-2;
 		cursor: pointer;
 
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			color: $base-color;
 		}
 
@@ -316,7 +316,7 @@ const isMobile = computed(() => {
 		left: 0;
 		right: 0;
 		bottom: 0;
-		z-index: $z-index-modal;
+		z-index: tokens.$z-index-modal;
 		background: rgba(0,0,0, 0.85);
 		animation: ease .3s;
 	}
@@ -324,47 +324,47 @@ const isMobile = computed(() => {
 	&__visualizer-header {
 		height: 64px;
 		width: 100%;
-		padding: pYX(5, 8);
+		padding: tokens.pYX(5, 8);
 		background-color: rgba(0,0,0, 0.5);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		gap: spacer(3);
+		gap: tokens.spacer(3);
 	}
 
 	&__visualizer-label {
-		@include subheading-2;
-		font-weight: $font-weight-bold;
-		color: $n-0;
+		@include tokens.subheading-2;
+		font-weight: tokens.$font-weight-bold;
+		color: tokens.$n-0;
 		max-width: 1000px;
 	}
 
 	&__visualizer-actions {
 		display: flex;
 		align-items: center;
-		gap: spacer(4);
+		gap: tokens.spacer(4);
 	}
 
 	&__visualizer-download {
 		display: flex;
 		align-items: center;
-		padding: pYX(2, 4);
-		border-radius: $border-radius-lil;
-		gap: spacer(2);
-		@include body-1;
-		font-weight: $font-weight-semibold;
-		color: $n-0;
+		padding: tokens.pYX(2, 4);
+		border-radius: tokens.$border-radius-lil;
+		gap: tokens.spacer(2);
+		@include tokens.body-1;
+		font-weight: tokens.$font-weight-semibold;
+		color: tokens.$n-0;
 		cursor: pointer;
 
 		&:hover {
-			background-color: $n-900;
+			background-color: tokens.$n-900;
 		}
 	}
 
 	&__visualizer-image-container {
 		width: 100%;
 		height: 90vh;
-		padding: pa(5);
+		padding: tokens.pa(5);
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -377,7 +377,7 @@ const isMobile = computed(() => {
 
 	&__visualizer-close {
 		cursor: pointer;
-		color: $n-0;
+		color: tokens.$n-0;
 	}
 
 	&__visualizer-empty-state {
@@ -386,11 +386,11 @@ const isMobile = computed(() => {
 		text-align: center;
 		justify-content: center;
 		align-items: center;
-		gap: spacer(3);
+		gap: tokens.spacer(3);
 		max-width: 250px;
-		color: $n-0;
-		@include subheading-3;
-		font-weight: $font-weight-regular;
+		color: tokens.$n-0;
+		@include tokens.subheading-3;
+		font-weight: tokens.$font-weight-regular;
 	}
 }
 
@@ -410,7 +410,7 @@ const isMobile = computed(() => {
 		&__visualizer-image-container {
 			width: 100%;
 			max-width: 100%;
-			padding: pa(5);
+			padding: tokens.pa(5);
 			display: flex;
 			justify-content: center;
 			align-items: center;

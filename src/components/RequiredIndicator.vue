@@ -11,9 +11,9 @@
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .required-indicator {
-	color: $rc-600;
+	color: tokens.$rc-600;
 }
 </style>

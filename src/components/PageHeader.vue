@@ -106,12 +106,12 @@ export default {
 };
 </script>
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 	.page-header {
 		&__container {
 			display: flex;
 			justify-content: space-between;
-			margin: mt(3);
+			margin: tokens.mt(3);
 
 			&--compact {
 				@extend .page-header__container;
@@ -122,21 +122,21 @@ export default {
 		&__aside-slot {
 			display: flex;
 			align-items: flex-end;
-			padding: pl(4);
+			padding: tokens.pl(4);
 		}
 
 		&__title {
-			@include heading-3;
-			font-weight: $font-weight-bold;
-			color: $n-900;
-			margin: mb(2);
+			@include tokens.heading-3;
+			font-weight: tokens.$font-weight-bold;
+			color: tokens.$n-900;
+			margin: tokens.mb(2);
 		}
 
 		&__subtitle {
-			@include subheading-3;
-			font-weight: $font-weight-regular;
-			color: $n-700;
-			margin: ma(0);
+			@include tokens.subheading-3;
+			font-weight: tokens.$font-weight-regular;
+			color: tokens.$n-700;
+			margin: tokens.ma(0);
 		}
 	}
 </style>

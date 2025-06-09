@@ -307,25 +307,25 @@ function toggleDatePicker() {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
-@import '../assets/sass/placeholders.scss';
+@use '../assets/sass/tokens/index' as tokens;
+@use'../assets/sass/placeholders.scss';
 
 .month-and-year-picker {
 	position: relative;
 	width: v-bind(dateInputContainerWidth);
 
 	&__icon {
-		color: $n-700;
-		margin: mt(1);
+		color: tokens.$n-700;
+		margin: tokens.mt(1);
 	}
 
 	&__dropdown {
 		position: absolute;
-		background: $n-0;
-		border: 1px solid $n-30;
-		box-shadow: $shadow-md;
-		border-radius: $border-radius-extra-small;
-		padding: pa(3);
+		background: tokens.$n-0;
+		border: 1px solid tokens.$n-30;
+		box-shadow: tokens.$shadow-md;
+		border-radius: tokens.$border-radius-extra-small;
+		padding: tokens.pa(3);
 		width: 266px;
 		z-index: 500;
 		transition: all 0.2s ease;
@@ -352,25 +352,25 @@ function toggleDatePicker() {
 	}
 
 	&__month-and-title {
-		font-weight: $font-weight-semibold;
-		color: $n-700;
+		font-weight: tokens.$font-weight-semibold;
+		color: tokens.$n-700;
 		font-size: 16px;
 		padding: 4px;
 		transition: all 0.2s ease;
 		@extend %user-select-none;
 
 		&:hover {
-			background: $n-20;
-			border-radius: $border-radius-lil;
-			color: $n-900;
+			background: tokens.$n-20;
+			border-radius: tokens.$border-radius-lil;
+			color: tokens.$n-900;
 			transition: all 0.2s ease;
 			cursor: pointer;
 		}
 	}
 
 	&__month-and-title--no-hover {
-		font-weight: $font-weight-semibold;
-		color: $n-700;
+		font-weight: tokens.$font-weight-semibold;
+		color: tokens.$n-700;
 		font-size: 16px;
 		padding: 4px;
 		transition: all 0.2s ease;
@@ -379,14 +379,14 @@ function toggleDatePicker() {
 
 	&__caret {
 		cursor: pointer;
-		color: $n-500;
+		color: tokens.$n-500;
 		transition: color 0.2s ease;
 		padding: 6px 6px;
 
 		&:hover {
-			color: $n-700;
-			background: $bn-50;
-			border-radius: $border-radius-lil;
+			color: tokens.$n-700;
+			background: tokens.$bn-50;
+			border-radius: tokens.$border-radius-lil;
 			transition: all 0.2s ease;
 			padding: 6px 6px;
 		}
@@ -394,16 +394,16 @@ function toggleDatePicker() {
 
 	&__left-caret {
 		@extend .dropdown__caret;
-		margin: ml(n1);
+		margin: tokens.ml(n1);
 	}
 
 	&__right-caret {
 		@extend .dropdown__caret;
-		margin: mr(n1);
+		margin: tokens.mr(n1);
 	}
 
 	&__caret--disabled {
-		color: $n-400;
+		color: tokens.$n-400;
 		cursor: not-allowed;
 		opacity: 0.5;
 	}

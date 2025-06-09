@@ -83,40 +83,40 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .cds-timeline-item {
 	display: flex;
 
 	&__opposite {
-		color: $n-600;
-		margin: mTRBL(n1, 6, 0, 0);
-		@include body-2;
+		color: tokens.$n-600;
+		margin: tokens.mTRBL(n1, 6, 0, 0);
+		@include tokens.body-2;
 	}
 
 	&__content-container {
-		margin: mTRBL(n1, 0 , 8, 6);
+		margin: tokens.mTRBL(n1, 0 , 8, 6);
 
 	}
 
 	&__title {
-		color: $n-900;
+		color: tokens.$n-900;
 		font-weight: 600;
-		margin: mb(2);
+		margin: tokens.mb(2);
 	}
 	
 	&__text {
-		@include caption;
-		color: $n-600;
-		font-weight: $font-weight-regular;
+		@include tokens.caption;
+		color: tokens.$n-600;
+		font-weight: tokens.$font-weight-regular;
 	}
 	
 	&__pin {
-		border-radius: $border-radius-circle;
+		border-radius: tokens.$border-radius-circle;
 		min-height: 16px !important;
 		min-width: 16px !important;
 
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			background-color: $base-color;
 			@extend .cds-timeline-item__pin;
 
@@ -135,13 +135,13 @@ export default {
 	}
 	
 	.tail {
-		background-color: $n-40;
+		background-color: tokens.$n-40;
 		height: 100% !important;
 		width: 2px !important;
 	}
 
 	.tail--dashed {
-		border: 1px dashed $n-40;
+		border: 1px dashed tokens.$n-40;
 		height: 100% !important;
 		width: 2px !important;
 	}

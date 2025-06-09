@@ -469,7 +469,7 @@ function verifyResultsHeight() {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .quick_action_bar {
 
@@ -484,29 +484,29 @@ function verifyResultsHeight() {
 		left: 0;
 		right: 0;
 		background-color: rgba(0, 0, 0, 0.35);
-		z-index: $z-index-modal;
+		z-index: tokens.$z-index-modal;
 		animation: zoom-in ease .3s;
 	}
 
 	&__search-icon {
-		color: $n-400;
+		color: tokens.$n-400;
 	}
 
 	&__input {
 		width: 50%;
-		padding: pa(4);
-		background-color: $n-0;
-		border-radius: $border-radius-medium;
-		border: 1px solid $n-30;
-		background-color: $n-0;
-		margin: mb(2);
-		box-shadow: $shadow-md;
+		padding: tokens.pa(4);
+		background-color: tokens.$n-0;
+		border-radius: tokens.$border-radius-medium;
+		border: 1px solid tokens.$n-30;
+		background-color: tokens.$n-0;
+		margin: tokens.mb(2);
+		box-shadow: tokens.$shadow-md;
 
 		input {
 			font-family: 'Satoshi', sans-serif;
-			@include subheading-3;
-			font-weight: $font-weight-regular;
-			color: $n-800;
+			@include tokens.subheading-3;
+			font-weight: tokens.$font-weight-regular;
+			color: tokens.$n-800;
 			border: none;
 			flex-grow: 1;
 
@@ -517,13 +517,13 @@ function verifyResultsHeight() {
 	}
 
 	&__clear {
-		@include overline;
-		font-weight: $font-weight-semibold;
-		color: $n-300;
+		@include tokens.overline;
+		font-weight: tokens.$font-weight-semibold;
+		color: tokens.$n-300;
 		cursor: pointer;
 
 		&:hover {
-			color: $n-500;
+			color: tokens.$n-500;
 		}
 	}
 
@@ -533,13 +533,13 @@ function verifyResultsHeight() {
 	}
 
 	&__results {
-		background-color: $n-0;
-		border-radius: $border-radius-medium;
-		border: 1px solid $n-30;
-		padding: py(5);
+		background-color: tokens.$n-0;
+		border-radius: tokens.$border-radius-medium;
+		border: 1px solid tokens.$n-30;
+		padding: tokens.py(5);
 		width: 50%;
 		max-height: 75svh;
-		box-shadow: $shadow-md;
+		box-shadow: tokens.$shadow-md;
 
 		&--with-overflow-y {
 			overflow-y: scroll;
@@ -547,45 +547,45 @@ function verifyResultsHeight() {
 	}
 
 	&__skeleton-card {
-		margin: ml(5);
+		margin: tokens.ml(5);
 	}
 
 	&__empty-state {
-		@include body-2;
-		font-weight: $font-weight-regular;
+		@include tokens.body-2;
+		font-weight: tokens.$font-weight-regular;
 		font-style: italic;
-		color: $n-400;
+		color: tokens.$n-400;
 		text-align: center;
 	}
 
 	&__results-block {
 
 		&:last-child {
-			margin: mb(n(3));
+			margin: tokens.mb(n(3));
 		}
 	}
 
 	&__divider {
-		padding: px(5);
+		padding: tokens.px(5);
 	}
 
 	&__result-item-wrapper {
 		cursor: pointer;
 
 		&:last-child {
-			margin: mb(3);
+			margin: tokens.mb(3);
 		}
 	}
 
 	&__result-item {
 		cursor: pointer;
-		padding: pYX(3, 5);
-		@include body-1;
-		font-weight: $font-weight-regular;
-		color: $n-800;
+		padding: tokens.pYX(3, 5);
+		@include tokens.body-1;
+		font-weight: tokens.$font-weight-regular;
+		color: tokens.$n-800;
 
 		&:hover {
-			background-color: $n-20;
+			background-color: tokens.$n-20;
 
 			.quick_action_bar__remove-recent-icon {
 				display: block;
@@ -594,23 +594,23 @@ function verifyResultsHeight() {
 	}
 
 	&__show-more {
-		@include caption;
-		color: $n-400;
+		@include tokens.caption;
+		color: tokens.$n-400;
 		text-align: left;
 		cursor: pointer;
 		height: 40px;
-		padding: pl(5);
-		margin: mb(3);
+		padding: tokens.pl(5);
+		margin: tokens.mb(3);
 
 		&:hover {
-			background-color: $bn-50;
-			color: $bn-400;
+			background-color: tokens.$bn-50;
+			color: tokens.$bn-400;
 		}
 	}
 
 	&__footer {
 		width: 100%;
-		margin: mb(2);
+		margin: tokens.mb(2);
 	}
 }
 
