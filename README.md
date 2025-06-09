@@ -124,7 +124,7 @@ npm run test
 npm run test:ui
 ```
 
-- Para detalhamento dos testes, necessário rodar anteriormente o comando acima e em seguida:
+- Para visualizar o detalhamento da cobertura de testes, use o comando abaixo:
 ```bash
 npx open-cli coverage/index.html
 ```
