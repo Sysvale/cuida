@@ -84,7 +84,7 @@ import 'v-calendar/dist/style.css';
 import { isEmpty } from 'lodash';
 import CdsChevron from './Chevron.vue';
 import CdsIcon from './Icon.vue';
-import sassColorVariables from '../assets/sass/colors.module.scss';
+import sassColorVariables from '../assets/sass/tokens/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
 const dateStringValidator = (value) => /^(19|20)\d\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/.test(value);
@@ -338,21 +338,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .inline-date-input {
-	outline: 1px solid $n-50;
+	outline: 1px solid tokens.$n-50;
 	min-width: 266px;
 	width: fit-content;
-	color: $n-600;
-	border-radius: $border-radius-extra-small !important;
+	color: tokens.$n-600;
+	border-radius: tokens.$border-radius-extra-small !important;
 	cursor: pointer;
-	background: $n-0;
+	background: tokens.$n-0;
 
 	&__icon {
 		display: grid;
 		place-items: center;
-		margin: mr(3);
+		margin: tokens.mr(3);
 	}
 
 	&--fluid {
@@ -362,7 +362,7 @@ export default {
 
 	&--disabled {
 		@extend .inline-date-input;
-		background-color: $n-20 !important;
+		background-color: tokens.$n-20 !important;
 		pointer-events: none;
 		border: none;
 	}
@@ -374,23 +374,23 @@ export default {
 	}
 
 	&__label {
-		@include label;
+		@include tokens.label;
 		display: flex;
 		justify-content: space-between;
-		margin: ml(3)
+		margin: tokens.ml(3)
 	}
 }
 
 .date-input {
 	display: flex;
 	height: 40px;
-	color: $n-600;
+	color: tokens.$n-600;
 	cursor: pointer;
 
 	input {
 		border: none;
 		outline: 0;
-		padding: pl(3);
+		padding: tokens.pl(3);
 	}
 
 	&--fluid {
@@ -400,7 +400,7 @@ export default {
 
 	&--disabled {
 		@extend .date-input;
-		background-color: $n-20 !important;
+		background-color: tokens.$n-20 !important;
 		pointer-events: none;
 		border: none;
 	}
@@ -411,14 +411,14 @@ export default {
 }
 
 .vc-container {
-	outline: 1px solid $n-30 !important;
+	outline: 1px solid tokens.$n-30 !important;
 	border: none !important;
-	border-radius: $border-radius-extra-small !important;
+	border-radius: tokens.$border-radius-extra-small !important;
 }
 
 .vc-popover-content {
 	box-shadow: none !important;
-	box-shadow: 0px 0px 8px rgba($n-900, .08) !important;
+	box-shadow: 0px 0px 8px rgba(tokens.$n-900, .08) !important;
 }
 
 .vc-arrows-container {
@@ -433,7 +433,7 @@ export default {
 }
 
 .vc-weeks {
-	margin: mt(5);
+	margin: tokens.mt(5);
 }
 
 .vc-header {
@@ -443,7 +443,7 @@ export default {
 }
 
 .vc-nav-title {
-	@include body-1;
+	@include tokens.body-1;
 	font-weight: 800;
 	background-color: transparent;
 }
@@ -453,7 +453,7 @@ export default {
 }
 
 .vc-nav-item {
-	@include body-1;
+	@include tokens.body-1;
 	background-color: transparent;
 	text-transform: capitalize;
 	font-weight: 430;

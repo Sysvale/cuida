@@ -252,7 +252,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .stepper {
 	display: flex;
@@ -277,33 +277,33 @@ export default {
 	}
 
 	&__step--active {
-		color: $n-600;
+		color: tokens.$n-600;
 		border: 2px;
 		border-style: solid;
-		border-color: $gp-400;
+		border-color: tokens.$gp-400;
 	}
 
 	&__step--muted {
-		color: $n-500;
-		border-color: $n-500;
+		color: tokens.$n-500;
+		border-color: tokens.$n-500;
 	}
 
 	&__step--in-processing {
 		border: 2px;
 		border-style: solid;
-		border-color: $bn-400;
+		border-color: tokens.$bn-400;
 	}
 
 	&__step--error {
-		background-color: $rc-400;
-		border-color: $rc-400;
-		color: $n-0;
+		background-color: tokens.$rc-400;
+		border-color: tokens.$rc-400;
+		color: tokens.$n-0;
 	}
 
 	&__step--completed {
-		background-color: $gp-400;
-		border-color: $gp-400;
-		color: $n-0;
+		background-color: tokens.$gp-400;
+		border-color: tokens.$gp-400;
+		color: tokens.$n-0;
 	}
 
 	&__step--clickable {
@@ -311,17 +311,17 @@ export default {
 	}
 
 	&__step-label {
-		margin: mTRBL(2, 0, 0, n8);
+		margin: tokens.mTRBL(2, 0, 0, n8);
 		line-height: 1.0;
 		display: block;
 		text-align: center;
 
 		&--muted {
-			color: $n-600;
+			color: tokens.$n-600;
 		}
 
 		&--active small {
-			color: $n-700;
+			color: tokens.$n-700;
 			font-weight: 600;
 		}
 
@@ -331,7 +331,7 @@ export default {
 
 		&--vertical {
 			@extend .stepper__step-label;
-			margin: mr(2);
+			margin: tokens.mr(2);
 			text-align: right;
 		}
 	}
@@ -362,15 +362,15 @@ export default {
 	}
 
 	&__divider--default {
-		background-color: $n-400;
+		background-color: tokens.$n-400;
 	}
 
 	&__divider--in-progress {
-		background: linear-gradient(90deg, #43E4CC 0%, $n-400 67.57%);
+		background: linear-gradient(90deg, #43E4CC 0%, tokens.$n-400 67.57%);
 	}
 
 	&__divider--completed {
-		background: $gp-400;
+		background: tokens.$gp-400;
 	}
 
 	&__icon-container {
@@ -419,15 +419,15 @@ export default {
 	}
 
 	&__vertical-divider--default {
-		background-color: $n-400;
+		background-color: tokens.$n-400;
 	}
 
 	&__vertical-divider--in-progress {
-		background: linear-gradient(180deg, #43E4CC 0%, $n-400 67.57%);
+		background: linear-gradient(180deg, #43E4CC 0%, tokens.$n-400 67.57%);
 	}
 
 	&__vertical-divider--completed {
-		background: $gp-400;
+		background: tokens.$gp-400;
 	}
 }
 </style>

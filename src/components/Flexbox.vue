@@ -122,7 +122,7 @@ const fluidResolver = computed(() => {
 	
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .flexbox {
 	align-items: v-bind(align);

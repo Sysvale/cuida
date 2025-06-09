@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, computed } from 'vue';
+import { computed } from 'vue';
 import SideBar from './SideBar.vue';
 import SecondaryNavigation from './SecondaryNavigation.vue';
 import PageContainer from './PageContainer.vue';

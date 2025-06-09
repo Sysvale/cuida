@@ -199,13 +199,13 @@ function handleSearchInput(value) {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .data-table {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	gap: spacer(3);
+	gap: tokens.spacer(3);
 
 	&__actions {
 		width: 100%;
@@ -220,8 +220,8 @@ function handleSearchInput(value) {
 	}
 
 	&__items-counter {
-		@include caption;
-		color: $n-600;
+		@include tokens.caption;
+		color: tokens.$n-600;
 		display: flex;
 		align-items: flex-end;
 

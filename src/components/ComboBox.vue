@@ -363,8 +363,8 @@ const handleClick = () => {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
-@import '../assets/sass/placeholders.scss';
+@use '../assets/sass/tokens/index' as tokens;
+@use'../assets/sass/placeholders.scss';
 
 	.combobox {
 		width: v-bind(selectContainerWidth);
@@ -380,16 +380,16 @@ const handleClick = () => {
 		}
 
 		&__empty {
-			padding: spacer(3);
-			color: $n-300;
+			padding: tokens.spacer(3);
+			color: tokens.$n-300;
 		}
 
 		&__options {
-			@include body-2;
+			@include tokens.body-2;
 			width: v-bind(optionContainerWidth);
 			height: auto;
-			color: $n-700;
-			outline: 1px solid $n-40;
+			color: tokens.$n-700;
+			outline: 1px solid tokens.$n-40;
 			display: flex;
 			flex-direction: column;
 			margin-top: 6px;
@@ -399,8 +399,8 @@ const handleClick = () => {
 			overflow: auto;
 			position: absolute;
 			z-index: 999;
-			background-color: $n-0;
-			border-radius: $border-radius-extra-small;
+			background-color: tokens.$n-0;
+			border-radius: tokens.$border-radius-extra-small;
 			animation: slide-down 0.2s ease-in-out;
 
 			&--default {
@@ -421,7 +421,7 @@ const handleClick = () => {
 			}
 
 			&::-webkit-scrollbar-thumb {
-				background: $n-100;
+				background: tokens.$n-100;
 				border-radius: 5px;
 				border-right: 3px solid transparent;
 				border-left: 3px solid transparent;
@@ -429,7 +429,7 @@ const handleClick = () => {
 			}
 
 			&::-webkit-scrollbar-thumb:hover {
-				background: $n-50;
+				background: tokens.$n-50;
 			}
 
 			&--up {
@@ -471,23 +471,23 @@ const handleClick = () => {
 
 .option {
 	&__text {
-		padding: pa(3);
+		padding: tokens.pa(3);
 		text-overflow: ellipsis;
 
 		&--selected {
-			background: $n-0 !important;
-			color: $n-800!important;
-			@include body-2;
-			font-weight: $font-weight-semibold;
+			background: tokens.$n-0 !important;
+			color: tokens.$n-800!important;
+			@include tokens.body-2;
+			font-weight: tokens.$font-weight-semibold;
 
 			&:hover {
-				background: $n-20 !important;
+				background: tokens.$n-20 !important;
 			}
 		}
 
 		&--muted {
 			@extend .option__text;
-			color: $n-400;
+			color: tokens.$n-400;
 		}
 
 		&:last-of-type {
@@ -506,9 +506,9 @@ const handleClick = () => {
 	&__button {
 		@extend .option__text;
 		cursor: pointer;
-		border-top: 1px solid $n-30;
-		font-weight: $font-weight-semibold;
-		background-color: $n-20;
+		border-top: 1px solid tokens.$n-30;
+		font-weight: tokens.$font-weight-semibold;
+		background-color: tokens.$n-20;
 		position: sticky; 
 		bottom: 0;
 		z-index: 1;
@@ -519,7 +519,7 @@ const handleClick = () => {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	gap: spacer(1);
+	gap: tokens.spacer(1);
 
 	&__icon {
 		margin-top: 1px;

@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	@import '../assets/sass/tokens.scss';
+	@use '../assets/sass/tokens/index' as tokens;
 
 	.skeleton__container {
 		position: relative;
@@ -39,8 +39,8 @@ export default {
 		cursor: wait;
 		height: var(--height);
 		width: var(--width);
-		background-color: $n-30;
-		border-radius: $border-radius-lil;
+		background-color: tokens.$n-30;
+		border-radius: tokens.$border-radius-lil;
 	}
 
 	.skeleton__container:after {
@@ -51,7 +51,7 @@ export default {
 		bottom: 0;
 		left: 0;
 		z-index: 0;
-		background: linear-gradient(90deg, transparent, $n-20, transparent);
+		background: linear-gradient(90deg, transparent, tokens.$n-20, transparent);
 		animation: loading-animation 1.75s linear infinite;
 	}
 

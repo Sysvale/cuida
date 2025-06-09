@@ -1,0 +1,10 @@
+@use './fontWeight' as fontWeight;
+@use './colors.module.scss' as colors;
+
+@mixin label {
+	font-size: 14px;
+	font-weight: fontWeight.$font-weight-semibold;
+	color: colors.$n-700;
+	display: block;
+	margin: mb(1);
+}
