@@ -1,0 +1,126 @@
+$spacers: 0, .25, .5, .75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3;
+$rem: 16px;
+
+@function getSpacerValue($n) {
+	$number_as_string: "" + $n;
+
+	@if (str-slice($number_as_string, 1, 1) == 'n') {
+		@return nth($spacers, to-number((str-slice($number_as_string, 2))) + 1) * -$rem;
+	} @else {
+		@return nth($spacers, to-number($number_as_string) + 1) * $rem;
+	}
+}
+
+// Auxiliary function to convert string to number
+
+@function to-number($value) {
+	@if type-of($value) == 'number' {
+		@return $value;
+	} @else if type-of($value) != 'string' {
+		@error 'Value for `to-number` should be a number or a string.';
+	}
+	
+	$result: 0;
+	$digits: 0;
+	$minus: str-slice($value, 1, 1) == '-';
+	$numbers: ('0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9);
+	
+	@for $i from if($minus, 2, 1) through str-length($value) {
+		$character: str-slice($value, $i, $i);
+
+		@if (index(map-keys($numbers), $character) or $character == '.') {
+			@if $character == '.' {
+				$digits: 1;
+			} @else if $digits == 0 {
+				$result: $result * 10 + map-get($numbers, $character);
+			} @else {
+				$digits: $digits * 10;
+				$result: $result + map-get($numbers, $character) / $digits;
+			}
+		}
+	}
+
+	@return if($minus, -$result, $result);
+}
+
+// Spacer
+
+@function spacer($n) {
+	@return getSpacerValue($n);
+}
+
+// Padding functions
+
+@function pa($n) {
+	@return getSpacerValue($n);
+}
+
+@function pt($n) {
+	@return getSpacerValue($n) 0px 0px 0px;
+}
+
+@function pr($n) {
+	@return 0px getSpacerValue($n) 0px 0px;
+}
+
+@function pb($n) {
+	@return 0px 0px getSpacerValue($n) 0px;
+}
+
+@function pl($n) {
+	@return 0px 0px 0px getSpacerValue($n);
+}
+
+@function py($n) {
+	@return getSpacerValue($n) 0px;
+}
+
+@function px($n) {
+	@return 0px getSpacerValue($n);
+}
+
+@function pTRBL($n1, $n2, $n3, $n4) {
+	@return getSpacerValue($n1) getSpacerValue($n2) getSpacerValue($n3) getSpacerValue($n4);
+}
+
+@function pYX($n1, $n2) {
+	@return getSpacerValue($n1) getSpacerValue($n2);
+}
+
+// Margin functions
+
+@function ma($n) {
+	@return getSpacerValue($n);
+}
+
+@function mt($n) {
+	@return getSpacerValue($n) 0px 0px 0px;
+}
+
+@function mr($n) {
+	@return 0px getSpacerValue($n) 0px 0px;
+}
+
+@function mb($n) {
+	@return 0px 0px getSpacerValue($n) 0px;
+}
+
+@function ml($n) {
+	@return 0px 0px 0px getSpacerValue($n);
+}
+
+@function my($n) {
+	@return getSpacerValue($n) 0px;
+}
+
+@function mx($n) {
+	@return 0px getSpacerValue($n);
+}
+
+@function mTRBL($n1, $n2, $n3, $n4) {
+	@return getSpacerValue($n1) getSpacerValue($n2) getSpacerValue($n3) getSpacerValue($n4);
+}
+
+@function mYX($n1, $n2) {
+	@return getSpacerValue($n1) getSpacerValue($n2);
+}
