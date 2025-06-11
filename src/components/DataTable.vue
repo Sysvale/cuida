@@ -7,6 +7,7 @@
 					v-model="internalSearch"
 					hide-label
 					fluid
+					:disabled="loading"
 					@update:model-value="handleSearchInput"
 				/>
 				<div
@@ -29,6 +30,7 @@
 						v-if="!hideCustomizeButton"
 						:size="withSearch ? 'md' : 'sm'"
 						secondary
+						:disabled="loading"
 						@button-click="handleCustomizeButtonClick"
 					>
 						Personalizar tabela
@@ -43,7 +45,21 @@
 			</div>
 
 			<div class="data-table__table-container">
+				<div v-if="loading">
+					<cds-table
+						:fields="$attrs.fields"
+						:items="[{}, {}, {}, {}]"
+					>
+						<template #table-item>
+							<cds-skeleton
+								width="100"
+								height="20"
+							/>
+						</template>
+					</cds-table>
+				</div>
 				<cds-table
+					v-else
 					v-bind="$attrs"
 					:selection-variant="selectionVariant"
 				>
@@ -93,6 +109,7 @@ import CdsTable from './Table.vue';
 import CustomFieldsSideSheet from './InternalComponents/CustomFieldsSideSheet.vue';
 import CdsFlexbox from './Flexbox.vue';
 import CdsSearchInput from './SearchInput.vue';
+import CdsSkeleton from './Skeleton.vue';
 
 const hasHeaderSlot = useHasSlot('header-item');
 
@@ -152,6 +169,13 @@ const props = defineProps({
  	* Especifica se a barra de busca da tabela deve ser exibida.
 	*/
 	withSearch: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	 * Ativa o estado de carregamento do componente, desabilitando as ações superiores e exibindo um Skeleton para a tabela.
+	 */
+	loading: {
 		type: Boolean,
 		default: false,
 	},
