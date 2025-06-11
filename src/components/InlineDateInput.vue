@@ -370,7 +370,11 @@ export default {
 	&__container {
 		@extend .inline-date-input;
 		display: flex;
-		align-items: center
+		align-items: center;
+
+		input {
+			font-family: 'Satoshi';
+		}
 	}
 
 	&__label {

@@ -111,7 +111,7 @@ import { Interval, DateTime } from 'luxon';
 import { hourFormat, isAfter } from '../utils/validators/time';
 
 const valueValidator = (value) => {
-	if (value === '' || value === []) {
+	if (value === '' || (Array.isArray(value) && value.length === 0)) {
 		return true;
 	}
 
@@ -361,6 +361,10 @@ export default {
 		color: tokens.$n-400;
 		display: flex;
 		align-items: center;
+
+		input {
+			font-family: 'Satoshi';
+		}
 	}
 
 	&__separator {

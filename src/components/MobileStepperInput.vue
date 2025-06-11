@@ -109,6 +109,10 @@ watch(model, (newValue) => {
 		display: flex;
 		align-items: center;
 		gap: tokens.spacer(2);
+
+		input {
+			font-family: 'Satoshi';
+		}
 	}
 
 	&__suffix {
