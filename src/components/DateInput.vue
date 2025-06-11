@@ -322,13 +322,6 @@ const props = defineProps({
 		default: 'https://cuida.framer.wiki/',
 	},
 	/**
-	* Controla a marcação do dia atual no calendário.
-	*/
-	highlightToday: {
-		type: Boolean,
-		default: false,
-	},
-	/**
 	* Define o modo de interação com o DateInput. Quando definido como 'typing', o componente permite apenas
 	* digitação. No modo 'picking', a data deve ser selecionada através do date picker, desabilitando a digitação direta.
 	*/
@@ -833,7 +826,7 @@ function handleMonthSelection(selectedMonth) {
 function handleYearSelection(selectedYear) {
 	internalValue.value = internalValue.value ? internalValue.value : DateTime.now().setLocale('pt-BR').toFormat('dd/MM/yyyy');
 	showYearPicker.value = !showYearPicker.value;
-	let [day, month, year] = internalValue.value.split('/');
+	let [day, month] = internalValue.value.split('/');
 
 	currentDate.value = DateTime.fromFormat(`${day}/${month}/${selectedYear}`, 'dd/MM/yyyy');
 }

@@ -7,6 +7,14 @@
 	border-radius: tokens.$border-radius-extra-small;
 	width: 266px;
 	background: tokens.$n-0;
+
+    input {
+        font-family: 'Satoshi';
+    }
+
+    textarea {
+        font-family: 'Satoshi';
+    }
 }
 
 %placeholder {

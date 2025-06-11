@@ -440,6 +440,10 @@ export default {
 		&:hover:not([disabled]) {
 			outline: 1px solid tokens.$n-100;
 		}
+
+		input {
+			font-family: 'Satoshi';
+		}
 	}
 
 	&__input {

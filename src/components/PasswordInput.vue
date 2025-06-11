@@ -275,6 +275,10 @@ export default {
 	width: v-bind(resolveInputWidth);
 	background: tokens.$n-0;
 
+	input {
+		font-family: 'Satoshi';
+	}
+
 	&--fluid {
 		@extend .password-input;
 		width: 100%;
