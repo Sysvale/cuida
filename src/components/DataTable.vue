@@ -60,22 +60,23 @@
 				</div>
 				<div
 					v-else-if="isEmpty($attrs.items)"
-					class="empty"
 				>
-					<slot
-						v-if="hasStateEmpty"
-						name="empty"
-					/>
 					<div
-						v-else
+						v-if="hasStateEmpty"
 						class="empty"
 					>
-						<CdsImage
-							:src="emptyImgResolver"
-							width="200"
-						/>
-						<span class="empty__title">{{ emptyTitle }}</span>
-						<span class="empty__description">{{ emptyDescription }}</span>
+						<slot name="empty" />
+					</div>
+					<div v-else>
+						<CdsEmptyState
+							:image="emptyImgResolver"
+							:title="emptyTitle"
+							hide-action-button
+						>
+							<template #text>
+								{{ emptyDescription }}
+							</template>
+						</CdsEmptyState>
 					</div>
 				</div>
 				<cds-table
@@ -130,7 +131,7 @@ import CustomFieldsSideSheet from './InternalComponents/CustomFieldsSideSheet.vu
 import CdsFlexbox from './Flexbox.vue';
 import CdsSearchInput from './SearchInput.vue';
 import CdsSkeleton from './Skeleton.vue';
-import CdsImage from './Image.vue';
+import CdsEmptyState from './EmptyState.vue'
 
 const hasHeaderSlot = useHasSlot('header-item');
 const hasStateEmpty = useHasSlot('empty');
@@ -311,18 +312,6 @@ function handleSearchInput(value) {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	color: tokens.$n-500;
-
-	&__title {
-		@include tokens.subheading-2;
-		font-weight: tokens.$font-weight-bold;
-		margin: tokens.mt(6);
-	}
-
-	&__description {
-		@include tokens.body-1;
-		margin: tokens.mt(1);
-	}
 }
 
 </style>
