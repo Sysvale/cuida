@@ -71,7 +71,7 @@
 						class="empty"
 					>
 						<CdsImage
-							:src="emptySrcImg"
+							:src="emptyImgResolver"
 							width="200"
 						/>
 						<span class="empty__title">{{ emptyTitle }}</span>
@@ -206,21 +206,21 @@ const props = defineProps({
 	*/
 	emptySrcImg: {
 		type: String,
-		default: '',
+		default: null,
 	},
 	/**
 	 * Título que vai ser renderizado quando o estado for empty.
 	 */
 	emptyTitle: {
 		type: String,
-		default: '',
+		default: 'Nenhum registro',
 	},
 	/**
 	 * Descrição que vai ser renderizado quando o estado for empty.
 	 */
 	emptyDescription: {
 		type: String,
-		default: '',
+		default: 'Certifique-se de ajustar os filtros para encontrar resultados.',
 	},
 });
 
@@ -241,6 +241,8 @@ const computedMaxVisibleFields = computed(() => {
 
 const loading = computed(() => props.state === 'loading');
 const empty = computed(() => props.state === 'empty');
+
+const emptyImgResolver = computed(() => props.emptySrcImg ?? 'https://cdn-icons-png.flaticon.com/512/7486/7486747.png');
 
 watch(() => props.customFieldsList, () => {
 	internalCustomFieldsList.value = cloneDeep(props.customFieldsList);
