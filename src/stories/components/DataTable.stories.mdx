@@ -5,15 +5,6 @@ import DataTable from '../../components/DataTable.vue';
 	title="Componentes/Display/DataTable"
 	component={ DataTable }
 	argTypes={{
-		state: {
-			control:{
-				type: 'select',
-				options: [
-					'default',
-					'empty',
-				],
-			}
-		},
 		selectionVariant: {
 			control:{
 				type: 'select',
@@ -233,7 +224,6 @@ export const customFields = [
 			customFieldsList: customFields,
 			minVisibleFields: 1,
 			maxVisibleFields: 0,
-			state: 'default',
 		}}
 	>
 		{ Template.bind({}) }

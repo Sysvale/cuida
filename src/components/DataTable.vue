@@ -59,7 +59,7 @@
 					</cds-table>
 				</div>
 				<div
-					v-else-if="empty"
+					v-else-if="isEmpty"
 					class="empty"
 				>
 					<slot
@@ -202,11 +202,11 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	* Especifica o estado do input. As opções são 'default', 'empty'.
+	* Ativa o estado vazio do componente. Utilizar quando desejar gerenciar retornos vazios de filtragens.
 	*/
-	state: {
-		type: String,
-		default: 'default',
+	isEmpty: {
+		type: Boolean,
+		default: false,
 	},
 	/**
 	* Caminho da imagem que vai ser renderizada quando o estado for empty.
@@ -245,8 +245,6 @@ const computedMaxVisibleFields = computed(() => {
 
 	return props.maxVisibleFields > props.minVisibleFields ? props.maxVisibleFields : props.minVisibleFields;
 });
-
-const empty = computed(() => props.state === 'empty');
 
 const emptyImgResolver = computed(() => props.emptySrcImg ?? 'https://cdn-icons-png.flaticon.com/512/7486/7486747.png');
 
