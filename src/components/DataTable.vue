@@ -58,6 +58,26 @@
 						</template>
 					</cds-table>
 				</div>
+				<div
+					v-else-if="empty"
+					class="empty"
+				>
+					<slot
+						v-if="hasStateEmpty"
+						name="empty"
+					/>
+					<div
+						v-else
+						class="empty"
+					>
+						<CdsImage
+							:src="emptySrcImg"
+							width="200"
+						/>
+						<span class="empty__title">{{ emptyTitle }}</span>
+						<span class="empty__description">{{ emptyDescription }}</span>
+					</div>
+				</div>
 				<cds-table
 					v-else
 					v-bind="$attrs"
@@ -110,8 +130,10 @@ import CustomFieldsSideSheet from './InternalComponents/CustomFieldsSideSheet.vu
 import CdsFlexbox from './Flexbox.vue';
 import CdsSearchInput from './SearchInput.vue';
 import CdsSkeleton from './Skeleton.vue';
+import CdsImage from './Image.vue';
 
 const hasHeaderSlot = useHasSlot('header-item');
+const hasStateEmpty = useHasSlot('empty');
 
 const props = defineProps({
 	/**
@@ -166,18 +188,39 @@ const props = defineProps({
 		validator: (value) => value >= 0,
 	},
 	/**
- 	* Especifica se a barra de busca da tabela deve ser exibida.
+	* Especifica se a barra de busca da tabela deve ser exibida.
 	*/
 	withSearch: {
 		type: Boolean,
 		default: false,
 	},
 	/**
-	 * Ativa o estado de carregamento do componente, desabilitando as ações superiores e exibindo um Skeleton para a tabela.
+	* Especifica o estado do input. As opções são 'default', 'empty', 'loading'.
+	*/
+	state: {
+		type: String,
+		default: 'default',
+	},
+	/**
+	* Caminho da imagem que vai ser renderizada quando o estado for empty.
+	*/
+	emptySrcImg: {
+		type: String,
+		default: '',
+	},
+	/**
+	 * Título que vai ser renderizado quando o estado for empty.
 	 */
-	loading: {
-		type: Boolean,
-		default: false,
+	emptyTitle: {
+		type: String,
+		default: '',
+	},
+	/**
+	 * Descrição que vai ser renderizado quando o estado for empty.
+	 */
+	emptyDescription: {
+		type: String,
+		default: '',
 	},
 });
 
@@ -195,6 +238,9 @@ const computedMaxVisibleFields = computed(() => {
 
 	return props.maxVisibleFields > props.minVisibleFields ? props.maxVisibleFields : props.minVisibleFields;
 });
+
+const loading = computed(() => props.state === 'loading');
+const empty = computed(() => props.state === 'empty');
 
 watch(() => props.customFieldsList, () => {
 	internalCustomFieldsList.value = cloneDeep(props.customFieldsList);
@@ -257,6 +303,26 @@ function handleSearchInput(value) {
 
 	&__table-container {
 		overflow-x: auto;
+	}
+}
+
+.empty {
+	margin: tokens.mt(4);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: tokens.$n-500;
+
+	&__title {
+		@include tokens.subheading-2;
+		font-weight: tokens.$font-weight-bold;
+		margin: tokens.mt(6);
+	}
+
+	&__description {
+		@include tokens.body-1;
+		margin: tokens.mt(1);
 	}
 }
 
