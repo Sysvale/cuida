@@ -195,7 +195,14 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	* Especifica o estado do input. As opções são 'default', 'empty', 'loading'.
+	 *  * Ativa o estado de carregamento do componente, desabilitando as ações superiores e exibindo um Skeleton para a tabela.
+	 */
+	loading: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Especifica o estado do input. As opções são 'default', 'empty'.
 	*/
 	state: {
 		type: String,
@@ -239,7 +246,6 @@ const computedMaxVisibleFields = computed(() => {
 	return props.maxVisibleFields > props.minVisibleFields ? props.maxVisibleFields : props.minVisibleFields;
 });
 
-const loading = computed(() => props.state === 'loading');
 const empty = computed(() => props.state === 'empty');
 
 const emptyImgResolver = computed(() => props.emptySrcImg ?? 'https://cdn-icons-png.flaticon.com/512/7486/7486747.png');
