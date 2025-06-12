@@ -59,7 +59,7 @@
 					</cds-table>
 				</div>
 				<div
-					v-else-if="isEmpty"
+					v-else-if="isEmpty($attrs.items)"
 					class="empty"
 				>
 					<slot
@@ -122,7 +122,7 @@
 
 <script setup>
 import { ref, watch, computed } from 'vue';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, isEmpty } from 'lodash';
 import { useHasSlot } from '../utils/composables/useHasSlot';
 import CdsButton from './Button.vue';
 import CdsTable from './Table.vue';
@@ -198,13 +198,6 @@ const props = defineProps({
 	 *  * Ativa o estado de carregamento do componente, desabilitando as ações superiores e exibindo um Skeleton para a tabela.
 	 */
 	loading: {
-		type: Boolean,
-		default: false,
-	},
-	/**
-	* Ativa o estado vazio do componente. Utilizar quando desejar gerenciar retornos vazios de filtragens.
-	*/
-	isEmpty: {
 		type: Boolean,
 		default: false,
 	},
