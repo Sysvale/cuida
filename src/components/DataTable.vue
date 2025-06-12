@@ -196,7 +196,7 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	 *  * Ativa o estado de carregamento do componente, desabilitando as ações superiores e exibindo um Skeleton para a tabela.
+	 * Ativa o estado de carregamento do componente, desabilitando as ações superiores e exibindo um Skeleton para a tabela.
 	 */
 	loading: {
 		type: Boolean,
