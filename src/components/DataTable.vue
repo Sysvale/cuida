@@ -58,6 +58,27 @@
 						</template>
 					</cds-table>
 				</div>
+				<div
+					v-else-if="isEmpty($attrs.items)"
+				>
+					<div
+						v-if="hasStateEmpty"
+						class="empty"
+					>
+						<slot name="empty" />
+					</div>
+					<div v-else>
+						<CdsEmptyState
+							:image="emptyImgResolver"
+							:title="emptyTitle"
+							hide-action-button
+						>
+							<template #text>
+								{{ emptyDescription }}
+							</template>
+						</CdsEmptyState>
+					</div>
+				</div>
 				<cds-table
 					v-else
 					v-bind="$attrs"
@@ -102,7 +123,7 @@
 
 <script setup>
 import { ref, watch, computed } from 'vue';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, isEmpty } from 'lodash';
 import { useHasSlot } from '../utils/composables/useHasSlot';
 import CdsButton from './Button.vue';
 import CdsTable from './Table.vue';
@@ -110,8 +131,10 @@ import CustomFieldsSideSheet from './InternalComponents/CustomFieldsSideSheet.vu
 import CdsFlexbox from './Flexbox.vue';
 import CdsSearchInput from './SearchInput.vue';
 import CdsSkeleton from './Skeleton.vue';
+import CdsEmptyState from './EmptyState.vue'
 
 const hasHeaderSlot = useHasSlot('header-item');
+const hasStateEmpty = useHasSlot('empty');
 
 const props = defineProps({
 	/**
@@ -166,7 +189,7 @@ const props = defineProps({
 		validator: (value) => value >= 0,
 	},
 	/**
- 	* Especifica se a barra de busca da tabela deve ser exibida.
+	* Especifica se a barra de busca da tabela deve ser exibida.
 	*/
 	withSearch: {
 		type: Boolean,
@@ -178,6 +201,27 @@ const props = defineProps({
 	loading: {
 		type: Boolean,
 		default: false,
+	},
+	/**
+	* Caminho da imagem que vai ser renderizada quando o estado for empty.
+	*/
+	emptySrcImg: {
+		type: String,
+		default: null,
+	},
+	/**
+	 * Título que vai ser renderizado quando o estado for empty.
+	 */
+	emptyTitle: {
+		type: String,
+		default: 'Nenhum registro',
+	},
+	/**
+	 * Descrição que vai ser renderizado quando o estado for empty.
+	 */
+	emptyDescription: {
+		type: String,
+		default: 'Certifique-se de ajustar os filtros para encontrar resultados.',
 	},
 });
 
@@ -195,6 +239,8 @@ const computedMaxVisibleFields = computed(() => {
 
 	return props.maxVisibleFields > props.minVisibleFields ? props.maxVisibleFields : props.minVisibleFields;
 });
+
+const emptyImgResolver = computed(() => props.emptySrcImg ?? 'https://cdn-icons-png.flaticon.com/512/7486/7486747.png');
 
 watch(() => props.customFieldsList, () => {
 	internalCustomFieldsList.value = cloneDeep(props.customFieldsList);
@@ -258,6 +304,14 @@ function handleSearchInput(value) {
 	&__table-container {
 		overflow-x: auto;
 	}
+}
+
+.empty {
+	margin: tokens.mt(4);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 </style>
