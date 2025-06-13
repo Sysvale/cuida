@@ -285,18 +285,21 @@ export default {
 	&--sm {
 		@include tokens.button-3;
 		padding: tokens.pYX(2, 4);
+		height: 32px;
 		border-radius: tokens.$border-radius-lil;
 	}
 
 	&--md {
 		@include tokens.button-2;
 		padding: tokens.pYX(3, 6);
+		height: 40px;
 		border-radius: tokens.$border-radius-extra-small;
 	}
 
 	&--lg {
 		@include tokens.button-1;
 		padding: tokens.pYX(4, 8);
+		height: 48px;
 		border-radius: tokens.$border-radius-extra-small;
 	}
 }
