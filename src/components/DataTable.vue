@@ -229,6 +229,7 @@ const props = defineProps({
 	searchInputDelay: {
 		type: Number,
 		default: 500,
+		validator: (value) => value >= 0,
 	},
 });
 
