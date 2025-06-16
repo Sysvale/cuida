@@ -224,7 +224,7 @@ const props = defineProps({
 		default: 'Certifique-se de ajustar os filtros para encontrar resultados.',
 	},
 	/**
-	 * Tempo de atraso entre a digitação e a emissão do evento de busca.
+	 * Tempo de atraso entre a digitação e a emissão do evento de busca (em ms).
 	 */
 	searchInputDelay: {
 		type: Number,
