@@ -223,6 +223,14 @@ const props = defineProps({
 		type: String,
 		default: 'Certifique-se de ajustar os filtros para encontrar resultados.',
 	},
+	/**
+	 * Tempo de atraso entre a digitação e a emissão do evento de busca (em ms).
+	 */
+	searchInputDelay: {
+		type: Number,
+		default: 500,
+		validator: (value) => value >= 0,
+	},
 });
 
 const emits = defineEmits(['update-fields-list', 'customize-click', 'search']);
@@ -264,7 +272,7 @@ function handleSearchInput(value) {
 	clearTimeout(searchTimeout.value);
 	searchTimeout.value = setTimeout(() => {
 		emits('search', value);
-	}, 500);
+	}, props.searchInputDelay);
 }
 </script>
 
