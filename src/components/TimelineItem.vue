@@ -15,13 +15,16 @@
 				class="spinner"
 				:variant="variant"
 			/>
-			<cds-icon
+			<div
 				v-else-if="icon"
-				:name="icon"
-				class="icon"
-				height="24"
-				width="24"
-			/>
+				class="cds-timeline-item__icon"
+			>
+				<cds-icon
+					:name="icon"
+					height="20"
+					width="20"
+				/>
+			</div>
 			<span
 				v-else
 				:class="`cds-timeline-item__pin--${variant}${hollowed ? '--hollowed' : ''}`"
@@ -114,6 +117,11 @@ export default {
 
 	}
 
+	&__icon {
+		padding: tokens.pb(1);
+		margin: tokens.mt(n1)
+	}
+
 	&__title {
 		color: tokens.$n-900;
 		font-weight: 600;
@@ -160,10 +168,6 @@ export default {
 		height: 100% !important;
 		width: 2px !important;
 	}
-}
-
-.icon {
-	margin: tokens.mb(1);
 }
 
 .spinner {
