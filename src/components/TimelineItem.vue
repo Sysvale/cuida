@@ -9,16 +9,25 @@
 		<div
 			class="cds-timeline-item__timeline-container"
 		>
-			<span
-				v-if="!loading"
-				:class="`cds-timeline-item__pin--${variant}${hollowed ? '--hollowed' : ''}`"
-			/>
-
 			<cds-spinner
-				v-else
+				v-if="loading"
 				size="sm"
 				class="spinner"
 				:variant="variant"
+			/>
+			<div
+				v-else-if="icon"
+				class="cds-timeline-item__icon"
+			>
+				<cds-icon
+					:name="icon"
+					height="20"
+					width="20"
+				/>
+			</div>
+			<span
+				v-else
+				:class="`cds-timeline-item__pin--${variant}${hollowed ? '--hollowed' : ''}`"
 			/>
 
 			<div
@@ -45,10 +54,12 @@
 
 <script>
 import CdsSpinner from './Spinner.vue';
+import CdsIcon from './Icon.vue';
 import hasSlot from '../utils/methods/hasSlot';
 
 export default {
 	components: {
+		CdsIcon,
 		CdsSpinner,
 	},
 
@@ -75,6 +86,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		* Define o ícone a ser exibido no lugar do pin do TimelineItem. Caso não informado, o pin será exibido.
+		*/
+		icon: {
+			type: String,
+			default: null,
+		},
 	},
 
 	methods: {
@@ -97,6 +115,11 @@ export default {
 	&__content-container {
 		margin: tokens.mTRBL(n1, 0 , 8, 6);
 
+	}
+
+	&__icon {
+		padding: tokens.pb(1);
+		margin: tokens.mt(n1)
 	}
 
 	&__title {
