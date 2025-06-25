@@ -3,6 +3,8 @@
 exports[`Button > renders correctly 1`] = `
 "<button data-v-3c9d0845="" class="button__container button--green--active button-size--md">
   <!--v-if-->
+  <!--v-if-->
   <!-- @slot Slot padrão utilizado para exibir texto do botão. -->Botão
+  <!--v-if-->
 </button>"
 `;

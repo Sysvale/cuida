@@ -10,7 +10,9 @@ exports[`CalloutCard > renders correctly 1`] = `
 							@type {Event}
 						--><button data-v-3c9d0845="" class="button__container button--green--active button-size--md" id="content-button">
     <!--v-if-->
+    <!--v-if-->
     <!-- @slot Slot padrão utilizado para exibir texto do botão. -->Ok
+    <!--v-if-->
   </button>
 </div>
 </div>

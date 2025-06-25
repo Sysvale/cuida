@@ -10,13 +10,26 @@
 			v-if="loading"
 			variant="white"
 			size="sm"
-			class="button__loader"
+			class="button__prepend"
 		/>
-
+		<div
+			v-if="hasPrependSlot && !loading"
+			class="button__prepend"
+		>
+			<!-- @slot Slot para exibir prepend do botão. -->
+			<slot name="prepend" />
+		</div>
 		<!-- @slot Slot padrão utilizado para exibir texto do botão. -->
 		<slot>
 			{{ text }}
 		</slot>
+		<div
+			v-if="hasAppendSlot"
+			class="button__append"
+		>
+			<!-- @slot Slot para exibir append do botão. -->
+			<slot name="append" />
+		</div>
 	</button>
 </template>
 
@@ -93,6 +106,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		* Especifica se o componente deve ser exibido na sua versão ghost.
+		*/
+		ghost: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -128,6 +148,10 @@ export default {
 		},
 
 		predefinedColor() {
+			if (this.ghost) {
+				return 'button--ghost';
+			}
+
 			if (this.secondary) {
 				return 'button--secondary';
 			}
@@ -150,6 +174,14 @@ export default {
 			const disabled = this.disabled ? '--disabled' : '--active';
 
 			return `${this.predefinedColor}${disabled} ${this.predefinedSize}`;
+		},
+
+		hasPrependSlot(){
+			return Object.keys(this.$slots).some(slot => slot === 'prepend');
+		},
+
+		hasAppendSlot(){
+			return Object.keys(this.$slots).some(slot => slot === 'append');
 		},
 	},
 
@@ -193,8 +225,34 @@ export default {
 		}
 	}
 
+	&--ghost {
+		&--active {
+			background: none;
+			cursor: pointer;
+		}
+
+		&:hover {
+			@extend .button--ghost--active;
+			background-color: tokens.$n-10;
+		}
+
+		&--disabled {
+			cursor: default !important;
+			background: none;
+			color: tokens.$n-300;
+		}
+	}
+
+	&__prepend {
+		margin: tokens.mr(3);
+	}
+
 	&__loader {
 		margin: tokens.mr(3);
+	}
+
+	&__append {
+		margin: tokens.ml(3);
 	}
 
 	&__container {
