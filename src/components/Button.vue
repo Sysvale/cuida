@@ -233,18 +233,18 @@ export default {
 
 		&:hover {
 			@extend .button--ghost--active;
-			background-color: $n-10;
+			background-color: tokens.$n-10;
 		}
 
 		&--disabled {
 			cursor: default !important;
 			background: none;
-			color: $n-300;
+			color: tokens.$n-300;
 		}
 	}
 
 	&__prepend {
-		margin: mr(3);
+		margin: tokens.mr(3);
 	}
 
 	&__loader {
@@ -252,7 +252,7 @@ export default {
 	}
 
 	&__append {
-		margin: ml(3);
+		margin: tokens.ml(3);
 	}
 
 	&__container {
