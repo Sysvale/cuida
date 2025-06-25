@@ -110,6 +110,10 @@ export default {
 		&--clickable {
 			@extend .badge__container;
 			cursor: pointer;
+
+			div {
+				cursor: pointer;
+			}
 		}
 	}
 
