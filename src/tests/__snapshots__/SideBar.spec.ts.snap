@@ -1,48 +1,74 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`SideBar > renders correctly 1`] = `
-VueWrapper {
-  "__app": {
-    "_component": [Object],
-    "_container": <div … />,
-    "_context": [Object],
-    "_instance": [Object],
-    "_props": null,
-    "_uid": 0,
-    "component": [Function],
-    "config": [Object],
-    "directive": [Function],
-    "mixin": [Function],
-    "mount": [Function],
-    "provide": [Function],
-    "unmount": [Function],
-    "use": [Function],
-    "version": "3.2.37",
-  },
-  "__setProps": [Function],
-  "componentVM": {
-    "activeItem": [Object],
-    "colorHexCode": [Function],
-    "colorOptions": [Array],
-    "handleClick": [Function],
-    "hasOwnProperty": [Function],
-    "internalActiveItem": [Object],
-    "isActive": [Function],
-    "items": [Array],
-    "resolveRoute": [Function],
-    "routerPushTo": [Function],
-    "showLogout": true,
-    "userName": "Joana Mendes",
-    "userPicture": null,
-    "userRole": "Administradora",
-  },
-  "isDisabled": [Function],
-  "rootVM": {},
-  "wrapperElement": <div
-    class="side-bar"
-  >
-    <div … />
-    <div … />
-  </div>,
-}
+"<div class="side-bar--dark">
+  <div class="variant-resolver--green">
+    <div class="side-bar__header">
+      <div class="side-bar__logo"><img></div>
+      <!--v-if-->
+    </div>
+    <!--v-if-->
+    <ul class="side-bar__container">
+      <li role="presentation">
+        <div class="side-bar__item-container side-bar__item-container--inactive">
+          <router-link-stub to="/dashboard" class="side-bar__item side-bar__item--inactive"></router-link-stub>
+        </div>
+        <transition-stub name="collapse" appear="false" persisted="true" css="true">
+          <div class="side-bar__subitem-container" style="display: none;">
+            <div class="side-bar__subitems"></div>
+          </div>
+        </transition-stub>
+        <!--v-if-->
+      </li>
+      <li role="presentation">
+        <div class="side-bar__item-container side-bar__item-container--inactive">
+          <div id="Links" class="side-bar__item side-bar__item--inactive">
+            <div>
+              <cds-icon-stub name="link-outline" width="20" height="20" color="currentColor" dark="false" light="false"></cds-icon-stub><span>Links</span>
+            </div>
+            <cds-icon-stub name="caret-down-outline" width="16" height="16" color="currentColor" dark="false" light="false" class=""></cds-icon-stub>
+          </div>
+        </div>
+        <transition-stub name="collapse" appear="false" persisted="true" css="true">
+          <div class="side-bar__subitem-container" style="display: none;">
+            <div class="side-bar__subitems"><a class="side-bar__subitem side-bar__subitem--inactive" href="javascript:void(0)" target="_self" rel="noopener noreferrer">
+                <router-link-stub class="side-bar__subitem-link"></router-link-stub>
+              </a><a class="side-bar__subitem side-bar__subitem--inactive" href="javascript:void(0)" target="_self" rel="noopener noreferrer">
+                <router-link-stub class="side-bar__subitem-link"></router-link-stub>
+              </a></div>
+          </div>
+        </transition-stub>
+        <!--v-if-->
+      </li>
+      <li role="presentation">
+        <div class="side-bar__item-container side-bar__item-container--inactive">
+          <router-link-stub to="/reports" class="side-bar__item side-bar__item--inactive"></router-link-stub>
+        </div>
+        <transition-stub name="collapse" appear="false" persisted="true" css="true">
+          <div class="side-bar__subitem-container" style="display: none;">
+            <div class="side-bar__subitems"></div>
+          </div>
+        </transition-stub>
+        <!--v-if-->
+      </li>
+    </ul>
+  </div>
+  <div class="side-bar__footer variant-resolver--green">
+    <div id="menu-profile" class="side-bar__avatar">
+      <cds-avatar-stub variant="white" size="lg" name="Joana Mendes" clickable="false"></cds-avatar-stub>
+      <transition-stub name="fade" appear="false" persisted="false" css="true">
+        <div>
+          <p>Joana Mendes</p>
+          <p>Administradora</p>
+        </div>
+      </transition-stub>
+    </div>
+    <ul>
+      <li class="side-bar__logout-button">
+        <cds-icon-stub name="logout-outline" width="20" height="20" color="currentColor" dark="false" light="false"></cds-icon-stub>
+      </li>
+    </ul>
+    <!--v-if-->
+  </div>
+</div>"
 `;

@@ -3,6 +3,7 @@
 	<div>
 		<span
 			:id="id"
+			ref="dropdownButtonRef"
 			:class="{
 				'filter-pill__container--disabled' : disabled,
 				'filter-pill__container--active': isActive && !disabled,
@@ -23,7 +24,7 @@
 
 		<div
 			v-if="isActive"
-			v-on-click-outside="hide"
+			ref="dropdownRef"
 			:style="dynamicStyle"
 			class="filter-pill__dropdown"
 		>
@@ -35,16 +36,11 @@
 
 <script>
 /* eslint-disable no-underscore-dangle */
-import vClickOutside from 'click-outside-vue3';
 import CdsChevron from './Chevron.vue';
 
 export default {
 	components: {
 		CdsChevron,
-	},
-
-	directives: {
-		'on-click-outside': vClickOutside.directive,
 	},
 
 	props: {
@@ -112,6 +108,8 @@ export default {
 
 	mounted() {
 		this.id = `filter-pill$-${this._uid}`;
+
+		document.querySelector('body').addEventListener('click', this.closeDropdown);
 	},
 
 	methods: {
@@ -133,24 +131,35 @@ export default {
 		hide() {
 			this.isActive = !this.isActive;
 		},
+
+		closeDropdown(event) {
+			if (
+				this.$refs.dropdownRef
+				&& !this.$refs.dropdownRef.contains(event.target)
+				&& this.$refs.dropdownButtonRef
+				&& !this.$refs.dropdownButtonRef.contains(event.target)
+			) {
+				this.hide();
+			}
+		},
 	},
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .filter-pill {
 	&__container {
 		display: inline-flex;
 		align-items: center;
-		padding: mx(4);
-		border: 1px solid $n-50;
-		border-radius: $border-radius-extra-small;
+		padding: tokens.mx(4);
+		border: 1px solid tokens.$n-50;
+		border-radius: tokens.$border-radius-extra-small;
 		cursor: pointer;
 		height: 40px;
 
 		&--disabled {
-			background-color: $n-20;
+			background-color: tokens.$n-20;
 			border: none;
 			cursor: default;
 		}
@@ -158,35 +167,35 @@ export default {
 		&:hover:not(.filter-pill__container--disabled),
 		&--active {
 			border-color: transparent !important;
-			box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);
+			box-shadow: 0 0 0 0.2rem rgba(tokens.$bn-300, .45);
 		}
 	}
 
 	&__label {
-		@include body-2;
-		font-weight: $font-weight-regular;
-		margin: mr(1);
-		color: $n-500;
+		@include tokens.body-2;
+		font-weight: tokens.$font-weight-regular;
+		margin: tokens.mr(1);
+		color: tokens.$n-500;
 	}
 
 	&__content {
-		@include body-2;
-		font-weight: $font-weight-semibold;
-		color: $n-700;
-		margin: mr(2);
+		@include tokens.body-2;
+		font-weight: tokens.$font-weight-semibold;
+		color: tokens.$n-700;
+		margin: tokens.mr(2);
 	}
 
 	&__dropdown {
 		width: var(--width);
-		background-color: $n-0;
-		padding: pa(3);
-		border-radius: $border-radius-extra-small;
-		box-shadow: 0px 0px 8px rgba($n-900, .08);
-		outline: 1px solid $n-30;
+		background-color: tokens.$n-0;
+		padding: tokens.pa(3);
+		border-radius: tokens.$border-radius-extra-small;
+		box-shadow: 0px 0px 8px rgba(tokens.$n-900, .08);
+		outline: 1px solid tokens.$n-30;
 		z-index:999999999;
-		color: $n-700;
+		color: tokens.$n-700;
 		position: absolute;
-		margin: mt(2);
+		margin: tokens.mt(2);
 
 	}
 }

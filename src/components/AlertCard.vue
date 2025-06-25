@@ -66,6 +66,27 @@ export default {
 			default: 'info',
 		},
 		/**
+		 * Define se o AlertCard é selecionável.
+		 */
+		selectable: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Variante de estilo muted do componente.
+		 */
+		muted: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Controla exibição do título do AlertCard.
+		 */
+		noTitle: {
+			type: Boolean,
+			default: false,
+		},
+		/**
 		 * O título do alerta. O título também pode ser usado com o slot.
 		 */
 		title: {
@@ -140,74 +161,74 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 #alert-card .alert-card {
 	display: flex;
 	align-items: center;
-	padding: pa(4);
+	padding: tokens.pa(4);
 	border-radius: 16px;
 
 	&__container {
 		@extend .alert-card;
-		border: 1px solid $n-40;
+		border: 1px solid tokens.$n-40;
 
 		&--selectable {
 			cursor: pointer;
 		}
 
 		&--muted {
-			background-color: $n-10;
+			background-color: tokens.$n-10;
 		}
 	}
 
 	&__container--selected-info {
 		@extend .alert-card;
-		border: 2px solid $bn-300;
+		border: 2px solid tokens.$bn-300;
 		box-shadow: 1px 1px 4px rgba(32, 110, 217, 0.5);
 	}
 
 	&__container--selected-warning {
 		@extend .alert-card;
-		border: 2px solid $al-300;
+		border: 2px solid tokens.$al-300;
 		box-shadow: 1px 1px 4px rgba(253, 210, 145, 0.5);
 	}
 
 	&__container--selected-danger {
 		@extend .alert-card;
-		border: 2px solid $rc-300;
+		border: 2px solid tokens.$rc-300;
 		box-shadow: 1px 1px 4px rgba(237, 59, 81, 0.5);
 	}
 
 	&__title {
-		@include subheading-3;
-		margin: my(3);
+		@include tokens.subheading-3;
+		margin: tokens.my(3);
 		display: block;
 
 		&--info {
 			@extend .alert-card__title;
-			color: $bn-400;
+			color: tokens.$bn-400;
 		}
 
 		&--warning {
 			@extend .alert-card__title;
-			color: $al-600;
+			color: tokens.$al-600;
 		}
 
 		&--danger {
 			@extend .alert-card__title;
-			color: $rc-500;
+			color: tokens.$rc-500;
 		}
 	}
 
 	&__subtitle {
-		@include body-2;
+		@include tokens.body-2;
 		display: block;
-		color: $n-600;
+		color: tokens.$n-600;
 	}
 
 	&__content {
-		margin: mt(4);
+		margin: tokens.mt(4);
 	}
 
 	&__content-container {
@@ -220,50 +241,50 @@ export default {
 
 	&--info {
 		@extend .icon;
-		color: $bn-400;
+		color: tokens.$bn-400;
 	}
 
 	&--warning {
 		@extend .icon;
-		color: $al-600;
+		color: tokens.$al-600;
 	}
 
 	&--danger {
 		@extend .icon;
-		color: $rc-400;
+		color: tokens.$rc-400;
 	}
 
 	&__container {
 		display: flex;
-		padding: pa(2);
+		padding: tokens.pa(2);
 		border-radius: 100%;
-		margin: mr(3);
+		margin: tokens.mr(3);
 		align-self: flex-start;
 
 		&--info {
 			@extend .icon__container;
-			background-color: $bn-100;
+			background-color: tokens.$bn-100;
 		}
 
 		&--warning {
 			@extend .icon__container;
-			background-color: $al-100;
+			background-color: tokens.$al-100;
 		}
 
 		&--danger {
 			@extend .icon__container;
-			background-color: $rc-100;
+			background-color: tokens.$rc-100;
 		}
 	}
 }
 
 #alert-card .custom-checkbox {
-	margin: mt(4);
+	margin: tokens.mt(4);
 	align-self: flex-start;
 	width: 14px;
 	position: relative;
-	margin-right: spacer(8);
-	margin-left: spacer(n2);
+	margin-right: tokens.spacer(8);
+	margin-left: tokens.spacer(n2);
 
 	label {
 		cursor: pointer;
@@ -272,10 +293,10 @@ export default {
 		height: 14px;
 		top: 0;
 		border-radius: 4px;
-		border: 1px solid $n-200;
+		border: 1px solid tokens.$n-200;
 
 		&:after {
-			border: 2px solid $n-0;
+			border: 2px solid tokens.$n-0;
 			border-top: none;
 			border-right: none;
 			content: "";
@@ -302,7 +323,7 @@ export default {
 }
 
 #alert-card .custom-checkbox--checked {
-	background-color: $bn-500 !important;
+	background-color: tokens.$bn-500 !important;
 	border: none !important;
 }
 

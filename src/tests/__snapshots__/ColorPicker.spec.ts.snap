@@ -1,52 +1,81 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`ColorPicker > renders correctly 1`] = `
-VueWrapper {
-  "__app": {
-    "_component": [Object],
-    "_container": <div … />,
-    "_context": [Object],
-    "_instance": [Object],
-    "_props": null,
-    "_uid": 0,
-    "component": [Function],
-    "config": [Object],
-    "directive": [Function],
-    "mixin": [Function],
-    "mount": [Function],
-    "provide": [Function],
-    "unmount": [Function],
-    "use": [Function],
-    "version": "3.2.37",
-  },
-  "__setProps": [Function],
-  "componentVM": {
-    "ContrastChecker": [Function],
-    "SwatchSelection": [Function],
-    "hasOwnProperty": [Function],
-    "iconColorResolver": "swatch__icon--white",
-    "inline": true,
-    "isCurrentColorSelected": [Function],
-    "label": "Label",
-    "modelValue": "#000000",
-    "palete": [Array],
-    "paleteBuilder": [Function],
-    "popoverHeight": 190,
-    "sassColorVariables": [Object],
-    "selectedColor": "#000000",
-    "showPopover": false,
-    "swatch": [Array],
-  },
-  "isDisabled": [Function],
-  "rootVM": {},
-  "wrapperElement": <div
-    data-v-2c841161=""
-  >
-    <div … />
-    
-    <div … />
-    <div … />
-    
-  </div>,
-}
+"<div data-v-2c841161="">
+  <div data-v-2c841161="" class="color-picker__label">Label</div>
+  <div data-v-2c841161="" class="color-picker__container">
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--#">
+        <!--v-if-->
+      </div>
+    </div>
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
+        <!--v-if-->
+      </div>
+    </div>
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
+        <!--v-if-->
+      </div>
+    </div>
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
+        <!--v-if-->
+      </div>
+    </div>
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
+        <!--v-if-->
+      </div>
+    </div>
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
+        <!--v-if-->
+      </div>
+    </div>
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
+        <!--v-if-->
+      </div>
+    </div>
+  </div>
+  <div data-v-2c841161="" class="color-picker__container">
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--#">
+        <!--v-if-->
+      </div>
+    </div>
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
+        <!--v-if-->
+      </div>
+    </div>
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
+        <!--v-if-->
+      </div>
+    </div>
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
+        <!--v-if-->
+      </div>
+    </div>
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
+        <!--v-if-->
+      </div>
+    </div>
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
+        <!--v-if-->
+      </div>
+    </div>
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
+        <!--v-if-->
+      </div>
+    </div>
+  </div>
+</div>"
 `;

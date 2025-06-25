@@ -1,37 +1,17 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Breadcrumb snapshot test > renders correctly 1`] = `
-VueWrapper {
-  "__app": {
-    "_component": [Object],
-    "_container": <div … />,
-    "_context": [Object],
-    "_instance": [Object],
-    "_props": null,
-    "_uid": 0,
-    "component": [Function],
-    "config": [Object],
-    "directive": [Function],
-    "mixin": [Function],
-    "mount": [Function],
-    "provide": [Function],
-    "unmount": [Function],
-    "use": [Function],
-    "version": "3.2.37",
-  },
-  "__setProps": [Function],
-  "componentVM": {
-    "hasOwnProperty": [Function],
-    "items": [Array],
-    "resolveRoute": [Function],
-    "routerPushTo": [Function],
-  },
-  "isDisabled": [Function],
-  "rootVM": {},
-  "wrapperElement": <nav
-    data-v-1a0f46d9=""
-  >
-    <ul … />
-  </nav>,
-}
+"<nav data-v-1a0f46d9="">
+  <ul data-v-1a0f46d9="" class="breadcrumb">
+    <li data-v-1a0f46d9="" role="presentation">
+      <cds-clickable-stub data-v-1a0f46d9="" clickable="true" fluid="false"></cds-clickable-stub>
+    </li>
+    <li data-v-1a0f46d9="" role="presentation">
+      <cds-spacer-stub data-v-1a0f46d9="" padding="0" paddingtop="0" paddingright="0" paddingbottom="0" paddingleft="0" margin="0" margintop="0" marginright="1" marginbottom="0" marginleft="1" class="breadcrumb__item"></cds-spacer-stub>
+    </li>
+    <li data-v-1a0f46d9="" role="presentation">
+      <cds-spacer-stub data-v-1a0f46d9="" padding="0" paddingtop="0" paddingright="0" paddingbottom="0" paddingleft="0" margin="0" margintop="0" marginright="1" marginbottom="0" marginleft="1" class="breadcrumb__item"></cds-spacer-stub>
+    </li>
+  </ul>
+</nav>"
 `;

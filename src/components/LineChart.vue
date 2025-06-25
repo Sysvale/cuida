@@ -15,8 +15,9 @@
 <script>
 import { Line } from 'vue-chartjs'
 import { Chart, registerables } from 'chart.js';
-import sassColorVariables from '../assets/sass/colors.module.scss';
+import sassColorVariables from '../assets/sass/tokens/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
+import 'chartjs-adapter-luxon';
 
 // Registrar o elemento "point" no registro (Torna-se necessário para marcações de ponto)
 Chart.register(...registerables);
@@ -47,6 +48,24 @@ export default {
 			})
 		},
 		/**
+		* Define os intervalos máximo e mínimo sugeridos para o eixo X.
+		* Caso os valores do dataset ultrapassem os intervalos sugeridos, 
+		* estes serão desconsiderados, prevalencendo o dataset.
+		*/
+		xAxisRange: {
+			type: Array,
+			default: () => [0, 100],
+		},
+		/**
+		* Define os intervalos máximo e mínimo sugeridos para o eixo Y.
+		* Caso os valores do dataset ultrapassem os intervalos sugeridos, 
+		* estes serão desconsiderados, prevalencendo o dataset.
+		*/
+		yAxisRange: {
+			type: Array,
+			default: () => [0, 100],
+		},
+		/**
 		 * Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:
 		 * `green`, `teal`, `turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `gray`, `dark`.
 		 */
@@ -57,6 +76,17 @@ export default {
 			validator: (value) => {
 				return ['green', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray', 'dark'].includes(value);
 			}
+		},
+		/**
+		* Define o tema do gráfico.
+		*/
+		theme: {
+			type: String,
+			required: false,
+			default: '',
+			validator: (value) => {
+				return ['green', 'teal', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray', 'dark'].includes(value);
+			},
 		},
 		/**
 		 * Defina as labels do gráfico
@@ -106,6 +136,27 @@ export default {
 			type: Number,
 			default: 0.3,
 		},
+		/**
+		* Objeto de configuação de animation. O objeto sobrescreve a configuração padrão.
+		*/
+		scales: {
+			type: Object,
+			default: () => ({}),
+		},
+		/**
+		* Objeto de configuação de animation. O objeto sobrescreve a configuração padrão.
+		*/
+		animation: {
+			type: Object,
+			default: () => ({}),
+		},
+		/**
+		* Objeto de configuação de plugins. O objeto sobrescreve a configuração padrão.
+		*/
+		plugins : {
+			type: Object,
+			default: () => ({}),
+		}
 	},
 
 	data() {
@@ -121,17 +172,22 @@ export default {
 				},
 				scales: {
 					x: {
+						suggestedMin: this.xAxisRange[0],
+						suggestedMax: this.xAxisRange[1],
 						display: true,
 						title: {
 							display: true
-						}
+						},
 					},
 					y: {
+						suggestedMin: this.yAxisRange[0],
+						suggestedMax: this.yAxisRange[1],
 						display: true,
 						title: {
 							display: true,
 						},
-					}
+					},
+					...this.scales,
 				},
 				tension: this.smoothing,
 				responsive: true,
@@ -155,8 +211,12 @@ export default {
 							pointStyle: 'rectRounded',
 						},
 					},
+					...this.plugins,
 				},
 				fill: this.fill,
+				animation: {
+					...this.animation,
+				}
 			},
 		}
 	},
@@ -197,12 +257,23 @@ export default {
 		},
 	},
 
+	mounted() {
+		this.chartOptions = {
+			...this.chartOptions,
+			...this.scales,
+		}
+	},
+
 	methods: {
 		paleteBuilder,
 
 		palete() {
-			this.palletColors = this.paleteBuilder(this.sassColorVariables.palete);
-			this.removeFirstTwoElements();
+			if (this.theme.length) {
+				this.palletColors = this.paleteBuilder(this.sassColorVariables.chartThemes);
+			} else {
+				this.palletColors = this.paleteBuilder(this.sassColorVariables.palete);
+				this.removeFirstTwoElements();
+			}
 		},
 
 		// NOTE: Função responsável por remover os dois primeiros elementos da paleta para quando não é gray ou Dark Neutrals
@@ -235,7 +306,7 @@ export default {
 			data.forEach(obj => {
 				obj.datasets.forEach(state => {
 					const dataset = {
-						label: this.showLabelName ? state.name :state.label,
+						label: this.showLabelName ? state.name : state.label,
 						data: state.data,
 						name: state.name,
 						borderRadius: 6,
@@ -252,8 +323,16 @@ export default {
 		// NOTE: Função responsável por buscar a cor na paleta
 		// Para definição da opacidade é aplicado hexadecimal (80 = 50%)
 		generateBackgroundColor() {
-			const variantLowercase = this.variant.toLowerCase();
-			const palletColor = this.palletColors.find(color => color.variantName.toLowerCase().includes(variantLowercase));
+			let variantLowercase = this.variant.toLowerCase();
+
+			if (this.theme.length) {
+				variantLowercase = this.theme.toLowerCase();
+			}
+
+			const palletColor = this.palletColors.find(color => {
+				return color.variantName.toLowerCase() === variantLowercase
+			});
+
 			if (palletColor) {
 				if (this.fill) {
 					const withOpacity = palletColor.colorShades.map(color => color + '80');
@@ -263,7 +342,6 @@ export default {
 			}
 			return [];
 		},
-
 
 		// NOTE: Função responsável por setar backgroundColor
 		// Ocorre essa verificação para garantir que o mesmo conjunto de dados para mais de um item selecionado tenha a mesma cor
@@ -286,7 +364,6 @@ export default {
 			});
 		},
 
-
 		checkDashed() {
 			this.chartOptions.borderDash = [this.borderDash[0], this.borderDash[1]];
 		}
@@ -295,7 +372,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './../assets/sass/tokens.scss';
+
 .responsive-container{
 	width: 100%;
 	height: 100%;

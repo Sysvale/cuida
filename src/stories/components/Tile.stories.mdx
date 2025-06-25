@@ -1,0 +1,127 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Tile from '../../components/Tile.vue';
+import Image from '../../components/Image.vue';
+
+<Meta
+	title="Componentes/Forms/Tile"
+	component={ Tile }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'white',
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'gray',
+					'dark'
+				],
+			}
+		},
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/
+`<cds-tile
+	size="sm"
+	icon="trash-outline"
+>
+	<template #extra>
+		<cds-image
+			src="https://cidadesaudavel.com/images/CS-icon.png"
+			width="20"
+		/>
+	</template>
+</cds-tile>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsTile: Tile, CdsImage: Image },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-tile
+			v-bind="args"
+			@cds-click="logTileClick"
+		>
+			<template #extra>
+				<cds-image
+					src="https://cidadesaudavel.com/images/CS-icon.png"
+					width="20"
+				/>
+			</template>
+		</cds-tile>`,
+	methods: {
+		logTileClick(event) {
+			console.info('%cFoi clicado ', 'color: #2C70CD;');
+		},
+	},
+});
+
+# Tile
+
+### Tiles são componentes que funcionam como cards de navegação, permitindo que o usuário acesse diferentes seções ou funcionalidades de forma clara e intuitiva.
+---
+<br />
+
+## Quando usar:
+- For necessário destacar uma opção de navegação em um menu ou dashboard.
+- Quando você deseja agrupar informações relacionadas e permitir que o usuário acesse detalhes ou uma nova seção.
+- Em interfaces que exigem uma navegação visualmente organizada, como painéis de controle, listas de serviços ou categorias.
+
+
+<br />
+
+## Quando não usar:
+- Quando a ação principal não é de navegação, mas sim de execução de uma tarefa específica (nesse caso, considere usar botões ou outros componentes de ação).
+- Em situações onde a informação é muito simples e não justifica o uso de um card (nesse caso, considere usar Links ou IconButtons).
+- Quando o espaço na interface é limitado e o uso de um Tile pode sobrecarregar visualmente o layout.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Tile"
+		args={{
+			size: 'sm',
+			icon: 'settings-outline',
+			variant: 'green',
+			disabled: false,
+			loading: false,
+			title: 'Excluir',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Tile" />

@@ -92,6 +92,14 @@ export default {
 				return colorOptions.includes(value);
 			},
 		},
+		/**
+		* Define se as abas devem ser alinhadas à esquerda. Caso `false`, o container das abas
+		* tomará todo o espaço disponível.
+		*/
+		headerLeft: {
+			type: Boolean,
+			default: false,
+		}
 	},
 
 	data() {
@@ -107,6 +115,9 @@ export default {
 				'--indicatorColor': this.colorHexCode(this.variant),
 			};
 		},
+		computedWidth() {
+			return this.headerLeft? 'fit-content' : '100%';
+		}
 	},
 
 	watch: {
@@ -128,10 +139,17 @@ export default {
 
 		handleClick(event, item) {
 			/**
+			 * Evento emitido quando a aba é clicada
+			* @event tab-click
+			* @type {Event}
+			*/
+			this.$emit('tab-click', { event, item });
+			if(this.internalActiveTab.disableTabChange) return;
+			/**
 			 * Evento emitido quando a aba ativa é alterada
 			* @event change
 			* @type {Event}
-				*/
+			*/
 			this.$emit('change', { event, item });
 			this.internalActiveTab = item;
 		},
@@ -148,18 +166,19 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 #inner-tabs {
 	.inner-tabs {
 		&__header {
 			display: flex;
-			justify-content: flex-start;
-			gap: spacer(4);
-			padding: pl(0);
-			margin: mb(0);
+			width: v-bind(computedWidth);
+			justify-content: space-around;
+			gap: tokens.spacer(4);
+			padding: tokens.pl(0);
+			margin: tokens.mb(0);
 			list-style: none;
-			transition: $opening;
+			transition: tokens.$opening;
 
 			&-container {
 				overflow-x: scroll;
@@ -178,22 +197,22 @@ export default {
 
 				/* Handle */
 				&::-webkit-scrollbar-thumb {
-					background: $n-40;
+					background: tokens.$n-40;
 					border-radius: 8px;
 				}
 
 				/* Handle on hover */
 				&::-webkit-scrollbar-thumb:hover {
-					background: $n-50;
+					background: tokens.$n-50;
 				}
 			}
 		}
 
 		&__tab {
-			width: max-content;
+			width: 100%;
 			min-width: 140px;
-			@include caption;
-			font-weight: $font-weight-regular;
+			@include tokens.caption;
+			font-weight: tokens.$font-weight-regular;
 			overflow: hidden;
 			text-overflow: ellipsis;
 			display: -webkit-box;
@@ -201,33 +220,33 @@ export default {
 			-webkit-box-orient: vertical;
 			text-align: center;
 			text-decoration: none !important;
-			margin: mTRBL(0, 2, 2, 0);
-			padding: pYX(2, 5);
+			margin: tokens.mTRBL(0, 2, 2, 0);
+			padding: tokens.pYX(2, 5);
 			cursor: pointer;
 
 			&--active {
 				cursor: default;
-				color: $n-800;
-				font-weight: $font-weight-semibold;
+				color: tokens.$n-800;
+				font-weight: tokens.$font-weight-semibold;
 			}
 			
 			&--active:hover {
-				color: $n-800;
+				color: tokens.$n-800;
 			}
 			
 			&--inactive {
-				color: $n-500;
-				font-weight: $font-weight-regular;
+				color: tokens.$n-500;
+				font-weight: tokens.$font-weight-regular;
 			}
 			
 			&--inactive:hover {
-				color: $n-500;
+				color: tokens.$n-500;
 			}
 		}
 
 		&__content {
-			background-color: $n-0;
-			padding: pa(5);
+			background-color: tokens.$n-0;
+			padding: tokens.pa(5);
 			border-bottom-right-radius: 8px;
 			border-bottom-left-radius: 8px;
 		
@@ -242,7 +261,7 @@ export default {
 	}
 
 	.tab__indicator--active {
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			height: 4px;
 			width: 100%;
 			border-top-right-radius: 4px;

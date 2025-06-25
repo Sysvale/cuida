@@ -15,7 +15,7 @@
 - O Cuida pode ser instalado com o npm:
 
 ```bash
-npm i @sysvale/cuida;
+npm i @sysvale/cuida
 ```
 
 ## Usando
@@ -34,7 +34,14 @@ import '@sysvale/cuida/dist/style.css';
 - E instale o Cuida:
 
 ```js
-Vue.use(Cuida);
+app.use(Cuida);
+```
+
+- Exponha os utils do Cuida:
+
+```js
+const cdsUtils = Cuida.utils;
+app.provide('cdsUtils', cdsUtils);
 ```
 
 - Agora para utilizar os componentes, basta usá-los no seu template. Como exemplo, para usar a
@@ -44,8 +51,13 @@ Vue.use(Cuida);
 <cds-badge variant="gray"> Conteúdo </cds-badge>
 ```
 
-- Para utilizar os tokens, importe-os na sua tag script.
+- Para utilizar os tokens do Cuida instale o sass-embedded
 
+```bash
+npm install -D sass-embedded
+```
+
+e importe o arquivo de tokens na sua tag script.
 ```html
 <style lang="scss" scoped>
   @import 'node_modules/@sysvale/cuida/dist/@sysvale/tokens.scss';
@@ -107,6 +119,15 @@ ou
 npm run test
 ```
 
+- Para utilizar o ui do vitest:
+```bash
+npm run test:ui
+```
+
+- Para visualizar o detalhamento da cobertura de testes, use o comando abaixo:
+```bash
+npx open-cli coverage/index.html
+```
 ## Contribuindo
 
 Para informações sobre como contribuir com o projeto, acesse o [CONTRIBUTING.MD](https://github.com/Sysvale/cuida/blob/main/CONTRIBUTING.md)

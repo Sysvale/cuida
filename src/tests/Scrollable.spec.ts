@@ -10,6 +10,6 @@ describe('Scrollable', () => {
 			},
 		});
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.html()).toMatchSnapshot();
 	});
 });

@@ -1,7 +1,6 @@
-// @vitest-environment jsdom
 import { describe, test, expect } from 'vitest';
 import Breadcrumb from '../components/Breadcrumb.vue';
-import { mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 
 const items = [
 	{
@@ -29,12 +28,17 @@ const items = [
 
 describe('Breadcrumb snapshot test', () => {
 	test('renders correctly', () => {
-		const wrapper = mount(Breadcrumb, {
+		const wrapper = shallowMount(Breadcrumb, {
+			global: {
+				stubs: {
+					'router-link': true,
+				},
+			},
 			props: {
 				items: items,
 			},
 		});
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.html()).toMatchSnapshot();
 	});
 });

@@ -1,60 +1,30 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Wizard > renders correctly 1`] = `
-"<div class=\\"cds-wizard\\" data-v-61a7952a=\\"\\">
-  <div class=\\"cds-wizard__container\\" data-v-61a7952a=\\"\\">
-    <div class=\\"box--elevated\\" data-v-f9290560=\\"\\" data-v-61a7952a=\\"\\">
-      <!--
-		Evento emitido quando o wrapper é clicado
-		@event cds-click
-		@type {Event}
-	-->
-      <div class=\\"clickable__container--not-clickable box__container\\" data-v-f9290560=\\"\\">
-        <!-- @slot Slot utilizado para renderização do conteúdo interno do Box.-->
-        <div class=\\"spacer\\" data-v-9cc3ee57=\\"\\" data-v-f9290560=\\"\\"><span data-v-61a7952a=\\"\\">Dummy title without subtitle<div class=\\"cds-wizard__content\\" data-v-61a7952a=\\"\\"><p>Dummy content 1</p></div></span></div>
+"<div data-v-61a7952a="" class="cds-wizard">
+  <div data-v-61a7952a="" class="cds-wizard__container">
+    <div data-v-61a7952a="" class="cds-wizard__box cds-wizard__elevated" fluid="" clickable="false"><span data-v-61a7952a="">Dummy title without subtitle<div data-v-61a7952a="" class="cds-wizard__content"><p>Dummy content 1</p></div></span></div>
+    <div data-v-61a7952a="" class="cds-wizard__box cds-wizard__empty-state-box" fluid="" clickable="false">
+      <div data-v-61a7952a="" class="cds-wizard__empty-state">
+        <!--v-if-->
+        <div data-v-61a7952a="" class="cds-wizard__empty-state-title">Dummy title 2</div>
+        <div data-v-61a7952a="" class="cds-wizard__empty-state-subtitle">Preencha todos os campos obrigatórios da etapa anterior para
+          liberar a seção de dummy title 2</div>
       </div>
     </div>
-    <div class=\\"box--gray cds-wizard__empty-state-box\\" data-v-f9290560=\\"\\" data-v-61a7952a=\\"\\">
-      <!--
-		Evento emitido quando o wrapper é clicado
-		@event cds-click
-		@type {Event}
-	-->
-      <div class=\\"clickable__container--not-clickable box__container\\" data-v-f9290560=\\"\\">
-        <!-- @slot Slot utilizado para renderização do conteúdo interno do Box.-->
-        <div class=\\"spacer\\" data-v-9cc3ee57=\\"\\" data-v-f9290560=\\"\\">
-          <div class=\\"cds-wizard__empty-state\\" data-v-61a7952a=\\"\\">
-            <!--v-if-->
-            <div class=\\"cds-wizard__empty-state-title\\" data-v-61a7952a=\\"\\">Dummy title 2</div>
-            <div class=\\"cds-wizard__empty-state-subtitle\\" data-v-61a7952a=\\"\\">Preencha todos os campos obrigatórios da etapa anterior para
-              liberar a seção de dummy title 2</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class=\\"box--gray cds-wizard__empty-state-box\\" data-v-f9290560=\\"\\" data-v-61a7952a=\\"\\">
-      <!--
-		Evento emitido quando o wrapper é clicado
-		@event cds-click
-		@type {Event}
-	-->
-      <div class=\\"clickable__container--not-clickable box__container\\" data-v-f9290560=\\"\\">
-        <!-- @slot Slot utilizado para renderização do conteúdo interno do Box.-->
-        <div class=\\"spacer\\" data-v-9cc3ee57=\\"\\" data-v-f9290560=\\"\\">
-          <div class=\\"cds-wizard__empty-state\\" data-v-61a7952a=\\"\\">
-            <!--v-if-->
-            <div class=\\"cds-wizard__empty-state-title\\" data-v-61a7952a=\\"\\">Dummy title 3</div>
-            <div class=\\"cds-wizard__empty-state-subtitle\\" data-v-61a7952a=\\"\\">Preencha todos os campos obrigatórios da etapa anterior para
-              liberar a seção de dummy title 3</div>
-          </div>
-        </div>
+    <div data-v-61a7952a="" class="cds-wizard__box cds-wizard__empty-state-box" fluid="" clickable="false">
+      <div data-v-61a7952a="" class="cds-wizard__empty-state">
+        <!--v-if-->
+        <div data-v-61a7952a="" class="cds-wizard__empty-state-title">Dummy title 3</div>
+        <div data-v-61a7952a="" class="cds-wizard__empty-state-subtitle">Preencha todos os campos obrigatórios da etapa anterior para
+          liberar a seção de dummy title 3</div>
       </div>
     </div>
   </div>
-  <div class=\\"cds-wizard__buttons\\" data-v-61a7952a=\\"\\"><button class=\\"button__container button--secondary--active button-size--md\\" data-v-3c9d0845=\\"\\" data-v-61a7952a=\\"\\">
+  <div data-v-61a7952a="" class="cds-wizard__buttons"><button data-v-3c9d0845="" data-v-61a7952a="" class="button__container button--secondary--active button-size--md">
       <!--v-if-->
       <!-- @slot Slot padrão utilizado para exibir texto do botão. -->Anterior
-    </button><button class=\\"button__container button--green--active button-size--md\\" data-v-3c9d0845=\\"\\" data-v-61a7952a=\\"\\">
+    </button><button data-v-3c9d0845="" data-v-61a7952a="" class="button__container button--green--active button-size--md">
       <!--v-if-->
       <!-- @slot Slot padrão utilizado para exibir texto do botão. -->Próximo
     </button></div>

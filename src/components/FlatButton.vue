@@ -1,99 +1,101 @@
 <template>
-	<span id="cds-link-button">
-		<button
-			class="link-button__container"
-			:class="computedStyle"
-			@click="clickHandler()"
-		>
-			<!-- @slot Slot padrão utilizado para exibir texto do botão. -->
-			<slot>
-				{{ text }}
-			</slot>
-		</button>
-	</span>
+	<button
+		ref="componentRef"
+		class="flat-button__container"
+		:class="computedStyle"
+		@click="clickHandler"
+	>
+		<!-- @slot Slot padrão utilizado para exibir texto do botão. -->
+		<slot>
+			{{ text }}
+		</slot>
+	</button>
 </template>
 
-<script>
-export default {
+<script setup>
+import { computed, useTemplateRef } from 'vue';
 
-	props: {
-		/**
-		 * A variante de cor. São 9 variantes implementadas: 'green', 'teal',
-		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'.
-		 */
-		variant: {
-			type: String,
-			default: 'green',
-		},
-		/**
-		 * Especifica o texto a ser apresentado no corpo do botão.
-		 * Este texto será exibido apenas se o slot default não for utilizado.
-		 */
-		text: {
-			type: String,
-			default: 'Lorem ipsum',
-		},
-		/**
-		 * Controla a disponibilidade do Botão.
-		 */
-		disabled: {
-			type: Boolean,
-			default: false,
-		},
+const props = defineProps({
+	/**
+	* A variante de cor. São 11 variantes implementadas: 'green', 'teal', 'turquoise',
+	* 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+	*/
+	variant: {
+		type: String,
+		default: 'green',
 	},
-	data() {
-		return {
-			predefinedColors: [
-				'green',
-				'teal',
-				'turquoise',
-				'blue',
-				'indigo',
-				'violet',
-				'pink',
-				'red',
-				'orange',
-				'amber',
-			],
-		};
+	/**
+	* Especifica o texto a ser apresentado no corpo do botão.
+	* Este texto será exibido apenas se o slot default não for utilizado.
+	*/
+	text: {
+		type: String,
+		default: 'Flat Button',
 	},
-
-	computed: {
-		predefinedColor() {
-			if (this.predefinedColors.indexOf(this.variant) > -1) {
-				return `link-button--${this.variant}`;
-			}
-
-			return 'link-button--green';
-		},
-
-		computedStyle() {
-			const disabled = this.disabled ? '--disabled' : '--active';
-
-			return `${this.predefinedColor}${disabled}`;
-		},
+	/**
+	* Controla a disponibilidade do Botão.
+	*/
+	disabled: {
+		type: Boolean,
+		default: false,
 	},
+});
 
-	methods: {
-		clickHandler() {
-			if (this.disabled) {
-				return;
-			}
-			/**
-			* Evento que indica que o Botão foi clicado
-			* @event click
-			* @type {Event}
-			*/
-			this.$emit('click', true);
-		},
-	},
+const predefinedColors = [
+	'green',
+	'teal',
+	'turquoise',
+	'blue',
+	'indigo',
+	'violet',
+	'pink',
+	'red',
+	'orange',
+	'amber',
+	'dark',
+];
+
+const componentRef = useTemplateRef('componentRef');
+
+
+const predefinedColor = computed(() => {
+	if (predefinedColors.includes(props.variant)) {
+		return `flat-button--${props.variant}`;
+	}
+	return 'flat-button--green';
+});
+
+const computedStyle = computed(() => {
+	const disabled = props.disabled ? '--disabled' : '--active';
+	return `${predefinedColor.value}${disabled}`;
+});
+
+const emit = defineEmits(['click']);
+
+const clickHandler = (event) => {
+	if (props.disabled) {
+		return;
+	}
+	/**
+	* Evento que indica que o Flat Button foi clicado
+	* @event click
+	* @type {Event}
+	*/
+	emit('click', event);
 };
+
+/* EXPOSE */
+defineExpose({
+	componentRef,
+});
 </script>
+
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
-.link-button {
+@use 'sass:color';
+@use '../assets/sass/tokens/index' as tokens;
+.flat-button {
 	&__container {
-		font-weight: $font-weight-semibold;
+		font-weight: tokens.$font-weight-semibold;
 		border: none;
 		cursor: pointer;
 		background-color: transparent;
@@ -105,44 +107,48 @@ export default {
 
 	$colors: (
 		'--green': (
-			'active': $gp-500,
-			'disabled': $gp-300,
+			'active': tokens.$gp-500,
+			'disabled': tokens.$gp-300,
 		),
 		'--teal': (
-			'active': $ta-500,
-			'disabled': $ta-300,
+			'active': tokens.$ta-500,
+			'disabled': tokens.$ta-300,
 		),
 		'--turquoise': (
-			'active': $ts-500,
-			'disabled': $ts-300,
+			'active': tokens.$ts-500,
+			'disabled': tokens.$ts-300,
 		),
 		'--blue': (
-			'active': $bn-500,
-			'disabled': $bn-300,
+			'active': tokens.$bn-500,
+			'disabled': tokens.$bn-300,
 		),
 		'--indigo': (
-			'active': $in-500,
-			'disabled': $in-300,
+			'active': tokens.$in-500,
+			'disabled': tokens.$in-300,
 		),
 		'--violet': (
-			'active': $vr-500,
-			'disabled': $vr-300,
+			'active': tokens.$vr-500,
+			'disabled': tokens.$vr-300,
 		),
 		'--pink': (
-			'active': $pp-500,
-			'disabled': $pp-300,
+			'active': tokens.$pp-500,
+			'disabled': tokens.$pp-300,
 		),
 		'--red': (
-			'active': $rc-500,
-			'disabled': $rc-300,
+			'active': tokens.$rc-500,
+			'disabled': tokens.$rc-300,
 		),
 		'--orange': (
-			'active': $og-500,
-			'disabled': $og-300,
+			'active': tokens.$og-500,
+			'disabled': tokens.$og-300,
 		),
 		'--amber': (
-			'active': $al-500,
-			'disabled': $al-300,
+			'active': tokens.$al-500,
+			'disabled': tokens.$al-300,
+		),
+		'--dark': (
+			'active': tokens.$n-800,
+			'disabled': tokens.$n-400,
 		),
 	);
 
@@ -155,7 +161,7 @@ export default {
 
 				@if $state == 'active' {
 					&--#{$state}:hover {
-						color: darken($disabled-color, 5%);
+						color: color.adjust($disabled-color, $lightness: -5%);
 					}
 				}
 			}

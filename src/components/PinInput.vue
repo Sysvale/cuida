@@ -42,6 +42,13 @@ export default {
 		visible: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Especifica se o PinInput deve ser versão mobile.
+		 */
+		mobile: {
+			type: Boolean,
+			default: false,
 		}
 	},
 
@@ -53,14 +60,20 @@ export default {
 
 	computed: {
 		computedClass() {
+			let classToUse = '';
+
 			switch (this.state) {
 				case 'valid':
-					return 'pin-input--valid';
+					classToUse = 'pin-input--valid';
+					break;
 				case 'invalid':
-					return 'pin-input--invalid';
+					classToUse = 'pin-input--invalid';
+					break;
 				default:
-					return 'pin-input';
+					classToUse = 'pin-input';
 			}
+
+			return this.mobile ? `${classToUse} pin-input--mobile` : classToUse;
 		},
 	},
 
@@ -103,10 +116,13 @@ export default {
 		},
 
 		changeInputContent(event, index) {
-			this.$refs[`pin-input${index}`][0].value = event.key;
-
+			this.innerValue.splice(index - 1, 1, event.key);
 			if (index < this.length) {
 				this.$refs[`pin-input${index + 1}`][0].focus();
+			}
+
+			if (index === this.length) {
+				this.$emit('update:modelValue', this.innerValue.join(''));
 			}
 		}
 	},
@@ -114,16 +130,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 	.pin-input {
 		height: 40px;
 		box-sizing: border-box;
 		width: 36px;
-		border-radius: $border-radius-extra-small;
-		border: 1px solid $n-100;
+		border-radius: tokens.$border-radius-extra-small;
+		border: 1px solid tokens.$n-100;
 		text-align: center;
 		font-size: 1.5em;
-		transition: $interaction;
+		transition: tokens.$interaction;
+
+		&--mobile {
+			@extend .pin-input;
+			height: 48px;
+			width: 42px;
+		}
 
 		&__container {
 			display: flex;
@@ -131,26 +153,26 @@ export default {
 		}
 
 		&:focus-visible {
-			outline-color: $bn-300;
-			color: $bn-300;
-			transition: $interaction;
+			outline-color: tokens.$bn-300;
+			color: tokens.$bn-300;
+			transition: tokens.$interaction;
 		}
 
 		&--valid {
 			@extend .pin-input;
-			border: 1px solid $gp-500;
+			border: 1px solid tokens.$gp-500;
 
 			&:focus-visible {
-				outline-color: $gp-500;
+				outline-color: tokens.$gp-500;
 			}
 		}
 
 		&--invalid {
 			@extend .pin-input;
-			border: 1px solid $rc-500;
+			border: 1px solid tokens.$rc-500;
 
 			&:focus-visible {
-				outline-color: $rc-500;
+				outline-color: tokens.$rc-500;
 			}
 		}
 	}

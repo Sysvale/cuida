@@ -1,44 +1,18 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`CalloutCard > renders correctly 1`] = `
-VueWrapper {
-  "__app": {
-    "_component": [Object],
-    "_container": <div … />,
-    "_context": [Object],
-    "_instance": [Object],
-    "_props": null,
-    "_uid": 0,
-    "component": [Function],
-    "config": [Object],
-    "directive": [Function],
-    "mixin": [Function],
-    "mount": [Function],
-    "provide": [Function],
-    "unmount": [Function],
-    "use": [Function],
-    "version": "3.2.37",
-  },
-  "__setProps": [Function],
-  "componentVM": {
-    "actionButtonDisabled": false,
-    "actionButtonSecondary": false,
-    "actionButtonText": "Ok",
-    "actionButtonVariant": "green",
-    "compact": false,
-    "hasOwnProperty": [Function],
-    "image": "https://cdn-icons-png.flaticon.com/512/7486/7486747.png",
-    "imageDescription": "Imagem de CalloutCard",
-    "resolveClass": [Function],
-    "text": "Subtítulo do AlertCard",
-    "title": "Título do CalloutCard",
-  },
-  "isDisabled": [Function],
-  "rootVM": {},
-  "wrapperElement": <span
-    id="callout-card"
-  >
-    <div … />
-  </span>,
-}
+"<span id="callout-card"><div class="callout-card__container"><div class="image__container"><img class="image__content" src="https://cdn-icons-png.flaticon.com/512/7486/7486747.png" alt="Imagem de CalloutCard"></div><div class="content__container"><div class="content"><p class="content__title">Título do CalloutCard</p><span class="content__text"><!-- @slot Slot usado para inserção de conteúdo customizado no texto. -->Texto do CalloutCar</span></div>
+<div>
+  <!-- @slot Slot usado para inserção de conteúdo customizado no lugar do botão de ação. -->
+  <!--
+							Evento que indica que o Botão foi clicado
+							@event action-button-click
+							@type {Event}
+						--><button data-v-3c9d0845="" class="button__container button--green--active button-size--md" id="content-button">
+    <!--v-if-->
+    <!-- @slot Slot padrão utilizado para exibir texto do botão. -->Ok
+  </button>
+</div>
+</div>
+</div></span>"
 `;

@@ -30,7 +30,7 @@ import SideBar from '../../components/SideBar.vue';
 			source: {
 				language: 'html',
 				format:true,
-				code: /*html*/ 
+				code: /*html*/
 `<cds-side-bar
 	v-bind="args"
 	@click="logClick"
@@ -49,18 +49,33 @@ export const Template = (args) => ({
 		<cds-side-bar
 			v-bind="args"
 			@sidebar-click="logClick"
+			@search-button-click="logSearchButtonClick"
+			@collapse-click="logCollapseClick"
 			@logout="logLogout"
 		>
 			<template #logo>
-				<img src="https://sysvale.com/images/white-logo.svg" />
+				<img
+					v-if="!args.light"
+					src="https://framerusercontent.com/images/Xdjpf9nazmZOoS2SUnbbkwsaFk.png"
+				>
+				<img
+					v-else
+					src="https://framerusercontent.com/images/cF8DHaPnyhgullDGcpLnyXwGUp4.png"
+				>
 			</template>
 		</cds-side-bar>`,
 	methods: {
 		logClick(element) {
 			console.info('%clogItemClick: ', 'color: #2C70CD;', element);
 		},
+		logCollapseClick(element) {
+			console.info('%clogCollapseClick: ', 'color: #2C70CD;', element);
+		},
 		logLogout(element) {
 			console.info('%clogLogout: ', 'color: #2C70CD;', element);
+		},
+		logSearchButtonClick(element) {
+			console.info('%clogSearchButtonClick: ', 'color: #2C70CD;', element);
 		},
 	},
 });
@@ -71,17 +86,24 @@ export const Template = (args) => ({
 ---
 <br />
 
-## Recomendamos o uso de NavBars quando:
+## Recomendamos o uso de SideBars quando:
 - For necessário separar o conteúdo por páginas e navergar por elas.
 - Não for o caso de utilizar soluções como tabs, sidebars, cards ou links como navegação.
 
 <br />
 
-## Não recomendamos o uso de NavBars quando:
+## Não recomendamos o uso de SideBars quando:
 - Houver muitos itens a serem mostrados no menu.
 - For necessário mostrar os links verticalmente.
 
 <br />
+
+### Obs.:
+- No objeto de configuração são aceitas as propriedades `label`, `icon`, `type`, `route` e `items`;
+- O `type` pode ser assumir 3 valores:
+	- **route**, para rotas internas (é renderizado um `router-link` com elas);
+	- **link** para elementos que não devem redirecionar para nenhnuma rota;
+	- **external** para links que devem ser abertos em uma nova guia;
 
 ## Preview
 
@@ -119,7 +141,7 @@ export const items = [
 			{
 				label: 'Totem',
 				route: {
-					path: '/totem-link',
+					path: 'https://www.wikipedia.org/',
 					name: 'totem',
 				},
 				type: 'external',
@@ -192,11 +214,17 @@ export const items = [
 	<Story
 		name="SideBar"
 		args={{
+			variant: 'indigo',
 			items: items,
 			activeItem: items[4],
 			userName: 'Joana Mendes',
 			userRole: 'Administradora',
-			userPicture: 'https://this-person-does-not-exist.com/img/avatar-gen83fa18cdcd216e7220794a23e76fe0dc.jpg',
+			userPicture: 'https://thispersondoesnotexist.com/',
+			collapsible: true,
+			collapsibleState: false,
+			logoImage: 'https://framerusercontent.com/images/Xdjpf9nazmZOoS2SUnbbkwsaFk.png',
+			light: false,
+			searchButton: false,
 		}}
 	>
 		{ Template.bind({}) }

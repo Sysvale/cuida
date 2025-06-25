@@ -36,11 +36,7 @@
 			</div>
 		</template>
 		<template #tooltip="tooltip">
-			<!-- @slot Scoped slot para renderização customizada dos tooltips.
-				A propriedade 'tooltip', que pode ser acessada através do slot,
-				contém pos (posição do componente em %), index (o índice do slider),
-				value (o valor do slider), focus (se o slider está no estado de focus ou não),
-				disabled (se o slider está disabilitado ou não)
+			<!-- @slot Scoped slot para renderização customizada dos tooltips. A propriedade 'tooltip', que pode ser acessada através do slot, contém pos (posição do componente em %), index (o índice do slider), value (o valor do slider), focus (se o slider está no estado de focus ou não), disabled (se o slider está disabilitado ou não).
 			-->
 			<slot
 				name="tooltip"
@@ -50,8 +46,8 @@
 	</vue-slider>
 </template>
 <script>
-import vueSlider from 'vue-slider-component'
-import 'vue-slider-component/theme/default.css';
+/* eslint-disable no-unused-vars */
+import vueSlider from 'vue-3-slider-component';
 
 export default {
 	components: {
@@ -121,6 +117,11 @@ export default {
 		},
 
 		innerValue(value) {
+			/**
+			 * Evento utilizado para implementar o v-model.
+			 * @event update:modelValue
+			 * @type {Event}
+			 */
 			this.$emit('update:modelValue', value);
 		},
 	},
@@ -131,7 +132,7 @@ export default {
 }
 </script>
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .vue-slider-dot {
 	width: 18px !important;
@@ -143,14 +144,14 @@ export default {
 }
 
 .vue-slider-dot-tooltip-top {
-	top: spacer(n1);
+	top: tokens.spacer(n1);
 }
 
 .vue-slider-dot-tooltip-inner {
-	@include caption;
+	@include tokens.caption;
 	background-color: transparent;
 	border-color: transparent;
-	color: $n-800;
+	color: tokens.$n-800;
 }
 
 .merge-tooltip {
@@ -161,11 +162,11 @@ export default {
 }
 
 .vue-slider-rail {
-	background-color: $n-50;
+	background-color: tokens.$n-50;
 }
 
 .slider {
-	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+	@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 
 		& > .vue-slider-rail > .vue-slider-process {
 			background-color: $shade-300 !important;

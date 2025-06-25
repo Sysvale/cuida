@@ -16,8 +16,12 @@
 					-->
 					<div
 						v-if="i <= internalNumberOfExpandedActions - 1"
-						:class="i === 0 ? 'action-list__item' : 'action-list__item--left-bordered'"
-						@click.stop="$emit('action-clicked', action)"
+						:class="{
+							'action-list__item': i === 0, 
+							'action-list__item--left-bordered': i !== 0,
+							'action-list__item--disabled': action.disabled,
+						}"
+						@click.stop="handleClick(action)"
 					>
 						<!-- @slot Scoped slot para renderização customizada das 'actions'.
 							A propriedade 'list', que pode ser acessada através do slot,
@@ -53,7 +57,7 @@ import cloneDeep from 'lodash.clonedeep';
 export default {
 	props: {
 		/**
-		* A lista de actions a ser renderizada.
+		* A lista de actions a ser renderizada. Caso queira que um item da lista fique desabilitado, basta passar a prop `disabled` como true nesse item no array.
 		*/
 		actions: {
 			type: Array,
@@ -90,15 +94,27 @@ export default {
 			*/
 			this.$emit('expanded', this.itsBeingShown);
 		},
+
+		handleClick(action) {
+			if(!action.disabled) {
+				/**
+				* Evento emitido quando o item da lista é clicado.
+				* @event action-clicked
+				* @type {Event}
+				*/
+				this.$emit('action-clicked', action);
+			}
+		},
 	},
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
+
 
 .action-list {
 	&--right {
-		color: $n-500;
+		color: tokens.$n-500;
 		display: flex;
 		font-weight: 600;
 		justify-content: flex-end;
@@ -115,16 +131,26 @@ export default {
 		padding: 24px;
 		
 		&:hover {
-			background-color: $n-10;
+			background-color: tokens.$n-10;
+		}
+
+		&--disabled {
+			@extend .action-list__item;
+			color: tokens.$n-200;
+			cursor: not-allowed;
+
+			&:hover {
+				background-color: unset;
+			}
 		}
 
 		&--right-bordered {
-			border-right: 1px solid $n-40;
+			border-right: 1px solid tokens.$n-40;
 			@extend .action-list__item;
 		}
 
 		&--left-bordered {
-			border-left: 1px solid $n-40;
+			border-left: 1px solid tokens.$n-40;
 			@extend .action-list__item;
 		}
 	}

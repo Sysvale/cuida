@@ -10,7 +10,7 @@
 			'clickable__container--clickable': clickable,
 			'clickable__container--not-clickable': !clickable,
 		}"
-		@click.stop="$emit('cds-click', true)"
+		@click="$emit('cds-click', true)"
 	>
 		<slot />
 	</div>
@@ -25,14 +25,28 @@ export default {
 		clickable: {
 			type: Boolean,
 			default: false,
-		}
-	}
+		},
+		/**
+		 * Permite que o clickable se expanda de forma fluida
+		 */
+		fluid: {
+			type: Boolean,
+			default: false,
+			required: false,
+		},
+	},
+
+	computed: {
+		widthResolver() {
+			return this.fluid ? '100%' : 'fit-content';
+		},
+	},
 }
 </script>
 
 <style lang="scss">
 .clickable__container {
-	width: fit-content;
+	width: v-bind(widthResolver);
 
 	&--clickable {
 		@extend .clickable__container;

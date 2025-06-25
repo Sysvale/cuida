@@ -11,7 +11,7 @@
 	>
 		<a
 			:href="href"
-			:target="newTab ? '_blank' : false"
+			:target="newTab ? '_blank' : null"
 		>
 			<!-- @slot Slot padrão para renderização de conteúdo customizado do texto do link. -->
 			<slot class="link__text">
@@ -63,44 +63,44 @@ export default {
 };
 </script>
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .link__container {
 	display: inline;
 	width: auto;
 
 	a {
-		color: $bn-500;
+		color: tokens.$bn-400;
 		text-decoration: none;
-		transition: $interaction;
+		transition: tokens.$interaction;
 		border-bottom: 1px solid transparent;
 	}
 
 	a:visited {
-		color: $bn-500;
+		color: tokens.$bn-500;
 	}
 
 	a:hover {
-		color: $bn-500;
-		border-bottom: 1px solid $bn-500;
-		transition: $interaction;
+		color: tokens.$bn-500;
+		border-bottom: 1px solid tokens.$bn-500;
+		transition: tokens.$interaction;
 		cursor: pointer;
 	}
 
 	&--sm > a {
-		@include caption;
+		@include tokens.caption;
 	}
 
 	&--md > a {
-		@include body-2;
+		@include tokens.body-2;
 	}
 
 	&--lg > a {
-		@include body-1;
+		@include tokens.body-1;
 	}
 
 	&--bold > a {
-		font-weight: $font-weight-semibold;
+		font-weight: tokens.$font-weight-bold;
 	}
 }
 </style>

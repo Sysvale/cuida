@@ -5,10 +5,26 @@ import Select from '../../components/Select.vue';
 	title="Componentes/Forms/Select"
 	component={ Select }
 	argTypes={{
+		state: {
+			control:{
+				type: 'select',
+				options: [
+					'default',
+					'valid',
+					'invalid',
+					'loading',
+				],
+			}
+		},
 		width: { 
 			control: { 
 				type: 'select',
-				options: ['thin', 'default', 'wide']
+				options: [
+					'none',
+					'thin',
+					'default',
+					'wide'
+				]
 			}
 		},
 	}}
@@ -50,8 +66,30 @@ export const Template = (args) => ({
 		<cds-select
 			v-bind="args" 
 			v-model="value"
+			@click="logClick"
+			@change="logChange"
+			@focus="logFocus"
+			@blur="logBlur"
+			@keydown="logKeydown"
 		/>
 	`,
+	methods: {
+		logClick() {
+			console.info('⚡ %cClick emitted', 'color: rgb(37, 227, 139);');
+		},
+		logChange() {
+			console.info('⚡ %cChange emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logFocus() {
+			console.info('⚡ %cFocus emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logBlur() {
+			console.info('⚡ %cBlur emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logKeydown(event) {
+			console.info('⚡ %cKeydown emitted: ', 'color: hsl(152, 77.20%, 51.80%);', event);
+		},
+	},
 	updated() {
 		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
 	},
@@ -96,47 +134,44 @@ export const options = [
 		id: '1',
 	},
 	{
-		value: 'Game of Thrones ',
-	},
-	{
-		value: 'The Umbrella Academy',
-	},
-	{
-		value: 'Fringe',
-	},
-	{
-		value: 'Breaking Bad',
-	},
-	{
-		value: 'Game of Thrones ',
-	},
-	{
-		value: 'Dark',
-	},
-	{
-		value: '👀 Borat: o segundo melhor repórter do glorioso país Cazaquistão viaja à América',
-	},
-	{
-		value: 'The Office',
+		value: 'Game of Thrones',
 		id: '2',
 	},
 	{
-		value: 'Black Mirror',
+		value: 'The Umbrella Academy',
+		id: '3',
 	},
 	{
-		value: 'Westworld ',
+		value: 'Fringe',
+		id: '4',
+	},
+	{
+		value: 'Dark',
+		id: '5',
+	},
+	{
+		value: 'Borat: o segundo melhor repórter do glorioso país Cazaquistão viaja à América',
+		id: '6',
+	},
+	{
+		value: 'Black Mirror',
+		id: '7',
+	},
+	{
+		value: 'Westworld',
+		id: '8',
 	},
 	{
 		value: 'Avatar: A Lenda de Aang',
-	},
-	{
-		value: 'The Boys',
+		id: '9',
 	},
 	{
 		value: 'Vikings',
+		id: '10',
 	},
 	{
 		value: 'Arcane',
+		id: '11',
 	},
 ];
 
@@ -146,11 +181,25 @@ export const options = [
 		name="Select"
 		args={{
 			options,
-			width: 'wide',
-			id: "idzera",
 			label: 'Séries',
 			placeholder: 'Selecione uma das séries',
 			required: true,
+			disabled: false,
+			state: 'default',
+			required: false,
+			searchable: false,
+			addable: false,
+			fluid: false,
+			mobile: false,
+			floatingLabel: false,
+			errorMessage: 'Campo obrigatório',
+			tooltip: '',
+			tooltipIcon: 'info-outline',
+			linkText: '',
+			linkUrl: '',
+			supportingText: null,
+			supportLink: '',
+			supportLinkUrl: '',
 		}}
 	>
 		{ Template.bind({}) }

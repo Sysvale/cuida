@@ -1,54 +1,16 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`TimeInput > renders correctly 1`] = `
-VueWrapper {
-  "__app": {
-    "_component": [Object],
-    "_container": <div … />,
-    "_context": [Object],
-    "_instance": [Object],
-    "_props": null,
-    "_uid": 0,
-    "component": [Function],
-    "config": [Object],
-    "directive": [Function],
-    "mixin": [Function],
-    "mount": [Function],
-    "provide": [Function],
-    "unmount": [Function],
-    "use": [Function],
-    "version": "3.2.37",
-  },
-  "__setProps": [Function],
-  "componentVM": {
-    "buildTimeElements": [Function],
-    "computedInputClass": "input__time",
-    "disabled": false,
-    "endHour": "",
-    "endMinute": "",
-    "errorMessage": "Horário inválido",
-    "formatTimeElement": [Function],
-    "handleTimeInput": [Function],
-    "hasOwnProperty": [Function],
-    "id": "time-input",
-    "label": "Test label",
-    "mode": "single",
-    "modelValue": "",
-    "required": false,
-    "resolveRangeInterval": [Function],
-    "resolveTimeElement": [Function],
-    "startHour": "",
-    "startMinute": undefined,
-    "state": "default",
-  },
-  "isDisabled": [Function],
-  "rootVM": {},
-  "wrapperElement": <div
-    data-v-362c4bdd=""
-  >
-    <label … />
-    <div … />
+"<div data-v-362c4bdd=""><label data-v-362c4bdd="" class="input__label">
+    <div data-v-362c4bdd="" class="label__content" for="time-input"><span data-v-362c4bdd="">Test label</span>
+      <!--v-if-->
+    </div>
+  </label>
+  <div data-v-362c4bdd="" id="time-input" class="input__container">
+    <div data-v-362c4bdd=""><input data-v-362c4bdd="" id="time-input-start-hour" class="input__time" type="text" min="0" max="23" step="1" placeholder="00"> : <input data-v-362c4bdd="" id="time-input-start-minute" class="input__time" type="text" min="0" max="59" step="1" placeholder="00"></div>
     <!--v-if-->
-  </div>,
-}
+    <!--v-if-->
+  </div>
+  <!--v-if-->
+</div>"
 `;

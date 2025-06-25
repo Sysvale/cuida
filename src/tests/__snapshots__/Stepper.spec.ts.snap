@@ -1,52 +1,79 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Stepper > renders correctly 1`] = `
-VueWrapper {
-  "__app": {
-    "_component": [Object],
-    "_container": <div … />,
-    "_context": [Object],
-    "_instance": [Object],
-    "_props": null,
-    "_uid": 0,
-    "component": [Function],
-    "config": [Object],
-    "directive": [Function],
-    "mixin": [Function],
-    "mount": [Function],
-    "provide": [Function],
-    "unmount": [Function],
-    "use": [Function],
-    "version": "3.2.37",
-  },
-  "__setProps": [Function],
-  "componentVM": {
-    "changeStep": [Function],
-    "circleStyle": [Function],
-    "disableOnClick": false,
-    "dividerStyle": [Function],
-    "hasOwnProperty": [Function],
-    "internalValue": 3,
-    "labelStyle": [Function],
-    "stepSectionStyle": [Function],
-    "steps": [Array],
-    "value": 4,
-    "vertical": false,
-  },
-  "isDisabled": [Function],
-  "rootVM": {},
-  "wrapperElement": <div
-    class="stepper"
-    data-v-49d2667a=""
-  >
-    <div … />
-    
-    <div … />
-    <div … />
-    <div … />
-    <div … />
-    
-    <div … />
-  </div>,
-}
+"<div data-v-49d2667a="" class="stepper">
+  <div data-v-49d2667a="" class="stepper__edge-container">
+    <div data-v-49d2667a="" class="stepper__edge">
+      <div data-v-49d2667a="" class="stepper__divider--default"></div>
+    </div>
+  </div>
+  <div data-v-49d2667a="" class="stepper__step-section">
+    <!--v-if-->
+    <div data-v-49d2667a="" id="step-1" class="stepper__icon-container">
+      <div data-v-49d2667a="" class="stepper__icon-circle stepper__step--completed stepper__step--clickable">
+        <!-- <check-icon
+						v-if="step.completed"
+						size="1x"
+					/> --><svg data-v-49d2667a="" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" aria-labelledby="check-outline" role="presentation">
+          <g fill="currentColor"></g>
+        </svg>
+      </div>
+      <div data-v-49d2667a="" class="stepper__divider--in-progress"></div>
+    </div>
+    <div data-v-49d2667a="" class="stepper__step-label stepper__step-label--muted stepper__step-label--horizontal stepper__step--clickable"><small data-v-49d2667a="">Dummy label 1</small></div>
+  </div>
+  <div data-v-49d2667a="" class="stepper__step-section">
+    <!--v-if-->
+    <div data-v-49d2667a="" id="step-2" class="stepper__icon-container">
+      <div data-v-49d2667a="" class="stepper__icon-circle stepper__step--in-processing stepper__step--clickable">
+        <!-- <check-icon
+						v-if="step.completed"
+						size="1x"
+					/> -->
+        <div data-v-49d2667a="" class="stepper__processing-icon"><svg data-v-49d2667a="" width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path data-v-49d2667a="" d="M18.78 16.6325C17.738 18.0472 16.3457 19.1664 14.7402 19.8799C13.1346 20.5935 11.3709 20.8769 9.62259 20.7023C7.87428 20.5276 6.20151 19.901 4.76877 18.884C3.33604 17.867 2.19266 16.4945 1.45107 14.9017C0.709475 13.3089 0.395207 11.5504 0.539162 9.79934C0.683116 8.04824 1.28034 6.36474 2.2721 4.9144C3.26387 3.46406 4.61603 2.2968 6.19562 1.52741C7.77522 0.758019 9.52787 0.412981 11.2812 0.526225L10.6287 10.6288L18.78 16.6325Z" fill="#3A7EDF"></path>
+          </svg></div>
+      </div>
+      <div data-v-49d2667a="" class="stepper__divider--default"></div>
+    </div>
+    <div data-v-49d2667a="" class="stepper__step-label stepper__step-label--muted stepper__step-label--horizontal stepper__step--clickable"><small data-v-49d2667a="">Dummy label 3</small></div>
+  </div>
+  <div data-v-49d2667a="" class="stepper__step-section">
+    <!--v-if-->
+    <div data-v-49d2667a="" id="step-3" class="stepper__icon-container">
+      <div data-v-49d2667a="" class="stepper__icon-circle stepper__step--error stepper__step--clickable">
+        <!-- <check-icon
+						v-if="step.completed"
+						size="1x"
+					/> -->
+        <!-- <x-icon
+						v-else-if="step.error"
+						size="1x"
+					/> --><svg data-v-49d2667a="" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" aria-labelledby="x-outline" role="presentation">
+          <g fill="currentColor"></g>
+        </svg>
+      </div>
+      <div data-v-49d2667a="" class="stepper__divider--default"></div>
+    </div>
+    <div data-v-49d2667a="" class="stepper__step-label stepper__step-label--muted stepper__step-label--horizontal stepper__step--clickable"><small data-v-49d2667a="">Dummy label 2</small></div>
+  </div>
+  <div data-v-49d2667a="" class="">
+    <!--v-if-->
+    <div data-v-49d2667a="" id="step-4" class="stepper__icon-container">
+      <div data-v-49d2667a="" class="stepper__icon-circle stepper__step--active stepper__step--clickable">
+        <!-- <check-icon
+						v-if="step.completed"
+						size="1x"
+					/> --><span data-v-49d2667a="" class="stepper__icon-text">4</span>
+      </div>
+      <div data-v-49d2667a="" class="stepper__divider--default"></div>
+    </div>
+    <div data-v-49d2667a="" class="stepper__step-label stepper__step-label--active stepper__step-label--horizontal stepper__step--clickable"><small data-v-49d2667a="">Dummy label X</small></div>
+  </div>
+  <div data-v-49d2667a="" class="stepper__edge-container">
+    <div data-v-49d2667a="" class="stepper__edge">
+      <div data-v-49d2667a="" class="stepper__divider--default"></div>
+    </div>
+  </div>
+</div>"
 `;

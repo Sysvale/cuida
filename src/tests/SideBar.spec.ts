@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
 import SideBar from '../components/SideBar.vue';
-import { mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 
 const mockedData = [
 	{
@@ -39,10 +39,10 @@ const mockedData = [
 
 describe('SideBar', () => {
 	test('renders correctly', async () => {
-		const wrapper = mount(SideBar, {
+		const wrapper = shallowMount(SideBar, {
 			global: {
 				stubs: {
-					'cds-icon': true,
+					'router-link': true,
 				},
 			},
 			props: {
@@ -53,6 +53,6 @@ describe('SideBar', () => {
 			},
 		});
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.html()).toMatchSnapshot();
 	});
 });

@@ -8,6 +8,7 @@
 				:is="'bar'"
 				:data="localChartData"
 				:options="chartOptions"
+				:plugins="plugins"
 			/>
 		</div>
 	</span>
@@ -16,7 +17,7 @@
 <script>
 import { Chart, registerables } from 'chart.js';
 import { Bar } from 'vue-chartjs'
-import sassColorVariables from '../assets/sass/colors.module.scss';
+import sassColorVariables from '../assets/sass/tokens/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
 // Registrar o elemento "point" no registro (Torna-se necessário para marcações de ponto)
@@ -59,6 +60,17 @@ export default {
 			}
 		},
 		/**
+		* Define o tema do gráfico.
+		*/
+		theme: {
+			type: String,
+			required: false,
+			default: '',
+			validator: (value) => {
+				return ['green', 'teal', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray', 'dark'].includes(value);
+			},
+		},
+		/**
 		 * Defina as labels do gráfico
 		 */
 		labels: {
@@ -86,9 +98,15 @@ export default {
 				scales: {
 					x: {
 						stacked: true,
+						grid: {
+							color: 'transparent',
+						},
 					},
 					y: {
 						stacked: true,
+						grid: {
+							color: '#DFE5EC',
+						},
 					},
 				},
 				responsive: true,
@@ -107,10 +125,21 @@ export default {
 						labels: {
 							usePointStyle: true,
 							pointStyle: 'rectRounded',
+							padding: 50,
 						},
 					},
 				},
 			},
+			plugins: [{
+				id: 'custom_legend_margin',
+				beforeInit: function(chart) {
+					const originalFit = chart.legend.fit;
+					chart.legend.fit = function() {
+						originalFit.call(this);
+						this.height += 12;
+					};
+				}
+			}],
 		}
 	},
 
@@ -156,8 +185,12 @@ export default {
 		paleteBuilder,
 
 		palete() {
-			this.palletColors = this.paleteBuilder(this.sassColorVariables.palete);
-			this.removeFirstTwoElements();
+			if (this.theme.length) {
+				this.palletColors = this.paleteBuilder(this.sassColorVariables.chartThemes);
+			} else {
+				this.palletColors = this.paleteBuilder(this.sassColorVariables.palete);
+				this.removeFirstTwoElements();
+			}
 		},
 
 		// NOTE: Função responsável por remover os dois primeiros elementos da paleta para quando não é gray ou Dark Neutrals
@@ -198,28 +231,72 @@ export default {
 					mergedData.datasets.push(dataset);
 				});
 			});
+
 			this.palete();
+
 			const backgroundColor = this.generateBackgroundColor();
 			this.setColors(mergedData.datasets, backgroundColor);
 			this.localChartData = mergedData;
 		},
 
-		// NOTE: Função responsável por buscar a cor na paleta
-		generateBackgroundColor() {
-			const variantLowercase = this.variant.toLowerCase();
+		getPalete(variant = this.variant) {
+			const variantLowercase = variant.toLowerCase();
 			const palletColor = this.palletColors.find(color => color.variantName.toLowerCase().includes(variantLowercase));
+
 			if (palletColor) {
+				return palletColor.colorShades;
+			}
+		},
+
+		generateBackgroundColor() {
+			let variantLowercase = this.variant.toLowerCase();
+
+			if (this.theme.length) {
+				variantLowercase = this.theme.toLowerCase();
+			}
+
+			const palletColor = this.palletColors.find(color => {
+				return color.variantName.toLowerCase() === variantLowercase
+			});
+
+			if (palletColor) {
+				if (this.fill) {
+					const withOpacity = palletColor.colorShades.map(color => color + '80');
+					return withOpacity;
+				}
 				return palletColor.colorShades;
 			}
 			return [];
 		},
 
+		setMultiColors(datasets) {
+			const colors = {};
+			let shadePosition = 0;
+
+			this.chartOptions.plugins.legend.display = true;
+
+			datasets.forEach((dataset, index) => {
+				const objectName = dataset.name;
+				let colorIndex = 1;
+
+				if (index % 5 === 0) {
+					shadePosition = 0;
+				}
+
+				colorIndex += shadePosition;
+				shadePosition++;
+
+				colors[objectName] = this.getPalete(dataset.variant)[colorIndex];
+
+				dataset.backgroundColor = colors[objectName];
+				dataset.borderRadius = 6;
+			});
+		},
+
 		// NOTE: Função responsável por setar backgroundColor
 		// Ocorre essa verificação para garantir que o mesmo conjunto de dados para mais de um item selecionado tenha a mesma cor
 		setColors(datasets, backgroundColor) {
-
 			const colors = {};
-
 			this.chartOptions.plugins.legend.display = true;
 
 			datasets.forEach(dataset => {
@@ -246,7 +323,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './../assets/sass/tokens.scss';
+
 .responsive-container{
 	width: 100%;
 	height: 100%;

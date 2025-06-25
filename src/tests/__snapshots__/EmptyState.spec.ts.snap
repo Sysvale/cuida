@@ -1,54 +1,21 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`EmptyState > renders correctly 1`] = `
-VueWrapper {
-  "__app": {
-    "_component": [Object],
-    "_container": <div … />,
-    "_context": [Object],
-    "_instance": [Object],
-    "_props": null,
-    "_uid": 0,
-    "component": [Function],
-    "config": [Object],
-    "directive": [Function],
-    "mixin": [Function],
-    "mount": [Function],
-    "provide": [Function],
-    "unmount": [Function],
-    "use": [Function],
-    "version": "3.2.37",
-  },
-  "__setProps": [Function],
-  "componentVM": {
-    "actionButtonText": "Finalizar",
-    "actionButtonVariant": "green",
-    "hasOwnProperty": [Function],
-    "hideActionButton": false,
-    "image": "",
-    "imageDescription": "Imagem de Empty State",
-    "text": "EmptyState text",
-    "title": "EmptyState title",
-  },
-  "isDisabled": [Function],
-  "rootVM": {},
-  "wrapperElement": <div
-    class="empty-state"
-    data-v-f262d0f3=""
-  >
-    <!-- @slot Slot usado para inserção de conteúdo gráfico
-			customizado como alternativa a imagem do empty-state. -->
-    
-    <img … />
-    
-    <div … />
-    <div … />
-    <!--
+"<div data-v-f262d0f3="" class="empty-state">
+  <!-- @slot Slot usado para inserção de conteúdo gráfico
+			customizado como alternativa a imagem do empty-state. --><img data-v-f262d0f3="" class="empty-state__image" src="" alt="Imagem de Empty State">
+  <div data-v-f262d0f3="" class="empty-state__title">EmptyState title</div>
+  <div data-v-f262d0f3="" class="empty-state__text">
+    <!-- @slot Slot usado para inserção de conteúdo customizado no texto do corpo do
+				empty state. -->EmptyState text
+  </div>
+  <!--
 			Evento emitido quando o botão do Empty State é clicado
 			@event action-button-click
 			@type {Event}
-		-->
-    <button … />
-  </div>,
-}
+		--><button data-v-3c9d0845="" data-v-f262d0f3="" class="button__container button--green--active button-size--md empty-state__button">
+    <!--v-if-->
+    <!-- @slot Slot padrão utilizado para exibir texto do botão. -->Finalizar
+  </button>
+</div>"
 `;

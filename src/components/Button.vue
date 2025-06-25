@@ -19,6 +19,7 @@
 		</slot>
 	</button>
 </template>
+
 <script>
 import CdsSpinner from '../components/Spinner.vue';
 import Cdstip from '../utils/directives/cdstip';
@@ -48,6 +49,13 @@ export default {
 		size: {
 			type: String,
 			default: 'md',
+		},
+		/**
+		* Quando true, torna a largura do botão fluida
+		*/
+		block: {
+			type: Boolean,
+			default: false,
 		},
 		/**
 		 * Especifica o texto a ser apresentado no corpo do botão.
@@ -111,6 +119,9 @@ export default {
 	},
 
 	computed: {
+		widthResolver() {
+			return this.block ? '100%' : 'max-content';
+		},
 
 		tooltipDisabled() {
 			return this.disabled && this.tooltipText !== '' ? this.tooltipText : null;
@@ -158,37 +169,40 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use 'sass:color';
+@use '../assets/sass/tokens/index' as tokens;
+
 .button {
 	&--secondary {
 		&--active {
-			background-color: $n-10;
-			color: $n-700;
-			border: 1px solid $n-50 !important;
+			background-color: tokens.$n-10;
+			color: tokens.$n-700;
+			border: 1px solid tokens.$n-50 !important;
 			
 			&:hover {
 				@extend .button--secondary--active;
-				background-color: $n-20;
+				background-color: tokens.$n-20;
 			}
 		}
 
 		&--disabled {
 			cursor: default !important;
-			background-color: $n-10;
-			color: $n-300;
-			border: 1px solid $n-30 !important;
+			background-color: tokens.$n-10;
+			color: tokens.$n-300;
+			border: 1px solid tokens.$n-30 !important;
 		}
 	}
 
 	&__loader {
-		margin: mr(3);
+		margin: tokens.mr(3);
 	}
 
 	&__container {
 		font-family: Satoshi, Inter, Avenir, Helvetica, Arial, sans-serif;
 		display: flex;
 		align-items: center;
-		width: max-content;
+		justify-content: center;
+		width: v-bind(widthResolver);
 		border: none;
 		cursor: pointer;
 
@@ -199,48 +213,48 @@ export default {
 
 	$colors: (
 		'--green': (
-			'active': $gp-400,
-			'disabled': $gp-300,
+			'active': tokens.$gp-400,
+			'disabled': tokens.$gp-300,
 		),
 		'--teal': (
-			'active': $ta-400,
-			'disabled': $ta-300,
+			'active': tokens.$ta-400,
+			'disabled': tokens.$ta-300,
 		),
 		'--turquoise': (
-			'active': $ts-400,
-			'disabled': $ts-300,
+			'active': tokens.$ts-400,
+			'disabled': tokens.$ts-300,
 		),
 		'--blue': (
-			'active': $bn-400,
-			'disabled': $bn-300,
+			'active': tokens.$bn-400,
+			'disabled': tokens.$bn-300,
 		),
 		'--indigo': (
-			'active': $in-400,
-			'disabled': $in-300,
+			'active': tokens.$in-400,
+			'disabled': tokens.$in-300,
 		),
 		'--violet': (
-			'active': $vr-400,
-			'disabled': $vr-300,
+			'active': tokens.$vr-400,
+			'disabled': tokens.$vr-300,
 		),
 		'--pink': (
-			'active': $pp-400,
-			'disabled': $pp-300,
+			'active': tokens.$pp-400,
+			'disabled': tokens.$pp-300,
 		),
 		'--red': (
-			'active': $rc-400,
-			'disabled': $rc-300,
+			'active': tokens.$rc-400,
+			'disabled': tokens.$rc-300,
 		),
 		'--orange': (
-			'active': $og-400,
-			'disabled': $og-300,
+			'active': tokens.$og-400,
+			'disabled': tokens.$og-300,
 		),
 		'--amber': (
-			'active': $al-400,
-			'disabled': $al-300,
+			'active': tokens.$al-400,
+			'disabled': tokens.$al-300,
 		),
 		'--dark': (
-			'active': $n-700,
-			'disabled': $n-500,
+			'active': tokens.$n-700,
+			'disabled': tokens.$n-500,
 		),
 	);
 
@@ -249,13 +263,13 @@ export default {
 			@each $state, $disabled-color in $variants {
 				&--#{$state} {
 					background-color: $disabled-color;
-					color: $n-0;
+					color: tokens.$n-0;
 				}
 
 				@if $state == 'active' {
 					&--#{$state}:hover {
-						background-color: darken($disabled-color, 5%);
-						color: $n-0;
+						background-color: color.adjust($disabled-color, $lightness: -5%);
+						color: tokens.$n-0;
 					}
 				}
 			}
@@ -269,21 +283,24 @@ export default {
 
 .button-size {
 	&--sm {
-		@include button-3;
-		padding: pYX(2, 4);
-		border-radius: $border-radius-lil;
+		@include tokens.button-3;
+		padding: tokens.pYX(2, 4);
+		height: 32px;
+		border-radius: tokens.$border-radius-lil;
 	}
 
 	&--md {
-		@include button-2;
-		padding: pYX(3, 6);
-		border-radius: $border-radius-extra-small;
+		@include tokens.button-2;
+		padding: tokens.pYX(3, 6);
+		height: 40px;
+		border-radius: tokens.$border-radius-extra-small;
 	}
 
 	&--lg {
-		@include button-1;
-		padding: pYX(3, 6);
-		border-radius: $border-radius-extra-small;
+		@include tokens.button-1;
+		padding: tokens.pYX(4, 8);
+		height: 48px;
+		border-radius: tokens.$border-radius-extra-small;
 	}
 }
 </style>

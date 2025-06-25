@@ -1,46 +1,48 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`InnerTabs > renders correctly 1`] = `
-VueWrapper {
-  "__app": {
-    "_component": [Object],
-    "_container": <div … />,
-    "_context": [Object],
-    "_instance": [Object],
-    "_props": null,
-    "_uid": 0,
-    "component": [Function],
-    "config": [Object],
-    "directive": [Function],
-    "mixin": [Function],
-    "mount": [Function],
-    "provide": [Function],
-    "unmount": [Function],
-    "use": [Function],
-    "version": "3.2.37",
-  },
-  "__setProps": [Function],
-  "componentVM": {
-    "activeBorderStyle": [Object],
-    "activeTab": [Object],
-    "colorHexCode": [Function],
-    "colorOptions": [Array],
-    "getSlotName": [Function],
-    "handleClick": [Function],
-    "hasOwnProperty": [Function],
-    "indicatorClass": [Function],
-    "internalActiveTab": [Object],
-    "isActive": [Function],
-    "tabs": [Array],
-    "variant": "green",
-  },
-  "isDisabled": [Function],
-  "rootVM": {},
-  "wrapperElement": <div
-    id="inner-tabs"
-  >
-    <div … />
-    <div … />
-  </div>,
-}
+"<div id="inner-tabs">
+  <div class="inner-tabs__header-container">
+    <ul class="inner-tabs__header">
+      <li role="presentation"><a role="tab" href="javascript:void(0)" target="_self" class="inner-tabs__tab inner-tabs__tab--active">Dummy title 1</a>
+        <div class="tab__indicator--active--green" style="--indicatorColor: #2AC092;"></div>
+      </li>
+      <li role="presentation"><a role="tab" href="javascript:void(0)" target="_self" class="inner-tabs__tab inner-tabs__tab--inactive">Dummy title 2</a>
+        <div class="" style="--indicatorColor: #2AC092;"></div>
+      </li>
+      <li role="presentation"><a role="tab" href="javascript:void(0)" target="_self" class="inner-tabs__tab inner-tabs__tab--inactive">Dummy title 3</a>
+        <div class="" style="--indicatorColor: #2AC092;"></div>
+      </li>
+      <li role="presentation"><a role="tab" href="javascript:void(0)" target="_self" class="inner-tabs__tab inner-tabs__tab--inactive">Dummy title 4</a>
+        <div class="" style="--indicatorColor: #2AC092;"></div>
+      </li>
+    </ul>
+  </div>
+  <div class="inner-tabs__content">
+    <div role="tabpanel" class="content__pane content__pane--active">
+      <!-- @slot Slot para renderização customizada do conteúdo das abas
+					os slots são nomeados de acordo com os \`name\` das tabs, cada slot
+					nomeado é exibido de acordo com a aba ativa correspondente
+				-->
+    </div>
+    <div role="tabpanel" class="content__pane content__pane--inactive">
+      <!-- @slot Slot para renderização customizada do conteúdo das abas
+					os slots são nomeados de acordo com os \`name\` das tabs, cada slot
+					nomeado é exibido de acordo com a aba ativa correspondente
+				-->
+    </div>
+    <div role="tabpanel" class="content__pane content__pane--inactive">
+      <!-- @slot Slot para renderização customizada do conteúdo das abas
+					os slots são nomeados de acordo com os \`name\` das tabs, cada slot
+					nomeado é exibido de acordo com a aba ativa correspondente
+				-->
+    </div>
+    <div role="tabpanel" class="content__pane content__pane--inactive">
+      <!-- @slot Slot para renderização customizada do conteúdo das abas
+					os slots são nomeados de acordo com os \`name\` das tabs, cada slot
+					nomeado é exibido de acordo com a aba ativa correspondente
+				-->
+    </div>
+  </div>
+</div>"
 `;

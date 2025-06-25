@@ -49,18 +49,8 @@
 					}"
 				>
 					<div v-if="!isOnDragEnterState">
-						Arraste o arquivo aqui ou
-						<a
-							href="javascript:void(0)"
-							class="file-input__search-link"
-							:class="{
-								'file-input__search-link--disabled': disabled === true,
-							}"
-						>
-							pesquise no seu dispositivo
-						</a>
+						{{ textMessage }}
 					</div>
-
 					<div v-else>
 						Solte aqui o seu arquivo
 					</div>
@@ -94,7 +84,7 @@
 						class="on-drag-content__container"
 						:class="{'on-drag-content__container--disabled': disabled === true}"
 					>
-						<div>{{ file.name }}</div>
+						<div>{{ formatFilename }}</div>
 						<div
 							class="x-icon__container"
 							@click.stop="handleRemove"
@@ -130,7 +120,7 @@
 </template>
 
 <script>
-import isEmpty from 'lodash.isempty';
+import { last, isEmpty } from 'lodash';
 import CdsIcon from './Icon.vue';
 
 export default {
@@ -169,6 +159,13 @@ export default {
 			default: 'default',
 		},
 		/**
+		 * Especifica o texto exibido como placeholder no componente
+		 */
+		textMessage: {
+			type: String,
+			default: 'Arraste o arquivo aqui ou pesquise no seu dispositivo',
+		},
+		/**
 		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
 		 */
 		errorMessage: {
@@ -190,6 +187,7 @@ export default {
 			isOnDragEnterState: false,
 			isValid: true,
 			internalState: this.state,
+			invalidExtensionError: null,
 		};
 	},
 
@@ -223,10 +221,15 @@ export default {
 
 		computedAllowedMessage() {
 			if (this.allowedExtensions) {
-				const splited = this.allowedExtensions.split(',');
-				const s = splited.length === 1 ? '' : 's';
-				const initial = `São aceitos apenas arquivo${s} do${s} seguinte${s} tipo${s}:`;
-				return `${initial} ${this.acceptString}.`;
+				if (this.invalidExtensionError) {
+					const splited = this.allowedExtensions.split(',');
+					const s = splited.length === 1 ? '' : 's';
+					const initial = `São aceitos apenas arquivo${s} do${s} seguinte${s} tipo${s}:`;
+					return `${initial} ${this.acceptString}.`;
+				}
+
+				return this.errorMessage;
+
 			} else if (this.state === 'invalid') {
 				return this.errorMessage;
 			}
@@ -237,13 +240,27 @@ export default {
 		textAlignmentResolver() {
 			return this.size === 'sm' ? 'flex-start' : 'center';
 		},
+
+		formatFilename() {
+			if (this.file instanceof File && this.file.name.length > 16) {
+				const splitedName = this.file.name.split('.');
+
+				if (splitedName.length > 2) {
+					return `arquivo.${last(splitedName)}`;
+				}
+
+				return `${splitedName[0].substring(0, 16)}....${splitedName[1]}`;
+			}
+
+			return this.file.name;
+		},
 	},
 
 	watch: {
 		file(newValue) {
 			/**
 				* Evento utilizado para implementar o v-model.
-				* @event input
+				* @event update:modelValue
 				* @type {Event}
 			*/
 			this.$emit('update:modelValue', newValue);
@@ -259,9 +276,9 @@ export default {
 		isValid: {
 			handler(newValue) {
 				if (newValue) {
-					this.internalState = 'invalid';
-				} else {
 					this.internalState = 'valid';
+				} else {
+					this.internalState = 'invalid';
 				}
 			},
 			immediate: true,
@@ -305,7 +322,11 @@ export default {
 			let uploaded = fileName.split('.');
 			uploaded = uploaded[uploaded.length - 1].trim();
 
-			return alloweds.filter((item) => item === uploaded).length > 0;
+			const valid = alloweds.filter((item) => item === uploaded).length > 0;
+
+			this.invalidExtensionError = !valid;
+
+			return valid;
 		},
 
 		handleFormFileChange(ev) {
@@ -319,6 +340,7 @@ export default {
 			}
 
 			this.isValid = false;
+
 			this.$nextTick().then(() => {
 				this.file = null;
 			});
@@ -333,12 +355,13 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .file-input {
-	border: 2px dashed $n-40;
+	border: 2px dashed tokens.$n-40;
 	box-sizing: border-box;
 	justify-content: v-bind(textAlignmentResolver);
+	cursor: pointer;
 
 	&__container {
 		display: flex;
@@ -347,106 +370,88 @@ export default {
 
 	&--disabled {
 		cursor: default !important;
-		border: 2px dashed $n-40 !important;
-		color: $n-300;
+		border: 2px dashed tokens.$n-40 !important;
+		color: tokens.$n-300;
 	}
 
 	&--valid {
-		border: 2px dashed $gp-200;
+		border: 2px dashed tokens.$gp-200;
 	}
 
 	&--invalid {
-		border: 2px dashed $rc-200;
+		border: 2px dashed tokens.$rc-200;
 	}
 
 	&--sm {
 		height: 40px;
-		border-radius: $border-radius-small;
+		border-radius: tokens.$border-radius-small;
 		display: flex;
-		padding: px(2);
+		padding: tokens.px(2);
 	}
 
 	&--md {
-		padding: pYX(6, 4);
-		border-radius: $border-radius-small;
+		padding: tokens.pYX(6, 4);
+		border-radius: tokens.$border-radius-small;
 		display: flex;
 	}
 
 	&--lg {
-		padding: pYX(12, 12);
-		border-radius: $border-radius-small;
+		padding: tokens.pYX(12, 12);
+		border-radius: tokens.$border-radius-small;
 		display: flex;
 	}
 
 	&__alert {
-		margin: mr(2);
+		margin: tokens.mr(2);
 
 		&-container {
-			@include caption;
-			margin: mt(2);
-			color: $rc-500;
+			@include tokens.caption;
+			margin: tokens.mt(2);
+			color: tokens.$rc-500;
 		}
 	}
 
 	&__title {
 		&--disabled {
 			cursor: default !important;
-			color: $n-300;
+			color: tokens.$n-300;
 		}
 
 		&--lg {
-			margin: ml(2);
+			margin: tokens.ml(2);
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
 			width: 100%;
-			@include subheading-2;
+			@include tokens.subheading-2;
 		}
 
 		&--md {
-			margin: ml(2);
+			margin: tokens.ml(2);
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
 			width: 100%;
-			@include subheading-3;
+			@include tokens.subheading-3;
 		}
 
 		&--sm {
-			margin: ml(2);
+			margin: tokens.ml(2);
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
 			width: 100%;
-			@include caption;
-		}
-	}
-
-	&__search-link {
-		color: $bn-400;
-		font-weight: 700;
-		cursor: pointer;
-
-		&:hover {
-			text-decoration: underline;
-		}
-
-		&--disabled {
-			cursor: default !important;
-			color: $bn-200 !important;
-		}
-		&--disabled:hover {
-			text-decoration: none;
+			@include tokens.caption;
 		}
 	}
 
 	&__close-button {
-		color: $bn-400;
+		color: tokens.$bn-400;
 		cursor: pointer;
 
 		&--disabled {
 			cursor: default !important;
-			color: $bn-200 !important;
+			color: tokens.$bn-200 !important;
 		}
 
 		&--sm {
@@ -469,22 +474,22 @@ export default {
 	}
 
 	&--drag-state {
-		background-color: $n-10;
-		border: 2px dashed $n-40;
+		background-color: tokens.$n-10;
+		border: 2px dashed tokens.$n-40;
 
 		&--disabled {
 			cursor: default !important;
-			color: $bn-200 !important;
+			color: tokens.$bn-200 !important;
 		}
 	}
 }
 
 .icon-document {
-	color: $bn-500;
+	color: tokens.$bn-500;
 
 	&--disabled {
 		cursor: default !important;
-		color: $bn-200 !important;
+		color: tokens.$bn-200 !important;
 	}
 
 	&--sm {
@@ -507,11 +512,11 @@ export default {
 }
 
 .icon-upload {
-	color: $bn-500;
+	color: tokens.$bn-500;
 
 	&--disabled {
 		cursor: default !important;
-		color: $bn-200 !important;
+		color: tokens.$bn-200 !important;
 	}
 
 	&--sm {
@@ -541,12 +546,12 @@ export default {
 
 	&--disabled {
 		cursor: default !important;
-		color: $n-300;
+		color: tokens.$n-300;
 	}
 }
 
 .x-icon__container {
-	padding: px(1);
+	padding: tokens.px(1);
 	cursor: pointer;
 	display: grid;
 }

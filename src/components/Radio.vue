@@ -3,7 +3,7 @@
 	<span class="cds-radio__container">
 		<!--
 			Evento emitido quando o Radio muda seu estado.
-			@event change
+			@event update:modelValue
 			@type {Event}
 		-->
 		<input
@@ -96,7 +96,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .cds-radio__container {
 	display: flex;
@@ -105,8 +105,8 @@ export default {
 
 .cds-radio__label {
 	cursor: v-bind(cursorType);
-	@include body-2;
-	margin: ml(2);
+	@include tokens.body-2;
+	margin: tokens.ml(2);
 }
 
 .cds-radio {
@@ -117,13 +117,13 @@ export default {
 	font: inherit;
 	width: 16px;
 	height: 16px;
-	border: 1px solid $n-400;
+	border: 1px solid tokens.$n-400;
 	border-radius: 50%;
 	margin-top: 1.4px;
 	display: grid;
 	place-content: center;
 
-	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+	@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 		&:checked {
 			border: 1px solid $base-color;
 		}
@@ -144,8 +144,8 @@ export default {
 		}
 
 		&[disabled]:not(checked) {
-			background: $n-20;
-			border: 1px solid $n-100;
+			background: tokens.$n-20;
+			border: 1px solid tokens.$n-100;
 		}
 	}
 

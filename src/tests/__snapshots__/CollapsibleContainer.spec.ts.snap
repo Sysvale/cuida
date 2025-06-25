@@ -1,40 +1,12 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`CollapsibleContainer > renders correctly 1`] = `
-VueWrapper {
-  "__app": {
-    "_component": [Object],
-    "_container": <div … />,
-    "_context": [Object],
-    "_instance": [Object],
-    "_props": null,
-    "_uid": 0,
-    "component": [Function],
-    "config": [Object],
-    "directive": [Function],
-    "mixin": [Function],
-    "mount": [Function],
-    "provide": [Function],
-    "unmount": [Function],
-    "use": [Function],
-    "version": "3.2.37",
-  },
-  "__setProps": [Function],
-  "componentVM": {
-    "hasOwnProperty": [Function],
-    "internalValue": false,
-    "modelValue": false,
-    "title": "Seu universo expandido",
-    "triggerExpanded": [Function],
-  },
-  "isDisabled": [Function],
-  "rootVM": {},
-  "wrapperElement": <span
-    id="collapsible-container"
-    value="true"
-  >
-    <div … />
-    <!--v-if-->
-  </span>,
-}
+"<span id="collapsible-container"><div class="collapsible-container__item"><span class="collapsible-container__chevron--opened"></span>
+<!-- @slot Slot para renderização do conteúdo do header/title customizado do item
+			--><span class="collapsible-container__title">Seu universo expandido</span></div>
+<div class="collapsible-container__content" data-testid="collapsible-content">
+  <!-- @slot Slot para renderização conteúdo do container
+				quando o componente está expandido
+			-->
+</div></span>"
 `;

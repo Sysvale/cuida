@@ -1,19 +1,21 @@
 '🧱 Componente':
-- src/components/index.ts
+- changed-files:
+  - any-glob-to-any-file: ['src/components/index.ts']
 
 '🐛 Bug':
-- any: ['src/components/*.vue']
-  all: ['!src/stories/**']
+- changed-files:
+  - any-glob-to-any-file: ['src/components/*.vue']
+  - all-globs-to-all-files: ['!src/stories/**']
 
 '📃 Documentação':
-- any: ['src/stories/**/*.stories.mdx']
-  all: ['!src/components/index.ts', '!src/components/*.vue']
+- changed-files:
+  - any-glob-to-any-file: ['src/stories/**/*.stories.mdx']
+  - all-globs-to-all-files: ['!src/components/index.ts', '!src/components/*.vue']
 
 '🛠️ Build':
-- vite.config.ts
-- src/components/index.ts
-- .github/**/*
+- changed-files:
+  - any-glob-to-any-file: ['vite.config.ts', 'src/components/index.ts', '.github/**/*']
 
 '🧩 Token':
-- src/assets/sass/**/*
-- src/stories/tokens/*.stories.mdx
+- changed-files:
+  - any-glob-to-any-file: ['src/assets/sass/**/*', 'src/stories/tokens/*.stories.mdx']

@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Tile > renders correctly 1`] = `
+"<div data-v-f9290560="" data-v-b66d1b07="" class="box--green--light">
+  <!--
+		Evento emitido quando o wrapper é clicado
+		@event cds-click
+		@type {Event}
+	-->
+  <div data-v-f9290560="" class="clickable__container--clickable box__container">
+    <!-- @slot Slot utilizado para renderização do conteúdo interno do Box.-->
+    <div data-v-9cc3ee57="" data-v-f9290560="" class="spacer">
+      <div data-v-b66d1b07="" class="cds-tile__extra-container">
+        <div data-v-b66d1b07="" class="cds-tile__extra">
+          <!-- @slot Slot para incluir conteúdo adicional no canto superior direito da tile.-->
+        </div>
+      </div>
+      <div data-v-b66d1b07="">
+        <div data-v-b66d1b07="" class="cds-tile__image--green cds-tile__image--md"><svg data-v-b66d1b07="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="trash-outline" role="presentation" class="cds-tile__icon">
+            <g fill="currentColor"></g>
+          </svg></div>
+        <div data-v-b66d1b07="" class="cds-tile__text--green cds-tile__text--md">Tile content</div>
+      </div>
+    </div>
+  </div>
+</div>"
+`;

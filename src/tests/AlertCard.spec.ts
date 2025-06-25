@@ -1,4 +1,3 @@
-// @vitest-environment jsdom
 import { describe, test, expect } from 'vitest';
 import AlertCard from '../components/AlertCard.vue';
 import { mount } from '@vue/test-utils';
@@ -14,6 +13,6 @@ describe('AlertCard snapshot test', () => {
 			}
 		});
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.html()).toMatchSnapshot();
 	});
 });

@@ -1,40 +1,23 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`RadioButtonGroup > renders correctly 1`] = `
-VueWrapper {
-  "__app": {
-    "_component": [Object],
-    "_container": <div … />,
-    "_context": [Object],
-    "_instance": [Object],
-    "_props": null,
-    "_uid": 0,
-    "component": [Function],
-    "config": [Object],
-    "directive": [Function],
-    "mixin": [Function],
-    "mount": [Function],
-    "provide": [Function],
-    "unmount": [Function],
-    "use": [Function],
-    "version": "3.2.37",
-  },
-  "__setProps": [Function],
-  "componentVM": {
-    "disabled": false,
-    "hasOwnProperty": [Function],
-    "inline": false,
-    "modelValue": null,
-    "options": [Array],
-    "selected": null,
-  },
-  "isDisabled": [Function],
-  "rootVM": {},
-  "wrapperElement": <span
-    id="radioButton"
-    value=""
-  >
-    <div … />
-  </span>,
-}
+"<div data-v-575576ed="" class="radio__button" style="--border-color-selected: #377EE1; --background-color: #f6f9fe; --display-vertical: inline-flex;" id="radio-button" value=""><label data-v-c1eb01da="" data-v-575576ed="" class="label"><span data-v-c1eb01da="" class="label__content">Label <!--v-if--><!--v-if--></span>
+    <!--v-if-->
+  </label>
+  <div data-v-575576ed="" class="">
+    <div data-v-575576ed="" class="" style=""><label data-v-575576ed="" class="radio-button" disabled="true" for="radio-button-value1"><input data-v-575576ed="" id="radio-button-value1" type="radio" disabled="" value="value1"><label data-v-575576ed="" class="radio-button__content" for="radio-button-value1">
+          <div data-v-575576ed="" class="content-title">Component1</div>
+          <!--v-if-->
+        </label></label></div>
+    <div data-v-575576ed="" class="" style=""><label data-v-575576ed="" class="radio-button" disabled="false" for="radio-button-value2"><input data-v-575576ed="" id="radio-button-value2" type="radio" value="value2"><label data-v-575576ed="" class="radio-button__content" for="radio-button-value2">
+          <div data-v-575576ed="" class="content-title">Component2</div>
+          <!--v-if-->
+        </label></label></div>
+    <div data-v-575576ed="" class="" style=""><label data-v-575576ed="" class="radio-button" disabled="false" for="radio-button-value3"><input data-v-575576ed="" id="radio-button-value3" type="radio" value="value3"><label data-v-575576ed="" class="radio-button__content" for="radio-button-value3">
+          <div data-v-575576ed="" class="content-title">Component3</div>
+          <!--v-if-->
+        </label></label></div>
+  </div>
+  <!--v-if-->
+</div>"
 `;

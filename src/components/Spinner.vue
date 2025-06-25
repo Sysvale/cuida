@@ -1,6 +1,9 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-	<div :class="computedSpinnerClass" />
+	<div
+		v-if="showSpinner"
+		:class="computedSpinnerClass"
+	/>
 </template>
 
 <script>
@@ -23,6 +26,20 @@ export default {
 			type: String,
 			default: 'green',
 		},
+		/**
+		*	Delay para exibição do spinner, em ms
+		*
+		*/
+		delay: {
+			type: Number,
+			default: 0,
+		},
+	},
+
+	data() {
+		return {
+			showSpinner: false,
+		};
 	},
 
 	computed: {
@@ -38,11 +55,28 @@ export default {
 			return `${this.computedSizeClass} ${this.computedColorClass}`;
 		},
 	},
+
+	mounted() {
+		if (this.delay > 0) {
+			setTimeout(() => {
+				this.showSpinner = true;
+			}, this.delay);
+
+			return;
+		}
+
+		this.showSpinner = true;
+	},
+
+	unmounted() {
+		this.showSpinner = false;
+	},
 };
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use 'sass:color';
+@use '../assets/sass/tokens/index' as tokens;
 
 .spin {
 	border-radius: 80px;
@@ -56,11 +90,11 @@ export default {
 	background: transparent;
 	border-style: solid;
 
-	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+	@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 		@extend .spin;
 		border-left-color: $base-color;
-		border-bottom-color: lighten($base-color, 5%);
-		border-right-color: lighten($base-color, 10%);
+		border-bottom-color: color.adjust($base-color, $lightness: 5%);
+		border-right-color: color.adjust($base-color, $lightness: 10%);
 		border-top-color: transparent;
 	}
 

@@ -1,33 +1,26 @@
-# .github/workflows/chromatic.yml
-
-# Workflow name
 name: "Deployer 🚀"
 
-# Event for the workflow
 on: push
 
-# List of jobs
 jobs:
   chromatic-deployment:
-    # Operating System
     runs-on: ubuntu-latest
-    # Job steps
     steps:
       - uses: actions/checkout@v1
       
       - name: 🟢 Node
-        uses: actions/setup-node@v2.1.4
+        uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
           registry-url: https://registry.npmjs.org
 
       - name: Install dependencies
-        # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
-        run: npm i
-        # 👇 Adds Chromatic as a step in the workflow
+        run: |
+          npm cache clean --force
+          npm install
+      
       - name: Publish to Chromatic
         uses: chromaui/action@v1
-        # Chromatic GitHub Action options
         with:
-          # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          autoAcceptChanges: true

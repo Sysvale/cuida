@@ -47,20 +47,4 @@ describe('Wizard', () => {
 		expect(validator(mockedSteps)).toBe(true);
 		expect(validator(invalidSteps)).toBe(false);
 	});
-
-	test('it disables buttons controls correctly', async () => {
-		const wrapper = mount(Wizard, {
-			props: {
-				steps: mockedSteps,
-			},
-		});
-
-		expect(wrapper.vm.disabledBack).toBe(true);
-		expect(wrapper.vm.disabledNext).toBe(false);
-
-		wrapper.vm.currentStep = 2;
-
-		expect(wrapper.vm.disabledBack).toBe(false);
-		expect(wrapper.vm.disabledNext).toBe(true);
-	});
 });

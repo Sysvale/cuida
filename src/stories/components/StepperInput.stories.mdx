@@ -18,7 +18,7 @@ import StepperInput from '../../components/StepperInput.vue';
 		width: { 
 			control: { 
 				type: 'select',
-				options: ['thin', 'default', 'wide']
+				options: ['thin', 'default', 'wide', 'fluid']
 			}
 		},
 	}}
@@ -43,15 +43,33 @@ export const Template = (args) => ({
 	},
 	data() {
 		return {
-			value: '',
+			value: 0,
 		};
 	},
 	template: /*html*/ `
 		<cds-stepper-input
 			v-bind="args"
 			v-model="value"
+			@click="logClick"
+			@focus="logFocus"
+			@blur="logBlur"
+			@change="logChange"
 		/>
 	`,
+	methods: {
+		logClick() {
+			console.info('⚡ %cClick emitted', 'color:rgb(188, 140, 255);');
+		},
+		logFocus() {
+			console.info('⚡ %cFocus emitted', 'color:rgb(249, 120, 232);');
+		},
+		logBlur() {
+			console.info('⚡ %cBlur emitted', 'color:rgb(37, 227, 139);');
+		},
+		logChange() {
+			console.info('⚡ %cChange emitted', 'color:rgb(228, 235, 104);');
+		},
+	},
 	updated() {
 		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
 	},
@@ -74,6 +92,9 @@ export const Template = (args) => ({
 - O dado a ser utilizado  no componente for muito grande.
 - O dado a ser utilizado no componente não for incremental.
 
+## Observações:
+- A propriedade `width` não tem efeito quando a propriedade `mobile` está configurada para `true`.
+
 <br />
 
 ## Preview
@@ -81,6 +102,14 @@ export const Template = (args) => ({
 <Canvas>
 	<Story
 		name="StepperInput"
+		args={{
+			mobile: false,
+			step: 1,
+			disabled: false,
+			required: true,
+			fluid: false,
+			suffix: '',
+		}}
 	>
 		{ Template.bind({}) }
 	</Story>

@@ -1,40 +1,7 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Alert snapshot test > renders correctly 1`] = `
-VueWrapper {
-  "__app": {
-    "_component": [Object],
-    "_container": <div … />,
-    "_context": [Object],
-    "_instance": [Object],
-    "_props": null,
-    "_uid": 0,
-    "component": [Function],
-    "config": [Object],
-    "directive": [Function],
-    "mixin": [Function],
-    "mount": [Function],
-    "provide": [Function],
-    "unmount": [Function],
-    "use": [Function],
-    "version": "3.2.37",
-  },
-  "__setProps": [Function],
-  "componentVM": {
-    "close": [Function],
-    "dismissible": false,
-    "hasOwnProperty": [Function],
-    "icon": "info-outline",
-    "text": "Texto do alerta",
-    "variant": "info",
-  },
-  "isDisabled": [Function],
-  "rootVM": {},
-  "wrapperElement": <span
-    data-v-3f4a8ec2=""
-    id="alert"
-  >
-    <div … />
-  </span>,
-}
+"<span data-v-3f4a8ec2="" id="alert"><div data-v-3f4a8ec2="" class="alert alert__container--info"><div data-v-3f4a8ec2="" class="alert__body"><div data-v-3f4a8ec2=""><svg data-v-3f4a8ec2="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="info-outline" role="presentation" class="alert__icon--info"><g fill="currentColor"></g></svg></div><span data-v-3f4a8ec2="" class="alert__text">Texto do alerta</span></div>
+<!--v-if-->
+</div></span>"
 `;

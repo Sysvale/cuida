@@ -1,53 +1,8 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Button > renders correctly 1`] = `
-VueWrapper {
-  "__app": {
-    "_component": [Object],
-    "_container": <div … />,
-    "_context": [Object],
-    "_instance": [Object],
-    "_props": null,
-    "_uid": 0,
-    "component": [Function],
-    "config": [Object],
-    "directive": [Function],
-    "mixin": [Function],
-    "mount": [Function],
-    "provide": [Function],
-    "unmount": [Function],
-    "use": [Function],
-    "version": "3.2.37",
-  },
-  "__setProps": [Function],
-  "componentVM": {
-    "clickHandler": [Function],
-    "computedStyle": "button--green--active button-size--md",
-    "disabled": false,
-    "hasOwnProperty": [Function],
-    "loading": false,
-    "predefinedColor": "button--green",
-    "predefinedColors": [Array],
-    "predefinedSize": "button-size--md",
-    "predefinedSizes": [Array],
-    "secondary": false,
-    "size": "md",
-    "text": "Button",
-    "tooltipDisabled": null,
-    "tooltipText": null,
-    "variant": "green",
-  },
-  "isDisabled": [Function],
-  "rootVM": {},
-  "wrapperElement": <button
-    class="button__container button--green--active button-size--md"
-    data-v-3c9d0845=""
-  >
-    <!--v-if-->
-    <!-- @slot Slot padrão utilizado para exibir texto do botão. -->
-    
-    Botão
-    
-  </button>,
-}
+"<button data-v-3c9d0845="" class="button__container button--green--active button-size--md">
+  <!--v-if-->
+  <!-- @slot Slot padrão utilizado para exibir texto do botão. -->Botão
+</button>"
 `;

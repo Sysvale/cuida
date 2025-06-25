@@ -1,6 +1,9 @@
 <template>
 	<div>
-		<copy-token :target="target" :value="target" />
+		<copy-token
+			:target="target"
+			:value="target"
+		/>
 
 		<cds-table
 			:items="items"
@@ -10,9 +13,9 @@
 			<template #table-item="{ data, field, rowIndex }">
 				<div
 					v-if="field === 'token'"
-					@click="target = data.token"
 					:id="data.token"
 					class="copy-clip"
+					@click="target = data.token"
 				>
 					<cds-icon
 						height="20"
@@ -31,42 +34,51 @@
 				</div>
 
 				<div
-					class="elevation__example"
 					v-if="field === 'example'"
+					class="elevation__example"
 				>
 					<div
 						class="toast"
-						:class="rowIndex === 6 ? 'active' : ''"
+						:class="rowIndex === 7 ? 'active' : ''"
 					/>
 					<span
-					 	class="toast-text"
+						class="toast-text"
 					>
 						- toast
 					</span>
 					<div
 						class="el tooltip"
-						:class="rowIndex === 5 ? 'active' : ''"
+						:class="rowIndex === 6 ? 'active' : ''"
 					/>
 					<span
-					 	class="tooltip-text"
+						class="tooltip-text"
 					>
 						- tooltip
 					</span>
 					<div
 						class="el modal"
+						:class="rowIndex === 5 ? 'active' : ''"
+					/>
+					<span
+						class="modal-text"
+					>
+						- modal
+					</span>
+					<div
+						class="el sidesheet"
 						:class="rowIndex === 4 ? 'active' : ''"
 					/>
 					<span
-					 	class="modal-text"
+						class="sidesheet-text"
 					>
-						- modal
+						- sidesheet
 					</span>
 					<div
 						class="el toolbar"
 						:class="rowIndex === 3 ? 'active' : ''"
 					/>
 					<span
-					 	class="toolbar-text"
+						class="toolbar-text"
 					>
 						- toolbar
 					</span>
@@ -75,7 +87,7 @@
 						:class="rowIndex === 2 ? 'active' : ''"
 					/>
 					<span
-					 	class="backdrop-text"
+						class="backdrop-text"
 					>
 						- backdrop
 					</span>
@@ -84,7 +96,7 @@
 						:class="rowIndex === 1 ? 'active' : ''"
 					/>
 					<span
-					 	class="base-text"
+						class="base-text"
 					>
 						- base
 					</span>
@@ -93,7 +105,7 @@
 						:class="rowIndex === 0 ? 'active' : ''"
 					/>
 					<span
-					 	class="sunk-text"
+						class="sunk-text"
 					>
 						- sunk
 					</span>
@@ -137,6 +149,7 @@ export default {
 				'$z-index-base',
 				'$z-index-backdrop',
 				'$z-index-toolbar',
+				'$z-index-sidesheet',
 				'$z-index-modal',
 				'$z-index-tooltip',
 				'$z-index-toast',
@@ -146,6 +159,7 @@ export default {
 				'0',
 				'1000',
 				'2000',
+				'2500',
 				'3000',
 				'4000',
 				'5000',
@@ -153,16 +167,10 @@ export default {
 		};
 	},
 
-	methods: {
-		elevationClass(index) {
-			return this.elevationVariables[index].replace('$z-index-', '');
-		},
-	},
-
 	computed: {
 		items() {
 			let items = [];
-			for (let n = 0; n < 7; n++) {
+			for (let n = 0; n < 8; n++) {
 				items.push({
 					token: this.elevationVariables[n],
 					value: this.elevationTokenValues[n],
@@ -171,26 +179,32 @@ export default {
 
 			return items;
 		},
+	},
+
+	methods: {
+		elevationClass(index) {
+			return this.elevationVariables[index].replace('$z-index-', '');
+		},
 	}
 };
 </script>
 
 <style lang="scss" scoped>
-@import './../assets/sass/tokens.scss';
+@use './../assets/sass/tokens/index' as tokens;
 
-@each $elevation-name, $elevation-token in $z-index {
+@each $elevation-name, $elevation-token in tokens.$z-index {
 	.#{$elevation-name} {
 		z-index: $elevation-token;
 		width: 80px;
 		height: 80px;
-		outline: 3px dashed $gp-300;
-		border-radius: $border-radius-small;
+		outline: 3px dashed tokens.$gp-300;
+		border-radius: tokens.$border-radius-small;
 		transform: rotateX(72deg) rotateZ(-45deg) scale(1.2);
 		transition: all .2s ease-in-out;
 	}
 
 	.#{$elevation-name}:hover {
-		background-color: rgba($gp-200, 0.5);
+		background-color: rgba(tokens.$gp-200, 0.5);
 		transition: all .2s ease-in-out;
 	}
 
@@ -214,16 +228,16 @@ export default {
 
 .copy-clip {
 	width: fit-content;
-	padding: pYX(2, 3);
+	padding: tokens.pYX(2, 3);
 	border-radius: 16px;
-	border: 1px solid $n-0;
+	border: 1px solid tokens.$n-0;
 	transition: all .2s ease-in-out;
 	display: flex;
 	align-items: center;
 
 	&__icon {
-		margin: mr(3);
-		color: $n-500;
+		margin: tokens.mr(3);
+		color: tokens.$n-500;
 	}
 }
 
@@ -235,7 +249,7 @@ export default {
 }
 
 .copy-clip:hover {
-	border: 1px solid $gp-300;
+	border: 1px solid tokens.$gp-300;
 	cursor: pointer;
 	transition: all .2s ease-in-out;
 }
@@ -246,24 +260,24 @@ export default {
 
 .el {
 	margin-top: -65px !important;
-	// background-color: rgba($gp-50, 0.5);
 }
 
 .base {
-	background-color: $n-10;
-	outline: 2px dashed $n-100;
+	background-color: tokens.$n-10;
+	outline: 2px dashed tokens.$n-100;
 	width: 90px;
 	height: 90px;
 	margin-left: -4px !important;
 }
 
 .active {
-	background-color: $gp-200;
+	background-color: tokens.$gp-200;
 }
 
 .sunk-text,
 .backdrop-text,
 .toolbar-text,
+.sidesheet-text,
 .modal-text,
 .tooltip-text,
 .toast-text {
@@ -275,49 +289,56 @@ export default {
 	position: absolute;
 	margin-top: 102px !important;
 	margin-left: 122px !important;
-	color: $n-600;
+	color: tokens.$n-600;
 }
 
 .base-text {
 	position: absolute;
 	margin-top: 52px !important;
 	margin-left: 122px !important;
-	color: $n-600;
+	color: tokens.$n-600;
 }
 
 .backdrop-text {
 	position: absolute;
 	margin-top: 2px !important;
 	margin-left: 122px !important;
-	color: $n-600;
+	color: tokens.$n-600;
 }
 
 .toolbar-text {
 	position: absolute;
 	margin-top: -12px !important;
 	margin-left: 122px !important;
-	color: $n-600;
+	color: tokens.$n-600;
+}
+
+.sidesheet-text {
+	position: absolute;
+	margin-top: -22px !important;
+	margin-left: 122px !important;
+	color: tokens.$n-600;
 }
 
 .modal-text {
 	position: absolute;
 	margin-top: -42px !important;
 	margin-left: 122px !important;
-	color: $n-600;
+	color: tokens.$n-600;
 }
 
 .tooltip-text {
 	position: absolute;
 	margin-top: -72px !important;
 	margin-left: 122px !important;
-	color: $n-600;
+	color: tokens.$n-600;
 }
 
 .toast-text {
 	position: absolute;
 	margin-top: -102px !important;
 	margin-left: 122px !important;
-	color: $n-600;
+	color: tokens.$n-600;
 }
 
 </style>

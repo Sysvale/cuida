@@ -4,18 +4,6 @@ import SearchInput from '../../components/SearchInput.vue';
 <Meta
 	title="Componentes/Forms/SearchInput"
 	component={ SearchInput }
-	argTypes={{
-		state: {
-			control:{
-				type: 'select',
-				options: [
-					'default',
-					'valid',
-					'invalid',
-				],
-			}
-		},
-	}}
 	parameters={{
 		viewMode: 'docs',
 		previewTabs: { canvas: { hidden: true }},
@@ -35,11 +23,20 @@ export const Template = (args) => ({
 	setup() {
 		return { args };
 	},
+	data() {
+		return {
+			value: '',
+		};
+	},
 	template: /*html*/ `
 		<cds-search-input
-			v-bind="args" 
+			v-bind="args"
+			v-model="value"
 		/>
 	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
 });
 
 # SearchInput
@@ -53,6 +50,13 @@ export const Template = (args) => ({
 <Canvas>
 	<Story
 		name="SearchInput"
+		args={{
+			modelValue: '',
+			disabled: false,
+			placeholder: 'Busque...',
+			fluid: false,
+			hideLabel: false,
+		}}
 	>
 		{ Template.bind({}) }
 	</Story>

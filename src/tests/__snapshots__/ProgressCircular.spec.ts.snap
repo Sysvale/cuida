@@ -1,50 +1,12 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`ProgressCircular > renders correctly 1`] = `
-VueWrapper {
-  "__app": {
-    "_component": [Object],
-    "_container": <div … />,
-    "_context": [Object],
-    "_instance": [Object],
-    "_props": null,
-    "_uid": 0,
-    "component": [Function],
-    "config": [Object],
-    "directive": [Function],
-    "mixin": [Function],
-    "mount": [Function],
-    "provide": [Function],
-    "unmount": [Function],
-    "use": [Function],
-    "version": "3.2.37",
-  },
-  "__setProps": [Function],
-  "componentVM": {
-    "circleIndicatorStyle": [Object],
-    "colorHexCode": [Function],
-    "hasOwnProperty": [Function],
-    "label": "1%",
-    "labelClass": "progress-circular__label--reduced",
-    "maxValue": 100,
-    "noLabel": false,
-    "normalizedDashArray": "0.67, 100",
-    "size": "md",
-    "slim": false,
-    "stroke": 3.5,
-    "thick": false,
-    "value": 0.67,
-    "variant": "green",
-  },
-  "isDisabled": [Function],
-  "rootVM": {},
-  "wrapperElement": <svg
-    class="progress-circular progress-circular--md"
-    viewBox="0 0 36 36"
-  >
-    <path … />
-    <path … />
-    <text … />
-  </svg>,
-}
+"<svg class="progress-circular progress-circular--md" viewBox="0 0 36 36">
+  <path class="progress-circular__ring-background" stroke-width="3.5" d="M18 2.0845
+			a 15.9155 15.9155 0 0 1 0 31.831
+			a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+  <path class="progress-circular__ring-progress--green" stroke-dasharray="0.67, 100" stroke-width="2.5" style="--indicatorColor: #2AC092;" d="M18 2.0845
+			a 15.9155 15.9155 0 0 1 0 31.831
+			a 15.9155 15.9155 0 0 1 0 -31.831"></path><text x="18" y="21.7" class="progress-circular__label--reduced">1%</text>
+</svg>"
 `;

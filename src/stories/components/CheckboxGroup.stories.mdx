@@ -1,0 +1,122 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import CheckboxGroup from '../../components/CheckboxGroup.vue';
+
+<Meta
+	title="Componentes/Forms/CheckboxGroup"
+	component={ CheckboxGroup }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+		state: {
+			control:{
+				type: 'select',
+				options: [
+					'default',
+					'valid',
+					'invalid',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+					`<cds-checkbox-group
+	v-model="value"
+	label="Checkbox Group"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsCheckboxGroup: CheckboxGroup },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			value: ['test-1'],
+		};
+	},
+	template: /*html*/ `
+		<cds-checkbox-group
+			v-bind="args"
+			@update:model-value="handleValueChange"
+		/>
+	`,
+	methods: {
+		handleValueChange(value) {
+			console.info('v-model: ', value);
+		},
+	},
+});
+
+# CheckboxGroup
+
+### CheckboxGroups são componentes de formulário que permitem seleções binárias e múltiplas.
+---
+<br />
+
+## Quando usar:
+- Quando precisar de um componente de formulário para seleções binárias com várias opções.
+
+<br />
+
+## Quando não usar:
+- Quando for preciso que o efeito da interação com o Checkbox seja imediato. Checkboxes devem ser usados sempre em conjunto com um botão de submissão. Para contornar casos como esse, use Switches.
+
+## Preview
+
+<Canvas>
+	<Story
+		name="CheckboxGroup"
+		args={{
+			label: 'Checkbox Group',
+			modelValue: ['test-1'],
+			state: 'default',
+			options: [
+				{
+					label: 'Teste 1',
+					value: 'test-1',
+				},
+				{
+					label: 'Teste 2',
+					value: 'test-2',
+				},
+				{
+					label: 'Teste 3',
+					value: 'test-3',
+				},
+			],
+			disabled: false,
+			variant: 'green',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="CheckboxGroup" />

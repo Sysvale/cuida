@@ -6,10 +6,10 @@ describe('ProgressBar', () => {
 	test('renders correctly', async () => {
 		const wrapper = mount(ProgressBar, {
 			props: {
-				percentage: 0.67,
+				value: 0.67,
 			},
 		});
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.html()).toMatchSnapshot();
 	});
 });

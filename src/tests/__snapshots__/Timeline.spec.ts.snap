@@ -1,41 +1,7 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Timeline > renders correctly 1`] = `
-VueWrapper {
-  "__app": {
-    "_component": [Object],
-    "_container": <div … />,
-    "_context": [Object],
-    "_instance": [Object],
-    "_props": null,
-    "_uid": 0,
-    "component": [Function],
-    "config": [Object],
-    "directive": [Function],
-    "mixin": [Function],
-    "mount": [Function],
-    "provide": [Function],
-    "unmount": [Function],
-    "use": [Function],
-    "version": "3.2.37",
-  },
-  "__setProps": [Function],
-  "componentVM": {
-    "directionResolver": "column",
-    "hasOwnProperty": [Function],
-    "oppositeSlotMaxWidth": "0",
-    "oppositeSlotWidthResolver": "0px",
-    "reverse": false,
-  },
-  "isDisabled": [Function],
-  "rootVM": {},
-  "wrapperElement": <div
-    class="cds-timeline"
-    history="[object Object],[object Object],[object Object],[object Object],[object Object]"
-  >
-    <!-- @slot Conteúdo a ser colocar na Timeline. Suporta o \`TimelineItem\` como subcomponente.  -->
-    
-    
-  </div>,
-}
+"<div class="cds-timeline" history="[object Object],[object Object],[object Object],[object Object],[object Object]">
+  <!-- @slot Conteúdo a ser colocar na Timeline. Suporta o \`TimelineItem\` como subcomponente.  -->
+</div>"
 `;

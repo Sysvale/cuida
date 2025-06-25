@@ -153,23 +153,23 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .cds-checkbox__container {
 	display: flex;
 	align-items: center;
-	gap: spacer(2);
+	gap: tokens.spacer(2);
 
 	input[type=checkbox] {
 		visibility: hidden;
-		margin-top: spacer(n8);
+		margin-top: tokens.spacer(n8);
 		position: absolute;
 	}
 
 	.cds-checkbox__input {
 		position: relative;
 
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			background-color: $base-color !important;
 		}
 
@@ -178,12 +178,12 @@ export default {
 			display: block;
 			width: 16px;
 			height: 16px;
-			border-radius: $border-radius-button;
+			border-radius: tokens.$border-radius-button;
 		}
 
 		&--checked {
 			&:after {
-				border: 2px solid $n-0;
+				border: 2px solid tokens.$n-0;
 				border-top: none;
 				border-right: none;
 				content: "";
@@ -201,7 +201,7 @@ export default {
 
 		&--indeterminate {
 			&:after {
-				border: 2px solid $n-0;
+				border: 2px solid tokens.$n-0;
 				border-top: none;
 				border-right: none;
 				border-left: none;
@@ -218,38 +218,38 @@ export default {
 		}
 
 		&--disabled {
-			background-color: $n-100 !important;
+			background-color: tokens.$n-100 !important;
 			border: none !important;
 			cursor: default !important;
 		}
 
 		&--disabled:not(.cds-checkbox__input--checked) {
-			background-color: $n-20 !important;
-			border: 1px solid $n-200 !important;
+			background-color: tokens.$n-20 !important;
+			border: 1px solid tokens.$n-200 !important;
 			cursor: default !important;
 		}
 
 		&--unchecked {
-			background-color: $n-0 !important;
-			border: 1px solid $n-400 !important;
+			background-color: tokens.$n-0 !important;
+			border: 1px solid tokens.$n-400 !important;
 		}
 
 	}
 
 	.cds-checkbox__label {
-		@include body-2;
+		@include tokens.body-2;
 		cursor: pointer;
-		color: $n-700;
+		color: tokens.$n-700;
 
 		&--disabled {
 			@extend .cds-checkbox__label;
-			color: $n-400;
+			color: tokens.$n-400;
 			cursor: default !important;
 		}
 
 		&--prominent {
-			font-weight: $font-weight-semibold;
-			color: $n-800;
+			font-weight: tokens.$font-weight-semibold;
+			color: tokens.$n-800;
 		}
 	}
 }

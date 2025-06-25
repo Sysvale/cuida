@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BottomSheet > renders correctly 1`] = `
+"<div data-v-4053a7e3="">
+  <div data-v-4053a7e3="" class="backdrop__show">
+    <div data-v-4053a7e3="" class="bottom-sheet__show">
+      <div data-v-4053a7e3="" class="bottom-sheet__header-border">
+        <div data-v-4053a7e3="" class="bottom-sheet__header-border-line"></div>
+      </div>
+      <div data-v-4053a7e3="" class="bottom-sheet__header">
+        <div data-v-4053a7e3="" class="bottom-sheet__title">Qual o segredo da vida?</div>
+        <div data-v-4053a7e3="" class="bottom-sheet__close-icon"><svg data-v-4053a7e3="" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="x-outline" role="presentation">
+            <g fill="#29333D"></g>
+          </svg></div>
+      </div>
+      <div data-v-4053a7e3="" class="bottom-sheet__content">
+        <!-- @slot Scoped slot usado para inserção de conteúdo customizado. -->
+      </div>
+    </div>
+  </div>
+</div>"
+`;

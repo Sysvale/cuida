@@ -22,11 +22,13 @@ describe('RadioButtonGroup', () => {
 	test('renders correctly', async () => {
 		const wrapper = mount(RadioButtonGroup, {
 			props: {
+				id: 'radio-button',
+				modelValue: null,
 				value: '',
 				options,
 			},
 		});
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.html()).toMatchSnapshot();
 	});
 });

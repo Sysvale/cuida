@@ -29,6 +29,7 @@ export default {
 		fallbackSrc: {
 			type: String,
 			required: false,
+			default: 'https://sysfront.nyc3.cdn.digitaloceanspaces.com/cuida/images/imagePlaceholder.png'
 		},
 		/**
 		* Largura da imagem. Quando não especificada, o valor `auto` é aplicado.
@@ -79,6 +80,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		* Torna a imagem redonda.
+		*/
+		round: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -89,19 +97,30 @@ export default {
 
 	computed: {
 		heightResolver() {
-			return this.height ? `${this.height}px` : 'auto';
+			if (this.round) {
+				return this.resolveSizeUnit(this.width);
+			}
+
+			return this.height ? this.resolveSizeUnit(this.height) : 'auto';
 		},
 
 		widthResolver() {
-			return this.width ? `${this.width}px` : 'auto';
+			return this.width ? this.resolveSizeUnit(this.width) : 'auto';
 		},
 
 		opacityResolver() {
-			return this.width ? `${this.width}px` : 'auto';
+			return this.width ? this.resolveSizeUnit(this.width) : 'auto';
 		},
 
 		radiusResolver() {
-			return this.roundedCorners ? rounder(this.width) : '0px';
+			if (this.round) {
+				return '50%';
+			}
+
+			if (this.roundedCorners) {
+				return rounder(this.width);
+			}
+			return '0px';
 		},
 
 		grayScaleResolver() {
@@ -115,18 +134,32 @@ export default {
 		},
 	},
 
+	watch: {
+		src(newValue) {
+			this.innerSrc = newValue;
+		},
+	},
+
 	methods: {
 		rounder,
 
 		imageSrcResolver() {
 			this.innerSrc = this.fallbackSrc;
 		},
+
+		resolveSizeUnit(size) {
+			if (!Number.isNaN(Number(size))) {
+				return `${size}px`;
+			}
+
+			return size;
+		},
 	},
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .cds__image {
 	border-radius: v-bind(radiusResolver);

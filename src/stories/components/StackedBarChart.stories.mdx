@@ -24,6 +24,15 @@ import StackedBarChart from '../../components/StackedBarChart.vue';
 				]
 			}
 		},
+		theme: {
+			control: {
+				type: 'select',
+				options: [
+					'blue',
+					'indigo',
+				]
+			}
+		},
 		barWidth: {
 			control: {
 				type: 'range',
@@ -58,7 +67,7 @@ export const Template = (args) => ({
 		return { args };
 	},
 	template: /*html*/ `
-		<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px; height: 300px">
+		<div style="background-color: #FCFCFC; padding: 16px; border-radius: 4px; height: 500px">
 			<cds-stacked-bar-chart
 				v-bind="args"
 			/>
@@ -85,6 +94,13 @@ export const Template = (args) => ({
 - Muitas categorias.
 
 ## Preview
+
+### __Stacked bar monocromática__
+
+Quando a prop `variant` é especificada e não há propriedade de cor indicada no objeto de configuração,
+o gráfico é gerado no modo monocromático, com as shades de variant mudando para cada dataset. 
+
+<br />
 
 <Canvas>
 	<Story
@@ -122,10 +138,94 @@ export const Template = (args) => ({
 				}
 			],
 			barWidth: 1,
-	}}
->
+		}}
+	>
 	{ Template.bind({}) }
   </Story>
 </Canvas>
 
 <ArgsTable story="StackedBarChart" />
+
+### __Stacked bar com múltiplas cores__
+
+Para gerar gráficos com múltiplas cores, basta enviar em cada `dataset` a propriedade `variant`.
+Os shades vão escurecendo a cada dataset até chegar ao 700, quando então voltam a decrescer até o shade 50, quando o ciclo se repete.
+
+⚠️ Ao especificar variantes através do objeto de configuração, a variant por prop vai ser sobrescrita
+
+
+<br />
+
+<Canvas>
+	<Story
+		name="StackedBarChart2"
+		args={{
+			labels: [
+				'0-5',
+				'6-15',
+				'16-24',
+				'25-40',
+				'41-64',
+				'+65'
+			],
+			data: [
+				{
+					'name': 'Designers',
+					'datasets': [
+						{
+							'label': 'Designers',
+							'data': [
+								49,
+								84,
+								120,
+								78,
+								130,
+								10
+							],
+							variant: 'violet',
+						}
+					]
+				},
+				{
+					'name': 'Desenvolvedores',
+					'datasets': [
+						{
+							'label': 'Desenvolvedores',
+							'data': [
+								79,
+								14,
+								10,
+								82,
+								30,
+								5
+							],
+							variant: 'blue',
+						}
+					]
+				},
+				{
+					'name': 'QA',
+					'datasets': [
+						{
+							'label': 'QA',
+							'data': [
+								10,
+								50,
+								30,
+								60,
+								50,
+								20
+							],
+							variant: 'indigo',
+						}
+					]
+				},
+			],
+			barWidth: 1,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="StackedBarChart2" />

@@ -1,9 +1,11 @@
+/* COMPONENTS */
 import ActionBar from './ActionBar.vue';
 import ActionsList from './ActionsList.vue';
 import Alert from './Alert.vue';
 import AlertCard from './AlertCard.vue';
 import AppBar from './AppBar.vue';
 import Avatar from './Avatar.vue';
+import AvatarGroup from './AvatarGroup.vue';
 import Badge from './Badge.vue';
 import BarChart from './BarChart.vue';
 import LineChart from './LineChart.vue';
@@ -11,35 +13,64 @@ import PieChart from './PieChart.vue';
 import PolarAreaChart from './PolarAreaChart.vue';
 import StackedBarChart from './StackedBarChart.vue';
 import Box from './Box.vue';
+import BottomSheet from './BottomSheet.vue';
 import Breadcrumb from './Breadcrumb.vue';
 import Button from './Button.vue';
 import Card from './Card.vue';
 import CalloutCard from './CalloutCard.vue';
+import Carousel from './Carousel.vue';
 import CarouselController from './CarouselController.vue';
 import Checkbox from './Checkbox.vue';
+import CheckboxGroup from './CheckboxGroup.vue';
 import Chevron from './Chevron.vue';
+import Chip from './Chip.vue';
 import Clickable from './Clickable.vue';
 import CollapsibleContainer from './CollapsibleContainer.vue';
 import ColorPicker from './ColorPicker.vue';
 import DashboardCard from './DashboardCard.vue';
+import DataTable from './DataTable.vue';
 import DateInput from './DateInput.vue';
+import DialogModal from './DialogModal.vue';
+import DynamicInputList from './DynamicInputList.vue';
 import Divider from './Divider.vue';
 import Dropdown from './Dropdown.vue';
+import DropdownButton from './DropdownButton.vue';
+import DonutChart from './DonutChart.vue';
 import EmptyState from './EmptyState.vue';
 import FileInput from './FileInput.vue';
+import Flexbox from './Flexbox.vue';
+import FileViewer from './FileViewer.vue';
+import FilterSelect from './FilterSelect.vue';
 import FlatButton from './FlatButton.vue';
 import FloatingAssistant from './FloatingAssistant.vue';
+import FloatingActionButton from './FloatingActionButton.vue';
+import GaugeChart from './GaugeChart.vue';
+import Grid from './Grid.vue';
+import GridItem from './GridItem.vue';
 import Highlight from './Highlight.vue';
 import Icon from './Icon.vue';
 import IconButton from './IconButton.vue';
 import InnerTabs from './InnerTabs.vue';
+import InteractionBlockingOverlay from './InteractionBlockingOverlay.vue';
 import Image from './Image.vue';
+import InlineDateInput from './InlineDateInput.vue';
+import Label from './Label.vue';
 import Link from './Link.vue';
+import List from './List.vue';
 import LoadingBar from './LoadingBar.vue';
+import LoadingIndicator from './LoadingIndicator.vue';
+import MobileNavbar from './MobileNavbar.vue';
+import MobileNavigation from './MobileNavigation.vue';
 import Modal from './Modal.vue';
+import MonthAndYearPicker from './MonthAndYearPicker.vue';
+import MultiFileInput from './MultiFileInput.vue';
 import Multiselect from './Multiselect.vue';
+import ComboBox from './ComboBox.vue';
 import NavBar from './NavBar.vue';
 import NumberInput from './NumberInput.vue';
+import OverlayLoader from './OverlayLoader.vue';
+import PageContainer from './PageContainer.vue';
+import PageLayout from './PageLayout.vue';
 import PageHeader from './PageHeader.vue';
 import Pagination from './Pagination.vue';
 import PanelCard from './PanelCard.vue';
@@ -48,15 +79,20 @@ import Popover from './Popover.vue';
 import ProgressBar from './ProgressBar.vue';
 import ProgressCircular from './ProgressCircular.vue';
 import Pulsar from './Pulsar.vue';
+import QuickActionBar from './QuickActionBar.vue';
 import Radio from './Radio.vue';
+import RadialBarChart from './RadialBarChart.vue';
 import RadioButtonGroup from './RadioButtonGroup.vue';
+import RichTooltip from './RichTooltip.vue';
 import Spacer from './Spacer.vue';
 import Scrollable from './Scrollable.vue';
 import SearchInput from './SearchInput.vue';
+import SecondaryNavigation from './SecondaryNavigation.vue';
 import SegmentedControl from './SegmentedControl.vue';
 import Select from './Select.vue';
 import SideBar from './SideBar.vue';
 import SideSheet from './SideSheet.vue';
+import Skeleton from './Skeleton.vue';
 import SkeletonText from './SkeletonText.vue';
 import Slider from './Slider.vue';
 import Spinner from './Spinner.vue';
@@ -65,99 +101,174 @@ import StepperInput from './StepperInput.vue';
 import Switch from './Switch.vue';
 import Table from './Table.vue';
 import Tabs from './Tabs.vue';
+import Text from './Text.vue';
 import TextArea from './TextArea.vue';
 import TextInput from './TextInput.vue';
+import Tile from './Tile.vue';
 import TimeInput from './TimeInput.vue';
 import Timeline from './Timeline.vue';
 import TimelineItem from './TimelineItem.vue';
+import Toast from './Toast.vue';
+import ToastContainer from './ToastContainer.vue';
 import Tooltip from './Tooltip.vue';
+import TopAppBar from './TopAppBar.vue';
 import Truncate from './Truncate.vue';
 import PasswordInput from './PasswordInput.vue';
+import WebcamModal from './WebcamModal.vue';
 import Wizard from './Wizard.vue';
 
+/* DIRECTIVES */
 import Cdstip from '../utils/directives/cdstip';
 import CdsFloatify from "../utils/directives/cdsFloatify";
+import CdsClickOutside from '../utils/directives/cdsClickOutside';
+import { unmaskBRL } from '@/utils/directives/cdsBRL';
+
+/* UTILS */
+import contrastChecker from '@/utils/methods/contrastChecker';
+import uuidv4 from '@/utils/methods/uuidv4';
+import hasSlot from '@/utils/methods/hasSlot';
+import removeAccents from '@/utils/methods/removeAccents';
+import hexToRgb from '@/utils/methods/hexToRgb';
+import isDeviceType from '@/utils/methods/isDeviceType';
+import useIsMobile from '@/utils/composables/useIsMobile';
+import { useToast } from '@/utils/composables/useToast';
+import { useHasSlot } from '@/utils/composables/useHasSlot';
+import { useHasSlots } from '@/utils/composables/useHasSlots';
 
 export default {
 	install: (app: any, options: any) => {
 		app.directive('cdstip', Cdstip);
 		app.directive("cds-floatify", CdsFloatify);
-
-		app.component('CdsActionBar', ActionBar); //NOTE: Testado no SB
-		app.component('CdsActionsList', ActionsList); //NOTE: Testado no SB
-		app.component('CdsAlert', Alert); //NOTE: Testado no SB
+		app.directive("cds-click-outside", CdsClickOutside);
+		app.component('CdsActionBar', ActionBar);
+		app.component('CdsActionsList', ActionsList);
+		app.component('CdsAlert', Alert);
 		app.component('CdsAlertCard', AlertCard);
-		app.component('CdsAppBar', AppBar); //NOTE: Testado no SB
-		app.component('CdsAvatar', Avatar); //NOTE: Testado no SB
-		app.component('CdsBadge', Badge); //NOTE: Testado no SB
+		app.component('CdsAppBar', AppBar);
+		app.component('CdsAvatar', Avatar);
+		app.component('CdsAvatarGroup', AvatarGroup);
+		app.component('CdsBadge', Badge);
 		app.component('CdsBarChart', BarChart);
 		app.component('CdsBox', Box);
+		app.component('CdsBottomSheet', BottomSheet);
 		app.component('CdsBreadcrumb', Breadcrumb);
-		app.component('CdsButton', Button); //NOTE: Testado no SB
+		app.component('CdsButton', Button);
 		app.component('CdsCard', Card);
-		app.component('CdsCalloutCard', CalloutCard); //NOTE: Testado no SB
+		app.component('CdsCalloutCard', CalloutCard);
+		app.component('CdsCarousel', Carousel);
 		app.component('CdsCarouselController', CarouselController);
-		app.component('CdsCheckbox', Checkbox); //FIXME: Problema no SB de estilo
-		app.component('CdsChevron', Chevron); //NOTE: Testado no SB
-		app.component('CdsClickable', Clickable); //NOTE: Testado no SB
-		app.component('CdsCollapsibleContainer', CollapsibleContainer); //NOTE: Testado no SB. !Reativo!
-		app.component('CdsColorPicker', ColorPicker); //NOTE: Testado no SB.
+		app.component('CdsCheckbox', Checkbox);
+		app.component('CdsCheckboxGroup', CheckboxGroup);
+		app.component('CdsChevron', Chevron);
+		app.component('CdsChip', Chip);
+		app.component('CdsClickable', Clickable);
+		app.component('CdsCollapsibleContainer', CollapsibleContainer);
+		app.component('CdsColorPicker', ColorPicker);
 		app.component('CdsDashboardCard', DashboardCard);
-		app.component('CdsDateInput', DateInput); //NOTE: Testado no SB
-		app.component('CdsDivider', Divider); //NOTE: Testado no SB
-		app.component('CdsDropdown', Dropdown); //NOTE: Testado no SB
-		app.component('CdsEmptyState', EmptyState); //NOTE: Testado no SB
-		app.component('CdsFileInput', FileInput); //NOTE: Testado no SB
-		app.component('CdsFlatButton', FlatButton); //NOTE: Testado no SB
+		app.component('CdsDataTable', DataTable);
+		app.component('CdsDateInput', DateInput);
+		app.component('CdsDialogModal', DialogModal);
+		app.component('CdsDivider', Divider);
+		app.component('CdsDropdown', Dropdown);
+		app.component('CdsDropdownButton', DropdownButton);
+		app.component('CdsDonutChart', DonutChart);
+		app.component('CdsEmptyState', EmptyState);
+		app.component('CdsFileInput', FileInput);
+		app.component('CdsFileViewer', FileViewer);
+		app.component('CdsFilterSelect', FilterSelect);
+		app.component('CdsFlatButton', FlatButton);
+		app.component('CdsFlexbox', Flexbox);
 		app.component('CdsFloatingAssistant', FloatingAssistant);
-		app.component('CdsHighlight', Highlight); //NOTE: Testado no SB
-		app.component('CdsIcon', Icon); //NOTE: Testado no SB
-		app.component('CdsIconButton', IconButton); //NOTE: Testado no SB
+		app.component('CdsFloatingActionButton', FloatingActionButton);
+		app.component('CdsGaugeChart', GaugeChart);
+		app.component('CdsGrid', Grid);
+		app.component('CdsGridItem', GridItem);
+		app.component('CdsHighlight', Highlight);
+		app.component('CdsIcon', Icon);
+		app.component('CdsIconButton', IconButton);
 		app.component('CdsImage', Image);
-		app.component('CdsInnerTabs', InnerTabs); //NOTE: Testado no SB
+		app.component('CdsInnerTabs', InnerTabs);
+		app.component('CdsInteractionBlockingOverlay', InteractionBlockingOverlay);
 		app.component('CdsLineChart', LineChart);
-		app.component('CdsLink', Link); //NOTE: Testado no SB
-		app.component('CdsLoadingBar', LoadingBar); //NOTE: Testado no SB
-		app.component('CdsModal', Modal); //NOTE: Testado no SB
-		app.component('CdsMultiselect', Multiselect); //FIXME: Problema no SB
-		app.component('CdsNavBar', NavBar); //NOTE: Testado no SB
-		app.component('CdsNumberInput', NumberInput); //NOTE: Testado no SB. !Reativo!
-		app.component('CdsPageHeader', PageHeader); //NOTE: Testado no SB
-		app.component('CdsPagination', Pagination); //NOTE: Testado no SB. !Reativo!
-		app.component('CdsPanelCard', PanelCard); //NOTE: Testado no SB
-		app.component('CdsPinInput', PinInput); //NOTE: Testado no SB. !Reativo!
+		app.component('CdsLabel', Label)
+		app.component('CdsLink', Link);
+		app.component('CdsList', List);
+		app.component('CdsInlineDateInput', InlineDateInput);
+		app.component('CdsLoadingBar', LoadingBar);
+		app.component('CdsLoadingIndicator', LoadingIndicator);
+		app.component('CdsMobileNavbar', MobileNavbar);
+		app.component('CdsMobileNavigation', MobileNavigation);
+		app.component('CdsModal', Modal);
+		app.component('CdsMonthAndYearPicker', MonthAndYearPicker);
+		app.component('CdsMultiselect', Multiselect);
+		app.component('CdsComboBox', ComboBox);
+		app.component('CdsDynamicInputList', DynamicInputList);
+		app.component('CdsMultiFileInput', MultiFileInput);
+		app.component('CdsNavBar', NavBar);
+		app.component('CdsNumberInput', NumberInput);
+		app.component('CdsOverlayLoader', OverlayLoader);
+		app.component('CdsPageContainer', PageContainer);
+		app.component('CdsPageLayout', PageLayout);
+		app.component('CdsPageHeader', PageHeader);
+		app.component('CdsPagination', Pagination);
+		app.component('CdsPanelCard', PanelCard);
+		app.component('CdsPinInput', PinInput);
 		app.component('CdsPopover', Popover);
-		app.component('CdsProgressBar', ProgressBar); //NOTE: Testado no SB
-		app.component('CdsProgressCircular', ProgressCircular); //NOTE: Testado no SB
+		app.component('CdsProgressBar', ProgressBar);
+		app.component('CdsProgressCircular', ProgressCircular);
 		app.component('CdsPulsar', Pulsar);
-		app.component('CdsRadio', Radio); //NOTE: Testado no SB
-		app.component('CdsRadioButtonGroup', RadioButtonGroup); //NOTE: Testado no SB
+		app.component('CdsQuickActionBar', QuickActionBar);
+		app.component('CdsRadio', Radio);
+		app.component('CdsRadioButtonGroup', RadioButtonGroup);
+		app.component('CdsRadialBarChart', RadialBarChart);
+		app.component('CdsRichTooltip', RichTooltip);
 		app.component('CdsSpacer', Spacer);
-		app.component('CdsScrollable', Scrollable); //FIXME: Problema no SB
+		app.component('CdsScrollable', Scrollable);
 		app.component('CdsSearchInput', SearchInput);
+		app.component('CdsSecondaryNavigation', SecondaryNavigation);
 		app.component('CdsSegmentedControl', SegmentedControl);
-		app.component('CdsSelect', Select); //NOTE: Testado no SB. !Reativo!
+		app.component('CdsSelect', Select);
 		app.component('CdsSideBar', SideBar);
 		app.component('CdsSideSheet', SideSheet);
-		app.component('CdsSkeletonText', SkeletonText); //NOTE: Testado no SB
-		// app.component('CdsSlider', Slider);
-		app.component('CdsSpinner', Spinner); //NOTE: Testado no SB
+		app.component('CdsSkeleton', Skeleton);
+		app.component('CdsSkeletonText', SkeletonText);
+		app.component('CdsSlider', Slider);
+		app.component('CdsSpinner', Spinner);
 		app.component('CdsStackedBarChart', StackedBarChart);
 		app.component('CdsStepper', Stepper);
-		app.component('CdsStepperInput', StepperInput); //NOTE: Testado no SB. !Reativo!
-		app.component('CdsSwitch', Switch); //NOTE: Testado no SB
-		app.component('CdsTable', Table); //NOTE: Testado no SB
-		app.component('CdsTabs', Tabs); //NOTE: Testado no SB
-		app.component('CdsTextArea', TextArea); //NOTE: Testado no SB. !Reativo!
-		app.component('CdsTextInput', TextInput); //NOTE: Testado no SB. !Reativo!
-		app.component('CdsTimeInput', TimeInput); //NOTE: Testado no SB. !Reativo!
-		app.component('CdsTooltip', Tooltip); //NOTE: Testado no SB
+		app.component('CdsStepperInput', StepperInput);
+		app.component('CdsSwitch', Switch);
+		app.component('CdsTable', Table);
+		app.component('CdsTabs', Tabs);
+		app.component('CdsText', Text);
+		app.component('CdsTextArea', TextArea);
+		app.component('CdsTextInput', TextInput);
+		app.component('CdsTile', Tile);
+		app.component('CdsTimeInput', TimeInput);
+		app.component('CdsToast', Toast);
+		app.component('CdsToastContainer', ToastContainer);
+		app.component('CdsTooltip', Tooltip);
+		app.component('CdsTopAppBar', TopAppBar);
 		app.component('CdsTimeline', Timeline);
 		app.component('CdsTimelineItem', TimelineItem);
-		app.component('CdsTruncate', Truncate); //NOTE: Testado no SB
+		app.component('CdsTruncate', Truncate);
 		app.component('CdsPasswordInput', PasswordInput);
 		app.component('CdsPieChart', PieChart);
 		app.component('CdsPolarAreaChart', PolarAreaChart);
+		app.component('CdsWebcamModal', WebcamModal);
 		app.component('CdsWizard', Wizard);
+	},
+	utils: {
+		contrastChecker,
+		hasSlot,
+		removeAccents,
+		hexToRgb,
+		isDeviceType,
+		useIsMobile,
+		useHasSlot,
+		useHasSlots,
+		useToast,
+		unmaskBRL,
+		uuidv4,
 	},
 }

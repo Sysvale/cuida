@@ -57,11 +57,13 @@ export const Template = (args) => ({
 		return { args };
 	},
 	template: /*html*/ `
-		<cds-box
-			v-bind="args"
-		>
-			2
-		</cds-box>
+		<div style="height: 200px">
+			<cds-box
+				v-bind="args"
+			>
+				2
+			</cds-box>
+		</div>
 	`,
 	methods: {
 		logClickableClick(event) {
@@ -84,8 +86,10 @@ export const Template = (args) => ({
 		args={{
 			padding: 4,
 			fluid: false,
+			verticalFluid: false,
 			elevated: false,
 			variant: 'gray',
+			overflowVisible: false,
 		}}
 	>
 		{ Template.bind({}) }

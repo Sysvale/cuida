@@ -1,13 +1,13 @@
 
 import { describe, test, expect } from 'vitest';
-import TextInput from '../components/TextInput.vue';
-import { mount } from '@vue/test-utils';
+import Table from '../components/Table.vue';
+import { shallowMount } from '@vue/test-utils';
 
 const fields = ['field1', 'field2', 'field3'];
 
-describe('TextInput', () => {
+describe('Table', () => {
 	test('renders correctly', async () => {
-		const wrapper = mount(TextInput, {
+		const wrapper = shallowMount(Table, {
 			props: {
 				fields,
 				items: [
@@ -25,6 +25,6 @@ describe('TextInput', () => {
 			},
 		});
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.html()).toMatchSnapshot();
 	});
 });

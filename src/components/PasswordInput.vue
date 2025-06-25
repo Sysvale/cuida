@@ -33,7 +33,7 @@
 		</span>
 		<div :class="stepperInputDynamicClass">
 			<input
-				id="cds-password-input"
+				:id="`cds-password-input-${$attrs.id || generateKey()}`"
 				v-model="internalValue"
 				:type="customInputType"
 				:placeholder="placeholder"
@@ -67,6 +67,9 @@
 <script>
 import CdsIcon from './Icon.vue';
 import Cdstip from '../utils/directives/cdstip';
+import CdsClickable from './Clickable.vue';
+import { generateKey } from '../utils';
+
 
 export default {
 	directives: {
@@ -74,7 +77,8 @@ export default {
 	},
 
 	components: {
-		CdsIcon
+		CdsIcon,
+		CdsClickable,
 	},
 
 	props: {
@@ -149,6 +153,13 @@ export default {
 			type: String,
 			default: 'info-outline',
 		},
+		/**
+		 * Define o tipo do input, se true será um input adaptador para o mobile
+		 */
+		mobile: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -203,15 +214,23 @@ export default {
 		},
 
 		labelDynamicClass() {
-			return this.fluid ? 'password-input__label--fluid' : 'password-input__label';
+			const labelType = this.mobile ? 'mobile-label' : 'label';
+
+			return this.fluid ? `password-input__${labelType}--fluid` : `password-input__${labelType}`;
 		},
 
 		inputClass() {
-			return this.fluid ? 'password-input__field--fluid' : 'password-input__field';
+			const inputType = this.mobile ? 'mobile-field' : 'field';
+
+			return this.fluid ? `password-input__${inputType}--fluid` : `password-input__${inputType}`;
 		},
 
 		errorState() {
 			return this.state === 'invalid';
+		},
+
+		resolveInputWidth() {
+			return this.mobile ? '300px' : '266px';
 		},
 	},
 
@@ -229,7 +248,7 @@ export default {
 		internalValue(value) {
 			/**
 			 * Evento utilizado para implementar o v-model.
-			 * @event input
+			 * @event update:modelValue
 			 * @type {Event}
 			 */
 			this.$emit('update:modelValue', value);
@@ -237,21 +256,28 @@ export default {
 	},
 
 	methods: {
+		generateKey,
+	
 		handleShowPassword() {
 			this.showPassword = !this.showPassword;
-		}
-	}
+		},
+	},
 };
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 .password-input {
 	display: flex;
 	justify-content: space-between;
-	outline: 1px solid $n-50;
-	border-radius: $border-radius-extra-small;
-	width: 266px;
+	outline: 1px solid tokens.$n-50;
+	border-radius: tokens.$border-radius-extra-small;
+	width: v-bind(resolveInputWidth);
+	background: tokens.$n-0;
+
+	input {
+		font-family: 'Satoshi';
+	}
 
 	&--fluid {
 		@extend .password-input;
@@ -259,7 +285,7 @@ export default {
 	}
 
 	&__label {
-		@include label;
+		@include tokens.label;
 		display: flex;
 		align-items: flex-end;
 		justify-content: space-between;
@@ -271,27 +297,42 @@ export default {
 		}
 
 		&__required-indicator {
-			color: $rc-600;
+			color: tokens.$rc-600;
 		}
 
 		&__content {
-			margin: mb(1);
+			margin: tokens.mb(1);
 		}
 
 		&__icon {
-			margin: mTRBL(0, 0, n1, 1);
+			margin: tokens.mTRBL(0, 0, n1, 1);
 			cursor: pointer;
 		}
 	}
 
+	&__mobile-label {
+		@extend .password-input__label;
+		font-size: 14px;
+		font-weight: 700;
+
+		&--fluid {
+			@extend .password-input__mobile-label;
+			width: 100%;
+		}
+	}
+
 	&__field {
-		padding: pa(3);
-		margin: mr(2);
+		padding: tokens.pa(3);
+		margin: tokens.mr(2);
 		height: 40px !important;
-		border-radius: $border-radius-extra-small;
+		border-radius: tokens.$border-radius-extra-small;
 		border: none;
 		text-align: start;
-		color: $n-600;
+		color: tokens.$n-600;
+
+		&::placeholder {
+			color: tokens.$n-300;
+		}
 
 		&:focus {
 			outline: 0;
@@ -303,49 +344,63 @@ export default {
 		}
 	}
 
+	&__mobile-field {
+		@extend .password-input__field;
+		@include tokens.body-2;
+		font-weight: 400;
+		height: 48px !important;
+		border-radius: tokens.$border-radius-lil;
+
+
+		&--fluid {
+			@extend .password-input__mobile-field;
+			width: 100%;
+		}
+	}
+
 	&__password-toogle {
 		display: flex;
 		align-items: center;
 		cursor: pointer;
-		color: $n-600;
-		padding: pr(4);
-		@include caption;
+		color: tokens.$n-600;
+		padding: tokens.pr(4);
+		@include tokens.caption;
 	}
 
 	&__error-message {
-		@include caption;
-		color: $rc-600;
-		margin: mt(1);
+		@include tokens.caption;
+		color: tokens.$rc-600;
+		margin: tokens.mt(1);
 	}
 
 	&--focused {
 		@extend .password-input;
-		outline: 1px solid $bn-300;
-		box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);
+		outline: 1px solid tokens.$bn-300;
+		box-shadow: 0 0 0 0.2rem rgba(tokens.$bn-300, .45);
 	}
 
 	&--valid {
 		@extend .password-input;
-		outline: 1px solid $gp-500;
+		outline: 1px solid tokens.$gp-500;
 	}
 
 	&--invalid {
 		@extend .password-input;
-		outline: 1px solid $rc-600;
+		outline: 1px solid tokens.$rc-600;
 	}
 
 	&--focused-valid {
 		@extend .password-input--valid;
-		box-shadow: 0 0 0 0.2rem rgba($gp-300, .45);
+		box-shadow: 0 0 0 0.2rem rgba(tokens.$gp-300, .45);
 	}
 
 	&--focused-invalid {
 		@extend .password-input--invalid;
-		box-shadow: 0 0 0 0.2rem rgba($rc-300, .45);
+		box-shadow: 0 0 0 0.2rem rgba(tokens.$rc-300, .45);
 	}
 
 	&--disabled {
-		background-color: $n-20;
+		background-color: tokens.$n-20;
 		pointer-events: none;
 		border: none;
 	}

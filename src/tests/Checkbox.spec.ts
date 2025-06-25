@@ -1,16 +1,16 @@
 import { describe, test, expect } from 'vitest';
-import Button from '../components/Button.vue';
+import Checkbox from '../components/Checkbox.vue';
 import { mount } from '@vue/test-utils';
   
-describe('Button', () => {
+describe('Checkbox', () => {
 	test('renders correctly', async () => {
-		const wrapper = mount(Button, {
+		const wrapper = mount(Checkbox, {
 			props: {
-				value: false,
+				modelValue: false,
 				label: 'checkbox test'
 			},
 		});
   
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.html()).toMatchSnapshot();
 	});
 });

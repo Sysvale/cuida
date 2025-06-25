@@ -1,38 +1,9 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Scrollable > renders correctly 1`] = `
-VueWrapper {
-  "__app": {
-    "_component": [Object],
-    "_container": <div … />,
-    "_context": [Object],
-    "_instance": [Object],
-    "_props": null,
-    "_uid": 0,
-    "component": [Function],
-    "config": [Object],
-    "directive": [Function],
-    "mixin": [Function],
-    "mount": [Function],
-    "provide": [Function],
-    "unmount": [Function],
-    "use": [Function],
-    "version": "3.2.37",
-  },
-  "__setProps": [Function],
-  "componentVM": {
-    "autoHeight": false,
-    "hasOwnProperty": [Function],
-    "horizontalScroll": false,
-    "maxHeight": "200px",
-  },
-  "isDisabled": [Function],
-  "rootVM": {},
-  "wrapperElement": <span
-    data-v-5e315bd5=""
-    id="scrollable"
-  >
-    <div … />
-  </span>,
-}
+"<div data-v-5e315bd5="" class="scrollable">
+  <div data-v-5e315bd5="" class="scrollable__container" style="max-height: 200px; height: 200px;">
+    <!-- @slot Slot com o conteúdo que você deseja que seja scrollable -->
+  </div>
+</div>"
 `;

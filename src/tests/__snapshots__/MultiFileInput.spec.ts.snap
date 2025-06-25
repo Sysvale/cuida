@@ -1,0 +1,62 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MultiFileInput snapshot test > renders correctly 1`] = `
+"<div data-v-96e95147="" class="multi-file-input">
+  <div data-v-96e95147="" class="multi-file-input__file-container">
+    <div data-v-185587fa="">
+      <div data-v-185587fa="" class="file-input text-center file-input--md px-3"><input data-v-185587fa="" type="file" style="display: none;">
+        <div data-v-185587fa="" class="file-input__container"><svg data-v-185587fa="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="upload-cloud-outline" role="presentation" class="icon-upload--md px-3">
+            <g fill="currentColor"></g>
+          </svg>
+          <div data-v-185587fa="" class="file-input__title--md mt-3">
+            <div data-v-185587fa="">Arraste o arquivo aqui ou pesquise no seu dispositivo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--v-if-->
+  </div>
+  <div data-v-96e95147="" class="multi-file-input__box">
+    <div data-v-96e95147="" class="multi-file-input__description"> Os arquivos marcados com o asterisco (*) são obrigatórios: </div>
+    <div data-v-96e95147="" class="multi-file-input__badges_section">
+      <div data-v-0d3d5e64="" data-v-96e95147="" class="badge__container badge--gray badge--md">
+        <div data-v-0d3d5e64="" class="badge__content--md">
+          <div data-v-96e95147="" class="multi-file-input__badge-content">
+            <!--v-if-->
+            <div data-v-96e95147="">Comprovante de residência *</div>
+          </div>
+        </div>
+      </div>
+      <div data-v-0d3d5e64="" data-v-96e95147="" class="badge__container badge--gray badge--md">
+        <div data-v-0d3d5e64="" class="badge__content--md">
+          <div data-v-96e95147="" class="multi-file-input__badge-content">
+            <!--v-if-->
+            <div data-v-96e95147="">Guia de encaminhamento </div>
+          </div>
+        </div>
+      </div>
+      <div data-v-0d3d5e64="" data-v-96e95147="" class="badge__container badge--gray badge--md">
+        <div data-v-0d3d5e64="" class="badge__content--md">
+          <div data-v-96e95147="" class="multi-file-input__badge-content">
+            <!--v-if-->
+            <div data-v-96e95147="">RG </div>
+          </div>
+        </div>
+      </div>
+      <div data-v-0d3d5e64="" data-v-96e95147="" class="badge__container badge--gray badge--md">
+        <div data-v-0d3d5e64="" class="badge__content--md">
+          <div data-v-96e95147="" class="multi-file-input__badge-content">
+            <!--v-if-->
+            <div data-v-96e95147="">Passaporte *</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div data-v-96e95147="" class="multi-file-input__empty-state"> Os arquivos adicionados serão exibidos aqui </div>
+    <div data-v-96e95147="" class="multi-file-input__footer"><button data-v-3c9d0845="" data-v-96e95147="" class="button__container button--green--disabled button-size--md">
+        <!--v-if-->
+        <!-- @slot Slot padrão utilizado para exibir texto do botão. -->Enviar
+      </button></div>
+  </div>
+</div>"
+`;

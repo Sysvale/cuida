@@ -5,10 +5,12 @@ import { mount } from '@vue/test-utils';
 describe('PasswordInput', () => {
 	test('If component renders correctly', () => {
 		const wrapper = mount(PasswordInput, {
-			props: {},
+			props: {
+				id: 'password-input',
+			},
 		});
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.html()).toMatchSnapshot();
 	});
 });
 

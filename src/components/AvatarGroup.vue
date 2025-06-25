@@ -116,7 +116,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .avatar-group {
 	&__container {
@@ -131,16 +131,16 @@ export default {
 		}
 	
 		& > .tooltip:not(:first-child) {
-			margin: ml(n1);
+			margin: tokens.ml(n1);
 		}
 	
 		& > * {
-			outline: 4px solid $n-0;
+			outline: 4px solid tokens.$n-0;
 		}
 	}
 
 	&__counter {
-		margin: ml(n1);
+		margin: tokens.ml(n1);
 	}
 }
 
@@ -150,22 +150,22 @@ export default {
 }
 
 .avatar__name {
-	margin: ml(3);
+	margin: tokens.ml(3);
 }
 
 .tooltip {
-	border-radius: $border-radius-circle;
+	border-radius: tokens.$border-radius-circle;
 }
 
 .scrollable__container {
 	& > .avatar__data:not(:first-child) {
-		margin: mt(4);
+		margin: tokens.mt(4);
 	}
 }
 
 .popover {
 	& > .avatar__data:not(:first-child) {
-		margin: mt(4);
+		margin: tokens.mt(4);
 	}
 }
 </style>

@@ -44,8 +44,10 @@ import Highlight from '../../components/Highlight.vue';
 	animated
 	:duration="1"
 	:delay="0"
+	highlightedText: 'ro',
+	caseSensitive: false,
 >
-	<span> Texto bem importante</span>
+	O rato roeu a roupa do rei de Roma
 </cds-highlight>`
 			},
 		}
@@ -59,7 +61,43 @@ export const Template = (args) => ({
 	},
 	template: /*html*/ `
 		<cds-highlight v-bind="args">
-			<span> Texto bem importante</span>
+			O rato ROeu A RoUpA do rei de ROMA com eficácia, força e determinação.
+		</cds-highlight>
+	`,
+});
+
+export const DefaultSlotDemoTemplate = (args) => ({
+	components: { CdsHighlight: Highlight },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-highlight>
+			O rato ROeu A RoUpA do rei de ROMA
+		</cds-highlight>
+	`,
+});
+
+export const HighlightedTextTemplate = (args) => ({
+	components: { CdsHighlight: Highlight },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-highlight highlightedText="RO">
+			O rato ROeu A RoUpA do rei de ROMA
+		</cds-highlight>
+	`,
+});
+
+export const CaseSensitiveTemplate = (args) => ({
+	components: { CdsHighlight: Highlight },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<cds-highlight highlightedText="RO" :caseSensitive="true">
+			O rato ROeu A RoUpA do rei de ROMA
 		</cds-highlight>
 	`,
 });
@@ -82,17 +120,84 @@ export const Template = (args) => ({
 - Forem destacados trechos muito grandes de texto. Isso pode acabar resultando no oposto do que se espera com o uso de Highlights.
 
 <br />
+<br />
+
+### __Uso padrão__
+O comportamento padrão do `cds-highligh`, quando nenhum valor é indicado na prop `highlightedText` é o de
+marcar todo o conteúdo passado por slot.
+
+<br />
+
+<Story
+	name="slot-demo-template"
+>
+	{ DefaultSlotDemoTemplate.bind({}) }
+</Story>
+
+```html
+<cds-highlight>
+	O rato ROeu A RoUpA do rei de ROMA
+</cds-highlight>
+```
+
+<br />
+<br />
+
+### __Highlight em palavras específicas do texto__
+Caso se deseje marcar apenas uma parte da string passada via slot, é possível indicar na prop
+`highlightedText` a substring que receberá o destaque.
+
+<br />
+
+<Story
+	name="highlighted-text-template"
+>
+	{ HighlightedTextTemplate.bind({}) }
+</Story>
+
+```html
+<cds-highlight
+	highlightedText="RO"
+>
+	O rato ROeu A RoUpA do rei de ROMA
+</cds-highlight>
+```
+
+<br />
+<br />
+
+### __Highlight em palavras específicas do texto (Case Sensitive)__
+É possível indicar se as comparações feitas com a substring devem maiúsculas e minúsculas (Case Sensitive).
+
+<br />
+
+<Story
+	name="case-sensitive-template"
+>
+	{ CaseSensitiveTemplate.bind({}) }
+</Story>
+
+```html
+<cds-highlight
+	highlightedText="RO"
+>
+	O rato ROeu A RoUpA do rei de ROMA
+</cds-highlight>
+```
+
+<br />
 
 ## Preview
 
 <Canvas>
 	<Story
 		name="Highlight"
-		
 		args={{
 			animated: true,
 			duration: 1,
 			delay: 0,
+			highlightedText: 'ro',
+			caseSensitive: false,
 		}}
 	>
 		{ Template.bind({}) }

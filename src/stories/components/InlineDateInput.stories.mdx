@@ -1,0 +1,112 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import InlineDateInput from '../../components/InlineDateInput.vue';
+
+<Meta
+	title="Componentes/Forms/InlineDateInput"
+	component={ InlineDateInput }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+		state: {
+			control:{
+				type: 'select',
+				options: [
+					'default',
+					'valid',
+					'invalid',
+				],
+			}
+		},
+		range: {
+			control: {
+				type: 'boolean',
+			},
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ `
+<cds-inline-date-input
+	label="Horário"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsInlineDateInput: InlineDateInput },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			value: '2000-01-01',
+		};
+	},
+	template: /*html*/ `
+		<cds-inline-date-input
+			v-bind="args"
+			v-model="value"
+		/>`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
+});
+
+# InlineDateInput
+
+### InlineDateInput são componentes para escolha de datas e horas dentro de formulários.
+---
+<br />
+
+## Recomendamos o uso de InlineDateInput quando:
+- Houver a necessidade de oferecer opções de datas dentro de um grupo de inputs de um formulário.
+
+<br />
+
+## Não recomendamos o uso de InlineDateInput quando:
+- For necessário exibir informações adicionais condicionais no calendário (ex.: datas que já estejam ocupadas).
+- For necessário que o calendário seja exibido constantemente.
+- For necessário alterar dinamicamente o estado da tela exibida, baseado na data escolhida. Para estes casos,
+recomenda-se o uso de <a href="https://sysvale.github.io/cuida/?path=/docs/componentes-forms-calendar--calendar">Calendar</a>.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="InlineDateInput"
+		args={{
+			variant: "blue",
+			range: true,
+			label: 'Período',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="InlineDateInput" />

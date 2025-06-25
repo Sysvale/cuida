@@ -1,6 +1,7 @@
 <template>
 	<span id="cds-icon-button">
-		<cds-tooltip
+		<component
+			:is="tooltipText ? 'cds-tooltip' : 'span'"
 			:text="innerTooltipText"
 		>
 			<button
@@ -9,11 +10,12 @@
 				@click="clickHandler"
 			>
 				<cds-icon
-					:name="icon"
+					:key="inputControlPanel"
+					:name="internalIcon"
 					class="cds-icon-button__icon"
 				/>
 			</button>
-		</cds-tooltip>
+		</component>
 	</span>
 </template>
 
@@ -45,8 +47,8 @@ export default {
 			},
 		},
 		/**
-		 * Especifica o `name` do ícone do ion-icons a ser apresentado no corpo do botão.
-		 */
+		* Especifica o `name` do ícone do cuida icons a ser apresentado no corpo do botão.
+		*/
 		icon: {
 			type: String,
 			default: 'create-outline',
@@ -65,12 +67,36 @@ export default {
 			type: String,
 			default: null,
 		},
+		/**
+		* Quando ativo, faz com que, após iteração do usuário, o ícone do botão seja temporariamente alterado.
+		*/
+		feedbackOnClick: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		* Ícone mostrado após clique do usuário.
+		*/
+		feedbackIcon: {
+			type: String,
+			default: 'check-outline',
+		},
+		/**
+		* A variante de cor. São 9 variantes implementadas: 'green', 'teal',
+		* 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.
+		*/
+		variant: {
+			type: String,
+			default: 'white',
+		},
 	},
 
 	data() {
 		return {
 			predefinedSizes,
 			innerTooltipText: this.tooltipText,
+			internalIcon: this.icon,
+			inputControlPanel: 0,
 		};
 	},
 
@@ -81,24 +107,15 @@ export default {
 
 		computedModifiers() {
 			const status = this.disabled ? 'cds-icon-button--disabled' : '';
-			return `${status} ${this.predefinedSize}`;
+			const variantClass = `cds-icon-button__container--${this.variant}`;
+
+			return `${status} ${this.predefinedSize} ${variantClass}`;
 		},
 	},
 
 	watch: {
-		disabled: {
-			handler(newValue, oldValue) {
-				if (newValue === oldValue) {
-					return;
-				}
-
-				if (newValue === true) {
-					this.innerTooltipText = null;
-				} else {
-					this.innerTooltipText = this.tooltipText;
-				}
-			},
-			immediate: true,
+		tooltipText() {
+			this.innerTooltipText = this.tooltipText;
 		},
 	},
 
@@ -107,6 +124,18 @@ export default {
 			if (this.disabled) {
 				return;
 			}
+
+			if (this.feedbackOnClick) {
+				this.inputControlPanel += 1;
+				this.internalIcon = this.feedbackIcon;
+				setTimeout(() => {
+					this.internalIcon = this.icon;
+					this.inputControlPanel += 1;
+				}, 1000);
+
+				this.inputControlPanel += 1;
+			}
+
 			/**
 			* Evento que indica que o botão foi clicado
 			* @event cds-click
@@ -119,35 +148,53 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .cds-icon-button {
 	&__container {
-		color: $n-600;
-		background-color: $n-0;
-		border: 1px solid $n-50 !important;
-		border-radius: $border-radius-extra-small;
+		border: none !important;
+		border-radius: tokens.$border-radius-extra-small;
 		cursor: pointer;
-		box-sizing: border-box;
+		box-sizing: border-box;	
 
-		&:focus {
-			outline: none !important;
-		}
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+			@extend .cds-icon-button__container;
+			background-color: $base-color;
+			color: tokens.$n-0;
 
-		&:hover {
-			border-color: $n-100 !important;
+			@if ($color-name == 'gray') {
+				background-color: $shade-100;
+				color: tokens.$n-600;
+			}
+
+			@if ($color-name == 'white') {
+				color: tokens.$n-600;
+				outline: 1px solid tokens.$n-50 !important;
+
+				&:hover {
+					background-color: tokens.$n-10;
+				}
+			} @else {
+				&:hover {
+					background-color: $shade-500;
+				}
+
+				&:focus {
+					outline: none !important;
+				}
+			}
 		}
 	}
 
 	&--disabled {
 		box-sizing: border-box;
-		border: 1px solid transparent !important;
-		color: $n-300 !important;
-		background-color: $n-20 !important;
+		outline: 1px solid transparent !important;
+		color: tokens.$n-300 !important;
+		background-color: tokens.$n-20 !important;
 		cursor: default !important;
 
 		&:hover {
-			border: 1px solid transparent !important;
+			outline: 1px solid transparent !important;
 		}
 	}
 
@@ -158,30 +205,33 @@ export default {
 
 .cds-icon-button {
 	&--sm {
-		padding: pYX(2, 2);
-		border-radius: $border-radius-lil;
+		padding: tokens.pYX(2, 2);
+		border-radius: tokens.$border-radius-lil;
 
 		.cds-icon-button__icon {
+			transition: tokens.$hover;
 			width: 16px;
 			height: 16px;
 		}
 	}
 
 	&--md {
-		padding: pYX(2, 2);
-		border-radius: $border-radius-extra-small;
+		padding: tokens.pYX(2, 2);
+		border-radius: tokens.$border-radius-extra-small;
 
 		.cds-icon-button__icon {
+			transition: tokens.$hover;
 			width: 20px;
 			height: 20px;
 		}
 	}
 
 	&--lg {
-		padding: pYX(2, 2);
-		border-radius: $border-radius-extra-small;
+		padding: tokens.pYX(2, 2);
+		border-radius: tokens.$border-radius-extra-small;
 
 		.cds-icon-button__icon {
+			transition: tokens.$hover;
 			width: 24px;
 			height: 24px;
 		}

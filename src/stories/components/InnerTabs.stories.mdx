@@ -73,8 +73,8 @@ export const Template = (args) => ({
 				<template #indicator-1>
 					Conteúdo da tab-1
 				</template>
-				<template #indicator-2>
-					Conteúdo da tab-2
+				<template #prision-tab>
+					Você não pode sair dessa aba pois a propriedade "disableTabChange" está com o valor "true" neste item na propriedade "tabs"
 				</template>
 				<template #indicator-3>
 					Conteúdo da tab-3
@@ -131,8 +131,9 @@ export const dataSet = [
 		name: 'indicator-1',
 	},
 	{
-		title: 'Indicador 2',
-		name: 'indicator-2',
+		title: 'Aba Prisão',
+		name: 'prision-tab',
+		disableTabChange: true,
 	},
 	{
 		title: 'Indicador 3',
@@ -189,6 +190,7 @@ export const dataSet2 = [
 		args={{
 			tabs: dataSet,
 			activeTab: dataSet[1],
+			headerLeft: false,
 		}}
 	>
 		{ Template.bind({}) }

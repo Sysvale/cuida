@@ -1,0 +1,122 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import List from '../../components/List.vue';
+import IconButton from '../../components/IconButton.vue';
+
+<Meta
+	title="Componentes/Display/List"
+	component={ List }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-
+	:items="[
+		{
+			title: 'Goku o maior de todos os tempos',
+			content: 'Todo mundo sabe que ele é o mais forte do mundo (não é atoa o filme 2)'
+		},
+		{
+			title: 'Invejosos dirão que é o Gohan',
+			content: 'Mas também todo mundo sabe que ele é um banana depois da saga do Cell'
+		},
+		{
+			title: 'Todo mundo gosta do Vegeta',
+			content: 'Claro que sim, não tem como não gostar'
+		},
+	]",
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsList: List, CdsIconButton: IconButton },
+	setup() {
+		return { args };
+	},
+	template: /*html*/`
+		<cds-list
+			v-bind="args"
+			@click="console.info('click:', $event)"
+		>
+			<template #actions>
+				<cds-icon-button icon="edit-outline" />
+			</template>
+		</cds-list>
+	`,
+});
+
+# List
+
+### O componente List é utilizado para exibir uma listagem de itens com um título e um conteúdo, permitindo personalização através de slots.
+---
+<br />
+
+## Quando usar:
+- Para exibir listas de itens com título e conteúdo de forma padronizada.
+- Quando for necessário permitir a personalização da exibição dos itens através de slots.
+- Para criar listagens interativas em aplicações web e mobile.
+
+<br />
+
+## Quando não usar:
+- Se a lista precisar ter uma estrutura altamente customizada e dinâmica, onde um componente mais flexível como um table ou grid seria mais adequado.
+- Quando não há necessidade de interação ou personalização dos itens exibidos.
+
+<br />
+
+## Preview
+
+export const items = [
+	{
+		title: 'Goku o maior de todos os tempos',
+		content: 'Todo mundo sabe que ele é o mais forte do mundo (não é atoa o filme 2)'
+	},
+	{
+		title: 'Invejosos dirão que é o Gohan',
+		content: 'Mas também todo mundo sabe que ele é um banana depois da saga do Cell'
+	},
+	{
+		title: 'Todo mundo gosta do Vegeta',
+		content: 'Claro que sim, não tem como não gostar'
+	},
+];
+
+<Canvas>
+	<Story
+		name="List"
+		args={{
+				items,
+				clickable: false,
+			}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="List" />

@@ -4,7 +4,6 @@ on:
     branches:
       - main
       - v2.70-legacy
-
 jobs:
   build:
     name: Create Release
@@ -12,28 +11,46 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install conventional-changelog-cli
+        run: npm install -g conventional-changelog-cli@2.2.2
+
+      - name: Generate changelog
+        run: |
+          conventional-changelog -p angular -i CHANGELOG.md -s --release-count 1 --verbose
+          echo "CHANGELOG<<EOF" >> $GITHUB_ENV
+          cat CHANGELOG.md >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
       - name: Creates tag
         uses: Klemensas/action-autotag@stable
         id: auto-tag
         with:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GITHUB_TOKEN: ${{ secrets.RELEASE_SECRET }}
           tag_prefix: "v"
+
       - name: Read package.json
         uses: tyankatsu0105/read-package-version-actions@v1
         id: package-version
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+          GITHUB_TOKEN: ${{ secrets.RELEASE_SECRET }}
         with:
           tag_name: ${{ steps.auto-tag.outputs.tagname }}
           release_name: "v${{ steps.package-version.outputs.version }}"
           body: |
-            Mudanças nessa release:
-            ${{ '- Adiciona:' }}
-            ${{ '- Corrige:' }}
-            ${{ '- Modifica:' }}
-            ${{ '- Remove:' }}
+            ## Mudanças nessa release:
+
+            ${{ env.CHANGELOG }}
           draft: false
           prerelease: false

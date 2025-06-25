@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TopAppBar > renders correctly 1`] = `
+"<div data-v-ea2050ea="" class="top-app-bar">
+  <div data-v-ea2050ea="" class="top-app-bar__menu-container"><svg data-v-ea2050ea="" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" aria-labelledby="menu-outline" role="presentation" class="top-app-bar__menu">
+      <g fill="currentColor"></g>
+    </svg>
+    <h2 data-v-ea2050ea="" class="top-app-bar__title">Título massa</h2>
+  </div>
+  <div data-v-ea2050ea="" class="top-app-bar__actions">
+    <!-- @slot Slot utilizado para os botões de action do lado direito-->
+  </div>
+</div>"
+`;

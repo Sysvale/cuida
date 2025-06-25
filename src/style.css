@@ -62,3 +62,14 @@ h1 {
 .d-flex {
   display: flex;
 }
+
+.docs-grid-cell {
+  font-size: 18px;
+  font-weight: 550;
+  background-color: #E7EDF3;
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

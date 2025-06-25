@@ -1,0 +1,99 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import MobileNavbar from '../../components/MobileNavbar.vue';
+import { colorOptions } from '../../utils/constants/colors';
+
+<Meta
+	title="Componentes/Navegação/MobileNavbar"
+	component={ MobileNavbar }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: colorOptions,
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-mobile-navbar
+	:items=[
+		{ icon: 'home-outline', label: 'Início', route: { name: 'Google', path: 'www.google.com' } },
+		{ icon: 'search-outline', label: 'Busca', route: { name: 'Google', path: 'www.google.com' }  },
+		{ icon: 'notification-bell-outline', label: 'Notificações', route: { name: 'Google', path: 'www.google.com' }  },
+		{ icon: 'user-outline', label: 'Perfil', route: { name: 'Google', path: 'www.google.com' }  },
+	],
+	variant="green",
+	show-label
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsMobileNavbar: MobileNavbar },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div style="position: relative">
+			<img
+				src="https://images.unsplash.com/photo-1705437917228-3f971a25de6a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+				style="width: 100%; height: 100%;"
+			/>
+			<cds-mobile-navbar
+				style="position: absolute; bottom: 0; left: 0; width: 100%;"
+				v-bind="args"
+				@item-click="console.info('item-click: ', $event)"
+			/>
+		</div>
+	`,
+});
+
+# MobileNavbar
+
+### MobileNavbar é uma barra de navegação móvel localizada na parte inferior da tela.
+---
+<br />
+
+## Quando usar:
+- Em aplicações móveis ou responsivas que exigem uma navegação simples e acessível.
+- Quando for necessário fornecer acesso rápido a seções principais do aplicativo.
+- Para substituir navegações complexas em telas pequenas, mantendo a usabilidade.
+
+<br />
+
+## Quando não usar:
+- Em telas grandes (desktop), onde uma navbar lateral ou superior é mais apropriada.
+- Quando o número de itens de navegação é muito grande (mais de 5 itens).
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="MobileNavbar"
+		args={{
+			items: [
+				{ icon: 'home-outline', label: 'Início', route: { name: 'Google', path: 'www.google.com' } },
+				{ icon: 'search-outline', label: 'Busca', route: { name: 'Google', path: 'www.google.com' }  },
+				{ icon: 'notification-bell-outline', label: 'Notificações', route: { name: 'Google', path: 'www.google.com' }  },
+				{ icon: 'user-outline', label: 'Perfil', route: { name: 'Google', path: 'www.google.com' }  },
+			],
+			activeItem: { icon: 'notification-bell-outline', label: 'Notificações', route: { name: 'Google', path: 'www.google.com' }  },
+			variant: 'green',
+			showLabel: false,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="MobileNavbar" />

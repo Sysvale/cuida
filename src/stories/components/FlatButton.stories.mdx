@@ -18,7 +18,8 @@ import FlatButton from '../../components/FlatButton.vue';
 					'pink',
 					'red',
 					'orange',
-					'amber'
+					'amber',
+					'dark'
 				],
 			}
 		},
@@ -47,9 +48,16 @@ export const Template = (args) => ({
 	},
 	template: /*html*/ `
 		<cds-flat-button
-			v-bind="args" 
+			v-bind="args"
+			@click="logClick"
 		>
 		</cds-flat-button>`,
+		methods: {
+			logClick(event) {
+				console.info('Click event: ', event);
+				console.info('⚡ %cClick emitted', 'color: rgb(37, 227, 139);');
+			},
+		},
 });
 
 # FlatButton

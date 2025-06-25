@@ -1,44 +1,10 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`ProgressBar > renders correctly 1`] = `
-VueWrapper {
-  "__app": {
-    "_component": [Object],
-    "_container": <div … />,
-    "_context": [Object],
-    "_instance": [Object],
-    "_props": null,
-    "_uid": 0,
-    "component": [Function],
-    "config": [Object],
-    "directive": [Function],
-    "mixin": [Function],
-    "mount": [Function],
-    "provide": [Function],
-    "unmount": [Function],
-    "use": [Function],
-    "version": "3.2.37",
-  },
-  "__setProps": [Function],
-  "componentVM": {
-    "formatedvalue": "0%",
-    "hasOwnProperty": [Function],
-    "progressIndicatorStyle": [Object],
-    "showText": false,
-    "textAside": false,
-    "textDirection": "column",
-    "value": 0,
-    "variant": "green",
-  },
-  "isDisabled": [Function],
-  "rootVM": {},
-  "wrapperElement": <div
-    class="progress-bar"
-    data-v-84df1bb9=""
-    percentage="0.67"
-  >
-    <!--v-if-->
-    <div … />
-  </div>,
-}
+"<div data-v-84df1bb9="" class="progress-bar">
+  <!--v-if-->
+  <div data-v-84df1bb9="" class="progress-bar__content">
+    <div data-v-84df1bb9="" class="progress-bar__indicator--green" style="--width: 67%; --leftMargin: 10; --bottomMargin: 2;"></div>
+  </div>
+</div>"
 `;

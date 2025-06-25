@@ -1,0 +1,105 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import LoadingIndicator from '../../components/LoadingIndicator.vue';
+import Button from '../../components/Button.vue';
+
+<Meta
+	title="Componentes/Loaders/LoadingIndicator"
+	component={ LoadingIndicator }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/
+`<cds-loading-indicator
+	v-model="showLoadingIndicator"
+	variant="blue"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			showLoadingIndicator: false,
+		};
+	},
+	components: { CdsLoadingIndicator: LoadingIndicator, CdsButton: Button },
+	template: /*html*/ `
+		<div class="d-flex justify-content-center">
+			<cds-button
+				id="trigger-popover"
+				@click="showLoadingIndicator = !showLoadingIndicator"
+			>
+				Toggle LoadingIndicator
+			</cds-button>
+			<cds-loading-indicator
+				v-bind="args"
+				style="margin-top: 71px;"
+				v-model="showLoadingIndicator"
+			/>
+		</div>
+	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.showLoadingIndicator);
+	},
+});
+
+# LoadingIndicator
+
+### O LoadingIndicator é um componente utilizado para indicar o progresso do carregamento da página, proporcionando uma experiência de usuário mais fluida e informativa.
+---
+<br />
+
+## Quando usar:
+- Em navegações entre páginas ou abas dentro de uma aplicação, onde o usuário precisa visualizar o progresso de carregamento de forma clara para saber que a transição está em andamento;
+- Em aplicações onde o carregamento de conteúdo pode demorar, como em operações de rede ou carregamento de dados pesados.
+
+<br />
+
+## Quando não usar:
+- Para o carregamento de dados secundários ou ações que não afetam diretamente a navegação principal do usuário;
+- Quando o usuário realiza interações que podem desencadear novos carregamentos, como o acionamento de um toggle switch. Nesses casos, considere o uso de alternativas como o **Skeleton** para mostrar o conteúdo sendo carregado ou o **Spinner** para indicar que uma ação está em andamento.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="LoadingIndicator"
+		args={{
+			intervalTime: 500,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="LoadingIndicator" />

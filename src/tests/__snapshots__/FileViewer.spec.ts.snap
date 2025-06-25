@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FileViewer > renders correctly 1`] = `
+"<div data-v-33f5555b="" class="file-viewer file-viewer--green" tabindex="0">
+  <div data-v-33f5555b="" class="file-viewer__image">
+    <div data-v-33f5555b="" class="file-viewer__extension">jpeg</div>
+  </div>
+  <div data-v-33f5555b="" class="file-viewer__info">
+    <div data-v-33f5555b="" class="file-viewer__label">Comprovante de residência</div>
+    <div data-v-33f5555b="" class="file-viewer__file-name">https://images.pexels.com/photos/1254140/pexels-photo-1254140.jpeg</div>
+    <div data-v-33f5555b=""><a data-v-33f5555b="" class="file-viewer__download file-viewer__download--green"> Baixar arquivo </a></div>
+  </div>
+</div>
+<!--v-if-->"
+`;

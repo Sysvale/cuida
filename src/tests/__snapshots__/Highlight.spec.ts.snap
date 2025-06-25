@@ -1,45 +1,7 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Highlight > renders correctly 1`] = `
-VueWrapper {
-  "__app": {
-    "_component": [Object],
-    "_container": <div … />,
-    "_context": [Object],
-    "_instance": [Object],
-    "_props": null,
-    "_uid": 0,
-    "component": [Function],
-    "config": [Object],
-    "directive": [Function],
-    "mixin": [Function],
-    "mount": [Function],
-    "provide": [Function],
-    "unmount": [Function],
-    "use": [Function],
-    "version": "3.2.37",
-  },
-  "__setProps": [Function],
-  "componentVM": {
-    "animated": false,
-    "delay": 0,
-    "duration": 1,
-    "dynamicHighlightClass": " highlight__container--success",
-    "dynamicStyle": [Object],
-    "hasOwnProperty": [Function],
-    "variant": "success",
-  },
-  "isDisabled": [Function],
-  "rootVM": {},
-  "wrapperElement": <span
-    class="highlight__container highlight__container--success"
-    data-v-eddeabb9=""
-    style="--duration: 1s; --delay: 0s;"
-  >
-    <!-- @slot Slot usado para especificar o texto que receberá o highlight. -->
-    
-    Texto
-    
-  </span>,
-}
+"<mark data-v-eddeabb9="" class="highlight__container highlight__container--success" style="--duration: 1s; --delay: 0s;">
+  <!-- @slot Slot usado para especificar o texto que receberá o highlight. -->Texto
+</mark>"
 `;

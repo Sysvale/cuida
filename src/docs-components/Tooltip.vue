@@ -64,17 +64,18 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .tooltip__container {
 	border-radius: 16px;
 	background-size: 200%;
-	background-color: $n-900;
-	color: $n-0;
+	background-color: tokens.$n-900;
+	color: tokens.$n-0;
 	position: absolute;
-	padding: pYX(1, 3);
-	margin: mt(0);
-	@include caption;
+	padding: tokens.pYX(1, 3);
+	margin: tokens.mt(0);
+	z-index: 999;
+	@include tokens.caption;
 
 	&--active {
 		opacity: 1;
@@ -83,8 +84,6 @@ export default {
 	&--inactive {
 		opacity: 0;
 	}
-
-	z-index: 999;
 }
 
 </style>

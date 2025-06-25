@@ -222,7 +222,7 @@ export default {
 					* Altera o valor do v-model.
 					*
 					* Emite o número referente à página selecionada.
-					* @event input
+					* @event update:modelValue
 					* @type {Event}
 					*/
 					this.$emit('update:modelValue', 1);
@@ -288,7 +288,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .pagination {
 	&__container {
@@ -305,10 +305,10 @@ export default {
 	&__button {
 		cursor: pointer;
 		height: 34px;
-		padding: pYX(2,3);
+		padding: tokens.pYX(2,3);
 		width: 35px;
-		@include caption;
-		font-weight: $font-weight-semibold;
+		@include tokens.caption;
+		font-weight: tokens.$font-weight-semibold;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -317,25 +317,25 @@ export default {
 		-khtml-user-select: none;
 		-moz-user-select: none;
 		-ms-user-select: none;
-		background-color: $n-0;
-		color: $n-600;
-		border: 1px solid $n-40;
-		margin: mx(1);
-		border-radius: $border-radius-lil;
-		transition: $interaction;
+		background-color: tokens.$n-0;
+		color: tokens.$n-600;
+		border: 1px solid tokens.$n-40;
+		margin: tokens.mx(1);
+		border-radius: tokens.$border-radius-lil;
+		transition: tokens.$interaction;
 
 		&:hover:not(.pagination__button--disabled) {
-			background-color: $n-30;
-			border-color: $n-30;
-			transition: $interaction;
+			background-color: tokens.$n-30;
+			border-color: tokens.$n-30;
+			transition: tokens.$interaction;
 		}
 
 		&--active {
 			@extend .pagination__button;
-			@include button-2;
-			color: $n-0;
+			@include tokens.button-2;
+			color: tokens.$n-0;
 
-			@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+			@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 				@extend .pagination__button--active;
 				background-color: $base-color;
 				border-color: $base-color;
@@ -357,20 +357,20 @@ export default {
 		}
 
 		&--disabled {
-			color: $n-300 !important;
-			background-color: $n-20;
-			border-color: $n-20;
+			color: tokens.$n-300 !important;
+			background-color: tokens.$n-20;
+			border-color: tokens.$n-20;
 			cursor: default;
 		}
 	}
 
 	&__double-chevron {
 		&--left {
-			margin: ml(n1)
+			margin: tokens.ml(n1)
 		}
 
 		&--right {
-			margin: mr(n1)
+			margin: tokens.mr(n1)
 		}
 	}
 }

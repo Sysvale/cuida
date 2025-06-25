@@ -1,0 +1,88 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import InteractionBlockingOverlay from '../../components/InteractionBlockingOverlay.vue';
+import Button from '../../components/Button.vue';
+import { colorOptions } from '../../utils/constants/colors.js'
+
+<Meta
+	title="Componentes/Overlays/InteractionBlockingOverlay"
+	component={ InteractionBlockingOverlay }
+	argTypes={{
+		blockInteraction: {
+			control:{
+				type: 'select',
+				options: [
+					'mobile',
+					'landscape',
+				],
+			}
+		},
+		buttonVariant: {
+			control: {
+				type: 'select',
+				options: colorOptions,
+			}
+		}
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/
+`<cds-interaction-blocking-overlay
+	block-interaction="mobile"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	components: { CdsInteractionBlockingOverlay: InteractionBlockingOverlay, CdsButton: Button },
+	template: /*html*/ `
+		<div class="d-flex justify-content-center">
+			<b>Teste o componente usando o devtools do navegador, alterando a resolução da tela para mobile ou landscape.</b>
+			<cds-interaction-blocking-overlay
+				v-bind="args"
+				@button-click="console.log('button-click')"
+			/>
+		</div>
+	`,
+});
+
+# InteractionBlockingOverlay
+
+### O InteractionBlockingOverlay é um componente utilizado para bloquear a interação do usuário em situações onde o sistema não está preparado para o uso, como em telas ou módulos que não possuem responsividade adequada para dispositivos móveis ou no modo paisagem (landscape).
+---
+<br />
+
+## Quando usar:
+- Quando uma tela ou módulo não possui uma versão responsiva para dispositivos móveis, garantindo que o usuário não interaja com elementos quebrados ou não funcionais.
+- Quando um dispositivo móvel estiver em modo paisagem e o layout da aplicação não estiver adaptado para essa orientação.
+- Em situações temporárias, onde uma funcionalidade ou conteúdo específico precisa ser desativado para manutenção ou atualização.
+
+<br />
+
+## Quando não usar:
+- Quando o sistema já oferece uma versão responsiva ou uma alternativa viável para a interação em dispositivos móveis.
+- Em casos onde a aplicação pode ajustar automaticamente o layout sem necessidade de bloqueio.
+- Se o bloqueio da interação pode causar frustração ao usuário, especialmente em funcionalidades essenciais ou em fluxos críticos.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="InteractionBlockingOverlay"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="InteractionBlockingOverlay" />

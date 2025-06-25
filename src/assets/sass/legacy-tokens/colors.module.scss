@@ -1,0 +1,562 @@
+$bg-gradient: 158.71deg, #FFFFFF -36.57%, #F1F5FB 156.92%;
+
+$appbar-color: #576169;
+
+$n-0: #FFFFFF;
+$n-10: #FAFCFE;
+$n-20: #F4F8FB;
+$n-30: #E7EDF3;
+$n-40: #DFE5EC;
+
+$lightNeutralsShades: $n-0, $n-10, $n-20, $n-30, $n-40;
+$lightNeutralsTokens: '$n-0', '$n-10', '$n-20', '$n-30', '$n-40';
+
+$lightNeutralMetaData: 'Light Neutrals', 'Light', $lightNeutralsShades, $lightNeutralsTokens;
+
+$n-50: #D6DCE3;
+$n-100: #C3CCD5;
+$n-200: #ACB8C3;
+$n-300: #99A6B2;
+$n-400: #8794A1;
+
+$midNeutralsShades: $n-50, $n-100, $n-200, $n-300, $n-400;
+$midNeutralsTokens: '$n-50', '$n-100', '$n-200', '$n-300', '$n-400';
+
+$midNeutralsMetaData: 'Mid Neutrals', 'Gray', $midNeutralsShades, $midNeutralsTokens;
+
+$n-500: #647382;
+$n-600: #52616F;
+$n-700: #3B4754;
+$n-800: #28333E;
+$n-900: #1D262F;
+
+$darkNeutralsShades: $n-500, $n-600, $n-700, $n-800, $n-900;
+$darkNeutralsTokens: '$n-500', '$n-600', '$n-700', '$n-800', '$n-900';
+
+$darkNeutralsMetaData: 'Dark Neutrals', 'Dark', $darkNeutralsShades, $darkNeutralsTokens;
+
+$gp-50: #f3fcf8;
+$gp-100: #e2f8ef;
+$gp-200: #abedd3;
+$gp-300: #6ddfb1;
+$gp-400: #2db981;
+$gp-500: #239f6d;
+$gp-600: #1c7d56;
+$gp-700: #136746;
+
+$piccoloGreenShades: $gp-50, $gp-100, $gp-200, $gp-300, $gp-400, $gp-500, $gp-600, $gp-700;
+$piccoloGreenTokens: '$gp-50', '$gp-100', '$gp-200', '$gp-300', '$gp-400', '$gp-500', '$gp-600', '$gp-700';
+
+$greenMetaData: 'Piccolo Green', 'Green', $piccoloGreenShades, $piccoloGreenTokens;
+
+$ta-50: #eefcfa;
+$ta-100: #dcf9f6;
+$ta-200: #a2f1e5;
+$ta-300: #51e6d0;
+$ta-400: #20c5ad;
+$ta-500: #18aa94;
+$ta-600: #138675;
+$ta-700: #0f6b5d;
+
+$aquamanTealShades: $ta-50, $ta-100, $ta-200, $ta-300, $ta-400, $ta-500, $ta-600, $ta-700;
+$aquamanTealTokens: '$ta-50', '$ta-100', '$ta-200', '$ta-300', '$ta-400', '$ta-500', '$ta-600', '$ta-700';
+
+$tealMetaData: 'Aquaman Teal', 'Teal', $aquamanTealShades, $aquamanTealTokens;
+
+$ts-50: #f5fbff;
+$ts-100: #e6f6fe;
+$ts-200: #C2EDFF;
+$ts-300: #7BD0F4;
+$ts-400: #42AAD7;
+$ts-500: #1F86B2;
+$ts-600: #18698B;
+$ts-700: #155875;
+
+$sulivanTurquoiseShades: $ts-50, $ts-100, $ts-200, $ts-300, $ts-400, $ts-500, $ts-600, $ts-700;
+$sulivanTurquoiseTokens: '$ts-50', '$ts-100', '$ts-200', '$ts-300', '$ts-400', '$ts-500', '$ts-600', '$ts-700';
+
+$turquoiseMetaData: 'Sulivan Turquoise', 'Turquoise', $sulivanTurquoiseShades, $sulivanTurquoiseTokens;
+
+$bn-50: #f6f9fe;
+$bn-100: #e6effe;
+$bn-200: #b4cdf8;
+$bn-300: #729ee9;
+$bn-400: #467bd8;
+$bn-500: #2f64c1;
+$bn-600: #2051a7;
+$bn-700: #19438a;
+
+$nocturneBlueShades: $bn-50, $bn-100, $bn-200, $bn-300, $bn-400, $bn-500, $bn-600, $bn-700;
+$nocturneBlueTokens: '$bn-50', '$bn-100', '$bn-200', '$bn-300', '$bn-400', '$bn-500', '$bn-600', '$bn-700';
+
+$blueMetaData: 'Nocturne Blue', 'Blue', $nocturneBlueShades, $nocturneBlueTokens;
+
+$in-50: #f5f6ff;
+$in-100: #ebefff;
+$in-200: #CED6FD;
+$in-300: #9bacf8;
+$in-400: #6a7cd7;
+$in-500: #4b5caf;
+$in-600: #374486;
+$in-700: #2f396f;
+
+$nightwingIndigoShades: $in-50, $in-100, $in-200, $in-300, $in-400, $in-500, $in-600, $in-700;
+$nightwingIndigoTokens: '$in-50', '$in-100', '$in-200', '$in-300', '$in-400', '$in-500', '$in-600', '$in-700';
+
+$indigoMetaData: 'Nightwing Indigo', 'Indigo', $nightwingIndigoShades, $nightwingIndigoTokens;
+
+$vr-50: #faf5ff;
+$vr-100: #f7f0ff;
+$vr-200: #E6D2F9;
+$vr-300: #CEABED;
+$vr-400: #a772d5;
+$vr-500: #8955B9;
+$vr-600: #6B3A98;
+$vr-700: #5c3082;
+
+$ravenVioletShades: $vr-50, $vr-100, $vr-200, $vr-300, $vr-400, $vr-500, $vr-600, $vr-700;
+$ravenVioletTokens: '$vr-50', '$vr-100', '$vr-200', '$vr-300', '$vr-400', '$vr-500', '$vr-600', '$vr-700';
+
+$violetMetaData: 'Raven Violet', 'Violet', $ravenVioletShades, $ravenVioletTokens;
+
+$pp-50: #fff5fb;
+$pp-100: #ffebf7;
+$pp-200: #F9C8E2;
+$pp-300: #EF8FC0;
+$pp-400: #DA629F;
+$pp-500: #BE377C;
+$pp-600: #A12663;
+$pp-700: #88255a;
+
+$peppaPinkShades: $pp-50, $pp-100, $pp-200, $pp-300, $pp-400, $pp-500, $pp-600, $pp-700;
+$peppaPinkTokens: '$pp-50', '$pp-100', '$pp-200', '$pp-300', '$pp-400', '$pp-500', '$pp-600', '$pp-700';
+
+$pinkMetaData: 'Peppa Pink', 'Pink', $peppaPinkShades, $peppaPinkTokens;
+
+$rc-50: #fef6f7;
+$rc-100: #ffebed;
+$rc-200: #FABDC5;
+$rc-300: #F98B98;
+$rc-400: #F3596C;
+$rc-500: #E03E52;
+$rc-600: #C92C3F;
+$rc-700: #b22435;
+
+$carmenRedShades: $rc-50, $rc-100, $rc-200, $rc-300, $rc-400, $rc-500, $rc-600, $rc-700;
+$carmenRedTokens: '$rc-50', '$rc-100', '$rc-200', '$rc-300', '$rc-400', '$rc-500', '$rc-600', '$rc-700';
+
+$redMetaData: 'Carmen Red', 'Red', $carmenRedShades, $carmenRedTokens;
+
+$og-50: #fef7f6;
+$og-100: #ffefeb;
+$og-200: #FFD6CC;
+$og-300: #FDAF9B;
+$og-400: #FF8567;
+$og-500: #F06442;
+$og-600: #D64B29;
+$og-700: #bc4224;
+
+$gokuOrangeShades: $og-50, $og-100, $og-200, $og-300, $og-400, $og-500, $og-600, $og-700;
+$gokuOrangeTokens: '$og-50', '$og-100', '$og-200', '$og-300', '$og-400', '$og-500', '$og-600', '$og-700';
+
+$orangeMetaData: 'Goku Orange', 'Orange', $gokuOrangeShades, $gokuOrangeTokens;
+
+$al-50: #fefbf6;
+$al-100: #fdf3e2;
+$al-200: #ffe5b8;
+$al-300: #fdd286;
+$al-400: #f6bd5a;
+$al-500: #eda831;
+$al-600: #d89013;
+$al-700: #c08011;
+
+$lisaAmberShades: $al-50, $al-100, $al-200, $al-300, $al-400, $al-500, $al-600, $al-700;
+$lisaAmberTokens: '$al-50', '$al-100', '$al-200', '$al-300', '$al-400', '$al-500', '$al-600', '$al-700';
+
+$amberMetaData: 'Lisa Amber', 'Amber', $lisaAmberShades, $lisaAmberTokens;
+
+$palete:
+	[$lightNeutralMetaData],
+	[$midNeutralsMetaData],
+	[$darkNeutralsMetaData],
+	[$greenMetaData],
+	[$tealMetaData],
+	[$turquoiseMetaData],
+	[$blueMetaData],
+	[$indigoMetaData],
+	[$violetMetaData],
+	[$pinkMetaData],
+	[$redMetaData],
+	[$orangeMetaData],
+	[$amberMetaData];
+
+$shades50: (
+	'green': $gp-50,
+	'teal': $ta-50,
+	'turquoise': $ts-50,
+	'blue': $bn-50,
+	'indigo': $in-50,
+	'violet': $vr-50,
+	'pink': $pp-50,
+	'red': $rc-50,
+	'orange': $og-50,
+	'amber': $al-50,
+	'dark': $n-30,
+	'gray': $n-0,
+);
+
+$shades100: (
+	'green': $gp-100,
+	'teal': $ta-100,
+	'turquoise': $ts-100,
+	'blue': $bn-100,
+	'indigo': $in-100,
+	'violet': $vr-100,
+	'pink': $pp-100,
+	'red': $rc-100,
+	'orange': $og-100,
+	'amber': $al-100,
+	'dark': $n-500,
+	'gray': $n-30,
+	'white': $n-0,
+);
+
+$shades200: (
+	'green': $gp-200,
+	'teal': $ta-200,
+	'turquoise': $ts-200,
+	'blue': $bn-200,
+	'indigo': $in-200,
+	'violet': $vr-200,
+	'pink': $pp-200,
+	'red': $rc-200,
+	'orange': $og-200,
+	'amber': $al-200,
+	'dark': $n-200,
+	'gray': $n-20,
+	'white': $n-0,
+);
+
+$shades300: (
+	'green': $gp-300,
+	'teal': $ta-300,
+	'turquoise': $ts-300,
+	'blue': $bn-300,
+	'indigo': $in-300,
+	'violet': $vr-300,
+	'pink': $pp-300,
+	'red': $rc-300,
+	'orange': $og-300,
+	'amber': $al-300,
+	'dark': $n-400,
+	'gray': $n-10,
+	'white': $n-0,
+);
+
+$shades400: (
+	'green': $gp-400,
+	'teal': $ta-400,
+	'turquoise': $ts-400,
+	'blue': $bn-400,
+	'indigo': $in-400,
+	'violet': $vr-400,
+	'pink': $pp-400,
+	'red': $rc-400,
+	'orange': $og-400,
+	'amber': $al-400,
+	'dark': $n-600,
+	'gray': $n-30,
+	'white': $n-0,
+);
+
+$shades500: (
+	'green': $gp-500,
+	'teal': $ta-500,
+	'turquoise': $ts-500,
+	'blue': $bn-500,
+	'indigo': $in-500,
+	'violet': $vr-500,
+	'pink': $pp-500,
+	'red': $rc-500,
+	'orange': $og-500,
+	'amber': $al-500,
+	'dark': $n-700,
+	'gray': $n-50,
+	'white': $n-0,
+);
+
+$shades600: (
+	'green': $gp-600,
+	'teal': $ta-600,
+	'turquoise': $ts-600,
+	'blue': $bn-600,
+	'indigo': $in-600,
+	'violet': $vr-600,
+	'pink': $pp-600,
+	'red': $rc-600,
+	'orange': $og-600,
+	'amber': $al-600,
+	'dark': $n-800,
+	'gray': $n-200,
+	'white': $n-0,
+);
+
+$allColors: (
+	'gp-50': $gp-50,
+	'gp-100': $gp-100,
+	'gp-200': $gp-200,
+	'gp-300': $gp-300,
+	'gp-400': $gp-400,
+	'gp-500': $gp-500,
+	'gp-600': $gp-600,
+	'gp-700': $gp-700,
+
+	'ta-50': $ta-50,
+	'ta-100': $ta-100,
+	'ta-200': $ta-200,
+	'ta-300': $ta-300,
+	'ta-400': $ta-400,
+	'ta-500': $ta-500,
+	'ta-600': $ta-600,
+	'ta-700': $ta-700,
+
+	'ts-50': $ts-50,
+	'ts-100': $ts-100,
+	'ts-200': $ts-200,
+	'ts-300': $ts-300,
+	'ts-400': $ts-400,
+	'ts-500': $ts-500,
+	'ts-600': $ts-600,
+	'ts-700': $ts-700,
+
+	'bn-50': $bn-50,
+	'bn-100': $bn-100,
+	'bn-200': $bn-200,
+	'bn-300': $bn-300,
+	'bn-400': $bn-400,
+	'bn-500': $bn-500,
+	'bn-600': $bn-600,
+	'bn-700': $bn-700,
+
+	'in-50': $in-50,
+	'in-100': $in-100,
+	'in-200': $in-200,
+	'in-300': $in-300,
+	'in-400': $in-400,
+	'in-500': $in-500,
+	'in-600': $in-600,
+	'in-700': $in-700,
+
+	'vr-50': $vr-50,
+	'vr-100': $vr-100,
+	'vr-200': $vr-200,
+	'vr-300': $vr-300,
+	'vr-400': $vr-400,
+	'vr-500': $vr-500,
+	'vr-600': $vr-600,
+	'vr-700': $vr-700,
+
+	'pp-50': $pp-50,
+	'pp-100': $pp-100,
+	'pp-200': $pp-200,
+	'pp-300': $pp-300,
+	'pp-400': $pp-400,
+	'pp-500': $pp-500,
+	'pp-600': $pp-600,
+	'pp-700': $pp-700,
+
+	'rc-50': $rc-50,
+	'rc-100': $rc-100,
+	'rc-200': $rc-200,
+	'rc-300': $rc-300,
+	'rc-400': $rc-400,
+	'rc-500': $rc-500,
+	'rc-600': $rc-600,
+	'rc-700': $rc-700,
+
+	'og-50': $og-50,
+	'og-100': $og-100,
+	'og-200': $og-200,
+	'og-300': $og-300,
+	'og-400': $og-400,
+	'og-500': $og-500,
+	'og-600': $og-600,
+	'og-700': $og-700,
+
+	'al-50': $al-50,
+	'al-100': $al-100,
+	'al-200': $al-200,
+	'al-300': $al-300,
+	'al-400': $al-400,
+	'al-500': $al-500,
+	'al-600': $al-600,
+	'al-700': $al-700,
+
+	"n-0": $n-0,
+	"n-10": $n-10,
+	"n-20": $n-20,
+	"n-30": $n-30,
+	"n-40": $n-40,
+	"n-50": $n-50,
+	"n-100": $n-100,
+	"n-200": $n-200,
+	"n-300": $n-300,
+	"n-400": $n-400,
+	"n-500": $n-500,
+	"n-600": $n-600,
+	"n-700": $n-700,
+	"n-800": $n-800,
+	"n-900": $n-900,
+);
+
+@mixin variantResolver {
+	@each $color-name, $base-color in $shades400 {
+		$shade-50: map-get($shades50 , $color-name);
+		$shade-100: map-get($shades100 , $color-name);
+		$shade-200: map-get($shades200 , $color-name);
+		$shade-300: map-get($shades300 , $color-name);
+		$shade-500: map-get($shades500 , $color-name);
+		$shade-600: map-get($shades600 , $color-name);
+
+		&--#{$color-name} {
+			@content($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600);
+		}
+	}
+}
+
+@mixin paleteResolver {
+	@each $token-name, $token in $allColors {
+		$color: $token;
+
+		&--#{$token-name} {
+			@content($color);
+		}
+	}
+}
+
+$blueThemeShades: $bn-400, $ts-400, $ta-400, $bn-700, $in-500, $gp-300, $og-200, $og-100, $al-200, $al-300;
+$blueThemeTokens: '$bn-400', '$ts-400', '$ta-400', '$bn-700', '$in-500', '$gp-300', '$og-200', '$og-100', '$al-200', '$al-300';
+
+$blueThemeMetadata: 'Blue Theme', 'Blue', $blueThemeShades, $blueThemeTokens;
+
+
+$indigoThemeShades: $in-500, $vr-300, $og-300, $pp-100, $og-200, $in-400, $n-30, $pp-300, $vr-400, $n-700;
+$indigoThemeTokens: '$in-500', '$pp-100', '$og-200', '$vr-300', '$in-400', '$og-300', '$n-30', '$n-700', '$vr-400', '$pp-300';
+
+$IndigoThemeMetadata: 'Indigo Theme', 'Indigo', $indigoThemeShades, $indigoThemeTokens;
+
+
+$chartThemes:
+	[$blueThemeMetadata],
+	[$IndigoThemeMetadata];
+
+:export {
+	gp50: $gp-50;
+	gp100: $gp-100;
+	gp200: $gp-200;
+	gp300: $gp-300;
+	gp400: $gp-400;
+	gp500: $gp-500;
+	gp600: $gp-600;
+	gp700: $gp-700;
+
+	ta50: $ta-50;
+	ta100: $ta-100;
+	ta200: $ta-200;
+	ta300: $ta-300;
+	ta400: $ta-400;
+	ta500: $ta-500;
+	ta600: $ta-600;
+	ta700: $ta-700;
+
+	ts50: $ts-50;
+	ts100: $ts-100;
+	ts200: $ts-200;
+	ts300: $ts-300;
+	ts400: $ts-400;
+	ts500: $ts-500;
+	ts600: $ts-600;
+	ts700: $ts-700;
+
+	bn50: $bn-50;
+	bn100: $bn-100;
+	bn200: $bn-200;
+	bn300: $bn-300;
+	bn400: $bn-400;
+	bn500: $bn-500;
+	bn600: $bn-600;
+	bn700: $bn-700;
+
+	in50: $in-50;
+	in100: $in-100;
+	in200: $in-200;
+	in300: $in-300;
+	in400: $in-400;
+	in500: $in-500;
+	in600: $in-600;
+	in700: $in-700;
+
+	vr50: $vr-50;
+	vr100: $vr-100;
+	vr200: $vr-200;
+	vr300: $vr-300;
+	vr400: $vr-400;
+	vr500: $vr-500;
+	vr600: $vr-600;
+	vr700: $vr-700;
+
+	pp50: $pp-50;
+	pp100: $pp-100;
+	pp200: $pp-200;
+	pp300: $pp-300;
+	pp400: $pp-400;
+	pp500: $pp-500;
+	pp600: $pp-600;
+	pp700: $pp-700;
+
+	rc50: $rc-50;
+	rc100: $rc-100;
+	rc200: $rc-200;
+	rc300: $rc-300;
+	rc400: $rc-400;
+	rc500: $rc-500;
+	rc600: $rc-600;
+	rc700: $rc-700;
+
+	og50: $og-50;
+	og100: $og-100;
+	og200: $og-200;
+	og300: $og-300;
+	og400: $og-400;
+	og500: $og-500;
+	og600: $og-600;
+	og700: $og-700;
+
+	al50: $al-50;
+	al100: $al-100;
+	al200: $al-200;
+	al300: $al-300;
+	al400: $al-400;
+	al500: $al-500;
+	al600: $al-600;
+	al700: $al-700;
+
+	n0: $n-0;
+	n10: $n-10;
+	n20: $n-20;
+	n30: $n-30;
+	n40: $n-40;
+	n50: $n-50;
+	n100: $n-100;
+	n200: $n-200;
+	n300: $n-300;
+	n400: $n-400;
+	n500: $n-500;
+	n600: $n-600;
+	n700: $n-700;
+	n800: $n-800;
+	n900: $n-900;
+
+	palete: $palete;
+	chartThemes: $chartThemes;
+}

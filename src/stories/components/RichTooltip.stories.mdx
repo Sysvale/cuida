@@ -1,0 +1,121 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import RichTooltip from '../../components/RichTooltip.vue';
+import Button from '../../components/Button.vue';
+
+<Meta
+	title="Componentes/Overlays/RichTooltip"
+	component={ RichTooltip }
+	argTypes={{
+		width: {
+			control: {
+				type: 'range',
+				min: 50,
+				max: 400,
+				step: 10,
+			},
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+		`<div class="d-flex justify-content-center">
+			<span
+				id="trigger-cds-popover"
+				@mouseover="showPopover = true"
+				@mouseleave="showPopover = false"
+			>
+				Tooltip trigger
+			</span>
+			<cds-rich-tooltip
+				v-bind="args"
+				v-model="showPopover"
+			>
+				<div>
+					<p><strong>Em atendimento:</strong> 280</p>
+					<p><strong>Pendentes:</strong> 60</p>
+					<p><strong>Em acompanhamento:</strong> 600</p>
+				</div>
+			</cds-rich-tooltip>
+		</div>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			showPopover: false,
+		};
+	},
+	components: { CdsRichTooltip: RichTooltip, CdsButton: Button },
+	template: /*html*/ `
+		<div class="d-flex justify-content-center">
+			<span
+				id="trigger-cds-popover"
+				@mouseover="showPopover = true"
+				@mouseleave="showPopover = false"
+			>
+				Tooltip trigger
+			</span>
+			<cds-rich-tooltip
+				v-bind="args"
+				v-model="showPopover"
+			>
+				<div>
+					<p><strong>Em atendimento:</strong> 280</p>
+					<p><strong>Pendentes:</strong> 60</p>
+					<p><strong>Em acompanhamento:</strong> 600</p>
+				</div>
+			</cds-rich-tooltip>
+		</div>
+	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.showPopover);
+	},
+});
+
+# RichTooltip
+
+### RichTooltip, assim como Tooltips, são labels flutuantes usadas para explicar um da interface, entretanto provêem maior liberdade para descrição de textos estruturados e/ou mais longos.
+---
+<br />
+
+## Quando usar:
+- O texto a ser exibido como label precisar ocupar várias linhas ou seguir determinada estrurua, como "label: descritor".
+- Para exibir informações suplementares sobre uma feature ou elemento da interface.
+
+
+<br />
+
+## Quando não usar:
+- Com conteúdo simples, composto por poucas palavras.
+- Para comunicar erros e status do sistema.
+- Para mostrar informações críticas para a compreensão de uma feature ou elemento da interface.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="RichTooltip"
+		args={{
+			targetId: 'trigger-cds-popover',
+			width: 250,
+			defaultPlacement: 'bottom-start',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="RichTooltip" />

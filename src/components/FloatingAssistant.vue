@@ -15,7 +15,7 @@
 			class="floating-assistant__container"
 		>
 			<div
-				v-on-click-outside="collapse"
+				ref="floatingAssistantRef"
 				class="floating-assistant__dropdown"
 				:class="{
 					'floating-assistant__dropdown--expanded': isExpanded,
@@ -49,7 +49,10 @@
 						<!-- @slot Slot usado para inserção de conteúdo dentro do card do FloatingAssistant
 							quando estiver expandido -->
 						<slot />
-						<span class="floating-assistant__footer">
+						<span
+							v-if="url"
+							class="floating-assistant__footer"
+						>
 							Você pode saber mais
 							<a
 								:class="`floating-assistant__link--${variant}`"
@@ -83,7 +86,6 @@
 </template>
 
 <script>
-import vClickOutside from 'click-outside-vue3';
 import CdsPulsar from './Pulsar.vue';
 import CdsIcon from './Icon.vue';
 
@@ -91,10 +93,6 @@ export default {
 	components: {
 		CdsPulsar,
 		CdsIcon,
-	},
-
-	directives: {
-		'on-click-outside': vClickOutside.directive,
 	},
 
 	props: {
@@ -116,13 +114,20 @@ export default {
 			validator: (value) => value.length <= 22,
 		},
 		/**
+		 * Define se a animação de exibição do componente vai começar apenas após a ação de scroll pelo usuário.
+		 */
+		startOnScroll: {
+			type: Boolean,
+			default: false,
+			required: false,
+		},
+		/**
 		 * A url para redirecionar para uma página externa ao clicar no
 		 * 'clicando aqui' para saber mais sobre o que é descrito no card
 		 */
 		url: {
 			type: String,
 			default: '',
-			required: true,
 		},
 		/**
 		* A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',
@@ -165,43 +170,49 @@ export default {
 		},
 
 		modelValue(newValue) {
-			console.log('v-model', newValue);
 			this.isActive = newValue;
+			this.handleEventAnimation();
 		},
 	},
 
 	mounted() {
-		this.id = `floating-assistant$-${this._uid}`;
-		this.pulsarId = `floating-assistant-pulsar$-${this._uid}`;
-		this.containerId = `floating-assistant-container$-${this._uid}`;
+		this.handleEventAnimation();
 
-		window.addEventListener('scroll', this.startAnimation, false);
+		document.querySelector('body').addEventListener('click', this.closeFloatingAssistant);
 	},
 
 	methods: {
-		startAnimation() {
-			// verifica se o elemento está visível
-			if (this.isScrolledIntoView()) {
-				// adiciona classe 'animation' se estiver visível
-				document.getElementById(this.id).classList.add('animation');
+		handleEventAnimation() {
+			this.id = `floating-assistant$-${this._uid}`;
+			this.pulsarId = `floating-assistant-pulsar$-${this._uid}`;
+			this.containerId = `floating-assistant-container$-${this._uid}`;
 
-				window.removeEventListener('scroll', this.startAnimation);
+			if (this.startOnScroll) {
+				window.addEventListener('scroll', this.startAnimation);
+			} else {
+				this.startAnimation();
+			}
+		},
+
+		startAnimation() {
+			if (this.startOnScroll) {
+				if (this.isScrolledIntoView()) {
+					setTimeout(() => {
+						document.getElementById(this.id).classList.add('animation');
+						window.removeEventListener('scroll', this.startAnimation);
+					}, 1000);
+				}
+			} else {
+				setTimeout(() => {
+					document.getElementById(this.id).classList.add('animation');
+				}, 1000);
 			}
 		},
 
 		isScrolledIntoView() {
-			const scrollTop = window.scrollY;
-			const scrollBottom = scrollTop + window.innerHeight;
+			const { top, bottom } = document.getElementById(this.id).getBoundingClientRect();
 
-			// obtém posição e dimensões do elemento
-			const box = document.getElementById(this.id).getBoundingClientRect();
-			if (!this.boxTop) {
-				this.boxTop = box.top;
-			}
-			const elemTop = this.boxTop;
-			const elemBottom = elemTop + 18;
-
-			return ((elemBottom <= scrollBottom) && (elemTop >= scrollTop));
+			return (top >= 0 && bottom <= window.innerHeight);
 		},
 
 		expand() {
@@ -232,14 +243,23 @@ export default {
 			*/
 			this.$emit('disable-tip', true);
 			this.isActive = false;
-		}
+		},
+
+		closeFloatingAssistant(event) {
+			if (
+				this.$refs.floatingAssistantRef
+				&& !this.$refs.floatingAssistantRef.contains(event.target)
+			) {
+				this.collapse();
+			}
+		},
 	},
 };
 </script>
 
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .floating-assistant {
 	&.animation {
@@ -276,23 +296,22 @@ export default {
 	}
 
 	&__dropdown {
-		@include caption;
+		@include tokens.caption;
 		display: none;
-		color: $n-600;
-		background-color: $n-0;
-		border-radius: $border-radius-small;
-		outline: 1px solid $n-20;
-		box-shadow: $shadow-md;
+		color: tokens.$n-600;
+		background-color: tokens.$n-0;
+		border-radius: tokens.$border-radius-small;
+		outline: 1px solid tokens.$n-20;
+		box-shadow: tokens.$shadow-md;
 		position: absolute;
-		margin: ml(3);
-		padding: pYX(2, 5);
-		z-index: $z-index-tooltip;
+		margin: tokens.ml(3);
+		padding: tokens.pYX(2, 5);
+		z-index: tokens.$z-index-tooltip;
 		max-width: 400px;
-		max-height: 56px;
 		transition : 0.3s ease-in-out;
 
 		&--expanded {
-			padding: pYX(3, 5);
+			padding: tokens.pYX(3, 5);
 			width: 100%;
 			max-height: none;
 
@@ -304,37 +323,36 @@ export default {
 		}
 
 		&--confirmation {
-			width: auto !important;
 			animation-name: collapseCard;
 			animation-duration: 5s;
 			animation-fill-mode: forwards;
 
 			span {
-				font-weight: $font-weight-bold;
+				font-weight: tokens.$font-weight-bold;
 			}
 		}
 	}
 
 	&__title {
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			width: max-content;
-			@include caption;
+			@include tokens.caption;
 			color: $shade-500;
-			font-weight: $font-weight-bold;
+			font-weight: tokens.$font-weight-bold;
 			width: 162px;
 			text-overflow: ellipsis;
 			overflow: hidden;
 			display: -webkit-box;
 			-webkit-line-clamp: 2;
 			-webkit-box-orient: vertical;
-			margin: mb(2);
+			margin: tokens.mb(2);
 		}
 	}
 
 	&__subtitle {
 		display: block;
 		width: max-content;
-		color: $n-400;
+		color: tokens.$n-400;
 
 		animation: fadeInTitle ease 1s;
 		animation-iteration-count: 1;
@@ -342,7 +360,7 @@ export default {
 	}
 
 	&__content {
-		margin: mt(1);
+		margin: tokens.mt(1);
 		width: 304px;
 		line-height: 132%;
 		animation: fadeInContent ease 1s;
@@ -352,18 +370,18 @@ export default {
 
 	&__footer {
 		display: block;
-		margin: mt(2);
+		margin: tokens.mt(2);
 	}
 
 	&__link {
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			color: $shade-500;
 			cursor: pointer;
 		}
 	}
 
 	&__close-button {
-		color: $n-600;
+		color: tokens.$n-600;
 		cursor: pointer;
 
 		animation: fadeInContent ease 2s;

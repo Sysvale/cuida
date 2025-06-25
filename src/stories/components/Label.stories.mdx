@@ -1,0 +1,85 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Label from '../../components/Label.vue';
+
+<Meta
+	title="Componentes/Forms/Label"
+	component={ Label }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<cds-label />`,
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsLabel: Label },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {value: [
+			{
+				value: '1',
+				label: 'Opção 1',
+			},
+			{
+				value: '2',
+				label: 'Opção 2',
+			},
+		]};
+	},
+	template: /*html*/ `
+		<cds-label
+			v-bind="args"
+			v-model="value"
+		/>`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
+});
+
+
+# Label
+
+### Permite que o usuário adicione, remova e edite múltiplos inputs em uma lista dinâmica.
+---
+<br />
+
+## Quando usar:
+- Em conjunto com componentes que não apresentam nativamente a label;
+
+<br />
+
+## Quando não usar:
+- Um componente já possui nativamente a label;
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Label"
+		args={{
+			required: false,
+			fluid: false,
+			for: 'input-id',
+			text: 'Label',
+			tooltip: '',
+			tooltipIcon: 'info-outline',
+			supportLink: '',
+			supportLinkUrl: '',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Label" />
