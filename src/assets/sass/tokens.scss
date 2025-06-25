@@ -1,10 +1,1 @@
-@import "./borders.scss";
-@import "./colors.module.scss";
-@import "./elevation.scss";
-@import "./fontWeight.scss";
-@import "./reset.scss";
-@import "./shadows.scss";
-@import "./spacing.scss";
-@import "./transitions.scss";
-@import "./typography.scss";
-@import "./utils.scss";
+@use './tokens/index' as *;

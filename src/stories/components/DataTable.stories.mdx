@@ -1,0 +1,233 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import DataTable from '../../components/DataTable.vue';
+
+<Meta
+	title="Componentes/Display/DataTable"
+	component={ DataTable }
+	argTypes={{
+		selectionVariant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/
+`<cds-data-table
+	:fields="fields"
+	:items="items"
+	:totalItems="100"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { CdsDataTable: DataTable },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			selected: [],
+		};
+	},
+	template: /*html*/
+		`<cds-data-table
+			v-model="selected"
+			v-bind="args"
+			@customize-click="logCustomizeButtonClick"
+			@update-fields-list="logUpdateCustomFields($event)"
+			@cancel="logCancelClick"
+			@search="logSearchInput"
+		>
+		</cds-data-table>
+		<br>
+		`,
+	methods: {
+		logCustomizeButtonClick() {
+			console.info('%cCustomize click event', 'color:rgb(50, 125, 230);');
+		},
+		logCancelClick() {
+			console.info('%cCancel click event', 'color:rgb(221, 177, 34);');
+		},
+		logUpdateCustomFields(event) {
+			console.info('%cUpdate custom fields event: ', 'color:rgb(52, 207, 200);', event);
+		},
+		logSearchInput(event) {
+			console.info('%cSearch input event: ', 'color:rgb(42, 124, 34);', event);
+		},
+	},
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.selected);
+	},
+});
+
+# DataTable
+
+### O DataTable é um wrapper da tabela base, que adiciona funcionalidades de usabilidade e personalização para visualização e interação com dados tabulares.
+---
+<br />
+
+## Quando usar:
+- Quando for necessário exibir dados em formato tabular com funcionalidades extras como personalização de colunas, exibição da contagem total de registros e ações complementares (ex: exportações);
+- Quando o contexto exigir uma interface para manipulação e leitura de dados, como painéis administrativos, relatórios dinâmicos ou listas interativas;
+- Quando o desenvolvedor quiser aproveitar a API da tabela base mas com uma estrutura visual e funcional mais completa e pronta para uso.
+
+<br />
+
+## Quando não usar:
+- Quando a tabela base já atende completamente às necessidades da interface, sem necessidade de contagem de registros, personalização ou ações adicionais;
+- Quando o controle total sobre o layout da tabela for necessário e o uso de slots for inadequado ao contexto visual.
+
+<br />
+
+## Obs.:
+- O **DataTable** utiliza internamente o componente **_table_**. Isso significa que todas as _props_ aceitas pela tabela original e todos os eventos emitidos por ela também são aceitos e emitidos pelo **DataTable**, garantindo total compatibilidade com a **API** da tabela base.
+
+## Preview
+
+export const fields = [
+	{
+		key: 'field-1',
+		label: 'Field 1',
+		formatter: (value) => { return `${value}a`  },
+		width: '50%',
+	},
+	{
+		key: 'field2',
+		label: 'Field 2',
+		width: '20%',
+	},
+	{
+		key: 'field-3',
+		label: 'Field 3',
+	},
+	{
+		key: 'field_4',
+		label: 'Field 4',
+	},
+];
+
+export const items = [
+	{
+		'field-1': '2023-10-10',
+		'field2': '0',
+		'field-3': 0,
+		'field_4': 10298726432
+	},
+	{
+		'field-1': '2023-10-10',
+		'field2': '1',
+		'field-3': 72,
+		'field_4': 10298726432
+	},
+	{
+		'field-1': '2023-10-10',
+		'field2': 'field 2 content b',
+		'field_3': 60,
+		'field_4': 10298726432
+	},
+];
+
+
+export const fields2 = [
+	{
+		key: 'field-1',
+		label: 'Field 1',
+	},
+	'field2',
+	'field_3',
+];
+
+export const items2 = [
+	{
+		'field-1': 'Praesent malesuada urna nisi',
+		'field2': 'field 2 content a',
+		'field_3': 50,
+	},
+	{
+		'field-1': 'quis volutpat erat hendrerit non',
+		'field2': 'field 2 content c',
+		'field_3': 72,
+	},
+	{
+		'field-1': 'Nam vulputate dapibus',
+		'field2': 'field 2 content b',
+		'field_3': 60,
+	},
+];
+
+export const customFields = [
+	{
+		label: 'Nome',
+		id: '1',
+		visible: true,
+	},
+	{
+		label: 'Sobrenome',
+		id: '2',
+		visible: true,
+	},
+	{
+		label: 'Idade',
+		id: '3',
+		visible: true,
+	},
+	{
+		label: 'CPF',
+		id: '4',
+		visible: false,
+	},
+	{
+		label: 'RG',
+		id: '5',
+		visible: false,
+	},
+	{
+		label: 'Endereço',
+		id: '6',
+		visible: true,
+	}
+];
+
+<Canvas>
+	<Story
+		name="DataTable"
+		args={{
+			fields,
+			items,
+			fixedHeader: true,
+			allowSelection: true,
+			selectionVariant: 'green',
+			totalItems: 100,
+			customFieldsList: customFields,
+			minVisibleFields: 1,
+			maxVisibleFields: 0,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="DataTable" />

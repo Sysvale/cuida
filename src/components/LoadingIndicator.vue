@@ -93,7 +93,7 @@ function finish() {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .loading-indicator {
 	position: fixed;
@@ -104,9 +104,11 @@ function finish() {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: $n-10;
+	background-color: tokens.$n-10;
 	background-size: 200% 100%;
 	animation: loading-gradient 2s ease infinite;
+	z-index: tokens.$z-index-toast;
+	transition: v-bind(disabledTransition);
 
 	@keyframes loading-gradient {
 		0% {
@@ -116,10 +118,8 @@ function finish() {
 			background-position: -100% 0%;
 		}
 	}
-	z-index: $z-index-toast;
-	transition: v-bind(disabledTransition);
 
-	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+	@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 		@extend .loading-indicator;
 		background-image: linear-gradient(to right, rgba($base-color, 0.6), rgba($base-color, 1));
 	}

@@ -15,7 +15,6 @@
 				v-bind="{...$attrs, ...props}"
 				:model-value="get(localValue, optionsField)"
 				type="text"
-				autocomplete="off"
 				:onkeypress="`return ${allowSearch};`"
 				:placeholder="placeholder"
 				:disabled="disabled"
@@ -74,6 +73,13 @@
 						Nenhuma opção encontrada
 					</li>
 				</ul>
+				<div
+					v-if="showAddOption"
+					class="option__add"
+					@mousedown="handleAddOption"
+				>
+					Adicionar "{{ searchString }}"
+				</div>
 			</div>
 		</div>
 	</div>
@@ -87,8 +93,7 @@ import {
 } from '../utils/composables/useComponentEmits.js';
 import { widths } from '../utils';
 import { generateKey } from '../utils';
-import cloneDeep from 'lodash.clonedeep';
-import { get } from 'lodash';
+import { get, cloneDeep } from 'lodash';
 import removeAccents from '../utils/methods/removeAccents';
 import CdsBaseInput from './BaseInput.vue';
 
@@ -258,6 +263,13 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	* Indica se vai ser possível adicionar novas opções ao Select. Só tem efeito se a prop `searchable` for `true`.
+	*/
+	addable: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const emits = defineEmits({
@@ -284,6 +296,7 @@ const selectOptions = useTemplateRef('select-options');
 const liRefs = ref({});
 const { emitClick, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
 const baseInputControl = ref(0);
+const searchString = ref('');
 
 /* COMPUTED */
 const resolveChevronTop = computed(() => {
@@ -312,7 +325,14 @@ const selectOptionsClass = computed(() => ({
 
 const selectContainerWidth = computed(() => {
 	return props.fluid ? '100%' : 'fit-content';
-})
+});
+
+const showAddOption = computed(() => {
+	return props.searchable
+		&& props.addable
+		&& searchString.value.trim().length > 0
+		&& !localOptions.value.some(option => option[props.optionsField]?.toLowerCase() === searchString.value.toLowerCase());
+});
 
 
 //NOTE: Essa computada vai ser removida junto com a descontinuação da prop width na V4
@@ -375,10 +395,14 @@ onMounted(() => {
 
 /* FUNCTIONS */
 function filterOptions(value) {
+	if (props.searchable && props.addable) {
+		searchString.value = value;
+	}
+
 	const sanitizedString = removeAccents(String(value) || '');
 	const regexExp = new RegExp(sanitizedString, 'i');
 
-	localOptions.value = props.options.filter(
+	localOptions.value = pristineOptions.value.filter(
 		(option) => removeAccents(option[props.optionsField]).search(regexExp) >= 0,
 	);
 }
@@ -408,6 +432,7 @@ function activateSelectionOnEnter() {
 		localValue.value = cloneDeep(localOptions.value[currentPos.value]);
 	}
 
+	searchString.value = '';
 	baseInputControl.value += 1;
 	select.value.blur();
 }
@@ -430,15 +455,20 @@ function activateSelectionOnClick() {
 }
 
 function hide() {
-	localValue.value = props.options.some(item => item[props.optionsField]?.toLowerCase() === get(localValue.value, props.optionsField)?.toLowerCase())
-		? localValue.value
-		: {};
+	if (!searchString.value) {
+		localValue.value = localOptions.value.some(item => item[props.optionsField]?.toLowerCase() === get(localValue.value, props.optionsField)?.toLowerCase())
+			? localValue.value
+			: {};
+	}
+
 	localOptions.value = pristineOptions.value;
+	searchString.value = '';
 	active.value = false;
 	emitBlur();
 }
 
 function selectItem() {
+	searchString.value = '';
 	localValue.value = cloneDeep(localOptions.value[currentPos.value]);
 }
 
@@ -511,6 +541,21 @@ function resetActiveSelection() {
 	})
 }
 
+function handleAddOption() {
+	if (!props.addable || !searchString.value) {
+		return;
+	}
+
+	const newOption = {
+		id: searchString.value.toLowerCase().trim().replace(/ /g, '-'),
+		[props.optionsField]: searchString.value.trim(),
+	};
+
+	localOptions.value = [...props.options, newOption];
+	pristineOptions.value = localOptions.value;
+	localValue.value = newOption;
+}
+
 /* EXPOSE */
 defineExpose({
 	componentRef: select.value?.componentRef,
@@ -522,14 +567,14 @@ defineExpose({
 });
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .select {
 	width: v-bind(selectContainerWidth);
 
 	&__input {
 		&--searchable {
-			caret-color: $n-700;
+			caret-color: tokens.$n-700;
 		}
 
 		&--thin {
@@ -568,7 +613,7 @@ defineExpose({
 		height: 32px;
 		width: 32px;
 		pointer-events: none;
-		border-radius: $border-radius-small;
+		border-radius: tokens.$border-radius-small;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -583,8 +628,8 @@ defineExpose({
 		&::before {
 			border-left: 6px solid transparent;
 			border-right: 6px solid transparent;
-			border-bottom: 6px solid $n-100;
-			border-radius: $border-radius-small;
+			border-bottom: 6px solid tokens.$n-100;
+			border-radius: tokens.$border-radius-small;
 			transition: all 300ms ease-in-out;
 			transform: rotate(-180deg);
 		}
@@ -597,7 +642,7 @@ defineExpose({
 		height: 32px;
 		width: 32px;
 		pointer-events: none;
-		border-radius: $border-radius-small;
+		border-radius: tokens.$border-radius-small;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -612,17 +657,17 @@ defineExpose({
 		&::before {
 			border-left: 6px solid transparent;
 			border-right: 6px solid transparent;
-			border-bottom: 6px solid $n-100;
-			border-radius: $border-radius-small;
+			border-bottom: 6px solid tokens.$n-100;
+			border-radius: tokens.$border-radius-small;
 			transition: all 300ms ease-in-out;
 			transform: rotate(0deg);
 		}
 	}
 
 	&__options {
-		@include body-2;
-		color: $n-700;
-		outline: 1px solid $n-40;
+		@include tokens.body-2;
+		color: tokens.$n-700;
+		outline: 1px solid tokens.$n-40;
 		display: flex;
 		flex-direction: column;
 		margin-top: 6px;
@@ -632,8 +677,8 @@ defineExpose({
 		overflow: auto;
 		position: absolute;
 		z-index: 999;
-		background-color: $n-0;
-		border-radius: $border-radius-extra-small;
+		background-color: tokens.$n-0;
+		border-radius: tokens.$border-radius-extra-small;
 		animation: slide-down 0.2s ease-in-out;
 
 		&--thin {
@@ -662,7 +707,7 @@ defineExpose({
 		}
 
 		&::-webkit-scrollbar-thumb {
-			background: $n-100;
+			background: tokens.$n-100;
 			border-radius: 5px;
 			border-right: 3px solid transparent;
 			border-left: 3px solid transparent;
@@ -670,7 +715,7 @@ defineExpose({
 		}
 
 		&::-webkit-scrollbar-thumb:hover {
-			background: $n-50;
+			background: tokens.$n-50;
 		}
 
 		&--up {
@@ -696,13 +741,20 @@ defineExpose({
 }
 
 .option {
+	&__add {
+		cursor: pointer;
+		font-weight: tokens.$font-weight-semibold;
+		background-color: tokens.$n-20;
+		padding: tokens.pa(3);
+	}
+
 	&__text {
-		padding: pa(3);
+		padding: tokens.pa(3);
 		text-overflow: ellipsis;
 
 		&--muted {
 			@extend .option__text;
-			color: $n-400;
+			color: tokens.$n-400;
 		}
 	}
 
@@ -714,7 +766,7 @@ defineExpose({
 }
 
 .highlight{
-	background-color: $n-10;
+	background-color: tokens.$n-10;
 	cursor: pointer;
 }
 </style>

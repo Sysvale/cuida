@@ -4,6 +4,7 @@
 		v-bind="props"
 		v-model="internalValue"
 		v-facade="internalMask"
+		:enable-autocomplete="!disableAutocomplete"
 		:support-link-url="supportLinkUrl || linkUrl"
 		:support-link="supportLink || linkText"
 		:floating-label="floatingLabel || mobile"
@@ -165,6 +166,13 @@ const props = defineProps({
 	* Define o tipo do input, se true será um input adaptado para o mobile
 	*/
 	floatingLabel: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Desabilita autocomplete do browser.
+	*/
+	disableAutocomplete: {
 		type: Boolean,
 		default: false,
 	},

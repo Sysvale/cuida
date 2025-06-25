@@ -201,23 +201,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 .popover {
-	background-color: $n-0;
-	border-radius: $border-radius-extra-small;
-	box-shadow: 0px 0px 8px rgba($n-900, .08);
-	color: $n-700;
+	background-color: tokens.$n-0;
+	border-radius: tokens.$border-radius-extra-small;
+	box-shadow: 0px 0px 8px rgba(tokens.$n-900, .08);
+	color: tokens.$n-700;
 	display: none;
 	max-height: 500px;
 	max-width: 400px;
 	min-height: v-bind(popoverHeight);
 	min-width: 100px;
-	outline: 1px solid $n-30;
+	outline: 1px solid tokens.$n-30;
 	overflow: hidden;
-	padding: pa(4);
+	padding: tokens.pa(4);
 	position: absolute;
 	width: v-bind(popoverWidth);
-	z-index: $z-index-tooltip;
+	z-index: tokens.$z-index-tooltip;
 
 	&[data-show] {
 		display: block;

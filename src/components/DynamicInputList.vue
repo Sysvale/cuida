@@ -67,7 +67,7 @@
 </template>
 
 <script setup>
-import { defineProps, ref, watch, nextTick } from 'vue';
+import { ref, watch, nextTick } from 'vue';
 import CdsTextInput from './TextInput.vue';
 import CdsIcon from './Icon.vue';
 import CdsFlexbox from './Flexbox.vue';
@@ -210,7 +210,7 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .v-move,
 .v-enter-active,
@@ -230,15 +230,15 @@ defineExpose({
 
 .multiinput {
 	&__x-icon {
-		color: $n-800;
+		color: tokens.$n-800;
 	
 		&:hover {
-			color: $n-900;
+			color: tokens.$n-900;
 		}
 	}
 
 	&__add-button {
-		margin: mt(2);
+		margin: tokens.mt(2);
 	}
 }
 </style>

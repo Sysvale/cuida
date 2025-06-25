@@ -159,7 +159,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .cds__image {
 	border-radius: v-bind(radiusResolver);
