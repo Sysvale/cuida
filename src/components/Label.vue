@@ -41,6 +41,9 @@ import CdsLink from './Link.vue';
 import CdsIcon from './Icon.vue';
 
 defineProps({
+	/**
+	 * ID de referência ao input.
+	 */
 	for: {
 		type: String,
 		default: '',
@@ -103,16 +106,16 @@ defineProps({
 @use'../assets/sass/placeholders.scss';
 
 .label {
-    @include tokens.label;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    width: 266px;
+	@include tokens.label;
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	width: 266px;
 
-    &--fluid {
-        @extend .label;
-        width: 100%;
-    }
+	&--fluid {
+		@extend .label;
+		width: 100%;
+	}
 
 	&__icon {
 		margin: tokens.mTRBL(0, 0, n1, 1);
