@@ -1,0 +1,77 @@
+@mixin heading-1 {
+	font-size: 45px;
+	font-weight: 700;
+	letter-spacing: 0.15px;
+}
+
+@mixin heading-2 {
+	font-size: 33px;
+	font-weight: 700;
+	letter-spacing: 0.1px;
+}
+
+@mixin heading-3 {
+	font-size: 29px;
+	font-weight: 650;
+	letter-spacing: 0px;
+}
+
+@mixin subheading-1 {
+	font-size: 25px;
+	font-weight: 600;
+	letter-spacing: 0.15px;
+}
+
+@mixin subheading-2 {
+	font-size: 21px;
+	font-weight: 600;
+	letter-spacing: 0px;
+}
+
+@mixin subheading-3 {
+	font-size: 17px;
+	font-weight: 600;
+	letter-spacing: 0px;
+}
+
+@mixin body-1 {
+	font-size: 17px;
+	font-weight: 430;
+	letter-spacing: 0px;
+}
+
+@mixin body-2 {
+	font-size: 15px;
+	font-weight: 430;
+	letter-spacing: 0px;
+}
+
+@mixin button-1 {
+	font-size: 16px;
+	font-weight: 750;
+	letter-spacing: 0.2px;
+}
+
+@mixin button-2 {
+	font-size: 14px;
+	font-weight: 700;
+	letter-spacing: 0.15px;
+}
+
+@mixin button-3 {
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.15px;
+}
+
+@mixin caption {
+	font-size: 13.5px;
+	font-weight: 470;
+	letter-spacing: 0.1px;
+}
+
+@mixin overline {
+	font-size: 11.5px;
+	font-weight: 650;
+	letter-spacing: 0.15px;
+}

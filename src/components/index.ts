@@ -28,6 +28,7 @@ import Clickable from './Clickable.vue';
 import CollapsibleContainer from './CollapsibleContainer.vue';
 import ColorPicker from './ColorPicker.vue';
 import DashboardCard from './DashboardCard.vue';
+import DataTable from './DataTable.vue';
 import DateInput from './DateInput.vue';
 import DialogModal from './DialogModal.vue';
 import DynamicInputList from './DynamicInputList.vue';
@@ -53,6 +54,7 @@ import InnerTabs from './InnerTabs.vue';
 import InteractionBlockingOverlay from './InteractionBlockingOverlay.vue';
 import Image from './Image.vue';
 import InlineDateInput from './InlineDateInput.vue';
+import Label from './Label.vue';
 import Link from './Link.vue';
 import List from './List.vue';
 import LoadingBar from './LoadingBar.vue';
@@ -60,8 +62,10 @@ import LoadingIndicator from './LoadingIndicator.vue';
 import MobileNavbar from './MobileNavbar.vue';
 import MobileNavigation from './MobileNavigation.vue';
 import Modal from './Modal.vue';
+import MonthAndYearPicker from './MonthAndYearPicker.vue';
 import MultiFileInput from './MultiFileInput.vue';
 import Multiselect from './Multiselect.vue';
+import ComboBox from './ComboBox.vue';
 import NavBar from './NavBar.vue';
 import NumberInput from './NumberInput.vue';
 import OverlayLoader from './OverlayLoader.vue';
@@ -104,6 +108,8 @@ import Tile from './Tile.vue';
 import TimeInput from './TimeInput.vue';
 import Timeline from './Timeline.vue';
 import TimelineItem from './TimelineItem.vue';
+import Toast from './Toast.vue';
+import ToastContainer from './ToastContainer.vue';
 import Tooltip from './Tooltip.vue';
 import TopAppBar from './TopAppBar.vue';
 import Truncate from './Truncate.vue';
@@ -115,13 +121,19 @@ import Wizard from './Wizard.vue';
 import Cdstip from '../utils/directives/cdstip';
 import CdsFloatify from "../utils/directives/cdsFloatify";
 import CdsClickOutside from '../utils/directives/cdsClickOutside';
+import { unmaskBRL } from '@/utils/directives/cdsBRL';
 
 /* UTILS */
 import contrastChecker from '@/utils/methods/contrastChecker';
+import uuidv4 from '@/utils/methods/uuidv4';
 import hasSlot from '@/utils/methods/hasSlot';
 import removeAccents from '@/utils/methods/removeAccents';
 import hexToRgb from '@/utils/methods/hexToRgb';
 import isDeviceType from '@/utils/methods/isDeviceType';
+import useIsMobile from '@/utils/composables/useIsMobile';
+import { useToast } from '@/utils/composables/useToast';
+import { useHasSlot } from '@/utils/composables/useHasSlot';
+import { useHasSlots } from '@/utils/composables/useHasSlots';
 
 export default {
 	install: (app: any, options: any) => {
@@ -153,6 +165,7 @@ export default {
 		app.component('CdsCollapsibleContainer', CollapsibleContainer);
 		app.component('CdsColorPicker', ColorPicker);
 		app.component('CdsDashboardCard', DashboardCard);
+		app.component('CdsDataTable', DataTable);
 		app.component('CdsDateInput', DateInput);
 		app.component('CdsDialogModal', DialogModal);
 		app.component('CdsDivider', Divider);
@@ -177,6 +190,7 @@ export default {
 		app.component('CdsInnerTabs', InnerTabs);
 		app.component('CdsInteractionBlockingOverlay', InteractionBlockingOverlay);
 		app.component('CdsLineChart', LineChart);
+		app.component('CdsLabel', Label)
 		app.component('CdsLink', Link);
 		app.component('CdsList', List);
 		app.component('CdsInlineDateInput', InlineDateInput);
@@ -185,7 +199,9 @@ export default {
 		app.component('CdsMobileNavbar', MobileNavbar);
 		app.component('CdsMobileNavigation', MobileNavigation);
 		app.component('CdsModal', Modal);
+		app.component('CdsMonthAndYearPicker', MonthAndYearPicker);
 		app.component('CdsMultiselect', Multiselect);
+		app.component('CdsComboBox', ComboBox);
 		app.component('CdsDynamicInputList', DynamicInputList);
 		app.component('CdsMultiFileInput', MultiFileInput);
 		app.component('CdsNavBar', NavBar);
@@ -229,6 +245,8 @@ export default {
 		app.component('CdsTextInput', TextInput);
 		app.component('CdsTile', Tile);
 		app.component('CdsTimeInput', TimeInput);
+		app.component('CdsToast', Toast);
+		app.component('CdsToastContainer', ToastContainer);
 		app.component('CdsTooltip', Tooltip);
 		app.component('CdsTopAppBar', TopAppBar);
 		app.component('CdsTimeline', Timeline);
@@ -245,6 +263,12 @@ export default {
 		hasSlot,
 		removeAccents,
 		hexToRgb,
-		isDeviceType
+		isDeviceType,
+		useIsMobile,
+		useHasSlot,
+		useHasSlots,
+		useToast,
+		unmaskBRL,
+		uuidv4,
 	},
 }

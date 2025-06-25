@@ -54,6 +54,24 @@
 				@keydown="handleKeydown"
 			/>
 
+			<div
+				v-else-if="type === 'date'"
+				tabindex="0"
+				:id="componentId"
+				ref="htmlInput"
+				v-bind="props"
+				:placeholder="placeholder"
+				:disabled="disabled"
+				:class="inputClass"
+				:type="type"
+				:autocomplete="computedAutocompleteProp"
+				@focus="handleFocus"
+				@blur="handleBlur"
+				@keydown="handleKeydown"
+			>
+				<small class="base-mobile-input__date-text">{{ internalValue || placeholder }}</small>
+			</div>
+
 			<input
 				v-else
 				:id="componentId"
@@ -66,6 +84,7 @@
 				:class="inputClass"
 				:readonly="readonly"
 				:type="type"
+				:autocomplete="computedAutocompleteProp"
 				@focus="handleFocus"
 				@blur="handleBlur"
 				@keydown="handleKeydown"
@@ -367,6 +386,13 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	* Habilita autocomplete do browser.
+	*/
+	enableAutocomplete: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const emits = defineEmits({
@@ -383,6 +409,8 @@ const componentId = `cds-base-mobile-input-${props.type}-${attrs.id || generateK
 internalValue.value = model.value;
 
 /* COMPUTED */
+const computedAutocompleteProp = computed(() => props.enableAutocomplete ? 'on' : 'off');
+
 const baseMobileInputClass = computed(() => {
 	let mobileInputClass = props.fluid ? 'base-mobile-input--fluid' : 'base-mobile-input';
 
@@ -554,12 +582,12 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
-@import '../assets/sass/placeholders.scss';
+@use '../assets/sass/tokens/index' as tokens;
+@use'../assets/sass/placeholders.scss';
 
 .base-mobile-input {
     position: relative;
-	padding: pTRBL(2, 1, 0, 1);
+	padding: tokens.pTRBL(2, 1, 0, 1);
 	cursor: v-bind(computedCursor);	
 	@extend %input;
 
@@ -582,7 +610,7 @@ defineExpose({
 		left: v-bind(labelLeftPosition);
         transition: all ease 0.2s;
         font-size: v-bind(labelSize);
-        font-weight: $font-weight-semibold;
+        font-weight: tokens.$font-weight-semibold;
 		cursor: v-bind(computedCursor);	
 
 		&--fluid {
@@ -591,12 +619,17 @@ defineExpose({
 		}
 	}
 
+	&__date-text {
+		font-weight: 460;
+		letter-spacing: 0.1px;
+	}
+
 	&__trailing-icon-container {
 		background-color: none;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		margin: mTRBL(0, 2, 1, 0);
+		margin: tokens.mTRBL(0, 2, 1, 0);
 		min-width: 15px;
 	}
 
@@ -605,7 +638,7 @@ defineExpose({
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		margin: mTRBL(0, 1, 1, 1);
+		margin: tokens.mTRBL(0, 1, 1, 1);
 		min-width: 15px;
 	}
 
@@ -618,14 +651,14 @@ defineExpose({
 	}
 
 	&__field {
-		padding: pTRBL(3, 1, 0, 2);
+		padding: tokens.pTRBL(3, 1, 0, 2);
 		padding-top: v-bind(inputTopPadding);
 		height: v-bind(inputHeight);
 		min-height: v-bind(inputMinHeight);
-		border-radius: $border-radius-extra-small;
+		border-radius: tokens.$border-radius-extra-small;
 		border: none;
 		text-align: start;
-		color: $n-700;
+		color: tokens.$n-700;
 		width: 100%;
 		resize: vertical;
         font-size: 14.5px;
@@ -673,12 +706,12 @@ defineExpose({
 	}
 
 	&__icon--check-icon {
-		color: $gp-500;
+		color: tokens.$gp-500;
 		height: 50%;
 	}
 
 	&__icon {
-		color: $n-700;
+		color: tokens.$n-700;
 	}
 
 	&__icon--spinner-icon {
@@ -686,18 +719,18 @@ defineExpose({
 	}
 
 	&__error-message {
-		@include caption;
-		color: $rc-600;
-		margin: mt(1);
+		@include tokens.caption;
+		color: tokens.$rc-600;
+		margin: tokens.mt(1);
 	}
 
 	&__supporting-text {
 		&:nth-child(1) {
-			margin: mt(1);
+			margin: tokens.mt(1);
 		}
 
-		@include caption;
-		color: $n-600;
+		@include tokens.caption;
+		color: tokens.$n-600;
 	}
 
 	&__supporting-text-list {
@@ -708,7 +741,7 @@ defineExpose({
 
 .label {
 	&__icon {
-		margin: mTRBL(0, 0, n1, 1);
+		margin: tokens.mTRBL(0, 0, n1, 1);
 		cursor: default;
 	}
 
@@ -717,19 +750,19 @@ defineExpose({
 	}
 
 	&__link-icon {
-		color: $bn-500;
+		color: tokens.$bn-500;
 	}
 
 	&__content {
 		color: v-bind(labelColor);
-		margin: ma(0);
+		margin: tokens.ma(0);
 	}
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
-	margin: ma(0);
+	margin: tokens.ma(0);
 }
 
 input:disabled {

@@ -15,7 +15,7 @@
 <script>
 import { Line } from 'vue-chartjs'
 import { Chart, registerables } from 'chart.js';
-import sassColorVariables from '../assets/sass/colors.module.scss';
+import sassColorVariables from '../assets/sass/tokens/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
 import 'chartjs-adapter-luxon';
 
@@ -372,7 +372,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './../assets/sass/tokens.scss';
+
 .responsive-container{
 	width: 100%;
 	height: 100%;

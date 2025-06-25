@@ -185,11 +185,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .card {
 	&__icon {
-		padding: pTRBL(5, 0, 5, 5);
+		padding: tokens.pTRBL(5, 0, 5, 5);
 	}
 	
 	&__extra-container {
@@ -213,26 +213,26 @@ export default {
 	}
 	
 	&__header {
-		@include subheading-2;
-		color: $n-700;
-		margin: ma(0);
+		@include tokens.subheading-2;
+		color: tokens.$n-700;
+		margin: tokens.ma(0);
 	}
 	
 	&__body {
-		@include body-2;
-		color: $n-500;
+		@include tokens.body-2;
+		color: tokens.$n-500;
 		line-height: 150%;
-		margin: mt(3);
+		margin: tokens.mt(3);
 		max-width: v-bind(bodyWidthResolver);
 	}
 	
 	&__spacer {
-		padding: pa(5);
+		padding: tokens.pa(5);
 		max-width: v-bind(imageWidthResolver);
 	}
 	
 	&__footer {
-		margin: mt(0);
+		margin: tokens.mt(0);
 	}
 }
 </style>

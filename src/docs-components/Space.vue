@@ -234,7 +234,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './../assets/sass/tokens.scss';
+@use './../assets/sass/tokens/index' as tokens;
 
 .playground {
 	display: flex;
@@ -247,30 +247,30 @@ export default {
 	}
 
 	&__demo-element {
-		background-color: $og-200;
-		border-radius: $border-radius-small;
+		background-color: tokens.$og-200;
+		border-radius: tokens.$border-radius-small;
 	}
 }
 
 .demo-element {
 	&__outer-container {
-		background-color: $gp-200;
+		background-color: tokens.$gp-200;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: $n-600;
-		border-radius: $border-radius-small;
+		color: tokens.$n-600;
+		border-radius: tokens.$border-radius-small;
 
 		margin: var(--margin);
 		padding: var(--padding);
 	}
 
 	&__inner-container {
-		background-color: $n-0;
-		padding: pYX(8, 4);
-		border-radius: $border-radius-small;
+		background-color: tokens.$n-0;
+		padding: tokens.pYX(8, 4);
+		border-radius: tokens.$border-radius-small;
 		box-shadow: #2544811f 0px 0px 16px 0px;
-		background-color: $n-0;
+		background-color: tokens.$n-0;
 	}
 }
 
@@ -279,21 +279,21 @@ export default {
 		display: flex;
 		align-items: center;
 		width: 120px;
-		padding: pYX(2, 3);
+		padding: tokens.pYX(2, 3);
 		border-radius: 16px;
 		border: 1px solid transparent;
 		transition: all .15s ease-in-out;
 
 		&:hover {
-			border: 1px solid $gp-300;
+			border: 1px solid tokens.$gp-300;
 			cursor: pointer;
 			transition: all .15s ease-in-out;
 		}
 	}
 
 	&__icon {
-		margin: mr(3);
-		color: $n-500;
+		margin: tokens.mr(3);
+		color: tokens.$n-500;
 	}
 }
 
@@ -308,7 +308,7 @@ select {
 	background-size: 10px 10px;
 	-webkit-appearance: none;
 	background-position-x: 78px;
-	padding: pa(1);
+	padding: tokens.pa(1);
 	border-radius: 4px;
 	border: 1px solid #ada9a9;
 }

@@ -1,0 +1,26 @@
+@use 'sass:map';
+
+$z-index-sunk: -1000;
+$z-index-base: 0;
+$z-index-backdrop: 1000;
+$z-index-toolbar: 2000;
+$z-index-sidesheet: 2500;
+$z-index-modal: 3000;
+$z-index-tooltip: 4000;
+$z-index-toast: 5000;
+
+$z-index: ();
+
+$z-index: map.merge(
+	(
+		'sunk': $z-index-sunk,
+		'base': $z-index-base,
+		'backdrop': $z-index-backdrop,
+		'toolbar': $z-index-toolbar,
+		'sidesheet': $z-index-sidesheet,
+		'modal': $z-index-modal,
+		'tooltip': $z-index-tooltip,
+		'toast': $z-index-toast,
+	),
+	$z-index
+);

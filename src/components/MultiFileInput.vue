@@ -228,12 +228,12 @@ function allRequiredLabelsAreSelected() {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .multi-file-input {
 	display: flex;
 	flex-direction: column;
-	gap: spacer(5);
+	gap: tokens.spacer(5);
 	align-items: center;
 	justify-content: center;
 	width: 100%;
@@ -246,38 +246,38 @@ function allRequiredLabelsAreSelected() {
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-		background-color: $n-0;
-		border: 1px solid $n-30;
-		border-radius: $border-radius-medium;
-		padding: pYX(5, 4);
+		background-color: tokens.$n-0;
+		border: 1px solid tokens.$n-30;
+		border-radius: tokens.$border-radius-medium;
+		padding: tokens.pYX(5, 4);
 	}
 
 	&__description {
-		@include overline;
-		color: $n-600;
+		@include tokens.overline;
+		color: tokens.$n-600;
 	}
 
 	&__badges_section {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		gap: spacer(2);
+		gap: tokens.spacer(2);
 		align-items: center;
 		width: 100%;
-		margin: mt(3);
+		margin: tokens.mt(3);
 	}
 
 	&__badge-content {
 		display: flex;
-		gap: spacer(1);
+		gap: tokens.spacer(1);
 		align-items: center;
 	}
 
 	&__list-container {
-		margin: mt(6);
+		margin: tokens.mt(6);
 		display: flex;
 		flex-direction: column;
-		gap: spacer(2);
+		gap: tokens.spacer(2);
 	}
 
 	&__empty-state {
@@ -286,49 +286,49 @@ function allRequiredLabelsAreSelected() {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		@include caption;
-		color: $n-300;
+		@include tokens.caption;
+		color: tokens.$n-300;
 	}
 
 	&__list-title {
-		@include body-2;
-		font-weight: $font-weight-semibold;
-		color: $n-800;
+		@include tokens.body-2;
+		font-weight: tokens.$font-weight-semibold;
+		color: tokens.$n-800;
 	}
 
 	&__list {
 		display: flex;
 		flex-direction: column;
-		gap: spacer(2);
+		gap: tokens.spacer(2);
 	}
 
 	&__item {
 		align-self: center;
-		background-color: $n-10;
-		border: 1px solid $n-30;
-		border-radius: $border-radius-small;
-		padding: pYX(4, 4);
+		background-color: tokens.$n-10;
+		border: 1px solid tokens.$n-30;
+		border-radius: tokens.$border-radius-small;
+		padding: tokens.pYX(4, 4);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		@include body-1;
-		font-weight: $font-weight-semibold;
+		@include tokens.body-1;
+		font-weight: tokens.$font-weight-semibold;
 
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			color: $shade-600;
 		}
 	}
 
 	&__actions {
 		display: flex;
-		gap: spacer(2);
+		gap: tokens.spacer(2);
 		align-items: center;
 	}
 
 	&__alert {
-		@include overline;
-		color: $rc-500;
-		margin: mt(1);
+		@include tokens.overline;
+		color: tokens.$rc-500;
+		margin: tokens.mt(1);
 	}
 
 	&__footer {
@@ -336,7 +336,7 @@ function allRequiredLabelsAreSelected() {
 		justify-content: flex-end;
 		align-items: center;
 		width: 100%;
-		margin: mt(5);
+		margin: tokens.mt(5);
 	}
 }
 

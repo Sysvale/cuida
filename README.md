@@ -51,8 +51,13 @@ app.provide('cdsUtils', cdsUtils);
 <cds-badge variant="gray"> Conteúdo </cds-badge>
 ```
 
-- Para utilizar os tokens, importe-os na sua tag script.
+- Para utilizar os tokens do Cuida instale o sass-embedded
 
+```bash
+npm install -D sass-embedded
+```
+
+e importe o arquivo de tokens na sua tag script.
 ```html
 <style lang="scss" scoped>
   @import 'node_modules/@sysvale/cuida/dist/@sysvale/tokens.scss';
@@ -114,6 +119,15 @@ ou
 npm run test
 ```
 
+- Para utilizar o ui do vitest:
+```bash
+npm run test:ui
+```
+
+- Para visualizar o detalhamento da cobertura de testes, use o comando abaixo:
+```bash
+npx open-cli coverage/index.html
+```
 ## Contribuindo
 
 Para informações sobre como contribuir com o projeto, acesse o [CONTRIBUTING.MD](https://github.com/Sysvale/cuida/blob/main/CONTRIBUTING.md)

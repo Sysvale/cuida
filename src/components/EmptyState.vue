@@ -117,13 +117,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .empty-state {
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	margin: mYX(12, 5);
+	margin: tokens.mYX(12, 5);
 	position: relative;
 
 	&__image {
@@ -134,21 +134,21 @@ export default {
 	}
 
 	&__title {
-		color: $n-600;
-		margin: mt(8);
-		@include subheading-2;
+		color: tokens.$n-600;
+		margin: tokens.mt(8);
+		@include tokens.subheading-2;
 	}
 
 	&__text {
-		color: $n-500;
-		margin: mt(1);
+		color: tokens.$n-500;
+		margin: tokens.mt(1);
 		max-width: 50%;
 		text-align: center;
-		@include body-1;
+		@include tokens.body-1;
 	}
 
 	&__button {
-		margin: mt(4);
+		margin: tokens.mt(4);
 	}
 }
 

@@ -98,7 +98,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, defineEmits, computed, watch } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { isEqual, isEmpty } from 'lodash';
 import CdsIcon from './Icon.vue';
 import CdsAvatar from './Avatar.vue';
@@ -243,44 +243,44 @@ const mustDisableExternalScrolls = (value) => {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .mobile-navigation {
 	top: 0;
 	left: 0;
 	width: 100%;
 	z-index: 1000;
-	box-shadow: $shadow-sm;
+	box-shadow: tokens.$shadow-sm;
 
 	&--sticky {
 		position: sticky;
 	}
 
 	&__header {
-		padding: pTRBL(5, 4, 5, 4);
+		padding: tokens.pTRBL(5, 4, 5, 4);
 		background-color: rgba(#FFF, .87);
 		backdrop-filter: blur(5px);
 	}
 
 	&__title {
-		@include subheading-1;
-		margin: mTRBL(0, 0, 0, 10);
+		@include tokens.subheading-1;
+		margin: tokens.mTRBL(0, 0, 0, 10);
 	}
 
 	&__menu-btn {
 		position: absolute;
-		top: spacer(6);
-		left: spacer(4);
+		top: tokens.spacer(6);
+		left: tokens.spacer(4);
 	}
 
 	&__sidebar {
 		display: flex;
 		flex-direction: column;
-		gap: spacer(6);
+		gap: tokens.spacer(6);
 		top: 0;
 		left: 0;
 		position: absolute;
-		padding: pYX(4, 5);
+		padding: tokens.pYX(4, 5);
 		height: 100svh;
 		width: 100%;
 		margin-left: calc(0px - 100%);
@@ -303,7 +303,7 @@ const mustDisableExternalScrolls = (value) => {
 	}
 
 	&__sidebar-btn {
-		margin-right: spacer(1);
+		margin-right: tokens.spacer(1);
 	}
 
 	&__sidebar-content {
@@ -311,20 +311,20 @@ const mustDisableExternalScrolls = (value) => {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		margin-bottom: spacer(8);
+		margin-bottom: tokens.spacer(8);
 	}
 
 	&__sidebar-items {
 		display: flex;
 		flex-direction: column;
-		gap: spacer(4);
+		gap: tokens.spacer(4);
 	}
 
 	&__sidebar-item {
-		@include body-1;
+		@include tokens.body-1;
 		display: flex;
 		align-items: center;
-		padding: pYX(4, 5);
+		padding: tokens.pYX(4, 5);
 		border-radius: 10px;
 		gap: 10px;
 		background: none;
@@ -344,7 +344,7 @@ const mustDisableExternalScrolls = (value) => {
 	&__sidebar-user-info {
 		display: flex;
 		align-items: center;
-		gap: spacer(4);
+		gap: tokens.spacer(4);
 	}
 
 	&__sidebar-user-text {
@@ -357,17 +357,17 @@ const mustDisableExternalScrolls = (value) => {
 		}
 
 		& p:first-child {
-			@include body-1;
-			font-weight: $font-weight-bold;
+			@include tokens.body-1;
+			font-weight: tokens.$font-weight-bold;
 		}
 
 		& p:last-child {
-			@include body-2;
+			@include tokens.body-2;
 		}
 	}
 
 	&__sidebar-logout {
-		padding: pa(2);
+		padding: tokens.pa(2);
 		background: none;
 		border: none;
 		cursor: pointer;
@@ -377,33 +377,33 @@ const mustDisableExternalScrolls = (value) => {
 .mobile-navigation--dark {
 	&.mobile-navigation {
 		background: linear-gradient(183deg, #4B545B 26.25%, #262B2F 183.33%);
-		color: $n-0;
+		color: tokens.$n-0;
 	}
 
 	.mobile-navigation {
 		&__sidebar {
 			background: linear-gradient(183deg, #4B545B 26.25%, #262B2F 183.33%);
-			color: $n-0;
+			color: tokens.$n-0;
 		}
 
 		&__sidebar-item {
 			&--active {
 				background: #576169;
-				color: $n-0;
+				color: tokens.$n-0;
 				border: 1px solid #64738280;
 				transition: background 0.25s ease-in-out;
 			}
 		}
 
 		&__sidebar-logout {
-			color: $n-0;
+			color: tokens.$n-0;
 		}
 	}
 }
 
 .mobile-navigation--light {
 	.variant-resolver {
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			--system-background-variant: #{$shade-50};
 			--system-border-variant: #{$shade-200};
 			--system-text-variant: #{$base-color};
@@ -411,14 +411,14 @@ const mustDisableExternalScrolls = (value) => {
 	}
 
 	&.mobile-navigation {
-		background: $n-0;
-		color: $n-700;
+		background: tokens.$n-0;
+		color: tokens.$n-700;
 	}
 
 	.mobile-navigation {
 		&__sidebar {
-			background: $n-0;
-			color: $n-700;
+			background: tokens.$n-0;
+			color: tokens.$n-700;
 		}
 
 		&__sidebar-item {
@@ -430,7 +430,7 @@ const mustDisableExternalScrolls = (value) => {
 		}
 
 		&__sidebar-logout {
-			color: $n-700;
+			color: tokens.$n-700;
 		}
 	}
 }

@@ -2,12 +2,14 @@
 
 exports[`DateInput > renders correctly 1`] = `
 "<div data-v-fcd39cd1="" class="date-input" id="text-input">
-  <div data-v-82c69faf="" data-v-fcd39cd1="" variant="gray" range="false" mobile="false" showtodaydot="false" highlighttoday="false" mindate="" maxdate="">
+  <!--v-if-->
+  <div data-v-82c69faf="" data-v-fcd39cd1="" variant="green" range="false" mobile="false" showtodaydot="false" highlighttoday="false" mindate="" maxdate="" mode="picking">
     <!--v-if--><label data-v-c1eb01da="" data-v-82c69faf="" class="label"><span data-v-c1eb01da="" class="label__content">Selecione uma data <!--v-if--><!--v-if--></span>
       <!--v-if-->
     </label>
     <div data-v-82c69faf="" class="base-input base-input--default">
-      <!--v-if--><input data-v-82c69faf="" id="text-input" modelvalue="" label="Selecione uma data" state="default" type="text" placeholder="dd/MM/yyyy" errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" supportlinkurl="https://cuida.framer.wiki/" floatinglabel="false" lazy="false" name="" class="base-input__field">
+      <!--v-if-->
+      <div data-v-82c69faf="" id="" tabindex="0" modelvalue="" label="Selecione uma data" hidelabel="false" disabled="false" state="default" type="date" required="false" placeholder="dd/MM/yyyy" errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" supportlinkurl="https://cuida.framer.wiki/" floatinglabel="false" lazy="false" name="" enableautocomplete="false" enabletopcontent="false" class="base-input__field" autocomplete="off"><small data-v-82c69faf="" class="base-input__date-text">dd/MM/yyyy</small></div>
       <!--v-if-->
       <div data-v-82c69faf="" class="base-input__trailing-icon-container">
         <div data-v-fcd39cd1="" class="date-input__icon"><svg data-v-fcd39cd1="" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="calendar-outline" role="presentation">
@@ -26,8 +28,106 @@ exports[`DateInput > renders correctly 1`] = `
     <!--v-if-->
     <!--v-if-->
   </div>
-  <transition-stub data-v-fcd39cd1="" name="calendar-animation" appear="false" persisted="false" css="true">
-    <!--v-if-->
+  <transition-stub data-v-fcd39cd1="" name="calendar-animation" appear="false" persisted="true" css="true">
+    <div data-v-fcd39cd1="" class="date-input__calendar--down" style="display: none;">
+      <div data-v-fcd39cd1="" class="calendar__header">
+        <div data-v-c2ac4e6d="" data-v-fcd39cd1="" class="flexbox">
+          <!-- @slot Slot com o conteúdo interno do FlexBox --><span data-v-fcd39cd1="" class="calendar__month-and-title">junho</span><span data-v-fcd39cd1="" class="calendar__month-and-title">2025</span>
+        </div>
+        <div data-v-c2ac4e6d="" data-v-fcd39cd1="" class="flexbox">
+          <!-- @slot Slot com o conteúdo interno do FlexBox --><svg data-v-fcd39cd1="" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="caret-up-outline" role="presentation" class="calendar__right-caret">
+            <g fill="currentColor">
+              <path fill-rule="evenodd" d="M19.707 16.207a1 1 0 01-1.414 0L12 9.914l-6.293 6.293a1 1 0 01-1.414-1.414L10.586 8.5a2 2 0 012.828 0l6.293 6.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+            </g>
+          </svg><svg data-v-fcd39cd1="" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="caret-down-outline" role="presentation" class="calendar__left-caret">
+            <g fill="currentColor">
+              <path fill-rule="evenodd" d="M4.293 7.793a1 1 0 011.414 0L12 14.086l6.293-6.293a1 1 0 111.414 1.414L13.414 15.5a2 2 0 01-2.828 0L4.293 9.207a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div data-v-958116c6="" data-v-fcd39cd1="" class="grid">
+        <!-- @slot Slot com o conteúdo interno da grid -->
+        <div data-v-fcd39cd1="" class="calendar__week-day">S</div>
+        <div data-v-fcd39cd1="" class="calendar__week-day">T</div>
+        <div data-v-fcd39cd1="" class="calendar__week-day">Q</div>
+        <div data-v-fcd39cd1="" class="calendar__week-day">Q</div>
+        <div data-v-fcd39cd1="" class="calendar__week-day">S</div>
+        <div data-v-fcd39cd1="" class="calendar__week-day">S</div>
+        <div data-v-fcd39cd1="" class="calendar__week-day">D</div>
+        <div data-v-fcd39cd1="" class="calendar__empty-day"></div>
+        <div data-v-fcd39cd1="" class="calendar__empty-day"></div>
+        <div data-v-fcd39cd1="" class="calendar__empty-day"></div>
+        <div data-v-fcd39cd1="" class="calendar__empty-day"></div>
+        <div data-v-fcd39cd1="" class="calendar__empty-day"></div>
+        <div data-v-fcd39cd1="" class="calendar__empty-day"></div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">1</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">2</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">3</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">4</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">5</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">6</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">7</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">8</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">9</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">10</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">11</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">12</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">13</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">14</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">15</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">16</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">17</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">18</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">19</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">20</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">21</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">22</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">23</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">24</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">25</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">26</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">27</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">28</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">29</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">30</div>
+      </div>
+      <div data-v-958116c6="" data-v-44dffe1e="" data-v-fcd39cd1="" class="grid month-selector__grid" style="display: none;">
+        <!-- @slot Slot com o conteúdo interno da grid -->
+        <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green month-selector__month--selected--green">jan</div>
+        <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">fev</div>
+        <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">mar</div>
+        <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">abr</div>
+        <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">maio</div>
+        <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">jun</div>
+        <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">jul</div>
+        <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">ago</div>
+        <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">set</div>
+        <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">out</div>
+        <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">nov</div>
+        <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">dez</div>
+      </div>
+      <div data-v-1965a21c="" data-v-fcd39cd1="" class="scroll-indicator__container" min-date="" max-date="" style="display: none;">
+        <div data-v-958116c6="" data-v-1965a21c="" class="grid year-selector__grid" tabindex="0">
+          <!-- @slot Slot com o conteúdo interno da grid -->
+          <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2018</div>
+          <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2019</div>
+          <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2020</div>
+          <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2021</div>
+          <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2022</div>
+          <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2023</div>
+          <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2024</div>
+          <div data-v-1965a21c="" class="year-selector__year--green year-selector__year--selected--green year-selector__year">2025</div>
+          <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2026</div>
+          <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2027</div>
+          <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2028</div>
+          <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2029</div>
+        </div>
+        <div data-v-1965a21c="" class="scroll-indicator">
+          <div data-v-1965a21c="" class="scroll-indicator__thumb" style="height: 33%; top: 44.535294117647055%;"></div>
+        </div>
+      </div>
+    </div>
   </transition-stub>
 </div>"
 `;
