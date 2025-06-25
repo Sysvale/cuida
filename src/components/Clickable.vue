@@ -25,14 +25,28 @@ export default {
 		clickable: {
 			type: Boolean,
 			default: false,
-		}
-	}
+		},
+		/**
+		 * Permite que o clickable se expanda de forma fluida
+		 */
+		fluid: {
+			type: Boolean,
+			default: false,
+			required: false,
+		},
+	},
+
+	computed: {
+		widthResolver() {
+			return this.fluid ? '100%' : 'fit-content';
+		},
+	},
 }
 </script>
 
 <style lang="scss">
 .clickable__container {
-	width: fit-content;
+	width: v-bind(widthResolver);
 
 	&--clickable {
 		@extend .clickable__container;

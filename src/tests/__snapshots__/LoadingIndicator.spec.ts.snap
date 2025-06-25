@@ -1,3 +1,3 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`LoadingIndicator > renders correctly 1`] = `"<div data-v-2f1c657e=\\"\\" class=\\"loading-indicator--green\\"></div>"`;
+exports[`LoadingIndicator > renders correctly 1`] = `"<div data-v-2f1c657e="" class="loading-indicator--green"></div>"`;

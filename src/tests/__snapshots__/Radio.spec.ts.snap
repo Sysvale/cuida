@@ -1,9 +1,9 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Radio > renders correctly 1`] = `
-"<span class=\\"cds-radio__container\\"><!--
+"<span class="cds-radio__container"><!--
 			Evento emitido quando o Radio muda seu estado.
 			@event update:modelValue
 			@type {Event}
-		--><input id=\\"0.1-option-1\\" type=\\"radio\\" class=\\"cds-radio cds-radio--green\\" value=\\"option-1\\"><label class=\\"cds-radio__label\\" for=\\"0.1-option-1\\"><!-- @slot Slot padrão para renderização de conteúdo customizado da label --><span class=\\"cds-radio__label-text\\" disabled=\\"false\\">Opção 1</span></label></span>"
+		--><input id="0.1-option-1" type="radio" class="cds-radio cds-radio--green" value="option-1"><label class="cds-radio__label" for="0.1-option-1"><!-- @slot Slot padrão para renderização de conteúdo customizado da label --><span class="cds-radio__label-text" disabled="false">Opção 1</span></label></span>"
 `;

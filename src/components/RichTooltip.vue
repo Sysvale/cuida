@@ -2,7 +2,7 @@
 <template>
 	<div
 		:id="$attrs.id || id"
-		v-on-click-outside="hide"
+		ref="richTooltipRef"
 		class="richTooltip"
 	>
 		<slot />
@@ -10,15 +10,10 @@
 </template>
 
 <script>
-import vClickOutside from 'click-outside-vue3';
 import { createPopper } from '@popperjs/core';
 import { generateKey } from '../utils';
 
 export default {
-	directives: {
-		'on-click-outside': vClickOutside.directive,
-	},
-
 	props: {
 		/**
 		* Prop utilizada como v-model.
@@ -101,6 +96,8 @@ export default {
 	mounted() {
 		this.id = `cds-popover-${this.uniqueKey}`;
 		this.setPopper(this.targetId);
+
+		document.querySelector('body').addEventListener('click', this.closeRichTooltip);
 	},
 
 	methods: {
@@ -166,13 +163,22 @@ export default {
 				*/
 				this.$emit('update:modelValue', false);
 			});
-		}
+		},
+
+		closeRichTooltip(event) {
+			if (
+				this.$refs.richTooltipRef
+				&& !this.$refs.richTooltipRef.contains(event.target)
+			) {
+				this.hide();
+			}
+		},
 	},
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 @keyframes fadeIn {
 	from {
@@ -201,18 +207,18 @@ export default {
 }
 
 .richTooltip {
-	background-color: $n-900;
-	border-radius: $border-radius-medium;
-	box-shadow: 0px 0px 8px rgba($n-900, .08);
-	color: $n-0;
+	background-color: tokens.$n-900;
+	border-radius: tokens.$border-radius-medium;
+	box-shadow: 0px 0px 8px rgba(tokens.$n-900, .08);
+	color: tokens.$n-0;
 	display: none;
 	max-width: 400px;
 	min-width: 100px;
 	overflow: hidden;
-	padding: pa(4);
+	padding: tokens.pa(4);
 	position: absolute;
 	width: v-bind(popoverWidth);
-	z-index: $z-index-tooltip;
+	z-index: tokens.$z-index-tooltip;
 
 	&[data-show] {
 		display: block;

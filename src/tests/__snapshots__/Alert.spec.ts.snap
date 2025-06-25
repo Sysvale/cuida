@@ -1,7 +1,7 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Alert snapshot test > renders correctly 1`] = `
-"<span data-v-3f4a8ec2=\\"\\" id=\\"alert\\"><div data-v-3f4a8ec2=\\"\\" class=\\"alert alert__container--info\\"><div data-v-3f4a8ec2=\\"\\" class=\\"alert__body\\"><div data-v-3f4a8ec2=\\"\\"><svg data-v-3f4a8ec2=\\"\\" xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24\\" height=\\"24\\" viewBox=\\"0 0 24 24\\" aria-labelledby=\\"info-outline\\" role=\\"presentation\\" class=\\"alert__icon--info\\"><g fill=\\"currentColor\\"></g></svg></div><span data-v-3f4a8ec2=\\"\\" class=\\"alert__text\\">Texto do alerta</span></div>
+"<span data-v-3f4a8ec2="" id="alert"><div data-v-3f4a8ec2="" class="alert alert__container--info"><div data-v-3f4a8ec2="" class="alert__body"><div data-v-3f4a8ec2=""><svg data-v-3f4a8ec2="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-labelledby="info-outline" role="presentation" class="alert__icon--info"><g fill="currentColor"></g></svg></div><span data-v-3f4a8ec2="" class="alert__text">Texto do alerta</span></div>
 <!--v-if-->
 </div></span>"
 `;

@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MobileNavbar > renders correctly 1`] = `
+"<div data-v-659a37c0="" class="mobile-navbar">
+  <div data-v-659a37c0="" class="mobile-navbar__items">
+    <router-link-stub data-v-659a37c0="" class="mobile-navbar__item-link" to="[object Object]"></router-link-stub>
+    <router-link-stub data-v-659a37c0="" class="mobile-navbar__item-link" to="[object Object]"></router-link-stub>
+    <router-link-stub data-v-659a37c0="" class="mobile-navbar__item-link" to="[object Object]"></router-link-stub>
+    <router-link-stub data-v-659a37c0="" class="mobile-navbar__item-link" to="[object Object]"></router-link-stub>
+    <div data-v-659a37c0="" class="mobile-navbar__indicator--first mobile-navbar__indicator--blue" style="width: 25%; transform: translateX(0%);"></div>
+  </div>
+</div>"
+`;

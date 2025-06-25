@@ -1,7 +1,7 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Spinner > renders correctly 1`] = `"<div data-v-259be2b2=\\"\\" class=\\"spin--sm spin--blue\\"></div>"`;
+exports[`Spinner > renders correctly 1`] = `"<div data-v-259be2b2="" class="spin--sm spin--blue"></div>"`;
 
 exports[`Spinner > renders correctly with delay 1`] = `"<!--v-if-->"`;
 
-exports[`Spinner > renders correctly with delay 2`] = `"<div data-v-259be2b2=\\"\\" class=\\"spin--sm spin--blue\\"></div>"`;
+exports[`Spinner > renders correctly with delay 2`] = `"<div data-v-259be2b2="" class="spin--sm spin--blue"></div>"`;

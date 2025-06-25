@@ -1,11 +1,11 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`EmptyState > renders correctly 1`] = `
-"<div data-v-f262d0f3=\\"\\" class=\\"empty-state\\">
+"<div data-v-f262d0f3="" class="empty-state">
   <!-- @slot Slot usado para inserção de conteúdo gráfico
-			customizado como alternativa a imagem do empty-state. --><img data-v-f262d0f3=\\"\\" class=\\"empty-state__image\\" src=\\"\\" alt=\\"Imagem de Empty State\\">
-  <div data-v-f262d0f3=\\"\\" class=\\"empty-state__title\\">EmptyState title</div>
-  <div data-v-f262d0f3=\\"\\" class=\\"empty-state__text\\">
+			customizado como alternativa a imagem do empty-state. --><img data-v-f262d0f3="" class="empty-state__image" src="" alt="Imagem de Empty State">
+  <div data-v-f262d0f3="" class="empty-state__title">EmptyState title</div>
+  <div data-v-f262d0f3="" class="empty-state__text">
     <!-- @slot Slot usado para inserção de conteúdo customizado no texto do corpo do
 				empty state. -->EmptyState text
   </div>
@@ -13,7 +13,7 @@ exports[`EmptyState > renders correctly 1`] = `
 			Evento emitido quando o botão do Empty State é clicado
 			@event action-button-click
 			@type {Event}
-		--><button data-v-3c9d0845=\\"\\" data-v-f262d0f3=\\"\\" class=\\"button__container button--green--active button-size--md empty-state__button\\">
+		--><button data-v-3c9d0845="" data-v-f262d0f3="" class="button__container button--green--active button-size--md empty-state__button">
     <!--v-if-->
     <!-- @slot Slot padrão utilizado para exibir texto do botão. -->Finalizar
   </button>

@@ -6,7 +6,7 @@
 	>
 		<div
 			v-if="innerValue"
-			v-on-click-outside="noCloseOnBackdrop ? () => {} : closeHandle"
+			v-cds-click-outside="noCloseOnBackdrop ? () => {} : closeHandle"
 			class="cds-modal"
 			:class="`cds-modal--${size}`"
 		>
@@ -60,7 +60,7 @@
 						:text="cancelButtonText"
 						secondary
 						:disabled="disableCancelButton"
-						@click="!disableCancelButton ? closeHandle() : false"
+						@click="!disableCancelButton ? cancelHandle() : false"
 					/>
 
 					<cds-button
@@ -79,7 +79,6 @@
 <script>
 import CdsIcon from '../components/Icon.vue';
 import CdsButton from '../components/Button.vue';
-import vClickOutside from 'click-outside-vue3';
 import CdsScrollable from '../components/Scrollable.vue';
 
 const predefinedColors = [
@@ -95,10 +94,6 @@ const predefinedColors = [
 ];
 
 export default {
-	directives: {
-		'on-click-outside': vClickOutside.directive,
-	},
-
 	components: {
 		CdsIcon,
 		CdsButton,
@@ -152,6 +147,13 @@ export default {
 		 *  Controla a ação de fechar o modal ao clicar no botão de ação.
 		 */
 		noCloseOkButton: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 *  Controla a ação de fechar o modal ao clicar no botão de cancelar.
+		 */
+		noCloseCancelButton: {
 			type: Boolean,
 			default: false,
 		},
@@ -218,7 +220,7 @@ export default {
 		return {
 			innerValue: false,
 			tmp: '',
-		}
+		};
 	},
 
 	computed: {
@@ -239,7 +241,6 @@ export default {
 	},
 
 	methods: {
-
 		closeHandle() {
 			/**
 			 * Evento que indica se o modal foi escondido.
@@ -263,11 +264,25 @@ export default {
 			}
 			this.$emit('ok', true);
 		},
+
+		cancelHandle() {
+			/**
+			 * Evento que indica se o botão de cancelamento do modal foi clicado.
+			 * @event cancel
+			 * @type {Event}
+			*/
+			if (!this.noCloseCancelButton) {
+				this.innerValue = !this.innerValue;
+				this.$emit('close', true);
+				this.$emit('update:modelValue', false);
+			}
+			this.$emit('cancel');
+		},
 	},
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .cds-modal {
 	display: flex;
@@ -277,11 +292,11 @@ export default {
 	width: calc(100% - 2 * 16px);
 	height: auto;
 	background-color: white;
-	padding: pYX(5, 5);
-	border-radius: $border-radius-medium;
+	padding: tokens.pYX(5, 5);
+	border-radius: tokens.$border-radius-medium;
 	box-shadow: 0px 0px 8px rgba(40, 90, 185, 0.2);
 	overflow-x: visible;
-	z-index: $z-index-modal;
+	z-index: tokens.$z-index-modal;
 	animation: zoom-in .5s;
 
 	&__backdrop {
@@ -289,25 +304,25 @@ export default {
 		justify-content: center;
 		align-items: center;
 		position: fixed;
-		padding: px(4);
+		padding: tokens.px(4);
 		top: 0;
 		bottom: 0;
 		left: 0;
 		right: 0;
 		background-color: rgba(0, 0, 0, 0.45);
-		z-index: $z-index-backdrop;
+		z-index: tokens.$z-index-backdrop;
 		animation: zoom-in ease .3s;
 	}
 
 	&__header {
 		display: flex;
 		justify-content: space-between;
-		padding: pb(2);
+		padding: tokens.pb(2);
 
 		h3 {
-			@include subheading-1;
-			color: $n-900;
-			margin: mb(2);
+			@include tokens.subheading-1;
+			color: tokens.$n-900;
+			margin: tokens.mb(2);
 		}
 	}
 
@@ -325,13 +340,13 @@ export default {
 		display: flex;
 		justify-content: end;
 		margin-top: auto;
-		padding: pt(7);
+		padding: tokens.pt(7);
 
 	}
 }
 
 .footer__ok-button {
-	margin: ml(6);
+	margin: tokens.ml(6);
 }
 
 @keyframes zoom-in {

@@ -43,7 +43,9 @@ export const parameters = {
 import { app } from "@storybook/vue3";
 import Cdstip from "../src/utils/directives/cdstip";
 import CdsFloatify from "../src/utils/directives/cdsFloatify";
+import CdsClickOutside from "../src/utils/directives/cdsClickOutside";
 
 app.directive("cdstip", Cdstip);
 app.directive("cds-floatify", CdsFloatify);
+app.directive("cds-click-outside", CdsClickOutside);
 app.mount("#app");

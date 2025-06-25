@@ -1,12 +1,13 @@
 import { describe, test, expect } from 'vitest';
-import InteractionBlockingOverlay from '../components/InteractionBlockingOverlay.vue';
+import TopAppBar from '../components/TopAppBar.vue';
 import { mount } from '@vue/test-utils';
 
-describe('InteractionBlockingOverlay', () => {
+describe('TopAppBar', () => {
 	test('renders correctly', async () => {
-		const wrapper = mount(InteractionBlockingOverlay, {
+		const wrapper = mount(TopAppBar, {
 			props: {
-				block: 'mobile',
+				title: 'Título massa',
+				showMenuIcon: true,
 			},
 		});
 

@@ -1,7 +1,7 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Badge > renders correctly 1`] = `
-"<div data-v-0d3d5e64=\\"\\" class=\\"badge__container badge--gray badge--md\\">
-  <div data-v-0d3d5e64=\\"\\" class=\\"badge__content--md\\">Badge</div>
+"<div data-v-0d3d5e64="" class="badge__container badge--gray badge--md">
+  <div data-v-0d3d5e64="" class="badge__content--md">Badge</div>
 </div>"
 `;

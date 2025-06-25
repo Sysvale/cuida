@@ -70,7 +70,7 @@
 <script>
 import CdsIcon from '../components/Icon.vue';
 import CdsClickable from '../components/Clickable.vue';
-import sassColorVariables from '../assets/sass/colors.module.scss';
+import sassColorVariables from '../assets/sass/tokens/colors.module.scss';
 import hexToRgb from '../utils/methods/hexToRgb';
 import { KeyCodes } from '../utils';
 import CdsButton from '../components/Button.vue';
@@ -335,7 +335,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .container {
 	display: flex;
@@ -357,18 +357,18 @@ export default {
 		right: 0;
 		top: 1;
 		width: 100%;
-		z-index: $z-index-sidesheet;
+		z-index: tokens.$z-index-sidesheet;
 	}
 
 	&__header {
 		display: flex;
 		justify-content: space-between;
-		padding: pb(2);
+		padding: tokens.pb(2);
 
 		h3 {
-			color: $n-900;
-			@include subheading-1;
-			margin: mb(2);
+			color: tokens.$n-900;
+			@include tokens.subheading-1;
+			margin: tokens.mb(2);
 		}
 	}
 
@@ -376,35 +376,36 @@ export default {
 		animation: translate;
 		animation-duration: 0.5s;
 
-		background: $n-0;
+		background: tokens.$n-0;
 		border-radius: 0px;
 		float: right;
 		height: 100%;
 		width: v-bind(sideSheetWidth);
 		
-		padding: pa(5);
+		padding: tokens.pa(5);
 		display: grid;
 		grid-template-rows: auto 1fr auto;
+		border-left: 1px solid tokens.$n-30;
 	}
 
 	&__close-icon {
-		color: $n-600;
+		color: tokens.$n-600;
 		display: flex;
 		justify-content: end;
-		padding: pTRBL(0, 4, 4, 4);
+		padding: tokens.pTRBL(0, 4, 4, 4);
 		text-align: right;
 
 		&:hover {
-			color: $n-700;
+			color: tokens.$n-700;
 		}
 	}
 
 	&__footer {
 		display: flex;
 		justify-content: end;
-		padding: pt(7);
+		padding: tokens.pt(7);
 		gap: 32px;
-		background-color: $n-0;
+		background-color: tokens.$n-0;
 	}
 }
 

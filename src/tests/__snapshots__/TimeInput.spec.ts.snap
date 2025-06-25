@@ -1,13 +1,13 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`TimeInput > renders correctly 1`] = `
-"<div data-v-362c4bdd=\\"\\"><label data-v-362c4bdd=\\"\\" class=\\"input__label\\">
-    <div data-v-362c4bdd=\\"\\" class=\\"label__content\\" for=\\"time-input\\"><span data-v-362c4bdd=\\"\\">Test label</span>
+"<div data-v-362c4bdd=""><label data-v-362c4bdd="" class="input__label">
+    <div data-v-362c4bdd="" class="label__content" for="time-input"><span data-v-362c4bdd="">Test label</span>
       <!--v-if-->
     </div>
   </label>
-  <div data-v-362c4bdd=\\"\\" id=\\"time-input\\" class=\\"input__container\\">
-    <div data-v-362c4bdd=\\"\\"><input data-v-362c4bdd=\\"\\" id=\\"time-input-start-hour\\" class=\\"input__time\\" type=\\"text\\" min=\\"0\\" max=\\"23\\" step=\\"1\\" placeholder=\\"00\\"> : <input data-v-362c4bdd=\\"\\" id=\\"time-input-start-minute\\" class=\\"input__time\\" type=\\"text\\" min=\\"0\\" max=\\"59\\" step=\\"1\\" placeholder=\\"00\\"></div>
+  <div data-v-362c4bdd="" id="time-input" class="input__container">
+    <div data-v-362c4bdd=""><input data-v-362c4bdd="" id="time-input-start-hour" class="input__time" type="text" min="0" max="23" step="1" placeholder="00"> : <input data-v-362c4bdd="" id="time-input-start-minute" class="input__time" type="text" min="0" max="59" step="1" placeholder="00"></div>
     <!--v-if-->
     <!--v-if-->
   </div>

@@ -1,10 +1,13 @@
 <template>
-	<div v-if="internalModelValue">
+	<div
+		v-if="internalModelValue"
+	>
 		<div
 			:class="toggleAnimationClass ? 'backdrop__show' : 'backdrop__hide'"
+			@click="closeSideSheet"
 		>
 			<div
-				v-on-click-outside="!noCloseOnBackdrop ? closeHandle : () => {}"
+				ref="bottomSheetRef"
 				:class="toggleAnimationClass ? 'bottom-sheet__show' : 'bottom-sheet__hide'"
 			>
 				<div class="bottom-sheet__header-border">
@@ -18,7 +21,7 @@
 						class="bottom-sheet__close-icon"
 						@click="closeHandle"
 					>
-						<cds-icon
+						<icon
 							name="x-outline"
 							height="20"
 							width="20"
@@ -35,110 +38,101 @@
 	</div>
 </template>
 
-<script>
+<script setup>
 import Icon from './Icon.vue';
-import vClickOutside from 'click-outside-vue3';
+import { ref, watch } from 'vue';
 
-export default {
-	directives: {
-		'on-click-outside': vClickOutside.directive,
+const props = defineProps({
+	modelValue: {
+		type: Boolean,
+		default: false,
+		required: true,
 	},
 
-	components: {
-		'cds-icon': Icon,
-	},
-
-	props: {
-		/**
-		 *  Controla a exibição do bottom sheet.
-		 */
-		modelValue: {
-			type: Boolean,
-			default: false,
-			required: true,
-		},
-
-		/**
+	/**
 		 * Define o título do bottom sheet exibido no header
 		 */
-		title: {
-			type: String,
-			default: 'Onde encontrar o meu CNS',
-		},
-		/**
+	title: {
+		type: String,
+		default: 'Onde encontrar o meu CNS',
+	},
+	/**
 		* Define se o BottomSheet vai ser fechado com o click no backdrop.
 		*/
-		noCloseOnBackdrop: {
-			type: Boolean,
-			default: false,
-		},
+	noCloseOnBackdrop: {
+		type: Boolean,
+		default: false,
 	},
+});
 
-	emits: [
-		/**
-		 * Evento emitido quando a visibilidade do bottom sheet é alterada.
-		 * @event update:model-value
-		 * @type {Event}
-		 */
-		'update:model-value',
+const emit = defineEmits([
+	/**
+	 * Evento emitido quando a visibilidade do bottom sheet é alterada.
+	 * @event update:model-value
+	 * @type {Event}
+	 */
+	'update:model-value',
 
-		/**
-		 * Evento emitido quando o bottom sheet é fechado.
-		 * @event close
-		 * @type {Event}
-		 */
-		'close',
-	],
+	/**
+	 * Evento emitido quando o bottom sheet é fechado.
+	 * @event close
+	 * @type {Event}
+	 */
+	'close',
+]);
 
-	data() {
-		return {
-			internalModelValue: this.modelValue,
-			toggleAnimationClass: true,
-		};
-	},
+const internalModelValue = ref(props.modelValue);
+const toggleAnimationClass = ref(true);
+const bottomSheetRef = ref(null);
 
-	watch: {
-		modelValue(newValue, oldValue) {
-			if (newValue !== oldValue) {
-				if (!newValue) {
-					this.closeHandle();
-				} else {
-					this.internalModelValue = newValue;
-				}
+watch(() => props.modelValue, (newValue, oldValue) => {
+	if (newValue !== oldValue) {
+		if (!newValue) {
+			closeHandle();
+		} else {
+			internalModelValue.value = newValue;
+		}
 
-				this.mustDisableExternalScrolls(newValue);
-			}
-		},
-	},
+		mustDisableExternalScrolls(newValue);
+	}
+});
 
-	methods: {
-		closeHandle() {
-			this.toggleAnimationClass = false;
+function closeSideSheet(event) {
+	if (props.noCloseOnBackdrop) {
+		return;
+	}
 
-			setTimeout(() => {
-				this.internalModelValue = false;
-				this.toggleAnimationClass = true;
-				this.$emit('update:model-value', false);
-				this.$emit('close', true);
-			}, 300);
-		},
+	if (bottomSheetRef.value && !bottomSheetRef.value.contains(event.target)) {
+		closeHandle();
+	}
+}
 
-		mustDisableExternalScrolls(value) {
-			document.body.style.overflow = value ? 'hidden' : 'auto';
-		},
-	},
-};
+function closeHandle() {
+	toggleAnimationClass.value = false;
+
+	setTimeout(() => {
+		internalModelValue.value = false;
+		toggleAnimationClass.value = true;
+		emit('update:model-value', false);
+		emit('close', true);
+	}, 300);
+}
+
+function mustDisableExternalScrolls(value) {
+	document.body.style.overflow = value ? 'hidden' : 'auto';
+}
+
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .backdrop {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	position: fixed;
-	padding: px(4);
+	padding: tokens.px(4);
 	top: 0;
 	bottom: 0;
 	left: 0;
@@ -148,50 +142,50 @@ export default {
 
 	&__show {
 		@extend .backdrop;
-		animation: zoom-in ease .5s;
+		animation: zoom-in ease .3s;
 	}
 
 	&__hide {
 		@extend .backdrop;
-		animation: zoom-out ease .5s;
+		animation: zoom-out ease .3s;
 	}
 }
 
 .bottom-sheet {
 	width: 100%;
     height: 75vh;
-    border-top-left-radius: $border-radius-extra-large;
-    border-top-right-radius: $border-radius-extra-large;
+    border-top-left-radius: tokens.$border-radius-extra-large;
+    border-top-right-radius: tokens.$border-radius-extra-large;
 	position: absolute;
 	bottom: 0;
 	height: fit-content;
-	z-index: $z-index-modal;
-	background-color: $n-0;
-	padding: pa(6);
-	color: $n-800;
+	z-index: tokens.$z-index-modal;
+	background-color: tokens.$n-0;
+	padding: tokens.pa(6);
+	color: tokens.$n-800;
 
 	&__header-border {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin: mTRBL(n2, 0, 4, 0);
+		margin: tokens.mTRBL(n2, 0, 4, 0);
 	}
 
 	&__header-border-line {
 		width: 30px;
 		height: 4px;
-		background: $n-40;
-		border-radius: $border-radius-large;
+		background: tokens.$n-40;
+		border-radius: tokens.$border-radius-large;
 	}
 
 	&__show {
 		@extend .bottom-sheet;
-		animation: slide-up ease .5s;
+		animation: slide-up ease .3s;
 	}
 
 	&__hide {
 		@extend .bottom-sheet;
-		animation: slide-down ease .5s;
+		animation: slide-down ease .3s;
 	}
 
 	&__header {
@@ -205,12 +199,12 @@ export default {
 	}
 
 	&__title {
-		@include button-1;
+		@include tokens.button-1;
 		font-weight: 700;
 	}
 
 	&__content {
-		margin: mt(6);
+		margin: tokens.mt(6);
 		max-height: 75vh;
 		overflow-y: auto;
 	}

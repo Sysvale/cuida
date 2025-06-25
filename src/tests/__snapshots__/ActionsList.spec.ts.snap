@@ -1,13 +1,13 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`ActionsList snapshot test > renders correctly 1`] = `
-"<span data-v-99cceb08=\\"\\" class=\\"action-list\\"><div data-v-99cceb08=\\"\\" class=\\"action-list--right\\"><div data-v-99cceb08=\\"\\"><transition-stub data-v-99cceb08=\\"\\" name=\\"action-list__slide-fade\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\"><div data-v-99cceb08=\\"\\" class=\\"action-list__item\\"><!-- @slot Scoped slot para renderização customizada das 'actions'.
+"<span data-v-99cceb08="" class="action-list"><div data-v-99cceb08="" class="action-list--right"><div data-v-99cceb08=""><transition-stub data-v-99cceb08="" name="action-list__slide-fade" appear="false" persisted="false" css="true"><div data-v-99cceb08="" class="action-list__item"><!-- @slot Scoped slot para renderização customizada das 'actions'.
 							A propriedade 'list', que pode ser acessada através do slot,
 							representa o array de actions a ser exibido.
-						--></div></transition-stub></div><div data-v-99cceb08=\\"\\"><transition-stub data-v-99cceb08=\\"\\" name=\\"action-list__slide-fade\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\"><div data-v-99cceb08=\\"\\" class=\\"action-list__item--left-bordered\\"><!-- @slot Scoped slot para renderização customizada das 'actions'.
+						--></div></transition-stub></div><div data-v-99cceb08=""><transition-stub data-v-99cceb08="" name="action-list__slide-fade" appear="false" persisted="false" css="true"><div data-v-99cceb08="" class="action-list__item--left-bordered"><!-- @slot Scoped slot para renderização customizada das 'actions'.
 							A propriedade 'list', que pode ser acessada através do slot,
 							representa o array de actions a ser exibido.
-						--></div></transition-stub></div><div data-v-99cceb08=\\"\\"><transition-stub data-v-99cceb08=\\"\\" name=\\"action-list__slide-fade\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\"><!--v-if--></transition-stub></div><div data-v-99cceb08=\\"\\"><transition-stub data-v-99cceb08=\\"\\" name=\\"action-list__slide-fade\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\"><!--v-if--></transition-stub></div><div data-v-99cceb08=\\"\\" class=\\"action-list__item--left-bordered\\"><!-- @slot Slot para renderização customizada do conteúdo do item
+						--></div></transition-stub></div><div data-v-99cceb08=""><transition-stub data-v-99cceb08="" name="action-list__slide-fade" appear="false" persisted="false" css="true"><!--v-if--></transition-stub></div><div data-v-99cceb08=""><transition-stub data-v-99cceb08="" name="action-list__slide-fade" appear="false" persisted="false" css="true"><!--v-if--></transition-stub></div><div data-v-99cceb08="" class="action-list__item--left-bordered"><!-- @slot Slot para renderização customizada do conteúdo do item
 					de expandir/colapsar a lista
 				-->Mais ações</div></div></span>"
 `;

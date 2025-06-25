@@ -47,15 +47,27 @@ export const Template = (args) => ({
 			v-bind="args" 
 			v-model="value"
 			v-model:unmaskedValue="unmaskedValue"
-			@blur="logBlur"
+			@click="logClick"
+			@change="logChange"
 			@focus="logFocus"
+			@blur="logBlur"
+			@keydown="logKeydown"
 		/>`,
 	methods: {
-		logBlur() {
-			console.info('blur event');
+		logClick() {
+			console.info('⚡ %cClick emitted', 'color: rgb(37, 227, 139);');
+		},
+		logChange() {
+			console.info('⚡ %cChange emitted', 'color: hsl(152, 77.20%, 51.80%);');
 		},
 		logFocus() {
-			console.info('focus event');
+			console.info('⚡ %cFocus emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logBlur() {
+			console.info('⚡ %cBlur emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logKeydown(event) {
+			console.info('⚡ %cKeydown emitted: ', 'color: hsl(152, 77.20%, 51.80%);', event);
 		},
 	},
 	updated() {
@@ -66,18 +78,21 @@ export const Template = (args) => ({
 
 # NumberInput
 
-### NumberInputs permitem que os usuários insiram texto em uma interface
+### O componente NumberInput permite que os usuários insiram e editem valores numéricos em uma interface.
 ---
 <br />
 
 ## Quando usar:
-- Necessitar de um campo de texto para inserir informações.
-
+- Precisar de um campo para que os usuários insiram informações exclusivamente numéricas, como:
+	- Quantidades (por exemplo, número de itens em um carrinho de compras).
+	- Valores monetários (por exemplo, preços, descontos).
+	- Idades, medidas, ou qualquer outro dado que seja estritamente numérico.
+- A entrada de dados for numérica e não exigir texto livre ou seleção de opções pré-definidas.
 <br />
 
 ## Quando não usar:
-- O dado a ser utilizado no componente for numérico.
-- Houver a necessidade de selecionar múltiplos itens.
+- O dado a ser inserido for textual. Nesse caso, considere usar o componente `TextInput`.
+- O tipo de uso envolver valores incrementais. Nesse caso, considere usar o componente `StepperInput`.
 
 <br />
 
@@ -87,7 +102,25 @@ export const Template = (args) => ({
 	<Story
 		name="NumberInput"
 		args={{
-			money: false,
+			money: true,
+			label: 'Valor',
+			mobile: false,
+			disabled: false,
+			required: false,
+			fluid: false,
+			floatingLabel: false,
+			lazy: false,
+			errorMessage: 'Campo obrigatório',
+			state: 'default',
+			placeholder: 'Digite algo...',
+			mask: null,
+			tooltip: '',
+			tooltipIcon: 'info-outline',
+			linkText: '',
+			linkUrl: '',
+			supportingText: 'supportingText',
+			supportLink: '',
+			supportLinkUrl: '',
 		}}
 	>
 		{ Template.bind({}) }

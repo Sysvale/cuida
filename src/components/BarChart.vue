@@ -16,7 +16,7 @@
 <script>
 import { Chart, registerables } from 'chart.js';
 import { Bar } from 'vue-chartjs'
-import sassColorVariables from '../assets/sass/colors.module.scss';
+import sassColorVariables from '../assets/sass/tokens/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
 // Registrar o elemento "point" no registro (Torna-se necessário para marcações de ponto)
@@ -35,16 +35,16 @@ export default {
 		 * `data` (array com os valores númericos).
 		 */
 		data: {
-			type: Object,
+			type: Array,
 			required: true,
-			default: () => ({
+			default: () => ([{
 				datasets: [
 					{
 						label: '',
 						data: [],
 					}
 				]
-			})
+			}])
 		},
 		/**
 		 * Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:
@@ -260,7 +260,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './../assets/sass/tokens.scss';
+
 .responsive-container{
 	width: 100%;
 	height: 100%;

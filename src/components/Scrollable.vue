@@ -47,7 +47,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .scrollable {
 	display: contents;
@@ -70,18 +70,24 @@ export default {
 
 		/* Handle */
 		&::-webkit-scrollbar-thumb {
-			background: $n-40;
+			background: tokens.$n-40;
 			border-radius: 8px;
 		}
 
 		/* Handle on hover */
 		&::-webkit-scrollbar-thumb:hover {
-			background: $n-50;
+			background: tokens.$n-50;
 		}
 
 		&--horizontal {
 			overflow-x: auto;
 		}
+	}
+}
+
+@media (max-width: 992px) {
+	.scrollable__container::-webkit-scrollbar {
+		display: none;
 	}
 }
 </style>

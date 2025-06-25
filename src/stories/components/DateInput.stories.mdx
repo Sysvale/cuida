@@ -30,6 +30,16 @@ import DateInput from '../../components/DateInput.vue';
 					'default',
 					'valid',
 					'invalid',
+					'loading',
+				],
+			}
+		},
+		mode: {
+			control:{
+				type: 'select',
+				options: [
+					'picking',
+					'typing',
 				],
 			}
 		},
@@ -47,51 +57,598 @@ import DateInput from '../../components/DateInput.vue';
 				language: 'html',
 				format:true,
 				code: /*html*/ `
-<cds-date-input
-	label="Horário"
+<CdsDateInput
+	ref="dateInput"
+	v-model="modelValue"
+	label="Data"
+	variant="green"
+	state="default"
+	:range="true"
+	:required="false"
+	:disabled="false"
+	:fluid="false"
+	:mobile="false"
+	:floatingLabel="false"
+	:showTodayDot="true"
+	:highlightToday="true"
+	placeholder="Insira uma data..."
+	errorMessage="Campo obrigatório"
+	tooltip=""
+	tooltipIcon="info-outline"
+	supportingText="supportingText"
+	supportLink=""
+	supportLinkUrl=""
+	@click="logClick"
+	@change="logChange"
+	@focus="logFocus"
+	@blur="logBlur"
+	@keydown="logKeydown"
 />`
 			},
 		}
 	}}
 />
 
-export const Template = (args) => ({
+export const SingleDate = (args) => ({
 	components: { CdsDateInput: DateInput },
 	setup() {
 		return { args };
 	},
 	data() {
 		return {
-			value: '2000-01-01',
+			modelValue: '',
 		};
 	},
 	template: /*html*/ `
-		<cds-date-input
-			v-bind="args"
-			v-model="value"
-		/>`,
+		<div class="preview-container">
+			<CdsDateInput
+				ref="dateInput"
+				v-model="modelValue"
+				label="Data"
+				variant="green"
+				state="default"
+				:range="false"
+				:required="false"
+				:disabled="false"
+				:fluid="false"
+				:mobile="false"
+				:floatingLabel="false"
+				:showTodayDot="true"
+				:highlightToday="true"
+				placeholder="Insira uma data..."
+				errorMessage="Campo obrigatório"
+				tooltip=""
+				tooltipIcon="info-outline"
+				supportingText="supportingText"
+				supportLink=""
+				supportLinkUrl=""
+				@click="logClick"
+				@change="logChange"
+				@focus="logFocus"
+				@blur="logBlur"
+				@keydown="logKeydown"
+			/>
+		</div>`,
+		updated() {
+			console.info('%cv-model: ', 'color: #2C70CD;', this.modelValue);
+			console.info('%cgetDMYFormat: ', 'color: #2C70CD;', this.$refs.dateInput.getDMYFormat());
+			console.info('%ctoISO: ', 'color: #2C70CD;', this.$refs.dateInput.toISO());
+			console.info('%ctoString: ', 'color: #2C70CD;', this.$refs.dateInput.toString());
+			console.info('%ctoJSDate: ', 'color: #2C70CD;', this.$refs.dateInput.toJSDate());
+			console.info('%ctoDateTime: ', 'color: #2C70CD;', this.$refs.dateInput.toDateTime());
+		},
+});
+
+export const Range = (args) => ({
+	components: { CdsDateInput: DateInput },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			modelValue: '',
+		};
+	},
+	template: /*html*/ `
+		<div class="preview-container">
+			<CdsDateInput
+				ref="dateInput"
+				v-model="modelValue"
+				label="Data"
+				variant="green"
+				state="default"
+				:range="true"
+				:required="false"
+				:disabled="false"
+				:fluid="false"
+				:mobile="false"
+				:floatingLabel="false"
+				:showTodayDot="true"
+				:highlightToday="true"
+				placeholder="Insira uma data..."
+				errorMessage="Campo obrigatório"
+				tooltip=""
+				tooltipIcon="info-outline"
+				supportingText="supportingText"
+				supportLink=""
+				supportLinkUrl=""
+				@click="logClick"
+				@change="logChange"
+				@focus="logFocus"
+				@blur="logBlur"
+				@keydown="logKeydown"
+			/>
+		</div>`,
+		methods: {
+			logClick() {
+				console.info('⚡ %cClick emitted', 'color: rgb(37, 227, 139);');
+			},
+			logChange() {
+				console.info('⚡ %cChange emitted', 'color: hsl(152, 77.20%, 51.80%);');
+			},
+			logFocus(event) {
+				console.info('⚡ %cFocus emitted', 'color: hsl(152, 77.20%, 51.80%);' );
+			},
+			logBlur(event) {
+				console.info('⚡ %cBlur emitted', 'color: hsl(152, 77.20%, 51.80%);');
+			},
+			logKeydown(e) {
+				console.info('⚡ %cKeydown emitted', 'color: hsl(152, 77.20%, 51.80%);');
+			},
+		},
+		updated() {
+			console.info('%cv-model: ', 'color: #2C70CD;', this.modelValue);
+			console.info('%cgetDMYFormat: ', 'color: #2C70CD;', this.$refs.dateInput.getDMYFormat());
+			console.info('%ctoISO: ', 'color: #2C70CD;', this.$refs.dateInput.toISO());
+			console.info('%ctoString: ', 'color: #2C70CD;', this.$refs.dateInput.toString());
+			console.info('%ctoJSDate: ', 'color: #2C70CD;', this.$refs.dateInput.toJSDate());
+			console.info('%ctoDateTime: ', 'color: #2C70CD;', this.$refs.dateInput.toDateTime());
+		},
+});
+
+export const MaxAndMinDate = (args) => ({
+	components: { CdsDateInput: DateInput },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			modelValue: '',
+		};
+	},
+	template: /*html*/ `
+		<div class="preview-container">
+			<CdsDateInput
+				ref="dateInput"
+				v-model="modelValue"
+				label="Data"
+				variant="green"
+				state="default"
+				:range="false"
+				:required="false"
+				:disabled="false"
+				:fluid="false"
+				:mobile="false"
+				:floatingLabel="false"
+				:showTodayDot="true"
+				:highlightToday="true"
+				placeholder="Insira uma data..."
+				errorMessage="Campo obrigatório"
+				tooltip=""
+				tooltipIcon="info-outline"
+				supportingText="supportingText"
+				supportLink=""
+				supportLinkUrl=""
+				maxDate="2025-06-06"
+				minDate="2025-01-12"
+				@click="logClick"
+				@change="logChange"
+				@focus="logFocus"
+				@blur="logBlur"
+				@keydown="logKeydown"
+			/>
+		</div>`,
+});
+
+export const Mobile = (args) => ({
+	components: { CdsDateInput: DateInput },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			modelValue: '',
+		};
+	},
+	template: /*html*/ `
+		<div class="preview-container">
+			<CdsDateInput
+				ref="dateInput"
+				v-model="modelValue"
+				label="Data"
+				variant="green"
+				state="default"
+				:range="false"
+				:required="false"
+				:disabled="false"
+				:fluid="false"
+				:mobile="true"
+				:floatingLabel="false"
+				:showTodayDot="true"
+				:highlightToday="true"
+				placeholder="Insira uma data..."
+				errorMessage="Campo obrigatório"
+				tooltip=""
+				tooltipIcon="info-outline"
+				supportingText="supportingText"
+				supportLink=""
+				supportLinkUrl=""
+				@click="logClick"
+				@change="logChange"
+				@focus="logFocus"
+				@blur="logBlur"
+				@keydown="logKeydown"
+			/>
+		</div>`,
+});
+
+export const TypingMode = (args) => ({
+	components: { CdsDateInput: DateInput },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			modelValue: '',
+		};
+	},
+	template: /*html*/ `
+		<div class="preview-container">
+			<CdsDateInput
+				ref="dateInput"
+				v-model="modelValue"
+				label="Data"
+				variant="green"
+				state="default"
+				:range="false"
+				:required="false"
+				:disabled="false"
+				:fluid="false"
+				:floatingLabel="false"
+				:showTodayDot="true"
+				:highlightToday="true"
+				placeholder="Insira uma data..."
+				errorMessage="Campo obrigatório"
+				mode="typing"
+				tooltip=""
+				tooltipIcon="info-outline"
+				supportingText="supportingText"
+				supportLink=""
+				supportLinkUrl=""
+				@click="logClick"
+				@change="logChange"
+				@focus="logFocus"
+				@blur="logBlur"
+				@keydown="logKeydown"
+			/>
+		</div>`,
 	updated() {
-		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+			console.info('%cv-model: ', 'color: #2C70CD;', this.modelValue);
+			console.info('%cgetDMYFormat: ', 'color: #2C70CD;', this.$refs.dateInput.getDMYFormat());
+			console.info('%ctoISO: ', 'color: #2C70CD;', this.$refs.dateInput.toISO());
+			console.info('%ctoString: ', 'color: #2C70CD;', this.$refs.dateInput.toString());
+			console.info('%ctoJSDate: ', 'color: #2C70CD;', this.$refs.dateInput.toJSDate());
+			console.info('%ctoDateTime: ', 'color: #2C70CD;', this.$refs.dateInput.toDateTime());
+		},
+});
+
+export const DefaultTemplate = (args) => ({
+	components: { CdsDateInput: DateInput },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			modelValue: '',
+		};
+	},
+	template: /*html*/ `
+		<CdsDateInput
+			ref="dateInput"
+			v-bind="args"
+			v-model="modelValue"
+			@click="logClick"
+			@change="logChange"
+			@focus="logFocus"
+			@blur="logBlur"
+			@keydown="logKeydown"
+		/>`,
+	methods: {
+		logClick() {
+			console.info('⚡ %cClick emitted', 'color: rgb(37, 227, 139);');
+		},
+		logChange() {
+			console.info('⚡ %cChange emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logFocus(event) {
+			console.info('⚡ %cFocus emitted', 'color: hsl(152, 77.20%, 51.80%);' );
+		},
+		logBlur(event) {
+			console.info('⚡ %cBlur emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logKeydown(e) {
+			console.info('⚡ %cKeydown emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+	},
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.modelValue);
+		console.info('%cgetDMYFormat: ', 'color: #2C70CD;', this.$refs.dateInput.getDMYFormat());
+		console.info('%ctoISO: ', 'color: #2C70CD;', this.$refs.dateInput.toISO());
+		console.info('%ctoString: ', 'color: #2C70CD;', this.$refs.dateInput.toString());
+		console.info('%ctoJSDate: ', 'color: #2C70CD;', this.$refs.dateInput.toJSDate());
+		console.info('%ctoDateTime: ', 'color: #2C70CD;', this.$refs.dateInput.toDateTime());
 	},
 });
 
 # DateInput
 
-### DateInputs são componentes para escolha de datas e horas dentro de formulários.
+### DateInputs permitem que o usuário selecione uma data ou um intervalo de datas através de um calendário interativo.
 ---
 <br />
 
-## Recomendamos o uso de DateInputs quando:
-- Houver a necessidade de oferecer opções de datas dentro de um grupo de inputs de um formulário.
+## Quando usar:
+- O usuário precisar selecionar uma data específica (ex: data de nascimento, data de agendamento, data de referência).
+- O usuário precisar selecionar um período (data de início e fim), habilitando a propriedade range.
+
 
 <br />
 
-## Não recomendamos o uso de DateInputs quando:
-- For necessário exibir informações adicionais condicionais no calendário (ex.: datas que já estejam ocupadas).
-- For necessário que o calendário seja exibido constantemente.
-- For necessário alterar dinamicamente o estado da tela exibida, baseado na data escolhida. Para estes casos,
-recomenda-se o uso de <a href="https://sysvale.github.io/cuida/?path=/docs/componentes-forms-calendar--calendar">Calendar</a>.
+## Quando não usar:
+- O usuário precisar selecionar um horário junto com a data (este componente lida apenas com datas).
+- O usuário precisar selecionar múltiplas datas que não formam um intervalo contínuo.
+- For preciso selecionar a penas mês ou ano, sem especificar o dia.
+- For preciso digitar a data;
 
+<br />
+
+## ⚠️ Observações:
+- O `v-model` para data única recebe e retorna uma string no formato ISO ('yyyy-MM-dd').
+- Quando a propriedade range for true, o v-model recebe e retorna um objeto com as chaves start e end, ambas strings no formato ISO ('yyyy-MM-dd').
+- O componente expõe métodos úteis como clearSelection(), getDMYFormat(), toISO(), toJSDate(), etc., que podem ser acessados via ref.
+- **Importante:** no modo de seleção única, por padrão o ano mínimo disponível para seleção é o ano atual - 120 anos e o ano máximo é o ano atual + 50 anos.
+
+<br />
+<br />
+
+### __Data única (Padrão)__
+
+Este é o modo de operação padrão do DateInput quando a prop range é false
+(ou não fornecida). Ele permite ao usuário selecionar um único dia no calendário.
+
+###### Funcionamento:
+- Nesse modo o `v-model` recebe e retorna uma string no formato ('yyyy-MM-dd').
+- Com a seleção de data única é possível selecionar pela UI o mês e ano.
+
+<Story
+	name="single"
+>
+	{ SingleDate.bind({}) }
+</Story>
+
+```html
+	<CdsDateInput
+		ref="dateInput"
+		v-model="modelValue"
+		label="Data"
+		variant="green"
+		state="default"
+		:range="false"
+		:required="false"
+		:disabled="false"
+		:fluid="false"
+		:mobile="false"
+		:floatingLabel="false"
+		:showTodayDot="true"
+		:highlightToday="true"
+		placeholder="Insira uma data..."
+		errorMessage="Campo obrigatório"
+		tooltip=""
+		tooltipIcon="info-outline"
+		supportingText="supportingText"
+		supportLink=""
+		supportLinkUrl=""
+		@click="logClick"
+		@change="logChange"
+		@focus="logFocus"
+		@blur="logBlur"
+		@keydown="logKeydown"
+	/>
+```
+
+### __Range__
+
+A prop range permite habilitar a seleção de um intervalo de datas (início e fim).
+
+###### Funcionamento:
+- Nesse modo o `v-model` recebe e retorna um objeto com as chaves start e end, ambas strings no formato ('yyyy-MM-dd').
+- O primeiro clique no calendário define a data de início.
+- O segundo clique define a data de fim. O calendário é fechado após a seleção da data de fim.
+- Os seletores de mês e ano no cabeçalho do calendário são desabilitados no modo range.
+
+<Story
+	name="range"
+>
+	{ Range.bind({}) }
+</Story>
+
+```html
+	<CdsDateInput
+		ref="dateInput"
+		v-model="modelValue"
+		label="Data"
+		variant="green"
+		state="default"
+		:range="true"
+		:required="false"
+		:disabled="false"
+		:fluid="false"
+		:mobile="false"
+		:floatingLabel="false"
+		:showTodayDot="true"
+		:highlightToday="true"
+		placeholder="Insira uma data..."
+		errorMessage="Campo obrigatório"
+		tooltip=""
+		tooltipIcon="info-outline"
+		supportingText="supportingText"
+		supportLink=""
+		supportLinkUrl=""
+		@click="logClick"
+		@change="logChange"
+		@focus="logFocus"
+		@blur="logBlur"
+		@keydown="logKeydown"
+	/>
+```
+<br />
+
+
+### __MaxDate e MinDate__
+
+A prop range permite habilitar a seleção de um intervalo de datas (início e fim).
+
+###### Funcionamento:
+- As props minDate e maxDate limitam o período disponível para seleção.
+- Os valores de `minDate` e de `maxDate` devem ser fornecidos no formato ISO ('yyyy-MM-dd').
+- Meses fora do intervalo permitido são desabilitados e não podem ser selecionados.
+- Anos fora do intervalo permitido são desabilitados e não podem ser selecionados.
+
+
+<Story
+	name="maxAndMinDate"
+>
+	{ MaxAndMinDate.bind({}) }
+</Story>
+
+```html
+	<CdsDateInput
+		ref="dateInput"
+		v-model="modelValue"
+		label="Data"
+		variant="green"
+		state="default"
+		:range="false"
+		:required="false"
+		:disabled="false"
+		:fluid="false"
+		:mobile="false"
+		:floatingLabel="false"
+		:showTodayDot="true"
+		:highlightToday="true"
+		placeholder="Insira uma data..."
+		errorMessage="Campo obrigatório"
+		tooltip=""
+		tooltipIcon="info-outline"
+		supportingText="supportingText"
+		supportLink=""
+		supportLinkUrl=""
+		maxDate="2025-06-06"
+		minDate="2025-01-01"
+		@click="logClick"
+		@change="logChange"
+		@focus="logFocus"
+		@blur="logBlur"
+		@keydown="logKeydown"
+	/>
+```
+<br />
+
+
+### __Mobile__
+
+Controla o estilo visual do input, ativando o comportamento de "label flutuante". (Substitui a prop `mobile` depreciada).
+
+
+<Story
+	name="mobile"
+>
+	{ Mobile.bind({}) }
+</Story>
+
+```html
+	<CdsDateInput
+		ref="dateInput"
+		v-model="modelValue"
+		label="Data"
+		variant="green"
+		state="default"
+		:range="false"
+		:required="false"
+		:disabled="false"
+		:fluid="false"
+		:mobile="true"
+		:floatingLabel="false"
+		:showTodayDot="true"
+		:highlightToday="true"
+		placeholder="Insira uma data..."
+		errorMessage="Campo obrigatório"
+		tooltip=""
+		tooltipIcon="info-outline"
+		supportingText="supportingText"
+		supportLink=""
+		supportLinkUrl=""
+		@click="logClick"
+		@change="logChange"
+		@focus="logFocus"
+		@blur="logBlur"
+		@keydown="logKeydown"
+	/>
+```
+<br />
+
+
+### __Digitação__
+
+O modo de digitação é ativado passando-se o valor `typing` para a prop `mode`.
+Nesse deixa de ser possível selecionar a data pelo picker.
+
+
+<Story
+	name="typing"
+>
+	{ TypingMode.bind({}) }
+</Story>
+
+```html
+	<CdsDateInput
+		ref="dateInput"
+		v-model="modelValue"
+		label="Data"
+		variant="green"
+		state="default"
+		:range="false"
+		:required="false"
+		:disabled="false"
+		:fluid="false"
+		:mobile="true"
+		:floatingLabel="false"
+		:showTodayDot="true"
+		:highlightToday="true"
+		placeholder="Insira uma data..."
+		errorMessage="Campo obrigatório"
+		tooltip=""
+		mode="typing"
+		tooltipIcon="info-outline"
+		supportingText="supportingText"
+		supportLink=""
+		supportLinkUrl=""
+		@click="logClick"
+		@change="logChange"
+		@focus="logFocus"
+		@blur="logBlur"
+		@keydown="logKeydown"
+	/>
+```
 <br />
 
 ## Preview
@@ -100,11 +657,28 @@ recomenda-se o uso de <a href="https://sysvale.github.io/cuida/?path=/docs/compo
 	<Story
 		name="DateInput"
 		args={{
-			required: true,
+			label: 'Data',
 			variant: 'green',
+			state: 'default',
+			range: true,
+			required: false,
+			disabled: false,
+			fluid: false,
+			mobile: false,
+			mode: 'typing',
+			floatingLabel: false,
+			showTodayDot: true,
+			highlightToday: true,
+			placeholder: 'Insira uma data...',
+			errorMessage: 'Campo obrigatório',
+			tooltip: '',
+			tooltipIcon: 'info-outline',
+			supportingText: 'supportingText',
+			supportLink: '',
+			supportLinkUrl: '',
 		}}
 	>
-		{ Template.bind({}) }
+		{ DefaultTemplate.bind({}) }
 	</Story>
 </Canvas>
 

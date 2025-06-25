@@ -3,9 +3,11 @@
 	<div
 		v-if="innerValue"
 		class="cds-modal__backdrop"
+		@click="closeDialogModal"
 	>
 		<div
 			v-if="innerValue"
+			ref="dialogModalRef"
 			class="cds-modal"
 		>
 			<header
@@ -112,7 +114,6 @@
 <script>
 import CdsIcon from '../components/Icon.vue';
 import CdsButton from '../components/Button.vue';
-import vClickOutside from 'click-outside-vue3';
 
 const predefinedColors = [
 	'teal',
@@ -129,10 +130,6 @@ const predefinedColors = [
 const predefinedVariants = ['warning', 'error', 'info'];
 
 export default {
-	directives: {
-		'on-click-outside': vClickOutside.directive,
-	},
-
 	components: {
 		CdsIcon,
 		CdsButton,
@@ -232,12 +229,18 @@ export default {
 			this.$emit('ok', true);
 			this.$emit('update:modelValue', false);
 		},
+
+		closeDialogModal(event) {
+			if (this.$refs.dialogModalRef && !this.$refs.dialogModalRef.contains(event.target)) {
+				this.closeHandle();
+			}
+		},
 	},
 };
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .cds-modal {
 	display: flex;
@@ -246,10 +249,10 @@ export default {
 	position: absolute;
 	width: 500px;
 	height: auto;
-	border-radius: $border-radius-medium;
+	border-radius: tokens.$border-radius-medium;
 	overflow: hidden;
 	background-color: white;
-	border-radius: $border-radius-medium;
+	border-radius: tokens.$border-radius-medium;
 	box-shadow: 0px 0px 8px rgba(40, 90, 185, 0.2);
 	overflow-x: visible;
 	z-index: 1060;
@@ -260,7 +263,7 @@ export default {
 		justify-content: center;
 		align-items: center;
 		position: fixed;
-		padding: px(4);
+		padding: tokens.px(4);
 		top: 0;
 		bottom: 0;
 		left: 0;
@@ -275,9 +278,9 @@ export default {
 		display: flex;
 		max-height: 80px;
 		align-items: center;
-		@include subheading-1;
-		color: $n-800;
-		font-weight: $font-weight-semibold;
+		@include tokens.subheading-1;
+		color: tokens.$n-800;
+		font-weight: tokens.$font-weight-semibold;
 		justify-content: space-between;
 
 		&--warning {
@@ -299,34 +302,34 @@ export default {
 	&__header-title {
 		display: flex;
 		align-items: center;
-		gap: spacer(2);
+		gap: tokens.spacer(2);
 	}
 
 	&__header-content {
 		display: flex;
 		align-items: center;
-		gap: spacer(2);
-		padding: pYX(6,5)
+		gap: tokens.spacer(2);
+		padding: tokens.pYX(6,5)
 	}
 
 	&__header-icon {
 
 		&--warning {
-			color: $al-500;
+			color: tokens.$al-500;
 		}
 
 		&--info {
-			color: $bn-500;
+			color: tokens.$bn-500;
 		}
 
 		&--error {
-			color: $rc-500;
+			color: tokens.$rc-500;
 		}
 	}
 
 	&__header-detail {
 		zoom: 2.4;
-		margin: spacer(n6);
+		margin: tokens.spacer(n6);
 
 		&--warning {
 			@extend .cds-modal__header-detail;
@@ -345,29 +348,29 @@ export default {
 	}
 
 	&__body {
-		margin: ma(4);
+		margin: tokens.ma(4);
 		display: flex;
 		flex-direction: column;
-		gap: spacer(3);
+		gap: tokens.spacer(3);
 
 		&-title {
-			@include subheading-1;
-			color: $n-800;
-			font-weight: $font-weight-bold;
+			@include tokens.subheading-1;
+			color: tokens.$n-800;
+			font-weight: tokens.$font-weight-bold;
 		}
 
 		&-description {
-			@include body-1;
-			font-weight: $font-weight-regular;
-			color: $n-800;
+			@include tokens.body-1;
+			font-weight: tokens.$font-weight-regular;
+			color: tokens.$n-800;
 		}
 	}
 
 	&__footer {
 		display: flex;
-		gap: spacer(4);
+		gap: tokens.spacer(4);
 		justify-content: center;
-		padding: pYX(6, 0);
+		padding: tokens.pYX(6, 0);
 
 	}
 }

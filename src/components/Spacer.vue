@@ -129,6 +129,7 @@ export default {
 
 <style lang="scss" scoped>
 .spacer {
+	width: 100%;
 	margin-bottom: v-bind(marginBottomResolver);
 	margin-left: v-bind(marginLeftResolver);
 	margin-right: v-bind(marginRightResolver);

@@ -17,9 +17,20 @@ module.exports = {
 		docsPage: "automatic"
 	},
 	async viteFinal(config, { configType }) {
-		// return the customized config
 		return mergeConfig(config, {
-			// customize the Vite config here
+			css: {
+				preprocessorOptions: {
+					scss: {
+						logger: {
+							warn(text, options) {
+								if (text.includes('[legacy-js-api]')) return;
+								console.warn(text);
+							},
+							debug() {}
+						}
+					}
+				}
+			},
 			optimizeDeps: {
 				esbuildOptions: {
 					target: ['es2020', 'safari14', 'chrome87', 'edge88', 'firefox78'],

@@ -52,6 +52,22 @@ import Spacer from '../../components/Spacer.vue';
 				],
 			}
 		},
+		tag: {
+			control:{
+				type: 'select',
+				options: [
+					'div',
+					'span',
+					'main',
+					'footer',
+					'form',
+					'header',
+					'aside',
+					'ul',
+					'li',
+				],
+			}
+		},
 		gap: {
 			control: {
 				type: 'range',
@@ -134,6 +150,8 @@ export const Template = (args) => ({
 			wrap: 'wrap',
 			justify: 'start',
 			align: 'start',
+			tag: 'div',
+			fluid: false,
 		}}
 	>
 		{ Template.bind({}) }

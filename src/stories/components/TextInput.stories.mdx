@@ -54,15 +54,27 @@ export const Template = (args) => ({
 		<cds-text-input
 			v-bind="args" 
 			v-model="value"
-			@blur="logBlur"
+			@click="logClick"
+			@change="logChange"
 			@focus="logFocus"
+			@blur="logBlur"
+			@keydown="logKeydown"
 		/>`,
 	methods: {
-		logBlur() {
-			console.info('blur event');
+		logClick() {
+			console.info('⚡ %cClick emitted', 'color: rgb(37, 227, 139);');
+		},
+		logChange() {
+			console.info('⚡ %cChange emitted', 'color: hsl(152, 77.20%, 51.80%);');
 		},
 		logFocus() {
-			console.info('focus event');
+			console.info('⚡ %cFocus emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logBlur() {
+			console.info('⚡ %cBlur emitted', 'color: hsl(152, 77.20%, 51.80%);');
+		},
+		logKeydown(event) {
+			console.info('⚡ %cKeydown emitted: ', 'color: hsl(152, 77.20%, 51.80%);', event);
 		},
 	},
 	updated() {
@@ -89,9 +101,34 @@ export const Template = (args) => ({
 
 ## Preview
 
+export const supportingText = ['Essa informação vai ser usada para recuperar sua conta caso esqueça a senha.', 'O text deve ter até 100 caracteres'];
+
+
 <Canvas>
 	<Story
 		name="TextInput"
+		args={{
+			inputType: 'text',
+			disabled: false,
+			state: 'default',
+			required: false,
+			fluid: false,
+			mobile: false,
+			floatingLabel: false,
+			lazy: false,
+			disableAutocomplete: false,
+			label: 'Texto',
+			placeholder: 'Digite algo...',
+			errorMessage: 'Campo obrigatório',
+			mask: null,
+			tooltip: '',
+			tooltipIcon: 'info-outline',
+			linkText: '',
+			linkUrl: '',
+			supportingText: 'supportingText',
+			supportLink: '',
+			supportLinkUrl: '',
+		}}
 	>
 		{ Template.bind({}) }
 	</Story>

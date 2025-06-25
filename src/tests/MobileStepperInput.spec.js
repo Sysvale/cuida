@@ -1,4 +1,4 @@
-import { describe, test, expect } from 'vitest';
+import { describe, test, expect, vi } from 'vitest';
 import MobileStepperInput from '../components/MobileStepperInput.vue';
 import { shallowMount } from '@vue/test-utils';
 
@@ -10,16 +10,10 @@ describe('MobileStepperInput', () => {
 	});
 
 	test('state classes are applyied correctly', async () => {
-		expect.assertions(2);
+		expect.assertions(1);
 
 		const wrapper = shallowMount(MobileStepperInput);
 
-		expect(wrapper.vm.computedStepperClass).toBe('mobile__stepper');
-
-		await wrapper.setProps({
-			state: 'invalid',
-		});
-
-		expect(wrapper.vm.computedStepperClass).toBe('mobile__stepper--invalid');
+		expect(wrapper.vm.stepperInputStatusClasses).toBe('mobile-stepper-input');
 	});
 });

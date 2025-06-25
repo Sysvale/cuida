@@ -5,7 +5,7 @@
 		class="filter-select"
 	>
 		<div
-			v-on-click-outside="hide"
+			ref="filterSelectRef"
 			class="filter-select__container"
 			:class="inputClass"
 			@keydown.enter.prevent="activateSelectionOnEnter"
@@ -95,13 +95,8 @@ import { widths } from '../utils';
 import { generateKey } from '../utils';
 import cloneDeep from 'lodash.clonedeep';
 import removeAccents from '../utils/methods/removeAccents';
-import vClickOutside from 'click-outside-vue3';
 
 export default {
-	directives: {
-		'on-click-outside': vClickOutside.directive,
-	},
-
 	props: {
 		/**
 		 * Especifica o título do FilterSelect.
@@ -292,6 +287,8 @@ export default {
 	mounted() {
 		this.id = `cds-filter-select-${this.uniqueKey}`;
 		this.selectElement = this.$refs['cds-filter-select'];
+
+		document.querySelector('body').addEventListener('click', this.closeFilterSelect);
 	},
 
 	methods: {
@@ -409,11 +406,20 @@ export default {
 		unhighlightOnMouseOut() {
 			this.getLiInDOM(this.currentPos).classList.remove('highlight');
 		},
+
+		closeFilterSelect(event) {
+			if (
+				this.$refs.filterSelectRef
+				&& !this.$refs.filterSelectRef.contains(event.target)
+			) {
+				this.hide();
+			}
+		},
 	},
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 #cds-filter-select {
 	-webkit-user-select: none; /* Safari */
@@ -427,46 +433,50 @@ export default {
 		align-items: center;
 		cursor: pointer;
 		position: relative;
-		outline: 1px solid $n-50;
-		background: $n-0;
+		outline: 1px solid tokens.$n-50;
+		background: tokens.$n-0;
 		width: fit-content;
 
 		&:hover:not([disabled]) {
-			outline: 1px solid $n-100;
+			outline: 1px solid tokens.$n-100;
+		}
+
+		input {
+			font-family: 'Satoshi';
 		}
 	}
 
 	&__input {
 		height: 40px;
 		border: none;
-		padding-right: spacer(8);
-		padding-left: spacer(2);
-		color: $n-600;
+		padding-right: tokens.spacer(8);
+		padding-left: tokens.spacer(2);
+		color: tokens.$n-600;
 		caret-color: transparent;
 		cursor: pointer;
-		background-color: $n-0;
-		@include body-2;
+		background-color: tokens.$n-0;
+		@include tokens.body-2;
 		text-overflow: ellipsis;
 
 		&--closed {
 			@extend .filter-select__input;
-			border-radius: $border-radius-extra-small !important;
+			border-radius: tokens.$border-radius-extra-small !important;
 		}
 
 		&--opened-down {
 			@extend .filter-select__input;
-			border-top-left-radius: $border-radius-extra-small !important;
-			border-top-right-radius: $border-radius-extra-small !important;
+			border-top-left-radius: tokens.$border-radius-extra-small !important;
+			border-top-right-radius: tokens.$border-radius-extra-small !important;
 		}
 
 		&--opened-up {
 			@extend .filter-select__input;
-			border-bottom-left-radius: $border-radius-extra-small !important;
-			border-bottom-right-radius: $border-radius-extra-small !important;
+			border-bottom-left-radius: tokens.$border-radius-extra-small !important;
+			border-bottom-right-radius: tokens.$border-radius-extra-small !important;
 		}
 
 		&--searchable {
-			caret-color: $n-700;
+			caret-color: tokens.$n-700;
 		}
 
 		&--thin {
@@ -486,18 +496,18 @@ export default {
 		}
 
 		&--disabled {
-			background-color: $n-20 !important;
+			background-color: tokens.$n-20 !important;
 			pointer-events: none;
 			border: none;
 		}
 
 		&::placeholder {
-			color: $n-300;
-			@include body-2;
+			color: tokens.$n-300;
+			@include tokens.body-2;
 		}
 
 		&--disabled::placeholder {
-			color: $n-100;
+			color: tokens.$n-100;
 		}
 
 		&:focus {
@@ -506,10 +516,10 @@ export default {
 	}
 
 	&__label {
-		@include body-2;
-		font-weight: $font-weight-semibold;
+		@include tokens.body-2;
+		font-weight: tokens.$font-weight-semibold;
 		display: flex;
-		margin: ml(3);
+		margin: tokens.ml(3);
 		cursor: pointer;
 	}
 
@@ -525,7 +535,7 @@ export default {
 		height: 32px;
 		width: 32px;
 		pointer-events: none;
-		border-radius: $border-radius-small;
+		border-radius: tokens.$border-radius-small;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -540,8 +550,8 @@ export default {
 		&::before {
 			border-left: 6px solid transparent;
 			border-right: 6px solid transparent;
-			border-bottom: 6px solid $n-100;
-			border-radius: $border-radius-small;
+			border-bottom: 6px solid tokens.$n-100;
+			border-radius: tokens.$border-radius-small;
 			transition: all 300ms ease-in-out;
 			transform: rotate(-180deg);
 		}
@@ -555,7 +565,7 @@ export default {
 		height: 32px;
 		width: 32px;
 		pointer-events: none;
-		border-radius: $border-radius-small;
+		border-radius: tokens.$border-radius-small;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -570,17 +580,17 @@ export default {
 		&::before {
 			border-left: 6px solid transparent;
 			border-right: 6px solid transparent;
-			border-bottom: 6px solid $n-100;
-			border-radius: $border-radius-small;
+			border-bottom: 6px solid tokens.$n-100;
+			border-radius: tokens.$border-radius-small;
 			transition: all 300ms ease-in-out;
 			transform: rotate(0deg);
 		}
 	}
 
 	&__options {
-		@include body-2;
-		color: $n-700;
-		outline: 1px solid $n-50;
+		@include tokens.body-2;
+		color: tokens.$n-700;
+		outline: 1px solid tokens.$n-50;
 		display: flex;
 		flex-direction: column;
 		margin-top: 1px;
@@ -590,7 +600,7 @@ export default {
 		overflow: auto;
 		position: absolute;
 		z-index: 999;
-		background-color: $n-0;
+		background-color: tokens.$n-0;
 		top: 40px;
 		right: 0;
 
@@ -613,26 +623,26 @@ export default {
 		&--up {
 			bottom: 40px;
 			width: 100%;
-			border-top-left-radius: $border-radius-extra-small;
-			border-top-right-radius: $border-radius-extra-small;
+			border-top-left-radius: tokens.$border-radius-extra-small;
+			border-top-right-radius: tokens.$border-radius-extra-small;
 		}
 
 		&--down {
 			width: 100%;
-			border-bottom-left-radius: $border-radius-extra-small;
-			border-bottom-right-radius: $border-radius-extra-small;
+			border-bottom-left-radius: tokens.$border-radius-extra-small;
+			border-bottom-right-radius: tokens.$border-radius-extra-small;
 		}
 	}
 }
 
 .option {
 	&__text {
-		padding: pa(3);
+		padding: tokens.pa(3);
 		text-overflow: ellipsis;
 
 		&--muted {
 			@extend .option__text;
-			color: $n-400;
+			color: tokens.$n-400;
 		}
 	}
 
@@ -644,7 +654,7 @@ export default {
 }
 
 .highlight {
-	background-color: $n-20;
+	background-color: tokens.$n-20;
 	cursor: pointer;
 }
 </style>

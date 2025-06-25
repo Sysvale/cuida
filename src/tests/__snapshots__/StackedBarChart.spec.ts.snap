@@ -1,3 +1,3 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`StackedBarChart > renders correctly 1`] = `"<span data-v-2c120c07=\\"\\"><div data-v-2c120c07=\\"\\" class=\\"responsive-container\\"><bar-stub data-v-2c120c07=\\"\\" data=\\"[object Object]\\" options=\\"[object Object]\\" plugins=\\"[object Object]\\" datasetidkey=\\"label\\" is=\\"bar\\"></bar-stub></div></span>"`;
+exports[`StackedBarChart > renders correctly 1`] = `"<span data-v-2c120c07=""><div data-v-2c120c07="" class="responsive-container"><bar-stub data-v-2c120c07="" data="[object Object]" options="[object Object]" plugins="[object Object]" datasetidkey="label" is="bar"></bar-stub></div></span>"`;

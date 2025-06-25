@@ -1,26 +1,26 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`PanelCard > renders correctly 1`] = `
-"<div data-v-f9290560=\\"\\" data-v-9994fd39=\\"\\" class=\\"box--gray panel-card\\">
+"<div data-v-f9290560="" data-v-9994fd39="" class="box--gray panel-card">
   <!--
 		Evento emitido quando o wrapper é clicado
 		@event cds-click
 		@type {Event}
 	-->
-  <div data-v-f9290560=\\"\\" class=\\"clickable__container--not-clickable box__container\\">
+  <div data-v-f9290560="" class="clickable__container--not-clickable box__container">
     <!-- @slot Slot utilizado para renderização do conteúdo interno do Box.-->
-    <div data-v-9cc3ee57=\\"\\" data-v-f9290560=\\"\\" class=\\"spacer\\">
-      <div data-v-9994fd39=\\"\\" class=\\"panel-card__header\\">
-        <div data-v-9994fd39=\\"\\"><span data-v-9994fd39=\\"\\" class=\\"panel-card__title\\">Redes</span><br data-v-9994fd39=\\"\\"><span data-v-9994fd39=\\"\\" class=\\"panel-card__subtitle\\">Habilite as redes da regulação</span></div>
-        <div data-v-9994fd39=\\"\\">
+    <div data-v-9cc3ee57="" data-v-f9290560="" class="spacer">
+      <div data-v-9994fd39="" class="panel-card__header">
+        <div data-v-9994fd39=""><span data-v-9994fd39="" class="panel-card__title">Redes</span><br data-v-9994fd39=""><span data-v-9994fd39="" class="panel-card__subtitle">Habilite as redes da regulação</span></div>
+        <div data-v-9994fd39="">
           <!-- @slot Slot usado para inserção de elemento à direita no header. -->
         </div>
       </div>
-      <div data-v-9994fd39=\\"\\" class=\\"divider__container\\">
+      <div data-v-9994fd39="" class="divider__container">
         <div></div>
-        <hr class=\\"divider divider--dimmed\\">
+        <hr class="divider divider--dimmed">
       </div>
-      <div data-v-9994fd39=\\"\\" class=\\"panel-card__content\\">
+      <div data-v-9994fd39="" class="panel-card__content">
         <!-- @slot Slot usado para inserção de conteúdo customizado. -->
       </div>
     </div>

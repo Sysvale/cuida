@@ -33,7 +33,7 @@ jobs:
         uses: Klemensas/action-autotag@stable
         id: auto-tag
         with:
-          GITHUB_TOKEN: "${{ secrets.RELEASE_SECRET }}"
+          GITHUB_TOKEN: ${{ secrets.RELEASE_SECRET }}
           tag_prefix: "v"
 
       - name: Read package.json

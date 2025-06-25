@@ -80,6 +80,9 @@ export const Template = (args) => ({
 			<cds-modal
 				v-bind="args"
 				v-model="showModal"
+				@ok="console.info('evento ok emitido!')"
+				@cancel="console.info('evento cancelar emitido!')"
+				@close="console.info('evento de fechamento de modal emitido!')"
 			>
 				<span>
 					Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,

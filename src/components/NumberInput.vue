@@ -1,572 +1,308 @@
 <template>
 	<div>
-		<span>
-			<span
-				v-if="hasSlots"
-			>
-				<slot name="label" />
-			</span>
+		<CdsBaseInput
+			v-if="money"
+			ref="baseInput"
+			v-bind="{...$attrs, ...props}"
+			v-model="internalValue"
+			:floating-label="floatingLabel || mobile"
+			:support-link="supportLink || linkText"
+			:support-link-url="supportLinkUrl || linkUrl"
+			@click="emitClick"
+			@change="handleChange"
+			@focus="handleFocus"
+			@blur="emitBlur"
+			@keydown="emitKeydown"
+		/>
 
-			<label
-				v-else
-				:class="labelDynamicClass"
-			>
-				<div
-					class="label__content"
-					for="cds-text-input"
-				>
-					<span>
-						{{ label }}
-					</span>
+		<CdsBaseInput
+			v-else-if="mask"
+			ref="baseInput"
+			v-bind="{...$attrs, ...props}"
+			v-model="internalValue"
+			v-facade="mask"
+			type="tel"
+			:floating-label="floatingLabel || mobile"
+			:support-link="supportLink || linkText"
+			:support-link-url="supportLinkUrl || linkUrl"
+			@click="emitClick"
+			@change="handleChange"
+			@focus="handleFocus"
+			@blur="emitBlur"
+			@keydown="emitKeydown"
+		/>
 
-					<span
-						v-if="required"
-						class="label__required-indicator"
-					>
-						*
-					</span>
-
-					<cds-icon
-						v-if="tooltip"
-						v-cdstip="tooltip"
-						:name="tooltipIcon"
-						height="20"
-						width="20"
-						class="label__icon"
-					/>
-				</div>
-
-				<cds-link
-					v-if="linkText"
-					class="label__link"
-					:href="linkUrl"
-					:text="linkText"
-					new-tab
-				/>
-			</label>
-
-		</span>
-
-		<div :class="stepperInputDynamicClass">
-			<input
-				v-if="money"
-				:id="`cds-number-input-${$attrs.id || generateKey()}`"
-				v-model.lazy="internalValue"
-				v-money="moneyDirectiveConfig"
-				:placeholder="placeholder"
-				:disabled="disabled"
-				:class="inputClass"
-				@focus="handleFocus"
-				@blur="handleBlur"
-			>
-
-			<input
-				v-else-if="mask"
-				:id="`cds-number-input-${$attrs.id || generateKey()}`"
-				v-model="internalValue"
-				v-facade="mask"
-				:placeholder="placeholder"
-				:disabled="disabled"
-				:class="inputClass"
-				type="tel"
-				@focus="handleFocus"
-				@blur="handleBlur"
-			>
-
-			<input
-				v-else
-				:id="`cds-number-input-${$attrs.id || generateKey()}`"
-				v-model="internalValue"
-				:placeholder="placeholder"
-				:disabled="disabled"
-				:class="inputClass"
-				type="number"
-				@focus="handleFocus"
-				@blur="handleBlur"
-			>
-
-			<div class="text-input__icon-container">
-				<cds-icon
-					v-if="validState && !disabled"
-					height="20"
-					width="20"
-					name="check-outline"
-					class="text-input__icon--check-icon"
-				/>
-
-				<cds-icon
-					v-if="errorState && !disabled"
-					height="20"
-					width="20"
-					name="alert-outline"
-					class="text-input__icon--alert-circle-icon"
-				/>
-
-				<cds-spinner
-					v-if="loadingState && !disabled"
-					size="sm"
-					variant="blue"
-					class="text-input__icon--spinner-icon"
-				/>
-			</div>
-		</div>
-		<div
-			v-if="errorState && !disabled"
-			class="text-input__error-message"
-		>
-			{{ errorMessage }}
-		</div>
+		<CdsBaseInput
+			v-else
+			ref="baseInput"
+			v-bind="{...$attrs, ...props}"
+			v-model="internalValue"
+			:floating-label="floatingLabel || mobile"
+			:support-link="supportLink || linkText"
+			:support-link-url="supportLinkUrl || linkUrl"
+			type="number"
+			@click="emitClick"
+			@change="handleChange"
+			@focus="handleFocus"
+			@blur="emitBlur"
+			@keydown="emitKeydown"
+		/>
 	</div>
 </template>
 
-<script>
-import { Money3Directive } from 'v-money3';
+<script setup>
+import { ref, watch, onMounted, useTemplateRef } from 'vue';
+import {
+	nativeEvents,
+	nativeEmits,
+} from '../utils/composables/useComponentEmits.js';
+import { vCdsBrl, unmaskBRL } from '../utils/directives/cdsBRL';
 import { facade } from 'vue-input-facade';
-import CdsLink from './Link.vue';
-import CdsIcon from './Icon.vue';
-import CdsSpinner from './Spinner.vue';
-import Cdstip from '../utils/directives/cdstip';
-import { generateKey } from '../utils';
+import CdsBaseInput from './BaseInput.vue';
 
-export default {
+const vFacade = facade;
+const baseInputRef = useTemplateRef('baseInput');
 
-	directives: {
-		money: Money3Directive,
-		cdstip: Cdstip,
-		facade,
+const model = defineModel('modelValue', {
+	type: [Number, String],
+});
+
+const unmaskedValue = defineModel('unmaskedValue', {
+	type: [Number, String, null],
+});
+
+const props = defineProps({
+	/**
+	 * Especifica a label do input.
+	 */
+	label: {
+		type: String,
+		default: 'Valor',
 	},
-
-	components: {
-		CdsLink,
-		CdsIcon,
-		CdsSpinner,
+	/**
+	 * Desabilita o input.
+	 */
+	disabled: {
+		type: Boolean,
+		default: false,
 	},
-
-	props: {
-		/**
-		* Prop utilizada como v-model.
-		*/
-		modelValue: {
-			type: [Number, String],
-			default: 0,
-		},
-		/**
-		* Prop utilizada como v-model para valores sem máscara
-		* de dinheiro.
-		*/
-		unmaskedValue: {
-			type: [Number, String],
-			default: 0,
-		},
-		/**
-		 * Especifica a label do input.
-		 */
-		label: {
-			type: String,
-			default: 'Label',
-		},
-		/**
-		 * Desabilita o input.
-		 */
-		disabled: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
-		 */
-		state: {
-			type: String,
-			default: 'default',
-		},
-		/**
-		 * Exibe asterisco de obrigatório (obs.: não faz a validação)
-		 */
-		required: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Especifica o placeholder do input
-		 */
-		placeholder: {
-			type: String,
-			default: 'Digite aqui a informação',
-		},
-		/**
-		 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
-		 */
-		errorMessage: {
-			type: String,
-			default: 'Valor inválido',
-		},
-		/**
-		 * Especifica se a largura do TextInput deve ser fluida.
-		 */
-		fluid: {
-			type: Boolean,
-			default: false,
-			required: false,
-		},
-		/**
-		 * Define exibição e texto do tooltip do input
-		 */
-		tooltip: {
-			type: String,
-			default: null,
-		},
-		/**
-		 * Especifica ícone do tooltip do TextInput.
-		 */
-		tooltipIcon: {
-			type: String,
-			default: 'info-outline',
-		},
-		/**
-		 * Indica se o input vai funcionar com a máscara de dinheiro.
-		 * A máscara utiliza `R$` como prefixo,` , ` como separador de decimais
-		 * e tem precisão de 2 dígitos.
-		 *
-		 *
-		 * Ao utilizar essa prop o `update:modelValue` vai deixar de emitir
-		 * `Number`e vai passar a emitir uma `String` contendo a máscara.
-		 *
-		 *
-		 * Para receber o valor sem máscara, utilize a prop `unmaskedValue`
-		 * com v-model: `v-model:unmaskedValue="nome da propriedade a ser atualizada"`
-		 */
-		money: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Define exibição e texto do link do input (localizado à direita da label).
-		 */
-		linkText: {
-			type: String,
-			default: null,
-		},
-		/**
-		 * Define a url a ser acessada no clique do link (no caso do link ser exibido).
-		 */
-		linkUrl: {
-			type: String,
-			default: 'https://cuida.framer.wiki/',
-		},
-		/**
-		 * Especifica a máscara a ser aplicada ao TextInput.
-		 * Exemplo: "(##) #####-####"
-		 */
-		mask: {
-			type: [String, Array],
-			default: null,
-		},
-		/**
-		 * Define o tipo do input, se true será um input adaptador para o mobile
-		 */
-		mobile: {
-			type: Boolean,
-			default: false,
-		},
+	/**
+	 * Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	 */
+	state: {
+		type: String,
+		default: 'default',
 	},
+	/**
+	 * Exibe asterisco de obrigatório (obs.: não faz a validação)
+	 */
+	required: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	 * Especifica o placeholder do input
+	 */
+	placeholder: {
+		type: String,
+		default: 'Digite aqui a informação',
+	},
+	/**
+	* Especifica mensagem de auxílio.
+	*/
+	supportingText: {
+		type: [String, Array],
+		default: '',
+	},
+	/**
+	* Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+	*/
+	errorMessage: {
+		type: String,
+		default: 'Valor inválido',
+	},
+	/**
+	* Especifica se a largura do TextInput deve ser fluida.
+	*/
+	fluid: {
+		type: Boolean,
+		default: false,
+		required: false,
+	},
+	/**
+	* Define exibição e texto do tooltip do input
+	*/
+	tooltip: {
+		type: String,
+		default: null,
+	},
+	/**
+	* Especifica ícone do tooltip do TextInput.
+	*/
+	tooltipIcon: {
+		type: String,
+		default: 'info-outline',
+	},
+	/**
+	* Indica se o input vai funcionar com a máscara de dinheiro.
+	* A máscara utiliza `R$` como prefixo,` , ` como separador de decimais
+	* e tem precisão de 2 dígitos.
+	*
+	*
+	* Ao utilizar essa prop o `update:modelValue` vai deixar de emitir
+	* `Number`e vai passar a emitir uma `String` contendo a máscara.
+	*
+	*
+	* Para receber o valor sem máscara, utilize a prop `unmaskedValue`
+	* com v-model: `v-model:unmaskedValue="nome da propriedade a ser atualizada"`
+	*/
+	money: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	 * <span className="deprecated-warning">[DEPRECATED]</span> Define exibição e texto do link do input (localizado à direita da label).
+	 */
+	linkText: {
+		type: String,
+		default: null,
+	},
+	/**
+	 * <span className="deprecated-warning">[DEPRECATED]</span> Define a url a ser acessada no clique do link (no caso do link ser exibido).
+	 */
+	linkUrl: {
+		type: String,
+		default: 'https://cuida.framer.wiki/',
+	},
+	/**
+	* Controla a exibição e o conteúdo do link de suporte exibido ao lado da label.
+	*/
+	supportLink: {
+		type: String,
+		default: null,
+	},
+	/**
+	* Define a url a ser acessada no clique do link de suporte.
+	*/
+	supportLinkUrl: {
+		type: String,
+		default: 'https://cuida.framer.wiki/',
+	},
+	/**
+	* Quando true, o v-model é atualizado com o evento `change` no lugar do `input`.
+	*/
+	lazy: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Especifica a máscara a ser aplicada ao TextInput.
+	* Exemplo: "(##) #####-####"
+	*/
+	mask: {
+		type: [String, Array],
+		default: null,
+	},
+	/**
+	* <span className="deprecated-warning">[DEPRECATED]</span> Define o tipo do input, se true será um input adaptador para o mobile
+	*/
+	mobile: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Define o tipo do input, se true será um input adaptado para o mobile
+	*/
+	floatingLabel: {
+		type: Boolean,
+		default: false,
+	},
+});
 
-	data() {
-		return {
-			internalValue: '',
-			isBeingFocused: false,
-			moneyDirectiveConfig: {
-				decimal: ',',
-				thousands: '.',
-				prefix: 'R$ ',
-				precision: 2,
-				masked: false,
-			},
+const emits = defineEmits({
+	...nativeEvents
+});
+
+/* REACTIVE DATA */
+const internalValue = ref('');
+const { emitClick, emitChange, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
+let cdsBrlBiding = {};
+
+
+/* WATCHERS */
+watch(model, (newValue, oldValue) => {
+	if (newValue !== oldValue) {
+		internalValue.value = newValue;
+	}
+}, {immediate: true});
+
+watch(internalValue, (value, oldValue) => {
+	if (value !== oldValue) {
+		let stringifiedInput = String(value);
+
+		if (props.money) {
+			/**
+			* Evento utilizado para implementar o v-model para atualização
+			* de valores sem máscara de dinheiro.
+			* @event update:unmaskedValue
+			* @type {Event}
+			*/
+			unmaskedValue.value = unmaskBRL(stringifiedInput);
+			/**
+			* Evento utilizado para implementar o v-model padrão do componente.
+			* @event update:modelValue
+			* @type {Event}
+			*/
+			model.value = stringifiedInput;
+		} else if (props.mask) {
+			internalValue.value = stringifiedInput;
+			model.value = stringifiedInput;
+			unmaskedValue.value = +stringifiedInput.replace(/\D/g, '');
+		} else if (stringifiedInput.length > 15) {
+			internalValue.value = +stringifiedInput.slice(0, 15);
+		} else {
+			model.value = +stringifiedInput;
+			unmaskedValue.value = +stringifiedInput;
+		}
+	}
+});
+
+/* HOOKS */
+onMounted(() => {
+	if (props.money && baseInputRef.value && baseInputRef.value.componentRef) {
+		cdsBrlBiding =  {
+			value: model.value,
+			oldValue: '',
+			instance: baseInputRef.value.componentRef,
+			modifiers: {},
+			arg: null,
 		};
-	},
-
-	computed: {
-		hasSlots() {
-			return !!Object.keys(this.$slots).length;
-		},
-
-		stepperInputDynamicClass() {
-			let stepperInputClass = this.fluid ? 'text-input--fluid' : 'text-input';
-
-			if (!this.isBeingFocused) {
-				if (!this.disabled) {
-					if (this.state === 'valid') {
-						stepperInputClass += ' text-input--valid';
-					} else if (this.state === 'invalid') {
-						stepperInputClass += ' text-input--invalid';
-					}
-				} else {
-					stepperInputClass += ' text-input--disabled';
-				}
-			} else if (!this.disabled) {
-				if (this.state === 'default') {
-					stepperInputClass += ' text-input--focused';
-				} else if (this.state === 'valid') {
-					stepperInputClass += ' text-input--focused-valid';
-				} else if (this.state === 'invalid') {
-					stepperInputClass += ' text-input--focused-invalid';
-				} else if (this.state === 'loading') {
-					stepperInputClass += ' text-input--focused-loading';
-				}
-			}
-
-			return stepperInputClass;
-		},
-
-
-		labelDynamicClass() {
-			const labelType = this.mobile ? 'mobile-label' : 'label';
-
-			return this.fluid ? `text-input__${labelType}--fluid` : `text-input__${labelType}`;
-		},
-
-		validState() {
-			return this.state === 'valid';
-		},
-
-		errorState() {
-			return this.state === 'invalid';
-		},
-
-		loadingState(){
-			return this.state === 'loading';
-		},
-
-		inputClass() {
-			const inputType = this.mobile ? 'mobile-field' : 'field';
-
-			return this.fluid ? `text-input__${inputType}--fluid` : `text-input__${inputType}`;
-		},
-	},
-
-	watch: {
-		modelValue: {
-			handler(newValue, oldValue) {
-				if (newValue !== oldValue) {
-					this.internalValue = newValue;
-				}
-			},
-
-			immediate: true,
-		},
-
-		internalValue(value) {
-			let stringifiedInput = String(value);
-
-			if (this.money) {
-				let sanitizedInput = stringifiedInput.replace('R$ ', '');
-				sanitizedInput = sanitizedInput.replaceAll('.', ',');
-				sanitizedInput = sanitizedInput.replace(/(.*),(\d{2})/g, '$1.$2');
-				sanitizedInput = sanitizedInput.replaceAll(',', '');
-
-				/**
-				 * Evento utilizado para implementar o v-model para atualização
-				 * de valores sem máscara de dinheiro.
-				 * @event update:unmaskedValue
-				 * @type {Event}
-				 */
-				this.$emit('update:unmaskedValue', +sanitizedInput);
-				this.$emit('update:modelValue', stringifiedInput);
-			} else if (this.mask) {
-				this.internalValue = stringifiedInput;
-			} else if (stringifiedInput.length > 15) {
-				this.internalValue = +stringifiedInput.slice(0, 15);
-			} else {
-				this.$emit('update:modelValue', +stringifiedInput);
-
-				/**
-				 * Evento utilizado para implementar o v-model padrão do componente.
-				 * @event update:modelValue
-				 * @type {Event}
-				 */
-				this.$emit('update:unmaskedValue', +stringifiedInput);
-			}
-		},
-	},
-
-	methods: {
-		generateKey,
-
-		handleBlur() {
-			this.isBeingFocused = false;
-			this.$emit('blur', true);
-		},
-
-		handleFocus() {
-			this.isBeingFocused = true;
-			this.$emit('focus', true);
-		},
+		vCdsBrl.mounted(baseInputRef.value.componentRef, cdsBrlBiding);
 	}
-};
+});
+
+/* FUNCTIONS */
+function handleFocus() {
+	if (props.money) {
+		internalValue.value = (internalValue.value == 0 || internalValue.value == '') 
+			? 'R$ 0,00'
+			: internalValue.value;
+	}
+	emitFocus();
+}
+
+function handleChange() {
+	model.value = internalValue.value;
+	emitChange();
+}
+
+/* EXPOSE */
+defineExpose({
+	componentRef: baseInputRef.value?.componentRef,
+	isFocused: baseInputRef.value?.isFocused,
+	focus: () => baseInputRef.value?.focus(),
+	blur: () => baseInputRef.value?.blur(),
+	clear: () => baseInputRef.value?.clear(),
+	select: () => baseInputRef.value?.select(),
+});
 </script>
-<style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
-
-.text-input {
-	display: flex;
-	justify-content: space-between;
-	outline: 1px solid $n-50;
-	border-radius: $border-radius-extra-small;
-	width: 266px;
-	background: $n-0;
-
-	&--fluid {
-		@extend .text-input;
-		width: 100%;
-	}
-
-	&__label {
-		@include label;
-		display: flex;
-		align-items: flex-end;
-		justify-content: space-between;
-		width: 266px;
-
-		&--fluid {
-			@extend .text-input__label;
-			width: 100%;
-		}
-	}
-
-	&__mobile-label {
-		@extend .text-input__label;
-		font-size: 14px;
-		font-weight: 700;
-
-		&--fluid {
-			@extend .text-input__mobile-label;
-			width: 100%;
-		}
-	}
-
-	&__icon-container {
-		background-color: none;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		margin: mr(3);
-		min-width: 15px;
-	}
-
-	&__field {
-		padding: pa(3);
-		margin: mr(2);
-		height: 40px !important;
-		border-radius: $border-radius-extra-small;
-		border: none;
-		text-align: start;
-		color: $n-600;
-
-		&::placeholder {
-			color: $n-300;
-		}
-
-		&:focus {
-			outline: 0;
-		}
-
-		&--fluid {
-			@extend .text-input__field;
-			width: 100%;
-		}
-	}
-
-	&__mobile-field {
-		@extend .text-input__field;
-		@include body-2;
-		font-weight: 400;
-		height: 48px !important;
-		border-radius: $border-radius-lil;
-
-		&--fluid {
-			@extend .text-input__mobile-field;
-			width: 100%;
-		}
-	}
-
-	&--focused {
-		@extend .text-input;
-		outline: 1px solid $bn-300;
-		box-shadow: 0 0 0 0.2rem rgba($bn-300, .45);
-	}
-
-	&--valid {
-		@extend .text-input;
-		outline: 1px solid $gp-500;
-	}
-
-	&--invalid {
-		@extend .text-input;
-		outline: 1px solid $rc-600;
-	}
-
-	&--focused-valid {
-		@extend .text-input--valid;
-		box-shadow: 0 0 0 0.2rem rgba($gp-300, .45);
-	}
-
-	&--focused-invalid {
-		@extend .text-input--invalid;
-		box-shadow: 0 0 0 0.2rem rgba($rc-300, .45);
-	}
-
-	&--disabled {
-		background-color: $n-20;
-		pointer-events: none;
-		border: none;
-	}
-
-	&__icon--check-icon {
-		color: $gp-500;
-		height: 50%;
-	}
-
-	&__icon--alert-circle-icon {
-		color: $rc-600;
-		height: 50%;
-	}
-
-	&__icon--spinner-icon {
-		padding: 0px;
-	}
-
-	&__error-message {
-		@include caption;
-		color: $rc-600;
-		margin: mt(1);
-	}
-}
-
-.label {
-	&__required-indicator {
-		color: $rc-600;
-	}
-
-	&__icon {
-		margin: ml(1);
-		cursor: pointer;
-	}
-
-	&__link {
-		justify-self: end;
-	}
-
-	&__content {
-		margin: mb(1);
-	}
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: ma(0);
-}
-
-input:disabled {
-	background: none !important;
-}
-</style>

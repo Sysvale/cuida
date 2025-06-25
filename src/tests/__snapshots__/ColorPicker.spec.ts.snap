@@ -1,78 +1,78 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`ColorPicker > renders correctly 1`] = `
-"<div data-v-2c841161=\\"\\">
-  <div data-v-2c841161=\\"\\" class=\\"color-picker__label\\">Label</div>
-  <div data-v-2c841161=\\"\\" class=\\"color-picker__container\\">
-    <div data-v-2c841161=\\"\\">
-      <div data-v-2c841161=\\"\\" class=\\"color-picker__swatch--#\\">
+"<div data-v-2c841161="">
+  <div data-v-2c841161="" class="color-picker__label">Label</div>
+  <div data-v-2c841161="" class="color-picker__container">
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--#">
         <!--v-if-->
       </div>
     </div>
-    <div data-v-2c841161=\\"\\">
-      <div data-v-2c841161=\\"\\" class=\\"color-picker__swatch--0\\">
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
         <!--v-if-->
       </div>
     </div>
-    <div data-v-2c841161=\\"\\">
-      <div data-v-2c841161=\\"\\" class=\\"color-picker__swatch--0\\">
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
         <!--v-if-->
       </div>
     </div>
-    <div data-v-2c841161=\\"\\">
-      <div data-v-2c841161=\\"\\" class=\\"color-picker__swatch--0\\">
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
         <!--v-if-->
       </div>
     </div>
-    <div data-v-2c841161=\\"\\">
-      <div data-v-2c841161=\\"\\" class=\\"color-picker__swatch--0\\">
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
         <!--v-if-->
       </div>
     </div>
-    <div data-v-2c841161=\\"\\">
-      <div data-v-2c841161=\\"\\" class=\\"color-picker__swatch--0\\">
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
         <!--v-if-->
       </div>
     </div>
-    <div data-v-2c841161=\\"\\">
-      <div data-v-2c841161=\\"\\" class=\\"color-picker__swatch--0\\">
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
         <!--v-if-->
       </div>
     </div>
   </div>
-  <div data-v-2c841161=\\"\\" class=\\"color-picker__container\\">
-    <div data-v-2c841161=\\"\\">
-      <div data-v-2c841161=\\"\\" class=\\"color-picker__swatch--#\\">
+  <div data-v-2c841161="" class="color-picker__container">
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--#">
         <!--v-if-->
       </div>
     </div>
-    <div data-v-2c841161=\\"\\">
-      <div data-v-2c841161=\\"\\" class=\\"color-picker__swatch--0\\">
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
         <!--v-if-->
       </div>
     </div>
-    <div data-v-2c841161=\\"\\">
-      <div data-v-2c841161=\\"\\" class=\\"color-picker__swatch--0\\">
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
         <!--v-if-->
       </div>
     </div>
-    <div data-v-2c841161=\\"\\">
-      <div data-v-2c841161=\\"\\" class=\\"color-picker__swatch--0\\">
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
         <!--v-if-->
       </div>
     </div>
-    <div data-v-2c841161=\\"\\">
-      <div data-v-2c841161=\\"\\" class=\\"color-picker__swatch--0\\">
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
         <!--v-if-->
       </div>
     </div>
-    <div data-v-2c841161=\\"\\">
-      <div data-v-2c841161=\\"\\" class=\\"color-picker__swatch--0\\">
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
         <!--v-if-->
       </div>
     </div>
-    <div data-v-2c841161=\\"\\">
-      <div data-v-2c841161=\\"\\" class=\\"color-picker__swatch--0\\">
+    <div data-v-2c841161="">
+      <div data-v-2c841161="" class="color-picker__swatch--0">
         <!--v-if-->
       </div>
     </div>

@@ -18,6 +18,7 @@ import Breadcrumb from './Breadcrumb.vue';
 import Button from './Button.vue';
 import Card from './Card.vue';
 import CalloutCard from './CalloutCard.vue';
+import Carousel from './Carousel.vue';
 import CarouselController from './CarouselController.vue';
 import Checkbox from './Checkbox.vue';
 import CheckboxGroup from './CheckboxGroup.vue';
@@ -27,8 +28,10 @@ import Clickable from './Clickable.vue';
 import CollapsibleContainer from './CollapsibleContainer.vue';
 import ColorPicker from './ColorPicker.vue';
 import DashboardCard from './DashboardCard.vue';
+import DataTable from './DataTable.vue';
 import DateInput from './DateInput.vue';
 import DialogModal from './DialogModal.vue';
+import DynamicInputList from './DynamicInputList.vue';
 import Divider from './Divider.vue';
 import Dropdown from './Dropdown.vue';
 import DropdownButton from './DropdownButton.vue';
@@ -40,6 +43,7 @@ import FileViewer from './FileViewer.vue';
 import FilterSelect from './FilterSelect.vue';
 import FlatButton from './FlatButton.vue';
 import FloatingAssistant from './FloatingAssistant.vue';
+import FloatingActionButton from './FloatingActionButton.vue';
 import GaugeChart from './GaugeChart.vue';
 import Grid from './Grid.vue';
 import GridItem from './GridItem.vue';
@@ -51,11 +55,16 @@ import InteractionBlockingOverlay from './InteractionBlockingOverlay.vue';
 import Image from './Image.vue';
 import InlineDateInput from './InlineDateInput.vue';
 import Link from './Link.vue';
+import List from './List.vue';
 import LoadingBar from './LoadingBar.vue';
 import LoadingIndicator from './LoadingIndicator.vue';
+import MobileNavbar from './MobileNavbar.vue';
 import MobileNavigation from './MobileNavigation.vue';
 import Modal from './Modal.vue';
+import MonthAndYearPicker from './MonthAndYearPicker.vue';
+import MultiFileInput from './MultiFileInput.vue';
 import Multiselect from './Multiselect.vue';
+import ComboBox from './ComboBox.vue';
 import NavBar from './NavBar.vue';
 import NumberInput from './NumberInput.vue';
 import OverlayLoader from './OverlayLoader.vue';
@@ -91,12 +100,17 @@ import StepperInput from './StepperInput.vue';
 import Switch from './Switch.vue';
 import Table from './Table.vue';
 import Tabs from './Tabs.vue';
+import Text from './Text.vue';
 import TextArea from './TextArea.vue';
 import TextInput from './TextInput.vue';
+import Tile from './Tile.vue';
 import TimeInput from './TimeInput.vue';
 import Timeline from './Timeline.vue';
 import TimelineItem from './TimelineItem.vue';
+import Toast from './Toast.vue';
+import ToastContainer from './ToastContainer.vue';
 import Tooltip from './Tooltip.vue';
+import TopAppBar from './TopAppBar.vue';
 import Truncate from './Truncate.vue';
 import PasswordInput from './PasswordInput.vue';
 import WebcamModal from './WebcamModal.vue';
@@ -105,18 +119,26 @@ import Wizard from './Wizard.vue';
 /* DIRECTIVES */
 import Cdstip from '../utils/directives/cdstip';
 import CdsFloatify from "../utils/directives/cdsFloatify";
+import CdsClickOutside from '../utils/directives/cdsClickOutside';
+import { unmaskBRL } from '@/utils/directives/cdsBRL';
 
 /* UTILS */
 import contrastChecker from '@/utils/methods/contrastChecker';
+import uuidv4 from '@/utils/methods/uuidv4';
 import hasSlot from '@/utils/methods/hasSlot';
 import removeAccents from '@/utils/methods/removeAccents';
 import hexToRgb from '@/utils/methods/hexToRgb';
 import isDeviceType from '@/utils/methods/isDeviceType';
+import useIsMobile from '@/utils/composables/useIsMobile';
+import { useToast } from '@/utils/composables/useToast';
+import { useHasSlot } from '@/utils/composables/useHasSlot';
+import { useHasSlots } from '@/utils/composables/useHasSlots';
 
 export default {
 	install: (app: any, options: any) => {
 		app.directive('cdstip', Cdstip);
 		app.directive("cds-floatify", CdsFloatify);
+		app.directive("cds-click-outside", CdsClickOutside);
 		app.component('CdsActionBar', ActionBar);
 		app.component('CdsActionsList', ActionsList);
 		app.component('CdsAlert', Alert);
@@ -132,6 +154,7 @@ export default {
 		app.component('CdsButton', Button);
 		app.component('CdsCard', Card);
 		app.component('CdsCalloutCard', CalloutCard);
+		app.component('CdsCarousel', Carousel);
 		app.component('CdsCarouselController', CarouselController);
 		app.component('CdsCheckbox', Checkbox);
 		app.component('CdsCheckboxGroup', CheckboxGroup);
@@ -141,6 +164,7 @@ export default {
 		app.component('CdsCollapsibleContainer', CollapsibleContainer);
 		app.component('CdsColorPicker', ColorPicker);
 		app.component('CdsDashboardCard', DashboardCard);
+		app.component('CdsDataTable', DataTable);
 		app.component('CdsDateInput', DateInput);
 		app.component('CdsDialogModal', DialogModal);
 		app.component('CdsDivider', Divider);
@@ -154,6 +178,7 @@ export default {
 		app.component('CdsFlatButton', FlatButton);
 		app.component('CdsFlexbox', Flexbox);
 		app.component('CdsFloatingAssistant', FloatingAssistant);
+		app.component('CdsFloatingActionButton', FloatingActionButton);
 		app.component('CdsGaugeChart', GaugeChart);
 		app.component('CdsGrid', Grid);
 		app.component('CdsGridItem', GridItem);
@@ -165,12 +190,18 @@ export default {
 		app.component('CdsInteractionBlockingOverlay', InteractionBlockingOverlay);
 		app.component('CdsLineChart', LineChart);
 		app.component('CdsLink', Link);
+		app.component('CdsList', List);
 		app.component('CdsInlineDateInput', InlineDateInput);
 		app.component('CdsLoadingBar', LoadingBar);
 		app.component('CdsLoadingIndicator', LoadingIndicator);
+		app.component('CdsMobileNavbar', MobileNavbar);
 		app.component('CdsMobileNavigation', MobileNavigation);
 		app.component('CdsModal', Modal);
+		app.component('CdsMonthAndYearPicker', MonthAndYearPicker);
 		app.component('CdsMultiselect', Multiselect);
+        app.component('CdsComboBox', ComboBox);
+		app.component('CdsDynamicInputList', DynamicInputList);
+		app.component('CdsMultiFileInput', MultiFileInput);
 		app.component('CdsNavBar', NavBar);
 		app.component('CdsNumberInput', NumberInput);
 		app.component('CdsOverlayLoader', OverlayLoader);
@@ -207,10 +238,15 @@ export default {
 		app.component('CdsSwitch', Switch);
 		app.component('CdsTable', Table);
 		app.component('CdsTabs', Tabs);
+		app.component('CdsText', Text);
 		app.component('CdsTextArea', TextArea);
 		app.component('CdsTextInput', TextInput);
+		app.component('CdsTile', Tile);
 		app.component('CdsTimeInput', TimeInput);
+		app.component('CdsToast', Toast);
+		app.component('CdsToastContainer', ToastContainer);
 		app.component('CdsTooltip', Tooltip);
+		app.component('CdsTopAppBar', TopAppBar);
 		app.component('CdsTimeline', Timeline);
 		app.component('CdsTimelineItem', TimelineItem);
 		app.component('CdsTruncate', Truncate);
@@ -225,6 +261,12 @@ export default {
 		hasSlot,
 		removeAccents,
 		hexToRgb,
-		isDeviceType
+		isDeviceType,
+		useIsMobile,
+		useHasSlot,
+		useHasSlots,
+		useToast,
+		unmaskBRL,
+		uuidv4,
 	},
 }

@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BaseMobileInput > renders correctly 1`] = `
+"<div data-v-c2ac4e6d="" data-v-06760eb7="" class="flexbox" id="base-mobile-input">
+  <!-- @slot Slot com o conteúdo interno do FlexBox -->
+  <div data-v-06760eb7="" class="base-mobile-input base-mobile-input--default">
+    <!--v-if--><label data-v-06760eb7="" class="base-mobile-input__label" for="cds-base-mobile-input-text-base-mobile-input"><span data-v-06760eb7="" class="label__content">Nome <!--v-if--></span></label><input data-v-06760eb7="" id="base-mobile-input" label="Nome" state="default" type="text" errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" supportlinkurl="https://cuida.framer.wiki/" hasleadingicon="false" hastrailingicon="false" lazy="false" enableautocomplete="false" placeholder="" class="base-mobile-input__field" autocomplete="off">
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+  <!--v-if-->
+  <!--v-if-->
+</div>"
+`;

@@ -1,7 +1,7 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Spacer snapshot test > renders correctly 1`] = `
-"<div data-v-9cc3ee57=\\"\\" class=\\"spacer\\">
-  <div style=\\"width: 100px; height: 100px; background-color: rgb(42, 192, 146); border-radius: 20px;\\"></div>
+"<div data-v-9cc3ee57="" class="spacer">
+  <div style="width: 100px; height: 100px; background-color: rgb(42, 192, 146); border-radius: 20px;"></div>
 </div>"
 `;
