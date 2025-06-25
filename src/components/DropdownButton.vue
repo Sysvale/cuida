@@ -199,59 +199,59 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .dropdown-button {
 	&__container {
 		display: inline-flex;
 		align-items: center;
-		padding: px(5);
-		border-radius: $border-radius-extra-small;
+		padding: tokens.px(5);
+		border-radius: tokens.$border-radius-extra-small;
 		cursor: pointer;
 		height: 40px;
-		background-color: $n-10;
+		background-color: tokens.$n-10;
 
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
-			color: $n-0;
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+			color: tokens.$n-0;
 			background-color: $base-color;
 			outline: 1px solid $shade-500;
 		}
 
 		&--secondary {
-			color: $n-700;
-			outline: 1px solid $n-100;
-			background-color: $n-10;
+			color: tokens.$n-700;
+			outline: 1px solid tokens.$n-100;
+			background-color: tokens.$n-10;
 		}
 
 		&--ghost {
-			padding: px(5);
+			padding: tokens.px(5);
 			background: none;
-			color: $n-800;
+			color: tokens.$n-800;
 			cursor: pointer;
 
 			&:hover {
-				background-color: $n-10;
+				background-color: tokens.$n-10;
 			}
 		}
 	}
 
 	&__text {
-		@include body-2;
-		font-weight: $font-weight-semibold;
-		margin: mr(2);
+		@include tokens.body-2;
+		font-weight: tokens.$font-weight-semibold;
+		margin: tokens.mr(2);
 	}
 
 	&__dropdown {
 		min-width: var(--width);
-		background-color: $n-0;
-		padding: pa(2);
-		border-radius: $border-radius-extra-small;
-		box-shadow: 0px 0px 8px rgba($n-900, .08);
-		outline: 1px solid $n-30;
+		background-color: tokens.$n-0;
+		padding: tokens.pa(2);
+		border-radius: tokens.$border-radius-extra-small;
+		box-shadow: 0px 0px 8px rgba(tokens.$n-900, .08);
+		outline: 1px solid tokens.$n-30;
 		z-index: 999999999;
-		color: $n-700;
+		color: tokens.$n-700;
 		position: absolute;
-		margin: mt(2);
+		margin: tokens.mt(2);
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
@@ -266,21 +266,21 @@ export default {
 		align-items: center;
 		cursor: pointer;
 		border-radius: 6px;
-		padding: pa(2);
+		padding: tokens.pa(2);
 
 		&:hover {
-			background-color: $n-20;
+			background-color: tokens.$n-20;
 		}
 	}
 
 	&__text {
-		color: $n-600;
-		@include body-2;
-		padding: py(1)
+		color: tokens.$n-600;
+		@include tokens.body-2;
+		padding: tokens.py(1)
 	}
 
 	&__icon {
-		color: $n-600;
+		color: tokens.$n-600;
 	}
 }
 

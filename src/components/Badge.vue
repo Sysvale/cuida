@@ -99,7 +99,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use 'sass:color';
+@use '../assets/sass/tokens/index' as tokens;
 
 .badge {
 	&__container {
@@ -109,52 +110,52 @@ export default {
 	}
 
 	&--sm {
-		padding: pYX(1, 2);
+		padding: tokens.pYX(1, 2);
 	}
 
 	&--md {
-		padding: pYX(1, 2);
+		padding: tokens.pYX(1, 2);
 	}
 
 	&--lg {
-		padding: pYX(1, 3);
+		padding: tokens.pYX(1, 3);
 	}
 
 	&__content {
 		&--sm {
-			@include overline;
+			@include tokens.overline;
 		}
 
 		&--md {
-			@include caption;
-			font-weight: $font-weight-semibold;
+			@include tokens.caption;
+			font-weight: tokens.$font-weight-semibold;
 		}
 
 		&--lg {
-			@include button-1;
-			font-weight: $font-weight-semibold;
+			@include tokens.button-1;
+			font-weight: tokens.$font-weight-semibold;
 		}
 	}
 
-	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
-		color: darken($shade-500, 4%);
+	@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		color: color.adjust($shade-500, $lightness: -4%);
 		background-color: $shade-100;
 	}
 
 	&--amber {
-		color: $al-700;
-		background-color: $al-100;
+		color: tokens.$al-700;
+		background-color: tokens.$al-100;
 	}
 
 	&--gray {
-		color: $n-600;
-		background-color: $n-20;
+		color: tokens.$n-600;
+		background-color: tokens.$n-20;
 	}
 
 	&--white {
-		color: $n-600;
-		background-color: $n-0;
-		outline: 1px solid $n-50;
+		color: tokens.$n-600;
+		background-color: tokens.$n-0;
+		outline: 1px solid tokens.$n-50;
 	}
 }
 </style>

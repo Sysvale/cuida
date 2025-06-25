@@ -1,6 +1,9 @@
 <template>
 	<div>
-		<copy-token :target="target" :value="target" />
+		<copy-token
+			:target="target"
+			:value="target"
+		/>
 
 		<cds-table
 			:items="items"
@@ -10,9 +13,9 @@
 			<template #table-item="{ data, field, rowIndex }">
 				<div
 					v-if="field === 'token'"
-					@click="target = data.token"
 					:id="data.token"
 					class="copy-clip"
+					@click="target = data.token"
 				>
 					<cds-icon
 						height="20"
@@ -81,12 +84,6 @@ export default {
 		};
 	},
 
-	methods: {
-		shadowClass(index) {
-			return this.shadowVariables[index].replace('$shadow-', '');
-		},
-	},
-
 	computed: {
 		items() {
 			let items = [];
@@ -99,40 +96,46 @@ export default {
 
 			return items;
 		},
+	},
+
+	methods: {
+		shadowClass(index) {
+			return this.shadowVariables[index].replace('$shadow-', '');
+		},
 	}
 };
 </script>
 
 <style lang="scss" scoped>
-@import './../assets/sass/tokens.scss';
+@use './../assets/sass/tokens/index' as tokens;
 
-@each $shadows-name, $shadows-token in $shadows {
+@each $shadows-name, $shadows-token in tokens.$shadows {
 	.#{$shadows-name} {
 		box-shadow: $shadows-token;
 		width: 60px;
 		height: 60px;
-		background-color: $n-0;
-		border-radius: $border-radius-small;
+		background-color: tokens.$n-0;
+		border-radius: tokens.$border-radius-small;
 	}
 }
 
 .copy-clip {
 	width: fit-content;
-	padding: pYX(2, 3);
+	padding: tokens.pYX(2, 3);
 	border-radius: 16px;
-	border: 1px solid $n-0;
+	border: 1px solid tokens.$n-0;
 	transition: all .15s ease-in-out;
 	display: flex;
 	align-items: center;
 
 	&__icon {
-		margin: mr(3);
-		color: $n-500;
+		margin: tokens.mr(3);
+		color: tokens.$n-500;
 	}
 }
 
 .copy-clip:hover {
-	border: 1px solid $gp-300;
+	border: 1px solid tokens.$gp-300;
 	cursor: pointer;
 	transition: all .15s ease-in-out;
 }

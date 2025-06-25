@@ -2,30 +2,85 @@
 	<div>
 		<div class="data-table">
 			<div class="data-table__header">
-				<div class="data-table__items-counter">
+				<CdsSearchInput
+					v-if="withSearch"
+					v-model="internalSearch"
+					hide-label
+					fluid
+					:disabled="loading"
+					@update:model-value="handleSearchInput"
+				/>
+				<div
+					v-else
+					class="data-table__items-counter"
+				>
 					{{ totalItems }} {{ totalItems === 1 ? 'registro encontrado' : 'registros encontrados' }}
 				</div>
 
 				<cds-flexbox
+					class="data-table__actions"
 					gap="3"
 					align="center"
+					justify="flex-end"
 				>
 					<!-- @slot Slot para renderização de conteúdo à direita do DataTable header. -->
 					<slot name="right" />
 
 					<cds-button
 						v-if="!hideCustomizeButton"
-						size="sm"
+						:size="withSearch ? 'md' : 'sm'"
 						secondary
+						:disabled="loading"
 						@button-click="handleCustomizeButtonClick"
 					>
 						Personalizar tabela
 					</cds-button>
 				</cds-flexbox>
+				<div
+					v-if="withSearch"
+					class="data-table__items-counter--below"
+				>
+					{{ totalItems }} {{ totalItems === 1 ? 'registro encontrado' : 'registros encontrados' }}
+				</div>
 			</div>
 
 			<div class="data-table__table-container">
+				<div v-if="loading">
+					<cds-table
+						:fields="$attrs.fields"
+						:items="[{}, {}, {}, {}]"
+					>
+						<template #table-item>
+							<cds-skeleton
+								width="100"
+								height="20"
+							/>
+						</template>
+					</cds-table>
+				</div>
+				<div
+					v-else-if="isEmpty($attrs.items)"
+				>
+					<div
+						v-if="hasStateEmpty"
+						class="empty"
+					>
+						<slot name="empty" />
+					</div>
+					<div v-else>
+						<CdsEmptyState
+							:image="emptyImgResolver"
+							:title="emptyTitle"
+							hide-action-button
+						>
+							<template #text>
+								{{ emptyDescription }}
+							</template>
+						</CdsEmptyState>
+					</div>
+				</div>
 				<cds-table
+					v-else
 					v-bind="$attrs"
 					:selection-variant="selectionVariant"
 				>
@@ -68,14 +123,18 @@
 
 <script setup>
 import { ref, watch, computed } from 'vue';
+import { cloneDeep, isEmpty } from 'lodash';
+import { useHasSlot } from '../utils/composables/useHasSlot';
 import CdsButton from './Button.vue';
 import CdsTable from './Table.vue';
 import CustomFieldsSideSheet from './InternalComponents/CustomFieldsSideSheet.vue';
 import CdsFlexbox from './Flexbox.vue';
-import { useHasSlot } from '../utils/composables/useHasSlot';
-import { cloneDeep } from 'lodash';
+import CdsSearchInput from './SearchInput.vue';
+import CdsSkeleton from './Skeleton.vue';
+import CdsEmptyState from './EmptyState.vue'
 
 const hasHeaderSlot = useHasSlot('header-item');
+const hasStateEmpty = useHasSlot('empty');
 
 const props = defineProps({
 	/**
@@ -129,11 +188,56 @@ const props = defineProps({
 		default: 0,
 		validator: (value) => value >= 0,
 	},
+	/**
+	* Especifica se a barra de busca da tabela deve ser exibida.
+	*/
+	withSearch: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	 * Ativa o estado de carregamento do componente, desabilitando as ações superiores e exibindo um Skeleton para a tabela.
+	 */
+	loading: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Caminho da imagem que vai ser renderizada quando o estado for empty.
+	*/
+	emptySrcImg: {
+		type: String,
+		default: null,
+	},
+	/**
+	 * Título que vai ser renderizado quando o estado for empty.
+	 */
+	emptyTitle: {
+		type: String,
+		default: 'Nenhum registro',
+	},
+	/**
+	 * Descrição que vai ser renderizado quando o estado for empty.
+	 */
+	emptyDescription: {
+		type: String,
+		default: 'Certifique-se de ajustar os filtros para encontrar resultados.',
+	},
+	/**
+	 * Tempo de atraso entre a digitação e a emissão do evento de busca (em ms).
+	 */
+	searchInputDelay: {
+		type: Number,
+		default: 500,
+		validator: (value) => value >= 0,
+	},
 });
 
-const emits = defineEmits(['update-fields-list', 'customize-click']);
+const emits = defineEmits(['update-fields-list', 'customize-click', 'search']);
 
 const showSideSheet = ref(false);
+const internalSearch = ref('');
+const searchTimeout = ref(null);
 const internalCustomFieldsList = ref(cloneDeep(props.customFieldsList));
 
 const computedMaxVisibleFields = computed(() => {
@@ -143,6 +247,8 @@ const computedMaxVisibleFields = computed(() => {
 
 	return props.maxVisibleFields > props.minVisibleFields ? props.maxVisibleFields : props.minVisibleFields;
 });
+
+const emptyImgResolver = computed(() => props.emptySrcImg ?? 'https://cdn-icons-png.flaticon.com/512/7486/7486747.png');
 
 watch(() => props.customFieldsList, () => {
 	internalCustomFieldsList.value = cloneDeep(props.customFieldsList);
@@ -162,31 +268,58 @@ function handleOk(fieldsList) {
 	emits('update-fields-list', fieldsList);
 }
 
+function handleSearchInput(value) {
+	clearTimeout(searchTimeout.value);
+	searchTimeout.value = setTimeout(() => {
+		emits('search', value);
+	}, props.searchInputDelay);
+}
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .data-table {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	gap: spacer(3);
+	gap: tokens.spacer(3);
+
+	&__actions {
+		width: 100%;
+	}
 
 	&__header {
-		display: flex;
-		justify-content: space-between;
-		align-items: flex-end;
+		display: grid;
+		grid-template-columns: 1fr auto;
+		column-gap: tokens.spacer(4);
+		width: 100%;
+		align-items: center;
 	}
 
 	&__items-counter {
-		@include caption;
-		color: $n-600;
+		@include tokens.caption;
+		color: tokens.$n-600;
+		display: flex;
+		align-items: flex-end;
+
+		&--below {
+			@extend .data-table__items-counter;
+			margin: tokens.mt(3);
+		}
 	}
 
 	&__table-container {
 		overflow-x: auto;
 	}
+}
+
+.empty {
+	margin: tokens.mt(4);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 </style>

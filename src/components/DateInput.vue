@@ -322,13 +322,6 @@ const props = defineProps({
 		default: 'https://cuida.framer.wiki/',
 	},
 	/**
-	* Controla a marcação do dia atual no calendário.
-	*/
-	highlightToday: {
-		type: Boolean,
-		default: false,
-	},
-	/**
 	* Define o modo de interação com o DateInput. Quando definido como 'typing', o componente permite apenas
 	* digitação. No modo 'picking', a data deve ser selecionada através do date picker, desabilitando a digitação direta.
 	*/
@@ -833,7 +826,7 @@ function handleMonthSelection(selectedMonth) {
 function handleYearSelection(selectedYear) {
 	internalValue.value = internalValue.value ? internalValue.value : DateTime.now().setLocale('pt-BR').toFormat('dd/MM/yyyy');
 	showYearPicker.value = !showYearPicker.value;
-	let [day, month, year] = internalValue.value.split('/');
+	let [day, month] = internalValue.value.split('/');
 
 	currentDate.value = DateTime.fromFormat(`${day}/${month}/${selectedYear}`, 'dd/MM/yyyy');
 }
@@ -873,25 +866,26 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
-@import '../assets/sass/placeholders.scss';
+@use 'sass:color';
+@use '../assets/sass/tokens/index' as tokens;
+@use'../assets/sass/placeholders.scss';
 
 .date-input {
 	position: relative;
 	width: v-bind(dateInputContainerWidth);
 
 	&__icon {
-		color: $n-700;
-		margin: mt(1);
+		color: tokens.$n-700;
+		margin: tokens.mt(1);
 	}
 
 	&__calendar {
 		position: absolute;
-		background: $n-0;
-		border: 1px solid $n-30;
-		box-shadow: $shadow-md;
-		border-radius: $border-radius-extra-small;
-		padding: pa(3);
+		background: tokens.$n-0;
+		border: 1px solid tokens.$n-30;
+		box-shadow: tokens.$shadow-md;
+		border-radius: tokens.$border-radius-extra-small;
+		padding: tokens.pa(3);
 		width: 266px;
 		z-index: 500;
 		transition: all 0.2s ease;
@@ -921,17 +915,17 @@ defineExpose({
 		padding: 6px 6px;
 		text-align: center;
 		cursor: pointer;
-		@include body-2;
+		@include tokens.body-2;
 		font-size: 14.5px;
-		color: $n-800;
+		color: tokens.$n-800;
 
 		transition: all 0.2s ease;
-		border-radius: $border-radius-lil;
+		border-radius: tokens.$border-radius-lil;
 		z-index: 1;
 		position: relative;
 		@extend %user-select-none;
 
-		@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			@extend .calendar__day;
 			&:hover {
 				background-color: $shade-200;
@@ -945,8 +939,8 @@ defineExpose({
 		padding: 8px 5px;
 		text-align: center;
 		cursor: default;
-		@include body-2;
-		color: $n-800;
+		@include tokens.body-2;
+		color: tokens.$n-800;
 		@extend %user-select-none;
 	}
 
@@ -954,31 +948,31 @@ defineExpose({
 		padding: 8px 5px;
 		text-align: center;
 		font-size: 13.5px;
-		font-weight: $font-weight-semibold;
-		color: $n-700;
+		font-weight: tokens.$font-weight-semibold;
+		color: tokens.$n-700;
 		@extend %user-select-none;
 	}
 
 	&__month-and-title {
-		font-weight: $font-weight-semibold;
-		color: $n-700;
+		font-weight: tokens.$font-weight-semibold;
+		color: tokens.$n-700;
 		font-size: 16px;
 		padding: 4px;
 		transition: all 0.2s ease;
 		@extend %user-select-none;
 
 		&:hover {
-			background: $n-20;
-			border-radius: $border-radius-lil;
-			color: $n-900;
+			background: tokens.$n-20;
+			border-radius: tokens.$border-radius-lil;
+			color: tokens.$n-900;
 			transition: all 0.2s ease;
 			cursor: pointer;
 		}
 	}
 
 	&__month-and-title--no-hover {
-		font-weight: $font-weight-semibold;
-		color: $n-700;
+		font-weight: tokens.$font-weight-semibold;
+		color: tokens.$n-700;
 		font-size: 16px;
 		padding: 4px;
 		transition: all 0.2s ease;
@@ -987,14 +981,14 @@ defineExpose({
 
 	&__caret {
 		cursor: pointer;
-		color: $n-500;
+		color: tokens.$n-500;
 		transition: color 0.2s ease;
 		padding: 6px 6px;
 		
 		&:hover {
-			color: $n-700;
-			background: $bn-50;
-			border-radius: $border-radius-lil;
+			color: tokens.$n-700;
+			background: tokens.$bn-50;
+			border-radius: tokens.$border-radius-lil;
 			transition: all 0.2s ease;
 			padding: 6px 6px;
 		}
@@ -1002,16 +996,16 @@ defineExpose({
 
 	&__left-caret {
 		@extend .calendar__caret;
-		margin: ml(n1);
+		margin: tokens.ml(n1);
 	}
 
 	&__right-caret {
 		@extend .calendar__caret;
-		margin: mr(n1);
+		margin: tokens.mr(n1);
 	}
 
 	&__caret--disabled {
-		color: $n-400;
+		color: tokens.$n-400;
 		cursor: not-allowed;
 		opacity: 0.5;
 	}
@@ -1034,7 +1028,7 @@ defineExpose({
 }
 
 .disabled-day {
-	color: $n-300 !important;
+	color: tokens.$n-300 !important;
 	cursor: not-allowed !important;
 	pointer-events: none;
 }
@@ -1044,26 +1038,26 @@ defineExpose({
 }
 
 .calendar-day:hover {
-	background: $bn-50;
-	border-radius: $border-radius-lil;
+	background: tokens.$bn-50;
+	border-radius: tokens.$border-radius-lil;
 	transition: all 0.2s ease;
 }
 
 .today {
 	position: relative;
-	border-radius: $border-radius-lil;
+	border-radius: tokens.$border-radius-lil;
 
-	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+	@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 		border: 1px solid $shade-300;
 	}
 }
 
 .between-day {
-	background-color: $bn-50;
-	border-radius: $border-radius-lil;
+	background-color: tokens.$bn-50;
+	border-radius: tokens.$border-radius-lil;
 	font-weight: bold;
 
-	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+	@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 		@extend .between-day;
 		color: $shade-600;
 		background-color: $shade-100;
@@ -1076,17 +1070,17 @@ defineExpose({
 }
 
 .selected-day {
-	background-color: $bn-50;
-	border-radius: $border-radius-lil;
+	background-color: tokens.$bn-50;
+	border-radius: tokens.$border-radius-lil;
 	font-weight: bold;
 
-	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+	@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 		@extend .selected-day;
 		color: $shade-50 !important;
 		background-color: $base-color;
 
 		&:hover {
-			background-color: darken($base-color, 5%);
+			background-color: color.adjust($base-color, $lightness: -5%);
 			transition: all 0.2s ease;
 		}
 	}

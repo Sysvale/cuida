@@ -102,11 +102,11 @@ defineProps({
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
-@import '../assets/sass/placeholders.scss';
+@use '../assets/sass/tokens/index' as tokens;
+@use'../assets/sass/placeholders.scss';
 
 .label {
-	@include label;
+	@include tokens.label;
 	display: flex;
 	align-items: flex-end;
 	justify-content: space-between;
@@ -118,9 +118,9 @@ defineProps({
 	}
 
 	&__icon {
-		margin: mTRBL(0, 0, n1, 1);
+		margin: tokens.mTRBL(0, 0, n1, 1);
 		cursor: default;
-		color: $n-700;
+		color: tokens.$n-700;
 	}
 
 	&__link {
@@ -128,8 +128,8 @@ defineProps({
 	}
 
 	&__content {
-		color: $n-800;
-		margin: mb(1);
+		color: tokens.$n-800;
+		margin: tokens.mb(1);
 	}
 }
 </style>

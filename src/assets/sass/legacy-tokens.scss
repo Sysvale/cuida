@@ -1,0 +1,11 @@
+@use './legacy-tokens/tokens/index' as *;
+@import "./legacy-tokens/borders.scss";
+@import "./legacy-tokens/colors.module.scss";
+@import "./legacy-tokens/elevation.scss";
+@import "./legacy-tokens/fontWeight.scss";
+@import "./legacy-tokens/reset.scss";
+@import "./legacy-tokens/shadows.scss";
+@import "./legacy-tokens/spacing.scss";
+@import "./legacy-tokens/transitions.scss";
+@import "./legacy-tokens/typography.scss";
+@import "./legacy-tokens/utils.scss";
