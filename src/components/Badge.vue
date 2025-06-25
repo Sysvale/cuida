@@ -12,7 +12,7 @@
 		>
 			<cds-clickable
 				v-if="clickable"
-				@click="$emit('click', true)"
+				@click.stop="$emit('click', true)"
 			>
 				<!-- @slot Slot padrão utilizado para exibir o conteúdo dentro da badge -->
 				<slot />
