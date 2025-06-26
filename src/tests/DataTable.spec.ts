@@ -1,7 +1,35 @@
 
-import { describe, test, expect } from 'vitest';
+import { describe, test, expect, vi, beforeAll } from 'vitest';
 import DataTable from '../components/DataTable.vue';
 import { shallowMount } from '@vue/test-utils';
+
+beforeAll(() => {
+	class MockIntersectionObserver implements IntersectionObserver {
+		root: Element | null = null;
+		rootMargin: string = '';
+		thresholds: ReadonlyArray<number> = [];
+
+		constructor(
+			public callback: IntersectionObserverCallback,
+			public options: IntersectionObserverInit = {}
+		) {
+			if (options.root) this.root = options.root as Element;
+			if (options.rootMargin) this.rootMargin = options.rootMargin;
+			if (options.threshold) {
+				this.thresholds = Array.isArray(options.threshold)
+					? options.threshold
+					: [options.threshold];
+			}
+		}
+
+		observe = vi.fn();
+		unobserve = vi.fn();
+		disconnect = vi.fn();
+		takeRecords = vi.fn(() => []);
+	}
+
+	global.IntersectionObserver = MockIntersectionObserver;
+});
 
 const fields = ['field1', 'field2', 'field3'];
 const customFields = [

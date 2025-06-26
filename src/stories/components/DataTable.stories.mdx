@@ -127,9 +127,81 @@ export const fields = [
 		key: 'field_4',
 		label: 'Field 4',
 	},
+	{
+		key: 'field-5',
+		label: 'Field 5',
+	},
+	{
+		key: 'field_6',
+		label: 'Field 6',
+	},
+	{
+		key: 'field-7',
+		label: 'Field 7',
+	},
+	{
+		key: 'field_8',
+		label: 'Field 8',
+	},
+	{
+		key: 'field_9',
+		label: 'Field 9',
+	},
+	{
+		key: 'field-10',
+		label: 'Field 10',
+	},
+	{
+		key: 'field_11',
+		label: 'Field 11',
+	},
+	{
+		key: 'field-12',
+		label: 'Field 12',
+	},
+	{
+		key: 'field_13',
+		label: 'Field 13',
+	},
 ];
 
 export const items = [
+	{
+		'field-1': '2023-10-10',
+		'field2': '0',
+		'field-3': 0,
+		'field_4': 10298726432
+	},
+	{
+		'field-1': '2023-10-10',
+		'field2': '1',
+		'field-3': 72,
+		'field_4': 10298726432
+	},
+	{
+		'field-1': '2023-10-10',
+		'field2': 'field 2 content b',
+		'field_3': 60,
+		'field_4': 10298726432
+	},
+	{
+		'field-1': '2023-10-10',
+		'field2': '0',
+		'field-3': 0,
+		'field_4': 10298726432
+	},
+	{
+		'field-1': '2023-10-10',
+		'field2': '1',
+		'field-3': 72,
+		'field_4': 10298726432
+	},
+	{
+		'field-1': '2023-10-10',
+		'field2': 'field 2 content b',
+		'field_3': 60,
+		'field_4': 10298726432
+	},
 	{
 		'field-1': '2023-10-10',
 		'field2': '0',
@@ -215,15 +287,17 @@ export const customFields = [
 	<Story
 		name="DataTable"
 		args={{
-			fields,
+			fields: fields,
 			items,
 			fixedHeader: true,
-			allowSelection: true,
+			allowSelection: false,
 			selectionVariant: 'green',
 			totalItems: 100,
 			customFieldsList: customFields,
 			minVisibleFields: 1,
 			maxVisibleFields: 0,
+			fixedHeader: false,
+			noWrap: true,
 		}}
 	>
 		{ Template.bind({}) }
