@@ -23,7 +23,6 @@
 		</div>
 
 		<div
-			
 			class="data-table"
 		>
 			<div
@@ -323,7 +322,7 @@ onMounted(() => {
 	lastScrollY = window.scrollY;
 	virtualHeaderEl = document.getElementById(virtualHeaderID);
 	dataTabelEl = document.getElementById(dataTableContainerID);
-	
+
 	if(virtualHeaderEl) {
 		virtualHeaderEl.addEventListener('scroll', () => syncScroll(virtualHeaderEl, dataTabelEl));
 	}
