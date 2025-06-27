@@ -3,6 +3,17 @@ import { describe, test, expect, vi, beforeAll } from 'vitest';
 import DataTable from '../components/DataTable.vue';
 import { shallowMount } from '@vue/test-utils';
 
+vi.mock('../utils/methods/uuidv4', () => {
+	const generateKey = vi.fn();
+
+	generateKey
+		.mockImplementationOnce(() => 'mock-id-1')
+		.mockImplementationOnce(() => 'mock-id-2')
+		.mockImplementationOnce(() => 'mock-id-3');
+
+	return { default: generateKey };
+});
+
 beforeAll(() => {
 	class MockIntersectionObserver implements IntersectionObserver {
 		root: Element | null = null;

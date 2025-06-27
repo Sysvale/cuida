@@ -2,19 +2,19 @@
 
 exports[`DataTable > renders correctly 1`] = `
 "<div data-v-046d4556="" fields="field1,field2,field3" items="[object Object],[object Object]">
-  <div data-v-046d4556="" id="4f8f3144-6afd-4866-b7a3-d73c18edb9b5" class="virtual-header" style="width: 0px; display: none;">
+  <div data-v-046d4556="" id="mock-id-1" class="virtual-header" style="width: 0px; display: none;">
     <!--v-if-->
     <div data-v-046d4556="" class="virtual-header__th--first" style="min-width: 0px;">field1</div>
     <div data-v-046d4556="" class="virtual-header__th" style="min-width: 0px;">field2</div>
     <div data-v-046d4556="" class="virtual-header__th--last" style="min-width: 0px;">field3</div>
   </div>
   <div data-v-046d4556="" class="data-table">
-    <div data-v-046d4556="" id="b24704d6-546b-411d-b6f6-328659362712" class="data-table__header">
+    <div data-v-046d4556="" id="mock-id-2" class="data-table__header">
       <div data-v-046d4556="" class="data-table__items-counter">200 registros encontrados</div>
       <cds-flexbox-stub data-v-046d4556="" direction="row" wrap="wrap" gap="3" justify="flex-end" align="center" tag="div" fluid="false" class="data-table__actions"></cds-flexbox-stub>
       <!--v-if-->
     </div>
-    <div data-v-046d4556="" id="5075883a-9fcd-40de-bceb-e331031268dc" class="data-table__table-container">
+    <div data-v-046d4556="" id="mock-id-3" class="data-table__table-container">
       <cds-table-stub data-v-046d4556="" modelvalue="" items="[object Object],[object Object]" fields="field1,field2,field3" hover="false" allowselection="false" selectionvariant="green" sortable="false" fixedheader="false" sortdesc="false" nowrap="false"></cds-table-stub>
     </div>
   </div>
