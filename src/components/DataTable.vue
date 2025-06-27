@@ -297,7 +297,7 @@ const observer = new IntersectionObserver((entries) => {
 		}
 	});
 }, {
-	threshold: 1
+	threshold: 0.1
 });
 
 const computedMaxVisibleFields = computed(() => {
@@ -442,9 +442,9 @@ function handleSearchInput(value) {
 .virtual-header {
 	background-color: tokens.$n-10;
 	position: sticky;
-	top: 4px;
+	top: 0px;
 	box-shadow: tokens.$shadow-sm;
-	z-index: tokens.$z-index-backdrop;
+	z-index: tokens.$z-index-toolbar;
 	display: flex;
 	overflow-x: scroll;
 	scrollbar-width: none;
