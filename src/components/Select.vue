@@ -78,208 +78,159 @@
 					class="option__add"
 					@mousedown="handleAddOption"
 				>
-					Adicionar "{{ searchString }}"
+					<span class="add-button-searchstring">{{ searchString }} </span>
+					<small class="add-button-text">Clique para adicionar</small>
 				</div>
 			</div>
 		</div>
 	</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, watch, computed, useTemplateRef, onMounted, nextTick  } from 'vue';
 import {
-	nativeEvents,
+	type NativeEvents,
 	nativeEmits,
-} from '../utils/composables/useComponentEmits.js';
+} from '../utils/composables/useComponentEmits';
 import { widths } from '../utils';
 import { generateKey } from '../utils';
 import { get, cloneDeep } from 'lodash';
 import removeAccents from '../utils/methods/removeAccents';
 import CdsBaseInput from './BaseInput.vue';
 
-
 const model = defineModel('modelValue', {
 	type: [Array, Object],
 });
 
-const props = defineProps({
-	/**
-	 * Especifica o título do select.
-	 */
-	label: {
-		type: String,
-		default: 'Label',
-	},
-	/**
-	 * Indica o texto que instrui o usuário a como interagir com o select.
-	 */
-	placeholder: {
-		type: String,
-		default: 'Selecione...',
+const props = withDefaults(
+	defineProps<{
+		/**
+		* Especifica o título do select.
+		*/
+		label?: string;
+		/**
+		* Indica o texto que instrui o usuário a como interagir com o select.
+		*/
+		placeholder: string;
+		/**
+		* Array de objetos que especifica a lista de opções do select. Os valores
+		* a serem mostrado como opções do select devem estar atribuídos a chave
+		* `value` do objeto.
+		*/
+		options: {
+			id: number | string,
+			value: number | string,
+		};
+		/**
+		* Especifica o estado do Select. As opções são 'default', 'valid', 'loading' e 'invalid'.
+		*/
+		state: 'default' | 'valid' | 'loading' | 'invalid'; 
+		/**
+		* Controla a exibição do asterísco indicativo de campo obrigatório.
+		*/
+		required?: boolean;
+		/**
+	 	* Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+	 	*/
+		errorMessage?: string;
+		/**
+	 	* Indica se vai ser possível fazer buscas no select.
+	 	*/
+		searchable?: boolean;
+		/**
+		* <span className="deprecated-warning">[DEPRECATED]</span> Define a largura do Select. As opções são 'thin', 'default' e 'wide'.
+		*/
+		width?: 'thin' | 'default' | 'wide' | '';
+		/**
+	 	* Especifica se a largura do select deve ser fluida.
+	 	*/
+		fluid?: boolean;
+		/**
+	 	* Especifica o status de interação do select.
+	 	*/
+		disabled?: boolean;
+		/**
+	 	* Define exibição e texto do tooltip do select
+	 	*/
+		tooltip?: string | null;
+		/**
+	 	* Especifica ícone do tooltip do Select.
+	 	*/
+		tooltipIcon?: string;
+		/**
+		* Indica o nome da da chave do objeto a ser considerada na renderização
+		* das opções do select.
+		*/
+		optionsField?: string;
+		/**
+		* Quando true, passa a retornar o optionsField no modelValue fora do objeto
+		* das opções do select.
+		*/
+		returnValue?: boolean;
+		/**
+		* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela `supportLink` na v4. Define texto do link do input (localizado à direita da label).
+		*/
+		linkText?: string | null;
+		/**
+		* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela `supportLinkUrl` na v4. Define a url a ser acessada no clique do link (no caso do link ser exibido).
+		*/
+		linkUrl?: string;
+		/**
+		* Controla a exibição e o conteúdo do link de suporte exibido ao lado da label.
+		*/
+		supportLink?: string | null;
+		/**
+		* Especifica mensagem de auxílio.
+		*/
+		supportingText?: string | string[];
+		/**
+		* Define a url a ser acessada no clique do link de suporte.
+		*/
+		supportLinkUrl?: string;
+		/**
+		* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile
+		*/
+		mobile?: boolean;
+		/**
+		* Define o tipo do input, se true será um input adaptado para o mobile
+		*/
+		floatingLabel?: boolean;
+		/**
+		* Indica se vai ser possível adicionar novas opções ao Select. Só tem efeito se a prop `searchable` for `true`.
+		*/
+		addable?: boolean;
+	}>(),
+	{
+		label: 'Label',
+		placeholder: 'Selecione...',
+		state: 'default', 
 		required: false,
+		errorMessage: 'Valor inválido',
+		searchable: false,
+		width: '',
+		fluid: false,
+		disabled: false,
+		tooltip: null,
+		tooltipIcon: 'info-outline',
+		optionsField: 'value',
+		returnValue: false,
+		linkText: null,
+		linkUrl: 'https://cuida.framer.wiki/',
+		supportLink: null,
+		supportingText: '',
+		supportLinkUrl: 'https://cuida.framer.wiki/',
+		mobile: false,
+		floatingLabel: false,
+		addable: false,
 	},
-	/**
-	 * Array de objetos que especifica a lista de opções do select. Os valores
-	 * a serem mostrado como opções do select devem estar atribuídos a chave
-	 * `value` do objeto.
-	 */
-	options: {
-		type: Array,
-		default: () => [],
-		required: true,
-	},
-	/**
-	 * Especifica o estado do Select. As opções são 'default', 'valid', 'loading' e 'invalid'.
-	 */
-	state: {
-		type: String,
-		default: 'default',
-	},
-	/**
-	 * Controla a exibição do asterísco indicativo de campo obrigatório.
-	 */
-	required: {
-		type: Boolean,
-		default: false,
-		required: false,
-	},
-	/**
-	 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
-	 */
-	errorMessage: {
-		type: String,
-		default: 'Valor inválido',
-	},
-	/**
-	 * Indica se vai ser possível fazer buscas no select.
-	 */
-	searchable: {
-		type: Boolean,
-		default: false,
-		required: false,
-	},
-	/**
-	 * <span className="deprecated-warning">[DEPRECATED]</span> Define a largura do Select. As opções são 'thin', 'default' e 'wide'.
-	 */
-	width: {
-		type: String,
-		default: '',
-		required: false,
-	},
-	/**
-	 * Especifica se a largura do select deve ser fluida.
-	 */
-	fluid: {
-		type: Boolean,
-		default: false,
-		required: false,
-	},
-	/**
-	 * Especifica o status de interação do select.
-	 */
-	disabled: {
-		type: Boolean,
-		default: false,
-		required: false,
-	},
-	/**
-	 * Define exibição e texto do tooltip do select
-	 */
-	tooltip: {
-		type: String,
-		default: null,
-	},
-	/**
-	 * Especifica ícone do tooltip do Select.
-	 */
-	tooltipIcon: {
-		type: String,
-		default: 'info-outline',
-	},
-	/**
-	* Indica o nome da da chave do objeto a ser considerada na renderização
-	* das opções do select.
-	*/
-	optionsField: {
-		type: String,
-		default: 'value',
-		required: false,
-	},
-	/**
-	* Quando true, passa a retornar o optionsField no modelValue fora do objeto
-	* das opções do select.
-	*/
-	returnValue: {
-		type: Boolean,
-		default: false,
-		required: false,
-	},
-	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela `supportLink` na v4. Define texto do link do input (localizado à direita da label).
-	*/
-	linkText: {
-		type: String,
-		default: null,
-	},
-	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela `supportLinkUrl` na v4. Define a url a ser acessada no clique do link (no caso do link ser exibido).
-	*/
-	linkUrl: {
-		type: String,
-		default: 'https://cuida.framer.wiki/',
-	},
-	/**
-	* Controla a exibição e o conteúdo do link de suporte exibido ao lado da label.
-	*/
-	supportLink: {
-		type: String,
-		default: null,
-	},
-	/**
-	* Especifica mensagem de auxílio.
-	*/
-	supportingText: {
-		type: [String, Array],
-		default: '',
-	},
-	/**
-	* Define a url a ser acessada no clique do link de suporte.
-	*/
-	supportLinkUrl: {
-		type: String,
-		default: 'https://cuida.framer.wiki/',
-	},
-	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile
-	*/
-	mobile: {
-		type: Boolean,
-		default: false,
-	},
-	/**
-	* Define o tipo do input, se true será um input adaptado para o mobile
-	*/
-	floatingLabel: {
-		type: Boolean,
-		default: false,
-	},
-	/**
-	* Indica se vai ser possível adicionar novas opções ao Select. Só tem efeito se a prop `searchable` for `true`.
-	*/
-	addable: {
-		type: Boolean,
-		default: false,
-	},
-});
+);
 
-const emits = defineEmits({
-	...nativeEvents
-});
+const emits = defineEmits<NativeEvents>();
 
 /* REACTIVE DATA */
 const currentPos = ref(0);
 const active = ref(false);
-const id = ref(null);
+const id = ref<null | string>(null);
 const allowSearch = ref(false);
 const localOptions = ref([]);
 const pristineOptions = ref([]);
@@ -743,7 +694,6 @@ defineExpose({
 .option {
 	&__add {
 		cursor: pointer;
-		font-weight: tokens.$font-weight-semibold;
 		background-color: tokens.$n-20;
 		padding: tokens.pa(3);
 	}

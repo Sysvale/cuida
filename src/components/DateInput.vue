@@ -146,7 +146,7 @@
 	</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed, watch, useTemplateRef } from 'vue';
 import { DateTime } from 'luxon';
 import CdsBaseInput from './BaseInput.vue';
@@ -157,9 +157,9 @@ import { direction, dropdownTopPosition, dropdownBottomPosition } from '../utils
 import MonthSelectorGrid from './InternalComponents/MonthSelectorGrid.vue';
 import YearSelectorGrid from './InternalComponents/YearSelectorGrid.vue';
 import {
-	nativeEvents,
+	type NativeEvents,
 	nativeEmits,
-} from '../utils/composables/useComponentEmits.js';
+} from '../utils/composables/useComponentEmits.ts';
 import { useClickOutside } from '../utils/composables/useClickOutside.js';
 import { facade } from 'vue-input-facade';
 const vFacade = facade;
@@ -332,9 +332,7 @@ const props = defineProps({
 	},
 });
 
-const emits = defineEmits({
-	...nativeEvents
-});
+const emits = defineEmits<NativeEvents>();
 
 /* REACTIVE DATA */
 const baseInputRef = useTemplateRef('baseInput');

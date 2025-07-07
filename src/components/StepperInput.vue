@@ -96,13 +96,13 @@
 	</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed, watch, useTemplateRef } from 'vue';
 import { useHasSlots } from '../utils/composables/useHasSlots.js';
 import {
-	nativeEvents,
+	type NativeEvents,
 	nativeEmits,
-} from '../utils/composables/useComponentEmits.js';
+} from '../utils/composables/useComponentEmits.ts';
 import { useInputStatusClasses } from '../utils/composables/useInputStatusClasses.js';
 import { longClickDirective } from '@sysvale/vue3-long-click';
 
@@ -122,21 +122,26 @@ defineExpose({
 	componentRef,
 });
 
-const emits = defineEmits({
-	/**
-	* Evento emitido quando o valor do modelValue está fora dos limites definidos pelas props `min` e `max`.
-	* @event invalid-number
-	* @type {Event}
-	*/
-	'invalid-number': null,
-	/**
-	* Evento emitido quando o valor da prop `Step` está fora dos limites definidos pelas props `min` e `max`.
-	* @event step-out-of-bounds
-	* @type {Event}
-	*/
-	'step-out-of-bounds': null,
-	...nativeEvents
-});
+// const emits = defineEmits({
+// 	/**
+// 	* Evento emitido quando o valor do modelValue está fora dos limites definidos pelas props `min` e `max`.
+// 	* @event invalid-number
+// 	* @type {Event}
+// 	*/
+// 	'invalid-number': null,
+// 	/**
+// 	* Evento emitido quando o valor da prop `Step` está fora dos limites definidos pelas props `min` e `max`.
+// 	* @event step-out-of-bounds
+// 	* @type {Event}
+// 	*/
+// 	'step-out-of-bounds': null,
+// 	// ...nativeEvents
+// });
+
+const emits = defineEmits<NativeEvents & {
+	(event: 'invalid'): void;
+	(event: 'step-out-of-bounds'): void;
+}>();
 
 const { emitFocus, emitBlur, emitChange, emitClick } = nativeEmits(emits);
 

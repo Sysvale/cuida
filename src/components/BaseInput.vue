@@ -181,13 +181,13 @@
 	</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed, watch, useTemplateRef, onMounted } from 'vue';
 import { useHasSlot } from '../utils/composables/useHasSlot.js';
 import {
-	nativeEvents,
+	type NativeEvents,
 	nativeEmits,
-} from '../utils/composables/useComponentEmits.js';
+} from '../utils/composables/useComponentEmits.ts';
 import generateKey from '../utils/methods/uuidv4';
 import inputTypeValidator from '../utils/validators/input';
 import CdsIcon from './Icon.vue';
@@ -297,7 +297,7 @@ const props = defineProps({
 	* Controla a exibição e o conteúdo do link de suporte exibido ao lado da label.
 	*/
 	supportLink: {
-		type: String,
+		type: [String, null],
 		default: null,
 	},
 	/**
@@ -379,9 +379,7 @@ const props = defineProps({
 	},
 });
 
-const emits = defineEmits({
-	...nativeEvents
-});
+const emits = defineEmits<NativeEvents>();
 
 /* REACTIVE DATA */
 const componentRef = ref();
