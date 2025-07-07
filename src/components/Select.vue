@@ -249,6 +249,7 @@ const { emitClick, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
 const baseInputControl = ref(0);
 const searchString = ref('');
 
+
 /* COMPUTED */
 const resolveChevronTop = computed(() => {
 	return props.mobile ? '9px' : '6px';
@@ -414,6 +415,7 @@ function hide() {
 
 	localOptions.value = pristineOptions.value;
 	searchString.value = '';
+	baseInputControl.value += 1;
 	active.value = false;
 	emitBlur();
 }
@@ -696,6 +698,9 @@ defineExpose({
 		cursor: pointer;
 		background-color: tokens.$n-20;
 		padding: tokens.pa(3);
+		width: 100%;
+		display: flex;
+		flex-direction: column;
 	}
 
 	&__text {
@@ -718,5 +723,16 @@ defineExpose({
 .highlight{
 	background-color: tokens.$n-10;
 	cursor: pointer;
+}
+
+.add-button-searchstring {
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.add-button-text {
+	@include tokens.overline;
+	font-weight: tokens.$font-weight-bold;
 }
 </style>
