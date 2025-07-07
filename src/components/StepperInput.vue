@@ -102,7 +102,7 @@ import { useHasSlots } from '../utils/composables/useHasSlots.js';
 import {
 	type NativeEvents,
 	nativeEmits,
-} from '../utils/composables/useComponentEmits.ts';
+} from '../utils/composables/useComponentEmits';
 import { useInputStatusClasses } from '../utils/composables/useInputStatusClasses.js';
 import { longClickDirective } from '@sysvale/vue3-long-click';
 

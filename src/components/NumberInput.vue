@@ -55,7 +55,7 @@ import { ref, watch, onMounted, useTemplateRef } from 'vue';
 import {
 	type NativeEvents,
 	nativeEmits,
-} from '../utils/composables/useComponentEmits.ts';
+} from '../utils/composables/useComponentEmits';
 import { vCdsBrl, unmaskBRL } from '../utils/directives/cdsBRL';
 import { facade } from 'vue-input-facade';
 import CdsBaseInput from './BaseInput.vue';
