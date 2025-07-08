@@ -60,11 +60,13 @@ export const Template = (args) => ({
 	},
 	template: /*html*/ `
 		<cds-dynamic-input-list
+			ref="dynamicInput"
 			v-bind="args"
 			v-model="value"
 		/>`,
 	updated() {
 		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+		console.info('%cArray of Values: ', 'color: #2C70CD;', this.$refs.dynamicInput.arrayOfValues());
 	},
 });
 
