@@ -17,12 +17,12 @@
 	</div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, watch, useTemplateRef } from 'vue';
 import {
-	type NativeEvents,
+	nativeEvents,
 	nativeEmits,
-} from '../utils/composables/useComponentEmits';
+} from '../utils/composables/useComponentEmits.js';
 import CdsBaseInput from './BaseInput.vue';
 
 const baseInputRef = useTemplateRef('baseInput');
@@ -133,7 +133,9 @@ const props = defineProps({
 	},
 });
 
-const emits = defineEmits<NativeEvents>();
+const emits = defineEmits({
+	...nativeEvents
+});
 
 const internalValue = ref(model.value);
 const { emitClick, emitChange, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);

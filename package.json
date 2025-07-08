@@ -1,6 +1,6 @@
 {
 	"name": "@sysvale/cuida",
-	"version": "3.124.4",
+	"version": "3.124.5",
 	"description": "A design system built by Sysvale, using storybook and Vue components",
 	"repository": {
 		"type": "git",
@@ -59,12 +59,9 @@
 		"@storybook/testing-library": "^0.0.13",
 		"@storybook/vue3": "^6.5.10",
 		"@types/vue": "^2.0.0",
-		"@typescript-eslint/eslint-plugin": "^8.35.1",
-		"@typescript-eslint/parser": "^8.35.1",
 		"@vitejs/plugin-vue": "^5.1.4",
 		"@vitest/coverage-v8": "^3.2.1",
 		"@vitest/ui": "^3.2.1",
-		"@vue/eslint-config-typescript": "^14.6.0",
 		"@vue/test-utils": "^2.0.2",
 		"babel-loader": "^8.2.5",
 		"concat": "^1.0.3",

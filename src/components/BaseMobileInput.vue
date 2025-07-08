@@ -242,12 +242,12 @@
 	</CdsFlexbox>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, computed, watch, useTemplateRef, useAttrs, nextTick } from 'vue';
 import {
-	type NativeEvents,
+	nativeEvents,
 	nativeEmits,
-} from '../utils/composables/useComponentEmits';
+} from '../utils/composables/useComponentEmits.js';
 import generateKey from '../utils/methods/uuidv4';
 import inputTypeValidator from '../utils/validators/input';
 import CdsLink from './Link.vue';
@@ -395,7 +395,9 @@ const props = defineProps({
 	},
 });
 
-const emits = defineEmits<NativeEvents>();
+const emits = defineEmits({
+	...nativeEvents
+});
 
 const internalValue = ref('');
 const previousInternalValue = ref('');
