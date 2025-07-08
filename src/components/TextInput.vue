@@ -20,7 +20,7 @@ import { ref, watch, useTemplateRef } from 'vue';
 import {
 	type NativeEvents,
 	nativeEmits,
-} from '../utils/composables/useComponentEmits';
+} from '../utils/composables/useComponentEmits.ts';
 import { facade } from 'vue-input-facade';
 import CdsBaseInput from './BaseInput.vue';
 

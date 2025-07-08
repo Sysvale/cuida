@@ -22,7 +22,7 @@ import { ref, watch, useTemplateRef } from 'vue';
 import {
 	type NativeEvents,
 	nativeEmits,
-} from '../utils/composables/useComponentEmits';
+} from '../utils/composables/useComponentEmits.ts';
 import CdsBaseInput from './BaseInput.vue';
 
 const baseInputRef = useTemplateRef('baseInput');

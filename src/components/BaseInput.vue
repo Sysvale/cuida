@@ -187,7 +187,7 @@ import { useHasSlot } from '../utils/composables/useHasSlot.js';
 import {
 	type NativeEvents,
 	nativeEmits,
-} from '../utils/composables/useComponentEmits';
+} from '../utils/composables/useComponentEmits.ts';
 import generateKey from '../utils/methods/uuidv4';
 import inputTypeValidator from '../utils/validators/input';
 import CdsIcon from './Icon.vue';

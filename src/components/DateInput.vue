@@ -159,7 +159,7 @@ import YearSelectorGrid from './InternalComponents/YearSelectorGrid.vue';
 import {
 	type NativeEvents,
 	nativeEmits,
-} from '../utils/composables/useComponentEmits';
+} from '../utils/composables/useComponentEmits.ts';
 import { useClickOutside } from '../utils/composables/useClickOutside.js';
 import { facade } from 'vue-input-facade';
 const vFacade = facade;
