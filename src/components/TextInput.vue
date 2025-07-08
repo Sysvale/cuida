@@ -15,12 +15,12 @@
 	/>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, watch, useTemplateRef } from 'vue';
 import {
-	type NativeEvents,
+	nativeEvents,
 	nativeEmits,
-} from '../utils/composables/useComponentEmits.ts';
+} from '../utils/composables/useComponentEmits.js';
 import { facade } from 'vue-input-facade';
 import CdsBaseInput from './BaseInput.vue';
 
@@ -178,7 +178,9 @@ const props = defineProps({
 	},
 });
 
-const emits = defineEmits<NativeEvents>();
+const emits = defineEmits({
+	...nativeEvents
+});
 
 const internalValue = ref('');
 const internalMask = ref(props.mask);

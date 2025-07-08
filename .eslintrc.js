@@ -6,7 +6,6 @@ module.exports = {
 		'eslint:recommended',
 		'plugin:vue/vue3-recommended',
 		'plugin:vue/vue3-strongly-recommended',
-		'@vue/eslint-config-typescript/recommended',
 	],
 	rules: {
 		'vue/html-indent': [

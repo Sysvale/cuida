@@ -50,12 +50,12 @@
 	</div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, watch, onMounted, useTemplateRef } from 'vue';
 import {
-	type NativeEvents,
+	nativeEvents,
 	nativeEmits,
-} from '../utils/composables/useComponentEmits.ts';
+} from '../utils/composables/useComponentEmits.js';
 import { vCdsBrl, unmaskBRL } from '../utils/directives/cdsBRL';
 import { facade } from 'vue-input-facade';
 import CdsBaseInput from './BaseInput.vue';
@@ -219,7 +219,9 @@ const props = defineProps({
 	},
 });
 
-const emits = defineEmits<NativeEvents>();
+const emits = defineEmits({
+	...nativeEvents
+});
 
 /* REACTIVE DATA */
 const internalValue = ref('');
