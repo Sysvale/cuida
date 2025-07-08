@@ -32,13 +32,13 @@
 		
 					<CdsClickable
 						v-if="internalModel.length > 1"
-						clickable
+						:clickable="!disabled"
 					>
 						<CdsIcon
 							height="20"
 							width="20"
 							name="x-outline"
-							class="multiinput__x-icon"
+							:class="disabled ? `multiinput__x-icon--disabled` : `multiinput__x-icon`"
 							@click="removeInput(index)"
 						/>
 					</CdsClickable>
@@ -163,7 +163,7 @@ const props = defineProps({
 		}),
 	},
 	/**
-	* Define se o usuário pode preencher manualmente o conteúdo.
+	* Define se o usuário pode preencher manualmente o conteúdo. Utilize-o apenas quando o conteúdo dos inputs forem gerados programaticamente, via incrementResolver.
 	*/
 	disableEdit: {
 		type: Boolean,
@@ -258,6 +258,10 @@ defineExpose({
 	
 		&:hover {
 			color: tokens.$n-900;
+		}
+
+		&--disabled {
+			color: tokens.$n-300;
 		}
 	}
 
