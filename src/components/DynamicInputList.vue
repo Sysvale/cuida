@@ -25,6 +25,7 @@
 						floating-label
 						:label="inputLabel"
 						:state="inputState(index)"
+						:disabled="disabled || disableEdit"
 						error-message=""
 						@keyup.enter="addInput"
 					/>
@@ -46,6 +47,7 @@
 	
 			<CdsFlatButton
 				:variant="buttonVariant"
+				:disabled="disabled"
 				class="multiinput__add-button"
 				@click="addInput"
 			>
@@ -86,7 +88,7 @@ const model = defineModel('modelValue', {
 	],
 });
 
-defineProps({
+const props = defineProps({
 	/**
 	* Label do DynamicInputList.
 	*/
@@ -143,8 +145,31 @@ defineProps({
 		type: String,
 		default: 'https://cuida.framer.wiki/',
 	},
+	/**
+	* Define estado de desabilitação do componente.
+	*/
+	disabled: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Define método para geração de novos itens. Deve retornar um objeto com `label` e `value`. Sobrescreve o método padrão de geração de novos itens.
+	*/
+	incrementResolver: {
+		type: Function,
+		default: () => ({
+			label: '',
+			value: generateKey(),
+		}),
+	},
+	/**
+	* Define se o usuário pode preencher manualmente o conteúdo.
+	*/
+	disableEdit: {
+		type: Boolean,
+		default: false,
+	},
 });
-
 
 const internalModel = ref([]);
 const inputRefs = ref([]);
@@ -163,13 +188,11 @@ watch(internalModel, (newValue) => {
 }, { deep: true });
 
 function addInput() {
+	if (props.disabled) return
 	triedToAddInput.value = true
 	if (internalModel.value[internalModel.value.length - 1].label === '') return
 
-	internalModel.value.push({
-		value: generateKey(),
-		label: '',
-	})
+	internalModel.value.push(props.incrementResolver());
 
 	triedToAddInput.value = false
 	focusLastInput()
@@ -197,6 +220,7 @@ function inputState(index) {
 }
 
 function removeInput(index) {
+	if (props.disabled) return;
 	internalModel.value.splice(index, 1);
 }
 
