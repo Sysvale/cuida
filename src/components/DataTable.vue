@@ -344,8 +344,15 @@ onMounted(() => {
 
 onUnmounted(() => {
 	if (observer) observer.disconnect();
-	virtualHeaderEl.removeEventListener('scroll', syncScroll);
-	dataTabelEl.removeEventListener('scroll', syncScroll);
+
+	if(virtualHeaderEl) {
+		virtualHeaderEl.removeEventListener('scroll', syncScroll);
+	}
+
+	if(dataTabelEl) {
+		dataTabelEl.removeEventListener('scroll', syncScroll);
+	}
+
 	window.removeEventListener('scroll', handleScroll);
 });
 
