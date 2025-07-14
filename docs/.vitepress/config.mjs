@@ -1,0 +1,131 @@
+import { defineConfig } from 'vitepress';
+import { fileURLToPath, URL } from 'node:url';
+
+export default defineConfig({
+	title: 'Cuida',
+	description: 'A design system built by Sysvale, using Vue components',
+	
+	themeConfig: {
+		nav: [
+			{ text: 'Fundação', link: '/foundation/' },
+			{ text: 'Componentes', link: '/components/' },
+			{ text: 'Utils', link: '/utils/' },
+			{ text: 'ícones', link: '/utils/' },
+			{ text: 'Brand', link: '/utils/' },
+			{ text: 'GitHub', link: 'https://github.com/Sysvale/cuida' }
+		],
+
+		sidebar: {
+			'/foundation/': [
+				{
+					text: 'Design Tokens',
+					items: [
+						{ text: 'Cores', link: '/foundation/cores' },
+						{ text: 'Tipografia', link: '/foundation/tipografia' },
+						{ text: 'Espaçamento', link: '/foundation/espacamento' },
+						{ text: 'Bordas', link: '/foundation/bordas' },
+						{ text: 'Elevação', link: '/foundation/elevation' },
+						{ text: 'Sombras', link: '/foundation/shadow' },
+						{ text: 'Transições', link: '/foundation/transicoes' },
+						{ text: 'Iconografia', link: '/foundation/iconografia' },
+						{ text: 'Peso da Fonte', link: '/foundation/peso-fonte' },
+						{ text: 'Princípios', link: '/foundation/principles' }
+					]
+				}
+			],
+			'/components/': [
+				{
+					text: 'Forms',
+					items: [
+						{ text: 'Button', link: '/components/button' },
+						{ text: 'BaseInput', link: '/components/base-input' },
+						{ text: 'TextInput', link: '/components/text-input' },
+						{ text: 'TextArea', link: '/components/text-area' },
+						{ text: 'Select', link: '/components/select' },
+						{ text: 'Checkbox', link: '/components/checkbox' },
+						{ text: 'Radio', link: '/components/radio' },
+						{ text: 'Switch', link: '/components/switch' },
+						{ text: 'Slider', link: '/components/slider' }
+					]
+				},
+				{
+					text: 'Navigation',
+					items: [
+						{ text: 'NavBar', link: '/components/navbar' },
+						{ text: 'SideBar', link: '/components/sidebar' },
+						{ text: 'Breadcrumb', link: '/components/breadcrumb' },
+						{ text: 'Tabs', link: '/components/tabs' },
+						{ text: 'Pagination', link: '/components/pagination' }
+					]
+				},
+				{
+					text: 'Data Display',
+					items: [
+						{ text: 'Table', link: '/components/table' },
+						{ text: 'DataTable', link: '/components/data-table' },
+						{ text: 'Card', link: '/components/card' },
+						{ text: 'List', link: '/components/list' },
+						{ text: 'Avatar', link: '/components/avatar' },
+						{ text: 'Badge', link: '/components/badge' }
+					]
+				},
+				{
+					text: 'Feedback',
+					items: [
+						{ text: 'Alert', link: '/components/alert' },
+						{ text: 'Toast', link: '/components/toast' },
+						{ text: 'Modal', link: '/components/modal' },
+						{ text: 'Tooltip', link: '/components/tooltip' },
+						{ text: 'Spinner', link: '/components/spinner' }
+					]
+				}
+			],
+			'/utils/': [
+				{
+					text: 'Utilities',
+					items: [
+						{ text: 'CdsFloatify', link: '/utils/cds-floatify' },
+						{ text: 'CdsTip', link: '/utils/cds-tip' },
+						{ text: 'ContrastChecker', link: '/utils/contrast-checker' },
+						{ text: 'HasSlot', link: '/utils/has-slot' },
+						{ text: 'IsDeviceType', link: '/utils/is-device-type' },
+						{ text: 'PaleteResolver', link: '/utils/palete-resolver' },
+						{ text: 'RemoveAccents', link: '/utils/remove-accents' },
+						{ text: 'Rounder', link: '/utils/rounder' },
+						{ text: 'VariantResolver', link: '/utils/variant-resolver' }
+					]
+				},
+				{
+					text: 'Composables',
+					items: [
+						{ text: 'useToast', link: '/utils/use-toast' }
+					]
+				}
+			]
+		},
+
+		socialLinks: [
+			{ icon: 'github', link: 'https://github.com/Sysvale/cuida' },
+			{ icon: 'npm', link: 'https://github.com/Sysvale/cuida' },
+			{ icon: 'figma', link: 'https://github.com/Sysvale/cuida' },
+			{ icon: 'chromatic', link: 'https://github.com/Sysvale/cuida' }
+		]
+	},
+
+	vite: {
+		resolve: {
+			alias: {
+				'@': fileURLToPath(new URL('../../src', import.meta.url))
+			}
+		}
+	},
+
+	vue: {
+		template: {
+			compilerOptions: {
+				isCustomElement: (tag) => tag.startsWith('cds-')
+			}
+		}
+	}
+});
+

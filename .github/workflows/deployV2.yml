@@ -21,10 +21,10 @@ jobs:
       - name: 🔧 Build
         run: |
           npm ci
-          npm run build-storybook
+          npm run docs:build
 
       - name: 🚀 Deploy - legacy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: storybook-static
+          folder: docs/.vitepress/dist
           branch: gh-pages
