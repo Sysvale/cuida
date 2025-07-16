@@ -116,13 +116,16 @@ const gapResolver = computed(() => {
 	return composedGap;
 });
 
+// NOTE: O valor de fallback foi alterado de 'fit-content' para 'auto' para corrigir problemas
+// de layout introduzidos após a adição da prop 'fluid'. Caso o uso de 'fit-content' seja necessário
+// novamente no futuro, considerar a criação de uma nova prop mais genérica para controle de largura.
 const fluidResolver = computed(() => {
-	return props.fluid ? '100%' : 'fit-content';
+	return props.fluid ? '100%' : 'auto';
 });
 	
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .flexbox {
 	align-items: v-bind(align);

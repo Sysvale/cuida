@@ -29,6 +29,7 @@
 			</template>
 
 			<CdsLabel
+				v-if="!hideLabelInput"
 				:text="label"
 				:fluid="fluid"
 				:for="componentId"
@@ -212,6 +213,13 @@ const props = defineProps({
 	label: {
 		type: String,
 		default: 'Label',
+	},
+	/**
+	 * Quando ativado e o tipo selecionado for for search a label não será exibida.
+	 */
+	hideLabel: {
+		type: Boolean,
+		default: false,
 	},
 	/**
 	* Desabilita o input.
@@ -452,6 +460,11 @@ const spinnerXPosition = computed(() => {
 	return hasTrailingIcon.value ? '36px' : '9px';
 });
 
+const hideLabelInput = computed(() => props.type === 'search'
+	&& props.hideLabel
+	&& !props.floatingLabel
+);
+
 /* WATCHERS */
 watch(model, (newValue, oldValue) => {
 	if (newValue !== oldValue) {
@@ -537,8 +550,8 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
-@import '../assets/sass/placeholders.scss';
+@use '../assets/sass/tokens/index' as tokens;
+@use'../assets/sass/placeholders.scss';
 
 .base-input {
 	@extend %input;
@@ -548,11 +561,11 @@ defineExpose({
 	cursor: v-bind(computedCursor);
 
 	&__top-content {
-		padding: pa(1);
+		padding: tokens.pa(1);
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		gap: spacer(2);
+		gap: tokens.spacer(2);
 	}
 
 	&__supporting-text-container {
@@ -565,7 +578,7 @@ defineExpose({
 	}
 
 	&__label {
-		@include label;
+		@include tokens.label;
 		display: flex;
 		align-items: flex-end;
 		justify-content: space-between;
@@ -589,7 +602,7 @@ defineExpose({
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		margin: ml(2);
+		margin: tokens.ml(2);
 		min-width: 15px;
 	}
 
@@ -598,7 +611,7 @@ defineExpose({
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		margin: mr(3);
+		margin: tokens.mr(3);
 		min-width: 15px;
 	}
 
@@ -611,14 +624,14 @@ defineExpose({
 	}
 
 	&__field {
-		padding: pTRBL(0, 2, 3, 2);
+		padding: tokens.pTRBL(0, 2, 3, 2);
 		padding-top: v-bind(inputTopPadding);
 		height: v-bind(inputHeight);
 		min-height: v-bind(inputMinHeight);
-		border-radius: $border-radius-extra-small;
+		border-radius: tokens.$border-radius-extra-small;
 		border: none;
 		text-align: start;
-		color: $n-600;
+		color: tokens.$n-600;
 		width: 100%;
 		resize: vertical;
 		cursor: v-bind(computedCursor);
@@ -631,7 +644,7 @@ defineExpose({
 
 		&::-webkit-scrollbar {
 			width: 12px;
-			border-radius: $border-radius-lil;
+			border-radius: tokens.$border-radius-lil;
 		}
 
 		&::-webkit-scrollbar-track {
@@ -639,16 +652,16 @@ defineExpose({
 		}
 
 		&::-webkit-scrollbar-thumb {
-			background: $n-100;
-			border-radius: $border-radius-lil;
+			background: tokens.$n-100;
+			border-radius: tokens.$border-radius-lil;
 			border-right: 3px solid transparent;
 			border-left: 3px solid transparent;
 			background-clip: padding-box;
 		}
 
 		&::-webkit-scrollbar-thumb:hover {
-			background: $n-200;
-			border-radius: $border-radius-lil;
+			background: tokens.$n-200;
+			border-radius: tokens.$border-radius-lil;
 			border-right: 3px solid transparent;
 			border-left: 3px solid transparent;
 			background-clip: padding-box;
@@ -699,11 +712,11 @@ defineExpose({
 	}
 
 	&__icon {
-		color: $n-700;
+		color: tokens.$n-700;
 	}
 
 	&__icon--alert-circle-icon {
-		color: $rc-600;
+		color: tokens.$rc-600;
 		height: 50%;
 	}
 
@@ -712,19 +725,19 @@ defineExpose({
 	}
 
 	&__error-text {
-		@include caption;
-		color: $rc-600;
-		margin: mt(1);
+		@include tokens.caption;
+		color: tokens.$rc-600;
+		margin: tokens.mt(1);
 	}
 
 	&__supporting-text {
 		&:nth-child(1) {
-			margin: mt(2);
+			margin: tokens.mt(2);
 		}
 
-		@include caption;
-		color: $n-600;
-		margin: mt(1);
+		@include tokens.caption;
+		color: tokens.$n-600;
+		margin: tokens.mt(1);
 	}
 
 	&__supporting-text-list {
@@ -735,9 +748,9 @@ defineExpose({
 
 .label {
 	&__icon {
-		margin: mTRBL(0, 0, n1, 1);
+		margin: tokens.mTRBL(0, 0, n1, 1);
 		cursor: default;
-		color: $n-700;
+		color: tokens.$n-700;
 	}
 
 	&__link {
@@ -745,15 +758,15 @@ defineExpose({
 	}
 
 	&__content {
-		color: $n-800;
-		margin: mb(1);
+		color: tokens.$n-800;
+		margin: tokens.mb(1);
 	}
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
-	margin: ma(0);
+	margin: tokens.ma(0);
 }
 
 input:disabled {

@@ -115,6 +115,15 @@ ou
 npm run test
 ```
 
+- Para utilizar o ui do vitest:
+```bash
+npm run test:ui
+```
+
+- Para visualizar o detalhamento da cobertura de testes, use o comando abaixo:
+```bash
+npx open-cli coverage/index.html
+```
 ## Contribuindo
 
 Para informações sobre como contribuir com o projeto, acesse o [CONTRIBUTING.MD](https://github.com/Sysvale/cuida/blob/main/CONTRIBUTING.md)

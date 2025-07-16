@@ -1,7 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div
-		class="badge__container"
 		:class="predefinedStyle"
 	>
 		<div
@@ -13,7 +12,7 @@
 		>
 			<cds-clickable
 				v-if="clickable"
-				@click="$emit('click', true)"
+				@click.stop="$emit('click', true)"
 			>
 				<!-- @slot Slot padrão utilizado para exibir o conteúdo dentro da badge -->
 				<slot />
@@ -83,7 +82,7 @@ export default {
 
 	computed: {
 		predefinedStyle() {
-			let dynamicClass = '';
+			let dynamicClass = this.clickable ? 'badge__container--clickable ' : 'badge__container ';
 
 			if (this.predefinedColors.indexOf(this.variant) > -1) {
 				dynamicClass += `badge--${this.variant}`;
@@ -99,62 +98,72 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use 'sass:color';
+@use '../assets/sass/tokens/index' as tokens;
 
 .badge {
 	&__container {
 		border-radius: 50px !important;
 		width: fit-content;
 		cursor: default;
+
+		&--clickable {
+			@extend .badge__container;
+			cursor: pointer;
+
+			div {
+				cursor: pointer;
+			}
+		}
 	}
 
 	&--sm {
-		padding: pYX(1, 2);
+		padding: tokens.pYX(1, 2);
 	}
 
 	&--md {
-		padding: pYX(1, 2);
+		padding: tokens.pYX(1, 2);
 	}
 
 	&--lg {
-		padding: pYX(1, 3);
+		padding: tokens.pYX(1, 3);
 	}
 
 	&__content {
 		&--sm {
-			@include overline;
+			@include tokens.overline;
 		}
 
 		&--md {
-			@include caption;
-			font-weight: $font-weight-semibold;
+			@include tokens.caption;
+			font-weight: tokens.$font-weight-semibold;
 		}
 
 		&--lg {
-			@include button-1;
-			font-weight: $font-weight-semibold;
+			@include tokens.button-1;
+			font-weight: tokens.$font-weight-semibold;
 		}
 	}
 
-	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
-		color: darken($shade-500, 4%);
+	@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+		color: color.adjust($shade-500, $lightness: -4%);
 		background-color: $shade-100;
 	}
 
 	&--amber {
-		color: $al-700;
-		background-color: $al-100;
+		color: tokens.$al-700;
+		background-color: tokens.$al-100;
 	}
 
 	&--gray {
-		color: $n-600;
-		background-color: $n-20;
+		color: tokens.$n-600;
+		background-color: tokens.$n-20;
 	}
 
 	&--white {
-		color: $n-600;
-		background-color: $n-0;
-		outline: 1px solid $n-50;
+		color: tokens.$n-600;
+		background-color: tokens.$n-0;
+		outline: 1px solid tokens.$n-50;
 	}
 }
 </style>

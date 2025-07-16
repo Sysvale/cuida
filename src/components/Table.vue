@@ -1,106 +1,111 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<table class="table__container">
-		<tr class="table__header">
-			<th
-				v-if="allowSelection"
-				class="table__select-item"
-				:class="resolveHeaderItemClass(0)"
+		<thead>
+			<tr class="table__header">
+				<th
+					v-if="allowSelection"
+					class="table__select-item"
+					:class="resolveHeaderItemClass(0)"
+				>
+					<cds-checkbox
+						id="select-all-rows"
+						v-model="selectAll"
+						class="table__select-checkbox"
+						label=""
+						:variant="selectionVariant"
+						@update:model-value="handleSelectAll"
+					/>
+				</th>
+				<th
+					v-for="(field, index) in computedFields"
+					:key="index"
+					:class="resolveHeaderItemClass(index)"
+				>
+					<div class="table__header-item-content">
+						<!--
+							@slot Slot usado para renderizar itens personalizados para o cabeçalho da tabela. Dados do item referente à coluna podem ser acessados através da propriedade `data`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ data }
+						-->
+						<slot
+							v-if="hasSlot($slots, 'header-item')"
+							name="header-item"
+							:data="field"
+						/>
+						<cds-clickable
+							v-else
+							:id="`sort-icon-${field.key}`"
+							:clickable="sortable"
+							@click.stop="handleSortBy(field.key)"
+						>
+							{{ field.label }}
+							<cds-icon
+								v-if="(sortable && field.label) && field.key !== localSortBy"
+								class="table__sort-icon"
+								height="13"
+								width="13"
+								name="swap-vertical-arrows-outline"
+							/>
+							<cds-icon
+								v-else-if="(sortable && field.label) && localSortDesc"
+								class="table__sort-icon"
+								height="13"
+								width="13"
+								name="sort-descending-duotone"
+							/>
+							<cds-icon
+								v-else-if="(sortable && field.label)"
+								class="table__sort-icon"
+								height="13"
+								width="13"
+								name="sort-ascending-duotone"
+							/>
+						</cds-clickable>
+					</div>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr
+				v-for="(item, itemIndex) in localItems"
+				:key="itemIndex"
+				:class="resolveItemClass()"
 			>
-				<cds-checkbox
-					id="select-all-rows"
-					v-model="selectAll"
-					class="table__select-checkbox"
-					label=""
-					:variant="selectionVariant"
-					@update:model-value="handleSelectAll"
-				/>
-			</th>
-			<th
-				v-for="(field, index) in computedFields"
-				:key="index"
-				:class="resolveHeaderItemClass(index)"
-			>
-				<div class="table__header-item-content">
+				<td
+					v-if="allowSelection"
+					class="table__select-item"
+					:class="resolveContentItemClass(itemIndex, 0)"
+				>
+					<cds-checkbox
+						:id="`select-row-${itemIndex}`"
+						v-model="select[itemIndex]"
+						class="table__select-checkbox"
+						label=""
+						:variant="selectionVariant"
+						@update:model-value="handleSelectRow"
+					/>
+				</td>
+				<td
+					v-for="(field, fieldIndex) in computedFields"
+					:id="field.key"
+					:key="field"
+					:class="resolveContentItemClass(itemIndex, fieldIndex)"
+					:width="field.width ? field.width : 'auto'"
+				>
 					<!--
-						@slot Slot usado para renderizar itens personalizados para o cabeçalho da tabela. Dados do item referente à coluna podem ser acessados através da propriedade `data`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ data }
+						@slot Slot usado para renderizar itens personalizados para o conteúdo da tabela. Dados do item referente à linha podem ser acessados através da propriedade `data`, enquanto a key referente à coluna pode ser acessada através da propriedade `field`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ `data`, `field`, `rowIndex` e `colIndex` }
 					-->
 					<slot
-						v-if="hasSlot($slots, 'header-item')"
-						name="header-item"
-						:data="field"
-					/>
-					<cds-clickable
-						v-else
-						:id="`sort-icon-${field.key}`"
-						:clickable="sortable"
-						@click.stop="handleSortBy(field.key)"
+						name="table-item"
+						:data="item"
+						:field="field.key"
+						:row-index="itemIndex"
+						:col-index="fieldIndex"
 					>
-						{{ field.label }}
-						<cds-icon
-							v-if="(sortable && field.label) && field.key !== localSortBy"
-							class="table__sort-icon"
-							height="13"
-							width="13"
-							name="swap-vertical-arrows-outline"
-						/>
-						<cds-icon
-							v-else-if="(sortable && field.label) && localSortDesc"
-							class="table__sort-icon"
-							height="13"
-							width="13"
-							name="sort-descending-duotone"
-						/>
-						<cds-icon
-							v-else-if="(sortable && field.label)"
-							class="table__sort-icon"
-							height="13"
-							width="13"
-							name="sort-ascending-duotone"
-						/>
-					</cds-clickable>
-				</div>
-			</th>
-		</tr>
-		<tr
-			v-for="(item, itemIndex) in localItems"
-			:key="itemIndex"
-			:class="resolveItemClass()"
-		>
-			<td
-				v-if="allowSelection"
-				class="table__select-item"
-				:class="resolveContentItemClass(itemIndex, 0)"
-			>
-				<cds-checkbox
-					:id="`select-row-${itemIndex}`"
-					v-model="select[itemIndex]"
-					class="table__select-checkbox"
-					label=""
-					:variant="selectionVariant"
-					@update:model-value="handleSelectRow"
-				/>
-			</td>
-			<td
-				v-for="(field, fieldIndex) in computedFields"
-				:key="fieldIndex"
-				:class="resolveContentItemClass(itemIndex, fieldIndex)"
-				:width="field.width ? field.width : 'auto'"
-			>
-				<!--
-					@slot Slot usado para renderizar itens personalizados para o conteúdo da tabela. Dados do item referente à linha podem ser acessados através da propriedade `data`, enquanto a key referente à coluna pode ser acessada através da propriedade `field`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ `data`, `field`, `rowIndex` e `colIndex` }
-				-->
-				<slot
-					name="table-item"
-					:data="item"
-					:field="field.key"
-					:row-index="itemIndex"
-					:col-index="fieldIndex"
-				>
-					{{ resolveValue(item, field) }}
-				</slot>
-			</td>
-		</tr>
+						{{ resolveValue(item, field) }}
+					</slot>
+				</td>
+			</tr>
+		</tbody>
 	</table>
 </template>
 
@@ -392,17 +397,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use '../assets/sass/tokens/index' as tokens;
 
 .table {
 	&__container {
 		position: relative;
-		border: 1px solid $n-30;
+		border: 1px solid tokens.$n-30;
 		border-collapse: separate;
-		border-radius: $border-radius-extra-small;
+		border-radius: tokens.$border-radius-extra-small;
 		border-spacing: 0px;
 		width: 100%;
-		background: $n-0;
+		background: tokens.$n-0;
 	}
 
 	&__select-item {
@@ -415,35 +420,35 @@ export default {
 	}
 
 	&__sort-icon {
-		color: $n-200;
+		color: tokens.$n-200;
 		margin-left: 6px;
 	}
 
 	&__header {
-		background-color: $n-10;
+		background-color: tokens.$n-10;
 		position: v-bind('resolveFixedHeader');
 		top: 0;
 		box-shadow: v-bind('resolveHeaderShadow');
-		z-index: $z-index-backdrop;
+		z-index: tokens.$z-index-backdrop;
 
 		&-item {
-			@include body-2;
-			border-bottom: 1px solid $n-30;
+			@include tokens.body-2;
+			border-bottom: 1px solid tokens.$n-30;
 			font-weight: 700;
-			padding: spacer(3) spacer(4);
+			padding: tokens.spacer(3) tokens.spacer(4);
 			text-align: inherit;
 			overflow: auto;
 			word-wrap: break-word;
 			white-space: v-bind('resolveNoWarp');
 
 			&--first {
-				border-top-left-radius: $border-radius-extra-small;
+				border-top-left-radius: tokens.$border-radius-extra-small;
 
 				@extend .table__header-item;
 			}
 
 			&--last {
-				border-top-right-radius: $border-radius-extra-small;
+				border-top-right-radius: tokens.$border-radius-extra-small;
 
 				@extend .table__header-item;
 			}
@@ -457,16 +462,16 @@ export default {
 
 	&__content--hoverable {
 		&:hover {
-			background-color: rgba($n-10, .7);
+			background-color: rgba(tokens.$n-10, .7);
 		}
 	}
 
 	&__item {
-		@include body-2;
-		border-bottom: 1px solid $n-30;
+		@include tokens.body-2;
+		border-bottom: 1px solid tokens.$n-30;
 		font-size: 14px;
 		max-width: 400px;
-		padding: pa(4);
+		padding: tokens.pa(4);
 		vertical-align: top;
 		overflow: auto;
 		word-wrap: break-word;
@@ -474,7 +479,7 @@ export default {
 
 		&--first {
 			border-bottom: none;
-			border-bottom-left-radius: $border-radius-extra-small;
+			border-bottom-left-radius: tokens.$border-radius-extra-small;
 
 			@extend .table__item;
 		}
@@ -487,7 +492,7 @@ export default {
 
 		&--last {
 			border-bottom: none;
-			border-bottom-right-radius: $border-radius-extra-small;
+			border-bottom-right-radius: tokens.$border-radius-extra-small;
 
 			@extend .table__item;
 		}

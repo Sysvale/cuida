@@ -44,7 +44,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/sass/tokens.scss';
+@use 'sass:color';
+@use '../assets/sass/tokens/index' as tokens;
 
 .spin {
 	border-radius: 80px;
@@ -58,11 +59,11 @@ export default {
 	background: transparent;
 	border-style: solid;
 
-	@include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+	@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 		@extend .spin;
 		border-left-color: $base-color;
-		border-bottom-color: lighten($base-color, 5%);
-		border-right-color: lighten($base-color, 10%);
+		border-bottom-color: color.adjust($base-color, $lightness: 5%);
+		border-right-color: color.adjust($base-color, $lightness: 10%);
 		border-top-color: transparent;
 	}
 
@@ -95,7 +96,7 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: rgba($n-600, 0.30);
+	background-color: rgba(tokens.$n-600, 0.30);
 	height: 100%;
 	position: absolute;
 	width: 100%;

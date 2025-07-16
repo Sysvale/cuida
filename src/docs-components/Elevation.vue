@@ -190,21 +190,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './../assets/sass/tokens.scss';
+@use './../assets/sass/tokens/index' as tokens;
 
-@each $elevation-name, $elevation-token in $z-index {
+@each $elevation-name, $elevation-token in tokens.$z-index {
 	.#{$elevation-name} {
 		z-index: $elevation-token;
 		width: 80px;
 		height: 80px;
-		outline: 3px dashed $gp-300;
-		border-radius: $border-radius-small;
+		outline: 3px dashed tokens.$gp-300;
+		border-radius: tokens.$border-radius-small;
 		transform: rotateX(72deg) rotateZ(-45deg) scale(1.2);
 		transition: all .2s ease-in-out;
 	}
 
 	.#{$elevation-name}:hover {
-		background-color: rgba($gp-200, 0.5);
+		background-color: rgba(tokens.$gp-200, 0.5);
 		transition: all .2s ease-in-out;
 	}
 
@@ -228,16 +228,16 @@ export default {
 
 .copy-clip {
 	width: fit-content;
-	padding: pYX(2, 3);
+	padding: tokens.pYX(2, 3);
 	border-radius: 16px;
-	border: 1px solid $n-0;
+	border: 1px solid tokens.$n-0;
 	transition: all .2s ease-in-out;
 	display: flex;
 	align-items: center;
 
 	&__icon {
-		margin: mr(3);
-		color: $n-500;
+		margin: tokens.mr(3);
+		color: tokens.$n-500;
 	}
 }
 
@@ -249,7 +249,7 @@ export default {
 }
 
 .copy-clip:hover {
-	border: 1px solid $gp-300;
+	border: 1px solid tokens.$gp-300;
 	cursor: pointer;
 	transition: all .2s ease-in-out;
 }
@@ -260,19 +260,18 @@ export default {
 
 .el {
 	margin-top: -65px !important;
-	// background-color: rgba($gp-50, 0.5);
 }
 
 .base {
-	background-color: $n-10;
-	outline: 2px dashed $n-100;
+	background-color: tokens.$n-10;
+	outline: 2px dashed tokens.$n-100;
 	width: 90px;
 	height: 90px;
 	margin-left: -4px !important;
 }
 
 .active {
-	background-color: $gp-200;
+	background-color: tokens.$gp-200;
 }
 
 .sunk-text,
@@ -290,56 +289,56 @@ export default {
 	position: absolute;
 	margin-top: 102px !important;
 	margin-left: 122px !important;
-	color: $n-600;
+	color: tokens.$n-600;
 }
 
 .base-text {
 	position: absolute;
 	margin-top: 52px !important;
 	margin-left: 122px !important;
-	color: $n-600;
+	color: tokens.$n-600;
 }
 
 .backdrop-text {
 	position: absolute;
 	margin-top: 2px !important;
 	margin-left: 122px !important;
-	color: $n-600;
+	color: tokens.$n-600;
 }
 
 .toolbar-text {
 	position: absolute;
 	margin-top: -12px !important;
 	margin-left: 122px !important;
-	color: $n-600;
+	color: tokens.$n-600;
 }
 
 .sidesheet-text {
 	position: absolute;
 	margin-top: -22px !important;
 	margin-left: 122px !important;
-	color: $n-600;
+	color: tokens.$n-600;
 }
 
 .modal-text {
 	position: absolute;
 	margin-top: -42px !important;
 	margin-left: 122px !important;
-	color: $n-600;
+	color: tokens.$n-600;
 }
 
 .tooltip-text {
 	position: absolute;
 	margin-top: -72px !important;
 	margin-left: 122px !important;
-	color: $n-600;
+	color: tokens.$n-600;
 }
 
 .toast-text {
 	position: absolute;
 	margin-top: -102px !important;
 	margin-left: 122px !important;
-	color: $n-600;
+	color: tokens.$n-600;
 }
 
 </style>
