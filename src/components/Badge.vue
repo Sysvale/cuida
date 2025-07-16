@@ -1,7 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div
-		class="badge__container"
 		:class="predefinedStyle"
 	>
 		<div
@@ -13,7 +12,7 @@
 		>
 			<cds-clickable
 				v-if="clickable"
-				@click="$emit('click', true)"
+				@click.stop="$emit('click', true)"
 			>
 				<!-- @slot Slot padrão utilizado para exibir o conteúdo dentro da badge -->
 				<slot />
@@ -83,7 +82,7 @@ export default {
 
 	computed: {
 		predefinedStyle() {
-			let dynamicClass = '';
+			let dynamicClass = this.clickable ? 'badge__container--clickable ' : 'badge__container ';
 
 			if (this.predefinedColors.indexOf(this.variant) > -1) {
 				dynamicClass += `badge--${this.variant}`;
@@ -107,6 +106,15 @@ export default {
 		border-radius: 50px !important;
 		width: fit-content;
 		cursor: default;
+
+		&--clickable {
+			@extend .badge__container;
+			cursor: pointer;
+
+			div {
+				cursor: pointer;
+			}
+		}
 	}
 
 	&--sm {

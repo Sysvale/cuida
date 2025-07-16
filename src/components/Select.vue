@@ -78,7 +78,8 @@
 					class="option__add"
 					@mousedown="handleAddOption"
 				>
-					Adicionar "{{ searchString }}"
+					<span class="add-button-searchstring">{{ searchString }} </span>
+					<small class="add-button-text">Clique para adicionar</small>
 				</div>
 			</div>
 		</div>
@@ -463,6 +464,7 @@ function hide() {
 
 	localOptions.value = pristineOptions.value;
 	searchString.value = '';
+	baseInputControl.value += 1;
 	active.value = false;
 	emitBlur();
 }
@@ -746,6 +748,9 @@ defineExpose({
 		font-weight: tokens.$font-weight-semibold;
 		background-color: tokens.$n-20;
 		padding: tokens.pa(3);
+		width: 100%;
+		display: flex;
+		flex-direction: column;
 	}
 
 	&__text {
@@ -768,5 +773,16 @@ defineExpose({
 .highlight{
 	background-color: tokens.$n-10;
 	cursor: pointer;
+}
+
+.add-button-searchstring {
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.add-button-text {
+	@include tokens.overline;
+	font-weight: tokens.$font-weight-bold;
 }
 </style>

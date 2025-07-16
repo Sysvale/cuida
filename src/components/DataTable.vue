@@ -1,7 +1,34 @@
 <template>
 	<div>
-		<div class="data-table">
-			<div class="data-table__header">
+		<div
+			v-show="$attrs.fixedHeader && showVirtualHeader"
+			:id="virtualHeaderID"
+			class="virtual-header"
+			:style="{width: `${virtualTheadWidth}px`}"
+		>
+			<div
+				v-if="$attrs.allowSelection"
+				class="virtual-header__selection-offset"
+				:class="resolveHeaderItemClass(0)"
+			/>
+
+			<div
+				v-for="(field, index) in $attrs.fields"
+				:key="index"
+				:class="resolveHeaderItemClass(index)"
+				:style="{minWidth: `${virtualThWidths[index]}px`}"
+			>
+				{{ field.label ?? field }}
+			</div>
+		</div>
+
+		<div
+			class="data-table"
+		>
+			<div
+				:id="dataTableHeaderID"
+				class="data-table__header"
+			>
 				<CdsSearchInput
 					v-if="withSearch"
 					v-model="internalSearch"
@@ -44,7 +71,10 @@
 				</div>
 			</div>
 
-			<div class="data-table__table-container">
+			<div
+				:id="dataTableContainerID"
+				class="data-table__table-container"
+			>
 				<div v-if="loading">
 					<cds-table
 						:fields="$attrs.fields"
@@ -122,9 +152,10 @@
 </template>
 
 <script setup>
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, useAttrs, onMounted, onUnmounted } from 'vue';
 import { cloneDeep, isEmpty } from 'lodash';
 import { useHasSlot } from '../utils/composables/useHasSlot';
+import generateKey from '../utils/methods/uuidv4';
 import CdsButton from './Button.vue';
 import CdsTable from './Table.vue';
 import CustomFieldsSideSheet from './InternalComponents/CustomFieldsSideSheet.vue';
@@ -135,6 +166,7 @@ import CdsEmptyState from './EmptyState.vue'
 
 const hasHeaderSlot = useHasSlot('header-item');
 const hasStateEmpty = useHasSlot('empty');
+const attrs = useAttrs();
 
 const props = defineProps({
 	/**
@@ -235,10 +267,38 @@ const props = defineProps({
 
 const emits = defineEmits(['update-fields-list', 'customize-click', 'search']);
 
+const showVirtualHeader = ref(false);
+const virtualTheadWidth = ref(0);
+const virtualThWidths = ref(Array(attrs.fields.length).fill(0));
+const scrollLeftOffset = ref(0);
 const showSideSheet = ref(false);
 const internalSearch = ref('');
 const searchTimeout = ref(null);
 const internalCustomFieldsList = ref(cloneDeep(props.customFieldsList));
+
+const virtualHeaderID = generateKey();
+const dataTableHeaderID = generateKey();
+const dataTableContainerID = generateKey();
+
+let isSyncingScroll = false;
+let lastScrollY = 0;
+let isScrollingDown = false;
+
+let virtualHeaderEl;
+let dataTabelEl;
+
+const observer = new IntersectionObserver((entries) => {
+	entries.forEach(entry => {
+		if (!entry.isIntersecting && isScrollingDown) {
+			showVirtualHeader.value = true;
+		} else {
+			showVirtualHeader.value = false;
+
+		}
+	});
+}, {
+	threshold: 0.1
+});
 
 const computedMaxVisibleFields = computed(() => {
 	if (props.maxVisibleFields === 0) {
@@ -250,9 +310,73 @@ const computedMaxVisibleFields = computed(() => {
 
 const emptyImgResolver = computed(() => props.emptySrcImg ?? 'https://cdn-icons-png.flaticon.com/512/7486/7486747.png');
 
+const computedTopLeftBorderRadius = computed(() => scrollLeftOffset.value > 0 ? '0px' : '8px');
+
 watch(() => props.customFieldsList, () => {
 	internalCustomFieldsList.value = cloneDeep(props.customFieldsList);
 }, { immediate: true });
+
+onMounted(() => {
+	if (!attrs.fixedHeader) return;
+
+	lastScrollY = window.scrollY;
+	virtualHeaderEl = document.getElementById(virtualHeaderID);
+	dataTabelEl = document.getElementById(dataTableContainerID);
+
+	if(virtualHeaderEl) {
+		virtualHeaderEl.addEventListener('scroll', () => syncScroll(virtualHeaderEl, dataTabelEl));
+	}
+
+	if(dataTabelEl) {
+		dataTabelEl.addEventListener('scroll', () => syncScroll(dataTabelEl, virtualHeaderEl));
+	}
+
+	window.addEventListener('scroll', handleScroll);
+
+	virtualThWidths.value = attrs.fields.map((field) => {
+		return document.getElementById(field?.key ?? field).getBoundingClientRect().width;
+	})
+
+	observer.observe(document.getElementById(dataTableHeaderID));
+
+	virtualTheadWidth.value = document.getElementById(dataTableContainerID).getBoundingClientRect().width;
+});
+
+onUnmounted(() => {
+	if (observer) observer.disconnect();
+
+	if(virtualHeaderEl) {
+		virtualHeaderEl.removeEventListener('scroll', syncScroll);
+	}
+
+	if(dataTabelEl) {
+		dataTabelEl.removeEventListener('scroll', syncScroll);
+	}
+
+	window.removeEventListener('scroll', handleScroll);
+});
+
+function syncScroll(source, target) {
+	if (isSyncingScroll) return;
+	isSyncingScroll = true;
+	target.scrollLeft = source.scrollLeft;
+	scrollLeftOffset.value = target.scrollLeft;
+	isSyncingScroll = false;
+}
+
+function handleScroll() {
+	const currentY = window.scrollY;
+	isScrollingDown = currentY > lastScrollY;
+	lastScrollY = currentY;
+};
+
+function resolveHeaderItemClass(index) {
+	if (index !== 0 && index !== (attrs.fields.length - 1)) {
+		return 'virtual-header__th';
+	}
+
+	return index === 0 ? 'virtual-header__th--first' : 'virtual-header__th--last';
+};
 
 function handleCustomizeButtonClick() {
 	emits('customize-click');
@@ -322,4 +446,46 @@ function handleSearchInput(value) {
 	align-items: center;
 }
 
+.virtual-header {
+	background-color: tokens.$n-10;
+	position: sticky;
+	top: 0px;
+	box-shadow: tokens.$shadow-sm;
+	z-index: tokens.$z-index-toolbar;
+	display: flex;
+	overflow-x: scroll;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+	border-radius: tokens.$border-radius-extra-small 0 0;
+	border-top-left-radius: v-bind(computedTopLeftBorderRadius);
+	border: 1px solid tokens.$n-30;
+	border-bottom: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	&__selection-offset {
+		padding: 0px 28px !important;
+	}
+
+	&__th {
+		@include tokens.body-2;
+		border-bottom: 1px solid tokens.$n-30;
+		font-weight: 700;
+		padding: tokens.spacer(3) tokens.spacer(4);
+		text-align: inherit;
+		word-wrap: break-word;
+
+		&--first {
+			border-top-left-radius: tokens.$border-radius-extra-small;
+			@extend .virtual-header__th;
+		}
+
+		&--last {
+			border-top-right-radius: tokens.$border-radius-extra-small;
+			@extend .virtual-header__th;
+		}
+	}
+}
 </style>
