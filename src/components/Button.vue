@@ -13,7 +13,7 @@
 			class="button__prepend"
 		/>
 		<div
-			v-if="hasPrependSlot && !loading"
+			v-if="hasSlot($slots, 'prepend') && !loading"
 			class="button__prepend"
 		>
 			<!-- @slot Slot para exibir prepend do botão. -->
@@ -24,7 +24,7 @@
 			{{ text }}
 		</slot>
 		<div
-			v-if="hasAppendSlot"
+			v-if="hasSlot($slots, 'append')"
 			class="button__append"
 		>
 			<!-- @slot Slot para exibir append do botão. -->
@@ -36,6 +36,7 @@
 <script>
 import CdsSpinner from '../components/Spinner.vue';
 import Cdstip from '../utils/directives/cdstip';
+import hasSlot from '../utils/methods/hasSlot';
 
 export default {
 
@@ -175,17 +176,11 @@ export default {
 
 			return `${this.predefinedColor}${disabled} ${this.predefinedSize}`;
 		},
-
-		hasPrependSlot(){
-			return Object.keys(this.$slots).some(slot => slot === 'prepend');
-		},
-
-		hasAppendSlot(){
-			return Object.keys(this.$slots).some(slot => slot === 'append');
-		},
 	},
 
 	methods: {
+		hasSlot,
+
 		clickHandler() {
 			if (this.disabled) {
 				return;
