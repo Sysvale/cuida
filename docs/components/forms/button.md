@@ -1,16 +1,16 @@
 # Button
 
-Buttons são componentes que permitem que o usuário execute uma ação com um toque.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
 ## Quando usar
 
 - For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-seja em diálogos, janelas modais, formulários, cards, etc.
+seja em dialogs, modais, formulários, cards, etc.
 
 ## Quando não usar
 
-- For necessário dar a opção de executar uma ação como um detalhe pequeno na interface.
-Nesse caso, recomendamos o uso de links.
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
 ## Preview
 
@@ -23,7 +23,7 @@ const handleClick = () => {
 </script>
 
 <div class="demo-container">
-  <Button />
+	<Button />
 </div>
 
 ## Props
@@ -31,7 +31,7 @@ const handleClick = () => {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `variant` | `string` | `green` | A variante de cor. São 9 variantes implementadas: 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'. |
-| `prop` | `string` | `''` | Description |
+| `size` | `string` | `md` | Especifica o tamanho do botão. São 3 tamanhos implementados: 'sm', 'md', 'lg'. |
 | `prop` | `string` | `''` | Description |
 | `prop` | `string` | `''` | Description |
 
@@ -45,10 +45,10 @@ const handleClick = () => {
 
 ```vue
 <template>
-  <cds-button
-    prop="value"
-    @event="handleEvent"
-  />
+	<CdsButton
+		prop="value"
+		@event="handleEvent"
+	/>
 </template>
 
 <script setup>
@@ -60,9 +60,9 @@ const handleEvent = () => {
 
 <style scoped>
 .demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
+	padding: 20px;
+	border: 1px solid var(--vp-c-border);
+	border-radius: 8px;
+	margin: 16px 0;
 }
 </style>

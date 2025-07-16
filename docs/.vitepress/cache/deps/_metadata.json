@@ -1,67 +1,37 @@
 {
-  "hash": "745703af",
+  "hash": "5e52a4ad",
   "configHash": "c8cf0f37",
-  "lockfileHash": "c27cd7c8",
-  "browserHash": "d3f03e32",
+  "lockfileHash": "a58d280b",
+  "browserHash": "aa3350a1",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "86a0ec1c",
+      "fileHash": "18eaafe7",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../node_modules/@vue/devtools-api/dist/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "5972055f",
+      "fileHash": "17fae192",
       "needsInterop": false
     },
     "vitepress > @vueuse/core": {
       "src": "../../../../node_modules/vitepress/node_modules/@vueuse/core/index.mjs",
       "file": "vitepress___@vueuse_core.js",
-      "fileHash": "a43f8967",
+      "fileHash": "26a76449",
       "needsInterop": false
     },
     "@theme/index": {
       "src": "../../../../node_modules/vitepress/dist/client/theme-default/index.js",
       "file": "@theme_index.js",
-      "fileHash": "8583eeba",
+      "fileHash": "82abe3d8",
       "needsInterop": false
     },
     "tippy.js": {
       "src": "../../../../node_modules/tippy.js/dist/tippy.esm.js",
       "file": "tippy__js.js",
-      "fileHash": "4850be42",
-      "needsInterop": false
-    },
-    "lodash.isempty": {
-      "src": "../../../../node_modules/lodash.isempty/index.js",
-      "file": "lodash__isempty.js",
-      "fileHash": "6c3c989e",
-      "needsInterop": true
-    },
-    "lodash.isequal": {
-      "src": "../../../../node_modules/lodash.isequal/index.js",
-      "file": "lodash__isequal.js",
-      "fileHash": "5536b8e2",
-      "needsInterop": true
-    },
-    "@sysvale/cuida-icons/dist": {
-      "src": "../../../../node_modules/@sysvale/cuida-icons/dist/index.js",
-      "file": "@sysvale_cuida-icons_dist.js",
-      "fileHash": "09a6bd26",
-      "needsInterop": false
-    },
-    "lodash": {
-      "src": "../../../../node_modules/lodash/lodash.js",
-      "file": "lodash.js",
-      "fileHash": "67a01b7a",
-      "needsInterop": true
-    },
-    "vue-input-facade": {
-      "src": "../../../../node_modules/vue-input-facade/dist/vue-input-facade.js",
-      "file": "vue-input-facade.js",
-      "fileHash": "a72999f6",
+      "fileHash": "907ac7df",
       "needsInterop": false
     }
   },
@@ -71,9 +41,6 @@
     },
     "chunk-FA4MWVOB": {
       "file": "chunk-FA4MWVOB.js"
-    },
-    "chunk-BUSYA2B4": {
-      "file": "chunk-BUSYA2B4.js"
     }
   }
 }

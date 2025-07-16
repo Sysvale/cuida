@@ -37,15 +37,30 @@ export default defineConfig({
 				{
 					text: 'Forms',
 					items: [
-						{ text: 'Button', link: '/components/button' },
-						{ text: 'BaseInput', link: '/components/base-input' },
-						{ text: 'TextInput', link: '/components/text-input' },
-						{ text: 'TextArea', link: '/components/text-area' },
-						{ text: 'Select', link: '/components/select' },
-						{ text: 'Checkbox', link: '/components/checkbox' },
-						{ text: 'Radio', link: '/components/radio' },
-						{ text: 'Switch', link: '/components/switch' },
-						{ text: 'Slider', link: '/components/slider' }
+						{ text: 'Button', link: '/components/forms/button' },
+						{ text: 'BaseInput', link: '/components/forms/base-input' },
+						{ text: 'TextInput', link: '/components/forms/text-input' },
+						{ text: 'TextArea', link: '/components/forms/text-area' },
+						{ text: 'Select', link: '/components/forms/select' },
+						{ text: 'Checkbox', link: '/components/forms/checkbox' },
+						{ text: 'Radio', link: '/components/forms/radio' },
+						{ text: 'Switch', link: '/components/forms/switch' },
+						{ text: 'Slider', link: '/components/forms/slider' }
+					]
+				},
+				{
+					text: 'Containers',
+					items: [
+						{ text: 'Box', link: '/components/containers/box' },
+						{ text: 'card', link: '/components/containers/card' },
+						{ text: 'Carousel controller', link: '/components/containers/carousel-controller' },
+						{ text: 'Collapsible Container', link: '/components/containers/collapsible-container' },
+						{ text: 'Dashboard Card', link: '/components/containers/dashboard-card' },
+						{ text: 'Divider', link: '/components/containers/divider' },
+						{ text: 'Flexbox', link: '/components/containers/flexbox' },
+						{ text: 'Grid', link: '/components/containers/grid' },
+						{ text: 'Panel Card', link: '/components/containers/panel-card' },
+						{ text: 'Scrollable', link: '/components/containers/scrollable' }
 					]
 				},
 				{
