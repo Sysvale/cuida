@@ -1,26 +1,36 @@
 name: "Deployer 🚀"
 
-on: push
+on: 
+  push:
+    branches:
+      - main
 
 jobs:
-  chromatic-deployment:
+  docs-deployment:
     runs-on: ubuntu-latest
+    concurrency: ci-${{github.ref}}
     steps:
-      - uses: actions/checkout@v1
+      - name: 📚 Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       
       - name: 🟢 Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
 
-      - name: Install dependencies
+      - name: 🔧 Install dependencies
         run: |
           npm cache clean --force
           npm install
       
-      - name: Publish to Chromatic
-        uses: chromaui/action@v1
+      - name: 📖 Build docs
+        run: npm run docs:build
+
+      - name: 🚀 Deploy docs
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          autoAcceptChanges: true
+          folder: docs/.vitepress/dist
+          branch: gh-pages
