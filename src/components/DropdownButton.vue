@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<cds-button
+		<CdsButton
 			:id="id"
 			:variant="variant"
 			:size="size"
@@ -10,14 +10,14 @@
 			@click="activeSelection"
 		>
 			<template #append>
-				<cds-chevron
+				<CdsChevron
 					animate
 					size="sm"
 					:light="!secondary && !ghost"
 					:direction="isActive ? 'bottom' : 'top'"
 				/>
 			</template>
-		</cds-button>
+		</CdsButton>
 
 		<div
 			v-if="isActive"
@@ -38,7 +38,7 @@
 					class="dropdown__container"
 					@click="handleOptionClick(item.name, index)"
 				>
-					<cds-icon
+					<CdsIcon
 						class="dropdown__icon"
 						height="22"
 						width="22"
