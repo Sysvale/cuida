@@ -522,7 +522,7 @@ onMounted(() => {
 	collapsed.value = JSON.parse(window.localStorage.getItem('cdsSidebarCollapsed'));
 });
 
-const handleClick = (event, item) => {
+function handleClick(event, item) {
 	if (!isEqual(internalActiveItem.value, item)) {
 		internalActiveItem.value = item;
 		showUncollapsedItems.value = true;
@@ -547,7 +547,7 @@ const handleClick = (event, item) => {
 	* @type {Event}
 	*/
 	emit('sidebar-click', internalActiveItem.value);
-};
+}
 
 function isActive(item) {
 	let hasActiveSubitem = false;
