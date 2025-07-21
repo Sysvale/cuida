@@ -140,6 +140,7 @@
 			v-model="showSideSheet"
 			:custom-fields-list="internalCustomFieldsList"
 			:selection-variant="selectionVariant"
+			:presets-options="presetsOptions"
 			:loading-custom-fields="loadingCustomFields"
 			:min-fields="minVisibleFields"
 			:max-fields="computedMaxVisibleFields"
@@ -196,6 +197,13 @@ const props = defineProps({
 	hideCustomizeButton: {
 		type: Boolean,
 		default: false,
+	},
+	/**
+	* Define as opções de presets que serão exibidas no sidesheet de personalizar tabela. Se nenhum for fornecido, não será exibido.
+	*/
+	presetsOptions: {
+		type: Array,
+		default: () => [],
 	},
 	/**
 	* Ativa o feedback de loading no sidesheet de personalizar tabela.

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<cds-side-sheet
+		<CdsSideSheet
 			v-model="modelValue"
 			title="Personalizar tabela"
 			no-close-on-esc
@@ -9,7 +9,7 @@
 			@ok="handleOk"
 			@cancel="handleCancel"
 		>
-			<cds-flexbox
+			<CdsFlexbox
 				direction="column"
 				gap="1"
 				fluid
@@ -18,7 +18,16 @@
 					{{ descriptionComputedText }}
 				</div>
 
-				<cds-flexbox
+				<CdsSelect
+					v-model="selectedPreset"
+					class="side-sheet__presets"
+					label=""
+					placeholder="Selecione um preset de colunas"
+					:options="resolvedPresetsOptions"
+					fluid
+				/>
+
+				<CdsFlexbox
 					v-if="loadingCustomFields"
 					direction="column"
 					gap="3"
@@ -29,7 +38,7 @@
 						:height="60"
 						fluid
 					/>
-				</cds-flexbox>
+				</CdsFlexbox>
 
 				<div v-else>
 					<div
@@ -49,7 +58,7 @@
 							{{ column.label }}
 						</span>
 
-						<cds-icon
+						<CdsIcon
 							v-if="column.visible"
 							:class="`side-sheet__icon--${selectionVariant}`"
 							name="pin-outline"
@@ -57,7 +66,7 @@
 							height="16"
 						/>
 
-						<cds-icon
+						<CdsIcon
 							v-else
 							class="side-sheet__icon"
 							name="pin-outline"
@@ -66,18 +75,18 @@
 						/>
 					</div>
 				</div>
-			</cds-flexbox>
+			</CdsFlexbox>
 
 			<template #footer>
 				<div class="side-sheet__footer">
-					<cds-button
+					<CdsButton
 						secondary
 						@button-click="handleCancel"
 					>
 						Cancelar
-					</cds-button>
+					</CdsButton>
 
-					<cds-button
+					<CdsButton
 						v-cdstip="shouldDisableOkButton ? descriptionComputedText : ''"
 						:variant="selectionVariant"
 						:disabled="shouldDisableOkButton"
@@ -85,21 +94,22 @@
 						@button-click="handleOk"
 					>
 						Salvar
-					</cds-button>
+					</CdsButton>
 				</div>
 			</template>
-		</cds-side-sheet>
+		</CdsSideSheet>
 	</div>
 </template>
 
 <script setup>
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, onMounted } from 'vue';
 import CdsIcon from '../Icon.vue';
 import CdsSkeleton from '../Skeleton.vue';
 import CdsSideSheet from '../SideSheet.vue';
 import CdsFlexbox from '../Flexbox.vue';
 import CdsButton from '../Button.vue';
-import { cloneDeep } from 'lodash';
+import CdsSelect from '../Select.vue';
+import { cloneDeep, isEqual, kebabCase } from 'lodash';
 
 const modelValue = defineModel({
 	type: Boolean,
@@ -114,6 +124,10 @@ const props = defineProps({
 	selectionVariant: {
 		type: String,
 		default: 'primary'
+	},
+	presetsOptions: {
+		type: Array,
+		default: () => []
 	},
 	loadingCustomFields: {
 		type: Boolean,
@@ -136,6 +150,22 @@ const props = defineProps({
 const emits = defineEmits(['update-fields-list', 'cancel', 'ok']);
 
 const internalCustomFieldsList = ref(cloneDeep(props.customFieldsList));
+const selectedPreset = ref({ id: 'custom', value: 'Personalizado' });
+
+const resolvedPresetsOptions = computed(() => {
+	return [
+		...props.presetsOptions.map((item) => {
+			return {
+				id: kebabCase(item.label),
+				value: item.label,
+			}
+		}),
+		{
+			id: 'custom',
+			value: 'Personalizado'
+		}
+	];
+})
 
 const shouldDisableOkButton = computed(() => {
 	const visibleFieldsCount = internalCustomFieldsList.value.filter(field => field.visible).length;
@@ -171,6 +201,26 @@ watch(() => props.customFieldsList, (newList) => {
 	internalCustomFieldsList.value = cloneDeep(newList);
 }, { immediate: true });
 
+watch(() => selectedPreset.value, (preset) => {
+	if (!preset) return;
+	if (preset.id === 'custom') return;
+
+	const presetColumns = props.presetsOptions?.find(({ label }) => label === preset.value)?.columns;
+	if (!presetColumns) return;
+
+	internalCustomFieldsList.value.forEach((field) => {
+		field.visible = presetColumns.includes(field.id);
+	});
+});
+
+watch(() => internalCustomFieldsList.value, () => {
+	currentPreset();
+}, { deep: true });
+
+onMounted(() => {
+	currentPreset();
+});
+
 function handleCancel() {
 	internalCustomFieldsList.value = cloneDeep(props.customFieldsList);
 	modelValue.value = false;
@@ -182,6 +232,22 @@ function handleOk() {
 	modelValue.value = false;
 }
 
+function currentPreset() {
+	const currentSelectedColumns = internalCustomFieldsList.value.
+		filter(({ visible }) => visible === true).
+		map(field => field.id);
+	const foundPreset = props.presetsOptions.find(({ columns }) => {
+		return isEqual(columns, currentSelectedColumns);
+	});
+
+	if (!foundPreset) {
+		selectedPreset.value = { id: 'custom', value: 'Personalizado' };
+		return;
+	}
+
+	selectedPreset.value = { id: kebabCase(foundPreset.label), value: foundPreset.label };
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -189,10 +255,14 @@ function handleOk() {
 
 .side-sheet {
 
+	&__presets {
+		margin: tokens.mb(3);
+	}
+
 	&__description {
 		@include tokens.body-2;
 		color: tokens.$n-600;
-		margin: tokens.mb(3);
+		margin: tokens.mb(4);
 	}
 
 	&__item-label {
