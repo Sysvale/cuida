@@ -18,14 +18,16 @@
 					{{ descriptionComputedText }}
 				</div>
 
-				<CdsSelect
-					v-model="selectedPreset"
-					class="side-sheet__presets"
-					label="Conjunto padrão de colunas (preset)"
-					placeholder="Selecione um preset"
-					:options="resolvedPresetsOptions"
-					fluid
-				/>
+				<template v-if="presetsOptions.length > 0">
+					<CdsSelect
+						v-model="selectedPreset"
+						class="side-sheet__presets"
+						label="Conjunto padrão de colunas (preset)"
+						placeholder="Selecione um preset"
+						:options="resolvedPresetsOptions"
+						fluid
+					/>
+				</template>
 
 				<CdsFlexbox
 					v-if="loadingCustomFields"
