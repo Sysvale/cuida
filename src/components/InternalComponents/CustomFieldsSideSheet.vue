@@ -21,8 +21,8 @@
 				<CdsSelect
 					v-model="selectedPreset"
 					class="side-sheet__presets"
-					label=""
-					placeholder="Selecione um preset de colunas"
+					label="Conjunto padrão de colunas (preset)"
+					placeholder="Selecione um preset"
 					:options="resolvedPresetsOptions"
 					fluid
 				/>
@@ -256,13 +256,13 @@ function currentPreset() {
 .side-sheet {
 
 	&__presets {
-		margin: tokens.mb(3);
+		margin: tokens.mb(4);
 	}
 
 	&__description {
 		@include tokens.body-2;
 		color: tokens.$n-600;
-		margin: tokens.mb(4);
+		margin: tokens.mb(5);
 	}
 
 	&__item-label {
