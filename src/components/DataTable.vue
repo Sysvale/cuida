@@ -139,6 +139,7 @@
 		<custom-fields-side-sheet
 			v-model="showSideSheet"
 			:custom-fields-list="internalCustomFieldsList"
+			:custom-fields-searchable="customFieldsSearchable"
 			:selection-variant="selectionVariant"
 			:presets-options="presetsOptions"
 			:loading-custom-fields="loadingCustomFields"
@@ -190,6 +191,13 @@ const props = defineProps({
 	customFieldsList: {
 		type: Array,
 		default: () => [],
+	},
+	/**
+	* Especifica se as deve ter pesquisa por colunas na personalização da tabela.
+	*/
+	customFieldsSearchable: {
+		type: Boolean,
+		default: false,
 	},
 	/**
 	* Especifica se o botão de personalizar tabela deve ser escondido.

@@ -29,6 +29,16 @@
 					/>
 				</template>
 
+				<template v-if="customFieldsSearchable">
+					<CdsSearchInput
+						v-model="searchString"
+						class="side-sheet__search"
+						label="Buscar"
+						placeholder="Buscar por coluna..."
+						fluid
+					/>
+				</template>
+
 				<CdsFlexbox
 					v-if="loadingCustomFields"
 					direction="column"
@@ -44,14 +54,14 @@
 
 				<div v-else>
 					<div
-						v-for="column in internalCustomFieldsList"
+						v-for="column in filteredCustomFieldsList"
 						:key="column"
 						class="side-sheet__column-item"
 						:class="[
 							{ [`side-sheet__column-item--active--${selectionVariant}`] : column.visible },
 							`side-sheet__column-item--${selectionVariant}`
 						]"
-						@click="column.visible = !column.visible"
+						@click="onItemClick(column)"
 					>
 						<span
 							class="side-sheet__item-label"
@@ -111,7 +121,8 @@ import CdsSideSheet from '../SideSheet.vue';
 import CdsFlexbox from '../Flexbox.vue';
 import CdsButton from '../Button.vue';
 import CdsSelect from '../Select.vue';
-import { cloneDeep, isEqual, kebabCase } from 'lodash';
+import CdsSearchInput from '../SearchInput.vue';
+import { cloneDeep, isEqual, kebabCase, trim } from 'lodash';
 
 const modelValue = defineModel({
 	type: Boolean,
@@ -122,6 +133,10 @@ const props = defineProps({
 	customFieldsList: {
 		type: Array,
 		default: () => []
+	},
+	customFieldsSearchable: {
+		type: Boolean,
+		default: false,
 	},
 	selectionVariant: {
 		type: String,
@@ -153,6 +168,8 @@ const emits = defineEmits(['update-fields-list', 'cancel', 'ok']);
 
 const internalCustomFieldsList = ref(cloneDeep(props.customFieldsList));
 const selectedPreset = ref({ id: 'custom', value: 'Personalizado' });
+const searchString = ref('');
+const filteredCustomFieldsList = ref(cloneDeep(internalCustomFieldsList.value));
 
 const resolvedPresetsOptions = computed(() => {
 	return [
@@ -203,6 +220,16 @@ watch(() => props.customFieldsList, (newList) => {
 	internalCustomFieldsList.value = cloneDeep(newList);
 }, { immediate: true });
 
+watch(() => searchString.value, (searchString) => {
+	if (!searchString) {
+		filteredCustomFieldsList.value = cloneDeep(internalCustomFieldsList.value);
+	}
+
+	filteredCustomFieldsList.value = internalCustomFieldsList.value.filter(({ label }) => {
+		return trim(label).toLowerCase().includes(trim(searchString).toLowerCase());
+	});
+});
+
 watch(() => selectedPreset.value, (preset) => {
 	if (!preset) return;
 	if (preset.id === 'custom') return;
@@ -222,6 +249,11 @@ watch(() => internalCustomFieldsList.value, () => {
 onMounted(() => {
 	currentPreset();
 });
+
+function onItemClick(column) {
+	column.visible = !column.visible;
+	internalCustomFieldsList.value.find(field => field.id === column.id).visible = column.visible;
+}
 
 function handleCancel() {
 	internalCustomFieldsList.value = cloneDeep(props.customFieldsList);
@@ -258,6 +290,10 @@ function currentPreset() {
 .side-sheet {
 
 	&__presets {
+		margin: tokens.mb(4);
+	}
+
+	&__search {
 		margin: tokens.mb(4);
 	}
 
