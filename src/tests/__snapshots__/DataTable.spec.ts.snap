@@ -18,6 +18,6 @@ exports[`DataTable > renders correctly 1`] = `
       <cds-table-stub data-v-046d4556="" modelvalue="" items="[object Object],[object Object]" fields="field1,field2,field3" hover="false" allowselection="false" selectionvariant="green" sortable="false" fixedheader="false" sortdesc="false" nowrap="false"></cds-table-stub>
     </div>
   </div>
-  <custom-fields-side-sheet-stub data-v-046d4556="" minfields="1" maxfields="Infinity" customfieldslist="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]" selectionvariant="green" presetsoptions="" loadingcustomfields="false" shoulddisableokbutton="false" modelvalue="false"></custom-fields-side-sheet-stub>
+  <custom-fields-side-sheet-stub data-v-046d4556="" minfields="1" maxfields="Infinity" customfieldslist="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]" customfieldssearchable="false" selectionvariant="green" presetsoptions="" loadingcustomfields="false" shoulddisableokbutton="false" modelvalue="false"></custom-fields-side-sheet-stub>
 </div>"
 `;
