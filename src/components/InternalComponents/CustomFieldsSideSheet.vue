@@ -52,6 +52,13 @@
 					/>
 				</CdsFlexbox>
 
+				<div
+					v-else-if="searchString && !filteredCustomFieldsList.length"
+					class="side-sheet__empty-list"
+				>
+					Nenhuma coluna encontrada
+				</div>
+
 				<div v-else>
 					<div
 						v-for="column in filteredCustomFieldsList"
@@ -308,6 +315,14 @@ function currentPreset() {
 		@include tokens.body-2;
 		color: tokens.$n-600;
 		margin: tokens.mb(5);
+	}
+
+	&__empty-list {
+		@include tokens.caption;
+		color: tokens.$n-400;
+		text-align: center;
+		font-style: italic;
+		margin: tokens.mt(4);
 	}
 
 	&__item-label {
