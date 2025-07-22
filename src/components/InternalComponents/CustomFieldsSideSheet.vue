@@ -128,7 +128,7 @@ import CdsFlexbox from '../Flexbox.vue';
 import CdsButton from '../Button.vue';
 import CdsSelect from '../Select.vue';
 import CdsSearchInput from '../SearchInput.vue';
-import { cloneDeep, isEqual, kebabCase, trim } from 'lodash';
+import { isEqual, kebabCase, trim } from 'lodash';
 
 const modelValue = defineModel({
 	type: Boolean,
@@ -172,10 +172,10 @@ const props = defineProps({
 
 const emits = defineEmits(['update-fields-list', 'cancel', 'ok']);
 
-const internalCustomFieldsList = ref(cloneDeep(props.customFieldsList));
+const internalCustomFieldsList = ref([...props.customFieldsList.map(field => ({ ...field }))]);
 const selectedPreset = ref({ id: 'custom', value: 'Personalizado' });
 const searchString = ref('');
-const filteredCustomFieldsList = ref(cloneDeep(internalCustomFieldsList.value));
+const filteredCustomFieldsList = ref([...internalCustomFieldsList.value.map(field => ({ ...field }))]);
 
 const resolvedPresetsOptions = computed(() => {
 	return [
@@ -223,12 +223,12 @@ const descriptionComputedText = computed(() => {
 });
 
 watch(() => props.customFieldsList, (newList) => {
-	internalCustomFieldsList.value = cloneDeep(newList);
+	internalCustomFieldsList.value = [...newList.map(field => ({ ...field }))];
 }, { immediate: true });
 
 watch(() => searchString.value, (searchString) => {
 	if (!searchString) {
-		filteredCustomFieldsList.value = cloneDeep(internalCustomFieldsList.value);
+		filteredCustomFieldsList.value = [...internalCustomFieldsList.value.map(field => ({ ...field }))];
 	}
 
 	filteredCustomFieldsList.value = internalCustomFieldsList.value.filter(({ label }) => {
@@ -258,11 +258,11 @@ onMounted(() => {
 
 function clearFilter() {
 	searchString.value = '';
-	filteredCustomFieldsList.value = cloneDeep(internalCustomFieldsList.value);
+	filteredCustomFieldsList.value = [...internalCustomFieldsList.value.map(field => ({ ...field }))];
 }
 
 function handleCancel() {
-	internalCustomFieldsList.value = cloneDeep(props.customFieldsList);
+	internalCustomFieldsList.value = [...props.customFieldsList.map(field => ({ ...field }))];
 	clearFilter();
 	modelValue.value = false;
 	emits('cancel');
