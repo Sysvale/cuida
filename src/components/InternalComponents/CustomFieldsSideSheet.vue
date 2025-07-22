@@ -80,17 +80,17 @@
 						<CdsIcon
 							v-if="column.visible"
 							:class="`side-sheet__icon--${selectionVariant}`"
-							name="pin-outline"
-							width="16"
-							height="16"
+							name="pin-fill"
+							width="20"
+							height="20"
 						/>
 
 						<CdsIcon
 							v-else
 							class="side-sheet__icon"
 							name="pin-outline"
-							width="16"
-							height="16"
+							width="20"
+							height="20"
 						/>
 					</div>
 				</div>
