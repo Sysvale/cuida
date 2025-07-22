@@ -120,7 +120,7 @@
 </template>
 
 <script setup>
-import { ref, watch, computed, onMounted } from 'vue';
+import { ref, watch, computed } from 'vue';
 import CdsIcon from '../Icon.vue';
 import CdsSkeleton from '../Skeleton.vue';
 import CdsSideSheet from '../SideSheet.vue';
@@ -128,7 +128,7 @@ import CdsFlexbox from '../Flexbox.vue';
 import CdsButton from '../Button.vue';
 import CdsSelect from '../Select.vue';
 import CdsSearchInput from '../SearchInput.vue';
-import { isEqual, kebabCase, trim } from 'lodash';
+import { isEmpty, isEqual, kebabCase, trim } from 'lodash';
 
 const modelValue = defineModel({
 	type: Boolean,
@@ -172,10 +172,10 @@ const props = defineProps({
 
 const emits = defineEmits(['update-fields-list', 'cancel', 'ok']);
 
-const internalCustomFieldsList = ref([...props.customFieldsList.map(field => ({ ...field }))]);
+const internalCustomFieldsList = ref([]);
+const filteredCustomFieldsList = ref([]);
 const selectedPreset = ref({ id: 'custom', value: 'Personalizado' });
 const searchString = ref('');
-const filteredCustomFieldsList = ref([...internalCustomFieldsList.value.map(field => ({ ...field }))]);
 
 const resolvedPresetsOptions = computed(() => {
 	return [
@@ -229,6 +229,7 @@ watch(() => props.customFieldsList, (newList) => {
 watch(() => searchString.value, (searchString) => {
 	if (!searchString) {
 		filteredCustomFieldsList.value = [...internalCustomFieldsList.value.map(field => ({ ...field }))];
+		return;
 	}
 
 	filteredCustomFieldsList.value = internalCustomFieldsList.value.filter(({ label }) => {
@@ -252,9 +253,13 @@ watch(() => filteredCustomFieldsList.value, () => {
 	currentPreset();
 }, { deep: true });
 
-onMounted(() => {
+watch(() => props.customFieldsList, (value) => {
+	if (isEmpty(value)) return;
+
+	internalCustomFieldsList.value = [...value.map(field => ({ ...field }))];
+	filteredCustomFieldsList.value = [...value.map(field => ({ ...field }))];
 	currentPreset();
-});
+}, { deep: true });
 
 function clearFilter() {
 	searchString.value = '';
