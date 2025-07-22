@@ -255,13 +255,20 @@ function onItemClick(column) {
 	internalCustomFieldsList.value.find(field => field.id === column.id).visible = column.visible;
 }
 
+function clearFilter() {
+	searchString.value = '';
+	filteredCustomFieldsList.value = cloneDeep(internalCustomFieldsList.value);
+}
+
 function handleCancel() {
 	internalCustomFieldsList.value = cloneDeep(props.customFieldsList);
+	clearFilter();
 	modelValue.value = false;
 	emits('cancel');
 }
 
 function handleOk() {
+	clearFilter();
 	emits('update-fields-list', internalCustomFieldsList.value);
 	modelValue.value = false;
 }
