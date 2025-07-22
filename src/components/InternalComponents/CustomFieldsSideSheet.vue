@@ -19,26 +19,24 @@
 					{{ descriptionComputedText }}
 				</div>
 
-				<template v-if="presetsOptions.length > 0">
-					<CdsSelect
-						v-model="selectedPreset"
-						class="side-sheet__presets"
-						label="Conjunto padrão de colunas (preset)"
-						placeholder="Selecione um preset"
-						:options="resolvedPresetsOptions"
-						fluid
-					/>
-				</template>
+				<CdsSelect
+					v-if="presetsOptions.length > 0"
+					v-model="selectedPreset"
+					class="side-sheet__presets"
+					label="Conjunto padrão de colunas (preset)"
+					placeholder="Selecione um preset"
+					:options="resolvedPresetsOptions"
+					fluid
+				/>
 
-				<template v-if="customFieldsSearchable">
-					<CdsSearchInput
-						v-model="searchString"
-						class="side-sheet__search"
-						label="Buscar"
-						placeholder="Buscar por coluna..."
-						fluid
-					/>
-				</template>
+				<CdsSearchInput
+					v-if="customFieldsSearchable"
+					v-model="searchString"
+					class="side-sheet__search"
+					label="Buscar"
+					placeholder="Buscar por coluna..."
+					fluid
+				/>
 
 				<CdsFlexbox
 					v-if="loadingCustomFields"
