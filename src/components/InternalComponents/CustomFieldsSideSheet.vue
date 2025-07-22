@@ -237,7 +237,7 @@ watch(() => selectedPreset.value, (preset) => {
 	const presetColumns = props.presetsOptions?.find(({ label }) => label === preset.value)?.columns;
 	if (!presetColumns) return;
 
-	internalCustomFieldsList.value.forEach((field) => {
+	filteredCustomFieldsList.value.forEach((field) => {
 		field.visible = presetColumns.includes(field.id);
 	});
 });
