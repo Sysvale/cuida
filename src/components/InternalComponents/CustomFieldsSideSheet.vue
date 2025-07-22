@@ -8,6 +8,7 @@
 			no-close-on-backdrop
 			@ok="handleOk"
 			@cancel="handleCancel"
+			@close="handleCancel"
 		>
 			<CdsFlexbox
 				direction="column"
@@ -68,7 +69,7 @@
 							{ [`side-sheet__column-item--active--${selectionVariant}`] : column.visible },
 							`side-sheet__column-item--${selectionVariant}`
 						]"
-						@click="onItemClick(column)"
+						@click="column.visible = !column.visible"
 					>
 						<span
 							class="side-sheet__item-label"
@@ -249,18 +250,13 @@ watch(() => selectedPreset.value, (preset) => {
 	});
 });
 
-watch(() => internalCustomFieldsList.value, () => {
+watch(() => filteredCustomFieldsList.value, () => {
 	currentPreset();
 }, { deep: true });
 
 onMounted(() => {
 	currentPreset();
 });
-
-function onItemClick(column) {
-	column.visible = !column.visible;
-	internalCustomFieldsList.value.find(field => field.id === column.id).visible = column.visible;
-}
 
 function clearFilter() {
 	searchString.value = '';
@@ -280,7 +276,18 @@ function handleOk() {
 	modelValue.value = false;
 }
 
+function syncInternalCustomFieldsList() {
+	internalCustomFieldsList.value.forEach((field) => {
+		const foundField = filteredCustomFieldsList.value.find(item => item.id === field.id);
+		if (foundField) {
+			field.visible = foundField.visible;
+		}
+	});
+}
+
 function currentPreset() {
+	syncInternalCustomFieldsList();
+
 	const currentSelectedColumns = internalCustomFieldsList.value.
 		filter(({ visible }) => visible === true).
 		map(field => field.id);
