@@ -77,6 +77,7 @@ export const iconsData = [
 			'warning-outline',
 			'mail-outline',
 			'checkbox-checked-outlined',
+			'checkbox-unchecked-outlined',
 			'single-select-outline',
 			'flag-outline',
 			'sparks-outline',
@@ -193,6 +194,7 @@ export const iconsData = [
 			'map-pin-outline',
 			'map-outline',
 			'pin-outline',
+			'pin-fill',
 			'bed-outiline',
 			'building-outline',
 			'ticket-outline',
@@ -226,7 +228,7 @@ export const iconsData = [
 	{
 		categoryName: 'Social',
 		icons: [
-			'chatbubble-outline', 
+			'chatbubble-outline',
 			'chatbubbles-outline',
 			'trophy-outline',
 			'weight-outline',

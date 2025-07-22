@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<cds-side-sheet
+		<CdsSideSheet
 			v-model="modelValue"
 			title="Personalizar tabela"
 			no-close-on-esc
@@ -8,8 +8,9 @@
 			no-close-on-backdrop
 			@ok="handleOk"
 			@cancel="handleCancel"
+			@close="handleCancel"
 		>
-			<cds-flexbox
+			<CdsFlexbox
 				direction="column"
 				gap="1"
 				fluid
@@ -18,7 +19,26 @@
 					{{ descriptionComputedText }}
 				</div>
 
-				<cds-flexbox
+				<CdsSelect
+					v-if="presetsOptions.length > 0"
+					v-model="selectedPreset"
+					class="side-sheet__presets"
+					label="Conjunto padrão de colunas (preset)"
+					placeholder="Selecione um preset"
+					:options="resolvedPresetsOptions"
+					fluid
+				/>
+
+				<CdsSearchInput
+					v-if="customFieldsSearchable"
+					v-model="searchString"
+					class="side-sheet__search"
+					label="Buscar"
+					placeholder="Buscar por coluna..."
+					fluid
+				/>
+
+				<CdsFlexbox
 					v-if="loadingCustomFields"
 					direction="column"
 					gap="3"
@@ -29,11 +49,18 @@
 						:height="60"
 						fluid
 					/>
-				</cds-flexbox>
+				</CdsFlexbox>
+
+				<div
+					v-else-if="searchString && !filteredCustomFieldsList.length"
+					class="side-sheet__empty-list"
+				>
+					Nenhuma coluna encontrada
+				</div>
 
 				<div v-else>
 					<div
-						v-for="column in internalCustomFieldsList"
+						v-for="column in filteredCustomFieldsList"
 						:key="column"
 						class="side-sheet__column-item"
 						:class="[
@@ -49,35 +76,35 @@
 							{{ column.label }}
 						</span>
 
-						<cds-icon
+						<CdsIcon
 							v-if="column.visible"
 							:class="`side-sheet__icon--${selectionVariant}`"
-							name="pin-outline"
-							width="16"
-							height="16"
+							name="pin-fill"
+							width="20"
+							height="20"
 						/>
 
-						<cds-icon
+						<CdsIcon
 							v-else
 							class="side-sheet__icon"
 							name="pin-outline"
-							width="16"
-							height="16"
+							width="20"
+							height="20"
 						/>
 					</div>
 				</div>
-			</cds-flexbox>
+			</CdsFlexbox>
 
 			<template #footer>
 				<div class="side-sheet__footer">
-					<cds-button
+					<CdsButton
 						secondary
 						@button-click="handleCancel"
 					>
 						Cancelar
-					</cds-button>
+					</CdsButton>
 
-					<cds-button
+					<CdsButton
 						v-cdstip="shouldDisableOkButton ? descriptionComputedText : ''"
 						:variant="selectionVariant"
 						:disabled="shouldDisableOkButton"
@@ -85,21 +112,23 @@
 						@button-click="handleOk"
 					>
 						Salvar
-					</cds-button>
+					</CdsButton>
 				</div>
 			</template>
-		</cds-side-sheet>
+		</CdsSideSheet>
 	</div>
 </template>
 
 <script setup>
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, onMounted } from 'vue';
 import CdsIcon from '../Icon.vue';
 import CdsSkeleton from '../Skeleton.vue';
 import CdsSideSheet from '../SideSheet.vue';
 import CdsFlexbox from '../Flexbox.vue';
 import CdsButton from '../Button.vue';
-import { cloneDeep } from 'lodash';
+import CdsSelect from '../Select.vue';
+import CdsSearchInput from '../SearchInput.vue';
+import { isEqual, kebabCase, trim } from 'lodash';
 
 const modelValue = defineModel({
 	type: Boolean,
@@ -111,9 +140,17 @@ const props = defineProps({
 		type: Array,
 		default: () => []
 	},
+	customFieldsSearchable: {
+		type: Boolean,
+		default: false,
+	},
 	selectionVariant: {
 		type: String,
 		default: 'primary'
+	},
+	presetsOptions: {
+		type: Array,
+		default: () => []
 	},
 	loadingCustomFields: {
 		type: Boolean,
@@ -135,7 +172,25 @@ const props = defineProps({
 
 const emits = defineEmits(['update-fields-list', 'cancel', 'ok']);
 
-const internalCustomFieldsList = ref(cloneDeep(props.customFieldsList));
+const internalCustomFieldsList = ref([...props.customFieldsList.map(field => ({ ...field }))]);
+const selectedPreset = ref({ id: 'custom', value: 'Personalizado' });
+const searchString = ref('');
+const filteredCustomFieldsList = ref([...internalCustomFieldsList.value.map(field => ({ ...field }))]);
+
+const resolvedPresetsOptions = computed(() => {
+	return [
+		...props.presetsOptions.map((item) => {
+			return {
+				id: kebabCase(item.label),
+				value: item.label,
+			}
+		}),
+		{
+			id: 'custom',
+			value: 'Personalizado'
+		}
+	];
+})
 
 const shouldDisableOkButton = computed(() => {
 	const visibleFieldsCount = internalCustomFieldsList.value.filter(field => field.visible).length;
@@ -168,18 +223,82 @@ const descriptionComputedText = computed(() => {
 });
 
 watch(() => props.customFieldsList, (newList) => {
-	internalCustomFieldsList.value = cloneDeep(newList);
+	internalCustomFieldsList.value = [...newList.map(field => ({ ...field }))];
 }, { immediate: true });
 
+watch(() => searchString.value, (searchString) => {
+	if (!searchString) {
+		filteredCustomFieldsList.value = [...internalCustomFieldsList.value.map(field => ({ ...field }))];
+	}
+
+	filteredCustomFieldsList.value = internalCustomFieldsList.value.filter(({ label }) => {
+		return trim(label).toLowerCase().includes(trim(searchString).toLowerCase());
+	});
+});
+
+watch(() => selectedPreset.value, (preset) => {
+	if (!preset) return;
+	if (preset.id === 'custom') return;
+
+	const presetColumns = props.presetsOptions?.find(({ label }) => label === preset.value)?.columns;
+	if (!presetColumns) return;
+
+	filteredCustomFieldsList.value.forEach((field) => {
+		field.visible = presetColumns.includes(field.id);
+	});
+});
+
+watch(() => filteredCustomFieldsList.value, () => {
+	currentPreset();
+}, { deep: true });
+
+onMounted(() => {
+	currentPreset();
+});
+
+function clearFilter() {
+	searchString.value = '';
+	filteredCustomFieldsList.value = [...internalCustomFieldsList.value.map(field => ({ ...field }))];
+}
+
 function handleCancel() {
-	internalCustomFieldsList.value = cloneDeep(props.customFieldsList);
+	internalCustomFieldsList.value = [...props.customFieldsList.map(field => ({ ...field }))];
+	clearFilter();
 	modelValue.value = false;
 	emits('cancel');
 }
 
 function handleOk() {
+	clearFilter();
 	emits('update-fields-list', internalCustomFieldsList.value);
 	modelValue.value = false;
+}
+
+function syncInternalCustomFieldsList() {
+	internalCustomFieldsList.value.forEach((field) => {
+		const foundField = filteredCustomFieldsList.value.find(item => item.id === field.id);
+		if (foundField) {
+			field.visible = foundField.visible;
+		}
+	});
+}
+
+function currentPreset() {
+	syncInternalCustomFieldsList();
+
+	const currentSelectedColumns = internalCustomFieldsList.value.
+		filter(({ visible }) => visible === true).
+		map(field => field.id);
+	const foundPreset = props.presetsOptions.find(({ columns }) => {
+		return isEqual(columns, currentSelectedColumns);
+	});
+
+	if (!foundPreset) {
+		selectedPreset.value = { id: 'custom', value: 'Personalizado' };
+		return;
+	}
+
+	selectedPreset.value = { id: kebabCase(foundPreset.label), value: foundPreset.label };
 }
 
 </script>
@@ -189,10 +308,26 @@ function handleOk() {
 
 .side-sheet {
 
+	&__presets {
+		margin: tokens.mb(4);
+	}
+
+	&__search {
+		margin: tokens.mb(4);
+	}
+
 	&__description {
 		@include tokens.body-2;
 		color: tokens.$n-600;
-		margin: tokens.mb(3);
+		margin: tokens.mb(5);
+	}
+
+	&__empty-list {
+		@include tokens.caption;
+		color: tokens.$n-400;
+		text-align: center;
+		font-style: italic;
+		margin: tokens.mt(4);
 	}
 
 	&__item-label {
