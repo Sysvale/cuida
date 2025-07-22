@@ -193,7 +193,7 @@ const props = defineProps({
 		default: () => [],
 	},
 	/**
-	* Especifica se as deve ter pesquisa por colunas na personalização da tabela.
+	* Especifica se deve ter pesquisa por colunas na personalização da tabela.
 	*/
 	customFieldsSearchable: {
 		type: Boolean,
