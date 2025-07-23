@@ -57,6 +57,10 @@
 				</div>
 
 				<div v-else>
+					<div class="side-sheet__count">
+						{{ visibleColumnsCountText }}
+					</div>
+
 					<div
 						v-for="column in filteredCustomFieldsList"
 						:key="column"
@@ -220,6 +224,16 @@ const descriptionComputedText = computed(() => {
 	return getDescription(minFields, maxFields);
 });
 
+const visibleColumnsCountText = computed(() => {
+	const count = internalCustomFieldsList.value.filter(field => field.visible).length;
+
+	return count === 0
+		? 'Nenhuma coluna selecionada'
+		: count === 1
+			? 'Uma coluna selecionada'
+			: `${count} colunas selecionadas`;
+});
+
 watch(() => props.customFieldsList, (newList) => {
 	internalCustomFieldsList.value = [...newList.map(field => ({ ...field }))];
 }, { immediate: true });
@@ -317,18 +331,24 @@ function currentPreset() {
 
 .side-sheet {
 
-	&__presets {
-		margin: tokens.mb(4);
-	}
-
-	&__search {
-		margin: tokens.mb(4);
-	}
-
 	&__description {
 		@include tokens.body-2;
 		color: tokens.$n-600;
 		margin: tokens.mb(5);
+	}
+
+	&__presets {
+		margin: tokens.mb(2);
+	}
+
+	&__search {
+		margin: tokens.mb(2);
+	}
+
+	&__count {
+		@include tokens.caption;
+		color: tokens.$n-600;
+		margin: tokens.mTRBL(3, 0, 2, 0);
 	}
 
 	&__empty-list {
