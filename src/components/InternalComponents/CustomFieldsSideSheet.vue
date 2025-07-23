@@ -6,8 +6,6 @@
 			no-close-on-esc
 			with-overlay
 			no-close-on-backdrop
-			@ok="handleOk"
-			@cancel="handleCancel"
 			@close="handleCancel"
 		>
 			<CdsFlexbox
@@ -120,7 +118,7 @@
 </template>
 
 <script setup>
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, onMounted } from 'vue';
 import CdsIcon from '../Icon.vue';
 import CdsSkeleton from '../Skeleton.vue';
 import CdsSideSheet from '../SideSheet.vue';
@@ -170,7 +168,7 @@ const props = defineProps({
 	},
 });
 
-const emits = defineEmits(['update-fields-list', 'cancel', 'ok']);
+const emits = defineEmits(['update-fields-list', 'cancel', 'update-preset']);
 
 const internalCustomFieldsList = ref([]);
 const filteredCustomFieldsList = ref([]);
@@ -261,6 +259,11 @@ watch(() => props.customFieldsList, (value) => {
 	currentPreset();
 }, { deep: true });
 
+onMounted(() => {
+	internalCustomFieldsList.value = [...props.customFieldsList.map(field => ({ ...field }))];
+	filteredCustomFieldsList.value = [...props.customFieldsList.map(field => ({ ...field }))];
+});
+
 function clearFilter() {
 	searchString.value = '';
 	filteredCustomFieldsList.value = [...internalCustomFieldsList.value.map(field => ({ ...field }))];
@@ -275,6 +278,7 @@ function handleCancel() {
 
 function handleOk() {
 	clearFilter();
+	emits('update-preset', selectedPreset.value.value);
 	emits('update-fields-list', internalCustomFieldsList.value);
 	modelValue.value = false;
 }
