@@ -166,7 +166,7 @@
 					</Transition>
 					<div v-if="item.items && collapsed">
 						<cds-rich-tooltip
-							v-model="itemsWithVisibilityController[index].show"
+							:model-value="itemsWithVisibilityController[index]?.show"
 							:target-id="item.label"
 							default-placement="bottom-start"
 							width="160"
@@ -288,7 +288,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue';
+import { ref, computed, watch, onMounted, onBeforeMount } from 'vue';
 import isEqual from 'lodash.isequal';
 import isEmpty from 'lodash.isempty';
 import CdsIcon from './Icon.vue';
@@ -499,17 +499,7 @@ watch(collapsed, (newValue) => {
 	}, 250);
 });
 
-onMounted(() => {
-	internalActiveItem.value = props.activeItem;
-
-	props.items.forEach((item, idx) => {
-		itemsWithVisibilityController.value.push({
-			name: item.label,
-			index: idx,
-			show: false,
-		})
-	});
-
+onBeforeMount(() => {
 	if (!props.collapsible) {
 		return;
 	}
@@ -520,6 +510,18 @@ onMounted(() => {
 	}
 
 	collapsed.value = JSON.parse(window.localStorage.getItem('cdsSidebarCollapsed'));
+})
+
+onMounted(() => {
+	internalActiveItem.value = props.activeItem;
+
+	props.items.forEach((item, idx) => {
+		itemsWithVisibilityController.value.push({
+			name: item.label,
+			index: idx,
+			show: false,
+		})
+	});
 });
 
 function handleClick(event, item) {
