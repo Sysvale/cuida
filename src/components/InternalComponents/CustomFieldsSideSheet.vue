@@ -230,7 +230,7 @@ const visibleColumnsCountText = computed(() => {
 	return count === 0
 		? 'Nenhuma coluna selecionada'
 		: count === 1
-			? 'Uma coluna selecionada'
+			? '1 coluna selecionada'
 			: `${count} colunas selecionadas`;
 });
 
