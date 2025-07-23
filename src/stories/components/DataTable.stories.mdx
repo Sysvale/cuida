@@ -109,109 +109,112 @@ export const Template = (args) => ({
 
 export const fields = [
 	{
-		key: 'field-1',
-		label: 'Field 1',
-		formatter: (value) => { return `${value}a`  },
-		width: '50%',
+		key: 'nome',
+		label: 'Nome',
 	},
 	{
-		key: 'field2',
-		label: 'Field 2',
-		width: '20%',
+		key: 'sobrenome',
+		label: 'Sobrenome',
 	},
 	{
-		key: 'field-3',
-		label: 'Field 3',
+		key: 'idade',
+		label: 'Idade',
 	},
 	{
-		key: 'field_4',
-		label: 'Field 4',
+		key: 'cpf',
+		label: 'CPF',
 	},
+	{
+		key: 'rg',
+		label: 'RG',
+	},
+	{
+		key: 'endereco',
+		label: 'Endereço',
+	}
 ];
 
 export const items = [
 	{
-		'field-1': '2023-10-10',
-		'field2': '0',
-		'field-3': 0,
-		'field_4': 10298726432
+		nome: 'João Marcelo',
+		sobrenome: 'Freitas',
+		idade: 30,
+		cpf: '123.456.789-00',
+		rg: '12.345.678-9',
+		endereco: 'Rua 1, 123 - Bairro 1',
 	},
 	{
-		'field-1': '2023-10-10',
-		'field2': '1',
-		'field-3': 72,
-		'field_4': 10298726432
+		nome: 'Maria Clara',
+		sobrenome: 'Silva',
+		idade: 25,
+		cpf: '987.654.321-00',
+		rg: '98.765.432-1',
+		endereco: 'Rua 2, 456 - Bairro 2',
 	},
 	{
-		'field-1': '2023-10-10',
-		'field2': 'field 2 content b',
-		'field_3': 60,
-		'field_4': 10298726432
+		nome: 'Pedro Henrique',
+		sobrenome: 'Santos',
+		idade: 45,
+		cpf: '456.789.123-00',
+		rg: '45.678.912-3',
+		endereco: 'Rua 3, 789 - Bairro 3',
 	},
 	{
-		'field-1': '2023-10-10',
-		'field2': '0',
-		'field-3': 0,
-		'field_4': 10298726432
+		nome: 'Ana Beatriz',
+		sobrenome: 'Oliveira',
+		idade: 28,
+		cpf: '789.123.456-00',
+		rg: '78.912.345-6',
+		endereco: 'Rua 4, 321 - Bairro 4',
 	},
 	{
-		'field-1': '2023-10-10',
-		'field2': '1',
-		'field-3': 72,
-		'field_4': 10298726432
+		nome: 'Lucas Gabriel',
+		sobrenome: 'Ferreira',
+		idade: 33,
+		cpf: '321.654.987-00',
+		rg: '32.165.498-7',
+		endereco: 'Rua 5, 654 - Bairro 5',
 	},
 	{
-		'field-1': '2023-10-10',
-		'field2': 'field 2 content b',
-		'field_3': 60,
-		'field_4': 10298726432
+		nome: 'Julia Sophia',
+		sobrenome: 'Rodrigues',
+		idade: 29,
+		cpf: '654.987.321-00',
+		rg: '65.498.732-1',
+		endereco: 'Rua 6, 987 - Bairro 6',
 	},
 	{
-		'field-1': '2023-10-10',
-		'field2': '0',
-		'field-3': 0,
-		'field_4': 10298726432
+		nome: 'Rafael Miguel',
+		sobrenome: 'Costa',
+		idade: 37,
+		cpf: '147.258.369-00',
+		rg: '14.725.836-9',
+		endereco: 'Rua 7, 147 - Bairro 7',
 	},
 	{
-		'field-1': '2023-10-10',
-		'field2': '1',
-		'field-3': 72,
-		'field_4': 10298726432
+		nome: 'Isabella Laura',
+		sobrenome: 'Almeida',
+		idade: 31,
+		cpf: '258.369.147-00',
+		rg: '25.836.914-7',
+		endereco: 'Rua 8, 258 - Bairro 8',
 	},
 	{
-		'field-1': '2023-10-10',
-		'field2': 'field 2 content b',
-		'field_3': 60,
-		'field_4': 10298726432
-	},
-];
-
-
-export const fields2 = [
-	{
-		key: 'field-1',
-		label: 'Field 1',
-	},
-	'field2',
-	'field_3',
-];
-
-export const items2 = [
-	{
-		'field-1': 'Praesent malesuada urna nisi',
-		'field2': 'field 2 content a',
-		'field_3': 50,
+		nome: 'Matheus Felipe',
+		sobrenome: 'Pereira',
+		idade: 42,
+		cpf: '369.147.258-00',
+		rg: '36.914.725-8',
+		endereco: 'Rua 9, 369 - Bairro 9',
 	},
 	{
-		'field-1': 'quis volutpat erat hendrerit non',
-		'field2': 'field 2 content c',
-		'field_3': 72,
-	},
-	{
-		'field-1': 'Nam vulputate dapibus',
-		'field2': 'field 2 content b',
-		'field_3': 60,
-	},
+		nome: 'Valentina Alice',
+		sobrenome: 'Carvalho',
+		idade: 27,
+		cpf: '741.852.963-00',
+		rg: '74.185.296-3',
+		endereco: 'Rua 10, 741 - Bairro 10',
+	}
 ];
 
 export const customFields = [
@@ -223,7 +226,7 @@ export const customFields = [
 	{
 		label: 'Sobrenome',
 		id: 'sobrenome',
-		visible: false,
+		visible: true,
 	},
 	{
 		label: 'Idade',
@@ -238,12 +241,12 @@ export const customFields = [
 	{
 		label: 'RG',
 		id: 'rg',
-		visible: false,
+		visible: true,
 	},
 	{
 		label: 'Endereço',
 		id: 'endereco',
-		visible: false,
+		visible: true,
 	}
 ];
 
