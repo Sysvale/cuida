@@ -127,42 +127,6 @@ export const fields = [
 		key: 'field_4',
 		label: 'Field 4',
 	},
-	{
-		key: 'field-5',
-		label: 'Field 5',
-	},
-	{
-		key: 'field_6',
-		label: 'Field 6',
-	},
-	{
-		key: 'field-7',
-		label: 'Field 7',
-	},
-	{
-		key: 'field_8',
-		label: 'Field 8',
-	},
-	{
-		key: 'field_9',
-		label: 'Field 9',
-	},
-	{
-		key: 'field-10',
-		label: 'Field 10',
-	},
-	{
-		key: 'field_11',
-		label: 'Field 11',
-	},
-	{
-		key: 'field-12',
-		label: 'Field 12',
-	},
-	{
-		key: 'field_13',
-		label: 'Field 13',
-	},
 ];
 
 export const items = [
@@ -253,33 +217,56 @@ export const items2 = [
 export const customFields = [
 	{
 		label: 'Nome',
-		id: '1',
+		id: 'nome',
 		visible: true,
 	},
 	{
 		label: 'Sobrenome',
-		id: '2',
-		visible: true,
+		id: 'sobrenome',
+		visible: false,
 	},
 	{
 		label: 'Idade',
-		id: '3',
+		id: 'idade',
 		visible: true,
 	},
 	{
 		label: 'CPF',
-		id: '4',
-		visible: false,
+		id: 'cpf',
+		visible: true,
 	},
 	{
 		label: 'RG',
-		id: '5',
+		id: 'rg',
 		visible: false,
 	},
 	{
 		label: 'Endereço',
-		id: '6',
-		visible: true,
+		id: 'endereco',
+		visible: false,
+	}
+];
+
+export const presetsOptions = [
+	{
+		label: 'Basicão',
+		columns: ['nome', 'sobrenome', 'idade']
+	},
+	{
+		label: 'Pessoal',
+		columns: ['nome', 'idade', 'cpf']
+	},
+	{
+		label: 'Endereço',
+		columns: ['nome', 'endereco']
+	},
+	{
+		label: 'Documentos',
+		columns: ['nome', 'sobrenome', 'cpf', 'rg']
+	},
+	{
+		label: 'X-Tudo',
+		columns: ['nome', 'sobrenome', 'idade', 'cpf', 'rg', 'endereco']
 	}
 ];
 
@@ -293,7 +280,9 @@ export const customFields = [
 			allowSelection: false,
 			selectionVariant: 'green',
 			totalItems: 100,
+			presetsOptions: presetsOptions,
 			customFieldsList: customFields,
+			customFieldsSearchable: true,
 			minVisibleFields: 1,
 			maxVisibleFields: 0,
 			fixedHeader: false,

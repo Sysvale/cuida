@@ -139,7 +139,9 @@
 		<custom-fields-side-sheet
 			v-model="showSideSheet"
 			:custom-fields-list="internalCustomFieldsList"
+			:custom-fields-searchable="customFieldsSearchable"
 			:selection-variant="selectionVariant"
+			:presets-options="presetsOptions"
 			:loading-custom-fields="loadingCustomFields"
 			:min-fields="minVisibleFields"
 			:max-fields="computedMaxVisibleFields"
@@ -191,11 +193,25 @@ const props = defineProps({
 		default: () => [],
 	},
 	/**
+	* Especifica se deve ter pesquisa por colunas na personalização da tabela.
+	*/
+	customFieldsSearchable: {
+		type: Boolean,
+		default: false,
+	},
+	/**
 	* Especifica se o botão de personalizar tabela deve ser escondido.
 	*/
 	hideCustomizeButton: {
 		type: Boolean,
 		default: false,
+	},
+	/**
+	* Define as opções de presets que serão exibidas no sidesheet de personalizar tabela. Se nenhum for fornecido, não será exibido.
+	*/
+	presetsOptions: {
+		type: Array,
+		default: () => [],
 	},
 	/**
 	* Ativa o feedback de loading no sidesheet de personalizar tabela.
