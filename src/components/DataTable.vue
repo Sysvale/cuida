@@ -60,7 +60,13 @@
 						:disabled="loading"
 						@button-click="handleCustomizeButtonClick"
 					>
-						Personalizar tabela
+						<span v-if="presetsOptions.length">
+							Colunas: {{ selectedPresetName }}
+						</span>
+
+						<span v-else>
+							Personalizar colunas
+						</span>
 					</cds-button>
 				</cds-flexbox>
 				<div
@@ -149,13 +155,14 @@
 			@customize-click="handleCustomizeButtonClick"
 			@cancel="handleCancel"
 			@ok="handleOk"
+			@update-preset="handleUpdatePreset"
 		/>
 	</div>
 </template>
 
 <script setup>
 import { ref, watch, computed, useAttrs, onMounted, onUnmounted } from 'vue';
-import { cloneDeep, isEmpty } from 'lodash';
+import { cloneDeep, isEmpty, isEqual } from 'lodash';
 import { useHasSlot } from '../utils/composables/useHasSlot';
 import generateKey from '../utils/methods/uuidv4';
 import CdsButton from './Button.vue';
@@ -291,6 +298,7 @@ const showSideSheet = ref(false);
 const internalSearch = ref('');
 const searchTimeout = ref(null);
 const internalCustomFieldsList = ref(cloneDeep(props.customFieldsList));
+const selectedPresetName = ref('Personalizado');
 
 const virtualHeaderID = generateKey();
 const dataTableHeaderID = generateKey();
@@ -333,6 +341,8 @@ watch(() => props.customFieldsList, () => {
 }, { immediate: true });
 
 onMounted(() => {
+	resolveInitialPreset();
+
 	if (!attrs.fixedHeader) return;
 
 	lastScrollY = window.scrollY;
@@ -414,6 +424,25 @@ function handleSearchInput(value) {
 		emits('search', value);
 	}, props.searchInputDelay);
 }
+
+function handleUpdatePreset(presetName) {
+	selectedPresetName.value = presetName;
+}
+
+function resolveInitialPreset() {
+	const columnsKeys = attrs.fields.map((field) => field.key);
+	const foundPresetLabel = props.presetsOptions.find((preset) => {
+		return isEqual(preset.columns, columnsKeys);
+	});
+
+	if (foundPresetLabel) {
+		selectedPresetName.value = foundPresetLabel.label;
+		return;
+	}
+
+	selectedPresetName.value = 'Personalizado';
+}
+
 </script>
 
 <style lang="scss" scoped>
