@@ -163,8 +163,9 @@
 
 <script setup>
 import { ref, watch, computed, useAttrs, onMounted, onUnmounted, nextTick } from 'vue';
-import { cloneDeep, isEmpty, isEqual } from 'lodash';
+import { cloneDeep, isEmpty } from 'lodash';
 import { useHasSlot } from '../utils/composables/useHasSlot';
+import hasSameItems from '../utils/methods/hasSameItems';
 import generateKey from '../utils/methods/uuidv4';
 import CdsButton from './Button.vue';
 import CdsTable from './Table.vue';
@@ -445,7 +446,7 @@ function resolveInitialPreset() {
 	nextTick(() => {
 		const columnsKeys = attrs.fields.map((field) => field.key);
 		const foundPresetLabel = props.presetsOptions.find((preset) => {
-			return isEqual(preset.columns, columnsKeys);
+			return hasSameItems(preset.columns, columnsKeys);
 		});
 
 		if (foundPresetLabel) {
