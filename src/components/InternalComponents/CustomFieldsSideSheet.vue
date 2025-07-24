@@ -6,8 +6,6 @@
 			no-close-on-esc
 			with-overlay
 			no-close-on-backdrop
-			@ok="handleOk"
-			@cancel="handleCancel"
 			@close="handleCancel"
 		>
 			<CdsFlexbox
@@ -59,6 +57,10 @@
 				</div>
 
 				<div v-else>
+					<div class="side-sheet__count">
+						{{ visibleColumnsCountText }}
+					</div>
+
 					<div
 						v-for="column in filteredCustomFieldsList"
 						:key="column"
@@ -120,7 +122,8 @@
 </template>
 
 <script setup>
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, onMounted } from 'vue';
+import hasSameItems from '../../utils/methods/hasSameItems';
 import CdsIcon from '../Icon.vue';
 import CdsSkeleton from '../Skeleton.vue';
 import CdsSideSheet from '../SideSheet.vue';
@@ -128,7 +131,7 @@ import CdsFlexbox from '../Flexbox.vue';
 import CdsButton from '../Button.vue';
 import CdsSelect from '../Select.vue';
 import CdsSearchInput from '../SearchInput.vue';
-import { isEmpty, isEqual, kebabCase, trim } from 'lodash';
+import { isEmpty, kebabCase, trim } from 'lodash';
 
 const modelValue = defineModel({
 	type: Boolean,
@@ -152,6 +155,10 @@ const props = defineProps({
 		type: Array,
 		default: () => []
 	},
+	trackBy: {
+		type: String,
+		required: true,
+	},
 	loadingCustomFields: {
 		type: Boolean,
 		default: false
@@ -170,7 +177,7 @@ const props = defineProps({
 	},
 });
 
-const emits = defineEmits(['update-fields-list', 'cancel', 'ok']);
+const emits = defineEmits(['update-fields-list', 'cancel', 'update-preset']);
 
 const internalCustomFieldsList = ref([]);
 const filteredCustomFieldsList = ref([]);
@@ -222,6 +229,16 @@ const descriptionComputedText = computed(() => {
 	return getDescription(minFields, maxFields);
 });
 
+const visibleColumnsCountText = computed(() => {
+	const count = internalCustomFieldsList.value.filter(field => field.visible).length;
+
+	return count === 0
+		? 'Nenhuma coluna selecionada'
+		: count === 1
+			? '1 coluna selecionada'
+			: `${count} colunas selecionadas`;
+});
+
 watch(() => props.customFieldsList, (newList) => {
 	internalCustomFieldsList.value = [...newList.map(field => ({ ...field }))];
 }, { immediate: true });
@@ -245,7 +262,7 @@ watch(() => selectedPreset.value, (preset) => {
 	if (!presetColumns) return;
 
 	filteredCustomFieldsList.value.forEach((field) => {
-		field.visible = presetColumns.includes(field.id);
+		field.visible = presetColumns.includes(field[props.trackBy]);
 	});
 });
 
@@ -261,6 +278,11 @@ watch(() => props.customFieldsList, (value) => {
 	currentPreset();
 }, { deep: true });
 
+onMounted(() => {
+	internalCustomFieldsList.value = [...props.customFieldsList.map(field => ({ ...field }))];
+	filteredCustomFieldsList.value = [...props.customFieldsList.map(field => ({ ...field }))];
+});
+
 function clearFilter() {
 	searchString.value = '';
 	filteredCustomFieldsList.value = [...internalCustomFieldsList.value.map(field => ({ ...field }))];
@@ -275,13 +297,14 @@ function handleCancel() {
 
 function handleOk() {
 	clearFilter();
+	emits('update-preset', selectedPreset.value.value);
 	emits('update-fields-list', internalCustomFieldsList.value);
 	modelValue.value = false;
 }
 
 function syncInternalCustomFieldsList() {
 	internalCustomFieldsList.value.forEach((field) => {
-		const foundField = filteredCustomFieldsList.value.find(item => item.id === field.id);
+		const foundField = filteredCustomFieldsList.value.find(item => item[props.trackBy] === field[props.trackBy]);
 		if (foundField) {
 			field.visible = foundField.visible;
 		}
@@ -293,9 +316,9 @@ function currentPreset() {
 
 	const currentSelectedColumns = internalCustomFieldsList.value.
 		filter(({ visible }) => visible === true).
-		map(field => field.id);
+		map(field => field[props.trackBy]);
 	const foundPreset = props.presetsOptions.find(({ columns }) => {
-		return isEqual(columns, currentSelectedColumns);
+		return hasSameItems(columns, currentSelectedColumns);
 	});
 
 	if (!foundPreset) {
@@ -313,18 +336,24 @@ function currentPreset() {
 
 .side-sheet {
 
-	&__presets {
-		margin: tokens.mb(4);
-	}
-
-	&__search {
-		margin: tokens.mb(4);
-	}
-
 	&__description {
 		@include tokens.body-2;
 		color: tokens.$n-600;
 		margin: tokens.mb(5);
+	}
+
+	&__presets {
+		margin: tokens.mb(2);
+	}
+
+	&__search {
+		margin: tokens.mb(2);
+	}
+
+	&__count {
+		@include tokens.caption;
+		color: tokens.$n-600;
+		margin: tokens.mTRBL(3, 0, 2, 0);
 	}
 
 	&__empty-list {

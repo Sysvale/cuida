@@ -60,7 +60,13 @@
 						:disabled="loading"
 						@button-click="handleCustomizeButtonClick"
 					>
-						Personalizar tabela
+						<span v-if="presetsOptions.length">
+							Colunas: {{ selectedPresetName }}
+						</span>
+
+						<span v-else>
+							Personalizar colunas
+						</span>
 					</cds-button>
 				</cds-flexbox>
 				<div
@@ -143,20 +149,23 @@
 			:selection-variant="selectionVariant"
 			:presets-options="presetsOptions"
 			:loading-custom-fields="loadingCustomFields"
+			:track-by="customFieldsTrackBy"
 			:min-fields="minVisibleFields"
 			:max-fields="computedMaxVisibleFields"
 			@update-fields-list="emits('update-fields-list', $event)"
 			@customize-click="handleCustomizeButtonClick"
 			@cancel="handleCancel"
 			@ok="handleOk"
+			@update-preset="handleUpdatePreset"
 		/>
 	</div>
 </template>
 
 <script setup>
-import { ref, watch, computed, useAttrs, onMounted, onUnmounted } from 'vue';
+import { ref, watch, computed, useAttrs, onMounted, onUnmounted, nextTick } from 'vue';
 import { cloneDeep, isEmpty } from 'lodash';
 import { useHasSlot } from '../utils/composables/useHasSlot';
+import hasSameItems from '../utils/methods/hasSameItems';
 import generateKey from '../utils/methods/uuidv4';
 import CdsButton from './Button.vue';
 import CdsTable from './Table.vue';
@@ -212,6 +221,13 @@ const props = defineProps({
 	presetsOptions: {
 		type: Array,
 		default: () => [],
+	},
+	/**
+	* Define o campo que será usado como chave na lista de customFieldsList.
+	*/
+	customFieldsTrackBy: {
+		type: String,
+		default: 'id',
 	},
 	/**
 	* Ativa o feedback de loading no sidesheet de personalizar tabela.
@@ -291,6 +307,7 @@ const showSideSheet = ref(false);
 const internalSearch = ref('');
 const searchTimeout = ref(null);
 const internalCustomFieldsList = ref(cloneDeep(props.customFieldsList));
+const selectedPresetName = ref('Personalizado');
 
 const virtualHeaderID = generateKey();
 const dataTableHeaderID = generateKey();
@@ -332,7 +349,13 @@ watch(() => props.customFieldsList, () => {
 	internalCustomFieldsList.value = cloneDeep(props.customFieldsList);
 }, { immediate: true });
 
+watch(() => props.loading, (isLoading) => {
+	if (!isLoading)	resolveInitialPreset();
+}, { immediate: true });
+
 onMounted(() => {
+	resolveInitialPreset();
+
 	if (!attrs.fixedHeader) return;
 
 	lastScrollY = window.scrollY;
@@ -414,6 +437,27 @@ function handleSearchInput(value) {
 		emits('search', value);
 	}, props.searchInputDelay);
 }
+
+function handleUpdatePreset(presetName) {
+	selectedPresetName.value = presetName;
+}
+
+function resolveInitialPreset() {
+	nextTick(() => {
+		const columnsKeys = attrs.fields.map((field) => field.key);
+		const foundPresetLabel = props.presetsOptions.find((preset) => {
+			return hasSameItems(preset.columns, columnsKeys);
+		});
+
+		if (foundPresetLabel) {
+			selectedPresetName.value = foundPresetLabel.label;
+			return;
+		}
+
+		selectedPresetName.value = 'Personalizado';
+	});
+}
+
 </script>
 
 <style lang="scss" scoped>
