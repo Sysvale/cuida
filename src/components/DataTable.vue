@@ -161,7 +161,7 @@
 </template>
 
 <script setup>
-import { ref, watch, computed, useAttrs, onMounted, onUnmounted } from 'vue';
+import { ref, watch, computed, useAttrs, onMounted, onUnmounted, nextTick } from 'vue';
 import { cloneDeep, isEmpty, isEqual } from 'lodash';
 import { useHasSlot } from '../utils/composables/useHasSlot';
 import generateKey from '../utils/methods/uuidv4';
@@ -340,6 +340,10 @@ watch(() => props.customFieldsList, () => {
 	internalCustomFieldsList.value = cloneDeep(props.customFieldsList);
 }, { immediate: true });
 
+watch(() => props.loading, (isLoading) => {
+	if (!isLoading)	resolveInitialPreset();
+}, { immediate: true });
+
 onMounted(() => {
 	resolveInitialPreset();
 
@@ -430,17 +434,19 @@ function handleUpdatePreset(presetName) {
 }
 
 function resolveInitialPreset() {
-	const columnsKeys = attrs.fields.map((field) => field.key);
-	const foundPresetLabel = props.presetsOptions.find((preset) => {
-		return isEqual(preset.columns, columnsKeys);
+	nextTick(() => {
+		const columnsKeys = attrs.fields.map((field) => field.key);
+		const foundPresetLabel = props.presetsOptions.find((preset) => {
+			return isEqual(preset.columns, columnsKeys);
+		});
+
+		if (foundPresetLabel) {
+			selectedPresetName.value = foundPresetLabel.label;
+			return;
+		}
+
+		selectedPresetName.value = 'Personalizado';
 	});
-
-	if (foundPresetLabel) {
-		selectedPresetName.value = foundPresetLabel.label;
-		return;
-	}
-
-	selectedPresetName.value = 'Personalizado';
 }
 
 </script>
