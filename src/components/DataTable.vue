@@ -149,6 +149,7 @@
 			:selection-variant="selectionVariant"
 			:presets-options="presetsOptions"
 			:loading-custom-fields="loadingCustomFields"
+			:track-by="customFieldsTrackBy"
 			:min-fields="minVisibleFields"
 			:max-fields="computedMaxVisibleFields"
 			@update-fields-list="emits('update-fields-list', $event)"
@@ -219,6 +220,13 @@ const props = defineProps({
 	presetsOptions: {
 		type: Array,
 		default: () => [],
+	},
+	/**
+	* Define o campo que será usado como chave na lista de customFieldsList.
+	*/
+	customFieldsTrackBy: {
+		type: String,
+		default: 'id',
 	},
 	/**
 	* Ativa o feedback de loading no sidesheet de personalizar tabela.
