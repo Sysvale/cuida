@@ -123,6 +123,7 @@
 
 <script setup>
 import { ref, watch, computed, onMounted } from 'vue';
+import hasSameItems from '../../utils/methods/hasSameItems';
 import CdsIcon from '../Icon.vue';
 import CdsSkeleton from '../Skeleton.vue';
 import CdsSideSheet from '../SideSheet.vue';
@@ -309,15 +310,6 @@ function syncInternalCustomFieldsList() {
 		}
 	});
 }
-
-const hasSameItems = (arr1, arr2) => {
-	if (arr1.length !== arr2.length) return false;
-
-	const sorted1 = [...arr1].sort();
-	const sorted2 = [...arr2].sort();
-
-	return sorted1.every((item, index) => item === sorted2[index]);
-};
 
 function currentPreset() {
 	syncInternalCustomFieldsList();

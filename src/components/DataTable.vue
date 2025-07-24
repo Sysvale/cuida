@@ -165,6 +165,7 @@
 import { ref, watch, computed, useAttrs, onMounted, onUnmounted, nextTick } from 'vue';
 import { cloneDeep, isEmpty } from 'lodash';
 import { useHasSlot } from '../utils/composables/useHasSlot';
+import hasSameItems from '../utils/methods/hasSameItems';
 import generateKey from '../utils/methods/uuidv4';
 import CdsButton from './Button.vue';
 import CdsTable from './Table.vue';
@@ -440,15 +441,6 @@ function handleSearchInput(value) {
 function handleUpdatePreset(presetName) {
 	selectedPresetName.value = presetName;
 }
-
-const hasSameItems = (arr1, arr2) => {
-	if (arr1.length !== arr2.length) return false;
-
-	const sorted1 = [...arr1].sort();
-	const sorted2 = [...arr2].sort();
-
-	return sorted1.every((item, index) => item === sorted2[index]);
-};
 
 function resolveInitialPreset() {
 	nextTick(() => {
