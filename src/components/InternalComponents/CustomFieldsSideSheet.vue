@@ -130,7 +130,7 @@ import CdsFlexbox from '../Flexbox.vue';
 import CdsButton from '../Button.vue';
 import CdsSelect from '../Select.vue';
 import CdsSearchInput from '../SearchInput.vue';
-import { isEmpty, isEqual, kebabCase, trim } from 'lodash';
+import { isEmpty, kebabCase, trim } from 'lodash';
 
 const modelValue = defineModel({
 	type: Boolean,
@@ -310,6 +310,15 @@ function syncInternalCustomFieldsList() {
 	});
 }
 
+const hasSameItems = (arr1, arr2) => {
+	if (arr1.length !== arr2.length) return false;
+
+	const sorted1 = [...arr1].sort();
+	const sorted2 = [...arr2].sort();
+
+	return sorted1.every((item, index) => item === sorted2[index]);
+};
+
 function currentPreset() {
 	syncInternalCustomFieldsList();
 
@@ -317,7 +326,7 @@ function currentPreset() {
 		filter(({ visible }) => visible === true).
 		map(field => field[props.trackBy]);
 	const foundPreset = props.presetsOptions.find(({ columns }) => {
-		return isEqual(columns, currentSelectedColumns);
+		return hasSameItems(columns, currentSelectedColumns);
 	});
 
 	if (!foundPreset) {

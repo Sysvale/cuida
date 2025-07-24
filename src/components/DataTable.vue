@@ -163,7 +163,7 @@
 
 <script setup>
 import { ref, watch, computed, useAttrs, onMounted, onUnmounted, nextTick } from 'vue';
-import { cloneDeep, isEmpty, isEqual } from 'lodash';
+import { cloneDeep, isEmpty } from 'lodash';
 import { useHasSlot } from '../utils/composables/useHasSlot';
 import generateKey from '../utils/methods/uuidv4';
 import CdsButton from './Button.vue';
@@ -441,11 +441,20 @@ function handleUpdatePreset(presetName) {
 	selectedPresetName.value = presetName;
 }
 
+const hasSameItems = (arr1, arr2) => {
+	if (arr1.length !== arr2.length) return false;
+
+	const sorted1 = [...arr1].sort();
+	const sorted2 = [...arr2].sort();
+
+	return sorted1.every((item, index) => item === sorted2[index]);
+};
+
 function resolveInitialPreset() {
 	nextTick(() => {
 		const columnsKeys = attrs.fields.map((field) => field.key);
 		const foundPresetLabel = props.presetsOptions.find((preset) => {
-			return isEqual(preset.columns, columnsKeys);
+			return hasSameItems(preset.columns, columnsKeys);
 		});
 
 		if (foundPresetLabel) {
