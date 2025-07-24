@@ -154,6 +154,10 @@ const props = defineProps({
 		type: Array,
 		default: () => []
 	},
+	trackBy: {
+		type: String,
+		required: true,
+	},
 	loadingCustomFields: {
 		type: Boolean,
 		default: false
@@ -257,7 +261,7 @@ watch(() => selectedPreset.value, (preset) => {
 	if (!presetColumns) return;
 
 	filteredCustomFieldsList.value.forEach((field) => {
-		field.visible = presetColumns.includes(field.id);
+		field.visible = presetColumns.includes(field[props.trackBy]);
 	});
 });
 
@@ -299,7 +303,7 @@ function handleOk() {
 
 function syncInternalCustomFieldsList() {
 	internalCustomFieldsList.value.forEach((field) => {
-		const foundField = filteredCustomFieldsList.value.find(item => item.id === field.id);
+		const foundField = filteredCustomFieldsList.value.find(item => item[props.trackBy] === field[props.trackBy]);
 		if (foundField) {
 			field.visible = foundField.visible;
 		}
@@ -311,7 +315,7 @@ function currentPreset() {
 
 	const currentSelectedColumns = internalCustomFieldsList.value.
 		filter(({ visible }) => visible === true).
-		map(field => field.id);
+		map(field => field[props.trackBy]);
 	const foundPreset = props.presetsOptions.find(({ columns }) => {
 		return isEqual(columns, currentSelectedColumns);
 	});
