@@ -5,19 +5,6 @@ hero:
   name: "Cuida Design System"
   text: "A design system built by Sysvale"
   tagline: "Using Vue components for consistent user experiences"
-  actions:
-    - theme: brand
-      text: Get Started
-      link: /foundation/
-    - theme: alt
-      text: Componentes
-      link: /components/
-    - theme: alt
-      text: Design Kit
-      link: /components/
-    - theme: alt
-      text: GitHub
-      link: https://github.com/Sysvale/cuida
 
 features:
   - title: Design Tokens
