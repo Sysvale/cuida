@@ -1,11 +1,15 @@
 import { defineConfig } from 'vitepress';
 import { fileURLToPath, URL } from 'node:url';
+import vueDocgenPlugin from '../plugins/vueDocgen'
 
 export default defineConfig({
 	title: 'Cuida',
 	description: 'A design system built by Sysvale, using Vue components',
-	
+
 	themeConfig: {
+		search: {
+			provider: 'local'
+		},
 		nav: [
 			{ text: 'Fundação', link: '/foundation/' },
 			{ text: 'Componentes', link: '/components/' },
@@ -14,6 +18,11 @@ export default defineConfig({
 			{ text: 'Brand', link: '/utils/' },
 			{ text: 'GitHub', link: 'https://github.com/Sysvale/cuida' }
 		],
+
+		outline: {
+			level: [1, 2, 3],
+			label: 'Nessa página'
+		},
 
 		sidebar: {
 			'/foundation/': [
@@ -124,10 +133,29 @@ export default defineConfig({
 			{ icon: 'npm', link: 'https://github.com/Sysvale/cuida' },
 			{ icon: 'figma', link: 'https://github.com/Sysvale/cuida' },
 			{ icon: 'chromatic', link: 'https://github.com/Sysvale/cuida' }
-		]
+		],
+
+		footer: {
+			message: 'Released under the Apache-2.0 License.',
+			copyright: 'Copyright © 2020-present Sysvale'
+		},
+
+		lastUpdated: {
+			text: 'Última atualização',
+			formatOptions: {
+				dateStyle: 'short',
+				timeStyle: 'short'
+			},
+		},
+
+		docFooter: {
+			prev: false,
+			next: false
+		},
 	},
 
 	vite: {
+		plugins: [vueDocgenPlugin()],
 		resolve: {
 			alias: {
 				'@': fileURLToPath(new URL('../../src', import.meta.url))
@@ -143,4 +171,3 @@ export default defineConfig({
 		}
 	}
 });
-
