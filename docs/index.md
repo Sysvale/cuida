@@ -27,7 +27,7 @@ Cuida é um design system abrangente desenvolvido pela Sysvale, com:
 - **Utilities**: Funções auxiliares e composables
 - **Documentation**: Guias completos e exemplos
 
-### Instalando
+### Instalação
 
 - O Cuida pode ser instalado com o npm:
 
@@ -35,9 +35,9 @@ Cuida é um design system abrangente desenvolvido pela Sysvale, com:
 npm i @sysvale/cuida
 ```
 
-## Usando
+## Uso
 
-- Para usar o cuida, importe a biblioteca no seu entry point, provavelmente vai ser seu main.js ou app.js:
+- Para usar o cuida, importe a biblioteca no seu entry point, provavelmente vai ser seu `main.js` ou `app.js`:
 
 ```js
 import Cuida from "@sysvale/cuida";
@@ -48,21 +48,21 @@ import Cuida from "@sysvale/cuida";
 import '@sysvale/cuida/dist/style.css';
 ```
 
-- E instale o Cuida:
+- E registre o Cuida:
 
 ```js
 app.use(Cuida);
 ```
 
-- Exponha os utils do Cuida:
+- Caso deseje, é possível utilizar os Utils do Cuida expondo-os:
 
 ```js
 const cdsUtils = Cuida.utils;
 app.provide('cdsUtils', cdsUtils);
 ```
 
-- Agora para utilizar os componentes, basta usá-los no seu template. Como exemplo, para usar a
-  [Badge](https://sysvale.github.io/cuida/?path=/docs/componentes-display-badge--badge):
+- Agora, para utilizar os componentes, basta usá-los no seu template. Como exemplo, para usar a
+  [Badge](./components/display/badge):
 
 ```html
 <cds-badge variant="gray"> Conteúdo </cds-badge>
@@ -92,15 +92,7 @@ e importe o arquivo de tokens na sua tag script.
 git clone https://github.com/Sysvale/cuida.git
 ```
 
-- Instale as dependências e suba o container docker:
-
-```bash
-docker-compose up -d
-```
-
-A aplicação estará disponível na porta `6006`, em [http://localhost:6006/](http://localhost:6006).
-
-- Caso não queira usar docker, instale as dependências com:
+- Instale as dependências:
 
 ```bash
 npm i
@@ -108,29 +100,14 @@ npm i
 
 ### Executando o Cuida
 
-- Após a execução do comando `docker-composer up -d` a aplicação iniciará com instalação e build em segundo plano e estará acessível após alguns segundos em [http://localhost:6006/](http://localhost:6006). O progresso pode ser acompanhado também executando `docker-compose logs -f main`.
-  .
-- Ou alternativamente, sem o docker, rode apenas:
 
 ```bash
-npm run storybook
+npm run docs:dev
 ```
 
 ### Testando-o
 
 - Utilizando o docker:
-
-```bash
-docker-compose exec cuida npm run test
-```
-
-ou
-
-```bash
-./on-server.sh npm run test
-```
-
-- Sem o docker:
 
 ```bash
 npm run test

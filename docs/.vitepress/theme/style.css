@@ -44,6 +44,8 @@
  * -------------------------------------------------------------------------- */
 
 :root {
+	--vp-font-family-base: 'Satoshi', sans-serif;
+
 	--vp-c-blue-1: #2db981;
 	--vp-c-blue-2: #2db981;
 	--vp-c-blue-3: #2db981;
@@ -151,4 +153,14 @@
 
 .DocSearch {
 	--docsearch-primary-color: var(--vp-c-brand-1) !important;
+}
+
+body {
+  font-family: var(--vp-font-family-base) !important;
+}
+
+
+h1 {
+	margin: 12px 0 !important;
+	line-height: 1 !important;
 }

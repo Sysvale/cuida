@@ -6,6 +6,16 @@ export default defineConfig({
 	title: 'Cuida',
 	description: 'A design system built by Sysvale, using Vue components',
 
+	head: [
+		[
+			'link',
+			{
+				rel: 'stylesheet',
+				href: 'https://api.fontshare.com/v2/css?f[]=satoshi@1&display=swap',
+			},
+		],
+	],
+
 	themeConfig: {
 		search: {
 			provider: 'local'
