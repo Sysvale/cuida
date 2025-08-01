@@ -1,15 +1,16 @@
 <template>
-	<CdsFlexbox direction="column" gap="4">
+	<CdsFlexbox direction="column" gap="4" class="inputs-container">
 		<template v-for="(data, index) in propsData">
 			<CdsFlexbox
 				v-if="data.type.name === 'string' && data.values"
 				justify="space-between"
 				gap="3"
+				class="preview-line"
 			>
-				<CdsText as="small">
-					{{ data.name }}
+				<CdsText class="prop-name">
+					{{ capitalize(data.name) }}
 				</CdsText>
-		
+
 				<CdsSelect
 					label=""
 					v-model="normalizedPropsData[index][data.name]"
@@ -17,32 +18,32 @@
 					returnValue
 				/>
 			</CdsFlexbox>
-	
+
 			<CdsFlexbox
 				v-else-if="data.type.name === 'string'"
 				justify="space-between"
-				class="pd"
+				class="preview-line"
 			>
-				<CdsText as="small">
-					{{ data.name }}
+				<CdsText class="prop-name">
+					{{ capitalize(data.name) }}
 				</CdsText>
-		
+
 				<CdsTextInput
 					label=""
 					v-model="normalizedPropsData[index][data.name]"
 				/>
 			</CdsFlexbox>
-	
+
 			<CdsFlexbox
 				v-if="data.type.name === 'boolean'"
 				justify="space-between"
-				class="pd"
+				class="preview-line"
 			>
-				<CdsText as="small">
-					{{ data.name }}
+				<CdsText class="prop-name">
+					{{ capitalize(data.name) }}
 				</CdsText>
-		
-				<CdsSwitch 
+
+				<CdsSwitch
 					v-model="normalizedPropsData[index][data.name]"
 				/>
 			</CdsFlexbox>
@@ -79,7 +80,7 @@ function formatOptions(val) {
 			value: v.match(/'(\S+)'/)[1],
 		}
 	})
-} 
+}
 
 normalizedPropsData.value = propsData.value.map((propData) => {
 	let rawValue = propData.defaultValue.value;
@@ -107,6 +108,10 @@ normalizedPropsData.value.forEach((item) => {
 	payload.value[key] = value;
 });
 
+function capitalize(str) {
+	return str?.[0]?.toUpperCase() + str?.slice(1) ?? '';
+}
+
 watch(normalizedPropsData, () => {
 	normalizedPropsData.value.forEach((item) => {
 		const [key, value] = Object.entries(item)[0]
@@ -121,5 +126,17 @@ watch(normalizedPropsData, () => {
 :deep(.base-input__field) {
 	height: 32px !important;
 	font-size: 12px;
+}
+
+.inputs-container {
+	padding: 4px 24px;
+}
+
+.prop-name {
+	font-weight: 600;
+}
+
+.preview-line {
+	height: 36px;
 }
 </style>

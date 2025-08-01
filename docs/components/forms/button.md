@@ -2,15 +2,17 @@
 
 Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
 - For necessário comunicar ao usuário que ele pode executar uma ação na interface,
   seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
 - Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
 - Em redirecionamentos para páginas externas. Nesses casos utilize links.
+
+---
 
 ## Uso
 
@@ -23,13 +25,17 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 ```
 
+---
+
 ## Preview
 
 <script setup>
 import { ref, useTemplateRef, watch, nextTick, computed } from 'vue';
 import Button from '@/components/Button.vue';
 import CdsCollapsibleContainer from '@/components/CollapsibleContainer.vue';
-import ComponentDoc from '../../docgen/ComponentDoc.vue';
+import PropsDoc from '../../docgen/PropsDoc.vue';
+import EventsDoc from '../../docgen/EventsDoc.vue';
+import SlotsDoc from '../../docgen/SlotsDoc.vue';
 import PlaygroundBuilder from '../../docgen/PlaygroundBuilder.vue';
 
 const logContainer = useTemplateRef('logContainerRef');
@@ -98,14 +104,28 @@ function logPush(ev) {
 
 <PlaygroundBuilder component="Button" @update="handleUpdate"/>
 
-## API
+---
 
-<ComponentDoc name="Button" />
+## Props
+
+<PropsDoc name="Button" />
+<br />
+
+## Eventos
+
+<EventsDoc name="Button" />
+<br />
+
+## Slots
+
+<SlotsDoc name="Button" />
+
+---
 
 ## Figma
 
 <iframe
-	style="border: 1px solid #DFE5EC; border-radius: 12px;"
+	style="border: 1px solid #DFE5EC; border-radius: 12px; margin-top: 24px"
 	width="700"
 	height="450"
 	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
@@ -122,23 +142,29 @@ function logPush(ev) {
 }
 
 .show-log-button {
-	padding: 3px 6px;
-	color: white;
-	background-color: black;
+	padding: 4px 8px;
+	color: black;
+	background-color: #fff;
+	border-top: 1px solid #DFE5EC;
+	border-left: 1px solid #DFE5EC;
 	position: absolute;
 	right: 0;
 	font-size: 12px;
-	border-radius: 4px 0px 12px 0px;
+	border-radius: 6px 0px 12px 0px;
 	cursor: pointer;
 	margin-bottom: 4px;
+	font-weight: 650;
+	bottom: -4px;
 }
 
 .log-container {
 	padding: 20px;
 	border-top: 1px solid #DFE5EC;
-	margin: 20px 0;
+	margin: 22px 0;
 	max-height: 150px;
 	overflow: scroll;
+	scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .log-event {

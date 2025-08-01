@@ -51,6 +51,8 @@
 	--vp-c-blue-3: #2db981;
 	--vp-c-blue-soft: #e6effe;
 
+	--vp-code-color: #239f6d;
+
 	--vp-c-default-1: var(--vp-c-gray-1);
 	--vp-c-default-2: var(--vp-c-gray-2);
 	--vp-c-default-3: var(--vp-c-gray-3);
@@ -78,7 +80,6 @@
 }
 
 .text {
-	/* font-size: 32px !important; */
 	max-width: 900px !important;
 }
 
@@ -156,11 +157,52 @@
 }
 
 body {
-  font-family: var(--vp-font-family-base) !important;
+	font-family: var(--vp-font-family-base) !important;
 }
 
 
 h1 {
 	margin: 12px 0 !important;
 	line-height: 1 !important;
+}
+
+.vp-doc h2 {
+	margin: 0px !important;
+	padding: 0px !important;
+	border: none !important;
+	font-size: 22px !important;
+	font-weight: 600 !important;
+	color: #3B4754 !important;
+}
+
+.vp-doc tr {
+	background-color: transparent !important;
+}
+
+.vp-doc tr:nth-child(2n) {
+	background-color: transparent !important;
+}
+
+.vp-doc th,
+.vp-doc td {
+	border: none !important;
+	border-bottom: 1px solid #E7EDF3 !important;
+}
+
+.vp-doc th {
+	background-color: transparent !important;
+}
+
+.vp-doc tbody,
+.vp-doc thead {
+	width: 100% !important;
+}
+
+.vp-doc tr {
+	width: 100% !important;
+}
+
+.vp-doc hr {
+	margin-top: 36px !important;
+	margin-bottom: 24px !important;
 }
