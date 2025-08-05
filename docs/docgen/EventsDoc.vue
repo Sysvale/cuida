@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import componentsData from '../.docgen/components.json'
-import CdsTable from '@//components/Table.vue';
+import CdsTable from '@/components/Table.vue';
 
 const props = withDefaults(defineProps<{
 	name: string,

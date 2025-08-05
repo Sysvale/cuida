@@ -42,17 +42,26 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ## Props
 
-<PropsDoc name="Button" />
+<APITable
+	name="Button"
+	section="props"
+/>
 <br />
 
 ## Eventos
 
-<EventsDoc name="Button" />
+<APITable
+	name="Button"
+	section="events"
+/>
 <br />
 
 ## Slots
 
-<SlotsDoc name="Button" />
+<APITable
+	name="Button"
+	section="slots"
+/>
 
 ---
 
@@ -65,9 +74,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <script setup>
 import { ref } from 'vue';
 import CdsButton from '@/components/Button.vue';
-import PropsDoc from '../../docgen/PropsDoc.vue';
-import EventsDoc from '../../docgen/EventsDoc.vue';
-import SlotsDoc from '../../docgen/SlotsDoc.vue';
+import APITable from '../../docgen/APITable.vue';
 import DemoContainer from '../../docgen/DemoContainer.vue';
 import PlaygroundBuilder from '../../docgen/PlaygroundBuilder.vue';
 import FigmaFrame from '../../docgen/FigmaFrame.vue';
