@@ -31,6 +31,7 @@
 							name="header-item"
 							:data="field"
 						/>
+
 						<cds-clickable
 							v-else
 							:id="`sort-icon-${field.key}`"
@@ -386,12 +387,23 @@ export default {
 		},
 
 		resolveValue(item, field) {
+			const value = this.getNestedValue(item, field.key);
+
 			if (field.formatter && typeof field.formatter === 'function') {
-				return field.formatter(item[field.key]);
+				return field.formatter(value);
 			}
 
-			return item[field.key];
+			return value;
 		},
+
+		getNestedValue(obj, path) {
+			return path.split('.').reduce((acc, part) => {
+				if (acc && typeof acc === 'object') {
+					return acc[part];
+				}
+				return undefined;
+			}, obj);
+		}
 	},
 };
 </script>

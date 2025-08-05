@@ -7,12 +7,12 @@ hero:
   tagline: "Using Vue components for consistent user experiences"
 
 features:
+  - title: Vue Components
+    details: 120+ componentes Vue 3 divididos em categorias como forms, containers, navigation, display, etc.
+    link: /components/
   - title: Design Tokens
     details: Tokens de design consistentes para cores, tipografia, espaçamento e mais.
     link: /foundation/
-  - title: Vue Components
-    details: Mais de 100 componentes Vue 3 prontos para uso.
-    link: /components/
   - title: Utilities & Composables
     details: Funções auxiliares e composables Vue para melhorar sua experiência de desenvolvimento.
     link: /utils/
@@ -125,4 +125,3 @@ npx open-cli coverage/index.html
 ## Contribuindo
 
 Para informações sobre como contribuir com o projeto, acesse o [CONTRIBUTING.MD](https://github.com/Sysvale/cuida/blob/main/CONTRIBUTING.md)
-

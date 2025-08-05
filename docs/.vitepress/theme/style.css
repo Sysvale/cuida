@@ -206,3 +206,7 @@ h1 {
 	margin-top: 36px !important;
 	margin-bottom: 24px !important;
 }
+
+.VPFeatures  > .container > .items {
+	margin-bottom: 32px !important;
+}
