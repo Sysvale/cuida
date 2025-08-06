@@ -19,7 +19,7 @@
 					>
 						{{ tab.title }}
 					</a>
-	
+
 					<div
 						:class="indicatorClass(tab)"
 						:style="activeBorderStyle"
@@ -36,132 +36,139 @@
 				class="content__pane"
 				:class="isActive(tab) ? 'content__pane--active' : 'content__pane--inactive'"
 			>
-				<!-- @slot Slot para renderização customizada do conteúdo das abas
-					os slots são nomeados de acordo com os `name` das tabs, cada slot
-					nomeado é exibido de acordo com a aba ativa correspondente
-				-->
-				<slot
-					:name="getSlotName(tab)"
-				/>
+				<template v-if="!lazy || tabRendererController(tab)">
+					<!-- @slot Slot para renderização customizada do conteúdo das abas
+						os slots são nomeados de acordo com os `name` das tabs, cada slot
+						nomeado é exibido de acordo com a aba ativa correspondente
+					-->
+					<slot
+						:name="getSlotName(tab)"
+					/>
+				</template>
 			</div>
 		</div>
 	</div>
 </template>
 
-<script>
+<script setup>
+import { ref, computed, watch } from 'vue';
 import isEmpty from 'lodash.isempty';
 import isEqual from 'lodash.isequal';
 
 import { colorOptions, colorHexCode } from '../utils/constants/colors';
 
-export default {
-	props: {
-		/**
-		 * Define a lista dos itens da InnerTabs a serem mostrados.
-		 * Os itens da lista devem ser objetos com `name` (para identificar o slot)
-		 * e `title` (título da aba)
-		 */
-		tabs: {
-			type: Array,
-			default: () => ([]),
-			required: true,
-			validator: (values) => {
-				const invalidValues = values.filter((value) => {
-					return isEmpty(value.title) || isEmpty(value.name);
-				});
-				return !invalidValues.length;
-			},
-		},
-		/**
-		 * O item ativo dentre as abas
-		 */
-		activeTab: {
-			type: Object,
-			default: () => ({}),
-			required: true,
-		},
-		/**
-		 * Cor da borda que indica o item ativo.
-		 * Existem algumas cores predefinidas seguindo os guias do Cuida, são elas: 
-		 * `turquoise`, `green`, `blue`, `violet`, `pink`, `red`, `orange`, `amber` e `gray`.
-		 */
-		variant: {
-			type: String,
-			default: 'green',
-			validator: (value) => {
-				return colorOptions.includes(value);
-			},
-		},
-		/**
-		* Define se as abas devem ser alinhadas à esquerda. Caso `false`, o container das abas
-		* tomará todo o espaço disponível.
-		*/
-		headerLeft: {
-			type: Boolean,
-			default: false,
-		}
-	},
-
-	data() {
-		return {
-			internalActiveTab: this.activeTab,
-			colorOptions,
-		};
-	},
-
-	computed: {
-		activeBorderStyle() {
-			return {
-				'--indicatorColor': this.colorHexCode(this.variant),
-			};
-		},
-		computedWidth() {
-			return this.headerLeft? 'fit-content' : '100%';
-		}
-	},
-
-	watch: {
-		tabs: {
-			handler(newValue) {
-				const filtered = newValue.filter(tab => tab.name === this.activeTab.name);
-				[this.internalActiveTab] = filtered.length ? filtered : newValue;
-			},
-			immediate: true,
+const props = defineProps({
+	/**
+	* Define a lista dos itens da InnerTabs a serem mostrados.
+	* Os itens da lista devem ser objetos com `name` (para identificar o slot)
+	* e `title` (título da aba)
+	*/
+	tabs: {
+		type: Array,
+		default: () => ([]),
+		required: true,
+		validator: (values) => {
+			const invalidValues = values.filter((value) => {
+				return isEmpty(value.title) || isEmpty(value.name);
+			});
+			return !invalidValues.length;
 		},
 	},
-
-	methods: {
-		colorHexCode,
-
-		getSlotName(tab) {
-			return tab.name;
-		},
-
-		handleClick(event, item) {
-			/**
-			 * Evento emitido quando a aba é clicada
-			* @event tab-click
-			* @type {Event}
-			*/
-			this.$emit('tab-click', { event, item });
-			if(this.internalActiveTab.disableTabChange) return;
-			/**
-			 * Evento emitido quando a aba ativa é alterada
-			* @event change
-			* @type {Event}
-			*/
-			this.$emit('change', { event, item });
-			this.internalActiveTab = item;
-		},
-
-		isActive(item) {
-			return isEqual(this.internalActiveTab, item);
-		},
-
-		indicatorClass(item) {
-			return this.isActive(item) ? `tab__indicator--active--${this.variant}` : '';
+	/**
+	* O item ativo dentre as abas
+	*/
+	activeTab: {
+		type: Object,
+		default: () => ({}),
+		required: true,
+	},
+	/**
+	* Cor da borda que indica o item ativo.
+	* Existem algumas cores predefinidas seguindo os guias do Cuida, são elas: 
+	* `turquoise`, `green`, `blue`, `violet`, `pink`, `red`, `orange`, `amber` e `gray`.
+	*/
+	variant: {
+		type: String,
+		default: 'green',
+		validator: (value) => {
+			return colorOptions.includes(value);
 		},
 	},
+	/**
+	* Define se as abas devem ser alinhadas à esquerda. Caso `false`, o container das abas
+	* tomará todo o espaço disponível.
+	*/
+	headerLeft: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Define se as abas devem ser todas carregadas na renderização do componente ou
+	* sob demanda, apenas após elas serem acessadas pela primeira vez
+	*/
+	lazy: {
+		type: Boolean,
+		default: false,
+	},
+});
+
+const emit = defineEmits(['tab-click', 'change']);
+
+const internalActiveTab = ref(props.activeTab);
+const mountedTabs = ref(new Set([props.activeTab.name]));
+
+const activeBorderStyle = computed(() => {
+	return {
+		'--indicatorColor': colorHexCode(props.variant),
+	};
+});
+
+const computedWidth = computed(() => {
+	return props.headerLeft ? 'fit-content' : '100%';
+});
+
+function tabRendererController(tab) {
+	return mountedTabs.value.has(tab.name);
+}
+
+watch(
+	() => props.tabs,
+	(newValue) => {
+		const filtered = newValue.filter(tab => tab.name === props.activeTab.name);
+		internalActiveTab.value = filtered.length ? filtered[0] : newValue[0];
+	},
+	{ immediate: true }
+);
+
+const getSlotName = (tab) => {
+	return tab.name;
+};
+
+const handleClick = (event, item) => {
+	/**
+	 * Evento emitido quando a aba é clicada
+	* @event tab-click
+	* @type {Event}
+	*/
+	emit('tab-click', { event, item });
+
+	if(internalActiveTab.value.disableTabChange) return;
+	mountedTabs.value.add(item.name);
+	/**
+	 * Evento emitido quando a aba ativa é alterada
+	* @event change
+	* @type {Event}
+	*/
+	emit('change', { event, item });
+	internalActiveTab.value = item;
+};
+
+const isActive = (item) => {
+	return isEqual(internalActiveTab.value, item);
+};
+
+const indicatorClass = (item) => {
+	return isActive(item) ? `tab__indicator--active--${props.variant}` : '';
 };
 </script>
 
