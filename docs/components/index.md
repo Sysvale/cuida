@@ -17,16 +17,7 @@ Componentes para criação de formulários interativos e acessíveis:
 - [**Switch**](./switch) - Interruptor
 - [**Slider**](./slider) - Controle deslizante
 
-### Navigation
-Componentes para navegação e estruturação:
-
-- [**NavBar**](./navbar) - Barra de navegação
-- [**SideBar**](./sidebar) - Barra lateral
-- [**Breadcrumb**](./breadcrumb) - Migalhas de pão
-- [**Tabs**](./tabs) - Abas de navegação
-- [**Pagination**](./pagination) - Paginação
-
-### Data Display
+### Display
 Componentes para exibição de dados:
 
 - [**Table**](./table) - Tabela simples
@@ -35,6 +26,15 @@ Componentes para exibição de dados:
 - [**List**](./list) - Lista de itens
 - [**Avatar**](./avatar) - Avatar de usuário
 - [**Badge**](./badge) - Emblema/etiqueta
+
+### Navigation
+Componentes para navegação e estruturação:
+
+- [**NavBar**](./navbar) - Barra de navegação
+- [**SideBar**](./sidebar) - Barra lateral
+- [**Breadcrumb**](./breadcrumb) - Migalhas de pão
+- [**Tabs**](./tabs) - Abas de navegação
+- [**Pagination**](./pagination) - Paginação
 
 ### Feedback
 Componentes para feedback e interação:
