@@ -1,7 +1,7 @@
 {
   "ActionBar": {
-    "exportName": "default",
     "displayName": "ActionBar",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -97,8 +97,8 @@
     ]
   },
   "ActionsList": {
-    "exportName": "default",
     "displayName": "ActionsList",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -169,8 +169,8 @@
     ]
   },
   "Alert": {
-    "exportName": "default",
     "displayName": "Alert",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -232,8 +232,8 @@
     ]
   },
   "AlertCard": {
-    "exportName": "default",
     "displayName": "AlertCard",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -347,8 +347,8 @@
     ]
   },
   "AppBar": {
-    "exportName": "default",
     "displayName": "AppBar",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -510,14 +510,27 @@
     ]
   },
   "Avatar": {
-    "exportName": "default",
     "displayName": "Avatar",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
       {
         "name": "variant",
-        "description": "A variante de cor. São 10 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -592,8 +605,8 @@
     ]
   },
   "AvatarGroup": {
-    "exportName": "default",
     "displayName": "AvatarGroup",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -636,14 +649,27 @@
     ]
   },
   "Badge": {
-    "exportName": "default",
     "displayName": "Badge",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
       {
         "name": "variant",
-        "description": "A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',\n'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },
@@ -654,7 +680,13 @@
       },
       {
         "name": "size",
-        "description": "Especifica o tamanho da badge. São 3 tamanhos implementados: 'sm', 'md', 'lg'.",
+        "description": "Especifica o tamanho da badge. São 3 tamanhos implementados.",
+        "tags": {},
+        "values": [
+          "sm",
+          "md",
+          "lg"
+        ],
         "type": {
           "name": "string"
         },
@@ -691,8 +723,8 @@
     ]
   },
   "BarChart": {
-    "exportName": "default",
     "displayName": "BarChart",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -710,7 +742,21 @@
       },
       {
         "name": "variant",
-        "description": "Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:\n`green`, `teal`, `turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `gray`, `dark`.",
+        "description": "A variante de cor. São 11 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'turquoise'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'gray'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -760,6 +806,7 @@
     ]
   },
   "BaseInput": {
+    "name": "BaseInput",
     "exportName": "default",
     "displayName": "BaseInput",
     "description": "",
@@ -1081,6 +1128,7 @@
     ]
   },
   "BaseMobileInput": {
+    "name": "BaseMobileInput",
     "exportName": "default",
     "displayName": "BaseMobileInput",
     "description": "",
@@ -1328,6 +1376,7 @@
     ]
   },
   "BottomSheet": {
+    "name": "BottomSheet",
     "exportName": "default",
     "displayName": "BottomSheet",
     "description": "",
@@ -1398,8 +1447,8 @@
     ]
   },
   "Box": {
-    "exportName": "default",
     "displayName": "Box",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -1460,7 +1509,20 @@
       },
       {
         "name": "variant",
-        "description": "A variante de cor. São 9 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -1512,8 +1574,8 @@
     ]
   },
   "Breadcrumb": {
-    "exportName": "default",
     "displayName": "Breadcrumb",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -1535,14 +1597,14 @@
     ]
   },
   "Button": {
-    "exportName": "default",
     "displayName": "Button",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
       {
         "name": "variant",
-        "description": "A variante de cor. São 9 variantes:",
+        "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
           "'green'",
@@ -1553,7 +1615,8 @@
           "'pink'",
           "'red'",
           "'orange'",
-          "'amber'"
+          "'amber'",
+          "'dark'"
         ],
         "type": {
           "name": "string"
@@ -1669,8 +1732,8 @@
     ]
   },
   "CalloutCard": {
-    "exportName": "default",
     "displayName": "CalloutCard",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -1802,8 +1865,8 @@
     ]
   },
   "Card": {
-    "exportName": "default",
     "displayName": "Card",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -1949,6 +2012,7 @@
     ]
   },
   "Carousel": {
+    "name": "Carousel",
     "exportName": "default",
     "displayName": "Carousel",
     "description": "",
@@ -2059,8 +2123,8 @@
     ]
   },
   "CarouselController": {
-    "exportName": "default",
     "displayName": "CarouselController",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -2135,8 +2199,8 @@
     ]
   },
   "Checkbox": {
-    "exportName": "default",
     "displayName": "Checkbox",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -2165,7 +2229,20 @@
       },
       {
         "name": "variant",
-        "description": "A variante da Checkbox. São 10 variantes: 'teal', 'green', 'blue',\n'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -2233,6 +2310,7 @@
     ]
   },
   "CheckboxGroup": {
+    "name": "CheckboxGroup",
     "exportName": "default",
     "displayName": "CheckboxGroup",
     "description": "",
@@ -2284,7 +2362,20 @@
       },
       {
         "name": "variant",
-        "description": "A variante do componente. São 10 variantes: 'teal', 'green', 'blue',\n'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -2337,8 +2428,8 @@
     ]
   },
   "Chevron": {
-    "exportName": "default",
     "displayName": "Chevron",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -2392,8 +2483,8 @@
     ]
   },
   "Chip": {
-    "exportName": "default",
     "displayName": "Chip",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -2411,7 +2502,20 @@
       },
       {
         "name": "variant",
-        "description": "A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue', 'dark',\n'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -2453,8 +2557,8 @@
     ]
   },
   "Clickable": {
-    "exportName": "default",
     "displayName": "Clickable",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -2503,8 +2607,8 @@
     ]
   },
   "CollapsibleContainer": {
-    "exportName": "default",
     "displayName": "CollapsibleContainer",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -2558,8 +2662,8 @@
     ]
   },
   "ColorPicker": {
-    "exportName": "default",
     "displayName": "ColorPicker",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -2641,6 +2745,7 @@
     ]
   },
   "ComboBox": {
+    "name": "ComboBox",
     "exportName": "default",
     "displayName": "ComboBox",
     "description": "",
@@ -2775,7 +2880,20 @@
       },
       {
         "name": "variant",
-        "description": "A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',\n'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -2795,8 +2913,8 @@
     ]
   },
   "DashboardCard": {
-    "exportName": "default",
     "displayName": "DashboardCard",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -2885,6 +3003,7 @@
     ]
   },
   "DataTable": {
+    "name": "DataTable",
     "exportName": "default",
     "displayName": "DataTable",
     "description": "",
@@ -3084,6 +3203,7 @@
     ]
   },
   "DateInput": {
+    "name": "DateInput",
     "exportName": "default",
     "displayName": "DateInput",
     "description": "",
@@ -3140,7 +3260,20 @@
       },
       {
         "name": "variant",
-        "description": "A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',\n'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -3368,8 +3501,8 @@
     ]
   },
   "Dialog": {
-    "exportName": "default",
     "displayName": "Dialog",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -3534,8 +3667,8 @@
     ]
   },
   "DialogModal": {
-    "exportName": "default",
     "displayName": "DialogModal",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -3659,8 +3792,8 @@
     ]
   },
   "Divider": {
-    "exportName": "default",
     "displayName": "Divider",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -3736,8 +3869,8 @@
     ]
   },
   "DonutChart": {
-    "exportName": "default",
     "displayName": "DonutChart",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -3816,8 +3949,8 @@
     ]
   },
   "Dropdown": {
-    "exportName": "default",
     "displayName": "Dropdown",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -3890,8 +4023,8 @@
     ]
   },
   "DropdownButton": {
-    "exportName": "default",
     "displayName": "DropdownButton",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -3909,7 +4042,20 @@
       },
       {
         "name": "variant",
-        "description": "A variante do DropdownButton . São 9 variantes: 'turquoise', 'green', 'blue',\n'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -3988,6 +4134,7 @@
     ]
   },
   "DynamicInputList": {
+    "name": "DynamicInputList",
     "exportName": "default",
     "displayName": "DynamicInputList",
     "description": "",
@@ -4033,7 +4180,20 @@
       },
       {
         "name": "buttonVariant",
-        "description": "Variante do botão de adição de inputs.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -4125,8 +4285,8 @@
     ]
   },
   "EmptyState": {
-    "exportName": "default",
     "displayName": "EmptyState",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -4246,8 +4406,8 @@
     ]
   },
   "FileInput": {
-    "exportName": "default",
     "displayName": "FileInput",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -4346,6 +4506,7 @@
     ]
   },
   "FileViewer": {
+    "name": "FileViewer",
     "exportName": "default",
     "displayName": "FileViewer",
     "description": "",
@@ -4412,8 +4573,8 @@
     ]
   },
   "FilterSelect": {
-    "exportName": "default",
     "displayName": "FilterSelect",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -4550,6 +4711,7 @@
     ]
   },
   "FlatButton": {
+    "name": "FlatButton",
     "exportName": "default",
     "displayName": "FlatButton",
     "description": "",
@@ -4610,6 +4772,7 @@
     ]
   },
   "Flexbox": {
+    "name": "Flexbox",
     "exportName": "default",
     "displayName": "Flexbox",
     "description": "",
@@ -4715,6 +4878,7 @@
     ]
   },
   "FloatingActionButton": {
+    "name": "FloatingActionButton",
     "exportName": "default",
     "displayName": "FloatingActionButton",
     "description": "",
@@ -4778,8 +4942,8 @@
     ]
   },
   "FloatingAssistant": {
-    "exportName": "default",
     "displayName": "FloatingAssistant",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -4883,8 +5047,8 @@
     ]
   },
   "GaugeChart": {
-    "exportName": "default",
     "displayName": "GaugeChart",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -4965,6 +5129,7 @@
     ]
   },
   "Grid": {
+    "name": "Grid",
     "exportName": "default",
     "displayName": "Grid",
     "description": "",
@@ -5093,6 +5258,7 @@
     ]
   },
   "GridItem": {
+    "name": "GridItem",
     "exportName": "default",
     "displayName": "GridItem",
     "description": "",
@@ -5220,14 +5386,20 @@
     ]
   },
   "Highlight": {
-    "exportName": "default",
     "displayName": "Highlight",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
       {
         "name": "variant",
-        "description": "A variante do Highlight. São 3 variantes implementadas: 'info', 'success'\ne 'danger'",
+        "description": "A variante do Highlight. São 3 variantes implementadas",
+        "tags": {},
+        "values": [
+          "info",
+          "success",
+          "danger"
+        ],
         "type": {
           "name": "string"
         },
@@ -5303,8 +5475,8 @@
     ]
   },
   "Icon": {
-    "exportName": "default",
     "displayName": "Icon",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -5374,8 +5546,8 @@
     ]
   },
   "IconButton": {
-    "exportName": "default",
     "displayName": "IconButton",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -5447,7 +5619,20 @@
       },
       {
         "name": "variant",
-        "description": "A variante de cor. São 9 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -5473,8 +5658,8 @@
     ]
   },
   "Image": {
-    "exportName": "default",
     "displayName": "Image",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -5592,8 +5777,8 @@
     ]
   },
   "InlineDateInput": {
-    "exportName": "default",
     "displayName": "InlineDateInput",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -5730,8 +5915,8 @@
     ]
   },
   "InnerTabs": {
-    "exportName": "default",
     "displayName": "InnerTabs",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -5820,6 +6005,7 @@
     ]
   },
   "InteractionBlockingOverlay": {
+    "name": "InteractionBlockingOverlay",
     "exportName": "default",
     "displayName": "InteractionBlockingOverlay",
     "description": "",
@@ -5902,6 +6088,7 @@
     ]
   },
   "Label": {
+    "name": "Label",
     "exportName": "default",
     "displayName": "Label",
     "description": "",
@@ -6002,8 +6189,8 @@
     ]
   },
   "LineChart": {
-    "exportName": "default",
     "displayName": "LineChart",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -6172,8 +6359,8 @@
     ]
   },
   "Link": {
-    "exportName": "default",
     "displayName": "Link",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -6245,6 +6432,7 @@
     ]
   },
   "List": {
+    "name": "List",
     "exportName": "default",
     "displayName": "List",
     "description": "",
@@ -6320,8 +6508,8 @@
     ]
   },
   "LoadingBar": {
-    "exportName": "default",
     "displayName": "LoadingBar",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "sourceFiles": [
@@ -6329,6 +6517,7 @@
     ]
   },
   "LoadingIndicator": {
+    "name": "LoadingIndicator",
     "exportName": "default",
     "displayName": "LoadingIndicator",
     "description": "",
@@ -6348,7 +6537,20 @@
       },
       {
         "name": "variant",
-        "description": "A variante de cor. São 10 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'turquoise'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -6374,6 +6576,7 @@
     ]
   },
   "MobileNavbar": {
+    "name": "MobileNavbar",
     "exportName": "default",
     "displayName": "MobileNavbar",
     "description": "",
@@ -6432,6 +6635,7 @@
     ]
   },
   "MobileNavigation": {
+    "name": "MobileNavigation",
     "exportName": "default",
     "displayName": "MobileNavigation",
     "description": "",
@@ -6555,6 +6759,7 @@
     ]
   },
   "MobileStepperInput": {
+    "name": "MobileStepperInput",
     "exportName": "default",
     "displayName": "MobileStepperInput",
     "description": "",
@@ -6578,8 +6783,8 @@
     ]
   },
   "Modal": {
-    "exportName": "default",
     "displayName": "Modal",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -6819,6 +7024,7 @@
     ]
   },
   "MonthAndYearPicker": {
+    "name": "MonthAndYearPicker",
     "exportName": "default",
     "displayName": "MonthAndYearPicker",
     "description": "",
@@ -6837,7 +7043,20 @@
       },
       {
         "name": "variant",
-        "description": "A variante da Badge. SÃ£o 9 variantes: 'turquoise', 'green', 'blue',\n'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -7017,6 +7236,7 @@
     ]
   },
   "MultiFileInput": {
+    "name": "MultiFileInput",
     "exportName": "default",
     "displayName": "MultiFileInput",
     "description": "",
@@ -7074,8 +7294,8 @@
     ]
   },
   "Multiselect": {
-    "exportName": "default",
     "displayName": "Multiselect",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -7100,7 +7320,20 @@
       },
       {
         "name": "variant",
-        "description": "A variante da Checkbox. São 10 variantes: 'turquoise', 'green', 'blue',\n'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -7300,8 +7533,8 @@
     ]
   },
   "NavBar": {
-    "exportName": "default",
     "displayName": "NavBar",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -7357,6 +7590,7 @@
     ]
   },
   "NumberInput": {
+    "name": "NumberInput",
     "exportName": "default",
     "displayName": "NumberInput",
     "description": "",
@@ -7598,8 +7832,8 @@
     ]
   },
   "OverlayLoader": {
-    "exportName": "default",
     "displayName": "OverlayLoader",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -7631,8 +7865,8 @@
     ]
   },
   "PageContainer": {
-    "exportName": "default",
     "displayName": "PageContainer",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "slots": [
@@ -7645,8 +7879,8 @@
     ]
   },
   "PageHeader": {
-    "exportName": "default",
     "displayName": "PageHeader",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -7691,6 +7925,7 @@
     ]
   },
   "PageLayout": {
+    "name": "PageLayout",
     "exportName": "default",
     "displayName": "PageLayout",
     "description": "",
@@ -7860,8 +8095,8 @@
     ]
   },
   "Pagination": {
-    "exportName": "default",
     "displayName": "Pagination",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -7937,8 +8172,8 @@
     ]
   },
   "PanelCard": {
-    "exportName": "default",
     "displayName": "PanelCard",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -7993,8 +8228,8 @@
     ]
   },
   "PasswordInput": {
-    "exportName": "default",
     "displayName": "PasswordInput",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -8142,8 +8377,8 @@
     ]
   },
   "PieChart": {
-    "exportName": "default",
     "displayName": "PieChart",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -8200,8 +8435,8 @@
     ]
   },
   "PinInput": {
-    "exportName": "default",
     "displayName": "PinInput",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -8273,8 +8508,8 @@
     ]
   },
   "PolarAreaChart": {
-    "exportName": "default",
     "displayName": "PolarAreaChart",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -8331,8 +8566,8 @@
     ]
   },
   "Popover": {
-    "exportName": "default",
     "displayName": "Popover",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -8436,14 +8671,27 @@
     ]
   },
   "ProgressBar": {
-    "exportName": "default",
     "displayName": "ProgressBar",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
       {
         "name": "variant",
-        "description": "A variante de cor. São 9 variantes implementadas: 'green', 'teal', 'turquoise',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -8493,8 +8741,8 @@
     ]
   },
   "ProgressCircular": {
-    "exportName": "default",
     "displayName": "ProgressCircular",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -8584,14 +8832,27 @@
     ]
   },
   "Pulsar": {
-    "exportName": "default",
     "displayName": "Pulsar",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
       {
         "name": "variant",
-        "description": "A variante de cor. São 9 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -8628,6 +8889,7 @@
     ]
   },
   "QuickActionBar": {
+    "name": "QuickActionBar",
     "exportName": "default",
     "displayName": "QuickActionBar",
     "description": "",
@@ -8847,8 +9109,8 @@
     ]
   },
   "RadialBarChart": {
-    "exportName": "default",
     "displayName": "RadialBarChart",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -8927,8 +9189,8 @@
     ]
   },
   "Radio": {
-    "exportName": "default",
     "displayName": "Radio",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -8958,7 +9220,20 @@
       },
       {
         "name": "variant",
-        "description": "A variante da Checkbox. São 10 variantes: 'teal', 'green', 'blue',\n'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -9012,6 +9287,7 @@
     ]
   },
   "RadioButtonGroup": {
+    "name": "RadioButtonGroup",
     "exportName": "default",
     "displayName": "RadioButtonGroup",
     "description": "",
@@ -9123,7 +9399,20 @@
       },
       {
         "name": "variant",
-        "description": "A variante da Checkbox. São 10 variantes: 'teal', 'green', 'blue',\n'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -9182,6 +9471,8 @@
     ]
   },
   "RequiredIndicator": {
+    "name": "RequiredIndicator",
+    "exportName": "default",
     "displayName": "RequiredIndicator",
     "description": "",
     "tags": {},
@@ -9190,8 +9481,8 @@
     ]
   },
   "RichTooltip": {
-    "exportName": "default",
     "displayName": "RichTooltip",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -9272,8 +9563,8 @@
     ]
   },
   "Scrollable": {
-    "exportName": "default",
     "displayName": "Scrollable",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -9323,6 +9614,7 @@
     ]
   },
   "SearchInput": {
+    "name": "SearchInput",
     "exportName": "default",
     "displayName": "SearchInput",
     "description": "",
@@ -9389,6 +9681,7 @@
     ]
   },
   "SecondaryNavigation": {
+    "name": "SecondaryNavigation",
     "exportName": "default",
     "displayName": "SecondaryNavigation",
     "description": "",
@@ -9435,8 +9728,8 @@
     ]
   },
   "SegmentedControl": {
-    "exportName": "default",
     "displayName": "SegmentedControl",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -9496,6 +9789,7 @@
     ]
   },
   "Select": {
+    "name": "Select",
     "exportName": "default",
     "displayName": "Select",
     "description": "",
@@ -9778,8 +10072,8 @@
     ]
   },
   "SideBar": {
-    "exportName": "default",
     "displayName": "SideBar",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -9993,8 +10287,8 @@
     ]
   },
   "SideSheet": {
-    "exportName": "default",
     "displayName": "SideSheet",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -10233,8 +10527,8 @@
     ]
   },
   "Skeleton": {
-    "exportName": "default",
     "displayName": "Skeleton",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -10288,8 +10582,8 @@
     ]
   },
   "SkeletonText": {
-    "exportName": "default",
     "displayName": "SkeletonText",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -10317,8 +10611,8 @@
     ]
   },
   "Slider": {
-    "exportName": "default",
     "displayName": "Slider",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -10399,8 +10693,8 @@
     ]
   },
   "Spacer": {
-    "exportName": "default",
     "displayName": "Spacer",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -10515,8 +10809,8 @@
     ]
   },
   "Spinner": {
-    "exportName": "default",
     "displayName": "Spinner",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -10533,7 +10827,20 @@
       },
       {
         "name": "variant",
-        "description": "Variante de cor do componente ('turquoise', 'green', 'blue',\n            'indigo', 'violet', 'pink', 'red', 'orange', 'amber')",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -10559,8 +10866,8 @@
     ]
   },
   "StackedBarChart": {
-    "exportName": "default",
     "displayName": "StackedBarChart",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -10629,8 +10936,8 @@
     ]
   },
   "Stepper": {
-    "exportName": "default",
     "displayName": "Stepper",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -10697,6 +11004,7 @@
     ]
   },
   "StepperInput": {
+    "name": "StepperInput",
     "exportName": "default",
     "displayName": "StepperInput",
     "description": "",
@@ -10880,6 +11188,7 @@
     ]
   },
   "Switch": {
+    "name": "Switch",
     "exportName": "default",
     "displayName": "Switch",
     "description": "",
@@ -10914,7 +11223,20 @@
       },
       {
         "name": "variant",
-        "description": "A variante da Checkbox. São 10 variantes: 'teal', 'green', 'blue',\n'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -10995,8 +11317,8 @@
     ]
   },
   "Table": {
-    "exportName": "default",
     "displayName": "Table",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -11175,8 +11497,8 @@
     ]
   },
   "Tabs": {
-    "exportName": "default",
     "displayName": "Tabs",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -11274,6 +11596,7 @@
     ]
   },
   "Text": {
+    "name": "Text",
     "exportName": "default",
     "displayName": "Text",
     "description": "",
@@ -11339,6 +11662,7 @@
     ]
   },
   "TextArea": {
+    "name": "TextArea",
     "exportName": "default",
     "displayName": "TextArea",
     "description": "",
@@ -11525,6 +11849,7 @@
     ]
   },
   "TextInput": {
+    "name": "TextInput",
     "exportName": "default",
     "displayName": "TextInput",
     "description": "",
@@ -11781,6 +12106,7 @@
     ]
   },
   "Tile": {
+    "name": "Tile",
     "exportName": "default",
     "displayName": "Tile",
     "description": "",
@@ -11826,7 +12152,20 @@
       },
       {
         "name": "variant",
-        "description": "A variante de cor. São 9 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -11880,8 +12219,8 @@
     ]
   },
   "TimeInput": {
-    "exportName": "default",
     "displayName": "TimeInput",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -11996,8 +12335,8 @@
     ]
   },
   "Timeline": {
-    "exportName": "default",
     "displayName": "Timeline",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -12024,14 +12363,27 @@
     ]
   },
   "TimelineItem": {
-    "exportName": "default",
     "displayName": "TimelineItem",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
       {
         "name": "variant",
-        "description": "A variante do TimelineItem. São 10 variantes: 'teal', 'green', 'blue',\n'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -12093,6 +12445,7 @@
     ]
   },
   "Toast": {
+    "name": "Toast",
     "exportName": "default",
     "displayName": "Toast",
     "description": "",
@@ -12185,6 +12538,14 @@
     "events": [
       {
         "name": "dismiss"
+      },
+      {
+        "name": "update:modelValue",
+        "description": "Controla a visibilidade do componente.",
+        "type": {
+          "name": "unknown"
+        },
+        "properties": []
       }
     ],
     "sourceFiles": [
@@ -12192,6 +12553,7 @@
     ]
   },
   "ToastContainer": {
+    "name": "ToastContainer",
     "exportName": "default",
     "displayName": "ToastContainer",
     "description": "",
@@ -12201,8 +12563,8 @@
     ]
   },
   "Tooltip": {
-    "exportName": "default",
     "displayName": "Tooltip",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -12261,6 +12623,7 @@
     ]
   },
   "TopAppBar": {
+    "name": "TopAppBar",
     "exportName": "default",
     "displayName": "TopAppBar",
     "description": "",
@@ -12340,8 +12703,8 @@
     ]
   },
   "Truncate": {
-    "exportName": "default",
     "displayName": "Truncate",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -12366,6 +12729,7 @@
     ]
   },
   "WebcamModal": {
+    "name": "WebcamModal",
     "exportName": "default",
     "displayName": "WebcamModal",
     "description": "",
@@ -12482,8 +12846,8 @@
     ]
   },
   "Wizard": {
-    "exportName": "default",
     "displayName": "Wizard",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -12545,7 +12909,20 @@
       },
       {
         "name": "nextButtonVariant",
-        "description": "A variante do botão de ação principal. São 10 variantes: 'teal', 'green', 'blue',\n'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -12622,6 +12999,7 @@
     ]
   },
   "CustomFieldsSideSheet": {
+    "name": "CustomFieldsSideSheet",
     "exportName": "default",
     "displayName": "CustomFieldsSideSheet",
     "description": "",
@@ -12698,6 +13076,7 @@
     ]
   },
   "MonthSelectorGrid": {
+    "name": "MonthSelectorGrid",
     "exportName": "default",
     "displayName": "MonthSelectorGrid",
     "description": "",
@@ -12755,6 +13134,7 @@
     ]
   },
   "YearSelectorGrid": {
+    "name": "YearSelectorGrid",
     "exportName": "default",
     "displayName": "YearSelectorGrid",
     "description": "",
