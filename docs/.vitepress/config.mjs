@@ -21,11 +21,11 @@ export default defineConfig({
 			provider: 'local'
 		},
 		nav: [
-			{ text: 'Fundação', link: '/foundation/' },
+			// { text: 'Fundação', link: '/foundation/' },
 			{ text: 'Componentes', link: '/components/' },
-			{ text: 'Utils', link: '/utils/' },
-			{ text: 'ícones', link: '/utils/' },
-			{ text: 'Brand', link: '/utils/' },
+			// { text: 'Utils', link: '/utils/' },
+			// { text: 'ícones', link: '/utils/' },
+			// { text: 'Brand', link: '/utils/' },
 			{ text: 'GitHub', link: 'https://github.com/Sysvale/cuida' }
 		],
 
@@ -35,107 +35,117 @@ export default defineConfig({
 		},
 
 		sidebar: {
-			'/foundation/': [
-				{
-					text: 'Design Tokens',
-					items: [
-						{ text: 'Cores', link: '/foundation/cores' },
-						{ text: 'Tipografia', link: '/foundation/tipografia' },
-						{ text: 'Espaçamento', link: '/foundation/espacamento' },
-						{ text: 'Bordas', link: '/foundation/bordas' },
-						{ text: 'Elevação', link: '/foundation/elevation' },
-						{ text: 'Sombras', link: '/foundation/shadow' },
-						{ text: 'Transições', link: '/foundation/transicoes' },
-						{ text: 'Iconografia', link: '/foundation/iconografia' },
-						{ text: 'Peso da Fonte', link: '/foundation/peso-fonte' },
-						{ text: 'Princípios', link: '/foundation/principles' }
-					]
-				}
-			],
+			// '/foundation/': [
+			// 	{
+			// 		text: 'Design Tokens',
+			// 		items: [
+			// 			{ text: 'Cores', link: '/foundation/cores' },
+			// 			{ text: 'Tipografia', link: '/foundation/tipografia' },
+			// 			{ text: 'Espaçamento', link: '/foundation/espacamento' },
+			// 			{ text: 'Bordas', link: '/foundation/bordas' },
+			// 			{ text: 'Elevação', link: '/foundation/elevation' },
+			// 			{ text: 'Sombras', link: '/foundation/shadow' },
+			// 			{ text: 'Transições', link: '/foundation/transicoes' },
+			// 			{ text: 'Iconografia', link: '/foundation/iconografia' },
+			// 			{ text: 'Peso da Fonte', link: '/foundation/peso-fonte' },
+			// 			{ text: 'Princípios', link: '/foundation/principles' }
+			// 		]
+			// 	}
+			// ],
 			'/components/': [
+				// {
+				// 	text: 'Forms',
+				// 	items: [
+				// 		{ text: 'Button', link: '/components/forms/button' },
+				// 		{ text: 'BaseInput', link: '/components/forms/base-input' },
+				// 		{ text: 'TextInput', link: '/components/forms/text-input' },
+				// 		{ text: 'TextArea', link: '/components/forms/text-area' },
+				// 		{ text: 'Select', link: '/components/forms/select' },
+				// 		{ text: 'Checkbox', link: '/components/forms/checkbox' },
+				// 		{ text: 'Radio', link: '/components/forms/radio' },
+				// 		{ text: 'Switch', link: '/components/forms/switch' },
+				// 		{ text: 'Slider', link: '/components/forms/slider' }
+				// 	]
+				// },
 				{
-					text: 'Forms',
+					text: 'Display',
 					items: [
-						{ text: 'Button', link: '/components/forms/button' },
-						{ text: 'BaseInput', link: '/components/forms/base-input' },
-						{ text: 'TextInput', link: '/components/forms/text-input' },
-						{ text: 'TextArea', link: '/components/forms/text-area' },
-						{ text: 'Select', link: '/components/forms/select' },
-						{ text: 'Checkbox', link: '/components/forms/checkbox' },
-						{ text: 'Radio', link: '/components/forms/radio' },
-						{ text: 'Switch', link: '/components/forms/switch' },
-						{ text: 'Slider', link: '/components/forms/slider' }
+						{ text: 'ActionBar', link: '/components/display/action-bar' },
+						{ text: 'Actionslist', link: '/components/display/actions-list' },
+						{ text: 'Avatar', link: '/components/display/avatar' },
+						{ text: 'AvatarGroup', link: '/components/display/avatar-group' },
+						{ text: 'Badge', link: '/components/display/badge' },
+						{ text: 'CalloutCard', link: '/components/display/callout-card' },
+						{ text: 'Carousel', link: '/components/display/carousel' },
+						{ text: 'DataTable', link: '/components/display/data-table' },
+						{ text: 'Dropdown', link: '/components/display/dropdown' },
+						{ text: 'DropdownButton', link: '/components/display/dropdown-button' },
+						{ text: 'EmptyState', link: '/components/display/empty-state' },
+						{ text: 'Highlight', link: '/components/display/highlight' },
+						{ text: 'Tooltip', link: '/components/display/tooltip' },
+						{ text: 'Table', link: '/components/display/table' },
+						{ text: 'DataTable', link: '/components/display/data-table' },
+						{ text: 'Card', link: '/components/containers/card' },
 					]
 				},
-				{
-					text: 'Containers',
-					items: [
-						{ text: 'Box', link: '/components/containers/box' },
-						{ text: 'card', link: '/components/containers/card' },
-						{ text: 'Carousel controller', link: '/components/containers/carousel-controller' },
-						{ text: 'Collapsible Container', link: '/components/containers/collapsible-container' },
-						{ text: 'Dashboard Card', link: '/components/containers/dashboard-card' },
-						{ text: 'Divider', link: '/components/containers/divider' },
-						{ text: 'Flexbox', link: '/components/containers/flexbox' },
-						{ text: 'Grid', link: '/components/containers/grid' },
-						{ text: 'Panel Card', link: '/components/containers/panel-card' },
-						{ text: 'Scrollable', link: '/components/containers/scrollable' }
-					]
-				},
-				{
-					text: 'Navigation',
-					items: [
-						{ text: 'NavBar', link: '/components/navbar' },
-						{ text: 'SideBar', link: '/components/sidebar' },
-						{ text: 'Breadcrumb', link: '/components/breadcrumb' },
-						{ text: 'Tabs', link: '/components/tabs' },
-						{ text: 'Pagination', link: '/components/pagination' }
-					]
-				},
-				{
-					text: 'Data Display',
-					items: [
-						{ text: 'Table', link: '/components/table' },
-						{ text: 'DataTable', link: '/components/data-table' },
-						{ text: 'Card', link: '/components/card' },
-						{ text: 'List', link: '/components/list' },
-						{ text: 'Avatar', link: '/components/avatar' },
-						{ text: 'Badge', link: '/components/badge' }
-					]
-				},
-				{
-					text: 'Feedback',
-					items: [
-						{ text: 'Alert', link: '/components/alert' },
-						{ text: 'Toast', link: '/components/toast' },
-						{ text: 'Modal', link: '/components/modal' },
-						{ text: 'Tooltip', link: '/components/tooltip' },
-						{ text: 'Spinner', link: '/components/spinner' }
-					]
-				}
+				// {
+				// 	text: 'Containers',
+				// 	items: [
+				// 		{ text: 'Box', link: '/components/containers/box' },
+				// 		{ text: 'card', link: '/components/containers/card' },
+				// 		{ text: 'Carousel controller', link: '/components/containers/carousel-controller' },
+				// 		{ text: 'Collapsible Container', link: '/components/containers/collapsible-container' },
+				// 		{ text: 'Dashboard Card', link: '/components/containers/dashboard-card' },
+				// 		{ text: 'Divider', link: '/components/containers/divider' },
+				// 		{ text: 'Flexbox', link: '/components/containers/flexbox' },
+				// 		{ text: 'Grid', link: '/components/containers/grid' },
+				// 		{ text: 'Panel Card', link: '/components/containers/panel-card' },
+				// 		{ text: 'Scrollable', link: '/components/containers/scrollable' }
+				// 	]
+				// },
+				// {
+				// 	text: 'Navigation',
+				// 	items: [
+				// 		{ text: 'NavBar', link: '/components/navbar' },
+				// 		{ text: 'SideBar', link: '/components/sidebar' },
+				// 		{ text: 'Breadcrumb', link: '/components/breadcrumb' },
+				// 		{ text: 'Tabs', link: '/components/tabs' },
+				// 		{ text: 'Pagination', link: '/components/pagination' }
+				// 	]
+				// },
+				// {
+				// 	text: 'Feedback',
+				// 	items: [
+				// 		{ text: 'Alert', link: '/components/alert' },
+				// 		{ text: 'Toast', link: '/components/toast' },
+				// 		{ text: 'Modal', link: '/components/modal' },
+				// 		{ text: 'Tooltip', link: '/components/tooltip' },
+				// 		{ text: 'Spinner', link: '/components/spinner' }
+				// 	]
+				// }
 			],
-			'/utils/': [
-				{
-					text: 'Utilities',
-					items: [
-						{ text: 'CdsFloatify', link: '/utils/cds-floatify' },
-						{ text: 'CdsTip', link: '/utils/cds-tip' },
-						{ text: 'ContrastChecker', link: '/utils/contrast-checker' },
-						{ text: 'HasSlot', link: '/utils/has-slot' },
-						{ text: 'IsDeviceType', link: '/utils/is-device-type' },
-						{ text: 'PaleteResolver', link: '/utils/palete-resolver' },
-						{ text: 'RemoveAccents', link: '/utils/remove-accents' },
-						{ text: 'Rounder', link: '/utils/rounder' },
-						{ text: 'VariantResolver', link: '/utils/variant-resolver' }
-					]
-				},
-				{
-					text: 'Composables',
-					items: [
-						{ text: 'useToast', link: '/utils/use-toast' }
-					]
-				}
-			]
+			// '/utils/': [
+			// 	{
+			// 		text: 'Utilities',
+			// 		items: [
+			// 			{ text: 'CdsFloatify', link: '/utils/cds-floatify' },
+			// 			{ text: 'CdsTip', link: '/utils/cds-tip' },
+			// 			{ text: 'ContrastChecker', link: '/utils/contrast-checker' },
+			// 			{ text: 'HasSlot', link: '/utils/has-slot' },
+			// 			{ text: 'IsDeviceType', link: '/utils/is-device-type' },
+			// 			{ text: 'PaleteResolver', link: '/utils/palete-resolver' },
+			// 			{ text: 'RemoveAccents', link: '/utils/remove-accents' },
+			// 			{ text: 'Rounder', link: '/utils/rounder' },
+			// 			{ text: 'VariantResolver', link: '/utils/variant-resolver' }
+			// 		]
+			// 	},
+			// 	{
+			// 		text: 'Composables',
+			// 		items: [
+			// 			{ text: 'useToast', link: '/utils/use-toast' }
+			// 		]
+			// 	}
+			// ]
 		},
 
 		socialLinks: [
