@@ -1,5 +1,6 @@
 <template>
 	<CdsTable
+		v-if="tableData.value.length"
 		:fields="tableFields"
 		:items="tableData"
 		:no-wrap="section === 'props' ? false : true"
@@ -79,9 +80,9 @@ const propsFields = [
 ];
 
 const componentData = computed(() => componentsData[props.name] || {});
-const propsData = computed(() => componentData.value?.props);
-const slotsData = computed(() => componentData.value?.slots);
-const eventsData = computed(() => componentData.value?.events);
+const propsData = computed(() => componentData.value?.props ?? []);
+const slotsData = computed(() => componentData.value?.slots ?? []);
+const eventsData = computed(() => componentData.value?.events ?? []);
 const apiSectionPrefix = computed(() => {
 	if (props.section === 'slots') return '#';
 	if (props.section === 'events') return '@';

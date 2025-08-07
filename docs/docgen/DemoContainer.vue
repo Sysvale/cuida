@@ -1,67 +1,102 @@
 <template>
-	<div class="demo-container">
-		<component
-			:is="component"
-			v-on="events"
-			v-bind="componentProps"
-		/>
+	<div>
+		<div class="demo-container">
+			<component
+				:is="component"
+				v-on="innerEvents"
+				v-bind="componentProps"
+			>
+				<template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
+		  			<slot :name="slotName" v-bind="slotProps" />
+				</template>
+			</component>
+	
+			<span
+				class="show-log-button"
+				@click="showLog = !showLog"
+			>
+				{{logButtonText}}
+			</span>
+	
+			<div
+				v-show="showLog"
+				class="log-container"
+				ref="logContainerRef"
+			>
+				<template v-if="!log.length">
+					<CdsFlexbox fluid align="center" justify="center">
+						<CdsBadge variant="gray">
+							⚡Nenhum evento foi disparado
+						</CdsBadge>
+					</CdsFlexbox>
+				</template>
 
-		<span
-			class="show-log-button"
-			@click="showLog = !showLog"
-		>
-			{{logButtonText}}
-		</span>
-
-		<div
-			v-show="showLog"
-			class="log-container"
-			ref="logContainerRef"
-		>
-			<template v-for="message in log">
-				<div class="log-text">
-					<div>
-						<small class="log-event">
-							@{{ message.event }}: 
-						</small>
+				<template v-for="message in log">
+					<div class="log-text">
+						<div>
+							<small class="log-event">
+								@{{ message.event }}: 
+							</small>
+							<small>
+								{{ JSON.stringify(message.payload, null, 2) }} <i>(payload)</i>
+							</small>
+						</div>
 						<small>
-							{{ JSON.stringify(message.payload, null, 2) }} <i>(payload)</i>
+							{{ message.timestamp }}
 						</small>
 					</div>
-					<small>
-						{{ message.timestamp }}
-					</small>
-				</div>
-			</template>
+				</template>
+			</div>
 		</div>
+	
+		<PlaygroundBuilder
+			:component="component.name"
+			@update="handleUpdate"
+		/>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { ref, useTemplateRef, watch, nextTick, computed, type Component } from 'vue';
+import {
+	ref,
+	useTemplateRef,
+	watch,
+	nextTick,
+	computed,
+	onMounted,
+	type Component
+} from 'vue';
+import CdsBadge from '@/components/Badge.vue'
+import CdsFlexbox from '@/components/Flexbox.vue'
+import PlaygroundBuilder from './PlaygroundBuilder.vue';
 
-interface LogEntry {
-	event: string
-	payload: unknown
-	timestamp: string
-}
+type LogEntry = {
+	event: string;
+	payload: any;
+	timestamp: string;
+};
 
 const props = defineProps<{
-	component: Component,
-	events: Record<string, (event: any) => void>,
-	log: LogEntry[],
-	componentProps: Record<string, any>,
+	component: Component & { name: string },
+	events: string[],
 }>();
 
 const logContainer = useTemplateRef('logContainerRef');
 const showLog = ref(false);
+const componentProps = ref({});
+const log = ref<LogEntry[]>([]);
+const innerEvents = ref({});
 
 const logButtonText = computed(() => {
 	return showLog.value ? 'Ocultar log' : 'Mostrar log'
 });
 
+function handleUpdate (payload) {
+	componentProps.value = payload;
+};
+
 watch(
-	() => props.log,
+	log.value,
 	() => {
 		if (logContainer.value) {
 			nextTick(() => {
@@ -75,6 +110,17 @@ watch(
 	{ deep: true }
 );
 
+onMounted(() => {
+	props.events.forEach((event) => {
+		innerEvents.value[event] = (ev) => {
+			log.value.push({
+				event,
+				payload: ev,
+				timestamp: new Date().toTimeString().split(' ')[0]
+			})
+		};
+	});
+});
 </script>
 
 <style scoped>

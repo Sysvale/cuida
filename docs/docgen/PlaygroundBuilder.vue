@@ -75,9 +75,10 @@ const propsData = computed(() => componentData.value?.props);
 
 function formatOptions(val) {
 	return val.map(v => {
+		console.log('🚀 -> v:', v.match(/'(\S+)'/));
 		return {
-			id: v.match(/'(\S+)'/)[1],
-			value: v.match(/'(\S+)'/)[1],
+			id: v.match(/'(\S+)'/) !== null ? v.match(/'(\S+)'/)[1] : v,
+			value: v.match(/'(\S+)'/) !== null ? v.match(/'(\S+)'/)[1] : v,
 		}
 	})
 }
