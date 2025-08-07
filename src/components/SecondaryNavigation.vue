@@ -73,6 +73,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'SecondaryNavigation' });
+
 import { ref, computed, watch } from 'vue';
 import Icon from './Icon.vue';
 

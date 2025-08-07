@@ -105,6 +105,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'MultiFileInput' });
+
 import { ref, watch, computed } from 'vue';
 import FileInput from './FileInput.vue';
 import Badge from './Badge.vue';

@@ -6,7 +6,7 @@
 		:class="computedStyle"
 		@click.stop="clickHandler"
 	>
-		<cds-spinner
+		<CdsSpinner
 			v-if="loading"
 			variant="white"
 			size="sm"
@@ -25,7 +25,7 @@ import CdsSpinner from '../components/Spinner.vue';
 import Cdstip from '../utils/directives/cdstip';
 
 export default {
-
+	name: 'Button',
 	directives: {
 		cdstip: Cdstip,
 	},
@@ -36,8 +36,8 @@ export default {
 
 	props: {
 		/**
-		* A variante de cor. São 9 variantes:
-		* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber'
+		* A variante de cor. São 10 variantes:
+		* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
 		*/
 		variant: {
 			type: String,

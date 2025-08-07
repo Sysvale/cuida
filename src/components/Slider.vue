@@ -50,6 +50,7 @@
 import vueSlider from 'vue-3-slider-component';
 
 export default {
+	name: 'Slider',
 	components: {
 		vueSlider,
 	},

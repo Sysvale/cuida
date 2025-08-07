@@ -16,6 +16,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'TextInput' });
+
 import { ref, watch, useTemplateRef } from 'vue';
 import {
 	nativeEvents,

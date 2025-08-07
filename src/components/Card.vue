@@ -86,6 +86,7 @@ import CdsImage from './Image.vue';
 import hasSlot from '../utils/methods/hasSlot';
 
 export default {
+	name: 'Card',
 	components: {
 		CdsBox,
 		CdsImage,

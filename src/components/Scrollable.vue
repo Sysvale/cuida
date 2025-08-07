@@ -20,6 +20,7 @@
 
 <script>
 export default {
+	name: 'Scrollable',
 	props: {
 		/**
 		 * Altura máxima do container até ser scrollado

@@ -62,6 +62,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'RadioButtonGroup' });
+
 import { ref, computed, watch } from 'vue';
 import { colorHexCode, colorLightestHexCode } from '../utils/constants/colors';
 import { generateKey } from '../utils';
@@ -141,8 +144,8 @@ const props = defineProps({
 		default: 'Valor inválido',
 	},
 	/**
-	* A variante da Checkbox. São 10 variantes: 'teal', 'green', 'blue',
-	* 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+	* A variante de cor. São 10 variantes:
+	* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
 	*/
 	variant: {
 		type: String,

@@ -34,10 +34,11 @@
 
 <script>
 export default {
+	name: 'Highlight',
 	props: {
 		/**
-		* A variante do Highlight. São 3 variantes implementadas: 'info', 'success'
-		* e 'danger'
+		* A variante do Highlight. São 3 variantes implementadas
+		@values info, success, danger
 		*/
 		variant: {
 			type: String,

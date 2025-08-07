@@ -54,6 +54,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'FloatingActionButton' });
+
 import { ref, computed, watch } from 'vue';
 import Icon from '../components/Icon.vue';
 

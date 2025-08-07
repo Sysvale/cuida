@@ -69,6 +69,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'DynamicInputList' });
+
 import { ref, watch, nextTick } from 'vue';
 import CdsTextInput from './TextInput.vue';
 import CdsIcon from './Icon.vue';
@@ -111,7 +114,8 @@ const props = defineProps({
 		default: 'Adicionar',
 	},
 	/**
-	* Variante do botão de adição de inputs.
+	* A variante de cor. São 10 variantes:
+	* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
 	*/
 	buttonVariant: {
 		type: String,

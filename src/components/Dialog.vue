@@ -77,6 +77,7 @@ import CdsButton from '../components/Button.vue';
 import CdsScrollable from '../components/Scrollable.vue';
 
 export default {
+	name: 'Dialog',
 	components: {
 		CdsIcon,
 		CdsButton,

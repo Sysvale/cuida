@@ -8,6 +8,7 @@
 
 <script>
 export default {
+	name: 'Spinner',
 	props: {
 		/**
 		*	Propriedade referente ao tamanho do componente ('sm', 'md' ou 'lg')
@@ -18,9 +19,8 @@ export default {
 			default: 'md',
 		},
 		/**
-		*	Variante de cor do componente ('turquoise', 'green', 'blue',
-			'indigo', 'violet', 'pink', 'red', 'orange', 'amber')
-		*
+		* A variante de cor. São 10 variantes:
+		* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
 		*/
 		variant: {
 			type: String,

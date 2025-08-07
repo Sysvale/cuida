@@ -48,6 +48,7 @@
 import CdsButton from './Button.vue';
 
 export default {
+	name: 'CalloutCard',
 	components: {
 		CdsButton,
 	},

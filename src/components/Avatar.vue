@@ -49,6 +49,7 @@ import CdsClickable from './Clickable.vue';
 import CdsPopover from './Popover.vue';
 
 export default {
+	name: 'Avatar',
 
 	components: {
 		CdsChevron,
@@ -58,9 +59,9 @@ export default {
 
 	props: {
 		/**
-		 * A variante de cor. São 10 variantes implementadas: 'green', 'teal',
-		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.
-		 */
+		* A variante de cor. São 10 variantes:
+		* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
+		*/
 		variant: {
 			type: String,
 			default: 'green',

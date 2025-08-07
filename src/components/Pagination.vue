@@ -50,6 +50,7 @@ import CdsChevron from './Chevron.vue'
 import variantClassResolver from '../utils/methods/variantClassResolver';
 
 export default {
+	name: 'Pagination',
 	components: {
 		CdsChevron,
 	},

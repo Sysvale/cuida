@@ -23,6 +23,7 @@
 
 <script>
 export default {
+	name: 'PinInput',
 	props: {
 		modelValue: {
 			type: String,

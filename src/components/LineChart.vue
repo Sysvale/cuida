@@ -23,6 +23,7 @@ import 'chartjs-adapter-luxon';
 Chart.register(...registerables);
 
 export default {
+	name: 'LineChart',
 	components: {
 		// eslint-disable-next-line vue/no-reserved-component-names
 		Line,

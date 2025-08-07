@@ -23,6 +23,7 @@ import paleteBuilder from '../utils/methods/paleteBuilder.js';
 Chart.register(...registerables);
 
 export default {
+	name: 'BarChart',
 	components: {
 		Bar,
 	},
@@ -47,9 +48,9 @@ export default {
 			}])
 		},
 		/**
-		 * Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:
-		 * `green`, `teal`, `turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `gray`, `dark`.
-		 */
+		* A variante de cor. São 11 variantes:
+		* @values 'green', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray', 'dark'
+		*/
 		variant: {
 			type: String,
 			required: true,

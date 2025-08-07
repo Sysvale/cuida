@@ -17,6 +17,7 @@
 
 <script>
 export default {
+	name: 'Chevron',
 	props: {
 		/**
 		 * Indica em que direção o Chevron vai ser renderizado. As opções são: 'Top', 'Right', 'Bottom' e 'Left'

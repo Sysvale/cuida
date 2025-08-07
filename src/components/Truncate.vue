@@ -9,6 +9,7 @@
 
 <script>
 export default {
+	name: 'Truncate',
 	props: {
 		width: {
 			type: [String, Number],

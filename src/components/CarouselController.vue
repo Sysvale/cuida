@@ -42,6 +42,7 @@
 
 <script>
 export default {
+	name: 'CarouselController',
 	props: {
 		propertyName: {
 			type: String,

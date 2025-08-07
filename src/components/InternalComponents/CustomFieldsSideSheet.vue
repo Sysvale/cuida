@@ -93,6 +93,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'CustomFieldsSideSheet' });
+
 import { ref, watch, computed } from 'vue';
 import CdsIcon from '../Icon.vue';
 import CdsSkeleton from '../Skeleton.vue';

@@ -90,6 +90,7 @@ import CdsPulsar from './Pulsar.vue';
 import CdsIcon from './Icon.vue';
 
 export default {
+	name: 'FloatingAssistant',
 	components: {
 		CdsPulsar,
 		CdsIcon,

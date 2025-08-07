@@ -32,6 +32,7 @@
 
 <script>
 export default {
+	name: 'CollapsibleContainer',
 	props: {
 		/**
 		 * Representa o estado do componente. Quando 'false' o conteúdo não é mostrado

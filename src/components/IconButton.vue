@@ -30,6 +30,7 @@ const predefinedSizes = [
 ];
 
 export default {
+	name: 'IconButton',
 	components: {
 		CdsIcon,
 		CdsTooltip,
@@ -82,8 +83,8 @@ export default {
 			default: 'check-outline',
 		},
 		/**
-		* A variante de cor. São 9 variantes implementadas: 'green', 'teal',
-		* 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.
+		* A variante de cor. São 10 variantes:
+		* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
 		*/
 		variant: {
 			type: String,

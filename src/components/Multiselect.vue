@@ -187,6 +187,7 @@ const clone = (el) => {
 	return JSON.parse(JSON.stringify(el));
 };
 export default {
+	name: 'Multiselect',
 	components: {
 		Multiselect,
 		CdsDivider,
@@ -210,8 +211,8 @@ export default {
 			default: 'text',
 		},
 		/**
-		* A variante da Checkbox. São 10 variantes: 'turquoise', 'green', 'blue',
-		* 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+		* A variante de cor. São 10 variantes:
+		* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
 		*/
 		variant: {
 			type: String,

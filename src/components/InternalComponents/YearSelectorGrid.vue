@@ -33,6 +33,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'YearSelectorGrid' });
+
 import { ref, computed, onUnmounted } from 'vue';
 import CdsGrid from '../Grid.vue';
 

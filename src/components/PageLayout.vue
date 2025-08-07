@@ -37,6 +37,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'PageLayout' });
+
 import { computed } from 'vue';
 import SideBar from './SideBar.vue';
 import SecondaryNavigation from './SecondaryNavigation.vue';

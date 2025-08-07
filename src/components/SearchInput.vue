@@ -9,6 +9,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'SearchInput' });
+
 import { ref, useTemplateRef, watch } from 'vue';
 import CdsBaseInput from './BaseInput.vue';
 

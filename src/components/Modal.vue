@@ -94,6 +94,7 @@ const predefinedColors = [
 ];
 
 export default {
+	name: 'Modal',
 	components: {
 		CdsIcon,
 		CdsButton,

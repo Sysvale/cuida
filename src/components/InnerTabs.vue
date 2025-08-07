@@ -55,6 +55,7 @@ import isEqual from 'lodash.isequal';
 import { colorOptions, colorHexCode } from '../utils/constants/colors';
 
 export default {
+	name: 'InnerTabs',
 	props: {
 		/**
 		 * Define a lista dos itens da InnerTabs a serem mostrados.

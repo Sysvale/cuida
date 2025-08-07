@@ -3,6 +3,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'LoadingIndicator' });
+
 import { computed, ref, watch } from 'vue';
 import isDeviceType from '../utils/methods/isDeviceType.js';
 
@@ -17,9 +20,9 @@ const props = defineProps({
 		required: true,
 	},
 	/**
-	 * A variante de cor. São 10 variantes implementadas: 'green', 'teal',
-	 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'turquoise'.
-	 */
+	* A variante de cor. São 10 variantes:
+	* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
+	*/
 	variant: {
 		type: String,
 		default: 'green',

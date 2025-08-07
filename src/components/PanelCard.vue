@@ -30,6 +30,7 @@ import CdsBox from './Box.vue';
 import CdsDivider from './Divider.vue';
 
 export default {
+	name: 'PanelCard',
 	components: {
 		CdsBox,
 		CdsDivider,

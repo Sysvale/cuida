@@ -30,6 +30,7 @@ import CdsClickable from './Clickable.vue';
 import rounder from '../utils/methods/rounder';
 
 export default {
+	name: 'Box',
 	components: {
 		CdsSpacer,
 		CdsClickable,
@@ -74,8 +75,8 @@ export default {
 			default: false,
 		},
 		/**
-		* A variante de cor. São 9 variantes implementadas: 'green', 'teal',
-		* 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.
+		* A variante de cor. São 10 variantes:
+		* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
 		*/
 		variant: {
 			type: String,

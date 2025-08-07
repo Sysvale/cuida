@@ -97,6 +97,7 @@ import cloneDeep from 'lodash.clonedeep';
 import removeAccents from '../utils/methods/removeAccents';
 
 export default {
+	name: 'FilterSelect',
 	props: {
 		/**
 		 * Especifica o título do FilterSelect.

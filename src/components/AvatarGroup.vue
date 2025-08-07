@@ -62,6 +62,7 @@ import CdsTruncate from './Truncate.vue';
 import CdsTooltip from './Tooltip.vue';
 
 export default {
+	name: 'AvatarGroup',
 	components: {
 		CdsAvatar,
 		CdsClickable,

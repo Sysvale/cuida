@@ -19,6 +19,7 @@ import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
 
 export default {
+	name: 'PolarAreaChart',
 	components: {
 		PolarArea,
 	},

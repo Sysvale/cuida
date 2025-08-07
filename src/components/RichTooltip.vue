@@ -14,6 +14,7 @@ import { createPopper } from '@popperjs/core';
 import { generateKey } from '../utils';
 
 export default {
+	name: 'RichTooltip',
 	props: {
 		/**
 		* Prop utilizada como v-model.

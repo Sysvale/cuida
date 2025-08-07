@@ -182,6 +182,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'BaseInput' });
+
 import { ref, computed, watch, useTemplateRef, onMounted } from 'vue';
 import { useHasSlot } from '../utils/composables/useHasSlot.js';
 import {

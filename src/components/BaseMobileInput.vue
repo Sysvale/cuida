@@ -243,6 +243,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'BaseMobileInput' });
+
 import { ref, computed, watch, useTemplateRef, useAttrs, nextTick } from 'vue';
 import {
 	nativeEvents,

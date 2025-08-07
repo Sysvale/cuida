@@ -68,6 +68,7 @@ import CdsClickable from './Clickable.vue';
 import isEmpty from 'lodash.isempty';
 
 export default {
+	name: 'Breadcrumb',
 	components: {
 		CdsIcon,
 		CdsSpacer,

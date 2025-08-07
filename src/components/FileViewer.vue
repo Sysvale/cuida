@@ -101,6 +101,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'FileViewer' });
+
 import CdsIcon from '../components/Icon.vue';
 import { get, last } from 'lodash';
 import { computed, ref } from 'vue';

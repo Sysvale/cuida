@@ -73,6 +73,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'MonthAndYearPicker' });
+
 import { ref, computed, watch, useTemplateRef } from 'vue';
 import { DateTime } from 'luxon';
 import CdsBaseInput from './BaseInput.vue';
@@ -95,8 +98,8 @@ const props = defineProps({
 		default: 'Label',
 	},
 	/**
-	* A variante da Badge. SÃ£o 9 variantes: 'turquoise', 'green', 'blue',
-	* 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
+	* A variante de cor. São 10 variantes:
+	* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
 	*/
 	variant: {
 		type: String,

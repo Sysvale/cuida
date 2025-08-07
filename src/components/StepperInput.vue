@@ -97,6 +97,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'StepperInput' });
+
 import { ref, computed, watch, useTemplateRef } from 'vue';
 import { useHasSlots } from '../utils/composables/useHasSlots.js';
 import {

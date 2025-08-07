@@ -20,6 +20,7 @@ import sassColorVariables from '../assets/sass/tokens/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
 export default {
+	name: 'DonutChart',
 	components: {
 		Doughnut,
 	},

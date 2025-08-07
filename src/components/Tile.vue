@@ -45,6 +45,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'Tile' });
+
 import { computed } from 'vue';
 import variantValidator from '../utils/validators/variant';
 import Box from './Box.vue';
@@ -76,8 +79,8 @@ const props = defineProps({
 		validator: (value) => ['sm','md','lg'].includes(value),
 	},
 	/**
-	 * A variante de cor. São 9 variantes implementadas: 'green', 'teal',
-	 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.
+	* A variante de cor. São 10 variantes:
+	* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
 	*/
 	variant: {
 		type: String,

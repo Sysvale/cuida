@@ -7,6 +7,7 @@
 
 <script>
 export default {
+	name: 'OverlayLoader',
 	props: {
 		/**
 		*	Propriedade referente ao tamanho do componente ('sm', 'md' ou 'lg')

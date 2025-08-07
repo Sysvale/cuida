@@ -18,6 +18,7 @@
 
 <script>
 export default {
+	name: 'Clickable',
 	props: {
 		/**
 		 * Ativa ou desativa o clique no componente

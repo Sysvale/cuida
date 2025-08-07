@@ -70,6 +70,7 @@ import CdsIcon from '../components/Icon.vue';
 import CdsButton from '../components/Button.vue';
 
 export default {
+	name: 'ActionBar',
 	components: {
 		CdsIcon,
 		CdsButton,

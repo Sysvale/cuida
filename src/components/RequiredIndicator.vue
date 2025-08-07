@@ -8,6 +8,8 @@
 
 <script setup>
 
+defineOptions({ name: 'RequiredIndicator' });
+
 </script>
 
 <style lang="scss" scoped>

@@ -23,11 +23,12 @@
 <script>
 
 export default {
+	name: 'ProgressBar',
 	props: {
 		/**
-		 * A variante de cor. São 9 variantes implementadas: 'green', 'teal', 'turquoise',
-		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'.
-		 */
+		* A variante de cor. São 10 variantes:
+		* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
+		*/
 		variant: {
 			type: String,
 			default: 'green',

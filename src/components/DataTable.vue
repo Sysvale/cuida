@@ -152,6 +152,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'DataTable' });
+
 import { ref, watch, computed, useAttrs, onMounted, onUnmounted } from 'vue';
 import { cloneDeep, isEmpty } from 'lodash';
 import { useHasSlot } from '../utils/composables/useHasSlot';

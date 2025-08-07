@@ -299,6 +299,7 @@ import Cdstip from '../utils/directives/cdstip';
 import { colorOptions, colorHexCode } from '../utils/constants/colors';
 
 export default {
+	name: 'SideBar',
 	directives: {
 		cdstip: Cdstip,
 	},

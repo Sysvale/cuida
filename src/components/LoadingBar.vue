@@ -7,7 +7,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+	name: 'LoadingBar',
+};
 </script>
 
 <style lang="scss" scoped>

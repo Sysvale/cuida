@@ -44,6 +44,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'List' });
+
 import { computed } from 'vue';
 import { colorOptions } from '../utils/constants/colors';
 import { useHasSlot } from '../utils/composables/useHasSlot';

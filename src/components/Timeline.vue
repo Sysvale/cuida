@@ -8,6 +8,7 @@
 
 <script>
 export default {
+	name: 'Timeline',
 	props: {
 		/**
 		* Inverte a ordem dos elementos da Timeline.

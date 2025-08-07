@@ -14,6 +14,7 @@
 import rounder from '../utils/methods/rounder';
 
 export default {
+	name: 'Image',
 	props: {
 		/**
 		* Caminho da imagem que vai ser renderizada.

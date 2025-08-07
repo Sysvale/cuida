@@ -58,6 +58,7 @@ import CdsIcon from './Icon.vue';
 import hasSlot from '../utils/methods/hasSlot';
 
 export default {
+	name: 'TimelineItem',
 	components: {
 		CdsIcon,
 		CdsSpinner,
@@ -65,8 +66,8 @@ export default {
 
 	props: {
 		/**
-		* A variante do TimelineItem. São 10 variantes: 'teal', 'green', 'blue',
-		* 'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.
+		* A variante de cor. São 10 variantes:
+		* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
 		*/
 		variant: {
 			type: String,

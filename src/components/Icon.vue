@@ -20,6 +20,7 @@
 import { completeIconSet } from '@sysvale/cuida-icons/dist';
 
 export default {
+	name: 'Icon',
 	props: {
 		name: {
 			type: String,

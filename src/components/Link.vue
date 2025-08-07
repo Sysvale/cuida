@@ -23,6 +23,7 @@
 
 <script>
 export default {
+	name: 'Link',
 	props: {
 		/**
 		*	URL de redirecionamento.

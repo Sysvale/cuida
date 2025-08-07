@@ -9,6 +9,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'Flexbox' });
+
 import { computed } from 'vue';
 
 const props = defineProps({

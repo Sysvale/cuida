@@ -35,6 +35,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'Label' });
+
 import CdsRequiredIndicator from './RequiredIndicator.vue';
 import vCdstip from '../utils/directives/cdstip';
 import CdsLink from './Link.vue';

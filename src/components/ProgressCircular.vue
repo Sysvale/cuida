@@ -37,6 +37,7 @@
 import { colorHexCode } from '../utils/constants/colors';
 
 export default {
+	name: 'ProgressCircular',
 	props: {
 		/**
 		 * Define a cor da ProgressCircular.

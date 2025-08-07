@@ -146,6 +146,7 @@ import CdsAvatar from './Avatar.vue';
 import CdsClickable from './Clickable.vue';
 
 export default {
+	name: 'AppBar',
 	components: {
 		CdsIcon,
 		CdsAvatar,

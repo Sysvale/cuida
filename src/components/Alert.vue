@@ -62,6 +62,7 @@
 import CdsIcon from '../components/Icon.vue';
 
 export default {
+	name: 'Alert',
 	components: {
 		CdsIcon,
 	},

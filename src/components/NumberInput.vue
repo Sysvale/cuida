@@ -51,6 +51,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'NumberInput' });
+
 import { ref, watch, onMounted, useTemplateRef } from 'vue';
 import {
 	nativeEvents,

@@ -27,22 +27,24 @@
 import CdsClickable from './Clickable.vue'
 
 export default {
+	name: 'Badge',
 	components: {
 		CdsClickable,
 	},
 
 	props: {
 		/**
-		 * A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',
-		 * 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
-		 */
+		* A variante de cor. São 10 variantes:
+		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
+		*/
 		variant: {
 			type: String,
 			default: 'gray',
 		},
 		/**
-		 * Especifica o tamanho da badge. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
-		 */
+		* Especifica o tamanho da badge. São 3 tamanhos implementados.
+		* @values sm, md, lg
+		*/
 		size: {
 			type: String,
 			default: 'md',

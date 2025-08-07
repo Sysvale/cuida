@@ -13,6 +13,7 @@
 
 <script>
 export default {
+	name: 'Tooltip',
 	props: {
 		/**
 		 * O posicionamento do Tooltip. A prop aceita as opções: top, right, bottom e left.

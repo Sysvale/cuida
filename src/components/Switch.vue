@@ -74,6 +74,8 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'Switch' });
+
 import { ref, computed, watch, useTemplateRef } from 'vue';
 import CdsIcon from './Icon.vue';
 
@@ -97,8 +99,8 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	* A variante da Checkbox. São 10 variantes: 'teal', 'green', 'blue',
-	* 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+	* A variante de cor. São 10 variantes:
+	* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
 	*/
 	variant: {
 		type: String,

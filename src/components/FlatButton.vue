@@ -13,6 +13,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'FlatButton' });
+
 import { computed, useTemplateRef } from 'vue';
 
 const props = defineProps({
