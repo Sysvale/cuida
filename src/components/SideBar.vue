@@ -941,12 +941,12 @@ export default {
 
 		&__avatar > div > p:nth-child(1) {
 			color: tokens.$n-700;
-			cursor: pointer;
+			cursor: v-bind(avatarCursorResolver);
 		}
 
 		&__avatar > div > p:nth-child(2) {
 			color: tokens.$n-700;
-			cursor: pointer;
+			cursor: v-bind(avatarCursorResolver);
 		}
 
 		&__footer {
