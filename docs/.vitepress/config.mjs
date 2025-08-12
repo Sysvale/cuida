@@ -53,20 +53,20 @@ export default defineConfig({
 			// 	}
 			// ],
 			'/components/': [
-				// {
-				// 	text: 'Forms',
-				// 	items: [
-				// 		{ text: 'Button', link: '/components/forms/button' },
-				// 		{ text: 'BaseInput', link: '/components/forms/base-input' },
-				// 		{ text: 'TextInput', link: '/components/forms/text-input' },
-				// 		{ text: 'TextArea', link: '/components/forms/text-area' },
-				// 		{ text: 'Select', link: '/components/forms/select' },
-				// 		{ text: 'Checkbox', link: '/components/forms/checkbox' },
-				// 		{ text: 'Radio', link: '/components/forms/radio' },
-				// 		{ text: 'Switch', link: '/components/forms/switch' },
-				// 		{ text: 'Slider', link: '/components/forms/slider' }
-				// 	]
-				// },
+				{
+					text: 'Forms',
+					items: [
+						{ text: 'Button', link: '/components/forms/button' },
+						// { text: 'BaseInput', link: '/components/forms/base-input' },
+						// { text: 'TextInput', link: '/components/forms/text-input' },
+						// { text: 'TextArea', link: '/components/forms/text-area' },
+						// { text: 'Select', link: '/components/forms/select' },
+						// { text: 'Checkbox', link: '/components/forms/checkbox' },
+						// { text: 'Radio', link: '/components/forms/radio' },
+						// { text: 'Switch', link: '/components/forms/switch' },
+						// { text: 'Slider', link: '/components/forms/slider' }
+					]
+				},
 				{
 					text: 'Display',
 					items: [
