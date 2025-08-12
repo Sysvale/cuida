@@ -4,7 +4,7 @@
 			<component
 				:is="component"
 				v-on="innerEvents"
-				v-bind="componentProps"
+				v-bind="{...$attrs, ...componentProps }"
 			>
 				<template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
 		  			<slot v-if="slotProps" :name="slotName" v-bind="slotProps" />
@@ -52,6 +52,7 @@
 	
 		<PlaygroundBuilder
 			:component="component.name"
+			:initial-values="componentProps"
 			@update="handleUpdate"
 		/>
 	</div>
@@ -65,6 +66,7 @@ import {
 	nextTick,
 	computed,
 	onMounted,
+	useAttrs,
 	type Component
 } from 'vue';
 import CdsBadge from '@/components/Badge.vue'
@@ -81,6 +83,8 @@ const props = defineProps<{
 	component: Component & { name: string },
 	events: string[],
 }>();
+
+const $attrs = useAttrs();
 
 const logContainer = useTemplateRef('logContainerRef');
 const showLog = ref(false);
@@ -112,6 +116,8 @@ watch(
 );
 
 onMounted(() => {
+	componentProps.value = { ...$attrs };
+
 	props.events?.forEach((event) => {
 		innerEvents.value[event] = (ev) => {
 			log.value.push({
