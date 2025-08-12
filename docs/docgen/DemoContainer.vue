@@ -7,11 +7,12 @@
 				v-bind="componentProps"
 			>
 				<template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
-		  			<slot :name="slotName" v-bind="slotProps" />
+		  			<slot v-if="slotProps" :name="slotName" v-bind="slotProps" />
 				</template>
 			</component>
 	
 			<span
+				v-if="events"
 				class="show-log-button"
 				@click="showLog = !showLog"
 			>
@@ -111,7 +112,7 @@ watch(
 );
 
 onMounted(() => {
-	props.events.forEach((event) => {
+	props.events?.forEach((event) => {
 		innerEvents.value[event] = (ev) => {
 			log.value.push({
 				event,
