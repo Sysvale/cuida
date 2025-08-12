@@ -4,6 +4,7 @@
 		:fields="tableFields"
 		:items="tableData"
 		:no-wrap="section === 'props' ? false : true"
+		transparent
 	>
 		<template #table-item="{ data, field }">
 			<template v-if="field === 'name'">

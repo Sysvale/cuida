@@ -225,6 +225,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		* Remove a cor de fundo da tabela
+		*/
+		transparent: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -269,7 +276,10 @@ export default {
 		},
 		resolveHeaderShadow() {
 			return this.fixedHeader ? '0px 1px 5px rgba(0, 0, 0, 0.07)' : '';
-		}
+		},
+		computedBackgroundColor() {
+			return this.transparent ? 'transparent' : '#fff';
+		},
 	},
 
 	watch: {
@@ -420,7 +430,7 @@ export default {
 		border-radius: tokens.$border-radius-extra-small;
 		border-spacing: 0px;
 		width: 100%;
-		background: tokens.$n-0;
+		background: v-bind('computedBackgroundColor');
 	}
 
 	&__select-item {
