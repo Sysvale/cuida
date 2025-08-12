@@ -131,11 +131,13 @@
 						/>
 					</template>
 
-					<template #table-item="{ data, field }">
+					<template #table-item="{ data, field, rowIndex, colIndex}">
 						<slot
 							name="table-item"
 							:data="data"
 							:field="field"
+							:row-index
+							:col-index
 						/>
 					</template>
 				</cds-table>
