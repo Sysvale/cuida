@@ -709,7 +709,13 @@
     ],
     "events": [
       {
-        "name": "click"
+        "name": "click",
+        "description": "Evento que indica se a Badge foi clicada",
+        "type": {
+          "names": [
+            "Event"
+          ]
+        }
       }
     ],
     "slots": [
@@ -5445,7 +5451,7 @@
         "name": "highlightedText",
         "description": "Define uma substring específica do texto enviada por slot que deve receber o destaque (highlight).",
         "type": {
-          "name": "string|null"
+          "name": "string"
         },
         "defaultValue": {
           "func": false,
@@ -11436,6 +11442,17 @@
       {
         "name": "noWrap",
         "description": "Boolean, quando true, os textos do header e valores da tabela não terão quebra de linha.\nPor padrão, os textos do header e valores da tabela terão quebra de linha quando atingirem o tamanho máximo do container.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
+      },
+      {
+        "name": "transparent",
+        "description": "Remove a cor de fundo da tabela",
         "type": {
           "name": "boolean"
         },
