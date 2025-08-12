@@ -12,6 +12,7 @@
 				</CdsText>
 
 				<CdsSelect
+					v-if="Object.keys(normalizedPropsData).length > 0"
 					label=""
 					v-model="normalizedPropsData[index][data.name]"
 					:options="formatOptions(data.values)"
@@ -29,6 +30,7 @@
 				</CdsText>
 
 				<CdsTextInput
+					v-if="Object.keys(normalizedPropsData).length > 0"
 					label=""
 					v-model="normalizedPropsData[index][data.name]"
 				/>
@@ -44,6 +46,7 @@
 				</CdsText>
 
 				<CdsSwitch
+					v-if="Object.keys(normalizedPropsData).length > 0"
 					v-model="normalizedPropsData[index][data.name]"
 				/>
 			</CdsFlexbox>
@@ -52,18 +55,20 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue';
+import { computed, ref, watch, nextTick } from 'vue';
 import componentsData from '../.docgen/components.json'
 import CdsTextInput from '@/components/TextInput.vue';
 import CdsSelect from '@/components/Select.vue';
 import CdsSwitch from '@/components/Switch.vue';
 import CdsText from '@/components/Text.vue';
 import CdsFlexbox from '@/components/Flexbox.vue';
-import CdsInnerTabs from '@/components/InnerTabs.vue';
 
-const props = defineProps<{
-	component: string
-}>()
+const props = withDefaults(defineProps<{
+	component: string,
+	initialValues: Object,
+}>(), {
+	initialValues: () => ({}),
+});
 
 const emits = defineEmits(['update']);
 
@@ -75,7 +80,6 @@ const propsData = computed(() => componentData.value?.props);
 
 function formatOptions(val) {
 	return val.map(v => {
-		console.log('🚀 -> v:', v.match(/'(\S+)'/));
 		return {
 			id: v.match(/'(\S+)'/) !== null ? v.match(/'(\S+)'/)[1] : v,
 			value: v.match(/'(\S+)'/) !== null ? v.match(/'(\S+)'/)[1] : v,
@@ -83,30 +87,36 @@ function formatOptions(val) {
 	})
 }
 
-normalizedPropsData.value = propsData.value.map((propData) => {
-	let rawValue = propData.defaultValue.value;
-	let parsedValue;
-
-	if (rawValue === 'null') {
-		parsedValue = '';
-	} else if (rawValue === 'true') {
-		parsedValue = true;
-	} else if (rawValue === 'false') {
-		parsedValue = false;
-	} else if (typeof rawValue === 'string') {
-		const match = rawValue.match(/'([^']+)'/);
-		parsedValue = match ? match[1] : rawValue;
-	} else {
-		parsedValue = rawValue;
-	}
-
-	return { [propData.name]: parsedValue };
-});
-
-normalizedPropsData.value.forEach((item) => {
-	const [key, value] = Object.entries(item)[0];
-
-	payload.value[key] = value;
+nextTick(() => {
+	normalizedPropsData.value = propsData.value.map((propData) => {
+		let rawValue = propData.defaultValue.value;
+		let parsedValue;
+	
+		if (rawValue === 'null') {
+			parsedValue = '';
+		} else if (rawValue === 'true') {
+			parsedValue = true;
+		} else if (rawValue === 'false') {
+			parsedValue = false;
+		} else if (typeof rawValue === 'string') {
+			const match = rawValue.match(/'([^']+)'/);
+			parsedValue = match ? match[1] : rawValue;
+		} else {
+			parsedValue = rawValue;
+		}
+	
+		if (props.initialValues[propData.name]) {
+			return { [propData.name]: props.initialValues[propData.name] };
+		}
+	
+		return { [propData.name]: parsedValue };
+	});
+	
+	normalizedPropsData.value.forEach((item) => {
+		const [key, value] = Object.entries(item)[0];
+	
+		payload.value[key] = value;
+	});
 });
 
 function capitalize(str) {
