@@ -126,7 +126,7 @@
 </template>
 
 <script setup>
-import { ref, watch, computed, onMounted } from 'vue';
+import { ref, watch, computed, onMounted, onBeforeUnmount } from 'vue';
 import hasSameItems from '../../utils/methods/hasSameItems';
 import CdsIcon from '../Icon.vue';
 import CdsSkeleton from '../Skeleton.vue';
@@ -286,6 +286,10 @@ watch(() => props.customFieldsList, (value) => {
 	filteredCustomFieldsList.value = [...value.map(field => ({ ...field }))];
 	currentPreset();
 }, { deep: true });
+
+onBeforeUnmount(() => {
+	document.body.style.overflow = 'auto';
+})
 
 onMounted(() => {
 	internalCustomFieldsList.value = [...props.customFieldsList.map(field => ({ ...field }))];
