@@ -63,7 +63,7 @@ export default defineConfig({
 						// { text: 'Select', link: '/components/forms/select' },
 						// { text: 'Checkbox', link: '/components/forms/checkbox' },
 						// { text: 'Radio', link: '/components/forms/radio' },
-						// { text: 'Switch', link: '/components/forms/switch' },
+						{ text: 'Switch', link: '/components/forms/switch' },
 						// { text: 'Slider', link: '/components/forms/slider' }
 					]
 				},
@@ -71,21 +71,27 @@ export default defineConfig({
 					text: 'Display',
 					items: [
 						{ text: 'ActionBar', link: '/components/display/action-bar' },
-						{ text: 'Actionslist', link: '/components/display/actions-list' },
+						// { text: 'Actionslist', link: '/components/display/actions-list' },
 						{ text: 'Avatar', link: '/components/display/avatar' },
-						{ text: 'AvatarGroup', link: '/components/display/avatar-group' },
+						// { text: 'AvatarGroup', link: '/components/display/avatar-group' },
 						{ text: 'Badge', link: '/components/display/badge' },
-						{ text: 'CalloutCard', link: '/components/display/callout-card' },
-						{ text: 'Carousel', link: '/components/display/carousel' },
-						{ text: 'DataTable', link: '/components/display/data-table' },
-						{ text: 'Dropdown', link: '/components/display/dropdown' },
-						{ text: 'DropdownButton', link: '/components/display/dropdown-button' },
+						// { text: 'CalloutCard', link: '/components/display/callout-card' },
+						// { text: 'Carousel', link: '/components/display/carousel' },
+						// { text: 'DataTable', link: '/components/display/data-table' },
+						// { text: 'Dropdown', link: '/components/display/dropdown' },
+						// { text: 'DropdownButton', link: '/components/display/dropdown-button' },
 						{ text: 'EmptyState', link: '/components/display/empty-state' },
 						{ text: 'Highlight', link: '/components/display/highlight' },
-						{ text: 'Tooltip', link: '/components/display/tooltip' },
-						{ text: 'Table', link: '/components/display/table' },
-						{ text: 'DataTable', link: '/components/display/data-table' },
+						// { text: 'Tooltip', link: '/components/display/tooltip' },
+						// { text: 'Table', link: '/components/display/table' },
+						// { text: 'DataTable', link: '/components/display/data-table' },
 						{ text: 'Card', link: '/components/containers/card' },
+					]
+				},
+				{
+					text: 'Tipografia',
+					items: [
+						{ text: 'Text', link: '/components/tipografia/text' },
 					]
 				},
 				// {
