@@ -2,7 +2,7 @@
 	<CdsFlexbox direction="column" gap="4" class="inputs-container">
 		<template v-for="(data, index) in propsData">
 			<CdsFlexbox
-				v-if="data.type.name === 'string' && data.values"
+				v-if="data.type.name.includes('string') && data.values"
 				justify="space-between"
 				gap="3"
 				class="preview-line"
@@ -21,7 +21,7 @@
 			</CdsFlexbox>
 
 			<CdsFlexbox
-				v-else-if="data.type.name === 'string'"
+				v-else-if="data.type.name.includes('string')"
 				justify="space-between"
 				class="preview-line"
 			>
@@ -100,7 +100,7 @@ nextTick(() => {
 			parsedValue = false;
 		} else if (typeof rawValue === 'string') {
 			const match = rawValue.match(/'([^']+)'/);
-			parsedValue = match ? match[1] : rawValue;
+			parsedValue = match ? match[1].replace(/['"]/g, '') : rawValue.replace(/['"]/g, '');
 		} else {
 			parsedValue = rawValue;
 		}
