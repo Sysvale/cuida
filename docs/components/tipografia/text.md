@@ -1,64 +1,68 @@
 # Text
 
-Componentes Text permitem renderizar texto com diferentes estilos e configurações.
+Text são indicadores de status utilizados para tornar evidentes metadados importantes.
 
-## Quando usar
+### Quando usar
 
-- Quando quiser renderizar texto utilizando as definições tipográficas do design system para garantir consistência visual.
-- Quando quiser utilizar tags de texto HTML sem as margens padrão.
+- For necessário mostrar status associados com a lógica de negócio ou ações do usuário.
+- O conteúdo a ser mostrado for *readonly*.
+- For preciso categorizar algo.
 
-## Quando não usar
+### Quando não usar
 
-- Para exibir textos decorativos ou de realce dentro de botões e componentes interativos. Utilize a estilização apropriada para cada caso..
+- O conteúdo que a text representa puder ser setado ou removido pelo usuário.
+- O click no componente precisar executar uma ação ou funcionalidade.
 
-## Preview
-
-<script setup>
-import Text from '@/components/Text.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <Text />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-text
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsText
+		as="span"
+		textAlign='start'
+		:noMargin="false"
+>
+		O empenho em analisar o desenvolvimento contínuo de distintas formas de atuação obstaculiza a apreciação da importância do retorno esperado a longo prazo.
+</CdsText>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<DemoContainer
+	:component="CdsText"
+	:events="cdsTextEvents"
+>
+O empenho em analisar o desenvolvimento contínuo de distintas formas de atuação obstaculiza a apreciação da importância do retorno esperado a longo prazo.
+</DemoContainer>
+
+---
+
+## Props
+
+<APITable
+	name="Text"
+	section="props"
+/>
+
+<br />
+
+## Slots
+
+<APITable
+	name="Text"
+	section="slots"
+/>
+
+---
+
+<script setup>
+import { ref } from 'vue';
+import CdsText from '@/components/Text.vue';
+
+const cdsTextEvents = [
+	'click'
+];
+</script>
