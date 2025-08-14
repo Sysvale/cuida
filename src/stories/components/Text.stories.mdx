@@ -15,24 +15,34 @@ import Text from '../../components/Text.vue';
 					'h4',
 					'h5',
 					'h6',
-                    'heading-1',
+					'heading-1',
 					'heading-2',
 					'heading-3',
-                    'subheading-1',
+					'subheading-1',
 					'subheading-2',
 					'subheading-3',
 					'p',
-                    'q',
+					'q',
 					'span',
-                    'body-1',
+					'body-1',
 					'body-2',
-                    'caption',
-                    'overline',
-                    'strong',
-                    'em',
-                    'del',
-                    'small',
+					'caption',
+					'overline',
+					'strong',
+					'em',
+					'del',
+					'small',
 					'legend',
+				],
+			}
+		},
+		'fontWeight': {
+			control:{
+				type: 'select',
+				options: [
+					'regular',
+					'semibold',
+					'bold',
 				],
 			}
 		},
@@ -43,7 +53,7 @@ import Text from '../../components/Text.vue';
 					'start',
 					'center',
 					'end',
-                    'justify'
+					'justify'
 				],
 			}
 		},
@@ -57,11 +67,11 @@ import Text from '../../components/Text.vue';
 				format:true,
 				code: /*html*/ 
 `<cds-text
-    as="span"
-    textAlign='start'
-    :noMargin="false"
+	as="span"
+	textAlign='start'
+	:noMargin="false"
 >
-    O empenho em analisar o desenvolvimento contínuo de distintas formas de atuação obstaculiza a apreciação da importância do retorno esperado a longo prazo.
+	O empenho em analisar o desenvolvimento contínuo de distintas formas de atuação obstaculiza a apreciação da importância do retorno esperado a longo prazo.
 </cds-text>`
 			},
 		}
@@ -108,10 +118,11 @@ export const Template = (args) => ({
 	<Story
 		name="Text"
 		args={{
-            'as': "span",
-            color: 'n-700',
-            textAlign: 'start',
-            noMargin: false,
+			'as': "span",
+			color: 'n-700',
+			textAlign: 'start',
+			noMargin: false,
+			fontWeight: 'regular'
 		}}
 	>
 		{ Template.bind({}) }

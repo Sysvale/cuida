@@ -11,7 +11,7 @@ exports[`Toast > renders correctly 1`] = `
       </svg>
       <div data-v-7b6def48="" class="toast__text-container">
         <div data-v-c2ac4e6d="" data-v-7b6def48="" class="flexbox">
-          <!-- @slot Slot com o conteúdo interno do FlexBox --><span data-v-3df5e145="" data-v-7b6def48="" class="text-alignment n-0 toast__title">Título do toast</span><span data-v-3df5e145="" data-v-7b6def48="" class="text-alignment n-30 toast__description">Descrição do toast, exibida abaixo do título</span>
+          <!-- @slot Slot com o conteúdo interno do FlexBox --><span data-v-3df5e145="" data-v-7b6def48="" class="text-alignment n-0 regular toast__title">Título do toast</span><span data-v-3df5e145="" data-v-7b6def48="" class="text-alignment n-30 regular toast__description">Descrição do toast, exibida abaixo do título</span>
         </div>
       </div>
     </div>

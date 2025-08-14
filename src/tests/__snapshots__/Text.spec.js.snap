@@ -1,3 +1,3 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Text Component > renders correctly 1`] = `"<span data-v-3df5e145="" class="text-alignment n-800">Texto de exemplo</span>"`;
+exports[`Text Component > renders correctly 1`] = `"<span data-v-3df5e145="" class="text-alignment n-800 regular">Texto de exemplo</span>"`;
