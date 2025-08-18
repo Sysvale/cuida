@@ -54,7 +54,7 @@ export const Template = (args) => ({
 	setup() {
 		return { args };
 	},
-	template: /*html*/ `<cds-progress-bar v-bind="args"/>`,
+	template: /*html*/ `<cds-progress-bar v-bind="args" />`,
 });
 
 # ProgressBar
@@ -83,8 +83,12 @@ export const Template = (args) => ({
 	<Story
 		name="Progress bar"
 		args={{
-			value: 0.5,
+			value: 0.45,
 			showText: true,
+			textAside: false,
+			textLeft: true,
+			shadeSteps: 4,
+			variant: 'green'
 		}}
 	>
 		{ Template.bind({}) }

@@ -17,15 +17,19 @@
 					{{ descriptionComputedText }}
 				</div>
 
-				<CdsSelect
-					v-if="presetsOptions.length > 0"
-					v-model="selectedPreset"
-					class="side-sheet__presets"
-					label="Conjunto padrão de colunas (preset)"
-					placeholder="Selecione um preset"
-					:options="resolvedPresetsOptions"
-					fluid
-				/>
+				<div v-if="presetsOptions.length > 0">
+					<CdsSelect
+						v-model="selectedPreset"
+						label="Conjunto de colunas"
+						placeholder="Selecione um preset"
+						:options="resolvedPresetsOptions"
+						fluid
+					/>
+
+					<div class="side-sheet__divider">
+						<CdsDivider dimmed />
+					</div>
+				</div>
 
 				<CdsSearchInput
 					v-if="customFieldsSearchable"
@@ -122,7 +126,7 @@
 </template>
 
 <script setup>
-import { ref, watch, computed, onMounted } from 'vue';
+import { ref, watch, computed, onMounted, onBeforeUnmount } from 'vue';
 import hasSameItems from '../../utils/methods/hasSameItems';
 import CdsIcon from '../Icon.vue';
 import CdsSkeleton from '../Skeleton.vue';
@@ -131,6 +135,7 @@ import CdsFlexbox from '../Flexbox.vue';
 import CdsButton from '../Button.vue';
 import CdsSelect from '../Select.vue';
 import CdsSearchInput from '../SearchInput.vue';
+import CdsDivider from '../Divider.vue';
 import { isEmpty, kebabCase, trim } from 'lodash';
 
 const modelValue = defineModel({
@@ -239,6 +244,10 @@ const visibleColumnsCountText = computed(() => {
 			: `${count} colunas selecionadas`;
 });
 
+watch(() => modelValue, (isOpen) => {
+	mustDisableExternalScrolls(isOpen.value);
+}, { deep: true });
+
 watch(() => props.customFieldsList, (newList) => {
 	internalCustomFieldsList.value = [...newList.map(field => ({ ...field }))];
 }, { immediate: true });
@@ -278,10 +287,18 @@ watch(() => props.customFieldsList, (value) => {
 	currentPreset();
 }, { deep: true });
 
+onBeforeUnmount(() => {
+	document.body.style.overflow = 'auto';
+})
+
 onMounted(() => {
 	internalCustomFieldsList.value = [...props.customFieldsList.map(field => ({ ...field }))];
 	filteredCustomFieldsList.value = [...props.customFieldsList.map(field => ({ ...field }))];
 });
+
+function mustDisableExternalScrolls(value) {
+	document.body.style.overflow = value ? 'hidden' : 'auto';
+}
 
 function clearFilter() {
 	searchString.value = '';
@@ -342,12 +359,12 @@ function currentPreset() {
 		margin: tokens.mb(5);
 	}
 
-	&__presets {
-		margin: tokens.mb(2);
+	&__divider {
+		margin: tokens.mTRBL(5, 0, 4, 0);
 	}
 
 	&__search {
-		margin: tokens.mb(2);
+		margin: tokens.mb(1);
 	}
 
 	&__count {
