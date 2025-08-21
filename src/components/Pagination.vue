@@ -45,19 +45,12 @@
 
 <script setup>
 /* eslint-disable no-plusplus */
+import { computed, onBeforeMount, watch, ref } from 'vue';
 import PaginationItem from '../entities/PaginationItem';
 import CdsChevron from './Chevron.vue';
 import variantClassResolver from '../utils/methods/variantClassResolver';
-import { computed, onBeforeMount, watch, ref } from 'vue';
 
 const props = defineProps({
-	/**
-	 * Prop utilizada para receber a página atual.
-	 */
-	modelValue: {
-		type: [Number, String],
-		default: 1,
-	},
 	/**
 	 * Prop utilizada para receber o número total de registros a serem paginados.
 	 */
@@ -92,24 +85,16 @@ const props = defineProps({
 	},
 });
 
+const modelValue = defineModel('modelValue', {
+	type: [Number, String],
+	default: 1,
+});
+
 const selectedPage = ref(
-	new PaginationItem(null, parseInt(props.modelValue, 10), true)
+	new PaginationItem(null, parseInt(modelValue.value, 10), true)
 );
 
 const pages = ref([]);
-
-const emit = defineEmits([
-	/**
-	 * Evento que indica que a página atual foi alterada.
-	 *
-	 * Altera o valor do v-model.
-	 *
-	 * Emite o número referente à página selecionada.
-	 * @event update:modelValue
-	 * @type {Event}
-	 */
-	'update:modelValue',
-]);
 
 const pageCount = computed(() => {
 	const pageNumber = props.total / props.perPage;
@@ -209,7 +194,7 @@ function handlePageClick(page) {
 
 			selectedPage.value = new PaginationItem(null, 1, true);
 
-			emit('update:modelValue', 1);
+			modelValue.value = 1;
 			resolvePages();
 			return;
 		case 'last':
@@ -218,14 +203,14 @@ function handlePageClick(page) {
 			}
 			selectedPage.value = new PaginationItem(null, pageCount, true);
 
-			emit('update:modelValue', pageCount.value);
+			modelValue.value = pageCount.value;
 			resolvePages();
 			return;
 		case 'back':
 			if (selectedPage.value.index === 1) {
 				return;
 			}
-			emit('update:modelValue', selectedPage.value.value - 1);
+			modelValue.value = selectedPage.value.value - 1;
 
 			selectedPage.value = new PaginationItem(
 				null,
@@ -240,7 +225,7 @@ function handlePageClick(page) {
 				return;
 			}
 
-			emit('update:modelValue', selectedPage.value.value + 1);
+			modelValue.value = selectedPage.value.value + 1;
 
 			selectedPage.value = new PaginationItem(
 				null,
@@ -253,7 +238,7 @@ function handlePageClick(page) {
 		default:
 			selectedPage.value = new PaginationItem(null, page.value, true);
 
-			emit('update:modelValue', page.value);
+			modelValue.value = page.value;
 			resolvePages();
 			break;
 	}
@@ -298,7 +283,7 @@ onBeforeMount(() => {
 	&__button {
 		cursor: pointer;
 		height: 34px;
-		padding: tokens.pYX(2,3);
+		padding: tokens.pYX(2, 3);
 		width: 35px;
 		@include tokens.caption;
 		font-weight: tokens.$font-weight-semibold;
@@ -342,7 +327,7 @@ onBeforeMount(() => {
 				@extend .pagination__button--active;
 				background-color: $base-color;
 				border-color: $base-color;
-	
+
 				&:hover {
 					background-color: $shade-500 !important;
 					border-color: $shade-500 !important;
@@ -369,11 +354,11 @@ onBeforeMount(() => {
 
 	&__double-chevron {
 		&--left {
-			margin: tokens.ml(n1)
+			margin: tokens.ml(n1);
 		}
 
 		&--right {
-			margin: tokens.mr(n1)
+			margin: tokens.mr(n1);
 		}
 	}
 }
