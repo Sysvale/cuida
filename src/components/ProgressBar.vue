@@ -157,7 +157,7 @@ watch(() => props.value, () => {
 	}
 
 	&__left {
-		align-items: start;
+		align-items: initial;
 	}
 }
 </style>
