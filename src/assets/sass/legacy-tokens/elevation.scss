@@ -22,3 +22,12 @@ $z-index: map-merge(
 	),
 	$z-index
 );
+
+.z-index-sunk { $z-index-sunk: -1000; }
+.z-index-base { $z-index-base: 0; }
+.z-index-backdrop { $z-index-backdrop: 1000; }
+.z-index-toolbar { $z-index-toolbar: 2000; }
+.z-index-sidesheet { $z-index-sidesheet: 2500; }
+.z-index-modal { $z-index-modal: 3000; }
+.z-index-tooltip { $z-index-tooltip: 4000; }
+.z-index-toast { $z-index-toast: 5000; }
