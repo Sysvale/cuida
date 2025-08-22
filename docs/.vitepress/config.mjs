@@ -71,7 +71,7 @@ export default defineConfig({
 					text: 'Display',
 					items: [
 						{ text: 'ActionBar <Badge class="badge" type="info">ready</Badge>', link: '/components/display/action-bar' },
-						// { text: 'Actionslist', link: '/components/display/actions-list' },
+						{ text: 'ActionsList <Badge class="badge" type="info">ready</Badge>', link: '/components/display/actions-list' },
 						{ text: 'Avatar', link: '/components/display/avatar' },
 						// { text: 'AvatarGroup', link: '/components/display/avatar-group' },
 						{ text: 'Badge <Badge class="badge" type="info">ready</Badge>', link: '/components/display/badge' },

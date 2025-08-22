@@ -13,54 +13,95 @@ Actions lists são componentes usados para mostrar uma lista de ações em linha
 - For necessário construir componentes de navegação (Menu, navbar, etc).
 - As ações listadas afetam toda a view ou mais que um conjunto de dados relacionados.
 
-## Preview
-
-<script setup>
-import ActionsList from '@/components/ActionsList.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <ActionsList />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-actionslist
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsActionsList
+	:actions="actions"
+	:numberOfExpandedActions="2"
+>
+	<template
+		#action="{ list }"
+	>
+		{{ list.title }}
+	</template>
+</CdsActionsList>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<DemoContainer
+	:actions
+	:numberOfExpandedActions="2"
+	:component="CdsActionsList"
+	:events="cdsActionsListEvents"
+>
+	<template
+		#action="{ list }"
+	>
+		{{ list.title }}
+	</template>
+</DemoContainer>
+
+---
+
+## Props
+
+<APITable
+	name="ActionsList"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="ActionsList"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="ActionsList"
+	section="slots"
+/>
+
+---
+
+<!-- ## Figma
+
+<FigmaFrame
+	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
+/> -->
+
+<script setup>
+import { ref } from 'vue';
+import CdsActionsList from '@/components/ActionsList.vue';
+
+const actions = [
+	{
+		"title": "Icon1",
+		"disabled": true
+	},
+	{
+		"title": "Icon2",
+	},
+	{
+		"title": "Icon3",
+	},
+	{
+		"title": "Icon4",
+	}
+];
+
+const cdsActionsListEvents = [
+	'expanded',
+	'action-clicked'
+];
+</script>
