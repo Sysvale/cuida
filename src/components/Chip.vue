@@ -2,28 +2,38 @@
 <template>
 	<div
 		class="chip__container"
-		:class="classList"
+		:class="chipData.classList"
 		data-testid="chip-container"
 		@click="handleClick"
 	>
-		<div
-			:class="`chip__content--${size}`"
-		>
+		<div :class="`chip__content--${size}`">
 			<div
 				class="chip__content-container"
 				:style="{
-					maxWidth,
+					maxWidth: chipData.maxWidth,
 					...containerStyle,
 				}"
 			>
 				<transition name="fade">
-					<cds-icon
-						v-if="internalValue"
-						class="chip__content-icon"
-						:height="icon.height"
-						:width="icon.width"
-						name="check-outline"
-					/>
+					<template v-if="chipData.internalValue || props.persistantActionIcon">
+						<div
+							v-if="useHasSlot('icon')"
+							class="chip__content--icon"
+							:style="{
+								height: `${icon.height}px`,
+								width: `${icon.width}px`,
+							}"
+						>
+							<slot name="icon" />
+						</div>
+						<cds-icon
+							v-else
+							class="chip__content--icon"
+							name="check-outline"
+							:height="icon.height"
+							:width="icon.width"
+						/>
+					</template>
 				</transition>
 				<div ref="slot-content">
 					<slot />
@@ -33,147 +43,158 @@
 	</div>
 </template>
 
-<script>
+<script setup>
+import { computed, ref, onMounted, useTemplateRef, watch } from 'vue';
+import { useHasSlot } from '../utils/composables/useHasSlot';
 import { colorOptions } from '../utils/constants/colors';
 import sizes from '../utils/constants/sizes';
-import CdsIcon from './Icon.vue'
+import CdsIcon from './Icon.vue';
 
-export default {
-	components: {
-		CdsIcon,
+const props = defineProps({
+	/**
+	 * A variante da Badge. São 9 variantes.
+	 * @values 'turquoise', 'green', 'blue', 'dark', 'violet', 'pink', 'red', 'orange', 'amber', 'gray'.
+	 */
+	variant: {
+		type: String,
+		default: 'gray',
 	},
-
-	props: {
-		/**
-		 *  Controla o estado de seleção da chip.
-		 */
-		modelValue: {
-			type: Boolean,
-			default: false,
-			required: true,
-		},
-		/**
-		 * A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue', 'dark',
-		 * 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
-		 */
-		variant: {
-			type: String,
-			default: 'gray',
-		},
-		/**
-		 * Especifica o tamanho da chip. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
-		 */
-		size: {
-			type: String,
-			default: 'md',
-		},
+	/**
+	 * Especifica o tamanho da chip. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
+	 */
+	size: {
+		type: String,
+		default: 'md',
 	},
-
-	emits: [
-		/**
-		 * Evento emitido para gerenciar o valor de seleção do chip.
-		 * @event update:modelValue
-		 * @type {Event}
-		 */
-		'update:modelValue',
-	],
-
-	data() {
-		return {
-			predefinedColors: colorOptions,
-			predefinedSizes: sizes,
-			internalValue: this.modelValue,
-			classList: '',
-			shouldUpdatePadding: true,
-			maxWidth: '0px',
-		};
+	/**
+	 * Especifíca se o ícone de ação da chip é mostrado independentemente do estado de seleção.
+	 */
+	persistantActionIcon: {
+		type: Boolean,
+		default: false,
 	},
-
-	computed: {
-		predefinedStyle() {
-			let dynamicClass = '';
-
-			if(!this.internalValue) {
-				dynamicClass += ' chip--not-selected';
-			}
-
-			if (this.predefinedColors.indexOf(this.variant) > -1) {
-				dynamicClass += ` chip--${this.variant}`;
-			}
-
-			if (this.predefinedSizes.indexOf(this.size) > -1) {
-				dynamicClass += ` chip--${this.size}`;
-			}
-
-			return dynamicClass;
-		},
-
-		icon() {
-			switch(this.size) {
-				case 'sm':
-					return {
-						height: 14,
-						width: 14,
-					};
-				case 'lg':
-					return {
-						height: 20,
-						width: 20,
-					};
-				default:
-					return {
-						height: 18,
-						width: 18,
-					};
-			}
-		},
-
-		containerStyle() {
-			return this.shouldUpdatePadding ? {
-				paddingRight: ((this.icon.width/2) + 2) + 'px',
-				paddingLeft: ((this.icon.width/2) + 2) + 'px',
-			} : {};
-		},
+	/**
+	 * Especifica se o ícone da chip é mostrado na esquerda (true) ou direita (false).
+	 */
+	iconLeft: {
+		type: Boolean,
+		default: true,
 	},
+});
 
-	
-	watch: {
-		modelValue(newValue) {
-			this.internalValue = newValue;
-		},
+const modelValue = defineModel('modelValue', {
+	type: Boolean,
+	default: false,
+	required: true,
+});
 
-		internalValue(newValue) {
-			if(!newValue) {
-				this.classList += ' chip--not-selected';
-			} else {
-				this.classList = this.removeNotSelectedClass();
-			}
+//TODO: pensar em um nome melhor
+const chipData = ref({
+	predefinedColors: colorOptions,
+	predefinedSizes: sizes,
+	internalValue: modelValue.value,
+	classList: '',
+	shouldUpdatePadding: true,
+	maxWidth: '0px',
+});
 
-			setTimeout(() => {
-				this.shouldUpdatePadding = !newValue;
-			}, 300);
+const slotContentRef = useTemplateRef('slot-content');
 
-			this.$emit('update:modelValue', newValue);
-		}
-	},
+const predefinedStyle = computed(() => {
+	let dynamicClass = '';
 
-	mounted() {
-		this.classList = this.predefinedStyle;
-		setTimeout(() => {
-			this.maxWidth = (this.$refs['slot-content']?.offsetWidth || 0) + 4 + this.icon.width + 'px';
-		}, 100);
-	},
-
-	methods: {
-		handleClick() {
-			this.internalValue = !this.internalValue;
-		},
-		removeNotSelectedClass() {
-			let regex = new RegExp('chip--not-selected', 'g');
-			return this.classList.replace(regex, '');
-		}
+	if (!chipData.value.internalValue) {
+		dynamicClass += ' chip--not-selected';
 	}
-};
+
+	if (chipData.value.predefinedColors.indexOf(props.variant) > -1) {
+		dynamicClass += ` chip--${props.variant}`;
+	}
+
+	if (chipData.value.predefinedSizes.indexOf(props.size) > -1) {
+		dynamicClass += ` chip--${props.size}`;
+	}
+
+	return dynamicClass;
+});
+
+const icon = computed(() => {
+	switch (props.size) {
+		case 'sm':
+			return {
+				height: 14,
+				width: 14,
+			};
+		case 'lg':
+			return {
+				height: 20,
+				width: 20,
+			};
+		default:
+			return {
+				height: 18,
+				width: 18,
+			};
+	}
+});
+
+const containerStyle = computed(() => {
+	if (props.persistantActionIcon) {
+		return;
+	}
+	return chipData.value.shouldUpdatePadding
+		? {
+			paddingRight: icon.value.width / 2 + 2 + 'px',
+			paddingLeft: icon.value.width / 2 + 2 + 'px',
+		}
+		: {};
+});
+
+const iconPosition = computed(() => {
+	return props.iconLeft ? 'row' : 'row-reverse';
+});
+
+function handleClick() {
+	chipData.value.internalValue = !chipData.value.internalValue;
+}
+
+function removeNotSelectedClass() {
+	let regex = new RegExp('chip--not-selected', 'g');
+	return chipData.value.classList.replace(regex, '');
+}
+
+onMounted(() => {
+	chipData.value.classList = predefinedStyle.value;
+	console.log('🚀 -> a:', predefinedStyle.value);
+	setTimeout(() => {
+		chipData.value.maxWidth =
+			(slotContentRef.value?.offsetWidth || 0) + 4 + icon.value.width + 'px';
+	}, 100);
+});
+
+watch(
+	() => modelValue,
+	(newModelValue) => {
+		chipData.value.internalValue = newModelValue.value;
+	}
+);
+
+watch(
+	() => chipData.value.internalValue,
+	(newInternalValue) => {
+		if (!newInternalValue) {
+			chipData.value.classList += ' chip--not-selected';
+		} else {
+			chipData.value.classList = removeNotSelectedClass();
+		}
+
+		setTimeout(() => {
+			chipData.value.shouldUpdatePadding = !newInternalValue;
+		}, 300);
+
+		modelValue.value = newInternalValue;
+	}
+);
 </script>
 <style lang="scss" scoped>
 @use 'sass:color';
@@ -191,7 +212,6 @@ export default {
 		background-color: tokens.$n-20 !important;
 		outline: none !important;
 	}
-
 
 	&--sm {
 		padding: tokens.pYX(1, 2);
@@ -224,6 +244,7 @@ export default {
 
 	&__content-container {
 		display: flex;
+		flex-direction: v-bind(iconPosition);
 		align-items: center;
 		gap: tokens.spacer(1);
 		justify-content: center;
@@ -231,7 +252,17 @@ export default {
 		white-space: nowrap;
 	}
 
-	@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+	@include tokens.variantResolver using
+		(
+			$color-name,
+			$shade-50,
+			$shade-100,
+			$shade-200,
+			$shade-300,
+			$base-color,
+			$shade-500,
+			$shade-600
+		) {
 		color: color.adjust($shade-500, $lightness: -4%);
 		background-color: $shade-100;
 		outline: 1px solid $shade-600;
@@ -287,11 +318,11 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s ease;
+	transition: opacity 0.5s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
-  opacity: 0;
+	opacity: 0;
 }
 </style>
