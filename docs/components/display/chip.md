@@ -1,53 +1,80 @@
 # Chip
 
-## Preview
+Chips ajudam as pessoas a inserir informações, fazer seleções, filtrar conteúdo ou disparar ações.
 
-<script setup>
-import Chip from '@/components/Chip.vue';
+### Quando usar
 
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
+- For necessário selecionar e/ou filtrar conteúdo.
+- O conteúdo que a chip representa puder ser setado ou removido pelo usuário.
 
-<div class="demo-container">
-  <Chip />
-</div>
+### Quando não usar
 
-## Props
+- O conteúdo a ser mostrado for *readonly* (nesse caso, é mais indicado utilizar o componente Badge).
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-chip
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsChip
+	v-model="select"
+	variant="red"
+	size="md"
+>
+	Chip
+</CdsChip>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<DemoContainer
+	:component="CdsChip"
+	:events="cdsChipEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="Chip"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="Chip"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="Chip"
+	section="slots"
+/>
+
+---
+
+## Figma
+
+<FigmaFrame
+	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
+/>
+
+<script setup>
+import { ref } from 'vue';
+import CdsChip from '@/components/Chip.vue';
+import APITable from '../../docgen/APITable.vue';
+import DemoContainer from '../../docgen/DemoContainer.vue';
+import FigmaFrame from '../../docgen/FigmaFrame.vue';
+
+const cdsChipEvents = [
+	'click'
+];
+</script>

@@ -19,7 +19,7 @@
 				v-else-if="icon"
 				class="cds-timeline-item__icon"
 			>
-				<cds-icon
+				<CdsIcon
 					:name="icon"
 					height="20"
 					width="20"

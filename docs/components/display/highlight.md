@@ -13,54 +13,107 @@ Highlights são componentes utilizados para destacar palavras ou frases importan
 - O elemento sobre o qual o Highlight será *wrapper* não for um elemento de texto.
 - Forem destacados trechos muito grandes de texto. Isso pode acabar resultando no oposto do que se espera com o uso de Highlights.
 
-## Preview
-
-<script setup>
-import Highlight from '@/components/Highlight.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <Highlight />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-highlight
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
+### __Uso padrão__
+O comportamento padrão do `cds-highligh`, quando nenhum valor é indicado na prop `highlightedText` é o de
+marcar todo o conteúdo passado por slot.
 
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+<br />
+
+<CdsHighlight>
+	O rato ROeu A RoUpA do rei de ROMA
+</CdsHighlight>
+
+```vue
+<CdsHighlight>
+	O rato ROeu A RoUpA do rei de ROMA
+</CdsHighlight>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+### __Highlight em palavras específicas do texto__
+Caso se deseje marcar apenas uma parte da string passada via slot, é possível indicar na prop
+`highlightedText` a substring que receberá o destaque.
+
+<br />
+
+<CdsHighlight
+	highlightedText="RO"
+>
+	O rato ROeu A RoUpA do rei de ROMA
+</CdsHighlight>
+
+```vue
+<CdsHighlight
+	highlightedText="RO"
+>
+	O rato ROeu A RoUpA do rei de ROMA
+</CdsHighlight>
+```
+
+### __Highlight em palavras específicas do texto (Case Sensitive)__
+É possível indicar se as comparações feitas com a substring devem maiúsculas e minúsculas (Case Sensitive).
+
+<br />
+
+<CdsHighlight
+	highlightedText="RO"
+>
+	O rato ROeu A RoUpA do rei de ROMA
+</CdsHighlight>
+
+```vue
+<CdsHighlight
+	highlightedText="RO"
+>
+	O rato ROeu A RoUpA do rei de ROMA
+</CdsHighlight>
+```
+
+<br />
+
+---
+
+## Preview
+
+<DemoContainer
+	:component="CdsHighlight"
+>
+	O rato ROeu A RoUpA do rei de ROMA com eficácia, força e determinação.
+</DemoContainer>
+
+---
+
+## Props
+
+<APITable
+	name="Highlight"
+	section="props"
+/>
+
+<br />
+
+## Slots
+
+<APITable
+	name="Highlight"
+	section="slots"
+/>
+
+---
+
+## Figma
+
+<!-- <FigmaFrame
+	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
+/> -->
+
+<script setup>
+import { ref } from 'vue';
+import CdsHighlight from '@/components/Highlight.vue';
+import APITable from '../../docgen/APITable.vue';
+import DemoContainer from '../../docgen/DemoContainer.vue';
+import FigmaFrame from '../../docgen/FigmaFrame.vue';
+</script>

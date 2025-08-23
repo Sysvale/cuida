@@ -8,7 +8,7 @@
 				v-if="withIcon"
 				:class="iconClass"
 			>
-				<cds-icon
+				<CdsIcon
 					height="24"
 					width="24"
 					:name="dynamicIcon"

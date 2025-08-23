@@ -72,7 +72,7 @@
 				</div>
 				<div v-if="isExpanded">
 					<div @click.stop="close">
-						<cds-icon
+						<CdsIcon
 							class="floating-assistant__close-button"
 							name="x-outline"
 							height="20"

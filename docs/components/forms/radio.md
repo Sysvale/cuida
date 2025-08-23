@@ -2,63 +2,79 @@
 
 O Radio permite que os usuários selecionem uma opção de um conjunto.
 
-## Quando usar
+### Quando usar
 
 - As opções que o componente busca prover são mutuamente exclusivas.
 
-## Quando não usar
+### Quando não usar
 
 - Duas ou mais opções puderem ser selecionadas ao mesmo tempo.
 - Houver 4 ou mais opções. Você pode usar o componente `Dropdown` nesses casos.
 
-## Preview
-
-<script setup>
-import Radio from '@/components/Radio.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <Radio />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-radio
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsRadio
+	v-model="selected"
+	value="option-1"
+	label="Opção 1"
+>
+	Opção de destaque
+</CdsRadio>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<DemoContainer
+	:component="CdsRadio"
+	:events="cdsRadioEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="Radio"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="Radio"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="Radio"
+	section="slots"
+/>
+
+---
+
+## Figma
+
+<FigmaFrame
+	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
+/>
+
+<script setup>
+import { ref } from 'vue';
+import CdsRadio from '@/components/Radio.vue';
+import APITable from '../../docgen/APITable.vue';
+import DemoContainer from '../../docgen/DemoContainer.vue';
+import FigmaFrame from '../../docgen/FigmaFrame.vue';
+
+const cdsRadioEvents = [
+	'update:modelValue'
+];
+</script>

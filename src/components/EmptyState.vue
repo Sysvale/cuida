@@ -28,7 +28,7 @@
 			@event action-button-click
 			@type {Event}
 		-->
-		<cds-button
+		<CdsButton
 			v-if="!hideActionButton"
 			class="empty-state__button"
 			:text="actionButtonText"

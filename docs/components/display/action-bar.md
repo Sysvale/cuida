@@ -12,54 +12,71 @@ ActionBars são barras de ferramentas que podem exibir ações e informações p
 - Para exibir os status do sistema.
 - Em modo flutuante, a ActionBar ocultar permanentemente informações na tela.
 
-## Preview
 
-<script setup>
-import ActionBar from '@/components/ActionBar.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <ActionBar />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-actionbar
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
+```js
+<CdsActionBar
+	:actions="['Button1', 'Button2']"
+	:show="showActionBar"
+	@click="logAction"
+	@close="logClose"
+>
+	<template #description>
+		8 itens selecionados
+	</template>
+</CdsActionBar>
+```
+---
+
+## Preview
+
+<DemoContainer
+	:component="CdsActionBar"
+	:events="cdsActionBarEvents"
+	:show="true"
+	:actions="['Button1', 'Button2']"
+>
+	<template #description>
+		8 itens selecionados
+	</template>
+</DemoContainer>
+
+---
+
+## Props
+
+<APITable
+	name="ActionBar"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="ActionBar"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="ActionBar"
+	section="slots"
+/>
+
+---
 
 <script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
-```
+import { ref } from 'vue';
+import CdsActionBar from '@/components/ActionBar.vue';
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+const cdsActionBarEvents = [
+	'click',
+	'close'
+];
+</script>

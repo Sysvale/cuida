@@ -22,7 +22,7 @@
 							class="cds-modal__close-icon"
 							@click="closeHandle"
 						>
-							<cds-icon
+							<CdsIcon
 								name="x-outline"
 								height="20"
 								width="20"
@@ -55,7 +55,7 @@
 			>
 				<!-- @slot Slot usado para inserção de footer customizado. -->
 				<slot name="footer">
-					<cds-button
+					<CdsButton
 						v-if="!noCancelButton"
 						:text="cancelButtonText"
 						secondary
@@ -63,7 +63,7 @@
 						@click="!disableCancelButton ? cancelHandle() : false"
 					/>
 
-					<cds-button
+					<CdsButton
 						class="footer__ok-button"
 						:text="okButtonText"
 						:variant="actionButtonVariant"

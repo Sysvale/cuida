@@ -2,54 +2,75 @@
 
 FlatButtons são componentes semelhantes a links, mas que funcionam como botões.
 
-## Preview
+### Quando usar
 
-<script setup>
-import FlatButton from '@/components/FlatButton.vue';
+- Componente usado quando a interface necessita de botões menos proeminentes, sem compromenter a hierarquia visual da tela.
 
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
+### Quando não usar
 
-<div class="demo-container">
-  <FlatButton />
-</div>
+- For necessário dar a opção de executar uma ação como um detalhe pequeno na interface.
 
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-flatbutton
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsFlatButton
+	variant="green"
+	text="Link Button"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<DemoContainer
+	:component="CdsFlatButton"
+	:events="cdsFlatButtonEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="FlatButton"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="FlatButton"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="FlatButton"
+	section="slots"
+/>
+
+---
+
+## Figma
+
+<FigmaFrame
+	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
+/>
+
+<script setup>
+import { ref } from 'vue';
+import CdsFlatButton from '@/components/FlatButton.vue';
+import APITable from '../../docgen/APITable.vue';
+import DemoContainer from '../../docgen/DemoContainer.vue';
+import FigmaFrame from '../../docgen/FigmaFrame.vue';
+
+const cdsFlatButtonEvents = [
+	'click'
+];
+</script>

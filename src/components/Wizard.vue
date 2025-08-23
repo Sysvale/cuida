@@ -49,13 +49,13 @@
 			</div>
 		</div>
 		<div class="cds-wizard__buttons">
-			<cds-button
+			<CdsButton
 				:text="cancelButtonText"
 				secondary
 				@button-click="backActionClick"
 				@click.prevent
 			/>
-			<cds-button
+			<CdsButton
 				:text="nextButtonText"
 				:variant="nextButtonVariant"
 				:disabled="disableNextButton"

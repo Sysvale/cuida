@@ -17,7 +17,7 @@
 				}"
 			>
 				<transition name="fade">
-					<cds-icon
+					<CdsIcon
 						v-if="internalValue"
 						class="chip__content-icon"
 						:height="icon.height"

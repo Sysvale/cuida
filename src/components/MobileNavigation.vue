@@ -10,7 +10,7 @@
 					class="mobile-navigation__menu-btn"
 					@click="handleOpenSidebar"
 				>
-					<cds-icon
+					<CdsIcon
 						name="menu-outline"
 					/>
 				</div>
@@ -34,7 +34,7 @@
 						class="mobile-navigation__sidebar-btn"
 						@click="handleCloseSidebar"
 					>
-						<cds-icon
+						<CdsIcon
 							name="x-outline"
 						/>
 					</div>
@@ -52,7 +52,7 @@
 							}"
 							@click="handleItemClick(item)"
 						>
-							<cds-icon
+							<CdsIcon
 								:name="item.icon"
 								width="24"
 								height="24"
@@ -67,7 +67,7 @@
 							class="mobile-navigation__sidebar-user-info"
 							@click="emit('profile-click')"
 						>
-							<cds-avatar
+							<CdsAvatar
 								:src="user.picture ?? ''"
 								:name="user.name ?? ''"
 								:variant="variant"
@@ -84,7 +84,7 @@
 							class="mobile-navigation__sidebar-logout"
 							@click="emit('logout')"
 						>
-							<cds-icon
+							<CdsIcon
 								name="logout-outline"
 								width="24"
 								height="24"

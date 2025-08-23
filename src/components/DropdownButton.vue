@@ -10,7 +10,7 @@
 		>
 			<span class="dropdown-button__text">{{ text }} </span>
 
-			<cds-chevron
+			<CdsChevron
 				animate
 				size="sm"
 				:light="!secondary && !ghost"
@@ -37,7 +37,7 @@
 					class="dropdown__container"
 					@click="handleOptionClick(item.name, index)"
 				>
-					<cds-icon
+					<CdsIcon
 						class="dropdown__icon"
 						height="22"
 						width="22"

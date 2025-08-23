@@ -1,18 +1,18 @@
 <template>
-	<span id="cds-icon-button">
+	<span id="CdsIcon-button">
 		<component
 			:is="tooltipText ? 'cds-tooltip' : 'span'"
 			:text="innerTooltipText"
 		>
 			<button
-				class="cds-icon-button__container"
+				class="CdsIcon-button__container"
 				:class="computedModifiers"
 				@click="clickHandler"
 			>
-				<cds-icon
+				<CdsIcon
 					:key="inputControlPanel"
 					:name="internalIcon"
-					class="cds-icon-button__icon"
+					class="CdsIcon-button__icon"
 				/>
 			</button>
 		</component>
@@ -103,12 +103,12 @@ export default {
 
 	computed: {
 		predefinedSize() {
-			return `cds-icon-button--${this.size}`;
+			return `CdsIcon-button--${this.size}`;
 		},
 
 		computedModifiers() {
-			const status = this.disabled ? 'cds-icon-button--disabled' : '';
-			const variantClass = `cds-icon-button__container--${this.variant}`;
+			const status = this.disabled ? 'CdsIcon-button--disabled' : '';
+			const variantClass = `CdsIcon-button__container--${this.variant}`;
 
 			return `${status} ${this.predefinedSize} ${variantClass}`;
 		},
@@ -151,7 +151,7 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/sass/tokens/index' as tokens;
 
-.cds-icon-button {
+.CdsIcon-button {
 	&__container {
 		border: none !important;
 		border-radius: tokens.$border-radius-extra-small;
@@ -159,7 +159,7 @@ export default {
 		box-sizing: border-box;	
 
 		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
-			@extend .cds-icon-button__container;
+			@extend .CdsIcon-button__container;
 			background-color: $base-color;
 			color: tokens.$n-0;
 
@@ -204,12 +204,12 @@ export default {
 	}
 }
 
-.cds-icon-button {
+.CdsIcon-button {
 	&--sm {
 		padding: tokens.pYX(2, 2);
 		border-radius: tokens.$border-radius-lil;
 
-		.cds-icon-button__icon {
+		.CdsIcon-button__icon {
 			transition: tokens.$hover;
 			width: 16px;
 			height: 16px;
@@ -220,7 +220,7 @@ export default {
 		padding: tokens.pYX(2, 2);
 		border-radius: tokens.$border-radius-extra-small;
 
-		.cds-icon-button__icon {
+		.CdsIcon-button__icon {
 			transition: tokens.$hover;
 			width: 20px;
 			height: 20px;
@@ -231,7 +231,7 @@ export default {
 		padding: tokens.pYX(2, 2);
 		border-radius: tokens.$border-radius-extra-small;
 
-		.cds-icon-button__icon {
+		.CdsIcon-button__icon {
 			transition: tokens.$hover;
 			width: 24px;
 			height: 24px;

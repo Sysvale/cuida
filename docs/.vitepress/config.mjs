@@ -56,7 +56,7 @@ export default defineConfig({
 				{
 					text: 'Forms',
 					items: [
-						{ text: 'Button', link: '/components/forms/button' },
+						{ text: 'Button <Badge class="badge" type="info">ready</Badge>', link: '/components/forms/button' },
 						// { text: 'BaseInput', link: '/components/forms/base-input' },
 						// { text: 'TextInput', link: '/components/forms/text-input' },
 						// { text: 'TextArea', link: '/components/forms/text-area' },
@@ -70,28 +70,34 @@ export default defineConfig({
 				{
 					text: 'Display',
 					items: [
-						{ text: 'ActionBar', link: '/components/display/action-bar' },
+						{ text: 'ActionBar <Badge class="badge" type="info">ready</Badge>', link: '/components/display/action-bar' },
 						// { text: 'Actionslist', link: '/components/display/actions-list' },
 						{ text: 'Avatar', link: '/components/display/avatar' },
 						// { text: 'AvatarGroup', link: '/components/display/avatar-group' },
-						{ text: 'Badge', link: '/components/display/badge' },
+						{ text: 'Badge <Badge class="badge" type="info">ready</Badge>', link: '/components/display/badge' },
 						// { text: 'CalloutCard', link: '/components/display/callout-card' },
 						// { text: 'Carousel', link: '/components/display/carousel' },
 						// { text: 'DataTable', link: '/components/display/data-table' },
 						// { text: 'Dropdown', link: '/components/display/dropdown' },
 						// { text: 'DropdownButton', link: '/components/display/dropdown-button' },
-						{ text: 'EmptyState', link: '/components/display/empty-state' },
+						{ text: 'EmptyState <Badge class="badge" type="info">ready</Badge>', link: '/components/display/empty-state' },
 						{ text: 'Highlight', link: '/components/display/highlight' },
 						// { text: 'Tooltip', link: '/components/display/tooltip' },
-						// { text: 'Table', link: '/components/display/table' },
+						{ text: 'Table', link: '/components/display/table' },
 						// { text: 'DataTable', link: '/components/display/data-table' },
 						{ text: 'Card', link: '/components/containers/card' },
 					]
 				},
 				{
+					text: 'Overlay',
+					items: [
+						{ text: 'QuickActionBar', link: '/components/overlays/quick-action-bar' },
+					]
+				},
+				{
 					text: 'Tipografia',
 					items: [
-						{ text: 'Text', link: '/components/tipografia/text' },
+						{ text: 'Text <Badge class="badge" type="info">ready</Badge>', link: '/components/tipografia/text' },
 					]
 				},
 				// {

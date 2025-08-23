@@ -1,53 +1,80 @@
 # AvatarGroup
 
-## Preview
+AvatarGroups exibem vários avatares agrupados em forma de pilha.
 
-<script setup>
-import AvatarGroup from '@/components/AvatarGroup.vue';
+### Quando usar
 
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
+- Utilize AvatarGroups quando, em um determinado contexto, vários usuários dividirem responsabilidades sobre uma informação ou regra de negócio.
 
-<div class="demo-container">
-  <AvatarGroup />
-</div>
+### Quando não usar
 
-## Props
+- Em casos que apenas a informação de um usuário será apresentada.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
+### Observações
 
-## Eventos
+- Ao passar o mouse sobre cada Avatar será mostrado um tooltip com o nome do usuário, caso tenha sido informado.
+- Quando o número de avatares foi maior que o valor especificado na prop maxCount será exibido um avatar com um contador indicando o número de avatares que foram suprimidos do AvatarGroup. Este contador é clicável e abre um Popover com a lista de avatares suprimidos.
 
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-avatargroup
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsAvatarGroup
+	:avatars="avatars"
+	size="md"
+	:maxCount="4"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<DemoContainer
+	:component="CdsAvatarGroup"
+	:events="cdsAvatarGroupEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="AvatarGroup"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="AvatarGroup"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="AvatarGroup"
+	section="slots"
+/>
+
+---
+
+## Figma
+
+<FigmaFrame
+	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
+/>
+
+<script setup>
+import { ref } from 'vue';
+import CdsAvatarGroup from '@/components/AvatarGroup.vue';
+import APITable from '../../docgen/APITable.vue';
+import DemoContainer from '../../docgen/DemoContainer.vue';
+import FigmaFrame from '../../docgen/FigmaFrame.vue';
+
+const cdsAvatarGroupEvents = [];
+</script>

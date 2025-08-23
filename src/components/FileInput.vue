@@ -31,7 +31,7 @@
 				v-if="!file"
 				class="file-input__container"
 			>
-				<cds-icon
+				<CdsIcon
 					name="upload-cloud-outline"
 					:class="{
 						'icon-upload--sm': size === 'sm',
@@ -61,7 +61,7 @@
 				v-else
 				class="file-input__container"
 			>
-				<cds-icon
+				<CdsIcon
 					height="24"
 					width="24"
 					name="document-text-outline"
@@ -89,7 +89,7 @@
 							class="x-icon__container"
 							@click.stop="handleRemove"
 						>
-							<cds-icon
+							<CdsIcon
 								height="18"
 								width="18"
 								name="x-outline"

@@ -37,7 +37,7 @@
 					@click.prevent="handleAddAction"
 				>
 
-					<cds-icon
+					<CdsIcon
 						height="32"
 						width="32"
 						name="plus-outline"

@@ -49,7 +49,7 @@
 							{{ column.label }}
 						</span>
 
-						<cds-icon
+						<CdsIcon
 							v-if="column.visible"
 							:class="`side-sheet__icon--${selectionVariant}`"
 							name="pin-outline"
@@ -57,7 +57,7 @@
 							height="16"
 						/>
 
-						<cds-icon
+						<CdsIcon
 							v-else
 							class="side-sheet__icon"
 							name="pin-outline"
@@ -70,14 +70,14 @@
 
 			<template #footer>
 				<div class="side-sheet__footer">
-					<cds-button
+					<CdsButton
 						secondary
 						@button-click="handleCancel"
 					>
 						Cancelar
-					</cds-button>
+					</CdsButton>
 
-					<cds-button
+					<CdsButton
 						v-cdstip="shouldDisableOkButton ? descriptionComputedText : ''"
 						:variant="selectionVariant"
 						:disabled="shouldDisableOkButton"
@@ -85,7 +85,7 @@
 						@button-click="handleOk"
 					>
 						Salvar
-					</cds-button>
+					</CdsButton>
 				</div>
 			</template>
 		</cds-side-sheet>

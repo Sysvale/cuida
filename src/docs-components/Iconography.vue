@@ -32,7 +32,7 @@
 							:id="icon"
 							class="icon__tile"
 						>
-							<cds-icon
+							<CdsIcon
 								height="16"
 								width="16"
 								color="#36424E"
@@ -40,7 +40,7 @@
 								class="copy-icon"
 							/>
 
-							<cds-icon
+							<CdsIcon
 								:key="`${index}-${typedIcon}`"
 								height="32"
 								width="32"
@@ -80,7 +80,7 @@ export default {
 			set: completeIconSet,
 			typedIcon: '',
 			exampleSourceCode: `
-<cds-icon
+<CdsIcon
 	name="box-outline"
 	height="40"
 	width="40"
@@ -96,7 +96,7 @@ export default {
 		handleClipBoardContent(icon) {
 			this.target = icon;
 			this.value = `
-<cds-icon
+<CdsIcon
 	height="32"
 	width="32"
 	name="${icon}"

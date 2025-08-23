@@ -53,7 +53,7 @@
 					<!-- @slot Slot para renderização de conteúdo à direita do DataTable header. -->
 					<slot name="right" />
 
-					<cds-button
+					<CdsButton
 						v-if="!hideCustomizeButton"
 						:size="withSearch ? 'md' : 'sm'"
 						secondary
@@ -61,7 +61,7 @@
 						@button-click="handleCustomizeButtonClick"
 					>
 						Personalizar tabela
-					</cds-button>
+					</CdsButton>
 				</cds-flexbox>
 				<div
 					v-if="withSearch"
@@ -76,7 +76,7 @@
 				class="data-table__table-container"
 			>
 				<div v-if="loading">
-					<cds-table
+					<CdsTable
 						:fields="$attrs.fields"
 						:items="[{}, {}, {}, {}]"
 					>
@@ -86,7 +86,7 @@
 								height="20"
 							/>
 						</template>
-					</cds-table>
+					</CdsTable>
 				</div>
 				<div
 					v-else-if="isEmpty($attrs.items)"
@@ -109,7 +109,7 @@
 						</CdsEmptyState>
 					</div>
 				</div>
-				<cds-table
+				<CdsTable
 					v-else
 					v-bind="$attrs"
 					:selection-variant="selectionVariant"
@@ -132,7 +132,7 @@
 							:field="field"
 						/>
 					</template>
-				</cds-table>
+				</CdsTable>
 			</div>
 		</div>
 

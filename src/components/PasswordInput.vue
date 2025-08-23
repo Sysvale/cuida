@@ -20,7 +20,7 @@
 					>
 						*
 					</span>
-					<cds-icon
+					<CdsIcon
 						v-if="tooltip"
 						v-cdstip="tooltip"
 						:name="tooltipIcon"
@@ -46,13 +46,13 @@
 				v-if="!disableTextPasswordInput"
 				class="password-input__password-toogle"
 			>
-				<cds-clickable
-					id="cds-clickable"
+				<CdsClickable
+					id="CdsClickable"
 					clickable
 					@click="handleShowPassword"
 				>
 					{{ customTextPasswordInput }}
-				</cds-clickable>
+				</CdsClickable>
 			</div>
 		</div>
 		<div

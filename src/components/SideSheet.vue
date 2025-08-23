@@ -18,15 +18,15 @@
 							class="side-sheet__close-icon"
 							@click="closeHandle"
 						>
-							<cds-clickable
+							<CdsClickable
 								clickable
 							>
-								<cds-icon
+								<CdsIcon
 									height="20"
 									width="20"
 									name="x-outline"
 								/>
-							</cds-clickable>
+							</CdsClickable>
 						</div>
 					</div>
 				</slot>
@@ -45,7 +45,7 @@
 			>
 				<!-- @slot Slot usado para inserção de footer customizado. -->
 				<slot name="footer">
-					<cds-button
+					<CdsButton
 						v-if="!noCancelButton"
 						:text="cancelButtonText"
 						secondary
@@ -53,7 +53,7 @@
 						@click="!disableCancelButton ? cancelHandle() : false"
 					/>
 
-					<cds-button
+					<CdsButton
 						class="footer__ok-button"
 						:text="okButtonText"
 						:variant="actionButtonVariant"

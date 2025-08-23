@@ -38,7 +38,7 @@
 					/> -->
 
 
-					<cds-icon
+					<CdsIcon
 						v-if="step.completed"
 						height="32"
 						width="32"
@@ -50,7 +50,7 @@
 						size="1x"
 					/> -->
 					
-					<cds-icon
+					<CdsIcon
 						v-else-if="step.error"
 						height="32"
 						width="32"

@@ -32,11 +32,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <DemoContainer
 	:component="CdsButton"
 	:events="cdsButtonEvents"
-	:component-props="buttonProps"
-	:log
 />
-
-<PlaygroundBuilder component="Button" @update="handleUpdate"/>
 
 ---
 
@@ -74,27 +70,8 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <script setup>
 import { ref } from 'vue';
 import CdsButton from '@/components/Button.vue';
-import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
-import PlaygroundBuilder from '../../docgen/PlaygroundBuilder.vue';
-import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
-const buttonProps = ref({});
-const log = ref([]);
-
-const cdsButtonEvents = {
-	'button-click': (ev) => {
-		log.value.push(
-			{
-				event: 'button-click',
-				payload: ev,
-				timestamp: new Date().toTimeString().split(' ')[0]
-			}
-		);
-	}
-}
-
-function handleUpdate (payload) {
-	buttonProps.value = payload;
-};
+const cdsButtonEvents = [
+	'button-click'
+];
 </script>

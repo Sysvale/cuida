@@ -71,7 +71,7 @@
 										style="display: flex;"
 									/>
 
-									<cds-icon-button
+									<CdsIcon-button
 										icon="trash-outline"
 										size="lg"
 										@click="removeFile(item)"
@@ -91,14 +91,14 @@
 			</div>
 
 			<div class="multi-file-input__footer">
-				<cds-button
+				<CdsButton
 					:secondary="buttonSecondary"
 					:variant="variant"
 					:disabled="!shouldEnableButton"
 					@button-click="submit"
 				>
 					{{ submitButtonText }}
-				</cds-button>
+				</CdsButton>
 			</div>
 		</div>
 	</div>

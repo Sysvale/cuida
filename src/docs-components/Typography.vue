@@ -2,7 +2,7 @@
 	<div>
 		<copy-token :target="target" :value="targetWithInclude" />
 
-		<cds-table
+		<CdsTable
 			:items="items"
 			:fields="fields"
 			hover
@@ -14,7 +14,7 @@
 					:id="data.name"
 					class="copy-clip"
 				>
-					<cds-icon
+					<CdsIcon
 						height="20"
 						width="20"
 						name="copy-outline"
@@ -42,17 +42,17 @@
 					>
 						{{ data.sample }}
 					</div>
-					<cds-button
+					<CdsButton
 						v-else
 						secondary
 						class="button-sample"
 						:style="dynamicStyle(data)"
 					>
 						Botão
-					</cds-button>
+					</CdsButton>
 				</div>
 			</template>
-		</cds-table>
+		</CdsTable>
 	</div>
 </template>
 

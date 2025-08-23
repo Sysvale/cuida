@@ -95,7 +95,7 @@ export default {
 	},
 
 	mounted() {
-		this.id = `cds-popover-${this.uniqueKey}`;
+		this.id = `CdsPopover-${this.uniqueKey}`;
 		this.setPopper(this.targetId);
 
 		document.querySelector('body').addEventListener('click', this.closeRichTooltip);

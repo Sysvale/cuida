@@ -1,65 +1,74 @@
 # Switch
 
-Switches são componentes utilizados para ativar ou desativar configurações ou opções específicas. 
+Switches são componentes utilizados para ativar ou desativar configurações ou opções específicas.
 
-## Quando usar
+### Quando usar
 
 - A configuração controlada pelo Switch deve aplicar mudanças automaticamente.
 - Ao usar labels. Quando usados em conjunto, devem descrever dois estados, dependentes do estado do Switch.
 
-## Quando não usar
+### Quando não usar
 
 - Em formulários que possuem botão de submit.
 - Utilizar Switches para controlar ações que dependam de requisições sem indicar o tempo de espera ao usuário.
 
-## Preview
-
-<script setup>
-import Switch from '@/components/Switch.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <Switch />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-switch
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsSwitch
+	v-model="isSelected"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<DemoContainer
+	:component="CdsSwitch"
+	:events="cdsSwitchEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="Switch"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="Switch"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="Switch"
+	section="slots"
+/>
+
+---
+
+## Figma
+
+<!-- <FigmaFrame
+	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
+/> -->
+
+<script setup>
+import { ref } from 'vue';
+import CdsSwitch from '@/components/Switch.vue';
+
+const cdsSwitchEvents = [
+	'update:modelValue'
+];
+</script>

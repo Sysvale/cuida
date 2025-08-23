@@ -14,7 +14,7 @@
 		>
 			<template #trailing-icon>
 				<div class="month-and-year-picker__icon">
-					<cds-icon
+					<CdsIcon
 						height="20"
 						width="20"
 						name="calendar-outline"

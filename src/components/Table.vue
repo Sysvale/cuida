@@ -8,7 +8,7 @@
 					class="table__select-item"
 					:class="resolveHeaderItemClass(0)"
 				>
-					<cds-checkbox
+					<CdsCheckbox
 						id="select-all-rows"
 						v-model="selectAll"
 						class="table__select-checkbox"
@@ -32,35 +32,35 @@
 							:data="field"
 						/>
 
-						<cds-clickable
+						<CdsClickable
 							v-else
 							:id="`sort-icon-${field.key}`"
 							:clickable="sortable"
 							@click.stop="handleSortBy(field.key)"
 						>
 							{{ field.label }}
-							<cds-icon
+							<CdsIcon
 								v-if="(sortable && field.label) && field.key !== localSortBy"
 								class="table__sort-icon"
 								height="13"
 								width="13"
 								name="swap-vertical-arrows-outline"
 							/>
-							<cds-icon
+							<CdsIcon
 								v-else-if="(sortable && field.label) && localSortDesc"
 								class="table__sort-icon"
 								height="13"
 								width="13"
 								name="sort-descending-duotone"
 							/>
-							<cds-icon
+							<CdsIcon
 								v-else-if="(sortable && field.label)"
 								class="table__sort-icon"
 								height="13"
 								width="13"
 								name="sort-ascending-duotone"
 							/>
-						</cds-clickable>
+						</CdsClickable>
 					</div>
 				</th>
 			</tr>
@@ -76,7 +76,7 @@
 					class="table__select-item"
 					:class="resolveContentItemClass(itemIndex, 0)"
 				>
-					<cds-checkbox
+					<CdsCheckbox
 						:id="`select-row-${itemIndex}`"
 						v-model="select[itemIndex]"
 						class="table__select-checkbox"

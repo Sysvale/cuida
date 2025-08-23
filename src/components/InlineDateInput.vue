@@ -38,13 +38,13 @@
 			@update:model-value="handleUpdateInput"
 		>
 			<template #header-left-button="{ page }">
-				<cds-chevron
+				<CdsChevron
 					direction="left"
 					@click="page.movePrevMonth()"
 				/>
 			</template>
 			<template #header-right-button="{ page }">
-				<cds-chevron
+				<CdsChevron
 					direction="right"
 					@click="page.moveNextMonth()"
 				/>
@@ -65,7 +65,7 @@
 						@blur="isBeingFocused = false"
 					>
 					<div class="inline-date-input__icon">
-						<cds-icon
+						<CdsIcon
 							height="20"
 							width="20"
 							name="calendar-outline"

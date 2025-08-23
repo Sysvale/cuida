@@ -83,7 +83,7 @@
 						v-if="!isGroupMode"
 						class="cds-multiselect__grouped-divider"
 					>
-						<cds-divider dimmed />
+						<CdsDivider dimmed />
 					</div>
 				</div>
 			</template>
@@ -95,7 +95,7 @@
 					v-if="option.$isLabel"
 					class="cds-multiselect__group-label"
 				>
-					<cds-divider
+					<CdsDivider
 						:text="option.$groupLabel"
 						inline
 						dimmed

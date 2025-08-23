@@ -10,13 +10,18 @@
 				'badge__content--lg': size === 'lg',
 			}"
 		>
-			<cds-clickable
+			<!--
+				Evento que indica se a Badge foi clicada
+				@event click
+				@type {Event}
+			-->
+			<CdsClickable
 				v-if="clickable"
 				@click.stop="$emit('click', true)"
 			>
 				<!-- @slot Slot padrão utilizado para exibir o conteúdo dentro da badge -->
 				<slot />
-			</cds-clickable>
+			</CdsClickable>
 
 			<slot v-else />
 		</div>

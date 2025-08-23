@@ -1,64 +1,79 @@
 # TextInput
 
-TextInputs permitem que os usuários insiram texto em uma interface
+TextInputs permitem que os usuários insiram texto em uma interface.
 
-## Quando usar
+### Quando usar
 
 - Necessitar de um campo de texto para inserir informações.
 
-## Quando não usar
+### Quando não usar
 
 - O dado a ser utilizado no componente for numérico.
 - Houver a necessidade de selecionar múltiplos itens.
 
-## Preview
-
-<script setup>
-import TextInput from '@/components/TextInput.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <TextInput />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-textinput
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsTextInput />
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<DemoContainer
+	:component="CdsTextInput"
+	:events="cdsTextInputEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="TextInput"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="TextInput"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="TextInput"
+	section="slots"
+/>
+
+---
+
+## Figma
+
+<FigmaFrame
+	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
+/>
+
+<script setup>
+import { ref } from 'vue';
+import CdsTextInput from '@/components/TextInput.vue';
+import APITable from '../../docgen/APITable.vue';
+import DemoContainer from '../../docgen/DemoContainer.vue';
+import FigmaFrame from '../../docgen/FigmaFrame.vue';
+
+const cdsTextInputEvents = [
+	'update:modelValue',
+	'click',
+	'change',
+	'focus',
+	'blur',
+	'keydown'
+];
+</script>

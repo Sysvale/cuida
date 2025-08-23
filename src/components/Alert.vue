@@ -12,7 +12,7 @@
 		>
 			<div class="alert__body">
 				<div>
-					<cds-icon
+					<CdsIcon
 						:name="icon"
 						:class="{
 							'alert__icon--info': variant === 'info',
@@ -44,7 +44,7 @@
 				class="alert__close-button"
 				@click="close"
 			>
-				<cds-icon
+				<CdsIcon
 					name="x-outline"
 					:class="{
 						'alert__icon--info': variant === 'info',

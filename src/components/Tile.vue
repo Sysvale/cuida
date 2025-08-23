@@ -29,7 +29,7 @@
 					class="cds-tile__icon"
 					:name="icon"
 				/>
-				<cds-image
+				<CdsImage
 					v-else
 					:src="icon"
 					:width="computedIconWidth"

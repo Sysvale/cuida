@@ -7,34 +7,34 @@
 			:class="resolveButtonClass(page)"
 			@click="handlePageClick(page)"
 		>
-			<cds-chevron
+			<CdsChevron
 				v-if="index === 0"
 				direction="left"
 				class="pagination__double-chevron--left"
 			/>
-			<cds-chevron
+			<CdsChevron
 				v-if="index === 0"
 				direction="left"
 				class="pagination__double-chevron--left"
 			/>
 
-			<cds-chevron
+			<CdsChevron
 				v-if="index === 1"
 				direction="left"
 			/>
 
 			<span v-if="index >= 2 && index <= pages.length - 3">{{ page.text }}</span>
 
-			<cds-chevron
+			<CdsChevron
 				v-if="index === pages.length - 2"
 				direction="right"
 			/>
-			<cds-chevron
+			<CdsChevron
 				v-if="index === pages.length - 1"
 				direction="right"
 				class="pagination__double-chevron--right"
 			/>
-			<cds-chevron
+			<CdsChevron
 				v-if="index === pages.length - 1"
 				direction="right"
 				class="pagination__double-chevron--right"

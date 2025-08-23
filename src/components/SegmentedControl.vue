@@ -16,7 +16,7 @@
 				v-if="withIcon"
 				:text="segmentsTooltipText[index]"
 			>
-				<cds-icon
+				<CdsIcon
 					height="20"
 					width="20"
 					:name="segment"

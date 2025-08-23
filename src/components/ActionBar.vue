@@ -39,14 +39,14 @@
 						@event click
 						@type {Event}
 					-->
-					<cds-button
+					<CdsButton
 						:id="`btn-${index + 1}`"
 						:secondary="light"
 						variant="dark"
 						@click="$emit('click', action)"
 					>
 						<span>{{ action }}</span>
-					</cds-button>
+					</CdsButton>
 				</div>
 			</div>
 
@@ -55,7 +55,7 @@
 				:class="light ? 'toolbar__icon--light' : 'toolbar__icon--dark'"
 				@click="handleClose"
 			>
-				<cds-icon
+				<CdsIcon
 					name="x-outline"
 					height="20"
 					width="20"

@@ -29,7 +29,7 @@
 							@event action-button-click
 							@type {Event}
 						-->
-						<cds-button
+						<CdsButton
 							id="content-button"
 							:variant="actionButtonVariant"
 							:text="actionButtonText"

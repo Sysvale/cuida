@@ -7,29 +7,29 @@
 			:text="avatarData.name"
 			slim
 		>
-			<cds-avatar
+			<CdsAvatar
 				v-bind="avatarData"
 				:size="size"
 				:clickable="false"
 			/>
 		</cds-tooltip>
 
-		<cds-clickable
+		<CdsClickable
 			v-if="showAvatarCounter"
 			id="avatar-counter"
 			clickable
 			@click="showPopover = true"
 		>
-			<cds-avatar
+			<CdsAvatar
 				:size="size"
 				:clickable="false"
 				:name="avatarCounterText"
 				variant="gray"
 				class="avatar-group__counter"
 			/>
-		</cds-clickable>
+		</CdsClickable>
 
-		<cds-popover
+		<CdsPopover
 			v-model="showPopover"
 			target-id="avatar-counter"
 			width="180"
@@ -41,7 +41,7 @@
 				:key="index"
 				class="avatar__data"
 			>
-				<cds-avatar
+				<CdsAvatar
 					v-bind="avatarData"
 					size="sm"
 					:clickable="false"
@@ -51,7 +51,7 @@
 					<span class="avatar__name">{{ avatarData.name }}</span>
 				</cds-truncate>
 			</div>
-		</cds-popover>
+		</CdsPopover>
 	</div>
 </template>
 <script>

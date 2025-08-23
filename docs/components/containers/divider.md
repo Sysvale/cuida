@@ -1,53 +1,78 @@
 # Divider
 
-## Preview
+Dividers são componentes utilizados para separar ou agrupar conteúdo.
 
-<script setup>
-import Divider from '@/components/Divider.vue';
+### Quando usar
 
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
+- Para separar seções de conteúdo de forma visual.
+- Para agrupar elementos relacionados criando divisões claras.
+- Em listas, formulários ou layouts que precisam de separação visual.
 
-<div class="demo-container">
-  <Divider />
-</div>
+### Quando não usar
 
-## Props
+- Quando o espaçamento em branco já é suficiente para separar o conteúdo.
+- Em layouts muito densos onde muitos dividers podem poluir a interface.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
+### Observações
 
-## Eventos
+- A prop `vertical` oculta o texto do divider.
 
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-divider
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsDivider />
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<DemoContainer
+	:component="CdsDivider"
+	:events="cdsDividerEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="Divider"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="Divider"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="Divider"
+	section="slots"
+/>
+
+---
+
+## Figma
+
+<FigmaFrame
+	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
+/>
+
+<script setup>
+import { ref } from 'vue';
+import CdsDivider from '@/components/Divider.vue';
+import APITable from '../../docgen/APITable.vue';
+import DemoContainer from '../../docgen/DemoContainer.vue';
+import FigmaFrame from '../../docgen/FigmaFrame.vue';
+
+const cdsDividerEvents = [];
+</script>

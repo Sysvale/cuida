@@ -1,4 +1,4 @@
-# Text
+# Text <Badge type="info">custom element</Badge>
 
 Text são indicadores de status utilizados para tornar evidentes metadados importantes.
 

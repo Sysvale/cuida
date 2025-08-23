@@ -10,12 +10,12 @@
 			@keyup.esc="internalValue = false"
 			@keyup.enter="onEnterPress"
 		>
-			<cds-flexbox
+			<CdsFlexbox
 				gap="3"
 				class="quick_action_bar__input"
 				align="center"
 			>
-				<cds-icon
+				<CdsIcon
 					height="24"
 					width="24"
 					name="search-outline"
@@ -36,38 +36,38 @@
 				>
 					Limpar
 				</span>
-			</cds-flexbox>
+			</CdsFlexbox>
 
-			<cds-flexbox
+			<CdsFlexbox
 				id="contentResults"
 				direction="column"
 				class="quick_action_bar__results"
 				:class="{ 'quick_action_bar__results--with-overflow-y': mustBeScrollable }"
 				wrap="nowrap"
 			>
-				<cds-flexbox
+				<CdsFlexbox
 					v-if="whatToRender === 'renderLoading'"
 					direction="column"
 					gap="4"
 				>
-					<cds-flexbox
+					<CdsFlexbox
 						v-for="n in 5"
 						:key="n"
 						direction="column"
 						gap="1"
 						class="quick_action_bar__skeleton-card"
 					>
-						<cds-skeleton
+						<CdsSkeleton
 							:width="250"
 							:height="20"
 						/>
 
-						<cds-skeleton
+						<CdsSkeleton
 							:width="180"
 							:height="20"
 						/>
-					</cds-flexbox>
-				</cds-flexbox>
+					</CdsFlexbox>
+				</CdsFlexbox>
 
 				<div
 					v-else-if="whatToRender === 'renderInitialState'"
@@ -83,7 +83,7 @@
 					{{ emptyStateText }}
 				</div>
 
-				<cds-flexbox
+				<CdsFlexbox
 					v-for="recentItem in slicedRecents"
 					v-else-if="whatToRender === 'renderRecents'"
 					:key="recentItem"
@@ -101,16 +101,16 @@
 						:data="recentItem"
 					/>
 
-					<cds-flexbox
+					<CdsFlexbox
 						v-else
 						justify="space-between"
 						align="center"
 					>
-						<cds-flexbox
+						<CdsFlexbox
 							align="center"
 							gap="2"
 						>
-							<cds-icon
+							<CdsIcon
 								height="20"
 								width="20"
 								name="history-outline"
@@ -120,9 +120,9 @@
 							<span>
 								{{ recentItem.title }}
 							</span>
-						</cds-flexbox>
+						</CdsFlexbox>
 
-						<cds-icon
+						<CdsIcon
 							height="20"
 							width="20"
 							name="trash-outline"
@@ -130,8 +130,8 @@
 							class="quick_action_bar__remove-recent-icon"
 							@click.stop="onRemoveRecentClick(recentItem)"
 						/>
-					</cds-flexbox>
-				</cds-flexbox>
+					</CdsFlexbox>
+				</CdsFlexbox>
 
 				<div
 					v-for="(group, index) in internalGroups"
@@ -139,7 +139,7 @@
 					:key="index"
 					class="quick_action_bar__results-block"
 				>
-					<cds-divider
+					<CdsDivider
 						v-if="group.results.length > 0"
 						:text="group.category"
 						inline
@@ -165,15 +165,15 @@
 							v-else
 							class="quick_action_bar__result-item"
 						>
-							<cds-highlight
+							<CdsHighlight
 								:highlighted-text="searchTerm"
 							>
 								{{ item.title }}
-							</cds-highlight>
+							</CdsHighlight>
 						</div>
 					</div>
 
-					<cds-flexbox
+					<CdsFlexbox
 						v-if="group.results.length > props.numResults"
 						class="quick_action_bar__show-more"
 						align="center"
@@ -184,7 +184,7 @@
 						<span>
 							Ver todos os {{ group.results.length }} resultados em <b>{{ group.category }}</b>
 						</span>
-					</cds-flexbox>
+					</CdsFlexbox>
 				</div>
 
 					<!--
@@ -195,7 +195,7 @@
 						name="footer"
 						class="quick_action_bar__footer"
 					/>
-			</cds-flexbox>
+			</CdsFlexbox>
 		</div>
 	</div>
 </template>

@@ -4,7 +4,7 @@
 		ref="cds-box"
 		:class="computedClass"
 	>
-		<cds-clickable
+		<CdsClickable
 			class="box__container"
 			:clickable="clickable"
 			:fluid="fluid"
@@ -19,7 +19,7 @@
 			>
 				<slot />
 			</cds-spacer>
-		</cds-clickable>
+		</CdsClickable>
 	</div>
 </template>
 

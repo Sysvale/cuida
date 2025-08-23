@@ -210,3 +210,20 @@ h1 {
 .VPFeatures  > .container > .items {
 	margin-bottom: 32px !important;
 }
+
+.badge {
+	background: #2db981;
+	color: white;
+	border-radius: 4px;
+	padding: 0 0.4em;
+	font-size: 0.75em;
+	margin-left: 0.4em;
+}
+
+.badge-dev {
+	background: orange;
+}
+
+.content-container {
+  max-width: 720px !important;
+}

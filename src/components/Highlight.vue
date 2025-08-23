@@ -69,7 +69,7 @@ export default {
 		* Define uma substring específica do texto enviada por slot que deve receber o destaque (highlight).
 		*/
 		highlightedText: {
-			type: [String, null],
+			type: String,
 			default: null,
 		},
 		/**

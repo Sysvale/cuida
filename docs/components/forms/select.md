@@ -2,63 +2,92 @@
 
 Selects permitem que o usuário escolha uma opção a partir de uma lista de itens.
 
-## Quando usar
+### Quando usar
 
 - O usuário tiver de escolher uma única opção em uma lista com diversos itens.
 
-## Quando não usar
+### Quando não usar
 
 - A lista de opções possuir 3 itens ou menos. Nesses casos, recomendamos a utilização de radio buttons.
-- O usuário precisar selecionar mais de um item da lista. Nesse caso, utilize <a href="https://sysvale.github.io/cuida/?path=/docs/componentes-forms-clusteredmultiselect--clustered-multiselect">ClusteredMultiselects</a>.
+- O usuário precisar selecionar mais de um item da lista. Nesse caso, utilize ClusteredMultiselects.
 
-## Preview
+### Observações
 
-<script setup>
-import Select from '@/components/Select.vue';
+- Coloque as opções mais prováveis de serem selecionadas no topo do select. Na dúvida, ordene-os em ordem alfanumérica.
+- As labels dos selects devem ser sucintas (de uma a três palavras).
+- As labels devem ser ser escritas com a primeira letra maiúscula e as restantes minúsculas.
+- ⚠️ **Importante:** Para que o select funcione corretamente, a propriedade cujos valores serão exibidos no select, deve se chamar `value`, como indicado no exemplo abaixo na tabela de props.
 
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <Select />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-select
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsSelect
+	:value="value"
+	:options="options"
+	width="wide"
+	label="Séries"
+	placeholder="Selecione uma das séries"
+	required
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<DemoContainer
+	:component="CdsSelect"
+	:events="cdsSelectEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="Select"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="Select"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="Select"
+	section="slots"
+/>
+
+---
+
+## Figma
+
+<FigmaFrame
+	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
+/>
+
+<script setup>
+import { ref } from 'vue';
+import CdsSelect from '@/components/Select.vue';
+import APITable from '../../docgen/APITable.vue';
+import DemoContainer from '../../docgen/DemoContainer.vue';
+import FigmaFrame from '../../docgen/FigmaFrame.vue';
+
+const cdsSelectEvents = [
+	'update:modelValue',
+	'click',
+	'change',
+	'focus',
+	'blur',
+	'keydown'
+];
+</script>

@@ -1,55 +1,89 @@
 # SearchInput
 
-SearchInputs permitem que os usuários realizem buscas sobre conjuntos de dados na interface
+### SearchInputs permitem que os usuários realizem buscas sobre conjuntos de dados na interface.
 
-## Preview
+---
 
-<script setup>
-import SearchInput from '@/components/SearchInput.vue';
+## Quando usar:
+- Para implementar funcionalidades de busca em listas, tabelas ou conjuntos de dados
+- Quando é necessário filtrar conteúdo em tempo real
+- Para busca em bases de conhecimento ou catálogos
+- Em barras de busca globais da aplicação
 
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
+## Quando não usar:
+- Para campos de entrada de dados comuns que não envolvem busca
+- Quando a funcionalidade de busca não é o objetivo principal do campo
+- Para filtros muito específicos que precisam de controles mais complexos
 
-<div class="demo-container">
-  <SearchInput />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+## Observações:
+- O SearchInput possui um ícone de lupa integrado para facilitar o reconhecimento
+- Suporta placeholder personalizável para orientar o usuário
+- Pode ser usado em modo fluido para ocupar toda a largura disponível
+- Oferece feedback visual apropriado para estados de busca
 
 ## Uso
 
+### Exemplo básico
+
 ```vue
 <template>
-  <cds-searchinput
-    prop="value"
-    @event="handleEvent"
+  <cds-search-input
+    v-model="searchValue"
+    placeholder="Busque..."
   />
 </template>
 
 <script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
+import { ref } from 'vue';
+
+const searchValue = ref('');
 </script>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+### Exemplo em modo fluido
+
+```vue
+<template>
+  <cds-search-input
+    v-model="searchValue"
+    placeholder="Pesquisar usuários..."
+    :fluid="true"
+  />
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const searchValue = ref('');
+</script>
+```
+
+## Preview
+
+<cds-search-input placeholder="Busque..." />
+
+## Props
+
+| Nome | Tipo | Padrão | Descrição |
+|------|------|--------|-----------|
+| `modelValue` | `string` | `''` | Valor do campo de busca |
+| `placeholder` | `string` | `'Busque...'` | Texto de placeholder |
+| `disabled` | `boolean` | `false` | Define se o campo está desabilitado |
+| `fluid` | `boolean` | `false` | Define se o campo ocupa toda a largura |
+| `hideLabel` | `boolean` | `false` | Define se o rótulo deve ser ocultado |
+
+## Eventos
+
+| Nome | Descrição |
+|------|-----------|
+| `update:modelValue` | Emitido quando o valor da busca é alterado |
+| `search` | Emitido quando uma busca é realizada |
+| `clear` | Emitido quando o campo de busca é limpo |
+
+## Slots
+
+Este componente não possui slots.
+
+## Figma
+
+[SearchInput no Figma](https://www.figma.com/design/design-system-url)

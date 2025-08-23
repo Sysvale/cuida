@@ -14,13 +14,13 @@
 				v-if="block-interaction === 'mobile'"
 				class="landscape-overlay__button"
 			>
-				<cds-button
+				<CdsButton
 					:variant="buttonVariant"
 					block
 					@button-click="emits('button-click')"
 				>
 					{{ buttonText }}
-				</cds-button>
+				</CdsButton>
 			</div>
 		</div>
 	</div>

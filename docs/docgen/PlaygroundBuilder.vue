@@ -91,30 +91,32 @@ nextTick(() => {
 	normalizedPropsData.value = propsData.value.map((propData) => {
 		let rawValue = propData.defaultValue.value;
 		let parsedValue;
-	
+
 		if (rawValue === 'null') {
 			parsedValue = '';
 		} else if (rawValue === 'true') {
 			parsedValue = true;
 		} else if (rawValue === 'false') {
 			parsedValue = false;
+		} else if (rawValue === '[]') {
+			parsedValue = '';
 		} else if (typeof rawValue === 'string') {
 			const match = rawValue.match(/'([^']+)'/);
 			parsedValue = match ? match[1].replace(/['"]/g, '') : rawValue.replace(/['"]/g, '');
 		} else {
 			parsedValue = rawValue;
 		}
-	
+
 		if (props.initialValues[propData.name]) {
 			return { [propData.name]: props.initialValues[propData.name] };
 		}
-	
+
 		return { [propData.name]: parsedValue };
 	});
-	
+
 	normalizedPropsData.value.forEach((item) => {
 		const [key, value] = Object.entries(item)[0];
-	
+
 		payload.value[key] = value;
 	});
 });

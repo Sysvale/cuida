@@ -16,7 +16,7 @@
 			</div>
 		</div>
 
-		<cds-divider dimmed />
+		<CdsDivider dimmed />
 
 		<div :class="contentClass">
 			<!-- @slot Slot usado para inserção de conteúdo customizado. -->

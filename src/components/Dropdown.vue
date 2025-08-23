@@ -14,7 +14,7 @@
 			<span class="filter-pill__label">{{ label }}: </span>
 			<span class="filter-pill__content">{{ content }} </span>
 
-			<cds-chevron
+			<CdsChevron
 				:key="isActive"
 				animate
 				size="sm"

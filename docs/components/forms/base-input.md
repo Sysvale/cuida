@@ -2,62 +2,86 @@
 
 BaseInput é o componente base para todos os tipos de inputs, fornecendo a estrutura e funcionalidades comuns.
 
-## Quando usar
+O BaseInput deve ser utilizado como base para a criação de novos componentes de input.
+Ele fornece a estrutura básica e funcionalidades comuns, como gerenciamento de estado, validação e estilização, etc.
+
+### Quando usar
 
 - Na implementação de componentes do tipo input, com exceção de checkboxes, radios, ranges e files.
 
-## Quando não usar
+### Quando não usar
 
-- ⚠️ **Atenção:** Este componente **não deve** ser utilizado diretamente na aplicação, mas sim como base para a criação de novos componentes de input..
+- ⚠️ **Atenção:** Este componente **não deve** ser utilizado diretamente na aplicação, mas sim como base para a criação de novos componentes de input.
 
-## Preview
-
-<script setup>
-import BaseInput from '@/components/BaseInput.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <BaseInput />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-baseinput
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsBaseInput />
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<DemoContainer
+	:component="CdsBaseInput"
+	:events="cdsBaseInputEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="BaseInput"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="BaseInput"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="BaseInput"
+	section="slots"
+/>
+
+---
+
+## Figma
+
+<FigmaFrame
+	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
+/>
+
+---
+
+
+
+
+
+
+<script setup>
+import { ref } from 'vue';
+import CdsBaseInput from '@/components/BaseInput.vue';
+import APITable from '../../docgen/APITable.vue';
+import DemoContainer from '../../docgen/DemoContainer.vue';
+import FigmaFrame from '../../docgen/FigmaFrame.vue';
+
+const cdsBaseInputEvents = [
+	'update:modelValue',
+	'click',
+	'focus',
+	'blur',
+	'keydown'
+];
+</script>

@@ -32,7 +32,7 @@
 						align="center"
 						gap="2"
 					>
-						<cds-icon
+						<CdsIcon
 							height="26"
 							width="26"
 							name="warning-outline"
@@ -65,7 +65,7 @@
 				gap="2"
 				class="camera-container__buttons"
 			>
-				<cds-button
+				<CdsButton
 					v-if="!photoUrl"
 					class="camera-container__button"
 					size="lg"
@@ -75,8 +75,8 @@
 					@click.prevent="takePhoto"
 				>
 					{{ takePhotoButtonText }}
-				</cds-button>
-				<cds-button
+				</CdsButton>
+				<CdsButton
 					v-else
 					class="camera-container__button"
 					size="lg"
@@ -86,8 +86,8 @@
 					@click.prevent="removePhoto"
 				>
 					{{ takeAnotherPhotoButtonText }}
-				</cds-button>
-				<cds-button
+				</CdsButton>
+				<CdsButton
 					class="camera-container__button"
 					size="lg"
 					:variant="variant"
@@ -95,7 +95,7 @@
 					@click.prevent="savePhoto"
 				>
 					{{ savePhotoButtonText }}
-				</cds-button>
+				</CdsButton>
 			</flexbox>
 		</flexbox>
 		<canvas ref="canvasRef" />

@@ -22,12 +22,12 @@
 					class="side-bar__collapsible"
 					@click="handleCollapse"
 				>
-					<cds-icon
+					<CdsIcon
 						v-if="!collapsed"
 						name="sidebar-collapse-outline"
 					/>
 
-					<cds-icon
+					<CdsIcon
 						v-else
 						name="sidebar-expand-outline"
 					/>
@@ -43,7 +43,7 @@
 				<div
 					class="search-button__text-container"
 				>
-					<cds-icon
+					<CdsIcon
 						height="20"
 						width="20"
 						name="search-outline"
@@ -83,7 +83,7 @@
 							@mouseover="itemsWithVisibilityController[index].show = true"
 						>
 							<div>
-								<cds-icon
+								<CdsIcon
 									:name="item.icon"
 									width="20"
 									height="20"
@@ -91,7 +91,7 @@
 								<span>{{ item.label }}</span>
 							</div>
 
-							<cds-icon
+							<CdsIcon
 								v-if="!!item.items && item.items.length > 0"
 								:key="expandItemControl"
 								:name="resolveCollapsibleItemIcon(item)"
@@ -110,7 +110,7 @@
 							@click="(event) => handleClick(event, item)"
 						>
 							<div>
-								<cds-icon
+								<CdsIcon
 									:name="item.icon"
 									width="20"
 									height="20"
@@ -147,7 +147,7 @@
 									>
 										{{ subitem.label }}
 
-										<cds-icon
+										<CdsIcon
 											height="16"
 											width="16"
 											name="open-in-new-tab-outline"
@@ -192,7 +192,7 @@
 									>
 										{{ subitem.label }}
 
-										<cds-icon
+										<CdsIcon
 											height="16"
 											width="16"
 											name="open-in-new-tab-outline"
@@ -221,7 +221,7 @@
 				class="side-bar__avatar"
 				@click.stop="showPopover = !showPopover"
 			>
-				<cds-avatar
+				<CdsAvatar
 					:src="userPicture"
 					:name="userName"
 					variant="white"
@@ -247,7 +247,7 @@
 					class="side-bar__logout-button"
 					@click="$emit('logout', true)"
 				>
-					<cds-icon
+					<CdsIcon
 						name="logout-outline"
 						width="20"
 						height="20"
@@ -255,7 +255,7 @@
 				</li>
 			</ul>
 			<div v-if="shouldShowProfileMenu">
-				<cds-popover
+				<CdsPopover
 					v-model="showPopover"
 					right-aligned
 					target-id="menu-profile"
@@ -271,7 +271,7 @@
 								class="dropdown__container"
 								@click="handleProfileMenuOptionClick(item)"
 							>
-								<cds-icon
+								<CdsIcon
 									class="dropdown__icon"
 									height="22"
 									width="22"
@@ -281,7 +281,7 @@
 							</div>
 						</div>
 					</div>
-				</cds-popover>
+				</CdsPopover>
 			</div>
 		</div>
 	</div>

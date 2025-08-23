@@ -5,7 +5,7 @@
 			:value="target"
 		/>
 
-		<cds-table
+		<CdsTable
 			:items="items"
 			:fields="fields"
 			hover
@@ -17,7 +17,7 @@
 					class="copy-clip"
 					@click="target = data.token"
 				>
-					<cds-icon
+					<CdsIcon
 						height="20"
 						width="20"
 						name="copy-outline"
@@ -44,7 +44,7 @@
 					<div class="line" />
 				</div>
 			</template>
-		</cds-table>
+		</CdsTable>
 	</div>
 </template>
 

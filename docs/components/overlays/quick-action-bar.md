@@ -14,54 +14,203 @@ O QuickActionBar é um componente de busca e ação rápida que permite ao usuá
 - Quando o usuário necessita de um filtro ou busca específica dentro de uma seção restrita do sistema. Nesse caso, considere usar filtros ou campos de busca locais;
 - Para ações que requerem pouca atenção do usuário, como buscas triviais que não exigem visibilidade em tela cheia.
 
-## Preview
-
-<script setup>
-import QuickActionBar from '@/components/QuickActionBar.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <QuickActionBar />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-quickactionbar
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsQuickActionBar
+	v-bind="args"
+	v-model="showSearchBar"
+	:groups="filteredItems"
+	:recents="recents"
+	@search="filterItems"
+	@onItemClick="console.log('Item clicado: ', $event)"
+	@onSeeMoreClick="console.log('Ver mais clicado: ', $event)"
+	@onRemoveRecent="console.log('Item removido:', $event)"
+	@onEnterPress="console.log('Enter clicado:', $event)"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<DemoContainer
+	:component="CdsQuickActionBar"
+	:events="cdsQuickActionBarEvents"
+  :recents
+  :groups
+/>
+
+---
+
+## Props
+
+<APITable
+	name="QuickActionBar"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="QuickActionBar"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="QuickActionBar"
+	section="slots"
+/>
+
+---
+
+## Figma
+
+<FigmaFrame
+	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
+/>
+
+<script setup>
+import { ref } from 'vue';
+import CdsQuickActionBar from '@/components/QuickActionBar.vue';
+
+const showQuickActionBar = ref(false);
+
+const recents = [
+	{
+		title: 'Carla Santana',
+		cpf: '22233344405',
+	},
+	{
+		title: 'Carlota Oliveira',
+	},
+	{
+		title: 'Rodrigo Barboza',
+	},
+	{
+		title: 'Lucas Barbosa',
+		cpf: '22233344405',
+	},
+	{
+		title: 'Greg Uesley Silver',
+		cpf: '22233344405',
+	},
+	{
+		title: 'coração',
+	},
+];
+
+const groups = [
+	{
+		category: 'Gestantes',
+		results: [
+			{
+				title: 'Carla Santana',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Carliane Ferreira',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Fernanda Cardoso da Fonseca',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Rafael Assunção',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Alzira Monte',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Antônio de Almeida Castro Silva',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Marcela da Cunha',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Euclides do Amaral',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Constantino Xavier',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+		]
+	},
+	{
+		category: 'Métricas',
+		results: [
+			{
+				title: 'Nº de pessoas',
+				num: 398,
+			},
+			{
+				title: 'Nº de crianças',
+				num: 398,
+			},
+			{
+				title: 'Nº de cachorros',
+				num: 3,
+			},
+			{
+				title: 'Nº de gatos',
+				num: 0,
+			},
+			{
+				title: 'Média de pessoas',
+				num: 398,
+			},
+			{
+				title: 'Moda de animais por residência',
+				num: 398,
+			},
+			{
+				title: 'Moda de sertanejo',
+				num: 400,
+			},
+			{
+				title: 'Máximo de pessoas em uma residência',
+				num: 400,
+			},
+			{
+				title: 'Máximo de pessoas em um bairro',
+				num: 400,
+			},
+			{
+				title: 'Máximo de pessoas em uma cidade',
+				num: 400,
+			},
+		]
+	},
+];
+
+const cdsQuickActionBarEvents = [
+	'update:modelValue',
+  'search',
+  'onItemClick',
+  'onSeeMoreClick',
+  'close',
+  'onRemoveRecent',
+  'onEnterPress'
+];
+</script>

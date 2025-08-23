@@ -1,64 +1,78 @@
 # Scrollable
 
-Scrollable é um componente utilizado para o tornar o conteúdo envolvido "scrolável".
+Scrollable é um componente utilizado para tornar o conteúdo envolvido "scrolável".
 
-## Quando usar
+### Quando usar
 
 - Se quer mostrar muito conteúdo em um espaço pequeno ou pré-definido.
+- Para contrôlar a altura máxima de containers com conteúdo variável.
 
-## Quando não usar
+### Quando não usar
 
-- Houver pouco conteúdo.
-- Já houver um outro scrollable.
+- Houver pouco conteúdo que não ultrapassa o espaço disponível.
+- Já houver um outro scrollable aninhado.
 
-## Preview
-
-<script setup>
-import Scrollable from '@/components/Scrollable.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <Scrollable />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-scrollable
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsScrollable
+	maxHeight="150px"
+>
+	<p>Conteúdo que pode ser scrollado...</p>
+	<p>Mais conteúdo...</p>
+</CdsScrollable>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<DemoContainer
+	:component="CdsScrollable"
+	:events="cdsScrollableEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="Scrollable"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="Scrollable"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="Scrollable"
+	section="slots"
+/>
+
+---
+
+## Figma
+
+<FigmaFrame
+	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
+/>
+
+<script setup>
+import { ref } from 'vue';
+import CdsScrollable from '@/components/Scrollable.vue';
+import APITable from '../../docgen/APITable.vue';
+import DemoContainer from '../../docgen/DemoContainer.vue';
+import FigmaFrame from '../../docgen/FigmaFrame.vue';
+
+const cdsScrollableEvents = [];
+</script>
