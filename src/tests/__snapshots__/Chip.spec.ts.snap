@@ -7,7 +7,9 @@ exports[`Chip > renders correctly 1`] = `
       <transition-stub data-v-711c594a="" name="fade" appear="false" persisted="false" css="true">
         <!--v-if-->
       </transition-stub>
-      <div data-v-711c594a="">Chip</div>
+      <div data-v-711c594a="">
+        <!-- @slot Slot utilizado para o conteúdo textual da chip. -->Chip
+      </div>
     </div>
   </div>
 </div>"
