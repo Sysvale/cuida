@@ -23,7 +23,7 @@
 							<!-- @slot Slot utilizado para alterar o ícone mostrado na chip. -->
 							<slot name="icon" />
 						</div>
-						<cds-icon
+						<CdsIcon
 							v-else
 							name="check-outline"
 							:height="icon.height"
@@ -46,6 +46,12 @@ import { useHasSlot } from '../utils/composables/useHasSlot';
 import { colorOptions } from '../utils/constants/colors';
 import sizes from '../utils/constants/sizes';
 import CdsIcon from './Icon.vue';
+
+const modelValue = defineModel('modelValue', {
+	type: Boolean,
+	default: false,
+	required: true,
+});
 
 const props = defineProps({
 	/**
@@ -77,12 +83,6 @@ const props = defineProps({
 		type: Boolean,
 		default: true,
 	},
-});
-
-const modelValue = defineModel('modelValue', {
-	type: Boolean,
-	default: false,
-	required: true,
 });
 
 const chip = ref({
