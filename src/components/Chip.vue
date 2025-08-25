@@ -2,7 +2,7 @@
 <template>
 	<div
 		class="chip__container"
-		:class="chipData.classList"
+		:class="chip.classList"
 		data-testid="chip-container"
 		@click="handleClick"
 	>
@@ -10,25 +10,21 @@
 			<div
 				class="chip__content-container"
 				:style="{
-					maxWidth: chipData.maxWidth,
+					maxWidth: chip.maxWidth,
 					...containerStyle,
 				}"
 			>
 				<transition name="fade">
-					<template v-if="chipData.internalValue || props.persistantActionIcon">
-						<div
-							v-if="useHasSlot('icon')"
+					<template v-if="chip.internalValue || props.persistantActionIcon">
+						<div 
+							v-if="useHasSlot('icon')" 
 							class="chip__content--icon"
-							:style="{
-								height: `${icon.height}px`,
-								width: `${icon.width}px`,
-							}"
 						>
+							<!-- @slot Slot utilizado para alterar o ícone mostrado na chip. -->
 							<slot name="icon" />
 						</div>
 						<cds-icon
 							v-else
-							class="chip__content--icon"
 							name="check-outline"
 							:height="icon.height"
 							:width="icon.width"
@@ -36,6 +32,7 @@
 					</template>
 				</transition>
 				<div ref="slot-content">
+					<!-- @slot Slot utilizado para o conteúdo textual da chip. -->
 					<slot />
 				</div>
 			</div>
@@ -88,8 +85,7 @@ const modelValue = defineModel('modelValue', {
 	required: true,
 });
 
-//TODO: pensar em um nome melhor
-const chipData = ref({
+const chip = ref({
 	predefinedColors: colorOptions,
 	predefinedSizes: sizes,
 	internalValue: modelValue.value,
@@ -103,15 +99,15 @@ const slotContentRef = useTemplateRef('slot-content');
 const predefinedStyle = computed(() => {
 	let dynamicClass = '';
 
-	if (!chipData.value.internalValue) {
+	if (!chip.value.internalValue) {
 		dynamicClass += ' chip--not-selected';
 	}
 
-	if (chipData.value.predefinedColors.indexOf(props.variant) > -1) {
+	if (chip.value.predefinedColors.indexOf(props.variant) > -1) {
 		dynamicClass += ` chip--${props.variant}`;
 	}
 
-	if (chipData.value.predefinedSizes.indexOf(props.size) > -1) {
+	if (chip.value.predefinedSizes.indexOf(props.size) > -1) {
 		dynamicClass += ` chip--${props.size}`;
 	}
 
@@ -142,7 +138,7 @@ const containerStyle = computed(() => {
 	if (props.persistantActionIcon) {
 		return;
 	}
-	return chipData.value.shouldUpdatePadding
+	return chip.value.shouldUpdatePadding
 		? {
 			paddingRight: icon.value.width / 2 + 2 + 'px',
 			paddingLeft: icon.value.width / 2 + 2 + 'px',
@@ -155,19 +151,18 @@ const iconPosition = computed(() => {
 });
 
 function handleClick() {
-	chipData.value.internalValue = !chipData.value.internalValue;
+	chip.value.internalValue = !chip.value.internalValue;
 }
 
 function removeNotSelectedClass() {
 	let regex = new RegExp('chip--not-selected', 'g');
-	return chipData.value.classList.replace(regex, '');
+	return chip.value.classList.replace(regex, '');
 }
 
 onMounted(() => {
-	chipData.value.classList = predefinedStyle.value;
-	console.log('🚀 -> a:', predefinedStyle.value);
+	chip.value.classList = predefinedStyle.value;
 	setTimeout(() => {
-		chipData.value.maxWidth =
+		chip.value.maxWidth =
 			(slotContentRef.value?.offsetWidth || 0) + 4 + icon.value.width + 'px';
 	}, 100);
 });
@@ -175,21 +170,21 @@ onMounted(() => {
 watch(
 	() => modelValue,
 	(newModelValue) => {
-		chipData.value.internalValue = newModelValue.value;
+		chip.value.internalValue = newModelValue.value;
 	}
 );
 
 watch(
-	() => chipData.value.internalValue,
+	() => chip.value.internalValue,
 	(newInternalValue) => {
 		if (!newInternalValue) {
-			chipData.value.classList += ' chip--not-selected';
+			chip.value.classList += ' chip--not-selected';
 		} else {
-			chipData.value.classList = removeNotSelectedClass();
+			chip.value.classList = removeNotSelectedClass();
 		}
 
 		setTimeout(() => {
-			chipData.value.shouldUpdatePadding = !newInternalValue;
+			chip.value.shouldUpdatePadding = !newInternalValue;
 		}, 300);
 
 		modelValue.value = newInternalValue;
@@ -239,6 +234,17 @@ watch(
 		&--lg {
 			@include tokens.button-1;
 			font-weight: tokens.$font-weight-semibold;
+		}
+		&--icon {
+			display: flex;
+			overflow: hidden;
+			align-items: center;
+			width: v-bind('icon.width');
+			height: v-bind('icon.height');
+		}
+		&--icon > :slotted(svg) {
+			height: 100%;
+			width: 100%;
 		}
 	}
 
