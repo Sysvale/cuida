@@ -1,5 +1,6 @@
 @use 'sass:map';
 
+$token-values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12;
 $spacers: 0, .25, .5, .75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3;
 $rem: 16px;
 
@@ -125,4 +126,47 @@ $rem: 16px;
 
 @function mYX($n1, $n2) {
 	@return getSpacerValue($n1) getSpacerValue($n2);
+}
+
+@each $value in $token-values {
+	.mt-#{$value} {
+		margin-top: $value * 4px;
+	}
+
+	.mr-#{$value} {
+		margin-right: $value * 4px;
+	}
+
+	.mb-#{$value} {
+		margin-bottom: $value * 4px;
+	}
+
+	.ml-#{$value} {
+		margin-left: $value * 4px;
+	}
+
+	.ma-#{$value} {
+		margin: $value * 4px;
+	}
+
+
+	.pt-#{$value} {
+		padding-top: $value * 4px;
+	}
+
+	.pr-#{$value} {
+		padding-right: $value * 4px;
+	}
+
+	.pb-#{$value} {
+		padding-bottom: $value * 4px;
+	}
+
+	.pl-#{$value} {
+		padding-left: $value * 4px;
+	}
+
+	.pa-#{$value} {
+		padding: $value * 4px;
+	}
 }
