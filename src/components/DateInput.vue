@@ -13,7 +13,6 @@
 			:floating-label="floatingLabel || mobile"
 			@blur="handleTypeUpdate"
 			@keydown.enter.prevent="handleTypeUpdate"
-			@keydown.tab.prevent="handleTypeUpdate"
 		/>
 
 		<CdsBaseInput
