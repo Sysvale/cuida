@@ -49,7 +49,6 @@ import CdsIcon from './Icon.vue';
 
 const modelValue = defineModel('modelValue', {
 	type: Boolean,
-	default: false,
 	required: true,
 });
 
@@ -75,7 +74,7 @@ const props = defineProps({
 	 */
 	persistantActionIcon: {
 		type: Boolean,
-		default: false,
+		default: false
 	},
 	/**
 	 * Especifica se o ícone da chip é mostrado na esquerda (true) ou direita (false).
@@ -87,17 +86,11 @@ const props = defineProps({
 });
 
 const slotContentRef = useTemplateRef('slot-content');
-
 const predefinedColors = ref(colorOptions);
-
 const predefinedSizes = ref(sizes);
-
 const internalValue = ref(modelValue.value);
-
 const classList = ref('');
-
 const shouldUpdatePadding = ref(true);
-
 const maxWidth = ref('0px');
 
 
