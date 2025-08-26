@@ -2,7 +2,7 @@
 <template>
 	<div
 		class="chip__container"
-		:class="chip.classList"
+		:class="classList"
 		data-testid="chip-container"
 		@click="handleClick"
 	>
@@ -10,12 +10,12 @@
 			<div
 				class="chip__content-container"
 				:style="{
-					maxWidth: chip.maxWidth,
+					maxWidth: maxWidth,
 					...containerStyle,
 				}"
 			>
 				<transition name="fade">
-					<template v-if="chip.internalValue || props.persistantActionIcon">
+					<template v-if="internalValue || props.persistantActionIcon">
 						<div 
 							v-if="useHasSlot('icon')" 
 							class="chip__content--icon"
@@ -56,14 +56,15 @@ const modelValue = defineModel('modelValue', {
 const props = defineProps({
 	/**
 	 * A variante da Badge. São 9 variantes.
-	 * @values 'turquoise', 'green', 'blue', 'dark', 'violet', 'pink', 'red', 'orange', 'amber', 'gray'.
+	 * @values 'turquoise', 'green', 'blue', 'dark', 'violet', 'pink', 'red', 'orange', 'amber', 'gray'
 	 */
 	variant: {
 		type: String,
 		default: 'gray',
 	},
 	/**
-	 * Especifica o tamanho da chip. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
+	 * Especifica o tamanho da chip. São 3 tamanhos implementados. 
+	 * @values 'sm', 'md', 'lg'
 	 */
 	size: {
 		type: String,
@@ -85,29 +86,33 @@ const props = defineProps({
 	},
 });
 
-const chip = ref({
-	predefinedColors: colorOptions,
-	predefinedSizes: sizes,
-	internalValue: modelValue.value,
-	classList: '',
-	shouldUpdatePadding: true,
-	maxWidth: '0px',
-});
-
 const slotContentRef = useTemplateRef('slot-content');
+
+const predefinedColors = ref(colorOptions);
+
+const predefinedSizes = ref(sizes);
+
+const internalValue = ref(modelValue.value);
+
+const classList = ref('');
+
+const shouldUpdatePadding = ref(true);
+
+const maxWidth = ref('0px');
+
 
 const predefinedStyle = computed(() => {
 	let dynamicClass = '';
 
-	if (!chip.value.internalValue) {
+	if (!internalValue.value) {
 		dynamicClass += ' chip--not-selected';
 	}
 
-	if (chip.value.predefinedColors.indexOf(props.variant) > -1) {
+	if (predefinedColors.value.indexOf(props.variant) > -1) {
 		dynamicClass += ` chip--${props.variant}`;
 	}
 
-	if (chip.value.predefinedSizes.indexOf(props.size) > -1) {
+	if (predefinedSizes.value.indexOf(props.size) > -1) {
 		dynamicClass += ` chip--${props.size}`;
 	}
 
@@ -138,7 +143,7 @@ const containerStyle = computed(() => {
 	if (props.persistantActionIcon) {
 		return;
 	}
-	return chip.value.shouldUpdatePadding
+	return shouldUpdatePadding.value
 		? {
 			paddingRight: icon.value.width / 2 + 2 + 'px',
 			paddingLeft: icon.value.width / 2 + 2 + 'px',
@@ -150,46 +155,47 @@ const iconPosition = computed(() => {
 	return props.iconLeft ? 'row' : 'row-reverse';
 });
 
-function handleClick() {
-	chip.value.internalValue = !chip.value.internalValue;
-}
-
-function removeNotSelectedClass() {
-	let regex = new RegExp('chip--not-selected', 'g');
-	return chip.value.classList.replace(regex, '');
-}
-
-onMounted(() => {
-	chip.value.classList = predefinedStyle.value;
-	setTimeout(() => {
-		chip.value.maxWidth =
-			(slotContentRef.value?.offsetWidth || 0) + 4 + icon.value.width + 'px';
-	}, 100);
-});
-
 watch(
 	() => modelValue,
 	(newModelValue) => {
-		chip.value.internalValue = newModelValue.value;
+		internalValue.value = newModelValue.value;
 	}
 );
 
 watch(
-	() => chip.value.internalValue,
+	() => internalValue.value,
 	(newInternalValue) => {
 		if (!newInternalValue) {
-			chip.value.classList += ' chip--not-selected';
+			classList.value += ' chip--not-selected';
 		} else {
-			chip.value.classList = removeNotSelectedClass();
+			classList.value = removeNotSelectedClass();
 		}
 
 		setTimeout(() => {
-			chip.value.shouldUpdatePadding = !newInternalValue;
+			shouldUpdatePadding.value = !newInternalValue;
 		}, 300);
 
 		modelValue.value = newInternalValue;
 	}
 );
+
+onMounted(() => {
+	classList.value = predefinedStyle.value;
+	setTimeout(() => {
+		maxWidth.value =
+			(slotContentRef.value?.offsetWidth || 0) + 4 + icon.value.width + 'px';
+	}, 100);
+});
+
+function handleClick() {
+	internalValue.value = !internalValue.value;
+}
+
+function removeNotSelectedClass() {
+	let regex = new RegExp('chip--not-selected', 'g');
+	return classList.value.replace(regex, '');
+}
+
 </script>
 <style lang="scss" scoped>
 @use 'sass:color';
