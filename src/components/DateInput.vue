@@ -857,20 +857,19 @@ function toggleYearPickerDisplay() {
 
 function handleTypeUpdate() {
 	if (!internalValue.value) {
-		console.log('!internalValue.value')
 		model.value = null;
 		return;
 	}
 
 	const parsed = DateTime.fromFormat(internalValue.value, 'dd/MM/yyyy');
-	console.log('parsed é valido?', parsed.isValid);
+
 	if (!parsed.isValid) {
 		clearDates();
 		model.value = null;
 		console.warn('Data informada é inválida');
 		throw new Error('Invalid DateTime');
 	}
-	console.log('passou de todos ifs');
+
 	model.value = parsed.setLocale('pt-BR').toFormat('yyyy-MM-dd');
 }
 
