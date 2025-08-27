@@ -50,40 +50,40 @@ import PaginationItem from '../entities/PaginationItem';
 import CdsChevron from './Chevron.vue';
 import variantClassResolver from '../utils/methods/variantClassResolver';
 
-const modelValue = defineModel('modelValue', {
+const model = defineModel('modelValue', {
 	type: [Number, String],
 	default: 1,
 });
 
 const props = defineProps({
 	/**
-	 * Prop utilizada para receber o número total de registros a serem paginados.
-	 */
+	* Prop utilizada para receber o número total de registros a serem paginados.
+	*/
 	total: {
 		type: Number,
 		default: 1,
 		validator: (value) => value >= 1,
 	},
 	/**
-	 * Prop utilizada para receber o número de registros a serem exibidos
-	 * por página.
-	 */
+	* Prop utilizada para receber o número de registros a serem exibidos
+	* por página.
+	*/
 	perPage: {
 		type: Number,
 		default: 1,
 		validator: (value) => value >= 1,
 	},
 	/**
-	 * Prop que indica se o componente deverá ocupar 100% do espaço disponível.
-	 */
+	* Prop que indica se o componente deverá ocupar 100% do espaço disponível.
+	*/
 	fluid: {
 		type: Boolean,
 		default: false,
 	},
 	/**
-	 * A variante de cor. São 10 variantes:
-	 * @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
-	 */
+	* A variante de cor. São 10 variantes:
+	* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
+	*/
 	variant: {
 		type: String,
 		default: 'green',
@@ -91,7 +91,7 @@ const props = defineProps({
 });
 
 const selectedPage = ref(
-	new PaginationItem(null, parseInt(modelValue.value, 10), true)
+	new PaginationItem(null, parseInt(model.value, 10), true)
 );
 
 const pages = ref([]);
@@ -194,7 +194,7 @@ function handlePageClick(page) {
 
 			selectedPage.value = new PaginationItem(null, 1, true);
 
-			modelValue.value = 1;
+			model.value = 1;
 			resolvePages();
 			return;
 		case 'last':
@@ -203,14 +203,14 @@ function handlePageClick(page) {
 			}
 			selectedPage.value = new PaginationItem(null, pageCount, true);
 
-			modelValue.value = pageCount.value;
+			model.value = pageCount.value;
 			resolvePages();
 			return;
 		case 'back':
 			if (selectedPage.value.index === 1) {
 				return;
 			}
-			modelValue.value = selectedPage.value.value - 1;
+			model.value = selectedPage.value.value - 1;
 
 			selectedPage.value = new PaginationItem(
 				null,
@@ -225,7 +225,7 @@ function handlePageClick(page) {
 				return;
 			}
 
-			modelValue.value = selectedPage.value.value + 1;
+			model.value = selectedPage.value.value + 1;
 
 			selectedPage.value = new PaginationItem(
 				null,
@@ -238,25 +238,19 @@ function handlePageClick(page) {
 		default:
 			selectedPage.value = new PaginationItem(null, page.value, true);
 
-			modelValue.value = page.value;
+			model.value = page.value;
 			resolvePages();
 			break;
 	}
 }
 
-watch([selectedPage, pages], ([newSelectedPage], [oldSelectedPage]) => {
-	if (
-		newSelectedPage === oldSelectedPage ||
-		newSelectedPage === selectedPage.value
-	) {
-		return;
-	}
-
+watch([model, () => props.total, () => props.perPage], () => {
 	selectedPage.value = new PaginationItem(
 		null,
-		parseInt(newSelectedPage, 10),
+		parseInt(model.value, 10),
 		true
 	);
+
 	resolvePages();
 });
 
