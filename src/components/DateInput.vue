@@ -423,7 +423,7 @@ watch(model, (newValue) => {
 		clearDates();
 		model.value = null;
 		console.warn('Data informada é inválida');
-		throw new Error('Data informada é inválida');
+		throw new Error('Invalid DateTime');
 	}
 
 	if (typeof newValue === 'string') {
@@ -868,7 +868,7 @@ function handleTypeUpdate() {
 		clearDates();
 		model.value = null;
 		console.warn('Data informada é inválida');
-		throw new Error('Data informada é inválida');
+		throw new Error('Invalid DateTime');
 	}
 	console.log('passou de todos ifs');
 	model.value = parsed.setLocale('pt-BR').toFormat('yyyy-MM-dd');
