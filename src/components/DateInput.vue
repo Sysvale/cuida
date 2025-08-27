@@ -419,6 +419,16 @@ watch(model, (newValue) => {
 		return;
 	}
 
+	const temporaryDate = DateTime.fromISO(newValue);
+
+	if (!temporaryDate.isValid && (typeof newValue === 'string')) {
+		startDate.value = null;
+		endDate.value = null;
+		internalValue.value = '';
+		model.value = null;
+		return;
+	}
+
 	if (typeof newValue === 'string') {
 		startDate.value = DateTime.fromISO(newValue);
 		internalValue.value = startDate.value.toFormat('dd/MM/yyyy');
@@ -843,8 +853,19 @@ function toggleYearPickerDisplay() {
 }
 
 function handleTypeUpdate() {
-	model.value =  DateTime.fromFormat(internalValue.value, 'dd/MM/yyyy')
-		.setLocale('pt-BR').toFormat('yyyy-MM-dd');
+	if (!internalValue.value) {
+		model.value = null;
+		return;
+	}
+
+	const parsed = DateTime.fromFormat(internalValue.value, 'dd/MM/yyyy');
+
+	if (!parsed.isValid) {
+		model.value = null;
+		return;
+	}
+
+	model.value = parsed.setLocale('pt-BR').toFormat('yyyy-MM-dd');
 }
 
 /* EXPOSE */
