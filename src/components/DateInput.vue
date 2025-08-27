@@ -412,9 +412,7 @@ const dateInputContainerWidth = computed(() => {
 /* WATCHERS */
 watch(model, (newValue) => {
 	if (!newValue) {
-		startDate.value = null;
-		endDate.value = null;
-		internalValue.value = '';
+		clearDates();
 		currentDate.value = DateTime.now().setLocale('pt-BR');
 		return;
 	}
@@ -422,11 +420,10 @@ watch(model, (newValue) => {
 	const temporaryDate = DateTime.fromISO(newValue);
 
 	if (!temporaryDate.isValid && (typeof newValue === 'string')) {
-		startDate.value = null;
-		endDate.value = null;
-		internalValue.value = '';
+		clearDates();
 		model.value = null;
-		return;
+		console.warn('Data informada é inválida');
+		throw new Error('Data informada é inválida');
 	}
 
 	if (typeof newValue === 'string') {
@@ -765,6 +762,12 @@ function clearSelection() {
 	model.value = props.range ? { start: null, end: null } : null;
 }
 
+function clearDates() {
+	startDate.value = null;
+	endDate.value = null;
+	internalValue.value = '';
+}
+
 function getDMYFormat() {
 	if (props.range && startDate.value && endDate.value) {
 		return {
@@ -854,17 +857,20 @@ function toggleYearPickerDisplay() {
 
 function handleTypeUpdate() {
 	if (!internalValue.value) {
+		console.log('!internalValue.value')
 		model.value = null;
 		return;
 	}
 
 	const parsed = DateTime.fromFormat(internalValue.value, 'dd/MM/yyyy');
-
+	console.log('parsed é valido?', parsed.isValid);
 	if (!parsed.isValid) {
+		clearDates();
 		model.value = null;
-		return;
+		console.warn('Data informada é inválida');
+		throw new Error('Data informada é inválida');
 	}
-
+	console.log('passou de todos ifs');
 	model.value = parsed.setLocale('pt-BR').toFormat('yyyy-MM-dd');
 }
 
