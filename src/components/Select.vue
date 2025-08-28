@@ -428,7 +428,14 @@ function activateSelectionOnEnter() {
 	resetActiveSelection();
 
 	if (typeof localOptions.value[currentPos.value] === 'undefined') {
-		localValue.value = cloneDeep(localOptions.value[0]);
+		handleAddOption();
+
+		nextTick(() => {
+			localValue.value = props.searchable && props.addable
+				? localValue.value
+				: cloneDeep(localOptions.value[0]);
+		});
+
 	} else {
 		localValue.value = cloneDeep(localOptions.value[currentPos.value]);
 	}
@@ -462,10 +469,13 @@ function hide() {
 			: {};
 	}
 
-	localOptions.value = pristineOptions.value;
-	searchString.value = '';
-	baseInputControl.value += 1;
-	active.value = false;
+	nextTick(() => {
+		localOptions.value = pristineOptions.value;
+		searchString.value = '';
+		baseInputControl.value += 1;
+		active.value = false;
+	});
+
 	emitBlur();
 }
 
