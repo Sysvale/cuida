@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TruncateContainer.vue > renders correctly 1`] = `
+"<div data-v-f5ae6e5e="" class="truncate-container">
+  <div data-v-f5ae6e5e="" class="content">
+    <!-- @slot Slot padrão utilizado para exibir o conteúdo enviado para o container -->
+    <p>Some content inside the container</p>
+  </div>
+  <!--v-if-->
+  <div data-v-c2ac4e6d="" data-v-f5ae6e5e="" class="flexbox">
+    <!-- @slot Slot com o conteúdo interno do FlexBox --><button data-v-4a94b6f3="" data-v-f5ae6e5e="" class="flat-button__container flat-button--dark--active truncate-container__button">
+      <!-- @slot Slot padrão utilizado para exibir texto do botão. -->Mostrar mais
+    </button>
+  </div>
+</div>"
+`;
