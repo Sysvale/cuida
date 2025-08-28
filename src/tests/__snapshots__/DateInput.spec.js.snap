@@ -5,7 +5,7 @@ exports[`DateInput > renders correctly 1`] = `
   <!--v-if-->
   <div data-v-82c69faf="" data-v-fcd39cd1="" variant="green" range="false" mobile="false" showtodaydot="false" highlighttoday="false" mindate="" maxdate="" mode="picking">
     <!--v-if--><label data-v-c1eb01da="" data-v-82c69faf="" class="label"><span data-v-c1eb01da="" class="label__content">Selecione uma data <!--v-if--><!--v-if--></span>
-      <!--v-if-->
+      <cdstext data-v-c1eb01da="" class="label__link"></cdstext>
     </label>
     <div data-v-82c69faf="" class="base-input base-input--default">
       <!--v-if-->

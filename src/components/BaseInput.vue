@@ -38,6 +38,7 @@
 				:tooltip-icon="tooltipIcon"
 				:support-link="supportLink"
 				:support-link-url="supportLinkUrl"
+				@support-link-click="emits('supportLinkClick')"
 			/>
 
 			<div
@@ -380,7 +381,8 @@ const props = defineProps({
 });
 
 const emits = defineEmits({
-	...nativeEvents
+	...nativeEvents,
+	'supportLinkClick': null,
 });
 
 /* REACTIVE DATA */

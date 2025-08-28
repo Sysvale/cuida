@@ -25,12 +25,20 @@
 		</span>
 
 		<CdsLink
-			v-if="supportLink"
+			v-if="supportLink && supportLinkUrl"
 			:href="supportLinkUrl"
 			:text="supportLink"
 			class="label__link"
 			new-tab
 		/>
+
+		<CdsText
+			v-else
+			class="label__link"
+			@click="emits('supportLinkClick')"
+		>
+			{{ supportLink }}
+		</CdsText>
 	</label>
 </template>
 
@@ -80,8 +88,8 @@ defineProps({
 	* Define a url a ser acessada no clique do link de suporte.
 	*/
 	supportLinkUrl: {
-		type: String,
-		default: 'https://cuida.framer.wiki/',
+		type: [String, null],
+		default: null,
 	},
 	/**
 	* Exibe asterisco de obrigatório (obs.: não faz a validação)
@@ -99,6 +107,8 @@ defineProps({
 		required: false,
 	},
 });
+
+const emits = defineEmits(['supportLinkClick']);
 </script>
 
 <style lang="scss" scoped>
@@ -125,6 +135,11 @@ defineProps({
 
 	&__link {
 		justify-self: end;
+		color: tokens.$bn-400;
+		text-decoration: none;
+		transition: tokens.$interaction;
+		border-bottom: 1px solid transparent;
+		cursor: pointer;
 	}
 
 	&__content {

@@ -4,7 +4,7 @@ exports[`TextArea > renders correctly 1`] = `
 "<div id="text-area">
   <div data-v-82c69faf="">
     <!--v-if--><label data-v-c1eb01da="" data-v-82c69faf="" class="label"><span data-v-c1eb01da="" class="label__content">Label <!--v-if--><!--v-if--></span>
-      <!--v-if-->
+      <cdstext data-v-c1eb01da="" class="label__link"></cdstext>
     </label>
     <div data-v-82c69faf="" class="base-input base-input--default">
       <!--v-if--><textarea data-v-82c69faf="" id="cds-base-input-textarea-text-area" placeholder="Digite aqui a descrição" class="base-input__field" type="textarea"></textarea>
