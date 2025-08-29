@@ -68,7 +68,6 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
-import { ref } from 'vue';
 import CdsButton from '@/components/Button.vue';
 
 const cdsButtonEvents = [

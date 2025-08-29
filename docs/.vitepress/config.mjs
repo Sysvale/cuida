@@ -98,6 +98,8 @@ export default defineConfig({
 					text: 'Utils',
 					items: [
 						{ text: 'Image <Badge class="badge" type="info">ready</Badge>', link: '/components/utils/image' },
+						{ text: 'Clickable', link: '/components/utils/clickable' },
+
 					]
 				},
 				{

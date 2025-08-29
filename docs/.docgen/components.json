@@ -2606,7 +2606,8 @@
     ],
     "slots": [
       {
-        "name": "default"
+        "name": "default",
+        "description": "Slot default."
       }
     ],
     "sourceFiles": [
@@ -5679,8 +5680,9 @@
     ]
   },
   "Image": {
-    "displayName": "Image",
+    "name": "Image",
     "exportName": "default",
+    "displayName": "Image",
     "description": "",
     "tags": {},
     "props": [
@@ -5698,7 +5700,6 @@
         "type": {
           "name": "string"
         },
-        "required": false,
         "defaultValue": {
           "func": false,
           "value": "'https://sysfront.nyc3.cdn.digitaloceanspaces.com/cuida/images/imagePlaceholder.png'"
@@ -5712,7 +5713,7 @@
         },
         "defaultValue": {
           "func": false,
-          "value": "null"
+          "value": "100"
         }
       },
       {
@@ -5723,7 +5724,7 @@
         },
         "defaultValue": {
           "func": false,
-          "value": "null"
+          "value": "100"
         }
       },
       {

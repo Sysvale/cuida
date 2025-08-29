@@ -2,54 +2,63 @@
 
 Componente utilizado para adicionar um wrapper cliclável a componentes que não possuem interação nativa por clique.
 
-## Preview
-
-<script setup>
-import Clickable from '@/components/Clickable.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <Clickable />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-clickable
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsClickable
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="clickableClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<!-- {{ CdsClickable }} -->
+
+<DemoContainer
+	:component="CdsClickable"
+	:events="cdsClickableEvents"
+>
+  Texto clicável
+</DemoContainer>
+
+---
+
+## Props
+
+<APITable
+	name="Clickable"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="Clickable"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="Clickable"
+	section="slots"
+/>
+
+---
+
+<script setup>
+import CdsClickable from '@/components/Clickable.vue';
+
+const cdsClickableEvents = [
+	'cds-click'
+];
+</script>
