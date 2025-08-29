@@ -19,8 +19,6 @@ Componente utilizado para adicionar um wrapper cliclável a componentes que não
 
 ## Preview
 
-<!-- {{ CdsClickable }} -->
-
 <DemoContainer
 	:component="CdsClickable"
 	:events="cdsClickableEvents"
