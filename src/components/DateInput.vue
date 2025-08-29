@@ -317,8 +317,8 @@ const props = defineProps({
 	* Define a url a ser acessada no clique do link de suporte.
 	*/
 	supportLinkUrl: {
-		type: String,
-		default: 'https://cuida.framer.wiki/',
+		type: [String, null],
+		default: null,
 	},
 	/**
 	* Define o modo de interação com o DateInput. Quando definido como 'typing', o componente permite apenas

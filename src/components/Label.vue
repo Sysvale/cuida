@@ -25,30 +25,31 @@
 		</span>
 
 		<CdsLink
-			v-if="supportLink && supportLinkUrl"
+			v-if="shouldShowLink"
 			:href="supportLinkUrl"
 			:text="supportLink"
 			class="label__link"
 			new-tab
 		/>
 
-		<CdsText
+		<span
 			v-else
 			class="label__link"
 			@click="emits('supportLinkClick')"
 		>
 			{{ supportLink }}
-		</CdsText>
+		</span>
 	</label>
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import CdsRequiredIndicator from './RequiredIndicator.vue';
 import vCdstip from '../utils/directives/cdstip';
 import CdsLink from './Link.vue';
 import CdsIcon from './Icon.vue';
 
-defineProps({
+const props = defineProps({
 	/**
 	 * ID de referência ao input.
 	 */
@@ -109,6 +110,12 @@ defineProps({
 });
 
 const emits = defineEmits(['supportLinkClick']);
+
+const shouldShowLink = computed(() => (
+	props.supportLink
+	&& props.supportLinkUrl !== null
+	&& props.supportLinkUrl.length
+));
 </script>
 
 <style lang="scss" scoped>
@@ -134,12 +141,12 @@ const emits = defineEmits(['supportLinkClick']);
 	}
 
 	&__link {
+		@include tokens.caption;
 		justify-self: end;
 		color: tokens.$bn-400;
-		text-decoration: none;
 		transition: tokens.$interaction;
-		border-bottom: 1px solid transparent;
 		cursor: pointer;
+		margin: tokens.mb(1);
 	}
 
 	&__content {

@@ -305,8 +305,8 @@ const props = defineProps({
 	* Define a url a ser acessada no clique do link de suporte.
 	*/
 	supportLinkUrl: {
-		type: String,
-		default: 'https://cuida.framer.wiki/',
+		type: [String, null],
+		default: null,
 	},
 	/**
 	* Define o tipo do input, se `true` será um input adaptado para o mobile. Quando essa prop está ativa é renderizado o componente baseMobileInput.
