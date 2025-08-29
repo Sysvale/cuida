@@ -22,6 +22,7 @@ Avatares são componentes utilizados para exibir representações visuais de usu
 ## Preview
 
 <DemoContainer
+	src="https://thispersondoesnotexist.com/"
 	:component="CdsAvatar"
 	:events="cdsAvatarEvents"
 />
@@ -36,14 +37,6 @@ Avatares são componentes utilizados para exibir representações visuais de usu
 />
 <br />
 
-## Eventos
-
-<APITable
-	name="Avatar"
-	section="events"
-/>
-<br />
-
 ## Slots
 
 <APITable
@@ -53,18 +46,15 @@ Avatares são componentes utilizados para exibir representações visuais de usu
 
 ---
 
-## Figma
+<!-- ## Figma
 
 <FigmaFrame
 	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
-/>
+/> -->
 
 <script setup>
 import { ref } from 'vue';
 import CdsAvatar from '@/components/Avatar.vue';
-import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
-import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 const cdsAvatarEvents = [
 	'click'

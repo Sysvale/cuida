@@ -77,6 +77,8 @@
 	--vp-c-danger-2: #e03e52;
 	--vp-c-danger-3: #e03e52;
 	--vp-c-danger-soft: #fdaf9b;
+
+	--vp-layout-max-width: 1600px !important;
 }
 
 .text {
@@ -225,5 +227,5 @@ h1 {
 }
 
 .content-container {
-  max-width: 720px !important;
+	max-width: 820px !important;
 }
