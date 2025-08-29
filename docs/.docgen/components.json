@@ -176,7 +176,13 @@
     "props": [
       {
         "name": "variant",
-        "description": "A variante do Alert. São 3 variantes implementadas: 'info', 'warning'\ne 'danger'",
+        "description": "A variante do Alert. São 3 variantes implementadas:",
+        "tags": {},
+        "values": [
+          "info",
+          "warning",
+          "danger"
+        ],
         "type": {
           "name": "string"
         },
@@ -4725,7 +4731,21 @@
     "props": [
       {
         "name": "variant",
-        "description": "A variante de cor. São 11 variantes implementadas: 'green', 'teal', 'turquoise',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.",
+        "description": "A variante de cor.",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'turquoise'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
