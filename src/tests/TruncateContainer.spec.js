@@ -3,6 +3,27 @@ import { describe, test, expect } from 'vitest';
 import TruncateContainer from '../components/TruncateContainer.vue';
 import CdsFlatButton from '../components/FlatButton.vue';
 
+const MANY_PARAGRAPHS = `
+	<p>Content</p>
+	<p>Content</p>
+	<p>Content</p>
+	<p>Content</p>
+	<p>Content</p>
+	<p>Content</p>
+	<p>Content</p>
+	<p>Content</p>
+	<p>Content</p>
+	<p>Content</p>
+`;
+
+function mockOverflow(wrapper, { scrollHeight, clientHeight }) {
+	const el = wrapper.vm.$refs.truncateContainerEl;
+	Object.defineProperty(el, 'scrollHeight', { value: scrollHeight, configurable: true });
+	Object.defineProperty(el, 'clientHeight', { value: clientHeight, configurable: true });
+
+	wrapper.vm.checkOverflow();
+}
+
 describe('TruncateContainer.vue', () => {
 	test('renders correctly', () => {
 		const wrapper = mount(TruncateContainer, {
@@ -10,15 +31,19 @@ describe('TruncateContainer.vue', () => {
 				default: '<p>Some content inside the container</p>'
 			}
 		});
-		expect(wrapper.html()).toMatchSnapshot();
+		expect(wrapper.find('.truncate-container').html()).toMatchSnapshot();
 	});
 
-	test('displays "Mostrar mais" button by default', () => {
+	test('shows "Mostrar mais" button when content overflows', async () => {
 		const wrapper = mount(TruncateContainer, {
-			slots: {
-				default: '<p>Content</p>'
-			}
+			props: { height: '50' },
+			slots: { default: MANY_PARAGRAPHS }
 		});
+
+		mockOverflow(wrapper, { scrollHeight: 200, clientHeight: 50 });
+
+		await wrapper.vm.$nextTick();
+
 		const button = wrapper.findComponent(CdsFlatButton);
 		expect(button.exists()).toBe(true);
 		expect(button.props('text')).toBe('Mostrar mais');
@@ -26,10 +51,14 @@ describe('TruncateContainer.vue', () => {
 
 	test('emits "button-click" and toggles expanded state when button is clicked', async () => {
 		const wrapper = mount(TruncateContainer, {
-			slots: {
-				default: '<p>Content</p>'
-			}
+			props: { height: '50' },
+			slots: { default: MANY_PARAGRAPHS }
 		});
+
+		mockOverflow(wrapper, { scrollHeight: 200, clientHeight: 50 });
+
+		await wrapper.vm.$nextTick();
+
 		const button = wrapper.findComponent(CdsFlatButton);
 		await button.trigger('click');
 
@@ -40,29 +69,34 @@ describe('TruncateContainer.vue', () => {
 		expect(wrapper.vm.expanded).toBe(false);
 	});
 
-	test('emits "expand" and "collapse" when expanded changes', async () => {
+	test('emits "expand" and "collapse" when expanded changes via button clicks', async () => {
 		const wrapper = mount(TruncateContainer, {
-			slots: {
-				default: '<p>Content</p>'
-			}
+			props: { height: '50' },
+			slots: { default: MANY_PARAGRAPHS }
 		});
 
-		wrapper.vm.expanded = true;
+		mockOverflow(wrapper, { scrollHeight: 200, clientHeight: 50 });
+
 		await wrapper.vm.$nextTick();
+
+		const button = wrapper.findComponent(CdsFlatButton);
+
+		await button.trigger('click');
 		expect(wrapper.emitted()).toHaveProperty('expand');
 
-		wrapper.vm.expanded = false;
-		await wrapper.vm.$nextTick();
+		await button.trigger('click');
 		expect(wrapper.emitted()).toHaveProperty('collapse');
 	});
 
 	test('computes textAlign correctly', () => {
 		const wrapper = mount(TruncateContainer, {
-			props: { textAlign: 'right' },
-			slots: {
-				default: '<p>Content</p>'
-			}
+			props: {
+				height: '50',
+				textAlign: 'right'
+			},
+			slots: { default: MANY_PARAGRAPHS }
 		});
+
 		expect(wrapper.vm.computedTextAlign).toBe('right');
 	});
 });
