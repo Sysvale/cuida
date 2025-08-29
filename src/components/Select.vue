@@ -331,8 +331,8 @@ const selectContainerWidth = computed(() => {
 const showAddOption = computed(() => {
 	return props.searchable
 		&& props.addable
-		&& searchString.value.trim().length > 0
-		&& !localOptions.value.some(option => option[props.optionsField]?.toLowerCase() === searchString.value.toLowerCase());
+		&& searchString.value?.trim().length > 0
+		&& !localOptions.value.some(option => option[props.optionsField]?.toLowerCase() === searchString?.value.toLowerCase());
 });
 
 
