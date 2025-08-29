@@ -226,8 +226,8 @@ const props = defineProps({
 	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela `supportLinkUrl` na v4. Define a url a ser acessada no clique do link (no caso do link ser exibido).
 	*/
 	linkUrl: {
-		type: String,
-		default: 'https://cuida.framer.wiki/',
+		type: [String, null],
+		default: null,
 	},
 	/**
 	* Controla a exibição e o conteúdo do link de suporte exibido ao lado da label.
@@ -247,8 +247,8 @@ const props = defineProps({
 	* Define a url a ser acessada no clique do link de suporte.
 	*/
 	supportLinkUrl: {
-		type: String,
-		default: 'https://cuida.framer.wiki/',
+		type: [String, null],
+		default: null,
 	},
 	/**
 	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile
