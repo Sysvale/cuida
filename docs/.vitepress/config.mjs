@@ -57,6 +57,7 @@ export default defineConfig({
 					text: 'Forms',
 					items: [
 						{ text: 'Button <Badge class="badge" type="info">ready</Badge>', link: '/components/forms/button' },
+						{ text: 'FlatButton <Badge class="badge" type="info">ready</Badge>', link: '/components/forms/flat-button' },
 						// { text: 'BaseInput', link: '/components/forms/base-input' },
 						// { text: 'TextInput', link: '/components/forms/text-input' },
 						// { text: 'TextArea', link: '/components/forms/text-area' },
