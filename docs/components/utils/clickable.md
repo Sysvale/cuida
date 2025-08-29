@@ -8,11 +8,11 @@ Componente utilizado para adicionar um wrapper cliclável a componentes que não
 
 ```js
 <CdsClickable
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="clickableClick = true"
-/>
+		:clickable="true"
+		@click="logClickableClick"
+	>
+		Texto clicável
+</CdsClickable>
 ```
 
 ---
@@ -25,7 +25,7 @@ Componente utilizado para adicionar um wrapper cliclável a componentes que não
 	:component="CdsClickable"
 	:events="cdsClickableEvents"
 >
-  Texto clicável
+	Texto clicável
 </DemoContainer>
 
 ---
