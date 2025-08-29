@@ -96,6 +96,12 @@ export default defineConfig({
 					]
 				},
 				{
+					text: 'Notificação',
+					items: [
+						{ text: 'Alert <Badge class="badge" type="info">ready</Badge>', link: '/components/notificação/alert' },
+					]
+				},
+				{
 					text: 'Tipografia',
 					items: [
 						{ text: 'Text <Badge class="badge" type="info">ready</Badge>', link: '/components/tipografia/text' },
