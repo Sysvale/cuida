@@ -57,18 +57,15 @@ FlatButtons são componentes semelhantes a links, mas que funcionam como botões
 
 ---
 
-## Figma
+<!-- ## Figma
 
 <FigmaFrame
 	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
-/>
+/> -->
 
 <script setup>
 import { ref } from 'vue';
 import CdsFlatButton from '@/components/FlatButton.vue';
-import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
-import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 const cdsFlatButtonEvents = [
 	'click'
