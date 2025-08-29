@@ -95,6 +95,12 @@ export default defineConfig({
 					]
 				},
 				{
+					text: 'Utils',
+					items: [
+						{ text: 'Image <Badge class="badge" type="info">ready</Badge>', link: '/components/utils/image' },
+					]
+				},
+				{
 					text: 'Notificação',
 					items: [
 						{ text: 'Alert <Badge class="badge" type="info">ready</Badge>', link: '/components/notificação/alert' },

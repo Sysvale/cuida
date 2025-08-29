@@ -2,54 +2,61 @@
 
 Image é um componente utilitário utilizado para renderizar imagens com fallback.
 
-## Preview
+---
 
-<script setup>
-import Image from '@/components/Image.vue';
+<br />
 
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
+## Obs:
+- ⚠️ Quando a prop `round` for true, o tamanho da imagem vai ser setado como igual à largura.
 
-<div class="demo-container">
-  <Image />
-</div>
+<br />
 
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-image
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsImage
+	:width="400"
+	:blackAndWhite="false"
+	:dimmed="false"
+	:roundedCorners="false"
+	:opacity="1"
+	src="https://cdn.dribbble.com/users/56251/screenshots/10780716/media/bf16339f04fb54b38055adcce2a6da21.png?compress=1&resize=1000x750&vertical=top"
+	fallbackSrc="https://sysfront.nyc3.cdn.digitaloceanspaces.com/cuida/images/imagePlaceholder.png"
+	alt="Imagem de exemplo do cds-image"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<DemoContainer
+	:component="CdsImage"
+	width="400"
+	:blackAndWhite="false"
+	:dimmed="false"
+	:roundedCorners="false"
+	:opacity="1"
+	src="https://cdn.dribbble.com/users/56251/screenshots/10780716/media/bf16339f04fb54b38055adcce2a6da21.png?compress=1&resize=1000x750&vertical=top"
+	fallbackSrc="https://sysfront.nyc3.cdn.digitaloceanspaces.com/cuida/images/imagePlaceholder.png"
+	alt="Imagem de exemplo do cds-image"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="Image"
+	section="props"
+/>
+<br />
+
+---
+
+<script setup>
+import { ref } from 'vue';
+import CdsImage from '@/components/Image.vue';
+</script>

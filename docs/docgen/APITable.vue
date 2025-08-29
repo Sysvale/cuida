@@ -8,10 +8,13 @@
 	>
 		<template #table-item="{ data, field }">
 			<template v-if="field === 'name'">
+				<CdsRequiredIndicator v-if="data.required"/>
 				<code>{{ apiSectionPrefix }}{{ data.name }}</code>
+				<span v-if="data.required" style="color: #C92C3F"> (required)</span>
 			</template>
 
 			<template v-if="section === 'props' && field === 'values'">
+				<span v-if="!data.values?.length"> -- </span>
 				<code v-for="value in data.values">{{ value }} <br /></code>
 			</template>
 		</template>
@@ -22,6 +25,7 @@
 import { computed } from 'vue'
 import componentsData from '../.docgen/components.json'
 import CdsTable from '@/components/Table.vue';
+import CdsRequiredIndicator from '@/components/RequiredIndicator.vue';
 
 const props = withDefaults(defineProps<{
 	name: string,
@@ -77,6 +81,7 @@ const propsFields = [
 	{
 		key: 'description',
 		label: 'Descrição',
+		width: '50%'
 	},
 ];
 

@@ -89,10 +89,14 @@ function formatOptions(val) {
 
 nextTick(() => {
 	normalizedPropsData.value = propsData.value.map((propData) => {
-		let rawValue = propData.defaultValue.value;
+		let rawValue = propData.defaultValue?.value;
 		let parsedValue;
 
-		if (rawValue === 'null') {
+		if (
+			rawValue === 'null'
+			|| rawValue === null
+			|| typeof rawValue === 'undefined'
+		) {
 			parsedValue = '';
 		} else if (rawValue === 'true') {
 			parsedValue = true;
