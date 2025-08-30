@@ -12,8 +12,8 @@ import isDeviceType from '../utils/methods/isDeviceType.js';
 // Props
 const props = defineProps({
 	/**
-	 * Controla a exibição do LoadingIndicator.
-	 */
+	* Controla a exibição do LoadingIndicator.
+	*/
 	modelValue: {
 		type: Boolean,
 		default: false,
@@ -28,8 +28,8 @@ const props = defineProps({
 		default: 'green',
 	},
 	/**
-	 * Define o tempo, em ms, do intervalo de mudança da barra de progresso.
-	 */
+	* Define o tempo, em ms, do intervalo de mudança da barra de progresso.
+	*/
 	intervalTime: {
 		type: Number,
 		default: 500,

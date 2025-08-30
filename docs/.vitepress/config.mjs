@@ -98,6 +98,7 @@ export default defineConfig({
 					text: 'Loaders',
 					items: [
 						{ text: 'LoadingBar <Badge class="badge" type="info">ready - deprecated</Badge>', link: '/components/loaders/loading-bar' },
+						{ text: 'LoadingIndicator', link: '/components/loaders/loading-indicator' },
 					]
 				},
 				{

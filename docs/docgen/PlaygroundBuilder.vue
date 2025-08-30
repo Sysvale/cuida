@@ -21,7 +21,7 @@
 			</CdsFlexbox>
 
 			<CdsFlexbox
-				v-else-if="data.type.name.includes('string')"
+				v-else-if="data.type.name.includes('string') || data.type.name.includes('number')"
 				justify="space-between"
 				class="preview-line"
 			>
@@ -87,43 +87,46 @@ function formatOptions(val) {
 	})
 }
 
-nextTick(() => {
-	normalizedPropsData.value = propsData.value.map((propData) => {
-		let rawValue = propData.defaultValue?.value;
-		let parsedValue;
-
-		if (
-			rawValue === 'null'
-			|| rawValue === null
-			|| typeof rawValue === 'undefined'
-		) {
-			parsedValue = '';
-		} else if (rawValue === 'true') {
-			parsedValue = true;
-		} else if (rawValue === 'false') {
-			parsedValue = false;
-		} else if (rawValue === '[]') {
-			parsedValue = '';
-		} else if (typeof rawValue === 'string') {
-			const match = rawValue.match(/'([^']+)'/);
-			parsedValue = match ? match[1].replace(/['"]/g, '') : rawValue.replace(/['"]/g, '');
-		} else {
-			parsedValue = rawValue;
-		}
-
-		if (props.initialValues[propData.name]) {
-			return { [propData.name]: props.initialValues[propData.name] };
-		}
-
-		return { [propData.name]: parsedValue };
+watch(() => props.initialValues, () => {
+	nextTick(() => {
+		normalizedPropsData.value = propsData.value.map((propData) => {
+			let rawValue = propData.defaultValue?.value;
+			let parsedValue;
+	
+			if (
+				rawValue === 'null'
+				|| rawValue === null
+				|| typeof rawValue === 'undefined'
+			) {
+				parsedValue = '';
+			} else if (rawValue === 'true') {
+				parsedValue = true;
+			} else if (rawValue === 'false') {
+				parsedValue = false;
+			} else if (rawValue === '[]') {
+				parsedValue = '';
+			} else if (typeof rawValue === 'string') {
+				const match = rawValue.match(/'([^']+)'/);
+				parsedValue = match ? match[1].replace(/['"]/g, '') : rawValue.replace(/['"]/g, '');
+			} else {
+				parsedValue = rawValue;
+			}
+	
+			if (props.initialValues[propData.name]) {
+				return { [propData.name]: props.initialValues[propData.name] };
+			}
+	
+			return { [propData.name]: parsedValue };
+		});
+	
+		normalizedPropsData.value.forEach((item) => {
+			const [key, value] = Object.entries(item)[0];
+	
+			payload.value[key] = value;
+		});
 	});
 
-	normalizedPropsData.value.forEach((item) => {
-		const [key, value] = Object.entries(item)[0];
-
-		payload.value[key] = value;
-	});
-});
+}, { immediate: true, deep: true})
 
 function capitalize(str) {
 	return str?.[0]?.toUpperCase() + str?.slice(1) ?? '';

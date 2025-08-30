@@ -2,6 +2,7 @@
 	<div>
 		<div class="demo-container">
 			<component
+				v-if="!$slots.container"
 				:is="component"
 				v-on="innerEvents"
 				v-bind="{...$attrs, ...componentProps }"
@@ -10,6 +11,17 @@
 		  			<slot v-if="slotProps" :name="slotName" v-bind="slotProps" />
 				</template>
 			</component>
+
+			<div v-else>
+				<component
+					:is="component"
+					v-on="innerEvents"
+					v-bind="{...$attrs, ...componentProps }"
+				/>
+
+				<slot name="container" />
+			</div>
+
 	
 			<span
 				v-if="events"
@@ -40,6 +52,7 @@
 							</small>
 							<small>
 								{{ JSON.stringify(message.payload, null, 2) }} <i>(payload)</i>
+								<!-- <pre>{{ message.payload }}</pre> <i>(payload)</i> -->
 							</small>
 						</div>
 						<small>
@@ -49,7 +62,6 @@
 				</template>
 			</div>
 		</div>
-	
 		<PlaygroundBuilder
 			:component="component.name"
 			:initial-values="componentProps"
@@ -67,6 +79,7 @@ import {
 	computed,
 	onMounted,
 	useAttrs,
+	useSlots,
 	type Component
 } from 'vue';
 import CdsBadge from '@/components/Badge.vue'
@@ -81,10 +94,13 @@ type LogEntry = {
 
 const props = defineProps<{
 	component: Component & { name: string },
-	events: string[],
+	events?: string[],
 }>();
 
 const $attrs = useAttrs();
+const $slots = useSlots();
+console.log('🚀 -> $slots:', $slots);
+console.log('🚀 -> $TTTT:', $slots.test);
 
 const logContainer = useTemplateRef('logContainerRef');
 const showLog = ref(false);
@@ -115,8 +131,11 @@ watch(
 	{ deep: true }
 );
 
+watch(() => $attrs, () => {
+	componentProps.value = {...componentProps.value, ...$attrs };
+}, { immediate: true, deep: true });
+
 onMounted(() => {
-	componentProps.value = { ...$attrs };
 
 	props.events?.forEach((event) => {
 		innerEvents.value[event] = (ev) => {
