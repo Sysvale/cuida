@@ -746,11 +746,7 @@
         "type": {
           "name": "array"
         },
-        "required": true,
-        "defaultValue": {
-          "func": false,
-          "value": "[{\n    datasets: [\n        {\n            label: '',\n            data: [],\n        }\n    ]\n}]"
-        }
+        "required": true
       },
       {
         "name": "variant",
@@ -2145,17 +2141,15 @@
     "props": [
       {
         "name": "propertyName",
+        "description": "Nome da propriedade exibida no controle do carousel.",
         "type": {
           "name": "string"
         },
-        "required": false,
-        "defaultValue": {
-          "func": false,
-          "value": "'Dados'"
-        }
+        "required": true
       },
       {
         "name": "perPage",
+        "description": "Número de itens por página do carousel.",
         "type": {
           "name": "number"
         },
@@ -2163,6 +2157,7 @@
       },
       {
         "name": "total",
+        "description": "Número total de itens no carousel.",
         "type": {
           "name": "number"
         },
@@ -2170,10 +2165,10 @@
       },
       {
         "name": "simple",
+        "description": "Quando true, exibe o controle em modo simples (página atual de total de páginas).",
         "type": {
           "name": "boolean"
         },
-        "required": false,
         "defaultValue": {
           "func": false,
           "value": "false"
@@ -2181,10 +2176,10 @@
       },
       {
         "name": "fluid",
+        "description": "Quando true, o controle ocupa toda a largura disponível com espaçamento distribuído.",
         "type": {
           "name": "boolean"
         },
-        "required": false,
         "defaultValue": {
           "func": false,
           "value": "false"
@@ -2194,19 +2189,61 @@
     "events": [
       {
         "name": "click-back",
+        "description": "Evento que indica que o botão voltar foi clicado",
         "type": {
           "names": [
-            "undefined"
+            "Object"
           ]
-        }
+        },
+        "properties": [
+          {
+            "type": {
+              "names": [
+                "number"
+              ]
+            },
+            "name": "min",
+            "description": "Índice mínimo da página atual (base 0)"
+          },
+          {
+            "type": {
+              "names": [
+                "number"
+              ]
+            },
+            "name": "max",
+            "description": "Índice máximo da página atual (base 0)"
+          }
+        ]
       },
       {
         "name": "click-forward",
+        "description": "Evento que indica que o botão avançar foi clicado",
         "type": {
           "names": [
-            "undefined"
+            "Object"
           ]
-        }
+        },
+        "properties": [
+          {
+            "type": {
+              "names": [
+                "number"
+              ]
+            },
+            "name": "min",
+            "description": "Índice mínimo da página atual (base 0)"
+          },
+          {
+            "type": {
+              "names": [
+                "number"
+              ]
+            },
+            "name": "max",
+            "description": "Índice máximo da página atual (base 0)"
+          }
+        ]
       }
     ],
     "sourceFiles": [
@@ -3896,15 +3933,26 @@
         "type": {
           "name": "object"
         },
-        "required": true,
-        "defaultValue": {
-          "func": false,
-          "value": "{\n    datasets: [\n        {\n            label: '',\n            data: [],\n        }\n    ]\n}"
-        }
+        "required": true
       },
       {
         "name": "variant",
         "description": "Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:\n`green`, `teal`, `turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `gray`, `dark`.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "turquoise",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "gray",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },
@@ -3917,6 +3965,11 @@
       {
         "name": "theme",
         "description": "Define o tema do gráfico.",
+        "tags": {},
+        "values": [
+          "blue",
+          "indigo"
+        ],
         "type": {
           "name": "string"
         },

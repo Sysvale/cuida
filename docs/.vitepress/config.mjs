@@ -95,6 +95,8 @@ export default defineConfig({
 
 						{ text: 'FlexBox <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/flexbox' },
 
+						{ text: 'CarouselController <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/carousel-controller' },
+
 					]
 				},
 				{
@@ -123,6 +125,13 @@ export default defineConfig({
 						{ text: 'Spacer', link: '/components/utils/spacer' },
 						{ text: 'Truncate <Badge class="badge" type="info">ready</Badge>', link: '/components/utils/truncate' },
 
+					]
+				},
+				{
+					text: 'Charts',
+					items: [
+						{ text: 'BarChart', link: '/components/charts/bar-chart' },
+						{ text: 'DonutChart', link: '/components/charts/donut-chart' },
 					]
 				},
 				{

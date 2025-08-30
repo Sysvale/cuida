@@ -1,76 +1,68 @@
 # CarouselController
 
 ### CarouselControllers são componentes utilizados para controlar a exibição de elementos em carrosséis.
-
 ---
+<br />
 
 ## Quando usar:
 - Você possuir uma categoria de elementos da interface que se repetem e que podem ser exibidos em forma de carrossel.
 
-## Quando não usar:
-- Você estiver trabalhando com tabelas. Nesses casos recomendamos o uso de paginação.
-- Todo o conteúdo a ser gerenciado puder ser exibido de uma só vez. Nesse caso não há necessidade de controle de páginas e do uso do componente.
+<br />
 
-## Observações:
-- O CarouselController é ideal para navegação entre páginas de conteúdo similar.
-- Funciona bem com componentes que precisam de paginação visual.
-- Oferece controles intuitivos de navegação para frente e para trás.
+## Quando não usar:
+- Você estiver trabalhando com tabelas. Nesses casos recomendamos o uso de paginação (TODO).
+- Todo o conteúdo a ser gerenciado puder ser exibido de uma só vez. Nesse caso não há necessidade de controle de páginas e do uso do componente;
+
+---
 
 ## Uso
 
-### Exemplo básico
-
-```vue
-<template>
-  <cds-carousel-controller
-    :total="12"
-    :perPage="4"
-    propertyName="Métricas"
-    @click-forward="handleClickForwardEvent"
-    @click-back="handleClickBackEvent"
-  />
-</template>
-
-<script setup>
-const handleClickForwardEvent = () => {
-  console.info('Clicked forward');
-};
-
-const handleClickBackEvent = () => {
-  console.info('Clicked back');
-};
-</script>
+```js
+<CdsCarouselController
+	:total="12"
+	:perPage="4"
+	@click-back="clickBackHandler"
+	@click-forward="clickForwardHandler"
+/>
 ```
+
+---
 
 ## Preview
 
-<cds-carousel-controller
-  :total="12"
-  :perPage="4"
-  propertyName="Métricas"
-  @click-forward="handleClickForwardEvent"
-  @click-back="handleClickBackEvent"
+<DemoContainer
+	:component="CdsCarouselController"
+	:events="cdsCarouselControllerEvents"
+	:total="12"
+	:perPage="4"
+	propertyName="dados"
 />
+
+---
 
 ## Props
 
-| Nome | Tipo | Padrão | Descrição |
-|------|------|--------|-----------|
-| `total` | `number` | `0` | Número total de itens |
-| `perPage` | `number` | `1` | Número de itens por página |
-| `propertyName` | `string` | `''` | Nome da propriedade para exibir no controle |
+<APITable
+	name="CarouselController"
+	section="props"
+/>
+<br />
 
 ## Eventos
 
-| Nome | Descrição |
-|------|-----------|
-| `click-forward` | Emitido quando o botão de avançar é clicado |
-| `click-back` | Emitido quando o botão de voltar é clicado |
+<APITable
+	name="CarouselController"
+	section="events"
+/>
+<br />
 
-## Slots
+---
 
-Este componente não possui slots.
+<script setup>
+import CdsCarouselController from '@/components/CarouselController.vue';
 
-## Figma
-
-[CarouselController no Figma](https://www.figma.com/design/design-system-url)
+const cdsCarouselControllerEvents = [
+	'click-back',
+	'click-forward'
+];
+</script>
