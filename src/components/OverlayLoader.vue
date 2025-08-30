@@ -10,17 +10,17 @@ export default {
 	name: 'OverlayLoader',
 	props: {
 		/**
-		*	Propriedade referente ao tamanho do componente ('sm', 'md' ou 'lg')
-		*
+		* Propriedade referente ao tamanho do componente ('sm', 'md' ou 'lg')
+		* @values sm, md, lg
 		*/
 		size: {
 			type: String,
 			default: 'md',
 		},
 		/**
-		*	Variante de cor do componente ('turquoise', 'green', 'blue',
-			'indigo', 'violet', 'pink', 'red', 'orange', 'amber')
-		*
+		* Variante de cor do componente ('turquoise', 'green', 'blue',
+		 'indigo', 'violet', 'pink', 'red', 'orange', 'amber')
+		* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
 		*/
 		variant: {
 			type: String,

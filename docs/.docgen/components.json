@@ -7862,6 +7862,12 @@
       {
         "name": "size",
         "description": "Propriedade referente ao tamanho do componente ('sm', 'md' ou 'lg')",
+        "tags": {},
+        "values": [
+          "sm",
+          "md",
+          "lg"
+        ],
         "type": {
           "name": "string"
         },
@@ -7872,7 +7878,20 @@
       },
       {
         "name": "variant",
-        "description": "Variante de cor do componente ('turquoise', 'green', 'blue',\n            'indigo', 'violet', 'pink', 'red', 'orange', 'amber')",
+        "description": "Variante de cor do componente ('turquoise', 'green', 'blue',\n         'indigo', 'violet', 'pink', 'red', 'orange', 'amber')",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
