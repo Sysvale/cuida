@@ -98,7 +98,8 @@ export default defineConfig({
 					text: 'Loaders',
 					items: [
 						{ text: 'LoadingBar <Badge class="badge" type="info">ready - deprecated</Badge>', link: '/components/loaders/loading-bar' },
-						{ text: 'LoadingIndicator', link: '/components/loaders/loading-indicator' },
+						{ text: 'LoadingIndicator <Badge class="badge" type="info">ready</Badge>', link: '/components/loaders/loading-indicator' },
+						{ text: 'Spinner', link: '/components/loaders/spinner' },
 					]
 				},
 				{
@@ -106,7 +107,7 @@ export default defineConfig({
 					items: [
 						{ text: 'Clickable <Badge class="badge" type="info">ready - deprecated</Badge>', link: '/components/utils/clickable' },
 						{ text: 'Image <Badge class="badge" type="info">ready</Badge>', link: '/components/utils/image' },
-						// { text: 'Spacer', link: '/components/utils/spacer' },
+						{ text: 'Spacer', link: '/components/utils/spacer' },
 						{ text: 'Truncate <Badge class="badge" type="info">ready</Badge>', link: '/components/utils/truncate' },
 
 					]

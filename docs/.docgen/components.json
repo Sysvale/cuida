@@ -10839,7 +10839,13 @@
     "props": [
       {
         "name": "size",
-        "description": "Propriedade referente ao tamanho do componente ('sm', 'md' ou 'lg')",
+        "description": "Propriedade referente ao tamanho do componente",
+        "tags": {},
+        "values": [
+          "sm",
+          "md",
+          "lg"
+        ],
         "type": {
           "name": "string"
         },

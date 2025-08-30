@@ -11,8 +11,8 @@ export default {
 	name: 'Spinner',
 	props: {
 		/**
-		*	Propriedade referente ao tamanho do componente ('sm', 'md' ou 'lg')
-		*
+		* Propriedade referente ao tamanho do componente
+		* @values sm, md, lg
 		*/
 		size: {
 			type: String,
@@ -27,8 +27,7 @@ export default {
 			default: 'green',
 		},
 		/**
-		*	Delay para exibição do spinner, em ms
-		*
+		* Delay para exibição do spinner, em ms
 		*/
 		delay: {
 			type: Number,

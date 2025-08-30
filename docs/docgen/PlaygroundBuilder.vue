@@ -21,7 +21,7 @@
 			</CdsFlexbox>
 
 			<CdsFlexbox
-				v-else-if="data.type.name.includes('string') || data.type.name.includes('number')"
+				v-else-if="data.type.name.includes('string')"
 				justify="space-between"
 				class="preview-line"
 			>
@@ -30,6 +30,22 @@
 				</CdsText>
 
 				<CdsTextInput
+					v-if="Object.keys(normalizedPropsData).length > 0"
+					label=""
+					v-model="normalizedPropsData[index][data.name]"
+				/>
+			</CdsFlexbox>
+
+			<CdsFlexbox
+				v-else-if="data.type.name.includes('number')"
+				justify="space-between"
+				class="preview-line"
+			>
+				<CdsText class="prop-name">
+					{{ capitalize(data.name) }}
+				</CdsText>
+
+				<CdsNumberInput
 					v-if="Object.keys(normalizedPropsData).length > 0"
 					label=""
 					v-model="normalizedPropsData[index][data.name]"
@@ -58,6 +74,7 @@
 import { computed, ref, watch, nextTick } from 'vue';
 import componentsData from '../.docgen/components.json'
 import CdsTextInput from '@/components/TextInput.vue';
+import CdsNumberInput from '@/components/NumberInput.vue';
 import CdsSelect from '@/components/Select.vue';
 import CdsSwitch from '@/components/Switch.vue';
 import CdsText from '@/components/Text.vue';
