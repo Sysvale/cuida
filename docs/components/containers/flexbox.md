@@ -23,11 +23,20 @@
 
 ```js
 <CdsFlexbox
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="flexboxClick = true"
-/>
+	class="grid-background"
+	direction="row"
+	:gap="1"
+	wrap="wrap"
+	justify="start"
+	align="start"
+	tag="div"
+	:fluid="false"
+>
+	<div style="height: 50px; width: 300px" class="docs-grid-cell"> FlexItem 1 </div>
+	<div style="height: 50px; width: 300px" class="docs-grid-cell"> FlexItem 2 </div>
+	<div style="height: 50px; width: 300px" class="docs-grid-cell"> FlexItem 3 </div>
+	<div style="height: 50px; width: 300px" class="docs-grid-cell"> FlexItem 4 </div>
+</CdsFlexbox>
 ```
 
 ---
@@ -37,6 +46,13 @@
 <DemoContainer
 	:component="CdsFlexbox"
 	class="grid-background"
+	direction="row"
+	:gap="1"
+	wrap="wrap"
+	justify="start"
+	align="start"
+	tag="div"
+	:fluid="false"
 >
 	<div style="height: 50px; width: 300px" class="docs-grid-cell"> FlexItem 1 </div>
 	<div style="height: 50px; width: 300px" class="docs-grid-cell"> FlexItem 2 </div>
