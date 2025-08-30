@@ -10823,7 +10823,8 @@
     ],
     "slots": [
       {
-        "name": "default"
+        "name": "default",
+        "description": "Slot default."
       }
     ],
     "sourceFiles": [
@@ -12788,6 +12789,7 @@
     "props": [
       {
         "name": "width",
+        "description": "Largura do container. Define a partir de qual largura texto será truncado.",
         "type": {
           "name": "string|number"
         },
@@ -12799,7 +12801,8 @@
     ],
     "slots": [
       {
-        "name": "default"
+        "name": "default",
+        "description": "Slot default."
       }
     ],
     "sourceFiles": [

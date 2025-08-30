@@ -97,8 +97,10 @@ export default defineConfig({
 				{
 					text: 'Utils',
 					items: [
-						{ text: 'Image <Badge class="badge" type="info">ready</Badge>', link: '/components/utils/image' },
 						{ text: 'Clickable <Badge class="badge" type="info">ready - deprecated</Badge>', link: '/components/utils/clickable' },
+						{ text: 'Image <Badge class="badge" type="info">ready</Badge>', link: '/components/utils/image' },
+						// { text: 'Spacer', link: '/components/utils/spacer' },
+						{ text: 'Truncate', link: '/components/utils/truncate' },
 
 					]
 				},
