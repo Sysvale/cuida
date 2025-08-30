@@ -97,6 +97,8 @@ export default defineConfig({
 
 						{ text: 'CarouselController <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/carousel-controller' },
 
+						{ text: 'Divider <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/divider' },
+
 					]
 				},
 				{
