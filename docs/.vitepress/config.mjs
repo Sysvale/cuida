@@ -95,12 +95,18 @@ export default defineConfig({
 					]
 				},
 				{
+					text: 'Loaders',
+					items: [
+						{ text: 'LoadingBar <Badge class="badge" type="info">ready - deprecated</Badge>', link: '/components/loaders/loading-bar' },
+					]
+				},
+				{
 					text: 'Utils',
 					items: [
 						{ text: 'Clickable <Badge class="badge" type="info">ready - deprecated</Badge>', link: '/components/utils/clickable' },
 						{ text: 'Image <Badge class="badge" type="info">ready</Badge>', link: '/components/utils/image' },
 						// { text: 'Spacer', link: '/components/utils/spacer' },
-						{ text: 'Truncate', link: '/components/utils/truncate' },
+						{ text: 'Truncate <Badge class="badge" type="info">ready</Badge>', link: '/components/utils/truncate' },
 
 					]
 				},
