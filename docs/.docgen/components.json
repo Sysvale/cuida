@@ -1569,16 +1569,18 @@
     "events": [
       {
         "name": "boxClick",
+        "description": "Evento emitido quando a prop `clickable` é `true` e o `Box` é clicado.",
         "type": {
           "names": [
-            "undefined"
+            "Event"
           ]
         }
       }
     ],
     "slots": [
       {
-        "name": "default"
+        "name": "default",
+        "description": "Slot utilizado para renderização do conteúdo interno do Box."
       }
     ],
     "sourceFiles": [

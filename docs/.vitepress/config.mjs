@@ -89,6 +89,12 @@ export default defineConfig({
 					]
 				},
 				{
+					text: 'Containers',
+					items: [
+						{ text: 'Box <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/box' },
+					]
+				},
+				{
 					text: 'Overlay',
 					items: [
 						{ text: 'QuickActionBar', link: '/components/overlays/quick-action-bar' },
@@ -100,8 +106,9 @@ export default defineConfig({
 						{ text: 'LoadingBar <Badge class="badge" type="info">ready - deprecated</Badge>', link: '/components/loaders/loading-bar' },
 						{ text: 'LoadingIndicator <Badge class="badge" type="info">ready</Badge>', link: '/components/loaders/loading-indicator' },
 						{ text: 'OverlayLoader <Badge class="badge" type="info">ready</Badge>', link: '/components/loaders/overlay-loader' },
-						{ text: 'Spinner <Badge class="badge" type="info">ready</Badge>', link: '/components/loaders/spinner' },
 						{ text: 'Skeleton <Badge class="badge" type="info">ready</Badge>', link: '/components/loaders/skeleton' },
+						{ text: 'SkeletonText <Badge class="badge" type="info">ready - deprecated</Badge>', link: '/components/loaders/skeleton-text' },
+						{ text: 'Spinner <Badge class="badge" type="info">ready</Badge>', link: '/components/loaders/spinner' },
 
 					]
 				},

@@ -10,15 +10,15 @@
 			:fluid="fluid"
 			@click="handleClick"
 		>
-			<!-- @slot Slot utilizado para renderização do conteúdo interno do Box.-->
-			<cds-spacer
+			<CdsSpacer
 				:padding-top="padding"
 				:padding-right="padding"
 				:padding-bottom="padding"
 				:padding-left="padding"
 			>
+				<!-- @slot Slot utilizado para renderização do conteúdo interno do Box.-->
 				<slot />
-			</cds-spacer>
+			</CdsSpacer>
 		</CdsClickable>
 	</div>
 </template>
@@ -139,6 +139,11 @@ export default {
 
 		handleClick() {
 			if (this.clickable) {
+				/**
+				* Evento emitido quando a prop `clickable` é `true` e o `Box` é clicado.
+				* @event boxClick
+				* @type {Event}
+				*/
 				this.$emit('boxClick', true);
 			}
 		},
