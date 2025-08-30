@@ -1987,7 +1987,13 @@
     ],
     "events": [
       {
-        "name": "cardClick"
+        "name": "cardClick",
+        "description": "Evento emitido quando o card é clicado.",
+        "type": {
+          "names": [
+            "Event"
+          ]
+        }
       }
     ],
     "slots": [
@@ -4805,6 +4811,13 @@
       {
         "name": "direction",
         "description": "Define a direção dos itens dentro do FlexBox. \nValores aceitos: 'row', 'row-reverse', 'column', 'column-reverse'.",
+        "tags": {},
+        "values": [
+          "row",
+          "row-reverse",
+          "column",
+          "column-reverse"
+        ],
         "type": {
           "name": "string"
         },
@@ -4816,6 +4829,12 @@
       {
         "name": "wrap",
         "description": "Controla o comportamento de quebra de linha dos itens no FlexBox.\nValores aceitos: 'nowrap', 'wrap', 'wrap-reverse'.",
+        "tags": {},
+        "values": [
+          "nowrap",
+          "wrap",
+          "wrap-reverse"
+        ],
         "type": {
           "name": "string"
         },
@@ -4838,6 +4857,15 @@
       {
         "name": "justify",
         "description": "Controla a distribuição dos itens ao longo do eixo principal. \nValores aceitos: 'flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'space-evenly'.",
+        "tags": {},
+        "values": [
+          "flex-start",
+          "flex-end",
+          "center",
+          "space-between",
+          "space-around",
+          "space-evenly"
+        ],
         "type": {
           "name": "string"
         },
@@ -4849,6 +4877,14 @@
       {
         "name": "align",
         "description": "Define o alinhamento dos itens ao longo do eixo transversal.\nValores aceitos: 'stretch', 'flex-start', 'flex-end', 'center', 'baseline'.",
+        "tags": {},
+        "values": [
+          "stretch",
+          "flex-start",
+          "flex-end",
+          "center",
+          "baseline"
+        ],
         "type": {
           "name": "string"
         },
@@ -4860,13 +4896,7 @@
       {
         "name": "tag",
         "description": "Define a tag que o componente deve utilizar na sua renderização. Valores aceitos: 'div', 'span', 'main', 'footer',\n'form', 'header', 'aside', 'ul',  e 'li'.\nPor padrão o componente renderiza uma div.",
-        "type": {
-          "name": "string"
-        },
-        "defaultValue": {
-          "func": false,
-          "value": "'div'"
-        },
+        "tags": {},
         "values": [
           "div",
           "span",
@@ -4877,7 +4907,14 @@
           "aside",
           "ul",
           "li"
-        ]
+        ],
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'div'"
+        }
       },
       {
         "name": "fluid",

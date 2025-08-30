@@ -81,6 +81,87 @@ Cards são componentes utilizados como containers de propósito geral. À partir
 
 ---
 
+## __Card simples__
+As props `title` `content` e `imageSrc` nos permitem montar um layout simples de Card utilizando apenas props. 
+
+<br />
+
+<CdsCard
+	title="Card Title"
+	content="Some quick example text to build on the card title and make up the bulk of the card's content."
+/>
+
+<br />
+<br />
+<br />
+
+## __Utilizando slots__
+Utilizando os slots `title`, `body`, `footer` e `extra` conseguimos criar Cards mais complexos, como o DashboardCard.  
+
+<br />
+
+<CdsCard>
+	<template #header>45 <small>gestantes</small></template>
+	<template #extra>
+		<cds-badge variant="red">Alerta</cds-badge>
+	</template>
+	<template #body>
+		Não realizam consulta há mais de 30 dias
+	</template>
+	<template #footer>
+		<div class="d-flex justify-content-end">
+			<small><strong>VER LISTA</strong></small>
+		</div>
+	</template>
+</CdsCard>
+
+<br />
+<br />
+<br />
+
+## __Slot icon__
+O Card possui um slot chamado `icon`, que pode ser utilizado para adição de ícones no Card.  
+
+⚠️O Slot `image` tem precedência maior que o slot `icon`. Caso os dois sejam utiliados o slot `image` será exibido
+e o slot `icon` será ocultado.  
+
+<br />
+
+<CdsCard
+	:horizontal="true"
+>
+	<template #icon>
+		<CdsFlexbox align="center" justify="center" style="background: #ecf1fe; height: 48px; width: 48px; border-radius: 8px">
+			<CdsIcon name="home-outline" color="#1A55A8"/>
+		</CdsFlexbox>
+	</template>
+	<template #header>
+		<div style="font-size: 24px; margin-bottom: 4px"> 32 </div>
+	</template>
+	<template #body>
+		UBSs com dados atualizados
+	</template>
+</CdsCard>
+
+<br />
+<br />
+<br />
+
+## __Prop `horizontal`__
+Para layouts horizontais de Card, utilize a prop `horizontal`
+
+<CdsCard
+	imageSrc="https://images.unsplash.com/photo-1677391520535-e03e845dec33?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+	:horizontal="true"
+	:imageWidth="200"
+	title="Card Title"
+	content="Some quick example text to build on the card title and make up the bulk of the card's content."
+/>
+
+<br />
+
+---
+
 ## Props
 
 <APITable
@@ -105,12 +186,6 @@ Cards são componentes utilizados como containers de propósito geral. À partir
 />
 
 ---
-
-## Figma
-
-<FigmaFrame
-	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
-/>
 
 <script setup>
 import { ref } from 'vue';

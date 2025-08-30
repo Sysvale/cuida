@@ -1,73 +1,72 @@
 <template>
-	<div>
-		<div class="demo-container">
+	<div class="demo-container">
+		<component
+			v-if="!$slots.container"
+			:is="component"
+			v-on="innerEvents"
+			v-bind="{...$attrs, ...componentProps }"
+		>
+			<template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
+				<slot v-if="slotProps" :name="slotName" v-bind="slotProps" />
+			</template>
+		</component>
+
+		<div v-else>
 			<component
-				v-if="!$slots.container"
 				:is="component"
 				v-on="innerEvents"
 				v-bind="{...$attrs, ...componentProps }"
-			>
-				<template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
-		  			<slot v-if="slotProps" :name="slotName" v-bind="slotProps" />
-				</template>
-			</component>
+			/>
 
-			<div v-else>
-				<component
-					:is="component"
-					v-on="innerEvents"
-					v-bind="{...$attrs, ...componentProps }"
-				/>
+			<slot name="container" />
+		</div>
 
-				<slot name="container" />
-			</div>
 
-	
-			<span
-				v-if="events"
-				class="show-log-button"
-				@click="showLog = !showLog"
-			>
-				{{logButtonText}}
-			</span>
-	
-			<div
-				v-show="showLog"
-				class="log-container"
-				ref="logContainerRef"
-			>
-				<template v-if="!log.length">
-					<CdsFlexbox fluid align="center" justify="center">
-						<CdsBadge variant="gray">
-							⚡Nenhum evento foi disparado
-						</CdsBadge>
-					</CdsFlexbox>
-				</template>
+		<span
+			v-if="events"
+			class="show-log-button"
+			@click="showLog = !showLog"
+		>
+			{{logButtonText}}
+		</span>
 
-				<template v-for="message in log">
-					<div class="log-text">
-						<div>
-							<small class="log-event">
-								@{{ message.event }}: 
-							</small>
-							<small>
-								{{ JSON.stringify(message.payload, null, 2) }} <i>(payload)</i>
-								<!-- <pre>{{ message.payload }}</pre> <i>(payload)</i> -->
-							</small>
-						</div>
+		<div
+			v-show="showLog"
+			class="log-container"
+			ref="logContainerRef"
+		>
+			<template v-if="!log.length">
+				<CdsFlexbox fluid align="center" justify="center">
+					<CdsBadge variant="gray">
+						⚡Nenhum evento foi disparado
+					</CdsBadge>
+				</CdsFlexbox>
+			</template>
+
+			<template v-for="message in log">
+				<div class="log-text">
+					<div>
+						<small class="log-event">
+							@{{ message.event }}: 
+						</small>
 						<small>
-							{{ message.timestamp }}
+							{{ JSON.stringify(message.payload, null, 2) }} <i>(payload)</i>
+							<!-- <pre>{{ message.payload }}</pre> <i>(payload)</i> -->
 						</small>
 					</div>
-				</template>
-			</div>
+					<small>
+						{{ message.timestamp }}
+					</small>
+				</div>
+			</template>
 		</div>
-		<PlaygroundBuilder
-			:component="component.name"
-			:initial-values="componentProps"
-			@update="handleUpdate"
-		/>
 	</div>
+
+	<PlaygroundBuilder
+		:component="component.name"
+		:initial-values="componentProps"
+		@update="handleUpdate"
+	/>
 </template>
 
 <script setup lang="ts">

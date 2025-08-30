@@ -154,7 +154,15 @@ const props = defineProps({
 	},
 });
 
-const emit = defineEmits(['cardClick']);
+
+const emit = defineEmits([
+	/**
+	* Evento emitido quando o card é clicado.
+	* @event cardClick
+	* @type {Event}
+	*/
+	'cardClick'
+]);
 
 const imageWidthResolver = computed(() => {
 	return props.horizontal ? 'fit-content' : `${props.imageWidth}px`;

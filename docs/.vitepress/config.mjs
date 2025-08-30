@@ -85,13 +85,16 @@ export default defineConfig({
 						{ text: 'Highlight', link: '/components/display/highlight' },
 						// { text: 'Tooltip', link: '/components/display/tooltip' },
 						{ text: 'Table', link: '/components/display/table' },
-						{ text: 'Card', link: '/components/containers/card' },
 					]
 				},
 				{
 					text: 'Containers',
 					items: [
 						{ text: 'Box <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/box' },
+						{ text: 'Card <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/card' },
+
+						{ text: 'FlexBox <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/flexbox' },
+
 					]
 				},
 				{

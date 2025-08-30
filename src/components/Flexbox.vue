@@ -18,6 +18,7 @@ const props = defineProps({
 	/**
 	* Define a direção dos itens dentro do FlexBox. 
 	* Valores aceitos: 'row', 'row-reverse', 'column', 'column-reverse'.
+	* @values row, row-reverse, column, column-reverse
 	*/
 	direction: {
 		type: String,
@@ -26,6 +27,7 @@ const props = defineProps({
 	/**
 	* Controla o comportamento de quebra de linha dos itens no FlexBox.
 	* Valores aceitos: 'nowrap', 'wrap', 'wrap-reverse'.
+	* @values nowrap, wrap, wrap-reverse
 	*/
 	wrap: {
 		type: String,
@@ -43,6 +45,7 @@ const props = defineProps({
 	/**
 	* Controla a distribuição dos itens ao longo do eixo principal. 
 	* Valores aceitos: 'flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'space-evenly'.
+	* @values flex-start, flex-end, center, space-between, space-around, space-evenly
 	*/
 	justify: {
 		type: String,
@@ -51,6 +54,7 @@ const props = defineProps({
 	/**
 	* Define o alinhamento dos itens ao longo do eixo transversal.
 	* Valores aceitos: 'stretch', 'flex-start', 'flex-end', 'center', 'baseline'.
+	* @values stretch, flex-start, flex-end, center, baseline
 	*/
 	align: {
 		type: String,
@@ -60,6 +64,7 @@ const props = defineProps({
 	* Define a tag que o componente deve utilizar na sua renderização. Valores aceitos: 'div', 'span', 'main', 'footer',
 	* 'form', 'header', 'aside', 'ul',  e 'li'.
 	* Por padrão o componente renderiza uma div.
+	* @values div, span, main, footer, form, header, aside, ul, li
 	*/
 	tag: {
 		type: String,
