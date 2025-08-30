@@ -10,21 +10,19 @@ export default {
 	name: 'Skeleton',
 	props: {
 		/**
-         * Largura do skeleton
-         */
+		 * Largura do skeleton
+		 */
 		width: {
 			type: String,
 			default: '20',
 		},
-
 		/**
-         * Altura do skeleton
-         */
+		 * Altura do skeleton
+		 */
 		height: {
 			type: String,
 			default: '16',
 		},
-
 		/**
 		 *  Ajusta de acordo com o componente pai. Não se aplica ao shape 'circle'
 		 */
@@ -32,9 +30,9 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-
 		/**
 		 * Indica o shape do elemento. São duas opções: circle, square
+		 * @values circle, square
 		 */
 		shape: {
 			type: String,
@@ -55,9 +53,7 @@ export default {
 			if (this.fluid) {
 				return {
 					'--width': '100%',
-					'--height': this.height !== '16'
-						? `${this.height}px`
-						: '100%',
+					'--height': `${this.height}px`
 				};
 			}
 

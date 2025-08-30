@@ -10590,6 +10590,11 @@
       {
         "name": "shape",
         "description": "Indica o shape do elemento. São duas opções: circle, square",
+        "tags": {},
+        "values": [
+          "circle",
+          "square"
+        ],
         "type": {
           "name": "string"
         },

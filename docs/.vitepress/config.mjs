@@ -99,7 +99,9 @@ export default defineConfig({
 					items: [
 						{ text: 'LoadingBar <Badge class="badge" type="info">ready - deprecated</Badge>', link: '/components/loaders/loading-bar' },
 						{ text: 'LoadingIndicator <Badge class="badge" type="info">ready</Badge>', link: '/components/loaders/loading-indicator' },
-						{ text: 'Spinner', link: '/components/loaders/spinner' },
+						{ text: 'Spinner <Badge class="badge" type="info">ready</Badge>', link: '/components/loaders/spinner' },
+						{ text: 'Skeleton <Badge class="badge" type="info">ready</Badge>', link: '/components/loaders/skeleton' },
+
 					]
 				},
 				{
