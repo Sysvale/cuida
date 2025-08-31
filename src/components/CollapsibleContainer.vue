@@ -62,7 +62,7 @@ export default {
 		internalValue(newValue) {
 			/**
 			* Evento emitido quando o conteúdo do item é exibido ('true') ou ocultado ('false').
-			* @event expanded
+			* @event update:model-value
 			* @type {Event}
 			*/
 			this.$emit('update:modelValue', newValue);

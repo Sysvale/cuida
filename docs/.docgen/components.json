@@ -2691,7 +2691,7 @@
     ],
     "events": [
       {
-        "name": "expanded",
+        "name": "update:model-value",
         "description": "Evento emitido quando o conteúdo do item é exibido ('true') ou ocultado ('false').",
         "type": {
           "names": [

@@ -101,6 +101,8 @@ export default defineConfig({
 
 						{ text: 'PanelCard <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/panel-card' },
 
+						{ text: 'CollapseibleContainer <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/collapsible-container' },
+
 					]
 				},
 				{
