@@ -218,7 +218,7 @@ export default defineConfig({
 						// { text: 'SecondaryNavigation', link: '/components/navegação/secondary-navigation' },
 						{ text: 'SegmentedControl <Badge class="badge" type="info">ready</Badge>', link: '/components/navegação/segmented-control' },
 						{ text: 'SideBar', link: '/components/navegação/sidebar' },
-						{ text: 'Tabs', link: '/components/navegação/tabs' },
+						{ text: 'Tabs <Badge class="badge" type="info">ready - deprecated</Badge>', link: '/components/navegação/tabs' },
 						// { text: 'Wizard', link: '/components/navegação/wizard' },
 					]
 				},

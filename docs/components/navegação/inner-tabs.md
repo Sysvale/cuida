@@ -23,7 +23,6 @@
 ```js
 <CdsInnerTabs
 	variant="green"
-	:with-background="true"
 	:tabs="dataSet"
 	:activeTab="dataSet[1]"
 	:lazy="false"
@@ -66,7 +65,7 @@
 <PreviewContainer
 	:component="CdsInnerTabs"
 	:events="cdsInnerTabsEvents"
-	:with-background="true"
+	with-background
 	:tabs="dataSet"
 	:activeTab="dataSet[1]"
 	:lazy="false"

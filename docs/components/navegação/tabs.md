@@ -1,16 +1,18 @@
-# Tabs
+# Tabs <Badge type="danger">Deprecated</Badge>
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### Tabs são componentes utilizados para criar soluções de navegação internas.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- For necessário separar o conteúdo por abas e navergar por elas.
+- Não for o caso de utilizar soluções como navbars, sidebars, cards ou links como navegação.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
-
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- Houver muitos itens a serem mostrados como abas.
+- Quando a ação de clique realizada pelo usuário o levar para outra página.
 
 ---
 
@@ -19,10 +21,22 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 ```js
 <CdsTabs
 	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="tabsClick = true"
-/>
+	:tabs="items"
+	:activeTab="items[1]"
+	@right-click="handleRightClick"
+	@tabs-change="handleTabsChange"
+	@add-action="handleAddAction"
+>
+	<template #room-42>
+		Sala de Psicologia
+	</template>
+	<template #room-51>
+		Sala de Fisioterapia
+	</template>
+	<template #room-13>
+		Sala de Otorrinolaringologista
+	</template>
+</CdsTabs>
 ```
 
 ---
@@ -32,7 +46,20 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewContainer
 	:component="CdsTabs"
 	:events="cdsTabsEvents"
-/>
+	with-background
+	:tabs="items"
+	:activeTab="items[1]"
+>
+	<template #room-42>
+		Sala de Psicologia
+	</template>
+	<template #room-51>
+		Sala de Fisioterapia
+	</template>
+	<template #room-13>
+		Sala de Otorrinolaringologista
+	</template>
+</PreviewContainer>
 
 ---
 
@@ -60,9 +87,27 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsTabs from '@/components/Tabs.vue';
 
 const cdsTabsEvents = [
-	'tabs-click'
+	'right-click',
+	'tabs-change',
+	'add-action'
 ];
+
+const items = ref([
+	{
+		title: 'Psicologia',
+		name: 'room-42',
+	},
+	{
+		title: 'Fisioterapia',
+		name: 'room-51',
+	},
+	{
+		title: 'Otorrinolaringologista',
+		name: 'room-13',
+	},
+]);
 </script>
