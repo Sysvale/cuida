@@ -26,35 +26,36 @@ export default {
 	name: 'Link',
 	props: {
 		/**
-		*	URL de redirecionamento.
+		* URL de redirecionamento.
 		*/
 		href: {
 			type: String,
 			required: true,
 		},
 		/**
-		*   Prop utilizada para o redirecionamento do link ser a partir de uma nova aba.
+		* Prop utilizada para o redirecionamento do link ser a partir de uma nova aba.
 		*/
 		newTab: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		*	Texto utilizado no endereço da URL para o usuário.
+		* Texto do link
 		*/
 		text: {
 			type: String,
 			required: true,
 		},
 		/**
-		*	Texto utilizado no endereço da URL para o usuário.
+		* Controla o tamanho da fonte do Link
+		* @values sm, md, lg
 		*/
 		size: {
 			type: String,
 			default: 'md',
 		},
 		/**
-		*	Texto utilizado no endereço da URL para o usuário.
+		* Deixa o link em negrito.
 		*/
 		bold: {
 			type: Boolean,

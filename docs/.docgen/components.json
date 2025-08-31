@@ -6499,7 +6499,7 @@
       },
       {
         "name": "text",
-        "description": "Texto utilizado no endereço da URL para o usuário.",
+        "description": "Texto do link",
         "type": {
           "name": "string"
         },
@@ -6507,7 +6507,13 @@
       },
       {
         "name": "size",
-        "description": "Texto utilizado no endereço da URL para o usuário.",
+        "description": "Controla o tamanho da fonte do Link",
+        "tags": {},
+        "values": [
+          "sm",
+          "md",
+          "lg"
+        ],
         "type": {
           "name": "string"
         },
@@ -6518,7 +6524,7 @@
       },
       {
         "name": "bold",
-        "description": "Texto utilizado no endereço da URL para o usuário.",
+        "description": "Deixa o link em negrito.",
         "type": {
           "name": "boolean"
         },
@@ -12587,7 +12593,7 @@
       },
       {
         "name": "loading",
-        "description": "Altera o estado do pin. Quando true torna o pin em um `Cds-spinner`.",
+        "description": "Altera o estado do pin. Quando true torna o pin em um `CdsSpinner`.",
         "type": {
           "name": "boolean"
         },

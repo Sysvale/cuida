@@ -1,16 +1,17 @@
 # Link
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### Links são componentes usados ​​para navegar para outra página e podem abrir uma nova guia.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- For necessário navegar para outra seção ou página.
+- For necessário redirecionar para um site ou documento externo.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
-
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- For necessário executar uma ação (exemplo: salvar, editar). Nesses casos é recomendado utilizar o componente Button.
 
 ---
 
@@ -18,10 +19,8 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ```js
 <CdsLink
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="linkClick = true"
+	href="https://github.com/Sysvale/cuida"
+	text="Cuida"
 />
 ```
 
@@ -32,6 +31,8 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewContainer
 	:component="CdsLink"
 	:events="cdsLinkEvents"
+	href="https://github.com/Sysvale/cuida"
+	text="Cuida"
 />
 
 ---
@@ -44,14 +45,6 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Eventos
-
-<APITable
-	name="Link"
-	section="events"
-/>
-<br />
-
 ## Slots
 
 <APITable
@@ -61,8 +54,4 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 <script setup>
 import CdsLink from '@/components/Link.vue';
-
-const cdsLinkEvents = [
-	'link-click'
-];
 </script>
