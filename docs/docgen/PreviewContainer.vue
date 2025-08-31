@@ -78,7 +78,6 @@ import {
 	computed,
 	onMounted,
 	useAttrs,
-	useSlots,
 	type Component
 } from 'vue';
 import CdsBadge from '@/components/Badge.vue'
@@ -97,9 +96,6 @@ const props = defineProps<{
 }>();
 
 const $attrs = useAttrs();
-const $slots = useSlots();
-console.log('🚀 -> $slots:', $slots);
-console.log('🚀 -> $TTTT:', $slots.test);
 
 const logContainer = useTemplateRef('logContainerRef');
 const showLog = ref(false);

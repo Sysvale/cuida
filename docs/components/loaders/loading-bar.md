@@ -1,4 +1,4 @@
-# LoadingBar
+# LoadingBar <Badge type="danger">Deprecated</Badge>
 
 ### LoadingBars é um componente utilizado para indicar que o progresso de uma operação ainda não foi finalizado.
 ---

@@ -1,4 +1,4 @@
-# Clickable
+# Clickable <Badge type="danger">Deprecated</Badge>
 
 Componente utilizado para adicionar um wrapper cliclável a componentes que não possuem interação nativa por clique.
 
