@@ -63,6 +63,7 @@
 	</div>
 
 	<PlaygroundBuilder
+		v-if="!static"
 		:component="component.name"
 		:initial-values="componentProps"
 		@update="handleUpdate"
@@ -90,10 +91,15 @@ type LogEntry = {
 	timestamp: string;
 };
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
 	component: Component & { name: string },
 	events?: string[],
-}>();
+	withBackground?: boolean,
+	static?: boolean,
+}>(), {
+	withBackground: false,
+	static: false,
+});
 
 const $attrs = useAttrs();
 
@@ -106,6 +112,8 @@ const innerEvents = ref({});
 const logButtonText = computed(() => {
 	return showLog.value ? 'Ocultar log' : 'Mostrar log'
 });
+
+const containerBackground = computed(() => props.withBackground ? '#F8F9FA' : 'transparent');
 
 function handleUpdate (payload) {
 	componentProps.value = payload;
@@ -147,8 +155,9 @@ onMounted(() => {
 <style scoped>
 .demo-container {
 	position: relative;
-	padding: 20px;
+	padding: 28px;
 	border: 1px solid #DFE5EC;
+	background-color: v-bind(containerBackground);
 	border-radius: 12px;
 	margin: 16px 0;
 }

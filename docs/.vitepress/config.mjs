@@ -206,7 +206,7 @@ export default defineConfig({
 					text: 'Navegação',
 					items: [
 						{ text: 'Breadcrumb <Badge class="badge" type="info">ready</Badge>', link: '/components/navegação/breadcrumb' },
-						{ text: 'InnerTabs', link: '/components/navegação/inner-tabs' },
+						{ text: 'InnerTabs <Badge class="badge" type="info">ready</Badge>', link: '/components/navegação/inner-tabs' },
 						{ text: 'Link <Badge class="badge" type="info">ready</Badge>', link: '/components/navegação/link' },
 						
 						{ text: 'MobileNavbar', link: '/components/navegação/mobile-navbar' },

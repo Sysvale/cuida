@@ -1,16 +1,20 @@
 # InnerTabs
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### InnerTabs são componentes utilizados para criar soluções de navegação interas às Tabs
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- Dentro de tabs, houver necessidade de mais um nível na estrutura de navegação;
+- Em casos que for muito importante mostrar todo o título das abas;
+- For necessário separar o conteúdo por abas e navergar por elas;
+- Não for o caso de utilizar soluções como navbars, sidebars, cards ou links como navegação;
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
-
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- Houver muitos itens a serem mostrados como abas.
+- Quando a ação de clique realizada pelo usuário o levar para outra página.
 
 ---
 
@@ -19,10 +23,40 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 ```js
 <CdsInnerTabs
 	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="innerTabsClick = true"
-/>
+	:with-background="true"
+	:tabs="dataSet"
+	:activeTab="dataSet[1]"
+	:lazy="false"
+	:headerLeft="false"
+>
+	<template #overview>
+		Overview
+	</template>
+	<template #indicator-1>
+		Conteúdo da tab-1
+	</template>
+	<template #prision-tab>
+		Você não pode sair dessa aba pois a propriedade "disableTabChange" está com o valor "true" neste item na propriedade "tabs"
+	</template>
+	<template #indicator-3>
+		Conteúdo da tab-3
+	</template>
+	<template #indicator-4>
+		Conteúdo da tab-4
+	</template>
+	<template #indicator-5>
+		Conteúdo da tab-5
+	</template>
+	<template #indicator-6>
+		Conteúdo da tab-6
+	</template>
+	<template #indicator-7>
+		Conteúdo da tab-7
+	</template>
+	<template #indicator-8>
+		Conteúdo da tab-8
+	</template>
+</CdsInnerTabs>
 ```
 
 ---
@@ -32,7 +66,83 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewContainer
 	:component="CdsInnerTabs"
 	:events="cdsInnerTabsEvents"
-/>
+	:with-background="true"
+	:tabs="dataSet"
+	:activeTab="dataSet[1]"
+	:lazy="false"
+	:headerLeft="false"
+>
+	<template #overview>
+		Overview
+	</template>
+	<template #indicator-1>
+		Conteúdo da tab-1
+	</template>
+	<template #prision-tab>
+		Você não pode sair dessa aba pois a propriedade "disableTabChange" está com o valor "true" neste item na propriedade "tabs"
+	</template>
+	<template #indicator-3>
+		Conteúdo da tab-3
+	</template>
+	<template #indicator-4>
+		Conteúdo da tab-4
+	</template>
+	<template #indicator-5>
+		Conteúdo da tab-5
+	</template>
+	<template #indicator-6>
+		Conteúdo da tab-6
+	</template>
+	<template #indicator-7>
+		Conteúdo da tab-7
+	</template>
+	<template #indicator-8>
+		Conteúdo da tab-8
+	</template>
+</PreviewContainer>
+
+---
+
+## __Com scroll horizontal__
+Quando o conjunto de abas tiver uma largura maior que o container, será exibida uma barra de scroll horizonal para que o layout não seja quebrado em linhas ou fique oculto.
+
+<PreviewContainer
+	:component="CdsInnerTabs"
+	with-background
+	static
+	:tabs="dataSet2"
+	:activeTab="dataSet2[1]"
+	:lazy="false"
+	:headerLeft="false"
+>
+	<template #overview>
+		Overview
+	</template>
+	<template #indicator-1>
+		Conteúdo da tab-1
+	</template>
+	<template #prision-tab>
+		Você não pode sair dessa aba pois a propriedade "disableTabChange" está com o valor "true" neste item na propriedade "tabs"
+	</template>
+	<template #indicator-3>
+		Conteúdo da tab-3
+	</template>
+	<template #indicator-4>
+		Conteúdo da tab-4
+	</template>
+	<template #indicator-5>
+		Conteúdo da tab-5
+	</template>
+	<template #indicator-6>
+		Conteúdo da tab-6
+	</template>
+	<template #indicator-7>
+		Conteúdo da tab-7
+	</template>
+	<template #indicator-8>
+		Conteúdo da tab-8
+	</template>
+</PreviewContainer>
 
 ---
 
@@ -60,9 +170,74 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsInnerTabs from '@/components/InnerTabs.vue';
 
 const cdsInnerTabsEvents = [
-	'innerTabs-click'
+	'tab-click',
+	'change'
 ];
+
+const dataSet = ref([
+	{
+		title: 'Visão geral',
+		name: 'overview',
+	},
+	{
+		title: 'Indicador 1',
+		name: 'indicator-1',
+	},
+	{
+		title: 'Aba Prisão',
+		name: 'prision-tab',
+		disableTabChange: true,
+	},
+	{
+		title: 'Indicador 3',
+		name: 'indicator-3',
+	},
+	{
+		title: 'Indicador 4',
+		name: 'indicator-4',
+	}
+]);
+
+const dataSet2 = ref([
+	{
+		title: 'Visão geral',
+		name: 'overview',
+	},
+	{
+		title: 'Indicador 1',
+		name: 'indicator-1',
+	},
+	{
+		title: 'Indicador 2',
+		name: 'indicator-2',
+	},
+	{
+		title: 'Indicador 3',
+		name: 'indicator-3',
+	},
+	{
+		title: 'Indicador 4',
+		name: 'indicator-4',
+	},
+	{
+		title: 'Indicador 5',
+		name: 'indicator-5',
+	},
+	{
+		title: 'Indicador com o nome absurdamente grande 6',
+		name: 'indicator-6',
+	},
+	{
+		title: 'Indicador 7',
+		name: 'indicator-7',
+	},
+	{
+		title: 'Indicador 8',
+		name: 'indicator-8',
+	},
+]);
 </script>

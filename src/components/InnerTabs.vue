@@ -85,6 +85,7 @@ export default {
 		 * Cor da borda que indica o item ativo.
 		 * Existem algumas cores predefinidas seguindo os guias do Cuida, são elas: 
 		 * `turquoise`, `green`, `blue`, `violet`, `pink`, `red`, `orange`, `amber` e `gray`.
+		 * @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
 		 */
 		variant: {
 			type: String,
