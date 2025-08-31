@@ -81,9 +81,6 @@ O componente List é utilizado para exibir uma listagem de itens com um título 
 <script setup>
 import { ref } from 'vue';
 import CdsList from '@/components/List.vue';
-import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
-import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 const cdsListEvents = [
 	'click'

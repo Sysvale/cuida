@@ -42,13 +42,41 @@ export default defineConfig({
 						{ text: 'Button <Badge class="badge" type="info">ready</Badge>', link: '/components/forms/button' },
 						{ text: 'FlatButton <Badge class="badge" type="info">ready</Badge>', link: '/components/forms/flat-button' },
 						{ text: 'BaseInput', link: '/components/forms/base-input' },
-						{ text: 'TextInput', link: '/components/forms/text-input' },
-						{ text: 'TextArea', link: '/components/forms/text-area' },
-						{ text: 'Select', link: '/components/forms/select' },
+						{ text: 'BaseMobileInput', link: '/components/forms/base-mobile-input' },
 						{ text: 'Checkbox', link: '/components/forms/checkbox' },
+						{ text: 'CheckboxGroup', link: '/components/forms/checkbox-group' },
+						{ text: 'Chevron', link: '/components/forms/chevron' },
+						{ text: 'ColorPicker', link: '/components/forms/color-picker' },
+						{ text: 'Combobox', link: '/components/forms/combobox' },
+						{ text: 'DateInput', link: '/components/forms/date-input' },
+						{ text: 'DynamicInputList', link: '/components/forms/dynamic-input-list' },
+						{ text: 'FileInput', link: '/components/forms/file-input' },
+						{ text: 'FilterSelect', link: '/components/forms/filter-select' },
+						{ text: 'FloatingActionButton', link: '/components/forms/floating-action-button' },
+						{ text: 'IconButton', link: '/components/forms/icon-button' },
+						{ text: 'InlineDateInput', link: '/components/forms/inline-date-input' },
+						{ text: 'Label', link: '/components/forms/label' },
+						{ text: 'MonthAndYearPicker', link: '/components/forms/month-and-year-picker' },
+						{ text: 'MultiFileInput', link: '/components/forms/multi-file-input' },
+						{ text: 'Multiselect', link: '/components/forms/multiselect' },
+						{ text: 'NumberInput', link: '/components/forms/number-input' },
+						{ text: 'PasswordInput', link: '/components/forms/password-input' },
+						{ text: 'PinInput', link: '/components/forms/pin-input' },
 						{ text: 'Radio', link: '/components/forms/radio' },
+						{ text: 'RadioButtonGroup', link: '/components/forms/radio-button-group' },
+						{ text: 'RequiredIndicator', link: '/components/forms/required-indicator' },
+						{ text: 'RichTooltip', link: '/components/forms/rich-tooltip' },
+						{ text: 'SearchInput', link: '/components/forms/search-input' },
+						{ text: 'SegmentedControl', link: '/components/forms/segmented-control' },
+						{ text: 'Select', link: '/components/forms/select' },
+						{ text: 'Slider', link: '/components/forms/slider' },
+						{ text: 'Stepper', link: '/components/forms/stepper' },
+						{ text: 'StepperInput', link: '/components/forms/stepper-input' },
 						{ text: 'Switch', link: '/components/forms/switch' },
-						{ text: 'Slider', link: '/components/forms/slider' }
+						{ text: 'TextArea', link: '/components/forms/text-area' },
+						{ text: 'TextInput', link: '/components/forms/text-input' },
+						{ text: 'TimeInput', link: '/components/forms/time-input' },
+						{ text: 'WebcamModal', link: '/components/forms/webcam-modal' }
 					]
 				},
 				{
@@ -56,43 +84,67 @@ export default defineConfig({
 					items: [
 						{ text: 'ActionBar <Badge class="badge" type="info">ready</Badge>', link: '/components/display/action-bar' },
 						{ text: 'ActionsList <Badge class="badge" type="info">ready</Badge>', link: '/components/display/actions-list' },
+						{ text: 'AlertCard', link: '/components/display/alert-card' },
 						{ text: 'Avatar', link: '/components/display/avatar' },
 						{ text: 'AvatarGroup', link: '/components/display/avatar-group' },
 						{ text: 'Badge <Badge class="badge" type="info">ready</Badge>', link: '/components/display/badge' },
 						{ text: 'CalloutCard', link: '/components/display/callout-card' },
 						{ text: 'Carousel', link: '/components/display/carousel' },
+						{ text: 'Chip', link: '/components/display/chip' },
 						{ text: 'DataTable', link: '/components/display/data-table' },
 						{ text: 'Dropdown', link: '/components/display/dropdown' },
 						{ text: 'DropdownButton', link: '/components/display/dropdown-button' },
 						{ text: 'EmptyState <Badge class="badge" type="info">ready</Badge>', link: '/components/display/empty-state' },
+						{ text: 'FileViewer', link: '/components/display/file-viewer' },
 						{ text: 'Highlight', link: '/components/display/highlight' },
-						// { text: 'Tooltip', link: '/components/display/tooltip' },
+						{ text: 'Icon', link: '/components/display/icon' },
+						{ text: 'Link', link: '/components/display/link' },
+						{ text: 'List', link: '/components/display/list' },
+						{ text: 'ProgressBar', link: '/components/display/progress-bar' },
+						{ text: 'ProgressCircular', link: '/components/display/progress-circular' },
+						{ text: 'Pulsar', link: '/components/display/pulsar' },
 						{ text: 'Table', link: '/components/display/table' },
+						{ text: 'Timeline', link: '/components/display/timeline' },
+						{ text: 'TimelineItem', link: '/components/display/timeline-item' },
+						{ text: 'Tooltip', link: '/components/display/tooltip' },
 					]
 				},
 				{
 					text: 'Containers',
 					items: [
+						{ text: 'AppBar', link: '/components/containers/app-bar' },
 						{ text: 'Box <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/box' },
 						{ text: 'Card <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/card' },
 						{ text: 'CarouselController <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/carousel-controller' },
 						{ text: 'CollapseibleContainer <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/collapsible-container' },
-						
 						{ text: 'DashboardCard <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/dashboard-card' },
-						
 						{ text: 'Divider <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/divider' },
-
 						{ text: 'FlexBox <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/flexbox' },
-						{ text: 'PanelCard <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/panel-card' },
-
 						{ text: 'Grid', link: '/components/containers/grid' },
-						{ text: 'Scrollable', link: '/components/containers/scrollable' }
+						{ text: 'GridItem', link: '/components/containers/grid-item' },
+						{ text: 'PageContainer', link: '/components/containers/page-container' },
+						{ text: 'PageHeader', link: '/components/containers/page-header' },
+						{ text: 'PageLayout', link: '/components/containers/page-layout' },
+						{ text: 'PanelCard <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/panel-card' },
+						{ text: 'Scrollable', link: '/components/containers/scrollable' },
+						{ text: 'Tile', link: '/components/containers/tile' },
 					]
 				},
 				{
 					text: 'Overlay',
 					items: [
+						{ text: 'BottomSheet', link: '/components/overlays/bottom-sheet' },
+						{ text: 'Dialog', link: '/components/overlays/dialog' },
+						{ text: 'DialogModal', link: '/components/overlays/dialog-modal' },
+						{ text: 'FloatingAssistant', link: '/components/overlays/floating-assistant' },
+						{ text: 'InteractionBlockingOverlay', link: '/components/overlays/interaction-blocking-overlay' },
+						{ text: 'Modal', link: '/components/overlays/modal' },
+						{ text: 'Popover', link: '/components/overlays/popover' },
 						{ text: 'QuickActionBar', link: '/components/overlays/quick-action-bar' },
+						{ text: 'SideSheet', link: '/components/overlays/side-sheet' },
+						{ text: 'Toast', link: '/components/overlays/toast' },
+						{ text: 'ToastContainer', link: '/components/overlays/toast-container' },
+						{ text: 'TopAppBar', link: '/components/overlays/top-app-bar' },
 					]
 				},
 				{
@@ -104,7 +156,6 @@ export default defineConfig({
 						{ text: 'Skeleton <Badge class="badge" type="info">ready</Badge>', link: '/components/loaders/skeleton' },
 						{ text: 'SkeletonText <Badge class="badge" type="info">ready - deprecated</Badge>', link: '/components/loaders/skeleton-text' },
 						{ text: 'Spinner <Badge class="badge" type="info">ready</Badge>', link: '/components/loaders/spinner' },
-
 					]
 				},
 				{
@@ -114,7 +165,6 @@ export default defineConfig({
 						{ text: 'Image <Badge class="badge" type="info">ready</Badge>', link: '/components/utils/image' },
 						{ text: 'Spacer', link: '/components/utils/spacer' },
 						{ text: 'Truncate <Badge class="badge" type="info">ready</Badge>', link: '/components/utils/truncate' },
-
 					]
 				},
 				{
@@ -122,6 +172,12 @@ export default defineConfig({
 					items: [
 						{ text: 'BarChart', link: '/components/charts/bar-chart' },
 						{ text: 'DonutChart', link: '/components/charts/donut-chart' },
+						{ text: 'GaugeChart', link: '/components/charts/gauge-chart' },
+						{ text: 'LineChart', link: '/components/charts/line-chart' },
+						{ text: 'PieChart', link: '/components/charts/pie-chart' },
+						{ text: 'PolarAreaChart', link: '/components/charts/polar-area-chart' },
+						{ text: 'RadialBarChart', link: '/components/charts/radial-bar-chart' },
+						{ text: 'StackedBarChart', link: '/components/charts/stacked-bar-chart' },
 					]
 				},
 				{
@@ -139,11 +195,17 @@ export default defineConfig({
 				{
 					text: 'Navegação',
 					items: [
-						{ text: 'NavBar', link: '/components/navegação/navbar' },
-						{ text: 'SideBar', link: '/components/navegação/sidebar' },
 						{ text: 'Breadcrumb', link: '/components/navegação/breadcrumb' },
+						{ text: 'InnerTabs', link: '/components/navegação/inner-tabs' },
+						{ text: 'MobileNavbar', link: '/components/navegação/mobile-navbar' },
+						{ text: 'MobileNavigation', link: '/components/navegação/mobile-navigation' },
+						{ text: 'MobileStepperInput', link: '/components/navegação/mobile-stepper-input' },
+						{ text: 'NavBar', link: '/components/navegação/navbar' },
+						{ text: 'Pagination', link: '/components/navegação/pagination' },
+						{ text: 'SecondaryNavigation', link: '/components/navegação/secondary-navigation' },
+						{ text: 'SideBar', link: '/components/navegação/sidebar' },
 						{ text: 'Tabs', link: '/components/navegação/tabs' },
-						{ text: 'Pagination', link: '/components/navegação/pagination' }
+						{ text: 'Wizard', link: '/components/navegação/wizard' },
 					]
 				},
 			]

@@ -1,68 +1,68 @@
 # WebcamModal
 
-Um componente para capturar fotos diretamente da webcam do dispositivo, ao capturar uma foto o componente emite um File.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- É necessário capturar uma imagem diretamente do dispositivo do usuário, como para envio de documentos ou selfies.
-- Deseja-se integrar a captura de imagens com outros fluxos do sistema sem exigir uma aplicação externa.
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- Não há acesso a permissões de câmera no dispositivo do usuário (como em alguns navegadores ou ambientes com restrições).
-- É necessário capturar vídeos em vez de imagens estáticas.
-- A interface do usuário exige múltiplas interações modais (cascatas ou modais aninhados).
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+
+---
+
+## Uso
+
+```js
+<CdsWebcamModal
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="webcamModalClick = true"
+/>
+```
 
 ---
 
 ## Preview
 
-<script setup>
-import WebcamModal from '@/components/WebcamModal.vue';
+<PreviewContainer
+	:component="CdsWebcamModal"
+	:events="cdsWebcamModalEvents"
+/>
 
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <WebcamModal />
-</div>
+---
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
+<APITable
+	name="WebcamModal"
+	section="props"
+/>
+<br />
 
 ## Eventos
 
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+<APITable
+	name="WebcamModal"
+	section="events"
+/>
+<br />
 
-## Uso
+## Slots
 
-```vue
-<template>
-  <cds-webcammodal
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
+<APITable
+	name="WebcamModal"
+	section="slots"
+/>
 
 <script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
-```
+import CdsWebcamModal from '@/components/WebcamModal.vue';
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+const cdsWebcamModalEvents = [
+	'webcamModal-click'
+];
+</script>

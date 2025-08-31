@@ -1,55 +1,68 @@
 # PageLayout
 
-O PageLayout é uma coleção de componentes que permite a criação de telas padronizadas com navegação primária na vertical e navegação secundária na horizontal.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Preview
+### Quando usar
 
-<script setup>
-import PageLayout from '@/components/PageLayout.vue';
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
+### Quando não usar
 
-<div class="demo-container">
-  <PageLayout />
-</div>
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-pagelayout
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsPageLayout
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="pageLayoutClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsPageLayout"
+	:events="cdsPageLayoutEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="PageLayout"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="PageLayout"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="PageLayout"
+	section="slots"
+/>
+
+<script setup>
+import CdsPageLayout from '@/components/PageLayout.vue';
+
+const cdsPageLayoutEvents = [
+	'pageLayout-click'
+];
+</script>

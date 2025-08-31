@@ -1,67 +1,68 @@
 # MultiFileInput
 
-O MultiFileInput é um componente que permite ao usuário selecionar e carregar múltiplos arquivos de forma organizada.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- Quando o usuário precisa enviar múltiplos arquivos em um único formulário.
-- Para situações onde é importante visualizar a lista de arquivos selecionados antes de finalizar o envio.
-- Quando o espaço na interface é limitado, mas a seleção de vários arquivos é um requisito.
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- Quando apenas um único arquivo precisa ser enviado (nesse caso, um input de arquivo simples é suficiente).
-- Se a lista de arquivos selecionados pode se tornar muito longa, ocupando espaço excessivo na tela e prejudicando a usabilidade.
-- Em interfaces onde a complexidade do componente pode confundir o usuário, especialmente se o envio de múltiplos arquivos não for uma necessidade comum.
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import MultiFileInput from '@/components/MultiFileInput.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <MultiFileInput />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-multifileinput
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsMultiFileInput
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="multiFileInputClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsMultiFileInput"
+	:events="cdsMultiFileInputEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="MultiFileInput"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="MultiFileInput"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="MultiFileInput"
+	section="slots"
+/>
+
+<script setup>
+import CdsMultiFileInput from '@/components/MultiFileInput.vue';
+
+const cdsMultiFileInputEvents = [
+	'multiFileInput-click'
+];
+</script>

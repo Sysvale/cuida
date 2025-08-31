@@ -68,9 +68,6 @@ Dropdown são componentes utilizados para ativar popovers contendo filtros para 
 <script setup>
 import { ref } from 'vue';
 import CdsDropdown from '@/components/Dropdown.vue';
-import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
-import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 const cdsDropdownEvents = [
 	'click'

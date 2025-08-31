@@ -1,66 +1,68 @@
 # Pagination
 
-Pagination são indicadores de status utilizados para tornar evidentes metadados importates.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- For necessário mostrar status associados com a lógica de negócio ou ações do usuário.
-- O conteúdo a ser mostrado for *readonly*.
-- For preciso categorizar algo.
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- O conteúdo que a Pagination representa puder ser setado ou removido pelo usuário.
-- O click no componente precisar executar uma ação ou funcionalidade.
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import Pagination from '@/components/Pagination.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <Pagination />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-pagination
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsPagination
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="paginationClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsPagination"
+	:events="cdsPaginationEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="Pagination"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="Pagination"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="Pagination"
+	section="slots"
+/>
+
+<script setup>
+import CdsPagination from '@/components/Pagination.vue';
+
+const cdsPaginationEvents = [
+	'pagination-click'
+];
+</script>

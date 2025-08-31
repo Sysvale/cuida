@@ -42,7 +42,7 @@
 			Toggle LoadingIndicator
 		</CdsButton>
 	</template>
-</DemoContainer>
+</PreviewContainer>
 
 ---
 

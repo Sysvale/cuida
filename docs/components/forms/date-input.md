@@ -1,67 +1,68 @@
 # DateInput
 
-DateInputs permitem que o usuário selecione uma data ou um intervalo de datas através de um calendário interativo.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- O usuário precisar selecionar uma data específica (ex: data de nascimento, data de agendamento, data de referência).
-- O usuário precisar selecionar um período (data de início e fim), habilitando a propriedade range.
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- O usuário precisar selecionar um horário junto com a data (este componente lida apenas com datas).
-- O usuário precisar selecionar múltiplas datas que não formam um intervalo contínuo.
-- For preciso selecionar a penas mês ou ano, sem especificar o dia.
-- For preciso digitar a data;
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import DateInput from '@/components/DateInput.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <DateInput />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-dateinput
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsDateInput
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="dateInputClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsDateInput"
+	:events="cdsDateInputEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="DateInput"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="DateInput"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="DateInput"
+	section="slots"
+/>
+
+<script setup>
+import CdsDateInput from '@/components/DateInput.vue';
+
+const cdsDateInputEvents = [
+	'dateInput-click'
+];
+</script>

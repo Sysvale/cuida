@@ -68,9 +68,6 @@ O componente NumberInput permite que os usuários insiram e editem valores numé
 <script setup>
 import { ref } from 'vue';
 import CdsNumberInput from '@/components/NumberInput.vue';
-import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
-import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 const cdsNumberInputEvents = [
 	'update:modelValue',

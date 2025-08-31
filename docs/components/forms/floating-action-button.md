@@ -1,69 +1,68 @@
-# FloatingActionButton (FAB)
+# FloatingActionButton
 
-O FloatingActionButton é um botão que flutua sobre a interface do usuário, sempre visível, usado para promover uma ação primária ou frequente em um aplicativo.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- Para destacar a ação principal ou mais importante em uma tela.
-- Em aplicações móveis ou responsivas onde é necessário um acesso rápido a uma funcionalidade específica.
-- Quando a interface precisa de um elemento de ação que seja altamente visível e de fácil acesso.
-- Em telas onde o espaço é limitado e um botão tradicional ocuparia muito espaço ou distrairia o usuário.
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- Quando há múltiplas ações principais com a mesma importância, pois o FAB é destinado a uma única ação primária.
-- Em telas onde a ação não é crítica ou não é frequentemente utilizada pelo usuário.
-- Em interfaces que já possuem muitos elementos flutuantes ou sobrepostos, para evitar poluição visual.
-- Em telas grandes (desktop), onde um botão tradicional ou outro componente de interface pode ser mais apropriado.
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import FloatingActionButton from '@/components/FloatingActionButton.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <FloatingActionButton />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-floatingactionbutton
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsFloatingActionButton
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="floatingActionButtonClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsFloatingActionButton"
+	:events="cdsFloatingActionButtonEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="FloatingActionButton"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="FloatingActionButton"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="FloatingActionButton"
+	section="slots"
+/>
+
+<script setup>
+import CdsFloatingActionButton from '@/components/FloatingActionButton.vue';
+
+const cdsFloatingActionButtonEvents = [
+	'floatingActionButton-click'
+];
+</script>

@@ -23,7 +23,7 @@ Componente auxiliar utilizado para truncar texto adicionando a ele reticências
   width="200"
 >
   Texto longo para testar o truncate
-</DemoContainer>
+</PreviewContainer>
 
 ---
 

@@ -82,7 +82,7 @@ Caso se deseje marcar apenas uma parte da string passada via slot, é possível 
 	:component="CdsHighlight"
 >
 	O rato ROeu A RoUpA do rei de ROMA com eficácia, força e determinação.
-</DemoContainer>
+</PreviewContainer>
 
 ---
 
@@ -113,7 +113,5 @@ Caso se deseje marcar apenas uma parte da string passada via slot, é possível 
 <script setup>
 import { ref } from 'vue';
 import CdsHighlight from '@/components/Highlight.vue';
-import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
-import FigmaFrame from '../../docgen/FigmaFrame.vue';
+
 </script>

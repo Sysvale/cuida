@@ -1,64 +1,68 @@
 # Timeline
 
-Timelines são componentes utilizados para apresentar informações em ordem cronológica.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- Se há um conjunto de informações que pode ser categorizado por data.
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- Se precisa de um componente de stepper.
-- A ordem das informações que você está apresentando é irrelevante.
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import Timeline from '@/components/Timeline.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <Timeline />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-timeline
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsTimeline
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="timelineClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsTimeline"
+	:events="cdsTimelineEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="Timeline"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="Timeline"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="Timeline"
+	section="slots"
+/>
+
+<script setup>
+import CdsTimeline from '@/components/Timeline.vue';
+
+const cdsTimelineEvents = [
+	'timeline-click'
+];
+</script>

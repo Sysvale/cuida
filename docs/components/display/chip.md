@@ -70,9 +70,6 @@ Chips ajudam as pessoas a inserir informações, fazer seleções, filtrar conte
 <script setup>
 import { ref } from 'vue';
 import CdsChip from '@/components/Chip.vue';
-import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
-import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 const cdsChipEvents = [
 	'click'

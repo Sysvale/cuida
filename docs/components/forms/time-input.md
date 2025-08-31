@@ -1,63 +1,68 @@
 # TimeInput
 
-TimeInputs são componentes utilizados para inserir horários específicos no formato simples: hora e minutos.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- For necessário definir horários de eventos, agendamentos, alarmes e etc…
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- For necessário mostrar opções disponíveis de horários para seleção.
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import TimeInput from '@/components/TimeInput.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <TimeInput />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-timeinput
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsTimeInput
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="timeInputClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsTimeInput"
+	:events="cdsTimeInputEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="TimeInput"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="TimeInput"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="TimeInput"
+	section="slots"
+/>
+
+<script setup>
+import CdsTimeInput from '@/components/TimeInput.vue';
+
+const cdsTimeInputEvents = [
+	'timeInput-click'
+];
+</script>

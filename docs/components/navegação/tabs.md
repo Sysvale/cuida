@@ -1,65 +1,68 @@
 # Tabs
 
-Tabs são componentes utilizados para criar soluções de navegação internas.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- For necessário separar o conteúdo por abas e navergar por elas.
-- Não for o caso de utilizar soluções como navbars, sidebars, cards ou links como navegação.
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- Houver muitos itens a serem mostrados como abas.
-- Quando a ação de clique realizada pelo usuário o levar para outra página.
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import Tabs from '@/components/Tabs.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <Tabs />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-tabs
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsTabs
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="tabsClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsTabs"
+	:events="cdsTabsEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="Tabs"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="Tabs"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="Tabs"
+	section="slots"
+/>
+
+<script setup>
+import CdsTabs from '@/components/Tabs.vue';
+
+const cdsTabsEvents = [
+	'tabs-click'
+];
+</script>

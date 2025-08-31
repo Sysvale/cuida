@@ -1,66 +1,68 @@
 # Toast
 
-Toasts são componentes utilizados para prover feedback breve e notificações não intrusivas sobre o status de uma ação ou evento do sistema.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- Para exibir mensagens de feedback temporárias (ex: "Item salvo com sucesso", "Erro ao processar solicitação").
-- Para notificar o usuário sobre eventos do sistema que não exigem ação imediata (ex: "Arquivo processado com sucesso").
-- Quando a informação a ser exibida é importante, mas não crítica a ponto de interromper o fluxo do usuário.
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- Para mensagens críticas que exigem a atenção e confirmação imediata do usuário (considere usar `Alert` ou `DialogModal`).
-- Quando a mensagem precisa permanecer visível indefinidamente até que o usuário a dispense manualmente (considere usar `Alert`).
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import Toast from '@/components/Toast.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <Toast />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-toast
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsToast
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="toastClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsToast"
+	:events="cdsToastEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="Toast"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="Toast"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="Toast"
+	section="slots"
+/>
+
+<script setup>
+import CdsToast from '@/components/Toast.vue';
+
+const cdsToastEvents = [
+	'toast-click'
+];
+</script>

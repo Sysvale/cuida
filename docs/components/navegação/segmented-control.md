@@ -1,55 +1,68 @@
 # SegmentedControl
 
-SegmentedControls são componentes que permitem que o usuário visualize versões alternativas de uma feature ou interface
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Preview
+### Quando usar
 
-<script setup>
-import SegmentedControl from '@/components/SegmentedControl.vue';
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
+### Quando não usar
 
-<div class="demo-container">
-  <SegmentedControl />
-</div>
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-segmentedcontrol
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsSegmentedControl
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="segmentedControlClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsSegmentedControl"
+	:events="cdsSegmentedControlEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="SegmentedControl"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="SegmentedControl"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="SegmentedControl"
+	section="slots"
+/>
+
+<script setup>
+import CdsSegmentedControl from '@/components/SegmentedControl.vue';
+
+const cdsSegmentedControlEvents = [
+	'segmentedControl-click'
+];
+</script>

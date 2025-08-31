@@ -72,9 +72,6 @@ AvatarGroups exibem vários avatares agrupados em forma de pilha.
 <script setup>
 import { ref } from 'vue';
 import CdsAvatarGroup from '@/components/AvatarGroup.vue';
-import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
-import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 const cdsAvatarGroupEvents = [];
 </script>

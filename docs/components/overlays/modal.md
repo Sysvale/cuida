@@ -1,66 +1,68 @@
 # Modal
 
-Modais são como dialogs personolizados, janelas que exibem um conteúdo adicional em uma camada acima da página atual, com uma sobreposição de superfície (overlay) cobrindo a página e tornando-a temporariamente inacessível.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- For necessário notificar o usuário de algum processo;
-- For necessário uma tomada de decisão para completar uma ação;
-- Se deseja realizar ação dentro de uma página paralelo ao fluxo principal da mesma;
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- For necessário exibir uma grande quantidade de informação ou fluxos complexos;
-- For necessário ser usado em conjunto com outros modais e popovers (cascata).
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import Modal from '@/components/Modal.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <Modal />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-modal
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsModal
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="modalClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsModal"
+	:events="cdsModalEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="Modal"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="Modal"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="Modal"
+	section="slots"
+/>
+
+<script setup>
+import CdsModal from '@/components/Modal.vue';
+
+const cdsModalEvents = [
+	'modal-click'
+];
+</script>

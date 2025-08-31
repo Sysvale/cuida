@@ -1,65 +1,68 @@
 # AlertCard
 
-AlertCards são componentes utilizados para transmitir mensagens contextuais importantes e apresentar possíveis ações a serem tomadas em cima delas.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- For necessário mostrar informações contextuais extensas.
-- For necessário mostrar informações contextuais que requerem ações do usuário sobre elas.
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- For necessário mostrar informações de maneira discreta ou que pode ser ocultada. Para esse caso, recomendamos o uso de b-toasts.
-- For necessário mostrar informações contextuais curtas.
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import AlertCard from '@/components/AlertCard.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <AlertCard />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-alertcard
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsAlertCard
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="alertCardClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsAlertCard"
+	:events="cdsAlertCardEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="AlertCard"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="AlertCard"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="AlertCard"
+	section="slots"
+/>
+
+<script setup>
+import CdsAlertCard from '@/components/AlertCard.vue';
+
+const cdsAlertCardEvents = [
+	'alertCard-click'
+];
+</script>

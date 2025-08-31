@@ -1,61 +1,68 @@
 # CalloutCard
 
-## Quando usar
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-- For necessário mostrar atalhos, dicas ou tutoriais de uma forma não intrusiva e visualmente marcante.
+### Quando usar
 
-## Quando não usar
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-- For necessário mostrar mensagens relacionadas a mudanças ou condições especiais que ocorrem em um componente ou página. Para estes casos, recomenda-se o uso do Alert.
+### Quando não usar
 
-## Preview
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-<script setup>
-import CalloutCard from '@/components/CalloutCard.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <CalloutCard />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-calloutcard
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsCalloutCard
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="calloutCardClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsCalloutCard"
+	:events="cdsCalloutCardEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="CalloutCard"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="CalloutCard"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="CalloutCard"
+	section="slots"
+/>
+
+<script setup>
+import CdsCalloutCard from '@/components/CalloutCard.vue';
+
+const cdsCalloutCardEvents = [
+	'calloutCard-click'
+];
+</script>

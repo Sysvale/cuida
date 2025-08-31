@@ -89,9 +89,6 @@ Grids são componentes que usam a API das grids CSS para prover estruturas de or
 <script setup>
 import { ref } from 'vue';
 import CdsGrid from '@/components/Grid.vue';
-import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
-import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 const cdsGridEvents = [];
 </script>

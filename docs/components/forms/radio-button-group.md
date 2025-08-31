@@ -1,65 +1,68 @@
 # RadioButtonGroup
 
-RadioButtonsGroup são radio buttons customizados para facilitar a seleção e feedback.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- As opções que o componente busca prover são mutuamente exclusivas.
-- For necessário utilizar um ```<input type="radio"``` />.
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- Duas ou mais opções puderem ser selecionadas ao mesmo tempo.
-- Houver 4 ou mais opções. Prefira Dropdowns nesses casos.
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import RadioButtonGroup from '@/components/RadioButtonGroup.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <RadioButtonGroup />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-radiobuttongroup
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsRadioButtonGroup
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="radioButtonGroupClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsRadioButtonGroup"
+	:events="cdsRadioButtonGroupEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="RadioButtonGroup"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="RadioButtonGroup"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="RadioButtonGroup"
+	section="slots"
+/>
+
+<script setup>
+import CdsRadioButtonGroup from '@/components/RadioButtonGroup.vue';
+
+const cdsRadioButtonGroupEvents = [
+	'radioButtonGroup-click'
+];
+</script>

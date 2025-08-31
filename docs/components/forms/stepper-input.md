@@ -1,66 +1,68 @@
 # StepperInput
 
-StepperInputs são inputs numéricos com botões de incremento e decremento sempre visíveis.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- For necessário precisar de um input do tipo número.
-- O número a ser adicionado ao StepperInput for pequeno ou de poucos dígitos.
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- O dado a ser utilizado no componente não for numérico.
-- O dado a ser utilizado  no componente for muito grande.
-- O dado a ser utilizado no componente não for incremental.
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import StepperInput from '@/components/StepperInput.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <StepperInput />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-stepperinput
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsStepperInput
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="stepperInputClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsStepperInput"
+	:events="cdsStepperInputEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="StepperInput"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="StepperInput"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="StepperInput"
+	section="slots"
+/>
+
+<script setup>
+import CdsStepperInput from '@/components/StepperInput.vue';
+
+const cdsStepperInputEvents = [
+	'stepperInput-click'
+];
+</script>

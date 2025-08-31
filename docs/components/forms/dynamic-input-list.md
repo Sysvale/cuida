@@ -1,66 +1,68 @@
 # DynamicInputList
 
-Permite que o usuário adicione, remova e edite múltiplos inputs em uma lista dinâmica.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- Quando o usuário precisar inserir uma quantidade variável de informações do mesmo tipo;
-- Para formulários que exigem múltiplas entradas do mesmo tipo (ex: números de telefone, emails adicionais, etc).
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- A quantidade de campos for fixa e conhecida previamente;
-- Quando for necessário coletar informações de diferentes tipos. Neste caso, utilize campos individuais;
-- A complexidade da lista é alta, contendo vários inputs, e requer uma solução mais específica.
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import DynamicInputList from '@/components/DynamicInputList.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <DynamicInputList />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-dynamicinputlist
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsDynamicInputList
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="dynamicInputListClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsDynamicInputList"
+	:events="cdsDynamicInputListEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="DynamicInputList"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="DynamicInputList"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="DynamicInputList"
+	section="slots"
+/>
+
+<script setup>
+import CdsDynamicInputList from '@/components/DynamicInputList.vue';
+
+const cdsDynamicInputListEvents = [
+	'dynamicInputList-click'
+];
+</script>

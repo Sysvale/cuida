@@ -1,67 +1,68 @@
 # LineChart
 
-Um componente de gráfico reutilizável para exibir dados visualmente.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- Exibir dados em formatos visuais;
-- Ideal para mostrar tendências ao longo do tempo;
-- Comparação de múltiplas séries.
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- Para informações simples que podem ser exibidas em um formato tabular ou em texto;
-- Dados discretos sem sequência lógica;
-- Grande quantidade de série de dados.
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import LineChart from '@/components/LineChart.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <LineChart />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-linechart
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsLineChart
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="lineChartClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsLineChart"
+	:events="cdsLineChartEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="LineChart"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="LineChart"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="LineChart"
+	section="slots"
+/>
+
+<script setup>
+import CdsLineChart from '@/components/LineChart.vue';
+
+const cdsLineChartEvents = [
+	'lineChart-click'
+];
+</script>

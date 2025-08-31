@@ -69,9 +69,6 @@ Checkboxes são componentes de formulário que permitem seleções binárias e m
 <script setup>
 import { ref } from 'vue';
 import CdsCheckbox from '@/components/Checkbox.vue';
-import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
-import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 const cdsCheckboxEvents = [
 	'update:modelValue',

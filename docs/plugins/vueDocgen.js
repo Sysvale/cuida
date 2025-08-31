@@ -10,8 +10,6 @@ export default function vueDocgenPlugin() {
 			const files = await glob('src/components/**/*.vue')
 			const docs = {}
 
-			console.log('chamou');
-
 			for (const file of files) {
 				try {
 					const componentInfo = await parse(file, {

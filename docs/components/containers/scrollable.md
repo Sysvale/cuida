@@ -61,18 +61,10 @@ Scrollable é um componente utilizado para tornar o conteúdo envolvido "scrolá
 
 ---
 
-## Figma
-
-<FigmaFrame
-	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
-/>
 
 <script setup>
 import { ref } from 'vue';
 import CdsScrollable from '@/components/Scrollable.vue';
-import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
-import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 const cdsScrollableEvents = [];
 </script>

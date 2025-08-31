@@ -35,7 +35,7 @@ Badge são indicadores de status utilizados para tornar evidentes metadados impo
 	:events="cdsBadgeEvents"
 >
 Badge
-</DemoContainer>
+</PreviewContainer>
 
 ---
 

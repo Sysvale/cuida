@@ -1,55 +1,68 @@
 # SideBar
 
-SideBars são componentes utilizados para criar soluções de navegação e menus.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Preview
+### Quando usar
 
-<script setup>
-import SideBar from '@/components/SideBar.vue';
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
+### Quando não usar
 
-<div class="demo-container">
-  <SideBar />
-</div>
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-sidebar
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsSideBar
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="sideBarClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsSideBar"
+	:events="cdsSideBarEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="SideBar"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="SideBar"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="SideBar"
+	section="slots"
+/>
+
+<script setup>
+import CdsSideBar from '@/components/SideBar.vue';
+
+const cdsSideBarEvents = [
+	'sideBar-click'
+];
+</script>

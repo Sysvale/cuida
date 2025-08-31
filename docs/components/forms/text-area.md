@@ -1,63 +1,68 @@
 # TextArea
 
-TextAreas permitem que os usuários insiram um texto longo em uma interface.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- Necessitar de um campo de texto para inserir informações grandes. Exemplo: Descrição de produto ou mensagens.
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- For necessário informar apenas um dado específico ao campo de texto.
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import TextArea from '@/components/TextArea.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <TextArea />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-textarea
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsTextArea
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="textAreaClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsTextArea"
+	:events="cdsTextAreaEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="TextArea"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="TextArea"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="TextArea"
+	section="slots"
+/>
+
+<script setup>
+import CdsTextArea from '@/components/TextArea.vue';
+
+const cdsTextAreaEvents = [
+	'textArea-click'
+];
+</script>

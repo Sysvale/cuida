@@ -77,7 +77,7 @@ Cards são componentes utilizados como containers de propósito geral. À partir
 			Action 1
 		</CdsButton>
 	</template>
-</DemoContainer>
+</PreviewContainer>
 
 ---
 

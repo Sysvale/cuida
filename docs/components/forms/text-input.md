@@ -64,9 +64,6 @@ TextInputs permitem que os usuários insiram texto em uma interface.
 <script setup>
 import { ref } from 'vue';
 import CdsTextInput from '@/components/TextInput.vue';
-import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
-import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 const cdsTextInputEvents = [
 	'update:modelValue',

@@ -24,7 +24,7 @@ Componente utilizado para adicionar um wrapper cliclável a componentes que não
 	:events="cdsClickableEvents"
 >
 	Texto clicável
-</DemoContainer>
+</PreviewContainer>
 
 ---
 

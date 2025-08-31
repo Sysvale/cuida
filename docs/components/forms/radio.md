@@ -70,9 +70,6 @@ O Radio permite que os usuários selecionem uma opção de um conjunto.
 <script setup>
 import { ref } from 'vue';
 import CdsRadio from '@/components/Radio.vue';
-import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
-import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 const cdsRadioEvents = [
 	'update:modelValue'

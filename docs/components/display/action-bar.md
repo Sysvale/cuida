@@ -42,7 +42,7 @@ ActionBars são barras de ferramentas que podem exibir ações e informações p
 	<template #description>
 		8 itens selecionados
 	</template>
-</DemoContainer>
+</PreviewContainer>
 
 ---
 

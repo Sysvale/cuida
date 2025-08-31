@@ -69,9 +69,6 @@ Tooltip são labels flutuantes não interativas usados para explicar um elemento
 <script setup>
 import { ref } from 'vue';
 import CdsTooltip from '@/components/Tooltip.vue';
-import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
-import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 const cdsTooltipEvents = [];
 </script>

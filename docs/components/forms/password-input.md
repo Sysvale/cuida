@@ -63,9 +63,6 @@ PasswordInputs permitem que os usuários insiram caracteres sensíveis na interf
 <script setup>
 import { ref } from 'vue';
 import CdsPasswordInput from '@/components/PasswordInput.vue';
-import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
-import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 const cdsPasswordInputEvents = [
 	'update:modelValue'

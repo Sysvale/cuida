@@ -1,66 +1,68 @@
 # Stepper
 
-Steppers são componentes que controlam e exibem tarefas divididas em etapas.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- For necessário mostrar, de forma visual, o estado e a etapa atual de um stepper.
-- Houver um modal com várias etapas.
-- Houver uma série de entradas ou ações que desejam mostrar o progresso do seu preenchimento, não importando data e hora dos estados.
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- Se precisa da cronologia (data, hora) dos steps. Para isso, utilize componente Timeline.
-- A ordem das etapas, eventos ou ações não são relevantes.
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import Stepper from '@/components/Stepper.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <Stepper />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-stepper
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsStepper
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="stepperClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsStepper"
+	:events="cdsStepperEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="Stepper"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="Stepper"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="Stepper"
+	section="slots"
+/>
+
+<script setup>
+import CdsStepper from '@/components/Stepper.vue';
+
+const cdsStepperEvents = [
+	'stepper-click'
+];
+</script>

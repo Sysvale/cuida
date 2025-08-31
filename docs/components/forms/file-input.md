@@ -1,64 +1,68 @@
 # FileInput
 
-FileInput é um input customizado de arquivos.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- For necessário que o usuário faça uploads do seu computador para a plataforma.
-- For necessário prover uma experiência de arrasta e solta para upload de arquivos.
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- Se tratar de uma experiência mobile-first.
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import FileInput from '@/components/FileInput.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <FileInput />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-fileinput
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsFileInput
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="fileInputClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsFileInput"
+	:events="cdsFileInputEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="FileInput"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="FileInput"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="FileInput"
+	section="slots"
+/>
+
+<script setup>
+import CdsFileInput from '@/components/FileInput.vue';
+
+const cdsFileInputEvents = [
+	'fileInput-click'
+];
+</script>

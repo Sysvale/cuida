@@ -23,7 +23,7 @@
 	:events="cdsBoxEvents"
 >
 	2
-</DemoContainer>
+</PreviewContainer>
 
 ---
 

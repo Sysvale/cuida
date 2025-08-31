@@ -1,64 +1,68 @@
 # Pulsar
 
-Pulsars são componentes educativos utilizados para instruir os usuários sobre novidades na interface ou no produto.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- Para atrair a atenção do usuário para uma nova feature ou área da interface de modo não intrusivo.
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- Como único recurso de comunicação sobre mudança na interface ou no produto.
-- Quando outro pulsar já estiver em uso na interface.
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import Pulsar from '@/components/Pulsar.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <Pulsar />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-pulsar
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsPulsar
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="pulsarClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsPulsar"
+	:events="cdsPulsarEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="Pulsar"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="Pulsar"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="Pulsar"
+	section="slots"
+/>
+
+<script setup>
+import CdsPulsar from '@/components/Pulsar.vue';
+
+const cdsPulsarEvents = [
+	'pulsar-click'
+];
+</script>

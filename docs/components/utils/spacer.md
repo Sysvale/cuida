@@ -45,7 +45,7 @@ utilize classes e nelas inclua paddings e margins com os tokens de espaçamento 
 			:events="cdsSpacerEvents"
 		>
 			<div style="width: 100px; height: 100px; background-color: #2AC092; border-radius: 20px"/>
-		</DemoContainer>
+		</PreviewContainer>
 	</div>
 </div>
 

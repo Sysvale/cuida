@@ -66,9 +66,6 @@ IconButtons são componentes que permitem que o usuário execute uma ação com 
 <script setup>
 import { ref } from 'vue';
 import CdsIconButton from '@/components/IconButton.vue';
-import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
-import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 const cdsIconButtonEvents = [
 	'cds-click'

@@ -1,68 +1,68 @@
 # Slider
 
-Sliders são componentes utilizados para seleção de valores dentro de um intervalo.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- Recomendamos o uso de sliders quando for preciso a seleção de valores dentro de um intervalo,
-sobretudo quando for preciso selecionar mais de um valor.
-- Recomendamos o uso de sliders quando a velocidade na seleção de valores em um intervalo for
-mais relevante que a precisão.
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- Não recomendamos o uso de sliders quando não houver necessidade de uma precisão muito grande na seleção dos valores.
-- Não recomendamos o uso de sliders em conjunto com inputs para que o usuário consiga editar
-o dado tanto pelo slider quanto pelos inputs.
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import Slider from '@/components/Slider.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <Slider />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-slider
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsSlider
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="sliderClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsSlider"
+	:events="cdsSliderEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="Slider"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="Slider"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="Slider"
+	section="slots"
+/>
+
+<script setup>
+import CdsSlider from '@/components/Slider.vue';
+
+const cdsSliderEvents = [
+	'slider-click'
+];
+</script>

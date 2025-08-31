@@ -78,9 +78,6 @@ Selects permitem que o usuário escolha uma opção a partir de uma lista de ite
 <script setup>
 import { ref } from 'vue';
 import CdsSelect from '@/components/Select.vue';
-import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
-import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 const cdsSelectEvents = [
 	'update:modelValue',

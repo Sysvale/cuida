@@ -70,9 +70,6 @@ ProgressBars são componentes utilizados para indicar o status e progresso de al
 <script setup>
 import { ref } from 'vue';
 import CdsProgressBar from '@/components/ProgressBar.vue';
-import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
-import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 const cdsProgressBarEvents = [];
 </script>

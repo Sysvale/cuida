@@ -1,68 +1,68 @@
 # PieChart
 
-Um componente de gráfico reutilizável para exibir dados visualmente.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- Exibir dados em formatos visuais;
-- Visualizar tendências, proporções ou comparações em dados;
-- Exibir proporções ou partes de um todo, onde cada fatia representa uma parcela do total;
-- Funciona bem com categorias mutuamente exclusivas;
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- Para informações simples que podem ser exibidas em um formato tabular ou em texto;
-- Quando os dados apresentarem muitas categorias ou subcategorias;
-- Não é apropriado para dados contínuos ou dados temporais.
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import PieChart from '@/components/PieChart.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <PieChart />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-piechart
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsPieChart
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="pieChartClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsPieChart"
+	:events="cdsPieChartEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="PieChart"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="PieChart"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="PieChart"
+	section="slots"
+/>
+
+<script setup>
+import CdsPieChart from '@/components/PieChart.vue';
+
+const cdsPieChartEvents = [
+	'pieChart-click'
+];
+</script>

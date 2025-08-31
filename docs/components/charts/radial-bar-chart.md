@@ -1,67 +1,68 @@
 # RadialBarChart
 
-Um RadialBarChart é uma variação do BarChart plotado em um sistema de coordenadas polares, em vez de cartesiano.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- Exibir dados com apelo gráfico;
-- Comparar dados;
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- Quando for necessária uma fidelidade elevada na exibição das informações, com o objetivo de realizar comparações precisas entre os dados;
-- Quando os dados apresentarem categorias ou subcategorias;
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+
+---
+
+## Uso
+
+```js
+<CdsRadialBarChart
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="radialBarChartClick = true"
+/>
+```
 
 ---
 
 ## Preview
 
-<script setup>
-import RadialBarChart from '@/components/RadialBarChart.vue';
+<PreviewContainer
+	:component="CdsRadialBarChart"
+	:events="cdsRadialBarChartEvents"
+/>
 
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <RadialBarChart />
-</div>
+---
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
+<APITable
+	name="RadialBarChart"
+	section="props"
+/>
+<br />
 
 ## Eventos
 
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+<APITable
+	name="RadialBarChart"
+	section="events"
+/>
+<br />
 
-## Uso
+## Slots
 
-```vue
-<template>
-  <cds-radialbarchart
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
+<APITable
+	name="RadialBarChart"
+	section="slots"
+/>
 
 <script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
-```
+import CdsRadialBarChart from '@/components/RadialBarChart.vue';
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+const cdsRadialBarChartEvents = [
+	'radialBarChart-click'
+];
+</script>

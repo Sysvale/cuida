@@ -1,63 +1,68 @@
 # CheckboxGroup
 
-CheckboxGroups são componentes de formulário que permitem seleções binárias e múltiplas.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- Quando precisar de um componente de formulário para seleções binárias com várias opções.
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- Quando for preciso que o efeito da interação com o Checkbox seja imediato. Checkboxes devem ser usados sempre em conjunto com um botão de submissão. Para contornar casos como esse, use Switches.
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import CheckboxGroup from '@/components/CheckboxGroup.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <CheckboxGroup />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-checkboxgroup
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsCheckboxGroup
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="checkboxGroupClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsCheckboxGroup"
+	:events="cdsCheckboxGroupEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="CheckboxGroup"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="CheckboxGroup"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="CheckboxGroup"
+	section="slots"
+/>
+
+<script setup>
+import CdsCheckboxGroup from '@/components/CheckboxGroup.vue';
+
+const cdsCheckboxGroupEvents = [
+	'checkboxGroup-click'
+];
+</script>

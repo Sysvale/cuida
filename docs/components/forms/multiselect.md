@@ -1,65 +1,68 @@
 # Multiselect
 
-Multiselects são componentes que permitem ao usuário selecionar múltiplas opções divididas em categorias.
+Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
-## Quando usar
+### Quando usar
 
-- Houver a possibilidade de selecionar múltipos itens em um select.
-- Se deseja classificar os itens do select em categorias.
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+  seja em dialogs, modais, formulários, cards, etc.
 
-## Quando não usar
+### Quando não usar
 
-- Os itens do select não puderem ser classificados em categorias.
-- Houver necessidade de detalhar no input as opções selecionadas, já que mostramos como resumo apenas quantas e não quais foram as opções escolhidas.
+- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
+- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
-## Preview
-
-<script setup>
-import Multiselect from '@/components/Multiselect.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <Multiselect />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-multiselect
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsMultiselect
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="multiselectClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsMultiselect"
+	:events="cdsMultiselectEvents"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="Multiselect"
+	section="props"
+/>
+<br />
+
+## Eventos
+
+<APITable
+	name="Multiselect"
+	section="events"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="Multiselect"
+	section="slots"
+/>
+
+<script setup>
+import CdsMultiselect from '@/components/Multiselect.vue';
+
+const cdsMultiselectEvents = [
+	'multiselect-click'
+];
+</script>

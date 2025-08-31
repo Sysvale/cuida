@@ -45,7 +45,7 @@ Actions lists são componentes usados para mostrar uma lista de ações em linha
 	>
 		{{ list.title }}
 	</template>
-</DemoContainer>
+</PreviewContainer>
 
 ---
 
