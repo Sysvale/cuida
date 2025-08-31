@@ -216,7 +216,7 @@ export default defineConfig({
 						{ text: 'PageLayout', link: '/components/navegação/page-layout' },
 						{ text: 'Pagination <Badge class="badge" type="info">ready</Badge>', link: '/components/navegação/pagination' },
 						// { text: 'SecondaryNavigation', link: '/components/navegação/secondary-navigation' },
-						{ text: 'SegmentedControl', link: '/components/navegação/segmented-control' },
+						{ text: 'SegmentedControl <Badge class="badge" type="info">ready</Badge>', link: '/components/navegação/segmented-control' },
 						{ text: 'SideBar', link: '/components/navegação/sidebar' },
 						{ text: 'Tabs', link: '/components/navegação/tabs' },
 						// { text: 'Wizard', link: '/components/navegação/wizard' },

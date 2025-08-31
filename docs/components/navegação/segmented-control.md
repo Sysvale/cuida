@@ -1,16 +1,6 @@
 # SegmentedControl
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
-
-### Quando usar
-
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
-
-### Quando não usar
-
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+### SegmentedControls são componentes que permitem que o usuário visualize versões alternativas de uma feature ou interface
 
 ---
 
@@ -18,10 +8,10 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ```js
 <CdsSegmentedControl
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="segmentedControlClick = true"
+	:segments="['info-outline', 'copy-outline', 'edit-outline']"
+	:segmentsTooltipText="['info', 'copiar', 'editar']"
+	:withIcon="true"
+	@click="handleClick"
 />
 ```
 
@@ -32,6 +22,8 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewContainer
 	:component="CdsSegmentedControl"
 	:events="cdsSegmentedControlEvents"
+	:segments="['info-outline', 'copy-outline', 'edit-outline']"
+	:segmentsTooltipText="['info', 'copiar', 'editar']"
 />
 
 ---
@@ -52,17 +44,10 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Slots
-
-<APITable
-	name="SegmentedControl"
-	section="slots"
-/>
-
 <script setup>
 import CdsSegmentedControl from '@/components/SegmentedControl.vue';
 
 const cdsSegmentedControlEvents = [
-	'segmentedControl-click'
+	'click'
 ];
 </script>
