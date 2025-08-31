@@ -1,16 +1,17 @@
 # Scrollable
 
-Scrollable é um componente utilizado para tornar o conteúdo envolvido "scrolável".
+### Scrollable é um componente utilizado para o tornar o conteúdo envolvido "scrolável".
+---
+<br />
 
-### Quando usar
-
+## Quando usar:
 - Se quer mostrar muito conteúdo em um espaço pequeno ou pré-definido.
-- Para contrôlar a altura máxima de containers com conteúdo variável.
 
-### Quando não usar
+<br />
 
-- Houver pouco conteúdo que não ultrapassa o espaço disponível.
-- Já houver um outro scrollable aninhado.
+## Quando não usar:
+- Houver pouco conteúdo.
+- Já houver um outro scrollable.
 
 ---
 
@@ -20,8 +21,34 @@ Scrollable é um componente utilizado para tornar o conteúdo envolvido "scrolá
 <CdsScrollable
 	maxHeight="150px"
 >
-	<p>Conteúdo que pode ser scrollado...</p>
-	<p>Mais conteúdo...</p>
+	<p>
+		Existe uma teoria que diz que, se um dia alguém descobrir 
+		exatamente para que serve o Universo e por que ele está aqui, ele 
+		desaparecerá instantaneamente e será substituídopor al go ainda 
+		mais estranho e inexplicável. Existe uma segunda teoria que diz 
+		que isso já aconteceu.
+	</p>
+	<p>
+		Existe uma teoria que diz que, se um dia alguém descobrir 
+		exatamente para que serve o Universo e por que ele está aqui, ele 
+		desaparecerá instantaneamente e será substituídopor al go ainda 
+		mais estranho e inexplicável. Existe uma segunda teoria que diz 
+		que isso já aconteceu.
+	</p>
+	<p>
+		Existe uma teoria que diz que, se um dia alguém descobrir 
+		exatamente para que serve o Universo e por que ele está aqui, ele 
+		desaparecerá instantaneamente e será substituídopor al go ainda 
+		mais estranho e inexplicável. Existe uma segunda teoria que diz 
+		que isso já aconteceu.
+	</p>
+	<p>
+		Existe uma teoria que diz que, se um dia alguém descobrir 
+		exatamente para que serve o Universo e por que ele está aqui, ele 
+		desaparecerá instantaneamente e será substituídopor al go ainda 
+		mais estranho e inexplicável. Existe uma segunda teoria que diz 
+		que isso já aconteceu.
+	</p>
 </CdsScrollable>
 ```
 
@@ -32,7 +59,37 @@ Scrollable é um componente utilizado para tornar o conteúdo envolvido "scrolá
 <PreviewContainer
 	:component="CdsScrollable"
 	:events="cdsScrollableEvents"
-/>
+	maxHeight="150px"
+>
+	<p>
+		Existe uma teoria que diz que, se um dia alguém descobrir 
+		exatamente para que serve o Universo e por que ele está aqui, ele 
+		desaparecerá instantaneamente e será substituídopor al go ainda 
+		mais estranho e inexplicável. Existe uma segunda teoria que diz 
+		que isso já aconteceu.
+	</p>
+	<p>
+		Existe uma teoria que diz que, se um dia alguém descobrir 
+		exatamente para que serve o Universo e por que ele está aqui, ele 
+		desaparecerá instantaneamente e será substituídopor al go ainda 
+		mais estranho e inexplicável. Existe uma segunda teoria que diz 
+		que isso já aconteceu.
+	</p>
+	<p>
+		Existe uma teoria que diz que, se um dia alguém descobrir 
+		exatamente para que serve o Universo e por que ele está aqui, ele 
+		desaparecerá instantaneamente e será substituídopor al go ainda 
+		mais estranho e inexplicável. Existe uma segunda teoria que diz 
+		que isso já aconteceu.
+	</p>
+	<p>
+		Existe uma teoria que diz que, se um dia alguém descobrir 
+		exatamente para que serve o Universo e por que ele está aqui, ele 
+		desaparecerá instantaneamente e será substituídopor al go ainda 
+		mais estranho e inexplicável. Existe uma segunda teoria que diz 
+		que isso já aconteceu.
+	</p>
+</PreviewContainer>
 
 ---
 
@@ -41,14 +98,6 @@ Scrollable é um componente utilizado para tornar o conteúdo envolvido "scrolá
 <APITable
 	name="Scrollable"
 	section="props"
-/>
-<br />
-
-## Eventos
-
-<APITable
-	name="Scrollable"
-	section="events"
 />
 <br />
 

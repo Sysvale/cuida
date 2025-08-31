@@ -76,7 +76,8 @@ export default defineConfig({
 						{ text: 'TextArea', link: '/components/forms/text-area' },
 						{ text: 'TextInput', link: '/components/forms/text-input' },
 						{ text: 'TimeInput', link: '/components/forms/time-input' },
-						{ text: 'WebcamModal', link: '/components/forms/webcam-modal' }
+						{ text: 'WebcamModal', link: '/components/forms/webcam-modal' },
+						{ text: 'Tile', link: '/components/containers/tile' },
 					]
 				},
 				{
@@ -112,7 +113,7 @@ export default defineConfig({
 				{
 					text: 'Containers',
 					items: [
-						{ text: 'AppBar', link: '/components/containers/app-bar' },
+						
 						{ text: 'Box <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/box' },
 						{ text: 'Card <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/card' },
 						{ text: 'CarouselController <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/carousel-controller' },
@@ -121,13 +122,10 @@ export default defineConfig({
 						{ text: 'Divider <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/divider' },
 						{ text: 'FlexBox <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/flexbox' },
 						{ text: 'Grid', link: '/components/containers/grid' },
-						{ text: 'GridItem', link: '/components/containers/grid-item' },
-						{ text: 'PageContainer', link: '/components/containers/page-container' },
-						{ text: 'PageHeader', link: '/components/containers/page-header' },
-						{ text: 'PageLayout', link: '/components/containers/page-layout' },
+
+
 						{ text: 'PanelCard <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/panel-card' },
-						{ text: 'Scrollable', link: '/components/containers/scrollable' },
-						{ text: 'Tile', link: '/components/containers/tile' },
+						{ text: 'Scrollable <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/scrollable' },
 					]
 				},
 				{
@@ -187,6 +185,14 @@ export default defineConfig({
 					]
 				},
 				{
+					text: 'Estrutural',
+					items: [
+						{ text: 'AppBar', link: '/components/estrutural/app-bar' },
+						{ text: 'PageContainer', link: '/components/estrutural/page-container' },
+						{ text: 'PageHeader', link: '/components/estrutural/page-header' },
+					]
+				},
+				{
 					text: 'Tipografia',
 					items: [
 						{ text: 'Text <Badge class="badge" type="info">ready</Badge>', link: '/components/tipografia/text' },
@@ -206,6 +212,7 @@ export default defineConfig({
 						{ text: 'SideBar', link: '/components/navegação/sidebar' },
 						{ text: 'Tabs', link: '/components/navegação/tabs' },
 						{ text: 'Wizard', link: '/components/navegação/wizard' },
+						{ text: 'PageLayout', link: '/components/containers/page-layout' },
 					]
 				},
 			]
