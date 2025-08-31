@@ -27,7 +27,7 @@
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsSpinner"
 	:delay="1000"
 />

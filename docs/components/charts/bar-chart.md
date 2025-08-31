@@ -1,66 +1,113 @@
 # BarChart
 
-Um componente de gráfico reutilizável para exibir dados visualmente.
+### Um componente de gráfico reutilizável para exibir dados visualmente.
+---
+<br />
 
-## Quando usar
-
+## Quando usar:
 - Exibir dados em formatos visuais;
 - É eficaz ao exibir muitas categorias;
 - Visualizar tendências, proporções ou comparações em dados.
 
-## Quando não usar
+<br />
 
+## Quando não usar:
 - Para informações simples que podem ser exibidas em um formato tabular ou em texto;
 - Não é recomendado para comparação percentual ou partes de um todo.
 
-## Preview
-
-<script setup>
-import BarChart from '@/components/BarChart.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <BarChart />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-barchart
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsBarChart
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="barChartClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<PreviewContainer
+	:component="CdsBarChart"
+	:data
+	:labels
+	:barWidth="1"
+/>
+
+---
+
+## Props
+
+<APITable
+	name="BarChart"
+	section="props"
+/>
+<br />
+
+---
+
+<script setup>
+import { ref } from 'vue';
+import CdsBarChart from '@/components/BarChart.vue';
+
+const data = ref([
+	{
+		name: 'Ecocardiograma',
+		datasets: [
+			{
+				label: 'Realizado',
+				data: [50, 50, 50, 50, 50],
+			},
+			{
+				label: 'Pendente',
+				data: [200, 180, 250, 190, 280],
+			},
+			{
+				label: 'Não realizado',
+				data: [38, 84, 120, 90, 185],
+			}
+		]
+	},
+	{
+		name: 'Raio-X',
+		datasets: [
+			{
+				label: 'Realizado',
+				data: [120, 220, 180, 320, 150],
+			},
+			{
+				label: 'Pendente',
+				data: [98, 145, 160, 190, 175],
+			},
+			{
+				label: 'Não realizado',
+				data: [49, 84, 120, 78, 130],
+			}
+		]
+	},
+	{
+		name: 'Tomografia',
+		datasets: [
+			{
+				label: 'Realizado',
+				data: [55, 40, 33, 90, 120],
+			},
+			{
+				label: 'Pendente',
+				data: [25, 30, 90, 45, 20],
+			},
+			{
+				label: 'Não realizado',
+				data: [38, 84, 120, 90, 45],
+			}
+		]
+	}
+]);
+
+const labels = ref(['Janeiro','Fevereiro','Março', 'Abril', 'Maio']);
+</script>

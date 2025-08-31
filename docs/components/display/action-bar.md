@@ -33,7 +33,7 @@ ActionBars são barras de ferramentas que podem exibir ações e informações p
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsActionBar"
 	:events="cdsActionBarEvents"
 	:show="true"

@@ -25,7 +25,7 @@ IconButtons são componentes que permitem que o usuário execute uma ação com 
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsIconButton"
 	:events="cdsIconButtonEvents"
 />

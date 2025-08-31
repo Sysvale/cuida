@@ -28,7 +28,7 @@
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsOverlayLoader"
 />
 

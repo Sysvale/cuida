@@ -30,7 +30,7 @@
 ## Preview
 
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsLoadingIndicator"
 	:modelValue="showLoadingIndicator"
 >

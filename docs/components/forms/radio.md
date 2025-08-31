@@ -29,7 +29,7 @@ O Radio permite que os usuários selecionem uma opção de um conjunto.
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsRadio"
 	:events="cdsRadioEvents"
 />

@@ -99,6 +99,8 @@ export default defineConfig({
 
 						{ text: 'Divider <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/divider' },
 
+						{ text: 'PanelCard <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/panel-card' },
+
 					]
 				},
 				{

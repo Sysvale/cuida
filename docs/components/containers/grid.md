@@ -48,7 +48,7 @@ Grids são componentes que usam a API das grids CSS para prover estruturas de or
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsGrid"
 	:events="cdsGridEvents"
 />

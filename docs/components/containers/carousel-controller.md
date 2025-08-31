@@ -30,7 +30,7 @@
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsCarouselController"
 	:events="cdsCarouselControllerEvents"
 	:total="12"

@@ -8316,11 +8316,7 @@
         "type": {
           "name": "string"
         },
-        "required": true,
-        "defaultValue": {
-          "func": false,
-          "value": "'Título'"
-        }
+        "required": true
       },
       {
         "name": "subtitle",
@@ -8328,11 +8324,7 @@
         "type": {
           "name": "string"
         },
-        "required": true,
-        "defaultValue": {
-          "func": false,
-          "value": "'Subtítulo'"
-        }
+        "required": true
       },
       {
         "name": "noContentPadding",

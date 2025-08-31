@@ -52,7 +52,7 @@ Cards são componentes utilizados como containers de propósito geral. À partir
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsCard"
 	:events="cdsCardEvents"
 	:imageWidth="400"

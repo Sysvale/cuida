@@ -43,7 +43,7 @@
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsFlexbox"
 	class="grid-background"
 	direction="row"

@@ -25,7 +25,7 @@ Ele fornece a estrutura básica e funcionalidades comuns, como gerenciamento de 
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsBaseInput"
 	:events="cdsBaseInputEvents"
 />

@@ -28,7 +28,7 @@ Alerts s√£o componentes utilizados para prover feedbacks contextuais e notifica√
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsAlert"
 	:events="cdsAlertEvents"
 />

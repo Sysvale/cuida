@@ -1,70 +1,88 @@
 # DonutChart
 
-Um componente de gráfico reutilizável para exibir dados visualmente, de modo um pouco mais legível que o PieChart.
+### Um componente de gráfico reutilizável para exibir dados visualmente, de modo um pouco mais legível que o PieChart.
+---
+<br />
 
-## Quando usar
+⚠️ Esse componente vai substituir o PieChart nas próximas versões do Cuida
 
+<br />
+
+## Quando usar:
 - Exibir dados em formatos visuais;
 - Visualizar tendências, proporções ou comparações em dados;
 - Exibir proporções ou partes de um todo, onde cada fatia representa uma parcela do total;
 - Funciona bem com categorias mutuamente exclusivas;
 
-## Quando não usar
+<br />
 
+## Quando não usar:
 - Para informações simples que podem ser exibidas em um formato tabular ou em texto;
 - Quando os dados apresentarem muitas categorias ou subcategorias;
 - Não é apropriado para dados contínuos ou dados temporais.
 
 ---
 
+## Uso
+
+```js
+<CdsDonutChart
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="donutChartClick = true"
+/>
+```
+
+---
+
 ## Preview
 
-<script setup>
-import DonutChart from '@/components/DonutChart.vue';
+<PreviewContainer
+	:component="CdsDonutChart"
+	:events="cdsDonutChartEvents"
+  :labels
+  :data
+  variant="green"
+/>
 
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <DonutChart />
-</div>
+---
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
+<APITable
+	name="DonutChart"
+	section="props"
+/>
+<br />
 
 ## Eventos
 
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+<APITable
+	name="DonutChart"
+	section="events"
+/>
+<br />
 
-## Uso
-
-```vue
-<template>
-  <cds-donutchart
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
 
 <script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
-```
+import { ref } from 'vue';
+import CdsDonutChart from '@/components/DonutChart.vue';
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+const cdsDonutChartEvents = [
+	'chart-click'
+];
+
+const labels = ref(['Janeiro','Fevereiro','Março', 'Abril', 'Maio'])
+const data = ref([
+  {
+    name: 'Ecocardiograma',
+    datasets: [
+      {
+        label: 'Exames realizados',
+        data: [120, 220, 180, 20, 150],
+      },
+    ]
+  },
+]);
+</script>

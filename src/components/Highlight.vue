@@ -15,6 +15,7 @@
 			>
 				{{ element.string }}
 			</mark>
+
 			<template v-else>
 				{{ element.string }}
 			</template>

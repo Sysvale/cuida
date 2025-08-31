@@ -1,6 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div class="spacer">
+		<!-- @slot Slot default.-->
 		<slot />
 	</div>
 </template>

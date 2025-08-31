@@ -30,7 +30,7 @@ Badge são indicadores de status utilizados para tornar evidentes metadados impo
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsBadge"
 	:events="cdsBadgeEvents"
 >

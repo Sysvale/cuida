@@ -18,7 +18,7 @@ Componente auxiliar utilizado para truncar texto adicionando a ele reticências
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsTruncate"
   width="200"
 >

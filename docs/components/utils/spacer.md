@@ -11,54 +11,67 @@ Componente auxiliar utilizado para adicionar paddings e margins seguindo o padr�
 - Nos casos em que determinado componente precisar de vários modificadores de estilo. Pra esses casos
 utilize classes e nelas inclua paddings e margins com os tokens de espaçamento do Cuida.
 
-## Preview
+<br />
 
-<script setup>
-import Spacer from '@/components/Spacer.vue';
+## Observações:
+- ⚠️ Dê preferência sempre que possível à utilização dos tokens em detrimento ao Spacer.
+- O valor mandado para as props do Spacer é sempre multiplicado por 4, assim como nos tokens scss do Cuida.
+- O valor máximo aceito é 12.
+- O spacer não implementa margins e paddings negativos.
 
-const handleClick = () => {
-  console.log('Component interaction');
-};
-</script>
-
-<div class="demo-container">
-  <Spacer />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+---
 
 ## Uso
 
-```vue
-<template>
-  <cds-spacer
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+```js
+<CdsSpacer
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+	@click="spacerClick = true"
+/>
 ```
 
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
+---
+
+## Preview
+
+<div style="width: fit-content; background-color: #def7eb; border-radius: 20px">
+	<div
+		style="padding: 0.5px; background-color: #def7eb; border-radius: 20px"
+	>
+		<PreviewContainer
+			:component="CdsSpacer"
+			:events="cdsSpacerEvents"
+		>
+			<div style="width: 100px; height: 100px; background-color: #2AC092; border-radius: 20px"/>
+		</DemoContainer>
+	</div>
+</div>
+
+---
+
+## Props
+
+<APITable
+	name="Spacer"
+	section="props"
+/>
+<br />
+
+## Slots
+
+<APITable
+	name="Spacer"
+	section="slots"
+/>
+
+---
+
+<script setup>
+import CdsSpacer from '@/components/Spacer.vue';
+
+const cdsSpacerEvents = [
+	'spacer-click'
+];
+</script>

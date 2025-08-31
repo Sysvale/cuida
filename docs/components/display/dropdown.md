@@ -27,7 +27,7 @@ Dropdown são componentes utilizados para ativar popovers contendo filtros para 
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsDropdown"
 	:events="cdsDropdownEvents"
 />

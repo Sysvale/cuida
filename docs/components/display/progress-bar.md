@@ -29,7 +29,7 @@ ProgressBars são componentes utilizados para indicar o status e progresso de al
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsProgressBar"
 	:events="cdsProgressBarEvents"
 />

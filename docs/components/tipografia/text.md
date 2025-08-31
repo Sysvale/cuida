@@ -31,7 +31,7 @@ Text são indicadores de status utilizados para tornar evidentes metadados impor
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsText"
 	:events="cdsTextEvents"
 >

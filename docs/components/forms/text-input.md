@@ -23,7 +23,7 @@ TextInputs permitem que os usuários insiram texto em uma interface.
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsTextInput"
 	:events="cdsTextInputEvents"
 />

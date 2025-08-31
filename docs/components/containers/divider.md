@@ -21,7 +21,7 @@
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsDivider"
 />
 

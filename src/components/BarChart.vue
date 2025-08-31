@@ -38,14 +38,6 @@ export default {
 		data: {
 			type: Array,
 			required: true,
-			default: () => ([{
-				datasets: [
-					{
-						label: '',
-						data: [],
-					}
-				]
-			}])
 		},
 		/**
 		* A variante de cor. São 11 variantes:

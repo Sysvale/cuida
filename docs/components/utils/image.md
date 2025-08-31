@@ -32,7 +32,7 @@ Image é um componente utilitário utilizado para renderizar imagens com fallbac
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsImage"
 	width="400"
 	:blackAndWhite="false"

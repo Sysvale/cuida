@@ -18,7 +18,7 @@
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsBox"
 	:events="cdsBoxEvents"
 >

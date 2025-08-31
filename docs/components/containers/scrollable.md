@@ -29,7 +29,7 @@ Scrollable é um componente utilizado para tornar o conteúdo envolvido "scrolá
 
 ## Preview
 
-<DemoContainer
+<PreviewContainer
 	:component="CdsScrollable"
 	:events="cdsScrollableEvents"
 />

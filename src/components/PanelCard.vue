@@ -42,7 +42,6 @@ export default {
 		 */
 		title: {
 			type: String,
-			default: 'Título',
 			required: true,
 		},
 		/**
@@ -50,7 +49,6 @@ export default {
 		 */
 		subtitle: {
 			type: String,
-			default: 'Subtítulo',
 			required: true,
 		},
 		/**

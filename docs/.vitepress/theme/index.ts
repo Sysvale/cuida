@@ -4,7 +4,7 @@ import './style.css';
 import Cdstip from '../../../src/utils/directives/cdstip';
 
 import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
+import PreviewContainer from '../../docgen/PreviewContainer.vue';
 import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 import CdsAvatar from '@/components/Avatar.vue';
@@ -32,7 +32,7 @@ export default {
 	Layout: Layout,
 	enhanceApp({ app }) {
 		app.component('APITable', APITable);
-		app.component('DemoContainer', DemoContainer);
+		app.component('PreviewContainer', PreviewContainer);
 		app.component('FigmaFrame', FigmaFrame);
 		app.directive("cdstip", Cdstip);
 
