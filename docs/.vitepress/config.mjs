@@ -30,7 +30,7 @@ export default defineConfig({
 		],
 
 		outline: {
-			level: [1, 2, 3],
+			level: [1, 3],
 			label: 'Nessa página'
 		},
 
