@@ -8299,6 +8299,19 @@
       {
         "name": "variant",
         "description": "Prop que indica se o componente deverá ocupar 100% do espaço disponível.",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },

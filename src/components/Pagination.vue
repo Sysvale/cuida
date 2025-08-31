@@ -89,6 +89,7 @@ export default {
 		},
 		/**
 		 * Prop que indica se o componente deverá ocupar 100% do espaço disponível.
+		 * @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
 		 */
 		variant: {
 			type: String,

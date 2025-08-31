@@ -206,11 +206,11 @@ const groups = [
 
 const cdsQuickActionBarEvents = [
 	'update:modelValue',
-  'search',
-  'onItemClick',
-  'onSeeMoreClick',
-  'close',
-  'onRemoveRecent',
-  'onEnterPress'
+	'search',
+	'onItemClick',
+	'onSeeMoreClick',
+	'close',
+	'onRemoveRecent',
+	'onEnterPress'
 ];
 </script>

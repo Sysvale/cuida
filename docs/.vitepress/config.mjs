@@ -214,7 +214,7 @@ export default defineConfig({
 						// { text: 'MobileStepperInput', link: '/components/navegação/mobile-stepper-input' },
 						{ text: 'NavBar', link: '/components/navegação/navbar' },
 						{ text: 'PageLayout', link: '/components/navegação/page-layout' },
-						{ text: 'Pagination', link: '/components/navegação/pagination' },
+						{ text: 'Pagination <Badge class="badge" type="info">ready</Badge>', link: '/components/navegação/pagination' },
 						// { text: 'SecondaryNavigation', link: '/components/navegação/secondary-navigation' },
 						{ text: 'SegmentedControl', link: '/components/navegação/segmented-control' },
 						{ text: 'SideBar', link: '/components/navegação/sidebar' },

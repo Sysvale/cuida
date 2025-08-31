@@ -1,16 +1,20 @@
 # Pagination
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### Pagination são indicadores de status utilizados para tornar evidentes metadados importates.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- For necessário mostrar status associados com a lógica de negócio ou ações do usuário.
+- O conteúdo a ser mostrado for *readonly*.
+- For preciso categorizar algo.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
 
-### Quando não usar
+<br />
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- O conteúdo que a Pagination representa puder ser setado ou removido pelo usuário.
+- O click no componente precisar executar uma ação ou funcionalidade.
 
 ---
 
@@ -18,10 +22,10 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ```js
 <CdsPagination
+	v-model="page"
+	per-page="12"
+	total="60"
 	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="paginationClick = true"
 />
 ```
 
@@ -32,6 +36,8 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewContainer
 	:component="CdsPagination"
 	:events="cdsPaginationEvents"
+	:total="60"
+	:perPage="12"
 />
 
 ---
@@ -52,17 +58,10 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Slots
-
-<APITable
-	name="Pagination"
-	section="slots"
-/>
-
 <script setup>
 import CdsPagination from '@/components/Pagination.vue';
 
 const cdsPaginationEvents = [
-	'pagination-click'
+	'update:modelValue'
 ];
 </script>
