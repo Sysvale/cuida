@@ -57,15 +57,6 @@ Ele fornece a estrutura básica e funcionalidades comuns, como gerenciamento de 
 
 ---
 
-## Figma
-
-<FigmaFrame
-	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
-/>
-
----
-
-
 
 
 
@@ -73,9 +64,6 @@ Ele fornece a estrutura básica e funcionalidades comuns, como gerenciamento de 
 <script setup>
 import { ref } from 'vue';
 import CdsBaseInput from '@/components/BaseInput.vue';
-import APITable from '../../docgen/APITable.vue';
-import DemoContainer from '../../docgen/DemoContainer.vue';
-import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 const cdsBaseInputEvents = [
 	'update:modelValue',
