@@ -28,13 +28,13 @@
 							name="home-outline"
 						/>
 
-						<cds-spacer margin-left="2">
+						<CdsSpacer margin-left="2">
 							{{ item.label }}
-						</cds-spacer>
+						</CdsSpacer>
 					</router-link>
 				</CdsClickable>
 
-				<cds-spacer
+				<CdsSpacer
 					v-else
 					class="breadcrumb__item"
 					margin-right="1"
@@ -55,7 +55,7 @@
 							{{ item.label }}
 						</CdsClickable>
 					</router-link>
-				</cds-spacer>
+				</CdsSpacer>
 			</li>
 		</ul>
 	</nav>

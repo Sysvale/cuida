@@ -65,9 +65,8 @@ export default defineConfig({
 						{ text: 'Radio', link: '/components/forms/radio' },
 						{ text: 'RadioButtonGroup', link: '/components/forms/radio-button-group' },
 						{ text: 'RequiredIndicator', link: '/components/forms/required-indicator' },
-						{ text: 'RichTooltip', link: '/components/forms/rich-tooltip' },
 						{ text: 'SearchInput', link: '/components/forms/search-input' },
-						{ text: 'SegmentedControl', link: '/components/forms/segmented-control' },
+						
 						{ text: 'Select', link: '/components/forms/select' },
 						{ text: 'Slider', link: '/components/forms/slider' },
 						{ text: 'Stepper', link: '/components/forms/stepper' },
@@ -99,7 +98,7 @@ export default defineConfig({
 						{ text: 'FileViewer', link: '/components/display/file-viewer' },
 						{ text: 'Highlight', link: '/components/display/highlight' },
 						{ text: 'Icon', link: '/components/display/icon' },
-						{ text: 'Link', link: '/components/display/link' },
+
 						{ text: 'List', link: '/components/display/list' },
 						{ text: 'ProgressBar', link: '/components/display/progress-bar' },
 						{ text: 'ProgressCircular', link: '/components/display/progress-circular' },
@@ -121,28 +120,33 @@ export default defineConfig({
 						{ text: 'DashboardCard <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/dashboard-card' },
 						{ text: 'Divider <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/divider' },
 						{ text: 'FlexBox <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/flexbox' },
-						{ text: 'Grid', link: '/components/containers/grid' },
+						{ text: 'Grid <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/grid' },
 
 
 						{ text: 'PanelCard <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/panel-card' },
 						{ text: 'Scrollable <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/scrollable' },
+						
+						
+						
+						
+						// { text: 'Dialog', link: '/components/overlays/dialog' },
+						// { text: 'DialogModal', link: '/components/overlays/dialog-modal' },
+						// { text: 'FloatingAssistant', link: '/components/overlays/floating-assistant' },
+						// { text: 'Toast', link: '/components/overlays/toast' },
+						// { text: 'ToastContainer', link: '/components/overlays/toast-container' },
+						// { text: 'TopAppBar', link: '/components/overlays/top-app-bar' },
 					]
 				},
 				{
 					text: 'Overlay',
 					items: [
 						{ text: 'BottomSheet', link: '/components/overlays/bottom-sheet' },
-						{ text: 'Dialog', link: '/components/overlays/dialog' },
-						{ text: 'DialogModal', link: '/components/overlays/dialog-modal' },
-						{ text: 'FloatingAssistant', link: '/components/overlays/floating-assistant' },
 						{ text: 'InteractionBlockingOverlay', link: '/components/overlays/interaction-blocking-overlay' },
 						{ text: 'Modal', link: '/components/overlays/modal' },
 						{ text: 'Popover', link: '/components/overlays/popover' },
 						{ text: 'QuickActionBar', link: '/components/overlays/quick-action-bar' },
+						{ text: 'RichTooltip', link: '/components/forms/rich-tooltip' },
 						{ text: 'SideSheet', link: '/components/overlays/side-sheet' },
-						{ text: 'Toast', link: '/components/overlays/toast' },
-						{ text: 'ToastContainer', link: '/components/overlays/toast-container' },
-						{ text: 'TopAppBar', link: '/components/overlays/top-app-bar' },
 					]
 				},
 				{
@@ -203,16 +207,19 @@ export default defineConfig({
 					items: [
 						{ text: 'Breadcrumb', link: '/components/navegação/breadcrumb' },
 						{ text: 'InnerTabs', link: '/components/navegação/inner-tabs' },
+						{ text: 'Link', link: '/components/navegação/link' },
+						
 						{ text: 'MobileNavbar', link: '/components/navegação/mobile-navbar' },
 						{ text: 'MobileNavigation', link: '/components/navegação/mobile-navigation' },
-						{ text: 'MobileStepperInput', link: '/components/navegação/mobile-stepper-input' },
+						// { text: 'MobileStepperInput', link: '/components/navegação/mobile-stepper-input' },
 						{ text: 'NavBar', link: '/components/navegação/navbar' },
+						{ text: 'PageLayout', link: '/components/navegação/page-layout' },
 						{ text: 'Pagination', link: '/components/navegação/pagination' },
-						{ text: 'SecondaryNavigation', link: '/components/navegação/secondary-navigation' },
+						// { text: 'SecondaryNavigation', link: '/components/navegação/secondary-navigation' },
+						{ text: 'SegmentedControl', link: '/components/navegação/segmented-control' },
 						{ text: 'SideBar', link: '/components/navegação/sidebar' },
 						{ text: 'Tabs', link: '/components/navegação/tabs' },
-						{ text: 'Wizard', link: '/components/navegação/wizard' },
-						{ text: 'PageLayout', link: '/components/containers/page-layout' },
+						// { text: 'Wizard', link: '/components/navegação/wizard' },
 					]
 				},
 			]

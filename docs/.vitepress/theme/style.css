@@ -229,3 +229,7 @@ h1 {
 .content-container {
 	max-width: 820px !important;
 }
+
+.vp-doc li + li {
+	margin-top: 0px;
+}

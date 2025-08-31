@@ -1,16 +1,24 @@
 # Breadcrumb
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### Breadcrumbs são utilizados para indicar ao usuário o caminho percorrido entre as páginas de uma aplicação até se checar na página atual.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- Quando houver dois ou mais níveis na hierarquia de páginas;
+- Quando você precisar indicar ao usuário em que página ele está e como ele pode refazer os passos que o levaram à página atual;
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
+## Quando não usar:
+- Em casos nos quais só houver uma página na estrutura de navegação.
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+<br />
+
+## Obs.:
+- Idealmente Breadcrumbs devem ser usados com <b>três</b> ou mais níveis de hierarquia. Entretanto, o Breadcrumb do
+Cuida pode ser usado com <b>dois</b> níveis pois nesse cenário ele se comporta como um botão de retorno para a página anterior.
+
 
 ---
 
@@ -18,10 +26,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ```js
 <CdsBreadcrumb
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="breadcrumbClick = true"
+	:items
 />
 ```
 
@@ -29,9 +34,20 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ## Preview
 
+##### Breadcrumb de 3 ou mais níveis:
+
 <PreviewContainer
 	:component="CdsBreadcrumb"
-	:events="cdsBreadcrumbEvents"
+	:items
+/>
+
+<br />
+
+##### Breadcrumb de 2 níveis:
+
+<PreviewContainer
+	:component="CdsBreadcrumb"
+	:items="items2"
 />
 
 ---
@@ -44,25 +60,48 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Eventos
-
-<APITable
-	name="Breadcrumb"
-	section="events"
-/>
-<br />
-
-## Slots
-
-<APITable
-	name="Breadcrumb"
-	section="slots"
-/>
-
 <script setup>
+import { ref } from 'vue';
 import CdsBreadcrumb from '@/components/Breadcrumb.vue';
 
-const cdsBreadcrumbEvents = [
-	'breadcrumb-click'
-];
+const items = ref([
+	{
+		label: 'Relatórios',
+		route: {
+			path: '/reports',
+			name: 'reports'
+		},
+	},
+	{
+		label: 'Relatórios individualizados',
+		route: {
+			path: '/individualized-reports',
+			name: 'individualized'
+		},
+	},
+	{
+		label: 'Relatório de usuários',
+		route: {
+			path: '/users-reports',
+			name: 'users'
+		},
+	},
+]);
+
+const items2 = ref([
+	{
+		label: 'Relatórios',
+		route: {
+			path: '/reports',
+			name: 'reports'
+		},
+	},
+	{
+		label: 'Relatórios individualizados',
+		route: {
+			path: '/individualized-reports',
+			name: 'individualized'
+		},
+	},
+]);
 </script>
