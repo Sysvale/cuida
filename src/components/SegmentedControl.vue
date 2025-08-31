@@ -12,7 +12,7 @@
 			}"
 			@click="handleClick(segment, index)"
 		>
-			<cds-tooltip
+			<CdsTooltip
 				v-if="withIcon"
 				:text="segmentsTooltipText[index]"
 			>
@@ -21,7 +21,7 @@
 					width="20"
 					:name="segment"
 				/>
-			</cds-tooltip>
+			</CdsTooltip>
 
 			<span v-else>{{ segment }}</span>
 		</button>

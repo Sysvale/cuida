@@ -15,7 +15,7 @@
 			:class="resolveCheckboxClass(option.value)"
 			@click="handleCheckboxClick(option.value)"
 		>
-			<cds-checkbox
+			<CdsCheckbox
 				:id="option.value"
 				:model-value="internalValue.includes(option.value)"
 				:label="option.label"

@@ -36,12 +36,12 @@
 
 			<!-- @slot Slot usado para inserção de conteúdo dentro do Modal. -->
 			<section>
-				<cds-scrollable
+				<CdsScrollable
 					:max-height="maxBodyHeight"
 					auto-height
 				>
 					<slot />
-				</cds-scrollable>
+				</CdsScrollable>
 			</section>
 
 			<footer

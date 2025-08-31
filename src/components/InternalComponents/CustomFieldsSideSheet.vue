@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<cds-side-sheet
+		<CdsSideSheet
 			v-model="modelValue"
 			title="Personalizar tabela"
 			no-close-on-esc
@@ -9,7 +9,7 @@
 			@ok="handleOk"
 			@cancel="handleCancel"
 		>
-			<cds-flexbox
+			<CdsFlexbox
 				direction="column"
 				gap="1"
 				fluid
@@ -18,18 +18,18 @@
 					{{ descriptionComputedText }}
 				</div>
 
-				<cds-flexbox
+				<CdsFlexbox
 					v-if="loadingCustomFields"
 					direction="column"
 					gap="3"
 				>
-					<cds-skeleton
+					<CdsSkeleton
 						v-for="skeleton in 8"
 						:key="skeleton"
 						:height="60"
 						fluid
 					/>
-				</cds-flexbox>
+				</CdsFlexbox>
 
 				<div v-else>
 					<div
@@ -66,7 +66,7 @@
 						/>
 					</div>
 				</div>
-			</cds-flexbox>
+			</CdsFlexbox>
 
 			<template #footer>
 				<div class="side-sheet__footer">
@@ -88,7 +88,7 @@
 					</CdsButton>
 				</div>
 			</template>
-		</cds-side-sheet>
+		</CdsSideSheet>
 	</div>
 </template>
 

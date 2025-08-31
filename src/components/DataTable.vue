@@ -44,7 +44,7 @@
 					{{ totalItems }} {{ totalItems === 1 ? 'registro encontrado' : 'registros encontrados' }}
 				</div>
 
-				<cds-flexbox
+				<CdsFlexbox
 					class="data-table__actions"
 					gap="3"
 					align="center"
@@ -62,7 +62,7 @@
 					>
 						Personalizar tabela
 					</CdsButton>
-				</cds-flexbox>
+				</CdsFlexbox>
 				<div
 					v-if="withSearch"
 					class="data-table__items-counter--below"
@@ -81,7 +81,7 @@
 						:items="[{}, {}, {}, {}]"
 					>
 						<template #table-item>
-							<cds-skeleton
+							<CdsSkeleton
 								width="100"
 								height="20"
 							/>

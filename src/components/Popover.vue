@@ -5,13 +5,13 @@
 		v-cds-click-outside="hide"
 		class="popover"
 	>
-		<cds-scrollable
+		<CdsScrollable
 			v-if="!verticalFluid"
 			:max-height="`${popoverHeight}`"
 		>
 			<!-- @slot Slot utilizado para renderização do conteúdo do Popover.-->
 			<slot />
-		</cds-scrollable>
+		</CdsScrollable>
 
 		<slot v-else />
 	</div>

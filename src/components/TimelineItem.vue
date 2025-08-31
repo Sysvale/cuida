@@ -9,7 +9,7 @@
 		<div
 			class="cds-timeline-item__timeline-container"
 		>
-			<cds-spinner
+			<CdsSpinner
 				v-if="loading"
 				size="sm"
 				class="spinner"
@@ -74,7 +74,7 @@ export default {
 			default: 'green',
 		},
 		/**
-		* Altera o estado do pin. Quando true torna o pin em um `Cds-spinner`.
+		* Altera o estado do pin. Quando true torna o pin em um `CdsSpinner`.
 		*/
 		loading: {
 			type: Boolean,

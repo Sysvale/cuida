@@ -54,13 +54,13 @@
 					autoplay
 				/>
 			</div>
-			<cds-flexbox
+			<CdsFlexbox
 				class="camera-container__feedback-text"
 				:class="{ 'camera-container__feedback-text--hidden': !filePhoto }"
 				align="center"
 			>
 				{{ feedbackText }}
-			</cds-flexbox>
+			</CdsFlexbox>
 			<flexbox
 				gap="2"
 				class="camera-container__buttons"

@@ -2,7 +2,7 @@
 	<span>
 		<div class="source-code__title">Lista de ícones:</div>
 
-		<cds-search-input
+		<CdsSearchInput
 			v-model="typedIcon"
 			fluid
 			class="icon__search-input"

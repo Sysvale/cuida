@@ -68,15 +68,15 @@
 						class="cds-multiselect__option multiselect__option"
 						@click="toggleSelectAll"
 					>
-						<cds-spacer margin-left="2">
-							<cds-checkbox
+						<CdsSpacer margin-left="2">
+							<CdsCheckbox
 								:id="`select-all-input-id-${uniqueKey}`"
 								v-model="selectAllValue"
 								:label="selectAllFancyMessage"
 								:indeterminate="indeterminate"
 								:variant="variant"
 							/>
-						</cds-spacer>
+						</CdsSpacer>
 					</div>
 
 					<div

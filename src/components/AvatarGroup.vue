@@ -1,6 +1,6 @@
 <template>
 	<div class="avatar-group__container">
-		<cds-tooltip
+		<CdsTooltip
 			v-for="(avatarData, index) in listAvatars"
 			:key="index"
 			position="bottom"
@@ -12,7 +12,7 @@
 				:size="size"
 				:clickable="false"
 			/>
-		</cds-tooltip>
+		</CdsTooltip>
 
 		<CdsClickable
 			v-if="showAvatarCounter"
@@ -47,9 +47,9 @@
 					:clickable="false"
 				/>
 
-				<cds-truncate width="180">
+				<CdsTruncate width="180">
 					<span class="avatar__name">{{ avatarData.name }}</span>
-				</cds-truncate>
+				</CdsTruncate>
 			</div>
 		</CdsPopover>
 	</div>

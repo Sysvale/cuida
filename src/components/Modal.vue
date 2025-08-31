@@ -35,12 +35,12 @@
 
 			<!-- @slot Slot usado para inserção de conteúdo dentro do Modal. -->
 			<section>
-				<cds-scrollable
+				<CdsScrollable
 					v-if="scrollable"
 					class="cds-modal__body"
 				>
 					<slot />
-				</cds-scrollable>
+				</CdsScrollable>
 				<div
 					v-else
 					class="cds-modal__body"

@@ -32,12 +32,12 @@
 				</slot>
 			</header>
 
-			<cds-scrollable
+			<CdsScrollable
 				max-height="100%"
 			>
 				<!-- @slot Slot usado para mostrar o conteúdo dentro do componente. -->
 				<slot />
-			</cds-scrollable>
+			</CdsScrollable>
 
 			<footer
 				v-if="!noFooter"

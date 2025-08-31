@@ -64,7 +64,7 @@
 
 							<div>
 								<div class="multi-file-input__actions">
-									<cds-select
+									<CdsSelect
 										v-model="item.selectedLabel"
 										:options="filesOptions"
 										label=""

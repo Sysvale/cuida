@@ -1,5 +1,5 @@
 <template>
-	<cds-box
+	<CdsBox
 		class="panel-card"
 		padding="0"
 		fluid
@@ -22,7 +22,7 @@
 			<!-- @slot Slot usado para inserção de conteúdo customizado. -->
 			<slot />
 		</div>
-	</cds-box>
+	</CdsBox>
 </template>
 
 <script>

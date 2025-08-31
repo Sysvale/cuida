@@ -165,7 +165,7 @@
 						</div>
 					</Transition>
 					<div v-if="item.items && collapsed">
-						<cds-rich-tooltip
+						<CdsRichTooltip
 							v-model="itemsWithVisibilityController[index].show"
 							:target-id="item.label"
 							default-placement="bottom-start"
@@ -207,7 +207,7 @@
 									</router-link>
 								</a>
 							</div>
-						</cds-rich-tooltip>
+						</CdsRichTooltip>
 					</div>
 				</li>
 			</ul>

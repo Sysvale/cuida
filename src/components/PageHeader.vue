@@ -16,12 +16,12 @@
 				>
 					{{ splitedSubtitle[0] }}
 
-					<cds-link
+					<CdsLink
 						:href="url"
 						bold
 					>
 						{{ fancyUrl }}
-					</cds-link>
+					</CdsLink>
 
 					{{ splitedSubtitle[1] }}
 				</span>

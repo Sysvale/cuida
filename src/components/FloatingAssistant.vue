@@ -4,7 +4,7 @@
 		class="floating-assistant"
 		:class="{ 'floating-assistant--hidden': !isActive }"
 	>
-		<cds-pulsar
+		<CdsPulsar
 			:id="pulsarId"
 			:target-id="targetId"
 			:variant="variant"

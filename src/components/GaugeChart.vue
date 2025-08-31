@@ -78,14 +78,14 @@
 				</svg>
 			</div>
 
-			<cds-rich-tooltip
+			<CdsRichTooltip
 				v-if="hasSlot($slots, 'popover')"
 				v-model="showPopover"
 				default-placement="top"
 				:target-id="uniqueKey"
 			>
 				<slot name="popover" />
-			</cds-rich-tooltip>
+			</CdsRichTooltip>
 		</div>
 	</span>
 </template>
