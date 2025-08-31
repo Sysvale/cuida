@@ -1,16 +1,18 @@
 # NavBar
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### NavBars são componentes utilizados para criar soluções de navegação e menus.
+---
+<br />
 
-### Quando usar
+## Recomendamos o uso de NavBars quando:
+- For necessário separar o conteúdo por páginas e navergar por elas.
+- Não for o caso de utilizar soluções como tabs, sidebars, cards ou links como navegação.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
-
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Não recomendamos o uso de NavBars quando:
+- Houver muitos itens a serem mostrados no menu.
+- For necessário mostrar os links verticalmente.
 
 ---
 
@@ -19,9 +21,9 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 ```js
 <CdsNavBar
 	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="navBarClick = true"
+	:items
+	:activeItem="items[1]"
+	@navbar-click="logClick"
 />
 ```
 
@@ -32,6 +34,8 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewContainer
 	:component="CdsNavBar"
 	:events="cdsNavBarEvents"
+	:items
+	:activeItem="items[1]"
 />
 
 ---
@@ -52,17 +56,35 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Slots
-
-<APITable
-	name="NavBar"
-	section="slots"
-/>
-
 <script setup>
+import { ref } from 'vue';
 import CdsNavBar from '@/components/NavBar.vue';
 
 const cdsNavBarEvents = [
-	'navBar-click'
+	'navbar-click'
 ];
+
+const items = ref([
+	{
+		label: 'Mapa de grupo de risco',
+		route: {
+			path: '/mapa',
+			name: 'principal'
+		},
+	},
+	{
+		label: 'Liga Saudável',
+		route: {
+			path: '/liga-saudavel',
+			name: 'pagina1'
+		},
+	},
+	{
+		label: 'Mapa de calor dos bairros',
+		route: {
+			path: '/mapa-de-calor',
+			name: 'pagina2'
+		},
+	},
+]);
 </script>

@@ -212,7 +212,7 @@ export default defineConfig({
 						{ text: 'MobileNavbar', link: '/components/navegação/mobile-navbar' },
 						{ text: 'MobileNavigation', link: '/components/navegação/mobile-navigation' },
 						// { text: 'MobileStepperInput', link: '/components/navegação/mobile-stepper-input' },
-						{ text: 'NavBar', link: '/components/navegação/navbar' },
+						{ text: 'NavBar  <Badge class="badge" type="info">', link: '/components/navegação/nav-bar' },
 						{ text: 'PageLayout', link: '/components/navegação/page-layout' },
 						{ text: 'Pagination <Badge class="badge" type="info">ready</Badge>', link: '/components/navegação/pagination' },
 						// { text: 'SecondaryNavigation', link: '/components/navegação/secondary-navigation' },
