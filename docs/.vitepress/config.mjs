@@ -38,6 +38,7 @@ export default defineConfig({
 			'/components/': [
 				{
 					text: 'Forms',
+					collapsed: false,
 					items: [
 						{ text: 'Button <Badge class="badge" type="info">ready</Badge>', link: '/components/forms/button' },
 						{ text: 'FlatButton <Badge class="badge" type="info">ready</Badge>', link: '/components/forms/flat-button' },
@@ -81,6 +82,7 @@ export default defineConfig({
 				},
 				{
 					text: 'Display',
+					collapsed: false,
 					items: [
 						{ text: 'ActionBar <Badge class="badge" type="info">ready</Badge>', link: '/components/display/action-bar' },
 						{ text: 'ActionsList <Badge class="badge" type="info">ready</Badge>', link: '/components/display/actions-list' },
@@ -109,6 +111,7 @@ export default defineConfig({
 				},
 				{
 					text: 'Containers',
+					collapsed: false,
 					items: [
 						
 						{ text: 'Box <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/box' },
@@ -137,6 +140,7 @@ export default defineConfig({
 				},
 				{
 					text: 'Overlay',
+					collapsed: false,
 					items: [
 						{ text: 'BottomSheet <Badge class="badge" type="info">ready</Badge>', link: '/components/overlays/bottom-sheet' },
 						{ text: 'InteractionBlockingOverlay <Badge class="badge" type="info">ready</Badge>', link: '/components/overlays/interaction-blocking-overlay' },
@@ -149,6 +153,7 @@ export default defineConfig({
 				},
 				{
 					text: 'Loaders',
+					collapsed: false,
 					items: [
 						{ text: 'LoadingBar <Badge class="badge" type="info">ready - deprecated</Badge>', link: '/components/loaders/loading-bar' },
 						{ text: 'LoadingIndicator <Badge class="badge" type="info">ready</Badge>', link: '/components/loaders/loading-indicator' },
@@ -160,6 +165,7 @@ export default defineConfig({
 				},
 				{
 					text: 'Utils',
+					collapsed: false,
 					items: [
 						{ text: 'Clickable <Badge class="badge" type="info">ready - deprecated</Badge>', link: '/components/utils/clickable' },
 						{ text: 'Image <Badge class="badge" type="info">ready</Badge>', link: '/components/utils/image' },
@@ -169,6 +175,7 @@ export default defineConfig({
 				},
 				{
 					text: 'Charts',
+					collapsed: false,
 					items: [
 						{ text: 'BarChart', link: '/components/charts/bar-chart' },
 						{ text: 'DonutChart', link: '/components/charts/donut-chart' },
@@ -182,6 +189,7 @@ export default defineConfig({
 				},
 				{
 					text: 'Notificação',
+					collapsed: false,
 					items: [
 						{ text: 'Alert <Badge class="badge" type="info">ready</Badge>', link: '/components/notificação/alert' },
 						{ text: 'AlertCard <Badge class="badge" type="info">ready</Badge>', link: '/components/notificação/alert-card' },
@@ -193,6 +201,7 @@ export default defineConfig({
 				},
 				{
 					text: 'Estrutural',
+					collapsed: false,
 					items: [
 						{ text: 'AppBar', link: '/components/estrutural/app-bar' },
 						{ text: 'PageContainer', link: '/components/estrutural/page-container' },
@@ -202,12 +211,14 @@ export default defineConfig({
 				},
 				{
 					text: 'Tipografia',
+					collapsed: false,
 					items: [
 						{ text: 'Text <Badge class="badge" type="info">ready</Badge>', link: '/components/tipografia/text' },
 					]
 				},
 				{
 					text: 'Navegação',
+					collapsed: false,
 					items: [
 						{ text: 'Breadcrumb <Badge class="badge" type="info">ready</Badge>', link: '/components/navegação/breadcrumb' },
 						{ text: 'InnerTabs <Badge class="badge" type="info">ready</Badge>', link: '/components/navegação/inner-tabs' },
