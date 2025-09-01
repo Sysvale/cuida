@@ -1,16 +1,20 @@
 # MobileNavigation
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### O MobileNavigation é uma barra lateral que proporciona acesso rápido e fácil às principais seções da aplicação no ambiente mobile.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- Quando for necessária uma navegação na versão mobile da aplicação;
+- Quando for necessário facilitar o acesso a diferentes seções do aplicativo, garantindo que o usuário possa navegar facilmente entre as páginas sem se perder;
+- Quando o espaço vertical for limitado, aproveitando ao máximo a largura da tela do dispositivo móvel.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
+## Quando não usar:
+- Quando em ambiente desktop, onde uma barra de navegação superior ou lateral pode ser mais adequada;
+- Quando em telas que requerem espaço horizontal significativo, pois o menu pode sobrepor ou obstruir o conteúdo principal.
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
 ---
 
@@ -32,6 +36,11 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewContainer
 	:component="CdsMobileNavigation"
 	:events="cdsMobileNavigationEvents"
+	light="true"
+	:items
+	:user
+	:activeItem="items[1]"
+	:sticky="false"
 />
 
 ---
@@ -60,9 +69,56 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsMobileNavigation from '@/components/MobileNavigation.vue';
 
 const cdsMobileNavigationEvents = [
-	'mobileNavigation-click'
+	'logout',
+	'item-click',
+	'profile-click',
 ];
+
+const items = ref([
+	{
+		label: 'Início',
+		icon: 'home-outline',
+		type: 'route',
+		route: {
+			path: '/home',
+			name: 'home'
+		},
+	},
+	{
+		label: 'Vigilância sanitária',
+		icon: 'shield-outline',
+		type: 'route',
+		route: {
+			path: '/visa',
+			name: 'visa'
+		},
+	},
+	{
+		label: 'Central de marcação',
+		icon: 'calendar-outline',
+		type: 'route',
+		route: {
+			path: '/regulation',
+			name: 'regulation'
+		},
+	},
+	{
+		label: 'Cuidados médicos',
+		icon: 'heart-rate-outline',
+		type: 'route',
+		route: {
+			path: '/medical-care',
+			name: 'medical-care',
+		},
+	},
+]);
+
+const user = ref({
+	name: 'Joana Mendes',
+	role: 'Administradora',
+});
 </script>
