@@ -16,6 +16,7 @@
 			<CdsButton
 				:id="$attrs.id || $attrs.targetId"
 				:text="`Toggle ${component.name}`"
+				style="margin: 12px 0px"
 				@button-click="emits('trigger-click')"
 			/>
 
@@ -104,6 +105,9 @@ type LogEntry = {
 const model = defineModel('args');
 
 const props = withDefaults(defineProps<{
+	/**
+	 * Instância do componente vue
+	 */
 	component: Component & { name: string },
 	events?: string[],
 	withBackground?: boolean,
@@ -165,6 +169,8 @@ onMounted(() => {
 		};
 	});
 });
+
+export type PreviewBuilderType = typeof import("./PreviewBuilder.vue")["default"];
 </script>
 
 <style scoped>

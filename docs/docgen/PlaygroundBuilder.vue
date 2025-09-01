@@ -83,6 +83,9 @@ import CdsFlexbox from '@/components/Flexbox.vue';
 const model = defineModel('args');
 
 const props = withDefaults(defineProps<{
+	/**
+	* Nome do componente.
+	*/
 	component: string,
 	initialValues: Object,
 }>(), {
@@ -160,6 +163,9 @@ watch(normalizedPropsData, () => {
 	// model.value = payload.value;
 	// emits('update', payload.value);
 }, { deep: true})
+
+
+export type PlaygroundBuilderType = typeof import("./PlaygroundBuilder.vue")["default"];
 </script>
 
 <style scoped>

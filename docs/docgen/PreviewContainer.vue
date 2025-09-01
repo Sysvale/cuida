@@ -14,6 +14,8 @@ const props = withDefaults(defineProps<{
 });
 
 const containerBackground = computed(() => props.withBackground ? '#F8F9FA' : 'transparent');
+
+export type PreviewContainerType = typeof import("./PreviewContainer.vue")["default"];
 </script>
 
 <style scoped>
