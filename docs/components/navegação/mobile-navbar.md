@@ -1,16 +1,19 @@
 # MobileNavbar
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### MobileNavbar é uma barra de navegação móvel localizada na parte inferior da tela.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- Em aplicações móveis ou responsivas que exigem uma navegação simples e acessível.
+- Quando for necessário fornecer acesso rápido a seções principais do aplicativo.
+- Para substituir navegações complexas em telas pequenas, mantendo a usabilidade.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
-
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- Em telas grandes (desktop), onde uma navbar lateral ou superior é mais apropriada.
+- Quando o número de itens de navegação é muito grande (mais de 5 itens).
 
 ---
 
@@ -32,6 +35,10 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewContainer
 	:component="CdsMobileNavbar"
 	:events="cdsMobileNavbarEvents"
+	:items
+	:activeItem="items[2]"
+	variant="green"
+	show-label
 />
 
 ---
@@ -52,17 +59,18 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Slots
-
-<APITable
-	name="MobileNavbar"
-	section="slots"
-/>
-
 <script setup>
+import { ref } from 'vue';
 import CdsMobileNavbar from '@/components/MobileNavbar.vue';
 
 const cdsMobileNavbarEvents = [
-	'mobileNavbar-click'
+	'item-click'
 ];
+
+const items = ref([
+	{ icon: 'home-outline', label: 'Início', route: { name: 'Google', path: 'www.google.com' } },
+	{ icon: 'search-outline', label: 'Busca', route: { name: 'Google', path: 'www.google.com' }  },
+	{ icon: 'notification-bell-outline', label: 'Notificações', route: { name: 'Google', path: 'www.google.com' }  },
+	{ icon: 'user-outline', label: 'Perfil', route: { name: 'Google', path: 'www.google.com' }  },
+]);
 </script>

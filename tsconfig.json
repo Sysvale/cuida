@@ -27,8 +27,13 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "types/*.d.ts",
+    "docs/**/*.md"
   ],
+  "vueCompilerOptions": {
+    "vitePressExtensions": [".md"],
+  },
   "exclude": [
     "node_modules",
     "dist",

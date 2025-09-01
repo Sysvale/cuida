@@ -6726,6 +6726,19 @@
       {
         "name": "variant",
         "description": "Define a variante de cor dos detalhes do componente. São 9 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -10248,8 +10261,32 @@
     "tags": {},
     "props": [
       {
+        "name": "variant",
+        "description": "A variante de cor. São 10 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.\nA variante só terá efeito quando a SideBar estiver no modo light.",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'green'"
+        }
+      },
+      {
         "name": "items",
-        "description": "Define a lista dos itens do SideBar a serem\nmostrados. Os itens da lista devem ser\nobjetos com path ou route, e com uma label",
+        "description": ">>>>>>> cdf87e5f87cbd0727c597cd69407afaee335dcde\nDefine a lista dos itens do SideBar a serem\nmostrados. Os itens da lista devem ser\nobjetos com path ou route, e com uma label",
         "type": {
           "name": "array"
         },
