@@ -103,7 +103,7 @@ import CdsBaseInput from './BaseInput.vue';
 
 
 const model = defineModel('modelValue', {
-	type: [Array, Object],
+	type: [Array, Object, String],
 });
 
 const props = defineProps({

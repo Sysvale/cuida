@@ -10248,17 +10248,6 @@
     "tags": {},
     "props": [
       {
-        "name": "variant",
-        "description": "A variante de cor. São 10 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.\nA variante só terá efeito quando a SideBar estiver no modo light.",
-        "type": {
-          "name": "string"
-        },
-        "defaultValue": {
-          "func": false,
-          "value": "'green'"
-        }
-      },
-      {
         "name": "items",
         "description": "Define a lista dos itens do SideBar a serem\nmostrados. Os itens da lista devem ser\nobjetos com path ou route, e com uma label",
         "type": {
@@ -10280,6 +10269,30 @@
         "defaultValue": {
           "func": false,
           "value": "{}"
+        }
+      },
+      {
+        "name": "variant",
+        "description": "A variante de cor. São 10 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.\nA variante só terá efeito quando a SideBar estiver no modo light.",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'green'"
         }
       },
       {
@@ -11519,12 +11532,12 @@
         "name": "items",
         "description": "Array contendo os itens a serem exibidos na tabela. Os itens devem estar no seguinte formato:\n\n\n``{ 'exampleKey1': 'exampleValue1', 'exampleKey2': 'exampleValue2' }``\n\nCom a 'key' sendo a mesma do campo da tabela onde o valor deve ser exibido",
         "type": {
-          "name": "array"
+          "name": "array|object"
         },
         "required": true,
         "defaultValue": {
-          "func": false,
-          "value": "[]"
+          "func": true,
+          "value": "() => ([])"
         }
       },
       {

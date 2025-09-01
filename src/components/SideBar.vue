@@ -313,15 +313,6 @@ export default {
 
 	props: {
 		/**
-		* A variante de cor. São 10 variantes implementadas: 'green', 'teal',
-		* 'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.
-		* A variante só terá efeito quando a SideBar estiver no modo light.
-		*/
-		variant: {
-			type: String,
-			default: 'green',
-		},
-		/**
 		* Define a lista dos itens do SideBar a serem
 		* mostrados. Os itens da lista devem ser
 		* objetos com path ou route, e com uma label
@@ -340,7 +331,6 @@ export default {
 				return !invalidValues.length;
 			},
 		},
-
 		/**
 		* O item ativo da SideBar
 		*/
@@ -348,6 +338,16 @@ export default {
 			type: Object,
 			default: () => ({}),
 			required: true,
+		},
+		/**
+		* A variante de cor. São 10 variantes implementadas: 'green', 'teal',
+		* 'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.
+		* A variante só terá efeito quando a SideBar estiver no modo light.
+		* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
+		*/
+		variant: {
+			type: String,
+			default: 'green',
 		},
 		/**
 		* Controla exibição do botão "sair" no footer da sidebar
@@ -664,8 +664,9 @@ export default {
 		&__subitem {
 			color: tokens.$n-100;
 			cursor: pointer;
-			padding: tokens.py(1);
+			padding: tokens.py(1) !important;
 			@include tokens.caption;
+			text-decoration: none !important;
 
 			&--active {
 				color: tokens.$n-0;

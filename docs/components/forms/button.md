@@ -61,11 +61,11 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ---
 
-## Figma
+<!-- ## Figma
 
 <FigmaFrame
 	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
-/>
+/> -->
 
 <script setup>
 import CdsButton from '@/components/Button.vue';
