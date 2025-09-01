@@ -1,16 +1,17 @@
 # PageLayout
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### O PageLayout é uma coleção de componentes que permite a criação de telas padronizadas com navegação primária na vertical e navegação secundária na horizontal.
+---
+<br />
 
-### Quando usar
+## Recomendamos o uso do PageLayout quando:
+- Quando for necessário usar uma navegação primária disposta verticalmente. Para mais detalhes sobre como configurar a navegação primária dessa forma, consulte a documentação do componente Sidebar.
+- Quando for necessário incluir uma navegação secundária que se dispõe horizontalmente na parte superior da tela.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
-
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Não recomendamos o uso do PageLayout quando:
+- Quando for necessário usar uma navegação primária disposta horizontalmente.
 
 ---
 
@@ -32,7 +33,20 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewContainer
 	:component="CdsPageLayout"
 	:events="cdsPageLayoutEvents"
-/>
+	variant="indigo"
+	:light="true"
+	:user
+	:collapsibleSideBar="true"
+	:sideBarItems
+	:sideBarActiveItem="sideBarItems[2]"
+	:navigationActiveItem="navigationItems[1]"
+	:navigationItems
+	:logos
+>
+	<template #default>
+		Conteúdo da página
+	</template>
+</PreviewContainer>
 
 ---
 
@@ -60,9 +74,101 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsPageLayout from '@/components/PageLayout.vue';
 
 const cdsPageLayoutEvents = [
-	'pageLayout-click'
+	'sidebar-item-click',
+	'sidebar-logout',
+	'popover-item-click',
+	'navigation-item-click',
 ];
+
+
+const sideBarItems = ref([
+	{
+		label: 'Início',
+		icon: 'home-outline',
+		type: 'route',
+		route: {
+			path: '/home',
+			name: 'home'
+		},
+	},
+	{
+		label: 'Vigilância Sanitária',
+		icon: 'shield-outline',
+		type: 'route',
+		route: {
+			path: '/visa',
+			name: 'visa'
+		},
+	},
+	{
+		label: 'Central de marcação',
+		icon: 'calendar-outline',
+		type: 'route',
+		route: {
+			path: '/regulation',
+			name: 'regulation'
+		},
+	},
+	{
+		label: 'Cuidados médicos',
+		icon: 'heart-rate-outline',
+		type: 'route',
+		route: {
+			path: '/medical-care',
+			name: 'medical-care'
+		},
+	}
+]);
+
+const navigationItems = ref([
+	{
+		key: 'dashboard',
+		label: 'Dashboard',
+		route: {
+			name: 'dashboard',
+		},
+	},
+	{
+		key: 'home',
+		label: 'Inicio',
+		route: {
+			name: 'home',
+		},
+	},
+	{
+		key: 'reports',
+		label: 'Relatórios',
+		subitems: [
+			{
+				key: 'productivity',
+				label: 'Relatório de produtividade',
+				route: {
+					name: 'productivity',
+				},
+			},
+			{
+				key: 'time-sheet',
+				label: 'Folha de ponto',
+				route: {
+					name: 'timesheet',
+				},
+			}
+		],
+	},
+]);
+
+const logos = ref({
+	default: 'https://framerusercontent.com/images/cF8DHaPnyhgullDGcpLnyXwGUp4.png',
+	collapsed: 'https://i.imgur.com/aNrsz0h.png',
+});
+
+const user = ref({
+	name: 'Joana Mendes',
+	role: 'Administradora',
+	picture: 'https://this-person-does-not-exist.com/img/avatar-gen83fa18cdcd216e7220794a23e76fe0dc.jpg',
+});
 </script>

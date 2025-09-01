@@ -147,7 +147,7 @@ export default {
 		 * Com a 'key' sendo a mesma do campo da tabela onde o valor deve ser exibido
 		 */
 		items: {
-			type: Array,
+			type: [Array, Object],
 			required: true,
 			default: () => ([]),
 		},

@@ -234,3 +234,7 @@ h1 {
 .vp-doc li + li {
 	margin-top: 0px;
 }
+
+.vp-doc p {
+	line-height: normal;
+}

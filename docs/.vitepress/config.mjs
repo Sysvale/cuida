@@ -213,11 +213,11 @@ export default defineConfig({
 						{ text: 'MobileNavigation', link: '/components/navegação/mobile-navigation' },
 						// { text: 'MobileStepperInput', link: '/components/navegação/mobile-stepper-input' },
 						{ text: 'NavBar <Badge class="badge" type="info">ready</Badge>', link: '/components/navegação/nav-bar' },
-						{ text: 'PageLayout', link: '/components/navegação/page-layout' },
+						{ text: 'PageLayout <Badge class="badge" type="info">ready</Badge>', link: '/components/navegação/page-layout' },
 						{ text: 'Pagination <Badge class="badge" type="info">ready</Badge>', link: '/components/navegação/pagination' },
 						// { text: 'SecondaryNavigation', link: '/components/navegação/secondary-navigation' },
 						{ text: 'SegmentedControl <Badge class="badge" type="info">ready</Badge>', link: '/components/navegação/segmented-control' },
-						{ text: 'SideBar', link: '/components/navegação/sidebar' },
+						{ text: 'SideBar <Badge class="badge" type="info">ready</Badge>', link: '/components/navegação/side-bar' },
 						{ text: 'Tabs <Badge class="badge" type="info">ready - deprecated</Badge>', link: '/components/navegação/tabs' },
 						// { text: 'Wizard', link: '/components/navegação/wizard' },
 					]
