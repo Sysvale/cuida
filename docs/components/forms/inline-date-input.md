@@ -34,6 +34,7 @@
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 
 const dateValue = ref('2000-01-01');
 </script>
@@ -53,6 +54,7 @@ const dateValue = ref('2000-01-01');
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 
 const dateRange = ref('');
 </script>

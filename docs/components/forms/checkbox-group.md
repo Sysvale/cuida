@@ -30,6 +30,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsCheckboxGroup"
 	:events="cdsCheckboxGroupEvents"
 />

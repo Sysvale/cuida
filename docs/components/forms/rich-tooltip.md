@@ -40,6 +40,7 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsRichTooltip"
 	:events="cdsRichTooltipEvents"
 	with-trigger
@@ -82,6 +83,7 @@
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsRichTooltip from '@/components/RichTooltip.vue';
 
 const showRichTooltip = ref(false);

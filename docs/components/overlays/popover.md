@@ -52,10 +52,10 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsPopover"
 	:events="cdsPopoverEvents"
 	with-trigger
-	v-model="showPopover"
 	targetId="trigger-cds-popover"
 	@trigger-click="showPopover =true"
 >
@@ -101,6 +101,8 @@ import { ref } from 'vue';
 import CdsPopover from '@/components/Popover.vue';
 
 const showPopover = ref(false);
+
+const args = ref({});
 
 const cdsPopoverEvents = [
 	'update:modelValue'

@@ -35,13 +35,12 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsBottomSheet"
 	:events="cdsBottomSheetEvents"
 	with-trigger
 	title="Onde encontrar o meu CNS"
-	v-model="showBottomSheet"
-	@trigger-click="showBottomSheet = true"
-	@close="showBottomSheet = false"
+	@trigger-click="args.modelValue = true"
 >
 	Conteúdo
 </PreviewBuilder>
@@ -74,6 +73,7 @@
 <script setup>
 import { ref } from 'vue';
 import CdsBottomSheet from '@/components/BottomSheet.vue';
+const args = ref({});
 
 const showBottomSheet = ref(false);
 

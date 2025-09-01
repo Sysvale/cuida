@@ -43,10 +43,10 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsModal"
 	:events="cdsModalEvents"
 	with-trigger
-	:modelValue="showModal"
 	@trigger-click="showModal =true"
 	@close="showModal = false"
 >
@@ -87,6 +87,8 @@ import { ref } from 'vue';
 import CdsModal from '@/components/Modal.vue';
 
 const showModal = ref(false);
+
+const args = ref({});
 
 const cdsModalEvents = [
 	'close',

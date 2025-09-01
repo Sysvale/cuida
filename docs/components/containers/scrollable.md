@@ -57,6 +57,7 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsScrollable"
 	:events="cdsScrollableEvents"
 	maxHeight="150px"
@@ -113,6 +114,7 @@
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsScrollable from '@/components/Scrollable.vue';
 
 const cdsScrollableEvents = [];

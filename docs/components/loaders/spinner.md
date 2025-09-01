@@ -28,6 +28,7 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsSpinner"
 	:delay="1000"
 />

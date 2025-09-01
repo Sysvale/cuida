@@ -24,6 +24,7 @@ TextInputs permitem que os usuários insiram texto em uma interface.
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsTextInput"
 	:events="cdsTextInputEvents"
 />
@@ -63,6 +64,7 @@ TextInputs permitem que os usuários insiram texto em uma interface.
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsTextInput from '@/components/TextInput.vue';
 
 const cdsTextInputEvents = [

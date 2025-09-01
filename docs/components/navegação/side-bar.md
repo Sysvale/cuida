@@ -64,24 +64,13 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsSideBar"
 	:events="cdsSideBarEvents"
-	variant="green"
-	:items
-	:activeItem="items[4]"
-	userName="Joana Mendes"
-	userRole="Administradora"
-	userPicture="https://thispersondoesnotexist.com/"
-	:collapsible="true"
-	:collapsibleState="false"
-	logoImage="https://framerusercontent.com/images/Xdjpf9nazmZOoS2SUnbbkwsaFk.png"
-	:light="isLight"
-	:searchButton="false"
-	:showLogout="false"
 >
 	<template #logo>
 		<img
-			v-if="!isLight"
+			v-if="!args.light"
 			src="https://framerusercontent.com/images/Xdjpf9nazmZOoS2SUnbbkwsaFk.png"
 		>
 		<img
@@ -133,7 +122,7 @@ const cdsSideBarEvents = [
 	'logo-click'
 ];
 
-const items = ref([
+const items = [
 	{
 		label: 'Dashboard',
 		icon: 'dashboard-outline',
@@ -234,7 +223,22 @@ const items = ref([
 			name: 'support',
 		},
 	},
-]);
+];
 
 const isLight = ref(false);
+
+const args = ref({
+	items,
+	variant: 'green',
+	activeItem: items[4],
+	userName: 'Joana Mendes',
+	userRole: 'Administradora',
+	userPicture: 'https://thispersondoesnotexist.com/',
+	collapsible: true,
+	collapsibleState: false,
+	logoImage: 'https://framerusercontent.com/images/Xdjpf9nazmZOoS2SUnbbkwsaFk.png',
+	light: false,
+	searchButton: false,
+	showLogout: false,
+});
 </script>

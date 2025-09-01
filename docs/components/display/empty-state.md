@@ -33,6 +33,7 @@ EmptyStates são componentes utilizados em momentos instrutivos aos usuários.
 ## Preview
 
 <PreviewBuilder
+	:args
 	image="https://static.vecteezy.com/system/resources/thumbnails/011/537/753/small_2x/box-empty-state-single-isolated-icon-with-flat-style-free-vector.jpg"
 	image-description="Imagem de empty state"
 	title="Título do empty state"
@@ -76,6 +77,7 @@ EmptyStates são componentes utilizados em momentos instrutivos aos usuários.
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsEmptyState from '@/components/EmptyState.vue';
 
 const cdsEmptyStateEvents = [

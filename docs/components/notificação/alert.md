@@ -29,6 +29,7 @@ Alerts s√£o componentes utilizados para prover feedbacks contextuais e notifica√
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsAlert"
 	:events="cdsAlertEvents"
 />
@@ -60,15 +61,11 @@ Alerts s√£o componentes utilizados para prover feedbacks contextuais e notifica√
 
 ---
 
-<!-- ## Figma
-
-<FigmaFrame
-	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
-/> -->
-
 <script setup>
 import { ref } from 'vue';
 import CdsAlert from '@/components/Alert.vue';
+
+const args = ref({});
 
 const cdsAlertEvents = [
 	'close'

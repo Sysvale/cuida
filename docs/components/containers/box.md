@@ -19,6 +19,7 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsBox"
 	:events="cdsBoxEvents"
 >

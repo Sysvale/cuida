@@ -63,13 +63,10 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsInnerTabs"
 	:events="cdsInnerTabsEvents"
 	with-background
-	:tabs="dataSet"
-	:activeTab="dataSet[1]"
-	:lazy="false"
-	:headerLeft="false"
 >
 	<template #overview>
 		Overview
@@ -105,43 +102,42 @@
 ## __Com scroll horizontal__
 Quando o conjunto de abas tiver uma largura maior que o container, será exibida uma barra de scroll horizonal para que o layout não seja quebrado em linhas ou fique oculto.
 
-<PreviewBuilder
-	:component="CdsInnerTabs"
-	with-background
-	static
-	:tabs="dataSet2"
-	:activeTab="dataSet2[1]"
-	:lazy="false"
-	:headerLeft="false"
->
-	<template #overview>
-		Overview
-	</template>
-	<template #indicator-1>
-		Conteúdo da tab-1
-	</template>
-	<template #prision-tab>
-		Você não pode sair dessa aba pois a propriedade "disableTabChange" está com o valor "true" neste item na propriedade "tabs"
-	</template>
-	<template #indicator-3>
-		Conteúdo da tab-3
-	</template>
-	<template #indicator-4>
-		Conteúdo da tab-4
-	</template>
-	<template #indicator-5>
-		Conteúdo da tab-5
-	</template>
-	<template #indicator-6>
-		Conteúdo da tab-6
-	</template>
-	<template #indicator-7>
-		Conteúdo da tab-7
-	</template>
-	<template #indicator-8>
-		Conteúdo da tab-8
-	</template>
-</PreviewBuilder>
+<PreviewContainer withBackground>
+	<CdsInnerTabs
+		:tabs="tabs2"
+		:activeTab="tabs2[1]"
+		:lazy="false"
+		:headerLeft="false"
+	>
+		<template #overview>
+			Overview
+		</template>
+		<template #indicator-1>
+			Conteúdo da tab-1
+		</template>
+		<template #prision-tab>
+			Você não pode sair dessa aba pois a propriedade "disableTabChange" está com o valor "true" neste item na propriedade "tabs"
+		</template>
+		<template #indicator-3>
+			Conteúdo da tab-3
+		</template>
+		<template #indicator-4>
+			Conteúdo da tab-4
+		</template>
+		<template #indicator-5>
+			Conteúdo da tab-5
+		</template>
+		<template #indicator-6>
+			Conteúdo da tab-6
+		</template>
+		<template #indicator-7>
+			Conteúdo da tab-7
+		</template>
+		<template #indicator-8>
+			Conteúdo da tab-8
+		</template>
+	</CdsInnerTabs>
+</PreviewContainer>
 
 ---
 
@@ -177,7 +173,7 @@ const cdsInnerTabsEvents = [
 	'change'
 ];
 
-const dataSet = ref([
+const tabs = [
 	{
 		title: 'Visão geral',
 		name: 'overview',
@@ -199,9 +195,9 @@ const dataSet = ref([
 		title: 'Indicador 4',
 		name: 'indicator-4',
 	}
-]);
+];
 
-const dataSet2 = ref([
+const tabs2 = [
 	{
 		title: 'Visão geral',
 		name: 'overview',
@@ -238,5 +234,12 @@ const dataSet2 = ref([
 		title: 'Indicador 8',
 		name: 'indicator-8',
 	},
-]);
+];
+
+const args = ref({
+	tabs,
+	activeTab: tabs[1],
+	lazy: false,
+	headerLeft: false,
+});
 </script>

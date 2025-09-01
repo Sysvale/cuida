@@ -32,10 +32,9 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsNavBar"
 	:events="cdsNavBarEvents"
-	:items
-	:activeItem="items[1]"
 />
 
 ---
@@ -64,7 +63,7 @@ const cdsNavBarEvents = [
 	'navbar-click'
 ];
 
-const items = ref([
+const items = [
 	{
 		label: 'Mapa de grupo de risco',
 		route: {
@@ -86,5 +85,10 @@ const items = ref([
 			name: 'pagina2'
 		},
 	},
-]);
+];
+
+const args = ref({
+	items,
+	activeItem: items[1],
+});
 </script>

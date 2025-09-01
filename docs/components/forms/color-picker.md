@@ -36,6 +36,7 @@
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 
 const color = ref('#2AC092');
 
@@ -76,6 +77,7 @@ const handleEmit = (value) => {
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 
 const color = ref('#2AC092');
 

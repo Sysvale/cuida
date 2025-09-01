@@ -52,6 +52,7 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsDashboardCard"
 	:events="cdsDashboardCardEvents"
 	:showAction="true"

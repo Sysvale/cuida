@@ -33,12 +33,9 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsMobileNavbar"
 	:events="cdsMobileNavbarEvents"
-	:items
-	:activeItem="items[2]"
-	variant="green"
-	show-label
 />
 
 ---
@@ -67,10 +64,15 @@ const cdsMobileNavbarEvents = [
 	'item-click'
 ];
 
-const items = ref([
+const items = [
 	{ icon: 'home-outline', label: 'Início', route: { name: 'Google', path: 'www.google.com' } },
 	{ icon: 'search-outline', label: 'Busca', route: { name: 'Google', path: 'www.google.com' }  },
 	{ icon: 'notification-bell-outline', label: 'Notificações', route: { name: 'Google', path: 'www.google.com' }  },
 	{ icon: 'user-outline', label: 'Perfil', route: { name: 'Google', path: 'www.google.com' }  },
-]);
+];
+
+const args = ref({
+	items,
+	activeItem: items[2],
+});
 </script>

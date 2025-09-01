@@ -4,7 +4,8 @@
 			v-if="!$slots.container && !withTrigger"
 			:is="component"
 			v-on="internalEvents"
-			v-bind="{...componentProps, ...$attrs }"
+			v-bind="{...$attrs, ...model }"
+			v-model="model.modelValue"
 		>
 			<template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
 				<slot v-if="slotProps" :name="slotName" v-bind="slotProps" />
@@ -21,7 +22,8 @@
 			<component
 				:is="component"
 				v-on="internalEvents"
-				v-bind="{...componentProps, ...$attrs }"
+				v-bind="{...$attrs, ...model }"
+				v-model="model.modelValue"
 			>
 				<template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
 					<slot v-if="slotProps" :name="slotName" v-bind="slotProps" />
@@ -72,8 +74,7 @@
 	<PlaygroundBuilder
 		v-if="!static"
 		:component="component.name"
-		:initial-values="componentProps"
-		@update="handleUpdate"
+		:args="model"
 	/>
 </template>
 
@@ -99,6 +100,8 @@ type LogEntry = {
 	payload: any;
 	timestamp: string;
 };
+
+const model = defineModel('args');
 
 const props = withDefaults(defineProps<{
 	component: Component & { name: string },
@@ -146,10 +149,12 @@ watch(
 );
 
 watch(() => $attrs, () => {
-	componentProps.value = {...componentProps.value, ...$attrs };
+	console.log('no args');
+	componentProps.value = {...$attrs, ...componentProps.value };
 }, { immediate: true, deep: true });
 
 onMounted(() => {
+	componentProps.value = $attrs;
 	props.events?.forEach((event) => {
 		internalEvents.value[event] = (ev) => {
 			log.value.push({

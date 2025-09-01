@@ -32,6 +32,7 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsSkeletonText"
   :width="100"
 />

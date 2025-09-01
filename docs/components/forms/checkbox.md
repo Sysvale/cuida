@@ -29,6 +29,7 @@ Checkboxes são componentes de formulário que permitem seleções binárias e m
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsCheckbox"
 	:events="cdsCheckboxEvents"
 />
@@ -68,6 +69,7 @@ Checkboxes são componentes de formulário que permitem seleções binárias e m
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsCheckbox from '@/components/Checkbox.vue';
 
 const cdsCheckboxEvents = [

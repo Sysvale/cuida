@@ -38,6 +38,7 @@ Selects permitem que o usuário escolha uma opção a partir de uma lista de ite
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsSelect"
 	:events="cdsSelectEvents"
 />
@@ -77,6 +78,7 @@ Selects permitem que o usuário escolha uma opção a partir de uma lista de ite
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsSelect from '@/components/Select.vue';
 
 const cdsSelectEvents = [

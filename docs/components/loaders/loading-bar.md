@@ -25,6 +25,7 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsLoadingBar"
 />
 

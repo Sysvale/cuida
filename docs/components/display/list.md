@@ -41,6 +41,7 @@ O componente List é utilizado para exibir uma listagem de itens com um título 
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsList"
 	:events="cdsListEvents"
 />
@@ -80,6 +81,7 @@ O componente List é utilizado para exibir uma listagem de itens com um título 
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsList from '@/components/List.vue';
 
 const cdsListEvents = [

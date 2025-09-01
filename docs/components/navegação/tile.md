@@ -30,6 +30,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsTile"
 	:events="cdsTileEvents"
 />
@@ -60,7 +61,11 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref } from 'vue';
+const args = ref({});
 import CdsTile from '@/components/Tile.vue';
+
+const args = ref({});
 
 const cdsTileEvents = [
 	'tile-click'

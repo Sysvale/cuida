@@ -44,6 +44,7 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsFlexbox"
 	class="grid-background"
 	direction="row"

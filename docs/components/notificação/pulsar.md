@@ -30,6 +30,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsPulsar"
 	:events="cdsPulsarEvents"
 />
@@ -60,7 +61,10 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsPulsar from '@/components/Pulsar.vue';
+
+const args = ref({});
 
 const cdsPulsarEvents = [
 	'pulsar-click'

@@ -29,6 +29,7 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsOverlayLoader"
 />
 

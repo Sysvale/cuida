@@ -39,6 +39,7 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsDonutChart"
 	:events="cdsDonutChartEvents"
   :labels
@@ -67,6 +68,7 @@
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsDonutChart from '@/components/DonutChart.vue';
 
 const cdsDonutChartEvents = [

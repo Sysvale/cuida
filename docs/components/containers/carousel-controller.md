@@ -31,6 +31,7 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsCarouselController"
 	:events="cdsCarouselControllerEvents"
 	:total="12"

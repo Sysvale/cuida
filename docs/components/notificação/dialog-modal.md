@@ -30,6 +30,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsDialogModal"
 	:events="cdsDialogModalEvents"
 />
@@ -60,7 +61,10 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsDialogModal from '@/components/DialogModal.vue';
+
+const args = ref({});
 
 const cdsDialogModalEvents = [
 	'dialogModal-click'

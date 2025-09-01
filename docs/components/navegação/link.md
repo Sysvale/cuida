@@ -29,10 +29,9 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsLink"
 	:events="cdsLinkEvents"
-	href="https://github.com/Sysvale/cuida"
-	text="Cuida"
 />
 
 ---
@@ -53,5 +52,11 @@
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsLink from '@/components/Link.vue';
+
+const args = ref({
+	href: "https://github.com/Sysvale/cuida",
+	text: "Cuida",
+});
 </script>

@@ -38,6 +38,7 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsCollapsibleContainer"
 	:events="cdsCollapsibleContainerEvents"
 >

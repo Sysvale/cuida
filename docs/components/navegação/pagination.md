@@ -34,10 +34,9 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsPagination"
 	:events="cdsPaginationEvents"
-	:total="60"
-	:perPage="12"
 />
 
 ---
@@ -59,9 +58,12 @@
 <br />
 
 <script setup>
+import { ref } from 'vue';
 import CdsPagination from '@/components/Pagination.vue';
 
 const cdsPaginationEvents = [
 	'update:modelValue'
 ];
+
+const args = ref({});
 </script>

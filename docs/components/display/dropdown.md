@@ -28,6 +28,7 @@ Dropdown são componentes utilizados para ativar popovers contendo filtros para 
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsDropdown"
 	:events="cdsDropdownEvents"
 />
@@ -67,6 +68,7 @@ Dropdown são componentes utilizados para ativar popovers contendo filtros para 
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsDropdown from '@/components/Dropdown.vue';
 
 const cdsDropdownEvents = [

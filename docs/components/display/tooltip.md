@@ -29,6 +29,7 @@ Tooltip são labels flutuantes não interativas usados para explicar um elemento
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsTooltip"
 	:events="cdsTooltipEvents"
 />
@@ -68,6 +69,7 @@ Tooltip são labels flutuantes não interativas usados para explicar um elemento
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsTooltip from '@/components/Tooltip.vue';
 
 const cdsTooltipEvents = [];

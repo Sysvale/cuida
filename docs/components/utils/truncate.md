@@ -19,6 +19,7 @@ Componente auxiliar utilizado para truncar texto adicionando a ele reticências
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsTruncate"
   width="200"
 >
@@ -51,5 +52,8 @@ Componente auxiliar utilizado para truncar texto adicionando a ele reticências
 /> -->
 
 <script setup>
+import { ref } from 'vue';
 import CdsTruncate from '@/components/Truncate.vue';
+
+const args = ref({});
 </script>

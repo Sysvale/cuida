@@ -30,6 +30,7 @@ ProgressBars são componentes utilizados para indicar o status e progresso de al
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsProgressBar"
 	:events="cdsProgressBarEvents"
 />
@@ -69,6 +70,7 @@ ProgressBars são componentes utilizados para indicar o status e progresso de al
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsProgressBar from '@/components/ProgressBar.vue';
 
 const cdsProgressBarEvents = [];

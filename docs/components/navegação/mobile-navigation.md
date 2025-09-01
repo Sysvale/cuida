@@ -50,8 +50,8 @@
 </PreviewContainer>
 
 <PlaygroundBuilder
+	:args
 	component="MobileNavigation"
-	v-model="args"
 />
 
 ---

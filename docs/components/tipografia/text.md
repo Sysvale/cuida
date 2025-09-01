@@ -19,9 +19,9 @@ Text são indicadores de status utilizados para tornar evidentes metadados impor
 
 ```js
 <CdsText
-		as="span"
-		textAlign='start'
-		:noMargin="false"
+	as="span"
+	textAlign='start'
+	:noMargin="false"
 >
 	O empenho em analisar o desenvolvimento contínuo de distintas formas de atuação obstaculiza a apreciação da importância do retorno esperado a longo prazo.
 </CdsText>
@@ -32,6 +32,7 @@ Text são indicadores de status utilizados para tornar evidentes metadados impor
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsText"
 	:events="cdsTextEvents"
 >
@@ -61,6 +62,8 @@ Text são indicadores de status utilizados para tornar evidentes metadados impor
 <script setup>
 import { ref } from 'vue';
 import CdsText from '@/components/Text.vue';
+
+const args = ref({});
 
 const cdsTextEvents = [
 	'click'

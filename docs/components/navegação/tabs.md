@@ -44,11 +44,10 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsTabs"
 	:events="cdsTabsEvents"
 	with-background
-	:tabs="items"
-	:activeTab="items[1]"
 >
 	<template #room-42>
 		Sala de Psicologia
@@ -96,7 +95,7 @@ const cdsTabsEvents = [
 	'add-action'
 ];
 
-const items = ref([
+const tabs = [
 	{
 		title: 'Psicologia',
 		name: 'room-42',
@@ -109,5 +108,11 @@ const items = ref([
 		title: 'Otorrinolaringologista',
 		name: 'room-13',
 	},
-]);
+];
+
+const args = ref({
+	tabs,
+	activeTab: tabs[1]
+});
+	
 </script>

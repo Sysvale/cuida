@@ -30,6 +30,7 @@ O Radio permite que os usuários selecionem uma opção de um conjunto.
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsRadio"
 	:events="cdsRadioEvents"
 />
@@ -69,6 +70,7 @@ O Radio permite que os usuários selecionem uma opção de um conjunto.
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsRadio from '@/components/Radio.vue';
 
 const cdsRadioEvents = [

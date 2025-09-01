@@ -30,6 +30,7 @@ Chips ajudam as pessoas a inserir informações, fazer seleções, filtrar conte
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsChip"
 	:events="cdsChipEvents"
 />
@@ -69,6 +70,7 @@ Chips ajudam as pessoas a inserir informações, fazer seleções, filtrar conte
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsChip from '@/components/Chip.vue';
 
 const cdsChipEvents = [

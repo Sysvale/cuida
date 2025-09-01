@@ -23,6 +23,7 @@ PasswordInputs permitem que os usuários insiram caracteres sensíveis na interf
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsPasswordInput"
 	:events="cdsPasswordInputEvents"
 />
@@ -62,6 +63,7 @@ PasswordInputs permitem que os usuários insiram caracteres sensíveis na interf
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsPasswordInput from '@/components/PasswordInput.vue';
 
 const cdsPasswordInputEvents = [

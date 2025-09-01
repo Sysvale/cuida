@@ -33,6 +33,7 @@ Image é um componente utilitário utilizado para renderizar imagens com fallbac
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsImage"
 	width="400"
 	:blackAndWhite="false"
@@ -59,4 +60,6 @@ Image é um componente utilitário utilizado para renderizar imagens com fallbac
 <script setup>
 import { ref } from 'vue';
 import CdsImage from '@/components/Image.vue';
+
+const args = ref({});
 </script>

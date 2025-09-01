@@ -79,6 +79,7 @@ Caso se deseje marcar apenas uma parte da string passada via slot, é possível 
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsHighlight"
 >
 	O rato ROeu A RoUpA do rei de ROMA com eficácia, força e determinação.
@@ -112,6 +113,7 @@ Caso se deseje marcar apenas uma parte da string passada via slot, é possível 
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsHighlight from '@/components/Highlight.vue';
 
 </script>

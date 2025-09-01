@@ -53,6 +53,7 @@ Cards são componentes utilizados como containers de propósito geral. À partir
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsCard"
 	:events="cdsCardEvents"
 	:imageWidth="400"
@@ -189,6 +190,7 @@ Para layouts horizontais de Card, utilize a prop `horizontal`
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsCard from '@/components/Card.vue';
 
 const cdsCardEvents = [

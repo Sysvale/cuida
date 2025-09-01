@@ -41,6 +41,7 @@ dinamicamente para se adaptar ao conteúdo ou à largura disponível.
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsSkeleton"
 	:width="100"
 />

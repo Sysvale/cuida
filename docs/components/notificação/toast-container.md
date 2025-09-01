@@ -30,6 +30,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsToastContainer"
 	:events="cdsToastContainerEvents"
 />
@@ -60,7 +61,10 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsToastContainer from '@/components/ToastContainer.vue';
+
+const args = ref({});
 
 const cdsToastContainerEvents = [
 	'toastContainer-click'

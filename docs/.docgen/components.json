@@ -1391,17 +1391,6 @@
     "tags": {},
     "props": [
       {
-        "name": "modelValue",
-        "type": {
-          "name": "boolean"
-        },
-        "required": true,
-        "defaultValue": {
-          "func": false,
-          "value": "false"
-        }
-      },
-      {
         "name": "title",
         "description": "Define o título do bottom sheet exibido no header",
         "type": {
@@ -10574,6 +10563,13 @@
       {
         "name": "size",
         "description": "Especifica o tamanho do SideSheet. São 4 tamanhos implementados: 'sm', 'md', 'lg', 'xl'.",
+        "tags": {},
+        "values": [
+          "sm",
+          "md",
+          "lg",
+          "xl"
+        ],
         "type": {
           "name": "string"
         },
@@ -10607,6 +10603,19 @@
       {
         "name": "actionButtonVariant",
         "description": "Define a variante do botão de ação do SideSheet (segue as variantes do componente de botão do Cuida)",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },

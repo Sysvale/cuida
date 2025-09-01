@@ -26,6 +26,7 @@ Ele fornece a estrutura básica e funcionalidades comuns, como gerenciamento de 
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsBaseInput"
 	:events="cdsBaseInputEvents"
 />
@@ -63,6 +64,7 @@ Ele fornece a estrutura básica e funcionalidades comuns, como gerenciamento de 
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsBaseInput from '@/components/BaseInput.vue';
 
 const cdsBaseInputEvents = [

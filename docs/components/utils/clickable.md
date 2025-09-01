@@ -20,6 +20,7 @@ Componente utilizado para adicionar um wrapper cliclável a componentes que não
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsClickable"
 	:events="cdsClickableEvents"
 >
@@ -54,7 +55,11 @@ Componente utilizado para adicionar um wrapper cliclável a componentes que não
 ---
 
 <script setup>
+import { ref } from 'vue';
+const args = ref({});
 import CdsClickable from '@/components/Clickable.vue';
+
+const args = ref({});
 
 const cdsClickableEvents = [
 	'cds-click'

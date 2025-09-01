@@ -28,6 +28,7 @@ O componente NumberInput permite que os usuários insiram e editem valores numé
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsNumberInput"
 	:events="cdsNumberInputEvents"
 />
@@ -67,6 +68,7 @@ O componente NumberInput permite que os usuários insiram e editem valores numé
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsNumberInput from '@/components/NumberInput.vue';
 
 const cdsNumberInputEvents = [

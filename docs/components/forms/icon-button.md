@@ -26,6 +26,7 @@ IconButtons são componentes que permitem que o usuário execute uma ação com 
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsIconButton"
 	:events="cdsIconButtonEvents"
 />
@@ -65,6 +66,7 @@ IconButtons são componentes que permitem que o usuário execute uma ação com 
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsIconButton from '@/components/IconButton.vue';
 
 const cdsIconButtonEvents = [

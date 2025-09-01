@@ -34,6 +34,7 @@
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 
 const pinValue = ref('');
 </script>
@@ -51,6 +52,7 @@ const pinValue = ref('');
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 
 const pinValue = ref('');
 </script>

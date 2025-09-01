@@ -42,6 +42,7 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsPanelCard"
 	title="Redes"
 	subtitle="Habilite as redes da regulação"

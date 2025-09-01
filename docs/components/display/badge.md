@@ -31,6 +31,7 @@ Badge são indicadores de status utilizados para tornar evidentes metadados impo
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsBadge"
 	:events="cdsBadgeEvents"
 >
@@ -67,6 +68,7 @@ Badge
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsBadge from '@/components/Badge.vue';
 
 const cdsBadgeEvents = [

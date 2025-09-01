@@ -31,17 +31,9 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsPageLayout"
 	:events="cdsPageLayoutEvents"
-	variant="indigo"
-	:light="true"
-	:user
-	:collapsibleSideBar="true"
-	:sideBarItems
-	:sideBarActiveItem="sideBarItems[2]"
-	:navigationActiveItem="navigationItems[1]"
-	:navigationItems
-	:logos
 >
 	<template #default>
 		Conteúdo da página
@@ -84,8 +76,7 @@ const cdsPageLayoutEvents = [
 	'navigation-item-click',
 ];
 
-
-const sideBarItems = ref([
+const sideBarItems = [
 	{
 		label: 'Início',
 		icon: 'home-outline',
@@ -122,9 +113,9 @@ const sideBarItems = ref([
 			name: 'medical-care'
 		},
 	}
-]);
+];
 
-const navigationItems = ref([
+const navigationItems = [
 	{
 		key: 'dashboard',
 		label: 'Dashboard',
@@ -159,7 +150,7 @@ const navigationItems = ref([
 			}
 		],
 	},
-]);
+];
 
 const logos = ref({
 	default: 'https://framerusercontent.com/images/cF8DHaPnyhgullDGcpLnyXwGUp4.png',
@@ -170,5 +161,16 @@ const user = ref({
 	name: 'Joana Mendes',
 	role: 'Administradora',
 	picture: 'https://this-person-does-not-exist.com/img/avatar-gen83fa18cdcd216e7220794a23e76fe0dc.jpg',
+});
+
+const args = ref({
+	sideBarItems,
+	navigationItems,
+	sideBarActiveItem: sideBarItems[2],
+	navigationActiveItem: navigationItems[1],
+	user,
+	logos,
+	variant: 'indigo',
+	light: true,
 });
 </script>

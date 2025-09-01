@@ -37,18 +37,17 @@ Cuida pode ser usado com <b>dois</b> níveis pois nesse cenário ele se comporta
 ##### Breadcrumb de 3 ou mais níveis:
 
 <PreviewBuilder
+	:args
 	:component="CdsBreadcrumb"
-	:items
 />
 
 <br />
 
 ##### Breadcrumb de 2 níveis:
 
-<PreviewBuilder
-	:component="CdsBreadcrumb"
-	:items="items2"
-/>
+<PreviewContainer>
+	<CdsBreadcrumb :items="items2"/>
+</PreviewContainer>
 
 ---
 
@@ -64,29 +63,31 @@ Cuida pode ser usado com <b>dois</b> níveis pois nesse cenário ele se comporta
 import { ref } from 'vue';
 import CdsBreadcrumb from '@/components/Breadcrumb.vue';
 
-const items = ref([
-	{
-		label: 'Relatórios',
-		route: {
-			path: '/reports',
-			name: 'reports'
+const args = ref({
+	items: [
+		{
+			label: 'Relatórios',
+			route: {
+				path: '/reports',
+				name: 'reports'
+			},
 		},
-	},
-	{
-		label: 'Relatórios individualizados',
-		route: {
-			path: '/individualized-reports',
-			name: 'individualized'
+		{
+			label: 'Relatórios individualizados',
+			route: {
+				path: '/individualized-reports',
+				name: 'individualized'
+			},
 		},
-	},
-	{
-		label: 'Relatório de usuários',
-		route: {
-			path: '/users-reports',
-			name: 'users'
+		{
+			label: 'Relatório de usuários',
+			route: {
+				path: '/users-reports',
+				name: 'users'
+			},
 		},
-	},
-]);
+	]
+});
 
 const items2 = ref([
 	{

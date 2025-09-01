@@ -37,6 +37,7 @@
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 
 const monthValue = ref('2025-05');
 </script>
@@ -58,6 +59,7 @@ const monthValue = ref('2025-05');
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 
 const monthValue = ref('');
 </script>
@@ -78,6 +80,7 @@ const monthValue = ref('');
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 
 const monthValue = ref('');
 </script>

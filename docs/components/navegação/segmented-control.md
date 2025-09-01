@@ -20,10 +20,9 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsSegmentedControl"
 	:events="cdsSegmentedControlEvents"
-	:segments="['info-outline', 'copy-outline', 'edit-outline']"
-	:segmentsTooltipText="['info', 'copiar', 'editar']"
 />
 
 ---
@@ -45,9 +44,15 @@
 <br />
 
 <script setup>
+import { ref } from 'vue';
 import CdsSegmentedControl from '@/components/SegmentedControl.vue';
 
 const cdsSegmentedControlEvents = [
 	'click'
 ];
+
+const args = ref({
+	segments: ['info-outline', 'copy-outline', 'edit-outline'],
+	segmentsTooltipText: ['info', 'copiar', 'editar'],
+});
 </script>

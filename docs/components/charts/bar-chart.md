@@ -33,6 +33,7 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsBarChart"
 	:data
 	:labels
@@ -54,6 +55,7 @@
 <script setup>
 import { ref } from 'vue';
 import CdsBarChart from '@/components/BarChart.vue';
+const args = ref({});
 
 const data = ref([
 	{

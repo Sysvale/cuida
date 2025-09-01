@@ -80,7 +80,7 @@ import CdsSwitch from '@/components/Switch.vue';
 import CdsText from '@/components/Text.vue';
 import CdsFlexbox from '@/components/Flexbox.vue';
 
-const model = defineModel();
+const model = defineModel('args');
 
 const props = withDefaults(defineProps<{
 	component: string,
@@ -106,7 +106,7 @@ function formatOptions(val) {
 	})
 }
 
-watch([() => props.initialValues, model.value], () => {
+watch(model, () => {
 	nextTick(() => {
 		normalizedPropsData.value = propsData.value.map((propData) => {
 			let rawValue = propData.defaultValue?.value;
@@ -131,8 +131,8 @@ watch([() => props.initialValues, model.value], () => {
 				parsedValue = rawValue;
 			}
 	
-			if (props.initialValues[propData.name] || model.value?.[propData.name]) {
-				return { [propData.name]: props.initialValues[propData.name] || model.value?.[propData.name]};
+			if (model.value?.[propData.name]) {
+				return { [propData.name]: model.value?.[propData.name]};
 			}
 	
 			return { [propData.name]: parsedValue };
@@ -141,7 +141,7 @@ watch([() => props.initialValues, model.value], () => {
 		normalizedPropsData.value.forEach((item) => {
 			const [key, value] = Object.entries(item)[0];
 	
-			payload.value[key] = value;
+			model.value[key] = value;
 		});
 	});
 
@@ -154,11 +154,11 @@ function capitalize(str) {
 watch(normalizedPropsData, () => {
 	normalizedPropsData.value.forEach((item) => {
 		const [key, value] = Object.entries(item)[0]
-		payload.value[key] = value;
+		model.value[key] = value;
 	});
 
-	model.value = payload.value;
-	emits('update', payload.value);
+	// model.value = payload.value;
+	// emits('update', payload.value);
 }, { deep: true})
 </script>
 

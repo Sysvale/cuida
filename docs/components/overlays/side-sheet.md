@@ -1,16 +1,25 @@
 # SideSheet
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### SideSheets são painéis que surgem do lado direito da tela. De modo semelhante aos Modais, são úteis quando se precisa que os usuários concluam executem ações sem perder o contexto da página atual.
+---
+<br />
 
-### Quando usar
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+## Quando usar:
+- Para criar filtros com muitos campos sobre o conteúdo mostrado na página.
+- Para criar formulários mantendo o conteúdo principal da página visível.
+- Para mostrar informações detalhadas sobre determinado item da página.
 
-### Quando não usar
+<br />
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- Quando o conteúdo do SideSheet não for relacionado com o conteúdo da página.
+- Não use SideBars como solução de navegação vertical.
+
+<br />
+
+## Observações:
+- ⚠️ Este componente foi projetado apenas para usos em desktops e tablets.
 
 ---
 
@@ -30,9 +39,71 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsSideSheet"
 	:events="cdsSideSheetEvents"
-/>
+	with-trigger
+	@trigger-click="showSideSheet = true"
+	@close="showSideSheet = false"
+>
+	<p>
+		Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
+		vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
+		Atirei o pau no gatis, per gatis num morreus. Pra lá , depois
+		divoltis porris, paradis. Leite de capivaris, leite de mula
+		manquis sem cabeça. Viva Forevis aptent taciti sociosqu ad
+		litora torquent. Per aumento de cachacis, eu reclamis. Nec
+		orci ornare consequat. Praesent lacinia ultrices consectetur.
+		Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
+	</p>
+	<p>
+		Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
+		vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
+		Atirei o pau no gatis, per gatis num morreus. Pra lá , depois
+		divoltis porris, paradis. Leite de capivaris, leite de mula
+		manquis sem cabeça. Viva Forevis aptent taciti sociosqu ad
+		litora torquent. Per aumento de cachacis, eu reclamis. Nec
+		orci ornare consequat. Praesent lacinia ultrices consectetur.
+		Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
+	</p>
+	<p>
+		Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
+		vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
+		Atirei o pau no gatis, per gatis num morreus. Pra lá , depois
+		divoltis porris, paradis. Leite de capivaris, leite de mula
+		manquis sem cabeça. Viva Forevis aptent taciti sociosqu ad
+		litora torquent. Per aumento de cachacis, eu reclamis. Nec
+		orci ornare consequat. Praesent lacinia ultrices consectetur.
+		Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
+	</p>
+	<p>
+		Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
+		vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
+		Atirei o pau no gatis, per gatis num morreus. Pra lá , depois
+		divoltis porris, paradis. Leite de capivaris, leite de mula
+		manquis sem cabeça. Viva Forevis aptent taciti sociosqu ad
+		litora torquent. Per aumento de cachacis, eu reclamis. Nec
+		orci ornare consequat. Praesent lacinia ultrices consectetur.
+		Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
+	</p>
+	<p>
+		Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
+		vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
+		Atirei o pau no gatis, per gatis num morreus. Pra lá , depois
+		divoltis porris, paradis. Leite de capivaris, leite de mula
+		manquis sem cabeça. Viva Forevis aptent taciti sociosqu ad
+		litora torquent. Per aumento de cachacis, eu reclamis. Nec
+		orci ornare consequat. Praesent lacinia ultrices consectetur.
+		Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
+	</p>
+	<p>
+		Per aumento de cachacis, eu reclamis. Nec
+		orci ornare consequat. Praesent lacinia ultrices consectetur.
+		Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
+		leite de mula manquis sem cabeça. Sociosqu ad
+		litora torquent.
+	</p>
+</PreviewBuilder>
 
 ---
 
@@ -60,9 +131,21 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsSideSheet from '@/components/SideSheet.vue';
 
+const showSideSheet = ref(false);
+
 const cdsSideSheetEvents = [
-	'sideSheet-click'
+	'update:modelValue',
+	'cancel',
+	'close',
+	'ok',
 ];
+
+const args = ref({
+	title: 'SideSheet',
+	okButtonText: 'Confirmar',
+	cancelButtonText: 'Cancelar',
+});
 </script>

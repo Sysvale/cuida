@@ -22,6 +22,7 @@
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsDivider"
 />
 

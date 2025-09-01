@@ -22,6 +22,7 @@ Avatares são componentes utilizados para exibir representações visuais de usu
 ## Preview
 
 <PreviewBuilder
+	:args
 	src="https://thispersondoesnotexist.com/"
 	:component="CdsAvatar"
 	:events="cdsAvatarEvents"
@@ -54,6 +55,7 @@ Avatares são componentes utilizados para exibir representações visuais de usu
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsAvatar from '@/components/Avatar.vue';
 
 const cdsAvatarEvents = [

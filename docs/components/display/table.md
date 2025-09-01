@@ -31,6 +31,7 @@ Tables são componentes utilizados para exibir e organizar conteúdo, facilitand
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsTable"
 	:events="cdsTableEvents"
   :items
@@ -72,6 +73,7 @@ Tables são componentes utilizados para exibir e organizar conteúdo, facilitand
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsTable from '@/components/Table.vue';
 
 const fields = [

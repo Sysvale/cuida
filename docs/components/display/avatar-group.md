@@ -32,6 +32,7 @@ AvatarGroups exibem vários avatares agrupados em forma de pilha.
 ## Preview
 
 <PreviewBuilder
+	:args
 	:component="CdsAvatarGroup"
 	:events="cdsAvatarGroupEvents"
 />
@@ -71,6 +72,7 @@ AvatarGroups exibem vários avatares agrupados em forma de pilha.
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 import CdsAvatarGroup from '@/components/AvatarGroup.vue';
 
 const cdsAvatarGroupEvents = [];

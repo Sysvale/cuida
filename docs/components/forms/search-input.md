@@ -35,6 +35,7 @@
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 
 const searchValue = ref('');
 </script>
@@ -53,6 +54,7 @@ const searchValue = ref('');
 
 <script setup>
 import { ref } from 'vue';
+const args = ref({});
 
 const searchValue = ref('');
 </script>

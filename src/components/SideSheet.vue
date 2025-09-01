@@ -109,6 +109,7 @@ export default {
 		},
 		/**
 		* Especifica o tamanho do SideSheet. São 4 tamanhos implementados: 'sm', 'md', 'lg', 'xl'.
+		* @values sm, md, lg, xl
 		*/
 		size: {
 			type: String,
@@ -130,6 +131,7 @@ export default {
 		},
 		/**
 		 * Define a variante do botão de ação do SideSheet (segue as variantes do componente de botão do Cuida)
+		 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		 */
 		actionButtonVariant: {
 			type: String,
