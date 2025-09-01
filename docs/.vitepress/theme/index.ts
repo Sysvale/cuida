@@ -3,6 +3,7 @@ import Layout from './Layout.vue';
 import './style.css';
 
 import Cdstip from '../../../src/utils/directives/cdstip';
+import CdsFloatify from '../../../src/utils/directives/cdsFloatify';
 import CdsClickOutside from '../../../src/utils/directives/cdsClickOutside';
 
 import APITable from '../../docgen/APITable.vue';
@@ -37,6 +38,7 @@ export default {
 	enhanceApp({ app }) {
 		app.directive("cdstip", Cdstip);
 		app.directive("cds-click-outside", CdsClickOutside);
+		app.directive("cds-floatify", CdsFloatify);
 
 		app.component('APITable', APITable);
 		app.component('PreviewBuilder', PreviewBuilder);

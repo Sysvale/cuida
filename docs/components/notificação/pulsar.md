@@ -1,16 +1,25 @@
 # Pulsar
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### Pulsars são componentes educativos utilizados para instruir os usuários sobre novidades na interface ou no produto.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- Para atrair a atenção do usuário para uma nova feature ou área da interface de modo não intrusivo.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
 
-### Quando não usar
+<br />
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- Como único recurso de comunicação sobre mudança na interface ou no produto.
+- Quando outro pulsar já estiver em uso na interface.
+
+<br />
+
+## Observações:
+- Pulsars não devem ser uma parte permanete da interface. Após determinada característica
+do produto ter sido absorvida/compreendida pelos usuários, o pulsar perde seu propósito e deve-se considerar
+removê-lo.
 
 ---
 
@@ -19,9 +28,8 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 ```js
 <CdsPulsar
 	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="pulsarClick = true"
+	position="top-end"
+	targetId="pulsar-target"
 />
 ```
 

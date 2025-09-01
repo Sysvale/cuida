@@ -186,9 +186,9 @@ export default defineConfig({
 						{ text: 'Alert <Badge class="badge" type="info">ready</Badge>', link: '/components/notificação/alert' },
 						{ text: 'AlertCard <Badge class="badge" type="info">ready</Badge>', link: '/components/notificação/alert-card' },
 						{ text: 'DialogModal <Badge class="badge" type="info">ready</Badge>', link: '/components/notificação/dialog-modal' },
-						{ text: 'Pulsar', link: '/components/notificação/pulsar' },
-						{ text: 'Toast', link: '/components/notificação/toast' },
-						{ text: 'ToastContainer', link: '/components/notificação/toast-container' },
+						{ text: 'Pulsar <Badge class="badge" type="info">ready</Badge>', link: '/components/notificação/pulsar' },
+						{ text: 'Toast <Badge class="badge" type="info">ready</Badge>', link: '/components/notificação/toast' },
+						{ text: 'ToastContainer <Badge class="badge" type="info">ready</Badge>', link: '/components/notificação/toast-container' },
 					]
 				},
 				{
@@ -197,6 +197,7 @@ export default defineConfig({
 						{ text: 'AppBar', link: '/components/estrutural/app-bar' },
 						{ text: 'PageContainer', link: '/components/estrutural/page-container' },
 						{ text: 'PageHeader', link: '/components/estrutural/page-header' },
+						{ text: 'TopAppBar', link: '/components/estrutural/top-app-bar' },
 					]
 				},
 				{
