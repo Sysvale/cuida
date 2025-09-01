@@ -6726,6 +6726,19 @@
       {
         "name": "variant",
         "description": "Define a variante de cor dos detalhes do componente. São 9 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },
@@ -10250,6 +10263,19 @@
       {
         "name": "variant",
         "description": "A variante de cor. São 10 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.\nA variante só terá efeito quando a SideBar estiver no modo light.",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },

@@ -316,6 +316,7 @@ export default {
 		* A variante de cor. São 10 variantes implementadas: 'green', 'teal',
 		* 'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.
 		* A variante só terá efeito quando a SideBar estiver no modo light.
+		* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
 		*/
 		variant: {
 			type: String,
