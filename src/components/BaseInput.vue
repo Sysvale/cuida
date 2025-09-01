@@ -3,7 +3,7 @@
 		<CdsBaseMobileInput
 			v-if="floatingLabel"
 			ref="mobileInput"
-			v-bind="props"
+			v-bind="{...$attrs, ...props}"
 			v-model="internalValue"
 			:has-leading-icon="hasLeadingIcon"
 			:has-trailing-icon="hasTrailingIcon"
