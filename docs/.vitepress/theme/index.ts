@@ -1,7 +1,9 @@
 import DefaultTheme from 'vitepress/theme-without-fonts';
 import Layout from './Layout.vue';
 import './style.css';
+
 import Cdstip from '../../../src/utils/directives/cdstip';
+import CdsClickOutside from '../../../src/utils/directives/cdsClickOutside';
 
 import APITable from '../../docgen/APITable.vue';
 import PreviewBuilder from '../../docgen/PreviewBuilder.vue';
@@ -33,12 +35,14 @@ export default {
 	extends: DefaultTheme,
 	Layout: Layout,
 	enhanceApp({ app }) {
+		app.directive("cdstip", Cdstip);
+		app.directive("cds-click-outside", CdsClickOutside);
+
 		app.component('APITable', APITable);
 		app.component('PreviewBuilder', PreviewBuilder);
 		app.component('PreviewContainer', PreviewContainer);
 		app.component('PlaygroundBuilder', PlaygroundBuilder);
 		app.component('FigmaFrame', FigmaFrame);
-		app.directive("cdstip", Cdstip);
 
 		app.component('CdsAvatar', CdsAvatar);
 		app.component('CdsBox', CdsBox);

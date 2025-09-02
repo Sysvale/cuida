@@ -140,12 +140,12 @@ export default defineConfig({
 				{
 					text: 'Overlay',
 					items: [
-						{ text: 'BottomSheet', link: '/components/overlays/bottom-sheet' },
-						{ text: 'InteractionBlockingOverlay', link: '/components/overlays/interaction-blocking-overlay' },
-						{ text: 'Modal', link: '/components/overlays/modal' },
-						{ text: 'Popover', link: '/components/overlays/popover' },
-						{ text: 'QuickActionBar', link: '/components/overlays/quick-action-bar' },
-						{ text: 'RichTooltip', link: '/components/forms/rich-tooltip' },
+						{ text: 'BottomSheet <Badge class="badge" type="info">ready</Badge>', link: '/components/overlays/bottom-sheet' },
+						{ text: 'InteractionBlockingOverlay <Badge class="badge" type="info">ready</Badge>', link: '/components/overlays/interaction-blocking-overlay' },
+						{ text: 'Modal <Badge class="badge" type="info">ready</Badge>', link: '/components/overlays/modal' },
+						{ text: 'Popover <Badge class="badge" type="info">ready</Badge>', link: '/components/overlays/popover' },
+						{ text: 'QuickActionBar <Badge class="badge" type="info">ready</Badge>', link: '/components/overlays/quick-action-bar' },
+						{ text: 'RichTooltip <Badge class="badge" type="info">ready</Badge>', link: '/components/forms/rich-tooltip' },
 						{ text: 'SideSheet', link: '/components/overlays/side-sheet' },
 					]
 				},

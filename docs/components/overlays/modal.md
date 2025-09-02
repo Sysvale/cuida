@@ -1,16 +1,19 @@
 # Modal
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### Modais são como dialogs personolizados, janelas que exibem um conteúdo adicional em uma camada acima da página atual, com uma sobreposição de superfície (overlay) cobrindo a página e tornando-a temporariamente inacessível.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- For necessário notificar o usuário de algum processo;
+- For necessário uma tomada de decisão para completar uma ação;
+- Se deseja realizar ação dentro de uma página paralelo ao fluxo principal da mesma;
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
-
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- For necessário exibir uma grande quantidade de informação ou fluxos complexos;
+- For necessário ser usado em conjunto com outros modais e popovers (cascata).
 
 ---
 
@@ -18,11 +21,21 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ```js
 <CdsModal
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="modalClick = true"
-/>
+	v-mode="modelValue" 
+	title="Título do modal"
+	size="lg"
+	disable-ok-button
+	disable-cancel-button
+	@close="closeHandler"
+	@ok="okHandler"
+	@cancel="cancelHandler"
+>
+	<span>
+		Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
+		eu conheço uma cachacis que pode alegrar sua vidis.Paisis, filhis, espiritis santis.Leite de capivaris,
+		leite de mula manquis sem cabeça.
+	</span>
+</CdsModal>
 ```
 
 ---
@@ -32,7 +45,17 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:component="CdsModal"
 	:events="cdsModalEvents"
-/>
+	with-trigger
+	:modelValue="showModal"
+	@trigger-click="showModal =true"
+	@close="showModal = false"
+>
+	<span>
+		Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
+		eu conheço uma cachacis que pode alegrar sua vidis.Paisis, filhis, espiritis santis.Leite de capivaris,
+		leite de mula manquis sem cabeça.
+	</span>
+</PreviewBuilder>
 
 ---
 
@@ -60,9 +83,15 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsModal from '@/components/Modal.vue';
 
+const showModal = ref(false);
+
 const cdsModalEvents = [
-	'modal-click'
+	'close',
+	'update:modelValue',
+	'ok',
+	'cancel'
 ];
 </script>

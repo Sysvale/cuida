@@ -39,8 +39,12 @@ O QuickActionBar é um componente de busca e ação rápida que permite ao usuá
 <PreviewBuilder
 	:component="CdsQuickActionBar"
 	:events="cdsQuickActionBarEvents"
-  :recents
-  :groups
+	:recents
+	:groups
+	with-trigger
+	v-model="showQuickActionBar"
+	@trigger-click="showQuickActionBar = true"
+	@close="showQuickActionBar = false"
 />
 
 ---
@@ -69,12 +73,6 @@ O QuickActionBar é um componente de busca e ação rápida que permite ao usuá
 />
 
 ---
-
-## Figma
-
-<FigmaFrame
-	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
-/>
 
 <script setup>
 import { ref } from 'vue';

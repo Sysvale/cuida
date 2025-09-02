@@ -6141,6 +6141,11 @@
       {
         "name": "blockInteraction",
         "description": "Define qual critério vai ser usado para exibir o componente.",
+        "tags": {},
+        "values": [
+          "mobile",
+          "landscape"
+        ],
         "type": {
           "name": "string"
         },
@@ -6148,11 +6153,7 @@
         "defaultValue": {
           "func": false,
           "value": "'mobile'"
-        },
-        "values": [
-          "mobile",
-          "landscape"
-        ]
+        }
       },
       {
         "name": "title",
@@ -6179,6 +6180,19 @@
       {
         "name": "buttonVariant",
         "description": "Define qual é a variante de cor do botão exibido quando a propriedade 'block-interaction' for 'mobile'.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },
@@ -6973,6 +6987,13 @@
       {
         "name": "size",
         "description": "Especifica o tamanho do modal. São 3 tamanhos implementados: 'sm', 'md', 'lg' e 'xl'.",
+        "tags": {},
+        "values": [
+          "sm",
+          "md",
+          "lg",
+          "xl"
+        ],
         "type": {
           "name": "string"
         },
@@ -7105,24 +7126,26 @@
       {
         "name": "actionButtonVariant",
         "description": "Define a variante do botão de ação do Modal (segue as variantes do componente de botão do Cuida)",
-        "type": {
-          "name": "string"
-        },
-        "defaultValue": {
-          "func": false,
-          "value": "'green'"
-        },
+        "tags": {},
         "values": [
-          "teal",
           "green",
+          "teal",
           "blue",
           "indigo",
           "violet",
           "pink",
           "red",
           "orange",
-          "amber"
-        ]
+          "amber",
+          "dark"
+        ],
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'green'"
+        }
       },
       {
         "name": "scrollable",

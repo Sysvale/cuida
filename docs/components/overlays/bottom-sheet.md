@@ -23,11 +23,11 @@
 
 ```js
 <CdsBottomSheet
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="bottomSheetClick = true"
-/>
+	v-model="showBottomSheet"
+	title="Onde encontrar o meu CNS"
+>
+	Conteúdo
+</CdsBottomSheet>
 ```
 
 ---
@@ -72,7 +72,7 @@
 />
 
 <script setup>
-import { ref } from 'vue'; 
+import { ref } from 'vue';
 import CdsBottomSheet from '@/components/BottomSheet.vue';
 
 const showBottomSheet = ref(false);

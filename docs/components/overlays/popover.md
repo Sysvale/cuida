@@ -1,28 +1,50 @@
 # Popover
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### Popovers são componentes flutuantes utilizados para exibir, sob interação, informações e ações relacionadas ao conteúdo da tela.
 
-### Quando usar
+---
+<br />
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+## Quando usar:
+- Para criar dropdowns;
+- Para mostrar informações ou ações adicionais sobre determinado elemento da interface;
 
-### Quando não usar
+<br />
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- Como um substituto para Tooltips, ou seja, tendo como conteúdo apenas pequenas porções de texto;
+- Como um subistituto para modais;
+- Para mostrar informações críticas para o sucesso de uma ação do usuário;
 
 ---
 
 ## Uso
 
 ```js
+<CdsButton
+	id="trigger-cds-popover"
+	@click="showPopover = true"
+>
+	Click
+</CdsButton>
 <CdsPopover
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="popoverClick = true"
-/>
+	rightAligned="false"
+	targetId="trigger-cds-popover"
+	width="250"
+	height="250"
+	v-model="showPopover"
+>
+	<span>
+		Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
+		eu conheço uma cachacis que pode alegrar sua vidis.Paisis, filhis, espiritis santis.Leite de capivaris,
+		leite de mula manquis sem cabeça.
+	</span>
+	<span>
+		Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
+		eu conheço uma cachacis que pode alegrar sua vidis.Paisis, filhis, espiritis santis.Leite de capivaris,
+		leite de mula manquis sem cabeça.
+	</span>
+</CdsPopover>
 ```
 
 ---
@@ -32,7 +54,22 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:component="CdsPopover"
 	:events="cdsPopoverEvents"
-/>
+	with-trigger
+	v-model="showPopover"
+	targetId="trigger-cds-popover"
+	@trigger-click="showPopover =true"
+>
+	<span>
+		Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
+		eu conheço uma cachacis que pode alegrar sua vidis.Paisis, filhis, espiritis santis.Leite de capivaris,
+		leite de mula manquis sem cabeça.
+	</span>
+	<span>
+		Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
+		eu conheço uma cachacis que pode alegrar sua vidis.Paisis, filhis, espiritis santis.Leite de capivaris,
+		leite de mula manquis sem cabeça.
+	</span>
+</PreviewBuilder>
 
 ---
 
@@ -60,9 +97,12 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsPopover from '@/components/Popover.vue';
 
+const showPopover = ref(false);
+
 const cdsPopoverEvents = [
-	'popover-click'
+	'update:modelValue'
 ];
 </script>

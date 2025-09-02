@@ -1,16 +1,20 @@
 # InteractionBlockingOverlay
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### O InteractionBlockingOverlay é um componente utilizado para bloquear a interação do usuário em situações onde o sistema não está preparado para o uso, como em telas ou módulos que não possuem responsividade adequada para dispositivos móveis ou no modo paisagem (landscape).
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- Quando uma tela ou módulo não possui uma versão responsiva para dispositivos móveis, garantindo que o usuário não interaja com elementos quebrados ou não funcionais.
+- Quando um dispositivo móvel estiver em modo paisagem e o layout da aplicação não estiver adaptado para essa orientação.
+- Em situações temporárias, onde uma funcionalidade ou conteúdo específico precisa ser desativado para manutenção ou atualização.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
-
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- Quando o sistema já oferece uma versão responsiva ou uma alternativa viável para a interação em dispositivos móveis.
+- Em casos onde a aplicação pode ajustar automaticamente o layout sem necessidade de bloqueio.
+- Se o bloqueio da interação pode causar frustração ao usuário, especialmente em funcionalidades essenciais ou em fluxos críticos.
 
 ---
 
@@ -18,10 +22,12 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ```js
 <CdsInteractionBlockingOverlay
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="interactionBlockingOverlayClick = true"
+	block-interaction="mobile"
+	title="título"
+	description="descrição"
+	button-variant="green"
+	button-text="Ir para o início"
+	@button-click="handler"
 />
 ```
 
@@ -29,9 +35,20 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ## Preview
 
-<PreviewBuilder
+<PreviewContainer
 	:component="CdsInteractionBlockingOverlay"
 	:events="cdsInteractionBlockingOverlayEvents"
+>
+	<CdsFlexbox justify="center">
+		<b>Teste o componente usando o devtools do navegador
+		alterando a resolução da tela para mobile ou landscape.</b>
+		<CdsInteractionBlockingOverlay v-bind="args"/>
+	</CdsFlexbox>
+</PreviewContainer>
+
+<PlaygroundBuilder
+	component="InteractionBlockingOverlay"
+	v-model="args"
 />
 
 ---
@@ -52,17 +69,13 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Slots
-
-<APITable
-	name="InteractionBlockingOverlay"
-	section="slots"
-/>
-
 <script setup>
+	import { ref } from 'vue';
 import CdsInteractionBlockingOverlay from '@/components/InteractionBlockingOverlay.vue';
 
 const cdsInteractionBlockingOverlayEvents = [
-	'interactionBlockingOverlay-click'
+	'button-click'
 ];
+
+const args = ref({});
 </script>

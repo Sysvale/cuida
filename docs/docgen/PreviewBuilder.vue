@@ -4,7 +4,7 @@
 			v-if="!$slots.container && !withTrigger"
 			:is="component"
 			v-on="internalEvents"
-			v-bind="{...$attrs, ...componentProps }"
+			v-bind="{...componentProps, ...$attrs }"
 		>
 			<template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
 				<slot v-if="slotProps" :name="slotName" v-bind="slotProps" />
@@ -13,6 +13,7 @@
 
 		<div v-else-if="withTrigger">
 			<CdsButton
+				:id="$attrs.id || $attrs.targetId"
 				:text="`Toggle ${component.name}`"
 				@button-click="emits('trigger-click')"
 			/>
@@ -20,7 +21,7 @@
 			<component
 				:is="component"
 				v-on="internalEvents"
-				v-bind="{...$attrs, ...componentProps }"
+				v-bind="{...componentProps, ...$attrs }"
 			>
 				<template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
 					<slot v-if="slotProps" :name="slotName" v-bind="slotProps" />

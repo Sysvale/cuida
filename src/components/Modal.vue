@@ -118,6 +118,7 @@ export default {
 		},
 		/**
 		 * Especifica o tamanho do modal. São 3 tamanhos implementados: 'sm', 'md', 'lg' e 'xl'.
+		 * @values sm, md, lg, xl
 		 */
 		size: {
 			type: String,
@@ -202,6 +203,7 @@ export default {
 		},
 		/**
 		 * Define a variante do botão de ação do Modal (segue as variantes do componente de botão do Cuida)
+		 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		 */
 		actionButtonVariant: {
 			type: String,

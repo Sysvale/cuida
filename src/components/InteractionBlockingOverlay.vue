@@ -39,6 +39,7 @@ import CdsButton from './Button.vue';
 const props = defineProps({
 	/**
 	* Define qual critério vai ser usado para exibir o componente.
+	* @values mobile, landscape
 	*/
 	blockInteraction: {
 		type: String,
@@ -62,6 +63,7 @@ const props = defineProps({
 	},
 	/**
 	* Define qual é a variante de cor do botão exibido quando a propriedade 'block-interaction' for 'mobile'.
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	buttonVariant: {
 		type: String,

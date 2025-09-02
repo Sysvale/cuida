@@ -1,16 +1,21 @@
 # RichTooltip
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### RichTooltip, assim como Tooltips, são labels flutuantes usadas para explicar um da interface, entretanto provêem maior liberdade para descrição de textos estruturados e/ou mais longos.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- O texto a ser exibido como label precisar ocupar várias linhas ou seguir determinada estrurua, como "label: descritor".
+- Para exibir informações suplementares sobre uma feature ou elemento da interface.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
 
-### Quando não usar
+<br />
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- Com conteúdo simples, composto por poucas palavras.
+- Para comunicar erros e status do sistema.
+- Para mostrar informações críticas para a compreensão de uma feature ou elemento da interface.
+
 
 ---
 
@@ -18,11 +23,16 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ```js
 <CdsRichTooltip
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="richTooltipClick = true"
-/>
+	v-model="showRichTooltip"
+	targetId="trigger-cds-tooltip"
+	defaultPlacement="bottom-start"
+>
+	<div>
+		<p><strong>Em atendimento:</strong> 280</p>
+		<p><strong>Pendentes:</strong> 60</p>
+		<p><strong>Em acompanhamento:</strong> 600</p>
+	</div>
+</CdsRichTooltip>
 ```
 
 ---
@@ -32,7 +42,18 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:component="CdsRichTooltip"
 	:events="cdsRichTooltipEvents"
-/>
+	with-trigger
+	v-model="showRichTooltip"
+	targetId="trigger-cds-tooltip"
+	defaultPlacement="bottom-start"
+	@trigger-click="showRichTooltip =true"
+>
+	<div>
+		<p><strong>Em atendimento:</strong> 280</p>
+		<p><strong>Pendentes:</strong> 60</p>
+		<p><strong>Em acompanhamento:</strong> 600</p>
+	</div>
+</PreviewBuilder>
 
 ---
 
@@ -60,9 +81,12 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsRichTooltip from '@/components/RichTooltip.vue';
 
+const showRichTooltip = ref(false);
+
 const cdsRichTooltipEvents = [
-	'richTooltip-click'
+	'update:modelValue'
 ];
 </script>
