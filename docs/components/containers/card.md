@@ -52,7 +52,7 @@ Cards são componentes utilizados como containers de propósito geral. À partir
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsCard"
 	:events="cdsCardEvents"
 	:imageWidth="400"
@@ -77,7 +77,7 @@ Cards são componentes utilizados como containers de propósito geral. À partir
 			Action 1
 		</CdsButton>
 	</template>
-</PreviewContainer>
+</PreviewBuilder>
 
 ---
 

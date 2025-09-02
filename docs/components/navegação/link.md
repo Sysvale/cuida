@@ -28,7 +28,7 @@
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsLink"
 	:events="cdsLinkEvents"
 	href="https://github.com/Sysvale/cuida"

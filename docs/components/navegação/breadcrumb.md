@@ -36,7 +36,7 @@ Cuida pode ser usado com <b>dois</b> níveis pois nesse cenário ele se comporta
 
 ##### Breadcrumb de 3 ou mais níveis:
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsBreadcrumb"
 	:items
 />
@@ -45,7 +45,7 @@ Cuida pode ser usado com <b>dois</b> níveis pois nesse cenário ele se comporta
 
 ##### Breadcrumb de 2 níveis:
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsBreadcrumb"
 	:items="items2"
 />

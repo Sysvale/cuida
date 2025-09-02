@@ -40,7 +40,7 @@ O componente List é utilizado para exibir uma listagem de itens com um título 
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsList"
 	:events="cdsListEvents"
 />

@@ -80,6 +80,8 @@ import CdsSwitch from '@/components/Switch.vue';
 import CdsText from '@/components/Text.vue';
 import CdsFlexbox from '@/components/Flexbox.vue';
 
+const model = defineModel();
+
 const props = withDefaults(defineProps<{
 	component: string,
 	initialValues: Object,
@@ -104,7 +106,7 @@ function formatOptions(val) {
 	})
 }
 
-watch(() => props.initialValues, () => {
+watch([() => props.initialValues, model.value], () => {
 	nextTick(() => {
 		normalizedPropsData.value = propsData.value.map((propData) => {
 			let rawValue = propData.defaultValue?.value;
@@ -129,8 +131,8 @@ watch(() => props.initialValues, () => {
 				parsedValue = rawValue;
 			}
 	
-			if (props.initialValues[propData.name]) {
-				return { [propData.name]: props.initialValues[propData.name] };
+			if (props.initialValues[propData.name] || model.value?.[propData.name]) {
+				return { [propData.name]: props.initialValues[propData.name] || model.value?.[propData.name]};
 			}
 	
 			return { [propData.name]: parsedValue };
@@ -155,6 +157,7 @@ watch(normalizedPropsData, () => {
 		payload.value[key] = value;
 	});
 
+	model.value = payload.value;
 	emits('update', payload.value);
 }, { deep: true})
 </script>

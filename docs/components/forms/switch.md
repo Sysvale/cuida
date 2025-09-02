@@ -26,7 +26,7 @@ Switches são componentes utilizados para ativar ou desativar configurações ou
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsSwitch"
 	:events="cdsSwitchEvents"
 />

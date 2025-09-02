@@ -43,7 +43,7 @@
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsFlexbox"
 	class="grid-background"
 	direction="row"
@@ -58,7 +58,7 @@
 	<div style="height: 50px; width: 300px" class="docs-grid-cell"> FlexItem 2 </div>
 	<div style="height: 50px; width: 300px" class="docs-grid-cell"> FlexItem 3 </div>
 	<div style="height: 50px; width: 300px" class="docs-grid-cell"> FlexItem 4 </div>
-</PreviewContainer>
+</PreviewBuilder>
 
 ---
 

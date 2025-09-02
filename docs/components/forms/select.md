@@ -37,7 +37,7 @@ Selects permitem que o usuário escolha uma opção a partir de uma lista de ite
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsSelect"
 	:events="cdsSelectEvents"
 />

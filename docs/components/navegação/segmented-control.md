@@ -19,7 +19,7 @@
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsSegmentedControl"
 	:events="cdsSegmentedControlEvents"
 	:segments="['info-outline', 'copy-outline', 'edit-outline']"

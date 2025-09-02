@@ -43,7 +43,7 @@
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsTabs"
 	:events="cdsTabsEvents"
 	with-background
@@ -59,7 +59,7 @@
 	<template #room-13>
 		Sala de Otorrinolaringologista
 	</template>
-</PreviewContainer>
+</PreviewBuilder>
 
 ---
 

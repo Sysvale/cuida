@@ -36,18 +36,22 @@ utilize classes e nelas inclua paddings e margins com os tokens de espaçamento 
 
 ## Preview
 
-<div style="width: fit-content; background-color: #def7eb; border-radius: 20px">
-	<div
-		style="padding: 0.5px; background-color: #def7eb; border-radius: 20px"
-	>
-		<PreviewContainer
-			:component="CdsSpacer"
-			:events="cdsSpacerEvents"
+<PreviewContainer>
+	<div style="width: fit-content; background-color: #def7eb; border-radius: 20px">
+		<div
+			style="padding: 0.5px; background-color: #def7eb; border-radius: 20px"
 		>
-			<div style="width: 100px; height: 100px; background-color: #2AC092; border-radius: 20px"/>
-		</PreviewContainer>
+			<CdsSpacer v-bind="args">
+				<div style="width: 100px; height: 100px; background-color: #2AC092; border-radius: 20px"/>
+			</CdsSpacer>
+		</div>
 	</div>
-</div>
+</PreviewContainer>
+
+<PlaygroundBuilder
+	component="Spacer"
+	v-model="args"
+/>
 
 ---
 
@@ -69,9 +73,8 @@ utilize classes e nelas inclua paddings e margins com os tokens de espaçamento 
 ---
 
 <script setup>
+import { ref } from 'vue';
 import CdsSpacer from '@/components/Spacer.vue';
 
-const cdsSpacerEvents = [
-	'spacer-click'
-];
+const args = ref({});
 </script>

@@ -30,19 +30,12 @@
 ## Preview
 
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsLoadingIndicator"
-	:modelValue="showLoadingIndicator"
->
-	<template #container>
-		<CdsButton
-			id="trigger-popover"
-			@click="showLoadingIndicator = !showLoadingIndicator"
-		>
-			Toggle LoadingIndicator
-		</CdsButton>
-	</template>
-</PreviewContainer>
+	:modelValue
+	with-trigger
+	@trigger-click="modelValue = !modelValue"
+/>
 
 ---
 
@@ -60,5 +53,5 @@
 import { ref } from 'vue';
 import CdsLoadingIndicator from '@/components/LoadingIndicator.vue';
 
-const showLoadingIndicator = ref(true);
+const modelValue = ref(false);
 </script>

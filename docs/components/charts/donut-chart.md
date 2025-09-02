@@ -38,7 +38,7 @@
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsDonutChart"
 	:events="cdsDonutChartEvents"
   :labels

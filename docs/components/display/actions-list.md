@@ -34,7 +34,7 @@ Actions lists são componentes usados para mostrar uma lista de ações em linha
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:actions
 	:numberOfExpandedActions="2"
 	:component="CdsActionsList"
@@ -45,7 +45,7 @@ Actions lists são componentes usados para mostrar uma lista de ações em linha
 	>
 		{{ list.title }}
 	</template>
-</PreviewContainer>
+</PreviewBuilder>
 
 ---
 

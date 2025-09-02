@@ -56,7 +56,7 @@
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsScrollable"
 	:events="cdsScrollableEvents"
 	maxHeight="150px"
@@ -89,7 +89,7 @@
 		mais estranho e inexplicável. Existe uma segunda teoria que diz 
 		que isso já aconteceu.
 	</p>
-</PreviewContainer>
+</PreviewBuilder>
 
 ---
 

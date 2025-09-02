@@ -27,7 +27,7 @@ O componente NumberInput permite que os usuários insiram e editem valores numé
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsNumberInput"
 	:events="cdsNumberInputEvents"
 />

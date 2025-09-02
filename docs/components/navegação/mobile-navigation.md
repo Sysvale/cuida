@@ -15,17 +15,21 @@
 - Quando em ambiente desktop, onde uma barra de navegação superior ou lateral pode ser mais adequada;
 - Quando em telas que requerem espaço horizontal significativo, pois o menu pode sobrepor ou obstruir o conteúdo principal.
 
-
 ---
 
 ## Uso
 
 ```js
 <CdsMobileNavigation
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="mobileNavigationClick = true"
+	:items
+	:light="true"
+	:sticky="false"
+	:activeItem="items[1]"
+	:user
+	:sidebar-logo="args.light
+		? 'https://framerusercontent.com/images/9r26Llo7eNrs3keUxCNEGc8ttYE.png'
+		: 'https://framerusercontent.com/images/oZRv3aHh1IPreheg1xQCkBQjQ.png'
+	"
 />
 ```
 
@@ -33,14 +37,21 @@
 
 ## Preview
 
-<PreviewContainer
-	:component="CdsMobileNavigation"
-	:events="cdsMobileNavigationEvents"
-	light="true"
-	:items
-	:user
-	:activeItem="items[1]"
-	:sticky="false"
+<PreviewContainer>
+	<div class="container-class">
+		<CdsMobileNavigation
+			v-bind="args"
+			:sidebar-logo="args.light
+				? 'https://framerusercontent.com/images/9r26Llo7eNrs3keUxCNEGc8ttYE.png'
+				: 'https://framerusercontent.com/images/oZRv3aHh1IPreheg1xQCkBQjQ.png'
+			"
+		/>
+	</div>
+</PreviewContainer>
+
+<PlaygroundBuilder
+	component="MobileNavigation"
+	v-model="args"
 />
 
 ---
@@ -78,7 +89,7 @@ const cdsMobileNavigationEvents = [
 	'profile-click',
 ];
 
-const items = ref([
+const items = [
 	{
 		label: 'Início',
 		icon: 'home-outline',
@@ -115,10 +126,29 @@ const items = ref([
 			name: 'medical-care',
 		},
 	},
-]);
+];
 
-const user = ref({
-	name: 'Joana Mendes',
-	role: 'Administradora',
+const args = ref({
+	light: true,
+	sticky: false,
+	items,
+	activeItem: items[1],
+	user: {
+		name: 'Joana Mendes',
+		role: 'Administradora',
+	},
 });
 </script>
+
+<style>
+.container-class {
+	position: relative;
+	overflow: auto;
+	height: 680px;
+	width: 400px;
+	border: 1px solid #CCC;
+	margin: auto;
+	border-radius: 20px;
+	cursor: pointer
+}
+</style>

@@ -19,12 +19,12 @@ Componente utilizado para adicionar um wrapper cliclável a componentes que não
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsClickable"
 	:events="cdsClickableEvents"
 >
 	Texto clicável
-</PreviewContainer>
+</PreviewBuilder>
 
 ---
 

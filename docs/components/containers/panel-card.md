@@ -41,7 +41,7 @@
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsPanelCard"
 	title="Redes"
 	subtitle="Habilite as redes da regulação"
@@ -57,7 +57,7 @@
 	litora torquent. Per aumento de cachacis, eu reclamis. Nec
 	orci ornare consequat. Praesent lacinia ultrices consectetur.
 	Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
-</PreviewContainer>
+</PreviewBuilder>
 
 ---
 

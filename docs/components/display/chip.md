@@ -29,7 +29,7 @@ Chips ajudam as pessoas a inserir informações, fazer seleções, filtrar conte
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsChip"
 	:events="cdsChipEvents"
 />

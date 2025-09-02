@@ -40,7 +40,7 @@ dinamicamente para se adaptar ao conteúdo ou à largura disponível.
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsSkeleton"
 	:width="100"
 />

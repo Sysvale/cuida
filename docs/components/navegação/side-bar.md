@@ -63,7 +63,7 @@
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsSideBar"
 	:events="cdsSideBarEvents"
 	variant="green"
@@ -89,7 +89,7 @@
 			src="https://framerusercontent.com/images/cF8DHaPnyhgullDGcpLnyXwGUp4.png"
 		>
 	</template>
-</PreviewContainer>
+</PreviewBuilder>
 
 ---
 

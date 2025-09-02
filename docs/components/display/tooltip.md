@@ -28,7 +28,7 @@ Tooltip são labels flutuantes não interativas usados para explicar um elemento
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsTooltip"
 	:events="cdsTooltipEvents"
 />

@@ -22,7 +22,7 @@ PasswordInputs permitem que os usuários insiram caracteres sensíveis na interf
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsPasswordInput"
 	:events="cdsPasswordInputEvents"
 />

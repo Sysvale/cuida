@@ -31,12 +31,12 @@ Text são indicadores de status utilizados para tornar evidentes metadados impor
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsText"
 	:events="cdsTextEvents"
 >
 	O empenho em analisar o desenvolvimento contínuo de distintas formas de atuação obstaculiza a apreciação da importância do retorno esperado a longo prazo.
-</PreviewContainer>
+</PreviewBuilder>
 
 ---
 

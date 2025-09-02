@@ -33,7 +33,7 @@
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsPagination"
 	:events="cdsPaginationEvents"
 	:total="60"

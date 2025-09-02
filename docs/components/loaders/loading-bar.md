@@ -24,7 +24,7 @@
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsLoadingBar"
 />
 

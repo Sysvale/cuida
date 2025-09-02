@@ -62,7 +62,7 @@
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsInnerTabs"
 	:events="cdsInnerTabsEvents"
 	with-background
@@ -98,14 +98,14 @@
 	<template #indicator-8>
 		Conteúdo da tab-8
 	</template>
-</PreviewContainer>
+</PreviewBuilder>
 
 ---
 
 ## __Com scroll horizontal__
 Quando o conjunto de abas tiver uma largura maior que o container, será exibida uma barra de scroll horizonal para que o layout não seja quebrado em linhas ou fique oculto.
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsInnerTabs"
 	with-background
 	static
@@ -141,7 +141,7 @@ Quando o conjunto de abas tiver uma largura maior que o container, será exibida
 	<template #indicator-8>
 		Conteúdo da tab-8
 	</template>
-</PreviewContainer>
+</PreviewBuilder>
 
 ---
 

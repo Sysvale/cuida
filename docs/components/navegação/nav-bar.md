@@ -31,7 +31,7 @@
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsNavBar"
 	:events="cdsNavBarEvents"
 	:items

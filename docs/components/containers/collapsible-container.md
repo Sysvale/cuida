@@ -37,7 +37,7 @@
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsCollapsibleContainer"
 	:events="cdsCollapsibleContainerEvents"
 >
@@ -51,7 +51,7 @@
 		orci ornare consequat. Praesent lacinia ultrices consectetur.
 		Sed non ipsum felis. Cevadis im ampola pa arma uma pindureta.
 	</p>
-</PreviewContainer>
+</PreviewBuilder>
 
 ---
 

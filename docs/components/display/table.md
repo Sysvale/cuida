@@ -30,7 +30,7 @@ Tables são componentes utilizados para exibir e organizar conteúdo, facilitand
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsTable"
 	:events="cdsTableEvents"
   :items

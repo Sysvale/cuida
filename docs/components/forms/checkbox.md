@@ -28,7 +28,7 @@ Checkboxes são componentes de formulário que permitem seleções binárias e m
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsCheckbox"
 	:events="cdsCheckboxEvents"
 />

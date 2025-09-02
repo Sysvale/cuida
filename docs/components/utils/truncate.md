@@ -18,12 +18,12 @@ Componente auxiliar utilizado para truncar texto adicionando a ele reticências
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsTruncate"
   width="200"
 >
   Texto longo para testar o truncate
-</PreviewContainer>
+</PreviewBuilder>
 
 ---
 

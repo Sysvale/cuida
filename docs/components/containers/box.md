@@ -18,12 +18,12 @@
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsBox"
 	:events="cdsBoxEvents"
 >
 	2
-</PreviewContainer>
+</PreviewBuilder>
 
 ---
 

@@ -30,7 +30,7 @@
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsPageLayout"
 	:events="cdsPageLayoutEvents"
 	variant="indigo"
@@ -46,7 +46,7 @@
 	<template #default>
 		Conteúdo da página
 	</template>
-</PreviewContainer>
+</PreviewBuilder>
 
 ---
 

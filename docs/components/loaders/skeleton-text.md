@@ -31,7 +31,7 @@
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsSkeletonText"
   :width="100"
 />

@@ -31,7 +31,7 @@ AvatarGroups exibem vários avatares agrupados em forma de pilha.
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsAvatarGroup"
 	:events="cdsAvatarGroupEvents"
 />

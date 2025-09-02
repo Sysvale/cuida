@@ -51,7 +51,7 @@
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsDashboardCard"
 	:events="cdsDashboardCardEvents"
 	:showAction="true"
@@ -67,7 +67,7 @@
 	<template #description-slot>
 		Não realizam consulta há mais de 30 dias
 	</template>
-</PreviewContainer>
+</PreviewBuilder>
 
 ---
 

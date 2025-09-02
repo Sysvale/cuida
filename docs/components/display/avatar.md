@@ -21,7 +21,7 @@ Avatares são componentes utilizados para exibir representações visuais de usu
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	src="https://thispersondoesnotexist.com/"
 	:component="CdsAvatar"
 	:events="cdsAvatarEvents"

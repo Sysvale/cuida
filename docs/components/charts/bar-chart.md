@@ -32,7 +32,7 @@
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsBarChart"
 	:data
 	:labels

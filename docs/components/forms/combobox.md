@@ -29,7 +29,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ## Preview
 
-<PreviewContainer
+<PreviewBuilder
 	:component="CdsCombobox"
 	:events="cdsComboboxEvents"
 />

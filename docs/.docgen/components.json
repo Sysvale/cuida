@@ -6790,6 +6790,19 @@
       {
         "name": "variant",
         "description": "A variante de cor. São 10 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.\nA variante só terá efeito quando a SideBar estiver no modo light.",
+        "tags": {},
+        "values": [
+          "'green'",
+          "'teal'",
+          "'blue'",
+          "'indigo'",
+          "'violet'",
+          "'pink'",
+          "'red'",
+          "'orange'",
+          "'amber'",
+          "'dark'"
+        ],
         "type": {
           "name": "string"
         },

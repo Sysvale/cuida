@@ -4,7 +4,9 @@ import './style.css';
 import Cdstip from '../../../src/utils/directives/cdstip';
 
 import APITable from '../../docgen/APITable.vue';
+import PreviewBuilder from '../../docgen/PreviewBuilder.vue';
 import PreviewContainer from '../../docgen/PreviewContainer.vue';
+import PlaygroundBuilder from '../../docgen/PlaygroundBuilder.vue';
 import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 import CdsAvatar from '@/components/Avatar.vue';
@@ -32,7 +34,9 @@ export default {
 	Layout: Layout,
 	enhanceApp({ app }) {
 		app.component('APITable', APITable);
+		app.component('PreviewBuilder', PreviewBuilder);
 		app.component('PreviewContainer', PreviewContainer);
+		app.component('PlaygroundBuilder', PlaygroundBuilder);
 		app.component('FigmaFrame', FigmaFrame);
 		app.directive("cdstip", Cdstip);
 
