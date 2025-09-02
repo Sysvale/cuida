@@ -1,24 +1,29 @@
 # BaseInput
 
-BaseInput é o componente base para todos os tipos de inputs, fornecendo a estrutura e funcionalidades comuns.
+### BaseInput é o componente base para todos os tipos de inputs, fornecendo a estrutura e funcionalidades comuns.
+---
 
 O BaseInput deve ser utilizado como base para a criação de novos componentes de input.
 Ele fornece a estrutura básica e funcionalidades comuns, como gerenciamento de estado, validação e estilização, etc.
 
-### Quando usar
+<br />
 
+## Quando usar:
 - Na implementação de componentes do tipo input, com exceção de checkboxes, radios, ranges e files.
 
-### Quando não usar
+<br />
 
-- ⚠️ **Atenção:** Este componente **não deve** ser utilizado diretamente na aplicação, mas sim como base para a criação de novos componentes de input.
+## Quando não usar:
+- ⚠️ **Atenção:** Este componente **não deve** ser utilizado diretamente na aplicação, mas sim como base para a criação de novos componentes de input..
 
 ---
 
 ## Uso
 
 ```js
-<CdsBaseInput />
+<CdsBaseInput
+	v-model="inputValue"
+/>
 ```
 
 ---
@@ -58,20 +63,37 @@ Ele fornece a estrutura básica e funcionalidades comuns, como gerenciamento de 
 
 ---
 
-
-
-
-
 <script setup>
 import { ref } from 'vue';
-const args = ref({});
 import CdsBaseInput from '@/components/BaseInput.vue';
 
 const cdsBaseInputEvents = [
-	'update:modelValue',
+	'supportLinkClick',
+	'blur',
+	'change',
 	'click',
 	'focus',
-	'blur',
-	'keydown'
+	'keydown',
+	'mouseenter',
+	'mouseleave',
 ];
+
+const supportingText = ['We’ll use this address if', 'Ask for help'];
+
+const args = ref({
+	type: 'text',
+	state: 'default',
+	disabled: false,
+	floatingLabel: false,
+	required: false,
+	fluid: false,
+	lazy: false,
+	placeholder: 'Digite algo...',
+	supportingText: supportingText,
+	errorMessage: 'Campo obrigatório',
+	tooltip: '',
+	tooltipIcon: 'info-outline',
+	trailingIcon: 'info-outline',
+	leadingIcon: 'info-outline',
+});
 </script>

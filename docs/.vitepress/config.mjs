@@ -42,7 +42,7 @@ export default defineConfig({
 					items: [
 						{ text: 'Button <Badge class="badge" type="info">ready</Badge>', link: '/components/forms/button' },
 						{ text: 'FlatButton <Badge class="badge" type="info">ready</Badge>', link: '/components/forms/flat-button' },
-						{ text: 'BaseInput', link: '/components/forms/base-input' },
+						{ text: 'BaseInput <Badge class="badge" type="info">ready</Badge>', link: '/components/forms/base-input' },
 						{ text: 'BaseMobileInput', link: '/components/forms/base-mobile-input' },
 						{ text: 'Checkbox', link: '/components/forms/checkbox' },
 						{ text: 'CheckboxGroup', link: '/components/forms/checkbox-group' },
