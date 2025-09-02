@@ -12,7 +12,6 @@ ActionBars são barras de ferramentas que podem exibir ações e informações p
 - Para exibir os status do sistema.
 - Em modo flutuante, a ActionBar ocultar permanentemente informações na tela.
 
-
 ---
 
 ## Uso

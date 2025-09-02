@@ -1,16 +1,21 @@
-# BottomSheet
+# Bottom Sheet
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### BottomSheets são componentes que exibem conteúdo adicional em uma camada sobreposta na parte inferior da página atual, fornecendo acesso rápido a informações ou ações complementares sem interromper o fluxo principal da interface.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- Para fornecer acesso rápido a opções ou controles adicionais sem obscurecer o conteúdo principal da página;
+- Quando há necessidade de apresentar informações contextuais relevantes sem exigir uma mudança de contexto para o usuário;
+- Para oferecer uma experiência de navegação fluida, permitindo que o usuário permaneça na mesma tela enquanto interage com o conteúdo adicional.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
 
-### Quando não usar
+<br />
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- Se o conteúdo ou as ações adicionais exigirem mais espaço do que a área disponível na parte inferior da tela.
+- Quando a presença de um BottomSheet interferiria na experiência do usuário ou causaria confusão ao sobrepor-se a outros elementos essenciais da interface.
+- Se houver necessidade de exibir uma quantidade significativa de informações ou fluxos complexos que não possam ser adequadamente contidos na parte inferior da tela.
 
 ---
 
@@ -32,7 +37,14 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:component="CdsBottomSheet"
 	:events="cdsBottomSheetEvents"
-/>
+	with-trigger
+	title="Onde encontrar o meu CNS"
+	v-model="showBottomSheet"
+	@trigger-click="showBottomSheet = true"
+	@close="showBottomSheet = false"
+>
+	Conteúdo
+</PreviewBuilder>
 
 ---
 
@@ -60,9 +72,13 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref } from 'vue'; 
 import CdsBottomSheet from '@/components/BottomSheet.vue';
 
+const showBottomSheet = ref(false);
+
 const cdsBottomSheetEvents = [
-	'bottomSheet-click'
+	'update:model-value',
+	'close'
 ];
 </script>
