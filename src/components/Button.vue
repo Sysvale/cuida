@@ -205,11 +205,20 @@ export default {
 			background-color: tokens.$n-10;
 			color: tokens.$n-700;
 			border: 1px solid tokens.$n-50 !important;
+			outline: none !important;
 			
 			&:hover {
 				@extend .button--secondary--active;
 				background-color: tokens.$n-20;
 			}
+		}
+
+		&--active:focus-visible {
+			box-shadow: 0 0 0 2px tokens.$n-30 inset;
+		}
+
+		&--active:focus:not(:focus-visible) {
+			box-shadow: none;
 		}
 
 		&--disabled {
