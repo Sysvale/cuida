@@ -258,6 +258,10 @@ export default {
 		width: v-bind(widthResolver);
 		border: none;
 		cursor: pointer;
+
+		&:focus {
+			outline: none !important;
+		}
 	}
 
 	$colors: (
@@ -342,12 +346,10 @@ export default {
 		@if map-has-key($variants, 'focus') {
 			&#{$color}--active:focus-visible {
 				box-shadow: 0 0 0 2px map-get($variants, 'focus') inset;
-				outline: none;
 			}
 
 			&#{$color}--active:focus:not(:focus-visible) {
 				box-shadow: none;
-				outline: none;
 			}
 		}
 	}
