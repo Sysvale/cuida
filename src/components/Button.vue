@@ -114,13 +114,6 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-		/**
-		 * Indica que o botão não poderá receber foco ao interagir com a tecla tab.
-		 */
-		disbledTabIndex: {
-			type: Boolean,
-			default: false,
-		},
 	},
 
 	data() {
