@@ -114,6 +114,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Indica que o botão não poderá receber foco ao interagir com a tecla tab.
+		 */
+		disbledTabIndex: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -258,56 +265,63 @@ export default {
 		width: v-bind(widthResolver);
 		border: none;
 		cursor: pointer;
-
-		&:focus {
-			outline: none !important;
-		}
 	}
 
 	$colors: (
 		'--green': (
 			'active': tokens.$gp-400,
 			'disabled': tokens.$gp-300,
+			'focus': tokens.$gp-600,
 		),
 		'--teal': (
 			'active': tokens.$ta-400,
 			'disabled': tokens.$ta-300,
+			'focus': tokens.$ta-600,
 		),
 		'--turquoise': (
 			'active': tokens.$ts-400,
 			'disabled': tokens.$ts-300,
+			'focus': tokens.$ts-600,
 		),
 		'--blue': (
 			'active': tokens.$bn-400,
 			'disabled': tokens.$bn-300,
+			'focus': tokens.$bn-600,
 		),
 		'--indigo': (
 			'active': tokens.$in-400,
 			'disabled': tokens.$in-300,
+			'focus': tokens.$in-600,
 		),
 		'--violet': (
 			'active': tokens.$vr-400,
 			'disabled': tokens.$vr-300,
+			'focus': tokens.$vr-600,
 		),
 		'--pink': (
 			'active': tokens.$pp-400,
 			'disabled': tokens.$pp-300,
+			'focus': tokens.$pp-600,
 		),
 		'--red': (
 			'active': tokens.$rc-400,
 			'disabled': tokens.$rc-300,
+			'focus': tokens.$rc-600,
 		),
 		'--orange': (
 			'active': tokens.$og-400,
 			'disabled': tokens.$og-300,
+			'focus': tokens.$og-600,
 		),
 		'--amber': (
 			'active': tokens.$al-400,
 			'disabled': tokens.$al-300,
+			'focus': tokens.$al-600,
 		),
 		'--dark': (
 			'active': tokens.$n-700,
 			'disabled': tokens.$n-500,
+			'focus': tokens.$n-600,
 		),
 	);
 
@@ -329,6 +343,18 @@ export default {
 
 			&--disabled {
 				cursor: default;
+			}
+		}
+
+		@if map-has-key($variants, 'focus') {
+			&#{$color}--active:focus-visible {
+				box-shadow: 0 0 0 2px map-get($variants, 'focus') inset;
+				outline: none;
+			}
+
+			&#{$color}--active:focus:not(:focus-visible) {
+				box-shadow: none;
+				outline: none;
 			}
 		}
 	}
