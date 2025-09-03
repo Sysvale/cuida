@@ -327,7 +327,7 @@ export default {
 		'--dark': (
 			'active': tokens.$n-700,
 			'disabled': tokens.$n-500,
-			'focus': tokens.$n-600,
+			'focus': tokens.$n-400,
 		),
 	);
 
