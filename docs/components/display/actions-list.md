@@ -36,8 +36,6 @@ Actions lists são componentes usados para mostrar uma lista de ações em linha
 
 <PreviewBuilder
 	:args
-	:actions
-	:numberOfExpandedActions="2"
 	:component="CdsActionsList"
 	:events="cdsActionsListEvents"
 >
@@ -83,7 +81,6 @@ Actions lists são componentes usados para mostrar uma lista de ações em linha
 
 <script setup>
 import { ref } from 'vue';
-const args = ref({});
 import CdsActionsList from '@/components/ActionsList.vue';
 
 const actions = [
@@ -106,4 +103,9 @@ const cdsActionsListEvents = [
 	'expanded',
 	'action-clicked'
 ];
+
+const args = ref({
+	actions,
+	numberOfExpandedActions: 2
+});
 </script>

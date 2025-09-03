@@ -43,7 +43,6 @@ dinamicamente para se adaptar ao conteúdo ou à largura disponível.
 <PreviewBuilder
 	:args
 	:component="CdsSkeleton"
-	:width="100"
 />
 
 ---
@@ -59,5 +58,10 @@ dinamicamente para se adaptar ao conteúdo ou à largura disponível.
 ---
 
 <script setup>
+import { ref } from 'vue';
 import CdsSkeleton from '@/components/Skeleton.vue';
+
+const args = ref({
+	width: 100
+});
 </script>

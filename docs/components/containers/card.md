@@ -56,11 +56,6 @@ Cards são componentes utilizados como containers de propósito geral. À partir
 	:args
 	:component="CdsCard"
 	:events="cdsCardEvents"
-	:imageWidth="400"
-	:imageHeight="200"
-	:clickable="false"
-	:horizontal="false"
-	imageSrc="https://images.unsplash.com/photo-1677391520535-e03e845dec33?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
 >
 	<template #header>
 		<div style="margin-bottom: 12px">
@@ -190,10 +185,17 @@ Para layouts horizontais de Card, utilize a prop `horizontal`
 
 <script setup>
 import { ref } from 'vue';
-const args = ref({});
 import CdsCard from '@/components/Card.vue';
 
 const cdsCardEvents = [
 	'cardClick'
 ];
+
+const args = ref({
+	imageWidth: 400,
+	imageHeight: 200,
+	clickable: false,
+	horizontal: false,
+	imageSrc: "https://images.unsplash.com/photo-1677391520535-e03e845dec33?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+});
 </script>

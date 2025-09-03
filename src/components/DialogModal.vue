@@ -138,6 +138,7 @@ export default {
 	props: {
 		/**
 		 *  Define a variante do Dialog Modal.
+		 * @values warning, error, info
 		 */
 		variant: {
 			type: String,
@@ -182,6 +183,7 @@ export default {
 		},
 		/**
 		 * Define a variante do botão de ação do Dialog Modal (segue as variantes do componente de botão do Cuida)
+		 * @values green, teal, turquoise, blue, indigo, violet, pink, red, orange, amber, gray, dark
 		 */
 		actionButtonVariant: {
 			type: String,

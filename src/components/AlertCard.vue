@@ -61,6 +61,7 @@ export default {
 		/**
 		 * A variante do Alert. São 3 variantes implementadas: 'info', 'warning'
 		 * e 'danger'
+		 * @values info, warning, danger
 		 */
 		variant: {
 			type: String,

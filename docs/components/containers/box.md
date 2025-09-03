@@ -53,9 +53,12 @@
 
 
 <script setup>
+import { ref } from 'vue';
 import CdsBox from '@/components/Box.vue';
 
 const cdsBoxEvents = [
 	'boxClick'
 ];
+
+const args = ref({});
 </script>

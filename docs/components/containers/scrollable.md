@@ -60,7 +60,6 @@
 	:args
 	:component="CdsScrollable"
 	:events="cdsScrollableEvents"
-	maxHeight="150px"
 >
 	<p>
 		Existe uma teoria que diz que, se um dia alguém descobrir 
@@ -111,11 +110,12 @@
 
 ---
 
-
 <script setup>
 import { ref } from 'vue';
-const args = ref({});
 import CdsScrollable from '@/components/Scrollable.vue';
 
 const cdsScrollableEvents = [];
+const args = ref({
+	maxHeight: "150px"
+});
 </script>

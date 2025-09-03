@@ -27,10 +27,14 @@
 <PreviewBuilder
 	:args
 	:component="CdsLoadingBar"
+	static
 />
 
 ---
 
 <script setup>
+import { ref } from 'vue';
 import CdsLoadingBar from '@/components/LoadingBar.vue';
+
+const args = ref({});
 </script>

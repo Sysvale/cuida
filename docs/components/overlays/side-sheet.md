@@ -43,8 +43,7 @@
 	:component="CdsSideSheet"
 	:events="cdsSideSheetEvents"
 	with-trigger
-	@trigger-click="showSideSheet = true"
-	@close="showSideSheet = false"
+	@trigger-click="args.modelValue = !args.modelValue"
 >
 	<p>
 		Mussum Ipsum, cacilds vidis litro abertis. Todo mundo
@@ -133,8 +132,6 @@
 <script setup>
 import { ref } from 'vue';
 import CdsSideSheet from '@/components/SideSheet.vue';
-
-const showSideSheet = ref(false);
 
 const cdsSideSheetEvents = [
 	'update:modelValue',

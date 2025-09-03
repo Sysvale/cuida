@@ -40,11 +40,8 @@ O QuickActionBar é um componente de busca e ação rápida que permite ao usuá
 	:args
 	:component="CdsQuickActionBar"
 	:events="cdsQuickActionBarEvents"
-	:recents
-	:groups
 	with-trigger
-	@trigger-click="showQuickActionBar = true"
-	@close="showQuickActionBar = false"
+	@trigger-click="args.modelValue = !args.modelValue"
 />
 
 ---
@@ -77,10 +74,6 @@ O QuickActionBar é um componente de busca e ação rápida que permite ao usuá
 <script setup>
 import { ref } from 'vue';
 import CdsQuickActionBar from '@/components/QuickActionBar.vue';
-
-const showQuickActionBar = ref(false);
-
-const args = ref({});
 
 const recents = [
 	{
@@ -203,6 +196,12 @@ const groups = [
 		]
 	},
 ];
+
+
+const args = ref({
+	recents,
+	groups,
+});
 
 const cdsQuickActionBarEvents = [
 	'update:modelValue',

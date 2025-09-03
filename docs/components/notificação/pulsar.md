@@ -29,10 +29,16 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ## Preview
 
-<PreviewBuilder
+<PreviewContainer>
+	<div id="pulsar-target" style="width: fit-content;">
+		Pulsar target
+	</div>
+	<CdsPulsar v-bind="args" />
+</PreviewContainer>
+
+<PlaygroundBuilder
 	:args
-	:component="CdsPulsar"
-	:events="cdsPulsarEvents"
+	component="Pulsar"
 />
 
 ---
@@ -45,28 +51,13 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Eventos
-
-<APITable
-	name="Pulsar"
-	section="events"
-/>
-<br />
-
-## Slots
-
-<APITable
-	name="Pulsar"
-	section="slots"
-/>
-
 <script setup>
 import { ref } from 'vue';
 import CdsPulsar from '@/components/Pulsar.vue';
 
-const args = ref({});
-
-const cdsPulsarEvents = [
-	'pulsar-click'
-];
+const args = ref({
+	variant: 'green',
+	position: 'top-end',
+	targetId: 'pulsar-target'
+});
 </script>

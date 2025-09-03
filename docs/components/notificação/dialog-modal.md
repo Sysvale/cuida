@@ -33,6 +33,8 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 	:args
 	:component="CdsDialogModal"
 	:events="cdsDialogModalEvents"
+	with-trigger
+	@trigger-click="args.modelValue = !args.modelValue"
 />
 
 ---
@@ -53,20 +55,21 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Slots
-
-<APITable
-	name="DialogModal"
-	section="slots"
-/>
-
 <script setup>
 import { ref } from 'vue';
 import CdsDialogModal from '@/components/DialogModal.vue';
 
-const args = ref({});
+const args = ref({
+	title: 'Tem certeza que deseja continuar?',
+	description: `Esta ação afetará o sistema e
+		os arquivos associados. Ao prosseguir, você
+		confirma que está ciente e
+		concorda com as consequências. Deseja continuar?`
+});
 
 const cdsDialogModalEvents = [
-	'dialogModal-click'
+	'close',
+	'update:modelValue',
+	'ok',
 ];
 </script>

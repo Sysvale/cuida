@@ -246,6 +246,12 @@
       {
         "name": "variant",
         "description": "A variante do Alert. São 3 variantes implementadas: 'info', 'warning'\ne 'danger'",
+        "tags": {},
+        "values": [
+          "info",
+          "warning",
+          "danger"
+        ],
         "type": {
           "name": "string"
         },
@@ -3717,18 +3723,19 @@
       {
         "name": "variant",
         "description": "Define a variante do Dialog Modal.",
+        "tags": {},
+        "values": [
+          "warning",
+          "error",
+          "info"
+        ],
         "type": {
           "name": "string"
         },
         "defaultValue": {
           "func": false,
           "value": "'warning'"
-        },
-        "values": [
-          "warning",
-          "error",
-          "info"
-        ]
+        }
       },
       {
         "name": "description",
@@ -3783,24 +3790,28 @@
       {
         "name": "actionButtonVariant",
         "description": "Define a variante do botão de ação do Dialog Modal (segue as variantes do componente de botão do Cuida)",
-        "type": {
-          "name": "string"
-        },
-        "defaultValue": {
-          "func": false,
-          "value": "'green'"
-        },
+        "tags": {},
         "values": [
-          "teal",
           "green",
+          "teal",
+          "turquoise",
           "blue",
           "indigo",
           "violet",
           "pink",
           "red",
           "orange",
-          "amber"
-        ]
+          "amber",
+          "gray",
+          "dark"
+        ],
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'green'"
+        }
       }
     ],
     "events": [
@@ -8970,6 +8981,21 @@
       {
         "name": "variant",
         "description": "Define a cor da ProgressCircular.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "turquoise",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "gray",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },
@@ -9063,16 +9089,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -9096,6 +9122,22 @@
       {
         "name": "position",
         "description": "Posicionamento do Pulsar com relação ao elemento de referência.",
+        "tags": {},
+        "values": [
+          "auto",
+          "top",
+          "right",
+          "bottom",
+          "left",
+          "top-start",
+          "right-start",
+          "bottom-start",
+          "left-start",
+          "top-end",
+          "right-end",
+          "bottom-end",
+          "left-end"
+        ],
         "type": {
           "name": "string"
         },
@@ -9754,6 +9796,22 @@
       {
         "name": "defaultPlacement",
         "description": "Indica o posicionamento padrão do Popover.\nQuando não especificado é considerado o posicionamento \"bottom\"",
+        "tags": {},
+        "values": [
+          "auto",
+          "top",
+          "right",
+          "bottom",
+          "left",
+          "top-start",
+          "right-start",
+          "bottom-start",
+          "left-start",
+          "top-end",
+          "right-end",
+          "bottom-end",
+          "left-end"
+        ],
         "type": {
           "name": "string"
         },

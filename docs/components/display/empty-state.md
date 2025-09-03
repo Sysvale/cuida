@@ -34,10 +34,6 @@ EmptyStates são componentes utilizados em momentos instrutivos aos usuários.
 
 <PreviewBuilder
 	:args
-	image="https://static.vecteezy.com/system/resources/thumbnails/011/537/753/small_2x/box-empty-state-single-isolated-icon-with-flat-style-free-vector.jpg"
-	image-description="Imagem de empty state"
-	title="Título do empty state"
-	text="Para sair dessa situação de empty state, realize a ação abaixo"
 	:component="CdsEmptyState"
 	:events="cdsEmptyStateEvents"
 />
@@ -69,18 +65,19 @@ EmptyStates são componentes utilizados em momentos instrutivos aos usuários.
 
 ---
 
-## Figma
-
-<FigmaFrame
-	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
-/>
 
 <script setup>
 import { ref } from 'vue';
-const args = ref({});
 import CdsEmptyState from '@/components/EmptyState.vue';
 
 const cdsEmptyStateEvents = [
 	'actionButtonClick'
 ];
+
+const args = ref({
+	image: "https://static.vecteezy.com/system/resources/thumbnails/011/537/753/small_2x/box-empty-state-single-isolated-icon-with-flat-style-free-vector.jpg",
+	imageDescription: 'Imagem de empty state',
+	title: 'Título do empty state',
+	text: 'Para sair dessa situação de empty state, realize a ação abaixo',
+});
 </script>

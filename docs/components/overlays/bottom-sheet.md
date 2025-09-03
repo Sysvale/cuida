@@ -40,7 +40,7 @@
 	:events="cdsBottomSheetEvents"
 	with-trigger
 	title="Onde encontrar o meu CNS"
-	@trigger-click="args.modelValue = true"
+	@trigger-click="args.modelValue = !args.modelValue"
 >
 	Conteúdo
 </PreviewBuilder>
@@ -74,8 +74,6 @@
 import { ref } from 'vue';
 import CdsBottomSheet from '@/components/BottomSheet.vue';
 const args = ref({});
-
-const showBottomSheet = ref(false);
 
 const cdsBottomSheetEvents = [
 	'update:model-value',

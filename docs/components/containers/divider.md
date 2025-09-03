@@ -39,5 +39,8 @@
 ---
 
 <script setup>
+import { ref } from 'vue';
 import CdsDivider from '@/components/Divider.vue';
+
+const args = ref({});
 </script>

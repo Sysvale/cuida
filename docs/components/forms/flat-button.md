@@ -66,10 +66,11 @@ FlatButtons são componentes semelhantes a links, mas que funcionam como botões
 
 <script setup>
 import { ref } from 'vue';
-const args = ref({});
 import CdsFlatButton from '@/components/FlatButton.vue';
 
 const cdsFlatButtonEvents = [
 	'click'
 ];
+
+const args = ref({});
 </script>

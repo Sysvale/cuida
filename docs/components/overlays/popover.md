@@ -57,7 +57,7 @@
 	:events="cdsPopoverEvents"
 	with-trigger
 	targetId="trigger-cds-popover"
-	@trigger-click="showPopover =true"
+	@trigger-click="args.modelValue = !args.modelValue"
 >
 	<span>
 		Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,
@@ -100,9 +100,9 @@
 import { ref } from 'vue';
 import CdsPopover from '@/components/Popover.vue';
 
-const showPopover = ref(false);
-
-const args = ref({});
+const args = ref({
+	targetId: 'trigger-cds-popover',
+});
 
 const cdsPopoverEvents = [
 	'update:modelValue'

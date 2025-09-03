@@ -55,8 +55,6 @@
 	:args
 	:component="CdsDashboardCard"
 	:events="cdsDashboardCardEvents"
-	:showAction="true"
-	action="Ver lista"
 >
 	<template #title-slot>
 		<bold>45</bold>
@@ -98,9 +96,15 @@
 ---
 
 <script setup>
+import { ref } from 'vue';
 import CdsDashboardCard from '@/components/DashboardCard.vue';
 
 const cdsDashboardCardEvents = [
 	'action-button-click'
 ];
+
+const args = ref({
+	showAction: 'true',
+	action: 'Ver lista',
+});
 </script>

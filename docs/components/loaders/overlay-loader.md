@@ -46,5 +46,8 @@
 ---
 
 <script setup>
+import { ref } from 'vue';
 import CdsOverlayLoader from '@/components/OverlayLoader.vue';
+
+const args = ref({});
 </script>

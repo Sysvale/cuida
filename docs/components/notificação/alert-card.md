@@ -32,7 +32,6 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:args
 	:component="CdsAlertCard"
-	:events="cdsAlertCardEvents"
 />
 
 ---
@@ -42,14 +41,6 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <APITable
 	name="AlertCard"
 	section="props"
-/>
-<br />
-
-## Eventos
-
-<APITable
-	name="AlertCard"
-	section="events"
 />
 <br />
 
@@ -65,8 +56,4 @@ import { ref } from 'vue';
 import CdsAlertCard from '@/components/AlertCard.vue';
 
 const args = ref({});
-
-const cdsAlertCardEvents = [
-	'alertCard-click'
-];
 </script>

@@ -47,13 +47,6 @@
 	:args
 	:component="CdsFlexbox"
 	class="grid-background"
-	direction="row"
-	:gap="1"
-	wrap="wrap"
-	justify="start"
-	align="start"
-	tag="div"
-	:fluid="false"
 >
 	<div style="height: 50px; width: 300px" class="docs-grid-cell"> FlexItem 1 </div>
 	<div style="height: 50px; width: 300px" class="docs-grid-cell"> FlexItem 2 </div>
@@ -81,7 +74,18 @@
 ---
 
 <script setup>
+import { ref } from 'vue';
 import CdsFlexbox from '@/components/Flexbox.vue';
+
+const args = ref({
+	direction: 'row',
+	gap: '1',
+	wrap: 'wrap',
+	justify: 'start',
+	align: 'start',
+	tag: 'div',
+	fluid: 'false',
+});
 </script>
 
 <style>

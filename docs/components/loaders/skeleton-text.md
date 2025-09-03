@@ -34,7 +34,6 @@
 <PreviewBuilder
 	:args
 	:component="CdsSkeletonText"
-  :width="100"
 />
 
 ---
@@ -47,10 +46,13 @@
 />
 <br />
 
-
 ---
 
-
 <script setup>
+import { ref } from 'vue';
 import CdsSkeletonText from '@/components/SkeletonText.vue';
+
+const args = ref({
+	width: 100
+});
 </script>

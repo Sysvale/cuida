@@ -8,10 +8,10 @@ Componente utilizado para adicionar um wrapper cliclável a componentes que não
 
 ```js
 <CdsClickable
-		:clickable="true"
-		@click="logClickableClick"
-	>
-		Texto clicável
+	:clickable="true"
+	@click="logClickableClick"
+>
+	Texto clicável
 </CdsClickable>
 ```
 
@@ -56,7 +56,6 @@ Componente utilizado para adicionar um wrapper cliclável a componentes que não
 
 <script setup>
 import { ref } from 'vue';
-const args = ref({});
 import CdsClickable from '@/components/Clickable.vue';
 
 const args = ref({});

@@ -30,7 +30,6 @@
 <PreviewBuilder
 	:args
 	:component="CdsSpinner"
-	:delay="1000"
 />
 
 ---
@@ -46,5 +45,10 @@
 ---
 
 <script setup>
+import { ref } from 'vue';
 import CdsSpinner from '@/components/Spinner.vue';
+
+const args = ref({
+	delay: 1000,
+});
 </script>

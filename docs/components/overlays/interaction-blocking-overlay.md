@@ -47,8 +47,8 @@
 </PreviewContainer>
 
 <PlaygroundBuilder
+	:args
 	component="InteractionBlockingOverlay"
-	v-model="args"
 />
 
 ---
@@ -70,7 +70,7 @@
 <br />
 
 <script setup>
-	import { ref } from 'vue';
+import { ref } from 'vue';
 import CdsInteractionBlockingOverlay from '@/components/InteractionBlockingOverlay.vue';
 
 const cdsInteractionBlockingOverlayEvents = [

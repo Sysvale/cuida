@@ -34,9 +34,6 @@
 	:args
 	:component="CdsCarouselController"
 	:events="cdsCarouselControllerEvents"
-	:total="12"
-	:perPage="4"
-	propertyName="dados"
 />
 
 ---
@@ -60,10 +57,17 @@
 ---
 
 <script setup>
+import { ref } from 'vue';
 import CdsCarouselController from '@/components/CarouselController.vue';
 
 const cdsCarouselControllerEvents = [
 	'click-back',
 	'click-forward'
 ];
+
+const args = ref({
+	total: 12,
+	perPage: 4,
+	propertyName: 'dados',
+});
 </script>

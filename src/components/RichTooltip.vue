@@ -49,6 +49,7 @@ export default {
 		/**
 		* Indica o posicionamento padrão do Popover.
 		* Quando não especificado é considerado o posicionamento "bottom"
+		* @values auto, top, right, bottom, left, top-start, right-start, bottom-start, left-start, top-end, right-end, bottom-end, left-end
 		*/
 		defaultPlacement: {
 			type: String,
@@ -87,6 +88,10 @@ export default {
 			} else {
 				this.hide();
 			}
+		},
+
+		defaultPlacement() {
+			this.setPopper(this.targetId);
 		},
 
 		targetId(id) {

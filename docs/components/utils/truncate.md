@@ -44,12 +44,6 @@ Componente auxiliar utilizado para truncar texto adicionando a ele reticências
 />
 
 ---
-<!-- 
-## Figma
-
-<FigmaFrame
-	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
-/> -->
 
 <script setup>
 import { ref } from 'vue';

@@ -41,6 +41,7 @@ export default {
 	props: {
 		/**
 		 * Define a cor da ProgressCircular.
+		 * @values green, teal, turquoise, blue, indigo, violet, pink, red, orange, amber, gray, dark
 		 */
 		variant: {
 			type: String,

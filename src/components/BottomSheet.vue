@@ -1,8 +1,5 @@
 <template>
 	<div>
-		model {{ model }}
-		<br />
-		internalModelValue {{ internalModelValue }}
 		<div
 			v-if="model"
 		>

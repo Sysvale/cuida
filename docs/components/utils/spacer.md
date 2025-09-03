@@ -50,7 +50,7 @@ utilize classes e nelas inclua paddings e margins com os tokens de espaçamento 
 
 <PlaygroundBuilder
 	component="Spacer"
-	v-model="args"
+	:args
 />
 
 ---

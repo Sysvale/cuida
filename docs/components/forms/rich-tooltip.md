@@ -44,14 +44,12 @@
 	:component="CdsRichTooltip"
 	:events="cdsRichTooltipEvents"
 	with-trigger
-	v-model="showRichTooltip"
 	targetId="trigger-cds-tooltip"
-	defaultPlacement="bottom-start"
-	@trigger-click="showRichTooltip =true"
+	@trigger-click="args.modelValue = !args.modelValue"
 >
 	<div>
 		<p><strong>Em atendimento:</strong> 280</p>
-		<p><strong>Pendentes:</strong> 60</p>
+		<p><strong>Pendentes:</strong> 60 </p>
 		<p><strong>Em acompanhamento:</strong> 600</p>
 	</div>
 </PreviewBuilder>
@@ -83,12 +81,14 @@
 
 <script setup>
 import { ref } from 'vue';
-const args = ref({});
 import CdsRichTooltip from '@/components/RichTooltip.vue';
-
-const showRichTooltip = ref(false);
 
 const cdsRichTooltipEvents = [
 	'update:modelValue'
 ];
+
+const args = ref({
+	targetId: 'trigger-cds-tooltip',
+	defaultPlacement: 'top-start',
+});
 </script>

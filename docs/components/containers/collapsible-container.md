@@ -80,9 +80,12 @@
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsCollapsibleContainer from '@/components/CollapsibleContainer.vue';
 
 const cdsCollapsibleContainerEvents = [
 	'update:model-value'
 ];
+
+const args = ref({});
 </script>

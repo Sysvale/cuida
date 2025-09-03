@@ -44,8 +44,6 @@
 <PreviewBuilder
 	:args
 	:component="CdsPanelCard"
-	title="Redes"
-	subtitle="Habilite as redes da regulação"
 >
 	<template #panel-actions>
 		<strong>#</strong>
@@ -78,5 +76,11 @@
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsPanelCard from '@/components/PanelCard.vue';
+
+const args = ref({
+	title: 'Redes',
+	subtitle: 'Habilite as redes da regulação',
+});
 </script>

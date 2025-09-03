@@ -16,7 +16,7 @@ export default {
 	props: {
 		/**
 		* A variante de cor. São 10 variantes:
-		* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
+		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		*/
 		variant: {
 			type: String,
@@ -31,6 +31,7 @@ export default {
 		},
 		/**
 		* Posicionamento do Pulsar com relação ao elemento de referência.
+		* @values auto, top, right, bottom, left, top-start, right-start, bottom-start, left-start, top-end, right-end, bottom-end, left-end
 		*/
 		position: {
 			type: String,

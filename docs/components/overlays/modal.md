@@ -47,8 +47,7 @@
 	:component="CdsModal"
 	:events="cdsModalEvents"
 	with-trigger
-	@trigger-click="showModal =true"
-	@close="showModal = false"
+	@trigger-click="args.modelValue = !args.modelValue"
 >
 	<span>
 		Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris.Tá deprimidis,

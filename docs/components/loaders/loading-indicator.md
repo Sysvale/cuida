@@ -33,9 +33,8 @@
 <PreviewBuilder
 	:args
 	:component="CdsLoadingIndicator"
-	:modelValue
 	with-trigger
-	@trigger-click="modelValue = !modelValue"
+	@trigger-click="args.modelValue = !args.modelValue"
 />
 
 ---
@@ -52,8 +51,7 @@
 
 <script setup>
 import { ref } from 'vue';
-const args = ref({});
 import CdsLoadingIndicator from '@/components/LoadingIndicator.vue';
 
-const modelValue = ref(false);
+const args = ref({});
 </script>

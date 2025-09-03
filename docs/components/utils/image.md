@@ -35,14 +35,6 @@ Image é um componente utilitário utilizado para renderizar imagens com fallbac
 <PreviewBuilder
 	:args
 	:component="CdsImage"
-	width="400"
-	:blackAndWhite="false"
-	:dimmed="false"
-	:roundedCorners="false"
-	:opacity="1"
-	src="https://cdn.dribbble.com/users/56251/screenshots/10780716/media/bf16339f04fb54b38055adcce2a6da21.png?compress=1&resize=1000x750&vertical=top"
-	fallbackSrc="https://sysfront.nyc3.cdn.digitaloceanspaces.com/cuida/images/imagePlaceholder.png"
-	alt="Imagem de exemplo do cds-image"
 />
 
 ---
@@ -61,5 +53,15 @@ Image é um componente utilitário utilizado para renderizar imagens com fallbac
 import { ref } from 'vue';
 import CdsImage from '@/components/Image.vue';
 
-const args = ref({});
+const args = ref({
+	width: 400,
+	height: 400,
+	blackAndWhite: false,
+	dimmed: false,
+	roundedCorners: false,
+	opacity: 1,
+	src: "https://cdn.dribbble.com/users/56251/screenshots/10780716/media/bf16339f04fb54b38055adcce2a6da21.png?compress=1,resize=1000x750&vertical=top",
+	fallbackSrc: "https://sysfront.nyc3.cdn.digitaloceanspaces.com/cuida/images/imagePlaceholder.png",
+	alt: "Imagem de exemplo do cds-image"
+});
 </script>

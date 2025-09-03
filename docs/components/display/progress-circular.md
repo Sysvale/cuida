@@ -1,16 +1,18 @@
 # ProgressCircular
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### ProgressCirculars são componentes que indicam o status/progresso de uma operação em andamento, em formato circular.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- For necessário transmitir a ideia de progresso ou percentual de uma operação em andamento.
+- For necessário transmitir a ideia de status de uma operação em andamento e que fração dela já foi concluída.
+- For necessário chamar a atenção do usuário para uma informação específica de maneira gráfica.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
-
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quanddo não usar:
+- For necessário representar fração de um processo com muitas etapas.
 
 ---
 
@@ -45,25 +47,16 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Eventos
-
-<APITable
-	name="ProgressCircular"
-	section="events"
-/>
-<br />
-
-## Slots
-
-<APITable
-	name="ProgressCircular"
-	section="slots"
-/>
-
 <script setup>
+import { ref } from 'vue';
 import CdsProgressCircular from '@/components/ProgressCircular.vue';
 
 const cdsProgressCircularEvents = [
 	'progressCircular-click'
 ];
+
+const args = ref({
+	value: 35,
+	variant: "blue",
+});
 </script>

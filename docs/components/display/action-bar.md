@@ -37,9 +37,7 @@ ActionBars são barras de ferramentas que podem exibir ações e informações p
 	:component="CdsActionBar"
 	:events="cdsActionBarEvents"
 	with-trigger
-	:show
-	:actions="['Button1', 'Button2']"
-	@trigger-click="show = !show"
+	@trigger-click="args.show = !args.show"
 >
 	<template #description>
 		8 itens selecionados
@@ -75,13 +73,14 @@ ActionBars são barras de ferramentas que podem exibir ações e informações p
 
 <script setup>
 import { ref } from 'vue';
-const args = ref({});
 import CdsActionBar from '@/components/ActionBar.vue';
-
-const show = ref(false);
 
 const cdsActionBarEvents = [
 	'click',
 	'close'
 ];
+
+const args = ref({
+	actions: ['Button1', 'Button2']
+});
 </script>

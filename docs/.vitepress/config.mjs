@@ -84,7 +84,6 @@ export default defineConfig({
 					items: [
 						{ text: 'ActionBar <Badge class="badge" type="info">ready</Badge>', link: '/components/display/action-bar' },
 						{ text: 'ActionsList <Badge class="badge" type="info">ready</Badge>', link: '/components/display/actions-list' },
-						{ text: 'AlertCard', link: '/components/display/alert-card' },
 						{ text: 'Avatar', link: '/components/display/avatar' },
 						{ text: 'AvatarGroup', link: '/components/display/avatar-group' },
 						{ text: 'Badge <Badge class="badge" type="info">ready</Badge>', link: '/components/display/badge' },
@@ -102,7 +101,6 @@ export default defineConfig({
 						{ text: 'List', link: '/components/display/list' },
 						{ text: 'ProgressBar', link: '/components/display/progress-bar' },
 						{ text: 'ProgressCircular', link: '/components/display/progress-circular' },
-						{ text: 'Pulsar', link: '/components/display/pulsar' },
 						{ text: 'Table', link: '/components/display/table' },
 						{ text: 'Timeline', link: '/components/display/timeline' },
 						{ text: 'TimelineItem', link: '/components/display/timeline-item' },
@@ -116,7 +114,7 @@ export default defineConfig({
 						{ text: 'Box <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/box' },
 						{ text: 'Card <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/card' },
 						{ text: 'CarouselController <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/carousel-controller' },
-						{ text: 'CollapseibleContainer <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/collapsible-container' },
+						{ text: 'CollapsibleContainer <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/collapsible-container' },
 						{ text: 'DashboardCard <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/dashboard-card' },
 						{ text: 'Divider <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/divider' },
 						{ text: 'FlexBox <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/flexbox' },
@@ -146,7 +144,7 @@ export default defineConfig({
 						{ text: 'Popover <Badge class="badge" type="info">ready</Badge>', link: '/components/overlays/popover' },
 						{ text: 'QuickActionBar <Badge class="badge" type="info">ready</Badge>', link: '/components/overlays/quick-action-bar' },
 						{ text: 'RichTooltip <Badge class="badge" type="info">ready</Badge>', link: '/components/forms/rich-tooltip' },
-						{ text: 'SideSheet', link: '/components/overlays/side-sheet' },
+						{ text: 'SideSheet <Badge class="badge" type="info">ready</Badge>', link: '/components/overlays/side-sheet' },
 					]
 				},
 				{
@@ -186,6 +184,11 @@ export default defineConfig({
 					text: 'Notificação',
 					items: [
 						{ text: 'Alert <Badge class="badge" type="info">ready</Badge>', link: '/components/notificação/alert' },
+						{ text: 'AlertCard <Badge class="badge" type="info">ready</Badge>', link: '/components/notificação/alert-card' },
+						{ text: 'DialogModal <Badge class="badge" type="info">ready</Badge>', link: '/components/notificação/dialog-modal' },
+						{ text: 'Pulsar', link: '/components/notificação/pulsar' },
+						{ text: 'Toast', link: '/components/notificação/toast' },
+						{ text: 'ToastContainer', link: '/components/notificação/toast-container' },
 					]
 				},
 				{
