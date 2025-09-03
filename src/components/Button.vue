@@ -233,6 +233,16 @@ export default {
 		&--active {
 			background: none;
 			cursor: pointer;
+			outline: none !important;
+
+
+			&:focus-visible {
+				box-shadow: 0 0 0 2px tokens.$n-20 inset;
+			}
+
+			&:focus:not(:focus-visible) {
+				box-shadow: none;
+			}
 		}
 
 		&:hover {
