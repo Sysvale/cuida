@@ -203,9 +203,9 @@ export default defineConfig({
 					text: 'Estrutural',
 					collapsed: false,
 					items: [
-						{ text: 'AppBar', link: '/components/estrutural/app-bar' },
-						{ text: 'PageContainer', link: '/components/estrutural/page-container' },
-						{ text: 'PageHeader', link: '/components/estrutural/page-header' },
+						{ text: 'AppBar <Badge class="badge" type="info">ready</Badge>', link: '/components/estrutural/app-bar' },
+						{ text: 'PageContainer <Badge class="badge" type="info">ready</Badge>', link: '/components/estrutural/page-container' },
+						{ text: 'PageHeader <Badge class="badge" type="info">ready</Badge>', link: '/components/estrutural/page-header' },
 						{ text: 'TopAppBar', link: '/components/estrutural/top-app-bar' },
 					]
 				},

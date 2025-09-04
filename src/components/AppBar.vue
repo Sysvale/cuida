@@ -353,7 +353,7 @@ export default {
 .app-name {
 	color: tokens.$n-0;
 	font-weight: tokens.$font-weight-regular;
-	margin: tokens.mTRBL(1, 0, 0, 2);
+	margin: tokens.mTRBL(1, 0, 0, 2) !important;
 	@include tokens.caption;
 }
 </style>

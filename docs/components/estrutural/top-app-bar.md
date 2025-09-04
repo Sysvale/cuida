@@ -1,99 +1,93 @@
 # TopAppBar
 
 ### O TopAppBar é um componente de barra de aplicação responsivo que pode exibir um título, um logotipo, um botão de menu e ações personalizadas.
+---
+<br />
+
+## Quando usar:
+- Quando for necessário um cabeçalho fixo e responsivo para a aplicação.
+- Quando houver necessidade de um botão de menu ou de navegação para melhorar a experiência do usuário.
+- Quando for necessário exibir um logotipo ou título na parte superior da interface.
+- Quando houver ações que precisam estar sempre acessíveis na barra superior.
+
+<br />
+
+## Quando não usar:
+- Quando a aplicação não precisa de uma barra de navegação fixa.
+- Quando a interface já possui outra estrutura de navegação redundante.
+- Quando o espaço na tela é muito limitado e um cabeçalho fixo pode comprometer a usabilidade.
+
 
 ---
 
-## Quando usar:
-- Quando for necessário um cabeçalho fixo e responsivo para a aplicação
-- Quando houver necessidade de um botão de menu ou de navegação para melhorar a experiência do usuário
-- Quando for necessário exibir um logotipo ou título na parte superior da interface
-- Quando houver ações que precisam estar sempre acessíveis na barra superior
-
-## Quando não usar:
-- Quando a aplicação não precisa de uma barra de navegação fixa
-- Quando a interface já possui outra estrutura de navegação redundante
-- Quando o espaço na tela é muito limitado e um cabeçalho fixo pode comprometer a usabilidade
-
-## Observações:
-- O TopAppBar é totalmente responsivo e se adapta a diferentes tamanhos de tela
-- Suporta navegação com botão de voltar quando configurado
-- Permite customização de logotipo e título
-- Oferece slots para ações personalizadas
-- Integra-se bem com sistemas de roteamento
-
 ## Uso
 
-### Exemplo básico
-
-```vue
-<template>
-  <cds-top-app-bar
-    title="Título legal"
-    show-menu-icon
-    @on-menu-click="handleMenuClick"
-  />
-</template>
-
-<script setup>
-const handleMenuClick = () => {
-  console.info('Menu click emitted');
-};
-</script>
+```js
+<CdsTopAppBar
+	:elevated="false"
+>
+	2
+</CdsTopAppBar>
 ```
 
-### Exemplo com logotipo e navegação
-
-```vue
-<template>
-  <cds-top-app-bar
-    title="Título bacana"
-    logoUrl="https://example.com/logo.svg"
-    :showMenuIcon="true"
-    :showBackNavigation="false"
-    :defaultRoute="{ name: 'rota-default' }"
-    @on-menu-click="handleMenuClick"
-  />
-</template>
-
-<script setup>
-const handleMenuClick = () => {
-  console.info('Menu clicked');
-};
-</script>
-```
+---
 
 ## Preview
 
-<cds-top-app-bar
-  title="Título bacana"
-  logoUrl="https://framerusercontent.com/images/xz7CrU73qctPY2Vm79XMnTAVM.svg"
-  :showMenuIcon="true"
-  :showBackNavigation="false"
+<PreviewContainer>
+	<img
+		src="https://images.unsplash.com/photo-1738526787238-96d5352c2ba9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+		style="width: 100%; height: 100%;"
+	/>
+	<CdsTopAppBar
+		v-bind="args"
+	/>
+</PreviewContainer>
+
+<PlaygroundBuilder
+	:args
+	component="TopAppBar"
 />
+
+---
 
 ## Props
 
-| Nome | Tipo | Padrão | Descrição |
-|------|------|--------|-----------|
-| `title` | `string` | `''` | Título exibido na barra |
-| `logoUrl` | `string` | `''` | URL do logotipo a ser exibido |
-| `showMenuIcon` | `boolean` | `false` | Define se o ícone de menu deve ser exibido |
-| `showBackNavigation` | `boolean` | `false` | Define se o botão de voltar deve ser exibido |
-| `defaultRoute` | `object` | `null` | Rota padrão para navegação |
+<APITable
+	name="TopAppBar"
+	section="props"
+/>
+<br />
 
 ## Eventos
 
-| Nome | Descrição |
-|------|-----------|
-| `on-menu-click` | Emitido quando o botão de menu é clicado |
+<APITable
+	name="TopAppBar"
+	section="events"
+/>
+<br />
 
 ## Slots
 
-| Nome | Descrição |
-|------|-----------|
-| `actions` | Slot para ações personalizadas no lado direito da barra |
+<APITable
+	name="TopAppBar"
+	section="slots"
+/>
 
-## Figma
 
-[TopAppBar no Figma](https://www.figma.com/design/design-system-url)
+<script setup>
+import { ref } from 'vue';
+import CdsTopAppBar from '@/components/TopAppBar.vue';
+
+const cdsTopAppBarEvents = [
+	'on-menu-click'
+];
+
+const args = ref({
+	title: 'Título bacana',
+	logoUrl: 'https://framerusercontent.com/images/xz7CrU73qctPY2Vm79XMnTAVM.svg',
+	showMenuIcon: true,
+	showBackNavigation: false,
+	defaultRoute: { name: 'rota-default' },
+});
+</script>
