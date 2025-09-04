@@ -35,13 +35,17 @@
 ## Preview
 
 <PreviewContainer>
+<div style="position: relative">
 	<img
 		src="https://images.unsplash.com/photo-1738526787238-96d5352c2ba9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 		style="width: 100%; height: 100%;"
 	/>
 	<CdsTopAppBar
 		v-bind="args"
+		v-on="internalEvents"
 	/>
+</div>
+	<LogBuilder ref="logBuilderRef" :events />
 </PreviewContainer>
 
 <PlaygroundBuilder
@@ -76,12 +80,16 @@
 
 
 <script setup>
-import { ref } from 'vue';
+import { ref, useTemplateRef, onMounted } from 'vue';
 import CdsTopAppBar from '@/components/TopAppBar.vue';
 
-const cdsTopAppBarEvents = [
+const logBuilder = useTemplateRef('logBuilderRef');
+
+const events = [
 	'on-menu-click'
 ];
+
+const internalEvents = ref({});
 
 const args = ref({
 	title: 'Título bacana',
@@ -89,5 +97,9 @@ const args = ref({
 	showMenuIcon: true,
 	showBackNavigation: false,
 	defaultRoute: { name: 'rota-default' },
+});
+
+onMounted(() => {
+	internalEvents.value = logBuilder.value.createEventListeners();
 });
 </script>

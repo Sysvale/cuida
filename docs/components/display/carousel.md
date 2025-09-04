@@ -1,16 +1,28 @@
 # Carousel
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### O Carousel é um componente que permite a exibição de uma série de conteúdos (imagens, textos, cards, etc.) em um formato deslizante, em que o usuário pode navegar entre os itens de forma sequencial.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- Quando há necessidade de exibir vários itens (como imagens, produtos, cards informativos) em um espaço reduzido, sem sobrecarregar a interface.
+- Para destacar conteúdos importantes de forma dinâmica, como promoções, destaques ou novidades.
+- Quando a ordem de exibição dos itens é relevante e a navegação sequencial faz sentido para o contexto.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
+## Quando não usar:
+- Quando o conteúdo for uma informação crítica e não deve ficar escondida.
+- Se a quantidade de itens for muito pequena (menos de 3), pois a navegação pode parecer desnecessária.
+- Em interfaces onde a acessibilidade é uma prioridade e o carousel pode dificultar a experiência para usuários com deficiências visuais ou motoras.
+- Quando o espaço disponível na tela é insuficiente para exibir os itens de forma clara e legível.
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+<br />
+
+## Obs:
+- Quando o carrossel for utilizado para exibir imagens, é recomendado usar o componente `Image` em vez da tag `<img>` nativa. Isso permite que todas as funcionalidades do <b>Image</b>, como <i>dimmed</i> e <i>opacity</i>, sejam utilizadas.
+
+<br />
 
 ---
 
@@ -32,8 +44,11 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:args
 	:component="CdsCarousel"
-	:events="cdsCarouselEvents"
-/>
+	v-slot="{ item }"
+	:events
+>
+	<CdsImage :src="item" width="300" height="400" />
+</PreviewBuilder>
 
 ---
 
@@ -61,9 +76,27 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsCarousel from '@/components/Carousel.vue';
 
-const cdsCarouselEvents = [
-	'carousel-click'
+const events = [
+	'item-click'
 ];
+
+const args = ref({
+	items: [
+		'https://picsum.photos/600/800?random=1',
+		'https://picsum.photos/600/800?random=2',
+		'https://picsum.photos/600/800?random=3',
+		'https://picsum.photos/600/800?random=4',
+		'https://picsum.photos/600/800?random=5',
+		'https://picsum.photos/600/800?random=6',
+		'https://picsum.photos/600/800?random=7',
+	],
+	gap: 0,
+	snapTo: 'start',
+	showArrows: false,
+	darkArrows: false,
+	clickable: false,
+});
 </script>

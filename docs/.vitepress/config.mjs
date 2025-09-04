@@ -86,11 +86,11 @@ export default defineConfig({
 					items: [
 						{ text: 'ActionBar <Badge class="badge" type="info">ready</Badge>', link: '/components/display/action-bar' },
 						{ text: 'ActionsList <Badge class="badge" type="info">ready</Badge>', link: '/components/display/actions-list' },
-						{ text: 'Avatar', link: '/components/display/avatar' },
-						{ text: 'AvatarGroup', link: '/components/display/avatar-group' },
+						{ text: 'Avatar <Badge class="badge" type="info">ready</Badge>', link: '/components/display/avatar' },
+						{ text: 'AvatarGroup <Badge class="badge" type="info">ready</Badge>', link: '/components/display/avatar-group' },
 						{ text: 'Badge <Badge class="badge" type="info">ready</Badge>', link: '/components/display/badge' },
-						{ text: 'CalloutCard', link: '/components/display/callout-card' },
-						{ text: 'Carousel', link: '/components/display/carousel' },
+						{ text: 'CalloutCard <Badge class="badge" type="info">ready</Badge>', link: '/components/display/callout-card' },
+						{ text: 'Carousel <Badge class="badge" type="info">ready</Badge>', link: '/components/display/carousel' },
 						{ text: 'Chip', link: '/components/display/chip' },
 						{ text: 'DataTable', link: '/components/display/data-table' },
 						{ text: 'Dropdown', link: '/components/display/dropdown' },
@@ -206,7 +206,7 @@ export default defineConfig({
 						{ text: 'AppBar <Badge class="badge" type="info">ready</Badge>', link: '/components/estrutural/app-bar' },
 						{ text: 'PageContainer <Badge class="badge" type="info">ready</Badge>', link: '/components/estrutural/page-container' },
 						{ text: 'PageHeader <Badge class="badge" type="info">ready</Badge>', link: '/components/estrutural/page-header' },
-						{ text: 'TopAppBar', link: '/components/estrutural/top-app-bar' },
+						{ text: 'TopAppBar <Badge class="badge" type="info">ready</Badge>', link: '/components/estrutural/top-app-bar' },
 					]
 				},
 				{

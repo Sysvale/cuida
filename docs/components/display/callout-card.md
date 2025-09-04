@@ -1,16 +1,15 @@
 # CalloutCard
+### CalloutCards são componentes usados para fornecer ao usuário informações úteis, como tutoriais, atalhos ou dicas.
+---
+<br />
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+## Quando usar:
+- For necessário mostrar atalhos, dicas ou tutoriais de uma forma não intrusiva e visualmente marcante.
 
-### Quando usar
+<br />
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
-
-### Quando não usar
-
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- For necessário mostrar mensagens relacionadas a mudanças ou condições especiais que ocorrem em um componente ou página. Para estes casos, recomenda-se o uso do Alert.
 
 ---
 
@@ -18,10 +17,9 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ```js
 <CdsCalloutCard
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="calloutCardClick = true"
+	image="caminho-da-imagem.jpg"
+	text="Texto do CalloutCard"
+	title="Título do CalloutCard"
 />
 ```
 
@@ -32,7 +30,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:args
 	:component="CdsCalloutCard"
-	:events="cdsCalloutCardEvents"
+	:events
 />
 
 ---
@@ -61,9 +59,18 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsCalloutCard from '@/components/CalloutCard.vue';
 
-const cdsCalloutCardEvents = [
-	'calloutCard-click'
+const events = [
+	'action-button-click'
 ];
+
+const args = ref({
+	image: 'https://cdn-icons-png.flaticon.com/512/7486/7486747.png',
+	title: 'Título do CalloutCard',
+	text: `Existe uma teoria que diz que, se um dia alguém descobrir 
+	exatamente para que serve o Universo e por que ele está aqui, ele 
+	desaparecerá instantaneamente.`,
+});
 </script>

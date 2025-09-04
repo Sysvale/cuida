@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<span
-			v-if="events"
+			v-if="events?.length"
 			class="show-log-button"
 			@click="showLog = !showLog"
 		>
@@ -98,6 +98,8 @@ defineExpose({
 	createEventListeners,
 	clearLog: () => log.value = []
 });
+
+export type LogBuilderType = typeof import("./LogBuilder.vue")["default"];
 </script>
 
 <style lang="scss" scoped>
@@ -115,6 +117,7 @@ defineExpose({
 	margin-bottom: 4px;
 	font-weight: 650;
 	bottom: -4px;
+	z-index: 9999;
 }
 
 .log-container {

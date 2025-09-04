@@ -10,6 +10,7 @@ import APITable from '../../docgen/APITable.vue';
 import PreviewBuilder from '../../docgen/PreviewBuilder.vue';
 import PreviewContainer from '../../docgen/PreviewContainer.vue';
 import PlaygroundBuilder from '../../docgen/PlaygroundBuilder.vue';
+import LogBuilder from '../../docgen/LogBuilder.vue';
 import FigmaFrame from '../../docgen/FigmaFrame.vue';
 
 import CdsAvatar from '@/components/Avatar.vue';
@@ -44,6 +45,7 @@ export default {
 		app.component('PreviewBuilder', PreviewBuilder);
 		app.component('PreviewContainer', PreviewContainer);
 		app.component('PlaygroundBuilder', PlaygroundBuilder);
+		app.component('LogBuilder', LogBuilder);
 		app.component('FigmaFrame', FigmaFrame);
 
 		app.component('CdsAvatar', CdsAvatar);

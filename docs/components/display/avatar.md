@@ -21,12 +21,17 @@ Avatares são componentes utilizados para exibir representações visuais de usu
 
 ## Preview
 
-<PreviewBuilder
-	:args
-	src="https://thispersondoesnotexist.com/"
-	:component="CdsAvatar"
-	:events="cdsAvatarEvents"
-/>
+<PreviewContainer>
+	<CdsAvatar
+		v-bind="args" 
+	>
+		<template #dropdown-content>
+			Conteúdo do dropdown
+		</template>
+	</CdsAvatar>
+</PreviewContainer>
+
+<PlaygroundBuilder :args component="Avatar"/>
 
 ---
 
@@ -55,10 +60,9 @@ Avatares são componentes utilizados para exibir representações visuais de usu
 
 <script setup>
 import { ref } from 'vue';
-const args = ref({});
 import CdsAvatar from '@/components/Avatar.vue';
 
-const cdsAvatarEvents = [
-	'click'
-];
+const args = ref({
+	src: 'https://thispersondoesnotexist.com/',
+});
 </script>

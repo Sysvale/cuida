@@ -86,6 +86,7 @@ export default {
 		},
 		/**
 		 * A cor do botão do card.
+		 * @values green, teal, turquoise, blue, indigo, violet, pink, red, orange, amber, gray, dark
 		 */
 		actionButtonVariant: {
 			type: String,
