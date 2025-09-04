@@ -237,7 +237,7 @@ export default {
 
 
 			&:focus-visible {
-				box-shadow: 0 0 0 2px tokens.$n-20 inset;
+				box-shadow: 0 0 0 2px tokens.$n-40 inset;
 			}
 
 			&:focus:not(:focus-visible) {
