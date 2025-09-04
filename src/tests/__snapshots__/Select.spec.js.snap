@@ -3,19 +3,17 @@
 exports[`Select > renders correctly 1`] = `
 "<div data-v-96b70cc4="" class="select" id="select-input">
   <div data-v-96b70cc4="" class="select__container select__container--fit">
-    <div data-v-82c69faf="" data-v-96b70cc4="" options="[object Object],[object Object]" searchable="false" width="" optionsfield="value" returnvalue="false" mobile="false" addable="false" onkeypress="return false;" class="select__input--undefined select__input--fit">
-      <!--v-if--><label data-v-c1eb01da="" data-v-82c69faf="" class="label"><span data-v-c1eb01da="" class="label__content">label <!--v-if--><!--v-if--></span><span data-v-c1eb01da="" class="label__link"></span></label>
-      <div data-v-82c69faf="" class="base-input base-input--default">
-        <!--v-if-->
-        <div data-v-82c69faf="" style="width: 100%;">
-          <!--v-if--><input data-v-82c69faf="" id="select-input" label="label" hidelabel="false" state="default" type="text" placeholder="Selecione..." errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" floatinglabel="false" lazy="false" readonly="" name="" enableautocomplete="false" enabletopcontent="false" class="base-input__field" autocomplete="off">
-        </div>
-        <!--v-if-->
-        <div data-v-82c69faf="" class="base-input__trailing-icon-container"><span data-v-96b70cc4="" class="select__chevron--closed"></span></div>
+    <!--v-if--><label data-v-c1eb01da="" data-v-82c69faf="" class="label"><span data-v-c1eb01da="" class="label__content">label <!--v-if--><!--v-if--></span><span data-v-c1eb01da="" class="label__link"></span></label>
+    <div data-v-82c69faf="" class="base-input base-input--default">
+      <!--v-if-->
+      <div data-v-82c69faf="" style="width: 100%;">
+        <!--v-if--><input data-v-82c69faf="" id="select-input" label="label" hidelabel="false" state="default" type="text" placeholder="Selecione..." errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" floatinglabel="false" lazy="false" readonly="" name="" enableautocomplete="false" enabletopcontent="false" class="base-input__field" autocomplete="off">
       </div>
       <!--v-if-->
-      <!--v-if-->
+      <div data-v-82c69faf="" class="base-input__trailing-icon-container"><span data-v-96b70cc4="" class="select__chevron--closed"></span></div>
     </div>
+    <!--v-if-->
+    <!--v-if-->
     <div data-v-96b70cc4="" class="select__options select__options--down" style="display: none;">
       <ul data-v-96b70cc4="" class="option__container">
         <li data-v-96b70cc4="" class="option__text">Option 1</li>
