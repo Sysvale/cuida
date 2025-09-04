@@ -10,10 +10,9 @@
 		>
 			<CdsBaseInput
 				:id="$attrs.id || id"
-				:key="baseInputControl"
 				ref="baseInput"
 				v-bind="{...$attrs, ...props}"
-				:model-value="get(localValue, optionsField)"
+				v-model="computedModel"
 				type="text"
 				:onkeypress="`return ${allowSearch};`"
 				:placeholder="placeholder"
@@ -97,7 +96,6 @@ import { generateKey } from '../utils';
 import { get, cloneDeep } from 'lodash';
 import removeAccents from '../utils/methods/removeAccents';
 import CdsBaseInput from './BaseInput.vue';
-
 
 const model = defineModel('modelValue', {
 	type: [Array, Object],
@@ -296,7 +294,6 @@ const cdsSelect = useTemplateRef('cds-select');
 const selectOptions = useTemplateRef('select-options');
 const liRefs = ref({});
 const { emitClick, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
-const baseInputControl = ref(0);
 const searchString = ref('');
 
 /* COMPUTED */
@@ -335,6 +332,7 @@ const showAddOption = computed(() => {
 		&& !localOptions.value.some(option => option[props.optionsField]?.toLowerCase() === searchString?.value.toLowerCase());
 });
 
+const computedModel = computed(() => localValue.value[props.optionsField]);
 
 //NOTE: Essa computada vai ser removida junto com a descontinuação da prop width na V4
 const computedFluid = computed(() => {
@@ -390,6 +388,7 @@ watch(localValue, (currentValue) => {
 
 /* HOOKS */
 onMounted(() => {
+	console.log('Select t2');
 	id.value = `cds-select-${uniqueKey.value}`;
 	selectElement.value = cdsSelect.value;
 });
@@ -441,7 +440,6 @@ function activateSelectionOnEnter() {
 	}
 
 	searchString.value = '';
-	baseInputControl.value += 1;
 	select.value.blur();
 }
 
@@ -472,7 +470,6 @@ function hide() {
 	nextTick(() => {
 		localOptions.value = pristineOptions.value;
 		searchString.value = '';
-		baseInputControl.value += 1;
 		active.value = false;
 	});
 
