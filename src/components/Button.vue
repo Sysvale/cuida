@@ -235,7 +235,6 @@ export default {
 			cursor: pointer;
 			outline: none !important;
 
-
 			&:focus-visible {
 				box-shadow: 0 0 0 2px tokens.$n-40 inset;
 			}
