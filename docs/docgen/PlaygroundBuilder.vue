@@ -82,15 +82,12 @@ import CdsFlexbox from '@/components/Flexbox.vue';
 
 const model = defineModel('args');
 
-const props = withDefaults(defineProps<{
+const props = defineProps<{
 	/**
 	* Nome do componente.
 	*/
 	component: string,
-	initialValues: Object,
-}>(), {
-	initialValues: () => ({}),
-});
+}>();
 
 const emits = defineEmits(['update']);
 
