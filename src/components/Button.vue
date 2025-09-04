@@ -205,11 +205,20 @@ export default {
 			background-color: tokens.$n-10;
 			color: tokens.$n-700;
 			border: 1px solid tokens.$n-50 !important;
+			outline: none !important;
 			
 			&:hover {
 				@extend .button--secondary--active;
 				background-color: tokens.$n-20;
 			}
+		}
+
+		&--active:focus-visible {
+			box-shadow: 0 0 0 2px tokens.$n-30 inset;
+		}
+
+		&--active:focus:not(:focus-visible) {
+			box-shadow: none;
 		}
 
 		&--disabled {
@@ -224,6 +233,15 @@ export default {
 		&--active {
 			background: none;
 			cursor: pointer;
+			outline: none !important;
+
+			&:focus-visible {
+				box-shadow: 0 0 0 2px tokens.$n-40 inset;
+			}
+
+			&:focus:not(:focus-visible) {
+				box-shadow: none;
+			}
 		}
 
 		&:hover {
@@ -268,46 +286,57 @@ export default {
 		'--green': (
 			'active': tokens.$gp-400,
 			'disabled': tokens.$gp-300,
+			'focus': tokens.$gp-600,
 		),
 		'--teal': (
 			'active': tokens.$ta-400,
 			'disabled': tokens.$ta-300,
+			'focus': tokens.$ta-600,
 		),
 		'--turquoise': (
 			'active': tokens.$ts-400,
 			'disabled': tokens.$ts-300,
+			'focus': tokens.$ts-600,
 		),
 		'--blue': (
 			'active': tokens.$bn-400,
 			'disabled': tokens.$bn-300,
+			'focus': tokens.$bn-600,
 		),
 		'--indigo': (
 			'active': tokens.$in-400,
 			'disabled': tokens.$in-300,
+			'focus': tokens.$in-600,
 		),
 		'--violet': (
 			'active': tokens.$vr-400,
 			'disabled': tokens.$vr-300,
+			'focus': tokens.$vr-600,
 		),
 		'--pink': (
 			'active': tokens.$pp-400,
 			'disabled': tokens.$pp-300,
+			'focus': tokens.$pp-600,
 		),
 		'--red': (
 			'active': tokens.$rc-400,
 			'disabled': tokens.$rc-300,
+			'focus': tokens.$rc-600,
 		),
 		'--orange': (
 			'active': tokens.$og-400,
 			'disabled': tokens.$og-300,
+			'focus': tokens.$og-600,
 		),
 		'--amber': (
 			'active': tokens.$al-400,
 			'disabled': tokens.$al-300,
+			'focus': tokens.$al-600,
 		),
 		'--dark': (
 			'active': tokens.$n-700,
 			'disabled': tokens.$n-500,
+			'focus': tokens.$n-400,
 		),
 	);
 
@@ -329,6 +358,16 @@ export default {
 
 			&--disabled {
 				cursor: default;
+			}
+		}
+
+		@if map-has-key($variants, 'focus') {
+			&#{$color}--active:focus-visible {
+				box-shadow: 0 0 0 2px map-get($variants, 'focus') inset;
+			}
+
+			&#{$color}--active:focus:not(:focus-visible) {
+				box-shadow: none;
 			}
 		}
 	}
