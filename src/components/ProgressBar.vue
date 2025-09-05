@@ -35,6 +35,8 @@ export default {
 		},
 		/**
 		 * Define o indicador de progresso da ProgressBar.
+		 * @min 0
+		 * @max 100
 		 */
 		value: {
 			type: Number,

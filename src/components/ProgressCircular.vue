@@ -49,6 +49,7 @@ export default {
 		},
 		/**
 		 * Define o tamanho (diâmetro) da ProgressCircular.
+		 * @values sm, md, lg
 		 */
 		size: {
 			type: String,

@@ -49,8 +49,8 @@ export default {
 		app.component('FigmaFrame', FigmaFrame);
 
 		app.component('CdsAvatar', CdsAvatar);
-		app.component('CdsBox', CdsBox);
 		app.component('CdsBadge', CdsBadge);
+		app.component('CdsBox', CdsBox);
 		app.component('CdsButton', CdsButton);
 		app.component('CdsCheckbox', CdsCheckbox);
 		app.component('CdsChevron', CdsChevron);

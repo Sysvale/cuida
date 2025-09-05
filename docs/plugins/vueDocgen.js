@@ -41,6 +41,20 @@ async function enhanceComponentInfo(filePath, componentInfo) {
 	const hasScriptSetup = /<script\s+setup/.test(content)
 	const hasDefineModel = /defineModel\s*\(/.test(content)
 
+	if (componentInfo.props) {
+		for (const propName in componentInfo.props) {
+			const prop = componentInfo.props[propName]
+			if (prop.tags) {
+				if (prop.tags.min) {
+					prop.min = Number(prop.tags.min[0].description)
+				}
+				if (prop.tags.max) {
+					prop.max = Number(prop.tags.max[0].description)
+				}
+			}
+		}
+	}
+
 	if (hasScriptSetup && hasDefineModel) {
 		return await enhanceWithDefineModelEvents(filePath, componentInfo)
 	}

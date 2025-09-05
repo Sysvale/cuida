@@ -1,73 +1,77 @@
 <template>
-	<CdsFlexbox direction="column" gap="4" class="inputs-container">
-		<template v-for="(data, index) in propsData">
-			<CdsFlexbox
-				v-if="data.type.name.includes('string') && data.values"
-				justify="space-between"
-				gap="3"
-				class="preview-line"
-			>
-				<CdsText class="prop-name">
-					{{ capitalize(data.name) }}
-				</CdsText>
-
-				<CdsSelect
-					v-if="Object.keys(normalizedPropsData).length > 0"
-					label=""
-					v-model="normalizedPropsData[index][data.name]"
-					:options="formatOptions(data.values)"
-					returnValue
-				/>
-			</CdsFlexbox>
-
-			<CdsFlexbox
-				v-else-if="data.type.name.includes('string')"
-				justify="space-between"
-				class="preview-line"
-			>
-				<CdsText class="prop-name">
-					{{ capitalize(data.name) }}
-				</CdsText>
-
-				<CdsTextInput
-					v-if="Object.keys(normalizedPropsData).length > 0"
-					label=""
-					v-model="normalizedPropsData[index][data.name]"
-				/>
-			</CdsFlexbox>
-
-			<CdsFlexbox
-				v-else-if="data.type.name.includes('number')"
-				justify="space-between"
-				class="preview-line"
-			>
-				<CdsText class="prop-name">
-					{{ capitalize(data.name) }}
-				</CdsText>
-
-				<CdsNumberInput
-					v-if="Object.keys(normalizedPropsData).length > 0"
-					label=""
-					v-model="normalizedPropsData[index][data.name]"
-				/>
-			</CdsFlexbox>
-
-			<CdsFlexbox
-				v-if="data.type.name === 'boolean'"
-				justify="space-between"
-				class="preview-line"
-			>
-				<CdsText class="prop-name">
-					{{ capitalize(data.name) }}
-				</CdsText>
-
-				<CdsSwitch
-					v-if="Object.keys(normalizedPropsData).length > 0"
-					v-model="normalizedPropsData[index][data.name]"
-				/>
-			</CdsFlexbox>
-		</template>
-	</CdsFlexbox>
+	<div>
+		<pre>{{ test }}</pre>
+<div fluid><CdsSlider v-model="test" :min="0" :max="100"/></div>
+		<CdsFlexbox direction="column" gap="4" class="inputs-container">
+			<template v-for="(data, index) in propsData">
+				<CdsFlexbox
+					v-if="data.type.name.includes('string') && data.values"
+					justify="space-between"
+					gap="3"
+					class="preview-line"
+				>
+					<CdsText class="prop-name">
+						{{ capitalize(data.name) }}
+					</CdsText>
+	
+					<CdsSelect
+						v-if="Object.keys(normalizedPropsData).length > 0"
+						label=""
+						v-model="normalizedPropsData[index][data.name]"
+						:options="formatOptions(data.values)"
+						returnValue
+					/>
+				</CdsFlexbox>
+	
+				<CdsFlexbox
+					v-else-if="data.type.name.includes('string')"
+					justify="space-between"
+					class="preview-line"
+				>
+					<CdsText class="prop-name">
+						{{ capitalize(data.name) }}
+					</CdsText>
+	
+					<CdsTextInput
+						v-if="Object.keys(normalizedPropsData).length > 0"
+						label=""
+						v-model="normalizedPropsData[index][data.name]"
+					/>
+				</CdsFlexbox>
+	
+				<CdsFlexbox
+					v-else-if="data.type.name.includes('number')"
+					justify="space-between"
+					class="preview-line"
+				>
+					<CdsText class="prop-name">
+						{{ capitalize(data.name) }}
+					</CdsText>
+	
+					<CdsNumberInput
+						v-if="Object.keys(normalizedPropsData).length > 0"
+						label=""
+						v-model="normalizedPropsData[index][data.name]"
+					/>
+				</CdsFlexbox>
+	
+				<CdsFlexbox
+					v-if="data.type.name === 'boolean'"
+					justify="space-between"
+					class="preview-line"
+				>
+					<CdsText class="prop-name">
+						{{ capitalize(data.name) }}
+					</CdsText>
+	
+					<CdsSwitch
+						v-if="Object.keys(normalizedPropsData).length > 0"
+						v-model="normalizedPropsData[index][data.name]"
+					/>
+				</CdsFlexbox>
+			</template>
+		</CdsFlexbox>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -78,7 +82,7 @@ import CdsNumberInput from '@/components/NumberInput.vue';
 import CdsSelect from '@/components/Select.vue';
 import CdsSwitch from '@/components/Switch.vue';
 import CdsText from '@/components/Text.vue';
-import CdsFlexbox from '@/components/Flexbox.vue';
+import CdsSlider from '@/components/Slider.vue';
 
 const model = defineModel('args');
 
@@ -92,7 +96,7 @@ const props = defineProps<{
 const emits = defineEmits(['update']);
 
 const normalizedPropsData = ref({});
-const payload = ref({});
+const test = ref(0);
 
 const componentData = computed(() => componentsData[props.component] || {});
 const propsData = computed(() => componentData.value?.props);
@@ -156,9 +160,6 @@ watch(normalizedPropsData, () => {
 		const [key, value] = Object.entries(item)[0]
 		model.value[key] = value;
 	});
-
-	// model.value = payload.value;
-	// emits('update', payload.value);
 }, { deep: true})
 
 

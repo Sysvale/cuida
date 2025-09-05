@@ -8950,6 +8950,20 @@
       {
         "name": "value",
         "description": "Define o indicador de progresso da ProgressBar.",
+        "tags": {
+          "min": [
+            {
+              "description": "0",
+              "title": "min"
+            }
+          ],
+          "max": [
+            {
+              "description": "100",
+              "title": "max"
+            }
+          ]
+        },
         "type": {
           "name": "number"
         },
@@ -8957,7 +8971,9 @@
         "defaultValue": {
           "func": false,
           "value": "0"
-        }
+        },
+        "min": 0,
+        "max": 100
       },
       {
         "name": "showText",
@@ -9022,6 +9038,12 @@
       {
         "name": "size",
         "description": "Define o tamanho (diâmetro) da ProgressCircular.",
+        "tags": {},
+        "values": [
+          "sm",
+          "md",
+          "lg"
+        ],
         "type": {
           "name": "string"
         },
@@ -10943,14 +10965,13 @@
     ]
   },
   "Slider": {
-    "displayName": "Slider",
     "exportName": "default",
+    "displayName": "Slider",
     "description": "",
     "tags": {},
     "props": [
       {
         "name": "min",
-        "description": "O valor mínimo do slider.",
         "type": {
           "name": "number"
         },
@@ -10962,7 +10983,6 @@
       },
       {
         "name": "max",
-        "description": "O valor máximo do slider.",
         "type": {
           "name": "number"
         },
@@ -10974,19 +10994,17 @@
       },
       {
         "name": "modelValue",
-        "description": "Prop utilizada como v-model. Retorna as posições selecionadas no slider.",
         "type": {
-          "name": "array"
+          "name": "array|number"
         },
         "required": true,
         "defaultValue": {
-          "func": false,
-          "value": "[0, 100]"
+          "func": true,
+          "value": "() => [0, 100]"
         }
       },
       {
         "name": "variant",
-        "description": "A variante de cor. São 10 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.",
         "type": {
           "name": "string"
         },
@@ -10998,20 +11016,13 @@
     ],
     "events": [
       {
-        "name": "update:modelValue",
-        "description": "Evento utilizado para implementar o v-model.",
-        "type": {
-          "names": [
-            "Event"
-          ]
-        }
+        "name": "update:modelValue"
       }
     ],
     "slots": [
       {
         "name": "tooltip",
         "scoped": true,
-        "description": "Scoped slot para renderização customizada dos tooltips. A propriedade 'tooltip', que pode ser acessada através do slot, contém pos (posição do componente em %), index (o índice do slider), value (o valor do slider), focus (se o slider está no estado de focus ou não), disabled (se o slider está disabilitado ou não).",
         "bindings": [
           {
             "name": "tooltip",
