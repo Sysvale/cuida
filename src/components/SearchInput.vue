@@ -2,17 +2,15 @@
 	<CdsBaseInput
 		ref="baseInput"
 		v-bind="props"
-		v-model="internalValue"
+		v-model="model"
 		type="search"
 		leading-icon="search-outline"
 	/>
 </template>
 
 <script setup>
-import { ref, useTemplateRef, watch } from 'vue';
+import { useTemplateRef } from 'vue';
 import CdsBaseInput from './BaseInput.vue';
-
-const internalValue = ref('');
 
 const baseInputRef = useTemplateRef('baseInput')
 
@@ -56,10 +54,6 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
-});
-
-watch(internalValue, (value) => {
-	model.value = value;
 });
 
 defineExpose({
