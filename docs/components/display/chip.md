@@ -1,15 +1,17 @@
 # Chip
 
-Chips ajudam as pessoas a inserir informações, fazer seleções, filtrar conteúdo ou disparar ações.
+### Chips ajudam as pessoas a inserir informações, fazer seleções, filtrar conteúdo ou disparar ações.
+---
+<br />
 
-### Quando usar
-
-- For necessário selecionar e/ou filtrar conteúdo.
+## Quando usar:
+- For necessário selecionar e/ou filtrar conteúdo
 - O conteúdo que a chip representa puder ser setado ou removido pelo usuário.
 
-### Quando não usar
+<br />
 
-- O conteúdo a ser mostrado for *readonly* (nesse caso, é mais indicado utilizar o componente Badge).
+## Quando não usar:
+- O conteúdo a ser mostrado for *readonly* (nesse caso, é mais indicado utlizar o componente Badge).
 
 ---
 
@@ -31,9 +33,12 @@ Chips ajudam as pessoas a inserir informações, fazer seleções, filtrar conte
 
 <PreviewBuilder
 	:args
+	:events
 	:component="CdsChip"
-	:events="cdsChipEvents"
-/>
+>
+	Chip
+</PreviewBuilder>
+
 
 ---
 
@@ -45,13 +50,6 @@ Chips ajudam as pessoas a inserir informações, fazer seleções, filtrar conte
 />
 <br />
 
-## Eventos
-
-<APITable
-	name="Chip"
-	section="events"
-/>
-<br />
 
 ## Slots
 
@@ -62,18 +60,21 @@ Chips ajudam as pessoas a inserir informações, fazer seleções, filtrar conte
 
 ---
 
-## Figma
+<!-- ## Figma
 
 <FigmaFrame
 	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
-/>
+/> -->
 
 <script setup>
 import { ref } from 'vue';
-const args = ref({});
 import CdsChip from '@/components/Chip.vue';
 
-const cdsChipEvents = [
-	'click'
-];
+const events = ['click'];
+
+const args = ref({
+	variant: 'red',
+	persistantActionIcon: false,
+	iconLeft: true
+});
 </script>

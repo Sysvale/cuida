@@ -67,7 +67,7 @@ export default defineConfig({
 						{ text: 'RadioButtonGroup', link: '/components/forms/radio-button-group' },
 						{ text: 'RequiredIndicator', link: '/components/forms/required-indicator' },
 						{ text: 'SearchInput', link: '/components/forms/search-input' },
-						
+
 						{ text: 'Select', link: '/components/forms/select' },
 						{ text: 'Slider', link: '/components/forms/slider' },
 						{ text: 'Stepper', link: '/components/forms/stepper' },
@@ -91,29 +91,33 @@ export default defineConfig({
 						{ text: 'Badge <Badge class="badge" type="info">ready</Badge>', link: '/components/display/badge' },
 						{ text: 'CalloutCard <Badge class="badge" type="info">ready</Badge>', link: '/components/display/callout-card' },
 						{ text: 'Carousel <Badge class="badge" type="info">ready</Badge>', link: '/components/display/carousel' },
-						{ text: 'Chip', link: '/components/display/chip' },
+						{ text: 'Chip <Badge class="badge" type="info">ready</Badge>', link: '/components/display/chip' },
 						{ text: 'DataTable', link: '/components/display/data-table' },
 						{ text: 'Dropdown', link: '/components/display/dropdown' },
 						{ text: 'DropdownButton', link: '/components/display/dropdown-button' },
 						{ text: 'EmptyState <Badge class="badge" type="info">ready</Badge>', link: '/components/display/empty-state' },
 						{ text: 'FileViewer', link: '/components/display/file-viewer' },
+						{ text: 'FloatingAssistant', link: '/components/display/floating-assistant' },
+
 						{ text: 'Highlight', link: '/components/display/highlight' },
 						{ text: 'Icon', link: '/components/display/icon' },
-
 						{ text: 'List', link: '/components/display/list' },
 						{ text: 'ProgressBar', link: '/components/display/progress-bar' },
-						{ text: 'ProgressCircular', link: '/components/display/progress-circular' },
+						{ text: 'ProgressCircular <Badge class="badge" type="info">ready</Badge>', link: '/components/display/progress-circular' },
+						{ text: 'Stepper', link: '/components/display/stepper' },
+
 						{ text: 'Table', link: '/components/display/table' },
 						{ text: 'Timeline', link: '/components/display/timeline' },
 						{ text: 'TimelineItem', link: '/components/display/timeline-item' },
 						{ text: 'Tooltip', link: '/components/display/tooltip' },
+						{ text: 'Wizard', link: '/components/display/wizard' },
 					]
 				},
 				{
 					text: 'Containers',
 					collapsed: false,
 					items: [
-						
+
 						{ text: 'Box <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/box' },
 						{ text: 'Card <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/card' },
 						{ text: 'CarouselController <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/carousel-controller' },
@@ -126,10 +130,10 @@ export default defineConfig({
 
 						{ text: 'PanelCard <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/panel-card' },
 						{ text: 'Scrollable <Badge class="badge" type="info">ready</Badge>', link: '/components/containers/scrollable' },
-						
-						
-						
-						
+
+
+
+
 						// { text: 'Dialog', link: '/components/overlays/dialog' },
 						// { text: 'DialogModal', link: '/components/overlays/dialog-modal' },
 						// { text: 'FloatingAssistant', link: '/components/overlays/floating-assistant' },
@@ -223,7 +227,7 @@ export default defineConfig({
 						{ text: 'Breadcrumb <Badge class="badge" type="info">ready</Badge>', link: '/components/navegação/breadcrumb' },
 						{ text: 'InnerTabs <Badge class="badge" type="info">ready</Badge>', link: '/components/navegação/inner-tabs' },
 						{ text: 'Link <Badge class="badge" type="info">ready</Badge>', link: '/components/navegação/link' },
-						
+
 						{ text: 'MobileNavbar <Badge class="badge" type="info">ready</Badge>', link: '/components/navegação/mobile-navbar' },
 						{ text: 'MobileNavigation <Badge class="badge" type="info">ready</Badge>', link: '/components/navegação/mobile-navigation' },
 						// { text: 'MobileStepperInput', link: '/components/navegação/mobile-stepper-input' },

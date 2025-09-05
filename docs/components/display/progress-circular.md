@@ -34,7 +34,6 @@
 <PreviewBuilder
 	:args
 	:component="CdsProgressCircular"
-	:events="cdsProgressCircularEvents"
 />
 
 ---
@@ -50,10 +49,6 @@
 <script setup>
 import { ref } from 'vue';
 import CdsProgressCircular from '@/components/ProgressCircular.vue';
-
-const cdsProgressCircularEvents = [
-	'progressCircular-click'
-];
 
 const args = ref({
 	value: 35,
