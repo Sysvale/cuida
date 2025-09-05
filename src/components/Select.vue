@@ -388,7 +388,6 @@ watch(localValue, (currentValue) => {
 
 /* HOOKS */
 onMounted(() => {
-	console.log('Select t2');
 	id.value = `cds-select-${uniqueKey.value}`;
 	selectElement.value = cdsSelect.value;
 });

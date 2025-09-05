@@ -1,5 +1,6 @@
 <template>
 	<div>
+		{{ internalSearch }}
 		<div
 			v-show="$attrs.fixedHeader && showVirtualHeader"
 			:id="virtualHeaderID"
@@ -506,6 +507,10 @@ function resolveInitialPreset() {
 	});
 }
 
+defineExpose({
+	resetSearch: () => internalSearch.value = '',
+	setSearch: (value) => internalSearch.value = value,
+});
 </script>
 
 <style lang="scss" scoped>
