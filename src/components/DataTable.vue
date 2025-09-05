@@ -47,6 +47,7 @@
 						v-if="withSearchButton"
 						secondary
 						text="Buscar"
+						:disabled="loading"
 						@button-click="handleSearchInput(internalSearch, 'button')"
 					/>
 				</CdsFlexbox>
