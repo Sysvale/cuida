@@ -1,6 +1,5 @@
 <template>
 	<div>
-		{{ internalSearch }}
 		<div
 			v-show="$attrs.fixedHeader && showVirtualHeader"
 			:id="virtualHeaderID"
