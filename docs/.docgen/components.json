@@ -893,6 +893,13 @@
       {
         "name": "state",
         "description": "Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.",
+        "tags": {},
+        "values": [
+          "default",
+          "valid",
+          "loading",
+          "invalid"
+        ],
         "type": {
           "name": "string"
         },
@@ -904,6 +911,11 @@
       {
         "name": "type",
         "description": "Especifica o tipo do TextInput. As opções são 'text' e 'email'.",
+        "tags": {},
+        "values": [
+          "text",
+          "email"
+        ],
         "type": {
           "name": "string"
         },
