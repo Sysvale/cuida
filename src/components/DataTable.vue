@@ -29,14 +29,28 @@
 				:id="dataTableHeaderID"
 				class="data-table__header"
 			>
-				<CdsSearchInput
+				<CdsFlexbox
 					v-if="withSearch"
-					v-model="internalSearch"
-					hide-label
+					gap="2"
 					fluid
-					:disabled="loading"
-					@update:model-value="handleSearchInput"
-				/>
+					wrap="no-wrap"
+				>
+					<CdsSearchInput
+						ref="search-input"
+						v-model="internalSearch"
+						hide-label
+						fluid
+						:disabled="loading"
+						@update:model-value="(value) => handleSearchInput(value, 'input')"
+					/>
+					<CdsButton
+						v-if="withSearchButton"
+						secondary
+						text="Buscar"
+						:disabled="loading"
+						@button-click="handleSearchInput(internalSearch, 'button')"
+					/>
+				</CdsFlexbox>
 				<div
 					v-else
 					class="data-table__items-counter"
@@ -164,7 +178,16 @@
 </template>
 
 <script setup>
-import { ref, watch, computed, useAttrs, onMounted, onUnmounted, nextTick } from 'vue';
+import {
+	ref,
+	watch,
+	computed,
+	useAttrs,
+	onMounted,
+	onUnmounted,
+	nextTick,
+	useTemplateRef
+} from 'vue';
 import { cloneDeep, isEmpty } from 'lodash';
 import { useHasSlot } from '../utils/composables/useHasSlot';
 import hasSameItems from '../utils/methods/hasSameItems';
@@ -180,6 +203,8 @@ import CdsEmptyState from './EmptyState.vue'
 const hasHeaderSlot = useHasSlot('header-item');
 const hasStateEmpty = useHasSlot('empty');
 const attrs = useAttrs();
+
+const searchInputRef = useTemplateRef('search-input');
 
 const props = defineProps({
 	/**
@@ -262,6 +287,13 @@ const props = defineProps({
 		default: false,
 	},
 	/**
+	* Especifica se deve ser mostrado botão junto à barra de busca.
+	*/
+	withSearchButton: {
+		type: Boolean,
+		default: false,
+	},
+	/**
 	 * Ativa o estado de carregamento do componente, desabilitando as ações superiores e exibindo um Skeleton para a tabela.
 	 */
 	loading: {
@@ -299,7 +331,12 @@ const props = defineProps({
 	},
 });
 
-const emits = defineEmits(['update-fields-list', 'customize-click', 'search']);
+const emits = defineEmits([
+	'update-fields-list',
+	'customize-click',
+	'search',
+	'search-button-click'
+]);
 
 const showVirtualHeader = ref(false);
 const virtualTheadWidth = ref(0);
@@ -351,7 +388,11 @@ watch(() => props.customFieldsList, () => {
 	internalCustomFieldsList.value = cloneDeep(props.customFieldsList);
 }, { immediate: true });
 
-watch(() => props.loading, (isLoading) => {
+watch(() => props.loading, async (isLoading) => {
+	if (searchInputRef.value) {
+		await searchInputRef.value.focus()
+	}
+
 	if (!isLoading)	resolveInitialPreset();
 }, { immediate: true });
 
@@ -433,7 +474,12 @@ function handleOk(fieldsList) {
 	emits('update-fields-list', fieldsList);
 }
 
-function handleSearchInput(value) {
+function handleSearchInput(value, source) {
+	if (source === 'button') {
+		emits('search-button-click', value);
+		return;
+	}
+
 	clearTimeout(searchTimeout.value);
 	searchTimeout.value = setTimeout(() => {
 		emits('search', value);
