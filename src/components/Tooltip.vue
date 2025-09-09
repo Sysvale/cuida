@@ -4,7 +4,6 @@
 		v-cdstip="tooltipConfig"
 		class="tooltip"
 		:data-tippy-placement="position"
-		:data-tippy-content="content"
 		:data-tippy-allowHTML="true"
 	>
 		<slot />
@@ -17,6 +16,7 @@ export default {
 	props: {
 		/**
 		 * O posicionamento do Tooltip. A prop aceita as opções: top, right, bottom e left.
+		 * @values auto, auto-start, auto-end, top, top-start, top-end, right, right-start, right-end, bottom, bottom-start, bottom-end, left, left-start, left-end
 		 */
 		position: {
 			type: String,

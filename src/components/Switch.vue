@@ -1,20 +1,20 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div>
-		<span
-			class="switch__label"
-		>
-			{{ label }}
-
-			<CdsIcon
-				v-if="tooltip"
-				v-cdstip="tooltip"
-				:name="tooltipIcon"
-				height="18"
-				width="18"
-				class="label__icon"
-			/>
-		</span>
+		<div class="switch__label">
+			<CdsFlexbox>
+				{{ label }}
+	
+				<CdsIcon
+					v-if="tooltip"
+					v-cdstip="tooltip"
+					:name="tooltipIcon"
+					height="18"
+					width="18"
+					class="label__icon"
+				/>
+			</CdsFlexbox>
+		</div>
 
 
 		<label
@@ -78,6 +78,7 @@ defineOptions({ name: 'Switch' });
 
 import { ref, computed, watch, useTemplateRef } from 'vue';
 import CdsIcon from './Icon.vue';
+import CdsFlexbox from './Flexbox.vue';
 
 const model = defineModel('modelValue', {
 	type: Boolean,

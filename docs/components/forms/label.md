@@ -1,28 +1,22 @@
 # Label
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### Permite que o usuário adicione, remova e edite múltiplos inputs em uma lista dinâmica.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- Em conjunto com componentes que não apresentam nativamente a label;
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
-
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
-
+## Quando não usar:
+- Um componente já possui nativamente a label;
 ---
 
 ## Uso
 
 ```js
-<CdsLabel
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="labelClick = true"
-/>
+<CdsLabel />
 ```
 
 ---
@@ -32,7 +26,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:args
 	:component="CdsLabel"
-	:events="cdsLabelEvents"
+	:events
 />
 
 ---
@@ -53,17 +47,22 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Slots
-
-<APITable
-	name="Label"
-	section="slots"
-/>
-
 <script setup>
+import { ref } from 'vue';
 import CdsLabel from '@/components/Label.vue';
 
-const cdsLabelEvents = [
-	'label-click'
+const events = [
+	'supportLinkClick'
 ];
+
+const args = ref({
+	required: false,
+	fluid: false,
+	for: 'input-id',
+	text: 'Label',
+	tooltip: '',
+	tooltipIcon: 'info-outline',
+	supportLink: '',
+	supportLinkUrl: '',
+});
 </script>

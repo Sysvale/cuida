@@ -24,12 +24,9 @@ utilize classes e nelas inclua paddings e margins com os tokens de espaçamento 
 ## Uso
 
 ```js
-<CdsSpacer
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="spacerClick = true"
-/>
+<CdsSpacer padding="4">
+	Conteúdo
+</CdsSpacer>
 ```
 
 ---

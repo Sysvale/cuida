@@ -177,6 +177,7 @@ const props = defineProps({
 	},
 	/**
 	* Especifica o estado do input. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	* @values default, valid, invalid, loading
 	*/
 	state: {
 		type: String,

@@ -1,16 +1,16 @@
 # TextArea
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### TextAreas permitem que os usuários insiram um texto longo em uma interface.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- Necessitar de um campo de texto para inserir informações grandes. Exemplo: Descrição de produto ou mensagens.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
-
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- For necessário informar apenas um dado específico ao campo de texto.
 
 ---
 
@@ -18,10 +18,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ```js
 <CdsTextArea
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="textAreaClick = true"
+	v-model="inputValue"
 />
 ```
 
@@ -32,7 +29,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:args
 	:component="CdsTextArea"
-	:events="cdsTextAreaEvents"
+	:events
 />
 
 ---
@@ -45,25 +42,30 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Eventos
-
-<APITable
-	name="TextArea"
-	section="events"
-/>
-<br />
-
-## Slots
-
-<APITable
-	name="TextArea"
-	section="slots"
-/>
-
 <script setup>
+import { ref } from 'vue';
 import CdsTextArea from '@/components/TextArea.vue';
 
-const cdsTextAreaEvents = [
-	'textArea-click'
+const events = [
+	'update:modelValue',
+	'focus',
+	'blur',
 ];
+
+const args = ref({
+	disabled: false,
+	state: 'default',
+	required: false,
+	fluid: false,
+	floatingLabel: false,
+	lazy: false,
+	label: 'Texto',
+	placeholder: 'Digite algo...',
+	errorMessage: 'Campo obrigatório',
+	tooltip: '',
+	tooltipIcon: 'info-outline',
+	supportingText: 'supportingTex',
+	supportLink: '',
+	supportLinkUrl: '',
+});
 </script>

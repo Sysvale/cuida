@@ -1,229 +1,146 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-	<div :class="['slider', `slider--${variant}`]">
-		<div class="vue-slider-rail">
-			<div
-				class="vue-slider-process"
-				:style="processStyle"
-			></div>
-
-			<div
-				v-if="isRange && showMergeTooltip"
-				:class="[
-					'merge-tooltip',
-					'vue-slider-dot-tooltip-inner',
-					'vue-slider-dot-tooltip-inner-top',
-				]"
+	<vue-slider 
+		v-bind="attrs"
+		v-model="innerValue"
+		:enable-cross="false"  
+		:min="min"
+		:max="max"
+		:tooltip="showMergeTooltip ? 'none' : 'always'"
+		:class="`slider--${variant}`"
+	>
+		<template #process="{ style }">
+			<div 
+				class="vue-slider-process" 
+				:style="style"
 			>
-				<span v-if="innerValue[0] !== innerValue[1]">
-					{{ innerValue[0] }} - {{ innerValue[1] }}
-				</span>
-				<span v-else>
-					{{ innerValue[0] }}
-				</span>
+				<div 
+					v-if="showMergeTooltip"
+					:class="[
+						'merge-tooltip',
+						'vue-slider-dot-tooltip-inner',
+						'vue-slider-dot-tooltip-inner-top',
+					]"
+				>
+					<span
+						v-if="innerValue[0] !== innerValue[1]"
+					>
+						{{ innerValue[0] }} - {{ innerValue[1] }}
+					</span>
+					<span
+						v-else
+					>
+						{{ innerValue[0] }}
+					</span>
+				</div>
 			</div>
-
-			<input
-				type="range"
-				:min="min"
-				:max="max"
-				:value="isRange ? innerValue[0] : innerValue"
-				@input="onInput($event, 0)"
-				class="range-input range-input--first"
-			/>
-			<input
-				v-if="isRange"
-				type="range"
-				:min="min"
-				:max="max"
-				:value="innerValue[1]"
-				@input="onInput($event, 1)"
-				class="range-input range-input--second"
-			/>
-		</div>
-
-		<template v-if="isRange">
-			<template v-for="(val, index) in innerValue" :key="index">
-				<slot
-					name="tooltip"
-					:tooltip="{
-						pos: ((val - min) / (max - min)) * 100,
-						index,
-						value: val,
-						focus: false,
-						disabled: false
-					}"
-				></slot>
-			</template>
 		</template>
-		<template v-else>
+		<template #tooltip="tooltip">
+			<!-- @slot Scoped slot para renderização customizada dos tooltips. A propriedade 'tooltip', que pode ser acessada através do slot, contém pos (posição do componente em %), index (o índice do slider), value (o valor do slider), focus (se o slider está no estado de focus ou não), disabled (se o slider está disabilitado ou não).
+			-->
 			<slot
 				name="tooltip"
-				:tooltip="{
-					pos: ((innerValue - min) / (max - min)) * 100,
-					index: 0,
-					value: innerValue,
-					focus: false,
-					disabled: false
-				}"
-			></slot>
+				:tooltip="tooltip"
+			/>
 		</template>
-	</div>
+	</vue-slider>
 </template>
+<script>
+/* eslint-disable no-unused-vars */
+import vueSlider from 'vue-3-slider-component';
 
-<script setup>
-import { ref, watch, computed } from 'vue';
-
-const props = defineProps({
-	min: {
-		type: Number,
-		default: 0,
-		required: true,
+export default {
+	components: {
+		vueSlider,
 	},
-	max: {
-		type: Number,
-		default: 100,
-		required: true,
+
+	props: {
+		/**
+		* O valor mínimo do slider.
+		*/
+		min: {
+			type: Number,
+			default: 0,
+			required: true,
+		},
+		/**
+			* O valor máximo do slider.
+		*/
+		max: {
+			type: Number,
+			default: 100,
+			required: true,
+		},
+		/**
+			* Prop utilizada como v-model. Retorna as posições selecionadas no slider.
+		*/
+		modelValue: {
+			type: Array,
+			default: () => [0, 100],
+			required: true,
+		},
+		/**
+		 * A variante de cor. São 10 variantes implementadas: 'green', 'teal',
+		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.
+		 */
+		variant: {
+			type: String,
+			default: 'green',
+		},
 	},
-	modelValue: {
-		type: [Array, Number],
-		default: () => [0, 100],
-		required: true,
-	},
-	variant: {
-		type: String,
-		default: 'green',
-	},
-});
 
-const emit = defineEmits(['update:modelValue']);
-
-const innerValue = ref(props.modelValue);
-
-const isRange = computed(() => Array.isArray(innerValue.value));
-
-const showMergeTooltip = computed(() => {
-	return isRange.value && innerValue.value[1] - innerValue.value[0] < 10;
-});
-
-const processStyle = computed(() => {
-	const clamp = (v, a = 0, b = 100) => Math.min(Math.max(v, a), b);
-	if (isRange.value) {
-		const left = ((innerValue.value[0] - props.min) / (props.max - props.min)) * 100;
-		const right = ((innerValue.value[1] - props.min) / (props.max - props.min)) * 100;
-		const l = clamp(left);
-		const r = clamp(right);
+	data() {
 		return {
-			left: `${l}%`,
-			width: `${Math.max(0, r - l)}%`,
+			innerValue: [0, 100],
 		};
-	} else {
-		const pos = ((innerValue.value - props.min) / (props.max - props.min)) * 100;
-		return {
-			left: 0,
-			width: `${clamp(pos)}%`,
-		};
-	}
-});
-
-const onInput = (e, index) => {
-	const val = Number(e.target.value);
-	if (isRange.value) {
-		const newValue = [Number(innerValue.value[0]), Number(innerValue.value[1])];
-		newValue[index] = val;
-		if (newValue[0] > newValue[1]) {
-			[newValue[0], newValue[1]] = [newValue[1], newValue[0]];
-		}
-		innerValue.value = newValue;
-	} else {
-		innerValue.value = val;
-	}
-};
-
-watch(
-	() => props.modelValue,
-	(val) => {
-		innerValue.value = Array.isArray(val) ? [...val] : val;
 	},
-	{ immediate: true }
-);
 
-watch(innerValue, (val) => {
-	emit('update:modelValue', val);
-}, { deep: true });
+	computed: {
+		attrs() {
+			const {
+				min,
+				max,
+				...attrs
+			} = this.$attrs;
+
+			return attrs;
+		},
+
+		showMergeTooltip() {
+			return this.innerValue[1] - this.innerValue[0] < 10
+		},
+	},
+
+	watch: {
+		modelValue(value) {
+			this.innerValue = value;
+		},
+
+		innerValue(value) {
+			/**
+			 * Evento utilizado para implementar o v-model.
+			 * @event update:modelValue
+			 * @type {Event}
+			 */
+			this.$emit('update:modelValue', value);
+		},
+	},
+
+	mounted() {
+		this.innerValue = this.modelValue;
+	},
+}
 </script>
-
 <style lang="scss">
 @use '../assets/sass/tokens/index' as tokens;
 
-.slider {
-	width: 100%;
+.vue-slider-dot {
+	width: 18px !important;
+	height: 18px !important;
 }
 
-.vue-slider-rail {
-	position: relative;
-	height: 3px;
-	margin: 18px 0;
-	background-color: tokens.$n-50;
-	border-radius: 999px;
-}
-
-.vue-slider-process {
-	position: absolute;
-	top: 0;
-	height: 100%;
-	background-color: tokens.$n-300;
-	border-radius: 999px;
-}
-
-.range-input {
-	-webkit-appearance: none;
-	appearance: none;
-	position: absolute;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	background: transparent;
-	pointer-events: auto;
-	z-index: 2;
-}
-
-.range-input--first {
-	z-index: 3;
-}
-
-.range-input::-webkit-slider-runnable-track {
-	height: 3px;
-	background: transparent;
-}
-.range-input::-moz-range-track {
-	height: 3px;
-	background: transparent;
-}
-
-.range-input::-webkit-slider-thumb {
-	-webkit-appearance: none;
-	appearance: none;
-	width: 18px;
-	height: 18px;
-	border-radius: 50%;
-	background: tokens.$n-50;
-	box-shadow: none;
-	margin-top: -7.5px;
-	cursor: pointer;
-	position: relative;
-	z-index: 4;
-}
-.range-input::-moz-range-thumb {
-	width: 18px;
-	height: 18px;
-	border-radius: 50%;
-	background: tokens.$n-50;
-	box-shadow: none;
-	cursor: pointer;
-	position: relative;
-	z-index: 4;
+.vue-slider {
+	height: 3px !important;
 }
 
 .vue-slider-dot-tooltip-top {
@@ -242,17 +159,20 @@ watch(innerValue, (val) => {
 	left: 50%;
 	bottom: 100%;
 	transform: translate(-50%, -15px);
-	z-index: 5;
+}
+
+.vue-slider-rail {
+	background-color: tokens.$n-50;
 }
 
 .slider {
 	@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+
 		& > .vue-slider-rail > .vue-slider-process {
 			background-color: $shade-300 !important;
 		}
 
-		& > .vue-slider-rail > .range-input::-webkit-slider-thumb,
-		& > .vue-slider-rail > .range-input::-moz-range-thumb {
+		& > .vue-slider-rail > .vue-slider-dot > .vue-slider-dot-handle {
 			background-color: $base-color !important;
 			box-shadow: none;
 		}

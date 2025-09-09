@@ -39,14 +39,14 @@ const props = defineProps({
 	*/
 	width: {
 		type: [Number, String],
-		default: 100,
+		default: 'auto',
 	},
 	/**
 	* Altura da imagem. Quando não especificada, o valor `auto` é aplicado.
 	*/
 	height: {
 		type: [Number, String],
-		default: 100,
+		default: 'auto',
 	},
 	/**
 	* Descrição em texto da imagem.
@@ -102,10 +102,6 @@ const heightResolver = computed(() => {
 });
 
 const widthResolver = computed(() => {
-	return props.width ? resolveSizeUnit(props.width) : 'auto';
-});
-
-const opacityResolver = computed(() => {
 	return props.width ? resolveSizeUnit(props.width) : 'auto';
 });
 

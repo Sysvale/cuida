@@ -1,16 +1,21 @@
 # FloatingAssistant
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### Floating Assistant é um componente flutuante que pode ser utilizado para fornecer dicas de usabilidade ou informações específicas sobre o conteúdo da página.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- Houver necessidade de fornecer dicas ou informações adicionais sobre um determinado elemento ou seção da página.
+- For necessário direcionar o usuário para uma página externa que contenha informações/tutoriais adicionais sobre o conteúdo.
+- O objetivo for reduzir a quantidade de informações exibidas na tela, mantendo o foco do usuário no elemento relevante.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
 
-### Quando não usar
+<br />
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- O componente se tornar intrusivo e atrapalhar a navegação e experiência do usuário.
+- Não houver espaço suficiente para exibição do componente e ele puder ser confundido com o conteúdo da página.
+
 
 ---
 
@@ -29,12 +34,29 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ## Preview
 
-<PreviewBuilder
-	:args
-	:component="CdsFloatingAssistant"
-	:events="cdsFloatingAssistantEvents"
-/>
+<PreviewContainer>
+	<div
+		id="floating-assistant-target"
+		style="width: fit-content;"
+	>
+		FloatingAssistant target
+	</div>
+	<CdsFloatingAssistant
+		v-bind="args"
+		v-on="internalEvents"
+		targetId="floating-assistant-target"
+	>
+		A nova funcionalidade de cadastrar motoristas permite que você organize e
+		gerencie a sua frota de forma mais fácil, vinculando cada motorista a seu
+		ônibus específico.
+	</CdsFloatingAssistant>
+	<LogBuilder ref="logBuilderRef" :events />
+</PreviewContainer>
 
+<PlaygroundBuilder
+	:args
+	component="FloatingAssistant"
+/>
 ---
 
 ## Props
@@ -61,9 +83,23 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref, useTemplateRef, onMounted } from 'vue';
 import CdsFloatingAssistant from '@/components/FloatingAssistant.vue';
 
-const cdsFloatingAssistantEvents = [
-	'floatingAssistant-click'
+const logBuilder = useTemplateRef('logBuilderRef');
+
+const events = [
+	'expanded',
+	'disable-tip'
 ];
+
+const internalEvents = ref({});
+
+const args = ref({
+	url: 'https://medium.com/cidade-saud%C3%A1vel',
+});
+
+onMounted(() => {
+	internalEvents.value = logBuilder.value.createEventListeners();
+});
 </script>

@@ -10,51 +10,91 @@
 export default {
 	name: 'Spacer',
 	props: {
+		/**
+		 * @min 0
+		 * @max 12
+		 */
 		padding: {
 			type: [Number, String],
 			default: 0,
 			validator: (value) => (value >= 0 && value <= 12),
 		},
+		/**
+		 * @min 0
+		 * @max 12
+		 */
 		paddingTop: {
 			type: [Number, String],
 			default: 0,
 			validator: (value) => (value >= 0 && value <= 12),
 		},
+		/**
+		 * @min 0
+		 * @max 12
+		 */
 		paddingRight: {
 			type: [Number, String],
 			default: 0,
 			validator: (value) => (value >= 0 && value <= 12),
 		},
+		/**
+		 * @min 0
+		 * @max 12
+		 */
 		paddingBottom: {
 			type: [Number, String],
 			default: 0,
 			validator: (value) => (value >= 0 && value <= 12),
 		},
+		/**
+		 * @min 0
+		 * @max 12
+		 */
 		paddingLeft: {
 			type: [Number, String],
 			default: 0,
 			validator: (value) => (value >= 0 && value <= 12),
 		},
+		/**
+		 * @min 0
+		 * @max 12
+		 */
 		margin: {
 			type: [Number, String],
 			default: 0,
 			validator: (value) => (value >= 0 && value <= 12),
 		},
+		/**
+		 * @min 0
+		 * @max 12
+		 */
 		marginTop: {
 			type: [Number, String],
 			default: 0,
 			validator: (value) => (value >= 0 && value <= 12),
 		},
+		/**
+		 * @min 0
+		 * @max 12
+		 */
 		marginRight: {
 			type: [Number, String],
 			default: 0,
 			validator: (value) => (value >= 0 && value <= 12),
 		},
+		/**
+		 * @min 0
+		 * @max 12
+		 */
 		marginBottom: {
 			type: [Number, String],
 			default: 0,
 			validator: (value) => (value >= 0 && value <= 12),
 		},
+		/**
+		 * @min 0
+		 * @max 12
+		 */
 		marginLeft: {
 			type: [Number, String],
 			default: 0,

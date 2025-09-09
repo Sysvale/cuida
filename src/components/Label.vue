@@ -7,7 +7,7 @@
 			'label--fluid': fluid,
 		}"
 	>
-		<span
+		<CdsFlexbox
 			class="label__content"
 		>
 			{{ text }}
@@ -22,7 +22,7 @@
 				width="18"
 				class="label__icon"
 			/>
-		</span>
+		</CdsFlexbox>
 
 		<CdsLink
 			v-if="supportLink"
@@ -42,6 +42,7 @@ import CdsRequiredIndicator from './RequiredIndicator.vue';
 import vCdstip from '../utils/directives/cdstip';
 import CdsLink from './Link.vue';
 import CdsIcon from './Icon.vue';
+import CdsFlexbox from './Flexbox.vue';
 
 defineProps({
 	/**

@@ -1,14 +1,17 @@
 # Tooltip
 
-Tooltip são labels flutuantes não interativas usados para explicar um elemento ou recurso da interface. Podem ser acionados com hover.
+### Tooltip são labels flutuantes não interativas usados para explicar um elemento ou recurso da interface. Podem ser acionados com hover.
+---
+<br />
 
-### Quando usar
-
+## Quando usar:
 - O texto a ser exibido como label for conciso, com no máximo 4 palavras.
 - Para exibir informações suplementares sobre uma feature ou elemento da interface.
 
-### Quando não usar
 
+<br />
+
+## Quando não usar:
 - Para comunicar erros e status do sistema.
 - Para mostrar informações críticas para a compreensão de uma feature ou elemento da interface.
 
@@ -31,8 +34,9 @@ Tooltip são labels flutuantes não interativas usados para explicar um elemento
 <PreviewBuilder
 	:args
 	:component="CdsTooltip"
-	:events="cdsTooltipEvents"
-/>
+>
+	Tooltip trigger
+</PreviewBuilder>
 
 ---
 
@@ -41,14 +45,6 @@ Tooltip são labels flutuantes não interativas usados para explicar um elemento
 <APITable
 	name="Tooltip"
 	section="props"
-/>
-<br />
-
-## Eventos
-
-<APITable
-	name="Tooltip"
-	section="events"
 />
 <br />
 
@@ -61,16 +57,11 @@ Tooltip são labels flutuantes não interativas usados para explicar um elemento
 
 ---
 
-## Figma
-
-<FigmaFrame
-	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
-/>
-
 <script setup>
 import { ref } from 'vue';
-const args = ref({});
 import CdsTooltip from '@/components/Tooltip.vue';
 
-const cdsTooltipEvents = [];
+const args = ref({
+	text: 'Texto do tooltip',
+});
 </script>

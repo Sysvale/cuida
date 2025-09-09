@@ -1,74 +1,86 @@
 <template>
 	<div>
-		<pre>{{ test }}</pre>
-<div fluid><CdsSlider v-model="test" :min="0" :max="100"/></div>
 		<CdsFlexbox direction="column" gap="4" class="inputs-container">
 			<template v-for="(data, index) in propsData">
-				<CdsFlexbox
-					v-if="data.type.name.includes('string') && data.values"
-					justify="space-between"
-					gap="3"
-					class="preview-line"
-				>
-					<CdsText class="prop-name">
-						{{ capitalize(data.name) }}
-					</CdsText>
+				<template v-if="normalizedPropsData[index]">
+					<CdsFlexbox
+						v-if="data.type.name.includes('number')"
+						justify="space-between"
+						class="preview-line"
+					>
+						<CdsText class="prop-name">
+							{{ capitalize(data.name) }}
+						</CdsText>
 	
-					<CdsSelect
-						v-if="Object.keys(normalizedPropsData).length > 0"
-						label=""
-						v-model="normalizedPropsData[index][data.name]"
-						:options="formatOptions(data.values)"
-						returnValue
-					/>
-				</CdsFlexbox>
+						<div v-if="typeof data.min !== 'undefined' && typeof data.max !== 'undefined'">
+							<CdsSlider
+								v-model="normalizedPropsData[index][data.name]"
+								:min="data.min"
+								:max="data.max"
+								:step="data.max / 20"
+								withText
+							/>
+						</div>
 	
-				<CdsFlexbox
-					v-else-if="data.type.name.includes('string')"
-					justify="space-between"
-					class="preview-line"
-				>
-					<CdsText class="prop-name">
-						{{ capitalize(data.name) }}
-					</CdsText>
-	
-					<CdsTextInput
-						v-if="Object.keys(normalizedPropsData).length > 0"
-						label=""
-						v-model="normalizedPropsData[index][data.name]"
-					/>
-				</CdsFlexbox>
-	
-				<CdsFlexbox
-					v-else-if="data.type.name.includes('number')"
-					justify="space-between"
-					class="preview-line"
-				>
-					<CdsText class="prop-name">
-						{{ capitalize(data.name) }}
-					</CdsText>
-	
-					<CdsNumberInput
-						v-if="Object.keys(normalizedPropsData).length > 0"
-						label=""
-						v-model="normalizedPropsData[index][data.name]"
-					/>
-				</CdsFlexbox>
-	
-				<CdsFlexbox
-					v-if="data.type.name === 'boolean'"
-					justify="space-between"
-					class="preview-line"
-				>
-					<CdsText class="prop-name">
-						{{ capitalize(data.name) }}
-					</CdsText>
-	
-					<CdsSwitch
-						v-if="Object.keys(normalizedPropsData).length > 0"
-						v-model="normalizedPropsData[index][data.name]"
-					/>
-				</CdsFlexbox>
+						<CdsNumberInput
+							v-else-if="Object.keys(normalizedPropsData).length > 0"
+							label=""
+							lazy
+							v-model="normalizedPropsData[index][data.name]"
+						/>
+					</CdsFlexbox>
+
+					<CdsFlexbox
+						v-else-if="data.type.name.includes('string') && data.values"
+						justify="space-between"
+						gap="3"
+						class="preview-line"
+					>
+						<CdsText class="prop-name">
+							{{ capitalize(data.name) }}
+						</CdsText>
+		
+						<CdsSelect
+							v-if="Object.keys(normalizedPropsData).length > 0"
+							label=""
+							v-model="normalizedPropsData[index][data.name]"
+							:options="formatOptions(data.values)"
+							returnValue
+						/>
+					</CdsFlexbox>
+		
+					<CdsFlexbox
+						v-else-if="data.type.name.includes('string')"
+						justify="space-between"
+						class="preview-line"
+					>
+						<CdsText class="prop-name">
+							{{ capitalize(data.name) }}
+						</CdsText>
+		
+						<CdsTextInput
+							v-if="Object.keys(normalizedPropsData).length > 0"
+							label=""
+							lazy
+							v-model="normalizedPropsData[index][data.name]"
+						/>
+					</CdsFlexbox>
+		
+					<CdsFlexbox
+						v-if="data.type.name === 'boolean'"
+						justify="space-between"
+						class="preview-line"
+					>
+						<CdsText class="prop-name">
+							{{ capitalize(data.name) }}
+						</CdsText>
+		
+						<CdsSwitch
+							v-if="Object.keys(normalizedPropsData).length > 0"
+							v-model="normalizedPropsData[index][data.name]"
+						/>
+					</CdsFlexbox>
+				</template>
 			</template>
 		</CdsFlexbox>
 	</div>
@@ -82,7 +94,7 @@ import CdsNumberInput from '@/components/NumberInput.vue';
 import CdsSelect from '@/components/Select.vue';
 import CdsSwitch from '@/components/Switch.vue';
 import CdsText from '@/components/Text.vue';
-import CdsSlider from '@/components/Slider.vue';
+import CdsSlider from '@/components/SliderNext.vue';
 
 const model = defineModel('args');
 
@@ -133,6 +145,10 @@ watch(model, () => {
 				parsedValue = match ? match[1].replace(/['"]/g, '') : rawValue.replace(/['"]/g, '');
 			} else {
 				parsedValue = rawValue;
+			}
+
+			if (!isNaN(parsedValue) && !isNaN(parseFloat(parsedValue)) && isFinite(parsedValue)) {
+				parsedValue = Number(parsedValue);
 			}
 	
 			if (model.value?.[propData.name]) {

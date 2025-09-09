@@ -85,6 +85,7 @@ const props = defineProps({
 	/**
 	 * A variante de cor do título são 10 variantes implementadas: 'green', 'teal',
 	 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.
+	 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	 */
 	variant: {
 		type: String,

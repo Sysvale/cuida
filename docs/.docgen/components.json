@@ -2472,6 +2472,11 @@
       {
         "name": "state",
         "description": "Especifica o estado do CheckboxGroup. As opções são 'default', 'valid' e 'invalid'.",
+        "tags": {},
+        "values": [
+          "default",
+          "valid e invalid"
+        ],
         "type": {
           "name": "string"
         },
@@ -2510,6 +2515,13 @@
       {
         "name": "direction",
         "description": "Indica em que direção o Chevron vai ser renderizado. As opções são: 'Top', 'Right', 'Bottom' e 'Left'",
+        "tags": {},
+        "values": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
         "type": {
           "name": "string"
         },
@@ -2532,6 +2544,12 @@
       {
         "name": "size",
         "description": "Especifica o tamanho do Chevron. São 3 tamanhos implementados: 'sm', 'md', 'lg'.",
+        "tags": {},
+        "values": [
+          "sm",
+          "md",
+          "lg"
+        ],
         "type": {
           "name": "string"
         },
@@ -2912,6 +2930,13 @@
       {
         "name": "state",
         "description": "Especifica o estado do input. As opções são 'default', 'valid', 'loading' e 'invalid'.",
+        "tags": {},
+        "values": [
+          "default",
+          "valid",
+          "invalid",
+          "loading"
+        ],
         "type": {
           "name": "string"
         },
@@ -4141,16 +4166,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -4635,6 +4660,19 @@
       {
         "name": "variant",
         "description": "Especifica a variante de cor do componente.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },
@@ -5137,6 +5175,19 @@
       {
         "name": "variant",
         "description": "A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',\n'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },
@@ -5832,7 +5883,7 @@
         },
         "defaultValue": {
           "func": false,
-          "value": "100"
+          "value": "'auto'"
         }
       },
       {
@@ -5843,7 +5894,7 @@
         },
         "defaultValue": {
           "func": false,
-          "value": "100"
+          "value": "'auto'"
         }
       },
       {
@@ -6627,6 +6678,19 @@
       {
         "name": "variant",
         "description": "A variante de cor do título são 10 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },
@@ -8971,7 +9035,7 @@
           ],
           "max": [
             {
-              "description": "100",
+              "description": "1",
               "title": "max"
             }
           ]
@@ -8985,7 +9049,7 @@
           "value": "0"
         },
         "min": 0,
-        "max": 100
+        "max": 1
       },
       {
         "name": "showText",
@@ -10984,6 +11048,88 @@
     "props": [
       {
         "name": "min",
+        "description": "O valor mínimo do slider.",
+        "type": {
+          "name": "number"
+        },
+        "required": true,
+        "defaultValue": {
+          "func": false,
+          "value": "0"
+        }
+      },
+      {
+        "name": "max",
+        "description": "O valor máximo do slider.",
+        "type": {
+          "name": "number"
+        },
+        "required": true,
+        "defaultValue": {
+          "func": false,
+          "value": "100"
+        }
+      },
+      {
+        "name": "modelValue",
+        "description": "Prop utilizada como v-model. Retorna as posições selecionadas no slider.",
+        "type": {
+          "name": "array"
+        },
+        "required": true,
+        "defaultValue": {
+          "func": false,
+          "value": "[0, 100]"
+        }
+      },
+      {
+        "name": "variant",
+        "description": "A variante de cor. São 10 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'green'"
+        }
+      }
+    ],
+    "events": [
+      {
+        "name": "update:modelValue",
+        "description": "Evento utilizado para implementar o v-model.",
+        "type": {
+          "names": [
+            "Event"
+          ]
+        }
+      }
+    ],
+    "slots": [
+      {
+        "name": "tooltip",
+        "scoped": true,
+        "description": "Scoped slot para renderização customizada dos tooltips. A propriedade 'tooltip', que pode ser acessada através do slot, contém pos (posição do componente em %), index (o índice do slider), value (o valor do slider), focus (se o slider está no estado de focus ou não), disabled (se o slider está disabilitado ou não).",
+        "bindings": [
+          {
+            "name": "tooltip",
+            "title": "binding"
+          }
+        ]
+      }
+    ],
+    "sourceFiles": [
+      "src/components/Slider.vue"
+    ]
+  },
+  "SliderNext": {
+    "exportName": "default",
+    "displayName": "SliderNext",
+    "description": "",
+    "tags": {},
+    "props": [
+      {
+        "name": "min",
         "type": {
           "name": "number"
         },
@@ -11024,6 +11170,26 @@
           "func": false,
           "value": "'green'"
         }
+      },
+      {
+        "name": "step",
+        "type": {
+          "name": "number"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "1"
+        }
+      },
+      {
+        "name": "withText",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
       }
     ],
     "events": [
@@ -11044,7 +11210,7 @@
       }
     ],
     "sourceFiles": [
-      "src/components/Slider.vue"
+      "src/components/SliderNext.vue"
     ]
   },
   "Spacer": {
@@ -11055,103 +11221,263 @@
     "props": [
       {
         "name": "padding",
+        "tags": {
+          "min": [
+            {
+              "description": "0",
+              "title": "min"
+            }
+          ],
+          "max": [
+            {
+              "description": "12",
+              "title": "max"
+            }
+          ]
+        },
         "type": {
           "name": "number|string"
         },
         "defaultValue": {
           "func": false,
           "value": "0"
-        }
+        },
+        "min": 0,
+        "max": 12
       },
       {
         "name": "paddingTop",
+        "tags": {
+          "min": [
+            {
+              "description": "0",
+              "title": "min"
+            }
+          ],
+          "max": [
+            {
+              "description": "12",
+              "title": "max"
+            }
+          ]
+        },
         "type": {
           "name": "number|string"
         },
         "defaultValue": {
           "func": false,
           "value": "0"
-        }
+        },
+        "min": 0,
+        "max": 12
       },
       {
         "name": "paddingRight",
+        "tags": {
+          "min": [
+            {
+              "description": "0",
+              "title": "min"
+            }
+          ],
+          "max": [
+            {
+              "description": "12",
+              "title": "max"
+            }
+          ]
+        },
         "type": {
           "name": "number|string"
         },
         "defaultValue": {
           "func": false,
           "value": "0"
-        }
+        },
+        "min": 0,
+        "max": 12
       },
       {
         "name": "paddingBottom",
+        "tags": {
+          "min": [
+            {
+              "description": "0",
+              "title": "min"
+            }
+          ],
+          "max": [
+            {
+              "description": "12",
+              "title": "max"
+            }
+          ]
+        },
         "type": {
           "name": "number|string"
         },
         "defaultValue": {
           "func": false,
           "value": "0"
-        }
+        },
+        "min": 0,
+        "max": 12
       },
       {
         "name": "paddingLeft",
+        "tags": {
+          "min": [
+            {
+              "description": "0",
+              "title": "min"
+            }
+          ],
+          "max": [
+            {
+              "description": "12",
+              "title": "max"
+            }
+          ]
+        },
         "type": {
           "name": "number|string"
         },
         "defaultValue": {
           "func": false,
           "value": "0"
-        }
+        },
+        "min": 0,
+        "max": 12
       },
       {
         "name": "margin",
+        "tags": {
+          "min": [
+            {
+              "description": "0",
+              "title": "min"
+            }
+          ],
+          "max": [
+            {
+              "description": "12",
+              "title": "max"
+            }
+          ]
+        },
         "type": {
           "name": "number|string"
         },
         "defaultValue": {
           "func": false,
           "value": "0"
-        }
+        },
+        "min": 0,
+        "max": 12
       },
       {
         "name": "marginTop",
+        "tags": {
+          "min": [
+            {
+              "description": "0",
+              "title": "min"
+            }
+          ],
+          "max": [
+            {
+              "description": "12",
+              "title": "max"
+            }
+          ]
+        },
         "type": {
           "name": "number|string"
         },
         "defaultValue": {
           "func": false,
           "value": "0"
-        }
+        },
+        "min": 0,
+        "max": 12
       },
       {
         "name": "marginRight",
+        "tags": {
+          "min": [
+            {
+              "description": "0",
+              "title": "min"
+            }
+          ],
+          "max": [
+            {
+              "description": "12",
+              "title": "max"
+            }
+          ]
+        },
         "type": {
           "name": "number|string"
         },
         "defaultValue": {
           "func": false,
           "value": "0"
-        }
+        },
+        "min": 0,
+        "max": 12
       },
       {
         "name": "marginBottom",
+        "tags": {
+          "min": [
+            {
+              "description": "0",
+              "title": "min"
+            }
+          ],
+          "max": [
+            {
+              "description": "12",
+              "title": "max"
+            }
+          ]
+        },
         "type": {
           "name": "number|string"
         },
         "defaultValue": {
           "func": false,
           "value": "0"
-        }
+        },
+        "min": 0,
+        "max": 12
       },
       {
         "name": "marginLeft",
+        "tags": {
+          "min": [
+            {
+              "description": "0",
+              "title": "min"
+            }
+          ],
+          "max": [
+            {
+              "description": "12",
+              "title": "max"
+            }
+          ]
+        },
         "type": {
           "name": "number|string"
         },
         "defaultValue": {
           "func": false,
           "value": "0"
-        }
+        },
+        "min": 0,
+        "max": 12
       }
     ],
     "slots": [
@@ -11743,6 +12069,19 @@
       {
         "name": "selectionVariant",
         "description": "A variante das checkboxes de seleção. São 10 variantes: 'teal', 'green', 'blue',\n'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },
@@ -13002,6 +13341,24 @@
       {
         "name": "position",
         "description": "O posicionamento do Tooltip. A prop aceita as opções: top, right, bottom e left.",
+        "tags": {},
+        "values": [
+          "auto",
+          "auto-start",
+          "auto-end",
+          "top",
+          "top-start",
+          "top-end",
+          "right",
+          "right-start",
+          "right-end",
+          "bottom",
+          "bottom-start",
+          "bottom-end",
+          "left",
+          "left-start",
+          "left-end"
+        ],
         "type": {
           "name": "string"
         },

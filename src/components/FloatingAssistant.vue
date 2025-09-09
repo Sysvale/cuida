@@ -133,6 +133,7 @@ export default {
 		/**
 		* A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',
 		* 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
+		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		*/
 		variant: {
 			type: String,

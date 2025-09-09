@@ -1,16 +1,23 @@
 # Timeline
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### Timelines são componentes utilizados para apresentar informações em ordem cronológica.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- Se há um conjunto de informações que pode ser categorizado por data.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
+## Quando não usar:
+- Se precisa de um componente de stepper.
+- A ordem das informações que você está apresentando é irrelevante.
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+<br />
+
+## Observações:
+- O componente `Timeline` é um wrapper e é utilizado para agrupar uma série de `TimelineItems` em um mesmo compoente
+via slots. Para mais informações acesse a documentação do componente.
 
 ---
 
@@ -18,11 +25,37 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ```js
 <CdsTimeline
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="timelineClick = true"
-/>
+	:reverse="false"
+>
+	<CdsTimelineItem variant="blue" loading>
+		<template #title>
+			Item 1
+		</template>
+		<template #content>
+			Desta maneira, a determinação clara de objetivos estimula
+			a padronização das novas proposições.
+		</template>
+	</CdsTimelineItem> 
+	<CdsTimelineItem variant="blue">
+		<template #title>
+			Item 2
+		</template>
+		<template #content>
+			O que temos que ter sempre em mente é que o consenso sobre
+			a necessidade de qualificação assume importantes posições
+			no estabelecimento das regras de conduta normativas.
+		</template>
+	</CdsTimelineItem>
+	<CdsTimelineItem variant="blue">
+		<template #title>
+			Item 3
+		</template>
+		<template #content>
+			A prática cotidiana prova que a complexidade dos estudos
+			efetuados estimula a padronização dos paradigmas corporativos.
+		</template>
+	</CdsTimelineItem>
+</CdsTimeline>
 ```
 
 ---
@@ -32,8 +65,40 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:args
 	:component="CdsTimeline"
-	:events="cdsTimelineEvents"
-/>
+>
+	<CdsTimeline
+		v-bind="args" 
+	>
+		<CdsTimelineItem variant="blue" loading>
+			<template #title>
+				Item 1
+			</template>
+			<template #content>
+				Desta maneira, a determinação clara de objetivos estimula
+				a padronização das novas proposições.
+			</template>
+		</CdsTimelineItem> 
+		<CdsTimelineItem variant="blue">
+			<template #title>
+				Item 2
+			</template>
+			<template #content>
+				O que temos que ter sempre em mente é que o consenso sobre
+				a necessidade de qualificação assume importantes posições
+				no estabelecimento das regras de conduta normativas.
+			</template>
+		</CdsTimelineItem>
+		<CdsTimelineItem variant="blue">
+			<template #title>
+				Item 3
+			</template>
+			<template #content>
+				A prática cotidiana prova que a complexidade dos estudos
+				efetuados estimula a padronização dos paradigmas corporativos.
+			</template>
+		</CdsTimelineItem>
+	</CdsTimeline>
+</PreviewBuilder>
 
 ---
 
@@ -45,14 +110,6 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Eventos
-
-<APITable
-	name="Timeline"
-	section="events"
-/>
-<br />
-
 ## Slots
 
 <APITable
@@ -61,9 +118,11 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsTimeline from '@/components/Timeline.vue';
+import CdsTimelineItem from '@/components/TimelineItem.vue';
 
-const cdsTimelineEvents = [
-	'timeline-click'
-];
+const args = ref({
+	reverse: false,
+});
 </script>

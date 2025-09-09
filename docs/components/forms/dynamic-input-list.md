@@ -1,16 +1,24 @@
 # DynamicInputList
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### Permite que o usuário adicione, remova e edite múltiplos inputs em uma lista dinâmica.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- Quando o usuário precisar inserir uma quantidade variável de informações do mesmo tipo;
+- Para formulários que exigem múltiplas entradas do mesmo tipo (ex: números de telefone, emails adicionais, etc).
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
+## Quando não usar:
+- A quantidade de campos for fixa e conhecida previamente;
+- Quando for necessário coletar informações de diferentes tipos. Neste caso, utilize campos individuais;
+- A complexidade da lista é alta, contendo vários inputs, e requer uma solução mais específica.
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+<br />
+
+## Observações:
+⚠️ Importante: Certifique-se de que o modelValue seja passado como um array de objetos contendo id e value. O id é gerado automaticamente para cada novo item.
 
 ---
 
@@ -18,10 +26,8 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ```js
 <CdsDynamicInputList
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="dynamicInputListClick = true"
+	label="Nova opção"
+	buttonLabel="Adicionar"
 />
 ```
 
@@ -32,7 +38,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:args
 	:component="CdsDynamicInputList"
-	:events="cdsDynamicInputListEvents"
+	:events
 />
 
 ---
@@ -45,25 +51,22 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Eventos
-
-<APITable
-	name="DynamicInputList"
-	section="events"
-/>
-<br />
-
-## Slots
-
-<APITable
-	name="DynamicInputList"
-	section="slots"
-/>
-
 <script setup>
+import { ref } from 'vue';
 import CdsDynamicInputList from '@/components/DynamicInputList.vue';
 
-const cdsDynamicInputListEvents = [
-	'dynamicInputList-click'
+const events = [
+	'update:modelValue'
 ];
+
+const args = ref({
+	label: 'Adicione opções',
+	inputLabel: 'Nova opção',
+	buttonVariant: 'dark',
+	buttonText: 'Adicionar',
+	incrementResolver: () => ({
+		label: '',
+		value: Math.random(),
+	}),
+});
 </script>

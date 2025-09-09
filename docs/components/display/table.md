@@ -1,14 +1,16 @@
 # Table
 
-Tables são componentes utilizados para exibir e organizar conteúdo, facilitando a comparação e análise de informações.
+### Tables são componentes utilizados para exibir e organizar conteúdo, facilitando a comparação e análise de informações.
+---
+<br />
 
-## Quando usar
-
+## Quando usar:
 - Desejar comparar dados.
 - For necessário exibir dados de forma tabulada.
 
-## Quando não usar
+<br />
 
+## Quando não usar:
 - For necessário interagir/realizar uma ação com o conteúdo apresentado na tabela.
 
 ---
@@ -33,9 +35,8 @@ Tables são componentes utilizados para exibir e organizar conteúdo, facilitand
 <PreviewBuilder
 	:args
 	:component="CdsTable"
-	:events="cdsTableEvents"
-  :items
-  :fields
+	:events
+	with-background
 />
 
 ---
@@ -65,15 +66,8 @@ Tables são componentes utilizados para exibir e organizar conteúdo, facilitand
 
 ---
 
-## Figma
-<!-- 
-<FigmaFrame
-	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
-/> -->
-
 <script setup>
 import { ref } from 'vue';
-const args = ref({});
 import CdsTable from '@/components/Table.vue';
 
 const fields = [
@@ -119,7 +113,12 @@ const items = [
 	},
 ];
 
-const cdsTableEvents = [
+const events = [
 	'update:modelValue'
 ];
+
+const args = ref({
+	items,
+	fields
+});
 </script>

@@ -3,7 +3,6 @@
 		v-if="tableData.value.length"
 		:fields="tableFields"
 		:items="tableData"
-		:no-wrap="section === 'props' ? false : true"
 		transparent
 	>
 		<template #table-item="{ data, field }">

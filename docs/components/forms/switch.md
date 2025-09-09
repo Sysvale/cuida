@@ -29,7 +29,7 @@ Switches são componentes utilizados para ativar ou desativar configurações ou
 <PreviewBuilder
 	:args
 	:component="CdsSwitch"
-	:events="cdsSwitchEvents"
+	:events
 />
 
 ---
@@ -67,10 +67,10 @@ Switches são componentes utilizados para ativar ou desativar configurações ou
 
 <script setup>
 import { ref } from 'vue';
-const args = ref({});
 import CdsSwitch from '@/components/Switch.vue';
+const args = ref({});
 
-const cdsSwitchEvents = [
+const events = [
 	'update:modelValue'
 ];
 </script>

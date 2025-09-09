@@ -91,8 +91,8 @@
 			>
 				<CdsImage
 					src="https://i.imgur.com/d842Bek.png"
-					width="100"
-					height="100"
+					:width="300"
+					:height="300"
 				/>
 				Não foi possível gerar uma pré-visualização do arquivo.
 			</div>
@@ -151,6 +151,7 @@ const props = defineProps({
 
 	/**
 	 * Especifica a variante de cor do componente.
+	 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	 */
 	variant: {
 		type: String,

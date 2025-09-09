@@ -1,16 +1,18 @@
-# DropdownButton
+# DropdownButtons
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### DropdownButtons são componentes utilizados para ativar popovers contendo listas de ações.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- Quando precisar agrupar ações sob um mesmo contexto.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
-
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- Em substituição à um Multiselect ou Select.
+- Para exibir filtros
+- Com mais de 5 ações
 
 ---
 
@@ -18,10 +20,11 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ```js
 <CdsDropdownButton
-	variant="green"
+	text="Finalizar solicitação"
+	:items
 	size="md"
-	text="Lorem Ipsum"
-	@click="dropdownButtonClick = true"
+	variant="green"
+	:secondary=true
 />
 ```
 
@@ -32,7 +35,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:args
 	:component="CdsDropdownButton"
-	:events="cdsDropdownButtonEvents"
+	:events
 />
 
 ---
@@ -53,17 +56,35 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Slots
-
-<APITable
-	name="DropdownButton"
-	section="slots"
-/>
-
 <script setup>
+import { ref } from 'vue';
 import CdsDropdownButton from '@/components/DropdownButton.vue';
 
-const cdsDropdownButtonEvents = [
-	'dropdownButton-click'
+const events = [
+	'click',
+	'action-click'
 ];
+
+const items = ref([
+	{
+		name: 'Cancelar solicitação',
+		icon: 'block-outline',
+	},
+	{
+		name: 'Indeferir solicitação',
+		icon: 'alert-outline',
+	},
+	{
+		name: 'Deferir solicitação',
+		icon: 'check-outline',
+	},
+]);
+
+const args = ref({
+	text: 'Finalizar solicitação',
+	items: items,
+	size: 'md',
+	variant: 'green',
+	secondary: true,
+});
 </script>

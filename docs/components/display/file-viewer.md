@@ -1,16 +1,22 @@
 # FileViewer
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+###  FileViewer é um componente que permite pré-visualizar ou fazer download de um arquivo.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- Quando for necessário apresentar uma imagem ao usuário, possibilitando que ele visualize sem a necessidade de baixá-la.
+- Quando for necessário apresentar um arquivo ao usuário e permitir que ele faça o download.
+- Para apresentar pré-visualizações de arquivos de imagem antes de baixar.
+- Quando o usuário precisa revisar rapidamente um arquivo sem abrir um aplicativo separado.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
-
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- Quando for mais conveniente para o usuário ver a imagem diretamente sem precisar clicar no componente. Nesse caso, use o componente Image.
+- Quando o conteúdo não necessita de interatividade, como um ícone simples ou uma miniatura sem funcionalidade adicional.
+- Para arquivos muito grandes que podem demorar para carregar na pré-visualização. Nesse caso, forneça apenas a opção de download.
+- Quando a pré-visualização pode comprometer a segurança ou privacidade dos dados contidos no arquivo.
 
 ---
 
@@ -32,7 +38,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:args
 	:component="CdsFileViewer"
-	:events="cdsFileViewerEvents"
+	:events
 />
 
 ---
@@ -53,17 +59,18 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Slots
-
-<APITable
-	name="FileViewer"
-	section="slots"
-/>
-
 <script setup>
+import { ref } from 'vue';
 import CdsFileViewer from '@/components/FileViewer.vue';
 
-const cdsFileViewerEvents = [
-	'fileViewer-click'
+const events = [
+	'close',
+	'download-click'
 ];
+
+const args = ref({
+	label: 'Comprovante de residência',
+	fileUrl: "https://images.pexels.com/photos/1254140/pexels-photo-1254140.jpeg",
+	variant: 'green',
+});
 </script>

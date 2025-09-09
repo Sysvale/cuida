@@ -1,14 +1,17 @@
 # Dropdown
 
-Dropdown são componentes utilizados para ativar popovers contendo filtros para listas e views.
+### Dropdown são componentes utilizados para ativar popovers contendo filtros para listas e views.
+---
+<br />
 
-### Quando usar
-
+## Quando usar:
 - Para utilizar com filtros.
 - Houver popovers contendo opções de filtragem.
 
-### Quando não usar
 
+<br />
+
+## Quando não usar:
 - Em substituição à um Multiselect ou Select.
 
 ---
@@ -30,8 +33,10 @@ Dropdown são componentes utilizados para ativar popovers contendo filtros para 
 <PreviewBuilder
 	:args
 	:component="CdsDropdown"
-	:events="cdsDropdownEvents"
-/>
+	:events="events"
+>
+	<p>Slot do dropdown do Dropdown</p>
+</PreviewBuilder>
 
 ---
 
@@ -58,20 +63,16 @@ Dropdown são componentes utilizados para ativar popovers contendo filtros para 
 	section="slots"
 />
 
----
-
-## Figma
-
-<FigmaFrame
-	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
-/>
-
 <script setup>
 import { ref } from 'vue';
-const args = ref({});
 import CdsDropdown from '@/components/Dropdown.vue';
 
-const cdsDropdownEvents = [
+const events = [
 	'click'
 ];
+
+const args = ref({
+	label: 'Idade',
+	content: '0 a 120 anos',
+});
 </script>

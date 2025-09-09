@@ -1,16 +1,19 @@
 # Wizard
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### Wizards são componentes utilizados para um processo passo a passo que permite ao usuário inserir informações em uma ordem prescrita e na qual as etapas subsequentes podem depender das informações inseridas nas etapas anteriores.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- Quando precisar completar etapas em uma determinada sequência.
+- For necessário exibir informações em  blocos para simplificar o fluxo.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
-
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- Quando o processo não for tão complexo, não havendo necessidade de divisão em etapas.
+- Quando houver mais de três etapas, deve se considerar dividir em mais processos.
+- Quando não houver necessidade de guiar o usuário numa sequência.
 
 ---
 
@@ -28,11 +31,73 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 ---
 
 ## Preview
+<pre>{{args}}</pre>
+<PreviewContainer>
+	<CdsWizard
+		v-bind="args"
+		v-on="internalEvents"
+		@step-change="(value) => args.activeStep = value"
+		@next-action="(value) => args.activeStep = value.nextStep"
+	>
+		<template #step-1>
+			<div style="height: 400px; gap: 16px; display: flex; flex-direction: column;">
+				<CdsTextInput
+					fluid
+					label="Nome"
+				/>
+				<CdsTextInput
+					fluid
+					label="Sobrenome"
+				/>
+				<CdsTextInput
+					fluid
+					label="Nome da mãe"
+				/>
+			</div>
+		</template>
+		<template #step-2>
+			<div style="height: 400px; gap: 16px; display: flex; flex-direction: column;">
+				<CdsTextInput
+					fluid
+					label="CEP"
+				/>
+				<CdsTextInput
+					fluid
+					label="Rua"
+				/>
+				<CdsTextInput
+					fluid
+					label="Bairro"
+				/>
+				<CdsTextInput
+					fluid
+					label="Cidade"
+				/>
+			</div>
+		</template>
+		<template #step-3>
+			<div style="height: 400px; gap: 16px; display: flex; flex-direction: column;">
+				<CdsTextInput
+					fluid
+					label="Modalidade"
+				/>
+				<CdsTextInput
+					fluid
+					label="URL do site"
+				/>
+				<CdsTextInput
+					fluid
+					label="Informação Complementar"
+				/>
+			</div>
+		</template>
+	</CdsWizard>
+	<LogBuilder ref="logBuilderRef" :events />
+</PreviewContainer>
 
-<PreviewBuilder
+<PlaygroundBuilder
 	:args
-	:component="CdsWizard"
-	:events="cdsWizardEvents"
+	component="Wizard"
 />
 
 ---
@@ -61,9 +126,42 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref, useTemplateRef, onMounted } from 'vue';
 import CdsWizard from '@/components/Wizard.vue';
+import CdsTextInput from '@/components/TextInput.vue';
 
-const cdsWizardEvents = [
-	'wizard-click'
+const logBuilder = useTemplateRef('logBuilderRef');
+
+const events = [
+	'step-change',
+	'cancel-action',
+	'next-action'
 ];
+
+const internalEvents = ref({});
+
+const steps = ref([
+	{
+		title: 'Informações gerais',
+		subtitle: 'Insira as informações de identificação',
+	},
+	{
+		title: 'Endereço de entrega',
+	},
+	{
+		title: 'Informações complementares',
+		subtitle: 'Adicione informações complementares para triagem',
+		image: 'https://static.vecteezy.com/system/resources/previews/011/537/753/non_2x/box-empty-state-single-isolated-icon-with-flat-style-free-vector.jpg',
+	},
+]);
+
+const args = ref({
+	steps,
+	activeStep: 0,
+	nextButtonVariant: 'blue',
+});
+
+onMounted(() => {
+	internalEvents.value = logBuilder.value.createEventListeners();
+});
 </script>

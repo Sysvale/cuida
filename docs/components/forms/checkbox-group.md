@@ -1,16 +1,17 @@
 # CheckboxGroup
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### CheckboxGroups são componentes de formulário que permitem seleções binárias e múltiplas.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- Quando precisar de um componente de formulário para seleções binárias com várias opções.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
+## Quando não usar:
+- Quando for preciso que o efeito da interação com o Checkbox seja imediato. Checkboxes devem ser usados sempre em conjunto com um botão de submissão. Para contornar casos como esse, use Switches.
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
 ---
 
@@ -18,10 +19,8 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ```js
 <CdsCheckboxGroup
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="checkboxGroupClick = true"
+	v-model="value"
+	label="CheckboxGroup"
 />
 ```
 
@@ -32,7 +31,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:args
 	:component="CdsCheckboxGroup"
-	:events="cdsCheckboxGroupEvents"
+	:events
 />
 
 ---
@@ -53,17 +52,33 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Slots
-
-<APITable
-	name="CheckboxGroup"
-	section="slots"
-/>
-
 <script setup>
+	import { ref } from 'vue';
 import CdsCheckboxGroup from '@/components/CheckboxGroup.vue';
 
-const cdsCheckboxGroupEvents = [
-	'checkboxGroup-click'
+const events = [
+	'update:modelValue',
 ];
+
+const args = ref({
+	label: 'Checkbox Group',
+	modelValue: ['test-1'],
+	state: 'default',
+	options: [
+		{
+			label: 'Teste 1',
+			value: 'test-1',
+		},
+		{
+			label: 'Teste 2',
+			value: 'test-2',
+		},
+		{
+			label: 'Teste 3',
+			value: 'test-3',
+		},
+	],
+	disabled: false,
+	variant: 'green',
+});
 </script>

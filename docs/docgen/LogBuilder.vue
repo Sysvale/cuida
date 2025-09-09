@@ -117,7 +117,7 @@ export type LogBuilderType = typeof import("./LogBuilder.vue")["default"];
 	margin-bottom: 4px;
 	font-weight: 650;
 	bottom: -4px;
-	z-index: 9999;
+	z-index: 2;
 }
 
 .log-container {
