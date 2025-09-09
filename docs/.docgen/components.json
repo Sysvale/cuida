@@ -12670,6 +12670,13 @@
       {
         "name": "state",
         "description": "Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.",
+        "tags": {},
+        "values": [
+          "default",
+          "valid",
+          "loading",
+          "invalid"
+        ],
         "type": {
           "name": "string"
         },
@@ -13602,6 +13609,19 @@
       {
         "name": "variant",
         "description": "Variante dos botões e do spinner",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },

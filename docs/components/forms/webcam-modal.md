@@ -1,16 +1,22 @@
 # WebcamModal
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### Um componente para capturar fotos diretamente da webcam do dispositivo, ao capturar uma foto o componente emite um File.
 
-### Quando usar
+---
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
+## Quando usar:
+- É necessário capturar uma imagem diretamente do dispositivo do usuário, como para envio de documentos ou selfies.
+- Deseja-se integrar a captura de imagens com outros fluxos do sistema sem exigir uma aplicação externa.
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+<br />
+
+## Quando não usar:
+- Não há acesso a permissões de câmera no dispositivo do usuário (como em alguns navegadores ou ambientes com restrições).
+- É necessário capturar vídeos em vez de imagens estáticas.
+- A interface do usuário exige múltiplas interações modais (cascatas ou modais aninhados).
+
 
 ---
 
@@ -18,10 +24,9 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ```js
 <CdsWebcamModal
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="webcamModalClick = true"
+	v-model="showModal"
+	title="Tirar uma foto"
+	variant="dark"
 />
 ```
 
@@ -32,7 +37,9 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:args
 	:component="CdsWebcamModal"
-	:events="cdsWebcamModalEvents"
+	:events
+	with-trigger
+	@trigger-click="args.modelValue = !args.modelValue"
 />
 
 ---
@@ -53,17 +60,16 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Slots
-
-<APITable
-	name="WebcamModal"
-	section="slots"
-/>
-
 <script setup>
+import { ref } from 'vue';
 import CdsWebcamModal from '@/components/WebcamModal.vue';
 
-const cdsWebcamModalEvents = [
-	'webcamModal-click'
+const events = [
+	'update:model-value',
+	'on-take-photo'
 ];
+
+const args = ref({
+	variant: 'green',
+});
 </script>

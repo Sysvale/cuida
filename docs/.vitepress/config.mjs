@@ -71,9 +71,9 @@ export default defineConfig({
 						{ text: 'StepperInput', link: '/components/forms/stepper-input' },
 						{ text: 'Switch <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/forms/switch' },
 						{ text: 'TextArea <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/forms/text-area' },
-						{ text: 'TextInput', link: '/components/forms/text-input' },
+						{ text: 'TextInput <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/forms/text-input' },
 						{ text: 'TimeInput', link: '/components/forms/time-input' },
-						{ text: 'WebcamModal', link: '/components/forms/webcam-modal' },
+						{ text: 'WebcamModal <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/forms/webcam-modal' },
 						{ text: 'Tile', link: '/components/containers/tile' },
 					]
 				},

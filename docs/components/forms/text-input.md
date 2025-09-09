@@ -1,22 +1,27 @@
 # TextInput
 
-TextInputs permitem que os usuários insiram texto em uma interface.
+### TextInputs permitem que os usuários insiram texto em uma interface
+---
+<br />
 
-### Quando usar
-
+## Quando usar:
 - Necessitar de um campo de texto para inserir informações.
 
-### Quando não usar
+<br />
 
+## Quando não usar:
 - O dado a ser utilizado no componente for numérico.
 - Houver a necessidade de selecionar múltiplos itens.
+
 
 ---
 
 ## Uso
 
 ```js
-<CdsTextInput />
+<CdsTextInput
+	v-model="inputValue"
+/>
 ```
 
 ---
@@ -26,7 +31,7 @@ TextInputs permitem que os usuários insiram texto em uma interface.
 <PreviewBuilder
 	:args
 	:component="CdsTextInput"
-	:events="cdsTextInputEvents"
+	:events
 />
 
 ---
@@ -47,27 +52,13 @@ TextInputs permitem que os usuários insiram texto em uma interface.
 />
 <br />
 
-## Slots
-
-<APITable
-	name="TextInput"
-	section="slots"
-/>
-
 ---
-
-## Figma
-
-<FigmaFrame
-	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
-/>
 
 <script setup>
 import { ref } from 'vue';
-const args = ref({});
 import CdsTextInput from '@/components/TextInput.vue';
 
-const cdsTextInputEvents = [
+const events = [
 	'update:modelValue',
 	'click',
 	'change',
@@ -75,4 +66,29 @@ const cdsTextInputEvents = [
 	'blur',
 	'keydown'
 ];
+
+const supportingText = ['Essa informação vai ser usada para recuperar sua conta caso esqueça a senha.', 'O text deve ter até 100 caracteres'];
+
+const args = ref({
+	inputType: 'text',
+	disabled: false,
+	state: 'default',
+	required: false,
+	fluid: false,
+	mobile: false,
+	floatingLabel: false,
+	lazy: false,
+	disableAutocomplete: false,
+	label: 'Texto',
+	placeholder: 'Digite algo...',
+	errorMessage: 'Campo obrigatório',
+	mask: null,
+	tooltip: '',
+	tooltipIcon: 'info-outline',
+	linkText: '',
+	linkUrl: '',
+	supportingText: 'supportingText',
+	supportLink: '',
+	supportLinkUrl: '',
+});
 </script>

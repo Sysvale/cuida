@@ -188,6 +188,7 @@ const props = defineProps({
 
 	/**
 	 * Variante dos botões e do spinner
+	 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	 */
 	variant: {
 		type: String,
