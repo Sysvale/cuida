@@ -1,13 +1,15 @@
 # PasswordInput
 
-PasswordInputs permitem que os usuários insiram caracteres sensíveis na interface.
+### PasswordInputs permitem que os usuários insiram caracteres sensíveis na interface.
+---
+<br />
 
-### Quando usar
-
+## Quando usar:
 - Necessitar de um campo de texto para inserir informações sensíveis, como uma senha.
 
-### Quando não usar
+<br />
 
+## Quando não usar:
 - O dado a ser utilizado no componente for um dado comum (Exemplo: nome ou idade).
 
 ---
@@ -15,7 +17,9 @@ PasswordInputs permitem que os usuários insiram caracteres sensíveis na interf
 ## Uso
 
 ```js
-<CdsPasswordInput />
+<CdsPasswordInput
+	v-model="inputValue"
+/>
 ```
 
 ---
@@ -25,7 +29,7 @@ PasswordInputs permitem que os usuários insiram caracteres sensíveis na interf
 <PreviewBuilder
 	:args
 	:component="CdsPasswordInput"
-	:events="cdsPasswordInputEvents"
+	:events
 />
 
 ---
@@ -55,18 +59,13 @@ PasswordInputs permitem que os usuários insiram caracteres sensíveis na interf
 
 ---
 
-## Figma
-
-<FigmaFrame
-	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
-/>
-
 <script setup>
 import { ref } from 'vue';
-const args = ref({});
 import CdsPasswordInput from '@/components/PasswordInput.vue';
 
-const cdsPasswordInputEvents = [
+const events = [
 	'update:modelValue'
 ];
+
+const args = ref({});
 </script>

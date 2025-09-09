@@ -74,6 +74,7 @@ export default {
 	props: {
 		/**
 		 * Tamanho dos avatares do AvatarGroup
+		 * @values sm, md, lg
 		 */
 		size: {
 			type: String,

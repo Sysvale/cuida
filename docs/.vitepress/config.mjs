@@ -53,18 +53,18 @@ export default defineConfig({
 						{ text: 'FileInput', link: '/components/forms/file-input' },
 						{ text: 'FilterSelect', link: '/components/forms/filter-select' },
 						{ text: 'FloatingActionButton', link: '/components/forms/floating-action-button' },
-						{ text: 'IconButton', link: '/components/forms/icon-button' },
+						{ text: 'IconButton <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/forms/icon-button' },
 						{ text: 'InlineDateInput', link: '/components/forms/inline-date-input' },
 						{ text: 'Label <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/forms/label' },
 						{ text: 'MonthAndYearPicker', link: '/components/forms/month-and-year-picker' },
 						{ text: 'MultiFileInput', link: '/components/forms/multi-file-input' },
 						{ text: 'Multiselect', link: '/components/forms/multiselect' },
-						{ text: 'NumberInput', link: '/components/forms/number-input' },
-						{ text: 'PasswordInput', link: '/components/forms/password-input' },
-						{ text: 'PinInput', link: '/components/forms/pin-input' },
-						{ text: 'Radio', link: '/components/forms/radio' },
-						{ text: 'RadioButtonGroup', link: '/components/forms/radio-button-group' },
-						{ text: 'SearchInput', link: '/components/forms/search-input' },
+						{ text: 'NumberInput <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/forms/number-input' },
+						{ text: 'PasswordInput <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/forms/password-input' },
+						{ text: 'PinInput <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/forms/pin-input' },
+						{ text: 'Radio <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/forms/radio' },
+						{ text: 'RadioButtonGroup <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/forms/radio-button-group' },
+						{ text: 'SearchInput <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/forms/search-input' },
 
 						{ text: 'Select', link: '/components/forms/select' },
 						{ text: 'Slider', link: '/components/forms/slider' },
@@ -74,7 +74,7 @@ export default defineConfig({
 						{ text: 'TextInput <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/forms/text-input' },
 						{ text: 'TimeInput', link: '/components/forms/time-input' },
 						{ text: 'WebcamModal <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/forms/webcam-modal' },
-						{ text: 'Tile', link: '/components/containers/tile' },
+						{ text: 'Tile <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/forms/tile' },
 					]
 				},
 				{
@@ -242,9 +242,10 @@ export default defineConfig({
 
 		socialLinks: [
 			{ icon: 'github', link: 'https://github.com/Sysvale/cuida' },
-			{ icon: 'npm', link: 'https://github.com/Sysvale/cuida' },
-			{ icon: 'figma', link: 'https://github.com/Sysvale/cuida' },
-			{ icon: 'chromatic', link: 'https://github.com/Sysvale/cuida' }
+			{ icon: 'npm', link: 'https://www.npmjs.com/package/@sysvale/cuida' },
+			{ icon: 'figma', link: 'https://www.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=3-0&p=f' },
+			{ icon: 'chromatic', link: 'https://www.chromatic.com/library?appId=6168a1779cac8c003ab99c2d' },
+			{ icon: 'storybook', link: 'https://main--6168a1779cac8c003ab99c2d.chromatic.com/?path=/docs/funda%C3%A7%C3%A3o-princ%C3%ADpios--page' }
 		],
 
 		footer: {

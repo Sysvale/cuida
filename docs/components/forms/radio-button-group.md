@@ -1,16 +1,24 @@
 # RadioButtonGroup
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### RadioButtonsGroup são radio buttons customizados para facilitar a seleção e feedback.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- As opções que o componente busca prover são mutuamente exclusivas.
+- For necessário utilizar um ```<input type="radio"``` />.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
+## Quando não usar:
+- Duas ou mais opções puderem ser selecionadas ao mesmo tempo.
+- Houver 4 ou mais opções. Prefira Dropdowns nesses casos.
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Obs.:
+- Você pode desabilitar cada um dos radio buttons passando a propriedade ```disable: true```, no respectivo objeto
+no array de opções. Caso você queira desabilitar todo o grupo, você pode setar a prop ```disabled``` como true no componente.
+
+<br />
 
 ---
 
@@ -18,10 +26,8 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ```js
 <CdsRadioButtonGroup
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="radioButtonGroupClick = true"
+	:options="options"
+	:value="value"
 />
 ```
 
@@ -32,7 +38,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:args
 	:component="CdsRadioButtonGroup"
-	:events="cdsRadioButtonGroupEvents"
+	:events
 />
 
 ---
@@ -53,17 +59,50 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Slots
-
-<APITable
-	name="RadioButtonGroup"
-	section="slots"
-/>
+---
 
 <script setup>
+import { ref } from 'vue';
 import CdsRadioButtonGroup from '@/components/RadioButtonGroup.vue';
 
-const cdsRadioButtonGroupEvents = [
-	'radioButtonGroup-click'
+const events = [
+	'update:modelValue',
 ];
+
+const options = [
+	{
+		text: 'Opção desabilitada',
+		label: 'Opção desabilitada',
+		value: 'value1',
+		disabled: true,
+	},
+	{
+		text: 'Opção habilitada 1',
+		label: 'Opção habilitada 1',
+		body: 'Adicione um texto descritivo/explicativo referente a essa opção',
+		value: 'value2',
+	},
+	{
+		text: 'Opção habilitada 2',
+		label: 'Opção habilitada 2',
+		value: 'value3',
+	},
+];
+
+const args = ref({
+	options,
+	disabled: false,
+	required: false,
+	variant: 'green',
+	state: 'default',
+	errorMessage: 'Valor inválido',
+	inline: false,
+	label: 'Label',
+	supportLink: '',
+	supportLinkUrl: '',
+	tooltip: '',
+	tooltipIcon: 'info-outline',
+	allowsExpand: false,
+	fluid: false,
+});
 </script>

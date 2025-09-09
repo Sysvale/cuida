@@ -53,7 +53,7 @@ export default {
 			if (this.fluid) {
 				return {
 					'--width': '100%',
-					'--height': `${this.height}px`
+					'--height': '100%'
 				};
 			}
 

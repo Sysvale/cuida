@@ -2,6 +2,8 @@ import DefaultTheme from 'vitepress/theme-without-fonts';
 import Layout from './Layout.vue';
 import './style.css';
 
+import { facade } from 'vue-input-facade';
+
 import Cdstip from '../../../src/utils/directives/cdstip';
 import CdsFloatify from '../../../src/utils/directives/cdsFloatify';
 import CdsClickOutside from '../../../src/utils/directives/cdsClickOutside';
@@ -38,6 +40,7 @@ export default {
 	Layout: Layout,
 	enhanceApp({ app }) {
 		app.directive("cdstip", Cdstip);
+		app.directive("facade", facade);
 		app.directive("cds-click-outside", CdsClickOutside);
 		app.directive("cds-floatify", CdsFloatify);
 

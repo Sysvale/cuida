@@ -20,7 +20,7 @@
 			v-if="loading"
 			:class="computedLoaderClass"
 		>
-			<skeleton fluid	/>
+			<Skeleton fluid	/>
 		</div>
 		<div v-else>
 			<div :class="computedImageClass">
@@ -72,6 +72,7 @@ const props = defineProps({
 	},
 	/**
 	 * Especifica o tamanho do botão. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
+	 * @values sm, md, lg
 	 */
 	size: {
 		type: String,

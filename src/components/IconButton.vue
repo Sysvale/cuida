@@ -39,6 +39,7 @@ export default {
 	props: {
 		/**
 		 * Especifica o tamanho do botão. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
+		 * @values sm, md, lg
 		 */
 		size: {
 			type: String,

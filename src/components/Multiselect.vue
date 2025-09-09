@@ -248,6 +248,7 @@ export default {
 		},
 		/**
 		* Especifica o estado do TextInput. As opções são 'default' e 'invalid'.
+		* @values default, invalid
 		*/
 		state: {
 			type: String,

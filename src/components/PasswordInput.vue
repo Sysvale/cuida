@@ -8,7 +8,7 @@
 				v-else
 				:class="labelDynamicClass"
 			>
-				<div
+				<CdsFlexbox
 					class="password-input__label__content"
 					for="cds-password-input"
 				>
@@ -28,7 +28,7 @@
 						width="20"
 						class="password-input__label__icon"
 					/>
-				</div>
+				</CdsFlexbox>
 			</label>
 		</span>
 		<div :class="stepperInputDynamicClass">
@@ -68,6 +68,7 @@
 import CdsIcon from './Icon.vue';
 import Cdstip from '../utils/directives/cdstip';
 import CdsClickable from './Clickable.vue';
+import CdsFlexbox from './Flexbox.vue';
 import { generateKey } from '../utils';
 
 
@@ -80,6 +81,7 @@ export default {
 	components: {
 		CdsIcon,
 		CdsClickable,
+		CdsFlexbox
 	},
 
 	props: {
@@ -106,6 +108,7 @@ export default {
 		},
 		/**
 		 * Especifica o estado do PasswordInput. As opções são 'default', 'valid' e 'invalid'.
+		 * @values default, valid, loading, invalid
 		 */
 		state: {
 			type: String,

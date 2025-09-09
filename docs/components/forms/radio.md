@@ -1,13 +1,15 @@
 # Radio
 
-O Radio permite que os usuários selecionem uma opção de um conjunto.
+### O Radio permite que os usuários selecionem uma opção de um conjunto.
+---
+<br />
 
-### Quando usar
-
+## Quando usar:
 - As opções que o componente busca prover são mutuamente exclusivas.
 
-### Quando não usar
+<br />
 
+## Quando não usar:
 - Duas ou mais opções puderem ser selecionadas ao mesmo tempo.
 - Houver 4 ou mais opções. Você pode usar o componente `Dropdown` nesses casos.
 
@@ -20,9 +22,7 @@ O Radio permite que os usuários selecionem uma opção de um conjunto.
 	v-model="selected"
 	value="option-1"
 	label="Opção 1"
->
-	Opção de destaque
-</CdsRadio>
+/>
 ```
 
 ---
@@ -32,7 +32,7 @@ O Radio permite que os usuários selecionem uma opção de um conjunto.
 <PreviewBuilder
 	:args
 	:component="CdsRadio"
-	:events="cdsRadioEvents"
+	:events
 />
 
 ---
@@ -62,18 +62,17 @@ O Radio permite que os usuários selecionem uma opção de um conjunto.
 
 ---
 
-## Figma
-
-<FigmaFrame
-	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
-/>
-
 <script setup>
 import { ref } from 'vue';
-const args = ref({});
 import CdsRadio from '@/components/Radio.vue';
 
-const cdsRadioEvents = [
+const events = [
 	'update:modelValue'
 ];
+
+const args = ref({
+	value: 'option-1',
+	label: 'Opção 1',
+	disabled: false,
+});
 </script>

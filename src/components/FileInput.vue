@@ -147,6 +147,7 @@ export default {
 		},
 		/**
 		 * Define o tamanho do input [lg, md, sm]
+		 * @values sm, md, lg
 		 */
 		size: {
 			type: String,
@@ -154,6 +155,7 @@ export default {
 		},
 		/**
 		 * Especifica o estado do Select. As opções são 'default', 'valid', 'loading' e 'invalid'.
+		 * @values default, valid, loading, invalid
 		 */
 		state: {
 			type: String,

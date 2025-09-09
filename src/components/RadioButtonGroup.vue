@@ -131,6 +131,7 @@ const props = defineProps({
 	},
 	/**
 	* Especifica o estado do RadioButtonGroup. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	* @values default, valid, loading, invalid
 	*/
 	state: {
 		type: String,

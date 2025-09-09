@@ -134,6 +134,7 @@ const props = defineProps({
 	},
 	/**
 	 * Especifica o estado do Select. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	 * @values default, valid, loading, invalid
 	 */
 	state: {
 		type: String,

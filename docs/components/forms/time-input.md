@@ -1,16 +1,16 @@
 # TimeInput
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### TimeInputs são componentes utilizados para inserir horários específicos no formato simples: hora e minutos.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- For necessário definir horários de eventos, agendamentos, alarmes e etc…
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
-
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- For necessário mostrar opções disponíveis de horários para seleção.
 
 ---
 
@@ -18,10 +18,8 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ```js
 <CdsTimeInput
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="timeInputClick = true"
+	v-model="inputValue"
+	label="Horário"
 />
 ```
 
@@ -32,7 +30,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:args
 	:component="CdsTimeInput"
-	:events="cdsTimeInputEvents"
+	:events
 />
 
 ---
@@ -53,17 +51,16 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Slots
-
-<APITable
-	name="TimeInput"
-	section="slots"
-/>
-
 <script setup>
+import { ref } from 'vue';
 import CdsTimeInput from '@/components/TimeInput.vue';
 
-const cdsTimeInputEvents = [
-	'timeInput-click'
+const events = [
+	'update:modelValue'
 ];
+
+const args = ref({
+	label: 'Horário',
+	modelValue: ''
+});
 </script>

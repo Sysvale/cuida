@@ -190,6 +190,7 @@ export default {
 		},
 		/**
 		 * Propriedade utilizada para indicar o estado de validação do componente.
+		 * @values default, valid, loading, invalid
 		 */
 		state: {
 			type: String,

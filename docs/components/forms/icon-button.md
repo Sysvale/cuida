@@ -1,14 +1,21 @@
 # IconButton
 
-IconButtons são componentes que permitem que o usuário execute uma ação com um toque.
+### IconButtons são componentes que permitem que o usuário execute uma ação com um toque.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
+seja em diálogos, janelas modais, formulários, cards, etc.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface, seja em diálogos, janelas modais, formulários, cards, etc.
 
-### Quando não usar
+<br />
 
-- For necessário dar a opção de executar uma ação como um detalhe pequeno na interface. Nesse caso, recomendamos o uso de links.
+## Quando não usar:
+- For necessário dar a opção de executar uma ação como um detalhe pequeno na interface.
+Nesse caso, recomendamos o uso de links.
+
+<br />
 
 ---
 
@@ -28,7 +35,7 @@ IconButtons são componentes que permitem que o usuário execute uma ação com 
 <PreviewBuilder
 	:args
 	:component="CdsIconButton"
-	:events="cdsIconButtonEvents"
+	:events
 />
 
 ---
@@ -49,27 +56,22 @@ IconButtons são componentes que permitem que o usuário execute uma ação com 
 />
 <br />
 
-## Slots
-
-<APITable
-	name="IconButton"
-	section="slots"
-/>
-
 ---
-
-## Figma
-
-<FigmaFrame
-	src="https://embed.figma.com/design/J5fTswomlHu7RXk1gwbUq6/Cuida?node-id=2040-370&embed-host=share"
-/>
-
 <script setup>
 import { ref } from 'vue';
-const args = ref({});
 import CdsIconButton from '@/components/IconButton.vue';
 
-const cdsIconButtonEvents = [
+const events = [
 	'cds-click'
 ];
+
+const args = ref({
+	size: 'sm',
+	icon: 'trash-outline',
+	variant: 'white',
+	tooltipText: 'Excluir',
+	disabled: false,
+	feedbackOnClick: true,
+	feedbackIcon: 'check-outline',
+});
 </script>
