@@ -40,8 +40,10 @@
 						v-model="internalSearch"
 						hide-label
 						fluid
+						:placeholder="searchPlaceholder"
 						:disabled="loading"
 						@update:model-value="(value) => handleSearchInput(value, 'input')"
+						@keydown.enter.prevent="handleSearchInput(internalSearch, 'button')"
 					/>
 					<CdsButton
 						v-if="withSearchButton"
@@ -287,6 +289,13 @@ const props = defineProps({
 		default: false,
 	},
 	/**
+	* Especifica o placeholder da barra de busca.
+	*/
+	searchPlaceholder: {
+		type: String,
+		default: 'Buscar...',
+	},
+	/**
 	* Especifica se deve ser mostrado botão junto à barra de busca.
 	*/
 	withSearchButton: {
@@ -388,9 +397,11 @@ watch(() => props.customFieldsList, () => {
 	internalCustomFieldsList.value = cloneDeep(props.customFieldsList);
 }, { immediate: true });
 
-watch(() => props.loading, async (isLoading) => {
-	if (searchInputRef.value) {
-		await searchInputRef.value.focus()
+watch(() => props.loading, (isLoading) => {
+	if (!isLoading && searchInputRef.value) {
+		nextTick(() => {
+			searchInputRef.value.focus()
+		});
 	}
 
 	if (!isLoading)	resolveInitialPreset();
