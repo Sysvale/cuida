@@ -13,7 +13,6 @@
 			:floating-label="floatingLabel || mobile"
 			@blur="handleTypeUpdate"
 			@keydown.enter.prevent="handleTypeUpdate"
-			@keydown.tab.prevent="handleTypeUpdate"
 		/>
 
 		<CdsBaseInput
@@ -318,8 +317,8 @@ const props = defineProps({
 	* Define a url a ser acessada no clique do link de suporte.
 	*/
 	supportLinkUrl: {
-		type: String,
-		default: 'https://cuida.framer.wiki/',
+		type: [String, null],
+		default: null,
 	},
 	/**
 	* Define o modo de interação com o DateInput. Quando definido como 'typing', o componente permite apenas
@@ -413,11 +412,18 @@ const dateInputContainerWidth = computed(() => {
 /* WATCHERS */
 watch(model, (newValue) => {
 	if (!newValue) {
-		startDate.value = null;
-		endDate.value = null;
-		internalValue.value = '';
+		clearDates();
 		currentDate.value = DateTime.now().setLocale('pt-BR');
 		return;
+	}
+
+	const temporaryDate = DateTime.fromISO(newValue);
+
+	if (!temporaryDate.isValid && (typeof newValue === 'string')) {
+		clearDates();
+		model.value = null;
+		console.warn('Data informada é inválida');
+		throw new Error('Invalid DateTime');
 	}
 
 	if (typeof newValue === 'string') {
@@ -756,6 +762,12 @@ function clearSelection() {
 	model.value = props.range ? { start: null, end: null } : null;
 }
 
+function clearDates() {
+	startDate.value = null;
+	endDate.value = null;
+	internalValue.value = '';
+}
+
 function getDMYFormat() {
 	if (props.range && startDate.value && endDate.value) {
 		return {
@@ -844,8 +856,21 @@ function toggleYearPickerDisplay() {
 }
 
 function handleTypeUpdate() {
-	model.value =  DateTime.fromFormat(internalValue.value, 'dd/MM/yyyy')
-		.setLocale('pt-BR').toFormat('yyyy-MM-dd');
+	if (!internalValue.value) {
+		model.value = null;
+		return;
+	}
+
+	const parsed = DateTime.fromFormat(internalValue.value, 'dd/MM/yyyy');
+
+	if (!parsed.isValid) {
+		clearDates();
+		model.value = null;
+		console.warn('Data informada é inválida');
+		throw new Error('Invalid DateTime');
+	}
+
+	model.value = parsed.setLocale('pt-BR').toFormat('yyyy-MM-dd');
 }
 
 /* EXPOSE */

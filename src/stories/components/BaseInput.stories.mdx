@@ -55,6 +55,7 @@ export const Template = (args) => ({
 			@focus="logFocus"
 			@blur="logBlur"
 			@keydown="logKeydown"
+			@supportLinkClick="logLinkClick"
 		>
 			<template #trailing-icon2>
 				OPA
@@ -75,6 +76,9 @@ export const Template = (args) => ({
 		},
 		logKeydown(event) {
 			console.info('⚡ %cKeydown emitted: ', 'color: hsl(152, 77.20%, 51.80%);', event);
+		},
+		logLinkClick(event) {
+			console.info('⚡ %clogLinkClick emitted: ', 'color: hsl(152, 77.20%, 51.80%);', event);
 		},
 	},
 	updated() {
