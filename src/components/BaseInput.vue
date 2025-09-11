@@ -1,183 +1,185 @@
 <template>
-	<CdsBaseMobileInput
-		v-if="floatingLabel"
-		ref="mobileInput"
-		v-bind="{...$attrs, ...props}"
-		v-model="internalValue"
-		:has-leading-icon="hasLeadingIcon"
-		:has-trailing-icon="hasTrailingIcon"
-		@click="handleClick"
-		@focus="handleFocus"
-		@blur="handleBlur"
-		@keydown="handleKeydown"
-	>
-		<template #trailing-icon>
-			<slot name="trailing-icon" />
-		</template>
-
-		<template #leading-icon>
-			<slot name="leading-icon" />
-		</template>
-	</CdsBaseMobileInput>
-
-	<template v-else>
-		<template
-			v-if="useHasSlot('label')"
-		>
-			<slot name="label" />
-		</template>
-
-		<CdsLabel
-			v-if="!hideLabelInput"
-			:text="label"
-			:fluid="fluid"
-			:for="componentId"
-			:required="required"
-			:tooltip="tooltip"
-			:tooltip-icon="tooltipIcon"
-			:support-link="supportLink"
-			:support-link-url="supportLinkUrl"
-			@support-link-click="emits('supportLinkClick')"
-		/>
-
-		<div
-			:class="baseInputClass"
+	<div>
+		<CdsBaseMobileInput
+			v-if="floatingLabel"
+			ref="mobileInput"
+			v-bind="{...$attrs, ...props}"
+			v-model="internalValue"
+			:has-leading-icon="hasLeadingIcon"
+			:has-trailing-icon="hasTrailingIcon"
 			@click="handleClick"
+			@focus="handleFocus"
+			@blur="handleBlur"
+			@keydown="handleKeydown"
 		>
-			<div
-				v-if="hasLeadingIcon"
-				class="base-input__leading-icon-container"
+			<template #trailing-icon>
+				<slot name="trailing-icon" />
+			</template>
+	
+			<template #leading-icon>
+				<slot name="leading-icon" />
+			</template>
+		</CdsBaseMobileInput>
+	
+		<template v-else>
+			<template
+				v-if="useHasSlot('label')"
 			>
-				<slot name="leading-icon">
-					<CdsIcon
-						v-if="leadingIcon"
-						height="20"
-						width="20"
-						:name="leadingIcon"
-						class="base-input__icon"
-					/>
-				</slot>
-			</div>
-
-			<textarea
-				v-if="type === 'textarea'"
-				:id="componentId"
-				ref="htmlInput"
-				v-model="internalValue"
+				<slot name="label" />
+			</template>
+	
+			<CdsLabel
+				v-if="!hideLabelInput"
+				:text="label"
+				:fluid="fluid"
+				:for="componentId"
 				:required="required"
-				:placeholder="placeholder"
-				:disabled="disabled"
-				:class="inputClass"
-				:type="type"
-				@focus="handleFocus"
-				@blur="handleBlur"
-				@keydown="handleKeydown"
+				:tooltip="tooltip"
+				:tooltip-icon="tooltipIcon"
+				:support-link="supportLink"
+				:support-link-url="supportLinkUrl"
+				@support-link-click="emits('supportLinkClick')"
 			/>
-
+	
 			<div
-				v-else-if="type === 'date'"
-				:id="componentId"
-				ref="htmlInput"
-				tabindex="0"
-				v-bind="props"
-				:placeholder="placeholder"
-				:disabled="disabled"
-				:class="inputClass"
-				:type="type"
-				:autocomplete="computedAutocompleteProp"
-				@focus="handleFocus"
-				@blur="handleBlur"
-				@keydown="handleKeydown"
-			>
-				<small class="base-input__date-text">{{ internalValue || placeholder }}</small>
-			</div>
-
-			<div 
-				v-else
-				style="width: 100%;"
+				:class="baseInputClass"
+				@click="handleClick"
 			>
 				<div
-					v-if="enableTopContent"
-					class="base-input__top-content"
+					v-if="hasLeadingIcon"
+					class="base-input__leading-icon-container"
 				>
-					<slot name="top-content" />
+					<slot name="leading-icon">
+						<CdsIcon
+							v-if="leadingIcon"
+							height="20"
+							width="20"
+							:name="leadingIcon"
+							class="base-input__icon"
+						/>
+					</slot>
 				</div>
-
-				<input
+	
+				<textarea
+					v-if="type === 'textarea'"
 					:id="componentId"
 					ref="htmlInput"
-					v-bind="props"
 					v-model="internalValue"
 					:required="required"
-					:readonly="readonly"
 					:placeholder="placeholder"
 					:disabled="disabled"
 					:class="inputClass"
-					:autocomplete="computedAutocompleteProp"
 					:type="type"
 					@focus="handleFocus"
 					@blur="handleBlur"
 					@keydown="handleKeydown"
-				>
-			</div>
-
-			<div
-				v-if="isLoading && !disabled"
-				class="base-input__spinner-container"
-			>
-				<CdsSpinner
-					size="sm"
-					variant="blue"
-					class="base-input__icon--spinner-icon"
 				/>
-			</div>
-
-			<div
-				v-if="hasTrailingIcon"
-				class="base-input__trailing-icon-container"
-			>
-				<slot name="trailing-icon">
-					<CdsIcon
-						height="20"
-						width="20"
-						:name="trailingIcon"
-						class="base-input__icon"
-					/>
-				</slot>
-			</div>
-		</div>
-
-		<div
-			v-if="hasError && !disabled"
-			class="base-input__error-text"
-		>
-			{{ errorMessage }}
-		</div>
-
-		<template
-			v-if="supportingText"
-		>
-			<ul
-				v-if="Array.isArray(supportingText)"
-				class="base-input__supporting-text-container"
-			>
-				<li
-					v-for="text in supportingText"
-					:key="text"
-					class="base-input__supporting-text-list"
+	
+				<div
+					v-else-if="type === 'date'"
+					:id="componentId"
+					ref="htmlInput"
+					tabindex="0"
+					v-bind="props"
+					:placeholder="placeholder"
+					:disabled="disabled"
+					:class="inputClass"
+					:type="type"
+					:autocomplete="computedAutocompleteProp"
+					@focus="handleFocus"
+					@blur="handleBlur"
+					@keydown="handleKeydown"
 				>
-					{{ text }}
-				</li>
-			</ul>
-
-			<span
-				v-else
-				class="base-input__supporting-text"
+					<small class="base-input__date-text">{{ internalValue || placeholder }}</small>
+				</div>
+	
+				<div 
+					v-else
+					style="width: 100%;"
+				>
+					<div
+						v-if="enableTopContent"
+						class="base-input__top-content"
+					>
+						<slot name="top-content" />
+					</div>
+	
+					<input
+						:id="componentId"
+						ref="htmlInput"
+						v-bind="props"
+						v-model="internalValue"
+						:required="required"
+						:readonly="readonly"
+						:placeholder="placeholder"
+						:disabled="disabled"
+						:class="inputClass"
+						:autocomplete="computedAutocompleteProp"
+						:type="type"
+						@focus="handleFocus"
+						@blur="handleBlur"
+						@keydown="handleKeydown"
+					>
+				</div>
+	
+				<div
+					v-if="isLoading && !disabled"
+					class="base-input__spinner-container"
+				>
+					<CdsSpinner
+						size="sm"
+						variant="blue"
+						class="base-input__icon--spinner-icon"
+					/>
+				</div>
+	
+				<div
+					v-if="hasTrailingIcon"
+					class="base-input__trailing-icon-container"
+				>
+					<slot name="trailing-icon">
+						<CdsIcon
+							height="20"
+							width="20"
+							:name="trailingIcon"
+							class="base-input__icon"
+						/>
+					</slot>
+				</div>
+			</div>
+	
+			<div
+				v-if="hasError && !disabled"
+				class="base-input__error-text"
 			>
-				{{ supportingText }}
-			</span>
+				{{ errorMessage }}
+			</div>
+	
+			<template
+				v-if="supportingText"
+			>
+				<ul
+					v-if="Array.isArray(supportingText)"
+					class="base-input__supporting-text-container"
+				>
+					<li
+						v-for="text in supportingText"
+						:key="text"
+						class="base-input__supporting-text-list"
+					>
+						{{ text }}
+					</li>
+				</ul>
+	
+				<span
+					v-else
+					class="base-input__supporting-text"
+				>
+					{{ supportingText }}
+				</span>
+			</template>
 		</template>
-	</template>
+	</div>
 </template>
 
 <script setup>

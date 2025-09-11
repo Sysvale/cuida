@@ -382,7 +382,7 @@ export default {
 		height: 100%;
 		width: v-bind(sideSheetWidth);
 		
-		padding: tokens.pa(5);
+		padding: tokens.pa(4);
 		display: grid;
 		grid-template-rows: auto 1fr auto;
 		border-left: 1px solid tokens.$n-30;
