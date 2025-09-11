@@ -413,8 +413,8 @@ function handleBlur() {
 	}
 
 	&--disabled {
-		background-color: tokens.$n-10;
-		pointer-events: none;
+		background-color: tokens.$n-10 !important;
+		pointer-events: none !important;
 	}
 
 	&__icon--plus {

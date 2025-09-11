@@ -1,16 +1,24 @@
 # StepperInput
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### StepperInputs são inputs numéricos com botões de incremento e decremento sempre visíveis.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- For necessário precisar de um input do tipo número.
+- O número a ser adicionado ao StepperInput for pequeno ou de poucos dígitos.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
+## Quando não usar:
+- O dado a ser utilizado no componente não for numérico.
+- O dado a ser utilizado  no componente for muito grande.
+- O dado a ser utilizado no componente não for incremental.
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Observações:
+- A propriedade `width` não tem efeito quando a propriedade `mobile` está configurada para `true`.
+
+<br />
 
 ---
 
@@ -32,7 +40,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:args
 	:component="CdsStepperInput"
-	:events="cdsStepperInputEvents"
+	:events
 />
 
 ---
@@ -61,9 +69,21 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsStepperInput from '@/components/StepperInput.vue';
 
-const cdsStepperInputEvents = [
-	'stepperInput-click'
+const events = [
+	'invalid-number',
+	'step-out-of-bounds',
+	'update:modelValue'
 ];
+
+const args = ref({
+	mobile: false,
+	step: 1,
+	disabled: false,
+	required: true,
+	fluid: false,
+	suffix: '',
+});
 </script>
