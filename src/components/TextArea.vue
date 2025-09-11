@@ -96,8 +96,8 @@ const props = defineProps({
 	* Define a url a ser acessada no clique do link de suporte.
 	*/
 	supportLinkUrl: {
-		type: String,
-		default: 'https://cuida.framer.wiki/',
+		type: [String, null],
+		default: null,
 	},
 	/**
 	 * Especifica se a largura do textarea deve ser fluida.

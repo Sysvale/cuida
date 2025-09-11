@@ -149,8 +149,8 @@ const props = defineProps({
 	* Define a url a ser acessada no clique do link de suporte.
 	*/
 	supportLinkUrl: {
-		type: String,
-		default: 'https://cuida.framer.wiki/',
+		type: [String, null],
+		default: null,
 	},
 	/**
 	* Quando true, o v-model é atualizado com o evento `change` no lugar do `input`.

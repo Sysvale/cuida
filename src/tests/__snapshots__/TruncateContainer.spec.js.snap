@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TruncateContainer.vue > renders correctly 1`] = `
+"<div data-v-f5ae6e5e="" class="truncate-container">
+  <div data-v-f5ae6e5e="" class="truncate-container__content">
+    <!-- @slot Slot padrão utilizado para exibir o conteúdo enviado para o container -->
+    <p>Some content inside the container</p>
+  </div>
+  <!--v-if-->
+  <!--v-if-->
+</div>"
+`;

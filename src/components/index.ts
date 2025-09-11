@@ -113,6 +113,7 @@ import ToastContainer from './ToastContainer.vue';
 import Tooltip from './Tooltip.vue';
 import TopAppBar from './TopAppBar.vue';
 import Truncate from './Truncate.vue';
+import TruncateContainer from './TruncateContainer.vue';
 import PasswordInput from './PasswordInput.vue';
 import WebcamModal from './WebcamModal.vue';
 import Wizard from './Wizard.vue';
@@ -252,6 +253,7 @@ export default {
 		app.component('CdsTimeline', Timeline);
 		app.component('CdsTimelineItem', TimelineItem);
 		app.component('CdsTruncate', Truncate);
+		app.component('CdsTruncateContainer', TruncateContainer);
 		app.component('CdsPasswordInput', PasswordInput);
 		app.component('CdsPieChart', PieChart);
 		app.component('CdsPolarAreaChart', PolarAreaChart);

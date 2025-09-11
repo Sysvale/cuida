@@ -26,26 +26,32 @@
 		</CdsFlexbox>
 
 		<CdsLink
-			v-if="supportLink"
+			v-if="shouldShowLink"
 			:href="supportLinkUrl"
 			:text="supportLink"
 			class="label__link"
 			new-tab
 		/>
+
+		<span
+			v-else
+			class="label__link"
+			@click="emits('supportLinkClick')"
+		>
+			{{ supportLink }}
+		</span>
 	</label>
 </template>
 
 <script setup>
-
-defineOptions({ name: 'Label' });
-
+import { computed } from 'vue';
 import CdsRequiredIndicator from './RequiredIndicator.vue';
 import vCdstip from '../utils/directives/cdstip';
 import CdsLink from './Link.vue';
 import CdsIcon from './Icon.vue';
 import CdsFlexbox from './Flexbox.vue';
 
-defineProps({
+const props = defineProps({
 	/**
 	 * ID de referência ao input.
 	 */
@@ -85,8 +91,8 @@ defineProps({
 	* Define a url a ser acessada no clique do link de suporte.
 	*/
 	supportLinkUrl: {
-		type: String,
-		default: 'https://cuida.framer.wiki/',
+		type: [String, null],
+		default: null,
 	},
 	/**
 	* Exibe asterisco de obrigatório (obs.: não faz a validação)
@@ -104,6 +110,14 @@ defineProps({
 		required: false,
 	},
 });
+
+const emits = defineEmits(['supportLinkClick']);
+
+const shouldShowLink = computed(() => (
+	props.supportLink
+	&& props.supportLinkUrl !== null
+	&& props.supportLinkUrl.length
+));
 </script>
 
 <style lang="scss" scoped>
@@ -129,7 +143,12 @@ defineProps({
 	}
 
 	&__link {
+		@include tokens.caption;
 		justify-self: end;
+		color: tokens.$bn-400;
+		transition: tokens.$interaction;
+		cursor: pointer;
+		margin: tokens.mb(1);
 	}
 
 	&__content {

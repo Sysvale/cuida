@@ -10,10 +10,9 @@
 		>
 			<CdsBaseInput
 				:id="$attrs.id || id"
-				:key="baseInputControl"
 				ref="baseInput"
 				v-bind="{...$attrs, ...props}"
-				:model-value="get(localValue, optionsField)"
+				v-model="computedModel"
 				type="text"
 				:onkeypress="`return ${allowSearch};`"
 				:placeholder="placeholder"
@@ -100,7 +99,6 @@ import { generateKey } from '../utils';
 import { get, cloneDeep } from 'lodash';
 import removeAccents from '../utils/methods/removeAccents';
 import CdsBaseInput from './BaseInput.vue';
-
 
 const model = defineModel('modelValue', {
 	type: [Array, Object, String],
@@ -230,8 +228,8 @@ const props = defineProps({
 	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela `supportLinkUrl` na v4. Define a url a ser acessada no clique do link (no caso do link ser exibido).
 	*/
 	linkUrl: {
-		type: String,
-		default: 'https://cuida.framer.wiki/',
+		type: [String, null],
+		default: null,
 	},
 	/**
 	* Controla a exibição e o conteúdo do link de suporte exibido ao lado da label.
@@ -251,8 +249,8 @@ const props = defineProps({
 	* Define a url a ser acessada no clique do link de suporte.
 	*/
 	supportLinkUrl: {
-		type: String,
-		default: 'https://cuida.framer.wiki/',
+		type: [String, null],
+		default: null,
 	},
 	/**
 	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile
@@ -300,7 +298,6 @@ const cdsSelect = useTemplateRef('cds-select');
 const selectOptions = useTemplateRef('select-options');
 const liRefs = ref({});
 const { emitClick, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
-const baseInputControl = ref(0);
 const searchString = ref('');
 
 /* COMPUTED */
@@ -335,10 +332,11 @@ const selectContainerWidth = computed(() => {
 const showAddOption = computed(() => {
 	return props.searchable
 		&& props.addable
-		&& searchString.value.trim().length > 0
-		&& !localOptions.value.some(option => option[props.optionsField]?.toLowerCase() === searchString.value.toLowerCase());
+		&& searchString.value?.trim().length > 0
+		&& !localOptions.value.some(option => option[props.optionsField]?.toLowerCase() === searchString?.value.toLowerCase());
 });
 
+const computedModel = computed(() => localValue.value[props.optionsField]);
 
 //NOTE: Essa computada vai ser removida junto com a descontinuação da prop width na V4
 const computedFluid = computed(() => {
@@ -432,13 +430,19 @@ function activateSelectionOnEnter() {
 	resetActiveSelection();
 
 	if (typeof localOptions.value[currentPos.value] === 'undefined') {
-		localValue.value = cloneDeep(localOptions.value[0]);
+		handleAddOption();
+
+		nextTick(() => {
+			localValue.value = props.searchable && props.addable
+				? localValue.value
+				: cloneDeep(localOptions.value[0]);
+		});
+
 	} else {
 		localValue.value = cloneDeep(localOptions.value[currentPos.value]);
 	}
 
 	searchString.value = '';
-	baseInputControl.value += 1;
 	select.value.blur();
 }
 
@@ -466,10 +470,12 @@ function hide() {
 			: {};
 	}
 
-	localOptions.value = pristineOptions.value;
-	searchString.value = '';
-	baseInputControl.value += 1;
-	active.value = false;
+	nextTick(() => {
+		localOptions.value = pristineOptions.value;
+		searchString.value = '';
+		active.value = false;
+	});
+
 	emitBlur();
 }
 

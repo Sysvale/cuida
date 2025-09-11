@@ -1,9 +1,9 @@
 <template>
-	<div>
+	<div class="base-input__container">
 		<CdsBaseMobileInput
 			v-if="floatingLabel"
 			ref="mobileInput"
-			v-bind="props"
+			v-bind="{...$attrs, ...props}"
 			v-model="internalValue"
 			:has-leading-icon="hasLeadingIcon"
 			:has-trailing-icon="hasTrailingIcon"
@@ -15,19 +15,19 @@
 			<template #trailing-icon>
 				<slot name="trailing-icon" />
 			</template>
-
+	
 			<template #leading-icon>
 				<slot name="leading-icon" />
 			</template>
 		</CdsBaseMobileInput>
-
+	
 		<template v-else>
 			<template
 				v-if="useHasSlot('label')"
 			>
 				<slot name="label" />
 			</template>
-
+	
 			<CdsLabel
 				v-if="!hideLabelInput"
 				:text="label"
@@ -38,8 +38,9 @@
 				:tooltip-icon="tooltipIcon"
 				:support-link="supportLink"
 				:support-link-url="supportLinkUrl"
+				@support-link-click="emits('supportLinkClick')"
 			/>
-
+	
 			<div
 				:class="baseInputClass"
 				@click="handleClick"
@@ -58,7 +59,7 @@
 						/>
 					</slot>
 				</div>
-
+	
 				<textarea
 					v-if="type === 'textarea'"
 					:id="componentId"
@@ -73,7 +74,7 @@
 					@blur="handleBlur"
 					@keydown="handleKeydown"
 				/>
-
+	
 				<div
 					v-else-if="type === 'date'"
 					:id="componentId"
@@ -91,7 +92,7 @@
 				>
 					<small class="base-input__date-text">{{ internalValue || placeholder }}</small>
 				</div>
-
+	
 				<div 
 					v-else
 					style="width: 100%;"
@@ -102,7 +103,7 @@
 					>
 						<slot name="top-content" />
 					</div>
-
+	
 					<input
 						:id="componentId"
 						ref="htmlInput"
@@ -120,7 +121,7 @@
 						@keydown="handleKeydown"
 					>
 				</div>
-
+	
 				<div
 					v-if="isLoading && !disabled"
 					class="base-input__spinner-container"
@@ -131,7 +132,7 @@
 						class="base-input__icon--spinner-icon"
 					/>
 				</div>
-
+	
 				<div
 					v-if="hasTrailingIcon"
 					class="base-input__trailing-icon-container"
@@ -146,14 +147,14 @@
 					</slot>
 				</div>
 			</div>
-
+	
 			<div
 				v-if="hasError && !disabled"
 				class="base-input__error-text"
 			>
 				{{ errorMessage }}
 			</div>
-
+	
 			<template
 				v-if="supportingText"
 			>
@@ -169,7 +170,7 @@
 						{{ text }}
 					</li>
 				</ul>
-
+	
 				<span
 					v-else
 					class="base-input__supporting-text"
@@ -309,8 +310,8 @@ const props = defineProps({
 	* Define a url a ser acessada no clique do link de suporte.
 	*/
 	supportLinkUrl: {
-		type: String,
-		default: 'https://cuida.framer.wiki/',
+		type: [String, null],
+		default: null,
 	},
 	/**
 	* Define o tipo do input, se `true` será um input adaptado para o mobile. Quando essa prop está ativa é renderizado o componente baseMobileInput.
@@ -385,7 +386,8 @@ const props = defineProps({
 });
 
 const emits = defineEmits({
-	...nativeEvents
+	...nativeEvents,
+	'supportLinkClick': null,
 });
 
 /* REACTIVE DATA */
@@ -564,6 +566,10 @@ defineExpose({
 	justify-content: space-between;
 	position: relative;
 	cursor: v-bind(computedCursor);
+
+	&__container {
+		width: inherit;
+	}
 
 	&__top-content {
 		padding: tokens.pa(1);

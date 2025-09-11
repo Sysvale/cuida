@@ -7,6 +7,7 @@
 		:class="{
 			'no-margin': noMargin,
 			[`${color}`]: color,
+			[`${fontWeight}`]: fontWeight,
 		}"
 	>
 		<slot />
@@ -35,6 +36,13 @@ const props = defineProps({
 	color: {
 		type: String,
 		default: 'n-800',
+	},
+	/**
+	* Define o peso da fonte.
+	*/
+	fontWeight : {
+		type: String,
+		default: 'regular',
 	},
 	/**
 	* Define o alinhamento do texto.
@@ -210,5 +218,17 @@ small {
 
 legend {
 	@include tokens.overline;
+}
+
+.regular {
+	font-weight: tokens.$font-weight-regular;
+}
+
+.semibold {
+	font-weight: tokens.$font-weight-semibold;
+}
+
+.bold {
+	font-weight: tokens.$font-weight-bold;
 }
 </style>

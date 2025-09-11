@@ -165,8 +165,8 @@
 						</div>
 					</Transition>
 					<div v-if="item.items && collapsed">
-						<CdsRichTooltip
-							v-model="itemsWithVisibilityController[index].show"
+						<cds-rich-tooltip
+							:model-value="itemsWithVisibilityController[index]?.show"
 							:target-id="item.label"
 							default-placement="bottom-start"
 							width="160"
@@ -287,7 +287,8 @@
 	</div>
 </template>
 
-<script>
+<script setup>
+import { ref, computed, watch, onMounted, onBeforeMount } from 'vue';
 import isEqual from 'lodash.isequal';
 import isEmpty from 'lodash.isempty';
 import CdsIcon from './Icon.vue';
@@ -296,329 +297,319 @@ import CdsAvatar from './Avatar.vue';
 import CdsRichTooltip from './RichTooltip.vue';
 import Cdstip from '../utils/directives/cdstip';
 
-import { colorOptions, colorHexCode } from '../utils/constants/colors';
+const vCdstip = Cdstip;
 
-export default {
-	name: 'SideBar',
-	directives: {
-		cdstip: Cdstip,
+const props = defineProps({
+	/**
+	* A variante de cor. São 10 variantes implementadas: 'green', 'teal',
+	* 'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.
+	* A variante só terá efeito quando a SideBar estiver no modo light.
+	*/
+	variant: {
+		type: String,
+		default: 'green',
 	},
-
-	components: {
-		CdsIcon,
-		CdsAvatar,
-		CdsRichTooltip,
-		CdsPopover,
-	},
-
-	props: {
-		/**
-		* Define a lista dos itens do SideBar a serem
-		* mostrados. Os itens da lista devem ser
-		* objetos com path ou route, e com uma label
-		*/
-		items: {
-			type: Array,
-			default: () => ([]),
-			required: true,
-			validator: (values) => {
-				const invalidValues = values.filter((value) => {
-					const hasNotRoute = isEmpty(value.path) && isEmpty(value.route);
-					const hasInvalidItems = isEmpty(value.items)
-						|| value.items.filter(item => (isEmpty(item.path) && isEmpty(item.route))).length;
-					return isEmpty(value.label) || (hasInvalidItems && hasNotRoute);
-				});
-				return !invalidValues.length;
-			},
-		},
-		/**
-		* O item ativo da SideBar
-		*/
-		activeItem: {
-			type: Object,
-			default: () => ({}),
-			required: true,
-		},
-		/**
-		* A variante de cor. São 10 variantes implementadas: 'green', 'teal',
-		* 'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.
-		* A variante só terá efeito quando a SideBar estiver no modo light.
-		* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
-		*/
-		variant: {
-			type: String,
-			default: 'green',
-		},
-		/**
-		* Controla exibição do botão "sair" no footer da sidebar
-		*/
-		showLogout: {
-			type: Boolean,
-			default: true,
-		},
-		/**
-		* Controla exibição do menu/dropdown ao clicar nas informações de perfil
-		*/
-		showProfileMenu: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		* Controla os itens do menu/dropdown exibidos ao clicar nas informações de perfil
-		*/
-		profileMenuItems: {
-			type: Array,
-			default: () => ([]),
-		},
-		/**
-		* Nome do usuário logado. Essa informação é colocada ao lado do Avatar
-		*/
-		userName: {
-			type: String,
-			default: '',
-		},
-		/**
-		* Perfil do usuário logado. Essa informação é colocada ao lado do Avatar
-		*/
-		userRole: {
-			type: String,
-			default: '',
-		},
-		/**
-		* Imagem do usuário logado. Informação é usada para montar o Avatar
-		*/
-		userPicture: {
-			type: String,
-			default: null,
-		},
-		/**
-		* Permite que a sidebar seja colapsada em uma versão mínima
-		*/
-		collapsible: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		* Controla o estado da sidebar, se aberta ou colapsada.
-		*/
-		collapsibleState: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Imagem do logo que será renderizada
-		*/
-		logoImage: {
-			type: String,
-			default: null,
-		},
-		/**
-		 * Ativa o modo light da sidebar
-		*/
-		light: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Ativa o modo light da sidebar
-		*/
-		searchButton: {
-			type: Boolean,
-			default: false,
+	/**
+	* Define a lista dos itens do SideBar a serem
+	* mostrados. Os itens da lista devem ser
+	* objetos com path ou route, e com uma label
+	*/
+	items: {
+		type: Array,
+		default: () => ([]),
+		required: true,
+		validator: (values) => {
+			const invalidValues = values.filter((value) => {
+				const hasNotRoute = isEmpty(value.path) && isEmpty(value.route);
+				const hasInvalidItems = isEmpty(value.items)
+			|| value.items.filter(item => (isEmpty(item.path) && isEmpty(item.route))).length;
+				return isEmpty(value.label) || (hasInvalidItems && hasNotRoute);
+			});
+			return !invalidValues.length;
 		},
 	},
 
-	data() {
-		return {
-			internalActiveItem: {},
-			collapsed: false,
-			showUncollapsedItems: true,
-			colorOptions,
-			expandItemControl: 0,
-			itemsWithVisibilityController: [],
-			logoutTooltipText: 'Sair',
-			showPopover: false,
-			showSearchButtonShortCut: true,
-		};
+	/**
+	* O item ativo da SideBar
+	*/
+	activeItem: {
+		type: Object,
+		default: () => ({}),
+		required: true,
 	},
+	/**
+	* Controla exibição do botão "sair" no footer da sidebar
+	*/
+	showLogout: {
+		type: Boolean,
+		default: true,
+	},
+	/**
+	* Controla exibição do menu/dropdown ao clicar nas informações de perfil
+	*/
+	showProfileMenu: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Controla os itens do menu/dropdown exibidos ao clicar nas informações de perfil
+	*/
+	profileMenuItems: {
+		type: Array,
+		default: () => ([]),
+	},
+	/**
+	* Nome do usuário logado. Essa informação é colocada ao lado do Avatar
+	*/
+	userName: {
+		type: String,
+		default: '',
+	},
+	/**
+	* Perfil do usuário logado. Essa informação é colocada ao lado do Avatar
+	*/
+	userRole: {
+		type: String,
+		default: '',
+	},
+	/**
+	* Imagem do usuário logado. Informação é usada para montar o Avatar
+	*/
+	userPicture: {
+		type: String,
+		default: null,
+	},
+	/**
+	* Permite que a sidebar seja colapsada em uma versão mínima
+	*/
+	collapsible: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Controla o estado da sidebar, se aberta ou colapsada.
+	*/
+	collapsibleState: {
+		type: Boolean,
+		default: null,
+	},
+	/**
+	 * Imagem do logo que será renderizada
+	*/
+	logoImage: {
+		type: String,
+		default: null,
+	},
+	/**
+	 * Ativa o modo light da sidebar
+	*/
+	light: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	 * Ativa o modo light da sidebar
+	*/
+	searchButton: {
+		type: Boolean,
+		default: false,
+	},
+});
 
-	computed: {
-		mainClass() {
-			if (this.light) {
-				if (this.collapsed) {
-					return 'side-bar--light--collapsed';
-				}
+const emit = defineEmits([
+	'sidebar-click',
+	'collapse-click',
+	'profile-menu-option-click',
+	'logo-click',
+	'logout',
+	'search-button-click'
+]);
 
-				return 'side-bar--light';
-			}
+const internalActiveItem = ref({});
+const collapsed = ref(null);
+const showUncollapsedItems = ref(true);
+const expandItemControl = ref(0);
+const itemsWithVisibilityController = ref([]);
+const logoutTooltipText = ref('Sair');
+const showPopover = ref(false);
+const showSearchButtonShortCut = ref(true);
 
-			if (this.collapsed) {
-				return 'side-bar--dark--collapsed';
-			}
-
-			return 'side-bar--dark';
-		},
-
-		collapsedTooltipClass() {
-			return this.collapsed ? 'Maximizar' : 'Minimizar';
-		},
-
-		shouldShowProfileMenu() {
-			return this.showProfileMenu && this.profileMenuItems?.length > 0;
-		},
-
-		avatarCursorResolver() {
-			return this.shouldShowProfileMenu ? 'pointer' : 'default';
-		},
-
-		computedSearchButtonJustify() {
-			return this.collapsed ? 'center' : 'space-between'
+const mainClass = computed(() => {
+	if (props.light) {
+		if (collapsed.value === true) {
+			return 'side-bar--light--collapsed';
 		}
-	},
 
-	watch: {
-		items: {
-			handler(newValue) {
-				const filtered = newValue.filter(item => item.name === this.activeItem.name);
-				[this.internalActiveItem] = filtered.length ? filtered : newValue;
-			},
-			immediate: true,
-		},
+		return 'side-bar--light';
+	}
 
-		collapsibleState: {
-			handler(newValue) {
-				this.collapsed = newValue;
-			},
-			immediate: true,
-		},
+	if (collapsed.value === true) {
+		return 'side-bar--dark--collapsed';
+	}
 
-		activeItem: {
-			handler(newValue) {
-				this.internalActiveItem = newValue;
-			},
-			immediate: true,
-		},
+	return 'side-bar--dark';
+});
 
-		collapsed(newValue) {
-			if (newValue) {
-				this.showUncollapsedItems = false;
-				this.showSearchButtonShortCut = false;
-				return;
-			}
+const collapsedTooltipClass = computed(() => {
+	return collapsed.value ? 'Maximizar' : 'Minimizar';
+});
 
-			setTimeout(() => {
-				this.showUncollapsedItems = true;
-			}, 500);
+const shouldShowProfileMenu = computed(() => {
+	return props.showProfileMenu && props.profileMenuItems?.length > 0;
+});
 
-			setTimeout(() => {
-				this.showSearchButtonShortCut = true;
-			}, 250);
-		},
-	},
+const avatarCursorResolver = computed(() => {
+	return shouldShowProfileMenu.value ? 'pointer' : 'default';
+});
 
-	created() {
-		this.internalActiveItem = this.activeItem;
-		this.collapsed = this.collapsibleState;
+const computedSearchButtonJustify = computed(() => {
+	return collapsed.value ? 'center' : 'space-between'
+});
 
-		this.items.forEach((item, idx) => {
-			this.itemsWithVisibilityController.push({
-				name: item.label,
-				index: idx,
-				show: false,
-			})
-		});
-	},
+watch(() => props.items, (newValue) => {
+	const filtered = newValue.filter(item => item.name === props.activeItem.name);
+	internalActiveItem.value = filtered.length ? filtered[0] : newValue[0];
+}, { immediate: true });
 
-	methods: {
-		colorHexCode,
+watch(() => props.collapsibleState, (newValue) => {
+	if (newValue === null) {
+		return;
+	}
 
-		handleClick(event, item) {
-			if (!isEqual(this.internalActiveItem, item)) {
-				this.internalActiveItem = item;
-				this.showUncollapsedItems = true;
-				this.expandItemControl += 1;
-				return;
-			}
+	collapsed.value = newValue;
+}, { immediate: true });
 
-			if (!!item.items && item.items.length > 0) {
-				this.showUncollapsedItems = !this.showUncollapsedItems;
-				this.expandItemControl += 1;
-				return;
-			}
+watch(() => props.activeItem, (newValue) => {
+	internalActiveItem.value = newValue;
+}, { immediate: true });
 
-			if (item.icon) {
-				this.showUncollapsedItems = false;
-				this.expandItemControl += 1;
-			}
+watch(collapsed, (newValue) => {
+	if (newValue) {
+		showUncollapsedItems.value = false;
+		showSearchButtonShortCut.value = false;
+		return;
+	}
 
-			/**
-			 * Evento emitido quando um dos itens da SideBar é clicado
-			* @event sidebar-click
-			* @type {Event}
-			*/
-			this.$emit('sidebar-click', this.internalActiveItem);
-		},
+	setTimeout(() => {
+		showUncollapsedItems.value = true;
+	}, 500);
 
-		isActive(item) {
-			let hasActiveSubitem = false;
-			let hasActiveItem = false;
+	setTimeout(() => {
+		showSearchButtonShortCut.value = true;
+	}, 250);
+});
 
-			if (!!item.items && item.items.length > 0) {
-				hasActiveSubitem = item.items.some(item => {
-					return isEqual(item, this.internalActiveItem)
-				})
-			}
+onBeforeMount(() => {
+	if (!props.collapsible) {
+		return;
+	}
 
-			hasActiveItem = isEqual(this.internalActiveItem, item);
-			return hasActiveSubitem || hasActiveItem;
-		},
+	if (props.collapsibleState !== null) {
+		collapsed.value = props.collapsibleState;
+		return;
+	}
 
-		resolveRoute({ route, path }) {
-			const to = isEmpty(route) ? path : route;
-			return to instanceof String ? { path: to } : to;
-		},
+	collapsed.value = JSON.parse(window.localStorage.getItem('cdsSidebarCollapsed'));
+})
 
-		routerPushTo(item) {
-			return this.resolveRoute(item) ? this.resolveRoute(item).path : null;
-		},
+onMounted(() => {
+	internalActiveItem.value = props.activeItem;
 
-		handleCollapse() {
-			this.$emit('collapse-click', !this.collapsed);
-			this.collapsed = !this.collapsed;
-		},
+	props.items.forEach((item, idx) => {
+		itemsWithVisibilityController.value.push({
+			name: item.label,
+			index: idx,
+			show: false,
+		})
+	});
+});
 
-		resolveItemCollapse(item) {
-			return (!!item.items && item.items.length > 0)
-				&& this.isActive(item)
-				&& this.showUncollapsedItems;
-		},
+function handleClick(event, item) {
+	if (!isEqual(internalActiveItem.value, item)) {
+		internalActiveItem.value = item;
+		showUncollapsedItems.value = true;
+		expandItemControl.value += 1;
+		return;
+	}
 
-		resolveCollapsibleItemIcon(item) {
-			return this.resolveItemCollapse(item)
-				? 'caret-up-outline'
-				: 'caret-down-outline';
-		},
+	if (!!item.items && item.items.length > 0) {
+		showUncollapsedItems.value = !showUncollapsedItems.value;
+		expandItemControl.value += 1;
+		return;
+	}
 
-		handleProfileMenuOptionClick (actionName) {
-			/**
-			 * Evento emitido quando um dos itens do menu dropdown do perfil é clicado
-			* @event profile-menu-option-click
-			* @type {Event}
-			*/
-			this.$emit('profile-menu-option-click', actionName);
-			this.showPopover = false
-		},
+	if (item.icon) {
+		showUncollapsedItems.value = false;
+		expandItemControl.value += 1;
+	}
 
-		handleLogoClick() {
-			/**
-			 * Evento emitido quando um o logo da SideBar é clicado
-			* @event logo-click
-			* @type {Event}
-			*/
-			this.$emit('logo-click');
-		},
-	},
-};
+	/**
+	 * Evento emitido quando um dos itens da SideBar é clicado
+	* @event sidebar-click
+	* @type {Event}
+	*/
+	emit('sidebar-click', internalActiveItem.value);
+}
+
+function isActive(item) {
+	let hasActiveSubitem = false;
+	let hasActiveItem = false;
+
+	if (!!item.items && item.items.length > 0) {
+		hasActiveSubitem = item.items.some(item => {
+			return isEqual(item, internalActiveItem.value)
+		})
+	}
+
+	hasActiveItem = isEqual(internalActiveItem.value, item);
+	return hasActiveSubitem || hasActiveItem;
+}
+
+function resolveRoute({ route, path }) {
+	const to = isEmpty(route) ? path : route;
+	return to instanceof String ? { path: to } : to;
+}
+
+function routerPushTo(item) {
+	return resolveRoute(item) ? resolveRoute(item).path : null;
+}
+
+function handleCollapse() {
+	collapsed.value = !collapsed.value;
+	emit('collapse-click', collapsed.value);
+	window.localStorage.setItem('cdsSidebarCollapsed', collapsed.value);
+}
+
+function resolveItemCollapse(item) {
+	return (!!item.items && item.items.length > 0)
+		&& isActive(item)
+		&& showUncollapsedItems.value;
+}
+
+function resolveCollapsibleItemIcon(item) {
+	return resolveItemCollapse(item)
+		? 'caret-up-outline'
+		: 'caret-down-outline';
+}
+
+function handleProfileMenuOptionClick(actionName) {
+	/**
+	 * Evento emitido quando um dos itens do menu dropdown do perfil é clicado
+	* @event profile-menu-option-click
+	* @type {Event}
+	*/
+	emit('profile-menu-option-click', actionName);
+	showPopover.value = false
+}
+
+function handleLogoClick() {
+	/**
+	 * Evento emitido quando um o logo da SideBar é clicado
+	* @event logo-click
+	* @type {Event}
+	*/
+	emit('logo-click');
+}
 </script>
 
 <style lang="scss">
@@ -826,10 +817,10 @@ export default {
 				padding: 0;
 
 				& > li {
-					align-items: center;
-					color: tokens.$n-0;
-					display: flex;
-					gap: tokens.spacer(2);
+				align-items: center;
+				color: tokens.$n-0;
+				display: flex;
+				gap: tokens.spacer(2);
 				}
 			}
 		}
@@ -943,18 +934,18 @@ export default {
 
 		&__avatar > div > p:nth-child(1) {
 			color: tokens.$n-700;
-			cursor: pointer;
+			cursor: v-bind(avatarCursorResolver);
 		}
 
 		&__avatar > div > p:nth-child(2) {
 			color: tokens.$n-700;
-			cursor: pointer;
+			cursor: v-bind(avatarCursorResolver);
 		}
 
 		&__footer {
 			& > ul {
 				& > li {
-					color: tokens.$n-700;
+				color: tokens.$n-700;
 				}
 			}
 		}

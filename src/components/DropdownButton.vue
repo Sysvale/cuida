@@ -1,22 +1,23 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div>
-		<span
+		<CdsButton
 			:id="id"
-			ref="dropdownButtonRef"
-			:class="dropDownButtonClasses"
-			class="dropdown-button__container"
+			:variant="variant"
+			:size="size"
+			:text="text"
+			:secondary="secondary"
+			:ghost="ghost"
 			@click="activeSelection"
 		>
-			<span class="dropdown-button__text">{{ text }} </span>
-
-			<CdsChevron
-				animate
-				size="sm"
-				:light="!secondary && !ghost"
-				:direction="isActive ? 'bottom' : 'top'"
-			/>
-		</span>
+			<template #append>
+				<CdsChevron
+					animate
+					size="sm"
+					:light="!secondary && !ghost"
+					:direction="isActive ? 'bottom' : 'top'"
+				/>
+			</template>
+		</CdsButton>
 
 		<div
 			v-if="isActive"
@@ -51,13 +52,14 @@
 </template>
 
 <script>
-/* eslint-disable no-underscore-dangle */
+import CdsButton from './Button.vue';
 import CdsChevron from './Chevron.vue';
 import CdsIcon from './Icon.vue';
 
 export default {
 	name: 'DropdownButton',
 	components: {
+		CdsButton,
 		CdsIcon,
 		CdsChevron,
 	},
@@ -112,6 +114,16 @@ export default {
 			type: Number,
 			default: 0,
 		},
+		/**
+		 * Especifica o tamanho do botão. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
+		 */
+		size: {
+			type: String,
+			default: 'md',
+			validator(value) {
+				return ['sm', 'md', 'lg'].includes(value);
+			},
+		},
 	},
 
 	data() {
@@ -141,18 +153,6 @@ export default {
 				'--width': `${this.dropdownWidth}px`,
 			};
 		},
-
-		dropDownButtonClasses() {
-			if (this.ghost) {
-				return 'dropdown-button__container--ghost ';
-			}
-
-			if (this.secondary) {
-				return 'dropdown-button__container--secondary ';
-			}
-
-			return `dropdown-button__container--${this.variant}`;
-		}
 	},
 
 	mounted() {
@@ -256,7 +256,6 @@ export default {
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
-
 	}
 }
 

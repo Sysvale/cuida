@@ -55,12 +55,12 @@ export default {
 	&__container {
 		overflow-y: auto;
 		overflow-x: hidden;
-		padding: 1px;
+		padding: 4px;
 
 		/* width */
 		&::-webkit-scrollbar {
 			width: 6px;
-            height: 6px;
+			height: 6px;
 			border-radius: 8px;
 		}
 

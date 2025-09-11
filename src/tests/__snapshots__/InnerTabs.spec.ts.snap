@@ -21,27 +21,27 @@ exports[`InnerTabs > renders correctly 1`] = `
   <div class="inner-tabs__content">
     <div role="tabpanel" class="content__pane content__pane--active">
       <!-- @slot Slot para renderização customizada do conteúdo das abas
-					os slots são nomeados de acordo com os \`name\` das tabs, cada slot
-					nomeado é exibido de acordo com a aba ativa correspondente
-				-->
+						os slots são nomeados de acordo com os \`name\` das tabs, cada slot
+						nomeado é exibido de acordo com a aba ativa correspondente
+					-->
     </div>
     <div role="tabpanel" class="content__pane content__pane--inactive">
       <!-- @slot Slot para renderização customizada do conteúdo das abas
-					os slots são nomeados de acordo com os \`name\` das tabs, cada slot
-					nomeado é exibido de acordo com a aba ativa correspondente
-				-->
+						os slots são nomeados de acordo com os \`name\` das tabs, cada slot
+						nomeado é exibido de acordo com a aba ativa correspondente
+					-->
     </div>
     <div role="tabpanel" class="content__pane content__pane--inactive">
       <!-- @slot Slot para renderização customizada do conteúdo das abas
-					os slots são nomeados de acordo com os \`name\` das tabs, cada slot
-					nomeado é exibido de acordo com a aba ativa correspondente
-				-->
+						os slots são nomeados de acordo com os \`name\` das tabs, cada slot
+						nomeado é exibido de acordo com a aba ativa correspondente
+					-->
     </div>
     <div role="tabpanel" class="content__pane content__pane--inactive">
       <!-- @slot Slot para renderização customizada do conteúdo das abas
-					os slots são nomeados de acordo com os \`name\` das tabs, cada slot
-					nomeado é exibido de acordo com a aba ativa correspondente
-				-->
+						os slots são nomeados de acordo com os \`name\` das tabs, cada slot
+						nomeado é exibido de acordo com a aba ativa correspondente
+					-->
     </div>
   </div>
 </div>"

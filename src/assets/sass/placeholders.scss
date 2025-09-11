@@ -7,6 +7,7 @@
 	border-radius: tokens.$border-radius-extra-small;
 	width: 266px;
 	background: tokens.$n-0;
+	margin: 2px;
 
 	input {
 		font-family: 'Satoshi';
@@ -22,29 +23,28 @@
 }
 
 %focused {
-	outline: 1px solid tokens.$bn-300;
-	transition: box-shadow ease-in-out 150ms, outline ease-in-out 100ms;
-	box-shadow: 0 0 0 0.1rem rgba(tokens.$bn-300, 1);
+	outline: 2px solid rgba(tokens.$bn-300, 0.8);
+	transition: outline ease-in-out 150ms, outline ease-in-out 100ms;
 }
 
 %valid {
 	outline: 1px solid tokens.$gp-500;
-	transition: box-shadow ease-in-out 150ms, outline ease-in-out 100ms;
+	transition: outline ease-in-out 150ms, outline ease-in-out 100ms;
 }
 
 %invalid {
 	outline: 1px solid tokens.$rc-500;
-	transition: box-shadow ease-in-out 150ms, outline ease-in-out 100ms;
+	transition: outline ease-in-out 150ms, outline ease-in-out 100ms;
 }
 
 %focused-valid {
-	transition: box-shadow ease-in-out 150ms, outline ease-in-out 100ms;
-	box-shadow: 0 0 0 0.1rem rgba(tokens.$gp-500, 1);
+	transition: outline ease-in-out 150ms, outline ease-in-out 100ms;
+	outline: 2px solid rgba(tokens.$gp-500, 0.8);
 }
 
 %focused-invalid {
-	transition: box-shadow ease-in-out 150ms, outline ease-in-out 100ms;
-	box-shadow: 0 0 0 0.1rem rgba(tokens.$rc-500, 1);
+	transition: outline ease-in-out 150ms, outline ease-in-out 100ms;
+	outline: 2px solid rgba(tokens.$rc-500, 0.8);
 }
 
 %disabled {

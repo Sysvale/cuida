@@ -38,11 +38,10 @@ const toasts = useToast().toastState.toasts;
 	position: fixed;
 	z-index: tokens.$z-index-toast;
 	bottom: 0px;
-	right: 0px;
+	right: 12px;
 	display: flex;
 	flex-direction: column-reverse;
 	min-width: 400px;
-	min-height: 40px;
 }
 
 .v-enter-active {

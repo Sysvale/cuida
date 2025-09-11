@@ -200,7 +200,7 @@ const handleClick = () => {
 		margin-top: 20px;
 		position: absolute;
 		right: 16px;
-		z-index: 9999;
+		z-index: 10;
 	}
 	
 	&__image {

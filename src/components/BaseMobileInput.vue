@@ -56,9 +56,9 @@
 
 			<div
 				v-else-if="type === 'date'"
-				tabindex="0"
 				:id="componentId"
 				ref="htmlInput"
+				tabindex="0"
 				v-bind="props"
 				:placeholder="placeholder"
 				:disabled="disabled"
@@ -145,11 +145,20 @@
 							tag="span"
 						>
 							<CdsLink
-								:text="supportLink"
+								v-if="shouldShowLink"
 								:href="supportLinkUrl"
+								:text="supportLink"
 								class="label__link"
 								new-tab
 							/>
+
+							<span
+								v-else
+								class="label__link"
+								@click="emits('supportLinkClick')"
+							>
+								{{ supportLink }}
+							</span>
 
 							<CdsIcon
 								height="13"
@@ -348,8 +357,8 @@ const props = defineProps({
 	* Define a url a ser acessada no clique do link de suporte.
 	*/
 	supportLinkUrl: {
-		type: String,
-		default: 'https://cuida.framer.wiki/',
+		type: [String, null],
+		default: null,
 	},
 	/**
 	* Define o ícone que será exibido à direita do input
@@ -366,7 +375,7 @@ const props = defineProps({
 		default: null,
 	},
 	/**
-	* 
+	*
 	*/
 	hasLeadingIcon: {
 		type: Boolean,
@@ -452,7 +461,7 @@ const hasError = computed(() => {
 	return props.state === 'invalid';
 });
 
-const isLoading = computed(() => { 
+const isLoading = computed(() => {
 	return props.state === 'loading';
 });
 
@@ -507,12 +516,18 @@ const computedCursor = computed(() => {
 	return 'text';
 });
 
+const shouldShowLink = computed(() => (
+	props.supportLink
+	&& props.supportLinkUrl !== null
+	&& props.supportLinkUrl.length
+));
+
 /* WATCHERS */
 watch(model, (newValue, oldValue) => {
 	if (newValue !== oldValue) {
 		internalValue.value = newValue;
 	}
-	
+
 	if (newValue === 0 || newValue === '0' || newValue === '' || newValue === null || newValue === undefined) {
 		internalValue.value = (props.money || attrs.money) ? 'R$ 0,00' : '';
 	}
@@ -590,9 +605,9 @@ defineExpose({
 @use'../assets/sass/placeholders.scss';
 
 .base-mobile-input {
-    position: relative;
+	position: relative;
 	padding: tokens.pTRBL(2, 1, 0, 1);
-	cursor: v-bind(computedCursor);	
+	cursor: v-bind(computedCursor);
 	@extend %input;
 
 	&__supporting-text-container {
@@ -609,13 +624,13 @@ defineExpose({
 		align-items: flex-end;
 		justify-content: space-between;
 		width: 266px;
-        position: absolute;
-        bottom: v-bind(labelBottomPosition);
+		position: absolute;
+		bottom: v-bind(labelBottomPosition);
 		left: v-bind(labelLeftPosition);
-        transition: all ease 0.2s;
-        font-size: v-bind(labelSize);
-        font-weight: tokens.$font-weight-semibold;
-		cursor: v-bind(computedCursor);	
+		transition: all ease 0.2s;
+		font-size: v-bind(labelSize);
+		font-weight: tokens.$font-weight-semibold;
+		cursor: v-bind(computedCursor);
 
 		&--fluid {
 			@extend .base-mobile-input__label;
@@ -665,8 +680,8 @@ defineExpose({
 		color: tokens.$n-700;
 		width: 100%;
 		resize: vertical;
-        font-size: 14.5px;
-		cursor: v-bind(computedCursor);	
+		font-size: 14.5px;
+		cursor: v-bind(computedCursor);
 
 
 		&:focus {
@@ -750,7 +765,12 @@ defineExpose({
 	}
 
 	&__link {
+		@include tokens.caption;
 		justify-self: end;
+		color: tokens.$bn-400;
+		transition: tokens.$interaction;
+		cursor: pointer;
+		margin: tokens.mb(1);
 	}
 
 	&__link-icon {

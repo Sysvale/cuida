@@ -225,10 +225,8 @@ export default defineConfig({
 						{ text: 'Breadcrumb <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/navegação/breadcrumb' },
 						{ text: 'InnerTabs <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/navegação/inner-tabs' },
 						{ text: 'Link <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/navegação/link' },
-
 						{ text: 'MobileNavbar <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/navegação/mobile-navbar' },
 						{ text: 'MobileNavigation <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/navegação/mobile-navigation' },
-						// { text: 'MobileStepperInput', link: '/components/navegação/mobile-stepper-input' },
 						{ text: 'NavBar <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/navegação/nav-bar' },
 						{ text: 'PageLayout <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/navegação/page-layout' },
 						{ text: 'Pagination <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/navegação/pagination' },
@@ -236,7 +234,6 @@ export default defineConfig({
 						{ text: 'SegmentedControl <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/navegação/segmented-control' },
 						{ text: 'SideBar <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/navegação/side-bar' },
 						{ text: 'Tabs <Badge class="badge-ready"type="info">ready - deprecated</Badge>', link: '/components/navegação/tabs' },
-						// { text: 'Wizard', link: '/components/navegação/wizard' },
 					]
 				},
 			],

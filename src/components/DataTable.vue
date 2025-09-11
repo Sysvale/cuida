@@ -29,14 +29,30 @@
 				:id="dataTableHeaderID"
 				class="data-table__header"
 			>
-				<CdsSearchInput
+				<CdsFlexbox
 					v-if="withSearch"
-					v-model="internalSearch"
-					hide-label
+					gap="2"
 					fluid
-					:disabled="loading"
-					@update:model-value="handleSearchInput"
-				/>
+					wrap="no-wrap"
+				>
+					<CdsSearchInput
+						ref="search-input"
+						v-model="internalSearch"
+						hide-label
+						fluid
+						:placeholder="searchPlaceholder"
+						:disabled="loading"
+						@update:model-value="(value) => handleSearchInput(value, 'input')"
+						@keydown.enter.prevent="handleSearchInput(internalSearch, 'button')"
+					/>
+					<CdsButton
+						v-if="withSearchButton"
+						secondary
+						text="Buscar"
+						:disabled="loading"
+						@button-click="handleSearchInput(internalSearch, 'button')"
+					/>
+				</CdsFlexbox>
 				<div
 					v-else
 					class="data-table__items-counter"
@@ -60,9 +76,15 @@
 						:disabled="loading"
 						@button-click="handleCustomizeButtonClick"
 					>
-						Personalizar tabela
-					</CdsButton>
-				</CdsFlexbox>
+						<span v-if="presetsOptions.length">
+							Colunas: {{ selectedPresetName }}
+						</span>
+
+						<span v-else>
+							Personalizar colunas
+						</span>
+					</cds-button>
+				</cds-flexbox>
 				<div
 					v-if="withSearch"
 					class="data-table__items-counter--below"
@@ -125,11 +147,13 @@
 						/>
 					</template>
 
-					<template #table-item="{ data, field }">
+					<template #table-item="{ data, field, rowIndex, colIndex}">
 						<slot
 							name="table-item"
 							:data="data"
 							:field="field"
+							:row-index
+							:col-index
 						/>
 					</template>
 				</CdsTable>
@@ -139,25 +163,36 @@
 		<custom-fields-side-sheet
 			v-model="showSideSheet"
 			:custom-fields-list="internalCustomFieldsList"
+			:custom-fields-searchable="customFieldsSearchable"
 			:selection-variant="selectionVariant"
+			:presets-options="presetsOptions"
 			:loading-custom-fields="loadingCustomFields"
+			:track-by="customFieldsTrackBy"
 			:min-fields="minVisibleFields"
 			:max-fields="computedMaxVisibleFields"
 			@update-fields-list="emits('update-fields-list', $event)"
 			@customize-click="handleCustomizeButtonClick"
 			@cancel="handleCancel"
 			@ok="handleOk"
+			@update-preset="handleUpdatePreset"
 		/>
 	</div>
 </template>
 
 <script setup>
-
-defineOptions({ name: 'DataTable' });
-
-import { ref, watch, computed, useAttrs, onMounted, onUnmounted } from 'vue';
+import {
+	ref,
+	watch,
+	computed,
+	useAttrs,
+	onMounted,
+	onUnmounted,
+	nextTick,
+	useTemplateRef
+} from 'vue';
 import { cloneDeep, isEmpty } from 'lodash';
 import { useHasSlot } from '../utils/composables/useHasSlot';
+import hasSameItems from '../utils/methods/hasSameItems';
 import generateKey from '../utils/methods/uuidv4';
 import CdsButton from './Button.vue';
 import CdsTable from './Table.vue';
@@ -170,6 +205,8 @@ import CdsEmptyState from './EmptyState.vue'
 const hasHeaderSlot = useHasSlot('header-item');
 const hasStateEmpty = useHasSlot('empty');
 const attrs = useAttrs();
+
+const searchInputRef = useTemplateRef('search-input');
 
 const props = defineProps({
 	/**
@@ -194,11 +231,32 @@ const props = defineProps({
 		default: () => [],
 	},
 	/**
+	* Especifica se deve ter pesquisa por colunas na personalização da tabela.
+	*/
+	customFieldsSearchable: {
+		type: Boolean,
+		default: false,
+	},
+	/**
 	* Especifica se o botão de personalizar tabela deve ser escondido.
 	*/
 	hideCustomizeButton: {
 		type: Boolean,
 		default: false,
+	},
+	/**
+	* Define as opções de presets que serão exibidas no sidesheet de personalizar tabela. Se nenhum for fornecido, não será exibido.
+	*/
+	presetsOptions: {
+		type: Array,
+		default: () => [],
+	},
+	/**
+	* Define o campo que será usado como chave na lista de customFieldsList.
+	*/
+	customFieldsTrackBy: {
+		type: String,
+		default: 'id',
 	},
 	/**
 	* Ativa o feedback de loading no sidesheet de personalizar tabela.
@@ -227,6 +285,20 @@ const props = defineProps({
 	* Especifica se a barra de busca da tabela deve ser exibida.
 	*/
 	withSearch: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Especifica o placeholder da barra de busca.
+	*/
+	searchPlaceholder: {
+		type: String,
+		default: 'Buscar...',
+	},
+	/**
+	* Especifica se deve ser mostrado botão junto à barra de busca.
+	*/
+	withSearchButton: {
 		type: Boolean,
 		default: false,
 	},
@@ -268,7 +340,12 @@ const props = defineProps({
 	},
 });
 
-const emits = defineEmits(['update-fields-list', 'customize-click', 'search']);
+const emits = defineEmits([
+	'update-fields-list',
+	'customize-click',
+	'search',
+	'search-button-click'
+]);
 
 const showVirtualHeader = ref(false);
 const virtualTheadWidth = ref(0);
@@ -278,6 +355,7 @@ const showSideSheet = ref(false);
 const internalSearch = ref('');
 const searchTimeout = ref(null);
 const internalCustomFieldsList = ref(cloneDeep(props.customFieldsList));
+const selectedPresetName = ref('Personalizado');
 
 const virtualHeaderID = generateKey();
 const dataTableHeaderID = generateKey();
@@ -319,7 +397,19 @@ watch(() => props.customFieldsList, () => {
 	internalCustomFieldsList.value = cloneDeep(props.customFieldsList);
 }, { immediate: true });
 
+watch(() => props.loading, (isLoading) => {
+	if (!isLoading && searchInputRef.value) {
+		nextTick(() => {
+			searchInputRef.value.focus()
+		});
+	}
+
+	if (!isLoading)	resolveInitialPreset();
+}, { immediate: true });
+
 onMounted(() => {
+	resolveInitialPreset();
+
 	if (!attrs.fixedHeader) return;
 
 	lastScrollY = window.scrollY;
@@ -395,12 +485,42 @@ function handleOk(fieldsList) {
 	emits('update-fields-list', fieldsList);
 }
 
-function handleSearchInput(value) {
+function handleSearchInput(value, source) {
+	if (source === 'button') {
+		emits('search-button-click', value);
+		return;
+	}
+
 	clearTimeout(searchTimeout.value);
 	searchTimeout.value = setTimeout(() => {
 		emits('search', value);
 	}, props.searchInputDelay);
 }
+
+function handleUpdatePreset(presetName) {
+	selectedPresetName.value = presetName;
+}
+
+function resolveInitialPreset() {
+	nextTick(() => {
+		const columnsKeys = attrs.fields.map((field) => field.key);
+		const foundPresetLabel = props.presetsOptions.find((preset) => {
+			return hasSameItems(preset.columns, columnsKeys);
+		});
+
+		if (foundPresetLabel) {
+			selectedPresetName.value = foundPresetLabel.label;
+			return;
+		}
+
+		selectedPresetName.value = 'Personalizado';
+	});
+}
+
+defineExpose({
+	resetSearch: () => internalSearch.value = '',
+	setSearch: (value) => internalSearch.value = value,
+});
 </script>
 
 <style lang="scss" scoped>

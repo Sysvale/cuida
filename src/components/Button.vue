@@ -10,19 +10,33 @@
 			v-if="loading"
 			variant="white"
 			size="sm"
-			class="button__loader"
+			class="button__prepend"
 		/>
-
+		<div
+			v-if="hasSlot($slots, 'prepend') && !loading"
+			class="button__prepend"
+		>
+			<!-- @slot Slot para exibir prepend do botão. -->
+			<slot name="prepend" />
+		</div>
 		<!-- @slot Slot padrão utilizado para exibir texto do botão. -->
 		<slot>
 			{{ text }}
 		</slot>
+		<div
+			v-if="hasSlot($slots, 'append')"
+			class="button__append"
+		>
+			<!-- @slot Slot para exibir append do botão. -->
+			<slot name="append" />
+		</div>
 	</button>
 </template>
 
 <script>
 import CdsSpinner from '../components/Spinner.vue';
 import Cdstip from '../utils/directives/cdstip';
+import hasSlot from '../utils/methods/hasSlot';
 
 export default {
 	name: 'Button',
@@ -94,6 +108,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		* Especifica se o componente deve ser exibido na sua versão ghost.
+		*/
+		ghost: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -129,6 +150,10 @@ export default {
 		},
 
 		predefinedColor() {
+			if (this.ghost) {
+				return 'button--ghost';
+			}
+
 			if (this.secondary) {
 				return 'button--secondary';
 			}
@@ -155,6 +180,8 @@ export default {
 	},
 
 	methods: {
+		hasSlot,
+
 		clickHandler() {
 			if (this.disabled) {
 				return;
@@ -179,11 +206,20 @@ export default {
 			background-color: tokens.$n-10;
 			color: tokens.$n-700;
 			border: 1px solid tokens.$n-50 !important;
+			outline: none !important;
 			
 			&:hover {
 				@extend .button--secondary--active;
 				background-color: tokens.$n-20;
 			}
+		}
+
+		&--active:focus-visible {
+			box-shadow: 0 0 0 2px tokens.$n-30 inset;
+		}
+
+		&--active:focus:not(:focus-visible) {
+			box-shadow: none;
 		}
 
 		&--disabled {
@@ -194,8 +230,43 @@ export default {
 		}
 	}
 
+	&--ghost {
+		&--active {
+			background: none;
+			cursor: pointer;
+			outline: none !important;
+
+			&:focus-visible {
+				box-shadow: 0 0 0 2px tokens.$n-40 inset;
+			}
+
+			&:focus:not(:focus-visible) {
+				box-shadow: none;
+			}
+		}
+
+		&:hover {
+			@extend .button--ghost--active;
+			background-color: tokens.$n-10;
+		}
+
+		&--disabled {
+			cursor: default !important;
+			background: none;
+			color: tokens.$n-300;
+		}
+	}
+
+	&__prepend {
+		margin: tokens.mr(3);
+	}
+
 	&__loader {
 		margin: tokens.mr(3);
+	}
+
+	&__append {
+		margin: tokens.ml(3);
 	}
 
 	&__container {
@@ -216,46 +287,57 @@ export default {
 		'--green': (
 			'active': tokens.$gp-400,
 			'disabled': tokens.$gp-300,
+			'focus': tokens.$gp-600,
 		),
 		'--teal': (
 			'active': tokens.$ta-400,
 			'disabled': tokens.$ta-300,
+			'focus': tokens.$ta-600,
 		),
 		'--turquoise': (
 			'active': tokens.$ts-400,
 			'disabled': tokens.$ts-300,
+			'focus': tokens.$ts-600,
 		),
 		'--blue': (
 			'active': tokens.$bn-400,
 			'disabled': tokens.$bn-300,
+			'focus': tokens.$bn-600,
 		),
 		'--indigo': (
 			'active': tokens.$in-400,
 			'disabled': tokens.$in-300,
+			'focus': tokens.$in-600,
 		),
 		'--violet': (
 			'active': tokens.$vr-400,
 			'disabled': tokens.$vr-300,
+			'focus': tokens.$vr-600,
 		),
 		'--pink': (
 			'active': tokens.$pp-400,
 			'disabled': tokens.$pp-300,
+			'focus': tokens.$pp-600,
 		),
 		'--red': (
 			'active': tokens.$rc-400,
 			'disabled': tokens.$rc-300,
+			'focus': tokens.$rc-600,
 		),
 		'--orange': (
 			'active': tokens.$og-400,
 			'disabled': tokens.$og-300,
+			'focus': tokens.$og-600,
 		),
 		'--amber': (
 			'active': tokens.$al-400,
 			'disabled': tokens.$al-300,
+			'focus': tokens.$al-600,
 		),
 		'--dark': (
 			'active': tokens.$n-700,
 			'disabled': tokens.$n-500,
+			'focus': tokens.$n-400,
 		),
 	);
 
@@ -277,6 +359,16 @@ export default {
 
 			&--disabled {
 				cursor: default;
+			}
+		}
+
+		@if map-has-key($variants, 'focus') {
+			&#{$color}--active:focus-visible {
+				box-shadow: 0 0 0 2px map-get($variants, 'focus') inset;
+			}
+
+			&#{$color}--active:focus:not(:focus-visible) {
+				box-shadow: none;
 			}
 		}
 	}

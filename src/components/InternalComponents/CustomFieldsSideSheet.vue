@@ -6,8 +6,7 @@
 			no-close-on-esc
 			with-overlay
 			no-close-on-backdrop
-			@ok="handleOk"
-			@cancel="handleCancel"
+			@close="handleCancel"
 		>
 			<CdsFlexbox
 				direction="column"
@@ -17,6 +16,29 @@
 				<div class="side-sheet__description">
 					{{ descriptionComputedText }}
 				</div>
+
+				<div v-if="presetsOptions.length > 0">
+					<CdsSelect
+						v-model="selectedPreset"
+						label="Conjunto de colunas"
+						placeholder="Selecione um preset"
+						:options="resolvedPresetsOptions"
+						fluid
+					/>
+
+					<div class="side-sheet__divider">
+						<CdsDivider dimmed />
+					</div>
+				</div>
+
+				<CdsSearchInput
+					v-if="customFieldsSearchable"
+					v-model="searchString"
+					class="side-sheet__search"
+					label="Buscar"
+					placeholder="Buscar por coluna..."
+					fluid
+				/>
 
 				<CdsFlexbox
 					v-if="loadingCustomFields"
@@ -31,9 +53,20 @@
 					/>
 				</CdsFlexbox>
 
+				<div
+					v-else-if="searchString && !filteredCustomFieldsList.length"
+					class="side-sheet__empty-list"
+				>
+					Nenhuma coluna encontrada
+				</div>
+
 				<div v-else>
+					<div class="side-sheet__count">
+						{{ visibleColumnsCountText }}
+					</div>
+
 					<div
-						v-for="column in internalCustomFieldsList"
+						v-for="column in filteredCustomFieldsList"
 						:key="column"
 						class="side-sheet__column-item"
 						:class="[
@@ -52,17 +85,17 @@
 						<CdsIcon
 							v-if="column.visible"
 							:class="`side-sheet__icon--${selectionVariant}`"
-							name="pin-outline"
-							width="16"
-							height="16"
+							name="pin-fill"
+							width="20"
+							height="20"
 						/>
 
 						<CdsIcon
 							v-else
 							class="side-sheet__icon"
 							name="pin-outline"
-							width="16"
-							height="16"
+							width="20"
+							height="20"
 						/>
 					</div>
 				</div>
@@ -93,16 +126,17 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'CustomFieldsSideSheet' });
-
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, onMounted, onBeforeUnmount } from 'vue';
+import hasSameItems from '../../utils/methods/hasSameItems';
 import CdsIcon from '../Icon.vue';
 import CdsSkeleton from '../Skeleton.vue';
 import CdsSideSheet from '../SideSheet.vue';
 import CdsFlexbox from '../Flexbox.vue';
 import CdsButton from '../Button.vue';
-import { cloneDeep } from 'lodash';
+import CdsSelect from '../Select.vue';
+import CdsSearchInput from '../SearchInput.vue';
+import CdsDivider from '../Divider.vue';
+import { isEmpty, kebabCase, trim } from 'lodash';
 
 const modelValue = defineModel({
 	type: Boolean,
@@ -114,9 +148,21 @@ const props = defineProps({
 		type: Array,
 		default: () => []
 	},
+	customFieldsSearchable: {
+		type: Boolean,
+		default: false,
+	},
 	selectionVariant: {
 		type: String,
 		default: 'primary'
+	},
+	presetsOptions: {
+		type: Array,
+		default: () => []
+	},
+	trackBy: {
+		type: String,
+		required: true,
 	},
 	loadingCustomFields: {
 		type: Boolean,
@@ -136,9 +182,27 @@ const props = defineProps({
 	},
 });
 
-const emits = defineEmits(['update-fields-list', 'cancel', 'ok']);
+const emits = defineEmits(['update-fields-list', 'cancel', 'update-preset']);
 
-const internalCustomFieldsList = ref(cloneDeep(props.customFieldsList));
+const internalCustomFieldsList = ref([]);
+const filteredCustomFieldsList = ref([]);
+const selectedPreset = ref({ id: 'custom', value: 'Personalizado' });
+const searchString = ref('');
+
+const resolvedPresetsOptions = computed(() => {
+	return [
+		...props.presetsOptions.map((item) => {
+			return {
+				id: kebabCase(item.label),
+				value: item.label,
+			}
+		}),
+		{
+			id: 'custom',
+			value: 'Personalizado'
+		}
+	];
+})
 
 const shouldDisableOkButton = computed(() => {
 	const visibleFieldsCount = internalCustomFieldsList.value.filter(field => field.visible).length;
@@ -170,19 +234,116 @@ const descriptionComputedText = computed(() => {
 	return getDescription(minFields, maxFields);
 });
 
+const visibleColumnsCountText = computed(() => {
+	const count = internalCustomFieldsList.value.filter(field => field.visible).length;
+
+	return count === 0
+		? 'Nenhuma coluna selecionada'
+		: count === 1
+			? '1 coluna selecionada'
+			: `${count} colunas selecionadas`;
+});
+
+watch(() => modelValue, (isOpen) => {
+	mustDisableExternalScrolls(isOpen.value);
+}, { deep: true });
+
 watch(() => props.customFieldsList, (newList) => {
-	internalCustomFieldsList.value = cloneDeep(newList);
+	internalCustomFieldsList.value = [...newList.map(field => ({ ...field }))];
 }, { immediate: true });
 
+watch(() => searchString.value, (searchString) => {
+	if (!searchString) {
+		filteredCustomFieldsList.value = [...internalCustomFieldsList.value.map(field => ({ ...field }))];
+		return;
+	}
+
+	filteredCustomFieldsList.value = internalCustomFieldsList.value.filter(({ label }) => {
+		return trim(label).toLowerCase().includes(trim(searchString).toLowerCase());
+	});
+});
+
+watch(() => selectedPreset.value, (preset) => {
+	if (!preset) return;
+	if (preset.id === 'custom') return;
+
+	const presetColumns = props.presetsOptions?.find(({ label }) => label === preset.value)?.columns;
+	if (!presetColumns) return;
+
+	filteredCustomFieldsList.value.forEach((field) => {
+		field.visible = presetColumns.includes(field[props.trackBy]);
+	});
+});
+
+watch(() => filteredCustomFieldsList.value, () => {
+	currentPreset();
+}, { deep: true });
+
+watch(() => props.customFieldsList, (value) => {
+	if (isEmpty(value)) return;
+
+	internalCustomFieldsList.value = [...value.map(field => ({ ...field }))];
+	filteredCustomFieldsList.value = [...value.map(field => ({ ...field }))];
+	currentPreset();
+}, { deep: true });
+
+onBeforeUnmount(() => {
+	document.body.style.overflow = 'auto';
+})
+
+onMounted(() => {
+	internalCustomFieldsList.value = [...props.customFieldsList.map(field => ({ ...field }))];
+	filteredCustomFieldsList.value = [...props.customFieldsList.map(field => ({ ...field }))];
+});
+
+function mustDisableExternalScrolls(value) {
+	document.body.style.overflow = value ? 'hidden' : 'auto';
+}
+
+function clearFilter() {
+	searchString.value = '';
+	filteredCustomFieldsList.value = [...internalCustomFieldsList.value.map(field => ({ ...field }))];
+}
+
 function handleCancel() {
-	internalCustomFieldsList.value = cloneDeep(props.customFieldsList);
+	internalCustomFieldsList.value = [...props.customFieldsList.map(field => ({ ...field }))];
+	clearFilter();
 	modelValue.value = false;
 	emits('cancel');
 }
 
 function handleOk() {
+	clearFilter();
+	emits('update-preset', selectedPreset.value.value);
 	emits('update-fields-list', internalCustomFieldsList.value);
 	modelValue.value = false;
+}
+
+function syncInternalCustomFieldsList() {
+	internalCustomFieldsList.value.forEach((field) => {
+		const foundField = filteredCustomFieldsList.value.find(item => item[props.trackBy] === field[props.trackBy]);
+		if (foundField) {
+			field.visible = foundField.visible;
+		}
+	});
+}
+
+function currentPreset() {
+	syncInternalCustomFieldsList();
+
+	const currentSelectedColumns = internalCustomFieldsList.value.
+		filter(({ visible }) => visible === true).
+		map(field => field[props.trackBy]);
+	const foundPreset = props.presetsOptions.find(({ columns }) => {
+		return hasSameItems(columns, currentSelectedColumns);
+	});
+
+	if (!foundPreset) {
+		selectedPreset.value = { id: 'custom', value: 'Personalizado' };
+		return;
+	}
+
+	selectedPreset.value = { id: kebabCase(foundPreset.label), value: foundPreset.label };
 }
 
 </script>
@@ -195,7 +356,29 @@ function handleOk() {
 	&__description {
 		@include tokens.body-2;
 		color: tokens.$n-600;
-		margin: tokens.mb(3);
+		margin: tokens.mb(5);
+	}
+
+	&__divider {
+		margin: tokens.mTRBL(5, 0, 4, 0);
+	}
+
+	&__search {
+		margin: tokens.mb(1);
+	}
+
+	&__count {
+		@include tokens.caption;
+		color: tokens.$n-600;
+		margin: tokens.mTRBL(3, 0, 2, 0);
+	}
+
+	&__empty-list {
+		@include tokens.caption;
+		color: tokens.$n-400;
+		text-align: center;
+		font-style: italic;
+		margin: tokens.mt(4);
 	}
 
 	&__item-label {
