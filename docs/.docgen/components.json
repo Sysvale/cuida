@@ -7596,6 +7596,19 @@
       {
         "name": "variant",
         "description": "Especifica a principal do componente. Essa cor será aplicada aos detalhes de estilo do componente, bem como em seu botão principal.\nSão 10 variantes: 'teal', 'green', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },

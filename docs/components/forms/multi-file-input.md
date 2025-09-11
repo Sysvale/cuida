@@ -1,16 +1,26 @@
 # MultiFileInput
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### O MultiFileInput é um componente que permite ao usuário selecionar e carregar múltiplos arquivos de forma organizada.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- Quando o usuário precisa enviar múltiplos arquivos em um único formulário.
+- Para situações onde é importante visualizar a lista de arquivos selecionados antes de finalizar o envio.
+- Quando o espaço na interface é limitado, mas a seleção de vários arquivos é um requisito.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
+## Quando não usar:
+- Quando apenas um único arquivo precisa ser enviado (nesse caso, um input de arquivo simples é suficiente).
+- Se a lista de arquivos selecionados pode se tornar muito longa, ocupando espaço excessivo na tela e prejudicando a usabilidade.
+- Em interfaces onde a complexidade do componente pode confundir o usuário, especialmente se o envio de múltiplos arquivos não for uma necessidade comum.
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+<br />
+
+## Obs:
+- O **MultiFileInput** é derivado do `FileInput` e possui todos os atributos e eventos dele.
+
 
 ---
 
@@ -32,7 +42,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:args
 	:component="CdsMultiFileInput"
-	:events="cdsMultiFileInputEvents"
+	:events
 />
 
 ---
@@ -53,17 +63,36 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Slots
-
-<APITable
-	name="MultiFileInput"
-	section="slots"
-/>
-
 <script setup>
+import { ref } from 'vue';
 import CdsMultiFileInput from '@/components/MultiFileInput.vue';
 
-const cdsMultiFileInputEvents = [
-	'multiFileInput-click'
+const events = [
+	'submit'
 ];
+
+const args = ref({
+	documents:[
+		{
+			name: 'Comprovante de residência',
+			required: true,
+		},
+		{
+			name: 'Guia de encaminhamento',
+			required: false,
+		},
+		{
+			name: 'RG',
+			required: false,
+		},
+		{
+			name: 'Passaporte',
+			required: true,
+		}
+	],
+	variant: 'green',
+	submitButtonText: 'Enviar arquivos',
+	buttonSecondary: false,
+	size: 'md',
+});
 </script>

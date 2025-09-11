@@ -2,6 +2,7 @@
 <!-- eslint-disable vue/no-parsing-error -->
 <template>
 	<label
+		v-if="text"
 		:class="{
 			'label': !fluid,
 			'label--fluid': fluid,

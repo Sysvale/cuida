@@ -1,16 +1,18 @@
 # FileInput
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### FileInput é um input customizado de arquivos.
+---
+<br />
 
-### Quando usar
+## Quando usar:
+- For necessário que o usuário faça uploads do seu computador para a plataforma.
+- For necessário prover uma experiência de arrasta e solta para upload de arquivos.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br />
 
-### Quando não usar
+## Quando não usar:
+- Se tratar de uma experiência mobile-first.
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
 
 ---
 
@@ -18,10 +20,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ```js
 <CdsFileInput
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="fileInputClick = true"
+	v-model="args"
 />
 ```
 
@@ -32,7 +31,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:args
 	:component="CdsFileInput"
-	:events="cdsFileInputEvents"
+	:events
 />
 
 ---
@@ -53,17 +52,13 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 <br />
 
-## Slots
-
-<APITable
-	name="FileInput"
-	section="slots"
-/>
-
 <script setup>
+import { ref } from 'vue';
 import CdsFileInput from '@/components/FileInput.vue';
 
-const cdsFileInputEvents = [
-	'fileInput-click'
+const events = [
+	'update:modelValue'
 ];
+
+const args = ref({});
 </script>
