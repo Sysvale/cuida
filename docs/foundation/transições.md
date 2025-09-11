@@ -1,53 +1,27 @@
 # Transições
 
-## Preview
+Os tokens de transição são utilizados para suavizar as interações com os componentes
+do Cuida.
 
+<hr />
+<br />
+
+## Recomendações
+
+- Os tokens de transição foram criados imaginando o seu uso em interações específicas (click, hover, aparecimento na tela).
+Evite utilizar os tokens em situações muito distintas daquelas pras quais foram projetados.
+
+## Observações
+- Ao passar o mouse sobre a ilustração de exemplo na tabela, serão mostrados exemplos de transição usando os tokens.
+
+<br />
+
+## Tokens
+Os tokens de border-radius são variáveis scss e estão descritos abaixo.
+<br />
+
+<Transitions />
 <script setup>
 import Transitions from '@/docs-components/Transitions.vue';
 
-const handleClick = () => {
-  console.log('Component interaction');
-};
 </script>
-
-<div class="demo-container">
-  <Transitions />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
-
-## Uso
-
-```vue
-<template>
-  <cds-transições
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
-```
-
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>

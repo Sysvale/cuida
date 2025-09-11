@@ -1,39 +1,42 @@
-# CdsFloatify()
+# v-cds-floatify
 
-## Props
+Os v-cds-floatify é uma diretiva do Cuida que permite que os elementos que a utilizam se tornem flutuantes.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
+<hr />
 
-## Eventos
+#### Argumentos
 
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+**(String):**
+- Indica o posicionamento do componente em referência ao elemento alvo. É passado como argumento da diretiva, no formato  `v-cds-floatify:[argument]`
+- Obrigatória: *Não*
+- Valores válidos: 'top', 'top-start', 'top-end, 'bottom', 'bottom-start, 'bottom-end, 'left', 'left-start, 'left-end, 'right', 'right-start, 'right-end;
 
-## Uso
+**(String):**
+- O id do elemento que o ContrastChecker vai usar como referência para se posicionar. É passado como valor pra diretiva, no formato `v-cds-floatify="argument"`
+- Obrigatória: *Sim*
+- Valores válidos: qualquer string que indica o id de um elemento do DOM;
 
-```vue
+<br />
+
+#### Retorno
+
+Nenhum
+
+<br />
+
+#### Obs:
+- Utiliza o [popper.js](https://popper.js.org/docs/v2/) como dependência. A leitura da documentação do popper pode ajudar no uso dessa diretiva.
+
+<br />
+
+#### Exemplo
+
+```html
 <template>
-  <cds-cdsfloatify
-    prop="value"
-    @event="handleEvent"
-  />
+	<div
+		v-cds-floatify:[position]="targetId"
+	>
+		...
+	</div>
 </template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
 ```
-
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>

@@ -1,53 +1,24 @@
 # Sombras
+Os tokens de sombra são utilizados para criar hierarquia visual e impressão de profundidade.
 
-## Preview
+<hr />
+<br />
+
+## Recomendações
+
+-  Não recomendamos a utilização de sombras em logos e em imagens.
+
+- Evite utilizar sombras como único recurso para indicar interação.
+
+
+<br />
+
+## Tokens
+Os tokens de sombra são variáveis scss e estão descritos abaixo.
+<br />
+
+<Shadow />
 
 <script setup>
 import Shadow from '@/docs-components/Shadows.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
 </script>
-
-<div class="demo-container">
-  <Shadow />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
-
-## Uso
-
-```vue
-<template>
-  <cds-shadow
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
-```
-
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>

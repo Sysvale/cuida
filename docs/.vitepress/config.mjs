@@ -21,7 +21,7 @@ export default defineConfig({
 			provider: 'local'
 		},
 		nav: [
-			// { text: 'Fundação', link: '/foundation/' },
+			{ text: 'Fundação', link: '/foundation/' },
 			{ text: 'Componentes', link: '/components/' },
 			// { text: 'Utils', link: '/utils/' },
 			// { text: 'ícones', link: '/utils/' },
@@ -235,6 +235,61 @@ export default defineConfig({
 						{ text: 'SideBar <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/navegação/side-bar' },
 						{ text: 'Tabs <Badge class="badge-ready"type="info">ready - deprecated</Badge>', link: '/components/navegação/tabs' },
 						// { text: 'Wizard', link: '/components/navegação/wizard' },
+					]
+				},
+			],
+			'/foundation/': [
+				{ text: 'Princípios', link: '/foundation/principles' },
+				{ text: 'Cores', link: '/foundation/cores' },
+				{ text: 'Tipografia', link: '/foundation/tipografia' },
+				{ text: 'Peso da fonte', link: '/foundation/peso-fonte' },
+				{ text: 'Espaçamento', link: '/foundation/espacamento' },
+				{ text: 'Bordas', link: '/foundation/bordas' },
+				{ text: 'Elevação', link: '/foundation/elevation' },
+				{ text: 'Iconografia', link: '/foundation/iconografia' },
+				{ text: 'Sombras', link: '/foundation/shadow' },
+				{ text: 'Transições', link: '/foundation/transições' },
+			],
+			'/utils/': [
+				{
+					text: 'Composables',
+					collapsed: false,
+					items: [
+						{ text: 'UseToast()', link: '/utils/use-toast' },
+					]
+				},
+				{
+					text: 'Diretivas',
+					collapsed: false,
+					items: [
+						{ text: 'v-cds-tip', link: '/utils/cds-tip' },
+						{ text: 'v-cds-floatify', link: '/utils/cds-floatify' },
+					]
+				},
+				{
+					text: 'Métodos',
+					collapsed: false,
+					items: [
+						{ text: 'ContrastChecker()', link: '/utils/contrast-checker' },
+						{ text: 'HasSlot() - deprecated', link: '/utils/has-slot' },
+						{ text: 'IsDeviceType()', link: '/utils/is-device-type' },
+						{ text: 'RemoveAccents()', link: '/utils/remove-accents' },
+						{ text: 'Rouder()', link: '/utils/rounder' },
+					]
+				},
+				{
+					text: 'Sass',
+					collapsed: false,
+					items: [
+						{ text: 'PaleteResolver()', link: '/utils/palete-resolver' },
+						{ text: 'VariantResolver()', link: '/utils/variant-resolver' },
+					]
+				},
+				{
+					text: 'Componentes da documentação',
+					collapsed: false,
+					items: [
+						{ text: 'Text', link: '/components/tipografia/text' },
 					]
 				},
 			]

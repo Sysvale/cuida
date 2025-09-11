@@ -1,39 +1,35 @@
-# CdsTip()
+# v-cds-tip
 
-## Props
+Os v-cds-tip é uma diretiva do Cuida utilizada para implementar tooltips. O hover no componente dispara a exibição do tooptip. Para parar a exibição do tooptip basta enviar null como texto.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
+<hr />
 
-## Eventos
+#### Argumentos
 
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+**(String):**
+- Especifica o texto do tooltip
+- Obrigatória: *Sim*
+- Valores válidos: qualquer string
 
-## Uso
+<br />
 
-```vue
-<template>
-  <cds-cdstip
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
+#### Retorno
 
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+Nenhum
+
+<br />
+
+#### Obs:
+- Utiliza o [tippy.js](https://tippyjs.bootcss.com/) como dependência. A leitura da documentação do tippy pode ajudar no uso dessa diretiva.
+
+<br />
+
+#### Exemplo
+
+```html
+<div
+		v-cdstip="text"
+	>
+		...
+</div>
 ```
-
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>

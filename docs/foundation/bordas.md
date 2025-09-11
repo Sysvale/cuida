@@ -1,53 +1,33 @@
 # Bordas
 
-## Preview
+Os tokens de border-radius são utilizados para arredondar as bordas dos cantos de componentes 
+da interface, tornando-os mais sutis, amigáveis e orgânicos. No Cuida, prezamos por bordas um 
+tanto arredondadas, que crescem de acordo com o tamanho do componente.
 
+<hr />
+<br />
+
+## Recomendações
+
+-  Não recomendamos a utilização de componentes com border-radius igual a 0,
+ uma vez que vão contra a linguagem visual que estamos construindo.
+
+-  Não recomendamos utilizar bordas muito arredondadas em elementos
+ pequenos. O objetivo é ter bordas mais orgânicas, e não elementos arredondados.
+
+- Recomendamos que os elementos possuam border-radius uniformes, por isso nossos 
+tokens não preveem cenários nos quais um elemento possui border-radius
+ diferentes para cada um de seus cantos. Caso percebamos essa necessidade,
+  trabalharemos nisso no futuro.
+
+
+<br />
+
+## Tokens
+Os tokens de border-radius são variáveis scss e estão descritos abaixo.
+<br />
+
+<Border />
 <script setup>
 import Border from '@/docs-components/BorderBuilder.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
 </script>
-
-<div class="demo-container">
-  <Border />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
-
-## Uso
-
-```vue
-<template>
-  <cds-bordas
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
-```
-
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>

@@ -1,53 +1,27 @@
 # Elevação
 
-## Preview
+Os tokens de elevação são utilizados para indicar o posicionamento dos diversos
+elementos da interface no eixo Z, dividindo os componentes em camadas. Por padrão
+todos os componentes estão dispostos na mesma camada.
 
+<hr />
+<br />
+
+## Recomendações
+
+- Os tokens de elevação foram criados imaginando o seu uso em componentes de referência (backdrop, toolbar, modal, etc.).
+Evite utilizar os tokens em "classes de componente" muito distintas daquelas pras quais foram projetados.
+
+## Observações
+- Ao passar o mouse sobre a ilustração de exemplo na tabela, será mostrada a comparação dos tokens e seus níveis de elevação.
+
+<br />
+
+## Tokens
+Os tokens de elevação são variáveis scss e estão descritos abaixo.
+<br />
+
+<Elevation />
 <script setup>
 import Elevation from '@/docs-components/Elevation.vue';
-
-const handleClick = () => {
-  console.log('Component interaction');
-};
 </script>
-
-<div class="demo-container">
-  <Elevation />
-</div>
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
-
-## Eventos
-
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
-
-## Uso
-
-```vue
-<template>
-  <cds-elevation
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
-
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
-```
-
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
