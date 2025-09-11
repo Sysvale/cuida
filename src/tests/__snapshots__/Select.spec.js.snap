@@ -3,7 +3,7 @@
 exports[`Select > renders correctly 1`] = `
 "<div data-v-96b70cc4="" class="select" id="select-input">
   <div data-v-96b70cc4="" class="select__container select__container--fit">
-    <div data-v-82c69faf="" data-v-96b70cc4="" options="[object Object],[object Object]" searchable="false" width="" optionsfield="value" returnvalue="false" mobile="false" addable="false" onkeypress="return false;" class="select__input--undefined select__input--fit">
+    <div data-v-82c69faf="" data-v-96b70cc4="" class="base-input__container select__input--undefined select__input--fit" options="[object Object],[object Object]" searchable="false" width="" optionsfield="value" returnvalue="false" mobile="false" addable="false" onkeypress="return false;">
       <!--v-if--><label data-v-c1eb01da="" data-v-82c69faf="" class="label"><span data-v-c1eb01da="" class="label__content">label <!--v-if--><!--v-if--></span><span data-v-c1eb01da="" class="label__link"></span></label>
       <div data-v-82c69faf="" class="base-input base-input--default">
         <!--v-if-->
