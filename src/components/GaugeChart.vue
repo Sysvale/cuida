@@ -16,7 +16,7 @@
 					@mouseleave="showPopover = false"
 				>
 					<linearGradient
-						id="gradient"
+						:id="`gradient-${uniqueKey}`"
 						x1="0"
 						y1="0"
 						x2="0"
@@ -41,10 +41,10 @@
 						/>
 
 						<path
-							
 							fill="none"
 							class="indicator-progress"
 							d="M30,90 A40,40 0 1,1 80,90"
+							:style="{ stroke: `url(#gradient-${uniqueKey})` }"
 						/>
 
 						<path
@@ -241,7 +241,6 @@ $target: v-bind(targetValue);
 	}
 
 	path.indicator-progress {
-		stroke: url(#gradient);
 		stroke-dasharray: 198;
 		stroke-dashoffset: var(--percentage);
 		animation: dash 1s ease-out;
