@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="base-input__container">
 		<CdsBaseMobileInput
 			v-if="floatingLabel"
 			ref="mobileInput"
@@ -561,6 +561,10 @@ defineExpose({
 	justify-content: space-between;
 	position: relative;
 	cursor: v-bind(computedCursor);
+
+	&__container {
+		width: inherit;
+	}
 
 	&__top-content {
 		padding: tokens.pa(1);
