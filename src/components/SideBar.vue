@@ -2,6 +2,7 @@
 	<div
 		:class="mainClass"
 	>
+	<pre>{{ collapsed }}</pre>
 		<div :class="`variant-resolver--${variant}`">
 			<div class="side-bar__header">
 				<div
@@ -610,6 +611,10 @@ function handleLogoClick() {
 	*/
 	emit('logo-click');
 }
+
+defineExpose({
+	collapsibleState: collapsed.value,
+});
 </script>
 
 <style lang="scss">
