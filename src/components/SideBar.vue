@@ -2,7 +2,6 @@
 	<div
 		:class="mainClass"
 	>
-	<pre>{{ collapsed }}</pre>
 		<div :class="`variant-resolver--${variant}`">
 			<div class="side-bar__header">
 				<div
