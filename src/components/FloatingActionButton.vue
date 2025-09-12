@@ -64,6 +64,7 @@ const props = defineProps({
 	/**
 	 * Define a variante de cor do botão. São 9 variantes implementadas: 'green', 'teal',
 	 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.
+	 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	 */
 	variant: {
 		type: String,

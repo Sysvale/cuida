@@ -18,7 +18,6 @@
 </template>
 
 <script setup>
-
 defineOptions({ name: 'TextArea' });
 
 import { ref, watch, useTemplateRef } from 'vue';

@@ -21,7 +21,7 @@ import { computed, useTemplateRef } from 'vue';
 const props = defineProps({
 	/**
 	* A variante de cor.
-	* @values 'green', 'teal', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	variant: {
 		type: String,

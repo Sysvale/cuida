@@ -83,8 +83,8 @@
 						<span v-else>
 							Personalizar colunas
 						</span>
-					</cds-button>
-				</cds-flexbox>
+					</CdsButton>
+				</CdsFlexbox>
 				<div
 					v-if="withSearch"
 					class="data-table__items-counter--below"
@@ -180,6 +180,8 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'DataTable' });
+
 import {
 	ref,
 	watch,
@@ -211,6 +213,7 @@ const searchInputRef = useTemplateRef('search-input');
 const props = defineProps({
 	/**
  	* Variante de cor usada na estilização do componente.
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	selectionVariant: {
 		type: String,

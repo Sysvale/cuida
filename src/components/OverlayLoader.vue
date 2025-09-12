@@ -20,7 +20,7 @@ export default {
 		/**
 		* Variante de cor do componente ('turquoise', 'green', 'blue',
 		 'indigo', 'violet', 'pink', 'red', 'orange', 'amber')
-		* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
+		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		*/
 		variant: {
 			type: String,

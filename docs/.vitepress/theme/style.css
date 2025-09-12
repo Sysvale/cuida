@@ -214,6 +214,25 @@ h1 {
 	margin-bottom: 32px !important;
 }
 
+.docs-badge[type="info"] {
+	background: #467bd8;
+	color: #f6f9fe;
+	border-radius: 5px;
+	padding: 0.1em 0.6em;
+	font-size: 0.8em;
+	margin-left: 0.4em;
+}
+
+.docs-badge[type="danger"] {
+	background: #F3596C;
+	color: #fef6f7;
+	border-radius: 5px;
+	padding: 0.1em 0.6em;
+	font-size: 0.8em;
+	margin-left: 0.4em;
+}
+
+
 .badge-ready {
 	background: #2db981;
 	color: white;

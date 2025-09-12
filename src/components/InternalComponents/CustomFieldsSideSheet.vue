@@ -126,6 +126,8 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'CustomFieldsSideSheet' });
+
 import { ref, watch, computed, onMounted, onBeforeUnmount } from 'vue';
 import hasSameItems from '../../utils/methods/hasSameItems';
 import CdsIcon from '../Icon.vue';

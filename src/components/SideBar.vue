@@ -165,7 +165,7 @@
 						</div>
 					</Transition>
 					<div v-if="item.items && collapsed">
-						<cds-rich-tooltip
+						<CdsRichTooltip
 							:model-value="itemsWithVisibilityController[index]?.show"
 							:target-id="item.label"
 							default-placement="bottom-start"
@@ -288,6 +288,8 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'SideBar' });
+
 import { ref, computed, watch, onMounted, onBeforeMount } from 'vue';
 import isEqual from 'lodash.isequal';
 import isEmpty from 'lodash.isempty';
@@ -304,6 +306,7 @@ const props = defineProps({
 	* A variante de cor. São 10 variantes implementadas: 'green', 'teal',
 	* 'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.
 	* A variante só terá efeito quando a SideBar estiver no modo light.
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	variant: {
 		type: String,

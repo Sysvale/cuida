@@ -20,7 +20,7 @@ export default {
 		},
 		/**
 		* A variante de cor. São 10 variantes:
-		* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
+		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		*/
 		variant: {
 			type: String,

@@ -44,6 +44,8 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'Label' });
+
 import { computed } from 'vue';
 import CdsRequiredIndicator from './RequiredIndicator.vue';
 import vCdstip from '../utils/directives/cdstip';

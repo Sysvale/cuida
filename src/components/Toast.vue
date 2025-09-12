@@ -132,6 +132,7 @@ const props = defineProps({
 	},
 	/**
 	* Variante do toast. São 4 variantes implementadas: 'success', 'info', 'warning', 'danger'.
+	* @values success, info, warning, danger
 	*/
 	variant: {
 		type: String,

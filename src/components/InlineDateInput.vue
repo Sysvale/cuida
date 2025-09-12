@@ -168,6 +168,7 @@ export default {
 		/**
 		* A variante de cor. São 9 variantes implementadas: 'green', 'teal',
 		* 'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'.
+		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		*/
 		variant: {
 			type: String,

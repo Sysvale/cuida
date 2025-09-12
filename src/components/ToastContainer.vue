@@ -23,7 +23,6 @@
 </template>
 
 <script setup>
-
 defineOptions({ name: 'ToastContainer' });
 
 import { useToast } from '../utils/composables/useToast.js'

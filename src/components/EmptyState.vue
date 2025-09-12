@@ -107,6 +107,7 @@ export default {
 		},
 		/**
 		 * A variante do botão de ação do Empty State (segue as variantes do componente de botão do Cuida)
+		 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		 */
 		actionButtonVariant: {
 			type: String,

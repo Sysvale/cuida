@@ -62,7 +62,6 @@
 </template>
 
 <script setup>
-
 defineOptions({ name: 'RadioButtonGroup' });
 
 import { ref, computed, watch } from 'vue';
@@ -146,7 +145,7 @@ const props = defineProps({
 	},
 	/**
 	* A variante de cor. São 10 variantes:
-	* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	variant: {
 		type: String,

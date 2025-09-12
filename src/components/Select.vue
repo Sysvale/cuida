@@ -86,7 +86,6 @@
 </template>
 
 <script setup>
-
 defineOptions({ name: 'Select' });
 
 import { ref, watch, computed, useTemplateRef, onMounted, nextTick  } from 'vue';

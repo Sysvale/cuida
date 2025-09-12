@@ -162,18 +162,18 @@ export default defineConfig({
 						{ text: 'PageLayout <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/navegação/page-layout' },
 						{ text: 'Pagination <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/navegação/pagination' },
 						{ text: 'SegmentedControl <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/navegação/segmented-control' },
-						{ text: 'Tabs <Badge class="badge-ready"type="info">ready - deprecated</Badge>', link: '/components/navegação/tabs' },
+						{ text: 'Tabs <span class="docs-badge" type="danger">Deprecated</span>', link: '/components/navegação/tabs' },
 					]
 				},
 				{
 					text: 'Loaders',
 					collapsed: false,
 					items: [
-						{ text: 'LoadingBar <Badge class="badge-ready"type="info">ready - deprecated</Badge>', link: '/components/loaders/loading-bar' },
+						{ text: 'LoadingBar <span class="docs-badge" type="danger">Deprecated</span>', link: '/components/loaders/loading-bar' },
 						{ text: 'LoadingIndicator <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/loaders/loading-indicator' },
 						{ text: 'OverlayLoader <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/loaders/overlay-loader' },
 						{ text: 'Skeleton <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/loaders/skeleton' },
-						{ text: 'SkeletonText <Badge class="badge-ready"type="info">ready - deprecated</Badge>', link: '/components/loaders/skeleton-text' },
+						{ text: 'SkeletonText <span class="docs-badge" type="danger">Deprecated</span>', link: '/components/loaders/skeleton-text' },
 						{ text: 'Spinner <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/loaders/spinner' },
 					]
 				},
@@ -181,7 +181,7 @@ export default defineConfig({
 					text: 'Utils',
 					collapsed: false,
 					items: [
-						{ text: 'Clickable <Badge class="badge-ready"type="info">ready - deprecated</Badge>', link: '/components/utils/clickable' },
+						{ text: 'Clickable <span class="docs-badge" type="danger">Deprecated</span>', link: '/components/utils/clickable' },
 						{ text: 'Image <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/utils/image' },
 						{ text: 'Spacer <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/utils/spacer' },
 						{ text: 'Truncate <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/utils/truncate' },
@@ -191,7 +191,7 @@ export default defineConfig({
 					text: 'Charts',
 					collapsed: false,
 					items: [
-						{ text: 'BarChart', link: '/components/charts/bar-chart' },
+						{ text: 'BarChart ', link: '/components/charts/bar-chart' },
 						{ text: 'DonutChart', link: '/components/charts/donut-chart' },
 						{ text: 'GaugeChart', link: '/components/charts/gauge-chart' },
 						{ text: 'LineChart', link: '/components/charts/line-chart' },
@@ -215,7 +215,7 @@ export default defineConfig({
 					text: 'Tipografia',
 					collapsed: false,
 					items: [
-						{ text: 'Text <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/tipografia/text' },
+						{ text: 'Text <span class="docs-badge" type="info">ready</span>', link: '/components/tipografia/text' },
 					]
 				},
 				{
@@ -233,7 +233,7 @@ export default defineConfig({
 						// { text: 'SecondaryNavigation', link: '/components/navegação/secondary-navigation' },
 						{ text: 'SegmentedControl <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/navegação/segmented-control' },
 						{ text: 'SideBar <Badge class="badge-ready"type="info">ready</Badge>', link: '/components/navegação/side-bar' },
-						{ text: 'Tabs <Badge class="badge-ready"type="info">ready - deprecated</Badge>', link: '/components/navegação/tabs' },
+						{ text: 'Tabs <span class="docs-badge" type="danger">Deprecated</span>', link: '/components/navegação/tabs' },
 					]
 				},
 			],

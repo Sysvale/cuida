@@ -15,7 +15,6 @@
 </template>
 
 <script setup>
-
 defineOptions({ name: 'Text' });
 
 import { computed, useTemplateRef } from 'vue';

@@ -28,6 +28,8 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'TruncateContainer' });
+
 import { ref, computed, nextTick, watch } from 'vue';
 import CdsFlatButton from './FlatButton.vue';
 import CdsFlexbox from './Flexbox.vue';

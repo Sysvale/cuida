@@ -532,16 +532,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -771,17 +771,16 @@
         "description": "A variante de cor. São 11 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'turquoise'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'gray'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -1029,11 +1028,11 @@
         "name": "supportLinkUrl",
         "description": "Define a url a ser acessada no clique do link de suporte.",
         "type": {
-          "name": "string"
+          "name": "string|null"
         },
         "defaultValue": {
           "func": false,
-          "value": "'https://cuida.framer.wiki/'"
+          "value": "null"
         }
       },
       {
@@ -1145,6 +1144,11 @@
           "func": false,
           "value": "false"
         }
+      }
+    ],
+    "events": [
+      {
+        "name": "supportLinkClick"
       }
     ],
     "slots": [
@@ -1325,11 +1329,11 @@
         "name": "supportLinkUrl",
         "description": "Define a url a ser acessada no clique do link de suporte.",
         "type": {
-          "name": "string"
+          "name": "string|null"
         },
         "defaultValue": {
           "func": false,
-          "value": "'https://cuida.framer.wiki/'"
+          "value": "null"
         }
       },
       {
@@ -1546,16 +1550,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -1643,16 +1647,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -1744,6 +1748,17 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "ghost",
+        "description": "Especifica se o componente deve ser exibido na sua versão ghost.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
       }
     ],
     "events": [
@@ -1759,8 +1774,16 @@
     ],
     "slots": [
       {
+        "name": "prepend",
+        "description": "Slot para exibir prepend do botão."
+      },
+      {
         "name": "default",
         "description": "Slot padrão utilizado para exibir texto do botão."
+      },
+      {
+        "name": "append",
+        "description": "Slot para exibir append do botão."
       }
     ],
     "sourceFiles": [
@@ -2325,16 +2348,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -2458,16 +2481,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -2594,38 +2617,27 @@
     ]
   },
   "Chip": {
-    "displayName": "Chip",
+    "name": "Chip",
     "exportName": "default",
+    "displayName": "Chip",
     "description": "",
     "tags": {},
     "props": [
       {
-        "name": "modelValue",
-        "description": "Controla o estado de seleção da chip.",
-        "type": {
-          "name": "boolean"
-        },
-        "required": true,
-        "defaultValue": {
-          "func": false,
-          "value": "false"
-        }
-      },
-      {
         "name": "variant",
-        "description": "A variante de cor. São 10 variantes:",
+        "description": "A variante da Badge. São 9 variantes.",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -2637,7 +2649,7 @@
       },
       {
         "name": "size",
-        "description": "Especifica o tamanho da chip. São 3 tamanhos implementados: 'sm', 'md', 'lg'.",
+        "description": "Especifica o tamanho da chip. São 3 tamanhos implementados.",
         "tags": {},
         "values": [
           "sm",
@@ -2651,22 +2663,38 @@
           "func": false,
           "value": "'md'"
         }
-      }
-    ],
-    "events": [
+      },
       {
-        "name": "update:modelValue",
-        "description": "Evento emitido para gerenciar o valor de seleção do chip.",
+        "name": "persistantActionIcon",
+        "description": "Especifíca se o ícone de ação da chip é mostrado independentemente do estado de seleção.",
         "type": {
-          "names": [
-            "Event"
-          ]
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
+      },
+      {
+        "name": "iconLeft",
+        "description": "Especifica se o ícone da chip é mostrado na esquerda (true) ou direita (false).",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "true"
         }
       }
     ],
     "slots": [
       {
-        "name": "default"
+        "name": "icon",
+        "description": "Slot utilizado para alterar o ícone mostrado na chip."
+      },
+      {
+        "name": "default",
+        "description": "Slot utilizado para o conteúdo textual da chip."
       }
     ],
     "sourceFiles": [
@@ -3008,16 +3036,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -3133,10 +3161,31 @@
     "displayName": "DataTable",
     "description": "",
     "tags": {},
+    "expose": [
+      {
+        "name": "resetSearch"
+      },
+      {
+        "name": "setSearch"
+      }
+    ],
     "props": [
       {
         "name": "selectionVariant",
         "description": "Variante de cor usada na estilização do componente.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },
@@ -3165,6 +3214,17 @@
         }
       },
       {
+        "name": "customFieldsSearchable",
+        "description": "Especifica se deve ter pesquisa por colunas na personalização da tabela.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
+      },
+      {
         "name": "hideCustomizeButton",
         "description": "Especifica se o botão de personalizar tabela deve ser escondido.",
         "type": {
@@ -3173,6 +3233,28 @@
         "defaultValue": {
           "func": false,
           "value": "false"
+        }
+      },
+      {
+        "name": "presetsOptions",
+        "description": "Define as opções de presets que serão exibidas no sidesheet de personalizar tabela. Se nenhum for fornecido, não será exibido.",
+        "type": {
+          "name": "array"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "[]"
+        }
+      },
+      {
+        "name": "customFieldsTrackBy",
+        "description": "Define o campo que será usado como chave na lista de customFieldsList.",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'id'"
         }
       },
       {
@@ -3211,6 +3293,28 @@
       {
         "name": "withSearch",
         "description": "Especifica se a barra de busca da tabela deve ser exibida.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
+      },
+      {
+        "name": "searchPlaceholder",
+        "description": "Especifica o placeholder da barra de busca.",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'Buscar...'"
+        }
+      },
+      {
+        "name": "withSearchButton",
+        "description": "Especifica se deve ser mostrado botão junto à barra de busca.",
         "type": {
           "name": "boolean"
         },
@@ -3284,6 +3388,9 @@
       },
       {
         "name": "search"
+      },
+      {
+        "name": "search-button-click"
       }
     ],
     "slots": [
@@ -3318,6 +3425,14 @@
           },
           {
             "name": "field",
+            "title": "binding"
+          },
+          {
+            "name": "row-index",
+            "title": "binding"
+          },
+          {
+            "name": "col-index",
             "title": "binding"
           }
         ]
@@ -3388,16 +3503,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -3605,11 +3720,11 @@
         "name": "supportLinkUrl",
         "description": "Define a url a ser acessada no clique do link de suporte.",
         "type": {
-          "name": "string"
+          "name": "string|null"
         },
         "defaultValue": {
           "func": false,
-          "value": "'https://cuida.framer.wiki/'"
+          "value": "null"
         }
       },
       {
@@ -4267,6 +4382,22 @@
           "func": false,
           "value": "0"
         }
+      },
+      {
+        "name": "size",
+        "description": "Especifica o tamanho do botão. São 3 tamanhos implementados: 'sm', 'md', 'lg'.",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'md'"
+        },
+        "values": [
+          "sm",
+          "md",
+          "lg"
+        ]
       }
     ],
     "events": [
@@ -4342,16 +4473,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -4398,11 +4529,11 @@
         "name": "supportLinkUrl",
         "description": "Define a url a ser acessada no clique do link de suporte.",
         "type": {
-          "name": "string"
+          "name": "string|null"
         },
         "defaultValue": {
           "func": false,
-          "value": "'https://cuida.framer.wiki/'"
+          "value": "null"
         }
       },
       {
@@ -4519,24 +4650,26 @@
       {
         "name": "actionButtonVariant",
         "description": "A variante do botão de ação do Empty State (segue as variantes do componente de botão do Cuida)",
-        "type": {
-          "name": "string"
-        },
-        "defaultValue": {
-          "func": false,
-          "value": "'green'"
-        },
+        "tags": {},
         "values": [
-          "teal",
           "green",
+          "teal",
           "blue",
           "indigo",
           "violet",
           "pink",
           "red",
           "orange",
-          "amber"
-        ]
+          "amber",
+          "dark"
+        ],
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'green'"
+        }
       }
     ],
     "events": [
@@ -4912,17 +5045,16 @@
         "description": "A variante de cor.",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'turquoise'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -5117,6 +5249,19 @@
       {
         "name": "variant",
         "description": "Define a variante de cor do botão. São 9 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },
@@ -5315,6 +5460,19 @@
       {
         "name": "variant",
         "description": "A variante de cor. São 9 variantes implementadas: 'green', 'teal', 'turquoise',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },
@@ -5877,16 +6035,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -6139,6 +6297,19 @@
       {
         "name": "variant",
         "description": "A variante de cor. São 9 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },
@@ -6170,8 +6341,9 @@
     ]
   },
   "InnerTabs": {
-    "displayName": "InnerTabs",
+    "name": "InnerTabs",
     "exportName": "default",
+    "displayName": "InnerTabs",
     "description": "",
     "tags": {},
     "props": [
@@ -6204,16 +6376,16 @@
         "description": "Cor da borda que indica o item ativo.\nExistem algumas cores predefinidas seguindo os guias do Cuida, são elas: \n`turquoise`, `green`, `blue`, `violet`, `pink`, `red`, `orange`, `amber` e `gray`.",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -6233,26 +6405,25 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "lazy",
+        "description": "Define se as abas devem ser todas carregadas na renderização do componente ou\nsob demanda, apenas após elas serem acessadas pela primeira vez",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
       }
     ],
     "events": [
       {
-        "name": "tab-click",
-        "description": "Evento emitido quando a aba é clicada",
-        "type": {
-          "names": [
-            "Event"
-          ]
-        }
+        "name": "tab-click"
       },
       {
-        "name": "change",
-        "description": "Evento emitido quando a aba ativa é alterada",
-        "type": {
-          "names": [
-            "Event"
-          ]
-        }
+        "name": "change"
       }
     ],
     "slots": [
@@ -6435,11 +6606,11 @@
         "name": "supportLinkUrl",
         "description": "Define a url a ser acessada no clique do link de suporte.",
         "type": {
-          "name": "string"
+          "name": "string|null"
         },
         "defaultValue": {
           "func": false,
-          "value": "'https://cuida.framer.wiki/'"
+          "value": "null"
         }
       },
       {
@@ -6464,6 +6635,11 @@
           "func": false,
           "value": "false"
         }
+      }
+    ],
+    "events": [
+      {
+        "name": "supportLinkClick"
       }
     ],
     "sourceFiles": [
@@ -6513,6 +6689,19 @@
       {
         "name": "variant",
         "description": "Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:\n`green`, `teal`, `turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `gray`, `dark`.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },
@@ -6841,16 +7030,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -6896,16 +7085,16 @@
         "description": "Define a variante de cor dos detalhes do componente. São 9 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -6960,16 +7149,16 @@
         "description": "A variante de cor. São 10 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.\nA variante só terá efeito quando a SideBar estiver no modo light.",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -7382,16 +7571,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -7566,11 +7755,11 @@
         "name": "supportLinkUrl",
         "description": "Define a url a ser acessada no clique do link de suporte.",
         "type": {
-          "name": "string"
+          "name": "string|null"
         },
         "defaultValue": {
           "func": false,
-          "value": "'https://cuida.framer.wiki/'"
+          "value": "null"
         }
       }
     ],
@@ -7679,16 +7868,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -8156,11 +8345,11 @@
         "name": "supportLinkUrl",
         "description": "Define a url a ser acessada no clique do link de suporte.",
         "type": {
-          "name": "string"
+          "name": "string|null"
         },
         "defaultValue": {
           "func": false,
-          "value": "'https://cuida.framer.wiki/'"
+          "value": "null"
         }
       },
       {
@@ -8240,16 +8429,16 @@
         "description": "Variante de cor do componente ('turquoise', 'green', 'blue',\n         'indigo', 'violet', 'pink', 'red', 'orange', 'amber')",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -8336,16 +8525,16 @@
         "description": "A variante de cor. São 10 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.\nA variante só terá efeito quando o PageLayout estiver no modo light.",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -8508,22 +8697,12 @@
     ]
   },
   "Pagination": {
-    "displayName": "Pagination",
+    "name": "Pagination",
     "exportName": "default",
+    "displayName": "Pagination",
     "description": "",
     "tags": {},
     "props": [
-      {
-        "name": "modelValue",
-        "description": "Prop utilizada para receber a página atual.",
-        "type": {
-          "name": "number|string"
-        },
-        "defaultValue": {
-          "func": false,
-          "value": "1"
-        }
-      },
       {
         "name": "total",
         "description": "Prop utilizada para receber o número total de registros a serem paginados.",
@@ -8559,19 +8738,19 @@
       },
       {
         "name": "variant",
-        "description": "Prop que indica se o componente deverá ocupar 100% do espaço disponível.",
+        "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -8579,17 +8758,6 @@
         "defaultValue": {
           "func": false,
           "value": "'green'"
-        }
-      }
-    ],
-    "events": [
-      {
-        "name": "update:modelValue",
-        "description": "Evento que indica que a página atual foi alterada.\n\nAltera o valor do v-model.\n\nEmite o número referente à página selecionada.",
-        "type": {
-          "names": [
-            "Event"
-          ]
         }
       }
     ],
@@ -8822,6 +8990,19 @@
       {
         "name": "variant",
         "description": "Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:\n`green`, `teal`, `turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `gray`, `dark`.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },
@@ -8959,6 +9140,19 @@
       {
         "name": "variant",
         "description": "Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:\n`green`, `teal`, `turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `gray`, `dark`.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },
@@ -9102,27 +9296,14 @@
     ]
   },
   "ProgressBar": {
-    "displayName": "ProgressBar",
+    "name": "ProgressBar",
     "exportName": "default",
+    "displayName": "ProgressBar",
     "description": "",
     "tags": {},
     "props": [
       {
         "name": "variant",
-        "description": "A variante de cor. São 10 variantes:",
-        "tags": {},
-        "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
-        ],
         "type": {
           "name": "string"
         },
@@ -9134,20 +9315,6 @@
       {
         "name": "value",
         "description": "Define o indicador de progresso da ProgressBar.",
-        "tags": {
-          "min": [
-            {
-              "description": "0",
-              "title": "min"
-            }
-          ],
-          "max": [
-            {
-              "description": "1",
-              "title": "max"
-            }
-          ]
-        },
         "type": {
           "name": "number"
         },
@@ -9155,9 +9322,7 @@
         "defaultValue": {
           "func": false,
           "value": "0"
-        },
-        "min": 0,
-        "max": 1
+        }
       },
       {
         "name": "showText",
@@ -9181,6 +9346,34 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "textLeft",
+        "description": "Quando true, dispõe o texto à esquerda.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
+      },
+      {
+        "name": "shadeSteps",
+        "description": "Ativa shades na progressBar que mudam com o value.\nAceita valores de 1 a 5, indicando a quantidade de gradações (shades) aplicadas",
+        "type": {
+          "name": "number"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "1"
+        }
+      }
+    ],
+    "slots": [
+      {
+        "name": "default",
+        "description": "Slot padrão da progressBar. Pode ser utilizado para sobrescrever o valor de progresso."
       }
     ],
     "sourceFiles": [
@@ -9613,6 +9806,19 @@
       {
         "name": "variant",
         "description": "Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:\n`green`, `teal`, `turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `gray`, `dark`.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },
@@ -9707,16 +9913,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -9893,16 +10099,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -9949,11 +10155,11 @@
         "name": "supportLinkUrl",
         "description": "Define a url a ser acessada no clique do link de suporte.",
         "type": {
-          "name": "string"
+          "name": "string|null"
         },
         "defaultValue": {
           "func": false,
-          "value": "'https://cuida.framer.wiki/'"
+          "value": "null"
         }
       }
     ],
@@ -10126,6 +10332,26 @@
     "displayName": "SearchInput",
     "description": "",
     "tags": {},
+    "expose": [
+      {
+        "name": "componentRef"
+      },
+      {
+        "name": "isFocused"
+      },
+      {
+        "name": "focus"
+      },
+      {
+        "name": "blur"
+      },
+      {
+        "name": "clear"
+      },
+      {
+        "name": "select"
+      }
+    ],
     "props": [
       {
         "name": "disabled",
@@ -10507,11 +10733,11 @@
         "name": "linkUrl",
         "description": "<span className=\"deprecated-warning\">[DEPRECATED]</span> Essa prop vai ser substituída pela `supportLinkUrl` na v4. Define a url a ser acessada no clique do link (no caso do link ser exibido).",
         "type": {
-          "name": "string"
+          "name": "string|null"
         },
         "defaultValue": {
           "func": false,
-          "value": "'https://cuida.framer.wiki/'"
+          "value": "null"
         }
       },
       {
@@ -10540,11 +10766,11 @@
         "name": "supportLinkUrl",
         "description": "Define a url a ser acessada no clique do link de suporte.",
         "type": {
-          "name": "string"
+          "name": "string|null"
         },
         "defaultValue": {
           "func": false,
-          "value": "'https://cuida.framer.wiki/'"
+          "value": "null"
         }
       },
       {
@@ -10586,11 +10812,36 @@
     ]
   },
   "SideBar": {
-    "displayName": "SideBar",
+    "name": "SideBar",
     "exportName": "default",
+    "displayName": "SideBar",
     "description": "",
     "tags": {},
     "props": [
+      {
+        "name": "variant",
+        "description": "A variante de cor. São 10 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.\nA variante só terá efeito quando a SideBar estiver no modo light.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'green'"
+        }
+      },
       {
         "name": "items",
         "description": "Define a lista dos itens do SideBar a serem\nmostrados. Os itens da lista devem ser\nobjetos com path ou route, e com uma label",
@@ -10613,30 +10864,6 @@
         "defaultValue": {
           "func": false,
           "value": "{}"
-        }
-      },
-      {
-        "name": "variant",
-        "description": "A variante de cor. São 10 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.\nA variante só terá efeito quando a SideBar estiver no modo light.",
-        "tags": {},
-        "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
-        ],
-        "type": {
-          "name": "string"
-        },
-        "defaultValue": {
-          "func": false,
-          "value": "'green'"
         }
       },
       {
@@ -10724,7 +10951,7 @@
         },
         "defaultValue": {
           "func": false,
-          "value": "false"
+          "value": "null"
         }
       },
       {
@@ -10769,39 +10996,16 @@
         "name": "logout"
       },
       {
-        "name": "sidebar-click",
-        "description": "Evento emitido quando um dos itens da SideBar é clicado",
-        "type": {
-          "names": [
-            "Event"
-          ]
-        }
+        "name": "sidebar-click"
       },
       {
-        "name": "collapse-click",
-        "type": {
-          "names": [
-            "undefined"
-          ]
-        }
+        "name": "collapse-click"
       },
       {
-        "name": "profile-menu-option-click",
-        "description": "Evento emitido quando um dos itens do menu dropdown do perfil é clicado",
-        "type": {
-          "names": [
-            "Event"
-          ]
-        }
+        "name": "profile-menu-option-click"
       },
       {
-        "name": "logo-click",
-        "description": "Evento emitido quando um o logo da SideBar é clicado",
-        "type": {
-          "names": [
-            "Event"
-          ]
-        }
+        "name": "logo-click"
       }
     ],
     "slots": [
@@ -11207,6 +11411,19 @@
       {
         "name": "variant",
         "description": "A variante de cor. São 10 variantes implementadas: 'green', 'teal',\n'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },
@@ -11640,16 +11857,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -11696,6 +11913,19 @@
       {
         "name": "variant",
         "description": "Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:\n`green`, `teal`, `turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `gray`, `dark`.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },
@@ -12042,16 +12272,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -12371,16 +12601,16 @@
         "description": "Cor da borda que indica o item ativo.\nExistem algumas cores predefinidas seguindo os guias do Cuida, são elas:\n`turquoise`, `green`, `blue`, `violet`, `pink`, `red`, `orange`, `amber` e `gray`.",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -12525,6 +12755,17 @@
         "defaultValue": {
           "func": false,
           "value": "'n-800'"
+        }
+      },
+      {
+        "name": "fontWeight",
+        "description": "Define o peso da fonte.",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'regular'"
         }
       },
       {
@@ -12685,11 +12926,11 @@
         "name": "supportLinkUrl",
         "description": "Define a url a ser acessada no clique do link de suporte.",
         "type": {
-          "name": "string"
+          "name": "string|null"
         },
         "defaultValue": {
           "func": false,
-          "value": "'https://cuida.framer.wiki/'"
+          "value": "null"
         }
       },
       {
@@ -12961,11 +13202,11 @@
         "name": "supportLinkUrl",
         "description": "Define a url a ser acessada no clique do link de suporte.",
         "type": {
-          "name": "string"
+          "name": "string|null"
         },
         "defaultValue": {
           "func": false,
-          "value": "'https://cuida.framer.wiki/'"
+          "value": "null"
         }
       },
       {
@@ -13068,16 +13309,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -13288,16 +13529,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -13424,19 +13665,20 @@
       {
         "name": "variant",
         "description": "Variante do toast. São 4 variantes implementadas: 'success', 'info', 'warning', 'danger'.",
+        "tags": {},
+        "values": [
+          "success",
+          "info",
+          "warning",
+          "danger"
+        ],
         "type": {
           "name": "string"
         },
         "defaultValue": {
           "func": false,
           "value": "'info'"
-        },
-        "values": [
-          "success",
-          "info",
-          "warning",
-          "danger"
-        ]
+        }
       },
       {
         "name": "light",
@@ -13663,6 +13905,99 @@
       "src/components/Truncate.vue"
     ]
   },
+  "TruncateContainer": {
+    "name": "TruncateContainer",
+    "exportName": "default",
+    "displayName": "TruncateContainer",
+    "description": "",
+    "tags": {},
+    "props": [
+      {
+        "name": "height",
+        "description": "Altura do container.",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'250px'"
+        }
+      },
+      {
+        "name": "textAlign",
+        "description": "Define o alinhamento do texto.",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'center'"
+        }
+      },
+      {
+        "name": "variant",
+        "description": "A variante da FlatButton. São 9 variantes.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "turquoise",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber e dark."
+        ],
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'dark'"
+        }
+      }
+    ],
+    "events": [
+      {
+        "name": "button-click",
+        "description": "Evento emitido quando o FlatButton do TruncateContainer é clicado.",
+        "type": {
+          "names": [
+            "Event"
+          ]
+        }
+      },
+      {
+        "name": "expand",
+        "description": "Evento emitido o TruncateContainer é expandido.",
+        "type": {
+          "names": [
+            "Event"
+          ]
+        }
+      },
+      {
+        "name": "collapse",
+        "description": "Evento emitido o TruncateContainer é colapsado.",
+        "type": {
+          "names": [
+            "Event"
+          ]
+        }
+      }
+    ],
+    "slots": [
+      {
+        "name": "default",
+        "description": "Slot padrão utilizado para exibir o conteúdo enviado para o container"
+      }
+    ],
+    "sourceFiles": [
+      "src/components/TruncateContainer.vue"
+    ]
+  },
   "WebcamModal": {
     "name": "WebcamModal",
     "exportName": "default",
@@ -13860,16 +14195,16 @@
         "description": "A variante de cor. São 10 variantes:",
         "tags": {},
         "values": [
-          "'green'",
-          "'teal'",
-          "'blue'",
-          "'indigo'",
-          "'violet'",
-          "'pink'",
-          "'red'",
-          "'orange'",
-          "'amber'",
-          "'dark'"
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
         ],
         "type": {
           "name": "string"
@@ -13964,6 +14299,16 @@
         }
       },
       {
+        "name": "customFieldsSearchable",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
+      },
+      {
         "name": "selectionVariant",
         "type": {
           "name": "string"
@@ -13972,6 +14317,23 @@
           "func": false,
           "value": "'primary'"
         }
+      },
+      {
+        "name": "presetsOptions",
+        "type": {
+          "name": "array"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "[]"
+        }
+      },
+      {
+        "name": "trackBy",
+        "type": {
+          "name": "string"
+        },
+        "required": true
       },
       {
         "name": "loadingCustomFields",
@@ -14016,7 +14378,7 @@
         "name": "cancel"
       },
       {
-        "name": "ok"
+        "name": "update-preset"
       }
     ],
     "sourceFiles": [
