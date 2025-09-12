@@ -3,19 +3,20 @@
 ### Como usar os componentes personalizados para documentar componentes do design system
 ---
 
-Este guia explica como usar os componentes de documentação personalizados criados para migração do Storybook para o VitePress. Estes componentes trabalham em conjunto para fornecer uma experiência de documentação rica e interativa.
+Este guia explica como usar os componentes de documentação e a estrutura básica da documentação dos componentes em markdown.
 
 ## Visão geral dos componentes
 
-### 🎯 Componentes principais
-- **PreviewBuilder**: Componente principal que integra todos os outros
-- **APITable**: Exibe informações técnicas (props, eventos, slots)
+### Componentes principais
+- **PreviewBuilder**: Componente que provê estrutura semelhante à utilizada no Storybook com Preview + Playground
+- **APITable**: Exibe informações técnicas dos componentes (props, eventos, slots)
 - **FigmaFrame**: Mostra designs originais do Figma
 
-### 🔧 Componentes de suporte  
-- **PreviewContainer**: Container visual básico
-- **PlaygroundBuilder**: Controles interativos
-- **LogBuilder**: Captura de eventos
+### Componentes de suporte
+###### Todos são utilizados internamente no PreviewBuilder, mas podem ser usados separadamente
+- **PreviewContainer**: Container básico que adicona bordas e background no componente documentado
+- **PlaygroundBuilder**: Responsável por gerar controles interativos para props
+- **LogBuilder**: Componente utilizado para apresentar os eventos capturados
 
 ---
 
@@ -35,6 +36,9 @@ Descrição detalhada do componente...
 
 ## Quando não usar  
 - Lista de quando evitar...
+
+## Observações 
+- listar observações importantes quando necessário
 
 ---
 
