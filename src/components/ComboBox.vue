@@ -103,6 +103,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'ComboBox' });
+
 import { ref, computed, watch, useTemplateRef, watchEffect } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 import CdsBaseInput from './BaseInput.vue';
@@ -174,6 +177,7 @@ const props = defineProps({
 	},
 	/**
 	* Especifica o estado do input. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	* @values default, valid, invalid, loading
 	*/
 	state: {
 		type: String,
@@ -201,9 +205,9 @@ const props = defineProps({
 		default: 'info-outline',
 	},
 	/**
-	 * A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',
-	 * 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
-	 */
+	* A variante de cor. São 10 variantes:
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
+	*/
 	variant: {
 		type: String,
 		default: 'green',

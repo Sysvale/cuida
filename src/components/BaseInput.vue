@@ -64,7 +64,7 @@
 					v-if="type === 'textarea'"
 					:id="componentId"
 					ref="htmlInput"
-					v-model="internalValue"
+					v-model.trim="internalValue"
 					:required="required"
 					:placeholder="placeholder"
 					:disabled="disabled"
@@ -108,7 +108,7 @@
 						:id="componentId"
 						ref="htmlInput"
 						v-bind="props"
-						v-model="internalValue"
+						v-model.trim="internalValue"
 						:required="required"
 						:readonly="readonly"
 						:placeholder="placeholder"
@@ -183,6 +183,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'BaseInput' });
+
 import { ref, computed, watch, useTemplateRef, onMounted } from 'vue';
 import { useHasSlot } from '../utils/composables/useHasSlot.js';
 import {
@@ -231,6 +234,7 @@ const props = defineProps({
 	},
 	/**
 	* Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	* @values default, valid, loading, invalid
 	*/
 	state: {
 		type: String,
@@ -238,6 +242,7 @@ const props = defineProps({
 	},
 	/**
 	* Especifica o tipo do TextInput. As opções são 'text' e 'email'.
+	* @values text, email
 	*/
 	type: {
 		type: String,

@@ -8,6 +8,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'GridItem' });
+
 import { computed } from 'vue';
 
 const props = defineProps({

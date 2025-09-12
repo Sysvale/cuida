@@ -13,12 +13,15 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'FlatButton' });
+
 import { computed, useTemplateRef } from 'vue';
 
 const props = defineProps({
 	/**
-	* A variante de cor. São 11 variantes implementadas: 'green', 'teal', 'turquoise',
-	* 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+	* A variante de cor.
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	variant: {
 		type: String,
@@ -57,7 +60,6 @@ const predefinedColors = [
 
 const componentRef = useTemplateRef('componentRef');
 
-
 const predefinedColor = computed(() => {
 	if (predefinedColors.includes(props.variant)) {
 		return `flat-button--${props.variant}`;
@@ -77,7 +79,7 @@ const clickHandler = (event) => {
 		return;
 	}
 	/**
-	* Evento que indica que o Flat Button foi clicado
+	* Evento que indica que o FlatButton foi clicado
 	* @event click
 	* @type {Event}
 	*/

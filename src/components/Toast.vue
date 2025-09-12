@@ -75,6 +75,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'Toast' });
+
 import { ref, computed, useAttrs, watch } from 'vue';
 import { useToast } from '../utils/composables/useToast.js';
 import CdsIcon from '../components/Icon.vue';
@@ -129,6 +132,7 @@ const props = defineProps({
 	},
 	/**
 	* Variante do toast. São 4 variantes implementadas: 'success', 'info', 'warning', 'danger'.
+	* @values success, info, warning, danger
 	*/
 	variant: {
 		type: String,

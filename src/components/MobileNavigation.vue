@@ -10,7 +10,7 @@
 					class="mobile-navigation__menu-btn"
 					@click="handleOpenSidebar"
 				>
-					<cds-icon
+					<CdsIcon
 						name="menu-outline"
 					/>
 				</div>
@@ -34,7 +34,7 @@
 						class="mobile-navigation__sidebar-btn"
 						@click="handleCloseSidebar"
 					>
-						<cds-icon
+						<CdsIcon
 							name="x-outline"
 						/>
 					</div>
@@ -52,7 +52,7 @@
 							}"
 							@click="handleItemClick(item)"
 						>
-							<cds-icon
+							<CdsIcon
 								:name="item.icon"
 								width="24"
 								height="24"
@@ -67,7 +67,7 @@
 							class="mobile-navigation__sidebar-user-info"
 							@click="emit('profile-click')"
 						>
-							<cds-avatar
+							<CdsAvatar
 								:src="user.picture ?? ''"
 								:name="user.name ?? ''"
 								:variant="variant"
@@ -84,7 +84,7 @@
 							class="mobile-navigation__sidebar-logout"
 							@click="emit('logout')"
 						>
-							<cds-icon
+							<CdsIcon
 								name="logout-outline"
 								width="24"
 								height="24"
@@ -98,6 +98,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'MobileNavigation' });
+
 import { ref, computed, watch } from 'vue';
 import { isEqual, isEmpty } from 'lodash';
 import CdsIcon from './Icon.vue';
@@ -108,6 +111,7 @@ const props = defineProps({
 	 * A variante de cor. São 10 variantes implementadas: 'green', 'teal',
 	 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.
 	 * A variante só terá efeito quando a SideBar estiver no modo light.
+	 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	 */
 	variant: {
 		type: String,

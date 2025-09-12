@@ -15,7 +15,7 @@
 			:class="resolveCheckboxClass(option.value)"
 			@click="handleCheckboxClick(option.value)"
 		>
-			<cds-checkbox
+			<CdsCheckbox
 				:id="option.value"
 				:model-value="internalValue.includes(option.value)"
 				:label="option.label"
@@ -33,6 +33,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'CheckboxGroup' });
+
 import { ref, onMounted, computed, watch } from 'vue';
 import CdsCheckbox from './Checkbox.vue';
 import variantClassResolver from '../utils/methods/variantClassResolver';
@@ -68,8 +71,8 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	* A variante do componente. São 10 variantes: 'teal', 'green', 'blue',
-	* 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+	* A variante de cor. São 10 variantes:
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	variant: {
 		type: String,
@@ -85,6 +88,7 @@ const props = defineProps({
 	},
 	/**
 	 * Especifica o estado do CheckboxGroup. As opções são 'default', 'valid' e 'invalid'.
+	 * @values default, valid e invalid
 	 */
 	state: {
 		type: String,

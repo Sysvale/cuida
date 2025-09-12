@@ -37,6 +37,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'PageLayout' });
+
 import { computed } from 'vue';
 import SideBar from './SideBar.vue';
 import SecondaryNavigation from './SecondaryNavigation.vue';
@@ -47,6 +50,7 @@ const props = defineProps({
 	 * A variante de cor. São 10 variantes implementadas: 'green', 'teal',
 	 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.
 	 * A variante só terá efeito quando o PageLayout estiver no modo light.
+	 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	 */
 	variant: {
 		type: String,
@@ -86,7 +90,6 @@ const props = defineProps({
 		type: Array,
 		default: () => [],
 	},
-
 	/**
 	 * Define os itens a serem exibidos no menu dropdown mostrado ao clicar no "perfil".
 	 */

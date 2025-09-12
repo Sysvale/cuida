@@ -9,6 +9,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'Grid' });
+
 import { computed } from 'vue';
 
 const props = defineProps({

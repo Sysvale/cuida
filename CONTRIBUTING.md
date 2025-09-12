@@ -266,7 +266,6 @@ Exemplo de uso:
 ├── ISSUE_TEMPLATE
 ├── workflows
 └── labeler.yml
-.storybook
 build
 dist
 docs
@@ -292,14 +291,13 @@ src
 ```
 
 -   **.github:** armazena templates do github, como o de issue e o de pull request, além de workflows do Github actions.
--   **.storybook:** diretório que armazena arquivos de configuração do storybook e o arquivo `preview.js`, entrypoint da aplicação, no qual os componentes `.vue` registrados e as dependências do projeto são importadas e configuradas. O arquivo `manager-head.html` contido nessa pasta é utilizado para sobrescrever as classes de estilo dos menus de navegação do storybook, enquanto o arquivo `preview-head.html` guarda as classes responsáveis por sobrescrever o estilo do iframe de preview dos componentes.
+-   **docs:** diretório que armazena a documentação do projeto usando VitePress, incluindo páginas de componentes e fundação.
 -   **build:** o diretório build guarda o `rollup.config.js`. Esse arquivo é um module bundler responsável pela criação dos arquivos necessários para publicação do pacote node e é chamado com o comando `npm run build`.
 -   **dist:** repositório que armazena os arquivos compilados pelo `rollup.config.js` para distribuição.
 -   **src:** armazena diversos subdiretórios com os arquivos dos componentes do Design System, além de tokens, arquivos de documentação e testes.
     -   **sass:** nesse subdiretório estão definidos os tokens do Cuida em arquivos `.scss`. Esses arquivos são importados no arquivo `app.scss` contido nessa pasta.
-    -   **components:** aqui ficam contidos os arquivos `.vue` que definem os componentes. Novos componentes devem ser exportados no arquivo `index.js`, presente nesse subdiretório para que possam ser efetivamente utilizados na aplicação. Além disso, cada novo arquivo `.vue` adicionado nesse diretório deve ter um arquivo `.stories.mdx` correspondente no diretório **stories** para que seja criada e exibida sua documentação no Storybook.
-    -   **docs-components:** armazena os componentes vue criados para auxílio da documentação no Storybook e que não devem ser exportados como componentes do Design System. Novos componentes devem ser exportados no arquivo `index.js`, presente nesse subdiretório, para que possam ser efetivamente utilizados na aplicação.
-    -   **stories:** nesse subdiretório estão contido os arquivos `.stories.mdx` responsáveis por criar a documentação dos componentes e por exibi-los no storybook. Possui dois subdiretórios, a pasta **components** guarda os `.mdx` com a documentação dos componentes e a pasta **tokens** guarda os `.mdx` com a documentação dos tokens.
+    -   **components:** aqui ficam contidos os arquivos `.vue` que definem os componentes. Novos componentes devem ser exportados no arquivo `index.js`, presente nesse subdiretório para que possam ser efetivamente utilizados na aplicação. Além disso, cada novo arquivo `.vue` adicionado nesse diretório deve ter uma página correspondente na documentação VitePress.
+    -   **docs-components:** armazena os componentes vue criados para auxílio da documentação que não devem ser exportados como componentes do Design System. Novos componentes devem ser exportados no arquivo `index.js`, presente nesse subdiretório, para que possam ser efetivamente utilizados na aplicação.
     -   **entry.js**: arquivo utilizado no `rollup.config.js` como input do processo de building. Nesse arquivo são importadas e configuradas algumas das dependências do projeto que vão ser exportadas dentro do pacote do Cuida. Nesse arquivo também é adicionado o prefixo **_cds-_** necessário para utilizar os componentes do Cuida em outras aplicações, ou seja, se no contexto do Cuida você usa o componente **badge** utilizando `<badge>`, numa aplicação externa que usa o Cuida para chamar esse componente você vai utilizar a sintaxe `<cds-badge>`.
 -   **tests:** diretório que armazena os testes de snapshot e testes unitários dos componentes do Cuida.
 
@@ -315,7 +313,7 @@ No projeto utilizamos alguns workflows do Github Actions no nosso fluxo de CI/CD
 -   **Labeler 🏷️:** workflow utilizado para automatizar a criação de labels nos pull requests. A depender as modificações propostas nos PRs, podem ser adicionadas as labels `🧱 Componente` , `🐛 Bug`, `📃 Documentação`, `🛠️ Build` e `🧩 Token`.
 -   **Tester ⚗️:** workflow que executa a suite de testes do projeto.
 -   **Prettier 🪄:** workflow que utiliza o [Prettier](https://prettier.io/) para estilizar os arquivos automaticamente de acordo com as convenções de estilo de código do projeto. A cada push, caso haja erro de estilo, um commit é automaticamente criado com correções.
--   **Deployer 🚀:** quando um PR é merjado na main esse workflow é disparado. Ele instala as dependências, builda o projeto e aciona o deploy para a github page que hospeda a [documentação do Cuida](https://main--6168a1779cac8c003ab99c2d.chromatic.com/).
+-   **Deployer 🚀:** quando um PR é merjado na main esse workflow é disparado. Ele instala as dependências, builda o projeto e aciona o deploy para a github page que hospeda a documentação do Cuida.
 -   **Deployer V2 🚀:** quando um PR é merjado no branch v2.70-legacy esse workflow é disparado. Ele instala as dependências, builda o projeto e aciona o deploy para a github page que hospeda a [documentação do CuidaV2](https://sysvale.github.io/cuida/?path=/docs/funda%C3%A7%C3%A3o-princ%C3%ADpios--page).
 -   **Publisher 📦:** workflow responsável por publicar o pacote NPM. É disparado quando um PR é merjado na main.
 -   **Releaser ✔️:** workflow utilizado para criar tags automáticas do projeto a depender da versão da aplicação e na sequência criar as releases.

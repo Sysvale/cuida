@@ -252,6 +252,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'BaseMobileInput' });
+
 import { ref, computed, watch, useTemplateRef, useAttrs, nextTick } from 'vue';
 import {
 	nativeEvents,
@@ -286,6 +289,7 @@ const props = defineProps({
 	},
 	/**
 	* Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	* @values default, valid, loading, invalid
 	*/
 	state: {
 		type: String,

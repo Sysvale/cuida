@@ -43,6 +43,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'MobileStepperInput' });
+
 import { ref, computed, watch, useAttrs } from 'vue';
 import IconButton from './IconButton.vue';
 

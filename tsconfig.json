@@ -18,17 +18,17 @@
     "baseUrl": "./",
     "types": ["vite/client"],
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
+      "@/*": ["src/*"]
+    }
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue"
+    "src",
+    "types",
+    "docs"
   ],
+  "vueCompilerOptions": {
+    "vitePressExtensions": [".md"],
+  },
   "exclude": [
     "node_modules",
     "dist",

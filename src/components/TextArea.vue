@@ -18,6 +18,8 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'TextArea' });
+
 import { ref, watch, useTemplateRef } from 'vue';
 import {
 	nativeEvents,
@@ -62,6 +64,7 @@ const props = defineProps({
 	},
 	/**
 	 * Especifica o estado do textarea. As opções são 'default', 'valid', 'invalid' e 'loading'.
+	 * @values default, valid, loading, invalid
 	 */
 	state: {
 		type: String,

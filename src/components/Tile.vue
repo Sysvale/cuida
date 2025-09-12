@@ -20,7 +20,7 @@
 			v-if="loading"
 			:class="computedLoaderClass"
 		>
-			<skeleton fluid	/>
+			<Skeleton fluid	/>
 		</div>
 		<div v-else>
 			<div :class="computedImageClass">
@@ -29,7 +29,7 @@
 					class="cds-tile__icon"
 					:name="icon"
 				/>
-				<cds-image
+				<CdsImage
 					v-else
 					:src="icon"
 					:width="computedIconWidth"
@@ -45,6 +45,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'Tile' });
+
 import { computed } from 'vue';
 import variantValidator from '../utils/validators/variant';
 import Box from './Box.vue';
@@ -69,6 +72,7 @@ const props = defineProps({
 	},
 	/**
 	 * Especifica o tamanho do botão. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
+	 * @values sm, md, lg
 	 */
 	size: {
 		type: String,
@@ -76,8 +80,8 @@ const props = defineProps({
 		validator: (value) => ['sm','md','lg'].includes(value),
 	},
 	/**
-	 * A variante de cor. São 9 variantes implementadas: 'green', 'teal',
-	 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.
+	* A variante de cor. São 10 variantes:
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	variant: {
 		type: String,

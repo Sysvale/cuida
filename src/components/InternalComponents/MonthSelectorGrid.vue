@@ -18,6 +18,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'MonthSelectorGrid' });
+
 import CdsGrid from '../Grid.vue';
 import { computed, ref, onMounted, watch } from 'vue';
 

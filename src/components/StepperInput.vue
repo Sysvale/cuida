@@ -97,6 +97,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'StepperInput' });
+
 import { ref, computed, watch, useTemplateRef } from 'vue';
 import { useHasSlots } from '../utils/composables/useHasSlots.js';
 import {
@@ -200,6 +203,7 @@ const props = defineProps({
 	},
 	/**
 	* Especifica o estado do StepperInput. As opções são 'default', 'valid' e 'invalid'.
+	* @values default, valid, invalid
 	*/
 	state: {
 		type: String,
@@ -409,8 +413,8 @@ function handleBlur() {
 	}
 
 	&--disabled {
-		background-color: tokens.$n-10;
-		pointer-events: none;
+		background-color: tokens.$n-10 !important;
+		pointer-events: none !important;
 	}
 
 	&__icon--plus {

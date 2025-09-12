@@ -60,7 +60,7 @@
 					{{ totalItems }} {{ totalItems === 1 ? 'registro encontrado' : 'registros encontrados' }}
 				</div>
 
-				<cds-flexbox
+				<CdsFlexbox
 					class="data-table__actions"
 					gap="3"
 					align="center"
@@ -69,7 +69,7 @@
 					<!-- @slot Slot para renderização de conteúdo à direita do DataTable header. -->
 					<slot name="right" />
 
-					<cds-button
+					<CdsButton
 						v-if="!hideCustomizeButton"
 						:size="withSearch ? 'md' : 'sm'"
 						secondary
@@ -83,8 +83,8 @@
 						<span v-else>
 							Personalizar colunas
 						</span>
-					</cds-button>
-				</cds-flexbox>
+					</CdsButton>
+				</CdsFlexbox>
 				<div
 					v-if="withSearch"
 					class="data-table__items-counter--below"
@@ -98,17 +98,17 @@
 				class="data-table__table-container"
 			>
 				<div v-if="loading">
-					<cds-table
+					<CdsTable
 						:fields="$attrs.fields"
 						:items="[{}, {}, {}, {}]"
 					>
 						<template #table-item>
-							<cds-skeleton
+							<CdsSkeleton
 								width="100"
 								height="20"
 							/>
 						</template>
-					</cds-table>
+					</CdsTable>
 				</div>
 				<div
 					v-else-if="isEmpty($attrs.items)"
@@ -131,7 +131,7 @@
 						</CdsEmptyState>
 					</div>
 				</div>
-				<cds-table
+				<CdsTable
 					v-else
 					v-bind="$attrs"
 					:selection-variant="selectionVariant"
@@ -156,7 +156,7 @@
 							:col-index
 						/>
 					</template>
-				</cds-table>
+				</CdsTable>
 			</div>
 		</div>
 
@@ -180,6 +180,8 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'DataTable' });
+
 import {
 	ref,
 	watch,
@@ -211,6 +213,7 @@ const searchInputRef = useTemplateRef('search-input');
 const props = defineProps({
 	/**
  	* Variante de cor usada na estilização do componente.
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	selectionVariant: {
 		type: String,
