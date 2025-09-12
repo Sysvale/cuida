@@ -5,7 +5,7 @@ import vueDocgenPlugin from '../plugins/vueDocgen'
 export default defineConfig({
 	title: 'Cuida',
 	description: 'A design system built by Sysvale, using Vue components',
-
+	appearance: false,
 	head: [
 		[
 			'link',
@@ -17,6 +17,7 @@ export default defineConfig({
 	],
 
 	themeConfig: {
+		
 		search: {
 			provider: 'local'
 		},
@@ -288,7 +289,13 @@ export default defineConfig({
 					text: 'Componentes da documentação',
 					collapsed: false,
 					items: [
-						{ text: 'Text', link: '/components/tipografia/text' },
+						{ text: '📝 Guia de Uso', link: '/utils/documentation-guide' },
+						{ text: 'APITable', link: '/utils/api-table' },
+						{ text: 'FigmaFrame', link: '/utils/figma-frame' },
+						{ text: 'LogBuilder', link: '/utils/log-builder' },
+						{ text: 'PlaygroundBuilder', link: '/utils/playground-builder' },
+						{ text: 'PreviewBuilder', link: '/utils/preview-builder' },
+						{ text: 'PreviewContainer', link: '/utils/preview-container' },
 					]
 				},
 			]

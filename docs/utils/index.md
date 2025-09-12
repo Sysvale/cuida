@@ -22,6 +22,17 @@ Funções e classes auxiliares para tarefas comuns:
 - [**Rounder**](./rounder) - Arredondador de números
 - [**VariantResolver**](./variant-resolver) - Resolvedor de variantes de componentes
 
+## Componentes de Documentação
+
+Componentes personalizados criados especificamente para a documentação do design system:
+
+- [**APITable**](./api-table) - Exibe tabelas automáticas com props, eventos e slots
+- [**PreviewBuilder**](./preview-builder) - Cria previews interativas completas dos componentes  
+- [**PreviewContainer**](./preview-container) - Container visual padronizado para demonstrações
+- [**PlaygroundBuilder**](./playground-builder) - Gera controles automáticos para props
+- [**LogBuilder**](./log-builder) - Captura e exibe eventos em tempo real
+- [**FigmaFrame**](./figma-frame) - Incorpora designs do Figma na documentação
+
 ## Características
 
 ### 🔧 Flexíveis
