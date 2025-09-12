@@ -612,7 +612,7 @@ function handleLogoClick() {
 }
 
 defineExpose({
-	isCollapsed: collapsed.value,
+	isCollapsed: collapsed,
 });
 </script>
 
