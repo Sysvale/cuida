@@ -31,7 +31,7 @@
 		>
 			<template #trailing-icon>
 				<div class="date-input__icon">
-					<cds-icon
+					<CdsIcon
 						height="20"
 						width="20"
 						name="calendar-outline"
@@ -146,6 +146,9 @@
 </template>
 
 <script setup>
+
+defineOptions({ name: 'DateInput' });
+
 import { ref, computed, watch, useTemplateRef } from 'vue';
 import { DateTime } from 'luxon';
 import CdsBaseInput from './BaseInput.vue';
@@ -187,8 +190,8 @@ const props = defineProps({
 		default: 'Label',
 	},
 	/**
-	* A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',
-	* 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
+	* A variante de cor. São 10 variantes:
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	variant: {
 		type: String,
@@ -196,6 +199,7 @@ const props = defineProps({
 	},
 	/**
 	* Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	* @values default, valid, loading, invalid
 	*/
 	state: {
 		type: String,

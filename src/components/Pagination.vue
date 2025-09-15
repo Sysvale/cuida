@@ -44,6 +44,8 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'Pagination' });
+
 /* eslint-disable no-plusplus */
 import { computed, onBeforeMount, watch, ref } from 'vue';
 import PaginationItem from '../entities/PaginationItem';
@@ -82,7 +84,7 @@ const props = defineProps({
 	},
 	/**
 	* A variante de cor. São 10 variantes:
-	* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	variant: {
 		type: String,

@@ -45,7 +45,7 @@
 					direction="column"
 					gap="3"
 				>
-					<cds-skeleton
+					<CdsSkeleton
 						v-for="skeleton in 8"
 						:key="skeleton"
 						:height="60"
@@ -126,6 +126,8 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'CustomFieldsSideSheet' });
+
 import { ref, watch, computed, onMounted, onBeforeUnmount } from 'vue';
 import hasSameItems from '../../utils/methods/hasSameItems';
 import CdsIcon from '../Icon.vue';

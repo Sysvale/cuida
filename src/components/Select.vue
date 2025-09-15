@@ -86,6 +86,8 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'Select' });
+
 import { ref, watch, computed, useTemplateRef, onMounted, nextTick  } from 'vue';
 import {
 	nativeEvents,
@@ -98,7 +100,7 @@ import removeAccents from '../utils/methods/removeAccents';
 import CdsBaseInput from './BaseInput.vue';
 
 const model = defineModel('modelValue', {
-	type: [Array, Object],
+	type: [Array, Object, String],
 });
 
 const props = defineProps({
@@ -129,6 +131,7 @@ const props = defineProps({
 	},
 	/**
 	 * Especifica o estado do Select. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	 * @values default, valid, loading, invalid
 	 */
 	state: {
 		type: String,

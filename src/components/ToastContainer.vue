@@ -23,6 +23,8 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'ToastContainer' });
+
 import { useToast } from '../utils/composables/useToast.js'
 import CdsToast from '../components/Toast.vue';
 const toasts = useToast().toastState.toasts;

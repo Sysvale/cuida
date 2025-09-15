@@ -16,6 +16,8 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'TextInput' });
+
 import { ref, watch, useTemplateRef } from 'vue';
 import {
 	nativeEvents,
@@ -49,6 +51,7 @@ const props = defineProps({
 	},
 	/**
 	* Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	* @values default, valid, loading, invalid
 	*/
 	state: {
 		type: String,

@@ -29,7 +29,7 @@
 							@event action-button-click
 							@type {Event}
 						-->
-						<cds-button
+						<CdsButton
 							id="content-button"
 							:variant="actionButtonVariant"
 							:text="actionButtonText"
@@ -48,6 +48,7 @@
 import CdsButton from './Button.vue';
 
 export default {
+	name: 'CalloutCard',
 	components: {
 		CdsButton,
 	},
@@ -85,6 +86,7 @@ export default {
 		},
 		/**
 		 * A cor do botão do card.
+		 * @values green, teal, turquoise, blue, indigo, violet, pink, red, orange, amber, gray, dark
 		 */
 		actionButtonVariant: {
 			type: String,

@@ -106,7 +106,7 @@
 						class="inner-container__token-text"
 						@click="target = `${spacer}${direction}(${size})`"
 					>
-						<cds-icon
+						<CdsIcon
 							height="20"
 							width="20"
 							name="copy-outline"
