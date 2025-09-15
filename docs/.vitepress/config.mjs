@@ -256,12 +256,12 @@ export default defineConfig({
 					collapsed: false,
 					items: [
 						{ text: 'Guia de Uso', link: '/utils/documentation-guide' },
+						{ text: 'PreviewBuilder', link: '/utils/preview-builder' },
 						{ text: 'APITable', link: '/utils/api-table' },
 						{ text: 'FigmaFrame', link: '/utils/figma-frame' },
-						{ text: 'LogBuilder', link: '/utils/log-builder' },
-						{ text: 'PlaygroundBuilder', link: '/utils/playground-builder' },
-						{ text: 'PreviewBuilder', link: '/utils/preview-builder' },
 						{ text: 'PreviewContainer', link: '/utils/preview-container' },
+						{ text: 'PlaygroundBuilder', link: '/utils/playground-builder' },
+						{ text: 'LogBuilder', link: '/utils/log-builder' },
 					]
 				},
 				{
