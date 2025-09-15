@@ -223,6 +223,15 @@ h1 {
 	margin-left: 0.4em;
 }
 
+.docs-badge[type="warning"] {
+	background: #eda831;
+	color: #fefbf6;
+	border-radius: 5px;
+	padding: 0.1em 0.6em;
+	font-size: 0.8em;
+	margin-left: 0.4em;
+}
+
 .docs-badge[type="danger"] {
 	background: #F3596C;
 	color: #fef6f7;

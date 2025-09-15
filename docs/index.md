@@ -9,13 +9,13 @@ hero:
 features:
   - title: Vue Components
     details: 120+ componentes Vue 3 divididos em categorias como forms, containers, navigation, display, etc.
-    link: /components/
+    link: /components/forms/base-input
   - title: Design Tokens
     details: Tokens de design consistentes para cores, tipografia, espaçamento e mais.
-    link: /foundation/
+    link: /foundation/principles
   - title: Utilities & Composables
     details: Funções auxiliares e composables Vue para melhorar sua experiência de desenvolvimento.
-    link: /utils/
+    link: /utils/documentation-guide
 ---
 
 ## Bem vindo ao Cuida!
