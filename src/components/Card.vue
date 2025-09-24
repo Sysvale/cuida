@@ -121,7 +121,7 @@ const props = defineProps({
 		default: 'imagem do card',
 	},
 	/**
-	* Largura da imagem do card. Tem comportamento desabilitado quando o card é vertical
+	* Largura da imagem do card. Tem comportamento sobrescrito quando o card é vertical
 	e a prop `fluid` está ativa.
 	*/
 	imageWidth: {
@@ -157,7 +157,7 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	* Ativa ou desativa o comportamento fluído do Card
+	* Ativa ou desativa o comportamento fluido do Card
 	*/
 	fluid: {
 		type: Boolean,
@@ -165,9 +165,16 @@ const props = defineProps({
 	}
 })
 
-const emits = defineEmits(['cardClick']);
+const emits = defineEmits([
+	/**
+	 * Evento que indica se o card foi clicado.
+	 * @event cardClick
+	 * @type {Event}
+	 */
+	'cardClick'
+]);
 
-const cardSpacerWidthResolver = computed(() => {
+const cardSpacerMaxWidthResolver = computed(() => {
 	if (props.fluid) {
 		return '100%';
 	}
@@ -186,11 +193,6 @@ const imageWidthResolver = computed(() => {
 })
 
 function handleClick() {
-	/**
-	* @event cardClick
-	* @type {Event}
-	* Evento que indica se o card foi clicado.
-	*/
 	if (props.clickable) {
 		emits('cardClick', true);
 	}
@@ -241,7 +243,7 @@ function handleClick() {
 	
 	&__spacer {
 		padding: tokens.pa(5);
-		max-width: v-bind(cardSpacerWidthResolver);
+		max-width: v-bind(cardSpacerMaxWidthResolver);
 	}
 	
 	&__footer {
