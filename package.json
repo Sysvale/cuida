@@ -54,7 +54,7 @@
 		"@babel/core": "^7.18.10",
 		"@rollup/plugin-typescript": "^8.4.0",
 		"@storybook/addon-essentials": "^6.5.10",
-		"@storybook/builder-vite": "^0.2.2",
+		"@storybook/builder-vite": "^9.1.8",
 		"@storybook/preset-scss": "^1.0.3",
 		"@storybook/testing-library": "^0.0.13",
 		"@storybook/vue3": "^6.5.10",
