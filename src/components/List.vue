@@ -95,9 +95,22 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	 * Define o valor do padding do item da lista. Os valores são múltiplos de 4px separados por
+	 * vírgula para vertical e horizontal (ex: '2, 4').
+	 */
+	padding: {
+		type: String,
+		default: '7, 3',
+	},
 });
 
 const resolveHover = computed(() => props.clickable ? 'pointer' : '');
+const resolvePadding = computed(() => {
+	const [vertical, horizontal] = props.padding.replace(' ', '').split(',');
+
+	return `${vertical * 4}px ${horizontal * 4}px`;
+});
 
 function resolveListClick(item) {
 	if (!props.clickable && !isMobile.value) {
@@ -114,7 +127,7 @@ function resolveListClick(item) {
 
 .list {
 	border-bottom: none;
-	padding: tokens.pYX(7, 3);
+	padding: v-bind(resolvePadding);
 	display: flex;
 	justify-content: space-between;
 
