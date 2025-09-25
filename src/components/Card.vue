@@ -215,7 +215,6 @@ function handleClick() {
 		margin-top: 20px;
 		position: absolute;
 		right: 16px;
-		z-index: 10;
 	}
 	
 	&__image {
