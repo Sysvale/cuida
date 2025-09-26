@@ -3541,6 +3541,21 @@
         }
       },
       {
+        "name": "mode",
+        "description": "Define o modo de interação com o DateInput. Quando definido como 'typing', o componente permite apenas\ndigitação. No modo 'picking', a data deve ser selecionada através do date picker, desabilitando a digitação direta.",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'picking'"
+        },
+        "values": [
+          "typing",
+          "picking"
+        ]
+      },
+      {
         "name": "range",
         "description": "Quando true, o usuário poderá selecionar um intervalo de datas.",
         "type": {
@@ -3726,21 +3741,6 @@
           "func": false,
           "value": "null"
         }
-      },
-      {
-        "name": "mode",
-        "description": "Define o modo de interação com o DateInput. Quando definido como 'typing', o componente permite apenas\ndigitação. No modo 'picking', a data deve ser selecionada através do date picker, desabilitando a digitação direta.",
-        "type": {
-          "name": "string"
-        },
-        "defaultValue": {
-          "func": false,
-          "value": "'picking'"
-        },
-        "values": [
-          "typing",
-          "picking"
-        ]
       }
     ],
     "sourceFiles": [

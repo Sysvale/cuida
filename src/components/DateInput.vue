@@ -206,6 +206,15 @@ const props = defineProps({
 		default: 'default',
 	},
 	/**
+	* Define o modo de interação com o DateInput. Quando definido como 'typing', o componente permite apenas
+	* digitação. No modo 'picking', a data deve ser selecionada através do date picker, desabilitando a digitação direta.
+	*/
+	mode: {
+		type: String,
+		default: 'picking',
+		validator: (value) => (['typing', 'picking']).includes(value),
+	},
+	/**
 	* Quando true, o usuário poderá selecionar um intervalo de datas.
 	*/
 	range: {
@@ -323,15 +332,6 @@ const props = defineProps({
 	supportLinkUrl: {
 		type: [String, null],
 		default: null,
-	},
-	/**
-	* Define o modo de interação com o DateInput. Quando definido como 'typing', o componente permite apenas
-	* digitação. No modo 'picking', a data deve ser selecionada através do date picker, desabilitando a digitação direta.
-	*/
-	mode: {
-		type: String,
-		default: 'picking',
-		validator: (value) => (['typing', 'picking']).includes(value),
 	},
 });
 

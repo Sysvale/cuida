@@ -18,7 +18,6 @@
 - Em interfaces que já possuem muitos elementos flutuantes ou sobrepostos, para evitar poluição visual.
 - Em telas grandes (desktop), onde um botão tradicional ou outro componente de interface pode ser mais apropriado.
 
-
 ---
 
 ## Uso
