@@ -1,134 +1,145 @@
 # MonthAndYearPicker
 
 ### MonthAndYearPickers permitem que o usuário selecione um mês e ano através de um campo de texto e um seletor interativo.
-
 ---
+<br />
 
 ## Quando usar:
 - O usuário precisar selecionar apenas o mês e ano, sem especificar o dia
-- Para campos de data que não necessitam de precisão diária
-- Em relatórios ou filtros que operam em nível mensal
+
+<br />
 
 ## Quando não usar:
-- O usuário precisar selecionar uma data específica com dia, mês e ano (use DateInput)
-- O usuário precisar selecionar um intervalo de datas (use DateInput com a propriedade range)
-- For necessário selecionar apenas o ano, sem o mês
+- O usuário precisar selecionar uma data específica com dia, mês e ano (use DateInput).
+- O usuário precisar selecionar um intervalo de datas (use DateInput com a propriedade range).
+- For necessário selecionar apenas o ano, sem o mês.
 
-## Observações:
-- O `v-model` recebe e retorna uma string no formato ('yyyy-MM')
-- Por padrão, o componente exibe o mês e ano atual ao abrir, a menos que um valor seja fornecido
-- O componente aplica automaticamente restrições de navegação baseadas nas propriedades minDate e maxDate
-- Suporta diferentes variantes de cores e estados de validação
-- Oferece modo floating label para melhor experiência visual
+## ⚠️ Observações:
+- O `v-model`  recebe e retorna uma string no formato ('yyyy-MM').
+- Por padrão, o componente exibe o mês e ano atual ao abrir, a menos que um valor seja fornecido.
+- O componente aplica automaticamente restrições de navegação baseadas nas propriedades minDate e maxDate.
 
-## Uso
+<br />
 
-### Exemplo básico
+### __Com Limites de Data__
+O MonthAndYearPicker permite definir datas mínimas e máximas para restringir a seleção.
 
-```vue
-<template>
-  <cds-month-and-year-picker
-    v-model="monthValue"
-    label="Mês"
-    variant="green"
-    placeholder="Escolha um mês..."
-  />
-</template>
+###### Funcionamento:
+- As props minDate e maxDate limitam o período disponível para seleção.
+- A navegação entre anos é automaticamente limitada com base nesses valores.
+- Meses fora do intervalo permitido são desabilitados e não podem ser selecionados.
+- Os valores de `minDate` e de `maxDate` devem ser fornecidos no formato ISO ('yyyy-MM-dd').
 
-<script setup>
-import { ref } from 'vue';
-const args = ref({});
+<PreviewContainer>
+	<CdsMonthAndYearPicker
+		label="Mês"
+		variant="green"
+		:required="false"
+		:disabled="false"
+		:fluid="false"
+		:mobile="false"
+		:floatingLabel="false"
+		placeholder="Escolha um mês..."
+		errorMessage="Campo obrigatório"
+		tooltipIcon="info-outline"
+		supportingText="supportingText"
+		maxDate="2026-06-06"
+		minDate="2023-01-01"
+	/>
+</PreviewContainer>
 
-const monthValue = ref('2025-05');
-</script>
-```
+<br />
 
-### Exemplo com limites de data
+### __Floating Label__
+Controla o estilo visual do input, ativando o comportamento de "label flutuante".
 
-```vue
-<template>
-  <cds-month-and-year-picker
-    v-model="monthValue"
-    label="Mês"
-    variant="green"
-    placeholder="Escolha um mês..."
-    maxDate="2026-06-06"
-    minDate="2023-01-01"
-  />
-</template>
+<PreviewContainer>
+	<CdsMonthAndYearPicker
+		v-model="modelValue"
+		label="Mês"
+		variant="green"
+		state="default"
+		:required="false"
+		:disabled="false"
+		:fluid="false"
+		:mobile="false"
+		:floatingLabel="true"
+		placeholder="Escolha um mês..."
+		errorMessage="Campo obrigatório"
+		tooltipIcon="info-outline"
+		supportingText="supportingText"
+	/>
+</PreviewContainer>
 
-<script setup>
-import { ref } from 'vue';
-const args = ref({});
+### __Base__
+Este é o modo de operação padrão do MonthAndYearPicker que permite ao usuário selecionar um mês e ano no seletor.
 
-const monthValue = ref('');
-</script>
-```
+###### Funcionamento:
+- O v-model recebe e retorna uma string no formato ('yyyy-MM').
+- Ao clicar no input, um seletor de meses é exibido organizado em grade, com o ano atual no cabeçalho.
+- O usuário pode navegar entre anos usando os botões de seta no cabeçalho.
+- Ao selecionar um mês, o seletor fecha automaticamente e atualiza o valor.
 
-### Exemplo com floating label
-
-```vue
-<template>
-  <cds-month-and-year-picker
-    v-model="monthValue"
-    label="Mês"
-    variant="green"
-    :floatingLabel="true"
-    placeholder="Escolha um mês..."
-  />
-</template>
-
-<script setup>
-import { ref } from 'vue';
-const args = ref({});
-
-const monthValue = ref('');
-</script>
-```
 
 ## Preview
 
-<cds-month-and-year-picker
-  label="Mês"
-  variant="green"
-  placeholder="Escolha um mês..."
+<PreviewBuilder
+	:args
+	:events
+	:component="CdsMonthAndYearPicker"
 />
+
+---
 
 ## Props
 
-| Nome | Tipo | Padrão | Descrição |
-|------|------|--------|-----------|
-| `modelValue` | `string` | `''` | Valor selecionado no formato 'yyyy-MM' |
-| `label` | `string` | `''` | Rótulo do campo |
-| `variant` | `string` | `'green'` | Variante de cor: 'green', 'teal', 'turquoise', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark' |
-| `state` | `string` | `'default'` | Estado do campo: 'default', 'valid', 'invalid', 'loading' |
-| `placeholder` | `string` | `''` | Texto de placeholder |
-| `required` | `boolean` | `false` | Define se o campo é obrigatório |
-| `disabled` | `boolean` | `false` | Define se o campo está desabilitado |
-| `fluid` | `boolean` | `false` | Define se o campo ocupa toda a largura |
-| `mobile` | `boolean` | `false` | Define se usa layout mobile |
-| `floatingLabel` | `boolean` | `false` | Define se o label flutua |
-| `errorMessage` | `string` | `''` | Mensagem de erro |
-| `supportingText` | `string` | `''` | Texto de suporte |
-| `tooltip` | `string` | `''` | Texto do tooltip |
-| `maxDate` | `string` | `''` | Data máxima no formato 'yyyy-MM-dd' |
-| `minDate` | `string` | `''` | Data mínima no formato 'yyyy-MM-dd' |
+<APITable
+	name="MonthAndYearPicker"
+	section="props"
+/>
+<br />
 
 ## Eventos
 
-| Nome | Descrição |
-|------|-----------|
-| `update:modelValue` | Emitido quando o valor é alterado |
-| `change` | Emitido quando o valor muda |
-| `click` | Emitido quando o campo é clicado |
-| `focus` | Emitido quando o campo recebe foco |
-| `blur` | Emitido quando o campo perde foco |
-| `keydown` | Emitido quando uma tecla é pressionada |
+<APITable
+	name="MonthAndYearPicker"
+	section="events"
+/>
 
-## Slots
+<br />
 
-Este componente não possui slots.
+<script setup>
+import { ref } from 'vue';
+import CdsMonthAndYearPicker from '@/components/MonthAndYearPicker.vue';
 
-## Figma
+const events = [
+	'update:modelValue',
+	'supportLinkClick',
+	'blur',
+	'change',
+	'click',
+	'focus',
+	'keydown',
+];
 
-[MonthAndYearPicker no Figma](https://www.figma.com/design/design-system-url)
+const args = ref({
+	label: 'Mês',
+	variant: 'green',
+	state: 'default',
+	required: false,
+	disabled: false,
+	fluid: false,
+	mobile: false,
+	floatingLabel: false,
+	placeholder: 'Escolha um mês...',
+	errorMessage: 'Campo obrigatório',
+	tooltip: '',
+	tooltipIcon: 'info-outline',
+	supportingText: 'supportingText',
+	supportLink: '',
+	supportLinkUrl: '',
+	maxDate: "2026-06-06",
+	minDate: "2023-01-01"
+});
+</script>
+

@@ -57,7 +57,7 @@ export default defineConfig({
 						{ text: 'IconButton', link: '/components/forms/icon-button' },
 						{ text: 'InlineDateInput <Badge class="docs-badge"type="warning">WIP</Badge>' , link: '/components/forms/inline-date-input' },
 						{ text: 'Label', link: '/components/forms/label' },
-						{ text: 'MonthAndYearPicker <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/forms/month-and-year-picker' },
+						{ text: 'MonthAndYearPicker', link: '/components/forms/month-and-year-picker' },
 						{ text: 'MultiFileInput', link: '/components/forms/multi-file-input' },
 						{ text: 'Multiselect <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/forms/multiselect' },
 						{ text: 'NumberInput', link: '/components/forms/number-input' },
@@ -163,6 +163,7 @@ export default defineConfig({
 						{ text: 'PageLayout', link: '/components/navegação/page-layout' },
 						{ text: 'Pagination', link: '/components/navegação/pagination' },
 						{ text: 'SegmentedControl', link: '/components/navegação/segmented-control' },
+						{ text: 'SideBar', link: '/components/navegação/side-bar' },
 						{ text: 'Tabs <span class="docs-badge" type="danger">Deprecated</span>', link: '/components/navegação/tabs' },
 					]
 				},
@@ -217,24 +218,6 @@ export default defineConfig({
 					collapsed: false,
 					items: [
 						{ text: 'Text', link: '/components/tipografia/text' },
-					]
-				},
-				{
-					text: 'Navegação',
-					collapsed: false,
-					items: [
-						{ text: 'Breadcrumb', link: '/components/navegação/breadcrumb' },
-						{ text: 'InnerTabs', link: '/components/navegação/inner-tabs' },
-						{ text: 'Link', link: '/components/navegação/link' },
-						{ text: 'MobileNavbar', link: '/components/navegação/mobile-navbar' },
-						{ text: 'MobileNavigation', link: '/components/navegação/mobile-navigation' },
-						{ text: 'NavBar', link: '/components/navegação/nav-bar' },
-						{ text: 'PageLayout', link: '/components/navegação/page-layout' },
-						{ text: 'Pagination', link: '/components/navegação/pagination' },
-						// { text: 'SecondaryNavigation', link: '/components/navegação/secondary-navigation' },
-						{ text: 'SegmentedControl', link: '/components/navegação/segmented-control' },
-						{ text: 'SideBar', link: '/components/navegação/side-bar' },
-						{ text: 'Tabs <span class="docs-badge" type="danger">Deprecated</span>', link: '/components/navegação/tabs' },
 					]
 				},
 			],
