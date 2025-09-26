@@ -24,10 +24,23 @@
 
 ```js
 <CdsFloatingActionButton
-	variant="green"
+	icon="plus-outline"
 	size="md"
-	text="Lorem Ipsum"
-	@click="floatingActionButtonClick = true"
+	variant="green"
+	:actions="[
+		{
+			icon: 'document-outline',
+			label: 'Documentos',
+		},
+		{
+			icon: 'home-outline',
+			label: 'Início',
+		},
+		{
+			icon: 'edit-outline',
+			label: 'Editar',
+		}
+	]"
 />
 ```
 
@@ -35,10 +48,51 @@
 
 ## Preview
 
-<PreviewBuilder
+### Dois botões na mesma tela
+
+<PreviewContainer>
+	<div style="position: relative">
+		<img
+			src="https://images.unsplash.com/photo-1738526787238-96d5352c2ba9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+			style="width: 100%; height: 100%;"
+		/>
+		<div
+			style="position: absolute; bottom: 0; right: 0; margin-bottom: 76px;"
+		>
+			<CdsFloatingActionButton
+				icon="search-outline"
+				size="sm"
+				variant="white"
+			/>
+		</div>
+		<CdsFloatingActionButton
+			icon="plus-outline"
+			size="md"
+			variant="green"
+		/>
+	</div>
+</PreviewContainer>
+
+
+### Botão com sub-itens
+
+<PreviewContainer>
+	<div style="position: relative">
+		<img
+			src="https://images.unsplash.com/photo-1738526787238-96d5352c2ba9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+			style="width: 100%;"
+		/>
+		<CdsFloatingActionButton
+			v-bind="args"
+			v-on="internalEvents"
+		/>
+	</div>
+	<LogBuilder ref="logBuilderRef" :events />
+</PreviewContainer>
+
+<PlaygroundBuilder
 	:args
-	:component="CdsFloatingActionButton"
-	:events
+	component="FloatingActionButton"
 />
 
 ---
@@ -57,22 +111,20 @@
 	name="FloatingActionButton"
 	section="events"
 />
-<br />
 
-## Slots
-
-<APITable
-	name="FloatingActionButton"
-	section="slots"
-/>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, useTemplateRef, onMounted } from 'vue';
 import CdsFloatingActionButton from '@/components/FloatingActionButton.vue';
 
+const logBuilder = useTemplateRef('logBuilderRef');
+
 const events = [
-	'floatingActionButton-click'
+	'main-button-click',
+	'action-click'
 ];
+
+const internalEvents = ref({});
 
 const args = ref({
 	actions: [
@@ -91,5 +143,9 @@ const args = ref({
 	],
 	variant: 'green',
 	size: 'md',
+});
+
+onMounted(() => {
+	internalEvents.value = logBuilder.value.createEventListeners();
 });
 </script>

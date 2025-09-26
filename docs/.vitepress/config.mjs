@@ -53,7 +53,7 @@ export default defineConfig({
 						{ text: 'FileInput', link: '/components/forms/file-input' },
 						{ text: 'FilterSelect <span class="docs-badge" type="danger">Deprecated</span>', link: '/components/forms/filter-select' },
 						{ text: 'FlatButton', link: '/components/forms/flat-button' },
-						{ text: 'FloatingActionButton <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/forms/floating-action-button' },
+						{ text: 'FloatingActionButton', link: '/components/forms/floating-action-button' },
 						{ text: 'IconButton', link: '/components/forms/icon-button' },
 						{ text: 'InlineDateInput <Badge class="docs-badge"type="warning">WIP</Badge>' , link: '/components/forms/inline-date-input' },
 						{ text: 'Label', link: '/components/forms/label' },
