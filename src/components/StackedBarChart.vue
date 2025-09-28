@@ -63,6 +63,7 @@ export default {
 		},
 		/**
 		* Define o tema do gráfico.
+		* @values blue, indigo
 		*/
 		theme: {
 			type: String,

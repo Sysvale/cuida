@@ -1,27 +1,35 @@
 # PieChart
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### Um componente de gráfico reutilizável para exibir dados visualmente.
+---
 
-### Quando usar
+⚠️ Esse componente vai ser substituído pelo DonutChart nas próximas versões do Cuida
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br>
 
-### Quando não usar
+## Quando usar:
+- Exibir dados em formatos visuais;
+- Visualizar tendências, proporções ou comparações em dados;
+- Exibir proporções ou partes de um todo, onde cada fatia representa uma parcela do total;
+- Funciona bem com categorias mutuamente exclusivas;
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+<br>
+
+## Quando não usar:
+- Para informações simples que podem ser exibidas em um formato tabular ou em texto;
+- Quando os dados apresentarem muitas categorias ou subcategorias;
+- Não é apropriado para dados contínuos ou dados temporais.
 
 ---
 
 ## Uso
 
 ```js
-<CdsPieChart
+<CdsBarChart
 	variant="green"
 	size="md"
 	text="Lorem Ipsum"
-	@click="pieChartClick = true"
+	@click="barChartClick = true"
 />
 ```
 
@@ -32,7 +40,6 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:args
 	:component="CdsPieChart"
-	:events="cdsPieChartEvents"
 />
 
 ---
@@ -40,30 +47,31 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 ## Props
 
 <APITable
-	name="PieChart"
+	name="BarChart"
 	section="props"
 />
-<br />
+<br>
 
-## Eventos
-
-<APITable
-	name="PieChart"
-	section="events"
-/>
-<br />
-
-## Slots
-
-<APITable
-	name="PieChart"
-	section="slots"
-/>
+---
 
 <script setup>
+import { ref } from 'vue';
 import CdsPieChart from '@/components/PieChart.vue';
 
-const cdsPieChartEvents = [
-	'pieChart-click'
-];
+const args = ref({
+	labels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
+	colors: ['teal', 'violet', 'amber', 'blue', 'red'],
+	variant: 'green',
+	data: [
+		{
+			name: 'Ecocardiograma',
+			datasets: [
+				{
+					label: 'Exames realizados',
+					data: [120, 220, 180, 320, 150],
+				},
+			]
+		},
+	],
+});
 </script>

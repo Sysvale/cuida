@@ -1,16 +1,19 @@
 # GaugeChart
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### O Gauge Chart é indicado para mostrar o progresso em direção a uma meta específica.
+---
+<br>
 
-### Quando usar
+## Quando usar:
+- Use "Gauge charts" quando precisar monitorar e comunicar de forma visual o status de métricas-chave ou indicadores de desempenho;
+- Use "Gauge charts" para comunicar o estado geral de uma única métrica de maneira rápida e visualmente impactante.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br>
 
-### Quando não usar
+## Quando não usar:
+- Evite o uso de "Gauge charts" para representar conjuntos de dados complexos ou multidimensionais. Esse tipo de gráfico é mais eficaz ao exibir uma única métrica em relação a uma escala.
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+<br>
 
 ---
 
@@ -32,8 +35,13 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:args
 	:component="CdsGaugeChart"
-	:events="cdsGaugeChartEvents"
-/>
+>
+	<template #popover>
+		<p style="margin: 0;"><strong>Em atendimento:</strong> 280</p>
+		<p style="margin: 0;"><strong>Pendentes:</strong> 60</p>
+		<p style="margin: 0;"><strong>Em acompanhamento:</strong> 600</p>
+	</template>
+</PreviewBuilder>
 
 ---
 
@@ -43,15 +51,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 	name="GaugeChart"
 	section="props"
 />
-<br />
-
-## Eventos
-
-<APITable
-	name="GaugeChart"
-	section="events"
-/>
-<br />
+<br>
 
 ## Slots
 
@@ -61,9 +61,15 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsGaugeChart from '@/components/GaugeChart.vue';
 
-const cdsGaugeChartEvents = [
-	'gaugeChart-click'
-];
+const args = ref({
+	value: 79.2,
+	showTarget: false,
+	target: 85,
+	variant: "green",
+	size: 250,
+	subtitle: 'aptos ao indicador',
+});
 </script>

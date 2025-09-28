@@ -14,8 +14,12 @@
 
 <script>
 import { PolarArea } from 'vue-chartjs'
+import { Chart, registerables } from 'chart.js';
 import sassColorVariables from '../assets/sass/tokens/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
+
+// Registrar todos os elementos necessários do Chart.js
+Chart.register(...registerables);
 
 
 export default {

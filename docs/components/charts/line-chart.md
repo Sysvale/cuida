@@ -1,16 +1,20 @@
 # LineChart
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### Um componente de gráfico reutilizável para exibir dados visualmente.
+---
+<br>
 
-### Quando usar
+## Quando usar:
+- Exibir dados em formatos visuais;
+- Ideal para mostrar tendências ao longo do tempo;
+- Comparação de múltiplas séries.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br>
 
-### Quando não usar
-
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- Para informações simples que podem ser exibidas em um formato tabular ou em texto;
+- Dados discretos sem sequência lógica;
+- Grande quantidade de série de dados..
 
 ---
 
@@ -32,7 +36,6 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:args
 	:component="CdsLineChart"
-	:events="cdsLineChartEvents"
 />
 
 ---
@@ -43,27 +46,86 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 	name="LineChart"
 	section="props"
 />
-<br />
+<br>
 
-## Eventos
-
-<APITable
-	name="LineChart"
-	section="events"
-/>
-<br />
-
-## Slots
-
-<APITable
-	name="LineChart"
-	section="slots"
-/>
 
 <script setup>
+import { ref } from 'vue';
 import CdsLineChart from '@/components/LineChart.vue';
 
-const cdsLineChartEvents = [
-	'lineChart-click'
-];
+const args = ref({
+	labels: [
+		'2024-03-01','2024-03-02','2024-03-03', '2024-03-04', '2024-03-05',
+		'2024-03-06','2024-03-07','2024-03-08', '2024-03-09', '2024-03-10',
+		'2024-03-11','2024-03-12','2024-03-13', '2024-03-14', '2024-03-15',
+		'2024-03-16','2024-03-17','2024-03-18', '2024-03-19', '2024-03-20',
+		'2024-03-21','2024-03-22','2024-03-23', '2024-03-24', '2024-03-25',
+		'2024-03-26','2024-03-27','2024-03-28', '2024-03-29', '2024-03-30',
+	],
+	theme: 'blue',
+	fill: false,
+	isDashed: false,
+	borderDash: [5,5],
+	smoothing: 0.3,
+	showLabelName: true,
+	scales: {
+		x: {
+			grid: {
+				display: false
+			},
+		}
+	},
+	xAxisRange: [0, 100],
+	yAxisRange: [0, 100],
+	data: [
+		{
+			name: 'Ecocardiograma',
+			datasets: [
+				{
+					label: 'Realizado',
+					data: [
+						0, 80, 70, 10, 12,
+						250, 50, 100, 60, 55,
+						110, 10, 0, 50, 30,
+						250, 50, 100, 60, 55,
+						2, 32, 69, 34, 23,
+						24, 35, 96, 165, 132,
+					],
+				},
+			]
+		},
+		{
+			name: 'Raio-X',
+			datasets: [
+				{
+					label: 'Realizado',
+					data: [
+						110, 10, 0, 50, 30,
+						2, 32, 69, 34, 23,
+						24, 35, 96, 165, 132,
+						2, 32, 69, 34, 23,
+						110, 10, 0, 50, 30,
+						250, 50, 100, 60, 55,
+					],
+				},
+			]
+		},
+		{
+			name: 'Tomografia',
+			datasets: [
+				{
+					label: 'Realizado',
+					data: [
+						150, 80, 70, 10, 12,
+						250, 50, 100, 60, 55,
+						2, 32, 69, 34, 23,
+						110, 10, 0, 50, 30,
+						250, 50, 100, 60, 55,
+						24, 35, 96, 165, 295,
+					],
+				},
+			]
+		}
+	],	
+});
 </script>

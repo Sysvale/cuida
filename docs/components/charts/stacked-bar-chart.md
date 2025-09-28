@@ -1,16 +1,20 @@
 # StackedBarChart
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### Um componente de gráfico reutilizável para exibir dados visualmente.
+---
+<br>
 
-### Quando usar
+## Quando usar:
+- Exibir dados em formatos visuais;
+- Comparação de dados como um todo;
+- Tendências ao longo do tempo.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br>
 
-### Quando não usar
-
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Quando não usar:
+- Para informações simples que podem ser exibidas em um formato tabular ou em texto;
+- Comparação absoluta;
+- Muitas categorias.
 
 ---
 
@@ -29,11 +33,20 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ## Preview
 
-<PreviewBuilder
-	:args
-	:component="CdsStackedBarChart"
-	:events="cdsStackedBarChartEvents"
-/>
+### __Stacked bar monocromática__
+
+Quando a prop `variant` é especificada e não há propriedade de cor indicada no objeto de configuração,
+o gráfico é gerado no modo monocromático, com as shades de variant mudando para cada dataset. 
+
+<PreviewContainer>
+	<div style="background-color: #FCFCFC; padding: 16px; border-radius: 4px; height: 500px">
+		<CdsStackedBarChart
+			v-bind="args"
+		/>
+	</div>
+</PreviewContainer>
+
+<br>
 
 ---
 
@@ -43,27 +56,44 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 	name="StackedBarChart"
 	section="props"
 />
-<br />
-
-## Eventos
-
-<APITable
-	name="StackedBarChart"
-	section="events"
-/>
-<br />
-
-## Slots
-
-<APITable
-	name="StackedBarChart"
-	section="slots"
-/>
+<br>
 
 <script setup>
+import { ref } from 'vue';
 import CdsStackedBarChart from '@/components/StackedBarChart.vue';
 
-const cdsStackedBarChartEvents = [
-	'stackedBarChart-click'
-];
+const args = ref({
+	labels: ['Janeiro','Fevereiro','Março', 'Abril', 'Maio'],
+	variant: 'green',
+	data: [
+		{
+			name: 'Ecocardiograma',
+			datasets: [
+				{
+					label: 'Realizado',
+					data: [50, 50, 50, 50, 50],
+				},
+			]
+		},
+		{
+			name: 'Raio-X',
+			datasets: [
+				{
+					label: 'Não realizado',
+					data: [49, 84, 120, 78, 130],
+				}
+			]
+		},
+		{
+			name: 'Tomografia',
+			datasets: [
+				{
+					label: 'Não realizado',
+					data: [38, 84, 120, 90, 45],
+				}
+			]
+		}
+	],
+	barWidth: 1,
+});
 </script>

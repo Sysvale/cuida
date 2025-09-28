@@ -194,14 +194,14 @@ export default defineConfig({
 					text: 'Charts',
 					collapsed: false,
 					items: [
-						{ text: 'BarChart <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/charts/bar-chart' },
-						{ text: 'DonutChart <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/charts/donut-chart' },
-						{ text: 'GaugeChart <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/charts/gauge-chart' },
-						{ text: 'LineChart <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/charts/line-chart' },
-						{ text: 'PieChart <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/charts/pie-chart' },
-						{ text: 'PolarAreaChart <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/charts/polar-area-chart' },
-						{ text: 'RadialBarChart <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/charts/radial-bar-chart' },
-						{ text: 'StackedBarChart <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/charts/stacked-bar-chart' },
+						{ text: 'BarChart', link: '/components/charts/bar-chart' },
+						{ text: 'DonutChart', link: '/components/charts/donut-chart' },
+						{ text: 'GaugeChart', link: '/components/charts/gauge-chart' },
+						{ text: 'LineChart', link: '/components/charts/line-chart' },
+						{ text: 'PieChart <span class="docs-badge" type="danger">Deprecated</span>', link: '/components/charts/pie-chart' },
+						{ text: 'PolarAreaChart', link: '/components/charts/polar-area-chart' },
+						{ text: 'RadialBarChart', link: '/components/charts/radial-bar-chart' },
+						{ text: 'StackedBarChart', link: '/components/charts/stacked-bar-chart' },
 					]
 				},
 				{
