@@ -86,8 +86,6 @@
 </template>
 
 <script setup>
-defineOptions({ name: 'Select' });
-
 import { ref, watch, computed, useTemplateRef, onMounted, nextTick  } from 'vue';
 import {
 	nativeEvents,
@@ -98,6 +96,8 @@ import { generateKey } from '../utils';
 import { get, cloneDeep } from 'lodash';
 import removeAccents from '../utils/methods/removeAccents';
 import CdsBaseInput from './BaseInput.vue';
+
+defineOptions({ name: 'Select' });
 
 const model = defineModel('modelValue', {
 	type: [Array, Object, String],
