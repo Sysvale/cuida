@@ -73,7 +73,7 @@ export default defineConfig({
 						{ text: 'TextArea', link: '/components/forms/text-area' },
 						{ text: 'TextInput', link: '/components/forms/text-input' },
 						{ text: 'Tile', link: '/components/forms/tile' },
-						{ text: 'TimeInput <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/forms/time-input' },
+						{ text: 'TimeInput', link: '/components/forms/time-input' },
 						{ text: 'WebcamModal', link: '/components/forms/webcam-modal' },
 					]
 				},

@@ -2,15 +2,17 @@
 
 ### TimeInputs são componentes utilizados para inserir horários específicos no formato simples: hora e minutos.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - For necessário definir horários de eventos, agendamentos, alarmes e etc…
 
-<br />
+<br>
 
 ## Quando não usar:
 - For necessário mostrar opções disponíveis de horários para seleção.
+
+<br>
 
 ---
 
@@ -29,8 +31,8 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsTimeInput"
 	:events
+	:component="CdsTimeInput"
 />
 
 ---
@@ -41,7 +43,7 @@
 	name="TimeInput"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -49,7 +51,7 @@
 	name="TimeInput"
 	section="events"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';
@@ -61,6 +63,6 @@ const events = [
 
 const args = ref({
 	label: 'Horário',
-	modelValue: ''
+	modelValue: '12:05'
 });
 </script>

@@ -255,7 +255,7 @@ export default {
 
 			if (
 				!(this.startHour && this.startMinute)
-				|| (this.range && !(this.endHour && this.endMinute))
+				|| (this.mode === 'range' && !(this.endHour && this.endMinute))
 			) {
 				this.$emit('update:modelValue', null);
 				return;
