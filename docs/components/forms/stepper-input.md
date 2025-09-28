@@ -1,14 +1,14 @@
-# StepperInput
+# StepperInput <Badge type="danger">Deprecated</Badge>
 
 ### StepperInputs são inputs numéricos com botões de incremento e decremento sempre visíveis.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - For necessário precisar de um input do tipo número.
 - O número a ser adicionado ao StepperInput for pequeno ou de poucos dígitos.
 
-<br />
+<br>
 
 ## Quando não usar:
 - O dado a ser utilizado no componente não for numérico.
@@ -18,7 +18,12 @@
 ## Observações:
 - A propriedade `width` não tem efeito quando a propriedade `mobile` está configurada para `true`.
 
-<br />
+<br>
+
+⚠️ Esse componente vai ser substituído pelo NumberInput nas próximas versões do Cuida,
+que vai absorver suas funcionalidades
+
+<br>
 
 ---
 
@@ -51,7 +56,7 @@
 	name="StepperInput"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -59,7 +64,7 @@
 	name="StepperInput"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 
