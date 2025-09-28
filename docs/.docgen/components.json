@@ -6714,6 +6714,11 @@
       {
         "name": "theme",
         "description": "Define o tema do gráfico.",
+        "tags": {},
+        "values": [
+          "blue",
+          "indigo"
+        ],
         "type": {
           "name": "string"
         },
@@ -11367,8 +11372,8 @@
     ]
   },
   "Slider": {
-    "exportName": "default",
     "displayName": "Slider",
+    "exportName": "default",
     "description": "",
     "tags": {},
     "props": [
@@ -11938,6 +11943,11 @@
       {
         "name": "theme",
         "description": "Define o tema do gráfico.",
+        "tags": {},
+        "values": [
+          "blue",
+          "indigo"
+        ],
         "type": {
           "name": "string"
         },
@@ -13926,6 +13936,12 @@
       {
         "name": "textAlign",
         "description": "Define o alinhamento do texto.",
+        "tags": {},
+        "values": [
+          "start",
+          "center",
+          "end"
+        ],
         "type": {
           "name": "string"
         },
