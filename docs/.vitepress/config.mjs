@@ -67,7 +67,7 @@ export default defineConfig({
 						{ text: 'RadioButtonGroup', link: '/components/forms/radio-button-group' },
 						{ text: 'SearchInput', link: '/components/forms/search-input' },
 						{ text: 'Select', link: '/components/forms/select' },
-						{ text: 'Slider <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/forms/slider' },
+						{ text: 'Slider', link: '/components/forms/slider' },
 						{ text: 'StepperInput <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/forms/stepper-input' },
 						{ text: 'Switch', link: '/components/forms/switch' },
 						{ text: 'TextArea', link: '/components/forms/text-area' },

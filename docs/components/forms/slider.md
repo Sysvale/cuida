@@ -1,16 +1,26 @@
 # Slider
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### Sliders são componentes utilizados para seleção de valores dentro de um intervalo.
+---
+<br>
 
-### Quando usar
+## Quando usar:
+- Recomendamos o uso de sliders quando for preciso a seleção de valores dentro de um intervalo,
+sobretudo quando for preciso selecionar mais de um valor.
+- Recomendamos o uso de sliders quando a velocidade na seleção de valores em um intervalo for
+mais relevante que a precisão.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br>
 
-### Quando não usar
+## Quando não usar:
+- Não recomendamos o uso de sliders quando não houver necessidade de uma precisão muito grande na seleção dos valores.
+- Não recomendamos o uso de sliders em conjunto com inputs para que o usuário consiga editar
+o dado tanto pelo slider quanto pelos inputs.
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+## Observações:
+- O slider do Cuida é um wrapper do <a target="_blank" href="https://nightcatsama.github.io/vue-slider-component/#/">Vue slider component</a>
+com a sua adequação aos nossos princípios e recomendações. Para informações detalhadas do componente, recomendamos
+leitura da documentação.
 
 ---
 
@@ -18,10 +28,9 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 ```js
 <CdsSlider
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="sliderClick = true"
+	:min="0"
+	:max="100"
+	:value="value"
 />
 ```
 
@@ -31,8 +40,8 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 <PreviewBuilder
 	:args
+	:events
 	:component="CdsSlider"
-	:events="cdsSliderEvents"
 />
 
 ---
@@ -43,7 +52,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 	name="Slider"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -51,7 +60,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 	name="Slider"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 
@@ -61,9 +70,16 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsSlider from '@/components/Slider.vue';
 
-const cdsSliderEvents = [
-	'slider-click'
+const events = [
+	'update:modelValue'
 ];
+
+const args = ref({
+	modelValue: [20, 60],
+	min: 0,
+	max: 100,
+});
 </script>

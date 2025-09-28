@@ -50,6 +50,7 @@
 import vueSlider from 'vue-3-slider-component';
 
 export default {
+	name: 'Slider',
 	components: {
 		vueSlider,
 	},
@@ -64,7 +65,7 @@ export default {
 			required: true,
 		},
 		/**
-			* O valor máximo do slider.
+		* O valor máximo do slider.
 		*/
 		max: {
 			type: Number,
@@ -72,7 +73,7 @@ export default {
 			required: true,
 		},
 		/**
-			* Prop utilizada como v-model. Retorna as posições selecionadas no slider.
+		* Prop utilizada como v-model. Retorna as posições selecionadas no slider.
 		*/
 		modelValue: {
 			type: Array,
