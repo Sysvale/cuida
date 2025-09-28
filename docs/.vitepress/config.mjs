@@ -89,7 +89,7 @@ export default defineConfig({
 						{ text: 'CalloutCard', link: '/components/display/callout-card' },
 						{ text: 'Carousel', link: '/components/display/carousel' },
 						{ text: 'Chip', link: '/components/display/chip' },
-						{ text: 'DataTable <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/display/data-table' },
+						{ text: 'DataTable', link: '/components/display/data-table' },
 						{ text: 'Dropdown', link: '/components/display/dropdown' },
 						{ text: 'DropdownButton', link: '/components/display/dropdown-button' },
 						{ text: 'EmptyState', link: '/components/display/empty-state' },

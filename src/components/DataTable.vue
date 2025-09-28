@@ -180,8 +180,6 @@
 </template>
 
 <script setup>
-defineOptions({ name: 'DataTable' });
-
 import {
 	ref,
 	watch,
@@ -209,6 +207,8 @@ const hasStateEmpty = useHasSlot('empty');
 const attrs = useAttrs();
 
 const searchInputRef = useTemplateRef('search-input');
+
+defineOptions({ name: 'DataTable' });
 
 const props = defineProps({
 	/**
