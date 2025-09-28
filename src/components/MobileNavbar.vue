@@ -39,11 +39,10 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'MobileNavbar' });
-
 import { ref, computed, onMounted, watchEffect, watch } from 'vue';
 import Icon from '../components/Icon.vue';
+
+defineOptions({ name: 'MobileNavbar' });
 
 const props = defineProps({
 	/**

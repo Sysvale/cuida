@@ -9,10 +9,10 @@
 </template>
 
 <script setup>
-defineOptions({ name: 'SearchInput' });
-
 import { useTemplateRef } from 'vue';
 import CdsBaseInput from './BaseInput.vue';
+
+defineOptions({ name: 'SearchInput' });
 
 const baseInputRef = useTemplateRef('baseInput')
 

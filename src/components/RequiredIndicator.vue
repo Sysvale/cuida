@@ -7,7 +7,6 @@
 </template>
 
 <script setup>
-
 defineOptions({ name: 'RequiredIndicator' });
 
 </script>

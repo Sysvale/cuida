@@ -41,11 +41,10 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'BottomSheet' });
-
 import Icon from './Icon.vue';
 import { ref, watch } from 'vue';
+
+defineOptions({ name: 'BottomSheet' });
 
 const model = defineModel();
 

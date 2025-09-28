@@ -101,14 +101,13 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'FileViewer' });
-
 import CdsIcon from '../components/Icon.vue';
 import { get, last } from 'lodash';
 import { computed, ref } from 'vue';
 import { colors } from '../utils/constants/colors';
 import CdsImage from '../components/Image.vue';
+
+defineOptions({ name: 'FileViewer' });
 
 const emit = defineEmits(
 	[

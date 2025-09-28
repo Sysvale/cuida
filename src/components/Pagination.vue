@@ -44,13 +44,13 @@
 </template>
 
 <script setup>
-defineOptions({ name: 'Pagination' });
-
 /* eslint-disable no-plusplus */
 import { computed, onBeforeMount, watch, ref } from 'vue';
 import PaginationItem from '../entities/PaginationItem';
 import CdsChevron from './Chevron.vue';
 import variantClassResolver from '../utils/methods/variantClassResolver';
+
+defineOptions({ name: 'Pagination' });
 
 const model = defineModel('modelValue', {
 	type: [Number, String],

@@ -51,9 +51,6 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'NumberInput' });
-
 import { ref, watch, onMounted, useTemplateRef } from 'vue';
 import {
 	nativeEvents,
@@ -62,6 +59,8 @@ import {
 import { vCdsBrl, unmaskBRL } from '../utils/directives/cdsBRL';
 import { facade } from 'vue-input-facade';
 import CdsBaseInput from './BaseInput.vue';
+
+defineOptions({ name: 'NumberInput' });
 
 const vFacade = facade;
 const baseInputRef = useTemplateRef('baseInput');

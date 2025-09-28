@@ -15,9 +15,9 @@
 </template>
 
 <script setup>
-defineOptions({ name: 'Text' });
-
 import { computed, useTemplateRef } from 'vue';
+
+defineOptions({ name: 'Text' });
 
 const props = defineProps({
 	/**

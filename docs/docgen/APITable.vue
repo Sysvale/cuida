@@ -14,7 +14,7 @@
 
 			<template v-if="section === 'props' && field === 'values'">
 				<span v-if="!data.values?.length"> -- </span>
-				<code v-for="value in data.values">{{ value }} <br /></code>
+				<code v-for="value in data.values">{{ value }} <br></code>
 			</template>
 		</template>
 	</CdsTable>

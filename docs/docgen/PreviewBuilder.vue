@@ -70,6 +70,10 @@ const props = withDefaults(defineProps<{
 	static: false,
 });
 
+
+console.log('component: ', props.component);
+console.log('component: ', props.component.name);
+
 const emits = defineEmits(['trigger-click']);
 
 const logBuilder = useTemplateRef('logBuilderRef');

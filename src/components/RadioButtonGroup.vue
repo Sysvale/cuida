@@ -62,12 +62,12 @@
 </template>
 
 <script setup>
-defineOptions({ name: 'RadioButtonGroup' });
-
 import { ref, computed, watch } from 'vue';
 import { colorHexCode, colorLightestHexCode } from '../utils/constants/colors';
 import { generateKey } from '../utils';
 import CdsLabel from './Label.vue';
+
+defineOptions({ name: 'RadioButtonGroup' });
 
 const model = defineModel('modelValue', {
 	type: [String, null],

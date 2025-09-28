@@ -98,13 +98,12 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'MobileNavigation' });
-
 import { ref, computed, watch } from 'vue';
 import { isEqual, isEmpty } from 'lodash';
 import CdsIcon from './Icon.vue';
 import CdsAvatar from './Avatar.vue';
+
+defineOptions({ name: 'MobileNavigation' });
 
 const props = defineProps({
 	/**

@@ -80,13 +80,12 @@
 </template>
 
 <script setup>
-defineOptions({ name: 'Card' });
-
 import { computed } from 'vue';
 import CdsBox from './Box.vue';
 import CdsImage from './Image.vue';
-
 import hasSlot from '../utils/methods/hasSlot';
+
+defineOptions({ name: 'Card' });
 
 const props = defineProps({
 	/**

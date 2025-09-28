@@ -33,13 +33,12 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'CheckboxGroup' });
-
 import { ref, onMounted, computed, watch } from 'vue';
 import CdsCheckbox from './Checkbox.vue';
 import variantClassResolver from '../utils/methods/variantClassResolver';
 import variantValidator from '../utils/validators/variant';
+
+defineOptions({ name: 'CheckboxGroup' });
 
 const props = defineProps({
 	/**

@@ -252,9 +252,6 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'BaseMobileInput' });
-
 import { ref, computed, watch, useTemplateRef, useAttrs, nextTick } from 'vue';
 import {
 	nativeEvents,
@@ -267,6 +264,8 @@ import CdsIcon from './Icon.vue';
 import CdsFlexbox from './Flexbox.vue';
 import CdsSpinner from './Spinner.vue';
 import CdsRequiredIndicator from './RequiredIndicator.vue';
+
+defineOptions({ name: 'BaseMobileInput' });
 
 const model = defineModel('modelValue', {
 	type: [String, Number],

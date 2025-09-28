@@ -51,13 +51,12 @@
 </template>
 
 <script setup>
-defineOptions({ name: 'InnerTabs' });
-
 import { ref, computed, watch } from 'vue';
 import isEmpty from 'lodash.isempty';
 import isEqual from 'lodash.isequal';
-
 import { colorOptions, colorHexCode } from '../utils/constants/colors';
+
+defineOptions({ name: 'InnerTabs' });
 
 const props = defineProps({
 	/**

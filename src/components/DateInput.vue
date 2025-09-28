@@ -146,9 +146,6 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'DateInput' });
-
 import { ref, computed, watch, useTemplateRef } from 'vue';
 import { DateTime } from 'luxon';
 import CdsBaseInput from './BaseInput.vue';
@@ -164,6 +161,9 @@ import {
 } from '../utils/composables/useComponentEmits.js';
 import { useClickOutside } from '../utils/composables/useClickOutside.js';
 import { facade } from 'vue-input-facade';
+
+defineOptions({ name: 'DateInput' });
+
 const vFacade = facade;
 
 const WEEK_DAYS = ['S', 'T', 'Q', 'Q', 'S', 'S', 'D'];

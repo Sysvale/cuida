@@ -44,14 +44,14 @@
 </template>
 
 <script setup>
-defineOptions({ name: 'Label' });
-
 import { computed } from 'vue';
 import CdsRequiredIndicator from './RequiredIndicator.vue';
 import vCdstip from '../utils/directives/cdstip';
 import CdsLink from './Link.vue';
 import CdsIcon from './Icon.vue';
 import CdsFlexbox from './Flexbox.vue';
+
+defineOptions({ name: 'Label' });
 
 const props = defineProps({
 	/**

@@ -18,11 +18,10 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'MonthSelectorGrid' });
-
 import CdsGrid from '../Grid.vue';
 import { computed, ref, onMounted, watch } from 'vue';
+
+defineOptions({ name: 'MonthSelectorGrid' });
 
 const MONTHS = ['jan', 'fev', 'mar', 'abr', 'maio', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
 

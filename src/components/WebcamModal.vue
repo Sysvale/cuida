@@ -103,8 +103,6 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'WebcamModal' });
 import { computed, ref, watch } from 'vue';
 import CdsButton from './Button.vue';
 import Flexbox from './Flexbox.vue';
@@ -112,6 +110,8 @@ import Modal from './Modal.vue';
 import Spinner from './Spinner.vue';
 import CdsIcon from './Icon.vue';
 import CdsFlexbox from './Flexbox.vue';
+
+defineOptions({ name: 'WebcamModal' });
 
 const emit = defineEmits([
 	/**

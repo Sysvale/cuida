@@ -97,9 +97,6 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'StepperInput' });
-
 import { ref, computed, watch, useTemplateRef } from 'vue';
 import { useHasSlots } from '../utils/composables/useHasSlots.js';
 import {
@@ -108,12 +105,12 @@ import {
 } from '../utils/composables/useComponentEmits.js';
 import { useInputStatusClasses } from '../utils/composables/useInputStatusClasses.js';
 import { longClickDirective } from '@sysvale/vue3-long-click';
-
 import CdsMobileStepperInput from './MobileStepperInput.vue';
 import CdsIcon from './Icon.vue';
 import CdsRequiredIndicator from './RequiredIndicator.vue';
-
 import stateValidator from '../utils/validators/state';
+
+defineOptions({ name: 'StepperInput' });
 
 const hasSlots = useHasSlots();
 const vLongClick = longClickDirective({ delay: 400, interval: 50 });

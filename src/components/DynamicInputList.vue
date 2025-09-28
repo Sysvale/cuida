@@ -69,9 +69,6 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'DynamicInputList' });
-
 import { ref, watch, nextTick } from 'vue';
 import CdsTextInput from './TextInput.vue';
 import CdsIcon from './Icon.vue';
@@ -80,6 +77,8 @@ import CdsFlatButton from './FlatButton.vue';
 import CdsClickable from './Clickable.vue';
 import generateKey from '../utils/methods/uuidv4';
 import CdsLabel from './Label.vue';
+
+defineOptions({ name: 'DynamicInputList' });
 
 const model = defineModel('modelValue', {
 	type: Array,

@@ -75,14 +75,13 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'Toast' });
-
 import { ref, computed, useAttrs, watch } from 'vue';
 import { useToast } from '../utils/composables/useToast.js';
 import CdsIcon from '../components/Icon.vue';
 import CdsFlexbox from '../components/Flexbox.vue';
 import CdsText from '../components/Text.vue';
+
+defineOptions({ name: 'Toast' });
 
 const attrs = useAttrs();
 

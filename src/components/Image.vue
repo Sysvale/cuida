@@ -14,9 +14,7 @@
 import { ref, computed, watch } from 'vue';
 import rounder from '../utils/methods/rounder';
 
-defineOptions({
-	name: 'Image',
-});
+defineOptions({ name: 'Image' });
 
 const props = defineProps({
 	/**

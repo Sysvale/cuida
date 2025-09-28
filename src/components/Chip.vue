@@ -41,13 +41,13 @@
 </template>
 
 <script setup>
-defineOptions({ name: 'Chip' });
-
 import { computed, ref, onMounted, useTemplateRef, watch } from 'vue';
 import { useHasSlot } from '../utils/composables/useHasSlot';
 import { colorOptions } from '../utils/constants/colors';
 import sizes from '../utils/constants/sizes';
 import CdsIcon from './Icon.vue';
+
+defineOptions({ name: 'Chip' });
 
 const modelValue = defineModel('modelValue', {
 	type: Boolean,

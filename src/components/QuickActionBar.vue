@@ -201,9 +201,6 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'QuickActionBar' });
-
 import { ref, watch, computed } from 'vue';
 import CdsIcon from './Icon.vue';
 import CdsFlexbox from './Flexbox.vue';
@@ -211,6 +208,8 @@ import CdsDivider from './Divider.vue';
 import CdsSkeleton from './Skeleton.vue';
 import hasSlot from '../utils/methods/hasSlot';
 import CdsHighlight from './Highlight.vue';
+
+defineOptions({ name: 'QuickActionBar' });
 
 const props = defineProps({
 	/**

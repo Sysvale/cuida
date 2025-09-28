@@ -3,11 +3,10 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'LoadingIndicator' });
-
 import { computed, ref, watch } from 'vue';
 import isDeviceType from '../utils/methods/isDeviceType.js';
+
+defineOptions({ name: 'LoadingIndicator' });
 
 // Props
 const props = defineProps({

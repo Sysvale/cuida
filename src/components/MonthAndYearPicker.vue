@@ -73,9 +73,6 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'MonthAndYearPicker' });
-
 import { ref, computed, watch, useTemplateRef } from 'vue';
 import { DateTime } from 'luxon';
 import CdsBaseInput from './BaseInput.vue';
@@ -84,6 +81,8 @@ import CdsIcon from './Icon.vue';
 import CdsFlexbox from './Flexbox.vue';
 import { useClickOutside } from '../utils/composables/useClickOutside.js';
 import { direction, dropdownTopPosition, dropdownBottomPosition } from '../utils/composables/useDropdownPosition.js';
+
+defineOptions({ name: 'MonthAndYearPicker' });
 
 const model = defineModel('modelValue', {
 	type: String,

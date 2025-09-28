@@ -18,14 +18,14 @@
 </template>
 
 <script setup>
-defineOptions({ name: 'TextArea' });
-
 import { ref, watch, useTemplateRef } from 'vue';
 import {
 	nativeEvents,
 	nativeEmits,
 } from '../utils/composables/useComponentEmits.js';
 import CdsBaseInput from './BaseInput.vue';
+
+defineOptions({ name: 'TextArea' });
 
 const baseInputRef = useTemplateRef('baseInput');
 

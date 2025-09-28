@@ -41,12 +41,11 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'TopAppBar' });
-
 import { computed } from 'vue';
 import Icon from './Icon.vue';
 import useIsMobile from '../utils/composables/useIsMobile';
+
+defineOptions({ name: 'TopAppBar' });
 
 const { isMobile } = useIsMobile();
 

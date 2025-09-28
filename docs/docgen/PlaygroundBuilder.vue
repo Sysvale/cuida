@@ -113,6 +113,8 @@ const test = ref(0);
 const componentData = computed(() => componentsData[props.component] || {});
 const propsData = computed(() => componentData.value?.props);
 
+console.log('props.component: ', props.component);
+
 function formatOptions(val) {
 	return val.map(v => {
 		return {

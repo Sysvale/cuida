@@ -27,13 +27,12 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'InteractionBlockingOverlay' });
-
 import { computed, onMounted, ref, watch, watchEffect } from 'vue';
 import isDeviceType from '../utils/methods/isDeviceType';
 import { colorOptions } from '../utils/constants/colors';
 import CdsButton from './Button.vue';
+
+defineOptions({ name: 'InteractionBlockingOverlay' });
 
 // Props
 const props = defineProps({

@@ -126,8 +126,6 @@
 </template>
 
 <script setup>
-defineOptions({ name: 'CustomFieldsSideSheet' });
-
 import { ref, watch, computed, onMounted, onBeforeUnmount } from 'vue';
 import hasSameItems from '../../utils/methods/hasSameItems';
 import CdsIcon from '../Icon.vue';
@@ -139,6 +137,8 @@ import CdsSelect from '../Select.vue';
 import CdsSearchInput from '../SearchInput.vue';
 import CdsDivider from '../Divider.vue';
 import { isEmpty, kebabCase, trim } from 'lodash';
+
+defineOptions({ name: 'CustomFieldsSideSheet' });
 
 const modelValue = defineModel({
 	type: Boolean,

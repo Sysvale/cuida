@@ -73,11 +73,10 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'SecondaryNavigation' });
-
 import { ref, computed, watch } from 'vue';
 import Icon from './Icon.vue';
+
+defineOptions({ name: 'SecondaryNavigation' });
 
 const props = defineProps({
 	light: {

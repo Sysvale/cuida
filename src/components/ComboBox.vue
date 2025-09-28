@@ -103,9 +103,6 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'ComboBox' });
-
 import { ref, computed, watch, useTemplateRef, watchEffect } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 import CdsBaseInput from './BaseInput.vue';
@@ -114,6 +111,8 @@ import CdsCheckBox from './Checkbox.vue';
 import CdsBadge from './Badge.vue';
 import CdsTruncate from './Truncate.vue';
 import CdsIcon from './Icon.vue';
+
+defineOptions({ name: 'ComboBox' });
 
 const props = defineProps({
 	/**

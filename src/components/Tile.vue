@@ -45,15 +45,14 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'Tile' });
-
 import { computed } from 'vue';
 import variantValidator from '../utils/validators/variant';
 import Box from './Box.vue';
 import Icon from './Icon.vue';
 import CdsImage from './Image.vue';
 import Skeleton from './Skeleton.vue';
+
+defineOptions({ name: 'Tile' });
 
 const props = defineProps({
 	/**

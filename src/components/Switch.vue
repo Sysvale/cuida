@@ -74,11 +74,11 @@
 </template>
 
 <script setup>
-defineOptions({ name: 'Switch' });
-
 import { ref, computed, watch, useTemplateRef } from 'vue';
 import CdsIcon from './Icon.vue';
 import CdsFlexbox from './Flexbox.vue';
+
+defineOptions({ name: 'Switch' });
 
 const model = defineModel('modelValue', {
 	type: Boolean,

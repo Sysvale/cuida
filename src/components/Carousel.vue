@@ -56,13 +56,12 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'Carousel' });
-
 import { longClickDirective } from '@sysvale/vue3-long-click';
 import useIsMobile from '../utils/composables/useIsMobile';
 import { ref, computed } from 'vue';
 import Icon from './Icon.vue';
+
+defineOptions({ name: 'Carousel' });
 
 const props = defineProps({
 	/**

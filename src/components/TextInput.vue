@@ -16,8 +16,6 @@
 </template>
 
 <script setup>
-defineOptions({ name: 'TextInput' });
-
 import { ref, watch, useTemplateRef } from 'vue';
 import {
 	nativeEvents,
@@ -25,6 +23,8 @@ import {
 } from '../utils/composables/useComponentEmits.js';
 import { facade } from 'vue-input-facade';
 import CdsBaseInput from './BaseInput.vue';
+
+defineOptions({ name: 'TextInput' });
 
 const vFacade = facade;
 

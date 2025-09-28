@@ -288,16 +288,16 @@
 </template>
 
 <script setup>
-defineOptions({ name: 'SideBar' });
-
 import { ref, computed, watch, onMounted, onBeforeMount } from 'vue';
-import isEqual from 'lodash.isequal';
-import isEmpty from 'lodash.isempty';
 import CdsIcon from './Icon.vue';
 import CdsPopover from './Popover.vue';
 import CdsAvatar from './Avatar.vue';
 import CdsRichTooltip from './RichTooltip.vue';
+import isEqual from 'lodash.isequal';
+import isEmpty from 'lodash.isempty';
 import Cdstip from '../utils/directives/cdstip';
+
+defineOptions({ name: 'SideBar' });
 
 const vCdstip = Cdstip;
 

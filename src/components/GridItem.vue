@@ -8,10 +8,9 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
 
 defineOptions({ name: 'GridItem' });
-
-import { computed } from 'vue';
 
 const props = defineProps({
 	colSpan: {

@@ -105,9 +105,6 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'MultiFileInput' });
-
 import { ref, watch, computed } from 'vue';
 import CdsFileInput from './FileInput.vue';
 import CdsBadge from './Badge.vue';
@@ -116,6 +113,8 @@ import CdsIconButton from './IconButton.vue';
 import CdsButton from './Button.vue';
 import CdsSelect from './Select.vue';
 import generateKey from '../utils/methods/uuidv4';
+
+defineOptions({ name: 'MultiFileInput' });
 
 const props = defineProps({
 	/**

@@ -183,9 +183,6 @@
 </template>
 
 <script setup>
-
-defineOptions({ name: 'BaseInput' });
-
 import { ref, computed, watch, useTemplateRef, onMounted } from 'vue';
 import { useHasSlot } from '../utils/composables/useHasSlot.js';
 import {
@@ -198,6 +195,8 @@ import CdsIcon from './Icon.vue';
 import CdsSpinner from './Spinner.vue';
 import CdsBaseMobileInput from './BaseMobileInput.vue';
 import CdsLabel from './Label.vue';
+
+defineOptions({ name: 'BaseInput' });
 
 const model = defineModel('modelValue', {
 	type: [String, Number],
