@@ -2,7 +2,7 @@
 
 ### Floating Assistant é um componente flutuante que pode ser utilizado para fornecer dicas de usabilidade ou informações específicas sobre o conteúdo da página.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Houver necessidade de fornecer dicas ou informações adicionais sobre um determinado elemento ou seção da página.
@@ -10,7 +10,7 @@
 - O objetivo for reduzir a quantidade de informações exibidas na tela, mantendo o foco do usuário no elemento relevante.
 
 
-<br />
+<br>
 
 ## Quando não usar:
 - O componente se tornar intrusivo e atrapalhar a navegação e experiência do usuário.
@@ -65,7 +65,7 @@
 	name="FloatingAssistant"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -73,7 +73,7 @@
 	name="FloatingAssistant"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 
@@ -89,7 +89,7 @@ import CdsFloatingAssistant from '@/components/FloatingAssistant.vue';
 const logBuilder = useTemplateRef('logBuilderRef');
 
 const events = [
-	'expanded',
+	'update:modelValue',
 	'disable-tip'
 ];
 

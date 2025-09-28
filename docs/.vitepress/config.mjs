@@ -94,7 +94,7 @@ export default defineConfig({
 						{ text: 'DropdownButton', link: '/components/display/dropdown-button' },
 						{ text: 'EmptyState', link: '/components/display/empty-state' },
 						{ text: 'FileViewer', link: '/components/display/file-viewer' },
-						{ text: 'FloatingAssistant <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/display/floating-assistant' },
+						{ text: 'FloatingAssistant', link: '/components/display/floating-assistant' },
 						{ text: 'Highlight <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/display/highlight' },
 						{ text: 'List', link: '/components/display/list' },
 						{ text: 'ProgressBar', link: '/components/display/progress-bar' },
