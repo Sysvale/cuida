@@ -28,11 +28,11 @@
 </template>
 
 <script setup>
-defineOptions({ name: 'TruncateContainer' });
-
 import { ref, computed, nextTick, watch } from 'vue';
 import CdsFlatButton from './FlatButton.vue';
 import CdsFlexbox from './Flexbox.vue';
+
+defineOptions({ name: 'TruncateContainer' });
 
 const props = defineProps({
 	/**
@@ -44,6 +44,7 @@ const props = defineProps({
 	},
 	/**
 	* Define o alinhamento do texto.
+	* @values start, center, end
 	*/
 	textAlign: {
 		type: String,

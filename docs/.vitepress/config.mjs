@@ -133,6 +133,7 @@ export default defineConfig({
 						{ text: 'DashboardCard', link: '/components/containers/dashboard-card' },
 						{ text: 'Divider', link: '/components/containers/divider' },
 						{ text: 'FlexBox', link: '/components/containers/flexbox' },
+						{ text: 'TruncateContainer', link: '/components/containers/truncate-container' },
 						{ text: 'Grid', link: '/components/containers/grid' },
 						{ text: 'PanelCard', link: '/components/containers/panel-card' },
 						{ text: 'Scrollable', link: '/components/containers/scrollable' },
