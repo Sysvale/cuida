@@ -2,14 +2,14 @@
 
 ### RichTooltip, assim como Tooltips, são labels flutuantes usadas para explicar um da interface, entretanto provêem maior liberdade para descrição de textos estruturados e/ou mais longos.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - O texto a ser exibido como label precisar ocupar várias linhas ou seguir determinada estrurua, como "label: descritor".
 - Para exibir informações suplementares sobre uma feature ou elemento da interface.
 
 
-<br />
+<br>
 
 ## Quando não usar:
 - Com conteúdo simples, composto por poucas palavras.
@@ -62,7 +62,7 @@
 	name="RichTooltip"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -70,7 +70,7 @@
 	name="RichTooltip"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

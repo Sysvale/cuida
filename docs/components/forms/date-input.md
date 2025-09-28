@@ -2,14 +2,14 @@
 
 ### DateInputs permitem que o usuário selecione uma data ou um intervalo de datas através de um calendário interativo.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - O usuário precisar selecionar uma data específica (ex: data de nascimento, data de agendamento, data de referência).
 - O usuário precisar selecionar um período (data de início e fim), habilitando a propriedade range.
 
 
-<br />
+<br>
 
 ## Quando não usar:
 - O usuário precisar selecionar um horário junto com a data (este componente lida apenas com datas).
@@ -17,7 +17,7 @@
 - For preciso selecionar a penas mês ou ano, sem especificar o dia.
 - For preciso digitar a data;
 
-<br />
+<br>
 
 ## ⚠️ Observações:
 - O `v-model` para data única recebe e retorna uma string no formato ISO ('yyyy-MM-dd').
@@ -25,7 +25,7 @@
 - O componente expõe métodos úteis como clearSelection(), getDMYFormat(), toISO(), toJSDate(), etc., que podem ser acessados via ref.
 - **Importante:** no modo de seleção única, por padrão o ano mínimo disponível para seleção é o ano atual - 120 anos e o ano máximo é o ano atual + 50 anos.
 
-<br />
+<br>
 
 ---
 
@@ -67,7 +67,7 @@ Este é o modo de operação padrão do DateInput quando a prop range é false
 	/>
 </PreviewContainer>
 
-<br />
+<br>
 
 ### __Range__
 
@@ -108,7 +108,7 @@ A prop range permite habilitar a seleção de um intervalo de datas (início e f
 	/>
 </PreviewContainer>
 
-<br />
+<br>
 
 ### __MaxDate e MinDate__
 
@@ -151,7 +151,7 @@ A prop range permite habilitar a seleção de um intervalo de datas (início e f
 	/>
 </PreviewContainer>
 
-<br />
+<br>
 
 ### __Mobile__
 
@@ -186,7 +186,7 @@ Controla o estilo visual do input, ativando o comportamento de "label flutuante"
 	/>
 </PreviewContainer>
 
-<br />
+<br>
 
 ### __Digitação__
 
@@ -253,7 +253,7 @@ Nesse deixa de ser possível selecionar a data pelo picker.
 	name="DateInput"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -262,7 +262,7 @@ Nesse deixa de ser possível selecionar a data pelo picker.
 	section="events"
 />
 
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

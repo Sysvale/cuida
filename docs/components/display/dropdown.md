@@ -2,14 +2,14 @@
 
 ### Dropdown são componentes utilizados para ativar popovers contendo filtros para listas e views.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Para utilizar com filtros.
 - Houver popovers contendo opções de filtragem.
 
 
-<br />
+<br>
 
 ## Quando não usar:
 - Em substituição à um Multiselect ou Select.
@@ -46,7 +46,7 @@
 	name="Dropdown"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -54,7 +54,7 @@
 	name="Dropdown"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

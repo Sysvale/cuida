@@ -2,18 +2,18 @@
 
 ### Breadcrumbs são utilizados para indicar ao usuário o caminho percorrido entre as páginas de uma aplicação até se checar na página atual.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Quando houver dois ou mais níveis na hierarquia de páginas;
 - Quando você precisar indicar ao usuário em que página ele está e como ele pode refazer os passos que o levaram à página atual;
 
-<br />
+<br>
 
 ## Quando não usar:
 - Em casos nos quais só houver uma página na estrutura de navegação.
 
-<br />
+<br>
 
 ## Obs.:
 - Idealmente Breadcrumbs devem ser usados com <b>três</b> ou mais níveis de hierarquia. Entretanto, o Breadcrumb do
@@ -41,7 +41,7 @@ Cuida pode ser usado com <b>dois</b> níveis pois nesse cenário ele se comporta
 	:component="CdsBreadcrumb"
 />
 
-<br />
+<br>
 
 ##### Breadcrumb de 2 níveis:
 
@@ -57,7 +57,7 @@ Cuida pode ser usado com <b>dois</b> níveis pois nesse cenário ele se comporta
 	name="Breadcrumb"
 	section="props"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

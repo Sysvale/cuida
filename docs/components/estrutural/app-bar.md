@@ -74,7 +74,7 @@
 	name="AppBar"
 	section="props"
 />
-<br />
+<br>
 
 ## Events
 

@@ -4,7 +4,7 @@
 
 ---
 
-<br />
+<br>
 
 ## Quando usar:
 - Quando o usuário pode selecionar **múltiplos itens** a partir de uma lista.
@@ -12,7 +12,7 @@
 - Quando a lista de opções é extensa e se beneficia de um campo de busca.
 - Em formulários onde se deseja flexibilidade e agilidade na entrada de dados.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Se não for permitido adicionar novos itens à lista.
@@ -55,7 +55,7 @@
 	name="ComboBox"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -63,7 +63,7 @@
 	name="ComboBox"
 	section="events"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

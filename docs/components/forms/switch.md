@@ -40,7 +40,7 @@ Switches são componentes utilizados para ativar ou desativar configurações ou
 	name="Switch"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -48,7 +48,7 @@ Switches são componentes utilizados para ativar ou desativar configurações ou
 	name="Switch"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

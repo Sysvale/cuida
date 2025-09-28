@@ -35,7 +35,7 @@ Componente utilizado para adicionar um wrapper cliclável a componentes que não
 	name="Clickable"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -43,7 +43,7 @@ Componente utilizado para adicionar um wrapper cliclável a componentes que não
 	name="Clickable"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

@@ -3,13 +3,13 @@
 ### Popovers são componentes flutuantes utilizados para exibir, sob interação, informações e ações relacionadas ao conteúdo da tela.
 
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Para criar dropdowns;
 - Para mostrar informações ou ações adicionais sobre determinado elemento da interface;
 
-<br />
+<br>
 
 ## Quando não usar:
 - Como um substituto para Tooltips, ou seja, tendo como conteúdo apenas pequenas porções de texto;
@@ -79,7 +79,7 @@
 	name="Popover"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -87,7 +87,7 @@
 	name="Popover"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

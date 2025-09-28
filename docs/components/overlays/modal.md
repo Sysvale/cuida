@@ -2,14 +2,14 @@
 
 ### Modais são como dialogs personolizados, janelas que exibem um conteúdo adicional em uma camada acima da página atual, com uma sobreposição de superfície (overlay) cobrindo a página e tornando-a temporariamente inacessível.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - For necessário notificar o usuário de algum processo;
 - For necessário uma tomada de decisão para completar uma ação;
 - Se deseja realizar ação dentro de uma página paralelo ao fluxo principal da mesma;
 
-<br />
+<br>
 
 ## Quando não usar:
 - For necessário exibir uma grande quantidade de informação ou fluxos complexos;
@@ -64,7 +64,7 @@
 	name="Modal"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -72,7 +72,7 @@
 	name="Modal"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

@@ -1,16 +1,25 @@
 # Multiselect
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+### Multiselects são componentes que permitem ao usuário selecionar múltiplas opções divididas em categorias.
+---
+<br>
 
-### Quando usar
+## Quando usar:
+- Houver a possibilidade de selecionar múltipos itens em um select.
+- Se deseja classificar os itens do select em categorias.
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+<br>
 
-### Quando não usar
+## Quando não usar:
+- Os itens do select não puderem ser classificados em categorias.
+- Houver necessidade de detalhar no input as opções selecionadas, já que mostramos como resumo apenas quantas e não quais foram as opções escolhidas.
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+<br>
+
+## Observações:
+- O Multiselect do Cuida é um wrapper do <a href="https://vue-multiselect.js.org/">Vue Multiselect</a>
+com a sua adequação aos nossos princípios e recomendações. Para informações detalhadas sobre o componente, recomendamos
+leitura da documentação.
 
 ---
 
@@ -31,9 +40,15 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 <PreviewBuilder
 	:args
+	:events
 	:component="CdsMultiselect"
-	:events="cdsMultiselectEvents"
 />
+
+<!-- <CdsMultiselect
+	:options
+	v-model="value"
+	label="title"
+/> -->
 
 ---
 
@@ -43,7 +58,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 	name="Multiselect"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -51,7 +66,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 	name="Multiselect"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 
@@ -61,9 +76,52 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 />
 
 <script setup>
+import { ref } from 'vue';
 import CdsMultiselect from '@/components/Multiselect.vue';
+import Multiselect from 'vue-multiselect';
 
-const cdsMultiselectEvents = [
-	'multiselect-click'
+const events = [
+	'update:modelValue'
 ];
+
+const value = ref([])
+
+const options = [
+    {
+        "id": "hearing",
+        "value": "Auditiva"
+    },
+    {
+        "id": "physical",
+        "value": "Física"
+    },
+    {
+        "id": "intellectual",
+        "value": "Intelectual"
+    },
+    {
+        "id": "mental",
+        "value": "Mental"
+    },
+    {
+        "id": "dwarfism",
+        "value": "Nanismo"
+    },
+    {
+        "id": "visual",
+        "value": "Visual"
+    },
+    {
+        "id": "microcephaly",
+        "value": "Microcefalia"
+    }
+];
+
+const args = ref({
+	options,
+	label: 'Séries',
+	optionsField: 'id',
+	trackBy: 'value',
+	variant: 'green',
+});
 </script>

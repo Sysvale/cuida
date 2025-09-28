@@ -42,7 +42,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 	name="AlertCard"
 	section="props"
 />
-<br />
+<br>
 
 ## Slots
 

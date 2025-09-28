@@ -3,13 +3,13 @@
 ### Skeleton texts permitem exibir um estado de carregamento para vários tipos de componentes
 ### enquanto seus dados estão sendo buscados.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Informar ao usuário que as informações do componentes estão sendo carregadas.
 - O conteúdo a ser carregado for dinâmico.
 
-<br />
+<br>
 
 ## Quando não usar:
 - O conteúdo a ser carregado for estático.
@@ -44,7 +44,7 @@
 	name="SkeletonText"
 	section="props"
 />
-<br />
+<br>
 
 ---
 

@@ -3,7 +3,7 @@
 ### SearchInputs permitem que os usuários realizem buscas sobre conjuntos de dados na interface
 ---
 
-<br />
+<br>
 
 
 ## Uso
@@ -32,7 +32,7 @@
 	name="SearchInput"
 	section="props"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

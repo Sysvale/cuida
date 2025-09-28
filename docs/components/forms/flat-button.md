@@ -39,7 +39,7 @@ FlatButtons são componentes semelhantes a links, mas que funcionam como botões
 	name="FlatButton"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -47,7 +47,7 @@ FlatButtons são componentes semelhantes a links, mas que funcionam como botões
 	name="FlatButton"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

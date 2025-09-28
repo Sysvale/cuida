@@ -2,12 +2,12 @@
 
 ### PasswordInputs permitem que os usuários insiram caracteres sensíveis na interface.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Necessitar de um campo de texto para inserir informações sensíveis, como uma senha.
 
-<br />
+<br>
 
 ## Quando não usar:
 - O dado a ser utilizado no componente for um dado comum (Exemplo: nome ou idade).
@@ -40,7 +40,7 @@
 	name="PasswordInput"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -48,7 +48,7 @@
 	name="PasswordInput"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

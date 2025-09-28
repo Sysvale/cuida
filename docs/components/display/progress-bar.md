@@ -2,14 +2,14 @@
 
 ### ProgressBars são componentes utilizados para indicar o status e progresso de algo aos usuários.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - For necessário transmitir a ideia do progresso de algo.
 - For necessário transmitir a ideia do status de algo.
 - Se deseja chamar a atenção do usuário para uma informação específica de maneira gráfica.
 
-<br />
+<br>
 
 ## Quando não usar:
 - For necessário criar loaders.
@@ -44,7 +44,7 @@
 	name="ProgressBar"
 	section="props"
 />
-<br />
+<br>
 
 ## Slots
 

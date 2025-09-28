@@ -2,13 +2,13 @@
 
 ### O LoadingIndicator é um componente utilizado para indicar o progresso do carregamento da página, proporcionando uma experiência de usuário mais fluida e informativa.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Em navegações entre páginas ou abas dentro de uma aplicação, onde o usuário precisa visualizar o progresso de carregamento de forma clara para saber que a transição está em andamento;
 - Em aplicações onde o carregamento de conteúdo pode demorar, como em operações de rede ou carregamento de dados pesados.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Para o carregamento de dados secundários ou ações que não afetam diretamente a navegação principal do usuário;
@@ -45,7 +45,7 @@
 	name="LoadingIndicator"
 	section="props"
 />
-<br />
+<br>
 
 ---
 

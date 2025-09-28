@@ -2,14 +2,14 @@
 
 ### ProgressCirculars são componentes que indicam o status/progresso de uma operação em andamento, em formato circular.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - For necessário transmitir a ideia de progresso ou percentual de uma operação em andamento.
 - For necessário transmitir a ideia de status de uma operação em andamento e que fração dela já foi concluída.
 - For necessário chamar a atenção do usuário para uma informação específica de maneira gráfica.
 
-<br />
+<br>
 
 ## Quanddo não usar:
 - For necessário representar fração de um processo com muitas etapas.
@@ -44,7 +44,7 @@
 	name="ProgressCircular"
 	section="props"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

@@ -4,8 +4,8 @@ A iconografia que utilizamos no Cuida simplifica a interação do usuário com o
  facilmente identificados. Além disso, permite que os usuários compreendam com mais facilidade os componentes do layout, 
  reduzindo a curva de aprendizado sobre a interface.
 
-<hr />
-<br />
+<hr>
+<br>
 
 ## Recomendações
 
@@ -16,7 +16,7 @@ Por exemplo, um sino para notificações, uma engrenagem para configurações, e
 
 - Para tornar o conteúdo mais claro, utilize ícones em conjunto com texto, sempre que possível.
 
-<br />
+<br>
 
 ## Ícones
 
@@ -32,7 +32,7 @@ deve ser feita no projeto respectivo e no design kit no Figma e, caso necessári
 />
 ```
 
-<br />
+<br>
 
 <Iconography />
 

@@ -2,7 +2,7 @@
 
 ### FilterSelect permitem que o usuário escolha opções como filtro de determinado conteúdo. São derivados dos Selects, mas têm implementação e aplicabilidade mais específicas. Ocupam menos conteúdo verticalmente e não possuem propriedades relacionadas à validação.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - O usuário tiver de escolher uma única opção em uma lista com diversos itens.
@@ -10,13 +10,13 @@
 por exemplo para mapas, gráficose relatórios
 
 
-<br />
+<br>
 
 ## Quando não usar:
 - Em substituição ao componente Select
 - O usuário precisar selecionar mais de um item da lista. Nesse caso, utilize ClusteredMultiselects.
 
-<br />
+<br>
 
 ## Observações:
 - Coloque as opções mais prováveis de serem selecionadas no topo do FilterSelect. Na dúvida, ordene-os em ordem alfanumérica.
@@ -56,7 +56,7 @@ por exemplo para mapas, gráficose relatórios
 	name="FilterSelect"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -64,7 +64,7 @@ por exemplo para mapas, gráficose relatórios
 	name="FilterSelect"
 	section="events"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

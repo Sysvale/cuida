@@ -2,13 +2,13 @@
 
 ### Chips ajudam as pessoas a inserir informações, fazer seleções, filtrar conteúdo ou disparar ações.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - For necessário selecionar e/ou filtrar conteúdo
 - O conteúdo que a chip representa puder ser setado ou removido pelo usuário.
 
-<br />
+<br>
 
 ## Quando não usar:
 - O conteúdo a ser mostrado for *readonly* (nesse caso, é mais indicado utlizar o componente Badge).
@@ -48,7 +48,7 @@
 	name="Chip"
 	section="props"
 />
-<br />
+<br>
 
 
 ## Slots

@@ -2,14 +2,14 @@
 
 ### CollapsibleContainers são componentes utilizados para reduzir o espaço vertical quando há uma grande quantidade de informações, com a possibilidade de ser expandido para exibir o conteúdo sumarizado.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - For necessário otimizar o espaço vertical.
 - Se deseja mostrar itens sumarizados.
 - Se possui uma grande quantidade de informações que podem ser agrupadas em um tópico/título.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Houver poucos itens a ser sumarizados;
@@ -62,7 +62,7 @@
 	name="CollapsibleContainer"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -70,7 +70,7 @@
 	name="CollapsibleContainer"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

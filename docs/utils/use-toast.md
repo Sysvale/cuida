@@ -2,7 +2,7 @@
 
 Composable utilizado para gerenciar o disparo e exibição de Toasts.
 
-<hr />
+<hr>
 
 - Para que o composable funcione como esperado, é necessário que o componente ToastContainer esteja presente no componente raiz do projeto.
 - O useToast expõe os métodos `fire()` e `dismiss()`, além da lista global de toasts ativos por meio da propriedade reativa `toastState`.
@@ -10,7 +10,7 @@ Composable utilizado para gerenciar o disparo e exibição de Toasts.
 - Já o componente Toast utiliza o método `dismiss()` quando ocorre um clique no botão de fechar o componente.
 - O Toast fecha automaticamente após o tempo definido no `dismissAfter` ou antes disso, caso o usuário clique no botão de fechar o componente.
 
-<br />
+<br>
 
 ## Fire()
 Método responsável por disparar um toast.
@@ -68,7 +68,7 @@ light = false),
 - Valor padrão: false;
 - Valores válidos: true, false;
 
-<br />
+<br>
 
 ## Dismiss()
 Método responsável por remover um toast a partir do id.
@@ -83,7 +83,7 @@ dismiss(id),
 - Obrigatório: *Sim*
 - Valores válidos: qualquer número inteiro;
 
-<br />
+<br>
 
 #### Exemplo de uso
 ```js

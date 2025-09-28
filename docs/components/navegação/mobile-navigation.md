@@ -2,14 +2,14 @@
 
 ### O MobileNavigation é uma barra lateral que proporciona acesso rápido e fácil às principais seções da aplicação no ambiente mobile.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Quando for necessária uma navegação na versão mobile da aplicação;
 - Quando for necessário facilitar o acesso a diferentes seções do aplicativo, garantindo que o usuário possa navegar facilmente entre as páginas sem se perder;
 - Quando o espaço vertical for limitado, aproveitando ao máximo a largura da tela do dispositivo móvel.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Quando em ambiente desktop, onde uma barra de navegação superior ou lateral pode ser mais adequada;
@@ -62,7 +62,7 @@
 	name="MobileNavigation"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -70,7 +70,7 @@
 	name="MobileNavigation"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

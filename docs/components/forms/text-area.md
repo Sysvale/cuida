@@ -2,12 +2,12 @@
 
 ### TextAreas permitem que os usuários insiram um texto longo em uma interface.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Necessitar de um campo de texto para inserir informações grandes. Exemplo: Descrição de produto ou mensagens.
 
-<br />
+<br>
 
 ## Quando não usar:
 - For necessário informar apenas um dado específico ao campo de texto.
@@ -40,7 +40,7 @@
 	name="TextArea"
 	section="props"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

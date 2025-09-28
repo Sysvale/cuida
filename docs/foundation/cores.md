@@ -4,8 +4,8 @@ As cores são importantes para identificação do nosso
 produto, além de ajudarem a criar experiências
  consistentes através das nossas soluções.
 
-<hr />
-<br />
+<hr>
+<br>
 
 ## Recomendações
 
@@ -26,10 +26,10 @@ Ex.: links azuis, mensagens de validação vermelhas, mensagens de sucesso azuis
 ## Observações:
 - Recomendamos o uso do token de gradiente como background das aplicações. Para utilizá-lo, atribua o token à propriedade background.
 
-<br />
+<br>
 
 ## Paleta de cores
-<br />
+<br>
 
 <Palete />
 <script setup>

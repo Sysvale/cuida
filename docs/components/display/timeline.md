@@ -2,18 +2,18 @@
 
 ### Timelines são componentes utilizados para apresentar informações em ordem cronológica.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Se há um conjunto de informações que pode ser categorizado por data.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Se precisa de um componente de stepper.
 - A ordem das informações que você está apresentando é irrelevante.
 
-<br />
+<br>
 
 ## Observações:
 - O componente `Timeline` é um wrapper e é utilizado para agrupar uma série de `TimelineItems` em um mesmo compoente
@@ -108,7 +108,7 @@ via slots. Para mais informações acesse a documentação do componente.
 	name="Timeline"
 	section="props"
 />
-<br />
+<br>
 
 ## Slots
 

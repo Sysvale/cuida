@@ -33,7 +33,7 @@
 	name="SegmentedControl"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -41,7 +41,7 @@
 	name="SegmentedControl"
 	section="events"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

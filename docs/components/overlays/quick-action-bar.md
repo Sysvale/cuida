@@ -52,7 +52,7 @@ O QuickActionBar é um componente de busca e ação rápida que permite ao usuá
 	name="QuickActionBar"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -60,7 +60,7 @@ O QuickActionBar é um componente de busca e ação rápida que permite ao usuá
 	name="QuickActionBar"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

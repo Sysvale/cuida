@@ -2,13 +2,13 @@
 
 ### RadioButtonsGroup são radio buttons customizados para facilitar a seleção e feedback.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - As opções que o componente busca prover são mutuamente exclusivas.
 - For necessário utilizar um ```<input type="radio"``` />.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Duas ou mais opções puderem ser selecionadas ao mesmo tempo.
@@ -18,7 +18,7 @@
 - Você pode desabilitar cada um dos radio buttons passando a propriedade ```disable: true```, no respectivo objeto
 no array de opções. Caso você queira desabilitar todo o grupo, você pode setar a prop ```disabled``` como true no componente.
 
-<br />
+<br>
 
 ---
 
@@ -49,7 +49,7 @@ no array de opções. Caso você queira desabilitar todo o grupo, você pode set
 	name="RadioButtonGroup"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -57,7 +57,7 @@ no array de opções. Caso você queira desabilitar todo o grupo, você pode set
 	name="RadioButtonGroup"
 	section="events"
 />
-<br />
+<br>
 
 ---
 

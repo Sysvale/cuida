@@ -2,7 +2,7 @@
 
 ###  FileViewer é um componente que permite pré-visualizar ou fazer download de um arquivo.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Quando for necessário apresentar uma imagem ao usuário, possibilitando que ele visualize sem a necessidade de baixá-la.
@@ -10,7 +10,7 @@
 - Para apresentar pré-visualizações de arquivos de imagem antes de baixar.
 - Quando o usuário precisa revisar rapidamente um arquivo sem abrir um aplicativo separado.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Quando for mais conveniente para o usuário ver a imagem diretamente sem precisar clicar no componente. Nesse caso, use o componente Image.
@@ -49,7 +49,7 @@
 	name="FileViewer"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -57,7 +57,7 @@
 	name="FileViewer"
 	section="events"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

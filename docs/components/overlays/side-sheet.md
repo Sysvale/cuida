@@ -2,7 +2,7 @@
 
 ### SideSheets são painéis que surgem do lado direito da tela. De modo semelhante aos Modais, são úteis quando se precisa que os usuários concluam executem ações sem perder o contexto da página atual.
 ---
-<br />
+<br>
 
 
 ## Quando usar:
@@ -10,13 +10,13 @@
 - Para criar formulários mantendo o conteúdo principal da página visível.
 - Para mostrar informações detalhadas sobre determinado item da página.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Quando o conteúdo do SideSheet não for relacionado com o conteúdo da página.
 - Não use SideBars como solução de navegação vertical.
 
-<br />
+<br>
 
 ## Observações:
 - ⚠️ Este componente foi projetado apenas para usos em desktops e tablets.
@@ -112,7 +112,7 @@
 	name="SideSheet"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -120,7 +120,7 @@
 	name="SideSheet"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

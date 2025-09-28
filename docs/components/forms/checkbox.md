@@ -2,12 +2,12 @@
 
 ### Checkboxes são componentes de formulário que permitem seleções binárias e múltiplas.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Quando precisar de um componente de formulário para seleções binárias.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Não use checkboxes sem labels.
@@ -44,7 +44,7 @@
 	name="Checkbox"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -52,7 +52,7 @@
 	name="Checkbox"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

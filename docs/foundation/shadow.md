@@ -1,8 +1,8 @@
 # Sombras
 Os tokens de sombra são utilizados para criar hierarquia visual e impressão de profundidade.
 
-<hr />
-<br />
+<hr>
+<br>
 
 ## Recomendações
 
@@ -11,11 +11,11 @@ Os tokens de sombra são utilizados para criar hierarquia visual e impressão de
 - Evite utilizar sombras como único recurso para indicar interação.
 
 
-<br />
+<br>
 
 ## Tokens
 Os tokens de sombra são variáveis scss e estão descritos abaixo.
-<br />
+<br>
 
 <Shadow />
 

@@ -2,12 +2,12 @@
 
 ### CheckboxGroups são componentes de formulário que permitem seleções binárias e múltiplas.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Quando precisar de um componente de formulário para seleções binárias com várias opções.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Quando for preciso que o efeito da interação com o Checkbox seja imediato. Checkboxes devem ser usados sempre em conjunto com um botão de submissão. Para contornar casos como esse, use Switches.
@@ -42,7 +42,7 @@
 	name="CheckboxGroup"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -50,7 +50,7 @@
 	name="CheckboxGroup"
 	section="events"
 />
-<br />
+<br>
 
 <script setup>
 	import { ref } from 'vue';

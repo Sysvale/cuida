@@ -45,7 +45,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 	name="DialogModal"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -53,7 +53,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 	name="DialogModal"
 	section="events"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

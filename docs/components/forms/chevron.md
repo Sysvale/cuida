@@ -2,14 +2,14 @@
 
 ### Chevrons são elementos gráficos usados em interfaces para indicar possibilidade de interação.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Parte de um elemento pode ser oculta o visível,
 - Indicar ações como `play`, `next` e `fastfoward`
 
 
-<br />
+<br>
 
 ## Quando não usar:
 - Como ícones.
@@ -40,7 +40,7 @@
 	name="Chevron"
 	section="props"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

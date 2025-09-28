@@ -3,8 +3,8 @@
 Os tokens de transição são utilizados para suavizar as interações com os componentes
 do Cuida.
 
-<hr />
-<br />
+<hr>
+<br>
 
 ## Recomendações
 
@@ -14,11 +14,11 @@ Evite utilizar os tokens em situações muito distintas daquelas pras quais fora
 ## Observações
 - Ao passar o mouse sobre a ilustração de exemplo na tabela, serão mostrados exemplos de transição usando os tokens.
 
-<br />
+<br>
 
 ## Tokens
 Os tokens de border-radius são variáveis scss e estão descritos abaixo.
-<br />
+<br>
 
 <Transitions />
 <script setup>

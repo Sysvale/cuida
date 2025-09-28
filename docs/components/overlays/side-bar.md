@@ -2,19 +2,19 @@
 
 ### SideBars são componentes utilizados para criar soluções de navegação e menus.
 ---
-<br />
+<br>
 
 ## Recomendamos o uso de SideBars quando:
 - For necessário separar o conteúdo por páginas e navergar por elas.
 - Não for o caso de utilizar soluções como sideBar, sidebars, cards ou links como navegação.
 
-<br />
+<br>
 
 ## Não recomendamos o uso de SideBars quando:
 - Houver muitos itens a serem mostrados no menu.
 - For necessário mostrar os links verticalmente.
 
-<br />
+<br>
 
 ### Obs.:
 - No objeto de configuração são aceitas as propriedades `label`, `icon`, `type`, `route` e `items`;
@@ -88,7 +88,7 @@
 	name="SideBar"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -96,7 +96,7 @@
 	name="SideBar"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

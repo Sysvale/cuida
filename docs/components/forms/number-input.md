@@ -2,7 +2,7 @@
 
 ### O componente NumberInput permite que os usuários insiram e editem valores numéricos em uma interface.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Precisar de um campo para que os usuários insiram informações exclusivamente numéricas, como:
@@ -10,13 +10,13 @@
 	- Valores monetários (por exemplo, preços, descontos).
 	- Idades, medidas, ou qualquer outro dado que seja estritamente numérico.
 - A entrada de dados for numérica e não exigir texto livre ou seleção de opções pré-definidas.
-<br />
+<br>
 
 ## Quando não usar:
 - O dado a ser inserido for textual. Nesse caso, considere usar o componente `TextInput`.
 - O tipo de uso envolver valores incrementais. Nesse caso, considere usar o componente `StepperInput`.
 
-<br />
+<br>
 
 ---
 
@@ -46,7 +46,7 @@
 	name="NumberInput"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -54,7 +54,7 @@
 	name="NumberInput"
 	section="events"
 />
-<br />
+<br>
 
 ---
 

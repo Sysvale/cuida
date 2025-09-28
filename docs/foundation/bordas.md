@@ -4,8 +4,8 @@ Os tokens de border-radius são utilizados para arredondar as bordas dos cantos 
 da interface, tornando-os mais sutis, amigáveis e orgânicos. No Cuida, prezamos por bordas um 
 tanto arredondadas, que crescem de acordo com o tamanho do componente.
 
-<hr />
-<br />
+<hr>
+<br>
 
 ## Recomendações
 
@@ -21,11 +21,11 @@ tokens não preveem cenários nos quais um elemento possui border-radius
   trabalharemos nisso no futuro.
 
 
-<br />
+<br>
 
 ## Tokens
 Os tokens de border-radius são variáveis scss e estão descritos abaixo.
-<br />
+<br>
 
 <Border />
 <script setup>

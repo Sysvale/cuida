@@ -2,7 +2,7 @@
 
 ### Pagination são indicadores de status utilizados para tornar evidentes metadados importates.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - For necessário mostrar status associados com a lógica de negócio ou ações do usuário.
@@ -10,7 +10,7 @@
 - For preciso categorizar algo.
 
 
-<br />
+<br>
 
 ## Quando não usar:
 - O conteúdo que a Pagination representa puder ser setado ou removido pelo usuário.
@@ -47,7 +47,7 @@
 	name="Pagination"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -55,7 +55,7 @@
 	name="Pagination"
 	section="events"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

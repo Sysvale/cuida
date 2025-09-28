@@ -3,7 +3,7 @@
 ### Gris são componentes que usam a API das grids CSS para prover estruturas de organização consistentes.
 
 ---
-<br />
+<br>
 
 ## Quando usar
 - Para criar layouts responsivos e consistentes em toda a aplicação.
@@ -11,14 +11,14 @@
 - Na construção de Dashboards, Bento Grids, Galerias, etc.
 - Em estruturas nas quais for necessário especificar a estrutura dos elementos de forma bidimensional, tanto em linhas quanto em colunas;
 
-<br />
+<br>
 
 ## Quando não usar
 - Quando o design requer posicionamento absoluto ou fixo de elementos;
 - Em componentes pequenos e auto-contidos que não necessitam de um sistema de grid;
 - Em situações nas quais for necessário alinhar elementos apenas em uma das dimensões e não nas duas ao mesmo tempo. Para esses casos, utilize FlexBox.
 
-<br />
+<br>
 
 ## Observações
 - O `<CdsGrid>` funciona em conjunto com o componente `<CdsGridItem>`. Por questões de simplicidade a documentação dos dois componentes está representada nessa página.
@@ -26,8 +26,8 @@
 - ⚠️ Apesar de essa página explicar o uso de cada propriedade da API do `<CdsGridItem>`, acesse a página do componente caso queira obter a lista completa de props.
 
 
-<br />
-<br />
+<br>
+<br>
 
 ## Como usar
 
@@ -41,7 +41,7 @@ Caso nenhum valor seja fornecido para a prop cols, o valor padrão será "1fr",
 o que significa que a grid terá uma única coluna que ocupa todo o espaço disponível 
 de forma proporcional.
 
-<br />
+<br>
 
 ###### Valores Aceitos
 A prop cols aceita os seguintes tipos de valor:
@@ -50,7 +50,7 @@ A prop cols aceita os seguintes tipos de valor:
 - __Array:__ Também é possível passar um array contendo strings, onde cada elemento representará uma coluna. Por exemplo: ['200px', '6rem', '50%'].
 
 
-<br />
+<br>
 <CdsGrid
 	:cols="3"
 	gap="20px"
@@ -85,7 +85,7 @@ A prop cols aceita os seguintes tipos de valor:
 </CdsGrid>
 ```
 
-<br />
+<br>
 
 <CdsGrid
 	cols="minmax(auto, 50%) 1fr minmax(100px, 300px)"
@@ -122,7 +122,7 @@ A prop cols aceita os seguintes tipos de valor:
 </CdsGrid>
 ```
 
-<br />
+<br>
 
 <CdsGrid
 	:cols="['200px', '6rem', '50%']"
@@ -157,7 +157,7 @@ A prop cols aceita os seguintes tipos de valor:
 	</CdsGridItem>
 </CdsGrid>
 ```
-<br />
+<br>
 
 
 
@@ -211,7 +211,7 @@ começando da posição padrão (automática) na grid.
 	</CdsGridItem>
 </CdsGrid>
 ```
-<br />
+<br>
 
 
 
@@ -266,7 +266,7 @@ começando na terceira posição da Grid.
 	</CdsGridItem>
 </CdsGrid>
 ```
-<br />
+<br>
 
 
 
@@ -324,7 +324,7 @@ A prop cols aceita os seguintes tipos de valor:
 	</CdsGridItem>
 </CdsGrid>
 ```
-<br />
+<br>
 
 
 
@@ -385,7 +385,7 @@ A prop cols aceita os seguintes tipos de valor:
 	</CdsGridItem>
 </CdsGrid>
 ```
-<br />
+<br>
 
 
 
@@ -440,7 +440,7 @@ A prop cols aceita os seguintes tipos de valor:
 	</CdsGridItem>
 </CdsGrid>
 ```
-<br />
+<br>
 
 
 
@@ -493,7 +493,7 @@ na terceira linha da Grid.
 	</CdsGridItem>
 </CdsGrid>
 ```
-<br />
+<br>
 
 
 
@@ -553,7 +553,7 @@ A prop gap aceita os seguintes tipos de valor:
 </CdsGrid>
 `
 ```
-<br />
+<br>
 
 
 
@@ -614,7 +614,7 @@ Assim como a prop `gap`, `row-gap` quanto `col-gap` aceitam Numbers e Strings e 
 </CdsGrid>
 `
 ```
-<br />
+<br>
 
 
 
@@ -743,7 +743,7 @@ string para personalizar o layout conforme necessário, como por exemplo `space-
 </CdsGrid>
 `
 ```
-<br />
+<br>
 
 
 
@@ -880,7 +880,7 @@ string para personalizar o layout conforme necessário, como por exemplo `start`
 </CdsGrid>
 `
 ```
-<br />
+<br>
 
 
 
@@ -942,7 +942,7 @@ horizontal de itens individualmente dentro do grid, como por exemplo os valores 
 </CdsGrid>
 `
 ```
-<br />
+<br>
 
 
 
@@ -1006,7 +1006,7 @@ vertical de itens individualmente dentro do grid, como por exemplo os valores `s
 </CdsGrid>
 `
 ```
-<br />
+<br>
 
 
 
@@ -1087,7 +1087,7 @@ A prop direction aceita os seguintes valores:
 </CdsGrid>
 `
 ```
-<br />
+<br>
 
 
 
@@ -1112,7 +1112,7 @@ A prop tag é uma propriedade string que aceita os seguintes valores:
 - __ul:__ renderiza uma ul.
 - __li:__ renderiza uma li.
 
-<br />
+<br>
 
 
 <script setup>

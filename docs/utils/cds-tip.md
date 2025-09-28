@@ -2,7 +2,7 @@
 
 Os v-cds-tip é uma diretiva do Cuida utilizada para implementar tooltips. O hover no componente dispara a exibição do tooptip. Para parar a exibição do tooptip basta enviar null como texto.
 
-<hr />
+<hr>
 
 #### Argumentos
 
@@ -11,18 +11,18 @@ Os v-cds-tip é uma diretiva do Cuida utilizada para implementar tooltips. O hov
 - Obrigatória: *Sim*
 - Valores válidos: qualquer string
 
-<br />
+<br>
 
 #### Retorno
 
 Nenhum
 
-<br />
+<br>
 
 #### Obs:
 - Utiliza o [tippy.js](https://tippyjs.bootcss.com/) como dependência. A leitura da documentação do tippy pode ajudar no uso dessa diretiva.
 
-<br />
+<br>
 
 #### Exemplo
 

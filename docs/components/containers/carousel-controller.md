@@ -2,12 +2,12 @@
 
 ### CarouselControllers são componentes utilizados para controlar a exibição de elementos em carrosséis.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Você possuir uma categoria de elementos da interface que se repetem e que podem ser exibidos em forma de carrossel.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Você estiver trabalhando com tabelas. Nesses casos recomendamos o uso de paginação (TODO).
@@ -44,7 +44,7 @@
 	name="CarouselController"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -52,7 +52,7 @@
 	name="CarouselController"
 	section="events"
 />
-<br />
+<br>
 
 ---
 

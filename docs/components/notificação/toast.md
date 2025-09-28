@@ -2,7 +2,7 @@
 
 ### Toasts são componentes utilizados para prover feedback breve e notificações não intrusivas sobre o status de uma ação ou evento do sistema.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Para exibir mensagens de feedback temporárias (ex: "Item salvo com sucesso", "Erro ao processar solicitação").
@@ -10,13 +10,13 @@
 - Quando a informação a ser exibida é importante, mas não crítica a ponto de interromper o fluxo do usuário.
 
 
-<br />
+<br>
 
 ## Quando não usar:
 - Para mensagens críticas que exigem a atenção e confirmação imediata do usuário (considere usar `Alert` ou `DialogModal`).
 - Quando a mensagem precisa permanecer visível indefinidamente até que o usuário a dispense manualmente (considere usar `Alert`).
 
-<br />
+<br>
 
 ## ⚠️ Observações:
 Evite usar o Toast diretamente. Em vez disso, utilize-o programaticamente através do composable useToast
@@ -57,7 +57,7 @@ vários toasts são disparados simultaneamente na mesma interface.
 	name="Toast"
 	section="props"
 />
-<br />
+<br>
 
 ## Events
 

@@ -3,14 +3,14 @@
 ### Steppers são componentes que controlam e exibem tarefas divididas em etapas.
 
 ---
-<br />
+<br>
 
 ## Quando usar:
 - For necessário mostrar, de forma visual, o estado e a etapa atual de um stepper.
 - Houver um modal com várias etapas.
 - Houver uma série de entradas ou ações que desejam mostrar o progresso do seu preenchimento, não importando data e hora dos estados.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Se precisa da cronologia (data, hora) dos steps. Para isso, utilize componente Timeline.
@@ -45,7 +45,7 @@
 	name="Stepper"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -53,7 +53,7 @@
 	name="Stepper"
 	section="events"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

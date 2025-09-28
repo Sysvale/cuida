@@ -2,12 +2,12 @@
 
 ### Scrollable é um componente utilizado para o tornar o conteúdo envolvido "scrolável".
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Se quer mostrar muito conteúdo em um espaço pequeno ou pré-definido.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Houver pouco conteúdo.
@@ -99,7 +99,7 @@
 	name="Scrollable"
 	section="props"
 />
-<br />
+<br>
 
 ## Slots
 

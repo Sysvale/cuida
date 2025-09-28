@@ -34,7 +34,7 @@
 	name="Box"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -42,7 +42,7 @@
 	name="Box"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

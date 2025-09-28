@@ -2,7 +2,7 @@
 
 ### BottomSheets são componentes que exibem conteúdo adicional em uma camada sobreposta na parte inferior da página atual, fornecendo acesso rápido a informações ou ações complementares sem interromper o fluxo principal da interface.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Para fornecer acesso rápido a opções ou controles adicionais sem obscurecer o conteúdo principal da página;
@@ -10,7 +10,7 @@
 - Para oferecer uma experiência de navegação fluida, permitindo que o usuário permaneça na mesma tela enquanto interage com o conteúdo adicional.
 
 
-<br />
+<br>
 
 ## Quando não usar:
 - Se o conteúdo ou as ações adicionais exigirem mais espaço do que a área disponível na parte inferior da tela.
@@ -53,7 +53,7 @@
 	name="BottomSheet"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -61,7 +61,7 @@
 	name="BottomSheet"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

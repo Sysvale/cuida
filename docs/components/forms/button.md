@@ -43,7 +43,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 	name="Button"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -51,7 +51,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 	name="Button"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

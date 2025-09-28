@@ -2,13 +2,13 @@
 
 ### O PageLayout é uma coleção de componentes que permite a criação de telas padronizadas com navegação primária na vertical e navegação secundária na horizontal.
 ---
-<br />
+<br>
 
 ## Recomendamos o uso do PageLayout quando:
 - Quando for necessário usar uma navegação primária disposta verticalmente. Para mais detalhes sobre como configurar a navegação primária dessa forma, consulte a documentação do componente Sidebar.
 - Quando for necessário incluir uma navegação secundária que se dispõe horizontalmente na parte superior da tela.
 
-<br />
+<br>
 
 ## Não recomendamos o uso do PageLayout quando:
 - Quando for necessário usar uma navegação primária disposta horizontalmente.
@@ -48,7 +48,7 @@
 	name="PageLayout"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -56,7 +56,7 @@
 	name="PageLayout"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

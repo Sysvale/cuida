@@ -6,12 +6,12 @@
 O BaseInput deve ser utilizado como base para a criação de novos componentes de input.
 Ele fornece a estrutura básica e funcionalidades comuns, como gerenciamento de estado, validação e estilização, etc.
 
-<br />
+<br>
 
 ## Quando usar:
 - Na implementação de componentes do tipo input, com exceção de checkboxes, radios, ranges e files.
 
-<br />
+<br>
 
 ## Quando não usar:
 - ⚠️ **Atenção:** Este componente **não deve** ser utilizado diretamente na aplicação, mas sim como base para a criação de novos componentes de input..
@@ -44,7 +44,7 @@ Ele fornece a estrutura básica e funcionalidades comuns, como gerenciamento de 
 	name="BaseInput"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -52,7 +52,7 @@ Ele fornece a estrutura básica e funcionalidades comuns, como gerenciamento de 
 	name="BaseInput"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

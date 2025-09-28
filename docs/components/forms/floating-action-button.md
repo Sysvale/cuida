@@ -2,7 +2,7 @@
 
 ### O FloatingActionButton é um botão que flutua sobre a interface do usuário, sempre visível, usado para promover uma ação primária ou frequente em um aplicativo.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Para destacar a ação principal ou mais importante em uma tela.
@@ -10,7 +10,7 @@
 - Quando a interface precisa de um elemento de ação que seja altamente visível e de fácil acesso.
 - Em telas onde o espaço é limitado e um botão tradicional ocuparia muito espaço ou distrairia o usuário.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Quando há múltiplas ações principais com a mesma importância, pois o FAB é destinado a uma única ação primária.
@@ -103,7 +103,7 @@
 	name="FloatingActionButton"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 

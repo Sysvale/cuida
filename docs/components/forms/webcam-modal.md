@@ -4,13 +4,13 @@
 
 ---
 
-<br />
+<br>
 
 ## Quando usar:
 - É necessário capturar uma imagem diretamente do dispositivo do usuário, como para envio de documentos ou selfies.
 - Deseja-se integrar a captura de imagens com outros fluxos do sistema sem exigir uma aplicação externa.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Não há acesso a permissões de câmera no dispositivo do usuário (como em alguns navegadores ou ambientes com restrições).
@@ -50,7 +50,7 @@
 	name="WebcamModal"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -58,7 +58,7 @@
 	name="WebcamModal"
 	section="events"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

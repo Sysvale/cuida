@@ -2,13 +2,13 @@
 
 ### FileInput é um input customizado de arquivos.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - For necessário que o usuário faça uploads do seu computador para a plataforma.
 - For necessário prover uma experiência de arrasta e solta para upload de arquivos.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Se tratar de uma experiência mobile-first.
@@ -42,7 +42,7 @@
 	name="FileInput"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -50,7 +50,7 @@
 	name="FileInput"
 	section="events"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

@@ -189,59 +189,59 @@ Utilizamos algumas convenções de comentários como anotações para a document
 
 -   Documentações de props são criadas com comentários multilinha acima da definição da propriedade:
 
-<br/>
+<br>
 
 ![image](https://user-images.githubusercontent.com/20057968/186918768-92eba1f2-f7a3-467b-a134-4c44b1cf613b.png)
 
-<br/>
+<br>
 
 Resultado na documentação:
 
-<br/>
+<br>
 
 ![image](https://user-images.githubusercontent.com/20057968/186919366-433a9317-6973-4111-98d4-c70572ae5043.png)
 
-<br/>
+<br>
 
 -   Documentações de eventos são criadas com comentários multilinha acima do `this.$emit()` ou comentários html acima do `$emit()`:
 
-<br/>
+<br>
 
 ![image](https://user-images.githubusercontent.com/20057968/186919657-8e6e3e07-dda5-4d24-9f66-ec31669bee90.png)
 
-<br/>
+<br>
 
 ou
 
-<br/>
+<br>
 
 ![image](https://user-images.githubusercontent.com/20057968/186920370-23087017-cabf-44a0-bea8-4522269e9d45.png)
 
-<br/>
+<br>
 
 Resultado na documentação:
 
-<br/>
+<br>
 
 ![image](https://user-images.githubusercontent.com/20057968/186919775-6a430785-5a41-4ceb-90d4-45dea519d876.png)
 
-<br/>
+<br>
 
 -   Documentações de slots são criadas com comentários html acima da definição do slot:
 
-<br/>
+<br>
 
 ![image](https://user-images.githubusercontent.com/20057968/186920514-207ffb04-8e4f-4bf3-8ee6-04abcf2ea8d2.png)
 
-<br/>
+<br>
 
 Resultado na documentação:
 
-<br/>
+<br>
 
 ![image](https://user-images.githubusercontent.com/20057968/186920629-25968fe2-4484-4939-8743-59633e0fc91c.png)
 
-<br/>
+<br>
 
 #### Codetags
 

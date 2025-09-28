@@ -2,7 +2,7 @@
 
 ### Flexbox é um componente que usa a API de Flexbox do CSS para fornecer controle sobre o alinhamento e distribuição de elementos em uma única dimensão (linha ou coluna).
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Para alinhar elementos em uma única dimensão, seja em linha ou coluna.
@@ -10,7 +10,7 @@
 - Para centralizar elementos horizontal ou verticalmente dentro de um contêiner.
 - Quando for necessário controlar o crescimento, encolhimento e espaçamento de elementos filhos em relação ao contêiner pai.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Quando o layout requer organização em duas dimensões (linhas e colunas simultaneamente). Para esses casos, utilize o `<cds-grid>`.
@@ -62,7 +62,7 @@
 	name="Flexbox"
 	section="props"
 />
-<br />
+<br>
 
 ## Slots
 

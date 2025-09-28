@@ -2,14 +2,14 @@
 
 ### MobileNavbar é uma barra de navegação móvel localizada na parte inferior da tela.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Em aplicações móveis ou responsivas que exigem uma navegação simples e acessível.
 - Quando for necessário fornecer acesso rápido a seções principais do aplicativo.
 - Para substituir navegações complexas em telas pequenas, mantendo a usabilidade.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Em telas grandes (desktop), onde uma navbar lateral ou superior é mais apropriada.
@@ -46,7 +46,7 @@
 	name="MobileNavbar"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -54,7 +54,7 @@
 	name="MobileNavbar"
 	section="events"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

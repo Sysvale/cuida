@@ -2,13 +2,13 @@
 
 ### Wizards são componentes utilizados para um processo passo a passo que permite ao usuário inserir informações em uma ordem prescrita e na qual as etapas subsequentes podem depender das informações inseridas nas etapas anteriores.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Quando precisar completar etapas em uma determinada sequência.
 - For necessário exibir informações em  blocos para simplificar o fluxo.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Quando o processo não for tão complexo, não havendo necessidade de divisão em etapas.
@@ -108,7 +108,7 @@
 	name="Wizard"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -116,7 +116,7 @@
 	name="Wizard"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

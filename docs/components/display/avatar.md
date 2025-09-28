@@ -41,7 +41,7 @@ Avatares são componentes utilizados para exibir representações visuais de usu
 	name="Avatar"
 	section="props"
 />
-<br />
+<br>
 
 ## Slots
 

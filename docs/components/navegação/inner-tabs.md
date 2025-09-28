@@ -2,7 +2,7 @@
 
 ### InnerTabs são componentes utilizados para criar soluções de navegação interas às Tabs
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Dentro de tabs, houver necessidade de mais um nível na estrutura de navegação;
@@ -10,7 +10,7 @@
 - For necessário separar o conteúdo por abas e navergar por elas;
 - Não for o caso de utilizar soluções como navbars, sidebars, cards ou links como navegação;
 
-<br />
+<br>
 
 ## Quando não usar:
 - Houver muitos itens a serem mostrados como abas.
@@ -147,7 +147,7 @@ Quando o conjunto de abas tiver uma largura maior que o container, será exibida
 	name="InnerTabs"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -155,7 +155,7 @@ Quando o conjunto de abas tiver uma largura maior que o container, será exibida
 	name="InnerTabs"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

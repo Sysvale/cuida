@@ -2,14 +2,14 @@
 
 ### O InteractionBlockingOverlay é um componente utilizado para bloquear a interação do usuário em situações onde o sistema não está preparado para o uso, como em telas ou módulos que não possuem responsividade adequada para dispositivos móveis ou no modo paisagem (landscape).
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Quando uma tela ou módulo não possui uma versão responsiva para dispositivos móveis, garantindo que o usuário não interaja com elementos quebrados ou não funcionais.
 - Quando um dispositivo móvel estiver em modo paisagem e o layout da aplicação não estiver adaptado para essa orientação.
 - Em situações temporárias, onde uma funcionalidade ou conteúdo específico precisa ser desativado para manutenção ou atualização.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Quando o sistema já oferece uma versão responsiva ou uma alternativa viável para a interação em dispositivos móveis.
@@ -59,7 +59,7 @@
 	name="InteractionBlockingOverlay"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -67,7 +67,7 @@
 	name="InteractionBlockingOverlay"
 	section="events"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

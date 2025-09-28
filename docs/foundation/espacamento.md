@@ -6,8 +6,8 @@ criar hierarquias visuais e arranjos equilibrados entre os
 elementos da interface, a fim de tornar a escanebilidade e 
 leitura mais fáceis para os usuários.
 
-<hr />
-<br />
+<hr>
+<br>
 
 ## Recomendações
 
@@ -24,7 +24,7 @@ Caso você queira evidenciar a importância de algum texto ou componente da inte
 utilize um maior espaçamento ao seu redor, além de tokens de peso de fonte.
 
 
-<br />
+<br>
 
 ## Playground
 
@@ -34,25 +34,25 @@ Clique na função Sass dentro do retângulo para copiar o token para a sua áre
 
 ---
 
-<br />
+<br>
 
 ## Notação
 
 Os tokens de espaçamento do Cuida implementam uma escala de espaçamento de incrementos de 4px que pode ser utilizada com as propriedades `margin` e `padding`.
 
-<br />
+<br>
 
 #### Exemplos: 
 - `padding: pt(4)`, indica um padding top de 16px (4 * 4px)
 - `margin: mr(n2)`, indica uma margin right de -8px (2 * 4px)
 
-<br />
+<br>
 
 A escala de espaçamento é implementada como funções Sass baseadas nas classes de espaçamento do Vuetify, utilizando a notação:
 
 #### `{propriedade}{direção}({tamanho})`,
 
-<br />
+<br>
 
 Onde <strong>propriedade</strong> assume um dos seguintes valores:
 
@@ -97,7 +97,7 @@ O <strong>tamanho</strong> indica o incremento da propriedade em intervalos de 4
 - `n11` - aplica margin de -44px
 - `n12` - aplica margin de -48px
 
-<br />
+<br>
 
 ## Funções auxiliares
 

@@ -2,14 +2,14 @@
 
 ### O Carousel é um componente que permite a exibição de uma série de conteúdos (imagens, textos, cards, etc.) em um formato deslizante, em que o usuário pode navegar entre os itens de forma sequencial.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Quando há necessidade de exibir vários itens (como imagens, produtos, cards informativos) em um espaço reduzido, sem sobrecarregar a interface.
 - Para destacar conteúdos importantes de forma dinâmica, como promoções, destaques ou novidades.
 - Quando a ordem de exibição dos itens é relevante e a navegação sequencial faz sentido para o contexto.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Quando o conteúdo for uma informação crítica e não deve ficar escondida.
@@ -17,12 +17,12 @@
 - Em interfaces onde a acessibilidade é uma prioridade e o carousel pode dificultar a experiência para usuários com deficiências visuais ou motoras.
 - Quando o espaço disponível na tela é insuficiente para exibir os itens de forma clara e legível.
 
-<br />
+<br>
 
 ## Obs:
 - Quando o carrossel for utilizado para exibir imagens, é recomendado usar o componente `Image` em vez da tag `<img>` nativa. Isso permite que todas as funcionalidades do <b>Image</b>, como <i>dimmed</i> e <i>opacity</i>, sejam utilizadas.
 
-<br />
+<br>
 
 ---
 
@@ -58,7 +58,7 @@
 	name="Carousel"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -66,7 +66,7 @@
 	name="Carousel"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

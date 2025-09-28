@@ -47,7 +47,7 @@ Badge são indicadores de status utilizados para tornar evidentes metadados impo
 	section="props"
 />
 
-<br />
+<br>
 
 ## Eventos
 
@@ -55,7 +55,7 @@ Badge são indicadores de status utilizados para tornar evidentes metadados impo
 	name="Badge"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

@@ -3,7 +3,7 @@
 ### O componente Skeleton é usado para criar espaços reservados que representam conteúdo que está carregando ou sendo processado.
 ### Ele é útil para melhorar a experiência do usuário, fornecendo feedback visual enquanto o conteúdo real está sendo carregado.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Use o componente Skeleton quando o carregamento de conteúdo for perceptível
@@ -11,7 +11,7 @@ para o usuário e você deseja fornecer feedback visual durante esse processo.
 - É especialmente útil em situações onde o tempo de carregamento do conteúdo é
 variável ou pode levar algum tempo para ser concluído.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Evite usar o componente Skeleton quando o conteúdo é carregado
@@ -53,7 +53,7 @@ dinamicamente para se adaptar ao conteúdo ou à largura disponível.
 	name="Skeleton"
 	section="props"
 />
-<br />
+<br>
 
 ---
 

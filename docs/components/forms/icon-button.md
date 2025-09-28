@@ -2,20 +2,20 @@
 
 ### IconButtons são componentes que permitem que o usuário execute uma ação com um toque.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - For necessário comunicar ao usuário que ele pode executar uma ação na interface,
 seja em diálogos, janelas modais, formulários, cards, etc.
 
 
-<br />
+<br>
 
 ## Quando não usar:
 - For necessário dar a opção de executar uma ação como um detalhe pequeno na interface.
 Nesse caso, recomendamos o uso de links.
 
-<br />
+<br>
 
 ---
 
@@ -46,7 +46,7 @@ Nesse caso, recomendamos o uso de links.
 	name="IconButton"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -54,7 +54,7 @@ Nesse caso, recomendamos o uso de links.
 	name="IconButton"
 	section="events"
 />
-<br />
+<br>
 
 ---
 <script setup>

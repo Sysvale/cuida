@@ -2,12 +2,12 @@
 
 ### MonthAndYearPickers permitem que o usuário selecione um mês e ano através de um campo de texto e um seletor interativo.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - O usuário precisar selecionar apenas o mês e ano, sem especificar o dia
 
-<br />
+<br>
 
 ## Quando não usar:
 - O usuário precisar selecionar uma data específica com dia, mês e ano (use DateInput).
@@ -19,7 +19,7 @@
 - Por padrão, o componente exibe o mês e ano atual ao abrir, a menos que um valor seja fornecido.
 - O componente aplica automaticamente restrições de navegação baseadas nas propriedades minDate e maxDate.
 
-<br />
+<br>
 
 ### __Com Limites de Data__
 O MonthAndYearPicker permite definir datas mínimas e máximas para restringir a seleção.
@@ -48,14 +48,13 @@ O MonthAndYearPicker permite definir datas mínimas e máximas para restringir a
 	/>
 </PreviewContainer>
 
-<br />
+<br>
 
 ### __Floating Label__
 Controla o estilo visual do input, ativando o comportamento de "label flutuante".
 
 <PreviewContainer>
 	<CdsMonthAndYearPicker
-		v-model="modelValue"
 		label="Mês"
 		variant="green"
 		state="default"
@@ -97,7 +96,7 @@ Este é o modo de operação padrão do MonthAndYearPicker que permite ao usuár
 	name="MonthAndYearPicker"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -106,7 +105,16 @@ Este é o modo de operação padrão do MonthAndYearPicker que permite ao usuár
 	section="events"
 />
 
-<br />
+<br>
+
+## Eventos
+
+<APITable
+	name="MonthAndYearPicker"
+	section="events"
+/>
+
+<br>
 
 <script setup>
 import { ref } from 'vue';

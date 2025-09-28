@@ -52,7 +52,7 @@ ActionBars são barras de ferramentas que podem exibir ações e informações p
 	name="ActionBar"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -60,7 +60,7 @@ ActionBars são barras de ferramentas que podem exibir ações e informações p
 	name="ActionBar"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

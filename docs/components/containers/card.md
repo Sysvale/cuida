@@ -80,21 +80,21 @@ Cards são componentes utilizados como containers de propósito geral. À partir
 ## __Card simples__
 As props `title` `content` e `imageSrc` nos permitem montar um layout simples de Card utilizando apenas props. 
 
-<br />
+<br>
 
 <CdsCard
 	title="Card Title"
 	content="Some quick example text to build on the card title and make up the bulk of the card's content."
 />
 
-<br />
-<br />
-<br />
+<br>
+<br>
+<br>
 
 ## __Utilizando slots__
 Utilizando os slots `title`, `body`, `footer` e `extra` conseguimos criar Cards mais complexos, como o DashboardCard.  
 
-<br />
+<br>
 
 <CdsCard>
 	<template #header>45 <small>gestantes</small></template>
@@ -111,9 +111,9 @@ Utilizando os slots `title`, `body`, `footer` e `extra` conseguimos criar Cards 
 	</template>
 </CdsCard>
 
-<br />
-<br />
-<br />
+<br>
+<br>
+<br>
 
 ## __Slot icon__
 O Card possui um slot chamado `icon`, que pode ser utilizado para adição de ícones no Card.  
@@ -121,7 +121,7 @@ O Card possui um slot chamado `icon`, que pode ser utilizado para adição de í
 ⚠️O Slot `image` tem precedência maior que o slot `icon`. Caso os dois sejam utiliados o slot `image` será exibido
 e o slot `icon` será ocultado.  
 
-<br />
+<br>
 
 <CdsCard
 	:horizontal="true"
@@ -139,9 +139,9 @@ e o slot `icon` será ocultado.
 	</template>
 </CdsCard>
 
-<br />
-<br />
-<br />
+<br>
+<br>
+<br>
 
 ## __Prop `horizontal`__
 Para layouts horizontais de Card, utilize a prop `horizontal`
@@ -154,7 +154,7 @@ Para layouts horizontais de Card, utilize a prop `horizontal`
 	content="Some quick example text to build on the card title and make up the bulk of the card's content."
 />
 
-<br />
+<br>
 
 ---
 
@@ -164,7 +164,7 @@ Para layouts horizontais de Card, utilize a prop `horizontal`
 	name="Card"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -172,7 +172,7 @@ Para layouts horizontais de Card, utilize a prop `horizontal`
 	name="Card"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

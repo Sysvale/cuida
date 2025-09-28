@@ -2,7 +2,7 @@
 
 ### AvatarGroups exibem vários avatares agrupados em forma de pilha.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Utilize AvatarGroups quando, em um determinado contexto, vários usuários 
@@ -46,7 +46,7 @@ com a lista de avatares suprimidos.
 	name="AvatarGroup"
 	section="props"
 />
-<br />
+<br>
 
 ---
 

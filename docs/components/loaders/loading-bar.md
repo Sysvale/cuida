@@ -2,12 +2,12 @@
 
 ### LoadingBars é um componente utilizado para indicar que o progresso de uma operação ainda não foi finalizado.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - For necessário impedir a visualização e navegação do conteúdo de páginas enquanto houver alguma pendência de operação.
 
-<br />
+<br>
 
 ## Quando não usar:
 - A visualização e navegação não puder ser interrompida.

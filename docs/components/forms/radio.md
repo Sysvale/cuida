@@ -2,12 +2,12 @@
 
 ### O Radio permite que os usuários selecionem uma opção de um conjunto.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - As opções que o componente busca prover são mutuamente exclusivas.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Duas ou mais opções puderem ser selecionadas ao mesmo tempo.
@@ -43,7 +43,7 @@
 	name="Radio"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -51,7 +51,7 @@
 	name="Radio"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

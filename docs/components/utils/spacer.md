@@ -11,7 +11,7 @@ Componente auxiliar utilizado para adicionar paddings e margins seguindo o padr�
 - Nos casos em que determinado componente precisar de vários modificadores de estilo. Pra esses casos
 utilize classes e nelas inclua paddings e margins com os tokens de espaçamento do Cuida.
 
-<br />
+<br>
 
 ## Observações:
 - ⚠️ Dê preferência sempre que possível à utilização dos tokens em detrimento ao Spacer.
@@ -58,7 +58,7 @@ utilize classes e nelas inclua paddings e margins com os tokens de espaçamento 
 	name="Spacer"
 	section="props"
 />
-<br />
+<br>
 
 ## Slots
 

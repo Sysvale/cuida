@@ -2,14 +2,14 @@
 
 ### O componente List é utilizado para exibir uma listagem de itens com um título e um conteúdo, permitindo personalização através de slots.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Para exibir listas de itens com título e conteúdo de forma padronizada.
 - Quando for necessário permitir a personalização da exibição dos itens através de slots.
 - Para criar listagens interativas em aplicações web e mobile.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Se a lista precisar ter uma estrutura altamente customizada e dinâmica, onde um componente mais flexível como um table ou grid seria mais adequado.
@@ -52,7 +52,7 @@
 	name="List"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -60,7 +60,7 @@
 	name="List"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

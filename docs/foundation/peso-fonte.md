@@ -4,8 +4,8 @@ O peso da fonte é um token tipográfico que pode ser utilizado para alterar o v
 do peso da escala tipográfica e dar ênfase a determinado texto ou frase.
 Os pesos de fonte utilizados no Cuida são principalmente o Regular(430), o Semibold (600) e o Bold (800).
 
-<hr />
-<br />
+<hr>
+<br>
 
 ## Recomendações
 
@@ -14,11 +14,11 @@ Os pesos de fonte utilizados no Cuida são principalmente o Regular(430), o Semi
 no corpo das páginas.
 - Textos no corpo das páginas devem possuir, preferencialmente, peso de regular (430).
 
-<br />
+<br>
 
 ## Estilos Padrão
 
-<br />
+<br>
 
 <FontWeight />
 

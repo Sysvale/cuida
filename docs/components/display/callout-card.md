@@ -1,12 +1,12 @@
 # CalloutCard
 ### CalloutCards são componentes usados para fornecer ao usuário informações úteis, como tutoriais, atalhos ou dicas.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - For necessário mostrar atalhos, dicas ou tutoriais de uma forma não intrusiva e visualmente marcante.
 
-<br />
+<br>
 
 ## Quando não usar:
 - For necessário mostrar mensagens relacionadas a mudanças ou condições especiais que ocorrem em um componente ou página. Para estes casos, recomenda-se o uso do Alert.
@@ -41,7 +41,7 @@
 	name="CalloutCard"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -49,7 +49,7 @@
 	name="CalloutCard"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

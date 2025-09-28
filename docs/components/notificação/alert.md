@@ -42,7 +42,7 @@ Alerts sÃ£o componentes utilizados para prover feedbacks contextuais e notificaÃ
 	name="Alert"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -50,7 +50,7 @@ Alerts sÃ£o componentes utilizados para prover feedbacks contextuais e notificaÃ
 	name="Alert"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

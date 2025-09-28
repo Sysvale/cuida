@@ -2,13 +2,13 @@
 
 ### PanelCards são componentes utilizados para agrupar informação em containers com uma estrutura mínima formada por título, subtítulo, e conteúdo.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Houver a construção de páginas e dashboards com cars em grid.
 - O slot de ações deve agrupar ícones ou botões que aplicam mudanças em todas as informações contidas no PainelCard.
 
-<br />
+<br>
 
 ## Quando não usar:
 - For necessário agrupar elementos fora da estrutura básica: título + subtítulo + conteúdo.
@@ -66,7 +66,7 @@
 	name="PanelCard"
 	section="props"
 />
-<br />
+<br>
 
 ## Slots
 

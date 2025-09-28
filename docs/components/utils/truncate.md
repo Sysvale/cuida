@@ -34,7 +34,7 @@ Componente auxiliar utilizado para truncar texto adicionando a ele reticências
 	name="Truncate"
 	section="props"
 />
-<br />
+<br>
 
 ## Slots
 

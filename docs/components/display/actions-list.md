@@ -54,7 +54,7 @@ Actions lists são componentes usados para mostrar uma lista de ações em linha
 	name="ActionsList"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -62,7 +62,7 @@ Actions lists são componentes usados para mostrar uma lista de ações em linha
 	name="ActionsList"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

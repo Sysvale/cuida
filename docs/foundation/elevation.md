@@ -4,8 +4,8 @@ Os tokens de elevação são utilizados para indicar o posicionamento dos divers
 elementos da interface no eixo Z, dividindo os componentes em camadas. Por padrão
 todos os componentes estão dispostos na mesma camada.
 
-<hr />
-<br />
+<hr>
+<br>
 
 ## Recomendações
 
@@ -15,11 +15,11 @@ Evite utilizar os tokens em "classes de componente" muito distintas daquelas pra
 ## Observações
 - Ao passar o mouse sobre a ilustração de exemplo na tabela, será mostrada a comparação dos tokens e seus níveis de elevação.
 
-<br />
+<br>
 
 ## Tokens
 Os tokens de elevação são variáveis scss e estão descritos abaixo.
-<br />
+<br>
 
 <Elevation />
 <script setup>

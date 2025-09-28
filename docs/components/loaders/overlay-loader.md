@@ -2,12 +2,12 @@
 
 ### OverlayLoader é utilizado para indicar o carregamento de componentes internos de páginas, como cards e gráficos.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Para indicar o carregamento de elementos de página que ainda não possuam skeleton implementado.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Não utilize o OverlayLoader para carregamento de páginas. Nesses casos prefira o Spinner.
@@ -41,7 +41,7 @@
 	name="OverlayLoader"
 	section="props"
 />
-<br />
+<br>
 
 ---
 

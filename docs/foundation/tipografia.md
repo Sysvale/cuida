@@ -2,8 +2,8 @@
 
 A Tipografia padrão do Cuida é a Satoshi. Utilizamos a Satoshi variável com recursos OpenType.
 
-<hr />
-<br />
+<hr>
+<br>
 
 ## Recomendações
 
@@ -22,11 +22,11 @@ a utilização de textos sublinhados apenas quando necessário, como recursos pa
 - Para facilitar o escaneamento e trabalhar a hierarquia de conteúdo, 
 recomendamos a utilização pontual de textos em negrito.
 
-<br />
+<br>
 
 ## Tokens
 Os tokens de tipografia são variáveis scss cujas características estão descritos abaixo.
-<br />
+<br>
 
 <Typography />
 

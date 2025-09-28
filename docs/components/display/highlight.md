@@ -21,7 +21,7 @@ Highlights são componentes utilizados para destacar palavras ou frases importan
 O comportamento padrão do `cds-highligh`, quando nenhum valor é indicado na prop `highlightedText` é o de
 marcar todo o conteúdo passado por slot.
 
-<br />
+<br>
 
 <CdsHighlight>
 	O rato ROeu A RoUpA do rei de ROMA
@@ -37,7 +37,7 @@ marcar todo o conteúdo passado por slot.
 Caso se deseje marcar apenas uma parte da string passada via slot, é possível indicar na prop
 `highlightedText` a substring que receberá o destaque.
 
-<br />
+<br>
 
 <CdsHighlight
 	highlightedText="RO"
@@ -56,7 +56,7 @@ Caso se deseje marcar apenas uma parte da string passada via slot, é possível 
 ### __Highlight em palavras específicas do texto (Case Sensitive)__
 É possível indicar se as comparações feitas com a substring devem maiúsculas e minúsculas (Case Sensitive).
 
-<br />
+<br>
 
 <CdsHighlight
 	highlightedText="RO"
@@ -72,7 +72,7 @@ Caso se deseje marcar apenas uma parte da string passada via slot, é possível 
 </CdsHighlight>
 ```
 
-<br />
+<br>
 
 ---
 
@@ -94,7 +94,7 @@ Caso se deseje marcar apenas uma parte da string passada via slot, é possível 
 	section="props"
 />
 
-<br />
+<br>
 
 ## Slots
 

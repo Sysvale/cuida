@@ -4,12 +4,12 @@ Image é um componente utilitário utilizado para renderizar imagens com fallbac
 
 ---
 
-<br />
+<br>
 
 ## Obs:
 - ⚠️ Quando a prop `round` for true, o tamanho da imagem vai ser setado como igual à largura.
 
-<br />
+<br>
 
 ---
 
@@ -45,7 +45,7 @@ Image é um componente utilitário utilizado para renderizar imagens com fallbac
 	name="Image"
 	section="props"
 />
-<br />
+<br>
 
 ---
 

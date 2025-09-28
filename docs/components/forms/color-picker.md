@@ -2,14 +2,14 @@
 
 ### ColorPickers permitem aos usuários escolherem cores de modo visual.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Use o ColorPicker em cenários em que o usuário precisa escolher uma cor dentre um conjunto de cores disponíveis.
 - Use o ColorPicker em conjunto com inputs caso queira que o usuário visualize o valor HEX da cor escolhida.
 - Em caso de poucas opções de cor dê preferência ao ColorPicker no modo `inline`.
 
-<br />
+<br>
 
 ## Obs:
 - O ColorPicker não permite ao usuário escolher qualquer cor, apenas cores disponíveis no Cuida.
@@ -53,9 +53,9 @@
 	component="ColorPicker"
 />
 
-<br />
-<br />
-<br />
+<br>
+<br>
+<br>
 
 ### Com popover
 
@@ -89,7 +89,7 @@
 	name="ColorPicker"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -97,7 +97,7 @@
 	name="ColorPicker"
 	section="events"
 />
-<br />
+<br>
 
 ---
 

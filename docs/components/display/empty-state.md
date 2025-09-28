@@ -46,7 +46,7 @@ EmptyStates são componentes utilizados em momentos instrutivos aos usuários.
 	name="EmptyState"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -54,7 +54,7 @@ EmptyStates são componentes utilizados em momentos instrutivos aos usuários.
 	name="EmptyState"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

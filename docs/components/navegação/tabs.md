@@ -2,13 +2,13 @@
 
 ### Tabs são componentes utilizados para criar soluções de navegação internas.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - For necessário separar o conteúdo por abas e navergar por elas.
 - Não for o caso de utilizar soluções como navbars, sidebars, cards ou links como navegação.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Houver muitos itens a serem mostrados como abas.
@@ -68,7 +68,7 @@
 	name="Tabs"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -76,7 +76,7 @@
 	name="Tabs"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

@@ -2,12 +2,12 @@
 
 ### Dividers são componentes utilizados para separar ou agrupar conteúdo.
 ---
-<br />
+<br>
 
 ## Obs.:
 - A prop `vertical` ocualta o texto do divider.
 
-<br />
+<br>
 
 ---
 
@@ -34,7 +34,7 @@
 	name="Divider"
 	section="props"
 />
-<br />
+<br>
 
 ---
 

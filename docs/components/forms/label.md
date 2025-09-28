@@ -2,12 +2,12 @@
 
 ### Permite que o usuário adicione, remova e edite múltiplos inputs em uma lista dinâmica.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Em conjunto com componentes que não apresentam nativamente a label;
 
-<br />
+<br>
 
 ## Quando não usar:
 - Um componente já possui nativamente a label;
@@ -37,7 +37,7 @@
 	name="Label"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -45,7 +45,7 @@
 	name="Label"
 	section="events"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

@@ -2,12 +2,12 @@
 
 ### TextInputs permitem que os usuários insiram texto em uma interface
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Necessitar de um campo de texto para inserir informações.
 
-<br />
+<br>
 
 ## Quando não usar:
 - O dado a ser utilizado no componente for numérico.
@@ -42,7 +42,7 @@
 	name="TextInput"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -50,7 +50,7 @@
 	name="TextInput"
 	section="events"
 />
-<br />
+<br>
 
 ---
 

@@ -47,7 +47,7 @@ Text são indicadores de status utilizados para tornar evidentes metadados impor
 	section="props"
 />
 
-<br />
+<br>
 
 ## Slots
 

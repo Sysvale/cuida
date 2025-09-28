@@ -2,12 +2,12 @@
 
 ### DropdownButtons são componentes utilizados para ativar popovers contendo listas de ações.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Quando precisar agrupar ações sob um mesmo contexto.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Em substituição à um Multiselect ou Select.
@@ -46,7 +46,7 @@
 	name="DropdownButton"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -54,7 +54,7 @@
 	name="DropdownButton"
 	section="events"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

@@ -4,7 +4,7 @@
 
 ---
 
-<br />
+<br>
 
 
 ## Uso
@@ -33,7 +33,7 @@
 	name="PinInput"
 	section="props"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

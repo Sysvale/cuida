@@ -2,27 +2,27 @@
 
 ### O ToastContainer é um componente global utilizado para gerenciar e exibir múltiplos Toasts na aplicação.Ele controla a posição, o enfileiramento e a animação dos Toasts.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Para garantir que os Toasts não se sobreponham a outros elementos importantes da interface.
 - Para exibir informações suplementares sobre uma feature ou elemento da interface.
 
 
-<br />
+<br>
 
 ## Quando não usar:
 - Para comunicar erros e status do sistema.
 - Para mostrar informações críticas para a compreensão de uma feature ou elemento da interface.
 
-<br />
+<br>
 
 ## ⚠️ Observações:
 - O `ToastContainer` deve ser instanciado uma vez na aplicação, geralmente no App.vue.
 Ele observará alterações na propriedade toastState do o useToast e renderizará os Toasts de acordo com as configurações passadas.
 - Para que o componente funcione como esperado, é necessário importar o composable useToast e chamar o método fire().
 
-<br />
+<br>
 
 ## Como configurar
 

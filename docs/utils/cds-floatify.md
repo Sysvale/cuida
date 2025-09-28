@@ -2,7 +2,7 @@
 
 Os v-cds-floatify é uma diretiva do Cuida que permite que os elementos que a utilizam se tornem flutuantes.
 
-<hr />
+<hr>
 
 #### Argumentos
 
@@ -16,18 +16,18 @@ Os v-cds-floatify é uma diretiva do Cuida que permite que os elementos que a ut
 - Obrigatória: *Sim*
 - Valores válidos: qualquer string que indica o id de um elemento do DOM;
 
-<br />
+<br>
 
 #### Retorno
 
 Nenhum
 
-<br />
+<br>
 
 #### Obs:
 - Utiliza o [popper.js](https://popper.js.org/docs/v2/) como dependência. A leitura da documentação do popper pode ajudar no uso dessa diretiva.
 
-<br />
+<br>
 
 #### Exemplo
 

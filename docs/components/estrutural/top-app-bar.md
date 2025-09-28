@@ -2,7 +2,7 @@
 
 ### O TopAppBar é um componente de barra de aplicação responsivo que pode exibir um título, um logotipo, um botão de menu e ações personalizadas.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Quando for necessário um cabeçalho fixo e responsivo para a aplicação.
@@ -10,7 +10,7 @@
 - Quando for necessário exibir um logotipo ou título na parte superior da interface.
 - Quando houver ações que precisam estar sempre acessíveis na barra superior.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Quando a aplicação não precisa de uma barra de navegação fixa.
@@ -61,7 +61,7 @@
 	name="TopAppBar"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -69,7 +69,7 @@
 	name="TopAppBar"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

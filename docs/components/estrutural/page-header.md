@@ -2,19 +2,19 @@
 
 ### PageHeader são componentes utilizados para adicionar título, subtítulo e ações em páginas.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Precisar colocar headers em páginas.
 - Precisar adicionar botões de ação a nível de página.
 - Precisar adicionar cards informativos no topo de páginas.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Fora do topo de páginas.
 
-<br />
+<br>
 
 ## Observações:
 - ⚠️ Quando uma URL é colocada como parte do subtítulo, ela é renderizada como link no componente. Para tanto, a URL deve ser precedidada de http:// ou https://.
@@ -80,7 +80,7 @@ CdsPageHeader
 	name="PageHeader"
 	section="props"
 />
-<br />
+<br>
 
 ## Slots
 

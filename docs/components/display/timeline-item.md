@@ -2,7 +2,7 @@
 
 ### TimelineItems são componentes auxiliares utilizados para montar Timelines.
 ---
-<br />
+<br>
 
 ## Quando não usar:
 - Fora de componentes `Timeline`.
@@ -56,7 +56,7 @@
 	name="TimelineItem"
 	section="props"
 />
-<br />
+<br>
 
 ## Slots
 

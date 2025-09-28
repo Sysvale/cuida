@@ -2,14 +2,14 @@
 
 ### Tooltip são labels flutuantes não interativas usados para explicar um elemento ou recurso da interface. Podem ser acionados com hover.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - O texto a ser exibido como label for conciso, com no máximo 4 palavras.
 - Para exibir informações suplementares sobre uma feature ou elemento da interface.
 
 
-<br />
+<br>
 
 ## Quando não usar:
 - Para comunicar erros e status do sistema.
@@ -46,7 +46,7 @@
 	name="Tooltip"
 	section="props"
 />
-<br />
+<br>
 
 ## Slots
 

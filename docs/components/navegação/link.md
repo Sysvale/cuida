@@ -2,13 +2,13 @@
 
 ### Links são componentes usados ​​para navegar para outra página e podem abrir uma nova guia.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - For necessário navegar para outra seção ou página.
 - For necessário redirecionar para um site ou documento externo.
 
-<br />
+<br>
 
 ## Quando não usar:
 - For necessário executar uma ação (exemplo: salvar, editar). Nesses casos é recomendado utilizar o componente Button.
@@ -42,7 +42,7 @@
 	name="Link"
 	section="props"
 />
-<br />
+<br>
 
 ## Slots
 

@@ -2,7 +2,7 @@
 
 ### DashboardCards são componentes utilizados para construir cards com informações que requeiram uma descrição curta e que possam ser classificadas em status.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - For necessário mostrar informações de modo resumido em dashboards
@@ -10,13 +10,13 @@
 - A informação descrita no card possa ser classificada.
 
 
-<br />
+<br>
 
 ## Quando não usar:
 - Houver um conjunto muito grande de informações a ser exibido.
 - Se deseja utilizar ícones em conjunto com os dados. Utilize <a href="https://sysvale.github.io/cuida/?path=/docs/componentes-containers-expansioncard--expansion-card">ExpansionCards</a> nesses cenários.
 
-<br />
+<br>
 
 ## Observações:
 - O DashboardCard exibee informações de modo vertical, ao contrário do <a href="https://sysvale.github.io/cuida/?path=/docs/componentes-containers-expansioncard--expansion-card">ExpansionCard</a>.
@@ -76,7 +76,7 @@
 	name="DashboardCard"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -84,7 +84,7 @@
 	name="DashboardCard"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

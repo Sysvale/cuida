@@ -2,13 +2,13 @@
 
 ### Tables são componentes utilizados para exibir e organizar conteúdo, facilitando a comparação e análise de informações.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Desejar comparar dados.
 - For necessário exibir dados de forma tabulada.
 
-<br />
+<br>
 
 ## Quando não usar:
 - For necessário interagir/realizar uma ação com o conteúdo apresentado na tabela.
@@ -47,7 +47,7 @@
 	name="Table"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -55,7 +55,7 @@
 	name="Table"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

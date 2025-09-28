@@ -2,7 +2,7 @@
 
 ### Tiles são componentes que funcionam como cards de navegação, permitindo que o usuário acesse diferentes seções ou funcionalidades de forma clara e intuitiva.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - For necessário destacar uma opção de navegação em um menu ou dashboard.
@@ -10,7 +10,7 @@
 - Em interfaces que exigem uma navegação visualmente organizada, como painéis de controle, listas de serviços ou categorias.
 
 
-<br />
+<br>
 
 ## Quando não usar:
 - Quando a ação principal não é de navegação, mas sim de execução de uma tarefa específica (nesse caso, considere usar botões ou outros componentes de ação).
@@ -60,7 +60,7 @@
 	name="Tile"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -68,7 +68,7 @@
 	name="Tile"
 	section="events"
 />
-<br />
+<br>
 
 ## Slots
 

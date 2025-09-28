@@ -2,12 +2,12 @@
 
 ### PageContainers são blocos básicos de estrutura no Cuida. Eles provêm padding e alinhamento de conteúdo.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - PageContainers devem ser usados sempre na construção das páginas, com o conteúdo sendo colocado como slot no componente.
 
-<br />
+<br>
 
 ## Quando não usar:
 - Não devem ser usados PageContainers aninhados.

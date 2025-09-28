@@ -2,13 +2,13 @@
 
 ### NavBars são componentes utilizados para criar soluções de navegação e menus.
 ---
-<br />
+<br>
 
 ## Recomendamos o uso de NavBars quando:
 - For necessário separar o conteúdo por páginas e navergar por elas.
 - Não for o caso de utilizar soluções como tabs, sidebars, cards ou links como navegação.
 
-<br />
+<br>
 
 ## Não recomendamos o uso de NavBars quando:
 - Houver muitos itens a serem mostrados no menu.
@@ -45,7 +45,7 @@
 	name="NavBar"
 	section="props"
 />
-<br />
+<br>
 
 ## Eventos
 
@@ -53,7 +53,7 @@
 	name="NavBar"
 	section="events"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';

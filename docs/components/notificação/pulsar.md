@@ -2,19 +2,19 @@
 
 ### Pulsars são componentes educativos utilizados para instruir os usuários sobre novidades na interface ou no produto.
 ---
-<br />
+<br>
 
 ## Quando usar:
 - Para atrair a atenção do usuário para uma nova feature ou área da interface de modo não intrusivo.
 
 
-<br />
+<br>
 
 ## Quando não usar:
 - Como único recurso de comunicação sobre mudança na interface ou no produto.
 - Quando outro pulsar já estiver em uso na interface.
 
-<br />
+<br>
 
 ## Observações:
 - Pulsars não devem ser uma parte permanete da interface. Após determinada característica
@@ -57,7 +57,7 @@ removê-lo.
 	name="Pulsar"
 	section="props"
 />
-<br />
+<br>
 
 <script setup>
 import { ref } from 'vue';
