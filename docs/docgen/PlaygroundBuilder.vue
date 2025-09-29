@@ -107,26 +107,27 @@ const props = defineProps<{
 
 const emits = defineEmits(['update']);
 
-const normalizedPropsData = ref({});
-const test = ref(0);
+const normalizedPropsData = ref([]);
 
-const componentData = computed(() => componentsData[props.component] || {});
+const componentData = computed(() => (componentsData as Record<string, any>)[props.component] || {});
 const propsData = computed(() => componentData.value?.props);
 
 console.log('props.component: ', props.component);
 
-function formatOptions(val) {
+function formatOptions(val: string[]) {
 	return val.map(v => {
+		const match = v.match(/'(\S+)'/);
+		const extractedValue = match ? match[1] : v;
 		return {
-			id: v.match(/'(\S+)'/) !== null ? v.match(/'(\S+)'/)[1] : v,
-			value: v.match(/'(\S+)'/) !== null ? v.match(/'(\S+)'/)[1] : v,
+			id: extractedValue,
+			value: extractedValue,
 		}
 	})
 }
 
 watch(model, () => {
 	nextTick(() => {
-		normalizedPropsData.value = propsData.value.map((propData) => {
+		normalizedPropsData.value = propsData.value?.map((propData: any) => {
 			let rawValue = propData.defaultValue?.value;
 			let parsedValue;
 	
@@ -153,8 +154,8 @@ watch(model, () => {
 				parsedValue = Number(parsedValue);
 			}
 	
-			if (model.value?.[propData.name]) {
-				return { [propData.name]: model.value?.[propData.name]};
+			if (model.value && (model.value as any)[propData.name]) {
+				return { [propData.name]: (model.value as any)[propData.name]};
 			}
 	
 			return { [propData.name]: parsedValue };
@@ -163,20 +164,20 @@ watch(model, () => {
 		normalizedPropsData.value.forEach((item) => {
 			const [key, value] = Object.entries(item)[0];
 	
-			model.value[key] = value;
+			(model.value as any)[key] = value;
 		});
 	});
 
 }, { immediate: true, deep: true})
 
-function capitalize(str) {
-	return str?.[0]?.toUpperCase() + str?.slice(1) ?? '';
+function capitalize(str: string) {
+	return str ? str[0].toUpperCase() + str.slice(1) : '';
 }
 
 watch(normalizedPropsData, () => {
 	normalizedPropsData.value.forEach((item) => {
-		const [key, value] = Object.entries(item)[0]
-		model.value[key] = value;
+		const [key, value] = Object.entries(item)[0];
+		(model.value as any)[key] = value;
 	});
 }, { deep: true})
 

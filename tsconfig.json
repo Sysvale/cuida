@@ -10,29 +10,31 @@
     "moduleResolution": "Node",
     "strict": true,
     "jsx": "preserve",
+    "jsxFactory": "h",
     "sourceMap": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "baseUrl": "./",
-    "types": ["vite/client"],
+    "types": ["vite/client", "vue"],
     "paths": {
       "@/*": ["src/*"]
     }
   },
   "include": [
     "src",
-    "types",
-    "docs"
+    "types"
   ],
   "vueCompilerOptions": {
-    "vitePressExtensions": [".md"],
+    "vitePressExtensions": [".md"]
   },
   "exclude": [
     "node_modules",
     "dist",
-    "test"
+    "docs",
+    "**/*.spec.ts",
+    "**/*.test.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

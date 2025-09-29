@@ -1,6 +1,6 @@
 {
 	"name": "@sysvale/cuida",
-	"version": "3.142.4",
+	"version": "3.145.4",
 	"description": "A design system built by Sysvale, using storybook and Vue components",
 	"repository": {
 		"type": "git",
@@ -20,7 +20,7 @@
 	},
 	"unpkg": "dist/@sysvale/cuida.umd.js",
 	"scripts": {
-		"build": "vue-tsc --noEmit && npm run generate:docs && vite build && node buildtokens.js",
+		"build": "vue-tsc --declaration --emitDeclarationOnly && npm run generate:docs && vite build && node buildtokens.js",
 		"preview": "vite preview",
 		"docs:dev": "vitepress dev docs",
 		"docs:build": "vitepress build docs",
@@ -69,7 +69,7 @@
 		"fast-glob": "^3.3.3",
 		"jsdom": "^20.0.0",
 		"sass": "^1.89.1",
-		"typescript": "^4.6.4",
+		"typescript": "^5.6.3",
 		"vite": "^5.4.10",
 		"vitepress": "^1.6.3",
 		"vitest": "^3.0.2",
@@ -77,7 +77,7 @@
 		"vue-docgen-api": "^4.79.2",
 		"vue-eslint-parser": "^10.2.0",
 		"vue-loader": "^16.8.3",
-		"vue-tsc": "^0.38.4"
+		"vue-tsc": "^2.1.10"
 	},
 	"bugs": {
 		"url": "https://github.com/Sysvale/cuida/issues"

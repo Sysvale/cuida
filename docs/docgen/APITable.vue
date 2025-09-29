@@ -84,7 +84,7 @@ const propsFields = [
 	},
 ];
 
-const componentData = computed(() => componentsData[props.name] || {});
+const componentData = computed(() => (componentsData as Record<string, any>)[props.name] || {});
 const propsData = computed(() => componentData.value?.props ?? []);
 const slotsData = computed(() => componentData.value?.slots ?? []);
 const eventsData = computed(() => componentData.value?.events ?? []);

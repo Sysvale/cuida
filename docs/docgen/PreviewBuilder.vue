@@ -4,8 +4,7 @@
 			v-if="!$slots.container && !withTrigger"
 			:is="component"
 			v-on="internalEvents"
-			v-bind="{...$attrs, ...model }"
-			v-model="model.modelValue"
+			v-bind="{...$attrs, ...(model || {}) }"
 		>
 			<template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
 				<slot v-if="slotProps" :name="slotName" v-bind="slotProps" />
@@ -23,8 +22,7 @@
 			<component
 				:is="component"
 				v-on="internalEvents"
-				v-bind="{...$attrs, ...model }"
-				v-model="model.modelValue"
+				v-bind="{...$attrs, ...(model || {}) }"
 			>
 				<template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
 					<slot v-if="slotProps" :name="slotName" v-bind="slotProps" />
@@ -81,7 +79,9 @@ const logBuilder = useTemplateRef('logBuilderRef');
 const internalEvents = ref({});
 
 onMounted(() => {
-	internalEvents.value = logBuilder.value.createEventListeners();
+	if (logBuilder.value) {
+		internalEvents.value = logBuilder.value.createEventListeners();
+	}
 });
 
 export type PreviewBuilderType = typeof import("./PreviewBuilder.vue")["default"];

@@ -29,7 +29,6 @@
 						</small>
 						<small>
 							{{ JSON.stringify(message.payload, null, 2) }} <i>(payload)</i>
-							<!-- <pre>{{ message.payload }}</pre> <i>(payload)</i> -->
 						</small>
 					</div>
 					<small>
