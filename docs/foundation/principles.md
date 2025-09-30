@@ -1,6 +1,6 @@
 # Bem-vindo ao Cuida
 
-O Cuida é o Design System da Sysvale. É a materialização de todos os nossos princípios e fundação, englobando a nossa maneira de pensar design, implementação e o cuidado com as pessoas.
+O Cuida é o Design System da Sysvale. Ele materializa nossos princípios e fundamentos, traduzindo nossa forma de pensar design, desenvolvimento e o cuidado com as pessoas.
 
 <br>
 <br>
