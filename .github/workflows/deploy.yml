@@ -34,8 +34,12 @@ jobs:
         run: npm ci
       - name: Build JSDocs JSON
         run: npm run build
+        env:
+          NODE_OPTIONS: "--experimental-specifier-resolution=node"
       - name: Build with VitePress
         run: npm run docs:build
+        env:
+          NODE_OPTIONS: "--experimental-specifier-resolution=node"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
