@@ -107,7 +107,7 @@ export default {
 			default: false,
 		},
 		/**
-		 * Especifica o estado do PasswordInput. As opções são 'default', 'valid' e 'invalid'.
+		 * Especifica o estado do PasswordInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
 		 * @values default, valid, loading, invalid
 		 */
 		state: {
