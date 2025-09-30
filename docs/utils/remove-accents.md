@@ -1,39 +1,31 @@
 # RemoveAccents()
 
-## Props
+Sanitiza strings removendo acentos.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
+<hr />
+<br />
 
-## Eventos
+⚠️ *Método disponível apenas para desenvolvimento interno no Cuida*
 
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+<br />
 
-## Uso
+#### Argumentos
 
-```vue
-<template>
-  <cds-removeaccents
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
+**(String):**
+- String cujo valor se deseja sanitizar
+- Obrigatória: *Sim*
+- Valores válidos: qualquer string;
 
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+<br />
+
+#### Retorno
+
+**(Strgin):** String sem acentos.
+
+<br />
+
+#### Exemplo
+
+```js
+  removeAccents(this.label);
 ```
-
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>

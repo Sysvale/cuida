@@ -1,39 +1,42 @@
 # ContrastChecker()
 
-## Props
+Os ContrastChecker() é um método utilizado para testar o contraste entre duas cores.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
+<hr>
+<br>
 
-## Eventos
+⚠️ *Método disponível apenas para desenvolvimento interno no Cuida*
 
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+<br>
 
-## Uso
+#### Argumentos
 
-```vue
-<template>
-  <cds-contrastchecker
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
+**(String):**
+- Hexadecimal da **primeira** cor de teste
+- Obrigatória: *Sim*
+- Valores válidos: qualquer string no formato hexadecimal. ex.: '#000000';
 
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+**(String):**
+- Hexadecimal da **segunda** cor de teste
+- Obrigatória: *Sim*
+- Valores válidos: qualquer string no formato hexadecimal. ex.: '#000000';
+
+**(String):**
+- Parâmetro usado como referência na avaliação do contraste entre as cores. O parâmetro recomendado para textos de até 18px é 'VERYGOOD' ou 'SUPER'.
+- Obrigatória: *Não*
+- Valores válidos: 'POOR', 'GOOD', 'VERYGOOD', 'SUPER';
+- Valor padrão: 'GOOD';
+
+<br>
+
+#### Retorno
+
+**(Boolean):** Indica se o teste de contraste entre as duas cores informadas foi aprovado.
+
+<br>
+
+#### Exemplo
+
+```js
+  ContrastChecker('#2AC092', '#FFFFFF', 'POOR');
 ```
-
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>

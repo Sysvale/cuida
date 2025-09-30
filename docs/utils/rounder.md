@@ -1,39 +1,37 @@
 # Rounder()
 
-## Props
+Método utilizado para determinar o `border-radius` de um elemento baseado na sua largura.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
+<hr />
+<br />
 
-## Eventos
+⚠️ *Método disponível apenas para desenvolvimento interno no Cuida*
 
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+<br />
 
-## Uso
+#### Argumentos
 
-```vue
-<template>
-  <cds-rounder
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
+**(Number):**
+- Largura de um elemento no DOM
+- Obrigatória: *Sim*
+- Valores válidos: qualquer número natural;
 
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+**(Number):**
+- Limitador do border-radius. Essa prop limita o valor máximo que pode ser retornado.
+- Obrigatória: *Não*
+- Valores válidos: qualquer número natural;
+- Valor padrão: 24px;
+
+<br />
+
+#### Retorno
+
+**(Number):** Valor a ser utilizado como border-radius, calculado à partir da largura de um elemento no DOM.
+
+<br />
+
+#### Exemplo
+
+```js
+  rounder(this.width, 16);
 ```
-
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>

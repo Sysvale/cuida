@@ -1,39 +1,38 @@
-# HasSlot()
+# HasSlot() <Badge type="danger">Deprecated</Badge>
 
-## Props
+Método utilizado para checar se um slot específico está sendo usado no componente.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `prop` | `string` | `''` | Description |
+<hr>
+<br>
 
-## Eventos
+⚠️ **Esse Util está deprecated. Utilize o composable do Vue `useSlots()`**
+<br>
+⚠️ *Método disponível apenas para desenvolvimento interno no Cuida*
 
-| Event | Description |
-|-------|-------------|
-| `event` | Event description |
+<br>
 
-## Uso
+#### Argumentos
 
-```vue
-<template>
-  <cds-hasslot
-    prop="value"
-    @event="handleEvent"
-  />
-</template>
+**(Objeto):**
+- Objeto de slots obtido com o `this.$slots`
+- Obrigatória: *Sim*
+- Valores válidos: objeto de slots do componente;
 
-<script setup>
-const handleEvent = () => {
-  console.log('Event handled');
-};
-</script>
+**(String):**
+- Nome do slot que se deseja checar o uso
+- Obrigatória: *Sim*
+- Valores válidos: qualquer string contendo o nome de um dos slots do componente;
+
+<br>
+
+#### Retorno
+
+**(Boolean):** Indica se um slot específico está em uso.
+
+<br>
+
+#### Exemplo
+
+```js
+  hasSlot(this.$slots, 'image');
 ```
-
-<style scoped>
-.demo-container {
-  padding: 20px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  margin: 16px 0;
-}
-</style>
