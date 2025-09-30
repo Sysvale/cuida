@@ -113,3 +113,8 @@ function parseJSDocComment(comment, modelName) {
 		properties: []
 	}
 }
+
+// Executar quando rodado diretamente
+const plugin = vueDocgenPlugin()
+await plugin.buildStart()
+console.log('✅ Documentação gerada com sucesso em docs/.docgen/components.json')
