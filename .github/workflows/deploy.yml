@@ -1,36 +1,54 @@
-name: "Deployer 🚀"
+name: 'Deploy 🚀'
 
-on: 
+on:
   push:
-    branches:
-      - main
+    branches: [docs/vitepress-migration]
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  docs-deployment:
+  build:
     runs-on: ubuntu-latest
-    concurrency: ci-${{github.ref}}
     steps:
-      - name: 📚 Checkout
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      
-      - name: 🟢 Node
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          registry-url: https://registry.npmjs.org
-
-      - name: 🔧 Install dependencies
-        run: |
-          npm cache clean --force
-          npm install
-      
-      - name: 📖 Build docs
+          node-version: 22
+          cache: npm
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Install dependencies
+        run: npm ci
+      - name: Build JSDocs JSON
+        run: npm run build
+      - name: Build with VitePress
         run: npm run docs:build
-
-      - name: 🚀 Deploy docs
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          folder: docs/.vitepress/dist
-          branch: gh-pages
+          path: docs/.vitepress/dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
