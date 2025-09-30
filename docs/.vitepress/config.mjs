@@ -268,7 +268,7 @@ export default defineConfig({
 					collapsed: false,
 					items: [
 						{ text: 'ContrastChecker()', link: '/utils/contrast-checker' },
-						{ text: 'HasSlot() - deprecated', link: '/utils/has-slot' },
+						{ text: 'HasSlot() <span class="docs-badge" type="danger">Deprecated</span>', link: '/utils/has-slot' },
 						{ text: 'IsDeviceType()', link: '/utils/is-device-type' },
 						{ text: 'RemoveAccents()', link: '/utils/remove-accents' },
 						{ text: 'Rouder()', link: '/utils/rounder' },
