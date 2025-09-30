@@ -22,10 +22,10 @@ export default defineConfig({
 			provider: 'local'
 		},
 		nav: [
-			{ text: 'Fundação', link: '/foundation/principles' },
-			{ text: 'Componentes', link: '/components/forms/base-input' },
+			{ text: 'Componentes', link: '/components/display/action-bar' },
+			{ text: 'Tokens', link: '/foundation/principles' },
 			{ text: 'Utils', link: '/utils/documentation-guide' },
-			// { text: 'ícones', link: '/utils/' },
+			{ text: 'Ícones', link: '/foundation/iconografia' },
 			// { text: 'Brand', link: '/utils/' },
 			{ text: 'Cuida 2', link: 'https://sysvale.github.io/cuidaV2/?path=/docs/funda%C3%A7%C3%A3o-princ%C3%ADpios--page' }
 		],
@@ -38,10 +38,51 @@ export default defineConfig({
 		sidebar: {
 			'/components/': [
 				{
+					text: 'Display',
+					collapsed: false,
+					items: [
+						{ text: 'ActionBar', link: '/components/display/action-bar' },
+						{ text: 'ActionsList', link: '/components/display/actions-list' },
+						{ text: 'Avatar', link: '/components/display/avatar' },
+						{ text: 'AvatarGroup', link: '/components/display/avatar-group' },
+						{ text: 'Badge', link: '/components/display/badge' },
+						{ text: 'CalloutCard', link: '/components/display/callout-card' },
+						{ text: 'Carousel', link: '/components/display/carousel' },
+						{ text: 'Chip', link: '/components/display/chip' },
+						{ text: 'DataTable', link: '/components/display/data-table' },
+						{ text: 'Dropdown <span class="docs-badge" type="danger">Deprecated</span>', link: '/components/display/dropdown' },
+						{ text: 'DropdownButton', link: '/components/display/dropdown-button' },
+						{ text: 'EmptyState', link: '/components/display/empty-state' },
+						{ text: 'FileViewer', link: '/components/display/file-viewer' },
+						{ text: 'FloatingAssistant', link: '/components/display/floating-assistant' },
+						{ text: 'Highlight <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/display/highlight' },
+						{ text: 'List', link: '/components/display/list' },
+						{ text: 'ProgressBar', link: '/components/display/progress-bar' },
+						{ text: 'ProgressCircular', link: '/components/display/progress-circular' },
+						{ text: 'Stepper', link: '/components/display/stepper' },
+						{ text: 'Table', link: '/components/display/table' },
+						{ text: 'Timeline', link: '/components/display/timeline' },
+						{ text: 'TimelineItem', link: '/components/display/timeline-item' },
+						{ text: 'Tooltip <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/display/tooltip' },
+						{ text: 'Wizard', link: '/components/display/wizard' },
+					]
+				},
+				{
+					text: 'Notificação',
+					collapsed: false,
+					items: [
+						{ text: 'Alert', link: '/components/notificação/alert' },
+						{ text: 'AlertCard', link: '/components/notificação/alert-card' },
+						{ text: 'DialogModal', link: '/components/notificação/dialog-modal' },
+						{ text: 'Pulsar', link: '/components/notificação/pulsar' },
+						{ text: 'Toast', link: '/components/notificação/toast' },
+						{ text: 'ToastContainer', link: '/components/notificação/toast-container' },
+					]
+				},
+				{
 					text: 'Forms',
 					collapsed: false,
 					items: [
-						{ text: 'BaseInput', link: '/components/forms/base-input' },
 						{ text: 'Button', link: '/components/forms/button' },
 						{ text: 'Checkbox', link: '/components/forms/checkbox' },
 						{ text: 'CheckboxGroup', link: '/components/forms/checkbox-group' },
@@ -59,7 +100,7 @@ export default defineConfig({
 						{ text: 'Label', link: '/components/forms/label' },
 						{ text: 'MonthAndYearPicker', link: '/components/forms/month-and-year-picker' },
 						{ text: 'MultiFileInput', link: '/components/forms/multi-file-input' },
-						{ text: 'Multiselect <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/forms/multiselect' },
+						// { text: 'Multiselect <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/forms/multiselect' },
 						{ text: 'NumberInput', link: '/components/forms/number-input' },
 						{ text: 'PasswordInput', link: '/components/forms/password-input' },
 						{ text: 'PinInput', link: '/components/forms/pin-input' },
@@ -78,47 +119,20 @@ export default defineConfig({
 					]
 				},
 				{
-					text: 'Display',
+					text: 'Navegação',
 					collapsed: false,
 					items: [
-						{ text: 'ActionBar', link: '/components/display/action-bar' },
-						{ text: 'ActionsList', link: '/components/display/actions-list' },
-						{ text: 'Avatar', link: '/components/display/avatar' },
-						{ text: 'AvatarGroup', link: '/components/display/avatar-group' },
-						{ text: 'Badge', link: '/components/display/badge' },
-						{ text: 'CalloutCard', link: '/components/display/callout-card' },
-						{ text: 'Carousel', link: '/components/display/carousel' },
-						{ text: 'Chip', link: '/components/display/chip' },
-						{ text: 'DataTable', link: '/components/display/data-table' },
-						{ text: 'Dropdown', link: '/components/display/dropdown' },
-						{ text: 'DropdownButton', link: '/components/display/dropdown-button' },
-						{ text: 'EmptyState', link: '/components/display/empty-state' },
-						{ text: 'FileViewer', link: '/components/display/file-viewer' },
-						{ text: 'FloatingAssistant', link: '/components/display/floating-assistant' },
-						{ text: 'Highlight <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/display/highlight' },
-						{ text: 'List', link: '/components/display/list' },
-						{ text: 'ProgressBar', link: '/components/display/progress-bar' },
-						{ text: 'ProgressCircular', link: '/components/display/progress-circular' },
-						{ text: 'Stepper', link: '/components/display/stepper' },
-						{ text: 'Table', link: '/components/display/table' },
-						{ text: 'Timeline', link: '/components/display/timeline' },
-						{ text: 'TimelineItem', link: '/components/display/timeline-item' },
-						{ text: 'Tooltip <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/display/tooltip' },
-						{ text: 'Wizard', link: '/components/display/wizard' },
-					]
-				},
-				{
-					text: 'Overlay',
-					collapsed: false,
-					items: [
-						{ text: 'BottomSheet', link: '/components/overlays/bottom-sheet' },
-						{ text: 'InteractionBlockingOverlay', link: '/components/overlays/interaction-blocking-overlay' },
-						{ text: 'Modal', link: '/components/overlays/modal' },
-						{ text: 'Popover', link: '/components/overlays/popover' },
-						{ text: 'QuickActionBar', link: '/components/overlays/quick-action-bar' },
-						{ text: 'RichTooltip', link: '/components/overlays/rich-tooltip' },
-						{ text: 'SideBar', link: '/components/overlays/side-bar' },
-						{ text: 'SideSheet', link: '/components/overlays/side-sheet' },
+						{ text: 'Breadcrumb', link: '/components/navegação/breadcrumb' },
+						{ text: 'InnerTabs', link: '/components/navegação/inner-tabs' },
+						{ text: 'Link', link: '/components/navegação/link' },
+						{ text: 'MobileNavbar', link: '/components/navegação/mobile-navbar' },
+						{ text: 'MobileNavigation', link: '/components/navegação/mobile-navigation' },
+						{ text: 'NavBar', link: '/components/navegação/nav-bar' },
+						{ text: 'PageLayout', link: '/components/navegação/page-layout' },
+						{ text: 'Pagination', link: '/components/navegação/pagination' },
+						{ text: 'SegmentedControl', link: '/components/navegação/segmented-control' },
+						{ text: 'SideBar', link: '/components/navegação/side-bar' },
+						{ text: 'Tabs <span class="docs-badge" type="danger">Deprecated</span>', link: '/components/navegação/tabs' },
 					]
 				},
 				{
@@ -140,34 +154,20 @@ export default defineConfig({
 					]
 				},
 				{
-					text: 'Notificação',
+					text: 'Overlay',
 					collapsed: false,
 					items: [
-						{ text: 'Alert', link: '/components/notificação/alert' },
-						{ text: 'AlertCard', link: '/components/notificação/alert-card' },
-						{ text: 'DialogModal', link: '/components/notificação/dialog-modal' },
-						{ text: 'Pulsar', link: '/components/notificação/pulsar' },
-						{ text: 'Toast', link: '/components/notificação/toast' },
-						{ text: 'ToastContainer', link: '/components/notificação/toast-container' },
+						{ text: 'BottomSheet', link: '/components/overlays/bottom-sheet' },
+						{ text: 'InteractionBlockingOverlay', link: '/components/overlays/interaction-blocking-overlay' },
+						{ text: 'Modal', link: '/components/overlays/modal' },
+						{ text: 'Popover', link: '/components/overlays/popover' },
+						{ text: 'QuickActionBar', link: '/components/overlays/quick-action-bar' },
+						{ text: 'RichTooltip', link: '/components/overlays/rich-tooltip' },
+						{ text: 'SideBar', link: '/components/overlays/side-bar' },
+						{ text: 'SideSheet', link: '/components/overlays/side-sheet' },
 					]
 				},
-				{
-					text: 'Navegação',
-					collapsed: false,
-					items: [
-						{ text: 'Breadcrumb', link: '/components/navegação/breadcrumb' },
-						{ text: 'InnerTabs', link: '/components/navegação/inner-tabs' },
-						{ text: 'Link', link: '/components/navegação/link' },
-						{ text: 'MobileNavbar', link: '/components/navegação/mobile-navbar' },
-						{ text: 'MobileNavigation', link: '/components/navegação/mobile-navigation' },
-						{ text: 'NavBar', link: '/components/navegação/nav-bar' },
-						{ text: 'PageLayout', link: '/components/navegação/page-layout' },
-						{ text: 'Pagination', link: '/components/navegação/pagination' },
-						{ text: 'SegmentedControl', link: '/components/navegação/segmented-control' },
-						{ text: 'SideBar', link: '/components/navegação/side-bar' },
-						{ text: 'Tabs <span class="docs-badge" type="danger">Deprecated</span>', link: '/components/navegação/tabs' },
-					]
-				},
+				
 				{
 					text: 'Loaders',
 					collapsed: false,
@@ -178,6 +178,16 @@ export default defineConfig({
 						{ text: 'Skeleton', link: '/components/loaders/skeleton' },
 						{ text: 'SkeletonText <span class="docs-badge" type="danger">Deprecated</span>', link: '/components/loaders/skeleton-text' },
 						{ text: 'Spinner', link: '/components/loaders/spinner' },
+					]
+				},
+				{
+					text: 'Estrutural',
+					collapsed: false,
+					items: [
+						{ text: 'AppBar', link: '/components/estrutural/app-bar' },
+						{ text: 'PageContainer', link: '/components/estrutural/page-container' },
+						{ text: 'PageHeader', link: '/components/estrutural/page-header' },
+						{ text: 'TopAppBar', link: '/components/estrutural/top-app-bar' },
 					]
 				},
 				{
@@ -205,20 +215,17 @@ export default defineConfig({
 					]
 				},
 				{
-					text: 'Estrutural',
-					collapsed: false,
-					items: [
-						{ text: 'AppBar', link: '/components/estrutural/app-bar' },
-						{ text: 'PageContainer', link: '/components/estrutural/page-container' },
-						{ text: 'PageHeader', link: '/components/estrutural/page-header' },
-						{ text: 'TopAppBar', link: '/components/estrutural/top-app-bar' },
-					]
-				},
-				{
 					text: 'Tipografia',
 					collapsed: false,
 					items: [
 						{ text: 'Text', link: '/components/tipografia/text' },
+					]
+				},
+				{
+					text: 'Componentes internos',
+					collapsed: false,
+					items: [
+						{ text: 'BaseInput', link: '/components/forms/base-input' },
 					]
 				},
 			],
