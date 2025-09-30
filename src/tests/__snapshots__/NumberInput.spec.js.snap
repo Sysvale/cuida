@@ -3,7 +3,13 @@
 exports[`CdsNumberInput > renders correctly 1`] = `
 "<div id="number-input">
   <div data-v-82c69faf="" class="base-input__container" money="false" linkurl="https://cuida.framer.wiki/" mobile="false">
-    <!--v-if--><label data-v-c1eb01da="" data-v-82c69faf="" class="label"><span data-v-c1eb01da="" class="label__content">Valor <!--v-if--><!--v-if--></span><span data-v-c1eb01da="" class="label__link"></span></label>
+    <!--v-if--><label data-v-c1eb01da="" data-v-82c69faf="" class="label">
+      <div data-v-c2ac4e6d="" data-v-c1eb01da="" class="flexbox label__content">
+        <!-- @slot Slot com o conteúdo interno do FlexBox -->Valor
+        <!--v-if-->
+        <!--v-if-->
+      </div><span data-v-c1eb01da="" class="label__link"></span>
+    </label>
     <div data-v-82c69faf="" class="base-input base-input--default">
       <!--v-if-->
       <div data-v-82c69faf="" style="width: 100%;">
