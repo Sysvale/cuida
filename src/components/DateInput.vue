@@ -243,7 +243,7 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile
+	* @deprecated Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile
 	*/
 	mobile: {
 		type: Boolean,
@@ -257,7 +257,7 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser renomeada para prop `highlightToday` na v4. Controla a marcação do dia atual no calendário.
+	* @deprecated Essa prop vai ser renomeada para prop `highlightToday` na v4. Controla a marcação do dia atual no calendário.
 	*/
 	showTodayDot: {
 		type: Boolean,

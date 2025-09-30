@@ -113,7 +113,7 @@ const props = defineProps({
 		required: false,
 	},
 	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela prop `fluid` na v4. Quando verdadeiro, faz com que o button se adapte a expansão, podendo agora, adicionar uma descrição
+	* @deprecated Essa prop vai ser substituída pela prop `fluid` na v4. Quando verdadeiro, faz com que o button se adapte a expansão, podendo agora, adicionar uma descrição
 	*/
 	allowsExpand: {
 		type: Boolean,

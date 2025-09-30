@@ -177,7 +177,7 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Define a largura do StepperInput. As opções são 'thin', 'default', 'wide' e 'fluid'.
+	* @deprecated Define a largura do StepperInput. As opções são 'thin', 'default', 'wide' e 'fluid'.
 	*/
 	width: {
 		type: String,

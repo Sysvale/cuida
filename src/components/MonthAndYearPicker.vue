@@ -134,7 +134,7 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile
+	* @deprecated Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile
 	*/
 	mobile: {
 		type: Boolean,

@@ -87,7 +87,7 @@ const props = defineProps({
 	},
 	/**
 	 * Especifica o estado do CheckboxGroup. As opções são 'default', 'valid' e 'invalid'.
-	 * @values default, valid e invalid
+	 * @values default, valid, invalid
 	 */
 	state: {
 		type: String,

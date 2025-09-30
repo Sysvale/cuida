@@ -164,14 +164,14 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	 * <span className="deprecated-warning">[DEPRECATED]</span> Define exibição e texto do link do input (localizado à direita da label).
+	 * @deprecated Define exibição e texto do link do input (localizado à direita da label).
 	 */
 	linkText: {
 		type: String,
 		default: null,
 	},
 	/**
-	 * <span className="deprecated-warning">[DEPRECATED]</span> Define a url a ser acessada no clique do link (no caso do link ser exibido).
+	 * @deprecated Define a url a ser acessada no clique do link (no caso do link ser exibido).
 	 */
 	linkUrl: {
 		type: String,
@@ -207,7 +207,7 @@ const props = defineProps({
 		default: null,
 	},
 	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Define o tipo do input, se true será um input adaptador para o mobile
+	* @deprecated Define o tipo do input, se true será um input adaptador para o mobile
 	*/
 	mobile: {
 		type: Boolean,

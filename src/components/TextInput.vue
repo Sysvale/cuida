@@ -58,7 +58,7 @@ const props = defineProps({
 		default: 'default',
 	},
 	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Use o componente EmailInput caso precise de um campo para Emails. Especifica o tipo do TextInput. As opções são 'text' e 'email'.
+	* @deprecated Use o componente EmailInput caso precise de um campo para Emails. Especifica o tipo do TextInput. As opções são 'text' e 'email'.
 	*/
 	inputType: {
 		type: String,
@@ -117,14 +117,14 @@ const props = defineProps({
 		default: 'info-outline',
 	},
 	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela `supportLink` na v4. Define texto do link do input (localizado à direita da label).
+	* @deprecated Essa prop vai ser substituída pela `supportLink` na v4. Define texto do link do input (localizado à direita da label).
 	*/
 	linkText: {
 		type: String,
 		default: null,
 	},
 	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela `supportLinkUrl` na v4. Define a url a ser acessada no clique do link (no caso do link ser exibido).
+	* @deprecated Essa prop vai ser substituída pela `supportLinkUrl` na v4. Define a url a ser acessada no clique do link (no caso do link ser exibido).
 	*/
 	linkUrl: {
 		type: String,
@@ -159,7 +159,7 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile
+	* @deprecated Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile
 	*/
 	mobile: {
 		type: Boolean,
