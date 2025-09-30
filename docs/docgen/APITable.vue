@@ -10,11 +10,28 @@
 				<CdsRequiredIndicator v-if="data.required"/>
 				<code>{{ apiSectionPrefix }}{{ data.name }}</code>
 				<span v-if="data.required" style="color: #C92C3F"> (required)</span>
+				<CdsBadge
+					v-if="data.tags?.deprecated?.length"
+					variant="red"
+					size="sm"
+					class="mt-2"
+				>
+					Deprecated
+				</CdsBadge>
 			</template>
 
 			<template v-if="section === 'props' && field === 'values'">
 				<span v-if="!data.values?.length"> -- </span>
 				<code v-for="value in data.values">{{ value }} <br></code>
+			</template>
+
+			<template v-if="field === 'description'">
+				<span v-if="typeof data.tags?.deprecated !== 'undefined'">
+					{{ data.tags?.deprecated[0].description }}
+				</span>
+				<span v-else>
+					{{ data.description }}
+				</span>
 			</template>
 		</template>
 	</CdsTable>
