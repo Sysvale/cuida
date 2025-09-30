@@ -2517,7 +2517,8 @@
         "tags": {},
         "values": [
           "default",
-          "valid e invalid"
+          "valid",
+          "invalid"
         ],
         "type": {
           "name": "string"
@@ -3601,7 +3602,14 @@
       },
       {
         "name": "mobile",
-        "description": "<span className=\"deprecated-warning\">[DEPRECATED]</span> Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile",
+        "tags": {
+          "deprecated": [
+            {
+              "description": "Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile",
+              "title": "deprecated"
+            }
+          ]
+        },
         "type": {
           "name": "boolean"
         },
@@ -3623,7 +3631,14 @@
       },
       {
         "name": "showTodayDot",
-        "description": "<span className=\"deprecated-warning\">[DEPRECATED]</span> Essa prop vai ser renomeada para prop `highlightToday` na v4. Controla a marcação do dia atual no calendário.",
+        "tags": {
+          "deprecated": [
+            {
+              "description": "Essa prop vai ser renomeada para prop `highlightToday` na v4. Controla a marcação do dia atual no calendário.",
+              "title": "deprecated"
+            }
+          ]
+        },
         "type": {
           "name": "boolean"
         },
@@ -7648,7 +7663,14 @@
       },
       {
         "name": "mobile",
-        "description": "<span className=\"deprecated-warning\">[DEPRECATED]</span> Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile",
+        "tags": {
+          "deprecated": [
+            {
+              "description": "Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile",
+              "title": "deprecated"
+            }
+          ]
+        },
         "type": {
           "name": "boolean"
         },
@@ -8315,7 +8337,14 @@
       },
       {
         "name": "linkText",
-        "description": "<span className=\"deprecated-warning\">[DEPRECATED]</span> Define exibição e texto do link do input (localizado à direita da label).",
+        "tags": {
+          "deprecated": [
+            {
+              "description": "Define exibição e texto do link do input (localizado à direita da label).",
+              "title": "deprecated"
+            }
+          ]
+        },
         "type": {
           "name": "string"
         },
@@ -8326,7 +8355,14 @@
       },
       {
         "name": "linkUrl",
-        "description": "<span className=\"deprecated-warning\">[DEPRECATED]</span> Define a url a ser acessada no clique do link (no caso do link ser exibido).",
+        "tags": {
+          "deprecated": [
+            {
+              "description": "Define a url a ser acessada no clique do link (no caso do link ser exibido).",
+              "title": "deprecated"
+            }
+          ]
+        },
         "type": {
           "name": "string"
         },
@@ -8381,7 +8417,14 @@
       },
       {
         "name": "mobile",
-        "description": "<span className=\"deprecated-warning\">[DEPRECATED]</span> Define o tipo do input, se true será um input adaptador para o mobile",
+        "tags": {
+          "deprecated": [
+            {
+              "description": "Define o tipo do input, se true será um input adaptador para o mobile",
+              "title": "deprecated"
+            }
+          ]
+        },
         "type": {
           "name": "boolean"
         },
@@ -8859,7 +8902,7 @@
       },
       {
         "name": "state",
-        "description": "Especifica o estado do PasswordInput. As opções são 'default', 'valid' e 'invalid'.",
+        "description": "Especifica o estado do PasswordInput. As opções são 'default', 'valid', 'loading' e 'invalid'.",
         "tags": {},
         "values": [
           "default",
@@ -10048,7 +10091,14 @@
       },
       {
         "name": "allowsExpand",
-        "description": "<span className=\"deprecated-warning\">[DEPRECATED]</span> Essa prop vai ser substituída pela prop `fluid` na v4. Quando verdadeiro, faz com que o button se adapte a expansão, podendo agora, adicionar uma descrição",
+        "tags": {
+          "deprecated": [
+            {
+              "description": "Essa prop vai ser substituída pela prop `fluid` na v4. Quando verdadeiro, faz com que o button se adapte a expansão, podendo agora, adicionar uma descrição",
+              "title": "deprecated"
+            }
+          ]
+        },
         "type": {
           "name": "boolean"
         },
@@ -10643,7 +10693,14 @@
       },
       {
         "name": "width",
-        "description": "<span className=\"deprecated-warning\">[DEPRECATED]</span> Define a largura do Select. As opções são 'thin', 'default' e 'wide'.",
+        "tags": {
+          "deprecated": [
+            {
+              "description": "Define a largura do Select. As opções são 'thin', 'default' e 'wide'.",
+              "title": "deprecated"
+            }
+          ]
+        },
         "type": {
           "name": "string"
         },
@@ -10725,7 +10782,14 @@
       },
       {
         "name": "linkText",
-        "description": "<span className=\"deprecated-warning\">[DEPRECATED]</span> Essa prop vai ser substituída pela `supportLink` na v4. Define texto do link do input (localizado à direita da label).",
+        "tags": {
+          "deprecated": [
+            {
+              "description": "Essa prop vai ser substituída pela `supportLink` na v4. Define texto do link do input (localizado à direita da label).",
+              "title": "deprecated"
+            }
+          ]
+        },
         "type": {
           "name": "string"
         },
@@ -10736,7 +10800,14 @@
       },
       {
         "name": "linkUrl",
-        "description": "<span className=\"deprecated-warning\">[DEPRECATED]</span> Essa prop vai ser substituída pela `supportLinkUrl` na v4. Define a url a ser acessada no clique do link (no caso do link ser exibido).",
+        "tags": {
+          "deprecated": [
+            {
+              "description": "Essa prop vai ser substituída pela `supportLinkUrl` na v4. Define a url a ser acessada no clique do link (no caso do link ser exibido).",
+              "title": "deprecated"
+            }
+          ]
+        },
         "type": {
           "name": "string|null"
         },
@@ -10780,7 +10851,14 @@
       },
       {
         "name": "mobile",
-        "description": "<span className=\"deprecated-warning\">[DEPRECATED]</span> Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile",
+        "tags": {
+          "deprecated": [
+            {
+              "description": "Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile",
+              "title": "deprecated"
+            }
+          ]
+        },
         "type": {
           "name": "boolean"
         },
@@ -12122,7 +12200,14 @@
       },
       {
         "name": "width",
-        "description": "<span className=\"deprecated-warning\">[DEPRECATED]</span> Define a largura do StepperInput. As opções são 'thin', 'default', 'wide' e 'fluid'.",
+        "tags": {
+          "deprecated": [
+            {
+              "description": "Define a largura do StepperInput. As opções são 'thin', 'default', 'wide' e 'fluid'.",
+              "title": "deprecated"
+            }
+          ]
+        },
         "type": {
           "name": "string"
         },
@@ -13073,7 +13158,14 @@
       },
       {
         "name": "inputType",
-        "description": "<span className=\"deprecated-warning\">[DEPRECATED]</span> Use o componente EmailInput caso precise de um campo para Emails. Especifica o tipo do TextInput. As opções são 'text' e 'email'.",
+        "tags": {
+          "deprecated": [
+            {
+              "description": "Use o componente EmailInput caso precise de um campo para Emails. Especifica o tipo do TextInput. As opções são 'text' e 'email'.",
+              "title": "deprecated"
+            }
+          ]
+        },
         "type": {
           "name": "string"
         },
@@ -13166,7 +13258,14 @@
       },
       {
         "name": "linkText",
-        "description": "<span className=\"deprecated-warning\">[DEPRECATED]</span> Essa prop vai ser substituída pela `supportLink` na v4. Define texto do link do input (localizado à direita da label).",
+        "tags": {
+          "deprecated": [
+            {
+              "description": "Essa prop vai ser substituída pela `supportLink` na v4. Define texto do link do input (localizado à direita da label).",
+              "title": "deprecated"
+            }
+          ]
+        },
         "type": {
           "name": "string"
         },
@@ -13177,7 +13276,14 @@
       },
       {
         "name": "linkUrl",
-        "description": "<span className=\"deprecated-warning\">[DEPRECATED]</span> Essa prop vai ser substituída pela `supportLinkUrl` na v4. Define a url a ser acessada no clique do link (no caso do link ser exibido).",
+        "tags": {
+          "deprecated": [
+            {
+              "description": "Essa prop vai ser substituída pela `supportLinkUrl` na v4. Define a url a ser acessada no clique do link (no caso do link ser exibido).",
+              "title": "deprecated"
+            }
+          ]
+        },
         "type": {
           "name": "string"
         },
@@ -13232,7 +13338,14 @@
       },
       {
         "name": "mobile",
-        "description": "<span className=\"deprecated-warning\">[DEPRECATED]</span> Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile",
+        "tags": {
+          "deprecated": [
+            {
+              "description": "Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile",
+              "title": "deprecated"
+            }
+          ]
+        },
         "type": {
           "name": "boolean"
         },
@@ -13730,8 +13843,9 @@
     ]
   },
   "Tooltip": {
-    "displayName": "Tooltip",
+    "name": "Tooltip",
     "exportName": "default",
+    "displayName": "Tooltip",
     "description": "",
     "tags": {},
     "props": [
@@ -13795,6 +13909,22 @@
         "defaultValue": {
           "func": false,
           "value": "true"
+        }
+      },
+      {
+        "name": "trigger",
+        "description": "Define como o tooltip é acionado.",
+        "tags": {},
+        "values": [
+          "hover",
+          "click"
+        ],
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'hover'"
         }
       }
     ],
