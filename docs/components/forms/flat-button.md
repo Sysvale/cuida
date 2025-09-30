@@ -4,7 +4,7 @@ FlatButtons são componentes semelhantes a links, mas que funcionam como botões
 
 ### Quando usar
 
-- Componente usado quando a interface necessita de botões menos proeminentes, sem compromenter a hierarquia visual da tela.
+- Componente usado quando a interface necessita de botões menos proeminentes, sem comprometer a hierarquia visual da tela.
 
 ### Quando não usar
 
