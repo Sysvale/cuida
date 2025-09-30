@@ -30,3 +30,4 @@ coverage
 # VitePress
 docs/.vitepress/cache/
 docs/.vitepress/dist/
+docs/.vitepress/*.timestamp-*.mjs
