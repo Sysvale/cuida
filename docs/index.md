@@ -8,24 +8,17 @@ hero:
 
 features:
   - title: Vue Components
-    details: 120+ componentes Vue 3 divididos em categorias como forms, containers, navigation, display, etc.
+    details: Vue 3 divididos em categorias como display, forms, containers, navigation, etc.
     link: /components/forms/base-input
   - title: Design Tokens
-    details: Tokens de design consistentes para cores, tipografia, espaçamento e mais.
+    details: Tokens de design para cores, tipografia, espaçamento, etc.
     link: /foundation/principles
   - title: Utilities & Composables
-    details: Funções auxiliares e composables Vue para melhorar sua experiência de desenvolvimento.
+    details: Funções auxiliares e composables para facilitar o desenvolvimento o desenvolvimento do DS.
     link: /utils/documentation-guide
 ---
 
-## Bem vindo ao Cuida!
-
-Cuida é um design system abrangente desenvolvido pela Sysvale, com:
-
-- **Design Tokens**: Tokens SASS de Cores, tipografia, espaçamento e mais
-- **Vue Components**: Mais de 100 componentes construídos com Vue 3 com Composition API
-- **Utilities**: Funções auxiliares e composables
-- **Documentation**: Guias completos e exemplos
+## Bem-vindo ao Cuida!
 
 ### Instalação
 
@@ -34,6 +27,8 @@ Cuida é um design system abrangente desenvolvido pela Sysvale, com:
 ```bash
 npm i @sysvale/cuida
 ```
+
+<br>
 
 ## Uso
 
@@ -81,8 +76,10 @@ e importe o arquivo de tokens na sua tag script.
   ...
 </style>
 ```
+<br>
+<br>
 
-## Desenvolvendo
+## Desenvolvimento
 
 ### Configurando o projeto
 
@@ -122,6 +119,9 @@ npm run test:ui
 ```bash
 npx open-cli coverage/index.html
 ```
+
+<br>
+
 ## Contribuindo
 
 Para informações sobre como contribuir com o projeto, acesse o [CONTRIBUTING.MD](./contributing.md)
