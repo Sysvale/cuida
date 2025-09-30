@@ -101,8 +101,10 @@
 				<div
 					class="demo-element__inner-container"
 				>
-					<div
+					<CdsTooltip
 						:id="`${spacer}${direction}(${size})`"
+						text=" ✅ Token copiado!"
+						trigger="click"
 						class="inner-container__token-text"
 						@click="target = `${spacer}${direction}(${size})`"
 					>
@@ -114,7 +116,7 @@
 						/>
 
 						{{ `${spacer}${direction}(${size})` }}
-					</div>
+					</CdsTooltip>
 				</div>
 			</div>
 		</div>
@@ -124,11 +126,13 @@
 <script>
 import CdsIcon from '../components/Icon.vue';
 import CopyToken from '../docs-components/CopyToken.vue';
+import CdsTooltip from '@/components/Tooltip.vue';
 
 export default {
 	components: {
 		CdsIcon,
 		CopyToken,
+		CdsTooltip,
 	},
 
 	data() {

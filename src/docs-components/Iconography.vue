@@ -10,7 +10,10 @@
 			placeholder="Pesquise pelo nome do ícone"
 		/>
 
-		<copy-token :target="target" :value="value" />
+		<copy-token
+			:target="target"
+			:value="value"
+		/>
 
 		<div
 			class="icon__grid"
@@ -29,8 +32,10 @@
 						:key="index"
 						@click="handleClipBoardContent(icon)"
 					>
-						<div
+						<CdsTooltip
 							:id="icon"
+							text=" ✅ Token copiado!"
+							trigger="click"
 							class="icon__tile"
 						>
 							<CdsIcon
@@ -49,7 +54,7 @@
 								:name="icon"
 							/>
 							<p class="icon__name">{{ icon }}</p>
-						</div>
+						</CdsTooltip>
 					</div>
 				</div>
 			</div>
@@ -63,12 +68,14 @@ import { iconsData } from '../utils/constants/iconsData.js';
 import CdsIcon from '../components/Icon.vue';
 import CdsSearchInput from '../components/SearchInput.vue';
 import CopyToken from '../docs-components/CopyToken.vue';
+import CdsTooltip from '@/components/Tooltip.vue';
 
 export default {
 	components: {
 		CdsIcon,
 		CopyToken,
 		CdsSearchInput,
+		CdsTooltip,
 	},
 
 	data() {

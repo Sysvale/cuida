@@ -11,9 +11,11 @@
 			hover
 		>
 			<template #table-item="{ data, field, rowIndex }">
-				<div
+				<CdsTooltip
 					v-if="field === 'token'"
 					:id="data.token"
+					text=" ✅ Token copiado!"
+					trigger="click"
 					class="copy-clip"
 					@click="target = data.token"
 				>
@@ -25,7 +27,7 @@
 					/>
 
 					<div> {{ data.token }} </div>
-				</div>
+				</CdsTooltip>
 
 				<div
 					v-if="field === 'value'"
@@ -52,12 +54,14 @@
 import CdsIcon from '../components/Icon.vue';
 import CdsTable from '../components/Table.vue';
 import CopyToken from './CopyToken.vue';
+import CdsTooltip from '@/components/Tooltip.vue';
 
 export default {
 	components: {
 		CdsIcon,
 		CopyToken,
 		CdsTable,
+		CdsTooltip,
 	},
 
 	data() {
