@@ -31,3 +31,6 @@ coverage
 docs/.vitepress/cache/
 docs/.vitepress/dist/
 docs/.vitepress/*.timestamp-*.mjs
+
+# Vite/VitePress temporary timestamp files
+*.timestamp-*.mjs
