@@ -14,6 +14,10 @@ export default defineConfig({
 				href: 'https://api.fontshare.com/v2/css?f[]=satoshi@1&display=swap',
 			},
 		],
+		[
+			'link',
+			{ rel: 'icon', href: '/cuida-heart.svg' }
+		]
 	],
 
 	themeConfig: {
