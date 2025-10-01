@@ -27,6 +27,7 @@ export default defineConfig({
 			{ text: 'Utils', link: '/utils/documentation-guide' },
 			{ text: 'Ícones', link: '/foundation/iconografia' },
 			// { text: 'Brand', link: '/utils/' },
+			{ text: 'Docs Storybook/Framer', link: 'https://cuida.framer.wiki/' },
 			{ text: 'Cuida 2', link: 'https://sysvale.github.io/cuidaV2/?path=/docs/funda%C3%A7%C3%A3o-princ%C3%ADpios--page' }
 		],
 
