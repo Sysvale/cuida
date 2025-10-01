@@ -9,7 +9,7 @@ hero:
 features:
   - title: Vue Components
     details: Vue 3 divididos em categorias como display, forms, containers, navigation, etc.
-    link: /components/forms/base-input
+    link: /components/forms/button
   - title: Design Tokens
     details: Tokens de design para cores, tipografia, espaçamento, etc.
     link: /foundation/principles
