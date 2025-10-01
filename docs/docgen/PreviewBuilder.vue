@@ -1,13 +1,20 @@
 <template>
-	<PreviewContainer :withBackground>
+	<PreviewContainer :with-background>
 		<component
-			v-if="!$slots.container && !withTrigger"
 			:is="component"
-			v-on="internalEvents"
+			v-if="!$slots.container && !withTrigger"
 			v-bind="{...$attrs, ...(model || {}) }"
+			v-on="internalEvents"
 		>
-			<template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
-				<slot v-if="slotProps" :name="slotName" v-bind="slotProps" />
+			<template
+				v-for="(_, slotName) in $slots"
+				#[slotName]="slotProps"
+			>
+				<slot
+					v-if="slotProps"
+					:name="slotName"
+					v-bind="slotProps"
+				/>
 			</template>
 		</component>
 
@@ -21,21 +28,31 @@
 
 			<component
 				:is="component"
-				v-on="internalEvents"
 				v-bind="{...$attrs, ...(model || {}) }"
+				v-on="internalEvents"
 			>
-				<template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
-					<slot v-if="slotProps" :name="slotName" v-bind="slotProps" />
+				<template
+					v-for="(_, slotName) in $slots"
+					#[slotName]="slotProps"
+				>
+					<slot
+						v-if="slotProps"
+						:name="slotName"
+						v-bind="slotProps"
+					/>
 				</template>
 			</component>
 		</div>
 
-		<LogBuilder ref="logBuilderRef" :events />
+		<LogBuilder
+			ref="logBuilderRef"
+			:events
+		/>
 	</PreviewContainer>
 
 	<PlaygroundBuilder
 		v-if="!static"
-		:component="component"
+		:component
 		:args="model"
 	/>
 </template>
@@ -45,7 +62,6 @@ import {
 	ref,
 	useTemplateRef,
 	onMounted,
-	type Component
 } from 'vue';
 import PlaygroundBuilder from './PlaygroundBuilder.vue';
 import PreviewContainer from './PreviewContainer.vue';
@@ -77,5 +93,5 @@ onMounted(() => {
 	}
 });
 
-export type PreviewBuilderType = typeof import("./PreviewBuilder.vue")["default"];
+export type PreviewBuilderType = typeof import('./PreviewBuilder.vue')['default'];
 </script>
