@@ -14,7 +14,7 @@
 
 				<div class="img-container">
 					<CdsImage
-						src="public/cuida-heart.svg"
+						src="/cuida-heart.svg"
 					/>
 				</div>
 			</CdsFlexbox>
