@@ -30,7 +30,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsOverlayLoader"
+	:component="CdsOverlayLoader"
 />
 
 ---

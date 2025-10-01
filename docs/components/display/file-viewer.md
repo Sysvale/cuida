@@ -37,7 +37,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsFileViewer"
+	:component="CdsFileViewer"
 	:events
 />
 

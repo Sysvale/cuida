@@ -20,7 +20,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsSearchInput"
+	:component="CdsSearchInput"
 	:events
 />
 

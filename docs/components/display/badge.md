@@ -32,7 +32,7 @@ Badge são indicadores de status utilizados para tornar evidentes metadados impo
 
 <PreviewBuilder
 	:args
-	component="CdsBadge"
+	:component="CdsBadge"
 	:events="cdsBadgeEvents"
 >
 	Badge

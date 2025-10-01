@@ -36,7 +36,7 @@
 ## Preview
 
 <PreviewContainer
-	component="CdsInteractionBlockingOverlay"
+	:component="CdsInteractionBlockingOverlay"
 	:events="cdsInteractionBlockingOverlayEvents"
 >
 	<CdsFlexbox justify="center">
@@ -48,7 +48,7 @@
 
 <PlaygroundBuilder
 	:args
-	component="InteractionBlockingOverlay"
+	:component="InteractionBlockingOverlay"
 />
 
 ---

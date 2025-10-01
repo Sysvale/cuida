@@ -32,8 +32,8 @@
 
 <PreviewBuilder
 	:args
-	component="CdsDropdown"
 	:events="events"
+	:component="CdsDropdown"
 >
 	<p>Slot do dropdown do Dropdown</p>
 </PreviewBuilder>

@@ -21,7 +21,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsSegmentedControl"
+	:component="CdsSegmentedControl"
 	:events="cdsSegmentedControlEvents"
 />
 

@@ -54,7 +54,7 @@ na posição correspondente do array.
 
 <PlaygroundBuilder
 	:args
-	component="FloatingActionButton"
+	:component="FloatingActionButton"
 />
 
 ---

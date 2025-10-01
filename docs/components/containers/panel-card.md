@@ -43,7 +43,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsPanelCard"
+	:component="CdsPanelCard"
 >
 	<template #panel-actions>
 		<strong>#</strong>

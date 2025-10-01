@@ -2,6 +2,8 @@
 
 Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
 
+---
+
 ### Quando usar
 
 - For necessário comunicar ao usuário que ele pode executar uma ação na interface,
@@ -32,7 +34,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 <PreviewBuilder
 	:args
 	:events
-	component="CdsButton"
+	:component="CdsButton"
 />
 
 ---

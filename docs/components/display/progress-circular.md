@@ -33,7 +33,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsProgressCircular"
+	:component="CdsProgressCircular"
 />
 
 ---

@@ -25,7 +25,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsLabel"
+	:component="CdsLabel"
 	:events
 />
 

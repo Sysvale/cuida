@@ -30,7 +30,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsFileInput"
+	:component="CdsFileInput"
 	:events
 />
 

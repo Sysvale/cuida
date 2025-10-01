@@ -27,7 +27,7 @@ FlatButtons são componentes semelhantes a links, mas que funcionam como botões
 
 <PreviewBuilder
 	:args
-	component="CdsFlatButton"
+	:component="CdsFlatButton"
 	:events="cdsFlatButtonEvents"
 />
 

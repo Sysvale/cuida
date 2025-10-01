@@ -54,7 +54,7 @@ Cards são componentes utilizados como containers de propósito geral. À partir
 
 <PreviewBuilder
 	:args
-	component="CdsCard"
+	:component="CdsCard"
 	:events="cdsCardEvents"
 >
 	<template #header>

@@ -49,7 +49,7 @@
 
 <PlaygroundBuilder
 	:args
-	component="TruncateContainer"
+	:component="TruncateContainer"
 />
 
 ---

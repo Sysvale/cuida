@@ -36,7 +36,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsBottomSheet"
+	:component="CdsBottomSheet"
 	:events="cdsBottomSheetEvents"
 	with-trigger
 	title="Onde encontrar o meu CNS"

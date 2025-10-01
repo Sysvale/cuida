@@ -44,7 +44,7 @@ que vai absorver suas funcionalidades
 
 <PreviewBuilder
 	:args
-	component="CdsStepperInput"
+	:component="CdsStepperInput"
 	:events
 />
 

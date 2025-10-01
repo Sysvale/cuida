@@ -42,7 +42,7 @@ dinamicamente para se adaptar ao conteúdo ou à largura disponível.
 
 <PreviewBuilder
 	:args
-	component="CdsSkeleton"
+	:component="CdsSkeleton"
 />
 
 ---

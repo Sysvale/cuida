@@ -34,7 +34,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsDropdownButton"
+	:component="CdsDropdownButton"
 	:events
 />
 

@@ -36,7 +36,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsWebcamModal"
+	:component="CdsWebcamModal"
 	:events
 	with-trigger
 	@trigger-click="args.modelValue = !args.modelValue"

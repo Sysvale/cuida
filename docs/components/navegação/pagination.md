@@ -35,7 +35,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsPagination"
+	:component="CdsPagination"
 	:events="cdsPaginationEvents"
 />
 

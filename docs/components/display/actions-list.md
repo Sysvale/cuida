@@ -36,7 +36,7 @@ Actions lists são componentes usados para mostrar uma lista de ações em linha
 
 <PreviewBuilder
 	:args
-	component="CdsActionsList"
+	:component="CdsActionsList"
 	:events="cdsActionsListEvents"
 >
 	<template

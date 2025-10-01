@@ -57,7 +57,7 @@ onMounted(() => {
 ```vue
 <!-- LogBuilder é usado automaticamente pelo PreviewBuilder -->
 <PreviewBuilder
-  component="CdsButton"
+  :component="CdsButton"
   :args="buttonArgs"
   :events="['button-click', 'focus', 'blur']"
   <!-- LogBuilder será renderizado automaticamente -->

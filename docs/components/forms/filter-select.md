@@ -45,7 +45,7 @@ por exemplo para mapas, gráficose relatórios
 <PreviewBuilder
 	:args
 	:events
-	component="CdsFilterSelect"
+	:component="CdsFilterSelect"
 />
 
 ---

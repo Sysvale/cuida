@@ -85,7 +85,7 @@ Este é o modo de operação padrão do MonthAndYearPicker que permite ao usuár
 <PreviewBuilder
 	:args
 	:events
-	component="CdsMonthAndYearPicker"
+	:component="CdsMonthAndYearPicker"
 />
 
 ---

@@ -32,7 +32,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsCarouselController"
+	:component="CdsCarouselController"
 	:events="cdsCarouselControllerEvents"
 />
 

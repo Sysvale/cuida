@@ -31,7 +31,7 @@ Avatares são componentes utilizados para exibir representações visuais de usu
 	</CdsAvatar>
 </PreviewContainer>
 
-<PlaygroundBuilder :args component="Avatar"/>
+<PlaygroundBuilder :args :component="Avatar"/>
 
 ---
 

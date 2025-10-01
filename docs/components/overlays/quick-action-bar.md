@@ -38,7 +38,7 @@ O QuickActionBar é um componente de busca e ação rápida que permite ao usuá
 
 <PreviewBuilder
 	:args
-	component="CdsQuickActionBar"
+	:component="CdsQuickActionBar"
 	:events="cdsQuickActionBarEvents"
 	with-trigger
 	@trigger-click="args.modelValue = !args.modelValue"

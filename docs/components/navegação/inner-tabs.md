@@ -64,7 +64,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsInnerTabs"
+	:component="CdsInnerTabs"
 	:events="cdsInnerTabsEvents"
 	with-background
 >

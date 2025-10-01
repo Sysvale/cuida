@@ -41,7 +41,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsRichTooltip"
+	:component="CdsRichTooltip"
 	:events="cdsRichTooltipEvents"
 	with-trigger
 	targetId="trigger-cds-tooltip"

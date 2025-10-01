@@ -50,7 +50,7 @@
 
 <PlaygroundBuilder
 	:args
-	component="TopAppBar"
+	:component="TopAppBar"
 />
 
 ---

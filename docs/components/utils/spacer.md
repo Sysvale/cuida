@@ -46,7 +46,7 @@ utilize classes e nelas inclua paddings e margins com os tokens de espaçamento 
 </PreviewContainer>
 
 <PlaygroundBuilder
-	component="Spacer"
+	:component="Spacer"
 	:args
 />
 

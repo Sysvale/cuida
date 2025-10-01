@@ -65,7 +65,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsSideBar"
+	:component="CdsSideBar"
 	:events="cdsSideBarEvents"
 >
 	<template #logo>

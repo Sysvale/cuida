@@ -34,7 +34,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsGaugeChart"
+	:component="CdsGaugeChart"
 >
 	<template #popover>
 		<p style="margin: 0;"><strong>Em atendimento:</strong> 280</p>

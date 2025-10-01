@@ -21,7 +21,7 @@ Componente utilizado para adicionar um wrapper cliclável a componentes que não
 
 <PreviewBuilder
 	:args
-	component="CdsClickable"
+	:component="CdsClickable"
 	:events="cdsClickableEvents"
 >
 	Texto clicável

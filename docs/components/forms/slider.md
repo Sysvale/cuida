@@ -41,7 +41,7 @@ leitura da documentação.
 <PreviewBuilder
 	:args
 	:events
-	component="CdsSlider"
+	:component="CdsSlider"
 />
 
 ---

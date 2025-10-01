@@ -92,7 +92,7 @@
 
 <PlaygroundBuilder
 	:args
-	component="FloatingActionButton"
+	:component="FloatingActionButton"
 />
 
 ---

@@ -37,7 +37,7 @@ no array de opções. Caso você queira desabilitar todo o grupo, você pode set
 
 <PreviewBuilder
 	:args
-	component="CdsRadioButtonGroup"
+	:component="CdsRadioButtonGroup"
 	:events
 />
 

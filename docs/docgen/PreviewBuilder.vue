@@ -52,7 +52,7 @@
 
 	<PlaygroundBuilder
 		v-if="!static"
-		:component
+		:component="component.name ?? component"
 		:args="model"
 	/>
 </template>
@@ -62,6 +62,7 @@ import {
 	ref,
 	useTemplateRef,
 	onMounted,
+	type Component,
 } from 'vue';
 import PlaygroundBuilder from './PlaygroundBuilder.vue';
 import PreviewContainer from './PreviewContainer.vue';
@@ -70,7 +71,7 @@ import LogBuilder from './LogBuilder.vue';
 const model = defineModel('args');
 
 const props = withDefaults(defineProps<{
-	component: string,
+	component: Component & { name: string },
 	events?: string[],
 	withBackground?: boolean,
 	withTrigger?: boolean,

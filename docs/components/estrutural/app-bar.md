@@ -45,7 +45,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsAppBar"
+	:component="CdsAppBar"
 	:events="cdsToastEvents"
 >
 	<template #app-info>

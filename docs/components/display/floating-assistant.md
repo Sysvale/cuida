@@ -55,7 +55,7 @@
 
 <PlaygroundBuilder
 	:args
-	component="FloatingAssistant"
+	:component="FloatingAssistant"
 />
 ---
 

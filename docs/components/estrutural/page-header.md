@@ -54,7 +54,7 @@ CdsPageHeader
 
 <PreviewBuilder
 	:args
-	component="CdsPageHeader"
+	:component="CdsPageHeader"
 >
 	<template
 		#aside

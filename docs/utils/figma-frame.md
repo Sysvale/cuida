@@ -122,7 +122,7 @@ https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fd
 
   <h2>Implementação</h2>
   <PreviewBuilder 
-    component="CdsButton"
+    :component="CdsButton"
     :args="buttonArgs"
   />
 </div>
@@ -294,7 +294,7 @@ const props = defineProps<{
   <FigmaFrame :src="designUrl" />
   
   <!-- Implementação -->
-  <PreviewBuilder component="Component" :args="args" />
+  <PreviewBuilder :component="Component" :args="args" />
   
   <!-- Especificações -->  
   <APITable name="Component" section="props" />

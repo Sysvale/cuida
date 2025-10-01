@@ -31,7 +31,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsRadio"
+	:component="CdsRadio"
 	:events
 />
 

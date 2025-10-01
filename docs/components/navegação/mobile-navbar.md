@@ -34,7 +34,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsMobileNavbar"
+	:component="CdsMobileNavbar"
 	:events="cdsMobileNavbarEvents"
 />
 

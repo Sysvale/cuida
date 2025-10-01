@@ -38,7 +38,7 @@ Cuida pode ser usado com <b>dois</b> níveis pois nesse cenário ele se comporta
 
 <PreviewBuilder
 	:args
-	component="CdsBreadcrumb"
+	:component="CdsBreadcrumb"
 />
 
 <br>

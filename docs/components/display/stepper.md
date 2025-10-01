@@ -33,7 +33,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsStepper"
+	:component="CdsStepper"
 	:events
 />
 

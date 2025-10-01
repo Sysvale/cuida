@@ -46,7 +46,7 @@ removê-lo.
 
 <PlaygroundBuilder
 	:args
-	component="Pulsar"
+	:component="Pulsar"
 />
 
 ---

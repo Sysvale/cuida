@@ -28,7 +28,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsTextArea"
+	:component="CdsTextArea"
 	:events
 />
 

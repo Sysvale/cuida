@@ -51,7 +51,7 @@
 
 <PlaygroundBuilder
 	:args
-	component="MobileNavigation"
+	:component="MobileNavigation"
 />
 
 ---

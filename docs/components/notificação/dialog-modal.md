@@ -31,7 +31,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 <PreviewBuilder
 	:args
-	component="CdsDialogModal"
+	:component="CdsDialogModal"
 	:events="cdsDialogModalEvents"
 	with-trigger
 	@trigger-click="args.modelValue = !args.modelValue"

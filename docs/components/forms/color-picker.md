@@ -50,7 +50,7 @@
 
 <PlaygroundBuilder
 	:args="argsInline"
-	component="ColorPicker"
+	:component="ColorPicker"
 />
 
 <br>
@@ -78,7 +78,7 @@
 
 <PlaygroundBuilder
 	:args="argsWithPopover"
-	component="ColorPicker"
+	:component="ColorPicker"
 />
 
 ---

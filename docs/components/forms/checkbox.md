@@ -1,8 +1,9 @@
 # Checkbox
 
-### Checkboxes são componentes de formulário que permitem seleções binárias e múltiplas.
+Checkboxes são componentes de formulário que permitem seleções binárias e múltiplas.
+
 ---
-<br>
+
 
 ## Quando usar:
 - Quando precisar de um componente de formulário para seleções binárias.
@@ -32,7 +33,7 @@
 
 <PreviewBuilder
 	:args
-	component="CdsCheckbox"
+	:component="CdsCheckbox"
 	:events
 />
 
@@ -51,14 +52,6 @@
 <APITable
 	name="CdsCheckbox"
 	section="events"
-/>
-<br>
-
-## Slots
-
-<APITable
-	name="CdsCheckbox"
-	section="slots"
 />
 
 ---

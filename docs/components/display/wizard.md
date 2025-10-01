@@ -97,7 +97,7 @@
 
 <PlaygroundBuilder
 	:args
-	component="Wizard"
+	:component="Wizard"
 />
 
 ---
