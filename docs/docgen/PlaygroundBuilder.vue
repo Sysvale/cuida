@@ -112,8 +112,6 @@ const normalizedPropsData = ref([]);
 const componentData = computed(() => (componentsData as Record<string, any>)[props.component] || {});
 const propsData = computed(() => componentData.value?.props);
 
-console.log('props.component: ', props.component);
-
 function formatOptions(val: string[]) {
 	return val.map(v => {
 		const match = v.match(/'(\S+)'/);
@@ -127,10 +125,15 @@ function formatOptions(val: string[]) {
 
 watch(model, () => {
 	nextTick(() => {
-		normalizedPropsData.value = propsData.value?.map((propData: any) => {
+		if (!propsData.value || !Array.isArray(propsData.value)) {
+			normalizedPropsData.value = [];
+			return;
+		}
+
+		normalizedPropsData.value = propsData.value.map((propData: any) => {
 			let rawValue = propData.defaultValue?.value;
 			let parsedValue;
-	
+
 			if (
 				rawValue === 'null'
 				|| rawValue === null
@@ -153,19 +156,22 @@ watch(model, () => {
 			if (!isNaN(parsedValue) && !isNaN(parseFloat(parsedValue)) && isFinite(parsedValue)) {
 				parsedValue = Number(parsedValue);
 			}
-	
+
 			if (model.value && (model.value as any)[propData.name]) {
 				return { [propData.name]: (model.value as any)[propData.name]};
 			}
-	
+
 			return { [propData.name]: parsedValue };
 		});
-	
-		normalizedPropsData.value.forEach((item) => {
-			const [key, value] = Object.entries(item)[0];
-	
-			(model.value as any)[key] = value;
-		});
+
+		if (normalizedPropsData.value && Array.isArray(normalizedPropsData.value)) {
+			normalizedPropsData.value.forEach((item) => {
+				const [key, value] = Object.entries(item)[0];
+				if (model.value) {
+					(model.value as any)[key] = value;
+				}
+			});
+		}
 	});
 
 }, { immediate: true, deep: true})
@@ -175,10 +181,14 @@ function capitalize(str: string) {
 }
 
 watch(normalizedPropsData, () => {
-	normalizedPropsData.value.forEach((item) => {
-		const [key, value] = Object.entries(item)[0];
-		(model.value as any)[key] = value;
-	});
+	if (normalizedPropsData.value && Array.isArray(normalizedPropsData.value)) {
+		normalizedPropsData.value.forEach((item) => {
+			const [key, value] = Object.entries(item)[0];
+			if (model.value) {
+				(model.value as any)[key] = value;
+			}
+		});
+	}
 }, { deep: true})
 
 

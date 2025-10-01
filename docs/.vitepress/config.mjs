@@ -325,6 +325,21 @@ export default defineConfig({
 			alias: {
 				'@': fileURLToPath(new URL('../../src', import.meta.url))
 			}
+		},
+		css: {
+			preprocessorOptions: {
+				scss: {
+					silenceDeprecations: ['legacy-js-api', 'global-builtin'],
+					quietDeps: true
+				}
+			}
+		},
+		ssr: {
+			noExternal: [
+				'@sysvale/cuida-icons',
+				'@sysvale/vue3-long-click',
+				'lodash',
+			]
 		}
 	},
 
