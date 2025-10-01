@@ -42,7 +42,7 @@ const buttonArgs = ref({
 <!-- PlaygroundBuilder é usado automaticamente pelo PreviewBuilder -->
 <PreviewBuilder
   :args="componentArgs"
-  :component="CdsButton"
+  component="CdsButton"
   :events="['button-click']"
   <!-- PlaygroundBuilder será renderizado automaticamente -->
 />

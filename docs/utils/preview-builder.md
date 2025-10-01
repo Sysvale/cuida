@@ -24,7 +24,7 @@ O PreviewBuilder renderiza dinamicamente o componente especificado, gera automat
 ```vue
 <PreviewBuilder
   :args="componentArgs"
-  :component="CdsButton"
+  component="CdsButton"
   :events="['button-click', 'focus', 'blur']"
 />
 ```
@@ -33,7 +33,7 @@ O PreviewBuilder renderiza dinamicamente o componente especificado, gera automat
 ```vue
 <PreviewBuilder
   :args="modalArgs"
-  :component="CdsModal"
+  component="CdsModal"
   :events="['close', 'ok', 'cancel']"
   with-trigger
   @trigger-click="modalArgs.modelValue = true"
@@ -46,7 +46,7 @@ O PreviewBuilder renderiza dinamicamente o componente especificado, gera automat
 ```vue
 <PreviewBuilder
   :args="buttonArgs"
-  :component="CdsButton"
+  component="CdsButton"
   :events="['button-click']"
   static
 >
@@ -128,7 +128,7 @@ const buttonArgs = ref({
 <template>
 <PreviewBuilder
   :args="buttonArgs"
-  :component="CdsButton"
+  component="CdsButton"
   :events="['button-click']"
 />
 </template>
@@ -150,7 +150,7 @@ const modalArgs = ref({
 <template>
 <PreviewBuilder
   :args="modalArgs"
-  :component="CdsModal"
+  component="CdsModal"
   :events="['close', 'update:modelValue']"
   with-trigger
   @trigger-click="modalArgs.modelValue = !modalArgs.modelValue"
@@ -176,7 +176,7 @@ const inputArgs = ref({
 <template>
 <PreviewBuilder
   :args="inputArgs"
-  :component="CdsTextInput"
+  component="CdsTextInput"
   :events="['update:modelValue', 'focus', 'blur']"
   with-background
 />
@@ -207,7 +207,7 @@ const inputArgs = ref({
   <!-- Playground para controlar props -->
   <PlaygroundBuilder
     v-if="!static"
-    :component="component.name"
+    component="component.name"
     :args="model"
   />
 </template>

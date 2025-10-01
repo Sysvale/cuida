@@ -82,7 +82,7 @@ Ex.: `:variant="green"`
 <PreviewBuilder
 	:args
 	:events
-	:component="CdsDonutChart"
+	component="CdsDonutChart"
 />
 
 ---

@@ -29,7 +29,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsCalloutCard"
+	component="CdsCalloutCard"
 	:events
 />
 

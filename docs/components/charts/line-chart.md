@@ -35,7 +35,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsLineChart"
+	component="CdsLineChart"
 />
 
 ---

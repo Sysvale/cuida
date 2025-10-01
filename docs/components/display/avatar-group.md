@@ -35,7 +35,7 @@ com a lista de avatares suprimidos.
 
 <PreviewBuilder
 	:args
-	:component="CdsAvatarGroup"
+	component="CdsAvatarGroup"
 />
 
 ---

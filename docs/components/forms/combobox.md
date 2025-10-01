@@ -43,7 +43,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsComboBox"
+	component="CdsComboBox"
 	:events
 />
 

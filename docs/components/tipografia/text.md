@@ -33,7 +33,7 @@ Text são indicadores de status utilizados para tornar evidentes metadados impor
 
 <PreviewBuilder
 	:args
-	:component="CdsText"
+	component="CdsText"
 >
 	O empenho em analisar o desenvolvimento contínuo de distintas formas de atuação obstaculiza a apreciação da importância do retorno esperado a longo prazo.
 </PreviewBuilder>

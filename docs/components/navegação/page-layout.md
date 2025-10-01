@@ -32,7 +32,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsPageLayout"
+	component="CdsPageLayout"
 	:events="cdsPageLayoutEvents"
 >
 	<template #default>

@@ -35,7 +35,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsTimelineItem"
+	component="CdsTimelineItem"
 >
 	<template #opposite>
 		24/01/20202

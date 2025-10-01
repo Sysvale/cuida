@@ -34,7 +34,7 @@ EmptyStates são componentes utilizados em momentos instrutivos aos usuários.
 
 <PreviewBuilder
 	:args
-	:component="CdsEmptyState"
+	component="CdsEmptyState"
 	:events="cdsEmptyStateEvents"
 />
 

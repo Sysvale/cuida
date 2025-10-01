@@ -30,7 +30,7 @@ Alerts s√£o componentes utilizados para prover feedbacks contextuais e notifica√
 
 <PreviewBuilder
 	:args
-	:component="CdsAlert"
+	component="CdsAlert"
 	:events="cdsAlertEvents"
 />
 

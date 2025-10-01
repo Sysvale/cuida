@@ -53,7 +53,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsDashboardCard"
+	component="CdsDashboardCard"
 	:events="cdsDashboardCardEvents"
 >
 	<template #title-slot>

@@ -34,7 +34,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsNumberInput"
+	component="CdsNumberInput"
 	:events
 />
 

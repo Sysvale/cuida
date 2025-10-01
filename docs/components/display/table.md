@@ -34,7 +34,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsTable"
+	component="CdsTable"
 	:events
 	with-background
 />

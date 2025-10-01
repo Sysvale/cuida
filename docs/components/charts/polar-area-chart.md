@@ -34,7 +34,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsPolarAreaChart"
+	component="CdsPolarAreaChart"
 />
 
 ---

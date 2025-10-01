@@ -23,7 +23,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsDivider"
+	component="CdsDivider"
 />
 
 ---

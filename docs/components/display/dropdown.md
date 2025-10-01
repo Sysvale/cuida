@@ -32,7 +32,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsDropdown"
+	component="CdsDropdown"
 	:events="events"
 >
 	<p>Slot do dropdown do Dropdown</p>

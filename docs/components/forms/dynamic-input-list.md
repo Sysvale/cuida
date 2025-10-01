@@ -37,7 +37,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsDynamicInputList"
+	component="CdsDynamicInputList"
 	:events
 />
 

@@ -33,7 +33,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsTooltip"
+	component="CdsTooltip"
 >
 	Tooltip trigger
 </PreviewBuilder>

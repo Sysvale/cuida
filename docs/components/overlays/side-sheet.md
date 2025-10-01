@@ -40,7 +40,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsSideSheet"
+	component="CdsSideSheet"
 	:events="cdsSideSheetEvents"
 	with-trigger
 	@trigger-click="args.modelValue = !args.modelValue"

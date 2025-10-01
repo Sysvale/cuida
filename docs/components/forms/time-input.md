@@ -32,7 +32,7 @@
 <PreviewBuilder
 	:args
 	:events
-	:component="CdsTimeInput"
+	component="CdsTimeInput"
 />
 
 ---

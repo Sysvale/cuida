@@ -34,7 +34,7 @@ Nesse caso, recomendamos o uso de links.
 
 <PreviewBuilder
 	:args
-	:component="CdsIconButton"
+	component="CdsIconButton"
 	:events
 />
 

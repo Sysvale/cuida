@@ -28,7 +28,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsPasswordInput"
+	component="CdsPasswordInput"
 	:events
 />
 

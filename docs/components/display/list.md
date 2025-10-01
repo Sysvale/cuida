@@ -36,7 +36,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsList"
+	component="CdsList"
 	:events
 >
 	<template #actions>

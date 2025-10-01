@@ -29,7 +29,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsSpinner"
+	component="CdsSpinner"
 />
 
 ---

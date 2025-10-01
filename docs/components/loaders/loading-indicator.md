@@ -32,7 +32,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsLoadingIndicator"
+	component="CdsLoadingIndicator"
 	with-trigger
 	@trigger-click="args.modelValue = !args.modelValue"
 />

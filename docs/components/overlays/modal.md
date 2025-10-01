@@ -44,7 +44,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsModal"
+	component="CdsModal"
 	:events="cdsModalEvents"
 	with-trigger
 	@trigger-click="args.modelValue = !args.modelValue"

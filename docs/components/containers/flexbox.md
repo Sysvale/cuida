@@ -45,7 +45,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsFlexbox"
+	component="CdsFlexbox"
 	class="grid-background"
 >
 	<div style="height: 50px; width: 300px" class="docs-grid-cell"> FlexItem 1 </div>

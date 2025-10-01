@@ -46,7 +46,7 @@
 <PreviewBuilder
 	:args
 	:events 
-	:component="CdsSelect"
+	component="CdsSelect"
 />
 
 ---

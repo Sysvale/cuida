@@ -57,7 +57,7 @@ Descrição detalhada do componente...
 <PreviewBuilder
 	:args
 	:events
-	:component="CdsComponente"
+	component="CdsComponente"
 />
 
 ---
@@ -108,7 +108,7 @@ const events = [
 <PreviewBuilder
 	:args
 	:events
-	:component="CdsButton"
+	component="CdsButton"
 />
 
 <APITable name="Button" section="props" />
@@ -120,7 +120,7 @@ const events = [
 <PreviewBuilder
 	:args
 	:events
-	:component="CdsModal"
+	component="CdsModal"
 	with-trigger
 	@trigger-click="args.modelValue = !args.modelValue"
 >
@@ -132,7 +132,7 @@ const events = [
 ```html
 <PreviewBuilder
 	:args="args"
-	:component="CdsIcon"
+	component="CdsIcon"
 	:events="[]"
 	static
 />
@@ -144,14 +144,14 @@ const events = [
 	<h3>Variante Primary</h3>
 	<PreviewBuilder
 		:args="primaryArgs"
-		:component="CdsButton"
+		component="CdsButton"
 		:events="buttonEvents"
 	/>
 
 	<h3>Variante Secondary</h3>
 	<PreviewBuilder
 		:args="secondaryArgs"
-		:component="CdsButton"
+		component="CdsButton"
 		:events="buttonEvents"
 	/>
 </div>
@@ -166,7 +166,7 @@ const events = [
 	<h2>Implementação</h2>
 	<PreviewBuilder
 		:args="componentArgs"
-		:component="CdsComponent"
+		component="CdsComponent"
 		:events="componentEvents"
 	/>
 

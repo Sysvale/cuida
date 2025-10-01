@@ -80,7 +80,7 @@ Caso se deseje marcar apenas uma parte da string passada via slot, é possível 
 
 <PreviewBuilder
 	:args
-	:component="CdsHighlight"
+	component="CdsHighlight"
 >
 	O rato ROeu A RoUpA do rei de ROMA com eficácia, força e determinação.
 </PreviewBuilder>

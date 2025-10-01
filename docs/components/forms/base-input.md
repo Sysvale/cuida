@@ -32,7 +32,7 @@ Ele fornece a estrutura básica e funcionalidades comuns, como gerenciamento de 
 
 <PreviewBuilder
 	:args
-	:component="CdsBaseInput"
+	component="CdsBaseInput"
 	:events="cdsBaseInputEvents"
 />
 

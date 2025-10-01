@@ -43,7 +43,7 @@ vários toasts são disparados simultaneamente na mesma interface.
 
 <PreviewBuilder
 	:args
-	:component="CdsToast"
+	component="CdsToast"
 	with-trigger
 	:events="cdsToastEvents"
 	@trigger-click="args.modelValue = !args.modelValue"

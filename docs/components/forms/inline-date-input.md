@@ -22,7 +22,7 @@ recomenda-se o uso de Calendar.
 <PreviewBuilder
 	:args
 	:events
-	:component="CdsInlineDateInput"
+	component="CdsInlineDateInput"
 />
 
 ---

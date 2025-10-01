@@ -30,7 +30,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsCheckboxGroup"
+	component="CdsCheckboxGroup"
 	:events
 />
 

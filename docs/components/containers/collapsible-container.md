@@ -39,7 +39,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsCollapsibleContainer"
+	component="CdsCollapsibleContainer"
 	:events="cdsCollapsibleContainerEvents"
 >
 	<p class="p-3">

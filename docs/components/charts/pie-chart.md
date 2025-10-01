@@ -39,7 +39,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsPieChart"
+	component="CdsPieChart"
 />
 
 ---

@@ -20,7 +20,7 @@ Componente auxiliar utilizado para truncar texto adicionando a ele reticências
 
 <PreviewBuilder
 	:args
-	:component="CdsTruncate"
+	component="CdsTruncate"
   width="200"
 >
   Texto longo para testar o truncate

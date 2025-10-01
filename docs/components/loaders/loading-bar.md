@@ -26,7 +26,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsLoadingBar"
+	component="CdsLoadingBar"
 	static
 />
 

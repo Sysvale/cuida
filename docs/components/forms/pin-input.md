@@ -21,7 +21,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsPinInput"
+	component="CdsPinInput"
 	:events
 />
 

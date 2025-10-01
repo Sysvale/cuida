@@ -53,7 +53,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsPopover"
+	component="CdsPopover"
 	:events="cdsPopoverEvents"
 	with-trigger
 	targetId="trigger-cds-popover"

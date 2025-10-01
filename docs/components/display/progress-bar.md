@@ -33,7 +33,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsProgressBar"
+	component="CdsProgressBar"
 />
 
 ---

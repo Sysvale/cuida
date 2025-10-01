@@ -43,7 +43,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsCarousel"
+	component="CdsCarousel"
 	v-slot="{ item }"
 	:events
 >

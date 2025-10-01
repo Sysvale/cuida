@@ -34,7 +34,7 @@
 <PreviewBuilder
 	:args
 	:events
-	:component="CdsChip"
+	component="CdsChip"
 >
 	Chip
 </PreviewBuilder>

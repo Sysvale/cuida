@@ -41,7 +41,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsTile"
+	component="CdsTile"
 	:events
 >
 	<template #extra>

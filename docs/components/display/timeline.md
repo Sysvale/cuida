@@ -64,7 +64,7 @@ via slots. Para mais informações acesse a documentação do componente.
 
 <PreviewBuilder
 	:args
-	:component="CdsTimeline"
+	component="CdsTimeline"
 >
 	<CdsTimeline
 		v-bind="args" 

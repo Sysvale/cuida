@@ -45,7 +45,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsTabs"
+	component="CdsTabs"
 	:events="cdsTabsEvents"
 	with-background
 >

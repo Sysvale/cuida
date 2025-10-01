@@ -41,7 +41,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsMultiFileInput"
+	component="CdsMultiFileInput"
 	:events
 />
 

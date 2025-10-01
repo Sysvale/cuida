@@ -34,7 +34,7 @@ Image é um componente utilitário utilizado para renderizar imagens com fallbac
 
 <PreviewBuilder
 	:args
-	:component="CdsImage"
+	component="CdsImage"
 />
 
 ---

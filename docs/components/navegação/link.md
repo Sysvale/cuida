@@ -30,7 +30,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsLink"
+	component="CdsLink"
 	:events="cdsLinkEvents"
 />
 

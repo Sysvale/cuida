@@ -171,7 +171,7 @@ O PreviewContainer é automaticamente usado pelo PreviewBuilder:
 ```vue
 <!-- PreviewBuilder usa PreviewContainer internamente -->
 <PreviewBuilder 
-  :component="CdsButton"
+  component="CdsButton"
   :args="buttonArgs"
   with-background
 />

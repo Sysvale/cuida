@@ -20,7 +20,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsBox"
+	component="CdsBox"
 	:events="cdsBoxEvents"
 >
 	2

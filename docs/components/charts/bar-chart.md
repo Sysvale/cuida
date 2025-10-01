@@ -34,7 +34,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsBarChart"
+	component="CdsBarChart"
 />
 
 ---

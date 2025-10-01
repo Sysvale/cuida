@@ -241,7 +241,7 @@ Nesse deixa de ser possível selecionar a data pelo picker.
 
 <PreviewBuilder
 	:args
-	:component="CdsDateInput"
+	component="CdsDateInput"
 	:events
 />
 

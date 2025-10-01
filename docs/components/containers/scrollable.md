@@ -58,7 +58,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsScrollable"
+	component="CdsScrollable"
 	:events="cdsScrollableEvents"
 >
 	<p>

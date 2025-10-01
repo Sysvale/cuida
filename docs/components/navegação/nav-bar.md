@@ -33,7 +33,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsNavBar"
+	component="CdsNavBar"
 	:events="cdsNavBarEvents"
 />
 

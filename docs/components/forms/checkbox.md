@@ -32,7 +32,7 @@
 
 <PreviewBuilder
 	:args
-	:component="CdsCheckbox"
+	component="CdsCheckbox"
 	:events
 />
 
