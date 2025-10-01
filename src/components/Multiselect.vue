@@ -798,5 +798,9 @@ export default {
 	.multiselect__content:nth-child(1) {
 		margin: tokens.mt(3) !important;
 	}
+
+	.multiselect__content {
+		padding: 0 !important;
+	}
 }
 </style>

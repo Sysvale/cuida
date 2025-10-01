@@ -100,7 +100,7 @@ export default defineConfig({
 						{ text: 'Label', link: '/components/forms/label' },
 						{ text: 'MonthAndYearPicker', link: '/components/forms/month-and-year-picker' },
 						{ text: 'MultiFileInput', link: '/components/forms/multi-file-input' },
-						// { text: 'Multiselect <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/forms/multiselect' },
+						{ text: 'Multiselect <Badge class="docs-badge"type="warning">WIP</Badge>', link: '/components/forms/multiselect' },
 						{ text: 'NumberInput', link: '/components/forms/number-input' },
 						{ text: 'PasswordInput', link: '/components/forms/password-input' },
 						{ text: 'PinInput', link: '/components/forms/pin-input' },
@@ -342,7 +342,6 @@ export default defineConfig({
 			]
 		}
 	},
-
 	vue: {
 		template: {
 			compilerOptions: {

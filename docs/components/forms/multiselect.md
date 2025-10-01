@@ -44,12 +44,6 @@ leitura da documentação.
 	:component="CdsMultiselect"
 />
 
-<!-- <CdsMultiselect
-	:options
-	v-model="value"
-	label="title"
-/> -->
-
 ---
 
 ## Props
@@ -81,47 +75,29 @@ import CdsMultiselect from '@/components/Multiselect.vue';
 import Multiselect from 'vue-multiselect';
 
 const events = [
-	'update:modelValue'
+	'update:modelValue',
+	'remove',
+	'select',
+	'close'
 ];
-
-const value = ref([])
 
 const options = [
-    {
-        "id": "hearing",
-        "value": "Auditiva"
-    },
-    {
-        "id": "physical",
-        "value": "Física"
-    },
-    {
-        "id": "intellectual",
-        "value": "Intelectual"
-    },
-    {
-        "id": "mental",
-        "value": "Mental"
-    },
-    {
-        "id": "dwarfism",
-        "value": "Nanismo"
-    },
-    {
-        "id": "visual",
-        "value": "Visual"
-    },
-    {
-        "id": "microcephaly",
-        "value": "Microcefalia"
-    }
-];
+	{ title: 'Avengers',},
+	{ title: 'Naruto',},
+	{ title: 'X-men',},
+	{ title: 'The Simpsons',},
+	{ title: 'Bananas de pijamas',},
+	{ title: 'Pokemon',},
+	{ title: 'Digimon',},
+	{ title: 'Megamente',},
+]
 
 const args = ref({
 	options,
+	modelValue: [{ title: 'Naruto'}, {title: 'Pokemon'}],
 	label: 'Séries',
-	optionsField: 'id',
-	trackBy: 'value',
+	optionsField: 'title',
+	trackBy: 'title',
 	variant: 'green',
 });
 </script>
