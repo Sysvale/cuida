@@ -123,7 +123,7 @@ import CdsIcon from '../components/Icon.vue';
 import CdsClickable from '../components/Clickable.vue';
 
 export default {
-	name: 'Table',
+	name: 'CdsTable',
 	components: {
 		CdsCheckbox,
 		CdsIcon,

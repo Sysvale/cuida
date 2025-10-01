@@ -30,7 +30,7 @@ recomenda-se o uso de Calendar.
 ## Props
 
 <APITable
-	name="MonthAndYearPicker"
+	name="CdsMonthAndYearPicker"
 	section="props"
 />
 <br>
@@ -38,7 +38,7 @@ recomenda-se o uso de Calendar.
 ## Eventos
 
 <APITable
-	name="InlineDateInput"
+	name="CdsInlineDateInput"
 	section="events"
 />
 
@@ -47,7 +47,7 @@ recomenda-se o uso de Calendar.
 ## Eventos
 
 <APITable
-	name="InlineDateInput"
+	name="CdsInlineDateInput"
 	section="events"
 />
 
@@ -56,7 +56,7 @@ recomenda-se o uso de Calendar.
 ## Slots
 
 <APITable
-	name="InlineDateInput"
+	name="CdsInlineDateInput"
 	section="slots"
 />
 

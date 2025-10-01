@@ -51,7 +51,7 @@ import CdsLink from './Link.vue';
 import CdsIcon from './Icon.vue';
 import CdsFlexbox from './Flexbox.vue';
 
-defineOptions({ name: 'Label' });
+defineOptions({ name: 'CdsLabel' });
 
 const props = defineProps({
 	/**

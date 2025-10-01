@@ -41,7 +41,7 @@
 ## Props
 
 <APITable
-	name="Checkbox"
+	name="CdsCheckbox"
 	section="props"
 />
 <br>
@@ -49,7 +49,7 @@
 ## Eventos
 
 <APITable
-	name="Checkbox"
+	name="CdsCheckbox"
 	section="events"
 />
 <br>
@@ -57,7 +57,7 @@
 ## Slots
 
 <APITable
-	name="Checkbox"
+	name="CdsCheckbox"
 	section="slots"
 />
 

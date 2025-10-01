@@ -56,7 +56,7 @@
 ## Props
 
 <APITable
-	name="InteractionBlockingOverlay"
+	name="CdsInteractionBlockingOverlay"
 	section="props"
 />
 <br>
@@ -64,7 +64,7 @@
 ## Eventos
 
 <APITable
-	name="InteractionBlockingOverlay"
+	name="CdsInteractionBlockingOverlay"
 	section="events"
 />
 <br>

@@ -53,7 +53,7 @@ que vai absorver suas funcionalidades
 ## Props
 
 <APITable
-	name="StepperInput"
+	name="CdsStepperInput"
 	section="props"
 />
 <br>
@@ -61,7 +61,7 @@ que vai absorver suas funcionalidades
 ## Eventos
 
 <APITable
-	name="StepperInput"
+	name="CdsStepperInput"
 	section="events"
 />
 <br>
@@ -69,7 +69,7 @@ que vai absorver suas funcionalidades
 ## Slots
 
 <APITable
-	name="StepperInput"
+	name="CdsStepperInput"
 	section="slots"
 />
 

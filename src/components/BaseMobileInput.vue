@@ -265,7 +265,7 @@ import CdsFlexbox from './Flexbox.vue';
 import CdsSpinner from './Spinner.vue';
 import CdsRequiredIndicator from './RequiredIndicator.vue';
 
-defineOptions({ name: 'BaseMobileInput' });
+defineOptions({ name: 'CdsBaseMobileInput' });
 
 const model = defineModel('modelValue', {
 	type: [String, Number],

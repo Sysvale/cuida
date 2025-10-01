@@ -30,7 +30,7 @@ import CdsClickable from './Clickable.vue';
 import rounder from '../utils/methods/rounder';
 
 export default {
-	name: 'Box',
+	name: 'CdsBox',
 	components: {
 		CdsSpacer,
 		CdsClickable,

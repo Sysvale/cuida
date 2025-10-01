@@ -53,7 +53,7 @@ por exemplo para mapas, gráficose relatórios
 ## Props
 
 <APITable
-	name="FilterSelect"
+	name="CdsFilterSelect"
 	section="props"
 />
 <br>
@@ -61,7 +61,7 @@ por exemplo para mapas, gráficose relatórios
 ## Eventos
 
 <APITable
-	name="FilterSelect"
+	name="CdsFilterSelect"
 	section="events"
 />
 <br>

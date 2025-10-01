@@ -46,7 +46,7 @@ no array de opções. Caso você queira desabilitar todo o grupo, você pode set
 ## Props
 
 <APITable
-	name="RadioButtonGroup"
+	name="CdsRadioButtonGroup"
 	section="props"
 />
 <br>
@@ -54,7 +54,7 @@ no array de opções. Caso você queira desabilitar todo o grupo, você pode set
 ## Eventos
 
 <APITable
-	name="RadioButtonGroup"
+	name="CdsRadioButtonGroup"
 	section="events"
 />
 <br>

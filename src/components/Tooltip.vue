@@ -13,7 +13,7 @@
 <script setup>
 import { computed } from 'vue';
 
-defineOptions({ name: 'Tooltip' });
+defineOptions({ name: 'CdsTooltip' });
 
 const props = defineProps({
 	/**

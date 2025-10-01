@@ -10,7 +10,7 @@
 
 <script>
 export default {
-	name: 'Truncate',
+	name: 'CdsTruncate',
 	props: {
 		/**
 		* Largura do container. Define a partir de qual largura texto será truncado.

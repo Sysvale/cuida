@@ -107,7 +107,7 @@ import { computed, ref } from 'vue';
 import { colors } from '../utils/constants/colors';
 import CdsImage from '../components/Image.vue';
 
-defineOptions({ name: 'FileViewer' });
+defineOptions({ name: 'CdsFileViewer' });
 
 const emit = defineEmits(
 	[

@@ -63,7 +63,7 @@
 ## Props
 
 <APITable
-	name="PanelCard"
+	name="CdsPanelCard"
 	section="props"
 />
 <br>
@@ -71,7 +71,7 @@
 ## Slots
 
 <APITable
-	name="PanelCard"
+	name="CdsPanelCard"
 	section="slots"
 />
 

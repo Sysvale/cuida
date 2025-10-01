@@ -196,7 +196,7 @@ import CdsSpinner from './Spinner.vue';
 import CdsBaseMobileInput from './BaseMobileInput.vue';
 import CdsLabel from './Label.vue';
 
-defineOptions({ name: 'BaseInput' });
+defineOptions({ name: 'CdsBaseInput' });
 
 const model = defineModel('modelValue', {
 	type: [String, Number],

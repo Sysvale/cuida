@@ -49,7 +49,7 @@ import CdsClickable from './Clickable.vue';
 import CdsPopover from './Popover.vue';
 
 export default {
-	name: 'Avatar',
+	name: 'CdsAvatar',
 
 	components: {
 		CdsChevron,

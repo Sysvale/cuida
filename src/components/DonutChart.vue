@@ -24,7 +24,7 @@ import paleteBuilder from '../utils/methods/paleteBuilder.js';
 Chart.register(...registerables);
 
 export default {
-	name: 'DonutChart',
+	name: 'CdsDonutChart',
 	components: {
 		Doughnut,
 	},

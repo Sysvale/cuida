@@ -110,7 +110,7 @@ import CdsIcon from './Icon.vue';
 import CdsRequiredIndicator from './RequiredIndicator.vue';
 import stateValidator from '../utils/validators/state';
 
-defineOptions({ name: 'StepperInput' });
+defineOptions({ name: 'CdsStepperInput' });
 
 const hasSlots = useHasSlots();
 const vLongClick = longClickDirective({ delay: 400, interval: 50 });

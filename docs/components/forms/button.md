@@ -31,8 +31,8 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 
 <PreviewBuilder
 	:args
-	:component="CdsButton"
-	:events="cdsButtonEvents"
+	:events
+	component="CdsButton"
 />
 
 ---
@@ -40,7 +40,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 ## Props
 
 <APITable
-	name="Button"
+	name="CdsButton"
 	section="props"
 />
 <br>
@@ -48,7 +48,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 ## Eventos
 
 <APITable
-	name="Button"
+	name="CdsButton"
 	section="events"
 />
 <br>
@@ -56,7 +56,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 ## Slots
 
 <APITable
-	name="Button"
+	name="CdsButton"
 	section="slots"
 />
 
@@ -74,7 +74,7 @@ import CdsButton from '@/components/Button.vue';
 
 const args = ref({});
 
-const cdsButtonEvents = [
+const events = [
 	'button-click'
 ];
 </script>

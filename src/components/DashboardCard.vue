@@ -57,7 +57,7 @@
 
 <script>
 export default {
-	name: 'DashboardCard',
+	name: 'CdsDashboardCard',
 	props: {
 		/**
 		 * O título do alert. O título também pode ser usado com o slot.

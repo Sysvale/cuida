@@ -124,7 +124,7 @@ import { last, isEmpty } from 'lodash';
 import CdsIcon from './Icon.vue';
 
 export default {
-	name: 'FileInput',
+	name: 'CdsFileInput',
 	components: {
 		CdsIcon,
 	},

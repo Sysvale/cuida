@@ -45,7 +45,7 @@
 import CdsLink from '../components/Link.vue';
 
 export default {
-	name: 'PageHeader',
+	name: 'CdsPageHeader',
 	components: {
 		CdsLink,
 	},

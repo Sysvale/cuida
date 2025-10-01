@@ -58,7 +58,7 @@ import CdsIcon from './Icon.vue';
 import hasSlot from '../utils/methods/hasSlot';
 
 export default {
-	name: 'TimelineItem',
+	name: 'CdsTimelineItem',
 	components: {
 		CdsIcon,
 		CdsSpinner,

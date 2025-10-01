@@ -38,7 +38,7 @@ Avatares são componentes utilizados para exibir representações visuais de usu
 ## Props
 
 <APITable
-	name="Avatar"
+	name="CdsAvatar"
 	section="props"
 />
 <br>
@@ -46,7 +46,7 @@ Avatares são componentes utilizados para exibir representações visuais de usu
 ## Slots
 
 <APITable
-	name="Avatar"
+	name="CdsAvatar"
 	section="slots"
 />
 

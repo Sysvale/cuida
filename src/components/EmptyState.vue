@@ -54,7 +54,7 @@ const predefinedColors = [
 ];
 
 export default {
-	name: 'EmptyState',
+	name: 'CdsEmptyState',
 	components: {
 		CdsButton,
 	},

@@ -48,7 +48,7 @@ import IconButton from './IconButton.vue';
 import { useInputStatusClasses } from '../utils/composables/useInputStatusClasses.js';
 import { longClickDirective } from '@sysvale/vue3-long-click';
 
-defineOptions({ name: 'MobileStepperInput' });
+defineOptions({ name: 'CdsMobileStepperInput' });
 
 const emits = defineEmits({
 	'add': null,

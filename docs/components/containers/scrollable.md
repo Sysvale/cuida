@@ -96,7 +96,7 @@
 ## Props
 
 <APITable
-	name="Scrollable"
+	name="CdsScrollable"
 	section="props"
 />
 <br>
@@ -104,7 +104,7 @@
 ## Slots
 
 <APITable
-	name="Scrollable"
+	name="CdsScrollable"
 	section="slots"
 />
 

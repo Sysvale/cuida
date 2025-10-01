@@ -65,21 +65,21 @@ Descrição detalhada do componente...
 ## Props
 
 <APITable
-	name="ComponentName"
+	name="CdsComponentName"
 	section="props"
 />
 
 ## Eventos
 
 <APITable
-	name="ComponentName"  
+	name="CdsComponentName"  
 	section="events"
 />
 
 ## Slots
 
 <APITable
-	name="ComponentName"
+	name="CdsComponentName"
 	section="slots"
 />
 

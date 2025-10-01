@@ -30,7 +30,7 @@
 ## Props
 
 <APITable
-	name="PinInput"
+	name="CdsPinInput"
 	section="props"
 />
 <br>

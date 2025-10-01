@@ -71,7 +71,7 @@
 ## Props
 
 <APITable
-	name="AppBar"
+	name="CdsAppBar"
 	section="props"
 />
 <br>
@@ -79,7 +79,7 @@
 ## Events
 
 <APITable
-	name="AppBar"
+	name="CdsAppBar"
 	section="events"
 />
 

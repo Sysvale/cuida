@@ -55,7 +55,7 @@
 import cloneDeep from 'lodash.clonedeep';
 
 export default {
-	name: 'ActionsList',
+	name: 'CdsActionsList',
 	props: {
 		/**
 		* A lista de actions a ser renderizada. Caso queira que um item da lista fique desabilitado, basta passar a prop `disabled` como true nesse item no array.

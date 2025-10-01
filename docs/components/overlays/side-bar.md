@@ -85,7 +85,7 @@
 ## Props
 
 <APITable
-	name="SideBar"
+	name="CdsSideBar"
 	section="props"
 />
 <br>
@@ -93,7 +93,7 @@
 ## Eventos
 
 <APITable
-	name="SideBar"
+	name="CdsSideBar"
 	section="events"
 />
 <br>
@@ -101,7 +101,7 @@
 ## Slots
 
 <APITable
-	name="SideBar"
+	name="CdsSideBar"
 	section="slots"
 />
 

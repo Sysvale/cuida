@@ -59,7 +59,7 @@
 ## Props
 
 <APITable
-	name="MobileNavigation"
+	name="CdsMobileNavigation"
 	section="props"
 />
 <br>
@@ -67,7 +67,7 @@
 ## Eventos
 
 <APITable
-	name="MobileNavigation"
+	name="CdsMobileNavigation"
 	section="events"
 />
 <br>
@@ -75,7 +75,7 @@
 ## Slots
 
 <APITable
-	name="MobileNavigation"
+	name="CdsMobileNavigation"
 	section="slots"
 />
 

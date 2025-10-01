@@ -32,7 +32,7 @@ import isDeviceType from '../utils/methods/isDeviceType';
 import { colorOptions } from '../utils/constants/colors';
 import CdsButton from './Button.vue';
 
-defineOptions({ name: 'InteractionBlockingOverlay' });
+defineOptions({ name: 'CdsInteractionBlockingOverlay' });
 
 // Props
 const props = defineProps({

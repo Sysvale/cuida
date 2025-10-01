@@ -51,7 +51,7 @@ Actions lists são componentes usados para mostrar uma lista de ações em linha
 ## Props
 
 <APITable
-	name="ActionsList"
+	name="CdsActionsList"
 	section="props"
 />
 <br>
@@ -59,7 +59,7 @@ Actions lists são componentes usados para mostrar uma lista de ações em linha
 ## Eventos
 
 <APITable
-	name="ActionsList"
+	name="CdsActionsList"
 	section="events"
 />
 <br>
@@ -67,7 +67,7 @@ Actions lists são componentes usados para mostrar uma lista de ações em linha
 ## Slots
 
 <APITable
-	name="ActionsList"
+	name="CdsActionsList"
 	section="slots"
 />
 

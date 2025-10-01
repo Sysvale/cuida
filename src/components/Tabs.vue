@@ -74,7 +74,7 @@ import CdsIcon from '../components/Icon.vue';
 import { colorOptions, colorHexCode } from '../utils/constants/colors';
 
 export default {
-	name: 'Tabs',
+	name: 'CdsTabs',
 	components: {
 		CdsIcon,
 	},

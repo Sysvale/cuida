@@ -43,7 +43,7 @@
 ## Props
 
 <APITable
-	name="LineChart"
+	name="CdsLineChart"
 	section="props"
 />
 <br>

@@ -23,7 +23,7 @@ Chart.register(...registerables);
 
 
 export default {
-	name: 'PieChart',
+	name: 'CdsPieChart',
 	components: {
 		Pie,
 	},

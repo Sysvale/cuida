@@ -32,7 +32,7 @@ import { ref, computed, nextTick, watch } from 'vue';
 import CdsFlatButton from './FlatButton.vue';
 import CdsFlexbox from './Flexbox.vue';
 
-defineOptions({ name: 'TruncateContainer' });
+defineOptions({ name: 'CdsTruncateContainer' });
 
 const props = defineProps({
 	/**

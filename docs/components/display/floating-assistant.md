@@ -62,7 +62,7 @@
 ## Props
 
 <APITable
-	name="FloatingAssistant"
+	name="CdsFloatingAssistant"
 	section="props"
 />
 <br>
@@ -70,7 +70,7 @@
 ## Eventos
 
 <APITable
-	name="FloatingAssistant"
+	name="CdsFloatingAssistant"
 	section="events"
 />
 <br>
@@ -78,7 +78,7 @@
 ## Slots
 
 <APITable
-	name="FloatingAssistant"
+	name="CdsFloatingAssistant"
 	section="slots"
 />
 

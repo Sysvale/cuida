@@ -21,7 +21,7 @@
 
 <script>
 export default {
-	name: 'Divider',
+	name: 'CdsDivider',
 	props: {
 		/**
 		 * Texto renderizado em cima ou ao lado do Divider

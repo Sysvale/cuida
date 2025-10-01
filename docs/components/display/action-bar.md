@@ -49,7 +49,7 @@ ActionBars são barras de ferramentas que podem exibir ações e informações p
 ## Props
 
 <APITable
-	name="ActionBar"
+	name="CdsActionBar"
 	section="props"
 />
 <br>
@@ -57,7 +57,7 @@ ActionBars são barras de ferramentas que podem exibir ações e informações p
 ## Eventos
 
 <APITable
-	name="ActionBar"
+	name="CdsActionBar"
 	section="events"
 />
 <br>
@@ -65,7 +65,7 @@ ActionBars são barras de ferramentas que podem exibir ações e informações p
 ## Slots
 
 <APITable
-	name="ActionBar"
+	name="CdsActionBar"
 	section="slots"
 />
 

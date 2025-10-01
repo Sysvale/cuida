@@ -41,7 +41,7 @@
 ## Props
 
 <APITable
-	name="CarouselController"
+	name="CdsCarouselController"
 	section="props"
 />
 <br>
@@ -49,7 +49,7 @@
 ## Eventos
 
 <APITable
-	name="CarouselController"
+	name="CdsCarouselController"
 	section="events"
 />
 <br>

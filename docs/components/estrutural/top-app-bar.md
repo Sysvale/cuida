@@ -58,7 +58,7 @@
 ## Props
 
 <APITable
-	name="TopAppBar"
+	name="CdsTopAppBar"
 	section="props"
 />
 <br>
@@ -66,7 +66,7 @@
 ## Eventos
 
 <APITable
-	name="TopAppBar"
+	name="CdsTopAppBar"
 	section="events"
 />
 <br>
@@ -74,7 +74,7 @@
 ## Slots
 
 <APITable
-	name="TopAppBar"
+	name="CdsTopAppBar"
 	section="slots"
 />
 

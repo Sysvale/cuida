@@ -53,7 +53,7 @@ o gráfico é gerado no modo monocromático, com as shades de variant mudando pa
 ## Props
 
 <APITable
-	name="StackedBarChart"
+	name="CdsStackedBarChart"
 	section="props"
 />
 <br>

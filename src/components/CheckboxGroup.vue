@@ -38,7 +38,7 @@ import CdsCheckbox from './Checkbox.vue';
 import variantClassResolver from '../utils/methods/variantClassResolver';
 import variantValidator from '../utils/validators/variant';
 
-defineOptions({ name: 'CheckboxGroup' });
+defineOptions({ name: 'CdsCheckboxGroup' });
 
 const props = defineProps({
 	/**

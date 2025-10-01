@@ -42,7 +42,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 ## Props
 
 <APITable
-	name="DialogModal"
+	name="CdsDialogModal"
 	section="props"
 />
 <br>
@@ -50,7 +50,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 ## Eventos
 
 <APITable
-	name="DialogModal"
+	name="CdsDialogModal"
 	section="events"
 />
 <br>

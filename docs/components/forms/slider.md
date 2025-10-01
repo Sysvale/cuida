@@ -49,7 +49,7 @@ leitura da documentação.
 ## Props
 
 <APITable
-	name="Slider"
+	name="CdsSlider"
 	section="props"
 />
 <br>
@@ -57,7 +57,7 @@ leitura da documentação.
 ## Eventos
 
 <APITable
-	name="Slider"
+	name="CdsSlider"
 	section="events"
 />
 <br>
@@ -65,7 +65,7 @@ leitura da documentação.
 ## Slots
 
 <APITable
-	name="Slider"
+	name="CdsSlider"
 	section="slots"
 />
 

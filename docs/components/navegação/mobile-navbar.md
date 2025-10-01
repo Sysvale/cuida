@@ -43,7 +43,7 @@
 ## Props
 
 <APITable
-	name="MobileNavbar"
+	name="CdsMobileNavbar"
 	section="props"
 />
 <br>
@@ -51,7 +51,7 @@
 ## Eventos
 
 <APITable
-	name="MobileNavbar"
+	name="CdsMobileNavbar"
 	section="events"
 />
 <br>

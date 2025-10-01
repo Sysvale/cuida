@@ -39,7 +39,7 @@
 import CdsChevron from './Chevron.vue';
 
 export default {
-	name: 'Dropdown',
+	name: 'CdsDropdown',
 	components: {
 		CdsChevron,
 	},

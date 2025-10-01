@@ -39,7 +39,7 @@ Alerts s√£o componentes utilizados para prover feedbacks contextuais e notifica√
 ## Props
 
 <APITable
-	name="Alert"
+	name="CdsAlert"
 	section="props"
 />
 <br>
@@ -47,7 +47,7 @@ Alerts s√£o componentes utilizados para prover feedbacks contextuais e notifica√
 ## Eventos
 
 <APITable
-	name="Alert"
+	name="CdsAlert"
 	section="events"
 />
 <br>
@@ -55,7 +55,7 @@ Alerts s√£o componentes utilizados para prover feedbacks contextuais e notifica√
 ## Slots
 
 <APITable
-	name="Alert"
+	name="CdsAlert"
 	section="slots"
 />
 

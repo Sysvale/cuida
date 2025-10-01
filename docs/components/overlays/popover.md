@@ -76,7 +76,7 @@
 ## Props
 
 <APITable
-	name="Popover"
+	name="CdsPopover"
 	section="props"
 />
 <br>
@@ -84,7 +84,7 @@
 ## Eventos
 
 <APITable
-	name="Popover"
+	name="CdsPopover"
 	section="events"
 />
 <br>
@@ -92,7 +92,7 @@
 ## Slots
 
 <APITable
-	name="Popover"
+	name="CdsPopover"
 	section="slots"
 />
 

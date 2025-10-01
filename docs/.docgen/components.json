@@ -1,6 +1,6 @@
 {
-  "ActionBar": {
-    "displayName": "ActionBar",
+  "CdsActionBar": {
+    "displayName": "CdsActionBar",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -96,8 +96,8 @@
       "src/components/ActionBar.vue"
     ]
   },
-  "ActionsList": {
-    "displayName": "ActionsList",
+  "CdsActionsList": {
+    "displayName": "CdsActionsList",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -168,8 +168,8 @@
       "src/components/ActionsList.vue"
     ]
   },
-  "Alert": {
-    "displayName": "Alert",
+  "CdsAlert": {
+    "displayName": "CdsAlert",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -237,8 +237,8 @@
       "src/components/Alert.vue"
     ]
   },
-  "AlertCard": {
-    "displayName": "AlertCard",
+  "CdsAlertCard": {
+    "displayName": "CdsAlertCard",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -358,8 +358,8 @@
       "src/components/AlertCard.vue"
     ]
   },
-  "AppBar": {
-    "displayName": "AppBar",
+  "CdsAppBar": {
+    "displayName": "CdsAppBar",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -521,8 +521,8 @@
       "src/components/AppBar.vue"
     ]
   },
-  "Avatar": {
-    "displayName": "Avatar",
+  "CdsAvatar": {
+    "displayName": "CdsAvatar",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -622,8 +622,8 @@
       "src/components/Avatar.vue"
     ]
   },
-  "AvatarGroup": {
-    "displayName": "AvatarGroup",
+  "CdsAvatarGroup": {
+    "displayName": "CdsAvatarGroup",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -672,8 +672,8 @@
       "src/components/AvatarGroup.vue"
     ]
   },
-  "Badge": {
-    "displayName": "Badge",
+  "CdsBadge": {
+    "displayName": "CdsBadge",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -752,8 +752,8 @@
       "src/components/Badge.vue"
     ]
   },
-  "BarChart": {
-    "displayName": "BarChart",
+  "CdsBarChart": {
+    "displayName": "CdsBarChart",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -830,8 +830,8 @@
       "src/components/BarChart.vue"
     ]
   },
-  "BaseInput": {
-    "name": "BaseInput",
+  "CdsBaseInput": {
+    "name": "CdsBaseInput",
     "exportName": "default",
     "displayName": "BaseInput",
     "description": "",
@@ -1169,8 +1169,8 @@
       "src/components/BaseInput.vue"
     ]
   },
-  "BaseMobileInput": {
-    "name": "BaseMobileInput",
+  "CdsBaseMobileInput": {
+    "name": "CdsBaseMobileInput",
     "exportName": "default",
     "displayName": "BaseMobileInput",
     "description": "",
@@ -1424,8 +1424,8 @@
       "src/components/BaseMobileInput.vue"
     ]
   },
-  "BottomSheet": {
-    "name": "BottomSheet",
+  "CdsBottomSheet": {
+    "name": "CdsBottomSheet",
     "exportName": "default",
     "displayName": "BottomSheet",
     "description": "",
@@ -1484,8 +1484,8 @@
       "src/components/BottomSheet.vue"
     ]
   },
-  "Box": {
-    "displayName": "Box",
+  "CdsBox": {
+    "displayName": "CdsBox",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -1613,8 +1613,8 @@
       "src/components/Box.vue"
     ]
   },
-  "Breadcrumb": {
-    "displayName": "Breadcrumb",
+  "CdsBreadcrumb": {
+    "displayName": "CdsBreadcrumb",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -1636,8 +1636,8 @@
       "src/components/Breadcrumb.vue"
     ]
   },
-  "Button": {
-    "displayName": "Button",
+  "CdsButton": {
+    "displayName": "CdsButton",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -1790,8 +1790,8 @@
       "src/components/Button.vue"
     ]
   },
-  "CalloutCard": {
-    "displayName": "CalloutCard",
+  "CdsCalloutCard": {
+    "displayName": "CdsCalloutCard",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -1938,8 +1938,8 @@
       "src/components/CalloutCard.vue"
     ]
   },
-  "Card": {
-    "name": "Card",
+  "CdsCard": {
+    "name": "CdsCard",
     "exportName": "default",
     "displayName": "Card",
     "description": "",
@@ -2086,8 +2086,8 @@
       "src/components/Card.vue"
     ]
   },
-  "Carousel": {
-    "name": "Carousel",
+  "CdsCarousel": {
+    "name": "CdsCarousel",
     "exportName": "default",
     "displayName": "Carousel",
     "description": "",
@@ -2197,8 +2197,8 @@
       "src/components/Carousel.vue"
     ]
   },
-  "CarouselController": {
-    "displayName": "CarouselController",
+  "CdsCarouselController": {
+    "displayName": "CdsCarouselController",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -2314,8 +2314,8 @@
       "src/components/CarouselController.vue"
     ]
   },
-  "Checkbox": {
-    "displayName": "Checkbox",
+  "CdsCheckbox": {
+    "displayName": "CdsCheckbox",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -2425,8 +2425,8 @@
       "src/components/Checkbox.vue"
     ]
   },
-  "CheckboxGroup": {
-    "name": "CheckboxGroup",
+  "CdsCheckboxGroup": {
+    "name": "CdsCheckboxGroup",
     "exportName": "default",
     "displayName": "CheckboxGroup",
     "description": "",
@@ -2549,8 +2549,8 @@
       "src/components/CheckboxGroup.vue"
     ]
   },
-  "Chevron": {
-    "displayName": "Chevron",
+  "CdsChevron": {
+    "displayName": "CdsChevron",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -2617,8 +2617,8 @@
       "src/components/Chevron.vue"
     ]
   },
-  "Chip": {
-    "name": "Chip",
+  "CdsChip": {
+    "name": "CdsChip",
     "exportName": "default",
     "displayName": "Chip",
     "description": "",
@@ -2702,8 +2702,8 @@
       "src/components/Chip.vue"
     ]
   },
-  "Clickable": {
-    "displayName": "Clickable",
+  "CdsClickable": {
+    "displayName": "CdsClickable",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -2753,8 +2753,8 @@
       "src/components/Clickable.vue"
     ]
   },
-  "CollapsibleContainer": {
-    "displayName": "CollapsibleContainer",
+  "CdsCollapsibleContainer": {
+    "displayName": "CdsCollapsibleContainer",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -2808,8 +2808,8 @@
       "src/components/CollapsibleContainer.vue"
     ]
   },
-  "ColorPicker": {
-    "displayName": "ColorPicker",
+  "CdsColorPicker": {
+    "displayName": "CdsColorPicker",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -2891,8 +2891,8 @@
       "src/components/ColorPicker.vue"
     ]
   },
-  "ComboBox": {
-    "name": "ComboBox",
+  "CdsComboBox": {
+    "name": "CdsComboBox",
     "exportName": "default",
     "displayName": "ComboBox",
     "description": "",
@@ -3066,8 +3066,8 @@
       "src/components/ComboBox.vue"
     ]
   },
-  "DashboardCard": {
-    "displayName": "DashboardCard",
+  "CdsDashboardCard": {
+    "displayName": "CdsDashboardCard",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -3156,8 +3156,8 @@
       "src/components/DashboardCard.vue"
     ]
   },
-  "DataTable": {
-    "name": "DataTable",
+  "CdsDataTable": {
+    "name": "CdsDataTable",
     "exportName": "default",
     "displayName": "DataTable",
     "description": "",
@@ -3443,8 +3443,8 @@
       "src/components/DataTable.vue"
     ]
   },
-  "DateInput": {
-    "name": "DateInput",
+  "CdsDateInput": {
+    "name": "CdsDateInput",
     "exportName": "default",
     "displayName": "DateInput",
     "description": "",
@@ -3762,8 +3762,8 @@
       "src/components/DateInput.vue"
     ]
   },
-  "Dialog": {
-    "displayName": "Dialog",
+  "CdsDialog": {
+    "displayName": "CdsDialog",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -3934,8 +3934,8 @@
       "src/components/Dialog.vue"
     ]
   },
-  "DialogModal": {
-    "displayName": "DialogModal",
+  "CdsDialogModal": {
+    "displayName": "CdsDialogModal",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -4064,8 +4064,8 @@
       "src/components/DialogModal.vue"
     ]
   },
-  "Divider": {
-    "displayName": "Divider",
+  "CdsDivider": {
+    "displayName": "CdsDivider",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -4141,8 +4141,8 @@
       "src/components/Divider.vue"
     ]
   },
-  "DonutChart": {
-    "displayName": "DonutChart",
+  "CdsDonutChart": {
+    "displayName": "CdsDonutChart",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -4237,8 +4237,8 @@
       "src/components/DonutChart.vue"
     ]
   },
-  "Dropdown": {
-    "displayName": "Dropdown",
+  "CdsDropdown": {
+    "displayName": "CdsDropdown",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -4311,8 +4311,8 @@
       "src/components/Dropdown.vue"
     ]
   },
-  "DropdownButton": {
-    "displayName": "DropdownButton",
+  "CdsDropdownButton": {
+    "displayName": "CdsDropdownButton",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -4438,8 +4438,8 @@
       "src/components/DropdownButton.vue"
     ]
   },
-  "DynamicInputList": {
-    "name": "DynamicInputList",
+  "CdsDynamicInputList": {
+    "name": "CdsDynamicInputList",
     "exportName": "default",
     "displayName": "DynamicInputList",
     "description": "",
@@ -4589,8 +4589,8 @@
       "src/components/DynamicInputList.vue"
     ]
   },
-  "EmptyState": {
-    "displayName": "EmptyState",
+  "CdsEmptyState": {
+    "displayName": "CdsEmptyState",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -4712,8 +4712,8 @@
       "src/components/EmptyState.vue"
     ]
   },
-  "FileInput": {
-    "displayName": "FileInput",
+  "CdsFileInput": {
+    "displayName": "CdsFileInput",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -4825,8 +4825,8 @@
       "src/components/FileInput.vue"
     ]
   },
-  "FileViewer": {
-    "name": "FileViewer",
+  "CdsFileViewer": {
+    "name": "CdsFileViewer",
     "exportName": "default",
     "displayName": "FileViewer",
     "description": "",
@@ -4905,8 +4905,8 @@
       "src/components/FileViewer.vue"
     ]
   },
-  "FilterSelect": {
-    "displayName": "FilterSelect",
+  "CdsFilterSelect": {
+    "displayName": "CdsFilterSelect",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -5043,8 +5043,8 @@
       "src/components/FilterSelect.vue"
     ]
   },
-  "FlatButton": {
-    "name": "FlatButton",
+  "CdsFlatButton": {
+    "name": "CdsFlatButton",
     "exportName": "default",
     "displayName": "FlatButton",
     "description": "",
@@ -5117,8 +5117,8 @@
       "src/components/FlatButton.vue"
     ]
   },
-  "Flexbox": {
-    "name": "Flexbox",
+  "CdsFlexbox": {
+    "name": "CdsFlexbox",
     "exportName": "default",
     "displayName": "Flexbox",
     "description": "",
@@ -5254,8 +5254,8 @@
       "src/components/Flexbox.vue"
     ]
   },
-  "FloatingActionButton": {
-    "name": "FloatingActionButton",
+  "CdsFloatingActionButton": {
+    "name": "CdsFloatingActionButton",
     "exportName": "default",
     "displayName": "FloatingActionButton",
     "description": "",
@@ -5337,8 +5337,8 @@
       "src/components/FloatingActionButton.vue"
     ]
   },
-  "FloatingAssistant": {
-    "displayName": "FloatingAssistant",
+  "CdsFloatingAssistant": {
+    "displayName": "CdsFloatingAssistant",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -5455,8 +5455,8 @@
       "src/components/FloatingAssistant.vue"
     ]
   },
-  "GaugeChart": {
-    "displayName": "GaugeChart",
+  "CdsGaugeChart": {
+    "displayName": "CdsGaugeChart",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -5550,8 +5550,8 @@
       "src/components/GaugeChart.vue"
     ]
   },
-  "Grid": {
-    "name": "Grid",
+  "CdsGrid": {
+    "name": "CdsGrid",
     "exportName": "default",
     "displayName": "Grid",
     "description": "",
@@ -5679,8 +5679,8 @@
       "src/components/Grid.vue"
     ]
   },
-  "GridItem": {
-    "name": "GridItem",
+  "CdsGridItem": {
+    "name": "CdsGridItem",
     "exportName": "default",
     "displayName": "GridItem",
     "description": "",
@@ -5807,8 +5807,8 @@
       "src/components/GridItem.vue"
     ]
   },
-  "Highlight": {
-    "displayName": "Highlight",
+  "CdsHighlight": {
+    "displayName": "CdsHighlight",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -5896,8 +5896,8 @@
       "src/components/Highlight.vue"
     ]
   },
-  "Icon": {
-    "displayName": "Icon",
+  "CdsIcon": {
+    "displayName": "CdsIcon",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -5967,8 +5967,8 @@
       "src/components/Icon.vue"
     ]
   },
-  "IconButton": {
-    "displayName": "IconButton",
+  "CdsIconButton": {
+    "displayName": "CdsIconButton",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -6085,8 +6085,8 @@
       "src/components/IconButton.vue"
     ]
   },
-  "Image": {
-    "name": "Image",
+  "CdsImage": {
+    "name": "CdsImage",
     "exportName": "default",
     "displayName": "Image",
     "description": "",
@@ -6204,8 +6204,8 @@
       "src/components/Image.vue"
     ]
   },
-  "InlineDateInput": {
-    "displayName": "InlineDateInput",
+  "CdsInlineDateInput": {
+    "displayName": "CdsInlineDateInput",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -6355,8 +6355,8 @@
       "src/components/InlineDateInput.vue"
     ]
   },
-  "InnerTabs": {
-    "name": "InnerTabs",
+  "CdsInnerTabs": {
+    "name": "CdsInnerTabs",
     "exportName": "default",
     "displayName": "InnerTabs",
     "description": "",
@@ -6458,8 +6458,8 @@
       "src/components/InnerTabs.vue"
     ]
   },
-  "InteractionBlockingOverlay": {
-    "name": "InteractionBlockingOverlay",
+  "CdsInteractionBlockingOverlay": {
+    "name": "CdsInteractionBlockingOverlay",
     "exportName": "default",
     "displayName": "InteractionBlockingOverlay",
     "description": "",
@@ -6555,8 +6555,8 @@
       "src/components/InteractionBlockingOverlay.vue"
     ]
   },
-  "Label": {
-    "name": "Label",
+  "CdsLabel": {
+    "name": "CdsLabel",
     "exportName": "default",
     "displayName": "Label",
     "description": "",
@@ -6661,8 +6661,8 @@
       "src/components/Label.vue"
     ]
   },
-  "LineChart": {
-    "displayName": "LineChart",
+  "CdsLineChart": {
+    "displayName": "CdsLineChart",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -6849,8 +6849,8 @@
       "src/components/LineChart.vue"
     ]
   },
-  "Link": {
-    "displayName": "Link",
+  "CdsLink": {
+    "displayName": "CdsLink",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -6928,8 +6928,8 @@
       "src/components/Link.vue"
     ]
   },
-  "List": {
-    "name": "List",
+  "CdsList": {
+    "name": "CdsList",
     "exportName": "default",
     "displayName": "List",
     "description": "",
@@ -7017,8 +7017,8 @@
       "src/components/List.vue"
     ]
   },
-  "LoadingBar": {
-    "displayName": "LoadingBar",
+  "CdsLoadingBar": {
+    "displayName": "CdsLoadingBar",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -7026,8 +7026,8 @@
       "src/components/LoadingBar.vue"
     ]
   },
-  "LoadingIndicator": {
-    "name": "LoadingIndicator",
+  "CdsLoadingIndicator": {
+    "name": "CdsLoadingIndicator",
     "exportName": "default",
     "displayName": "LoadingIndicator",
     "description": "",
@@ -7085,8 +7085,8 @@
       "src/components/LoadingIndicator.vue"
     ]
   },
-  "MobileNavbar": {
-    "name": "MobileNavbar",
+  "CdsMobileNavbar": {
+    "name": "CdsMobileNavbar",
     "exportName": "default",
     "displayName": "MobileNavbar",
     "description": "",
@@ -7157,8 +7157,8 @@
       "src/components/MobileNavbar.vue"
     ]
   },
-  "MobileNavigation": {
-    "name": "MobileNavigation",
+  "CdsMobileNavigation": {
+    "name": "CdsMobileNavigation",
     "exportName": "default",
     "displayName": "MobileNavigation",
     "description": "",
@@ -7294,8 +7294,8 @@
       "src/components/MobileNavigation.vue"
     ]
   },
-  "MobileStepperInput": {
-    "name": "MobileStepperInput",
+  "CdsMobileStepperInput": {
+    "name": "CdsMobileStepperInput",
     "exportName": "default",
     "displayName": "MobileStepperInput",
     "description": "",
@@ -7318,8 +7318,8 @@
       "src/components/MobileStepperInput.vue"
     ]
   },
-  "Modal": {
-    "displayName": "Modal",
+  "CdsModal": {
+    "displayName": "CdsModal",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -7568,8 +7568,8 @@
       "src/components/Modal.vue"
     ]
   },
-  "MonthAndYearPicker": {
-    "name": "MonthAndYearPicker",
+  "CdsMonthAndYearPicker": {
+    "name": "CdsMonthAndYearPicker",
     "exportName": "default",
     "displayName": "MonthAndYearPicker",
     "description": "",
@@ -7794,8 +7794,8 @@
       "src/components/MonthAndYearPicker.vue"
     ]
   },
-  "MultiFileInput": {
-    "name": "MultiFileInput",
+  "CdsMultiFileInput": {
+    "name": "CdsMultiFileInput",
     "exportName": "default",
     "displayName": "MultiFileInput",
     "description": "",
@@ -7865,8 +7865,8 @@
       "src/components/MultiFileInput.vue"
     ]
   },
-  "Multiselect": {
-    "displayName": "Multiselect",
+  "CdsMultiselect": {
+    "displayName": "CdsMultiselect",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -8109,8 +8109,8 @@
       "src/components/Multiselect.vue"
     ]
   },
-  "NavBar": {
-    "displayName": "NavBar",
+  "CdsNavBar": {
+    "displayName": "CdsNavBar",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -8179,8 +8179,8 @@
       "src/components/NavBar.vue"
     ]
   },
-  "NumberInput": {
-    "name": "NumberInput",
+  "CdsNumberInput": {
+    "name": "CdsNumberInput",
     "exportName": "default",
     "displayName": "NumberInput",
     "description": "",
@@ -8449,8 +8449,8 @@
       "src/components/NumberInput.vue"
     ]
   },
-  "OverlayLoader": {
-    "displayName": "OverlayLoader",
+  "CdsOverlayLoader": {
+    "displayName": "CdsOverlayLoader",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -8501,8 +8501,8 @@
       "src/components/OverlayLoader.vue"
     ]
   },
-  "PageContainer": {
-    "displayName": "PageContainer",
+  "CdsPageContainer": {
+    "displayName": "CdsPageContainer",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -8515,8 +8515,8 @@
       "src/components/PageContainer.vue"
     ]
   },
-  "PageHeader": {
-    "displayName": "PageHeader",
+  "CdsPageHeader": {
+    "displayName": "CdsPageHeader",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -8561,8 +8561,8 @@
       "src/components/PageHeader.vue"
     ]
   },
-  "PageLayout": {
-    "name": "PageLayout",
+  "CdsPageLayout": {
+    "name": "CdsPageLayout",
     "exportName": "default",
     "displayName": "PageLayout",
     "description": "",
@@ -8744,8 +8744,8 @@
       "src/components/PageLayout.vue"
     ]
   },
-  "Pagination": {
-    "name": "Pagination",
+  "CdsPagination": {
+    "name": "CdsPagination",
     "exportName": "default",
     "displayName": "Pagination",
     "description": "",
@@ -8813,8 +8813,8 @@
       "src/components/Pagination.vue"
     ]
   },
-  "PanelCard": {
-    "displayName": "PanelCard",
+  "CdsPanelCard": {
+    "displayName": "CdsPanelCard",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -8861,8 +8861,8 @@
       "src/components/PanelCard.vue"
     ]
   },
-  "PasswordInput": {
-    "displayName": "PasswordInput",
+  "CdsPasswordInput": {
+    "displayName": "CdsPasswordInput",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -9017,8 +9017,8 @@
       "src/components/PasswordInput.vue"
     ]
   },
-  "PieChart": {
-    "displayName": "PieChart",
+  "CdsPieChart": {
+    "displayName": "CdsPieChart",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -9088,8 +9088,8 @@
       "src/components/PieChart.vue"
     ]
   },
-  "PinInput": {
-    "displayName": "PinInput",
+  "CdsPinInput": {
+    "displayName": "CdsPinInput",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -9167,8 +9167,8 @@
       "src/components/PinInput.vue"
     ]
   },
-  "PolarAreaChart": {
-    "displayName": "PolarAreaChart",
+  "CdsPolarAreaChart": {
+    "displayName": "CdsPolarAreaChart",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -9238,8 +9238,8 @@
       "src/components/PolarAreaChart.vue"
     ]
   },
-  "Popover": {
-    "displayName": "Popover",
+  "CdsPopover": {
+    "displayName": "CdsPopover",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -9343,8 +9343,8 @@
       "src/components/Popover.vue"
     ]
   },
-  "ProgressBar": {
-    "name": "ProgressBar",
+  "CdsProgressBar": {
+    "name": "CdsProgressBar",
     "exportName": "default",
     "displayName": "ProgressBar",
     "description": "",
@@ -9428,8 +9428,8 @@
       "src/components/ProgressBar.vue"
     ]
   },
-  "ProgressCircular": {
-    "displayName": "ProgressCircular",
+  "CdsProgressCircular": {
+    "displayName": "CdsProgressCircular",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -9540,8 +9540,8 @@
       "src/components/ProgressCircular.vue"
     ]
   },
-  "Pulsar": {
-    "displayName": "Pulsar",
+  "CdsPulsar": {
+    "displayName": "CdsPulsar",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -9613,8 +9613,8 @@
       "src/components/Pulsar.vue"
     ]
   },
-  "QuickActionBar": {
-    "name": "QuickActionBar",
+  "CdsQuickActionBar": {
+    "name": "CdsQuickActionBar",
     "exportName": "default",
     "displayName": "QuickActionBar",
     "description": "",
@@ -9833,8 +9833,8 @@
       "src/components/QuickActionBar.vue"
     ]
   },
-  "RadialBarChart": {
-    "displayName": "RadialBarChart",
+  "CdsRadialBarChart": {
+    "displayName": "CdsRadialBarChart",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -9926,8 +9926,8 @@
       "src/components/RadialBarChart.vue"
     ]
   },
-  "Radio": {
-    "displayName": "Radio",
+  "CdsRadio": {
+    "displayName": "CdsRadio",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -10024,8 +10024,8 @@
       "src/components/Radio.vue"
     ]
   },
-  "RadioButtonGroup": {
-    "name": "RadioButtonGroup",
+  "CdsRadioButtonGroup": {
+    "name": "CdsRadioButtonGroup",
     "exportName": "default",
     "displayName": "RadioButtonGroup",
     "description": "",
@@ -10222,8 +10222,8 @@
       "src/components/RadioButtonGroup.vue"
     ]
   },
-  "RequiredIndicator": {
-    "name": "RequiredIndicator",
+  "CdsRequiredIndicator": {
+    "name": "CdsRequiredIndicator",
     "exportName": "default",
     "displayName": "RequiredIndicator",
     "description": "",
@@ -10232,8 +10232,8 @@
       "src/components/RequiredIndicator.vue"
     ]
   },
-  "RichTooltip": {
-    "displayName": "RichTooltip",
+  "CdsRichTooltip": {
+    "displayName": "CdsRichTooltip",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -10330,8 +10330,8 @@
       "src/components/RichTooltip.vue"
     ]
   },
-  "Scrollable": {
-    "displayName": "Scrollable",
+  "CdsScrollable": {
+    "displayName": "CdsScrollable",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -10381,8 +10381,8 @@
       "src/components/Scrollable.vue"
     ]
   },
-  "SearchInput": {
-    "name": "SearchInput",
+  "CdsSearchInput": {
+    "name": "CdsSearchInput",
     "exportName": "default",
     "displayName": "SearchInput",
     "description": "",
@@ -10468,8 +10468,8 @@
       "src/components/SearchInput.vue"
     ]
   },
-  "SecondaryNavigation": {
-    "name": "SecondaryNavigation",
+  "CdsSecondaryNavigation": {
+    "name": "CdsSecondaryNavigation",
     "exportName": "default",
     "displayName": "SecondaryNavigation",
     "description": "",
@@ -10515,8 +10515,8 @@
       "src/components/SecondaryNavigation.vue"
     ]
   },
-  "SegmentedControl": {
-    "displayName": "SegmentedControl",
+  "CdsSegmentedControl": {
+    "displayName": "CdsSegmentedControl",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -10576,8 +10576,8 @@
       "src/components/SegmentedControl.vue"
     ]
   },
-  "Select": {
-    "name": "Select",
+  "CdsSelect": {
+    "name": "CdsSelect",
     "exportName": "default",
     "displayName": "Select",
     "description": "",
@@ -10894,8 +10894,8 @@
       "src/components/Select.vue"
     ]
   },
-  "SideBar": {
-    "name": "SideBar",
+  "CdsSideBar": {
+    "name": "CdsSideBar",
     "exportName": "default",
     "displayName": "SideBar",
     "description": "",
@@ -11100,8 +11100,8 @@
       "src/components/SideBar.vue"
     ]
   },
-  "SideSheet": {
-    "displayName": "SideSheet",
+  "CdsSideSheet": {
+    "displayName": "CdsSideSheet",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -11360,8 +11360,8 @@
       "src/components/SideSheet.vue"
     ]
   },
-  "Skeleton": {
-    "displayName": "Skeleton",
+  "CdsSkeleton": {
+    "displayName": "CdsSkeleton",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -11420,8 +11420,8 @@
       "src/components/Skeleton.vue"
     ]
   },
-  "SkeletonText": {
-    "displayName": "SkeletonText",
+  "CdsSkeletonText": {
+    "displayName": "CdsSkeletonText",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -11449,8 +11449,8 @@
       "src/components/SkeletonText.vue"
     ]
   },
-  "Slider": {
-    "displayName": "Slider",
+  "CdsSlider": {
+    "displayName": "CdsSlider",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -11544,7 +11544,7 @@
       "src/components/Slider.vue"
     ]
   },
-  "SliderNext": {
+  "CdsSliderNext": {
     "exportName": "default",
     "displayName": "SliderNext",
     "description": "",
@@ -11635,8 +11635,8 @@
       "src/components/SliderNext.vue"
     ]
   },
-  "Spacer": {
-    "displayName": "Spacer",
+  "CdsSpacer": {
+    "displayName": "CdsSpacer",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -11912,8 +11912,8 @@
       "src/components/Spacer.vue"
     ]
   },
-  "Spinner": {
-    "displayName": "Spinner",
+  "CdsSpinner": {
+    "displayName": "CdsSpinner",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -11975,8 +11975,8 @@
       "src/components/Spinner.vue"
     ]
   },
-  "StackedBarChart": {
-    "displayName": "StackedBarChart",
+  "CdsStackedBarChart": {
+    "displayName": "CdsStackedBarChart",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -12063,8 +12063,8 @@
       "src/components/StackedBarChart.vue"
     ]
   },
-  "Stepper": {
-    "displayName": "Stepper",
+  "CdsStepper": {
+    "displayName": "CdsStepper",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -12131,8 +12131,8 @@
       "src/components/Stepper.vue"
     ]
   },
-  "StepperInput": {
-    "name": "StepperInput",
+  "CdsStepperInput": {
+    "name": "CdsStepperInput",
     "exportName": "default",
     "displayName": "StepperInput",
     "description": "",
@@ -12328,8 +12328,8 @@
       "src/components/StepperInput.vue"
     ]
   },
-  "Switch": {
-    "name": "Switch",
+  "CdsSwitch": {
+    "name": "CdsSwitch",
     "exportName": "default",
     "displayName": "Switch",
     "description": "",
@@ -12457,8 +12457,8 @@
       "src/components/Switch.vue"
     ]
   },
-  "Table": {
-    "displayName": "Table",
+  "CdsTable": {
+    "displayName": "CdsTable",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -12661,8 +12661,8 @@
       "src/components/Table.vue"
     ]
   },
-  "Tabs": {
-    "displayName": "Tabs",
+  "CdsTabs": {
+    "displayName": "CdsTabs",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -12773,8 +12773,8 @@
       "src/components/Tabs.vue"
     ]
   },
-  "Text": {
-    "name": "Text",
+  "CdsText": {
+    "name": "CdsText",
     "exportName": "default",
     "displayName": "Text",
     "description": "",
@@ -12895,8 +12895,8 @@
       "src/components/Text.vue"
     ]
   },
-  "TextArea": {
-    "name": "TextArea",
+  "CdsTextArea": {
+    "name": "CdsTextArea",
     "exportName": "default",
     "displayName": "TextArea",
     "description": "",
@@ -13089,8 +13089,8 @@
       "src/components/TextArea.vue"
     ]
   },
-  "TextInput": {
-    "name": "TextInput",
+  "CdsTextInput": {
+    "name": "CdsTextInput",
     "exportName": "default",
     "displayName": "TextInput",
     "description": "",
@@ -13381,8 +13381,8 @@
       "src/components/TextInput.vue"
     ]
   },
-  "Tile": {
-    "name": "Tile",
+  "CdsTile": {
+    "name": "CdsTile",
     "exportName": "default",
     "displayName": "Tile",
     "description": "",
@@ -13495,8 +13495,8 @@
       "src/components/Tile.vue"
     ]
   },
-  "TimeInput": {
-    "displayName": "TimeInput",
+  "CdsTimeInput": {
+    "displayName": "CdsTimeInput",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -13613,8 +13613,8 @@
       "src/components/TimeInput.vue"
     ]
   },
-  "Timeline": {
-    "displayName": "Timeline",
+  "CdsTimeline": {
+    "displayName": "CdsTimeline",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -13641,8 +13641,8 @@
       "src/components/Timeline.vue"
     ]
   },
-  "TimelineItem": {
-    "displayName": "TimelineItem",
+  "CdsTimelineItem": {
+    "displayName": "CdsTimelineItem",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -13723,8 +13723,8 @@
       "src/components/TimelineItem.vue"
     ]
   },
-  "Toast": {
-    "name": "Toast",
+  "CdsToast": {
+    "name": "CdsToast",
     "exportName": "default",
     "displayName": "Toast",
     "description": "",
@@ -13832,8 +13832,8 @@
       "src/components/Toast.vue"
     ]
   },
-  "ToastContainer": {
-    "name": "ToastContainer",
+  "CdsToastContainer": {
+    "name": "CdsToastContainer",
     "exportName": "default",
     "displayName": "ToastContainer",
     "description": "",
@@ -13842,8 +13842,8 @@
       "src/components/ToastContainer.vue"
     ]
   },
-  "Tooltip": {
-    "name": "Tooltip",
+  "CdsTooltip": {
+    "name": "CdsTooltip",
     "exportName": "default",
     "displayName": "Tooltip",
     "description": "",
@@ -13937,8 +13937,8 @@
       "src/components/Tooltip.vue"
     ]
   },
-  "TopAppBar": {
-    "name": "TopAppBar",
+  "CdsTopAppBar": {
+    "name": "CdsTopAppBar",
     "exportName": "default",
     "displayName": "TopAppBar",
     "description": "",
@@ -14017,8 +14017,8 @@
       "src/components/TopAppBar.vue"
     ]
   },
-  "Truncate": {
-    "displayName": "Truncate",
+  "CdsTruncate": {
+    "displayName": "CdsTruncate",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -14045,8 +14045,8 @@
       "src/components/Truncate.vue"
     ]
   },
-  "TruncateContainer": {
-    "name": "TruncateContainer",
+  "CdsTruncateContainer": {
+    "name": "CdsTruncateContainer",
     "exportName": "default",
     "displayName": "TruncateContainer",
     "description": "",
@@ -14144,8 +14144,8 @@
       "src/components/TruncateContainer.vue"
     ]
   },
-  "WebcamModal": {
-    "name": "WebcamModal",
+  "CdsWebcamModal": {
+    "name": "CdsWebcamModal",
     "exportName": "default",
     "displayName": "WebcamModal",
     "description": "",
@@ -14274,8 +14274,8 @@
       "src/components/WebcamModal.vue"
     ]
   },
-  "Wizard": {
-    "displayName": "Wizard",
+  "CdsWizard": {
+    "displayName": "CdsWizard",
     "exportName": "default",
     "description": "",
     "tags": {},
@@ -14427,7 +14427,7 @@
       "src/components/Wizard.vue"
     ]
   },
-  "CustomFieldsSideSheet": {
+  "CdsCustomFieldsSideSheet": {
     "name": "CustomFieldsSideSheet",
     "exportName": "default",
     "displayName": "CustomFieldsSideSheet",
@@ -14531,8 +14531,8 @@
       "src/components/InternalComponents/CustomFieldsSideSheet.vue"
     ]
   },
-  "MonthSelectorGrid": {
-    "name": "MonthSelectorGrid",
+  "CdsMonthSelectorGrid": {
+    "name": "CdsMonthSelectorGrid",
     "exportName": "default",
     "displayName": "MonthSelectorGrid",
     "description": "",
@@ -14589,8 +14589,8 @@
       "src/components/InternalComponents/MonthSelectorGrid.vue"
     ]
   },
-  "YearSelectorGrid": {
-    "name": "YearSelectorGrid",
+  "CdsYearSelectorGrid": {
+    "name": "CdsYearSelectorGrid",
     "exportName": "default",
     "displayName": "YearSelectorGrid",
     "description": "",

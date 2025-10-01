@@ -93,7 +93,7 @@ Este é o modo de operação padrão do MonthAndYearPicker que permite ao usuár
 ## Props
 
 <APITable
-	name="MonthAndYearPicker"
+	name="CdsMonthAndYearPicker"
 	section="props"
 />
 <br>
@@ -101,7 +101,7 @@ Este é o modo de operação padrão do MonthAndYearPicker que permite ao usuár
 ## Eventos
 
 <APITable
-	name="MonthAndYearPicker"
+	name="CdsMonthAndYearPicker"
 	section="events"
 />
 
@@ -110,7 +110,7 @@ Este é o modo de operação padrão do MonthAndYearPicker que permite ao usuár
 ## Eventos
 
 <APITable
-	name="MonthAndYearPicker"
+	name="CdsMonthAndYearPicker"
 	section="events"
 />
 

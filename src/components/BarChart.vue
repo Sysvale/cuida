@@ -23,7 +23,7 @@ import paleteBuilder from '../utils/methods/paleteBuilder.js';
 Chart.register(...registerables);
 
 export default {
-	name: 'BarChart',
+	name: 'CdsBarChart',
 	components: {
 		Bar,
 	},

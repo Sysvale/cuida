@@ -78,7 +78,7 @@ import CdsClickable from './Clickable.vue';
 import generateKey from '../utils/methods/uuidv4';
 import CdsLabel from './Label.vue';
 
-defineOptions({ name: 'DynamicInputList' });
+defineOptions({ name: 'CdsDynamicInputList' });
 
 const model = defineModel('modelValue', {
 	type: Array,

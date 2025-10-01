@@ -59,7 +59,7 @@
 ## Props
 
 <APITable
-	name="Flexbox"
+	name="CdsFlexbox"
 	section="props"
 />
 <br>
@@ -67,7 +67,7 @@
 ## Slots
 
 <APITable
-	name="Flexbox"
+	name="CdsFlexbox"
 	section="slots"
 />
 

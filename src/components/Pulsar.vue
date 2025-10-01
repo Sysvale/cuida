@@ -12,7 +12,7 @@
 
 <script>
 export default {
-	name: 'Pulsar',
+	name: 'CdsPulsar',
 	props: {
 		/**
 		* A variante de cor. São 10 variantes:

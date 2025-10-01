@@ -43,7 +43,7 @@ EmptyStates são componentes utilizados em momentos instrutivos aos usuários.
 ## Props
 
 <APITable
-	name="EmptyState"
+	name="CdsEmptyState"
 	section="props"
 />
 <br>
@@ -51,7 +51,7 @@ EmptyStates são componentes utilizados em momentos instrutivos aos usuários.
 ## Eventos
 
 <APITable
-	name="EmptyState"
+	name="CdsEmptyState"
 	section="events"
 />
 <br>
@@ -59,7 +59,7 @@ EmptyStates são componentes utilizados em momentos instrutivos aos usuários.
 ## Slots
 
 <APITable
-	name="EmptyState"
+	name="CdsEmptyState"
 	section="slots"
 />
 

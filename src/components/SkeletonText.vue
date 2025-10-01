@@ -7,7 +7,7 @@
 
 <script>
 export default {
-	name: 'SkeletonText',
+	name: 'CdsSkeletonText',
 	props: {
 		width: {
 			type: String,

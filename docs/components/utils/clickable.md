@@ -32,7 +32,7 @@ Componente utilizado para adicionar um wrapper cliclável a componentes que não
 ## Props
 
 <APITable
-	name="Clickable"
+	name="CdsClickable"
 	section="props"
 />
 <br>
@@ -40,7 +40,7 @@ Componente utilizado para adicionar um wrapper cliclável a componentes que não
 ## Eventos
 
 <APITable
-	name="Clickable"
+	name="CdsClickable"
 	section="events"
 />
 <br>
@@ -48,7 +48,7 @@ Componente utilizado para adicionar um wrapper cliclável a componentes que não
 ## Slots
 
 <APITable
-	name="Clickable"
+	name="CdsClickable"
 	section="slots"
 />
 

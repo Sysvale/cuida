@@ -36,7 +36,7 @@ FlatButtons são componentes semelhantes a links, mas que funcionam como botões
 ## Props
 
 <APITable
-	name="FlatButton"
+	name="CdsFlatButton"
 	section="props"
 />
 <br>
@@ -44,7 +44,7 @@ FlatButtons são componentes semelhantes a links, mas que funcionam como botões
 ## Eventos
 
 <APITable
-	name="FlatButton"
+	name="CdsFlatButton"
 	section="events"
 />
 <br>
@@ -52,7 +52,7 @@ FlatButtons são componentes semelhantes a links, mas que funcionam como botões
 ## Slots
 
 <APITable
-	name="FlatButton"
+	name="CdsFlatButton"
 	section="slots"
 />
 

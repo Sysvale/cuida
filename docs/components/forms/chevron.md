@@ -37,7 +37,7 @@
 ## Props
 
 <APITable
-	name="Chevron"
+	name="CdsChevron"
 	section="props"
 />
 <br>

@@ -42,7 +42,7 @@
 ## Props
 
 <APITable
-	name="LoadingIndicator"
+	name="CdsLoadingIndicator"
 	section="props"
 />
 <br>

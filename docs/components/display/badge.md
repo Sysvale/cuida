@@ -43,7 +43,7 @@ Badge são indicadores de status utilizados para tornar evidentes metadados impo
 ## Props
 
 <APITable
-	name="Badge"
+	name="CdsBadge"
 	section="props"
 />
 
@@ -52,7 +52,7 @@ Badge são indicadores de status utilizados para tornar evidentes metadados impo
 ## Eventos
 
 <APITable
-	name="Badge"
+	name="CdsBadge"
 	section="events"
 />
 <br>
@@ -60,7 +60,7 @@ Badge são indicadores de status utilizados para tornar evidentes metadados impo
 ## Slots
 
 <APITable
-	name="Badge"
+	name="CdsBadge"
 	section="slots"
 />
 

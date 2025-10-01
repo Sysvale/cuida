@@ -57,7 +57,7 @@ import CdsChevron from './Chevron.vue';
 import CdsIcon from './Icon.vue';
 
 export default {
-	name: 'DropdownButton',
+	name: 'CdsDropdownButton',
 	components: {
 		CdsButton,
 		CdsIcon,

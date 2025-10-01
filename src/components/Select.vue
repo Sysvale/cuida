@@ -97,7 +97,7 @@ import { get, cloneDeep } from 'lodash';
 import removeAccents from '../utils/methods/removeAccents';
 import CdsBaseInput from './BaseInput.vue';
 
-defineOptions({ name: 'Select' });
+defineOptions({ name: 'CdsSelect' });
 
 const model = defineModel('modelValue', {
 	type: [Array, Object, String],

@@ -82,7 +82,7 @@ import ContrastChecker from '../utils/methods/contrastChecker';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
 export default {
-	name: 'ColorPicker',
+	name: 'CdsColorPicker',
 	components: {
 		CdsPopover,
 		CdsIcon,

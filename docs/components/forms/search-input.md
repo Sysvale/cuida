@@ -29,7 +29,7 @@
 ## Props
 
 <APITable
-	name="SearchInput"
+	name="CdsSearchInput"
 	section="props"
 />
 <br>

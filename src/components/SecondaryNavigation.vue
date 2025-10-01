@@ -76,7 +76,7 @@
 import { ref, computed, watch } from 'vue';
 import Icon from './Icon.vue';
 
-defineOptions({ name: 'SecondaryNavigation' });
+defineOptions({ name: 'CdsSecondaryNavigation' });
 
 const props = defineProps({
 	light: {

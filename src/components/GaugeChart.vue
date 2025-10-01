@@ -96,7 +96,7 @@ import hasSlot from '../utils/methods/hasSlot';
 import { generateKey } from '../utils';
 
 export default {
-	name: 'GaugeChart',
+	name: 'CdsGaugeChart',
 	components: {
 		CdsRichTooltip,
 	},

@@ -11,7 +11,7 @@
 <script setup>
 import { computed } from 'vue';
 
-defineOptions({ name: 'Flexbox' });
+defineOptions({ name: 'CdsFlexbox' });
 
 const props = defineProps({
 	/**

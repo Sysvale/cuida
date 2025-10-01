@@ -41,7 +41,7 @@
 ## Props
 
 <APITable
-	name="ProgressBar"
+	name="CdsProgressBar"
 	section="props"
 />
 <br>
@@ -49,7 +49,7 @@
 ## Slots
 
 <APITable
-	name="ProgressBar"
+	name="CdsProgressBar"
 	section="slots"
 />
 

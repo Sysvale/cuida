@@ -77,7 +77,7 @@ CdsPageHeader
 ## Props
 
 <APITable
-	name="PageHeader"
+	name="CdsPageHeader"
 	section="props"
 />
 <br>
@@ -85,7 +85,7 @@ CdsPageHeader
 ## Slots
 
 <APITable
-	name="PageHeader"
+	name="CdsPageHeader"
 	section="slots"
 />
 

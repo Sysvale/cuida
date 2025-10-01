@@ -30,7 +30,7 @@
 ## Props
 
 <APITable
-	name="SegmentedControl"
+	name="CdsSegmentedControl"
 	section="props"
 />
 <br>
@@ -38,7 +38,7 @@
 ## Eventos
 
 <APITable
-	name="SegmentedControl"
+	name="CdsSegmentedControl"
 	section="events"
 />
 <br>

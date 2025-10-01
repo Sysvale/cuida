@@ -71,7 +71,7 @@ import CdsBox from './Box.vue';
 import CdsButton from './Button.vue';
 
 export default {
-	name: 'Wizard',
+	name: 'CdsWizard',
 	components: {
 		CdsBox,
 		CdsButton,

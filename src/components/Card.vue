@@ -85,7 +85,7 @@ import CdsBox from './Box.vue';
 import CdsImage from './Image.vue';
 import hasSlot from '../utils/methods/hasSlot';
 
-defineOptions({ name: 'Card' });
+defineOptions({ name: 'CdsCard' });
 
 const props = defineProps({
 	/**

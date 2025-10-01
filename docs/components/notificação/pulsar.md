@@ -54,7 +54,7 @@ removê-lo.
 ## Props
 
 <APITable
-	name="Pulsar"
+	name="CdsPulsar"
 	section="props"
 />
 <br>

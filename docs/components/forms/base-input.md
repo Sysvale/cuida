@@ -41,7 +41,7 @@ Ele fornece a estrutura básica e funcionalidades comuns, como gerenciamento de 
 ## Props
 
 <APITable
-	name="BaseInput"
+	name="CdsBaseInput"
 	section="props"
 />
 <br>
@@ -49,7 +49,7 @@ Ele fornece a estrutura básica e funcionalidades comuns, como gerenciamento de 
 ## Eventos
 
 <APITable
-	name="BaseInput"
+	name="CdsBaseInput"
 	section="events"
 />
 <br>
@@ -57,7 +57,7 @@ Ele fornece a estrutura básica e funcionalidades comuns, como gerenciamento de 
 ## Slots
 
 <APITable
-	name="BaseInput"
+	name="CdsBaseInput"
 	section="slots"
 />
 

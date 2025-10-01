@@ -6,7 +6,7 @@
 import { computed, ref, watch } from 'vue';
 import isDeviceType from '../utils/methods/isDeviceType.js';
 
-defineOptions({ name: 'LoadingIndicator' });
+defineOptions({ name: 'CdsLoadingIndicator' });
 
 // Props
 const props = defineProps({

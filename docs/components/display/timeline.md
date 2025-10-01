@@ -105,7 +105,7 @@ via slots. Para mais informações acesse a documentação do componente.
 ## Props
 
 <APITable
-	name="Timeline"
+	name="CdsTimeline"
 	section="props"
 />
 <br>
@@ -113,7 +113,7 @@ via slots. Para mais informações acesse a documentação do componente.
 ## Slots
 
 <APITable
-	name="Timeline"
+	name="CdsTimeline"
 	section="slots"
 />
 

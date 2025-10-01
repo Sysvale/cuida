@@ -24,7 +24,7 @@ import {
 import { facade } from 'vue-input-facade';
 import CdsBaseInput from './BaseInput.vue';
 
-defineOptions({ name: 'TextInput' });
+defineOptions({ name: 'CdsTextInput' });
 
 const vFacade = facade;
 

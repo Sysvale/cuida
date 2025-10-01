@@ -111,7 +111,7 @@ import Spinner from './Spinner.vue';
 import CdsIcon from './Icon.vue';
 import CdsFlexbox from './Flexbox.vue';
 
-defineOptions({ name: 'WebcamModal' });
+defineOptions({ name: 'CdsWebcamModal' });
 
 const emit = defineEmits([
 	/**

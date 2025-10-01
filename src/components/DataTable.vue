@@ -208,7 +208,7 @@ const attrs = useAttrs();
 
 const searchInputRef = useTemplateRef('search-input');
 
-defineOptions({ name: 'DataTable' });
+defineOptions({ name: 'CdsDataTable' });
 
 const props = defineProps({
 	/**

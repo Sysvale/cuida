@@ -37,7 +37,7 @@ import isEmpty from 'lodash.isempty';
 import { colorOptions, colorHexCode } from '../utils/constants/colors';
 
 export default {
-	name: 'NavBar',
+	name: 'CdsNavBar',
 	props: {
 		/**
 		 * Define a lista dos itens do NavBar a serem

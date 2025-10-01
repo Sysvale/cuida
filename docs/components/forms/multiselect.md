@@ -55,7 +55,7 @@ leitura da documentação.
 ## Props
 
 <APITable
-	name="Multiselect"
+	name="CdsMultiselect"
 	section="props"
 />
 <br>
@@ -63,7 +63,7 @@ leitura da documentação.
 ## Eventos
 
 <APITable
-	name="Multiselect"
+	name="CdsMultiselect"
 	section="events"
 />
 <br>
@@ -71,7 +71,7 @@ leitura da documentação.
 ## Slots
 
 <APITable
-	name="Multiselect"
+	name="CdsMultiselect"
 	section="slots"
 />
 

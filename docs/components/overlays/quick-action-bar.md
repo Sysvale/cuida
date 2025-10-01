@@ -49,7 +49,7 @@ O QuickActionBar é um componente de busca e ação rápida que permite ao usuá
 ## Props
 
 <APITable
-	name="QuickActionBar"
+	name="CdsQuickActionBar"
 	section="props"
 />
 <br>
@@ -57,7 +57,7 @@ O QuickActionBar é um componente de busca e ação rápida que permite ao usuá
 ## Eventos
 
 <APITable
-	name="QuickActionBar"
+	name="CdsQuickActionBar"
 	section="events"
 />
 <br>
@@ -65,7 +65,7 @@ O QuickActionBar é um componente de busca e ação rápida que permite ao usuá
 ## Slots
 
 <APITable
-	name="QuickActionBar"
+	name="CdsQuickActionBar"
 	section="slots"
 />
 

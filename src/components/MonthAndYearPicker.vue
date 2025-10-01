@@ -82,7 +82,7 @@ import CdsFlexbox from './Flexbox.vue';
 import { useClickOutside } from '../utils/composables/useClickOutside.js';
 import { direction, dropdownTopPosition, dropdownBottomPosition } from '../utils/composables/useDropdownPosition.js';
 
-defineOptions({ name: 'MonthAndYearPicker' });
+defineOptions({ name: 'CdsMonthAndYearPicker' });
 
 const model = defineModel('modelValue', {
 	type: String,

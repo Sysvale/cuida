@@ -21,7 +21,7 @@
 import CdsGrid from '../Grid.vue';
 import { computed, ref, onMounted, watch } from 'vue';
 
-defineOptions({ name: 'MonthSelectorGrid' });
+defineOptions({ name: 'CdsMonthSelectorGrid' });
 
 const MONTHS = ['jan', 'fev', 'mar', 'abr', 'maio', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
 

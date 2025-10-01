@@ -57,7 +57,7 @@
 ## Props
 
 <APITable
-	name="TruncateContainer"
+	name="CdsTruncateContainer"
 	section="props"
 />
 <br>
@@ -65,7 +65,7 @@
 ## Events
 
 <APITable
-	name="TruncateContainer"
+	name="CdsTruncateContainer"
 	section="events"
 />
 
@@ -73,7 +73,7 @@
 ## Slots
 
 <APITable
-	name="TruncateContainer"
+	name="CdsTruncateContainer"
 	section="slots"
 />
 

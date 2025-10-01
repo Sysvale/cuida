@@ -23,7 +23,7 @@
 
 <script>
 export default {
-	name: 'Link',
+	name: 'CdsLink',
 	props: {
 		/**
 		* URL de redirecionamento.

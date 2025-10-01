@@ -35,7 +35,7 @@
 
 <script>
 export default {
-	name: 'Highlight',
+	name: 'CdsHighlight',
 	props: {
 		/**
 		* A variante do Highlight. São 3 variantes implementadas

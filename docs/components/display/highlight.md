@@ -90,7 +90,7 @@ Caso se deseje marcar apenas uma parte da string passada via slot, é possível 
 ## Props
 
 <APITable
-	name="Highlight"
+	name="CdsHighlight"
 	section="props"
 />
 
@@ -99,7 +99,7 @@ Caso se deseje marcar apenas uma parte da string passada via slot, é possível 
 ## Slots
 
 <APITable
-	name="Highlight"
+	name="CdsHighlight"
 	section="slots"
 />
 

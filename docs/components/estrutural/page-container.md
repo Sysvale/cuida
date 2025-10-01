@@ -41,7 +41,7 @@
 ## Slots
 
 <APITable
-	name="PageContainer"
+	name="CdsPageContainer"
 	section="slots"
 />
 

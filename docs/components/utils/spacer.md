@@ -55,7 +55,7 @@ utilize classes e nelas inclua paddings e margins com os tokens de espaçamento 
 ## Props
 
 <APITable
-	name="Spacer"
+	name="CdsSpacer"
 	section="props"
 />
 <br>
@@ -63,7 +63,7 @@ utilize classes e nelas inclua paddings e margins com os tokens de espaçamento 
 ## Slots
 
 <APITable
-	name="Spacer"
+	name="CdsSpacer"
 	section="slots"
 />
 

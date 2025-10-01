@@ -43,7 +43,7 @@ com a lista de avatares suprimidos.
 ## Props
 
 <APITable
-	name="AvatarGroup"
+	name="CdsAvatarGroup"
 	section="props"
 />
 <br>

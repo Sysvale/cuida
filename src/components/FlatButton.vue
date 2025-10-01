@@ -15,7 +15,7 @@
 <script setup>
 import { computed, useTemplateRef } from 'vue';
 
-defineOptions({ name: 'FlatButton' });
+defineOptions({ name: 'CdsFlatButton' });
 
 const props = defineProps({
 	/**

@@ -8,7 +8,7 @@
 
 <script>
 export default {
-	name: 'Spacer',
+	name: 'CdsSpacer',
 	props: {
 		/**
 		 * @min 0

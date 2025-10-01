@@ -39,7 +39,7 @@ import Cdstip from '../utils/directives/cdstip';
 import hasSlot from '../utils/methods/hasSlot';
 
 export default {
-	name: 'Button',
+	name: 'CdsButton',
 	directives: {
 		cdstip: Cdstip,
 	},

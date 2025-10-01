@@ -37,7 +37,7 @@
 
 <script>
 export default {
-	name: 'Radio',
+	name: 'CdsRadio',
 	props: {
 		/**
 		 * A prop usada como v-model para monitorar a seleção do Radio

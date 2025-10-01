@@ -54,7 +54,7 @@ Cuida pode ser usado com <b>dois</b> níveis pois nesse cenário ele se comporta
 ## Props
 
 <APITable
-	name="Breadcrumb"
+	name="CdsBreadcrumb"
 	section="props"
 />
 <br>

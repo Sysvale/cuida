@@ -100,7 +100,7 @@
 ## Props
 
 <APITable
-	name="FloatingActionButton"
+	name="CdsFloatingActionButton"
 	section="props"
 />
 <br>
@@ -108,7 +108,7 @@
 ## Eventos
 
 <APITable
-	name="FloatingActionButton"
+	name="CdsFloatingActionButton"
 	section="events"
 />
 

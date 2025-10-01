@@ -86,7 +86,7 @@
 ## Props
 
 <APITable
-	name="ColorPicker"
+	name="CdsColorPicker"
 	section="props"
 />
 <br>
@@ -94,7 +94,7 @@
 ## Eventos
 
 <APITable
-	name="ColorPicker"
+	name="CdsColorPicker"
 	section="events"
 />
 <br>

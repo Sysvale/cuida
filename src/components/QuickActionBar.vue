@@ -209,7 +209,7 @@ import CdsSkeleton from './Skeleton.vue';
 import hasSlot from '../utils/methods/hasSlot';
 import CdsHighlight from './Highlight.vue';
 
-defineOptions({ name: 'QuickActionBar' });
+defineOptions({ name: 'CdsQuickActionBar' });
 
 const props = defineProps({
 	/**

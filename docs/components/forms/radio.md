@@ -40,7 +40,7 @@
 ## Props
 
 <APITable
-	name="Radio"
+	name="CdsRadio"
 	section="props"
 />
 <br>
@@ -48,7 +48,7 @@
 ## Eventos
 
 <APITable
-	name="Radio"
+	name="CdsRadio"
 	section="events"
 />
 <br>
@@ -56,7 +56,7 @@
 ## Slots
 
 <APITable
-	name="Radio"
+	name="CdsRadio"
 	section="slots"
 />
 

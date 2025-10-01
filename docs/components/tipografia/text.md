@@ -43,7 +43,7 @@ Text são indicadores de status utilizados para tornar evidentes metadados impor
 ## Props
 
 <APITable
-	name="Text"
+	name="CdsText"
 	section="props"
 />
 
@@ -52,7 +52,7 @@ Text são indicadores de status utilizados para tornar evidentes metadados impor
 ## Slots
 
 <APITable
-	name="Text"
+	name="CdsText"
 	section="slots"
 />
 

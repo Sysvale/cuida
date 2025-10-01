@@ -42,7 +42,7 @@
 ## Props
 
 <APITable
-	name="Stepper"
+	name="CdsStepper"
 	section="props"
 />
 <br>
@@ -50,7 +50,7 @@
 ## Eventos
 
 <APITable
-	name="Stepper"
+	name="CdsStepper"
 	section="events"
 />
 <br>

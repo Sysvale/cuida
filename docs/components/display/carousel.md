@@ -55,7 +55,7 @@
 ## Props
 
 <APITable
-	name="Carousel"
+	name="CdsCarousel"
 	section="props"
 />
 <br>
@@ -63,7 +63,7 @@
 ## Eventos
 
 <APITable
-	name="Carousel"
+	name="CdsCarousel"
 	section="events"
 />
 <br>
@@ -71,7 +71,7 @@
 ## Slots
 
 <APITable
-	name="Carousel"
+	name="CdsCarousel"
 	section="slots"
 />
 

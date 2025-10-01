@@ -41,7 +41,7 @@
 ## Props
 
 <APITable
-	name="SkeletonText"
+	name="CdsSkeletonText"
 	section="props"
 />
 <br>

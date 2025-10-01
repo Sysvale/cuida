@@ -29,7 +29,7 @@ import { computed, ref, watch } from 'vue';
 import sassColorVariables from '../assets/sass/tokens/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
-defineOptions({ name: 'ProgressBar' });
+defineOptions({ name: 'CdsProgressBar' });
 
 /**
  * A variante de cor. São 9 variantes implementadas: 'green', 'teal', 'turquoise',

@@ -12,7 +12,7 @@
 import { useTemplateRef } from 'vue';
 import CdsBaseInput from './BaseInput.vue';
 
-defineOptions({ name: 'SearchInput' });
+defineOptions({ name: 'CdsSearchInput' });
 
 const baseInputRef = useTemplateRef('baseInput')
 

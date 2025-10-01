@@ -46,7 +46,7 @@ import paleteBuilder from '../utils/methods/paleteBuilder.js';
 Chart.register(...registerables);
 
 export default {
-	name: 'RadialBarChart',
+	name: 'CdsRadialBarChart',
 	components: {
 		Doughnut,
 	},

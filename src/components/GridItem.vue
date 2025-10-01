@@ -10,7 +10,7 @@
 <script setup>
 import { computed } from 'vue';
 
-defineOptions({ name: 'GridItem' });
+defineOptions({ name: 'CdsGridItem' });
 
 const props = defineProps({
 	colSpan: {

@@ -124,7 +124,7 @@ const valueValidator = (value) => {
 };
 
 export default {
-	name: 'TimeInput',
+	name: 'CdsTimeInput',
 	directives: {
 		facade,
 	},

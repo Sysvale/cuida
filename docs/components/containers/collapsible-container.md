@@ -59,7 +59,7 @@
 ## Props
 
 <APITable
-	name="CollapsibleContainer"
+	name="CdsCollapsibleContainer"
 	section="props"
 />
 <br>
@@ -67,7 +67,7 @@
 ## Eventos
 
 <APITable
-	name="CollapsibleContainer"
+	name="CdsCollapsibleContainer"
 	section="events"
 />
 <br>
@@ -75,7 +75,7 @@
 ## Slots
 
 <APITable
-	name="CollapsibleContainer"
+	name="CdsCollapsibleContainer"
 	section="slots"
 />
 

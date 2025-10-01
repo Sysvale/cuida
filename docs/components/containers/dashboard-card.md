@@ -73,7 +73,7 @@
 ## Props
 
 <APITable
-	name="DashboardCard"
+	name="CdsDashboardCard"
 	section="props"
 />
 <br>
@@ -81,7 +81,7 @@
 ## Eventos
 
 <APITable
-	name="DashboardCard"
+	name="CdsDashboardCard"
 	section="events"
 />
 <br>
@@ -89,7 +89,7 @@
 ## Slots
 
 <APITable
-	name="DashboardCard"
+	name="CdsDashboardCard"
 	section="slots"
 />
 

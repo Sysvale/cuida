@@ -25,7 +25,7 @@ import {
 } from '../utils/composables/useComponentEmits.js';
 import CdsBaseInput from './BaseInput.vue';
 
-defineOptions({ name: 'TextArea' });
+defineOptions({ name: 'CdsTextArea' });
 
 const baseInputRef = useTemplateRef('baseInput');
 

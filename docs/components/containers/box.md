@@ -31,7 +31,7 @@
 ## Props
 
 <APITable
-	name="Box"
+	name="CdsBox"
 	section="props"
 />
 <br>
@@ -39,7 +39,7 @@
 ## Eventos
 
 <APITable
-	name="Box"
+	name="CdsBox"
 	section="events"
 />
 <br>
@@ -47,7 +47,7 @@
 ## Slots
 
 <APITable
-	name="Box"
+	name="CdsBox"
 	section="slots"
 />
 

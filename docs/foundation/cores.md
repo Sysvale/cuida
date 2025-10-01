@@ -31,7 +31,9 @@ Ex.: links azuis, mensagens de validação vermelhas, mensagens de sucesso azuis
 ## Paleta de cores
 <br>
 
+
 <Palete />
+
 <script setup>
 import Palete from '@/docs-components/Palete.vue';
 </script>

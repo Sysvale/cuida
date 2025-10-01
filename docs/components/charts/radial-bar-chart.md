@@ -62,7 +62,7 @@ na posição correspondente do array.
 ## Props
 
 <APITable
-	name="RadialBarChart"
+	name="CdsRadialBarChart"
 	section="props"
 />
 <br>
@@ -70,7 +70,7 @@ na posição correspondente do array.
 ## Eventos
 
 <APITable
-	name="RadialBarChart"
+	name="CdsRadialBarChart"
 	section="events"
 />
 <br>

@@ -42,7 +42,7 @@
 
 <script>
 export default {
-	name: 'CarouselController',
+	name: 'CdsCarouselController',
 	props: {
 		/**
 		 * Nome da propriedade exibida no controle do carousel.

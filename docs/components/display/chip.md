@@ -45,7 +45,7 @@
 ## Props
 
 <APITable
-	name="Chip"
+	name="CdsChip"
 	section="props"
 />
 <br>
@@ -54,7 +54,7 @@
 ## Slots
 
 <APITable
-	name="Chip"
+	name="CdsChip"
 	section="slots"
 />
 

@@ -38,7 +38,7 @@
 ## Props
 
 <APITable
-	name="CalloutCard"
+	name="CdsCalloutCard"
 	section="props"
 />
 <br>
@@ -46,7 +46,7 @@
 ## Eventos
 
 <APITable
-	name="CalloutCard"
+	name="CdsCalloutCard"
 	section="events"
 />
 <br>
@@ -54,7 +54,7 @@
 ## Slots
 
 <APITable
-	name="CalloutCard"
+	name="CdsCalloutCard"
 	section="slots"
 />
 

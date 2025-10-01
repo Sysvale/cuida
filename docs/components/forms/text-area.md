@@ -37,7 +37,7 @@
 ## Props
 
 <APITable
-	name="TextArea"
+	name="CdsTextArea"
 	section="props"
 />
 <br>

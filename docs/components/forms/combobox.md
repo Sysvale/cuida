@@ -52,7 +52,7 @@
 ## Props
 
 <APITable
-	name="ComboBox"
+	name="CdsComboBox"
 	section="props"
 />
 <br>
@@ -60,7 +60,7 @@
 ## Eventos
 
 <APITable
-	name="ComboBox"
+	name="CdsComboBox"
 	section="events"
 />
 <br>

@@ -90,7 +90,7 @@ Ex.: `:variant="green"`
 ## Props
 
 <APITable
-	name="DonutChart"
+	name="CdsDonutChart"
 	section="props"
 />
 <br>
@@ -98,7 +98,7 @@ Ex.: `:variant="green"`
 ## Eventos
 
 <APITable
-	name="DonutChart"
+	name="CdsDonutChart"
 	section="events"
 />
 <br>

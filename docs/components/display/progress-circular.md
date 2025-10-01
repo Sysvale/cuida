@@ -41,7 +41,7 @@
 ## Props
 
 <APITable
-	name="ProgressCircular"
+	name="CdsProgressCircular"
 	section="props"
 />
 <br>

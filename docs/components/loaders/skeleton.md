@@ -50,7 +50,7 @@ dinamicamente para se adaptar ao conteúdo ou à largura disponível.
 ## Props
 
 <APITable
-	name="Skeleton"
+	name="CdsSkeleton"
 	section="props"
 />
 <br>

@@ -42,7 +42,7 @@
 ## Props
 
 <APITable
-	name="BarChart"
+	name="CdsBarChart"
 	section="props"
 />
 <br>

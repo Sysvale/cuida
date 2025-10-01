@@ -44,7 +44,7 @@
 import Icon from './Icon.vue';
 import { ref, watch } from 'vue';
 
-defineOptions({ name: 'BottomSheet' });
+defineOptions({ name: 'CdsBottomSheet' });
 
 const model = defineModel();
 

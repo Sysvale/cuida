@@ -47,7 +47,7 @@ import { colorOptions } from '../utils/constants/colors';
 import sizes from '../utils/constants/sizes';
 import CdsIcon from './Icon.vue';
 
-defineOptions({ name: 'Chip' });
+defineOptions({ name: 'CdsChip' });
 
 const modelValue = defineModel('modelValue', {
 	type: Boolean,

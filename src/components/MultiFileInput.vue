@@ -114,7 +114,7 @@ import CdsButton from './Button.vue';
 import CdsSelect from './Select.vue';
 import generateKey from '../utils/methods/uuidv4';
 
-defineOptions({ name: 'MultiFileInput' });
+defineOptions({ name: 'CdsMultiFileInput' });
 
 const props = defineProps({
 	/**

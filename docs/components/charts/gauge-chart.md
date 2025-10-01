@@ -48,7 +48,7 @@
 ## Props
 
 <APITable
-	name="GaugeChart"
+	name="CdsGaugeChart"
 	section="props"
 />
 <br>
@@ -56,7 +56,7 @@
 ## Slots
 
 <APITable
-	name="GaugeChart"
+	name="CdsGaugeChart"
 	section="slots"
 />
 

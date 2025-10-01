@@ -46,7 +46,7 @@
 ## Props
 
 <APITable
-	name="DynamicInputList"
+	name="CdsDynamicInputList"
 	section="props"
 />
 <br>

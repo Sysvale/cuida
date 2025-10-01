@@ -47,7 +47,7 @@
 ## Props
 
 <APITable
-	name="WebcamModal"
+	name="CdsWebcamModal"
 	section="props"
 />
 <br>
@@ -55,7 +55,7 @@
 ## Eventos
 
 <APITable
-	name="WebcamModal"
+	name="CdsWebcamModal"
 	section="events"
 />
 <br>

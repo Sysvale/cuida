@@ -81,7 +81,7 @@ import CdsIcon from '../components/Icon.vue';
 import CdsFlexbox from '../components/Flexbox.vue';
 import CdsText from '../components/Text.vue';
 
-defineOptions({ name: 'Toast' });
+defineOptions({ name: 'CdsToast' });
 
 const attrs = useAttrs();
 

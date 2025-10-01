@@ -50,7 +50,7 @@ import PaginationItem from '../entities/PaginationItem';
 import CdsChevron from './Chevron.vue';
 import variantClassResolver from '../utils/methods/variantClassResolver';
 
-defineOptions({ name: 'Pagination' });
+defineOptions({ name: 'CdsPagination' });
 
 const model = defineModel('modelValue', {
 	type: [Number, String],

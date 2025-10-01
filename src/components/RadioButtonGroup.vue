@@ -67,7 +67,7 @@ import { colorHexCode, colorLightestHexCode } from '../utils/constants/colors';
 import { generateKey } from '../utils';
 import CdsLabel from './Label.vue';
 
-defineOptions({ name: 'RadioButtonGroup' });
+defineOptions({ name: 'CdsRadioButtonGroup' });
 
 const model = defineModel('modelValue', {
 	type: [String, null],

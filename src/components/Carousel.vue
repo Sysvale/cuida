@@ -61,7 +61,7 @@ import useIsMobile from '../utils/composables/useIsMobile';
 import { ref, computed } from 'vue';
 import Icon from './Icon.vue';
 
-defineOptions({ name: 'Carousel' });
+defineOptions({ name: 'CdsCarousel' });
 
 const props = defineProps({
 	/**

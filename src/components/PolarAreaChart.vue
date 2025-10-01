@@ -23,7 +23,7 @@ Chart.register(...registerables);
 
 
 export default {
-	name: 'PolarAreaChart',
+	name: 'CdsPolarAreaChart',
 	components: {
 		PolarArea,
 	},

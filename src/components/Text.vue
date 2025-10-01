@@ -17,7 +17,7 @@
 <script setup>
 import { computed, useTemplateRef } from 'vue';
 
-defineOptions({ name: 'Text' });
+defineOptions({ name: 'CdsText' });
 
 const props = defineProps({
 	/**

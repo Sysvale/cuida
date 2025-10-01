@@ -161,7 +161,7 @@ Para layouts horizontais de Card, utilize a prop `horizontal`
 ## Props
 
 <APITable
-	name="Card"
+	name="CdsCard"
 	section="props"
 />
 <br>
@@ -169,7 +169,7 @@ Para layouts horizontais de Card, utilize a prop `horizontal`
 ## Eventos
 
 <APITable
-	name="Card"
+	name="CdsCard"
 	section="events"
 />
 <br>
@@ -177,7 +177,7 @@ Para layouts horizontais de Card, utilize a prop `horizontal`
 ## Slots
 
 <APITable
-	name="Card"
+	name="CdsCard"
 	section="slots"
 />
 

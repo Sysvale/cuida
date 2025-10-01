@@ -57,7 +57,7 @@
 ## Props
 
 <APITable
-	name="Tile"
+	name="CdsTile"
 	section="props"
 />
 <br>
@@ -65,7 +65,7 @@
 ## Eventos
 
 <APITable
-	name="Tile"
+	name="CdsTile"
 	section="events"
 />
 <br>
@@ -73,7 +73,7 @@
 ## Slots
 
 <APITable
-	name="Tile"
+	name="CdsTile"
 	section="slots"
 />
 

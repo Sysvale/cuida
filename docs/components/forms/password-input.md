@@ -37,7 +37,7 @@
 ## Props
 
 <APITable
-	name="PasswordInput"
+	name="CdsPasswordInput"
 	section="props"
 />
 <br>
@@ -45,7 +45,7 @@
 ## Eventos
 
 <APITable
-	name="PasswordInput"
+	name="CdsPasswordInput"
 	section="events"
 />
 <br>
@@ -53,7 +53,7 @@
 ## Slots
 
 <APITable
-	name="PasswordInput"
+	name="CdsPasswordInput"
 	section="slots"
 />
 

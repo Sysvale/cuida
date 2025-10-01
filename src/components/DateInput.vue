@@ -162,7 +162,7 @@ import {
 import { useClickOutside } from '../utils/composables/useClickOutside.js';
 import { facade } from 'vue-input-facade';
 
-defineOptions({ name: 'DateInput' });
+defineOptions({ name: 'CdsDateInput' });
 
 const vFacade = facade;
 

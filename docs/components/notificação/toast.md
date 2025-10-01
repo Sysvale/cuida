@@ -54,7 +54,7 @@ vários toasts são disparados simultaneamente na mesma interface.
 ## Props
 
 <APITable
-	name="Toast"
+	name="CdsToast"
 	section="props"
 />
 <br>
@@ -62,7 +62,7 @@ vários toasts são disparados simultaneamente na mesma interface.
 ## Events
 
 <APITable
-	name="Toast"
+	name="CdsToast"
 	section="events"
 />
 

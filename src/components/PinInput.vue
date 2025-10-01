@@ -23,7 +23,7 @@
 
 <script>
 export default {
-	name: 'PinInput',
+	name: 'CdsPinInput',
 	props: {
 		modelValue: {
 			type: String,

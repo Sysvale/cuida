@@ -43,7 +43,7 @@
 ## Props
 
 <APITable
-	name="Tooltip"
+	name="CdsTooltip"
 	section="props"
 />
 <br>
@@ -51,7 +51,7 @@
 ## Slots
 
 <APITable
-	name="Tooltip"
+	name="CdsTooltip"
 	section="slots"
 />
 

@@ -107,7 +107,7 @@
 import CdsIcon from './Icon.vue';
 
 export default {
-	name: 'Stepper',
+	name: 'CdsStepper',
 	components: {
 		CdsIcon,
 	},

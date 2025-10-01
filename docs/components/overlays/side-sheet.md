@@ -109,7 +109,7 @@
 ## Props
 
 <APITable
-	name="SideSheet"
+	name="CdsSideSheet"
 	section="props"
 />
 <br>
@@ -117,7 +117,7 @@
 ## Eventos
 
 <APITable
-	name="SideSheet"
+	name="CdsSideSheet"
 	section="events"
 />
 <br>
@@ -125,7 +125,7 @@
 ## Slots
 
 <APITable
-	name="SideSheet"
+	name="CdsSideSheet"
 	section="slots"
 />
 

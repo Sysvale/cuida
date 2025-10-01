@@ -144,7 +144,7 @@ Quando o conjunto de abas tiver uma largura maior que o container, será exibida
 ## Props
 
 <APITable
-	name="InnerTabs"
+	name="CdsInnerTabs"
 	section="props"
 />
 <br>
@@ -152,7 +152,7 @@ Quando o conjunto de abas tiver uma largura maior que o container, será exibida
 ## Eventos
 
 <APITable
-	name="InnerTabs"
+	name="CdsInnerTabs"
 	section="events"
 />
 <br>
@@ -160,7 +160,7 @@ Quando o conjunto de abas tiver uma largura maior que o container, será exibida
 ## Slots
 
 <APITable
-	name="InnerTabs"
+	name="CdsInnerTabs"
 	section="slots"
 />
 

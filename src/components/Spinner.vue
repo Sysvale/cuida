@@ -8,7 +8,7 @@
 
 <script>
 export default {
-	name: 'Spinner',
+	name: 'CdsSpinner',
 	props: {
 		/**
 		* Propriedade referente ao tamanho do componente

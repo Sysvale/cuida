@@ -39,7 +39,7 @@
 ## Props
 
 <APITable
-	name="TextInput"
+	name="CdsTextInput"
 	section="props"
 />
 <br>
@@ -47,7 +47,7 @@
 ## Eventos
 
 <APITable
-	name="TextInput"
+	name="CdsTextInput"
 	section="events"
 />
 <br>

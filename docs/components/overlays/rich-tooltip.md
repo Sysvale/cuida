@@ -59,7 +59,7 @@
 ## Props
 
 <APITable
-	name="RichTooltip"
+	name="CdsRichTooltip"
 	section="props"
 />
 <br>
@@ -67,7 +67,7 @@
 ## Eventos
 
 <APITable
-	name="RichTooltip"
+	name="CdsRichTooltip"
 	section="events"
 />
 <br>
@@ -75,7 +75,7 @@
 ## Slots
 
 <APITable
-	name="RichTooltip"
+	name="CdsRichTooltip"
 	section="slots"
 />
 

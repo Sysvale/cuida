@@ -37,7 +37,7 @@ Switches são componentes utilizados para ativar ou desativar configurações ou
 ## Props
 
 <APITable
-	name="Switch"
+	name="CdsSwitch"
 	section="props"
 />
 <br>
@@ -45,7 +45,7 @@ Switches são componentes utilizados para ativar ou desativar configurações ou
 ## Eventos
 
 <APITable
-	name="Switch"
+	name="CdsSwitch"
 	section="events"
 />
 <br>
@@ -53,7 +53,7 @@ Switches são componentes utilizados para ativar ou desativar configurações ou
 ## Slots
 
 <APITable
-	name="Switch"
+	name="CdsSwitch"
 	section="slots"
 />
 

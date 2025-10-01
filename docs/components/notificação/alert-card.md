@@ -39,7 +39,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 ## Props
 
 <APITable
-	name="AlertCard"
+	name="CdsAlertCard"
 	section="props"
 />
 <br>
@@ -47,7 +47,7 @@ Buttons são componentes clicáveis e que indicam ao usuário que ele pode reali
 ## Slots
 
 <APITable
-	name="AlertCard"
+	name="CdsAlertCard"
 	section="slots"
 />
 

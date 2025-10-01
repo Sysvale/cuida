@@ -112,7 +112,7 @@ import CdsBadge from './Badge.vue';
 import CdsTruncate from './Truncate.vue';
 import CdsIcon from './Icon.vue';
 
-defineOptions({ name: 'ComboBox' });
+defineOptions({ name: 'CdsComboBox' });
 
 const props = defineProps({
 	/**

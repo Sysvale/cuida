@@ -53,7 +53,7 @@
 ## Props
 
 <APITable
-	name="TimelineItem"
+	name="CdsTimelineItem"
 	section="props"
 />
 <br>
@@ -61,7 +61,7 @@
 ## Slots
 
 <APITable
-	name="TimelineItem"
+	name="CdsTimelineItem"
 	section="slots"
 />
 

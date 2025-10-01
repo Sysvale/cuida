@@ -42,7 +42,7 @@ Image é um componente utilitário utilizado para renderizar imagens com fallbac
 ## Props
 
 <APITable
-	name="Image"
+	name="CdsImage"
 	section="props"
 />
 <br>

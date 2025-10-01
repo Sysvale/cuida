@@ -31,7 +31,7 @@
 ## Props
 
 <APITable
-	name="Divider"
+	name="CdsDivider"
 	section="props"
 />
 <br>

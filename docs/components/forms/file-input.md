@@ -39,7 +39,7 @@
 ## Props
 
 <APITable
-	name="FileInput"
+	name="CdsFileInput"
 	section="props"
 />
 <br>
@@ -47,7 +47,7 @@
 ## Eventos
 
 <APITable
-	name="FileInput"
+	name="CdsFileInput"
 	section="events"
 />
 <br>

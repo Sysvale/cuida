@@ -45,7 +45,7 @@
 ## Props
 
 <APITable
-	name="PageLayout"
+	name="CdsPageLayout"
 	section="props"
 />
 <br>
@@ -53,7 +53,7 @@
 ## Eventos
 
 <APITable
-	name="PageLayout"
+	name="CdsPageLayout"
 	section="events"
 />
 <br>
@@ -61,7 +61,7 @@
 ## Slots
 
 <APITable
-	name="PageLayout"
+	name="CdsPageLayout"
 	section="slots"
 />
 

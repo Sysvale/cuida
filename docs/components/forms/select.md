@@ -54,7 +54,7 @@
 ## Props
 
 <APITable
-	name="Select"
+	name="CdsSelect"
 	section="props"
 />
 <br>

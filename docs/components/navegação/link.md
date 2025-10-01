@@ -39,7 +39,7 @@
 ## Props
 
 <APITable
-	name="Link"
+	name="CdsLink"
 	section="props"
 />
 <br>
@@ -47,7 +47,7 @@
 ## Slots
 
 <APITable
-	name="Link"
+	name="CdsLink"
 	section="slots"
 />
 

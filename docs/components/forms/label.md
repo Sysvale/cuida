@@ -34,7 +34,7 @@
 ## Props
 
 <APITable
-	name="Label"
+	name="CdsLabel"
 	section="props"
 />
 <br>
@@ -42,7 +42,7 @@
 ## Eventos
 
 <APITable
-	name="Label"
+	name="CdsLabel"
 	section="events"
 />
 <br>

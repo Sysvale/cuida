@@ -56,7 +56,7 @@ import isEmpty from 'lodash.isempty';
 import isEqual from 'lodash.isequal';
 import { colorOptions, colorHexCode } from '../utils/constants/colors';
 
-defineOptions({ name: 'InnerTabs' });
+defineOptions({ name: 'CdsInnerTabs' });
 
 const props = defineProps({
 	/**

@@ -297,7 +297,7 @@ import isEqual from 'lodash.isequal';
 import isEmpty from 'lodash.isempty';
 import Cdstip from '../utils/directives/cdstip';
 
-defineOptions({ name: 'SideBar' });
+defineOptions({ name: 'CdsSideBar' });
 
 const vCdstip = Cdstip;
 

@@ -30,7 +30,7 @@ const predefinedSizes = [
 ];
 
 export default {
-	name: 'IconButton',
+	name: 'CdsIconButton',
 	components: {
 		CdsIcon,
 		CdsTooltip,

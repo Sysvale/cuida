@@ -73,7 +73,7 @@ import { generateKey } from '../utils';
 
 
 export default {
-	name: 'PasswordInput',
+	name: 'CdsPasswordInput',
 	directives: {
 		cdstip: Cdstip,
 	},

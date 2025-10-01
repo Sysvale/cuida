@@ -37,7 +37,7 @@
 ## Props
 
 <APITable
-	name="Spinner"
+	name="CdsSpinner"
 	section="props"
 />
 <br>

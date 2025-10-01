@@ -36,7 +36,7 @@
 import { ref, computed, onUnmounted } from 'vue';
 import CdsGrid from '../Grid.vue';
 
-defineOptions({ name: 'YearSelectorGrid' });
+defineOptions({ name: 'CdsYearSelectorGrid' });
 
 const props = defineProps({
 	variant: {

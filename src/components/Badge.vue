@@ -32,7 +32,7 @@
 import CdsClickable from './Clickable.vue'
 
 export default {
-	name: 'Badge',
+	name: 'CdsBadge',
 	components: {
 		CdsClickable,
 	},

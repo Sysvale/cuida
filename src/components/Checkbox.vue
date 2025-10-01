@@ -39,7 +39,7 @@
 import variantClassResolver from '../utils/methods/variantClassResolver';
 
 export default {
-	name: 'Checkbox',
+	name: 'CdsCheckbox',
 	props: {
 		/**
 		* A prop usada como v-model para monitorar a seleção do Checkbox

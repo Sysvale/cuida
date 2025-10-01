@@ -43,7 +43,7 @@
 ## Props
 
 <APITable
-	name="Dropdown"
+	name="CdsDropdown"
 	section="props"
 />
 <br>
@@ -51,7 +51,7 @@
 ## Eventos
 
 <APITable
-	name="Dropdown"
+	name="CdsDropdown"
 	section="events"
 />
 <br>
@@ -59,7 +59,7 @@
 ## Slots
 
 <APITable
-	name="Dropdown"
+	name="CdsDropdown"
 	section="slots"
 />
 

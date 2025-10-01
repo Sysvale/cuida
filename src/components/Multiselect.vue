@@ -187,7 +187,7 @@ const clone = (el) => {
 	return JSON.parse(JSON.stringify(el));
 };
 export default {
-	name: 'Multiselect',
+	name: 'CdsMultiselect',
 	components: {
 		Multiselect,
 		CdsDivider,

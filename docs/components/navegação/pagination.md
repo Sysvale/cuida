@@ -44,7 +44,7 @@
 ## Props
 
 <APITable
-	name="Pagination"
+	name="CdsPagination"
 	section="props"
 />
 <br>
@@ -52,7 +52,7 @@
 ## Eventos
 
 <APITable
-	name="Pagination"
+	name="CdsPagination"
 	section="events"
 />
 <br>

@@ -38,7 +38,7 @@
 ## Props
 
 <APITable
-	name="OverlayLoader"
+	name="CdsOverlayLoader"
 	section="props"
 />
 <br>

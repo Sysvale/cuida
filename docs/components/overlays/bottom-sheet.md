@@ -50,7 +50,7 @@
 ## Props
 
 <APITable
-	name="BottomSheet"
+	name="CdsBottomSheet"
 	section="props"
 />
 <br>
@@ -58,7 +58,7 @@
 ## Eventos
 
 <APITable
-	name="BottomSheet"
+	name="CdsBottomSheet"
 	section="events"
 />
 <br>
@@ -66,7 +66,7 @@
 ## Slots
 
 <APITable
-	name="BottomSheet"
+	name="CdsBottomSheet"
 	section="slots"
 />
 

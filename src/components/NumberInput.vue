@@ -60,7 +60,7 @@ import { vCdsBrl, unmaskBRL } from '../utils/directives/cdsBRL';
 import { facade } from 'vue-input-facade';
 import CdsBaseInput from './BaseInput.vue';
 
-defineOptions({ name: 'NumberInput' });
+defineOptions({ name: 'CdsNumberInput' });
 
 const vFacade = facade;
 const baseInputRef = useTemplateRef('baseInput');

@@ -46,7 +46,7 @@
 ## Props
 
 <APITable
-	name="FileViewer"
+	name="CdsFileViewer"
 	section="props"
 />
 <br>
@@ -54,7 +54,7 @@
 ## Eventos
 
 <APITable
-	name="FileViewer"
+	name="CdsFileViewer"
 	section="events"
 />
 <br>

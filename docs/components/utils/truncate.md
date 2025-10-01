@@ -31,7 +31,7 @@ Componente auxiliar utilizado para truncar texto adicionando a ele reticências
 ## Props
 
 <APITable
-	name="Truncate"
+	name="CdsTruncate"
 	section="props"
 />
 <br>
@@ -39,7 +39,7 @@ Componente auxiliar utilizado para truncar texto adicionando a ele reticências
 ## Slots
 
 <APITable
-	name="Truncate"
+	name="CdsTruncate"
 	section="slots"
 />
 

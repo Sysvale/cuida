@@ -7,7 +7,7 @@
 
 <script>
 export default {
-	name: 'OverlayLoader',
+	name: 'CdsOverlayLoader',
 	props: {
 		/**
 		* Propriedade referente ao tamanho do componente ('sm', 'md' ou 'lg')

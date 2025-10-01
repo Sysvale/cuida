@@ -105,7 +105,7 @@
 ## Props
 
 <APITable
-	name="Wizard"
+	name="CdsWizard"
 	section="props"
 />
 <br>
@@ -113,7 +113,7 @@
 ## Eventos
 
 <APITable
-	name="Wizard"
+	name="CdsWizard"
 	section="events"
 />
 <br>
@@ -121,7 +121,7 @@
 ## Slots
 
 <APITable
-	name="Wizard"
+	name="CdsWizard"
 	section="slots"
 />
 

@@ -250,7 +250,7 @@ Nesse deixa de ser possível selecionar a data pelo picker.
 ## Props
 
 <APITable
-	name="DateInput"
+	name="CdsDateInput"
 	section="props"
 />
 <br>
@@ -258,7 +258,7 @@ Nesse deixa de ser possível selecionar a data pelo picker.
 ## Eventos
 
 <APITable
-	name="DateInput"
+	name="CdsDateInput"
 	section="events"
 />
 

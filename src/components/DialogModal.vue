@@ -130,7 +130,7 @@ const predefinedColors = [
 const predefinedVariants = ['warning', 'error', 'info'];
 
 export default {
-	name: 'DialogModal',
+	name: 'CdsDialogModal',
 	components: {
 		CdsIcon,
 		CdsButton,

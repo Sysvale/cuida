@@ -57,7 +57,7 @@
 import { ref, computed, watch } from 'vue';
 import Icon from '../components/Icon.vue';
 
-defineOptions({ name: 'FloatingActionButton' });
+defineOptions({ name: 'CdsFloatingActionButton' });
 
 const props = defineProps({
 	/**

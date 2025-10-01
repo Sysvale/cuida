@@ -14,7 +14,7 @@
 		<div v-else-if="withTrigger">
 			<CdsButton
 				:id="$attrs.id || $attrs.targetId"
-				:text="`Toggle ${component.name}`"
+				:text="`Toggle ${component}`"
 				style="margin: 12px 0px"
 				@button-click="emits('trigger-click')"
 			/>
@@ -35,7 +35,7 @@
 
 	<PlaygroundBuilder
 		v-if="!static"
-		:component="component.name"
+		:component="component"
 		:args="model"
 	/>
 </template>
@@ -54,10 +54,7 @@ import LogBuilder from './LogBuilder.vue';
 const model = defineModel('args');
 
 const props = withDefaults(defineProps<{
-	/**
-	 * Instância do componente vue
-	 */
-	component: Component & { name: string },
+	component: string,
 	events?: string[],
 	withBackground?: boolean,
 	withTrigger?: boolean,
@@ -67,10 +64,6 @@ const props = withDefaults(defineProps<{
 	withBackground: false,
 	static: false,
 });
-
-
-console.log('component: ', props.component);
-console.log('component: ', props.component.name);
 
 const emits = defineEmits(['trigger-click']);
 

@@ -20,7 +20,7 @@
 
 <script>
 export default {
-	name: 'Scrollable',
+	name: 'CdsScrollable',
 	props: {
 		/**
 		 * Altura máxima do container até ser scrollado

@@ -19,7 +19,7 @@
 
 <script>
 export default {
-	name: 'Clickable',
+	name: 'CdsClickable',
 	props: {
 		/**
 		* Ativa ou desativa o clique no componente

@@ -7,7 +7,7 @@
 
 <script>
 export default {
-	name: 'Skeleton',
+	name: 'CdsSkeleton',
 	props: {
 		/**
 		 * Largura do skeleton

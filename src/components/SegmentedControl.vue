@@ -32,7 +32,7 @@ import CdsIcon from './Icon.vue';
 import CdsTooltip from './Tooltip.vue';
 
 export default {
-	name: 'SegmentedControl',
+	name: 'CdsSegmentedControl',
 	components: {
 		CdsIcon,
 		CdsTooltip,

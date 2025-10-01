@@ -42,7 +42,7 @@
 ## Props
 
 <APITable
-	name="NavBar"
+	name="CdsNavBar"
 	section="props"
 />
 <br>
@@ -50,7 +50,7 @@
 ## Eventos
 
 <APITable
-	name="NavBar"
+	name="CdsNavBar"
 	section="events"
 />
 <br>

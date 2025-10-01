@@ -42,7 +42,7 @@ import SideBar from './SideBar.vue';
 import SecondaryNavigation from './SecondaryNavigation.vue';
 import PageContainer from './PageContainer.vue';
 
-defineOptions({ name: 'PageLayout' });
+defineOptions({ name: 'CdsPageLayout' });
 
 const props = defineProps({
 	/**

@@ -43,7 +43,7 @@ Nesse caso, recomendamos o uso de links.
 ## Props
 
 <APITable
-	name="IconButton"
+	name="CdsIconButton"
 	section="props"
 />
 <br>
@@ -51,7 +51,7 @@ Nesse caso, recomendamos o uso de links.
 ## Eventos
 
 <APITable
-	name="IconButton"
+	name="CdsIconButton"
 	section="events"
 />
 <br>

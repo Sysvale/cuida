@@ -52,7 +52,7 @@ import Icon from './Icon.vue';
 import CdsImage from './Image.vue';
 import Skeleton from './Skeleton.vue';
 
-defineOptions({ name: 'Tile' });
+defineOptions({ name: 'CdsTile' });
 
 const props = defineProps({
 	/**
