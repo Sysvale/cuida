@@ -3,7 +3,7 @@
 		<component
 			:is="component"
 			v-if="!$slots.container && !withTrigger"
-			v-bind="{...$attrs, ...(model || {}) }"
+			v-bind="{...$attrs, ...((model as Record<string, any>) || {}) }"
 			v-on="internalEvents"
 		>
 			<template
@@ -28,7 +28,7 @@
 
 			<component
 				:is="component"
-				v-bind="{...$attrs, ...(model || {}) }"
+				v-bind="{...$attrs, ...((model as Record<string, any>) || {}) }"
 				v-on="internalEvents"
 			>
 				<template
@@ -52,7 +52,7 @@
 
 	<PlaygroundBuilder
 		v-if="!static"
-		:component="component.name ?? component"
+		:component="(component.name ?? component) as string"
 		:args="model"
 	/>
 </template>
