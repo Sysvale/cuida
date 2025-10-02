@@ -1,6 +1,7 @@
 # ColorPicker
 
-### ColorPickers permitem aos usuários escolherem cores de modo visual.
+ColorPickers permitem aos usuários escolherem cores de modo visual.
+
 ---
 <br>
 
@@ -22,6 +23,25 @@
 
 ```js
 <CdsColorPicker
+	v-model="color"
+	label="Cor"
+	:swatch="[
+		[
+			'$gp-400',
+			'$ts-400',
+			'$bn-400',
+			'$in-400',
+			'$vr-400',
+		],
+		[
+			'$pp-400',
+			'$rc-400',
+			'$og-400',
+			'$al-400',
+			'$n-400',
+		],
+	]"
+	:inline="true"
 />
 ```
 
@@ -54,8 +74,6 @@
 />
 
 <br>
-<br>
-<br>
 
 ### Com popover
 
@@ -78,7 +96,7 @@
 
 <PlaygroundBuilder
 	:args="argsWithPopover"
-	:component="ColorPicker"
+	component="CdsColorPicker"
 />
 
 ---

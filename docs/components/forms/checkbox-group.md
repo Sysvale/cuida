@@ -1,6 +1,7 @@
 # CheckboxGroup
 
-### CheckboxGroups são componentes de formulário que permitem seleções binárias e múltiplas.
+CheckboxGroups são componentes de formulário que permitem seleções binárias e múltiplas.
+
 ---
 <br>
 
@@ -21,6 +22,23 @@
 <CdsCheckboxGroup
 	v-model="value"
 	label="CheckboxGroup"
+	variant="green"
+	state="default"
+	:options="[
+		{
+			label: 'Teste 1',
+			value: 'test-1',
+		},
+		{
+			label: 'Teste 2',
+			value: 'test-2',
+		},
+		{
+			label: 'Teste 3',
+			value: 'test-3',
+		},
+	]"
+	:disabled="false"
 />
 ```
 

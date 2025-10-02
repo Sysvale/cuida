@@ -24,6 +24,10 @@ Checkboxes são componentes de formulário que permitem seleções binárias e m
 <CdsCheckbox
 	v-model="value"
 	label="checkbox"
+	variant="green"
+	:indeterminate="false"
+	:disabled="false"
+	:prominent="false"
 />
 ```
 

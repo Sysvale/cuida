@@ -1,6 +1,6 @@
 # ComboBox
 
-### O ComboBox é um componente que permite ao usuário selecionar múltiplas opções filtráveis e opcionalmente, adicionar novas opções.
+O ComboBox é um componente que permite ao usuário selecionar múltiplas opções filtráveis e opcionalmente, adicionar novas opções.
 
 ---
 
@@ -27,12 +27,20 @@
 ```js
 <CdsComboBox
 	v-model="value"
-	:options="options"
-	:optionsKeyField="optionsKeyField"
-	:optionsValueField="optionsValueField"
-	:variant="green"
-	width="wide"
 	label="Séries"
+	variant="green"
+	optionsKeyField="name"
+	optionsValueField="value"
+	:options="[
+		{
+			value: 'Breaking Bad',
+			name: 'breaking-bad',
+		},
+		{
+			value: 'Game of Thrones',
+			name: 'game-of-thrones',
+		},
+	]"
 	required
 />
 ```
@@ -88,6 +96,7 @@ const options = [
 
 const args = ref({
 	options,
+	label: 'Séries',
 	optionsKeyField: 'name',
 	optionsValueField: 'value',
 });

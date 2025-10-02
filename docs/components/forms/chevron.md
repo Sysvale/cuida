@@ -1,6 +1,7 @@
 # Chevron
 
-### Chevrons são elementos gráficos usados em interfaces para indicar possibilidade de interação.
+Chevrons são elementos gráficos usados em interfaces para indicar possibilidade de interação.
+
 ---
 <br>
 

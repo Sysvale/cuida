@@ -1,6 +1,7 @@
 # DateInput
 
-### DateInputs permitem que o usuário selecione uma data ou um intervalo de datas através de um calendário interativo.
+DateInputs permitem que o usuário selecione uma data ou um intervalo de datas através de um calendário interativo.
+
 ---
 <br>
 
@@ -253,15 +254,6 @@ Nesse deixa de ser possível selecionar a data pelo picker.
 	name="CdsDateInput"
 	section="props"
 />
-<br>
-
-## Eventos
-
-<APITable
-	name="CdsDateInput"
-	section="events"
-/>
-
 <br>
 
 <script setup>
