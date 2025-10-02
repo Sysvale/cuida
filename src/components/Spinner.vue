@@ -8,27 +8,26 @@
 
 <script>
 export default {
+	name: 'CdsSpinner',
 	props: {
 		/**
-		*	Propriedade referente ao tamanho do componente ('sm', 'md' ou 'lg')
-		*
+		* Propriedade referente ao tamanho do componente
+		* @values sm, md, lg
 		*/
 		size: {
 			type: String,
 			default: 'md',
 		},
 		/**
-		*	Variante de cor do componente ('turquoise', 'green', 'blue',
-			'indigo', 'violet', 'pink', 'red', 'orange', 'amber')
-		*
+		* A variante de cor. São 10 variantes:
+		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		*/
 		variant: {
 			type: String,
 			default: 'green',
 		},
 		/**
-		*	Delay para exibição do spinner, em ms
-		*
+		* Delay para exibição do spinner, em ms
 		*/
 		delay: {
 			type: Number,

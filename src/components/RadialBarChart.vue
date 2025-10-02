@@ -38,10 +38,15 @@
 
 <script>
 import { Doughnut } from 'vue-chartjs'
+import { Chart, registerables } from 'chart.js';
 import sassColorVariables from '../assets/sass/tokens/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
+// Registrar todos os elementos necessários do Chart.js
+Chart.register(...registerables);
+
 export default {
+	name: 'CdsRadialBarChart',
 	components: {
 		Doughnut,
 	},
@@ -68,6 +73,7 @@ export default {
 		/**
 		* Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:
 		* `green`, `teal`, `turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `gray`, `dark`.
+		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		*/
 		variant: {
 			type: String,

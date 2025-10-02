@@ -57,10 +57,13 @@
 import { ref, computed, watch } from 'vue';
 import Icon from '../components/Icon.vue';
 
+defineOptions({ name: 'CdsFloatingActionButton' });
+
 const props = defineProps({
 	/**
 	 * Define a variante de cor do botão. São 9 variantes implementadas: 'green', 'teal',
 	 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.
+	 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	 */
 	variant: {
 		type: String,
@@ -85,6 +88,7 @@ const props = defineProps({
 	},
 	/**
 	 * Define o tamanho do botão. São 3 variantes implementadas: 'sm', 'md' e 'lg'.
+	 * @values sm, md, lg
 	 */
 	size: {
 		type: String,

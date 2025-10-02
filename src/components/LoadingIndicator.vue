@@ -6,27 +6,29 @@
 import { computed, ref, watch } from 'vue';
 import isDeviceType from '../utils/methods/isDeviceType.js';
 
+defineOptions({ name: 'CdsLoadingIndicator' });
+
 // Props
 const props = defineProps({
 	/**
-	 * Controla a exibição do LoadingIndicator.
-	 */
+	* Controla a exibição do LoadingIndicator.
+	*/
 	modelValue: {
 		type: Boolean,
 		default: false,
 		required: true,
 	},
 	/**
-	 * A variante de cor. São 10 variantes implementadas: 'green', 'teal',
-	 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'turquoise'.
-	 */
+	* A variante de cor. São 10 variantes:
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
+	*/
 	variant: {
 		type: String,
 		default: 'green',
 	},
 	/**
-	 * Define o tempo, em ms, do intervalo de mudança da barra de progresso.
-	 */
+	* Define o tempo, em ms, do intervalo de mudança da barra de progresso.
+	*/
 	intervalTime: {
 		type: Number,
 		default: 500,

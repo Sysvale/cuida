@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.json",
+  "include": [
+    "../types/**/*.d.ts",
+    ".vitepress/**/*",
+    "**/*.md",
+    "**/*.vue"
+  ],
+  "exclude": [
+    "../node_modules",
+    ".vitepress/cache"
+  ],
+  "vueCompilerOptions": {
+    "vitePressExtensions": [".md"]
+  }
+}

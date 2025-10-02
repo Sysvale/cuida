@@ -78,14 +78,14 @@
 				</svg>
 			</div>
 
-			<cds-rich-tooltip
+			<CdsRichTooltip
 				v-if="hasSlot($slots, 'popover')"
 				v-model="showPopover"
 				default-placement="top"
 				:target-id="uniqueKey"
 			>
 				<slot name="popover" />
-			</cds-rich-tooltip>
+			</CdsRichTooltip>
 		</div>
 	</span>
 </template>
@@ -96,6 +96,7 @@ import hasSlot from '../utils/methods/hasSlot';
 import { generateKey } from '../utils';
 
 export default {
+	name: 'CdsGaugeChart',
 	components: {
 		CdsRichTooltip,
 	},
@@ -113,6 +114,7 @@ export default {
 		/**
 		 * A variante de cor. São 9 variantes implementadas: 'green', 'teal', 'turquoise',
 		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'.
+		 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		 */
 		variant: {
 			type: String,

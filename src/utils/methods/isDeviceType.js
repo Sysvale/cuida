@@ -1,4 +1,19 @@
 export default (device) => {
+	if (typeof window === 'undefined') {
+		switch (device) {
+			case 'smartphone':
+			case 'tablet':
+				return false;
+			case 'hd-screen':
+				return true;
+			case 'fhd-screen':
+			case 'uhd-screen':
+				return false;
+			default:
+				throw new Error(`Valor inválido: '${device}'. Os valores aceitos são: 'smartphone', 'tablet', 'hd-screen', 'fhd-screen', 'uhd-screen'.`);
+		}
+	}
+
 	switch (device) {
 		case 'smartphone':
 			// se a largura da tela for menor que 500px e menor que a altura da tela

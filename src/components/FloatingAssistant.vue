@@ -4,7 +4,7 @@
 		class="floating-assistant"
 		:class="{ 'floating-assistant--hidden': !isActive }"
 	>
-		<cds-pulsar
+		<CdsPulsar
 			:id="pulsarId"
 			:target-id="targetId"
 			:variant="variant"
@@ -72,7 +72,7 @@
 				</div>
 				<div v-if="isExpanded">
 					<div @click.stop="close">
-						<cds-icon
+						<CdsIcon
 							class="floating-assistant__close-button"
 							name="x-outline"
 							height="20"
@@ -90,6 +90,7 @@ import CdsPulsar from './Pulsar.vue';
 import CdsIcon from './Icon.vue';
 
 export default {
+	name: 'CdsFloatingAssistant',
 	components: {
 		CdsPulsar,
 		CdsIcon,
@@ -132,6 +133,7 @@ export default {
 		/**
 		* A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',
 		* 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
+		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		*/
 		variant: {
 			type: String,

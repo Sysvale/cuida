@@ -8,7 +8,7 @@
 					class="table__select-item"
 					:class="resolveHeaderItemClass(0)"
 				>
-					<cds-checkbox
+					<CdsCheckbox
 						id="select-all-rows"
 						v-model="selectAll"
 						class="table__select-checkbox"
@@ -31,35 +31,36 @@
 							name="header-item"
 							:data="field"
 						/>
-						<cds-clickable
+
+						<CdsClickable
 							v-else
 							:id="`sort-icon-${field.key}`"
 							:clickable="sortable"
 							@click.stop="handleSortBy(field.key)"
 						>
 							{{ field.label }}
-							<cds-icon
+							<CdsIcon
 								v-if="(sortable && field.label) && field.key !== localSortBy"
 								class="table__sort-icon"
 								height="13"
 								width="13"
 								name="swap-vertical-arrows-outline"
 							/>
-							<cds-icon
+							<CdsIcon
 								v-else-if="(sortable && field.label) && localSortDesc"
 								class="table__sort-icon"
 								height="13"
 								width="13"
 								name="sort-descending-duotone"
 							/>
-							<cds-icon
+							<CdsIcon
 								v-else-if="(sortable && field.label)"
 								class="table__sort-icon"
 								height="13"
 								width="13"
 								name="sort-ascending-duotone"
 							/>
-						</cds-clickable>
+						</CdsClickable>
 					</div>
 				</th>
 			</tr>
@@ -75,7 +76,7 @@
 					class="table__select-item"
 					:class="resolveContentItemClass(itemIndex, 0)"
 				>
-					<cds-checkbox
+					<CdsCheckbox
 						:id="`select-row-${itemIndex}`"
 						v-model="select[itemIndex]"
 						class="table__select-checkbox"
@@ -122,6 +123,7 @@ import CdsIcon from '../components/Icon.vue';
 import CdsClickable from '../components/Clickable.vue';
 
 export default {
+	name: 'CdsTable',
 	components: {
 		CdsCheckbox,
 		CdsIcon,
@@ -145,7 +147,7 @@ export default {
 		 * Com a 'key' sendo a mesma do campo da tabela onde o valor deve ser exibido
 		 */
 		items: {
-			type: Array,
+			type: [Array, Object],
 			required: true,
 			default: () => ([]),
 		},
@@ -179,6 +181,7 @@ export default {
 		/**
 		 * A variante das checkboxes de seleção. São 10 variantes: 'teal', 'green', 'blue',
 		 * 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+		 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		 */
 		selectionVariant: {
 			type: String,
@@ -220,6 +223,13 @@ export default {
 		 * Por padrão, os textos do header e valores da tabela terão quebra de linha quando atingirem o tamanho máximo do container.
 		 */
 		noWrap: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		* Remove a cor de fundo da tabela
+		*/
+		transparent: {
 			type: Boolean,
 			default: false,
 		},
@@ -267,7 +277,10 @@ export default {
 		},
 		resolveHeaderShadow() {
 			return this.fixedHeader ? '0px 1px 5px rgba(0, 0, 0, 0.07)' : '';
-		}
+		},
+		computedBackgroundColor() {
+			return this.transparent ? 'transparent' : '#fff';
+		},
 	},
 
 	watch: {
@@ -386,12 +399,23 @@ export default {
 		},
 
 		resolveValue(item, field) {
+			const value = this.getNestedValue(item, field.key);
+
 			if (field.formatter && typeof field.formatter === 'function') {
-				return field.formatter(item[field.key]);
+				return field.formatter(value);
 			}
 
-			return item[field.key];
+			return value;
 		},
+
+		getNestedValue(obj, path) {
+			return path.split('.').reduce((acc, part) => {
+				if (acc && typeof acc === 'object') {
+					return acc[part];
+				}
+				return undefined;
+			}, obj);
+		}
 	},
 };
 </script>
@@ -401,98 +425,98 @@ export default {
 
 .table {
 	&__container {
-		position: relative;
-		border: 1px solid tokens.$n-30;
-		border-collapse: separate;
-		border-radius: tokens.$border-radius-extra-small;
-		border-spacing: 0px;
-		width: 100%;
-		background: tokens.$n-0;
+		position: relative !important;
+		border: 1px solid tokens.$n-30 !important;
+		border-collapse: separate !important;
+		border-radius: tokens.$border-radius-extra-small !important;
+		border-spacing: 0px !important;
+		width: 100% !important;
+		background: v-bind('computedBackgroundColor') !important;
 	}
 
 	&__select-item {
-		width: 50px;
+		width: 50px !important;
 	}
 
 	&__select-checkbox {
-		scale: 0.75;
-		margin-top: 1px;
+		scale: 0.75 !important;
+		margin-top: 1px !important;
 	}
 
 	&__sort-icon {
-		color: tokens.$n-200;
-		margin-left: 6px;
+		color: tokens.$n-200 !important;
+		margin-left: 6px !important;
 	}
 
 	&__header {
-		background-color: tokens.$n-10;
-		position: v-bind('resolveFixedHeader');
-		top: 0;
-		box-shadow: v-bind('resolveHeaderShadow');
-		z-index: tokens.$z-index-backdrop;
+		background-color: tokens.$n-10 !important;
+		position: v-bind('resolveFixedHeader') !important;
+		top: 0 !important;
+		box-shadow: v-bind('resolveHeaderShadow') !important;
+		z-index: tokens.$z-index-backdrop !important;
 
 		&-item {
 			@include tokens.body-2;
-			border-bottom: 1px solid tokens.$n-30;
-			font-weight: 700;
-			padding: tokens.spacer(3) tokens.spacer(4);
-			text-align: inherit;
-			overflow: auto;
-			word-wrap: break-word;
-			white-space: v-bind('resolveNoWarp');
+			border-bottom: 1px solid tokens.$n-30 !important;
+			font-weight: 700 !important;
+			padding: tokens.spacer(3) tokens.spacer(4) !important;
+			text-align: inherit !important;
+			overflow: auto !important;
+			word-wrap: break-word !important;
+			white-space: v-bind('resolveNoWarp') !important;
 
 			&--first {
-				border-top-left-radius: tokens.$border-radius-extra-small;
+				border-top-left-radius: tokens.$border-radius-extra-small !important;
 
 				@extend .table__header-item;
 			}
 
 			&--last {
-				border-top-right-radius: tokens.$border-radius-extra-small;
+				border-top-right-radius: tokens.$border-radius-extra-small !important;
 
 				@extend .table__header-item;
 			}
 		}
 
 		&-item-content {
-			display: flex;
-			align-items: center;
+			display: flex !important;
+			align-items: center !important;
 		}
 	}
 
 	&__content--hoverable {
 		&:hover {
-			background-color: rgba(tokens.$n-10, .7);
+			background-color: rgba(tokens.$n-10, .7) !important;
 		}
 	}
 
 	&__item {
 		@include tokens.body-2;
-		border-bottom: 1px solid tokens.$n-30;
-		font-size: 14px;
-		max-width: 400px;
-		padding: tokens.pa(4);
-		vertical-align: top;
-		overflow: auto;
-		word-wrap: break-word;
-		white-space: v-bind('resolveNoWarp');
+		border-bottom: 1px solid tokens.$n-30 !important;
+		font-size: 14px !important;
+		max-width: 400px !important;
+		padding: tokens.pa(4) !important;
+		vertical-align: top !important;
+		overflow: auto !important;
+		word-wrap: break-word !important;
+		white-space: v-bind('resolveNoWarp') !important;
 
 		&--first {
-			border-bottom: none;
-			border-bottom-left-radius: tokens.$border-radius-extra-small;
+			border-bottom: none !important;
+			border-bottom-left-radius: tokens.$border-radius-extra-small !important;
 
 			@extend .table__item;
 		}
 
 		&--common {
-			border-bottom: none;
+			border-bottom: none !important;
 
 			@extend .table__item;
 		}
 
 		&--last {
-			border-bottom: none;
-			border-bottom-right-radius: tokens.$border-radius-extra-small;
+			border-bottom: none !important;
+			border-bottom-right-radius: tokens.$border-radius-extra-small !important;
 
 			@extend .table__item;
 		}

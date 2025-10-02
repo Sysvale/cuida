@@ -8,31 +8,33 @@
     "outDir": "dist",
     "useDefineForClassFields": true,
     "moduleResolution": "Node",
-    "strict": true,
+    "strict": false,
     "jsx": "preserve",
+    "jsxFactory": "h",
     "sourceMap": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "baseUrl": "./",
-    "types": ["vite/client"],
+    "types": ["vite/client", "vue"],
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
+      "@/*": ["src/*"]
+    }
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue"
+    "src",
+    "types"
   ],
+  "vueCompilerOptions": {
+    "vitePressExtensions": [".md"]
+  },
   "exclude": [
     "node_modules",
     "dist",
-    "test"
+    "docs",
+    "**/*.spec.ts",
+    "**/*.test.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

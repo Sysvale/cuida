@@ -50,6 +50,8 @@ import PaginationItem from '../entities/PaginationItem';
 import CdsChevron from './Chevron.vue';
 import variantClassResolver from '../utils/methods/variantClassResolver';
 
+defineOptions({ name: 'CdsPagination' });
+
 const model = defineModel('modelValue', {
 	type: [Number, String],
 	default: 1,
@@ -82,7 +84,7 @@ const props = defineProps({
 	},
 	/**
 	* A variante de cor. São 10 variantes:
-	* @values 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'dark'
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	variant: {
 		type: String,

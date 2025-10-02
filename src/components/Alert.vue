@@ -12,7 +12,7 @@
 		>
 			<div class="alert__body">
 				<div>
-					<cds-icon
+					<CdsIcon
 						:name="icon"
 						:class="{
 							'alert__icon--info': variant === 'info',
@@ -44,7 +44,7 @@
 				class="alert__close-button"
 				@click="close"
 			>
-				<cds-icon
+				<CdsIcon
 					name="x-outline"
 					:class="{
 						'alert__icon--info': variant === 'info',
@@ -62,31 +62,32 @@
 import CdsIcon from '../components/Icon.vue';
 
 export default {
+	name: 'CdsAlert',
 	components: {
 		CdsIcon,
 	},
 
 	props: {
 		/**
-		 * A variante do Alert. São 3 variantes implementadas: 'info', 'warning'
-		 * e 'danger'
-		 */
+		* A variante do Alert. São 3 variantes implementadas: 
+		* @values info, warning, danger
+		*/
 		variant: {
 			type: String,
 			default: 'info',
 			required: false,
 		},
 		/**
-		 * O título do alert. O título também pode ser usado com o slot.
-		 */
+		* O título do alert. O título também pode ser usado com o slot.
+		*/
 		text: {
 			type: String,
 			default: 'Título do AlertCard',
 			required: false,
 		},
 		/**
-		 * Prop que exibe botão de fechamento do alert.
-		 */
+		* Prop que exibe botão de fechamento do alert.
+		*/
 		dismissible: {
 			type: Boolean,
 			default: false,
@@ -128,10 +129,10 @@ export default {
 	methods: {
 		close() {
 			/**
-			 * Evento emitido quando o botão de fechar o alert é clicado.
-			 * @event close
-			 * @type {Event}
-			 */
+			* Evento emitido quando o botão de fechar o alert é clicado.
+			* @event close
+			* @type {Event}
+			*/
 			this.$emit('close');
 		},
 	},

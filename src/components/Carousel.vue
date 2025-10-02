@@ -61,6 +61,8 @@ import useIsMobile from '../utils/composables/useIsMobile';
 import { ref, computed } from 'vue';
 import Icon from './Icon.vue';
 
+defineOptions({ name: 'CdsCarousel' });
+
 const props = defineProps({
 	/**
 	 * Array de itens a serem exibidos no carousel.

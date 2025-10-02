@@ -17,9 +17,11 @@
 
 <script>
 export default {
+	name: 'CdsChevron',
 	props: {
 		/**
 		 * Indica em que direção o Chevron vai ser renderizado. As opções são: 'Top', 'Right', 'Bottom' e 'Left'
+		 * @values top, right, bottom, left
 		 */
 		direction: {
 			type: String,
@@ -34,6 +36,7 @@ export default {
 		},
 		/**
 		 * Especifica o tamanho do Chevron. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
+		 * @values sm, md, lg
 		 */
 		size: {
 			type: String,
@@ -57,6 +60,7 @@ export default {
 	watch: {
 		direction: {
 			handler() {
+				this.innerDirection = this.direction;
 				this.animationResolver();
 			},
 			immediate: true,

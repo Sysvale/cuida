@@ -6,7 +6,7 @@
 		:class="computedStyle"
 		@click.stop="clickHandler"
 	>
-		<cds-spinner
+		<CdsSpinner
 			v-if="loading"
 			variant="white"
 			size="sm"
@@ -39,7 +39,7 @@ import Cdstip from '../utils/directives/cdstip';
 import hasSlot from '../utils/methods/hasSlot';
 
 export default {
-
+	name: 'CdsButton',
 	directives: {
 		cdstip: Cdstip,
 	},
@@ -50,16 +50,17 @@ export default {
 
 	props: {
 		/**
-		 * A variante de cor. São 9 variantes implementadas: 'green', 'teal',
-		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'.
-		 */
+		* A variante de cor. São 10 variantes:
+		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
+		*/
 		variant: {
 			type: String,
 			default: 'green',
 		},
 		/**
-		 * Especifica o tamanho do botão. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
-		 */
+		* Especifica o tamanho do botão. São 3 tamanhos implementados:
+		* @values 'sm', 'md', 'lg'
+		*/
 		size: {
 			type: String,
 			default: 'md',
@@ -72,12 +73,12 @@ export default {
 			default: false,
 		},
 		/**
-		 * Especifica o texto a ser apresentado no corpo do botão.
-		 * Este texto será exibido apenas se o slot default não for utilizado.
-		 */
+		* Especifica o texto a ser apresentado no corpo do botão.
+		* Este texto será exibido apenas se o slot default não for utilizado.
+		*/
 		text: {
 			type: String,
-			default: 'Lorem ipsum',
+			default: 'Click here',
 		},
 		/**
 		 * Controla a disponibilidade do Botão.

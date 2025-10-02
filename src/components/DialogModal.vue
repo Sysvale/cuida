@@ -18,7 +18,7 @@
 						v-if="variant === 'warning'"
 						class="cds-modal__header-title"
 					>
-						<cds-icon
+						<CdsIcon
 							:class="`cds-modal__header-icon--${variant}`"
 							height="40"
 							width="40"
@@ -31,7 +31,7 @@
 						v-else-if="variant === 'error'"
 						class="cds-modal__header-title"
 					>
-						<cds-icon
+						<CdsIcon
 							:class="`cds-modal__header-icon--${variant}`"
 							height="40"
 							width="40"
@@ -44,7 +44,7 @@
 						v-else-if="variant === 'info'"
 						class="cds-modal__header-title"
 					>
-						<cds-icon
+						<CdsIcon
 							:class="`cds-modal__header-icon--${variant}`"
 							height="40"
 							width="40"
@@ -54,7 +54,7 @@
 					</div>
 				</div>
 
-				<cds-icon
+				<CdsIcon
 					v-if="variant === 'warning'"
 					:class="`cds-modal__header-detail--${variant}`"
 					height="60"
@@ -62,7 +62,7 @@
 					name="warning-outline"
 				/>
 
-				<cds-icon
+				<CdsIcon
 					v-else-if="variant === 'error'"
 					:class="`cds-modal__header-detail--${variant}`"
 					height="60"
@@ -70,7 +70,7 @@
 					name="alert-outline"
 				/>
 
-				<cds-icon
+				<CdsIcon
 					v-else-if="variant === 'info'"
 					:class="`cds-modal__header-detail--${variant}`"
 					height="60"
@@ -93,14 +93,14 @@
 			<footer
 				class="cds-modal__footer"
 			>
-				<cds-button
+				<CdsButton
 					v-if="variant === 'warning'"
 					:text="cancelButtonText"
 					secondary
 					@click="closeHandle()"
 				/>
 
-				<cds-button
+				<CdsButton
 					class="footer__ok-button"
 					:text="okButtonText"
 					:variant="actionButtonVariant"
@@ -130,6 +130,7 @@ const predefinedColors = [
 const predefinedVariants = ['warning', 'error', 'info'];
 
 export default {
+	name: 'CdsDialogModal',
 	components: {
 		CdsIcon,
 		CdsButton,
@@ -137,6 +138,7 @@ export default {
 	props: {
 		/**
 		 *  Define a variante do Dialog Modal.
+		 * @values warning, error, info
 		 */
 		variant: {
 			type: String,
@@ -181,6 +183,7 @@ export default {
 		},
 		/**
 		 * Define a variante do botão de ação do Dialog Modal (segue as variantes do componente de botão do Cuida)
+		 * @values green, teal, turquoise, blue, indigo, violet, pink, red, orange, amber, gray, dark
 		 */
 		actionButtonVariant: {
 			type: String,

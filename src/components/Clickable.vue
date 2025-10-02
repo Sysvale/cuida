@@ -12,23 +12,25 @@
 		}"
 		@click="$emit('cds-click', true)"
 	>
+		<!-- @slot Slot default.-->
 		<slot />
 	</div>
 </template>
 
 <script>
 export default {
+	name: 'CdsClickable',
 	props: {
 		/**
-		 * Ativa ou desativa o clique no componente
-		 */
+		* Ativa ou desativa o clique no componente
+		*/
 		clickable: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		 * Permite que o clickable se expanda de forma fluida
-		 */
+		* Permite que o clickable se expanda de forma fluida
+		*/
 		fluid: {
 			type: Boolean,
 			default: false,

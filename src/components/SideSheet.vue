@@ -18,26 +18,26 @@
 							class="side-sheet__close-icon"
 							@click="closeHandle"
 						>
-							<cds-clickable
+							<CdsClickable
 								clickable
 							>
-								<cds-icon
+								<CdsIcon
 									height="20"
 									width="20"
 									name="x-outline"
 								/>
-							</cds-clickable>
+							</CdsClickable>
 						</div>
 					</div>
 				</slot>
 			</header>
 
-			<cds-scrollable
+			<CdsScrollable
 				max-height="100%"
 			>
 				<!-- @slot Slot usado para mostrar o conteúdo dentro do componente. -->
 				<slot />
-			</cds-scrollable>
+			</CdsScrollable>
 
 			<footer
 				v-if="!noFooter"
@@ -45,7 +45,7 @@
 			>
 				<!-- @slot Slot usado para inserção de footer customizado. -->
 				<slot name="footer">
-					<cds-button
+					<CdsButton
 						v-if="!noCancelButton"
 						:text="cancelButtonText"
 						secondary
@@ -53,7 +53,7 @@
 						@click="!disableCancelButton ? cancelHandle() : false"
 					/>
 
-					<cds-button
+					<CdsButton
 						class="footer__ok-button"
 						:text="okButtonText"
 						:variant="actionButtonVariant"
@@ -77,6 +77,7 @@ import CdsButton from '../components/Button.vue';
 import CdsScrollable from '../components/Scrollable.vue';
 
 export default {
+	name: 'CdsSideSheet',
 	components: {
 		CdsIcon,
 		CdsClickable,
@@ -108,6 +109,7 @@ export default {
 		},
 		/**
 		* Especifica o tamanho do SideSheet. São 4 tamanhos implementados: 'sm', 'md', 'lg', 'xl'.
+		* @values sm, md, lg, xl
 		*/
 		size: {
 			type: String,
@@ -129,6 +131,7 @@ export default {
 		},
 		/**
 		 * Define a variante do botão de ação do SideSheet (segue as variantes do componente de botão do Cuida)
+		 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		 */
 		actionButtonVariant: {
 			type: String,

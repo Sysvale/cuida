@@ -21,6 +21,11 @@ exports[`MultiFileInput snapshot test > renders correctly 1`] = `
     <div data-v-96e95147="" class="multi-file-input__badges_section">
       <div data-v-0d3d5e64="" data-v-96e95147="" class="badge__container badge--gray badge--md">
         <div data-v-0d3d5e64="" class="badge__content--md">
+          <!--
+				Evento que indica se a Badge foi clicada
+				@event click
+				@type {Event}
+			-->
           <div data-v-96e95147="" class="multi-file-input__badge-content">
             <!--v-if-->
             <div data-v-96e95147="">Comprovante de residência *</div>
@@ -29,6 +34,11 @@ exports[`MultiFileInput snapshot test > renders correctly 1`] = `
       </div>
       <div data-v-0d3d5e64="" data-v-96e95147="" class="badge__container badge--gray badge--md">
         <div data-v-0d3d5e64="" class="badge__content--md">
+          <!--
+				Evento que indica se a Badge foi clicada
+				@event click
+				@type {Event}
+			-->
           <div data-v-96e95147="" class="multi-file-input__badge-content">
             <!--v-if-->
             <div data-v-96e95147="">Guia de encaminhamento </div>
@@ -37,6 +47,11 @@ exports[`MultiFileInput snapshot test > renders correctly 1`] = `
       </div>
       <div data-v-0d3d5e64="" data-v-96e95147="" class="badge__container badge--gray badge--md">
         <div data-v-0d3d5e64="" class="badge__content--md">
+          <!--
+				Evento que indica se a Badge foi clicada
+				@event click
+				@type {Event}
+			-->
           <div data-v-96e95147="" class="multi-file-input__badge-content">
             <!--v-if-->
             <div data-v-96e95147="">RG </div>
@@ -45,6 +60,11 @@ exports[`MultiFileInput snapshot test > renders correctly 1`] = `
       </div>
       <div data-v-0d3d5e64="" data-v-96e95147="" class="badge__container badge--gray badge--md">
         <div data-v-0d3d5e64="" class="badge__content--md">
+          <!--
+				Evento que indica se a Badge foi clicada
+				@event click
+				@type {Event}
+			-->
           <div data-v-96e95147="" class="multi-file-input__badge-content">
             <!--v-if-->
             <div data-v-96e95147="">Passaporte *</div>

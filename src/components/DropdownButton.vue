@@ -57,6 +57,7 @@ import CdsChevron from './Chevron.vue';
 import CdsIcon from './Icon.vue';
 
 export default {
+	name: 'CdsDropdownButton',
 	components: {
 		CdsButton,
 		CdsIcon,
@@ -75,8 +76,8 @@ export default {
 			required: true,
 		},
 		/**
-		* A variante do DropdownButton . São 9 variantes: 'turquoise', 'green', 'blue',
-		* 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
+		* A variante de cor. São 10 variantes:
+		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		*/
 		variant: {
 			type: String,

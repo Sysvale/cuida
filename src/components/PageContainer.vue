@@ -6,7 +6,9 @@
 </template>
 
 <script>
-export default {}
+export default {
+	name: 'CdsPageContainer',
+}
 </script>
 
 <style lang="scss" scoped>

@@ -1,37 +1,39 @@
 <template>
-	<div
-		v-if="internalModelValue"
-	>
+	<div>
 		<div
-			:class="toggleAnimationClass ? 'backdrop__show' : 'backdrop__hide'"
-			@click="closeSideSheet"
+			v-if="model"
 		>
 			<div
-				ref="bottomSheetRef"
-				:class="toggleAnimationClass ? 'bottom-sheet__show' : 'bottom-sheet__hide'"
+				:class="toggleAnimationClass ? 'backdrop__show' : 'backdrop__hide'"
+				@click="closeSideSheet"
 			>
-				<div class="bottom-sheet__header-border">
-					<div class="bottom-sheet__header-border-line" />
-				</div>
-				<div class="bottom-sheet__header">
-					<div class="bottom-sheet__title">
-						{{ title }}
+				<div
+					ref="bottomSheetRef"
+					:class="toggleAnimationClass ? 'bottom-sheet__show' : 'bottom-sheet__hide'"
+				>
+					<div class="bottom-sheet__header-border">
+						<div class="bottom-sheet__header-border-line" />
 					</div>
-					<div
-						class="bottom-sheet__close-icon"
-						@click="closeHandle"
-					>
-						<icon
-							name="x-outline"
-							height="20"
-							width="20"
-							color="#29333D"
-						/>
+					<div class="bottom-sheet__header">
+						<div class="bottom-sheet__title">
+							{{ title }}
+						</div>
+						<div
+							class="bottom-sheet__close-icon"
+							@click="closeHandle"
+						>
+							<icon
+								name="x-outline"
+								height="20"
+								width="20"
+								color="#29333D"
+							/>
+						</div>
 					</div>
-				</div>
-				<div class="bottom-sheet__content">
-					<!-- @slot Scoped slot usado para inserção de conteúdo customizado. -->
-					<slot name="default" />
+					<div class="bottom-sheet__content">
+						<!-- @slot Scoped slot usado para inserção de conteúdo customizado. -->
+						<slot name="default" />
+					</div>
 				</div>
 			</div>
 		</div>
@@ -42,13 +44,11 @@
 import Icon from './Icon.vue';
 import { ref, watch } from 'vue';
 
-const props = defineProps({
-	modelValue: {
-		type: Boolean,
-		default: false,
-		required: true,
-	},
+defineOptions({ name: 'CdsBottomSheet' });
 
+const model = defineModel();
+
+const props = defineProps({
 	/**
 		 * Define o título do bottom sheet exibido no header
 		 */
@@ -81,16 +81,14 @@ const emit = defineEmits([
 	'close',
 ]);
 
-const internalModelValue = ref(props.modelValue);
+// const internalModelValue = ref(props.modelValue);
 const toggleAnimationClass = ref(true);
 const bottomSheetRef = ref(null);
 
-watch(() => props.modelValue, (newValue, oldValue) => {
+watch(model, (newValue, oldValue) => {
 	if (newValue !== oldValue) {
 		if (!newValue) {
 			closeHandle();
-		} else {
-			internalModelValue.value = newValue;
 		}
 
 		mustDisableExternalScrolls(newValue);
@@ -111,9 +109,9 @@ function closeHandle() {
 	toggleAnimationClass.value = false;
 
 	setTimeout(() => {
-		internalModelValue.value = false;
+		// internalModelValue.value = false;
 		toggleAnimationClass.value = true;
-		emit('update:model-value', false);
+		model.value = false;
 		emit('close', true);
 	}, 300);
 }

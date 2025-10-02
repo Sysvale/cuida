@@ -17,7 +17,7 @@
 					:class="`color-picker__swatch--${color.replace('$', '')}`"
 					@click="SwatchSelection(color)"
 				>
-					<cds-icon
+					<CdsIcon
 						v-if="isCurrentColorSelected(color)"
 						height="22"
 						width="22"
@@ -39,7 +39,7 @@
 			<div class="color-picker__preview" /> 
 		</div>
 
-		<cds-popover
+		<CdsPopover
 			v-model="showPopover"
 			:right-aligned="false"
 			target-id="color-picker"
@@ -59,7 +59,7 @@
 						:class="`color-picker__swatch--${color.replace('$', '')}`"
 						@click="SwatchSelection(color)"
 					>
-						<cds-icon
+						<CdsIcon
 							v-if="isCurrentColorSelected(color)"
 							height="22"
 							width="22"
@@ -70,7 +70,7 @@
 					</div>
 				</div>
 			</div>
-		</cds-popover>
+		</CdsPopover>
 	</div>
 </template>
 
@@ -82,6 +82,7 @@ import ContrastChecker from '../utils/methods/contrastChecker';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
 
 export default {
+	name: 'CdsColorPicker',
 	components: {
 		CdsPopover,
 		CdsIcon,

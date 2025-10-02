@@ -14,6 +14,7 @@ import { createPopper } from '@popperjs/core';
 import { generateKey } from '../utils';
 
 export default {
+	name: 'CdsRichTooltip',
 	props: {
 		/**
 		* Prop utilizada como v-model.
@@ -48,6 +49,7 @@ export default {
 		/**
 		* Indica o posicionamento padrão do Popover.
 		* Quando não especificado é considerado o posicionamento "bottom"
+		* @values auto, top, right, bottom, left, top-start, right-start, bottom-start, left-start, top-end, right-end, bottom-end, left-end
 		*/
 		defaultPlacement: {
 			type: String,
@@ -88,13 +90,17 @@ export default {
 			}
 		},
 
+		defaultPlacement() {
+			this.setPopper(this.targetId);
+		},
+
 		targetId(id) {
 			this.setPopper(id);
 		},
 	},
 
 	mounted() {
-		this.id = `cds-popover-${this.uniqueKey}`;
+		this.id = `CdsPopover-${this.uniqueKey}`;
 		this.setPopper(this.targetId);
 
 		document.querySelector('body').addEventListener('click', this.closeRichTooltip);

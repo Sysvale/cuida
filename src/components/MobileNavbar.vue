@@ -42,6 +42,8 @@
 import { ref, computed, onMounted, watchEffect, watch } from 'vue';
 import Icon from '../components/Icon.vue';
 
+defineOptions({ name: 'CdsMobileNavbar' });
+
 const props = defineProps({
 	/**
 	 * Define os itens de menu da navbar.
@@ -56,6 +58,7 @@ const props = defineProps({
 	/**
 	 * Define a variante de cor dos detalhes do componente. São 9 variantes implementadas: 'green', 'teal',
 	 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.
+	 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	 */
 	variant: {
 		type: String,

@@ -4,8 +4,7 @@ import vue from '@vitejs/plugin-vue';
 import typescript from '@rollup/plugin-typescript';
 
 import { fileURLToPath, URL } from "url";
-
-const path = require('path');
+import path from 'node:path';
 
 // https://vitejs.dev/config/
 export default defineConfig({

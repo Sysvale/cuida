@@ -31,7 +31,7 @@
 		>
 			<template #trailing-icon>
 				<div class="date-input__icon">
-					<cds-icon
+					<CdsIcon
 						height="20"
 						width="20"
 						name="calendar-outline"
@@ -161,6 +161,9 @@ import {
 } from '../utils/composables/useComponentEmits.js';
 import { useClickOutside } from '../utils/composables/useClickOutside.js';
 import { facade } from 'vue-input-facade';
+
+defineOptions({ name: 'CdsDateInput' });
+
 const vFacade = facade;
 
 const WEEK_DAYS = ['S', 'T', 'Q', 'Q', 'S', 'S', 'D'];
@@ -187,8 +190,8 @@ const props = defineProps({
 		default: 'Label',
 	},
 	/**
-	* A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',
-	* 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
+	* A variante de cor. São 10 variantes:
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	variant: {
 		type: String,
@@ -196,10 +199,20 @@ const props = defineProps({
 	},
 	/**
 	* Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	* @values default, valid, loading, invalid
 	*/
 	state: {
 		type: String,
 		default: 'default',
+	},
+	/**
+	* Define o modo de interação com o DateInput. Quando definido como 'typing', o componente permite apenas
+	* digitação. No modo 'picking', a data deve ser selecionada através do date picker, desabilitando a digitação direta.
+	*/
+	mode: {
+		type: String,
+		default: 'picking',
+		validator: (value) => (['typing', 'picking']).includes(value),
 	},
 	/**
 	* Quando true, o usuário poderá selecionar um intervalo de datas.
@@ -230,7 +243,7 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile
+	* @deprecated Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile
 	*/
 	mobile: {
 		type: Boolean,
@@ -244,7 +257,7 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser renomeada para prop `highlightToday` na v4. Controla a marcação do dia atual no calendário.
+	* @deprecated Essa prop vai ser renomeada para prop `highlightToday` na v4. Controla a marcação do dia atual no calendário.
 	*/
 	showTodayDot: {
 		type: Boolean,
@@ -319,15 +332,6 @@ const props = defineProps({
 	supportLinkUrl: {
 		type: [String, null],
 		default: null,
-	},
-	/**
-	* Define o modo de interação com o DateInput. Quando definido como 'typing', o componente permite apenas
-	* digitação. No modo 'picking', a data deve ser selecionada através do date picker, desabilitando a digitação direta.
-	*/
-	mode: {
-		type: String,
-		default: 'picking',
-		validator: (value) => (['typing', 'picking']).includes(value),
 	},
 });
 

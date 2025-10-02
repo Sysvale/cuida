@@ -8,7 +8,6 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-storybook-static
 dist
 dist-ssr
 *.local
@@ -27,3 +26,11 @@ dist-ssr
 .vitest
 .cache
 coverage
+
+# VitePress
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+docs/.vitepress/*.timestamp-*.mjs
+
+# Vite/VitePress temporary timestamp files
+*.timestamp-*.mjs

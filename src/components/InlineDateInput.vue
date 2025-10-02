@@ -38,13 +38,13 @@
 			@update:model-value="handleUpdateInput"
 		>
 			<template #header-left-button="{ page }">
-				<cds-chevron
+				<CdsChevron
 					direction="left"
 					@click="page.movePrevMonth()"
 				/>
 			</template>
 			<template #header-right-button="{ page }">
-				<cds-chevron
+				<CdsChevron
 					direction="right"
 					@click="page.moveNextMonth()"
 				/>
@@ -65,7 +65,7 @@
 						@blur="isBeingFocused = false"
 					>
 					<div class="inline-date-input__icon">
-						<cds-icon
+						<CdsIcon
 							height="20"
 							width="20"
 							name="calendar-outline"
@@ -90,6 +90,7 @@ import paleteBuilder from '../utils/methods/paleteBuilder.js';
 const dateStringValidator = (value) => /^(19|20)\d\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/.test(value);
 
 export default {
+	name: 'CdsInlineDateInput',
 	components: {
 		VDatePicker: DatePicker,
 		CdsChevron,
@@ -167,6 +168,7 @@ export default {
 		/**
 		* A variante de cor. São 9 variantes implementadas: 'green', 'teal',
 		* 'blue', 'indigo', 'violet', 'pink', 'red', 'orange' e 'amber'.
+		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		*/
 		variant: {
 			type: String,

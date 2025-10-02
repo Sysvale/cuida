@@ -31,7 +31,7 @@
 				v-if="!file"
 				class="file-input__container"
 			>
-				<cds-icon
+				<CdsIcon
 					name="upload-cloud-outline"
 					:class="{
 						'icon-upload--sm': size === 'sm',
@@ -61,7 +61,7 @@
 				v-else
 				class="file-input__container"
 			>
-				<cds-icon
+				<CdsIcon
 					height="24"
 					width="24"
 					name="document-text-outline"
@@ -89,7 +89,7 @@
 							class="x-icon__container"
 							@click.stop="handleRemove"
 						>
-							<cds-icon
+							<CdsIcon
 								height="18"
 								width="18"
 								name="x-outline"
@@ -124,6 +124,7 @@ import { last, isEmpty } from 'lodash';
 import CdsIcon from './Icon.vue';
 
 export default {
+	name: 'CdsFileInput',
 	components: {
 		CdsIcon,
 	},
@@ -146,6 +147,7 @@ export default {
 		},
 		/**
 		 * Define o tamanho do input [lg, md, sm]
+		 * @values sm, md, lg
 		 */
 		size: {
 			type: String,
@@ -153,6 +155,7 @@ export default {
 		},
 		/**
 		 * Especifica o estado do Select. As opções são 'default', 'valid', 'loading' e 'invalid'.
+		 * @values default, valid, loading, invalid
 		 */
 		state: {
 			type: String,

@@ -5,7 +5,7 @@
 </p>
 
 <div align="center">
-  <p align="center">A design system built by Sysvale, using storybook and Vue components</p>
+  <p align="center">A design system built by Sysvale, using Vue components</p>
   <p align="center">https://cuida.framer.wiki/</p>
   <p align="center">https://main--6168a1779cac8c003ab99c2d.chromatic.com</p>
   <p align="center">Preview da migração da documentação em VitePress: https://cuida.sysvale.com/</p
@@ -45,8 +45,7 @@ const cdsUtils = Cuida.utils;
 app.provide('cdsUtils', cdsUtils);
 ```
 
-- Agora para utilizar os componentes, basta usá-los no seu template. Como exemplo, para usar a
-  [Badge](https://sysvale.github.io/cuida/?path=/docs/componentes-display-badge--badge):
+- Agora para utilizar os componentes, basta usá-los no seu template. Como exemplo, para usar a Badge:
 
 ```html
 <cds-badge variant="gray"> Conteúdo </cds-badge>
@@ -82,7 +81,7 @@ git clone https://github.com/Sysvale/cuida.git
 docker-compose up -d
 ```
 
-A aplicação estará disponível na porta `6006`, em [http://localhost:6006/](http://localhost:6006).
+A documentação estará disponível na porta `5173`, em [http://localhost:5173/](http://localhost:5173).
 
 - Caso não queira usar docker, instale as dependências com:
 
@@ -92,12 +91,10 @@ npm i
 
 ### Executando o Cuida
 
-- Após a execução do comando `docker-composer up -d` a aplicação iniciará com instalação e build em segundo plano e estará acessível após alguns segundos em [http://localhost:6006/](http://localhost:6006). O progresso pode ser acompanhado também executando `docker-compose logs -f main`.
-  .
-- Ou alternativamente, sem o docker, rode apenas:
+- Para executar a documentação local, execute:
 
 ```bash
-npm run storybook
+npm run docs:dev
 ```
 
 ### Testando-o

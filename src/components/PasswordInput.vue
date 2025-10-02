@@ -8,7 +8,7 @@
 				v-else
 				:class="labelDynamicClass"
 			>
-				<div
+				<CdsFlexbox
 					class="password-input__label__content"
 					for="cds-password-input"
 				>
@@ -20,7 +20,7 @@
 					>
 						*
 					</span>
-					<cds-icon
+					<CdsIcon
 						v-if="tooltip"
 						v-cdstip="tooltip"
 						:name="tooltipIcon"
@@ -28,7 +28,7 @@
 						width="20"
 						class="password-input__label__icon"
 					/>
-				</div>
+				</CdsFlexbox>
 			</label>
 		</span>
 		<div :class="stepperInputDynamicClass">
@@ -46,13 +46,13 @@
 				v-if="!disableTextPasswordInput"
 				class="password-input__password-toogle"
 			>
-				<cds-clickable
-					id="cds-clickable"
+				<CdsClickable
+					id="CdsClickable"
 					clickable
 					@click="handleShowPassword"
 				>
 					{{ customTextPasswordInput }}
-				</cds-clickable>
+				</CdsClickable>
 			</div>
 		</div>
 		<div
@@ -68,10 +68,12 @@
 import CdsIcon from './Icon.vue';
 import Cdstip from '../utils/directives/cdstip';
 import CdsClickable from './Clickable.vue';
+import CdsFlexbox from './Flexbox.vue';
 import { generateKey } from '../utils';
 
 
 export default {
+	name: 'CdsPasswordInput',
 	directives: {
 		cdstip: Cdstip,
 	},
@@ -79,6 +81,7 @@ export default {
 	components: {
 		CdsIcon,
 		CdsClickable,
+		CdsFlexbox
 	},
 
 	props: {
@@ -104,7 +107,8 @@ export default {
 			default: false,
 		},
 		/**
-		 * Especifica o estado do PasswordInput. As opções são 'default', 'valid' e 'invalid'.
+		 * Especifica o estado do PasswordInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
+		 * @values default, valid, loading, invalid
 		 */
 		state: {
 			type: String,

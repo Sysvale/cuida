@@ -8,7 +8,7 @@
 				v-if="withIcon"
 				:class="iconClass"
 			>
-				<cds-icon
+				<CdsIcon
 					height="24"
 					width="24"
 					:name="dynamicIcon"
@@ -52,6 +52,7 @@
 import CdsIcon from './Icon.vue';
 
 export default {
+	name: 'CdsAlertCard',
 	components: {
 		CdsIcon,
 	},
@@ -60,6 +61,7 @@ export default {
 		/**
 		 * A variante do Alert. São 3 variantes implementadas: 'info', 'warning'
 		 * e 'danger'
+		 * @values info, warning, danger
 		 */
 		variant: {
 			type: String,

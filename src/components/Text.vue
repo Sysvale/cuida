@@ -17,9 +17,12 @@
 <script setup>
 import { computed, useTemplateRef } from 'vue';
 
+defineOptions({ name: 'CdsText' });
+
 const props = defineProps({
 	/**
 	* A tag HTML que o componente deve renderizar.
+	* @values h1, h2, h3, h4, h5, h6, heading-1, heading-2, heading-3, subheading-1, subheading-2, subheading-3, p, q, span, body-1, body-2, caption, overline, strong, em, del, small, legend
 	*/
 	as: {
 		type: String,
@@ -27,6 +30,7 @@ const props = defineProps({
 	},
 	/**
 	* Define a cor do texto. Aceita os tokes de cor do design system da shade 'neutrals'. Para cores fora da paleta neutra, utilize uma classe personalizada.
+	* @values n-0, n-10, n-20, n-30, n-40, n-50, n-100, n-200, n-300, n-400, n-500, n-600, n-700, n-800, n-900
 	*/
 	color: {
 		type: String,

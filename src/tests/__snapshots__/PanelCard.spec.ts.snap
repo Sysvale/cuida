@@ -8,17 +8,19 @@ exports[`PanelCard > renders correctly 1`] = `
 		@type {Event}
 	-->
   <div data-v-f9290560="" class="clickable__container--not-clickable box__container">
-    <!-- @slot Slot utilizado para renderização do conteúdo interno do Box.-->
+    <!-- @slot Slot default.-->
     <div data-v-9cc3ee57="" data-v-f9290560="" class="spacer">
+      <!-- @slot Slot default.-->
+      <!-- @slot Slot utilizado para renderização do conteúdo interno do Box.-->
       <div data-v-9994fd39="" class="panel-card__header">
         <div data-v-9994fd39=""><span data-v-9994fd39="" class="panel-card__title">Redes</span><br data-v-9994fd39=""><span data-v-9994fd39="" class="panel-card__subtitle">Habilite as redes da regulação</span></div>
         <div data-v-9994fd39="">
           <!-- @slot Slot usado para inserção de elemento à direita no header. -->
         </div>
       </div>
-      <div data-v-9994fd39="" class="divider__container">
-        <div></div>
-        <hr class="divider divider--dimmed">
+      <div data-v-f999d120="" data-v-9994fd39="" class="divider__container">
+        <div data-v-f999d120=""></div>
+        <hr data-v-f999d120="" class="divider divider--dimmed">
       </div>
       <div data-v-9994fd39="" class="panel-card__content">
         <!-- @slot Slot usado para inserção de conteúdo customizado. -->

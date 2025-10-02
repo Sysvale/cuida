@@ -32,7 +32,7 @@
 						align="center"
 						gap="2"
 					>
-						<cds-icon
+						<CdsIcon
 							height="26"
 							width="26"
 							name="warning-outline"
@@ -54,18 +54,18 @@
 					autoplay
 				/>
 			</div>
-			<cds-flexbox
+			<CdsFlexbox
 				class="camera-container__feedback-text"
 				:class="{ 'camera-container__feedback-text--hidden': !filePhoto }"
 				align="center"
 			>
 				{{ feedbackText }}
-			</cds-flexbox>
+			</CdsFlexbox>
 			<flexbox
 				gap="2"
 				class="camera-container__buttons"
 			>
-				<cds-button
+				<CdsButton
 					v-if="!photoUrl"
 					class="camera-container__button"
 					size="lg"
@@ -75,8 +75,8 @@
 					@click.prevent="takePhoto"
 				>
 					{{ takePhotoButtonText }}
-				</cds-button>
-				<cds-button
+				</CdsButton>
+				<CdsButton
 					v-else
 					class="camera-container__button"
 					size="lg"
@@ -86,8 +86,8 @@
 					@click.prevent="removePhoto"
 				>
 					{{ takeAnotherPhotoButtonText }}
-				</cds-button>
-				<cds-button
+				</CdsButton>
+				<CdsButton
 					class="camera-container__button"
 					size="lg"
 					:variant="variant"
@@ -95,7 +95,7 @@
 					@click.prevent="savePhoto"
 				>
 					{{ savePhotoButtonText }}
-				</cds-button>
+				</CdsButton>
 			</flexbox>
 		</flexbox>
 		<canvas ref="canvasRef" />
@@ -110,6 +110,8 @@ import Modal from './Modal.vue';
 import Spinner from './Spinner.vue';
 import CdsIcon from './Icon.vue';
 import CdsFlexbox from './Flexbox.vue';
+
+defineOptions({ name: 'CdsWebcamModal' });
 
 const emit = defineEmits([
 	/**
@@ -186,6 +188,7 @@ const props = defineProps({
 
 	/**
 	 * Variante dos botões e do spinner
+	 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	 */
 	variant: {
 		type: String,

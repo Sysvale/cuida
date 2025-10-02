@@ -1,5 +1,5 @@
-const concat = require('concat');
-const createFile = require('create-file');
+import concat from 'concat';
+import createFile from 'create-file';
 
 createFile('dist/@sysvale/tokens.scss', '', function (err) {
 	console.warn(err);

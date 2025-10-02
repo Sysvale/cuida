@@ -42,33 +42,42 @@
 
 <script>
 export default {
+	name: 'CdsCarouselController',
 	props: {
+		/**
+		 * Nome da propriedade exibida no controle do carousel.
+		 */
 		propertyName: {
 			type: String,
-			default: 'Dados',
-			required: false,
+			required: true,
 		},
-
+		/**
+		 * Número de itens por página do carousel.
+		 */
 		perPage: {
 			type: Number,
 			required: true,
 		},
-
+		/**
+		 * Número total de itens no carousel.
+		 */
 		total: {
 			type: Number,
 			required: true,
 		},
-
+		/**
+		 * Quando true, exibe o controle em modo simples (página atual de total de páginas).
+		 */
 		simple: {
 			type: Boolean,
 			default: false,
-			required: false,
 		},
-
+		/**
+		 * Quando true, o controle ocupa toda a largura disponível com espaçamento distribuído.
+		 */
 		fluid: {
 			type: Boolean,
 			default: false,
-			required: false,
 		},
 	},
 
@@ -100,6 +109,13 @@ export default {
 
 			if (this.simple && (this.currentNumberOfItemsMin > 1)) {
 				this.currentNumberOfItemsMin -= 1;
+				/**
+				* Evento que indica que o botão voltar foi clicado
+				* @event click-back
+				* @type {Object}
+				* @property {number} min - Índice mínimo da página atual (base 0)
+				* @property {number} max - Índice máximo da página atual (base 0)
+				*/
 				this.$emit('click-back', { min: this.currentNumberOfItemsMin - 1, max: this.currentNumberOfItemsMax + 1 });
 				return;
 			} else if (this.simple && (this.currentNumberOfItemsMin === 1)) {
@@ -122,6 +138,13 @@ export default {
 
 			if (this.simple && (this.currentNumberOfItemsMin < this.numberOfPages)) {
 				this.currentNumberOfItemsMin += 1;
+				/**
+				* Evento que indica que o botão avançar foi clicado
+				* @event click-forward
+				* @type {Object}
+				* @property {number} min - Índice mínimo da página atual (base 0)
+				* @property {number} max - Índice máximo da página atual (base 0)
+				*/
 				this.$emit('click-forward', { min: this.currentNumberOfItemsMin - 1, max: this.currentNumberOfItemsMax + 1 });
 				return;
 			} else if (this.simple && (this.currentNumberOfItemsMin === this.numberOfPages)) {

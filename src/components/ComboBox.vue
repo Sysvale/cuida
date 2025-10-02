@@ -112,6 +112,8 @@ import CdsBadge from './Badge.vue';
 import CdsTruncate from './Truncate.vue';
 import CdsIcon from './Icon.vue';
 
+defineOptions({ name: 'CdsComboBox' });
+
 const props = defineProps({
 	/**
 	 * Especifica o título do select.
@@ -174,6 +176,7 @@ const props = defineProps({
 	},
 	/**
 	* Especifica o estado do input. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	* @values default, valid, invalid, loading
 	*/
 	state: {
 		type: String,
@@ -201,9 +204,9 @@ const props = defineProps({
 		default: 'info-outline',
 	},
 	/**
-	 * A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',
-	 * 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
-	 */
+	* A variante de cor. São 10 variantes:
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
+	*/
 	variant: {
 		type: String,
 		default: 'green',

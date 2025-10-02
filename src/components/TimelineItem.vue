@@ -9,7 +9,7 @@
 		<div
 			class="cds-timeline-item__timeline-container"
 		>
-			<cds-spinner
+			<CdsSpinner
 				v-if="loading"
 				size="sm"
 				class="spinner"
@@ -19,7 +19,7 @@
 				v-else-if="icon"
 				class="cds-timeline-item__icon"
 			>
-				<cds-icon
+				<CdsIcon
 					:name="icon"
 					height="20"
 					width="20"
@@ -58,6 +58,7 @@ import CdsIcon from './Icon.vue';
 import hasSlot from '../utils/methods/hasSlot';
 
 export default {
+	name: 'CdsTimelineItem',
 	components: {
 		CdsIcon,
 		CdsSpinner,
@@ -65,15 +66,15 @@ export default {
 
 	props: {
 		/**
-		* A variante do TimelineItem. São 10 variantes: 'teal', 'green', 'blue',
-		* 'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.
+		* A variante de cor. São 10 variantes:
+		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		*/
 		variant: {
 			type: String,
 			default: 'green',
 		},
 		/**
-		* Altera o estado do pin. Quando true torna o pin em um `Cds-spinner`.
+		* Altera o estado do pin. Quando true torna o pin em um `CdsSpinner`.
 		*/
 		loading: {
 			type: Boolean,

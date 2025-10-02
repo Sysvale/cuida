@@ -23,6 +23,7 @@
 
 <script>
 export default {
+	name: 'CdsPinInput',
 	props: {
 		modelValue: {
 			type: String,
@@ -34,6 +35,7 @@ export default {
 		},
 		/**
 		 * Especifica o estado do TextInput. As opções são 'default', 'valid' e 'invalid'.
+		 * @values default, valid, invalid
 		 */
 		state: {
 			type: String,

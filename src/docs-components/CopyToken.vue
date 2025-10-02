@@ -1,9 +1,3 @@
-<template>
-	<tooltip :value="value" :show="showTooltip" :target='target' @hide="showTooltip = false">
-		<span> ✅ Token copiado!</span>
-	</tooltip>
-</template>
-
 <script>
 import Tooltip from './Tooltip.vue';
 export default {
