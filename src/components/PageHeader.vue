@@ -1,52 +1,76 @@
 <template>
-	<header
-		:class="compact ? 'page-header__container--compact' : 'page-header__container'"
-	>
-		<div>
-			<p class="page-header__title">
-				{{ title }}
-			</p>
+	<div>
+		<CdsFlexbox
+			v-if="loading"
+			direction="column"
+			gap="3"
+			style="margin-top: 16px;"
+		>
+			<CdsSkeleton
+				:width="300"
+				:height="36"
+			/>
 
-			<div
-				v-if="splitedSubtitle.length > 0"
-				class="d-flex"
-			>
-				<span
+			<CdsSkeleton
+				:width="550"
+				:height="20"
+			/>
+		</CdsFlexbox>
+
+		<header
+			v-else
+			:class="compact ? 'page-header__container--compact' : 'page-header__container'"
+		>
+			<div>
+				<p class="page-header__title">
+					{{ title }}
+				</p>
+
+				<div
+					v-if="splitedSubtitle.length > 0"
+					class="d-flex"
+				>
+					<span
+						class="page-header__subtitle"
+					>
+						{{ splitedSubtitle[0] }}
+
+						<cds-link
+							:href="url"
+							bold
+						>
+							{{ fancyUrl }}
+						</cds-link>
+
+						{{ splitedSubtitle[1] }}
+					</span>
+				</div>
+				<div
+					v-else
 					class="page-header__subtitle"
 				>
-					{{ splitedSubtitle[0] }}
-
-					<cds-link
-						:href="url"
-						bold
-					>
-						{{ fancyUrl }}
-					</cds-link>
-
-					{{ splitedSubtitle[1] }}
-				</span>
+					{{ subtitle }}
+				</div>
 			</div>
-			<div
-				v-else
-				class="page-header__subtitle"
-			>
-				{{ subtitle }}
-			</div>
-		</div>
 
-		<div class="page-header__aside-slot">
-			<slot
-				name="aside"
-			/>
-		</div>
-	</header>
+			<div class="page-header__aside-slot">
+				<slot
+					name="aside"
+				/>
+			</div>
+		</header>
+	</div>
 </template>
 <script>
 import CdsLink from '../components/Link.vue';
+import CdsSkeleton from '../components/Skeleton.vue';
+import CdsFlexbox from '../components/Flexbox.vue';
 
 export default {
 	components: {
 		CdsLink,
+		CdsSkeleton,
+		CdsFlexbox,
 	},
 
 	props: {
@@ -71,6 +95,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+	 	* Quando true, ativa o skeleton do componente.
+		*/
+		loading: {
+			type: Boolean,
+			default: false,
+		}
 	},
 
 	data() {
