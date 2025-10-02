@@ -1,21 +1,60 @@
 <template>
 	<div>
-		<CdsFlexbox
-			v-if="loading"
-			direction="column"
-			gap="3"
-			style="margin-top: 16px;"
-		>
-			<CdsSkeleton
-				:width="300"
-				:height="36"
-			/>
+		<template v-if="loading">
+			<CdsFlexbox
+				v-if="hasSlots"
+				class="page-header__skeleton"
+				align="center"
+				justify="space-between"
+			>
+				<CdsFlexbox
+					direction="column"
+					gap="3"
+				>
+					<CdsSkeleton
+						:width="300"
+						:height="36"
+					/>
 
-			<CdsSkeleton
-				:width="550"
-				:height="20"
-			/>
-		</CdsFlexbox>
+					<CdsSkeleton
+						:width="550"
+						:height="20"
+					/>
+				</CdsFlexbox>
+
+				<CdsFlexbox
+					align="center"
+					gap="3"
+				>
+					<CdsSkeleton
+						:width="120"
+						:height="36"
+					/>
+
+					<CdsSkeleton
+						:width="120"
+						:height="36"
+					/>
+				</CdsFlexbox>
+			</CdsFlexbox>
+
+			<CdsFlexbox
+				v-else
+				class="page-header__skeleton"
+				direction="column"
+				gap="3"
+			>
+				<CdsSkeleton
+					:width="300"
+					:height="36"
+				/>
+
+				<CdsSkeleton
+					:width="550"
+					:height="20"
+				/>
+			</CdsFlexbox>
+		</template>
 
 		<header
 			v-else
@@ -116,6 +155,10 @@ export default {
 		fancyUrl() {
 			return this.url.split(/http:\/\/|https:\/\//)[1];
 		},
+
+		hasSlots() {
+			return !!Object.keys(this.$slots).length;
+		},
 	},
 
 	mounted() {
@@ -139,6 +182,11 @@ export default {
 <style lang="scss">
 @use '../assets/sass/tokens/index' as tokens;
 	.page-header {
+
+		&__skeleton {
+			margin: tokens.mt(4);
+		}
+
 		&__container {
 			display: flex;
 			justify-content: space-between;
