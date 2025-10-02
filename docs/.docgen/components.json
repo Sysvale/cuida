@@ -1969,7 +1969,7 @@
       },
       {
         "name": "imageSrc",
-        "description": "Caminho da imagem que vai ser renderizada. Quando conteúdo é enviado para o slot `Image` o conteúdo dessa prop não é exibido.",
+        "description": "Caminho da imagem que vai ser renderizada. Quando conteúdo é enviado para\n    o slot `Image` o conteúdo dessa prop não é exibido.",
         "type": {
           "name": "string"
         },
@@ -1991,7 +1991,7 @@
       },
       {
         "name": "imageWidth",
-        "description": "Largura da imagem do card.",
+        "description": "Largura da imagem do card. Tem comportamento sobrescrito quando o card é vertical\n    e a prop `fluid` está ativa.",
         "type": {
           "name": "string|number"
         },
@@ -2043,12 +2043,23 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "fluid",
+        "description": "Ativa ou desativa o comportamento fluido do Card",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
       }
     ],
     "events": [
       {
         "name": "cardClick",
-        "description": "Evento emitido quando o card é clicado.",
+        "description": "Evento que indica se o card foi clicado.",
         "type": {
           "names": [
             "Event"
@@ -6981,6 +6992,17 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "padding",
+        "description": "Define o valor do padding do item da lista. Os valores são múltiplos de 4px separados por\nvírgula para vertical e horizontal (ex: '2, 4').",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'7, 3'"
+        }
       }
     ],
     "events": [
@@ -10900,6 +10922,11 @@
     "displayName": "SideBar",
     "description": "",
     "tags": {},
+    "expose": [
+      {
+        "name": "isCollapsed"
+      }
+    ],
     "props": [
       {
         "name": "variant",
