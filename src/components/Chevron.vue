@@ -1,6 +1,5 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-	{{ direction }}
 	<div
 		ref="chevron"
 		:class="{
