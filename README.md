@@ -7,6 +7,8 @@
 <div align="center">
   <p align="center">A design system built by Sysvale, using Vue components</p>
   <p align="center">https://cuida.framer.wiki/</p>
+  <p align="center">https://main--6168a1779cac8c003ab99c2d.chromatic.com</p>
+  <p align="center">Preview da migração da documentação em VitePress: https://cuida.sysvale.com/</p
 </div>
 
 ## Instalando

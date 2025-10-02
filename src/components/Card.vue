@@ -3,7 +3,8 @@
 	<CdsBox
 		padding="0"
 		:clickable="clickable"
-		@boxClick="handleClick"
+		:fluid="fluid"
+		@box-click="handleClick"
 	>
 		<div class="card__extra-container">
 			<div class="card__extra">
@@ -26,7 +27,7 @@
 			>
 				<CdsImage
 					:src="imageSrc"
-					:width="imageWidth"
+					:width="imageWidthResolver"
 					:height="imageHeight"
 					:alt="imageAlt"
 				/>
@@ -51,8 +52,10 @@
 					<slot name="header" />
 				</div>
 
-				<div v-else="title">
-					<p class="card__header">{{ title }}</p>
+				<div v-else>
+					<p class="card__header">
+						{{ title }}
+					</p>
 				</div>
 		
 				<div
@@ -63,8 +66,10 @@
 					<slot name="body" />
 				</div>
 
-				<div v-else="content">
-					<p class="card__body">{{ content }}</p>
+				<div v-else>
+					<p class="card__body">
+						{{ content }}
+					</p>
 				</div>
 		
 				<div
@@ -80,10 +85,10 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, defineProps } from 'vue';
+import hasSlot from '../utils/methods/hasSlot';
 import CdsBox from './Box.vue';
 import CdsImage from './Image.vue';
-import hasSlot from '../utils/methods/hasSlot';
 
 defineOptions({ name: 'CdsCard' });
 
@@ -103,7 +108,8 @@ const props = defineProps({
 		default: '',
 	},
 	/**
-	* Caminho da imagem que vai ser renderizada. Quando conteúdo é enviado para o slot `Image` o conteúdo dessa prop não é exibido.
+	* Caminho da imagem que vai ser renderizada. Quando conteúdo é enviado para
+	o slot `Image` o conteúdo dessa prop não é exibido.
 	*/
 	imageSrc: {
 		type: String,
@@ -117,7 +123,8 @@ const props = defineProps({
 		default: 'imagem do card',
 	},
 	/**
-	* Largura da imagem do card.
+	* Largura da imagem do card. Tem comportamento sobrescrito quando o card é vertical
+	e a prop `fluid` está ativa.
 	*/
 	imageWidth: {
 		type: [String, Number],
@@ -151,36 +158,47 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
-});
-
-
-const emit = defineEmits([
 	/**
-	* Evento emitido quando o card é clicado.
-	* @event cardClick
-	* @type {Event}
+	* Ativa ou desativa o comportamento fluido do Card
 	*/
+	fluid: {
+		type: Boolean,
+		default: false
+	}
+})
+
+const emits = defineEmits([
+	/**
+	 * Evento que indica se o card foi clicado.
+	 * @event cardClick
+	 * @type {Event}
+	 */
 	'cardClick'
 ]);
 
-const imageWidthResolver = computed(() => {
-	return props.horizontal ? 'fit-content' : `${props.imageWidth}px`;
+const cardSpacerMaxWidthResolver = computed(() => {
+	if (props.fluid) {
+		return '100%';
+	}
+
+	return props.horizontal ? 'fit-content' :  `${props.imageWidth}px`;
 });
 
 const bodyWidthResolver = computed(() => {
 	return `${props.bodyWidth}px`;
-});
+})
 
-const handleClick = () => {
+const imageWidthResolver = computed(() => {
+	if (props.fluid && !props.horizontal) return '100%';
+
+	return props.imageWidth
+})
+
+function handleClick() {
 	if (props.clickable) {
-		/**
-		* Evento que indica se o card foi clicado.
-		* @event cardClick
-		* @type {Event}
-		*/
-		emit('cardClick', true);
+		emits('cardClick', true);
 	}
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -227,7 +245,7 @@ const handleClick = () => {
 	
 	&__spacer {
 		padding: tokens.pa(5);
-		max-width: v-bind(imageWidthResolver);
+		max-width: v-bind(cardSpacerMaxWidthResolver);
 	}
 	
 	&__footer {

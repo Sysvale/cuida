@@ -613,6 +613,10 @@ function handleLogoClick() {
 	*/
 	emit('logo-click');
 }
+
+defineExpose({
+	isCollapsed: collapsed,
+});
 </script>
 
 <style lang="scss">
