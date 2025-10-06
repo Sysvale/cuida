@@ -111,14 +111,6 @@ function handleBack(index) {
 	}
 }
 
-function handleForth(index) {
-	if (index < props.length) {
-		return pinInputRefs.value[index + 1].focus();
-	}
-
-	pinInputRefs.value[index].blur();
-}
-
 function fixCursorPosition(index) {
 	let input = pinInputRefs.value[index];
 
@@ -129,8 +121,6 @@ function fixCursorPosition(index) {
 
 function changeInputContent(event, index) {
 	if (event.key === 'Enter') {
-		handleForth(index);
-
 		return;
 	}
 
