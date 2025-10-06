@@ -59,7 +59,7 @@ const props = defineProps({
 
 const emits = defineEmits(['update:modelValue']);
 
-const innerValue = ref(props.modelValue.split(''));
+const innerValue = ref(new Array(props.length));
 const pinInputRefs = ref([]);
 
 const computedClass = computed(() => {
