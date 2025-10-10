@@ -18,8 +18,16 @@ exports[`Select > renders correctly 1`] = `
     </div>
     <div data-v-96b70cc4="" class="select__options select__options--down" style="display: none;">
       <ul data-v-96b70cc4="" class="option__container">
-        <li data-v-96b70cc4="" class="option__text">Option 1</li>
-        <li data-v-96b70cc4="" class="option__text">Option 2</li>
+        <li data-v-96b70cc4="" class="option__text">
+          <!--
+							@slot Slot utilizado para personalizar a lista de opções do select. Os dados do scoped slot podem ser acessados como: \`\`\`slot-scope={ 'option', 'index', 'value' }\`\`\`
+						-->Option 1
+        </li>
+        <li data-v-96b70cc4="" class="option__text">
+          <!--
+							@slot Slot utilizado para personalizar a lista de opções do select. Os dados do scoped slot podem ser acessados como: \`\`\`slot-scope={ 'option', 'index', 'value' }\`\`\`
+						-->Option 2
+        </li>
       </ul>
       <!--v-if-->
     </div>
