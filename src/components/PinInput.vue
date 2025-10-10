@@ -4,7 +4,7 @@
 			v-for="(number, index) in length"
 			:id="`pin-input${number}`"
 			:key="index"
-			:ref="(input) => (pinInputRefs[number] = input)"
+			ref="inputs"
 			v-model="innerValue[number - 1]"
 			:type="visible ? 'text' : 'password'"
 			maxlength="1"
@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, defineEmits, computed, watch } from 'vue';
+import { ref, defineProps, defineEmits, computed, watch, useTemplateRef } from 'vue';
 
 const props = defineProps({
 	modelValue: {
@@ -60,7 +60,7 @@ const props = defineProps({
 const emits = defineEmits(['update:modelValue']);
 
 const innerValue = ref(new Array(props.length));
-const pinInputRefs = ref([]);
+const inputRefs = useTemplateRef('inputs');
 
 const computedClass = computed(() => {
 	let classToUse = '';
@@ -91,7 +91,7 @@ function handleInput(event, index) {
 	const length = props.length;
 
 	if (index < length && event.inputType !== 'deleteContentBackward') {
-		let nextInput = pinInputRefs.value[index + 1];
+		let nextInput = inputRefs.value[index - 1];
 		nextInput.focus();
 	}
 
@@ -103,7 +103,7 @@ function handleInput(event, index) {
 function handleBack(index) {
 	if (index > 1) {
 		innerValue.value[index - 1] = '';
-		let previousInput = pinInputRefs.value[index - 1];
+		let previousInput = inputRefs.value[index - 2];
 
 		setTimeout(() => {
 			previousInput.focus();
@@ -112,7 +112,7 @@ function handleBack(index) {
 }
 
 function fixCursorPosition(index) {
-	let input = pinInputRefs.value[index];
+	let input = inputRefs.value[index - 1];
 
 	setTimeout(() => {
 		input.setSelectionRange(1, 1);
@@ -120,7 +120,8 @@ function fixCursorPosition(index) {
 }
 
 function changeInputContent(event, index) {
-	if (event.key === 'Enter') {
+	if (event.key === 'Enter' || event.charCode === 32) {
+		event.preventDefault();
 		return;
 	}
 
@@ -128,7 +129,7 @@ function changeInputContent(event, index) {
 
 	innerValue.value.splice(index - 1, 1, event.key);
 	if (index < length) {
-		pinInputRefs.value[index + 1].focus();
+		inputRefs.value[index].focus();
 	}
 
 	if (index === length && innerValue.value.join('').length === length) {
