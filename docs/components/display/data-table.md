@@ -38,12 +38,14 @@ O DataTable é um wrapper da tabela base, que adiciona funcionalidades de usabil
 
 ## Preview
 
-<PreviewBuilder
-	:args
-	:component="CdsDataTable"
-	:events
-	with-background
-/>
+<ClientOnly>
+	<PreviewBuilder
+		:args
+		:component="CdsDataTable"
+		:events
+		with-background
+	/>
+</ClientOnly>
 
 ---
 

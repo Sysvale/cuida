@@ -8,7 +8,7 @@ Container visual utilizado para exibir componentes na documentação.
 
 O **PreviewContainer** é um componente de layout usado internamente na documentação. Ele fornece um container com bordas, espaçamento e fundo para exibição de componentes, garantindo consistência entre os previews.
 
-É utilizado pelo [PreviewBuilder](/docs/utils/preview-builder) e pode ser usado isoladamente para exibir componentes simples, sem props ou eventos, ou para demonstrar estados específicos dentro de páginas que já utilizam o PreviewBuilder.
+É utilizado pelo [PreviewBuilder](/utils/preview-builder) e pode ser usado isoladamente para exibir componentes simples, sem props ou eventos, ou para demonstrar estados específicos dentro de páginas que já utilizam o PreviewBuilder.
 
 ---
 
