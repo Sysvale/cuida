@@ -36,16 +36,18 @@ O InteractionBlockingOverlay é um componente utilizado para bloquear a interaç
 
 ## Preview
 
-<PreviewContainer
-	:component="CdsInteractionBlockingOverlay"
-	:events="cdsInteractionBlockingOverlayEvents"
->
-	<CdsFlexbox justify="center">
-		<b>Teste o componente usando o devtools do navegador
-		alterando a resolução da tela para mobile ou landscape.</b>
-		<CdsInteractionBlockingOverlay v-bind="args"/>
-	</CdsFlexbox>
-</PreviewContainer>
+<ClientOnly>
+	<PreviewContainer
+		:component="CdsInteractionBlockingOverlay"
+		:events="cdsInteractionBlockingOverlayEvents"
+	>
+		<CdsFlexbox justify="center">
+			<b>Teste o componente usando o devtools do navegador
+			alterando a resolução da tela para mobile ou landscape.</b>
+			<CdsInteractionBlockingOverlay v-bind="args"/>
+		</CdsFlexbox>
+	</PreviewContainer>
+</ClientOnly>
 
 <PlaygroundBuilder
 	:args

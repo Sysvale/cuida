@@ -31,13 +31,15 @@ O DialogModal é um componente utilizado para interagir com o usuário em situa�
 
 ## Preview
 
-<PreviewBuilder
-	:args
-	:component="CdsDialogModal"
-	:events="cdsDialogModalEvents"
-	with-trigger
-	@trigger-click="args.modelValue = !args.modelValue"
-/>
+<ClientOnly>
+	<PreviewBuilder
+		:args
+		:component="CdsDialogModal"
+		:events="cdsDialogModalEvents"
+		with-trigger
+		@trigger-click="args.modelValue = !args.modelValue"
+	/>
+</ClientOnly>
 
 ---
 
