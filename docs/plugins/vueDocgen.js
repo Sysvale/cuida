@@ -28,7 +28,7 @@ export default function vueDocgenPlugin() {
 			}
 
 			fs.mkdirSync('docs/.docgen', { recursive: true });
-			fs.writeFileSync('docs/.docgen/components.json', JSON.stringify(docs, null, 2));
+			fs.writeFileSync('docs/.docgen/components-metadata.json', JSON.stringify(docs, null, 2));
 		}
 	}
 }
@@ -111,4 +111,4 @@ function parseJSDocComment(comment, modelName) {
 // Executar quando rodado diretamente
 const plugin = vueDocgenPlugin();
 await plugin.buildStart();
-console.log('✅ Documentação gerada com sucesso em docs/.docgen/components.json');
+console.log('✅ Documentação gerada com sucesso em docs/.docgen/components-metadata.json');

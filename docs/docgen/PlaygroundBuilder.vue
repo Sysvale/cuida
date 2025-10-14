@@ -1,7 +1,14 @@
 <template>
 	<div>
-		<CdsFlexbox direction="column" gap="4" class="inputs-container">
-			<template v-for="(data, index) in propsData">
+		<CdsFlexbox
+			direction="column"
+			gap="4"
+			class="inputs-container"
+		>
+			<template
+				v-for="(data, index) in propsData"
+				:key="data.name"
+			>
 				<template v-if="normalizedPropsData[index]">
 					<CdsFlexbox
 						v-if="data.type.name.includes('number')"
@@ -18,15 +25,15 @@
 								:min="data.min"
 								:max="data.max"
 								:step="data.max / 20"
-								withText
+								with-text
 							/>
 						</div>
 	
 						<CdsNumberInput
 							v-else-if="Object.keys(normalizedPropsData).length > 0"
+							v-model="normalizedPropsData[index][data.name]"
 							label=""
 							lazy
-							v-model="normalizedPropsData[index][data.name]"
 						/>
 					</CdsFlexbox>
 
@@ -42,10 +49,10 @@
 		
 						<CdsSelect
 							v-if="Object.keys(normalizedPropsData).length > 0"
-							label=""
 							v-model="normalizedPropsData[index][data.name]"
+							label=""
 							:options="formatOptions(data.values)"
-							returnValue
+							return-value
 						/>
 					</CdsFlexbox>
 		
@@ -60,12 +67,28 @@
 		
 						<CdsTextInput
 							v-if="Object.keys(normalizedPropsData).length > 0"
+							v-model="normalizedPropsData[index][data.name]"
 							label=""
 							lazy
-							v-model="normalizedPropsData[index][data.name]"
 						/>
 					</CdsFlexbox>
 		
+					<CdsFlexbox
+						v-else-if="data.type.name === 'array' || data.type.name === 'object'"
+						justify="space-between"
+						class="preview-line"
+						wrap="no-wrap"
+						style="height: fit-content;"
+					>
+						<CdsText class="prop-name">
+							{{ capitalize(data.name) }}
+						</CdsText>
+
+						<div class="object-and-arrays-container">
+							<pre>{{ normalizedPropsData[index][data.name] }}</pre>
+						</div>
+					</CdsFlexbox>
+
 					<CdsFlexbox
 						v-if="data.type.name === 'boolean'"
 						justify="space-between"
@@ -88,7 +111,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch, nextTick } from 'vue';
-import componentsData from '../.docgen/components.json'
+import componentsData from '../.docgen/components-metadata.json'
 import CdsTextInput from '@/components/TextInput.vue';
 import CdsNumberInput from '@/components/NumberInput.vue';
 import CdsSelect from '@/components/Select.vue';
@@ -192,10 +215,12 @@ watch(normalizedPropsData, () => {
 }, { deep: true})
 
 
-export type PlaygroundBuilderType = typeof import("./PlaygroundBuilder.vue")["default"];
+export type PlaygroundBuilderType = typeof import('./PlaygroundBuilder.vue')['default'];
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@use '../../src/assets/sass/placeholders.scss';
+
 :deep(.base-input__field) {
 	height: 32px !important;
 	font-size: 12px;
@@ -211,5 +236,15 @@ export type PlaygroundBuilderType = typeof import("./PlaygroundBuilder.vue")["de
 
 .preview-line {
 	height: 36px;
+}
+
+.object-and-arrays-container {
+	@extend %input;
+	overflow: scroll;
+	max-height: 200px;
+	height: fit-content;
+	font-size: 10.5px;
+	padding: 4px;
+	border-radius: 8px;
 }
 </style>

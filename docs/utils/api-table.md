@@ -1,20 +1,81 @@
 # APITable
 
-### Componente para exibir informações de API dos componentes de forma tabelar
+Componente interno usado na documentação para exibir informações da API dos componentes em formato de tabela.
+
 ---
 
-O **APITable** é um componente interno da documentação que gera automaticamente tabelas com informações sobre props, eventos e slots dos componentes do design system. Ele consome dados gerados pelo plugin `vueDocgenPlugin` e os apresenta de forma organizada e legível.
+## Descrição
 
-## Quando usar
+O **APITable** gera automaticamente tabelas com dados sobre **props**, **eventos** e **slots** dos componentes do design system. Ele consome o arquivo `components-metadata.json` gerado pelo `vueDocgen` e organiza as informações em formato de tabela.
 
-- Para documentar as props de um componente
-- Para listar os eventos emitidos por um componente  
-- Para documentar os slots disponíveis em um componente
-- Sempre que precisar de uma tabela estruturada com informações de API
+---
 
-## Como funciona
+## Funcionamento
 
-O componente lê dados do arquivo `docs/.docgen/components.json` (gerado automaticamente pelo plugin vue-docgen) e renderiza uma tabela formatada com base no tipo de seção solicitada.
+Para que o componente funcione corretamente, o componente documentado deve conter **comentários JSDoc**.
+Esses comentários são processados pelo `vueDocgen` e transformados no arquivo `components-metadata.json`, usado pelo APITable.
+
+O `vueDocgen` identifica automaticamente:
+- **Nome da prop/event/slot** a partir do componente;
+- **Valores default das props** a partir da definição no SFC (Ex.: `default: 'md',`);
+- **Obrigatoriedade** a partir do `required: true`;
+- **Lista de valores aceitos** definidos com a tag `@values` no comentário JSDoc;
+- **Descrição** a partir do texto do comentário;
+- **Deprecações** usando a tag `@deprecated`.
+
+---
+
+## Comentando os componentes para que o APITable funciona corretamente:
+
+### Props
+Usam blocos JSDoc padrão:
+```vue
+/**
+ * A variante do Alert. São 3 variantes implementadas:
+ * @values info, warning, danger
+ */
+variant: {
+  type: String,
+  default: 'info',
+  required: false,
+},
+```
+
+### Eventos
+Utilizam a tag `@event`:
+```vue
+/**
+ * Evento emitido quando o botão "X" é clicado.
+ * @event close
+ * @type {Event}
+ */
+```
+
+### Slots
+São definidos via comentários em HTML:
+```vue
+<!-- @slot Slot para renderização de botões na ActionBar. -->
+```
+
+### Props deprecated
+Para marcar props obsoletas:
+```vue
+/**
+ * @deprecated Essa prop será substituída por `floatingLabel` na v4.
+ * Define o tipo do input; se true, será um input adaptado para mobile.
+ */
+```
+
+---
+
+## Props do componente
+
+| Prop | Tipo | Descrição |
+|------|------|------------|
+| `name` | `string` | Nome do componente a ser documentado |
+| `section` | `string` | Seção a exibir: `"props"`, `"events"` ou `"slots"` |
+
+Com base nessas props, o APITable renderiza automaticamente a tabela correspondente.
 
 ---
 
@@ -29,7 +90,7 @@ O componente lê dados do arquivo `docs/.docgen/components.json` (gerado automat
 
 <!-- Para documentar eventos -->
 <APITable
-  name="Modal" 
+  name="Modal"
   section="events"
 />
 
@@ -42,122 +103,9 @@ O componente lê dados do arquivo `docs/.docgen/components.json` (gerado automat
 
 ---
 
-## Parâmetros
-
-### Props
-
-| Nome | Tipo | Default | Descrição |
-|------|------|---------|-----------|
-| `name` | `string` | `'Button'` | Nome do componente para buscar os dados da API |
-| `section` | `string` | - | Seção a ser exibida: `'props'`, `'events'` ou `'slots'` |
-
----
-
-## Comportamento por seção
-
-### Props (`section="props"`)
-
-Exibe uma tabela com as seguintes colunas:
-- **Nome**: Nome da prop com indicador visual se for obrigatória
-- **Tipo**: Tipo da propriedade (string, boolean, number, etc.)
-- **Default**: Valor padrão da propriedade
-- **Opções**: Valores aceitos (quando aplicável)
-- **Descrição**: Descrição da propriedade
-
-### Eventos (`section="events"`)
-
-Exibe uma tabela com as seguintes colunas:
-- **Nome**: Nome do evento com prefixo `@`
-- **Descrição**: Descrição do evento
-
-### Slots (`section="slots"`)
-
-Exibe uma tabela com as seguintes colunas:
-- **Nome**: Nome do slot com prefixo `#`
-- **Descrição**: Descrição do slot
-
----
-
-## Características visuais
-
-### 🔴 Props obrigatórias
-Props marcadas como `required: true` recebem:
-- Um indicador visual vermelho (`CdsRequiredIndicator`)
-- Texto "(required)" em vermelho
-- Formatação em `code` para destaque
-
-### 📝 Formatação
-- Nomes de props, eventos e slots são formatados como `code`
-- Valores de opções são listados linha por linha
-- Tabela transparente para integração visual com o tema
-
----
-
-## Dependências
-
-O componente depende de:
-- `CdsTable` - Componente de tabela do design system
-- `CdsRequiredIndicator` - Indicador visual para campos obrigatórios
-- `docs/.docgen/components.json` - Dados gerados pelo vue-docgen-api
-
----
-
-## Exemplo de dados consumidos
-
-```json
-{
-  "Button": {
-    "props": [
-      {
-        "name": "variant",
-        "type": { "name": "string" },
-        "required": false,
-        "defaultValue": { "value": "'primary'" },
-        "values": ["'primary'", "'secondary'", "'danger'"],
-        "description": "Variante visual do botão"
-      }
-    ],
-    "events": [
-      {
-        "name": "button-click",
-        "description": "Emitido quando o botão é clicado"
-      }
-    ],
-    "slots": [
-      {
-        "name": "default",
-        "description": "Conteúdo principal do botão"
-      }
-    ]
-  }
-}
-```
-
----
-
 ## Notas importantes
 
-- ⚠️ **Não deve ser usado diretamente em aplicações** - É exclusivo para a documentação
-- Os dados são gerados automaticamente pelo build process
-- O componente não exibe nada se não houver dados para o componente especificado
-- A seção especificada deve existir nos dados do componente
-
----
-
-## Estrutura interna
-
-```vue path=null start=null
-<template>
-  <CdsTable
-    v-if="tableData.value.length"
-    :fields="tableFields"
-    :items="tableData"
-    transparent
-  >
-    <!-- Formatação customizada para nome das props/eventos/slots -->
-    <template #table-item="{ data, field }">
-      <!-- Indicador de obrigatório e formatação em code -->
-    </template>
-  </CdsTable>
-</template>
-```
+- ⚠️ **Exclusivo para documentação** - Não usar em componentes ou aplicações de produção
+- Os dados do `components-metadata.json` são gerados automaticamente no processo de build.
+- Para atualizar manualmente o `components-metadata.json` após alterações em JSDocs, execute `npm run generate:docs`.
+- Se o componente ou a seção informada não existirem no components-metadata.json, o componente não exibirá conteúdo.

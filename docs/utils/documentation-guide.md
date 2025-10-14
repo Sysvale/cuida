@@ -1,26 +1,29 @@
 # Guia dos Componentes de Documentação
 
-### Como usar os componentes personalizados para documentar componentes do design system
+Como usar os componentes personalizados para documentar componentes do design system
+
 ---
 
 Este guia explica como usar os componentes de documentação e a estrutura básica da documentação dos componentes em markdown.
+
+<br>
 
 ## Visão geral dos componentes
 
 ### Componentes principais
 - **PreviewBuilder**: Componente que provê estrutura semelhante à utilizada no Storybook com Preview + Playground
 - **APITable**: Exibe informações técnicas dos componentes (props, eventos, slots)
-- **FigmaFrame**: Mostra designs originais do Figma
+- **FigmaFrame**: Mostra designs dos componentes no Figma
 
 ### Componentes de suporte
-###### Todos são utilizados internamente no PreviewBuilder, mas podem ser usados separadamente
-- **PreviewContainer**: Container básico que adicona bordas e background no componente documentado
-- **PlaygroundBuilder**: Responsável por gerar controles interativos para props
-- **LogBuilder**: Componente utilizado para apresentar os eventos capturados
+###### Todos são utilizados internamente no PreviewBuilder, mas podem ser usados diretamente, caso necessário
+- **PreviewContainer**: Container básico com bordas e background. Recebe por slot o componente a ser documentado.
+- **PlaygroundBuilder**: Responsável por gerar controles interativos para props.
+- **LogBuilder**: Componente utilizado para apresentar os eventos capturados.
 
 ---
 
-## Estrutura padrão de documentação
+## Estrutura padrão da documentação
 
 ### Template recomendado
 ````markdown
@@ -34,10 +37,10 @@ Descrição detalhada do componente...
 ## Quando usar
 - Lista de casos de uso...
 
-## Quando não usar  
+## Quando não usar
 - Lista de quando evitar...
 
-## Observações 
+## Observações
 - listar observações importantes quando necessário
 
 ---
@@ -72,7 +75,7 @@ Descrição detalhada do componente...
 ## Eventos
 
 <APITable
-	name="CdsComponentName"  
+	name="CdsComponentName"
 	section="events"
 />
 
@@ -83,12 +86,18 @@ Descrição detalhada do componente...
 	section="slots"
 />
 
+## Figma
+
+<FigmaFrame
+	src="..."
+/>
+
 <script setup>
 import { ref } from 'vue';
-import CdsComponente from '@/components/SeuComponente.vue';
+import CdsComponente from '@/components/Componente.vue';
 
 const args = ref({
-	// props padrão
+	// seta valor default para as props dos componentes
 });
 
 const events = [
@@ -99,12 +108,9 @@ const events = [
 
 ---
 
-## Casos de uso específicos
-
+<!-- ## Casos de uso
 ### Componente simples (Botão, Badge)
 ```html
-<!-- Descrição e exemplos de uso -->
-
 <PreviewBuilder
 	:args
 	:events
@@ -114,6 +120,8 @@ const events = [
 <APITable name="Button" section="props" />
 <APITable name="Button" section="events" />
 ```
+
+<br>
 
 ### Componente com trigger (Modal, Popover)
 ```html
@@ -128,6 +136,8 @@ const events = [
 </PreviewBuilder>
 ```
 
+<br>
+
 ### Preview estático (sem playground)
 ```html
 <PreviewBuilder
@@ -137,6 +147,8 @@ const events = [
 	static
 />
 ```
+
+<br>
 
 ### Múltiplos previews na mesma página
 ```html
@@ -157,7 +169,7 @@ const events = [
 </div>
 ```
 
----
+<br>
 
 ## Integração com Figma
 
@@ -171,19 +183,17 @@ const events = [
 	/>
 
 	<h2>Componente no design kit</h2>
-	<FigmaFrame 
+	<FigmaFrame
 		src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FJ5fTswomlHu7RXk1gwbUq6%2FCuida%3Fnode-id%3D3-0"
 	/>
 </div>
 ```
 
----
 
-## Componentes avançados
+## Casos de uso avançados
 
 ### Usando PreviewContainer diretamente
 ```html
-<!-- Para layouts customizados -->
 <PreviewContainer with-background>
 	<CdsFlexbox gap="4">
 		<CdsButton text="Button 1" />
@@ -194,9 +204,18 @@ const events = [
 </PreviewContainer>
 ```
 
-### LogBuilder standalone  
+### LogBuilder standalone
+```html
+<div>
+	<CdsButton
+		text="Testar eventos"
+		v-on="internalEvents"
+	/>
+	<LogBuilder ref="logBuilderRef" :events="['button-click']" />
+</div>
+```
 ```javascript
-// Script setup para LogBuilder standalone
+// ...
 const logBuilder = useTemplateRef('logBuilderRef');
 const internalEvents = ref({});
 
@@ -205,23 +224,13 @@ onMounted(() => {
 });
 ```
 
-```html
-<div>
-	<CdsButton 
-		text="Testar eventos"
-		v-on="internalEvents"
-	/>
-	<LogBuilder ref="logBuilderRef" :events="['button-click']" />
-</div>
-```
-
----
+--- -->
 
 ## Dicas e boas práticas
 
 - Use `PreviewBuilder` como componente principal sempre que possível
 - Mantenha `args` reativo com `ref()`
-- Liste todos os eventos importantes do componente  
+- Liste todos os eventos importantes do componente
 - Adicione contexto textual antes dos previews
 - Use `with-background` para inputs e formulários
 - Use `with-trigger` para modais e overlays
@@ -231,22 +240,26 @@ onMounted(() => {
 
 ## Troubleshooting
 
-### Preview não aparece
+#### Preview não aparece
 - Verifique se o componente está importado corretamente
 - Confirme se `args` é reativo (`ref()` ou `reactive()`)
-- Verifique se o nome do componente tem a propriedade `name`
+- Verifique se o nome do componente é definido no SFC. Ex.:
+  - Para Composition API: `defineOptions({ name: 'CdsBaseInput' });`
+  - Para Options API: ```export default {
+	name: 'CdsActionBar'
+	props: ....```
 
-### Playground não gera controles
-- Confirme se existe arquivo `components.json` gerado
-- Verifique se o nome do componente está correto
+#### Playground não gera controles
+- Confirme se existe arquivo o `components-metadata.json` e ele está atualizado
+- Verifique se o nome do componente está sendo enviado corretamente para o `<PreviewBuilder>` ou `<PlaygroundBuilder>`
 - Confirme se as props têm metadados adequados
 
-### Eventos não são capturados
+#### Eventos não são capturados
 - Verifique se a lista de eventos não está vazia
 - Confirme se os nomes dos eventos estão corretos
-- Use `createEventListeners()` para uso manual
+- Use `createEventListeners()` para uso direto do `<LogBuilder>` com playground
 
-### Performance lenta
+#### Performance lenta
 - Reduza número de `PreviewBuilder` por página
 - Use `static={true}` quando playground não for necessário
 - Considere lazy loading para componentes pesados

@@ -21,7 +21,7 @@
 		<div v-else-if="withTrigger">
 			<CdsButton
 				:id="$attrs.id || $attrs.targetId"
-				:text="`Toggle ${component}`"
+				:text="`Toggle ${component.name || component}`"
 				style="margin: 12px 0px"
 				@button-click="emits('trigger-click')"
 			/>

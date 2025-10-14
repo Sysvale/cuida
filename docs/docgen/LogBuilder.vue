@@ -5,7 +5,7 @@
 			class="show-log-button"
 			@click="showLog = !showLog"
 		>
-			{{logButtonText}}
+			{{ logButtonText }}
 		</span>
 
 		<div

@@ -10707,7 +10707,6 @@
         "type": {
           "name": "boolean"
         },
-        "required": false,
         "defaultValue": {
           "func": false,
           "value": "false"

@@ -39,7 +39,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import componentsData from '../.docgen/components.json'
+import componentsData from '../.docgen/components-metadata.json'
 import CdsTable from '@/components/Table.vue';
 import CdsRequiredIndicator from '@/components/RequiredIndicator.vue';
 
