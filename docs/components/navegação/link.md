@@ -1,6 +1,7 @@
 # Link
 
-### Links são componentes usados ​​para navegar para outra página e podem abrir uma nova guia.
+Links são componentes usados ​​para navegar para outra página e podem abrir uma nova guia.
+
 ---
 <br>
 

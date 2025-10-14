@@ -1,6 +1,7 @@
 # PieChart
 
-### Um componente de gráfico reutilizável para exibir dados visualmente.
+Um componente de gráfico reutilizável para exibir dados visualmente.
+
 ---
 
 ⚠️ Esse componente vai ser substituído pelo DonutChart nas próximas versões do Cuida

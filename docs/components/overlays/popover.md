@@ -1,6 +1,6 @@
 # Popover
 
-### Popovers são componentes flutuantes utilizados para exibir, sob interação, informações e ações relacionadas ao conteúdo da tela.
+Popovers são componentes flutuantes utilizados para exibir, sob interação, informações e ações relacionadas ao conteúdo da tela.
 
 ---
 <br>

@@ -2,6 +2,8 @@
 
 O QuickActionBar é um componente de busca e ação rápida que permite ao usuário pesquisar informações em diferentes áreas do sistema, como usuários cadastrados, métricas e palavras-chave. Além da busca, ele oferece a capacidade de tomar ações, funcionando como uma barra de ação rápida que retorna as opções disponíveis, possibilitando o acesso em situações nas quais essas ações podem ser realizadas.
 
+---
+
 ## Quando usar
 
 - Quando o usuário precisar de uma busca completa e integrada que abranja diversas áreas e informações do sistema;

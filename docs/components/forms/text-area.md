@@ -1,6 +1,7 @@
 # TextArea
 
-### TextAreas permitem que os usuários insiram um texto longo em uma interface.
+TextAreas permitem que os usuários insiram um texto longo em uma interface.
+
 ---
 <br>
 

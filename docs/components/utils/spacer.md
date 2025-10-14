@@ -2,6 +2,8 @@
 
 Componente auxiliar utilizado para adicionar paddings e margins seguindo o padrão de tokens do Cuida.
 
+---
+
 ## Quando usar
 
 - No caso de determinado componente ou elemento da interface precisar apenas de espaçamento (padding ou margin) como modificar de estilo.

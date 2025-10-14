@@ -1,6 +1,7 @@
 # Scrollable
 
-### Scrollable é um componente utilizado para o tornar o conteúdo envolvido "scrolável".
+Scrollable é um componente utilizado para o tornar o conteúdo envolvido "scrolável".
+
 ---
 <br>
 

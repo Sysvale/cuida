@@ -1,6 +1,7 @@
 # FloatingAssistant
 
-### Floating Assistant é um componente flutuante que pode ser utilizado para fornecer dicas de usabilidade ou informações específicas sobre o conteúdo da página.
+Floating Assistant é um componente flutuante que pode ser utilizado para fornecer dicas de usabilidade ou informações específicas sobre o conteúdo da página.
+
 ---
 <br>
 

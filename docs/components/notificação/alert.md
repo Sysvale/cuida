@@ -2,6 +2,8 @@
 
 Alerts são componentes utilizados para prover feedbacks contextuais e notificações em resposta a ações do usuário ou atividades do sistema.
 
+---
+
 ## Quando usar
 
 - For necessário mostrar informações contextuais.

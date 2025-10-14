@@ -1,6 +1,7 @@
 # DataTable
 
-### O DataTable é um wrapper da tabela base, que adiciona funcionalidades de usabilidade e personalização para visualização e interação com dados tabulares.
+O DataTable é um wrapper da tabela base, que adiciona funcionalidades de usabilidade e personalização para visualização e interação com dados tabulares.
+
 ---
 <br>
 

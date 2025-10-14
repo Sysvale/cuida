@@ -2,6 +2,8 @@
 
 EmptyStates são componentes utilizados em momentos instrutivos aos usuários.
 
+---
+
 ### Quando usar
 
 - For necessário instruir o usuário sobre o funcionamento de uma determinada página.

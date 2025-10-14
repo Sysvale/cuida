@@ -1,6 +1,7 @@
 # SideSheet
 
-### SideSheets são painéis que surgem do lado direito da tela. De modo semelhante aos Modais, são úteis quando se precisa que os usuários concluam executem ações sem perder o contexto da página atual.
+SideSheets são painéis que surgem do lado direito da tela. De modo semelhante aos Modais, são úteis quando se precisa que os usuários concluam executem ações sem perder o contexto da página atual.
+
 ---
 <br>
 

@@ -1,6 +1,7 @@
 # LoadingIndicator
 
-### O LoadingIndicator é um componente utilizado para indicar o progresso do carregamento da página, proporcionando uma experiência de usuário mais fluida e informativa.
+O LoadingIndicator é um componente utilizado para indicar o progresso do carregamento da página, proporcionando uma experiência de usuário mais fluida e informativa.
+
 ---
 <br>
 

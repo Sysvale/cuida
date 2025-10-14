@@ -1,6 +1,7 @@
 # Toast
 
-### Toasts são componentes utilizados para prover feedback breve e notificações não intrusivas sobre o status de uma ação ou evento do sistema.
+Toasts são componentes utilizados para prover feedback breve e notificações não intrusivas sobre o status de uma ação ou evento do sistema.
+
 ---
 <br>
 

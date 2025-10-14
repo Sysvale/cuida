@@ -1,16 +1,18 @@
 # AlertCard
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+AlertCards são componentes utilizados para transmitir mensagens contextuais importantes e apresentar possíveis ações a serem tomadas em cima delas.
+
+---
 
 ### Quando usar
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+- For necessário mostrar informações contextuais extensas.
+- For necessário mostrar informações contextuais que requerem ações do usuário sobre elas.
 
 ### Quando não usar
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+- For necessário mostrar informações de maneira discreta ou que pode ser ocultada. Para esse caso, recomendamos o uso de toasts.
+- For necessário mostrar informações contextuais curtas.
 
 ---
 

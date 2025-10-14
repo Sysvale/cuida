@@ -1,6 +1,7 @@
 # RichTooltip
 
-### RichTooltip, assim como Tooltips, são labels flutuantes usadas para explicar um da interface, entretanto provêem maior liberdade para descrição de textos estruturados e/ou mais longos.
+RichTooltip, assim como Tooltips, são labels flutuantes usadas para explicar um da interface, entretanto provêem maior liberdade para descrição de textos estruturados e/ou mais longos.
+
 ---
 <br>
 

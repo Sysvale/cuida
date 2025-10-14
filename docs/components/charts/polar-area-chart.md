@@ -1,6 +1,7 @@
 # PolarAreaChart
 
-### Um componente de gráfico reutilizável para exibir dados visualmente.
+Um componente de gráfico reutilizável para exibir dados visualmente.
+
 ---
 <br>
 

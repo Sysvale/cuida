@@ -1,6 +1,7 @@
 # Spinner
 
-### Spinners é um componente utilizado para indicar que o progresso de uma operação ainda não foi finalizado.
+Spinners é um componente utilizado para indicar que o progresso de uma operação ainda não foi finalizado.
+
 ---
 <br>
 

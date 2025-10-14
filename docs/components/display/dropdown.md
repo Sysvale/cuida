@@ -1,6 +1,7 @@
 # Dropdown
 
-### Dropdown são componentes utilizados para ativar popovers contendo filtros para listas e views.
+Dropdown são componentes utilizados para ativar popovers contendo filtros para listas e views.
+
 ---
 <br>
 

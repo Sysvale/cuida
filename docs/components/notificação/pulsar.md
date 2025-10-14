@@ -1,6 +1,7 @@
 # Pulsar
 
-### Pulsars são componentes educativos utilizados para instruir os usuários sobre novidades na interface ou no produto.
+Pulsars são componentes educativos utilizados para instruir os usuários sobre novidades na interface ou no produto.
+
 ---
 <br>
 

@@ -1,6 +1,7 @@
 # RadioButtonGroup
 
-### RadioButtonsGroup são radio buttons customizados para facilitar a seleção e feedback.
+RadioButtonsGroup são radio buttons customizados para facilitar a seleção e feedback.
+
 ---
 <br>
 

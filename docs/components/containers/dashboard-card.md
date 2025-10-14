@@ -1,6 +1,7 @@
 # DashboardCards
 
-### DashboardCards são componentes utilizados para construir cards com informações que requeiram uma descrição curta e que possam ser classificadas em status.
+DashboardCards são componentes utilizados para construir cards com informações que requeiram uma descrição curta e que possam ser classificadas em status.
+
 ---
 <br>
 

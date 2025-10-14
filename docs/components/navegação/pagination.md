@@ -1,6 +1,7 @@
 # Pagination
 
-### Pagination são indicadores de status utilizados para tornar evidentes metadados importates.
+Pagination são indicadores de status utilizados para tornar evidentes metadados importates.
+
 ---
 <br>
 

@@ -1,6 +1,7 @@
 # Chip
 
-### Chips ajudam as pessoas a inserir informações, fazer seleções, filtrar conteúdo ou disparar ações.
+Chips ajudam as pessoas a inserir informações, fazer seleções, filtrar conteúdo ou disparar ações.
+
 ---
 <br>
 

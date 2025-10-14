@@ -1,6 +1,6 @@
 # Grids
 
-### Gris são componentes que usam a API das grids CSS para prover estruturas de organização consistentes.
+Gris são componentes que usam a API das grids CSS para prover estruturas de organização consistentes.
 
 ---
 <br>

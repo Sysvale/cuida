@@ -1,6 +1,7 @@
 # FileViewer
 
-###  FileViewer é um componente que permite pré-visualizar ou fazer download de um arquivo.
+ FileViewer é um componente que permite pré-visualizar ou fazer download de um arquivo.
+
 ---
 <br>
 

@@ -1,6 +1,7 @@
 # PanelCard
 
-### PanelCards são componentes utilizados para agrupar informação em containers com uma estrutura mínima formada por título, subtítulo, e conteúdo.
+PanelCards são componentes utilizados para agrupar informação em containers com uma estrutura mínima formada por título, subtítulo, e conteúdo.
+
 ---
 <br>
 

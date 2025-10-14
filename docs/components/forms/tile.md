@@ -1,6 +1,7 @@
 # Tile
 
-### Tiles são componentes que funcionam como cards de navegação, permitindo que o usuário acesse diferentes seções ou funcionalidades de forma clara e intuitiva.
+Tiles são componentes que funcionam como cards de navegação, permitindo que o usuário acesse diferentes seções ou funcionalidades de forma clara e intuitiva.
+
 ---
 <br>
 

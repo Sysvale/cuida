@@ -1,6 +1,7 @@
 # Bottom Sheet
 
-### BottomSheets são componentes que exibem conteúdo adicional em uma camada sobreposta na parte inferior da página atual, fornecendo acesso rápido a informações ou ações complementares sem interromper o fluxo principal da interface.
+BottomSheets são componentes que exibem conteúdo adicional em uma camada sobreposta na parte inferior da página atual, fornecendo acesso rápido a informações ou ações complementares sem interromper o fluxo principal da interface.
+
 ---
 <br>
 

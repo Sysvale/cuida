@@ -1,6 +1,7 @@
 # Divider
 
-### Dividers são componentes utilizados para separar ou agrupar conteúdo.
+Dividers são componentes utilizados para separar ou agrupar conteúdo.
+
 ---
 <br>
 

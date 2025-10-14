@@ -1,6 +1,7 @@
 # TimeInput
 
-### TimeInputs são componentes utilizados para inserir horários específicos no formato simples: hora e minutos.
+TimeInputs são componentes utilizados para inserir horários específicos no formato simples: hora e minutos.
+
 ---
 <br>
 

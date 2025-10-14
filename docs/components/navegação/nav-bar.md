@@ -1,6 +1,7 @@
 # NavBar
 
-### NavBars são componentes utilizados para criar soluções de navegação e menus.
+NavBars são componentes utilizados para criar soluções de navegação e menus.
+
 ---
 <br>
 

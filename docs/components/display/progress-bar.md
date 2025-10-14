@@ -1,6 +1,7 @@
 # ProgressBar
 
-### ProgressBars são componentes utilizados para indicar o status e progresso de algo aos usuários.
+ProgressBars são componentes utilizados para indicar o status e progresso de algo aos usuários.
+
 ---
 <br>
 

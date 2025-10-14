@@ -2,6 +2,8 @@
 
 Cards são componentes utilizados como containers de propósito geral. À partir das suas props e slots `header`, `body`, `footer`, `image`, `icon` e `extra` é possível criar variações e cards mais específicos, como o DashboardCard.
 
+---
+
 ### Quando usar
 
 - Para agrupar elementos relacionados entre si.

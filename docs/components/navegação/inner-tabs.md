@@ -1,6 +1,7 @@
 # InnerTabs
 
-### InnerTabs são componentes utilizados para criar soluções de navegação interas às Tabs
+InnerTabs são componentes utilizados para criar soluções de navegação interas às Tabs
+
 ---
 <br>
 

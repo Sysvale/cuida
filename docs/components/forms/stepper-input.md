@@ -1,6 +1,7 @@
 # StepperInput <Badge type="danger">Deprecated</Badge>
 
-### StepperInputs são inputs numéricos com botões de incremento e decremento sempre visíveis.
+StepperInputs são inputs numéricos com botões de incremento e decremento sempre visíveis.
+
 ---
 <br>
 

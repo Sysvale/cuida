@@ -1,6 +1,7 @@
 # InteractionBlockingOverlay
 
-### O InteractionBlockingOverlay é um componente utilizado para bloquear a interação do usuário em situações onde o sistema não está preparado para o uso, como em telas ou módulos que não possuem responsividade adequada para dispositivos móveis ou no modo paisagem (landscape).
+O InteractionBlockingOverlay é um componente utilizado para bloquear a interação do usuário em situações onde o sistema não está preparado para o uso, como em telas ou módulos que não possuem responsividade adequada para dispositivos móveis ou no modo paisagem (landscape).
+
 ---
 <br>
 

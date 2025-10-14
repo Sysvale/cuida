@@ -1,6 +1,7 @@
 # FloatingActionButton (FAB)
 
-### O FloatingActionButton é um botão que flutua sobre a interface do usuário, sempre visível, usado para promover uma ação primária ou frequente em um aplicativo.
+O FloatingActionButton é um botão que flutua sobre a interface do usuário, sempre visível, usado para promover uma ação primária ou frequente em um aplicativo.
+
 ---
 <br>
 

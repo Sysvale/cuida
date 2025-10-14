@@ -1,8 +1,9 @@
 # Skeleton
 
-### O componente Skeleton é usado para criar espaços reservados que representam conteúdo que está carregando ou sendo processado.
-### Ele é útil para melhorar a experiência do usuário, fornecendo feedback visual enquanto o conteúdo real está sendo carregado.
+O componente Skeleton é usado para criar espaços reservados que representam conteúdo que está carregando ou sendo processado.
+
 ---
+
 <br>
 
 ## Quando usar:

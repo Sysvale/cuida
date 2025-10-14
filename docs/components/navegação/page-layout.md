@@ -1,6 +1,7 @@
 # PageLayout
 
-### O PageLayout é uma coleção de componentes que permite a criação de telas padronizadas com navegação primária na vertical e navegação secundária na horizontal.
+O PageLayout é uma coleção de componentes que permite a criação de telas padronizadas com navegação primária na vertical e navegação secundária na horizontal.
+
 ---
 <br>
 

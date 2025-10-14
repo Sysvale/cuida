@@ -1,6 +1,7 @@
 # Slider
 
-### Sliders são componentes utilizados para seleção de valores dentro de um intervalo.
+Sliders são componentes utilizados para seleção de valores dentro de um intervalo.
+
 ---
 <br>
 

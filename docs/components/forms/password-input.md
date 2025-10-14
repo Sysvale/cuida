@@ -1,6 +1,7 @@
 # PasswordInput
 
-### PasswordInputs permitem que os usuários insiram caracteres sensíveis na interface.
+PasswordInputs permitem que os usuários insiram caracteres sensíveis na interface.
+
 ---
 <br>
 

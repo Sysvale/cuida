@@ -1,6 +1,7 @@
 # SideBar
 
-### SideBars são componentes utilizados para criar soluções de navegação e menus.
+SideBars são componentes utilizados para criar soluções de navegação e menus.
+
 ---
 <br>
 

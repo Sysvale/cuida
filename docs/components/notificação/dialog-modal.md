@@ -1,16 +1,18 @@
 # DialogModal
 
-Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.
+O DialogModal é um componente utilizado para interagir com o usuário em situações críticas ou informativas.
+
+---
 
 ### Quando usar
 
-- For necessário comunicar ao usuário que ele pode executar uma ação na interface,
-  seja em dialogs, modais, formulários, cards, etc.
+- Quando for necessário obter a confirmação do usuário para ações que podem ter consequências significativas, como excluir um item;
+- Quando ocorrer um erro no sistema e o usuário precisar ser notificado;
+- Quando for necessário informar o usuário sobre algo importante**, **mas que não requer uma ação imediata.
 
 ### Quando não usar
 
-- Não utilize botões com apenas ícone. Para esses casos de uso recomenda-se utilizar o IconButton.
-- Em redirecionamentos para páginas externas. Nesses casos utilize links.
+- Quando as mensagens a serem passadas ao usuário forem triviais e não exijam a atenção imediata do usuário. Nestes casos, considere usar notificações ou alertas.
 
 ---
 

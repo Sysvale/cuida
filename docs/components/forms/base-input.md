@@ -1,6 +1,7 @@
 # BaseInput
 
-### BaseInput é o componente base para todos os tipos de inputs, fornecendo a estrutura e funcionalidades comuns.
+BaseInput é o componente base para todos os tipos de inputs, fornecendo a estrutura e funcionalidades comuns.
+
 ---
 
 O BaseInput deve ser utilizado como base para a criação de novos componentes de input.

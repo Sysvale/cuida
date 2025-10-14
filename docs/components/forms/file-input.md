@@ -1,6 +1,7 @@
 # FileInput
 
-### FileInput é um input customizado de arquivos.
+FileInput é um input customizado de arquivos.
+
 ---
 <br>
 

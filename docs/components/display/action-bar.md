@@ -2,6 +2,8 @@
 
 ActionBars são barras de ferramentas que podem exibir ações e informações para o usuário.
 
+---
+
 ## Quando usar
 
 - Par agrupar ações que o usuário pode tomar sobre itens de uma lista ou tabela.

@@ -1,6 +1,6 @@
 # SegmentedControl
 
-### SegmentedControls são componentes que permitem que o usuário visualize versões alternativas de uma feature ou interface
+SegmentedControls são componentes que permitem que o usuário visualize versões alternativas de uma feature ou interface
 
 ---
 

@@ -1,6 +1,7 @@
 # MonthAndYearPicker
 
-### MonthAndYearPickers permitem que o usuário selecione um mês e ano através de um campo de texto e um seletor interativo.
+MonthAndYearPickers permitem que o usuário selecione um mês e ano através de um campo de texto e um seletor interativo.
+
 ---
 <br>
 

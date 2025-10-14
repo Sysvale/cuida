@@ -1,6 +1,7 @@
 # MobileNavbar
 
-### MobileNavbar é uma barra de navegação móvel localizada na parte inferior da tela.
+MobileNavbar é uma barra de navegação móvel localizada na parte inferior da tela.
+
 ---
 <br>
 

@@ -2,6 +2,8 @@
 
 Badge são indicadores de status utilizados para tornar evidentes metadados importantes.
 
+---
+
 ### Quando usar
 
 - For necessário mostrar status associados com a lógica de negócio ou ações do usuário.

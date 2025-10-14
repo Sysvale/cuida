@@ -2,6 +2,8 @@
 
 Switches são componentes utilizados para ativar ou desativar configurações ou opções específicas.
 
+---
+
 ### Quando usar
 
 - A configuração controlada pelo Switch deve aplicar mudanças automaticamente.

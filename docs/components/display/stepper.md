@@ -1,6 +1,6 @@
 # Stepper
 
-### Steppers são componentes que controlam e exibem tarefas divididas em etapas.
+Steppers são componentes que controlam e exibem tarefas divididas em etapas.
 
 ---
 <br>

@@ -1,6 +1,6 @@
 # AppBar
 
-### AppBars são componentes de navegação horizontal para produtos Sysvale e Cidade saudável.
+AppBars são componentes de navegação horizontal para produtos Sysvale e Cidade saudável.
 
 ---
 

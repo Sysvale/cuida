@@ -1,6 +1,7 @@
 # PageHeader
 
-### PageHeader são componentes utilizados para adicionar título, subtítulo e ações em páginas.
+PageHeader são componentes utilizados para adicionar título, subtítulo e ações em páginas.
+
 ---
 <br>
 

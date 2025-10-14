@@ -1,7 +1,7 @@
 # Skeleton Text <Badge type="danger">Deprecated</Badge>
 
-### Skeleton texts permitem exibir um estado de carregamento para vários tipos de componentes
-### enquanto seus dados estão sendo buscados.
+Skeleton texts permitem exibir um estado de carregamento para vários tipos de componentes
+
 ---
 <br>
 

@@ -1,6 +1,6 @@
 # WebcamModal
 
-### Um componente para capturar fotos diretamente da webcam do dispositivo, ao capturar uma foto o componente emite um File.
+Um componente para capturar fotos diretamente da webcam do dispositivo, ao capturar uma foto o componente emite um File.
 
 ---
 

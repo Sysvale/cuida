@@ -1,6 +1,7 @@
 # RadialBarChart
 
-### Um RadialBarChart é uma variação do BarChart plotado em um sistema de coordenadas polares, em vez de cartesiano.
+Um RadialBarChart é uma variação do BarChart plotado em um sistema de coordenadas polares, em vez de cartesiano.
+
 ---
 <br>
 

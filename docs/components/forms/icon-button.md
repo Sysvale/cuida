@@ -1,6 +1,7 @@
 # IconButton
 
-### IconButtons são componentes que permitem que o usuário execute uma ação com um toque.
+IconButtons são componentes que permitem que o usuário execute uma ação com um toque.
+
 ---
 <br>
 

@@ -1,6 +1,7 @@
 # TextInput
 
-### TextInputs permitem que os usuários insiram texto em uma interface
+TextInputs permitem que os usuários insiram texto em uma interface
+
 ---
 <br>
 

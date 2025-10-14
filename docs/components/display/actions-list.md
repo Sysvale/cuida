@@ -2,6 +2,8 @@
 
 Actions lists são componentes usados para mostrar uma lista de ações em linha, podendo algumas delas serem ocultas.
 
+---
+
 ## Quando usar
 
 - Houver ações associadas a um item de uma lista ou linha de tabela.

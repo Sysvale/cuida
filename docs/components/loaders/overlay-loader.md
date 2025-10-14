@@ -1,6 +1,7 @@
 # OverlayLoader
 
-### OverlayLoader é utilizado para indicar o carregamento de componentes internos de páginas, como cards e gráficos.
+OverlayLoader é utilizado para indicar o carregamento de componentes internos de páginas, como cards e gráficos.
+
 ---
 <br>
 

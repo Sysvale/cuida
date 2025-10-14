@@ -1,6 +1,7 @@
 # SearchInput
 
-### SearchInputs permitem que os usuários realizem buscas sobre conjuntos de dados na interface
+SearchInputs permitem que os usuários realizem buscas sobre conjuntos de dados na interface
+
 ---
 
 <br>

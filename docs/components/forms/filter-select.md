@@ -1,6 +1,7 @@
 # FilterSelect <Badge type="danger">Deprecated</Badge>
 
-### FilterSelect permitem que o usuário escolha opções como filtro de determinado conteúdo. São derivados dos Selects, mas têm implementação e aplicabilidade mais específicas. Ocupam menos conteúdo verticalmente e não possuem propriedades relacionadas à validação.
+FilterSelect permitem que o usuário escolha opções como filtro de determinado conteúdo. São derivados dos Selects, mas têm implementação e aplicabilidade mais específicas. Ocupam menos conteúdo verticalmente e não possuem propriedades relacionadas à validação.
+
 ---
 <br>
 

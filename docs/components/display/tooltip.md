@@ -1,6 +1,7 @@
 # Tooltip
 
-### Tooltip são labels flutuantes não interativas usados para explicar um elemento ou recurso da interface. Podem ser acionados com hover.
+Tooltip são labels flutuantes não interativas usados para explicar um elemento ou recurso da interface. Podem ser acionados com hover.
+
 ---
 <br>
 

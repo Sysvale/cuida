@@ -1,6 +1,7 @@
 # List
 
-### O componente List é utilizado para exibir uma listagem de itens com um título e um conteúdo, permitindo personalização através de slots.
+O componente List é utilizado para exibir uma listagem de itens com um título e um conteúdo, permitindo personalização através de slots.
+
 ---
 <br>
 

@@ -1,6 +1,7 @@
 # AvatarGroup
 
-### AvatarGroups exibem vários avatares agrupados em forma de pilha.
+AvatarGroups exibem vários avatares agrupados em forma de pilha.
+
 ---
 <br>
 

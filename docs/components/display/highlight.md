@@ -2,6 +2,8 @@
 
 Highlights são componentes utilizados para destacar palavras ou frases importantes em um determinado contexto.
 
+---
+
 ## Quando usar
 
 - Se deseja guiar a atenção do usuário para palavras ou frases específicas na interface (nesses cenários, Highlights animados podem ser ainda mais efetivos que os comuns).

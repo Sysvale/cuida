@@ -1,6 +1,7 @@
 # TruncateContainer
 
-### TruncateContainer é um componente utilizado para controlar a visibilidade de conteúdos longos.
+TruncateContainer é um componente utilizado para controlar a visibilidade de conteúdos longos.
+
 ---
 <br>
 

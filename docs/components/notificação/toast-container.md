@@ -1,6 +1,7 @@
 # ToastContainer
 
-### O ToastContainer é um componente global utilizado para gerenciar e exibir múltiplos Toasts na aplicação.Ele controla a posição, o enfileiramento e a animação dos Toasts.
+O ToastContainer é um componente global utilizado para gerenciar e exibir múltiplos Toasts na aplicação.Ele controla a posição, o enfileiramento e a animação dos Toasts.
+
 ---
 <br>
 

@@ -1,6 +1,7 @@
 # Tabs <Badge type="danger">Deprecated</Badge>
 
-### Tabs são componentes utilizados para criar soluções de navegação internas.
+Tabs são componentes utilizados para criar soluções de navegação internas.
+
 ---
 <br>
 

@@ -2,6 +2,8 @@
 
 Avatares são componentes utilizados para exibir representações visuais de usuários, como imagens ou nome.
 
+---
+
 ### Quando usar
 
 - Recomenda-se o uso de avatares quando o usuário ou lista de usuários possuir imagens ou nomes definidos.

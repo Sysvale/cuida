@@ -1,6 +1,7 @@
 # MultiFileInput
 
-### O MultiFileInput é um componente que permite ao usuário selecionar e carregar múltiplos arquivos de forma organizada.
+O MultiFileInput é um componente que permite ao usuário selecionar e carregar múltiplos arquivos de forma organizada.
+
 ---
 <br>
 

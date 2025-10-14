@@ -1,6 +1,7 @@
 # InlineDateInput
 
-### InlineDateInput são componentes para escolha de datas e horas dentro de formulários.
+InlineDateInput são componentes para escolha de datas e horas dentro de formulários.
+
 ---
 <br>
 

@@ -1,6 +1,7 @@
 # Select
 
-### Selects permitem que o usuário escolha uma opção a partir de uma lista de itens.
+Selects permitem que o usuário escolha uma opção a partir de uma lista de itens.
+
 ---
 <br>
 

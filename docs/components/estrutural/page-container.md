@@ -1,6 +1,7 @@
 # PageContainer
 
-### PageContainers são blocos básicos de estrutura no Cuida. Eles provêm padding e alinhamento de conteúdo.
+PageContainers são blocos básicos de estrutura no Cuida. Eles provêm padding e alinhamento de conteúdo.
+
 ---
 <br>
 

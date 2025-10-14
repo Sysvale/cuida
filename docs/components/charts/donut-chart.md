@@ -1,6 +1,7 @@
 # DonutChart
 
-### Um componente de gráfico reutilizável para exibir dados visualmente, de modo um pouco mais legível que o PieChart.
+Um componente de gráfico reutilizável para exibir dados visualmente, de modo um pouco mais legível que o PieChart.
+
 ---
 <br>
 

@@ -1,6 +1,7 @@
 # Carousel
 
-### O Carousel é um componente que permite a exibição de uma série de conteúdos (imagens, textos, cards, etc.) em um formato deslizante, em que o usuário pode navegar entre os itens de forma sequencial.
+O Carousel é um componente que permite a exibição de uma série de conteúdos (imagens, textos, cards, etc.) em um formato deslizante, em que o usuário pode navegar entre os itens de forma sequencial.
+
 ---
 <br>
 

@@ -1,6 +1,7 @@
 # CollapsibleContainer
 
-### CollapsibleContainers são componentes utilizados para reduzir o espaço vertical quando há uma grande quantidade de informações, com a possibilidade de ser expandido para exibir o conteúdo sumarizado.
+CollapsibleContainers são componentes utilizados para reduzir o espaço vertical quando há uma grande quantidade de informações, com a possibilidade de ser expandido para exibir o conteúdo sumarizado.
+
 ---
 <br>
 

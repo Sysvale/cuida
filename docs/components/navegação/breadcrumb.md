@@ -1,6 +1,7 @@
 # Breadcrumb
 
-### Breadcrumbs são utilizados para indicar ao usuário o caminho percorrido entre as páginas de uma aplicação até se checar na página atual.
+Breadcrumbs são utilizados para indicar ao usuário o caminho percorrido entre as páginas de uma aplicação até se checar na página atual.
+
 ---
 <br>
 

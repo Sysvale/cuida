@@ -1,6 +1,6 @@
 # Box
 
-### Boxes são componentes básicos de container que encapsulam conteúdo com o estilo padrão de borda, de sombra e de padding do cuida. Podem ser utilizados como componente primivo para cards, popovers, modais, etc.
+Boxes são componentes básicos de container que encapsulam conteúdo com o estilo padrão de borda, de sombra e de padding do cuida. Podem ser utilizados como componente primivo para cards, popovers, modais, etc.
 
 ---
 

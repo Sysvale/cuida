@@ -1,6 +1,7 @@
 # NumberInput
 
-### O componente NumberInput permite que os usuários insiram e editem valores numéricos em uma interface.
+O componente NumberInput permite que os usuários insiram e editem valores numéricos em uma interface.
+
 ---
 <br>
 

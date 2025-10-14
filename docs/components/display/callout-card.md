@@ -1,5 +1,6 @@
 # CalloutCard
-### CalloutCards são componentes usados para fornecer ao usuário informações úteis, como tutoriais, atalhos ou dicas.
+CalloutCards são componentes usados para fornecer ao usuário informações úteis, como tutoriais, atalhos ou dicas.
+
 ---
 <br>
 

@@ -1,6 +1,7 @@
 # DropdownButtons
 
-### DropdownButtons são componentes utilizados para ativar popovers contendo listas de ações.
+DropdownButtons são componentes utilizados para ativar popovers contendo listas de ações.
+
 ---
 <br>
 

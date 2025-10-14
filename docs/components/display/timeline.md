@@ -1,6 +1,7 @@
 # Timeline
 
-### Timelines são componentes utilizados para apresentar informações em ordem cronológica.
+Timelines são componentes utilizados para apresentar informações em ordem cronológica.
+
 ---
 <br>
 

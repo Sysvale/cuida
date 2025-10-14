@@ -1,6 +1,7 @@
 # ProgressCircular
 
-### ProgressCirculars são componentes que indicam o status/progresso de uma operação em andamento, em formato circular.
+ProgressCirculars são componentes que indicam o status/progresso de uma operação em andamento, em formato circular.
+
 ---
 <br>
 

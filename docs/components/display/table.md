@@ -1,6 +1,7 @@
 # Table
 
-### Tables são componentes utilizados para exibir e organizar conteúdo, facilitando a comparação e análise de informações.
+Tables são componentes utilizados para exibir e organizar conteúdo, facilitando a comparação e análise de informações.
+
 ---
 <br>
 

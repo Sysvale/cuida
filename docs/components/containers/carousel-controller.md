@@ -1,6 +1,7 @@
 # CarouselController
 
-### CarouselControllers são componentes utilizados para controlar a exibição de elementos em carrosséis.
+CarouselControllers são componentes utilizados para controlar a exibição de elementos em carrosséis.
+
 ---
 <br>
 

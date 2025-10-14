@@ -1,6 +1,7 @@
 # Modal
 
-### Modais são como dialogs personolizados, janelas que exibem um conteúdo adicional em uma camada acima da página atual, com uma sobreposição de superfície (overlay) cobrindo a página e tornando-a temporariamente inacessível.
+Modais são como dialogs personolizados, janelas que exibem um conteúdo adicional em uma camada acima da página atual, com uma sobreposição de superfície (overlay) cobrindo a página e tornando-a temporariamente inacessível.
+
 ---
 <br>
 

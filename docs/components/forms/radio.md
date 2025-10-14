@@ -1,6 +1,7 @@
 # Radio
 
-### O Radio permite que os usuários selecionem uma opção de um conjunto.
+O Radio permite que os usuários selecionem uma opção de um conjunto.
+
 ---
 <br>
 

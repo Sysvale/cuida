@@ -1,6 +1,7 @@
 # FlexBox
 
-### Flexbox é um componente que usa a API de Flexbox do CSS para fornecer controle sobre o alinhamento e distribuição de elementos em uma única dimensão (linha ou coluna).
+Flexbox é um componente que usa a API de Flexbox do CSS para fornecer controle sobre o alinhamento e distribuição de elementos em uma única dimensão (linha ou coluna).
+
 ---
 <br>
 

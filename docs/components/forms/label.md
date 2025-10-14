@@ -1,6 +1,7 @@
 # Label
 
-### Permite que o usuário adicione, remova e edite múltiplos inputs em uma lista dinâmica.
+Permite que o usuário adicione, remova e edite múltiplos inputs em uma lista dinâmica.
+
 ---
 <br>
 

@@ -1,6 +1,7 @@
 # MobileNavigation
 
-### O MobileNavigation é uma barra lateral que proporciona acesso rápido e fácil às principais seções da aplicação no ambiente mobile.
+O MobileNavigation é uma barra lateral que proporciona acesso rápido e fácil às principais seções da aplicação no ambiente mobile.
+
 ---
 <br>
 

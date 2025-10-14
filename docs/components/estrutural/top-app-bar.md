@@ -1,6 +1,7 @@
 # TopAppBar
 
-### O TopAppBar é um componente de barra de aplicação responsivo que pode exibir um título, um logotipo, um botão de menu e ações personalizadas.
+O TopAppBar é um componente de barra de aplicação responsivo que pode exibir um título, um logotipo, um botão de menu e ações personalizadas.
+
 ---
 <br>
 

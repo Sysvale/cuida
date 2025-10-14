@@ -1,6 +1,7 @@
 # GaugeChart
 
-### O Gauge Chart é indicado para mostrar o progresso em direção a uma meta específica.
+O Gauge Chart é indicado para mostrar o progresso em direção a uma meta específica.
+
 ---
 <br>
 

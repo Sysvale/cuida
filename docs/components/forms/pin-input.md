@@ -1,6 +1,6 @@
 # PinInput
 
-### PinInputs são componentes utilizados para adição de one-time passwords e códigos de 2FA
+PinInputs são componentes utilizados para adição de one-time passwords e códigos de 2FA
 
 ---
 

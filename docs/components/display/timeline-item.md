@@ -1,6 +1,7 @@
 # TimelineItem
 
-### TimelineItems são componentes auxiliares utilizados para montar Timelines.
+TimelineItems são componentes auxiliares utilizados para montar Timelines.
+
 ---
 <br>
 

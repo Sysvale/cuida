@@ -1,6 +1,7 @@
 # Multiselect
 
-### Multiselects são componentes que permitem ao usuário selecionar múltiplas opções divididas em categorias.
+Multiselects são componentes que permitem ao usuário selecionar múltiplas opções divididas em categorias.
+
 ---
 <br>
 
