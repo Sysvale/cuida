@@ -2,7 +2,7 @@ name: 'Deploy 🚀'
 
 on:
   push:
-    branches: [docs/vitepress-migration]
+    branches: main
 
   workflow_dispatch:
 
