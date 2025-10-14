@@ -22,7 +22,7 @@
 							class="cds-modal__close-icon"
 							@click="closeHandle"
 						>
-							<cds-icon
+							<CdsIcon
 								name="x-outline"
 								height="20"
 								width="20"
@@ -35,12 +35,12 @@
 
 			<!-- @slot Slot usado para inserção de conteúdo dentro do Modal. -->
 			<section>
-				<cds-scrollable
+				<CdsScrollable
 					v-if="scrollable"
 					class="cds-modal__body"
 				>
 					<slot />
-				</cds-scrollable>
+				</CdsScrollable>
 				<div
 					v-else
 					class="cds-modal__body"
@@ -55,7 +55,7 @@
 			>
 				<!-- @slot Slot usado para inserção de footer customizado. -->
 				<slot name="footer">
-					<cds-button
+					<CdsButton
 						v-if="!noCancelButton"
 						:text="cancelButtonText"
 						secondary
@@ -63,7 +63,7 @@
 						@click="!disableCancelButton ? cancelHandle() : false"
 					/>
 
-					<cds-button
+					<CdsButton
 						class="footer__ok-button"
 						:text="okButtonText"
 						:variant="actionButtonVariant"
@@ -94,6 +94,7 @@ const predefinedColors = [
 ];
 
 export default {
+	name: 'CdsModal',
 	components: {
 		CdsIcon,
 		CdsButton,
@@ -117,6 +118,7 @@ export default {
 		},
 		/**
 		 * Especifica o tamanho do modal. São 3 tamanhos implementados: 'sm', 'md', 'lg' e 'xl'.
+		 * @values sm, md, lg, xl
 		 */
 		size: {
 			type: String,
@@ -201,6 +203,7 @@ export default {
 		},
 		/**
 		 * Define a variante do botão de ação do Modal (segue as variantes do componente de botão do Cuida)
+		 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		 */
 		actionButtonVariant: {
 			type: String,

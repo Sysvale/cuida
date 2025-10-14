@@ -1,20 +1,20 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div>
-		<span
-			class="switch__label"
-		>
-			{{ label }}
-
-			<CdsIcon
-				v-if="tooltip"
-				v-cdstip="tooltip"
-				:name="tooltipIcon"
-				height="18"
-				width="18"
-				class="label__icon"
-			/>
-		</span>
+		<div class="switch__label">
+			<CdsFlexbox>
+				{{ label }}
+	
+				<CdsIcon
+					v-if="tooltip"
+					v-cdstip="tooltip"
+					:name="tooltipIcon"
+					height="18"
+					width="18"
+					class="label__icon"
+				/>
+			</CdsFlexbox>
+		</div>
 
 
 		<label
@@ -76,6 +76,9 @@
 <script setup>
 import { ref, computed, watch, useTemplateRef } from 'vue';
 import CdsIcon from './Icon.vue';
+import CdsFlexbox from './Flexbox.vue';
+
+defineOptions({ name: 'CdsSwitch' });
 
 const model = defineModel('modelValue', {
 	type: Boolean,
@@ -97,8 +100,8 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	* A variante da Checkbox. São 10 variantes: 'teal', 'green', 'blue',
-	* 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+	* A variante de cor. São 10 variantes:
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	variant: {
 		type: String,

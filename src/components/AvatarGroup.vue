@@ -1,35 +1,35 @@
 <template>
 	<div class="avatar-group__container">
-		<cds-tooltip
+		<CdsTooltip
 			v-for="(avatarData, index) in listAvatars"
 			:key="index"
 			position="bottom"
 			:text="avatarData.name"
 			slim
 		>
-			<cds-avatar
+			<CdsAvatar
 				v-bind="avatarData"
 				:size="size"
 				:clickable="false"
 			/>
-		</cds-tooltip>
+		</CdsTooltip>
 
-		<cds-clickable
+		<CdsClickable
 			v-if="showAvatarCounter"
 			id="avatar-counter"
 			clickable
 			@click="showPopover = true"
 		>
-			<cds-avatar
+			<CdsAvatar
 				:size="size"
 				:clickable="false"
 				:name="avatarCounterText"
 				variant="gray"
 				class="avatar-group__counter"
 			/>
-		</cds-clickable>
+		</CdsClickable>
 
-		<cds-popover
+		<CdsPopover
 			v-model="showPopover"
 			target-id="avatar-counter"
 			width="180"
@@ -41,17 +41,17 @@
 				:key="index"
 				class="avatar__data"
 			>
-				<cds-avatar
+				<CdsAvatar
 					v-bind="avatarData"
 					size="sm"
 					:clickable="false"
 				/>
 
-				<cds-truncate width="180">
+				<CdsTruncate width="180">
 					<span class="avatar__name">{{ avatarData.name }}</span>
-				</cds-truncate>
+				</CdsTruncate>
 			</div>
-		</cds-popover>
+		</CdsPopover>
 	</div>
 </template>
 <script>
@@ -62,6 +62,7 @@ import CdsTruncate from './Truncate.vue';
 import CdsTooltip from './Tooltip.vue';
 
 export default {
+	name: 'CdsAvatarGroup',
 	components: {
 		CdsAvatar,
 		CdsClickable,
@@ -73,6 +74,7 @@ export default {
 	props: {
 		/**
 		 * Tamanho dos avatares do AvatarGroup
+		 * @values sm, md, lg
 		 */
 		size: {
 			type: String,

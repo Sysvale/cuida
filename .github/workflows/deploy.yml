@@ -1,26 +1,58 @@
-name: "Deployer 🚀"
+name: 'Deploy 🚀'
 
-on: push
+on:
+  push:
+    branches: main
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  chromatic-deployment:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      
-      - name: 🟢 Node
-        uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          node-version: 20
-          registry-url: https://registry.npmjs.org
-
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
       - name: Install dependencies
-        run: |
-          npm cache clean --force
-          npm install
-      
-      - name: Publish to Chromatic
-        uses: chromaui/action@v1
+        run: npm ci
+      - name: Build JSDocs JSON
+        run: npm run build
+        env:
+          NODE_OPTIONS: "--experimental-specifier-resolution=node"
+      - name: Build with VitePress
+        run: npm run docs:build
+        env:
+          NODE_OPTIONS: "--experimental-specifier-resolution=node"
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          autoAcceptChanges: true
+          path: docs/.vitepress/dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

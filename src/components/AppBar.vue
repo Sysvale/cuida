@@ -21,44 +21,44 @@
 		/>
 
 		<div class="app-bar__icons-grid">
-			<cds-clickable
+			<CdsClickable
 				v-if="!hideNotification"
 				clickable
 				@click="handleClick('notification')"
 			>
-				<cds-icon
+				<CdsIcon
 					height="24"
 					width="24"
 					light
 					name="notification-bell-outline"
 				/>
-			</cds-clickable>
+			</CdsClickable>
 
-			<cds-clickable
+			<CdsClickable
 				v-if="!hideHelp"
 				clickable
 				@click="handleClick('help')"
 			>
-				<cds-icon
+				<CdsIcon
 					height="24"
 					width="24"
 					light
 					name="help-outline"
 				/>
-			</cds-clickable>
+			</CdsClickable>
 
-			<cds-clickable
+			<CdsClickable
 				v-if="!hideSettings"
 				clickable
 				@click="handleClick('settings')"
 			>
-				<cds-icon
+				<CdsIcon
 					height="24"
 					width="24"
 					light
 					name="settings-outline"
 				/>
-			</cds-clickable>
+			</CdsClickable>
 
 			<!-- @slot Slot utilizado para adição de informações sobre o usuário no AppBar.-->
 			<slot
@@ -76,7 +76,7 @@
 					<span class="user-info__description">{{ userDescription }}</span>
 				</div>
 
-				<cds-avatar
+				<CdsAvatar
 					:name="userName"
 					variant="white"
 					size="md"
@@ -90,43 +90,43 @@
 						<!-- @slot Slot utilizado para renderização do conteúdo do dropdown do Avatar.-->
 						<slot name="dropdown-content" />
 					</template>
-				</cds-avatar>
+				</CdsAvatar>
 			</div>
 
 			<div
 				v-if="!hideAppSwitcher"
 				class="app-switcher__container"
 			>
-				<cds-divider
+				<CdsDivider
 					vertical
 					width="30"
 				/>
 
-				<cds-clickable
+				<CdsClickable
 					clickable
 					@click="handleClick('app-switcher')"
 				>
-					<cds-icon
+					<CdsIcon
 						height="24"
 						width="24"
 						light
 						name="grid-outline"
 					/>
-				</cds-clickable>
+				</CdsClickable>
 			</div>
 
-			<cds-clickable
+			<CdsClickable
 				v-if="!hideLogout"
 				clickable
 				@click="handleClick('logout')"
 			>
-				<cds-icon
+				<CdsIcon
 					height="24"
 					width="24"
 					light
 					name="logout-outline"
 				/>
-			</cds-clickable>
+			</CdsClickable>
 		</div>
 
 		<!-- @slot Slot utilizado para renderização de ícone de módulos.-->
@@ -146,6 +146,7 @@ import CdsAvatar from './Avatar.vue';
 import CdsClickable from './Clickable.vue';
 
 export default {
+	name: 'CdsAppBar',
 	components: {
 		CdsIcon,
 		CdsAvatar,
@@ -352,7 +353,7 @@ export default {
 .app-name {
 	color: tokens.$n-0;
 	font-weight: tokens.$font-weight-regular;
-	margin: tokens.mTRBL(1, 0, 0, 2);
+	margin: tokens.mTRBL(1, 0, 0, 2) !important;
 	@include tokens.caption;
 }
 </style>

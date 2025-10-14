@@ -10,6 +10,8 @@
 <script setup>
 import { computed } from 'vue';
 
+defineOptions({ name: 'CdsGridItem' });
+
 const props = defineProps({
 	colSpan: {
 		type: [Number, String],

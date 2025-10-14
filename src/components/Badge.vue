@@ -10,13 +10,18 @@
 				'badge__content--lg': size === 'lg',
 			}"
 		>
-			<cds-clickable
+			<!--
+				Evento que indica se a Badge foi clicada
+				@event click
+				@type {Event}
+			-->
+			<CdsClickable
 				v-if="clickable"
 				@click.stop="$emit('click', true)"
 			>
 				<!-- @slot Slot padrão utilizado para exibir o conteúdo dentro da badge -->
 				<slot />
-			</cds-clickable>
+			</CdsClickable>
 
 			<slot v-else />
 		</div>
@@ -27,22 +32,24 @@
 import CdsClickable from './Clickable.vue'
 
 export default {
+	name: 'CdsBadge',
 	components: {
 		CdsClickable,
 	},
 
 	props: {
 		/**
-		 * A variante da Badge. São 9 variantes: 'turquoise', 'green', 'blue',
-		 * 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
-		 */
+		* A variante de cor. São 10 variantes:
+		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
+		*/
 		variant: {
 			type: String,
 			default: 'gray',
 		},
 		/**
-		 * Especifica o tamanho da badge. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
-		 */
+		* Especifica o tamanho da badge. São 3 tamanhos implementados.
+		* @values sm, md, lg
+		*/
 		size: {
 			type: String,
 			default: 'md',

@@ -7,6 +7,7 @@
 
 <script>
 export default {
+	name: 'CdsSkeletonText',
 	props: {
 		width: {
 			type: String,

@@ -23,6 +23,7 @@ import 'chartjs-adapter-luxon';
 Chart.register(...registerables);
 
 export default {
+	name: 'CdsLineChart',
 	components: {
 		// eslint-disable-next-line vue/no-reserved-component-names
 		Line,
@@ -68,6 +69,7 @@ export default {
 		/**
 		 * Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:
 		 * `green`, `teal`, `turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `gray`, `dark`.
+		 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		 */
 		variant: {
 			type: String,
@@ -79,6 +81,7 @@ export default {
 		},
 		/**
 		* Define o tema do gráfico.
+		* @values blue, indigo
 		*/
 		theme: {
 			type: String,

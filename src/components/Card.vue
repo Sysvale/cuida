@@ -90,6 +90,8 @@ import hasSlot from '../utils/methods/hasSlot';
 import CdsBox from './Box.vue';
 import CdsImage from './Image.vue';
 
+defineOptions({ name: 'CdsCard' });
+
 const props = defineProps({
 	/**
 	* Especifica o título do card. Quando conteúdo é enviado para o slot `Header` o conteúdo dessa prop não é exibido.

@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-	<cds-clickable
+	<CdsClickable
 		id="avatar-dropdown"
 		:clickable="clickable"
 		@click.stop="toggleDropdown"
@@ -24,7 +24,7 @@
 				>
 			</div>
 
-			<cds-chevron
+			<CdsChevron
 				v-if="clickable"
 				size="sm"
 				class="avatar__chevron"
@@ -32,7 +32,7 @@
 			/>
 		</div>
 
-		<cds-popover
+		<CdsPopover
 			v-model="showPopover"
 			target-id="avatar-dropdown"
 			width="180"
@@ -40,8 +40,8 @@
 			vertical-fluid
 		>
 			<slot name="dropdown-content" />
-		</cds-popover>
-	</cds-clickable>
+		</CdsPopover>
+	</CdsClickable>
 </template>
 <script>
 import CdsChevron from './Chevron.vue';
@@ -49,6 +49,7 @@ import CdsClickable from './Clickable.vue';
 import CdsPopover from './Popover.vue';
 
 export default {
+	name: 'CdsAvatar',
 
 	components: {
 		CdsChevron,
@@ -58,15 +59,16 @@ export default {
 
 	props: {
 		/**
-		 * A variante de cor. São 10 variantes implementadas: 'green', 'teal',
-		 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange','amber' e 'white'.
-		 */
+		* A variante de cor. São 10 variantes:
+		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
+		*/
 		variant: {
 			type: String,
 			default: 'green',
 		},
 		/**
 		 * Especifica o tamanho do avatar. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
+		 * @values sm, md, lg
 		 */
 		size: {
 			type: String,

@@ -37,9 +37,11 @@
 import { colorHexCode } from '../utils/constants/colors';
 
 export default {
+	name: 'CdsProgressCircular',
 	props: {
 		/**
 		 * Define a cor da ProgressCircular.
+		 * @values green, teal, turquoise, blue, indigo, violet, pink, red, orange, amber, gray, dark
 		 */
 		variant: {
 			type: String,
@@ -47,6 +49,7 @@ export default {
 		},
 		/**
 		 * Define o tamanho (diâmetro) da ProgressCircular.
+		 * @values sm, md, lg
 		 */
 		size: {
 			type: String,

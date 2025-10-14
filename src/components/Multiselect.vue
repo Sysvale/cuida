@@ -68,22 +68,22 @@
 						class="cds-multiselect__option multiselect__option"
 						@click="toggleSelectAll"
 					>
-						<cds-spacer margin-left="2">
-							<cds-checkbox
+						<CdsSpacer margin-left="2">
+							<CdsCheckbox
 								:id="`select-all-input-id-${uniqueKey}`"
 								v-model="selectAllValue"
 								:label="selectAllFancyMessage"
 								:indeterminate="indeterminate"
 								:variant="variant"
 							/>
-						</cds-spacer>
+						</CdsSpacer>
 					</div>
 
 					<div
 						v-if="!isGroupMode"
 						class="cds-multiselect__grouped-divider"
 					>
-						<cds-divider dimmed />
+						<CdsDivider dimmed />
 					</div>
 				</div>
 			</template>
@@ -95,7 +95,7 @@
 					v-if="option.$isLabel"
 					class="cds-multiselect__group-label"
 				>
-					<cds-divider
+					<CdsDivider
 						:text="option.$groupLabel"
 						inline
 						dimmed
@@ -187,6 +187,7 @@ const clone = (el) => {
 	return JSON.parse(JSON.stringify(el));
 };
 export default {
+	name: 'CdsMultiselect',
 	components: {
 		Multiselect,
 		CdsDivider,
@@ -210,8 +211,8 @@ export default {
 			default: 'text',
 		},
 		/**
-		* A variante da Checkbox. São 10 variantes: 'turquoise', 'green', 'blue',
-		* 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+		* A variante de cor. São 10 variantes:
+		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		*/
 		variant: {
 			type: String,
@@ -247,6 +248,7 @@ export default {
 		},
 		/**
 		* Especifica o estado do TextInput. As opções são 'default' e 'invalid'.
+		* @values default, invalid
 		*/
 		state: {
 			type: String,
@@ -793,6 +795,10 @@ export default {
 
 	.multiselect__content:nth-child(1) {
 		margin: tokens.mt(3) !important;
+	}
+
+	.multiselect__content {
+		padding: 0 !important;
 	}
 }
 </style>

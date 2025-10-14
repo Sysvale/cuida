@@ -81,6 +81,8 @@ import CdsIcon from '../components/Icon.vue';
 import CdsFlexbox from '../components/Flexbox.vue';
 import CdsText from '../components/Text.vue';
 
+defineOptions({ name: 'CdsToast' });
+
 const attrs = useAttrs();
 
 /**
@@ -129,6 +131,7 @@ const props = defineProps({
 	},
 	/**
 	* Variante do toast. São 4 variantes implementadas: 'success', 'info', 'warning', 'danger'.
+	* @values success, info, warning, danger
 	*/
 	variant: {
 		type: String,

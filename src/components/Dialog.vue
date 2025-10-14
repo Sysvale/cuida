@@ -23,7 +23,7 @@
 							class="cds-modal__close-icon"
 							@click="closeHandle"
 						>
-							<cds-icon
+							<CdsIcon
 								name="x-outline"
 								height="20"
 								width="20"
@@ -36,12 +36,12 @@
 
 			<!-- @slot Slot usado para inserção de conteúdo dentro do Modal. -->
 			<section>
-				<cds-scrollable
+				<CdsScrollable
 					:max-height="maxBodyHeight"
 					auto-height
 				>
 					<slot />
-				</cds-scrollable>
+				</CdsScrollable>
 			</section>
 
 			<footer
@@ -50,7 +50,7 @@
 			>
 				<!-- @slot Slot usado para inserção de footer customizado. -->
 				<slot name="footer">
-					<cds-button
+					<CdsButton
 						v-if="!noCancelButton"
 						:text="cancelButtonText"
 						secondary
@@ -58,7 +58,7 @@
 						@click="closeHandle"
 					/>
 
-					<cds-button
+					<CdsButton
 						class="footer__ok-button"
 						:text="okButtonText"
 						variant="green"
@@ -77,6 +77,7 @@ import CdsButton from '../components/Button.vue';
 import CdsScrollable from '../components/Scrollable.vue';
 
 export default {
+	name: 'CdsDialog',
 	components: {
 		CdsIcon,
 		CdsButton,
@@ -106,6 +107,7 @@ export default {
 		},
 		/**
 		 * Especifica o tamanho do modal. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
+		 * @values sm, md, lg
 		 */
 		size: {
 			type: String,

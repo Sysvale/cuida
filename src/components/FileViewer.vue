@@ -21,7 +21,7 @@
 				class="file-viewer__icon"
 				:class="`file-viewer__icon--${variant}`"
 			>
-				<cds-icon
+				<CdsIcon
 					height="32"
 					width="32"
 					name="image-outline"
@@ -59,14 +59,14 @@
 					class="file-viewer__visualizer-download"
 					@click="emit('download-click', true)"
 				>
-					<cds-icon
+					<CdsIcon
 						height="24"
 						width="24"
 						name="download-cloud-outline"
 					/>
 					<span v-if="!isMobile"> Baixar arquivo </span>
 				</div>
-				<cds-icon
+				<CdsIcon
 					class="file-viewer__visualizer-close"
 					height="24"
 					width="24"
@@ -79,7 +79,7 @@
 			class="file-viewer__visualizer-image-container"
 			@click="handleClose"
 		>
-			<cds-image
+			<CdsImage
 				v-if="allowedExtensions.includes(fileExtension)"
 				class="file-viewer__visualizer-image"
 				:src="fileUrl"
@@ -89,10 +89,10 @@
 				v-else
 				class="file-viewer__visualizer-empty-state"
 			>
-				<cds-image
+				<CdsImage
 					src="https://i.imgur.com/d842Bek.png"
-					width="100"
-					height="100"
+					:width="300"
+					:height="300"
 				/>
 				Não foi possível gerar uma pré-visualização do arquivo.
 			</div>
@@ -106,6 +106,8 @@ import { get, last } from 'lodash';
 import { computed, ref } from 'vue';
 import { colors } from '../utils/constants/colors';
 import CdsImage from '../components/Image.vue';
+
+defineOptions({ name: 'CdsFileViewer' });
 
 const emit = defineEmits(
 	[
@@ -148,6 +150,7 @@ const props = defineProps({
 
 	/**
 	 * Especifica a variante de cor do componente.
+	 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	 */
 	variant: {
 		type: String,

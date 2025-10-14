@@ -28,7 +28,7 @@
 			@event action-button-click
 			@type {Event}
 		-->
-		<cds-button
+		<CdsButton
 			v-if="!hideActionButton"
 			class="empty-state__button"
 			:text="actionButtonText"
@@ -54,6 +54,7 @@ const predefinedColors = [
 ];
 
 export default {
+	name: 'CdsEmptyState',
 	components: {
 		CdsButton,
 	},
@@ -106,6 +107,7 @@ export default {
 		},
 		/**
 		 * A variante do botão de ação do Empty State (segue as variantes do componente de botão do Cuida)
+		 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		 */
 		actionButtonVariant: {
 			type: String,

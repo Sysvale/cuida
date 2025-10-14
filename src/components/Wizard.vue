@@ -49,13 +49,13 @@
 			</div>
 		</div>
 		<div class="cds-wizard__buttons">
-			<cds-button
+			<CdsButton
 				:text="cancelButtonText"
 				secondary
 				@button-click="backActionClick"
 				@click.prevent
 			/>
-			<cds-button
+			<CdsButton
 				:text="nextButtonText"
 				:variant="nextButtonVariant"
 				:disabled="disableNextButton"
@@ -71,6 +71,7 @@ import CdsBox from './Box.vue';
 import CdsButton from './Button.vue';
 
 export default {
+	name: 'CdsWizard',
 	components: {
 		CdsBox,
 		CdsButton,
@@ -118,9 +119,9 @@ export default {
 			default: 'Anterior',
 		},
 		/**
-		 * A variante do botão de ação principal. São 10 variantes: 'teal', 'green', 'blue',
-		 * 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
-		 */
+		* A variante de cor. São 10 variantes:
+		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
+		*/
 		nextButtonVariant: {
 			type: String,
 			default: 'green',

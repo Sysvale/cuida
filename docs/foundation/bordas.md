@@ -1,0 +1,33 @@
+# Bordas
+
+Os tokens de border-radius são utilizados para arredondar as bordas dos cantos de componentes 
+da interface, tornando-os mais sutis, amigáveis e orgânicos. No Cuida, prezamos por bordas um 
+tanto arredondadas, que crescem de acordo com o tamanho do componente.
+
+<hr>
+<br>
+
+## Recomendações
+
+-  Não recomendamos a utilização de componentes com border-radius igual a 0,
+ uma vez que vão contra a linguagem visual que estamos construindo.
+
+-  Não recomendamos utilizar bordas muito arredondadas em elementos
+ pequenos. O objetivo é ter bordas mais orgânicas, e não elementos arredondados.
+
+- Recomendamos que os elementos possuam border-radius uniformes, por isso nossos 
+tokens não preveem cenários nos quais um elemento possui border-radius
+ diferentes para cada um de seus cantos. Caso percebamos essa necessidade,
+  trabalharemos nisso no futuro.
+
+
+<br>
+
+## Tokens
+Os tokens de border-radius são variáveis scss e estão descritos abaixo.
+<br>
+
+<Border />
+<script setup>
+import Border from '@/docs-components/BorderBuilder.vue';
+</script>

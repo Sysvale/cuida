@@ -23,6 +23,7 @@ import paleteBuilder from '../utils/methods/paleteBuilder.js';
 Chart.register(...registerables);
 
 export default {
+	name: 'CdsBarChart',
 	components: {
 		Bar,
 	},
@@ -37,19 +38,11 @@ export default {
 		data: {
 			type: Array,
 			required: true,
-			default: () => ([{
-				datasets: [
-					{
-						label: '',
-						data: [],
-					}
-				]
-			}])
 		},
 		/**
-		 * Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:
-		 * `green`, `teal`, `turquoise`, `blue`, `indigo`, `violet`, `pink`, `red`, `orange`, `amber`, `gray`, `dark`.
-		 */
+		* A variante de cor. São 11 variantes:
+		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
+		*/
 		variant: {
 			type: String,
 			required: true,

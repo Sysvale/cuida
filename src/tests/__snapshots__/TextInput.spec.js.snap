@@ -2,7 +2,13 @@
 
 exports[`TextInput > renders correctly 1`] = `
 "<div data-v-82c69faf="" class="base-input__container" inputtype="text" linkurl="https://cuida.framer.wiki/" mobile="false" disableautocomplete="false">
-  <!--v-if--><label data-v-c1eb01da="" data-v-82c69faf="" class="label"><span data-v-c1eb01da="" class="label__content">Label <!--v-if--><!--v-if--></span><span data-v-c1eb01da="" class="label__link"></span></label>
+  <!--v-if--><label data-v-c1eb01da="" data-v-82c69faf="" class="label">
+    <div data-v-c2ac4e6d="" data-v-c1eb01da="" class="flexbox label__content">
+      <!-- @slot Slot com o conteúdo interno do FlexBox -->Label
+      <!--v-if-->
+      <!--v-if-->
+    </div><span data-v-c1eb01da="" class="label__link"></span>
+  </label>
   <div data-v-82c69faf="" class="base-input base-input--default">
     <!--v-if-->
     <div data-v-82c69faf="" style="width: 100%;">

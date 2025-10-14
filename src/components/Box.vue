@@ -4,22 +4,22 @@
 		ref="cds-box"
 		:class="computedClass"
 	>
-		<cds-clickable
+		<CdsClickable
 			class="box__container"
 			:clickable="clickable"
 			:fluid="fluid"
 			@click="handleClick"
 		>
-			<!-- @slot Slot utilizado para renderização do conteúdo interno do Box.-->
-			<cds-spacer
+			<CdsSpacer
 				:padding-top="padding"
 				:padding-right="padding"
 				:padding-bottom="padding"
 				:padding-left="padding"
 			>
+				<!-- @slot Slot utilizado para renderização do conteúdo interno do Box.-->
 				<slot />
-			</cds-spacer>
-		</cds-clickable>
+			</CdsSpacer>
+		</CdsClickable>
 	</div>
 </template>
 
@@ -30,6 +30,7 @@ import CdsClickable from './Clickable.vue';
 import rounder from '../utils/methods/rounder';
 
 export default {
+	name: 'CdsBox',
 	components: {
 		CdsSpacer,
 		CdsClickable,
@@ -74,8 +75,8 @@ export default {
 			default: false,
 		},
 		/**
-		* A variante de cor. São 9 variantes implementadas: 'green', 'teal',
-		* 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.
+		* A variante de cor. São 10 variantes:
+		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		*/
 		variant: {
 			type: String,
@@ -138,6 +139,11 @@ export default {
 
 		handleClick() {
 			if (this.clickable) {
+				/**
+				* Evento emitido quando a prop `clickable` é `true` e o `Box` é clicado.
+				* @event boxClick
+				* @type {Event}
+				*/
 				this.$emit('boxClick', true);
 			}
 		},

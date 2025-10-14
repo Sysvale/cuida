@@ -6,7 +6,7 @@
 				:key="`${index}-${item.name}-item`"
 				role="presentation"
 			>
-				<cds-clickable
+				<CdsClickable
 					v-if="index === 0"
 					clickable
 				>
@@ -14,33 +14,33 @@
 						:to="routerPushTo(item)"
 						class="breadcrumb__link"
 					>
-						<cds-icon
+						<CdsIcon
 							v-if="items.length <= 2"
 							height="16"
 							width="16"
 							name="arrow-left-outline"
 						/>
 
-						<cds-icon
+						<CdsIcon
 							v-else
 							height="15"
 							width="15"
 							name="home-outline"
 						/>
 
-						<cds-spacer margin-left="2">
+						<CdsSpacer margin-left="2">
 							{{ item.label }}
-						</cds-spacer>
+						</CdsSpacer>
 					</router-link>
-				</cds-clickable>
+				</CdsClickable>
 
-				<cds-spacer
+				<CdsSpacer
 					v-else
 					class="breadcrumb__item"
 					margin-right="1"
 					margin-left="1"
 				>
-					<cds-icon
+					<CdsIcon
 						height="16"
 						width="16"
 						name="caret-right-outline"
@@ -51,11 +51,11 @@
 						:to="routerPushTo(item)"
 						class="breadcrumb__link"
 					>
-						<cds-clickable :clickable="index !== items.length - 1">
+						<CdsClickable :clickable="index !== items.length - 1">
 							{{ item.label }}
-						</cds-clickable>
+						</CdsClickable>
 					</router-link>
-				</cds-spacer>
+				</CdsSpacer>
 			</li>
 		</ul>
 	</nav>
@@ -68,6 +68,7 @@ import CdsClickable from './Clickable.vue';
 import isEmpty from 'lodash.isempty';
 
 export default {
+	name: 'CdsBreadcrumb',
 	components: {
 		CdsIcon,
 		CdsSpacer,

@@ -2,14 +2,18 @@
 	<span>
 		<div class="source-code__title">Lista de ícones:</div>
 
-		<cds-search-input
+		<CdsSearchInput
 			v-model="typedIcon"
 			fluid
+			label=""
 			class="icon__search-input"
 			placeholder="Pesquise pelo nome do ícone"
 		/>
 
-		<copy-token :target="target" :value="value" />
+		<copy-token
+			:target="target"
+			:value="value"
+		/>
 
 		<div
 			class="icon__grid"
@@ -28,11 +32,13 @@
 						:key="index"
 						@click="handleClipBoardContent(icon)"
 					>
-						<div
+						<CdsTooltip
 							:id="icon"
+							text=" ✅ Token copiado!"
+							trigger="click"
 							class="icon__tile"
 						>
-							<cds-icon
+							<CdsIcon
 								height="16"
 								width="16"
 								color="#36424E"
@@ -40,15 +46,15 @@
 								class="copy-icon"
 							/>
 
-							<cds-icon
+							<CdsIcon
 								:key="`${index}-${typedIcon}`"
-								height="32"
-								width="32"
+								height="28"
+								width="28"
 								color="#36424E"
 								:name="icon"
 							/>
 							<p class="icon__name">{{ icon }}</p>
-						</div>
+						</CdsTooltip>
 					</div>
 				</div>
 			</div>
@@ -62,12 +68,14 @@ import { iconsData } from '../utils/constants/iconsData.js';
 import CdsIcon from '../components/Icon.vue';
 import CdsSearchInput from '../components/SearchInput.vue';
 import CopyToken from '../docs-components/CopyToken.vue';
+import CdsTooltip from '@/components/Tooltip.vue';
 
 export default {
 	components: {
 		CdsIcon,
 		CopyToken,
 		CdsSearchInput,
+		CdsTooltip,
 	},
 
 	data() {
@@ -80,7 +88,7 @@ export default {
 			set: completeIconSet,
 			typedIcon: '',
 			exampleSourceCode: `
-<cds-icon
+<CdsIcon
 	name="box-outline"
 	height="40"
 	width="40"
@@ -96,7 +104,7 @@ export default {
 		handleClipBoardContent(icon) {
 			this.target = icon;
 			this.value = `
-<cds-icon
+<CdsIcon
 	height="32"
 	width="32"
 	name="${icon}"
@@ -190,9 +198,10 @@ code {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding: 8px;
+		padding: 6px;
 		cursor: pointer;
 		height: 72px;
+		width: 84px;
 		justify-content: center;
 		outline: 1px solid tokens.$n-0;
 		border-radius: tokens.$border-radius-extra-small;
@@ -206,14 +215,14 @@ code {
 	}
 
 	&__tile:hover {
-		padding: tokens.pa(2);
+		padding: 6px;
 		border-radius: tokens.$border-radius-extra-small;
 		transition: all .2s ease-in-out;
 		outline: 1px solid tokens.$gp-300;
 	}
 
 	&__name {
-		font-size: 12px;
+		font-size: 11px;
 		color: tokens.$n-400;
 		text-align: center;
 		margin: tokens.mt(2);
@@ -223,17 +232,16 @@ code {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		justify-items: stretch;
-		gap: 32px;
 		margin: tokens.mt(12) !important;
-		row-gap: 150px;
-		column-gap: 120px;
+		row-gap: 100px;
+		column-gap: 72px;
 	}
 
 	&__category {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 		width: fit-content;
-		gap: 20px;
+		gap: 12px;
 		align-content: baseline;
 	}
 
