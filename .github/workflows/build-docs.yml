@@ -1,0 +1,36 @@
+name: 'Build docs 📚'
+
+on:
+  push:
+    branches: main
+
+jobs:
+  docs-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📚 Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🟢 Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🔨 Build JSDocs JSON
+        run: npm run build
+        env:
+          NODE_OPTIONS: "--experimental-specifier-resolution=node"
+
+      - name: 📖 Build documentation with VitePress
+        run: npm run docs:build
+        env:
+          NODE_OPTIONS: "--experimental-specifier-resolution=node"
+
+      - name: ✅ Build completed successfully
+        run: echo "Documentation build completed successfully!"
