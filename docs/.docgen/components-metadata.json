@@ -3185,6 +3185,19 @@
       {
         "name": "selectionVariant",
         "description": "Variante de cor usada na estilização do componente.",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
         "type": {
           "name": "string"
         },
