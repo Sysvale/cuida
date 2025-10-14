@@ -56,14 +56,6 @@ const buttonArgs = ref({
 
 ---
 
-## Eventos
-
-| Nome | Descrição |
-|------|-----------|
-| `update` | Emitido quando alguma prop é alterada |
-
----
-
 ## Tipos de controles gerados
 
 O PlaygroundBuilder gera diferentes tipos de controles baseado no tipo da prop:
