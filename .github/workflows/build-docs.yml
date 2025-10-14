@@ -2,9 +2,7 @@ name: 'Build docs 📚'
 permissions:
   contents: read
 
-on:
-  push:
-    branches: ci/build-docs
+on: [push]
 
 jobs:
   docs-build:
