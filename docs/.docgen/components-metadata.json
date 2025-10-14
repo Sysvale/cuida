@@ -3185,19 +3185,6 @@
       {
         "name": "selectionVariant",
         "description": "Variante de cor usada na estilização do componente.",
-        "tags": {},
-        "values": [
-          "green",
-          "teal",
-          "blue",
-          "indigo",
-          "violet",
-          "pink",
-          "red",
-          "orange",
-          "amber",
-          "dark"
-        ],
         "type": {
           "name": "string"
         },
@@ -8538,8 +8525,8 @@
     ]
   },
   "CdsPageHeader": {
-    "displayName": "CdsPageHeader",
     "exportName": "default",
+    "displayName": "PageHeader",
     "description": "",
     "tags": {},
     "props": [
@@ -8565,6 +8552,17 @@
       {
         "name": "compact",
         "description": "Quando ativa, define a largura do PageHeader como 50% do container.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
+      },
+      {
+        "name": "loading",
+        "description": "Quando true, ativa o skeleton do componente.",
         "type": {
           "name": "boolean"
         },
@@ -10707,6 +10705,7 @@
         "type": {
           "name": "boolean"
         },
+        "required": false,
         "defaultValue": {
           "func": false,
           "value": "false"
@@ -10909,6 +10908,27 @@
           "func": false,
           "value": "false"
         }
+      }
+    ],
+    "slots": [
+      {
+        "name": "option",
+        "scoped": true,
+        "description": "Slot utilizado para personalizar a lista de opções do select. Os dados do scoped slot podem ser acessados como: ```slot-scope={ 'option', 'index', 'value' }```",
+        "bindings": [
+          {
+            "name": "index",
+            "title": "binding"
+          },
+          {
+            "name": "option",
+            "title": "binding"
+          },
+          {
+            "name": "value",
+            "title": "binding"
+          }
+        ]
       }
     ],
     "sourceFiles": [
