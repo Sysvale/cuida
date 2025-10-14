@@ -1,4 +1,6 @@
 name: 'Build docs 📚'
+permissions:
+  contents: read
 
 on:
   push:
