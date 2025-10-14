@@ -58,7 +58,17 @@
 						@mouseover="highlightOnMouseOver(index)"
 						@mouseout="unhighlightOnMouseOut()"
 					>
-						{{ option[optionsField] }}
+						<!--
+							@slot Slot utilizado para personalizar a lista de opções do select. Os dados do scoped slot podem ser acessados como: ```slot-scope={ 'option', 'index', 'value' }```
+						-->
+						<slot
+							name="option"
+							:index
+							:option
+							:value="option[optionsField]"
+						>
+							{{ option[optionsField] }}
+						</slot>
 					</li>
 				</ul>
 

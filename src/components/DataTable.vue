@@ -53,12 +53,21 @@
 						@button-click="handleSearchInput(internalSearch, 'button')"
 					/>
 				</CdsFlexbox>
-				<div
-					v-else
-					class="data-table__items-counter"
-				>
-					{{ totalItems }} {{ totalItems === 1 ? 'registro encontrado' : 'registros encontrados' }}
-				</div>
+
+				<template v-else>
+					<CdsSkeleton
+						v-if="loading"
+						:width="150"
+						:height="15"
+					/>
+
+					<div
+						v-else
+						class="data-table__items-counter"
+					>
+						{{ totalItems }} {{ totalItems === 1 ? 'registro encontrado' : 'registros encontrados' }}
+					</div>
+				</template>
 
 				<CdsFlexbox
 					class="data-table__actions"
@@ -85,11 +94,20 @@
 						</span>
 					</CdsButton>
 				</CdsFlexbox>
+
 				<div
 					v-if="withSearch"
 					class="data-table__items-counter--below"
 				>
-					{{ totalItems }} {{ totalItems === 1 ? 'registro encontrado' : 'registros encontrados' }}
+					<CdsSkeleton
+						v-if="loading"
+						:width="150"
+						:height="15"
+					/>
+
+					<span v-else>
+						{{ totalItems }} {{ totalItems === 1 ? 'registro encontrado' : 'registros encontrados' }}
+					</span>
 				</div>
 			</div>
 
@@ -160,7 +178,7 @@
 			</div>
 		</div>
 
-		<custom-fields-side-sheet
+		<CustomFieldsSideSheet
 			v-model="showSideSheet"
 			:custom-fields-list="internalCustomFieldsList"
 			:custom-fields-searchable="customFieldsSearchable"
@@ -213,7 +231,6 @@ defineOptions({ name: 'CdsDataTable' });
 const props = defineProps({
 	/**
  	* Variante de cor usada na estilização do componente.
-	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	selectionVariant: {
 		type: String,

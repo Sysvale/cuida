@@ -403,9 +403,7 @@ export default {
 	},
 
 	mounted() {
-		if (this.modelValue === null || this.modelValue.length === 0) {
-			return;
-		}
+		if (!this.modelValue || this.modelValue.length === 0) return;
 
 		this.selectedValue = this.modelValue;
 		this.updateRenderOptions();

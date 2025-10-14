@@ -1,53 +1,115 @@
 <template>
-	<header
-		:class="compact ? 'page-header__container--compact' : 'page-header__container'"
-	>
-		<div>
-			<p class="page-header__title">
-				{{ title }}
-			</p>
-
-			<div
-				v-if="splitedSubtitle.length > 0"
-				class="d-flex"
+	<div>
+		<template v-if="loading">
+			<CdsFlexbox
+				v-if="hasSlots"
+				class="page-header__skeleton"
+				align="center"
+				justify="space-between"
 			>
-				<span
+				<CdsFlexbox
+					direction="column"
+					gap="3"
+				>
+					<CdsSkeleton
+						:width="300"
+						:height="36"
+					/>
+
+					<CdsSkeleton
+						:width="550"
+						:height="20"
+					/>
+				</CdsFlexbox>
+
+				<CdsFlexbox
+					align="center"
+					gap="3"
+				>
+					<CdsSkeleton
+						:width="120"
+						:height="36"
+					/>
+
+					<CdsSkeleton
+						:width="120"
+						:height="36"
+					/>
+				</CdsFlexbox>
+			</CdsFlexbox>
+
+			<CdsFlexbox
+				v-else
+				class="page-header__skeleton"
+				direction="column"
+				gap="3"
+			>
+				<CdsSkeleton
+					:width="300"
+					:height="36"
+				/>
+
+				<CdsSkeleton
+					:width="550"
+					:height="20"
+				/>
+			</CdsFlexbox>
+		</template>
+
+		<header
+			v-else
+			:class="compact ? 'page-header__container--compact' : 'page-header__container'"
+		>
+			<div>
+				<p class="page-header__title">
+					{{ title }}
+				</p>
+
+				<div
+					v-if="splitedSubtitle.length > 0"
+					class="d-flex"
+				>
+					<span
+						class="page-header__subtitle"
+					>
+						{{ splitedSubtitle[0] }}
+
+						<cds-link
+							:href="url"
+							bold
+						>
+							{{ fancyUrl }}
+						</cds-link>
+
+						{{ splitedSubtitle[1] }}
+					</span>
+				</div>
+				<div
+					v-else
 					class="page-header__subtitle"
 				>
-					{{ splitedSubtitle[0] }}
-
-					<CdsLink
-						:href="url"
-						bold
-					>
-						{{ fancyUrl }}
-					</CdsLink>
-
-					{{ splitedSubtitle[1] }}
-				</span>
+					{{ subtitle }}
+				</div>
 			</div>
-			<div
-				v-else
-				class="page-header__subtitle"
-			>
-				{{ subtitle }}
-			</div>
-		</div>
 
-		<div class="page-header__aside-slot">
-			<slot
-				name="aside"
-			/>
-		</div>
-	</header>
+			<div class="page-header__aside-slot">
+				<slot
+					name="aside"
+				/>
+			</div>
+		</header>
+	</div>
 </template>
 <script>
 import CdsLink from '../components/Link.vue';
+import CdsSkeleton from '../components/Skeleton.vue';
+import CdsFlexbox from '../components/Flexbox.vue';
 
 export default {
-	name: 'CdsPageHeader',
 	components: {
 		CdsLink,
+		CdsSkeleton,
+		CdsFlexbox,
 	},
 
 	props: {
@@ -72,6 +134,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+	 	* Quando true, ativa o skeleton do componente.
+		*/
+		loading: {
+			type: Boolean,
+			default: false,
+		}
 	},
 
 	data() {
@@ -85,6 +154,10 @@ export default {
 	computed:{
 		fancyUrl() {
 			return this.url.split(/http:\/\/|https:\/\//)[1];
+		},
+
+		hasSlots() {
+			return !!Object.keys(this.$slots).length;
 		},
 	},
 
@@ -109,6 +182,11 @@ export default {
 <style lang="scss">
 @use '../assets/sass/tokens/index' as tokens;
 	.page-header {
+
+		&__skeleton {
+			margin: tokens.mt(4);
+		}
+
 		&__container {
 			display: flex;
 			justify-content: space-between;
