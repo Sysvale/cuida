@@ -231,6 +231,7 @@ defineOptions({ name: 'CdsDataTable' });
 const props = defineProps({
 	/**
  	* Variante de cor usada na estilização do componente.
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	selectionVariant: {
 		type: String,

@@ -7,9 +7,12 @@
 	>
 		<template #table-item="{ data, field }">
 			<template v-if="field === 'name'">
-				<CdsRequiredIndicator v-if="data.required"/>
+				<CdsRequiredIndicator v-if="data.required" />
 				<code>{{ apiSectionPrefix }}{{ data.name }}</code>
-				<span v-if="data.required" style="color: #C92C3F"> (required)</span>
+				<span
+					v-if="data.required"
+					style="color: #C92C3F"
+				> (required)</span>
 				<CdsBadge
 					v-if="data.tags?.deprecated?.length"
 					variant="red"
@@ -22,7 +25,13 @@
 
 			<template v-if="section === 'props' && field === 'values'">
 				<span v-if="!data.values?.length"> -- </span>
-				<code v-for="value in data.values">{{ value }} <br></code>
+				<code
+					v-for="value in data.values"
+					:key="value"
+				>
+					{{ value }}
+					<br>
+				</code>
 			</template>
 
 			<template v-if="field === 'description'">
@@ -49,21 +58,6 @@ const props = withDefaults(defineProps<{
 }>(), {
 	name: 'Button',
 });
-
-const dataSet = [
-	{
-		title: 'Props',
-		name: 'props',
-	},
-	{
-		title: 'Eventos',
-		name: 'events',
-	},
-	{
-		title: 'Slots',
-		name: 'slots',
-	},
-];
 
 const eventsAndSlotsFields = [
 	{

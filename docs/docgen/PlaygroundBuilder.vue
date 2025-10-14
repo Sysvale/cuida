@@ -128,8 +128,6 @@ const props = defineProps<{
 	component: string,
 }>();
 
-const emits = defineEmits(['update']);
-
 const normalizedPropsData = ref<Record<string, any>[]>([]);
 
 const componentData = computed(() => (componentsData as Record<string, any>)[props.component] || {});

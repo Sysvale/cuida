@@ -70,9 +70,9 @@ import LogBuilder from './LogBuilder.vue';
 
 const model = defineModel('args');
 
-const props = withDefaults(defineProps<{
+withDefaults(defineProps<{
 	component: Component & { name: string },
-	events?: string[],
+	events: string[],
 	withBackground?: boolean,
 	withTrigger?: boolean,
 	static?: boolean,

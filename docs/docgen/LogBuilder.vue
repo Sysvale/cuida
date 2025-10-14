@@ -10,18 +10,25 @@
 
 		<div
 			v-show="showLog"
-			class="log-container"
 			ref="logContainerRef"
+			class="log-container"
 		>
 			<template v-if="!log.length">
-				<CdsFlexbox fluid align="center" justify="center">
+				<CdsFlexbox
+					fluid
+					align="center"
+					justify="center"
+				>
 					<CdsBadge variant="gray">
 						⚡Nenhum evento foi disparado
 					</CdsBadge>
 				</CdsFlexbox>
 			</template>
 
-			<template v-for="message in log">
+			<template
+				v-for="message in log"
+				:key="message.timestamp"
+			>
 				<div class="log-text">
 					<div>
 						<small class="log-event">
@@ -98,7 +105,7 @@ defineExpose({
 	clearLog: () => log.value = []
 });
 
-export type LogBuilderType = typeof import("./LogBuilder.vue")["default"];
+export type LogBuilderType = typeof import('./LogBuilder.vue')['default'];
 </script>
 
 <style lang="scss" scoped>
