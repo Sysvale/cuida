@@ -107,8 +107,10 @@ import { get, cloneDeep } from 'lodash';
 import removeAccents from '../utils/methods/removeAccents';
 import CdsBaseInput from './BaseInput.vue';
 
+defineOptions({ name: 'CdsSelect' });
+
 const model = defineModel('modelValue', {
-	type: [Array, Object],
+	type: [Array, Object, String],
 });
 
 const props = defineProps({
@@ -139,6 +141,7 @@ const props = defineProps({
 	},
 	/**
 	 * Especifica o estado do Select. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	 * @values default, valid, loading, invalid
 	 */
 	state: {
 		type: String,
@@ -168,7 +171,7 @@ const props = defineProps({
 		required: false,
 	},
 	/**
-	 * <span className="deprecated-warning">[DEPRECATED]</span> Define a largura do Select. As opções são 'thin', 'default' e 'wide'.
+	 * @deprecated Define a largura do Select. As opções são 'thin', 'default' e 'wide'.
 	 */
 	width: {
 		type: String,
@@ -224,14 +227,14 @@ const props = defineProps({
 		required: false,
 	},
 	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela `supportLink` na v4. Define texto do link do input (localizado à direita da label).
+	* @deprecated Essa prop vai ser substituída pela `supportLink` na v4. Define texto do link do input (localizado à direita da label).
 	*/
 	linkText: {
 		type: String,
 		default: null,
 	},
 	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela `supportLinkUrl` na v4. Define a url a ser acessada no clique do link (no caso do link ser exibido).
+	* @deprecated Essa prop vai ser substituída pela `supportLinkUrl` na v4. Define a url a ser acessada no clique do link (no caso do link ser exibido).
 	*/
 	linkUrl: {
 		type: [String, null],
@@ -259,7 +262,7 @@ const props = defineProps({
 		default: null,
 	},
 	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile
+	* @deprecated Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile
 	*/
 	mobile: {
 		type: Boolean,

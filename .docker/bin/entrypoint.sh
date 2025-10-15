@@ -3,4 +3,4 @@
 
 npm install
 npm run build
-npm run storybook
+npm run docs:dev

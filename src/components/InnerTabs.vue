@@ -54,8 +54,9 @@
 import { ref, computed, watch } from 'vue';
 import isEmpty from 'lodash.isempty';
 import isEqual from 'lodash.isequal';
-
 import { colorOptions, colorHexCode } from '../utils/constants/colors';
+
+defineOptions({ name: 'CdsInnerTabs' });
 
 const props = defineProps({
 	/**
@@ -86,6 +87,7 @@ const props = defineProps({
 	* Cor da borda que indica o item ativo.
 	* Existem algumas cores predefinidas seguindo os guias do Cuida, são elas: 
 	* `turquoise`, `green`, `blue`, `violet`, `pink`, `red`, `orange`, `amber` e `gray`.
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	variant: {
 		type: String,

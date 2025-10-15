@@ -39,6 +39,7 @@
 import variantClassResolver from '../utils/methods/variantClassResolver';
 
 export default {
+	name: 'CdsCheckbox',
 	props: {
 		/**
 		* A prop usada como v-model para monitorar a seleção do Checkbox
@@ -56,8 +57,8 @@ export default {
 			default: 'checkbox content',
 		},
 		/**
-		* A variante da Checkbox. São 10 variantes: 'teal', 'green', 'blue',
-		* 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+		* A variante de cor. São 10 variantes:
+		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		*/
 		variant: {
 			type: String,

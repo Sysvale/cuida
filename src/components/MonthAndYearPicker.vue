@@ -14,7 +14,7 @@
 		>
 			<template #trailing-icon>
 				<div class="month-and-year-picker__icon">
-					<cds-icon
+					<CdsIcon
 						height="20"
 						width="20"
 						name="calendar-outline"
@@ -82,6 +82,8 @@ import CdsFlexbox from './Flexbox.vue';
 import { useClickOutside } from '../utils/composables/useClickOutside.js';
 import { direction, dropdownTopPosition, dropdownBottomPosition } from '../utils/composables/useDropdownPosition.js';
 
+defineOptions({ name: 'CdsMonthAndYearPicker' });
+
 const model = defineModel('modelValue', {
 	type: String,
 });
@@ -95,8 +97,8 @@ const props = defineProps({
 		default: 'Label',
 	},
 	/**
-	* A variante da Badge. SÃ£o 9 variantes: 'turquoise', 'green', 'blue',
-	* 'violet', 'pink', 'red', 'orange', 'amber' e 'gray'.
+	* A variante de cor. São 10 variantes:
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	variant: {
 		type: String,
@@ -104,6 +106,7 @@ const props = defineProps({
 	},
 	/**
 	* Especifica o estado do Input. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	* @values default, valid, loading, invalid
 	*/
 	state: {
 		type: String,
@@ -131,7 +134,7 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile
+	* @deprecated Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile
 	*/
 	mobile: {
 		type: Boolean,

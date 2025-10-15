@@ -37,7 +37,7 @@
 					@click.prevent="handleAddAction"
 				>
 
-					<cds-icon
+					<CdsIcon
 						height="32"
 						width="32"
 						name="plus-outline"
@@ -74,6 +74,7 @@ import CdsIcon from '../components/Icon.vue';
 import { colorOptions, colorHexCode } from '../utils/constants/colors';
 
 export default {
+	name: 'CdsTabs',
 	components: {
 		CdsIcon,
 	},
@@ -107,6 +108,7 @@ export default {
 		 * Cor da borda que indica o item ativo.
 		 * Existem algumas cores predefinidas seguindo os guias do Cuida, são elas:
 		 * `turquoise`, `green`, `blue`, `violet`, `pink`, `red`, `orange`, `amber` e `gray`.
+		 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 		 */
 		variant: {
 			type: String,

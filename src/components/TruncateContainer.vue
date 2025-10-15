@@ -32,6 +32,8 @@ import { ref, computed, nextTick, watch } from 'vue';
 import CdsFlatButton from './FlatButton.vue';
 import CdsFlexbox from './Flexbox.vue';
 
+defineOptions({ name: 'CdsTruncateContainer' });
+
 const props = defineProps({
 	/**
 	* Altura do container.
@@ -42,6 +44,7 @@ const props = defineProps({
 	},
 	/**
 	* Define o alinhamento do texto.
+	* @values start, center, end
 	*/
 	textAlign: {
 		type: String,

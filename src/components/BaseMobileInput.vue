@@ -265,6 +265,8 @@ import CdsFlexbox from './Flexbox.vue';
 import CdsSpinner from './Spinner.vue';
 import CdsRequiredIndicator from './RequiredIndicator.vue';
 
+defineOptions({ name: 'CdsBaseMobileInput' });
+
 const model = defineModel('modelValue', {
 	type: [String, Number],
 });
@@ -286,6 +288,7 @@ const props = defineProps({
 	},
 	/**
 	* Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	* @values default, valid, loading, invalid
 	*/
 	state: {
 		type: String,

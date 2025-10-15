@@ -67,6 +67,8 @@ import { colorHexCode, colorLightestHexCode } from '../utils/constants/colors';
 import { generateKey } from '../utils';
 import CdsLabel from './Label.vue';
 
+defineOptions({ name: 'CdsRadioButtonGroup' });
+
 const model = defineModel('modelValue', {
 	type: [String, null],
 });
@@ -111,7 +113,7 @@ const props = defineProps({
 		required: false,
 	},
 	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Essa prop vai ser substituída pela prop `fluid` na v4. Quando verdadeiro, faz com que o button se adapte a expansão, podendo agora, adicionar uma descrição
+	* @deprecated Essa prop vai ser substituída pela prop `fluid` na v4. Quando verdadeiro, faz com que o button se adapte a expansão, podendo agora, adicionar uma descrição
 	*/
 	allowsExpand: {
 		type: Boolean,
@@ -128,6 +130,7 @@ const props = defineProps({
 	},
 	/**
 	* Especifica o estado do RadioButtonGroup. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	* @values default, valid, loading, invalid
 	*/
 	state: {
 		type: String,
@@ -141,8 +144,8 @@ const props = defineProps({
 		default: 'Valor inválido',
 	},
 	/**
-	* A variante da Checkbox. São 10 variantes: 'teal', 'green', 'blue',
-	* 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+	* A variante de cor. São 10 variantes:
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	variant: {
 		type: String,

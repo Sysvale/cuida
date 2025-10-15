@@ -124,6 +124,7 @@ const valueValidator = (value) => {
 };
 
 export default {
+	name: 'CdsTimeInput',
 	directives: {
 		facade,
 	},
@@ -189,6 +190,7 @@ export default {
 		},
 		/**
 		 * Propriedade utilizada para indicar o estado de validação do componente.
+		 * @values default, valid, loading, invalid
 		 */
 		state: {
 			type: String,
@@ -253,7 +255,7 @@ export default {
 
 			if (
 				!(this.startHour && this.startMinute)
-				|| (this.range && !(this.endHour && this.endMinute))
+				|| (this.mode === 'range' && !(this.endHour && this.endMinute))
 			) {
 				this.$emit('update:modelValue', null);
 				return;

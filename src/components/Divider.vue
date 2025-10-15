@@ -21,6 +21,7 @@
 
 <script>
 export default {
+	name: 'CdsDivider',
 	props: {
 		/**
 		 * Texto renderizado em cima ou ao lado do Divider
@@ -78,7 +79,7 @@ export default {
 	},
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @use '../assets/sass/tokens/index' as tokens;
 
 .divider__container > div {
@@ -89,7 +90,7 @@ export default {
 	border: 0;
 	height: 1px;
 	width: v-bind(sanitizedWidth);
-	margin: 0;
+	margin: 0 !important;
 
 	&__container {
 		&--inline {

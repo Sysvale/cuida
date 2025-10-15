@@ -47,6 +47,8 @@ import { colorOptions } from '../utils/constants/colors';
 import sizes from '../utils/constants/sizes';
 import CdsIcon from './Icon.vue';
 
+defineOptions({ name: 'CdsChip' });
+
 const modelValue = defineModel('modelValue', {
 	type: Boolean,
 	required: true,
@@ -55,7 +57,7 @@ const modelValue = defineModel('modelValue', {
 const props = defineProps({
 	/**
 	 * A variante da Badge. São 9 variantes.
-	 * @values 'turquoise', 'green', 'blue', 'dark', 'violet', 'pink', 'red', 'orange', 'amber', 'gray'
+	 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	 */
 	variant: {
 		type: String,
@@ -63,7 +65,7 @@ const props = defineProps({
 	},
 	/**
 	 * Especifica o tamanho da chip. São 3 tamanhos implementados. 
-	 * @values 'sm', 'md', 'lg'
+	 * @values sm, md, lg
 	 */
 	size: {
 		type: String,

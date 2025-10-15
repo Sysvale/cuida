@@ -20,7 +20,7 @@
 			v-if="loading"
 			:class="computedLoaderClass"
 		>
-			<skeleton fluid	/>
+			<Skeleton fluid	/>
 		</div>
 		<div v-else>
 			<div :class="computedImageClass">
@@ -29,7 +29,7 @@
 					class="cds-tile__icon"
 					:name="icon"
 				/>
-				<cds-image
+				<CdsImage
 					v-else
 					:src="icon"
 					:width="computedIconWidth"
@@ -52,6 +52,8 @@ import Icon from './Icon.vue';
 import CdsImage from './Image.vue';
 import Skeleton from './Skeleton.vue';
 
+defineOptions({ name: 'CdsTile' });
+
 const props = defineProps({
 	/**
 	 * Ícone a ser exibido no componente. Caso seja um ícone do próprio cuida icons, informe apenas o nome do ícone. Também é possível informar a url do ícone.
@@ -69,6 +71,7 @@ const props = defineProps({
 	},
 	/**
 	 * Especifica o tamanho do botão. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
+	 * @values sm, md, lg
 	 */
 	size: {
 		type: String,
@@ -76,8 +79,8 @@ const props = defineProps({
 		validator: (value) => ['sm','md','lg'].includes(value),
 	},
 	/**
-	 * A variante de cor. São 9 variantes implementadas: 'green', 'teal',
-	 * 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber', 'gray' e 'dark'.
+	* A variante de cor. São 10 variantes:
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	variant: {
 		type: String,

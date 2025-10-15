@@ -78,6 +78,8 @@ import CdsClickable from './Clickable.vue';
 import generateKey from '../utils/methods/uuidv4';
 import CdsLabel from './Label.vue';
 
+defineOptions({ name: 'CdsDynamicInputList' });
+
 const model = defineModel('modelValue', {
 	type: Array,
 	default: () => [
@@ -111,7 +113,8 @@ const props = defineProps({
 		default: 'Adicionar',
 	},
 	/**
-	* Variante do botão de adição de inputs.
+	* A variante de cor. São 10 variantes:
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	*/
 	buttonVariant: {
 		type: String,

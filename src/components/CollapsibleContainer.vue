@@ -32,6 +32,7 @@
 
 <script>
 export default {
+	name: 'CdsCollapsibleContainer',
 	props: {
 		/**
 		 * Representa o estado do componente. Quando 'false' o conteúdo não é mostrado
@@ -61,7 +62,7 @@ export default {
 		internalValue(newValue) {
 			/**
 			* Evento emitido quando o conteúdo do item é exibido ('true') ou ocultado ('false').
-			* @event expanded
+			* @event update:model-value
 			* @type {Event}
 			*/
 			this.$emit('update:modelValue', newValue);

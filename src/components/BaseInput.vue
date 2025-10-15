@@ -64,7 +64,7 @@
 					v-if="type === 'textarea'"
 					:id="componentId"
 					ref="htmlInput"
-					v-model="internalValue"
+					v-model.trim="internalValue"
 					:required="required"
 					:placeholder="placeholder"
 					:disabled="disabled"
@@ -108,7 +108,7 @@
 						:id="componentId"
 						ref="htmlInput"
 						v-bind="props"
-						v-model="internalValue"
+						v-model.trim="internalValue"
 						:required="required"
 						:readonly="readonly"
 						:placeholder="placeholder"
@@ -196,6 +196,8 @@ import CdsSpinner from './Spinner.vue';
 import CdsBaseMobileInput from './BaseMobileInput.vue';
 import CdsLabel from './Label.vue';
 
+defineOptions({ name: 'CdsBaseInput' });
+
 const model = defineModel('modelValue', {
 	type: [String, Number],
 });
@@ -231,6 +233,7 @@ const props = defineProps({
 	},
 	/**
 	* Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
+	* @values default, valid, loading, invalid
 	*/
 	state: {
 		type: String,
@@ -238,6 +241,7 @@ const props = defineProps({
 	},
 	/**
 	* Especifica o tipo do TextInput. As opções são 'text' e 'email'.
+	* @values text, email
 	*/
 	type: {
 		type: String,

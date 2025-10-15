@@ -11,6 +11,8 @@
 <script setup>
 import { computed } from 'vue';
 
+defineOptions({ name: 'CdsGrid' });
+
 const props = defineProps({
 	cols: {
 		type: [Number, String, Array],

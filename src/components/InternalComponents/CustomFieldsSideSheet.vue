@@ -45,7 +45,7 @@
 					direction="column"
 					gap="3"
 				>
-					<cds-skeleton
+					<CdsSkeleton
 						v-for="skeleton in 8"
 						:key="skeleton"
 						:height="60"
@@ -137,6 +137,8 @@ import CdsSelect from '../Select.vue';
 import CdsSearchInput from '../SearchInput.vue';
 import CdsDivider from '../Divider.vue';
 import { isEmpty, kebabCase, trim } from 'lodash';
+
+defineOptions({ name: 'CustomFieldsSideSheet' });
 
 const modelValue = defineModel({
 	type: Boolean,

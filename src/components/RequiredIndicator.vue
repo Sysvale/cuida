@@ -7,6 +7,7 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'CdsRequiredIndicator' });
 
 </script>
 

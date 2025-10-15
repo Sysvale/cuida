@@ -1,7 +1,7 @@
 <template>
 	<div class="multi-file-input">
 		<div class="multi-file-input__file-container">
-			<file-input
+			<CdsFileInput
 				:key="fileInputKey"
 				v-model="newFile"
 				v-bind="$attrs"
@@ -15,13 +15,13 @@
 			</div>
 
 			<div class="multi-file-input__badges_section">
-				<badge
+				<CdsBadge
 					v-for="badge in filesOptions"
 					:key="badge"
 					:variant="badge.active ? variant : 'gray'"
 				>
 					<div class="multi-file-input__badge-content">
-						<icon
+						<CdsIcon
 							v-if="badge.active"
 							name="check-outline"
 							height="16"
@@ -32,7 +32,7 @@
 							{{ badge.value }} {{ badge.required ? '*' : '' }}
 						</div>
 					</div>
-				</badge>
+				</CdsBadge>
 			</div>
 
 			<div
@@ -64,14 +64,14 @@
 
 							<div>
 								<div class="multi-file-input__actions">
-									<cds-select
+									<CdsSelect
 										v-model="item.selectedLabel"
 										:options="filesOptions"
 										label=""
 										style="display: flex;"
 									/>
 
-									<cds-icon-button
+									<CdsIconButton
 										icon="trash-outline"
 										size="lg"
 										@click="removeFile(item)"
@@ -91,14 +91,14 @@
 			</div>
 
 			<div class="multi-file-input__footer">
-				<cds-button
+				<CdsButton
 					:secondary="buttonSecondary"
 					:variant="variant"
 					:disabled="!shouldEnableButton"
 					@button-click="submit"
 				>
 					{{ submitButtonText }}
-				</cds-button>
+				</CdsButton>
 			</div>
 		</div>
 	</div>
@@ -106,13 +106,15 @@
 
 <script setup>
 import { ref, watch, computed } from 'vue';
-import FileInput from './FileInput.vue';
-import Badge from './Badge.vue';
-import Icon from './Icon.vue';
+import CdsFileInput from './FileInput.vue';
+import CdsBadge from './Badge.vue';
+import CdsIcon from './Icon.vue';
 import CdsIconButton from './IconButton.vue';
 import CdsButton from './Button.vue';
 import CdsSelect from './Select.vue';
 import generateKey from '../utils/methods/uuidv4';
+
+defineOptions({ name: 'CdsMultiFileInput' });
 
 const props = defineProps({
 	/**
@@ -125,6 +127,7 @@ const props = defineProps({
 	/**
 	 * Especifica a principal do componente. Essa cor será aplicada aos detalhes de estilo do componente, bem como em seu botão principal.
 	 * São 10 variantes: 'teal', 'green', 'blue', 'indigo', 'violet', 'pink', 'red', 'orange', 'amber' e 'dark'.
+	 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
 	 */
 	variant: {
 		type: String,
@@ -339,5 +342,4 @@ function allRequiredLabelsAreSelected() {
 		margin: tokens.mt(5);
 	}
 }
-
 </style>

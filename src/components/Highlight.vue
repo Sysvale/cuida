@@ -15,6 +15,7 @@
 			>
 				{{ element.string }}
 			</mark>
+
 			<template v-else>
 				{{ element.string }}
 			</template>
@@ -34,10 +35,11 @@
 
 <script>
 export default {
+	name: 'CdsHighlight',
 	props: {
 		/**
-		* A variante do Highlight. São 3 variantes implementadas: 'info', 'success'
-		* e 'danger'
+		* A variante do Highlight. São 3 variantes implementadas
+		@values info, success, danger
 		*/
 		variant: {
 			type: String,
@@ -68,7 +70,7 @@ export default {
 		* Define uma substring específica do texto enviada por slot que deve receber o destaque (highlight).
 		*/
 		highlightedText: {
-			type: [String, null],
+			type: String,
 			default: null,
 		},
 		/**

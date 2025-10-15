@@ -105,12 +105,12 @@ import {
 } from '../utils/composables/useComponentEmits.js';
 import { useInputStatusClasses } from '../utils/composables/useInputStatusClasses.js';
 import { longClickDirective } from '@sysvale/vue3-long-click';
-
 import CdsMobileStepperInput from './MobileStepperInput.vue';
 import CdsIcon from './Icon.vue';
 import CdsRequiredIndicator from './RequiredIndicator.vue';
-
 import stateValidator from '../utils/validators/state';
+
+defineOptions({ name: 'CdsStepperInput' });
 
 const hasSlots = useHasSlots();
 const vLongClick = longClickDirective({ delay: 400, interval: 50 });
@@ -177,7 +177,7 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	* <span className="deprecated-warning">[DEPRECATED]</span> Define a largura do StepperInput. As opções são 'thin', 'default', 'wide' e 'fluid'.
+	* @deprecated Define a largura do StepperInput. As opções são 'thin', 'default', 'wide' e 'fluid'.
 	*/
 	width: {
 		type: String,
@@ -200,6 +200,7 @@ const props = defineProps({
 	},
 	/**
 	* Especifica o estado do StepperInput. As opções são 'default', 'valid' e 'invalid'.
+	* @values default, valid, invalid
 	*/
 	state: {
 		type: String,
@@ -409,8 +410,8 @@ function handleBlur() {
 	}
 
 	&--disabled {
-		background-color: tokens.$n-10;
-		pointer-events: none;
+		background-color: tokens.$n-10 !important;
+		pointer-events: none !important;
 	}
 
 	&__icon--plus {

@@ -1,5 +1,5 @@
 <template>
-	<cds-box
+	<CdsBox
 		class="panel-card"
 		padding="0"
 		fluid
@@ -16,13 +16,13 @@
 			</div>
 		</div>
 
-		<cds-divider dimmed />
+		<CdsDivider dimmed />
 
 		<div :class="contentClass">
 			<!-- @slot Slot usado para inserção de conteúdo customizado. -->
 			<slot />
 		</div>
-	</cds-box>
+	</CdsBox>
 </template>
 
 <script>
@@ -30,6 +30,7 @@ import CdsBox from './Box.vue';
 import CdsDivider from './Divider.vue';
 
 export default {
+	name: 'CdsPanelCard',
 	components: {
 		CdsBox,
 		CdsDivider,
@@ -41,7 +42,6 @@ export default {
 		 */
 		title: {
 			type: String,
-			default: 'Título',
 			required: true,
 		},
 		/**
@@ -49,7 +49,6 @@ export default {
 		 */
 		subtitle: {
 			type: String,
-			default: 'Subtítulo',
 			required: true,
 		},
 		/**

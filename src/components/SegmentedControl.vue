@@ -12,16 +12,16 @@
 			}"
 			@click="handleClick(segment, index)"
 		>
-			<cds-tooltip
+			<CdsTooltip
 				v-if="withIcon"
 				:text="segmentsTooltipText[index]"
 			>
-				<cds-icon
+				<CdsIcon
 					height="20"
 					width="20"
 					:name="segment"
 				/>
-			</cds-tooltip>
+			</CdsTooltip>
 
 			<span v-else>{{ segment }}</span>
 		</button>
@@ -32,6 +32,7 @@ import CdsIcon from './Icon.vue';
 import CdsTooltip from './Tooltip.vue';
 
 export default {
+	name: 'CdsSegmentedControl',
 	components: {
 		CdsIcon,
 		CdsTooltip,

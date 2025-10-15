@@ -36,7 +36,7 @@
 								class="color-swatch__format-select"
 								@click.stop="handlePop(idx)"
 							>
-								<cds-icon
+								<CdsIcon
 									height="18"
 									width="18"
 									name="unfold-vertical-outline"
@@ -49,8 +49,12 @@
 							</div>
 						</div>
 						<br>
-						<div class="color-swatch__color">
-							<cds-icon
+						<CdsTooltip
+							text=" ✅ Token copiado!"
+							trigger="click"
+							class="color-swatch__color"
+						>
+							<CdsIcon
 								height="20"
 								width="20"
 								name="copy-outline"
@@ -60,14 +64,16 @@
 							<div :class="fontColorResolver(color.shade)">
 								{{ color[colorFormatArray[idx]] }}
 							</div>
-						</div>
+						</CdsTooltip>
 					</div>
 
-					<div
+					<CdsTooltip
 						v-else
+						text=" ✅ Token copiado!"
+						trigger="click"
 						class="color-swatch__color"
 					>
-						<cds-icon
+						<CdsIcon
 							height="20"
 							width="20"
 							name="copy-outline"
@@ -77,7 +83,7 @@
 						<div :class="fontColorResolver(color.shade)">
 							{{ color[colorFormatArray[idx]] }}
 						</div>
-					</div>
+					</CdsTooltip>
 				</div>
 			</div>
 		</div>
@@ -86,19 +92,21 @@
 			<h5 class="gradient-container__title">
 				Gradiente
 			</h5>
-			<div
+			<CdsTooltip
 				id="linear-gradient($bg-gradient)"
+				text=" ✅ Token copiado!"
+				trigger="click"
 				class="gradient-container"
 				@click="handleClick('linear-gradient($bg-gradient)', 'linear-gradient($bg-gradient)')"
 			>
-				<cds-icon
+				<CdsIcon
 					height="20"
 					width="20"
 					name="copy-outline"
 				/>
 
 				linear-gradient($bg-gradient)
-			</div>
+			</CdsTooltip>
 		</div>
 	</div>
 </template>
@@ -109,11 +117,13 @@ import CopyToken from '../docs-components/CopyToken.vue';
 import sassColorVariables from '../assets/sass/tokens/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
 import ContrastChecker from '../utils/methods/contrastChecker';
+import CdsTooltip from '@/components/Tooltip.vue';
 
 export default {
 	components: {
 		CdsIcon,
 		CopyToken,
+		CdsTooltip,
 	},
 
 	data() {
@@ -210,8 +220,8 @@ export default {
 
 	@include tokens.paleteResolver using ($color) {
 		background-color: $color;
-		width: 320px;
-		height: 72px;
+		width: 272px;
+		height: 64px;
 		padding: tokens.pYX(4, 5);
 		transform: scale(1);
 		transition: all .25s ease-in-out;
