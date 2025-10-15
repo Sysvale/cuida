@@ -49,7 +49,7 @@ const props = defineProps({
 	},
 	/**
 	 * Especifica o estado do componente.
-	 * @values 'default', 'valid', 'invalid'
+	 * @values default, valid, invalid
 	 *
 	 */
 	state: {

@@ -9156,9 +9156,9 @@
         "description": "Especifica o estado do componente.",
         "tags": {},
         "values": [
-          "'default'",
-          "'valid'",
-          "'invalid'"
+          "default",
+          "valid",
+          "invalid"
         ],
         "type": {
           "name": "string"
