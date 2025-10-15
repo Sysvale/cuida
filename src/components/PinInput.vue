@@ -20,12 +20,25 @@
 </template>
 
 <script setup>
-import { ref, defineProps, defineEmits, computed, watch, useTemplateRef } from 'vue';
+import {
+	ref,
+	defineProps,
+	defineEmits,
+	computed,
+	watch,
+	useTemplateRef,
+} from 'vue';
+
+defineOptions({ name: 'CdsPinInput' });
 
 const props = defineProps({
+	/**
+	 * O conteúdo do PIN.
+	 */
 	modelValue: {
 		type: String,
 		default: '',
+		required: true
 	},
 	/**
 	 * Especifica a quantidade de caracteres no PIN.
@@ -35,21 +48,23 @@ const props = defineProps({
 		default: 4,
 	},
 	/**
-	 * Especifica o estado do TextInput. As opções são 'default', 'valid' e 'invalid'.
+	 * Especifica o estado do componente.
+	 * @values 'default', 'valid', 'invalid'
+	 *
 	 */
 	state: {
 		type: String,
 		default: 'default',
 	},
 	/**
-	 * Especifica se os caracteres do PIN são visíveis ou não.
+	 * Especifica se os caracteres do PIN são visíveis.
 	 */
 	visible: {
 		type: Boolean,
 		default: false,
 	},
 	/**
-	 * Especifica se o PinInput deve ser versão mobile.
+	 * Especifica se o PinInput deve estar na versão mobile.
 	 */
 	mobile: {
 		type: Boolean,
@@ -57,7 +72,14 @@ const props = defineProps({
 	},
 });
 
-const emits = defineEmits(['update:modelValue']);
+const emits = defineEmits([
+	/**
+	 * Evento disparado com a modificação do v-model.
+	 * @event update:modelValue
+	 * @type {Event}
+	 */
+	'update:modelValue'
+]);
 
 const innerValue = ref(new Array(props.length));
 const inputRefs = useTemplateRef('inputs');

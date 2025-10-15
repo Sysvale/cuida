@@ -9122,16 +9122,19 @@
     ]
   },
   "CdsPinInput": {
-    "displayName": "CdsPinInput",
+    "name": "CdsPinInput",
     "exportName": "default",
+    "displayName": "PinInput",
     "description": "",
     "tags": {},
     "props": [
       {
         "name": "modelValue",
+        "description": "O conteúdo do PIN.",
         "type": {
           "name": "string"
         },
+        "required": true,
         "defaultValue": {
           "func": false,
           "value": "''"
@@ -9139,6 +9142,7 @@
       },
       {
         "name": "length",
+        "description": "Especifica a quantidade de caracteres no PIN.",
         "type": {
           "name": "number"
         },
@@ -9149,12 +9153,12 @@
       },
       {
         "name": "state",
-        "description": "Especifica o estado do TextInput. As opções são 'default', 'valid' e 'invalid'.",
+        "description": "Especifica o estado do componente.",
         "tags": {},
         "values": [
-          "default",
-          "valid",
-          "invalid"
+          "'default'",
+          "'valid'",
+          "'invalid'"
         ],
         "type": {
           "name": "string"
@@ -9166,6 +9170,7 @@
       },
       {
         "name": "visible",
+        "description": "Especifica se os caracteres do PIN são visíveis.",
         "type": {
           "name": "boolean"
         },
@@ -9176,7 +9181,7 @@
       },
       {
         "name": "mobile",
-        "description": "Especifica se o PinInput deve ser versão mobile.",
+        "description": "Especifica se o PinInput deve estar na versão mobile.",
         "type": {
           "name": "boolean"
         },
@@ -9189,9 +9194,10 @@
     "events": [
       {
         "name": "update:modelValue",
+        "description": "Evento disparado com a modificação do v-model.",
         "type": {
           "names": [
-            "undefined"
+            "Event"
           ]
         }
       }
