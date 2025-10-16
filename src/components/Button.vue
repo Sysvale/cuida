@@ -44,7 +44,7 @@ import { computed, useSlots } from 'vue';
 import CdsSpinner from '../components/Spinner.vue';
 import Cdstip from '../utils/directives/cdstip';
 import hasSlot from '../utils/methods/hasSlot';
-import { useAriaLabel } from '@/utils/composables/useAriaLabel';
+import { useAriaLabel } from '../utils/composables/useAriaLabel';
 
 defineOptions({
 	name: 'CdsButton',
