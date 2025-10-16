@@ -31,12 +31,12 @@
 				@mousedown.prevent="handleCalendarMouseDown"
 			>
 				<div class="dropdown__header">
-						<span
-							class="dropdown__month-and-title--no-hover"
-							@click="toggleYearPickerDisplay"
-						>
-							{{ currentYear }}
-						</span>
+					<span
+						class="dropdown__month-and-title--no-hover"
+						@click="toggleYearPickerDisplay"
+					>
+						{{ currentYear }}
+					</span>
 
 					<CdsFlexbox>
 						<CdsIcon
@@ -254,7 +254,7 @@ watch(datePickerRef, (newValue) => {
 function handleMonthSelection(selectedMonth) {
 	internalValue.value = internalValue.value ? internalValue.value : DateTime.now().setLocale('pt-BR').toFormat('dd/MM/yyyy');
 	showMonthPicker.value = !showMonthPicker.value;
-	let [day, month, year] = internalValue.value.toFormat('dd/MM/yyyy').split('/');
+	let [, month, year] = internalValue.value.toFormat('dd/MM/yyyy').split('/');
 	month = selectedMonth.index;
 
 	internalValue.value = DateTime.fromObject({ year: year, month: month }).setLocale('pt-BR');
@@ -287,15 +287,27 @@ function allowNextYearNavigation() {
 }
 
 function previousYear() {
-	if (allowPreviousYearNavigation()) {
-		internalValue.value = internalValue.value.minus({ year: 1 });
+	if (!allowPreviousYearNavigation()) return;
+
+	if (DateTime.min(internalValue.value.minus({ year: 1 }), minDateObj.value) !== minDateObj.value) {
+		internalValue.value = minDateObj.value;
+		model.value = internalValue.value.toFormat('yyyy-MM');
+		return;
 	}
+
+	internalValue.value = internalValue.value.minus({ year: 1 });
 }
 
 function nextYear() {
-	if (allowNextYearNavigation()) {
-		internalValue.value = internalValue.value.plus({ year: 1 });
+	if (!allowNextYearNavigation()) return;
+
+	if (DateTime.max(internalValue.value.plus({ year: 1 }), maxDateObj.value) !== maxDateObj.value) {
+		internalValue.value = maxDateObj.value;
+		model.value = internalValue.value.toFormat('yyyy-MM');
+		return;
 	}
+
+	internalValue.value = internalValue.value.plus({ year: 1 });
 }
 
 function toggleDatePicker() {
