@@ -11,13 +11,21 @@
 				:value="modelValue"
 				type="checkbox"
 				:name="$attrs.name || 'cds-checkbox-option'"
-				:disabled="disabled"
+				:aria-hidden="disabled ? 'true' : 'false'"
+				:checked="isChecked"
+				:aria-label="label"
+				:aria-checked="isIndeterminate ? 'mixed' : isChecked"
+				:tabindex="disabled ? -1 : 0"
+				@change="handleChange"
+				@click="handleInputClick"
+				@keydown.space.prevent="handleKeyboardToggle"
 			>
 
 			<label
 				:for="$attrs.id || 'cds-checkbox-option-input'"
 				:class="resolveCheckboxClass"
-				@click="toggleValue"
+				aria-hidden="true"
+				@click.prevent="toggleValue"
 			/>
 		</div>
 
@@ -28,7 +36,8 @@
 				'cds-checkbox__label--prominent': prominent && modelValue,
 			}"
 			:for="$attrs.id || 'cds-checkbox-option-input'"
-			@click="toggleValue"
+			aria-hidden="true"
+			@click.prevent="toggleValue"
 		>
 			{{ label }}
 		</label>
@@ -113,7 +122,7 @@ export default {
 				if (newValue === oldValue) {
 					return;
 				}
-				
+
 				this.isChecked = this.modelValue;
 			},
 			immediate: true,
@@ -124,16 +133,56 @@ export default {
 				if (newValue === oldValue) {
 					return;
 				}
-				
+
 				this.isIndeterminate = this.indeterminate;
 			},
 			immediate: true,
 		},
+		isChecked: {
+			handler(newValue) {
+				const input = this.$el?.querySelector('input[type="checkbox"]');
+				if (input && input.checked !== newValue) {
+					input.checked = newValue;
+				}
+			},
+		},
 	},
 
 	methods: {
-		toggleValue() {
-			if (this.disabled) return;
+		handleChange(event) {
+			if (this.disabled) {
+				event.preventDefault();
+				const input = event.target;
+				input.checked = this.isChecked;
+				return;
+			}
+
+			this.isChecked = event.target.checked;
+			this.isIndeterminate = false;
+			this.$emit('update:modelValue', this.isChecked);
+			this.$emit('update:indeterminate', false);
+		},
+
+		handleKeyboardToggle(event) {
+			if (this.disabled) {
+				event.preventDefault();
+				return;
+			}
+		},
+
+		handleInputClick(event) {
+			if (this.disabled) {
+				event.preventDefault();
+				const input = event.target;
+				input.checked = this.isChecked;
+			}
+		},
+
+		toggleValue(event) {
+			if (this.disabled) {
+				event?.preventDefault();
+				return;
+			}
 			this.isChecked = this.isIndeterminate ? false : !this.isChecked;
 			this.isIndeterminate = false;
 			/**
@@ -162,7 +211,7 @@ export default {
 	gap: tokens.spacer(2);
 
 	input[type=checkbox] {
-		visibility: hidden;
+		clip: rect(0, 0, 0, 0);
 		margin-top: tokens.spacer(n8);
 		position: absolute;
 	}
@@ -221,13 +270,13 @@ export default {
 		&--disabled {
 			background-color: tokens.$n-100 !important;
 			border: none !important;
-			cursor: default !important;
+			cursor: not-allowed !important;
 		}
 
 		&--disabled:not(.cds-checkbox__input--checked) {
 			background-color: tokens.$n-20 !important;
 			border: 1px solid tokens.$n-200 !important;
-			cursor: default !important;
+			cursor: not-allowed !important;
 		}
 
 		&--unchecked {
@@ -245,7 +294,7 @@ export default {
 		&--disabled {
 			@extend .cds-checkbox__label;
 			color: tokens.$n-400;
-			cursor: default !important;
+			cursor: not-allowed !important;
 		}
 
 		&--prominent {

@@ -21,12 +21,12 @@ exports[`Wizard > renders correctly 1`] = `
       </div>
     </div>
   </div>
-  <div data-v-61a7952a="" class="cds-wizard__buttons"><button data-v-3c9d0845="" data-v-61a7952a="" class="button__container button--secondary--active button-size--md">
+  <div data-v-61a7952a="" class="cds-wizard__buttons"><button data-v-3c9d0845="" data-v-61a7952a="" class="button__container button--secondary--active button-size--md" aria-busy="false" aria-label="Anterior">
       <!--v-if-->
       <!--v-if-->
       <!-- @slot Slot padrão utilizado para exibir texto do botão. -->Anterior
       <!--v-if-->
-    </button><button data-v-3c9d0845="" data-v-61a7952a="" class="button__container button--green--active button-size--md">
+    </button><button data-v-3c9d0845="" data-v-61a7952a="" class="button__container button--green--active button-size--md" aria-busy="false" aria-label="Próximo">
       <!--v-if-->
       <!--v-if-->
       <!-- @slot Slot padrão utilizado para exibir texto do botão. -->Próximo

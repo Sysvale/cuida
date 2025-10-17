@@ -13,7 +13,7 @@ exports[`EmptyState > renders correctly 1`] = `
 			Evento emitido quando o botão do Empty State é clicado
 			@event action-button-click
 			@type {Event}
-		--><button data-v-3c9d0845="" data-v-f262d0f3="" class="button__container button--green--active button-size--md empty-state__button">
+		--><button data-v-3c9d0845="" data-v-f262d0f3="" class="button__container button--green--active button-size--md empty-state__button" aria-busy="false" aria-label="Finalizar">
     <!--v-if-->
     <!--v-if-->
     <!-- @slot Slot padrão utilizado para exibir texto do botão. -->Finalizar

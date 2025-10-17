@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Button > renders correctly 1`] = `
-"<button data-v-3c9d0845="" class="button__container button--green--active button-size--md" total="12" perpage="4" propertyname="Métricas">
+"<button data-v-3c9d0845="" class="button__container button--green--active button-size--md" aria-busy="false" aria-label="Click here" total="12" perpage="4" propertyname="Métricas">
   <!--v-if-->
   <!--v-if-->
   <!-- @slot Slot padrão utilizado para exibir texto do botão. -->Click here

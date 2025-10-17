@@ -2,6 +2,6 @@
 
 exports[`Checkbox > renders correctly 1`] = `
 "<div data-v-75623c80="" class="cds-checkbox__container">
-  <div data-v-75623c80="" class="cds-checkbox__input"><input data-v-75623c80="" id="cds-checkbox-option-input" type="checkbox" name="cds-checkbox-option" value="false"><label data-v-75623c80="" for="cds-checkbox-option-input" class="cds-checkbox__input--green cds-checkbox__input--unchecked"></label></div><label data-v-75623c80="" class="cds-checkbox__label" for="cds-checkbox-option-input">checkbox test</label>
+  <div data-v-75623c80="" class="cds-checkbox__input"><input data-v-75623c80="" id="cds-checkbox-option-input" type="checkbox" name="cds-checkbox-option" aria-hidden="false" aria-label="checkbox test" aria-checked="false" tabindex="0" value="false"><label data-v-75623c80="" for="cds-checkbox-option-input" class="cds-checkbox__input--green cds-checkbox__input--unchecked" aria-hidden="true"></label></div><label data-v-75623c80="" class="cds-checkbox__label" for="cds-checkbox-option-input" aria-hidden="true">checkbox test</label>
 </div>"
 `;
