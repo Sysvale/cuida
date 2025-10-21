@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`TextInput > renders correctly 1`] = `
-"<div data-v-82c69faf="" class="base-input__container" inputtype="text" linkurl="https://cuida.framer.wiki/" mobile="false" disableautocomplete="false">
+"<div data-v-82c69faf="" class="base-input__container" inputtype="text" mobile="false" disableautocomplete="false">
   <!--v-if--><label data-v-c1eb01da="" data-v-82c69faf="" class="label">
     <div data-v-c2ac4e6d="" data-v-c1eb01da="" class="flexbox label__content">
       <!-- @slot Slot com o conteúdo interno do FlexBox -->Label
@@ -12,7 +12,7 @@ exports[`TextInput > renders correctly 1`] = `
   <div data-v-82c69faf="" class="base-input base-input--default">
     <!--v-if-->
     <div data-v-82c69faf="" style="width: 100%;">
-      <!--v-if--><input data-v-82c69faf="" id="text-input" modelvalue="" label="Label" hidelabel="false" state="default" type="text" placeholder="Digite aqui a informação" errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" supportlinkurl="https://cuida.framer.wiki/" floatinglabel="false" lazy="false" name="" enableautocomplete="true" enabletopcontent="false" class="base-input__field" autocomplete="on">
+      <!--v-if--><input data-v-82c69faf="" id="text-input" modelvalue="" label="Label" hidelabel="false" state="default" type="text" placeholder="Digite aqui a informação" errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" floatinglabel="false" lazy="false" name="" enableautocomplete="true" enabletopcontent="false" class="base-input__field" autocomplete="on">
     </div>
     <!--v-if-->
     <!--v-if-->
