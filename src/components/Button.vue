@@ -4,6 +4,9 @@
 		v-cdstip="tooltipDisabled"
 		class="button__container"
 		:class="computedStyle"
+		:disabled="disabled"
+		:aria-busy="loading"
+		:aria-label="ariaLabel"
 		@click.stop="clickHandler"
 	>
 		<CdsSpinner
@@ -11,10 +14,12 @@
 			variant="white"
 			size="sm"
 			class="button__prepend"
+			aria-hidden="true"
 		/>
 		<div
-			v-if="hasSlot($slots, 'prepend') && !loading"
+			v-if="hasSlot(slots, 'prepend') && !loading"
 			class="button__prepend"
+			aria-hidden="true"
 		>
 			<!-- @slot Slot para exibir prepend do botão. -->
 			<slot name="prepend" />
@@ -24,8 +29,9 @@
 			{{ text }}
 		</slot>
 		<div
-			v-if="hasSlot($slots, 'append')"
+			v-if="hasSlot(slots, 'append')"
 			class="button__append"
+			aria-hidden="true"
 		>
 			<!-- @slot Slot para exibir append do botão. -->
 			<slot name="append" />
@@ -33,169 +39,169 @@
 	</button>
 </template>
 
-<script>
+<script setup>
+import { computed, useSlots } from 'vue';
 import CdsSpinner from '../components/Spinner.vue';
 import Cdstip from '../utils/directives/cdstip';
 import hasSlot from '../utils/methods/hasSlot';
+import { useAriaLabel } from '../utils/composables/useAriaLabel';
 
-export default {
+defineOptions({
 	name: 'CdsButton',
 	directives: {
 		cdstip: Cdstip,
 	},
+});
 
-	components: {
-		CdsSpinner,
+/**
+* A variante de cor. São 10 variantes:
+* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
+*/
+const props = defineProps({
+	variant: {
+		type: String,
+		default: 'green',
 	},
-
-	props: {
-		/**
-		* A variante de cor. São 10 variantes:
-		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
-		*/
-		variant: {
-			type: String,
-			default: 'green',
-		},
-		/**
-		* Especifica o tamanho do botão. São 3 tamanhos implementados:
-		* @values 'sm', 'md', 'lg'
-		*/
-		size: {
-			type: String,
-			default: 'md',
-		},
-		/**
-		* Quando true, torna a largura do botão fluida
-		*/
-		block: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		* Especifica o texto a ser apresentado no corpo do botão.
-		* Este texto será exibido apenas se o slot default não for utilizado.
-		*/
-		text: {
-			type: String,
-			default: 'Click here',
-		},
-		/**
-		 * Controla a disponibilidade do Botão.
-		 */
-		disabled: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Texto a ser exibido como tooltip com o hover do botão quando a prop disabled estiver ativa.
-		 */
-		tooltipText: {
-			type: String,
-			default: null,
-		},
-		/**
-		 * Especifica se a versão do Botão é a secundária.
-		 */
-		secondary: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Especifica se a versão do Botão é a secundária.
-		 */
-		loading: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		* Especifica se o componente deve ser exibido na sua versão ghost.
-		*/
-		ghost: {
-			type: Boolean,
-			default: false,
-		},
+	/**
+	* Especifica o tamanho do botão. São 3 tamanhos implementados:
+	* @values 'sm', 'md', 'lg'
+	*/
+	size: {
+		type: String,
+		default: 'md',
 	},
-
-	data() {
-		return {
-			predefinedColors: [
-				'green',
-				'teal',
-				'turquoise',
-				'blue',
-				'indigo',
-				'violet',
-				'pink',
-				'red',
-				'orange',
-				'amber',
-				'dark',
-			],
-			predefinedSizes: [
-				'sm',
-				'md',
-				'lg',
-			],
-		};
+	/**
+	* Quando true, torna a largura do botão fluida
+	*/
+	block: {
+		type: Boolean,
+		default: false,
 	},
-
-	computed: {
-		widthResolver() {
-			return this.block ? '100%' : 'max-content';
-		},
-
-		tooltipDisabled() {
-			return this.disabled && this.tooltipText !== '' ? this.tooltipText : null;
-		},
-
-		predefinedColor() {
-			if (this.ghost) {
-				return 'button--ghost';
-			}
-
-			if (this.secondary) {
-				return 'button--secondary';
-			}
-
-			if (this.predefinedColors.indexOf(this.variant) > -1) {
-				return `button--${this.variant}`;
-			}
-
-			return 'button--green';
-		},
-
-		predefinedSize() {
-			if (this.predefinedSizes.indexOf(this.size) > -1) {
-				return `button-size--${this.size}`;
-			}
-			return 'button-size--md';
-		},
-
-		computedStyle() {
-			const disabled = this.disabled ? '--disabled' : '--active';
-
-			return `${this.predefinedColor}${disabled} ${this.predefinedSize}`;
-		},
+	/**
+	* Especifica o texto a ser apresentado no corpo do botão.
+	* Este texto será exibido apenas se o slot default não for utilizado.
+	*/
+	text: {
+		type: String,
+		default: 'Click here',
 	},
-
-	methods: {
-		hasSlot,
-
-		clickHandler() {
-			if (this.disabled) {
-				return;
-			}
-			/**
-			* Evento que indica que o Botão foi clicado
-			* @event button-click
-			* @type {Event}
-			*/
-			this.$emit('button-click', true);
-		},
+	/**
+	 * Controla a disponibilidade do Botão.
+	 */
+	disabled: {
+		type: Boolean,
+		default: false,
 	},
+	/**
+	 * Texto a ser exibido como tooltip com o hover do botão quando a prop disabled estiver ativa.
+	 */
+	tooltipText: {
+		type: String,
+		default: null,
+	},
+	/**
+	 * Especifica se a versão do Botão é a secundária.
+	 */
+	secondary: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	 * Especifica se a versão do Botão é a secundária.
+	 */
+	loading: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Especifica se o componente deve ser exibido na sua versão ghost.
+	*/
+	ghost: {
+		type: Boolean,
+		default: false,
+	},
+});
+
+/**
+* Evento que indica que o Botão foi clicado
+* @event button-click
+* @type {Event}
+*/
+const emit = defineEmits(['button-click']);
+
+const slots = useSlots();
+
+const predefinedColors = [
+	'green',
+	'teal',
+	'turquoise',
+	'blue',
+	'indigo',
+	'violet',
+	'pink',
+	'red',
+	'orange',
+	'amber',
+	'dark',
+];
+
+const predefinedSizes = [
+	'sm',
+	'md',
+	'lg',
+];
+
+const widthResolver = computed(() => {
+	return props.block ? '100%' : 'max-content';
+});
+
+const tooltipDisabled = computed(() => {
+	return props.disabled && props.tooltipText !== '' ? props.tooltipText : null;
+});
+
+const predefinedColor = computed(() => {
+	if (props.ghost) {
+		return 'button--ghost';
+	}
+
+	if (props.secondary) {
+		return 'button--secondary';
+	}
+
+	if (predefinedColors.indexOf(props.variant) > -1) {
+		return `button--${props.variant}`;
+	}
+
+	return 'button--green';
+});
+
+const predefinedSize = computed(() => {
+	if (predefinedSizes.indexOf(props.size) > -1) {
+		return `button-size--${props.size}`;
+	}
+	return 'button-size--md';
+});
+
+const computedStyle = computed(() => {
+	const disabled = props.disabled ? '--disabled' : '--active';
+
+	return `${predefinedColor.value}${disabled} ${predefinedSize.value}`;
+});
+
+const clickHandler = () => {
+	if (props.disabled) {
+		return;
+	}
+	emit('button-click', true);
 };
+
+const ariaLabel = useAriaLabel({
+	text: props.text,
+	loading: computed(() => props.loading),
+	disabled: computed(() => props.disabled),
+});
 </script>
+
 <style lang="scss" scoped>
 @use 'sass:color';
 @use '../assets/sass/tokens/index' as tokens;
@@ -223,7 +229,7 @@ export default {
 		}
 
 		&--disabled {
-			cursor: default !important;
+			cursor: not-allowed !important;
 			background-color: tokens.$n-10;
 			color: tokens.$n-300;
 			border: 1px solid tokens.$n-30 !important;
@@ -251,7 +257,7 @@ export default {
 		}
 
 		&--disabled {
-			cursor: default !important;
+			cursor: not-allowed !important;
 			background: none;
 			color: tokens.$n-300;
 		}
@@ -358,7 +364,7 @@ export default {
 			}
 
 			&--disabled {
-				cursor: default;
+				cursor: not-allowed;
 			}
 		}
 
