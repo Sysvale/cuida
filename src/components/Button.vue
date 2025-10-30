@@ -8,7 +8,7 @@
 	>
 		<CdsSpinner
 			v-if="loading"
-			variant="white"
+			:variant="computedSpinnerVariant"
 			size="sm"
 			class="button__prepend"
 		/>
@@ -33,169 +33,150 @@
 	</button>
 </template>
 
-<script>
-import CdsSpinner from '../components/Spinner.vue';
-import Cdstip from '../utils/directives/cdstip';
+<script setup>
+import { computed } from 'vue';
 import hasSlot from '../utils/methods/hasSlot';
 
-export default {
-	name: 'CdsButton',
-	directives: {
-		cdstip: Cdstip,
+defineOptions({ name: 'CdsButton' });
+
+const predefinedColors = [
+	'green',
+	'teal',
+	'turquoise',
+	'blue',
+	'indigo',
+	'violet',
+	'pink',
+	'red',
+	'orange',
+	'amber',
+	'dark',
+];
+const predefinedSizes = ['sm', 'md', 'lg'];
+
+const props = defineProps({
+	/**
+	 * A variante de cor. São 10 variantes:
+	 * @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
+	 */
+	variant: {
+		type: String,
+		default: 'green',
 	},
-
-	components: {
-		CdsSpinner,
+	/**
+	 * Especifica o tamanho do botão. São 3 tamanhos implementados:
+	 * @values 'sm', 'md', 'lg'
+	 */
+	size: {
+		type: String,
+		default: 'md',
 	},
-
-	props: {
-		/**
-		* A variante de cor. São 10 variantes:
-		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
-		*/
-		variant: {
-			type: String,
-			default: 'green',
-		},
-		/**
-		* Especifica o tamanho do botão. São 3 tamanhos implementados:
-		* @values 'sm', 'md', 'lg'
-		*/
-		size: {
-			type: String,
-			default: 'md',
-		},
-		/**
-		* Quando true, torna a largura do botão fluida
-		*/
-		block: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		* Especifica o texto a ser apresentado no corpo do botão.
-		* Este texto será exibido apenas se o slot default não for utilizado.
-		*/
-		text: {
-			type: String,
-			default: 'Click here',
-		},
-		/**
-		 * Controla a disponibilidade do Botão.
-		 */
-		disabled: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Texto a ser exibido como tooltip com o hover do botão quando a prop disabled estiver ativa.
-		 */
-		tooltipText: {
-			type: String,
-			default: null,
-		},
-		/**
-		 * Especifica se a versão do Botão é a secundária.
-		 */
-		secondary: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Especifica se a versão do Botão é a secundária.
-		 */
-		loading: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		* Especifica se o componente deve ser exibido na sua versão ghost.
-		*/
-		ghost: {
-			type: Boolean,
-			default: false,
-		},
+	/**
+	 * Quando true, torna a largura do botão fluida
+	 */
+	block: {
+		type: Boolean,
+		default: false,
 	},
-
-	data() {
-		return {
-			predefinedColors: [
-				'green',
-				'teal',
-				'turquoise',
-				'blue',
-				'indigo',
-				'violet',
-				'pink',
-				'red',
-				'orange',
-				'amber',
-				'dark',
-			],
-			predefinedSizes: [
-				'sm',
-				'md',
-				'lg',
-			],
-		};
+	/**
+	 * Especifica o texto a ser apresentado no corpo do botão.
+	 * Este texto será exibido apenas se o slot default não for utilizado.
+	 */
+	text: {
+		type: String,
+		default: 'Click here',
 	},
-
-	computed: {
-		widthResolver() {
-			return this.block ? '100%' : 'max-content';
-		},
-
-		tooltipDisabled() {
-			return this.disabled && this.tooltipText !== '' ? this.tooltipText : null;
-		},
-
-		predefinedColor() {
-			if (this.ghost) {
-				return 'button--ghost';
-			}
-
-			if (this.secondary) {
-				return 'button--secondary';
-			}
-
-			if (this.predefinedColors.indexOf(this.variant) > -1) {
-				return `button--${this.variant}`;
-			}
-
-			return 'button--green';
-		},
-
-		predefinedSize() {
-			if (this.predefinedSizes.indexOf(this.size) > -1) {
-				return `button-size--${this.size}`;
-			}
-			return 'button-size--md';
-		},
-
-		computedStyle() {
-			const disabled = this.disabled ? '--disabled' : '--active';
-
-			return `${this.predefinedColor}${disabled} ${this.predefinedSize}`;
-		},
+	/**
+	 * Controla a disponibilidade do Botão.
+	 */
+	disabled: {
+		type: Boolean,
+		default: false,
 	},
-
-	methods: {
-		hasSlot,
-
-		clickHandler() {
-			if (this.disabled) {
-				return;
-			}
-			/**
-			* Evento que indica que o Botão foi clicado
-			* @event button-click
-			* @type {Event}
-			*/
-			this.$emit('button-click', true);
-		},
+	/**
+	 * Texto a ser exibido como tooltip com o hover do botão quando a prop disabled estiver ativa.
+	 */
+	tooltipText: {
+		type: String,
+		default: null,
 	},
-};
+	/**
+	 * Especifica se a versão do Botão é a secundária.
+	 */
+	secondary: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	 * Especifica se o botão deve mostrar spinner de carregamento.
+	 * Caso o botão seja do tipo ghost ou secondary a variante do spinner é a mesma passada na prop variant.
+	 */
+	loading: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	 * Especifica se o componente deve ser exibido na sua versão ghost.
+	 */
+	ghost: {
+		type: Boolean,
+		default: false,
+	},
+});
+
+const emits = defineEmits([
+	/**
+	 * Evento que indica que o Botão foi clicado
+	 * @event button-click
+	 * @type {Event}
+	 */
+	'button-click',
+]);
+
+const widthResolver = computed(() => {
+	return props.block ? '100%' : 'max-content';
+});
+const tooltipDisabled = computed(() => {
+	return props.disabled && props.tooltipText !== '' ? props.tooltipText : null;
+});
+const predefinedColor = computed(() => {
+	if (props.ghost) {
+		return 'button--ghost';
+	}
+
+	if (props.secondary) {
+		return 'button--secondary';
+	}
+
+	if (predefinedColors.indexOf(props.variant) > -1) {
+		return `button--${props.variant}`;
+	}
+
+	return 'button--green';
+});
+const predefinedSize = computed(() => {
+	if (predefinedSizes.indexOf(props.size) > -1) {
+		return `button-size--${props.size}`;
+	}
+	return 'button-size--md';
+});
+const computedStyle = computed(() => {
+	const disabled = props.disabled ? '--disabled' : '--active';
+
+	return `${predefinedColor.value}${disabled} ${predefinedSize.value}`;
+});
+const computedSpinnerVariant = computed(() => {
+	return props.secondary || props.ghost ? props.variant : 'white';
+});
+
+function clickHandler() {
+	if (props.disabled) {
+		return;
+	}
+	emits('button-click', true);
+}
 </script>
+
 <style lang="scss" scoped>
 @use 'sass:color';
 @use '../assets/sass/tokens/index' as tokens;
@@ -207,7 +188,7 @@ export default {
 			color: tokens.$n-700;
 			border: 1px solid tokens.$n-50 !important;
 			outline: none !important;
-			
+
 			&:hover {
 				@extend .button--secondary--active;
 				background-color: tokens.$n-20;
