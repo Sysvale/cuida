@@ -1,6 +1,23 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-	<table class="table__container">
+	<div v-if="loading">
+		<CdsTable
+			:fields="fields"
+			:items="[{}, {}, {}, {}]"
+		>
+			<template #table-item>
+				<CdsSkeleton
+					width="100"
+					height="20"
+				/>
+			</template>
+		</CdsTable>
+	</div>
+
+	<table
+		v-else
+		class="table__container"
+	>
 		<thead>
 			<tr class="table__header">
 				<th
@@ -233,6 +250,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		* Ativa o estado de carregamento do componente, exibindo um Skeleton para a tabela.
+		*/
+		loading: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -425,6 +449,7 @@ export default {
 
 .table {
 	&__container {
+		display: table !important;
 		position: relative !important;
 		border: 1px solid tokens.$n-30 !important;
 		border-collapse: separate !important;
