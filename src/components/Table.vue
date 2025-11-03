@@ -449,6 +449,7 @@ export default {
 
 .table {
 	&__container {
+		display: table !important;
 		position: relative !important;
 		border: 1px solid tokens.$n-30 !important;
 		border-collapse: separate !important;
