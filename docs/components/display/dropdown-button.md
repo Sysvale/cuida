@@ -87,6 +87,6 @@ const args = ref({
 	size: 'md',
 	variant: 'green',
 	secondary: true,
-	tooltipText: 'Desabilitar'
+	tooltipText: 'Botão desabilitado'
 });
 </script>
