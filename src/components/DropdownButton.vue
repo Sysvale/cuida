@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<CdsButton
-			:id="id"
+			:id
 			ref="dropdownButtonRef"
 			v-cdstip="tooltipDisabled"
 			:variant="variant"
