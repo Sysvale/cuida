@@ -142,7 +142,7 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	* Texto a ser exibido como tooltip com o hover do input quando a prop disabled estiver ativa.
+	* Texto a ser exibido como tooltip com o hover do DropdownButton quando a prop disabled estiver ativa.
 	*/
 	tooltipText: {
 		type: String,
