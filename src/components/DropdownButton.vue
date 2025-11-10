@@ -1,12 +1,15 @@
 <template>
 	<div>
 		<CdsButton
-			:id="id"
+			:id
+			ref="dropdownButtonRef"
+			v-cdstip="tooltipText"
 			:variant="variant"
 			:size="size"
 			:text="text"
 			:secondary="secondary"
 			:ghost="ghost"
+			:disabled
 			@click="activeSelection"
 		>
 			<template #append>
@@ -51,154 +54,172 @@
 	</div>
 </template>
 
-<script>
-import CdsButton from './Button.vue';
-import CdsChevron from './Chevron.vue';
-import CdsIcon from './Icon.vue';
+<script setup>
+import {
+	ref,
+	computed,
+	onMounted,
+	onBeforeUnmount,
+	useTemplateRef,
+	useId,
+} from 'vue';
+import CdsButton from '../components/Button.vue';
+import CdsChevron from '../components/Chevron.vue';
+import CdsIcon from '../components/Icon.vue';
 
-export default {
-	name: 'CdsDropdownButton',
-	components: {
-		CdsButton,
-		CdsIcon,
-		CdsChevron,
+defineOptions({ name: 'CdsDropdownButton' });
+
+const emits = defineEmits([
+	'button-click',
+	'action-click'
+]);
+
+const props = defineProps({
+	/**
+	* Define a lista dos itens do DropdownButton a serem
+	* mostrados. Os itens da lista devem ser
+	* objetos com path ou route, e com uma label
+	*/
+	items: {
+		type: Array,
+		default: () => ([]),
+		required: true,
 	},
-
-	props: {
-		/**
-		* Define a lista dos itens do DropdownButton a serem
-		* mostrados. Os itens da lista devem ser
-		* objetos com path ou route, e com uma label
-		*/
-		items: {
-			type: Array,
-			default: () => ([]),
-			required: true,
-		},
-		/**
-		* A variante de cor. São 10 variantes:
-		* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
-		*/
-		variant: {
-			type: String,
-			default: 'gray',
-		},
-		/**
-		* Especifica se a versão do DropdownButton é a secundária. Essa propriedade tem
-		* maior prevalência que a prop `variant`.
-		*/
-		secondary: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		* Especifica se o componente deve ser exibido na sua versão ghost.
-		*/
-		ghost: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		* Conteúdo do Dropdown.
-		*/
-		text: {
-			type: String,
-			default: 'Conteúdo',
-			required: true,
-		},
-		/**
-		* Controla o tamanho do popover do Dropdown (em pixels).
-		* O tamanho nunca é menor que a largura do botão.
-		*/
-		dropdownWidth: {
-			type: Number,
-			default: 0,
-		},
-		/**
-		 * Especifica o tamanho do botão. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
-		 */
-		size: {
-			type: String,
-			default: 'md',
-			validator(value) {
-				return ['sm', 'md', 'lg'].includes(value);
-			},
+	/**
+	* A variante de cor. São 10 variantes:
+	* @values green, teal, blue, indigo, violet, pink, red, orange, amber, dark
+	*/
+	variant: {
+		type: String,
+		default: 'gray',
+	},
+	/**
+	* Especifica se a versão do DropdownButton é a secundária. Essa propriedade tem
+	* maior prevalência que a prop `variant`.
+	*/
+	secondary: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Especifica se o componente deve ser exibido na sua versão ghost.
+	*/
+	ghost: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Conteúdo do Dropdown.
+	*/
+	text: {
+		type: String,
+		default: 'Conteúdo',
+		required: true,
+	},
+	/**
+	* Controla o tamanho do popover do Dropdown (em pixels).
+	* O tamanho nunca é menor que a largura do botão.
+	*/
+	dropdownWidth: {
+		type: Number,
+		default: 0,
+	},
+	/**
+	* Especifica o tamanho do botão. São 3 tamanhos implementados: 'sm', 'md', 'lg'.
+	*/
+	size: {
+		type: String,
+		default: 'md',
+		validator(value) {
+			return ['sm', 'md', 'lg'].includes(value);
 		},
 	},
+	/**
+	* Desabilita o input.
+	*/
+	disabled: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	* Texto a ser exibido como tooltip com o hover do DropdownButton quando a prop disabled estiver ativa.
+	*/
+	tooltipText: {
+		type: String,
+		default: null,
+	},
+});
 
-	data() {
+const dropdownButtonRef = useTemplateRef('dropdownButtonRef');
+const dropdownRef = useTemplateRef('dropdownRef');
+
+const id = useId();
+const isActive = ref(false);
+
+const dynamicStyle = computed(() => {
+	const filterPillDomReference = document.getElementById(id.value);
+
+	if (!filterPillDomReference) {
+		return null;
+	}
+
+	const filterWidth = parseFloat(window.getComputedStyle(filterPillDomReference).width);
+
+	if (filterWidth > props.dropdownWidth) {
 		return {
-			id: null,
-			isActive: false,
+			'--width': `${filterWidth}px`,
 		};
-	},
+	}
 
-	computed: {
-		dynamicStyle() {
-			const filterPillDomReference = document.getElementById(this.id);
+	return {
+		'--width': `${props.dropdownWidth}px`,
+	};
+});
 
-			if (!filterPillDomReference) {
-				return null;
-			}
+onMounted(() => {
+	document.querySelector('body').addEventListener('click', closeDropdownButton);
+});
 
-			const filterWidth = parseFloat(window.getComputedStyle(filterPillDomReference).width);
+onBeforeUnmount(() => {
+	document.querySelector('body').removeEventListener('click', closeDropdownButton);
+});
 
-			if (filterWidth > this.dropdownWidth) {
-				return {
-					'--width': `${filterWidth}px`,
-				};
-			}
+function activeSelection() {
+	if (props.disabled) {
+		return;
+	}
 
-			return {
-				'--width': `${this.dropdownWidth}px`,
-			};
-		},
-	},
+	isActive.value = !isActive.value;
 
-	mounted() {
-		this.id = `dropdown-button$-${this._uid}`;
+	/**
+	* Evento que indica que o DropdownButton foi clicado
+	* @event click
+	* @type {Event}
+	*/
+	emits('button-click', true);
+}
 
-		document.querySelector('body').addEventListener('click', this.closeDropdownButton);
-	},
+function hide() {
+	isActive.value = false;
+}
 
-	methods: {
-		activeSelection() {
-			if (this.disabled) {
-				return;
-			}
+function handleOptionClick(actionName, index) {
+	isActive.value = !isActive.value;
+	emits('action-click', [actionName, index]);
+}
 
-			this.isActive = !this.isActive;
-
-			/**
-			* Evento que indica que o DropdownButton foi clicado
-			* @event click
-			* @type {Event}
-			*/
-			this.$emit('button-click', true);
-		},
-
-		hide() {
-			this.isActive = !this.isActive;
-		},
-
-		handleOptionClick(actionName, index) {
-			this.isActive = !this.isActive;
-			this.$emit('action-click', [actionName, index]);
-		},
-
-		closeDropdownButton(event) {
-			if (
-				this.$refs.dropdownRef
-				&& !this.$refs.dropdownRef.contains(event.target)
-				&& this.$refs.dropdownButtonRef
-				&& !this.$refs.dropdownButtonRef.contains(event.target)
-			) {
-				this.hide();
-			}
-		},
-	},
-};
+function closeDropdownButton(event) {
+	if (
+		dropdownRef.value &&
+		!dropdownRef.value.contains(event.target) &&
+		dropdownButtonRef.value &&
+		!dropdownButtonRef.value.$el.contains(event.target)
+	) {
+		hide(event);
+	}
+}
 </script>
+
 <style lang="scss" scoped>
 @use '../assets/sass/tokens/index' as tokens;
 
@@ -283,5 +304,4 @@ export default {
 		color: tokens.$n-600;
 	}
 }
-
 </style>
