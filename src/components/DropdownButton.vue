@@ -3,7 +3,7 @@
 		<CdsButton
 			:id
 			ref="dropdownButtonRef"
-			v-cdstip="tooltipDisabled"
+			v-cdstip="tooltipText"
 			:variant="variant"
 			:size="size"
 			:text="text"
@@ -146,15 +146,15 @@ const props = defineProps({
 	*/
 	tooltipText: {
 		type: String,
-		default: '',
+		default: null,
 	},
 });
 
-const id = useId();
-const isActive = ref(false);
-
 const dropdownButtonRef = useTemplateRef('dropdownButtonRef');
 const dropdownRef = useTemplateRef('dropdownRef');
+
+const id = useId();
+const isActive = ref(false);
 
 const dynamicStyle = computed(() => {
 	const filterPillDomReference = document.getElementById(id.value);
@@ -174,10 +174,6 @@ const dynamicStyle = computed(() => {
 	return {
 		'--width': `${props.dropdownWidth}px`,
 	};
-});
-
-const tooltipDisabled = computed(() => {
-	return props.disabled && props.tooltipText !== '' ? props.tooltipText : null;
 });
 
 onMounted(() => {
