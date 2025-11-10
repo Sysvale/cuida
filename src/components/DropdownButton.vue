@@ -150,8 +150,7 @@ const props = defineProps({
 	},
 });
 
-const uid = useId();
-const id = ref(null);
+const id = useId();
 const isActive = ref(false);
 
 const dropdownButtonRef = useTemplateRef('dropdownButtonRef');
@@ -182,8 +181,6 @@ const tooltipDisabled = computed(() => {
 });
 
 onMounted(() => {
-	id.value = `dropdown-button-${uid}`;
-
 	document.querySelector('body').addEventListener('click', closeDropdownButton);
 });
 
