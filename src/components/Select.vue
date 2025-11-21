@@ -425,11 +425,11 @@ function filterOptions(value) {
 	if (props.deepSearch) {
 		deepOptionSearch(sanitizedString);
 	} else {
-		simpleSearch(sanitizedString);
+		simpleOptionSearch(sanitizedString);
 	}
 }
 
-function simpleSearch(sanitizedSearchValue) {
+function simpleOptionSearch(sanitizedSearchValue) {
 	const regexExp = new RegExp(sanitizedSearchValue, 'i');
 
 	localOptions.value = pristineOptions.value.filter(
