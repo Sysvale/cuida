@@ -438,15 +438,15 @@ function simpleSearch(sanitizedSearchValue) {
 }
 
 function deepOptionSearch(sanitizedSearchValue) {
+	const searchArray = sanitizedSearchValue.toLowerCase().split(' ');
+
 	localOptions.value = pristineOptions.value.filter(
 		(option) => {
-			const searchArray = sanitizedSearchValue.toLowerCase().split(' ');
-
-			return searchArray.map((i) => {
-				return removeAccents(option[props.optionsField]).toLowerCase().includes(i);
-			}).every((item) => item === true);
+			return searchArray.reduce((acc, curr) => (
+				acc = removeAccents(option[props.optionsField]).toLowerCase().includes(curr)
+			), false);
 		}
-	);
+	)
 }
 
 function activeSelection() {
