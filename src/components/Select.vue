@@ -443,8 +443,8 @@ function deepOptionSearch(sanitizedSearchValue) {
 	localOptions.value = pristineOptions.value.filter(
 		(option) => {
 			return searchArray.reduce((acc, curr) => (
-				acc = removeAccents(option[props.optionsField]).toLowerCase().includes(curr)
-			), false);
+				acc = acc && removeAccents(option[props.optionsField]).toLowerCase().includes(curr)
+			), true);
 		}
 	)
 }
