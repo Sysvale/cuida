@@ -109,10 +109,10 @@
 					<div class="option__checkbox">
 						<input
 							:id="`input-${option[optionsField]}-${uniqueKey}`"
-							v-model="option.isSelected"
 							type="checkbox"
 							:name="`input-${option[optionsField]}-${uniqueKey}`"
-							:value="true"
+							:checked="option.isSelected"
+							@click.prevent="addItemViaCustomCheckbox(option)"
 						>
 						<label
 							:id="`checkbox-${option[optionsField]}`"
@@ -486,11 +486,18 @@ export default {
 		},
 
 		addItemViaCustomCheckbox(option) {
-			option.isSelected = !option.isSelected;
-			this.selectedValue = [
-				...this.selectedValue,
-				option,
-			];
+			const exists = this.selectedValue
+				.some(value => value[this.trackBy] === option[this.trackBy]);
+
+			if (exists) {
+				this.selectedValue = this.selectedValue
+					.filter(value => value[this.trackBy] !== option[this.trackBy]);
+
+				option.isSelected = false;
+			} else {
+				this.selectedValue = [...this.selectedValue, option];
+				option.isSelected = true;
+			}
 		},
 
 		handleClose() {
