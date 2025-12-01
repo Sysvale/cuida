@@ -403,7 +403,10 @@ export default {
 	},
 
 	mounted() {
-		if (!this.modelValue || this.modelValue.length === 0) return;
+		if (!this.modelValue || this.modelValue.length === 0) {
+			this.resetState();
+			return;
+		}
 
 		this.selectedValue = this.modelValue;
 		this.updateRenderOptions();
@@ -558,6 +561,14 @@ export default {
 				.getElementsByClassName('multiselect__content-wrapper')[0]
 				.scrollTo(0, 0);
 		},
+
+		resetState() {
+			this.selectedValue = [];
+			this.internalOptions = clone(this.options).map(item => ({
+				...item,
+				isSelected: false,
+			}));
+		}
 	},
 };
 </script>
