@@ -36,7 +36,7 @@ exports[`DateInput > renders correctly 1`] = `
     <div data-v-fcd39cd1="" class="date-input__calendar--down" style="display: none;">
       <div data-v-fcd39cd1="" class="calendar__header">
         <div data-v-c2ac4e6d="" data-v-fcd39cd1="" class="flexbox">
-          <!-- @slot Slot com o conteúdo interno do FlexBox --><span data-v-fcd39cd1="" class="calendar__month-and-title">novembro</span><span data-v-fcd39cd1="" class="calendar__month-and-title">2025</span>
+          <!-- @slot Slot com o conteúdo interno do FlexBox --><span data-v-fcd39cd1="" class="calendar__month-and-title">dezembro</span><span data-v-fcd39cd1="" class="calendar__month-and-title">2025</span>
         </div>
         <div data-v-c2ac4e6d="" data-v-fcd39cd1="" class="flexbox">
           <!-- @slot Slot com o conteúdo interno do FlexBox --><svg data-v-fcd39cd1="" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="caret-up-outline" role="presentation" class="calendar__right-caret">
@@ -59,11 +59,6 @@ exports[`DateInput > renders correctly 1`] = `
         <div data-v-fcd39cd1="" class="calendar__week-day">S</div>
         <div data-v-fcd39cd1="" class="calendar__week-day">S</div>
         <div data-v-fcd39cd1="" class="calendar__week-day">D</div>
-        <div data-v-fcd39cd1="" class="calendar__empty-day"></div>
-        <div data-v-fcd39cd1="" class="calendar__empty-day"></div>
-        <div data-v-fcd39cd1="" class="calendar__empty-day"></div>
-        <div data-v-fcd39cd1="" class="calendar__empty-day"></div>
-        <div data-v-fcd39cd1="" class="calendar__empty-day"></div>
         <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">1</div>
         <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">2</div>
         <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">3</div>
@@ -94,6 +89,7 @@ exports[`DateInput > renders correctly 1`] = `
         <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">28</div>
         <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">29</div>
         <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">30</div>
+        <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">31</div>
       </div>
       <div data-v-958116c6="" data-v-44dffe1e="" data-v-fcd39cd1="" class="grid month-selector__grid" style="display: none;">
         <!-- @slot Slot com o conteúdo interno da grid -->
