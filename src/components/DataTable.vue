@@ -512,10 +512,12 @@ function handleSearchInput(value, source) {
 		return;
 	}
 
-	clearTimeout(searchTimeout.value);
-	searchTimeout.value = setTimeout(() => {
-		emits('search', value);
-	}, props.searchInputDelay);
+	if (!props.withSearchButton) {
+		clearTimeout(searchTimeout.value);
+		searchTimeout.value = setTimeout(() => {
+			emits('search', value);
+		}, props.searchInputDelay);
+	}
 }
 
 function handleUpdatePreset(presetName) {
