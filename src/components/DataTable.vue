@@ -508,7 +508,7 @@ function handleOk(fieldsList) {
 
 function handleSearchInput(value, source) {
 	if (source === 'button') {
-		searchTimeout.value && clearTimeout(searchTimeout.value);
+		clearTimeout(searchTimeout.value);
 		emits('search-button-click', value);
 		return;
 	}
