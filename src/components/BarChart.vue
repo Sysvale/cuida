@@ -1,11 +1,10 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<span>
 		<div
 			class="responsive-container"
 		>
 			<Bar
-				:is="'bar'"
+				is="bar"
 				:data="localChartData"
 				:options="chartOptions"
 			/>
@@ -64,7 +63,7 @@ export default {
 		 */
 		barWidth: {
 			type: Number,
-			default: 1,
+			default: 5,
 		},
 
 		/**
@@ -72,7 +71,7 @@ export default {
 		 */
 		horizontalBar: {
 			type: Boolean,
-			default: false,
+			default: true,
 		},
 	},
 
@@ -87,6 +86,22 @@ export default {
 				responsive: true,
 				maintainAspectRatio: false, // NOTE: Caso true manterá aspecto de proporção original, caso false, será dimensionado para preencher completamente o contêiner (Isso pode fazer com que o gráfico pareça distorcido se o container tiver proporção de aspecto diferente do gráfico original)
 				categoryPercentage: null, //NOTE: Configura a porcentagem ocupada pela barra do gráfico. (0-1)
+				indexAxis: this.horizontalBar ? 'y' : 'x',
+				scales: this.horizontalBar
+					? {
+						x: { beginAtZero: true },
+					}
+					: {
+						y: {
+							beginAtZero: true,
+							grace: '5%',
+							ticks: {
+								precision: 0
+							},
+							categoryPercentage: 0.6,
+							barPercentage: 0.8
+						},
+					},
 				plugins: {
 					tooltip: {
 						callbacks: {
@@ -116,7 +131,7 @@ export default {
 		},
 
 		variant: {
-			handler(newValue) {
+			handler(newValue, oldValue) {
 				if (newValue === 'gray' || newValue === 'dark')  {
 					this.deleteFirstTwoColors = true;
 				} else {
@@ -143,20 +158,6 @@ export default {
 			},
 			immediate: true,
 		},
-	},
-	
-	mounted() {
-		if(this.horizontalBar) {
-			this.chartOptions = {
-				...this.chartOptions,
-				indexAxis: 'y',
-				scales: {
-					y: {
-						beginAtZero: true
-					}
-				},
-			};
-		}
 	},
 
 	methods: {
