@@ -508,11 +508,12 @@ function handleOk(fieldsList) {
 
 function handleSearchInput(value, source) {
 	if (source === 'button') {
+		searchTimeout.value && clearTimeout(searchTimeout.value);
 		emits('search-button-click', value);
 		return;
 	}
 
-	if (!props.withSearchButton) {
+	if (!props.withSearchButton && source === 'input') {
 		clearTimeout(searchTimeout.value);
 		searchTimeout.value = setTimeout(() => {
 			emits('search', value);
