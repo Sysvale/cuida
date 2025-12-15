@@ -282,7 +282,7 @@ export default defineConfig({
 						{ text: 'HasSlot() <span class="docs-badge" type="danger">Deprecated</span>', link: '/utils/has-slot' },
 						{ text: 'IsDeviceType()', link: '/utils/is-device-type' },
 						{ text: 'RemoveAccents()', link: '/utils/remove-accents' },
-						{ text: 'Rouder()', link: '/utils/rounder' },
+						{ text: 'Rounder()', link: '/utils/rounder' },
 					]
 				},
 				{
