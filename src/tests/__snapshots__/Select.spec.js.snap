@@ -14,7 +14,7 @@ exports[`Select > renders correctly 1`] = `
       <div data-v-82c69faf="" class="base-input base-input--default">
         <!--v-if-->
         <div data-v-82c69faf="" style="width: 100%;">
-          <!--v-if--><input data-v-82c69faf="" id="select-input" label="label" hidelabel="false" state="default" type="text" placeholder="Selecione..." errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" floatinglabel="false" lazy="false" readonly="" name="" enableautocomplete="false" enabletopcontent="false" class="base-input__field" autocomplete="off">
+          <!--v-if--><input data-v-82c69faf="" id="select-input" label="label" hidelabel="false" state="default" type="text" placeholder="Selecione..." errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" floatinglabel="false" lazy="false" readonly="" name="" enableautocomplete="false" enabletopcontent="false" model-value="" class="base-input__field" autocomplete="off">
         </div>
         <!--v-if-->
         <div data-v-82c69faf="" class="base-input__trailing-icon-container"><span data-v-96b70cc4="" class="select__chevron--closed"></span></div>

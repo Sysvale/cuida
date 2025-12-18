@@ -86,6 +86,9 @@ describe('CdsNumberInput', () => {
 	test('applies money mask and updates internal state correctly', async () => {
 		const wrapper = mount(CdsNumberInput, {
 			global: {
+				stubs: {
+					CdsBaseInput: true,
+				},
 				directives: {
 					CdsBrl: vCdsBrl, // Registre a diretiva
 				},
@@ -98,9 +101,11 @@ describe('CdsNumberInput', () => {
 
 		await wrapper.vm.$nextTick();
 
-		const input = wrapper.find('input');
+		const input = wrapper.findComponent(CdsBaseInput);
 
-		await input.setValue('123456');
+		input.setValue('R$ 1.234,56');
+
+		await wrapper.vm.$nextTick();
 
 		expect(wrapper.vm.model).toMatch(/R\$[\s\u00A0]1\.234,56/);
 		expect(wrapper.vm.unmaskedValue).toBe(1234.56);

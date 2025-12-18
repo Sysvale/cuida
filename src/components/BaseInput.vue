@@ -108,7 +108,7 @@
 						:id="componentId"
 						ref="htmlInput"
 						v-bind="props"
-						v-model.trim="internalValue"
+						:model-value="internalValue"
 						:required="required"
 						:readonly="readonly"
 						:placeholder="placeholder"
@@ -119,6 +119,7 @@
 						@focus="handleFocus"
 						@blur="handleBlur"
 						@keydown="handleKeydown"
+						@input="(event) => internalValue = event.target.value.trim()"
 					>
 				</div>
 	
