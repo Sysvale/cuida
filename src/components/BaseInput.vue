@@ -11,23 +11,24 @@
 			@focus="handleFocus"
 			@blur="handleBlur"
 			@keydown="handleKeydown"
+			@paste="handlePaste"
 		>
 			<template #trailing-icon>
 				<slot name="trailing-icon" />
 			</template>
-	
+
 			<template #leading-icon>
 				<slot name="leading-icon" />
 			</template>
 		</CdsBaseMobileInput>
-	
+
 		<template v-else>
 			<template
 				v-if="useHasSlot('label')"
 			>
 				<slot name="label" />
 			</template>
-	
+
 			<CdsLabel
 				v-if="!hideLabelInput"
 				:text="label"
@@ -40,7 +41,7 @@
 				:support-link-url="supportLinkUrl"
 				@support-link-click="emits('supportLinkClick')"
 			/>
-	
+
 			<div
 				:class="baseInputClass"
 				@click="handleClick"
@@ -59,7 +60,7 @@
 						/>
 					</slot>
 				</div>
-	
+
 				<textarea
 					v-if="type === 'textarea'"
 					:id="componentId"
@@ -74,7 +75,7 @@
 					@blur="handleBlur"
 					@keydown="handleKeydown"
 				/>
-	
+
 				<div
 					v-else-if="type === 'date'"
 					:id="componentId"
@@ -89,11 +90,12 @@
 					@focus="handleFocus"
 					@blur="handleBlur"
 					@keydown="handleKeydown"
+					@paste="handlePaste"
 				>
 					<small class="base-input__date-text">{{ internalValue || placeholder }}</small>
 				</div>
-	
-				<div 
+
+				<div
 					v-else
 					style="width: 100%;"
 				>
@@ -103,7 +105,7 @@
 					>
 						<slot name="top-content" />
 					</div>
-	
+
 					<input
 						:id="componentId"
 						ref="htmlInput"
@@ -119,9 +121,10 @@
 						@focus="handleFocus"
 						@blur="handleBlur"
 						@keydown="handleKeydown"
+						@paste="handlePaste"
 					>
 				</div>
-	
+
 				<div
 					v-if="isLoading && !disabled"
 					class="base-input__spinner-container"
@@ -132,7 +135,7 @@
 						class="base-input__icon--spinner-icon"
 					/>
 				</div>
-	
+
 				<div
 					v-if="hasTrailingIcon"
 					class="base-input__trailing-icon-container"
@@ -147,14 +150,14 @@
 					</slot>
 				</div>
 			</div>
-	
+
 			<div
 				v-if="hasError && !disabled"
 				class="base-input__error-text"
 			>
 				{{ errorMessage }}
 			</div>
-	
+
 			<template
 				v-if="supportingText"
 			>
@@ -170,7 +173,7 @@
 						{{ text }}
 					</li>
 				</ul>
-	
+
 				<span
 					v-else
 					class="base-input__supporting-text"
@@ -195,6 +198,7 @@ import CdsIcon from './Icon.vue';
 import CdsSpinner from './Spinner.vue';
 import CdsBaseMobileInput from './BaseMobileInput.vue';
 import CdsLabel from './Label.vue';
+import preventNonNumericInput from '../utils/methods/preventNonNumericInput.js';
 
 defineOptions({ name: 'CdsBaseInput' });
 
@@ -536,12 +540,26 @@ function handleBlur(event) {
 
 function handleKeydown(keyEvent) {
 	isFocused.value = true;
+
+	if (props.type === 'number' && preventNonNumericInput(keyEvent)) {
+		return
+	}
+
 	/**
 	* Evento emitido quando o usuário digita.
 	* @event keydown
 	* @type {Event}
 	*/
 	emitKeydown(keyEvent);
+}
+
+function handlePaste(e) {
+	const pastedData = e.clipboardData.getData('text/plain');
+
+	if (props.type === 'number' && !pastedData.match(/^[0-9]*$/)) {
+		e.preventDefault();
+		return;
+	}
 }
 
 /* EXPOSE */

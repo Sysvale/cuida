@@ -3,7 +3,7 @@
 		<CdsBaseInput
 			v-if="money"
 			ref="baseInput"
-			v-bind="{...$attrs, ...props}"
+			v-bind="{ ...$attrs, ...props }"
 			v-model="internalValue"
 			:floating-label="floatingLabel || mobile"
 			:support-link="supportLink || linkText"
@@ -12,13 +12,13 @@
 			@change="handleChange"
 			@focus="handleFocus"
 			@blur="emitBlur"
-			@keydown="emitKeydown"
+			@keydown="handleMoneyInputKeydown"
 		/>
 
 		<CdsBaseInput
 			v-else-if="mask"
 			ref="baseInput"
-			v-bind="{...$attrs, ...props}"
+			v-bind="{ ...$attrs, ...props }"
 			v-model="internalValue"
 			v-facade="mask"
 			type="tel"
@@ -35,7 +35,7 @@
 		<CdsBaseInput
 			v-else
 			ref="baseInput"
-			v-bind="{...$attrs, ...props}"
+			v-bind="{ ...$attrs, ...props }"
 			v-model="internalValue"
 			:floating-label="floatingLabel || mobile"
 			:support-link="supportLink || linkText"
@@ -51,7 +51,7 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, useTemplateRef } from 'vue';
+import { ref, watch, useTemplateRef, nextTick } from 'vue';
 import {
 	nativeEvents,
 	nativeEmits,
@@ -59,6 +59,7 @@ import {
 import { vCdsBrl, unmaskBRL } from '../utils/directives/cdsBRL';
 import { facade } from 'vue-input-facade';
 import CdsBaseInput from './BaseInput.vue';
+import preventNonNumericInput from '../utils/methods/preventNonNumericInput.js';
 
 defineOptions({ name: 'CdsNumberInput' });
 
@@ -111,54 +112,54 @@ const props = defineProps({
 		default: 'Digite aqui a informação',
 	},
 	/**
-	* Especifica mensagem de auxílio.
-	*/
+	 * Especifica mensagem de auxílio.
+	 */
 	supportingText: {
 		type: [String, Array],
 		default: '',
 	},
 	/**
-	* Especifica a mensagem de erro, que será exibida caso o estado seja inválido
-	*/
+	 * Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+	 */
 	errorMessage: {
 		type: String,
 		default: 'Valor inválido',
 	},
 	/**
-	* Especifica se a largura do TextInput deve ser fluida.
-	*/
+	 * Especifica se a largura do TextInput deve ser fluida.
+	 */
 	fluid: {
 		type: Boolean,
 		default: false,
 		required: false,
 	},
 	/**
-	* Define exibição e texto do tooltip do input
-	*/
+	 * Define exibição e texto do tooltip do input
+	 */
 	tooltip: {
 		type: String,
 		default: null,
 	},
 	/**
-	* Especifica ícone do tooltip do TextInput.
-	*/
+	 * Especifica ícone do tooltip do TextInput.
+	 */
 	tooltipIcon: {
 		type: String,
 		default: 'info-outline',
 	},
 	/**
-	* Indica se o input vai funcionar com a máscara de dinheiro.
-	* A máscara utiliza `R$` como prefixo,` , ` como separador de decimais
-	* e tem precisão de 2 dígitos.
-	*
-	*
-	* Ao utilizar essa prop o `update:modelValue` vai deixar de emitir
-	* `Number`e vai passar a emitir uma `String` contendo a máscara.
-	*
-	*
-	* Para receber o valor sem máscara, utilize a prop `unmaskedValue`
-	* com v-model: `v-model:unmaskedValue="nome da propriedade a ser atualizada"`
-	*/
+	 * Indica se o input vai funcionar com a máscara de dinheiro.
+	 * A máscara utiliza `R$` como prefixo,` , ` como separador de decimais
+	 * e tem precisão de 2 dígitos.
+	 *
+	 *
+	 * Ao utilizar essa prop o `update:modelValue` vai deixar de emitir
+	 * `Number`e vai passar a emitir uma `String` contendo a máscara.
+	 *
+	 *
+	 * Para receber o valor sem máscara, utilize a prop `unmaskedValue`
+	 * com v-model: `v-model:unmaskedValue="nome da propriedade a ser atualizada"`
+	 */
 	money: {
 		type: Boolean,
 		default: false,
@@ -178,44 +179,44 @@ const props = defineProps({
 		default: null,
 	},
 	/**
-	* Controla a exibição e o conteúdo do link de suporte exibido ao lado da label.
-	*/
+	 * Controla a exibição e o conteúdo do link de suporte exibido ao lado da label.
+	 */
 	supportLink: {
 		type: String,
 		default: null,
 	},
 	/**
-	* Define a url a ser acessada no clique do link de suporte.
-	*/
+	 * Define a url a ser acessada no clique do link de suporte.
+	 */
 	supportLinkUrl: {
 		type: [String, null],
 		default: null,
 	},
 	/**
-	* Quando true, o v-model é atualizado com o evento `change` no lugar do `input`.
-	*/
+	 * Quando true, o v-model é atualizado com o evento `change` no lugar do `input`.
+	 */
 	lazy: {
 		type: Boolean,
 		default: false,
 	},
 	/**
-	* Especifica a máscara a ser aplicada ao TextInput.
-	* Exemplo: "(##) #####-####"
-	*/
+	 * Especifica a máscara a ser aplicada ao TextInput.
+	 * Exemplo: "(##) #####-####"
+	 */
 	mask: {
 		type: [String, Array],
 		default: null,
 	},
 	/**
-	* @deprecated Define o tipo do input, se true será um input adaptador para o mobile
-	*/
+	 * @deprecated Define o tipo do input, se true será um input adaptador para o mobile
+	 */
 	mobile: {
 		type: Boolean,
 		default: false,
 	},
 	/**
-	* Define o tipo do input, se true será um input adaptado para o mobile
-	*/
+	 * Define o tipo do input, se true será um input adaptado para o mobile
+	 */
 	floatingLabel: {
 		type: Boolean,
 		default: false,
@@ -231,7 +232,6 @@ const internalValue = ref('');
 const { emitClick, emitChange, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
 let cdsBrlBiding = {};
 
-
 /* WATCHERS */
 watch(model, (newValue, oldValue) => {
 	if (newValue !== oldValue) {
@@ -245,17 +245,17 @@ watch(internalValue, (value, oldValue) => {
 
 		if (props.money) {
 			/**
-			* Evento utilizado para implementar o v-model para atualização
-			* de valores sem máscara de dinheiro.
-			* @event update:unmaskedValue
-			* @type {Event}
-			*/
+			 * Evento utilizado para implementar o v-model para atualização
+			 * de valores sem máscara de dinheiro.
+			 * @event update:unmaskedValue
+			 * @type {Event}
+			 */
 			unmaskedValue.value = unmaskBRL(stringifiedInput);
 			/**
-			* Evento utilizado para implementar o v-model padrão do componente.
-			* @event update:modelValue
-			* @type {Event}
-			*/
+			 * Evento utilizado para implementar o v-model padrão do componente.
+			 * @event update:modelValue
+			 * @type {Event}
+			 */
 			model.value = stringifiedInput;
 		} else if (props.mask) {
 			internalValue.value = stringifiedInput;
@@ -270,24 +270,34 @@ watch(internalValue, (value, oldValue) => {
 	}
 });
 
-/* HOOKS */
-onMounted(() => {
-	if (props.money && baseInputRef.value && baseInputRef.value.componentRef) {
-		cdsBrlBiding =  {
-			value: model.value,
-			oldValue: '',
-			instance: baseInputRef.value.componentRef,
-			modifiers: {},
-			arg: null,
-		};
-		vCdsBrl.mounted(baseInputRef.value.componentRef, cdsBrlBiding);
-	}
-});
+watch(
+	() => props.money,
+	async (value) => {
+		if (value) {
+			await nextTick();
+
+			if (baseInputRef.value?.componentRef) {
+				cdsBrlBiding = {
+					value: model.value,
+					oldValue: '',
+					instance: baseInputRef.value.componentRef,
+					modifiers: {},
+					arg: null,
+				};
+				vCdsBrl.mounted(baseInputRef.value?.componentRef, cdsBrlBiding);
+				return;
+			} else{
+				vCdsBrl.unmounted(baseInputRef.value?.componentRef);
+			}
+		}
+	},
+	{ immediate: true }
+);
 
 /* FUNCTIONS */
 function handleFocus() {
 	if (props.money) {
-		internalValue.value = (internalValue.value == 0 || internalValue.value == '') 
+		internalValue.value = (internalValue.value == 0 || internalValue.value == '')
 			? 'R$ 0,00'
 			: internalValue.value;
 	}
@@ -297,6 +307,11 @@ function handleFocus() {
 function handleChange() {
 	model.value = internalValue.value;
 	emitChange();
+}
+
+function handleMoneyInputKeydown(keyEvent) {
+	if (preventNonNumericInput(keyEvent)) return;
+	emitKeydown(keyEvent);
 }
 
 /* EXPOSE */
