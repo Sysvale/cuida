@@ -12,7 +12,11 @@
 		@focus="emitFocus"
 		@blur="emitBlur"
 		@keydown="emitKeydown"
-	/>
+	>
+		<template #label>
+			<slot name="label" />
+		</template>
+	</CdsBaseInput>
 </template>
 
 <script setup>
