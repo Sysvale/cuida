@@ -77,13 +77,12 @@
 					tabindex="0"
 					v-bind="props"
 					:placeholder="placeholder"
-					:disabled="disabled"
 					:class="inputClass"
 					:type="type"
 					:autocomplete="computedAutocompleteProp"
-					@focus="handleFocus"
-					@blur="handleBlur"
-					@keydown="handleKeydown"
+					@focus="disabled && handleFocus"
+					@blur="disabled && handleBlur"
+					@keydown="disabled && handleKeydown"
 				>
 					<small class="base-input__date-text">{{ internalValue || placeholder }}</small>
 				</div>
