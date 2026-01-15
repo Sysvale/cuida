@@ -12,7 +12,7 @@
 				>
 					<router-link
 						:to="routerPushTo(item)"
-						:class="`breadcrumb__link--${variant}`"
+						:class="`breadcrumb__link breadcrumb__link--${variant}`"
 					>
 						<CdsIcon
 							v-if="items.length <= 2"
@@ -49,7 +49,7 @@
 
 					<router-link
 						:to="routerPushTo(item)"
-						:class="`breadcrumb__link--${variant}`"
+						:class="`breadcrumb__link breadcrumb__link--${variant}`"
 					>
 						<CdsClickable :clickable="index !== items.length - 1">
 							{{ item.label }}
@@ -104,6 +104,7 @@ function routerPushTo(item) {
 @use '../assets/sass/tokens/index' as tokens;
 
 .breadcrumb {
+	@include tokens.caption;
 	display: flex;
 	align-items: center;
 	padding: tokens.pa(0);
@@ -113,6 +114,12 @@ function routerPushTo(item) {
 	}
 
 	&__link {
+		@extend .breadcrumb;
+		border-radius: tokens.$border-radius-lil;
+		padding: tokens.pa(1);
+		transition: tokens.$hover;
+		color: tokens.$n-600;
+
 		@include tokens.variantResolver using (
 			$color-name,
 			$shade-50,
@@ -123,14 +130,6 @@ function routerPushTo(item) {
 			$shade-500,
 			$shade-600
 		) {
-			@extend .breadcrumb;
-			@include tokens.caption;
-
-			border-radius: tokens.$border-radius-lil;
-			padding: tokens.pa(1);
-			transition: tokens.$hover;
-			color: tokens.$n-600;
-
 			&:hover,
 			&:hover svg {
 				background-color: $shade-50;
