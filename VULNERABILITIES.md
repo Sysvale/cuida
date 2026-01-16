@@ -1,69 +1,69 @@
-# Project Audit: Security, Performance, and Accessibility
+# Auditoria do Projeto: Segurança, Performance e Acessibilidade
 
-This document lists the findings from an audit of the Cuida design system library.
+Este documento lista as descobertas de uma auditoria da biblioteca do design system Cuida.
 
-## 1. Security Issues
+## 1. Problemas de Segurança
 
-### 1.1 Potential XSS in Icon Component
-The `Icon.vue` component uses `v-html` to render SVG paths. While the paths are matched against a predefined icon set from `@sysvale/cuida-icons`, the use of `v-html` is generally discouraged unless strictly necessary and sanitized.
-- **Location**: `src/components/Icon.vue`
-- **Impact**: Low (if icons are trusted), but increases attack surface.
+### 1.1 XSS Potencial no Componente Icon
+O componente `Icon.vue` utiliza `v-html` para renderizar caminhos SVG. Embora os caminhos sejam comparados com um conjunto de ícones predefinido de `@sysvale/cuida-icons`, o uso de `v-html` é geralmente desencorajado a menos que seja estritamente necessário e sanitizado.
+- **Localização**: `src/components/Icon.vue`
+- **Impacto**: Baixo (se os ícones forem confiáveis), mas aumenta a superfície de ataque.
 
-### 1.2 Dependency Vulnerabilities
-Multiple vulnerabilities were found in dependencies (mostly development dependencies):
-- `form-data` (Critical): Unsafe random function.
-- `glob` (High): Command injection.
-- `preact` (High): JSON VNode Injection.
-- `esbuild`/`vite` (Moderate): Dev server vulnerabilities.
-- `vue` v2.7.16 (Low): ReDoS vulnerability.
+### 1.2 Vulnerabilidades de Dependências
+Múltiplas vulnerabilidades foram encontradas em dependências (principalmente dependências de desenvolvimento):
+- `form-data` (Crítica): Função aleatória insegura.
+- `glob` (Alta): Injeção de comando.
+- `preact` (Alta): Injeção de JSON VNode.
+- `esbuild`/`vite` (Moderada): Vulnerabilidades no servidor de desenvolvimento.
+- `vue` v2.7.16 (Baixa): Vulnerabilidade de ReDoS.
 
-### 1.3 Mixed Vue Versions (Supply Chain Risk)
-The `@sysvale/vue3-long-click` dependency explicitly depends on `vue: ^2.5.22`. In a Vue 3 project, this causes a second version of Vue (Vue 2) to be installed in `node_modules/@sysvale/vue3-long-click/node_modules/vue`.
-- **Impact**: High. It leads to duplicate Vue instances, potential runtime conflicts, and brings in known vulnerabilities of older Vue versions (like the ReDoS mentioned above).
-- **Recommendation**: Replace `@sysvale/vue3-long-click` with a Vue 3 compatible implementation that uses `vue` as a peer dependency.
-
----
-
-## 2. Performance Issues
-
-### 2.1 Duplicate and Non-Unique IDs
-`Table.vue` uses `field.key` as an ID for every cell (`td`) in a column.
-- **Impact**: High. If a table has 100 rows, there will be 100 elements with the same ID. This makes `document.getElementById` unreliable and degrades performance of DOM queries.
-- **Location**: `src/components/Table.vue`
-
-### 2.2 Inefficient Bundle Size (Charts)
-Chart components (Line, Pie, etc.) register all Chart.js components using `registerables`.
-- **Impact**: Medium. It increases the bundle size significantly as it includes all chart types and features even if only one is used.
-- **Location**: `src/components/LineChart.vue`, `src/components/PieChart.vue`, etc.
-
-### 2.3 Deep Watches and Expensive Clones
-- `DataTable.vue` uses `lodash.clonedeep` on `customFieldsList`.
-- `Table.vue` uses a deep watch on the `select` array.
-- **Impact**: Low to Medium (depending on data size).
+### 1.3 Versões Mistas de Vue (Risco na Cadeia de Suprimentos)
+A dependência `@sysvale/vue3-long-click` depende explicitamente de `vue: ^2.5.22`. Em um projeto Vue 3, isso faz com que uma segunda versão do Vue (Vue 2) seja instalada em `node_modules/@sysvale/vue3-long-click/node_modules/vue`.
+- **Impacto**: Alto. Isso leva a instâncias duplicadas do Vue, potenciais conflitos em tempo de execução e traz vulnerabilidades conhecidas de versões mais antigas do Vue (como o ReDoS mencionado acima).
+- **Recomendação**: Substituir `@sysvale/vue3-long-click` por uma implementação compatível com Vue 3 que use `vue` como uma peer dependency.
 
 ---
 
-## 3. Accessibility (a11y) Issues
+## 2. Problemas de Performance
 
-### 3.1 Non-Semantic Clickable Elements
-`Clickable.vue` uses a `div` for interactive elements without providing proper ARIA roles, `tabindex`, or keyboard event listeners (Enter/Space).
-- **Impact**: High. Screen reader users and keyboard-only users cannot interact with these elements.
-- **Location**: `src/components/Clickable.vue`
+### 2.1 IDs Duplicados e Não Únicos
+`Table.vue` utiliza `field.key` como um ID para cada célula (`td`) em uma coluna.
+- **Impacto**: Alto. Se uma tabela tiver 100 linhas, haverá 100 elementos com o mesmo ID. Isso torna o `document.getElementById` não confiável e degrada a performance de consultas ao DOM.
+- **Localização**: `src/components/Table.vue`
 
-### 3.2 Inaccessible Checkbox
-`Checkbox.vue` hides the native input using `visibility: hidden`, which makes it non-focusable and potentially ignored by screen readers. Interaction is only handled via click listeners on labels.
-- **Impact**: High. Keyboard navigation is impossible.
-- **Location**: `src/components/Checkbox.vue`
+### 2.2 Tamanho de Bundle Ineficiente (Gráficos)
+Componentes de gráfico (Line, Pie, etc.) registram todos os componentes do Chart.js usando `registerables`.
+- **Impacto**: Médio. Isso aumenta significativamente o tamanho do bundle, pois inclui todos os tipos de gráfico e funcionalidades, mesmo que apenas um seja utilizado.
+- **Localização**: `src/components/LineChart.vue`, `src/components/PieChart.vue`, etc.
 
-### 3.3 Missing Native Disabled Support
-`Button.vue` and other components do not apply the native `disabled` attribute to the underlying HTML element, relying only on CSS classes and JS click prevention.
-- **Impact**: Medium. Assistive technologies might not correctly identify the button as disabled.
-- **Location**: `src/components/Button.vue`
+### 2.3 Watches Profundos e Clones Caros
+- `DataTable.vue` usa `lodash.clonedeep` em `customFieldsList`.
+- `Table.vue` usa um watch profundo no array `select`.
+- **Impacto**: Baixo a Médio (dependendo do tamanho dos dados).
 
-### 3.4 Broken Label Association
-`Label.vue` accepts a `for` prop but fails to apply it to the native `label` element.
-- **Impact**: High. Clicking the label does not focus the associated input, and screen readers may not link them.
-- **Location**: `src/components/Label.vue`
+---
 
-### 3.5 Missing ARIA Roles in Tables
-`Table.vue` and `DataTable.vue` lack necessary ARIA roles (e.g., `aria-sort`) and descriptions for complex actions like sorting.
+## 3. Problemas de Acessibilidade (a11y)
+
+### 3.1 Elementos Clicáveis Não Semânticos
+`Clickable.vue` usa uma `div` para elementos interativos sem fornecer papéis (roles) ARIA adequados, `tabindex` ou listeners de eventos de teclado (Enter/Space).
+- **Impacto**: Alto. Usuários de leitores de tela e usuários que utilizam apenas o teclado não conseguem interagir com esses elementos.
+- **Localização**: `src/components/Clickable.vue`
+
+### 3.2 Checkbox Inacessível
+`Checkbox.vue` oculta o input nativo usando `visibility: hidden`, o que o torna não focável e potencialmente ignorado por leitores de tela. A interação é tratada apenas via listeners de clique em labels.
+- **Impacto**: Alto. A navegação por teclado é impossível.
+- **Localização**: `src/components/Checkbox.vue`
+
+### 3.3 Falta de Suporte ao Atributo Disabled Nativo
+`Button.vue` e outros componentes não aplicam o atributo `disabled` nativo ao elemento HTML subjacente, dependendo apenas de classes CSS e prevenção de clique via JS.
+- **Impacto**: Médio. Tecnologias assistivas podem não identificar corretamente o botão como desabilitado.
+- **Localização**: `src/components/Button.vue`
+
+### 3.4 Associação de Label Quebrada
+`Label.vue` aceita uma prop `for`, mas falha em aplicá-la ao elemento `label` nativo.
+- **Impacto**: Alto. Clicar na label não foca o input associado, e leitores de tela podem não vinculá-los.
+- **Localização**: `src/components/Label.vue`
+
+### 3.5 Falta de Roles ARIA em Tabelas
+`Table.vue` e `DataTable.vue` carecem de papéis ARIA necessários (ex: `aria-sort`) e descrições para ações complexas como ordenação.
