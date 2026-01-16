@@ -3,8 +3,7 @@
 exports[`DateInput > renders correctly 1`] = `
 "<div data-v-fcd39cd1="" class="date-input" id="text-input">
   <!--v-if-->
-  <div data-v-82c69faf="" data-v-fcd39cd1="" class="base-input__container" variant="green" mode="picking" range="false" mobile="false" showtodaydot="false" highlighttoday="false" mindate="" maxdate="">
-    <!--v-if--><label data-v-c1eb01da="" data-v-82c69faf="" class="label">
+  <div data-v-82c69faf="" data-v-fcd39cd1="" class="base-input__container" variant="green" mode="picking" range="false" mobile="false" showtodaydot="false" highlighttoday="false" mindate="" maxdate=""><label data-v-c1eb01da="" data-v-82c69faf="" class="label">
       <div data-v-c2ac4e6d="" data-v-c1eb01da="" class="flexbox label__content">
         <!-- @slot Slot com o conteúdo interno do FlexBox -->Selecione uma data
         <!--v-if-->
@@ -36,7 +35,7 @@ exports[`DateInput > renders correctly 1`] = `
     <div data-v-fcd39cd1="" class="date-input__calendar--down" style="display: none;">
       <div data-v-fcd39cd1="" class="calendar__header">
         <div data-v-c2ac4e6d="" data-v-fcd39cd1="" class="flexbox">
-          <!-- @slot Slot com o conteúdo interno do FlexBox --><span data-v-fcd39cd1="" class="calendar__month-and-title">outubro</span><span data-v-fcd39cd1="" class="calendar__month-and-title">2025</span>
+          <!-- @slot Slot com o conteúdo interno do FlexBox --><span data-v-fcd39cd1="" class="calendar__month-and-title">janeiro</span><span data-v-fcd39cd1="" class="calendar__month-and-title">2026</span>
         </div>
         <div data-v-c2ac4e6d="" data-v-fcd39cd1="" class="flexbox">
           <!-- @slot Slot com o conteúdo interno do FlexBox --><svg data-v-fcd39cd1="" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="caret-up-outline" role="presentation" class="calendar__right-caret">
@@ -59,6 +58,7 @@ exports[`DateInput > renders correctly 1`] = `
         <div data-v-fcd39cd1="" class="calendar__week-day">S</div>
         <div data-v-fcd39cd1="" class="calendar__week-day">S</div>
         <div data-v-fcd39cd1="" class="calendar__week-day">D</div>
+        <div data-v-fcd39cd1="" class="calendar__empty-day"></div>
         <div data-v-fcd39cd1="" class="calendar__empty-day"></div>
         <div data-v-fcd39cd1="" class="calendar__empty-day"></div>
         <div data-v-fcd39cd1="" class="calendar__day--green" disabled="false">1</div>
@@ -111,18 +111,18 @@ exports[`DateInput > renders correctly 1`] = `
       <div data-v-1965a21c="" data-v-fcd39cd1="" class="scroll-indicator__container" min-date="" max-date="" style="display: none;">
         <div data-v-958116c6="" data-v-1965a21c="" class="grid year-selector__grid" tabindex="0">
           <!-- @slot Slot com o conteúdo interno da grid -->
-          <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2018</div>
           <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2019</div>
           <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2020</div>
           <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2021</div>
           <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2022</div>
           <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2023</div>
           <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2024</div>
-          <div data-v-1965a21c="" class="year-selector__year--green year-selector__year--selected--green year-selector__year">2025</div>
-          <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2026</div>
+          <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2025</div>
+          <div data-v-1965a21c="" class="year-selector__year--green year-selector__year--selected--green year-selector__year">2026</div>
           <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2027</div>
           <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2028</div>
           <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2029</div>
+          <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2030</div>
         </div>
         <div data-v-1965a21c="" class="scroll-indicator">
           <div data-v-1965a21c="" class="scroll-indicator__thumb" style="height: 33%; top: 44.535294117647055%;"></div>

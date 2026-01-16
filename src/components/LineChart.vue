@@ -185,6 +185,11 @@ export default {
 					y: {
 						suggestedMin: this.yAxisRange[0],
 						suggestedMax: this.yAxisRange[1],
+						beginAtZero: true,
+						grace: '10%',
+						ticks: {
+							precision: 0
+						},
 						display: true,
 						title: {
 							display: true,

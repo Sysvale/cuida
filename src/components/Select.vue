@@ -171,6 +171,15 @@ const props = defineProps({
 		required: false,
 	},
 	/**
+	 * Indica se a busca deve levar em consideração argumentos compostos.
+	 * Só tem efeito se a prop `searchable` for `true`.
+	 */
+	deepSearch: {
+		type: Boolean,
+		default: false,
+		required: false,
+	},
+	/**
 	 * @deprecated Define a largura do Select. As opções são 'thin', 'default' e 'wide'.
 	 */
 	width: {
@@ -412,11 +421,32 @@ function filterOptions(value) {
 	}
 
 	const sanitizedString = removeAccents(String(value) || '');
-	const regexExp = new RegExp(sanitizedString, 'i');
+
+	if (props.deepSearch) {
+		deepOptionSearch(sanitizedString);
+	} else {
+		simpleOptionSearch(sanitizedString);
+	}
+}
+
+function simpleOptionSearch(sanitizedSearchValue) {
+	const regexExp = new RegExp(sanitizedSearchValue, 'i');
 
 	localOptions.value = pristineOptions.value.filter(
 		(option) => removeAccents(option[props.optionsField]).search(regexExp) >= 0,
 	);
+}
+
+function deepOptionSearch(sanitizedSearchValue) {
+	const searchArray = sanitizedSearchValue.toLowerCase().split(' ');
+
+	localOptions.value = pristineOptions.value.filter(
+		(option) => {
+			return searchArray.reduce((acc, curr) => (
+				acc = acc && removeAccents(option[props.optionsField]).toLowerCase().includes(curr)
+			), true);
+		}
+	)
 }
 
 function activeSelection() {

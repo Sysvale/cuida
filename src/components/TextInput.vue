@@ -12,7 +12,11 @@
 		@focus="emitFocus"
 		@blur="emitBlur"
 		@keydown="emitKeydown"
-	/>
+	>
+		<template #label>
+			<slot name="label" />
+		</template>
+	</CdsBaseInput>
 </template>
 
 <script setup>
@@ -128,7 +132,7 @@ const props = defineProps({
 	*/
 	linkUrl: {
 		type: String,
-		default: 'https://cuida.framer.wiki/',
+		default: null,
 	},
 	/**
 	* Controla a exibição e o conteúdo do link de suporte exibido ao lado da label.
