@@ -4,6 +4,7 @@
 		v-cdstip="tooltipDisabled"
 		class="button__container"
 		:class="computedStyle"
+		:disabled="disabled"
 		@click.stop="clickHandler"
 	>
 		<CdsSpinner

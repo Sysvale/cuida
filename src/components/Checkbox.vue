@@ -8,16 +8,16 @@
 		>
 			<input
 				:id="$attrs.id || 'cds-checkbox-option-input'"
-				:value="modelValue"
+				:checked="modelValue"
 				type="checkbox"
 				:name="$attrs.name || 'cds-checkbox-option'"
 				:disabled="disabled"
+				@change="toggleValue"
 			>
 
 			<label
 				:for="$attrs.id || 'cds-checkbox-option-input'"
 				:class="resolveCheckboxClass"
-				@click="toggleValue"
 			/>
 		</div>
 
@@ -28,7 +28,6 @@
 				'cds-checkbox__label--prominent': prominent && modelValue,
 			}"
 			:for="$attrs.id || 'cds-checkbox-option-input'"
-			@click="toggleValue"
 		>
 			{{ label }}
 		</label>
@@ -162,13 +161,26 @@ export default {
 	gap: tokens.spacer(2);
 
 	input[type=checkbox] {
-		visibility: hidden;
-		margin-top: tokens.spacer(n8);
+		opacity: 0;
 		position: absolute;
+		width: 16px;
+		height: 16px;
+		z-index: 1;
+		cursor: pointer;
+		margin: 0;
+	}
+
+	input[type=checkbox]:disabled {
+		cursor: default;
 	}
 
 	.cds-checkbox__input {
 		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 16px;
+		height: 16px;
 
 		@include tokens.variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
 			background-color: $base-color !important;
@@ -180,6 +192,10 @@ export default {
 			width: 16px;
 			height: 16px;
 			border-radius: tokens.$border-radius-button;
+		}
+
+		&:focus-within label {
+			box-shadow: 0 0 0 2px tokens.$n-0, 0 0 0 4px tokens.$bn-300;
 		}
 
 		&--checked {

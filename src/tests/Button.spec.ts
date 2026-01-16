@@ -17,4 +17,14 @@ describe('Button', () => {
 
 		expect(wrapper.html()).toMatchSnapshot();
 	});
+
+	test('renders disabled correctly', async () => {
+		const wrapper = mount(Button, {
+			props: {
+				disabled: true,
+			},
+		});
+
+		expect(wrapper.attributes('disabled')).toBeDefined();
+	});
 });
