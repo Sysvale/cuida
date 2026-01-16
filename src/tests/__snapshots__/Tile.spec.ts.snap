@@ -7,7 +7,7 @@ exports[`Tile > renders correctly 1`] = `
 		@event cds-click
 		@type {Event}
 	-->
-  <div data-v-f9290560="" class="clickable__container--clickable box__container">
+  <div data-v-f9290560="" class="clickable__container--clickable box__container" role="button" tabindex="0">
     <!-- @slot Slot default.-->
     <div data-v-9cc3ee57="" data-v-f9290560="" class="spacer">
       <!-- @slot Slot default.-->
