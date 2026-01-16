@@ -23,25 +23,20 @@
 		</CdsBaseMobileInput>
 
 		<template v-else>
-			<template
-				v-if="useHasSlot('label')"
-			>
-				<slot name="label" />
-			</template>
-
-			<CdsLabel
-				v-if="!hideLabelInput"
-				:text="label"
-				:fluid="fluid"
-				:for="componentId"
-				:required="required"
-				:tooltip="tooltip"
-				:tooltip-icon="tooltipIcon"
-				:support-link="supportLink"
-				:support-link-url="supportLinkUrl"
-				@support-link-click="emits('supportLinkClick')"
-			/>
-
+			<slot name="label">
+				<CdsLabel
+					v-if="!hideLabelInput"
+					:text="label"
+					:fluid="fluid"
+					:for="componentId"
+					:required="required"
+					:tooltip="tooltip"
+					:tooltip-icon="tooltipIcon"
+					:support-link="supportLink"
+					:support-link-url="supportLinkUrl"
+					@support-link-click="emits('supportLinkClick')"
+				/>
+			</slot>
 			<div
 				:class="baseInputClass"
 				@click="handleClick"
