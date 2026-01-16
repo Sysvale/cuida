@@ -104,7 +104,7 @@ import {
 	nativeEmits,
 } from '../utils/composables/useComponentEmits.js';
 import { useInputStatusClasses } from '../utils/composables/useInputStatusClasses.js';
-import { longClickDirective } from '@sysvale/vue3-long-click';
+import { longClickDirective } from '../utils/directives/cdsLongClick.js';
 import CdsMobileStepperInput from './MobileStepperInput.vue';
 import CdsIcon from './Icon.vue';
 import CdsRequiredIndicator from './RequiredIndicator.vue';

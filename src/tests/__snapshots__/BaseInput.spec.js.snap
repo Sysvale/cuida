@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`BaseInput > renders correctly 1`] = `
-"<div data-v-82c69faf="" class="base-input__container"><label data-v-c1eb01da="" data-v-82c69faf="" class="label">
+"<div data-v-82c69faf="" class="base-input__container"><label data-v-c1eb01da="" data-v-82c69faf="" for="cds-base-input-text-base-input" class="label">
     <div data-v-c2ac4e6d="" data-v-c1eb01da="" class="flexbox label__content">
       <!-- @slot Slot com o conteúdo interno do FlexBox -->Label
       <!--v-if-->

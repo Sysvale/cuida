@@ -3,6 +3,7 @@
 <template>
 	<label
 		v-if="text"
+		:for="props.for"
 		:class="{
 			'label': !fluid,
 			'label--fluid': fluid,

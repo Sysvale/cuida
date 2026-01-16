@@ -73,7 +73,7 @@ exports[`MultiFileInput snapshot test > renders correctly 1`] = `
       </div>
     </div>
     <div data-v-96e95147="" class="multi-file-input__empty-state"> Os arquivos adicionados serão exibidos aqui </div>
-    <div data-v-96e95147="" class="multi-file-input__footer"><button data-v-3c9d0845="" data-v-96e95147="" class="button__container button--green--disabled button-size--md">
+    <div data-v-96e95147="" class="multi-file-input__footer"><button data-v-3c9d0845="" data-v-96e95147="" class="button__container button--green--disabled button-size--md" disabled="">
         <!--v-if-->
         <!--v-if-->
         <!-- @slot Slot padrão utilizado para exibir texto do botão. -->Enviar

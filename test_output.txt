@@ -1,0 +1,240 @@
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+Loaded  vitest@3.1.1  and  @vitest/coverage-v8@3.0.2 .
+Running mixed versions is not supported and may lead into bugs
+Update your dependencies and make sure the versions match.
+
+ RUN  v3.1.1 /app
+      Coverage enabled with v8
+
+DEPRECATION WARNING [legacy-js-api]: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.
+
+More info: https://sass-lang.com/d/legacy-js-api
+
+ ✓ src/tests/Clickable.spec.ts (5 tests) 70ms
+[1m[33m[@vue/compiler-sfc][0m[33m `defineProps` is a compiler macro and no longer needs to be imported.[0m
+
+[1m[33m[@vue/compiler-sfc][0m[33m `defineEmits` is a compiler macro and no longer needs to be imported.[0m
+
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  18:53:27
+   Duration  4.84s (transform 455ms, setup 0ms, collect 598ms, tests 70ms, environment 545ms, prepare 105ms)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+-------------------|---------|----------|---------|---------|-------------------
+All files          |    0.19 |     5.47 |    2.55 |    0.19 |
+ app               |       0 |        0 |       0 |       0 |
+  buildtokens.js   |       0 |        0 |       0 |       0 | 1-22
+  eslint.config.js |       0 |        0 |       0 |       0 | 1-68
+  vite.config.ts   |       0 |        0 |       0 |       0 | 1-57
+  vitest.config.ts |       0 |        0 |       0 |       0 | 1-21
+ ...ocs/.vitepress |       0 |       50 |      50 |       0 |
+  config.mjs       |       0 |        0 |       0 |       0 | 1-356
+  env.d.ts         |       0 |        0 |       0 |       0 |
+ ...itepress/theme |       0 |        0 |       0 |       0 |
+  Layout.vue       |       0 |        0 |       0 |       0 | 1-43
+  index.ts         |       0 |        0 |       0 |       0 | 1-74
+  layout.vue       |       0 |        0 |       0 |       0 | 1-20
+ app/docs/docgen   |       0 |        0 |       0 |       0 |
+  APITable.vue     |       0 |        0 |       0 |       0 | 1-121
+  FigmaFrame.vue   |       0 |        0 |       0 |       0 | 1-6
+  LogBuilder.vue   |       0 |        0 |       0 |       0 | 1-106
+  ...ndBuilder.vue |       0 |        0 |       0 |       0 | 1-248
+  ...ewBuilder.vue |       0 |        0 |       0 |       0 | 1-95
+  ...Container.vue |       0 |        0 |       0 |       0 | 1-16
+ app/docs/plugins  |       0 |        0 |       0 |       0 |
+  vueDocgen.js     |       0 |        0 |       0 |       0 | 1-114
+ app/src           |       0 |        0 |       0 |       0 |
+  vite-env.d.ts    |       0 |        0 |       0 |       0 |
+ ...src/components |    0.25 |     6.06 |    1.57 |    0.25 |
+  ActionBar.vue    |       0 |        0 |       0 |       0 | 1-153
+  ActionsList.vue  |       0 |        0 |       0 |       0 | 1-110
+  Alert.vue        |       0 |        0 |       0 |       0 | 1-139
+  AlertCard.vue    |       0 |        0 |       0 |       0 | 1-163
+  AppBar.vue       |       0 |        0 |       0 |       0 | 1-276
+  Avatar.vue       |       0 |        0 |       0 |       0 | 1-138
+  AvatarGroup.vue  |       0 |        0 |       0 |       0 | 1-117
+  Badge.vue        |       0 |        0 |       0 |       0 | 1-105
+  BarChart.vue     |       0 |        0 |       0 |       0 | 1-253
+  BaseInput.vue    |       0 |        0 |       0 |       0 | 1-550
+  ...bileInput.vue |       0 |        0 |       0 |       0 | 1-599
+  BottomSheet.vue  |       0 |        0 |       0 |       0 | 1-121
+  Box.vue          |       0 |        0 |       0 |       0 | 1-151
+  Breadcrumb.vue   |       0 |        0 |       0 |       0 | 1-100
+  Button.vue       |       0 |        0 |       0 |       0 | 1-178
+  CalloutCard.vue  |       0 |        0 |       0 |       0 | 1-130
+  Card.vue         |       0 |        0 |       0 |       0 | 1-201
+  Carousel.vue     |       0 |        0 |       0 |       0 | 1-185
+  ...ontroller.vue |       0 |        0 |       0 |       0 | 1-165
+  Checkbox.vue     |       0 |        0 |       0 |       0 | 1-153
+  ...kboxGroup.vue |       0 |        0 |       0 |       0 | 1-145
+  Chevron.vue      |       0 |        0 |       0 |       0 | 1-92
+  Chip.vue         |       0 |        0 |       0 |       0 | 1-193
+  Clickable.vue    |   97.82 |      100 |   66.66 |   97.82 | 48
+  ...Container.vue |       0 |        0 |       0 |       0 | 1-81
+  ColorPicker.vue  |       0 |        0 |       0 |       0 | 1-192
+  ComboBox.vue     |       0 |        0 |       0 |       0 | 1-365
+  ...boardCard.vue |       0 |        0 |       0 |       0 | 1-106
+  DataTable.vue    |       0 |        0 |       0 |       0 | 1-547
+  DateInput.vue    |       0 |        0 |       0 |       0 | 1-894
+  Dialog.vue       |       0 |        0 |       0 |       0 | 1-222
+  DialogModal.vue  |       0 |        0 |       0 |       0 | 1-242
+  Divider.vue      |       0 |        0 |       0 |       0 | 1-80
+  DonutChart.vue   |       0 |        0 |       0 |       0 | 1-270
+  Dropdown.vue     |       0 |        0 |       0 |       0 | 1-147
+  ...ownButton.vue |       0 |        0 |       0 |       0 | 1-220
+  ...InputList.vue |       0 |        0 |       0 |       0 | 1-236
+  EmptyState.vue   |       0 |        0 |       0 |       0 | 1-118
+  FileInput.vue    |       0 |        0 |       0 |       0 | 1-358
+  FileViewer.vue   |       0 |        0 |       0 |       0 | 1-213
+  FilterSelect.vue |       0 |        0 |       0 |       0 | 1-420
+  FlatButton.vue   |       0 |        0 |       0 |       0 | 1-91
+  Flexbox.vue      |       0 |        0 |       0 |       0 | 1-132
+  ...ionButton.vue |       0 |        0 |       0 |       0 | 1-174
+  ...Assistant.vue |       0 |        0 |       0 |       0 | 1-259
+  GaugeChart.vue   |       0 |        0 |       0 |       0 | 1-189
+  Grid.vue         |       0 |        0 |       0 |       0 | 1-131
+  GridItem.vue     |       0 |        0 |       0 |       0 | 1-116
+  Highlight.vue    |       0 |        0 |       0 |       0 | 1-237
+  Icon.vue         |       0 |        0 |       0 |       0 | 1-79
+  IconButton.vue   |       0 |        0 |       0 |       0 | 1-149
+  Image.vue        |       0 |        0 |       0 |       0 | 1-139
+  ...DateInput.vue |       0 |        0 |       0 |       0 | 1-339
+  InnerTabs.vue    |       0 |        0 |       0 |       0 | 1-174
+  ...ngOverlay.vue |       0 |        0 |       0 |       0 | 1-141
+  Label.vue        |       0 |        0 |       0 |       0 | 1-123
+  LineChart.vue    |       0 |        0 |       0 |       0 | 1-395
+  Link.vue         |       0 |        0 |       0 |       0 | 1-65
+  List.vue         |       0 |        0 |       0 |       0 | 1-124
+  LoadingBar.vue   |       0 |        0 |       0 |       0 | 1-12
+  ...Indicator.vue |       0 |        0 |       0 |       0 | 1-93
+  MobileNavbar.vue |       0 |        0 |       0 |       0 | 1-136
+  ...avigation.vue |       0 |        0 |       0 |       0 | 1-245
+  ...pperInput.vue |       0 |        0 |       0 |       0 | 1-95
+  Modal.vue        |       0 |        0 |       0 |       0 | 1-285
+  ...earPicker.vue |       0 |        0 |       0 |       0 | 1-320
+  ...FileInput.vue |       0 |        0 |       0 |       0 | 1-229
+  Multiselect.vue  |       0 |        0 |       0 |       0 | 1-562
+  NavBar.vue       |       0 |        0 |       0 |       0 | 1-143
+  NumberInput.vue  |       0 |        0 |       0 |       0 | 1-310
+  ...layLoader.vue |       0 |        0 |       0 |       0 | 1-44
+  ...Container.vue |       0 |        0 |       0 |       0 | 1-11
+  PageHeader.vue   |       0 |        0 |       0 |       0 | 1-180
+  PageLayout.vue   |       0 |        0 |       0 |       0 | 1-151
+  Pagination.vue   |       0 |        0 |       0 |       0 | 1-261
+  PanelCard.vue    |       0 |        0 |       0 |       0 | 1-71
+  ...wordInput.vue |       0 |        0 |       0 |       0 | 1-269
+  PieChart.vue     |       0 |        0 |       0 |       0 | 1-241
+  PinInput.vue     |       0 |        0 |       0 |       0 | 1-160
+  ...AreaChart.vue |       0 |        0 |       0 |       0 | 1-231
+  Popover.vue      |       0 |        0 |       0 |       0 | 1-201
+  ProgressBar.vue  |       0 |        0 |       0 |       0 | 1-124
+  ...sCircular.vue |       0 |        0 |       0 |       0 | 1-135
+  Pulsar.vue       |       0 |        0 |       0 |       0 | 1-41
+  ...ActionBar.vue |       0 |        0 |       0 |       0 | 1-469
+  ...lBarChart.vue |       0 |        0 |       0 |       0 | 1-362
+  Radio.vue        |       0 |        0 |       0 |       0 | 1-96
+  ...ttonGroup.vue |       0 |        0 |       0 |       0 | 1-210
+  ...Indicator.vue |       0 |        0 |       0 |       0 | 1-6
+  RichTooltip.vue  |       0 |        0 |       0 |       0 | 1-183
+  Scrollable.vue   |       0 |        0 |       0 |       0 | 1-48
+  SearchInput.vue  |       0 |        0 |       0 |       0 | 1-68
+  ...avigation.vue |       0 |        0 |       0 |       0 | 1-157
+  ...edControl.vue |       0 |        0 |       0 |       0 | 1-71
+  Select.vue       |       0 |        0 |       0 |       0 | 1-618
+  SideBar.vue      |       0 |        0 |       0 |       0 | 1-619
+  SideSheet.vue    |       0 |        0 |       0 |       0 | 1-338
+  Skeleton.vue     |       0 |        0 |       0 |       0 | 1-70
+  SkeletonText.vue |       0 |        0 |       0 |       0 | 1-31
+  Slider.vue       |       0 |        0 |       0 |       0 | 1-134
+  SliderNext.vue   |       0 |        0 |       0 |       0 | 1-196
+  Spacer.vue       |       0 |        0 |       0 |       0 | 1-169
+  Spinner.vue      |       0 |        0 |       0 |       0 | 1-73
+  ...dBarChart.vue |       0 |        0 |       0 |       0 | 1-330
+  Stepper.vue      |       0 |        0 |       0 |       0 | 1-252
+  StepperInput.vue |       0 |        0 |       0 |       0 | 1-312
+  Switch.vue       |       0 |        0 |       0 |       0 | 1-180
+  Table.vue        |       0 |        0 |       0 |       0 | 1-444
+  Tabs.vue         |       0 |        0 |       0 |       0 | 1-193
+  Text.vue         |       0 |        0 |       0 |       0 | 1-106
+  TextArea.vue     |       0 |        0 |       0 |       0 | 1-164
+  TextInput.vue    |       0 |        0 |       0 |       0 | 1-217
+  Tile.vue         |       0 |        0 |       0 |       0 | 1-149
+  TimeInput.vue    |       0 |        0 |       0 |       0 | 1-345
+  Timeline.vue     |       0 |        0 |       0 |       0 | 1-48
+  TimelineItem.vue |       0 |        0 |       0 |       0 | 1-102
+  Toast.vue        |       0 |        0 |       0 |       0 | 1-212
+  ...Container.vue |       0 |        0 |       0 |       0 | 1-31
+  Tooltip.vue      |       0 |        0 |       0 |       0 | 1-92
+  TopAppBar.vue    |       0 |        0 |       0 |       0 | 1-127
+  Truncate.vue     |       0 |        0 |       0 |       0 | 1-29
+  ...Container.vue |       0 |        0 |       0 |       0 | 1-114
+  WebcamModal.vue  |       0 |        0 |       0 |       0 | 1-279
+  Wizard.vue       |       0 |        0 |       0 |       0 | 1-213
+  index.ts         |       0 |        0 |       0 |       0 | 1-276
+ ...rnalComponents |       0 |        0 |       0 |       0 |
+  ...SideSheet.vue |       0 |        0 |       0 |       0 | 1-349
+  ...ectorGrid.vue |       0 |        0 |       0 |       0 | 1-127
+  ...ectorGrid.vue |       0 |        0 |       0 |       0 | 1-152
+ ...ocs-components |       0 |        0 |       0 |       0 |
+  ...erBuilder.vue |       0 |        0 |       0 |       0 | 1-141
+  CopyToken.vue    |       0 |        0 |       0 |       0 | 1-59
+  Elevation.vue    |       0 |        0 |       0 |       0 | 1-347
+  FontWeight.vue   |       0 |        0 |       0 |       0 | 1-146
+  Iconography.vue  |       0 |        0 |       0 |       0 | 1-261
+  Palete.vue       |       0 |        0 |       0 |       0 | 1-276
+  Shadows.vue      |       0 |        0 |       0 |       0 | 1-150
+  Space.vue        |       0 |        0 |       0 |       0 | 1-319
+  Tooltip.vue      |       0 |        0 |       0 |       0 | 1-64
+  Transitions.vue  |       0 |        0 |       0 |       0 | 1-202
+  Typography.vue   |       0 |        0 |       0 |       0 | 1-269
+ app/src/entities  |       0 |        0 |       0 |       0 |
+  ...nationItem.js |       0 |        0 |       0 |       0 | 1-8
+ app/src/utils     |       0 |        0 |       0 |       0 |
+  index.js         |       0 |        0 |       0 |       0 | 1
+ ...ls/composables |       0 |        0 |       0 |       0 |
+  ...ickOutside.js |       0 |        0 |       0 |       0 | 1-32
+  ...onentEmits.js |       0 |        0 |       0 |       0 | 1-29
+  ...wnPosition.js |       0 |        0 |       0 |       0 | 1-25
+  useHasSlot.js    |       0 |        0 |       0 |       0 | 1-6
+  useHasSlots.js   |       0 |        0 |       0 |       0 | 1-6
+  ...tusClasses.js |       0 |        0 |       0 |       0 | 1-31
+  useIsMobile.js   |       0 |        0 |       0 |       0 | 1-10
+  useToast.js      |       0 |        0 |       0 |       0 | 1-48
+ ...tils/constants |       0 |        0 |       0 |       0 |
+  colors.js        |       0 |        0 |       0 |       0 | 1-99
+  generateKey.js   |       0 |        0 |       0 |       0 | 1-10
+  iconsData.js     |       0 |        0 |       0 |       0 | 1-261
+  inputTypes.js    |       0 |        0 |       0 |       0 | 1
+  keycodes.js      |       0 |        0 |       0 |       0 | 1-3
+  sizes.js         |       0 |        0 |       0 |       0 | 1
+  ...tionStates.js |       0 |        0 |       0 |       0 | 1-5
+  widths.js        |       0 |        0 |       0 |       0 | 1
+ ...ils/directives |       0 |        0 |       0 |       0 |
+  cdsBRL.js        |       0 |        0 |       0 |       0 | 1-79
+  ...ickOutside.js |       0 |        0 |       0 |       0 | 1-113
+  cdsFloatify.js   |       0 |        0 |       0 |       0 | 1-27
+  cdsLongClick.js  |       0 |        0 |       0 |       0 | 1-45
+  cdstip.js        |       0 |        0 |       0 |       0 | 1-57
+ .../utils/methods |       0 |        0 |       0 |       0 |
+  ...astChecker.js |       0 |        0 |       0 |       0 | 1-36
+  hasSameItems.ts  |       0 |        0 |       0 |       0 | 1-9
+  hasSlot.js       |       0 |        0 |       0 |       0 | 1-3
+  hexToRgb.js      |       0 |        0 |       0 |       0 | 1-8
+  isDeviceType.js  |       0 |        0 |       0 |       0 | 1-36
+  paleteBuilder.js |       0 |        0 |       0 |       0 | 1-48
+  removeAccents.js |       0 |        0 |       0 |       0 | 1-23
+  rounder.js       |       0 |        0 |       0 |       0 | 1-7
+  uuidv4.js        |       0 |        0 |       0 |       0 | 1-7
+  ...ssResolver.js |       0 |        0 |       0 |       0 | 1-3
+ ...ils/validators |       0 |        0 |       0 |       0 |
+  input.js         |       0 |        0 |       0 |       0 | 1-3
+  state.js         |       0 |        0 |       0 |       0 | 1-3
+  time.js          |       0 |        0 |       0 |       0 | 1-17
+  variant.js       |       0 |        0 |       0 |       0 | 1-3
+ app/types         |       0 |        0 |       0 |       0 |
+  ...ress-env.d.ts |       0 |        0 |       0 |       0 |
+-------------------|---------|----------|---------|---------|-------------------

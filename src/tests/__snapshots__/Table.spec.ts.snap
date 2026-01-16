@@ -5,7 +5,7 @@ exports[`Table > renders correctly 1`] = `
   <thead data-v-83c58b0d="">
     <tr data-v-83c58b0d="" class="table__header">
       <!--v-if-->
-      <th data-v-83c58b0d="" class="table__header-item--first">
+      <th data-v-83c58b0d="" id="field1" class="table__header-item--first">
         <div data-v-83c58b0d="" class="table__header-item-content">
           <!--
 							@slot Slot usado para renderizar itens personalizados para o cabeçalho da tabela. Dados do item referente à coluna podem ser acessados através da propriedade \`data\`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ data }
@@ -13,7 +13,7 @@ exports[`Table > renders correctly 1`] = `
           <cds-clickable-stub data-v-83c58b0d="" clickable="false" fluid="false" id="sort-icon-field1"></cds-clickable-stub>
         </div>
       </th>
-      <th data-v-83c58b0d="" class="table__header-item">
+      <th data-v-83c58b0d="" id="field2" class="table__header-item">
         <div data-v-83c58b0d="" class="table__header-item-content">
           <!--
 							@slot Slot usado para renderizar itens personalizados para o cabeçalho da tabela. Dados do item referente à coluna podem ser acessados através da propriedade \`data\`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ data }
@@ -21,7 +21,7 @@ exports[`Table > renders correctly 1`] = `
           <cds-clickable-stub data-v-83c58b0d="" clickable="false" fluid="false" id="sort-icon-field2"></cds-clickable-stub>
         </div>
       </th>
-      <th data-v-83c58b0d="" class="table__header-item--last">
+      <th data-v-83c58b0d="" id="field3" class="table__header-item--last">
         <div data-v-83c58b0d="" class="table__header-item-content">
           <!--
 							@slot Slot usado para renderizar itens personalizados para o cabeçalho da tabela. Dados do item referente à coluna podem ser acessados através da propriedade \`data\`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ data }
@@ -34,17 +34,17 @@ exports[`Table > renders correctly 1`] = `
   <tbody data-v-83c58b0d="">
     <tr data-v-83c58b0d="" class="">
       <!--v-if-->
-      <td data-v-83c58b0d="" id="field1" class="table__item" width="auto">
+      <td data-v-83c58b0d="" class="table__item" width="auto">
         <!--
 						@slot Slot usado para renderizar itens personalizados para o conteúdo da tabela. Dados do item referente à linha podem ser acessados através da propriedade \`data\`, enquanto a key referente à coluna pode ser acessada através da propriedade \`field\`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ \`data\`, \`field\`, \`rowIndex\` e \`colIndex\` }
 					-->field 1 content
       </td>
-      <td data-v-83c58b0d="" id="field2" class="table__item" width="auto">
+      <td data-v-83c58b0d="" class="table__item" width="auto">
         <!--
 						@slot Slot usado para renderizar itens personalizados para o conteúdo da tabela. Dados do item referente à linha podem ser acessados através da propriedade \`data\`, enquanto a key referente à coluna pode ser acessada através da propriedade \`field\`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ \`data\`, \`field\`, \`rowIndex\` e \`colIndex\` }
 					-->field 2 content
       </td>
-      <td data-v-83c58b0d="" id="field3" class="table__item" width="auto">
+      <td data-v-83c58b0d="" class="table__item" width="auto">
         <!--
 						@slot Slot usado para renderizar itens personalizados para o conteúdo da tabela. Dados do item referente à linha podem ser acessados através da propriedade \`data\`, enquanto a key referente à coluna pode ser acessada através da propriedade \`field\`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ \`data\`, \`field\`, \`rowIndex\` e \`colIndex\` }
 					-->field 3 content
@@ -52,17 +52,17 @@ exports[`Table > renders correctly 1`] = `
     </tr>
     <tr data-v-83c58b0d="" class="">
       <!--v-if-->
-      <td data-v-83c58b0d="" id="field1" class="table__item--first" width="auto">
+      <td data-v-83c58b0d="" class="table__item--first" width="auto">
         <!--
 						@slot Slot usado para renderizar itens personalizados para o conteúdo da tabela. Dados do item referente à linha podem ser acessados através da propriedade \`data\`, enquanto a key referente à coluna pode ser acessada através da propriedade \`field\`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ \`data\`, \`field\`, \`rowIndex\` e \`colIndex\` }
 					-->field 1 content
       </td>
-      <td data-v-83c58b0d="" id="field2" class="table__item--common" width="auto">
+      <td data-v-83c58b0d="" class="table__item--common" width="auto">
         <!--
 						@slot Slot usado para renderizar itens personalizados para o conteúdo da tabela. Dados do item referente à linha podem ser acessados através da propriedade \`data\`, enquanto a key referente à coluna pode ser acessada através da propriedade \`field\`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ \`data\`, \`field\`, \`rowIndex\` e \`colIndex\` }
 					-->field 2 content
       </td>
-      <td data-v-83c58b0d="" id="field3" class="table__item--last" width="auto">
+      <td data-v-83c58b0d="" class="table__item--last" width="auto">
         <!--
 						@slot Slot usado para renderizar itens personalizados para o conteúdo da tabela. Dados do item referente à linha podem ser acessados através da propriedade \`data\`, enquanto a key referente à coluna pode ser acessada através da propriedade \`field\`. Os dados do escopo do slot podem ser acessados no formato a seguir: slot-scope={ \`data\`, \`field\`, \`rowIndex\` e \`colIndex\` }
 					-->field 3 content

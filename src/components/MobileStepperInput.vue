@@ -46,7 +46,7 @@
 import { ref, computed, watch, useAttrs } from 'vue';
 import IconButton from './IconButton.vue';
 import { useInputStatusClasses } from '../utils/composables/useInputStatusClasses.js';
-import { longClickDirective } from '@sysvale/vue3-long-click';
+import { longClickDirective } from '../utils/directives/cdsLongClick.js';
 
 defineOptions({ name: 'CdsMobileStepperInput' });
 

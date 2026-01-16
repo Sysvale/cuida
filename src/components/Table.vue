@@ -36,6 +36,7 @@
 				</th>
 				<th
 					v-for="(field, index) in computedFields"
+					:id="field.key"
 					:key="index"
 					:class="resolveHeaderItemClass(index)"
 				>
@@ -104,8 +105,7 @@
 				</td>
 				<td
 					v-for="(field, fieldIndex) in computedFields"
-					:id="field.key"
-					:key="field"
+					:key="fieldIndex"
 					:class="resolveContentItemClass(itemIndex, fieldIndex)"
 					:width="field.width ? field.width : 'auto'"
 				>

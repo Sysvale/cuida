@@ -14,13 +14,29 @@
 
 <script>
 import { Line } from 'vue-chartjs'
-import { Chart, registerables } from 'chart.js';
+import {
+	Chart as ChartJS,
+	Title,
+	Tooltip,
+	Legend,
+	LineElement,
+	LinearScale,
+	PointElement,
+	CategoryScale,
+} from 'chart.js';
 import sassColorVariables from '../assets/sass/tokens/colors.module.scss';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
 import 'chartjs-adapter-luxon';
 
-// Registrar o elemento "point" no registro (Torna-se necessário para marcações de ponto)
-Chart.register(...registerables);
+ChartJS.register(
+	Title,
+	Tooltip,
+	Legend,
+	LineElement,
+	LinearScale,
+	PointElement,
+	CategoryScale,
+);
 
 export default {
 	name: 'CdsLineChart',

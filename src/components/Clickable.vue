@@ -10,7 +10,11 @@
 			'clickable__container--clickable': clickable,
 			'clickable__container--not-clickable': !clickable,
 		}"
-		@click="$emit('cds-click', true)"
+		:role="clickable ? 'button' : undefined"
+		:tabindex="clickable ? 0 : undefined"
+		@click="handleClick"
+		@keydown.enter.prevent="handleClick"
+		@keydown.space.prevent="handleClick"
 	>
 		<!-- @slot Slot default.-->
 		<slot />
@@ -20,6 +24,7 @@
 <script>
 export default {
 	name: 'CdsClickable',
+	emits: ['cds-click'],
 	props: {
 		/**
 		* Ativa ou desativa o clique no componente
@@ -41,6 +46,14 @@ export default {
 	computed: {
 		widthResolver() {
 			return this.fluid ? '100%' : 'fit-content';
+		},
+	},
+
+	methods: {
+		handleClick() {
+			if (this.clickable) {
+				this.$emit('cds-click', true);
+			}
 		},
 	},
 }
