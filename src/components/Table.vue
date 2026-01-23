@@ -105,7 +105,7 @@
 				</td>
 				<td
 					v-for="(field, fieldIndex) in computedFields"
-					:key="fieldIndex"
+					:key="field.key"
 					:class="resolveContentItemClass(itemIndex, fieldIndex)"
 					:width="field.width ? field.width : 'auto'"
 				>
