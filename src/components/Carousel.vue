@@ -56,7 +56,7 @@
 </template>
 
 <script setup>
-import { longClickDirective } from '@sysvale/vue3-long-click';
+import { longClickDirective } from '../utils/directives/cdsLongClick.js';
 import useIsMobile from '../utils/composables/useIsMobile';
 import { ref, computed } from 'vue';
 import Icon from './Icon.vue';

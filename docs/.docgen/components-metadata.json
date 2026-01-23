@@ -811,7 +811,7 @@
         },
         "defaultValue": {
           "func": false,
-          "value": "1"
+          "value": "5"
         }
       },
       {
@@ -822,7 +822,7 @@
         },
         "defaultValue": {
           "func": false,
-          "value": "false"
+          "value": "true"
         }
       }
     ],
@@ -1637,8 +1637,9 @@
     ]
   },
   "CdsButton": {
-    "displayName": "CdsButton",
+    "name": "CdsButton",
     "exportName": "default",
+    "displayName": "Button",
     "description": "",
     "tags": {},
     "props": [
@@ -1740,7 +1741,7 @@
       },
       {
         "name": "loading",
-        "description": "Especifica se a versão do Botão é a secundária.",
+        "description": "Especifica se o botão deve mostrar spinner de carregamento.\nCaso o botão seja do tipo ghost ou secondary a variante do spinner é a mesma passada na prop variant.",
         "type": {
           "name": "boolean"
         },
@@ -2746,10 +2747,9 @@
     "events": [
       {
         "name": "cds-click",
-        "description": "Evento emitido quando o wrapper é clicado",
         "type": {
           "names": [
-            "Event"
+            "undefined"
           ]
         }
       }
@@ -4323,8 +4323,9 @@
     ]
   },
   "CdsDropdownButton": {
-    "displayName": "CdsDropdownButton",
+    "name": "CdsDropdownButton",
     "exportName": "default",
+    "displayName": "DropdownButton",
     "description": "",
     "tags": {},
     "props": [
@@ -4424,25 +4425,36 @@
           "md",
           "lg"
         ]
+      },
+      {
+        "name": "disabled",
+        "description": "Desabilita o input.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
+      },
+      {
+        "name": "tooltipText",
+        "description": "Texto a ser exibido como tooltip com o hover do DropdownButton quando a prop disabled estiver ativa.",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "null"
+        }
       }
     ],
     "events": [
       {
-        "name": "click",
-        "description": "Evento que indica que o DropdownButton foi clicado",
-        "type": {
-          "names": [
-            "Event"
-          ]
-        }
+        "name": "button-click"
       },
       {
-        "name": "action-click",
-        "type": {
-          "names": [
-            "undefined"
-          ]
-        }
+        "name": "action-click"
       }
     ],
     "sourceFiles": [
@@ -8390,7 +8402,7 @@
         },
         "defaultValue": {
           "func": false,
-          "value": "'https://cuida.framer.wiki/'"
+          "value": "null"
         }
       },
       {
@@ -10731,6 +10743,18 @@
         }
       },
       {
+        "name": "deepSearch",
+        "description": "Indica se a busca deve levar em consideração argumentos compostos.\nSó tem efeito se a prop `searchable` for `true`.",
+        "type": {
+          "name": "boolean"
+        },
+        "required": false,
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
+      },
+      {
         "name": "width",
         "tags": {
           "deprecated": [
@@ -12673,6 +12697,17 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "loading",
+        "description": "Ativa o estado de carregamento do componente, exibindo um Skeleton para a tabela.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
       }
     ],
     "events": [
@@ -13354,7 +13389,7 @@
         },
         "defaultValue": {
           "func": false,
-          "value": "'https://cuida.framer.wiki/'"
+          "value": "null"
         }
       },
       {
@@ -13440,6 +13475,11 @@
           "func": false,
           "value": "false"
         }
+      }
+    ],
+    "slots": [
+      {
+        "name": "label"
       }
     ],
     "sourceFiles": [
