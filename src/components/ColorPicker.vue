@@ -171,6 +171,8 @@ export default {
 				}
 			});
 
+			this.showPopover = false;
+
 			/**
 			 * **Implementa v-model**. Evento utilizado para emitir a *cor* selecionada. A cor é emitida como uma string no formato HEX.
 			 * @event update:modelValue
