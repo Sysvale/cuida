@@ -3,21 +3,24 @@
 Selects permitem que o usuário escolha uma opção a partir de uma lista de itens.
 
 ---
+
 <br>
 
 ## Quando usar:
-- O usuário tiver de escolher uma única opção em uma lista com diversos itens.
 
+- O usuário tiver de escolher uma única opção em uma lista com diversos itens.
 
 <br>
 
 ## Quando não usar:
+
 - A lista de opções possuir 3 itens ou menos. Nesses casos, recomendamos a utilização de radio buttons.
 - O usuário precisar selecionar mais de um item da lista. Nesse caso, utilize <a href="https://sysvale.github.io/cuida/?path=/docs/componentes-forms-clusteredmultiselect--clustered-multiselect">ClusteredMultiselects</a>.
 
 <br>
 
 ## Observações:
+
 - Coloque as opções mais prováveis de serem selecionadas no topo do select. Na dúvida, ordene-os em ordem alfanumérica.
 - As labels dos selects devem ser sucintas (de uma a três palavras).
 - As labels devem ser ser escritas com a primeira letra maiúscula e as restantes minúsculas.
@@ -143,5 +146,6 @@ const args = ref({
 	supportingText: null,
 	supportLink: '',
 	supportLinkUrl: '',
+	ghost: false,
 });
 </script>
