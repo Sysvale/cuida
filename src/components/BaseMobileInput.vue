@@ -405,6 +405,13 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	 * Especifica se o componente deve ser exibido na sua versão ghost.
+	 */
+	ghost: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const emits = defineEmits({
@@ -425,6 +432,10 @@ const computedAutocompleteProp = computed(() => props.enableAutocomplete ? 'on' 
 
 const baseMobileInputClass = computed(() => {
 	let mobileInputClass = props.fluid ? 'base-mobile-input--fluid' : 'base-mobile-input';
+
+	if (props.ghost) {
+		mobileInputClass += ' ghost';
+	}
 
 	if (!isFocused.value) {
 		mobileInputClass +=  props.disabled
@@ -790,5 +801,12 @@ input::-webkit-inner-spin-button {
 
 input:disabled {
 	background: none !important;
+}
+
+.base-mobile-input.ghost {
+	border: none !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	outline: none !important;
 }
 </style>

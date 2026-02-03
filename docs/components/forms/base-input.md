@@ -96,5 +96,6 @@ const args = ref({
 	tooltipIcon: 'info-outline',
 	trailingIcon: 'info-outline',
 	leadingIcon: 'info-outline',
+	ghost: true,
 });
 </script>
