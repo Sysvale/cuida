@@ -68,9 +68,9 @@ import PlaygroundBuilder from './PlaygroundBuilder.vue';
 import PreviewContainer from './PreviewContainer.vue';
 import LogBuilder from './LogBuilder.vue';
 
-const model = defineModel('args');
+const model = defineModel<Record<string, any>>('args');
 
-withDefaults(defineProps<{
+const props = withDefaults(defineProps<{
 	component: Component & { name: string },
 	events: string[],
 	withBackground?: boolean,
@@ -89,9 +89,37 @@ const logBuilder = useTemplateRef('logBuilderRef');
 const internalEvents = ref({});
 
 onMounted(() => {
-	if (logBuilder.value) {
-		internalEvents.value = logBuilder.value.createEventListeners();
+	const eventListeners = logBuilder.value?.createEventListeners() ?? {};
+
+	if (!props.events) {
+		internalEvents.value = eventListeners;
+		return;
 	}
+
+	const updateModelListeners = props.events
+		.filter((eventName) => eventName.startsWith('update:'))
+		.reduce((accumulator, eventName) => {
+			const modelKey = eventName.slice('update:'.length);
+			const currentListener = eventListeners[eventName];
+
+			accumulator[eventName] = (...eventArgs: unknown[]) => {
+				if (model.value && typeof model.value === 'object') {
+					(model.value as Record<string, unknown>)[modelKey] = eventArgs[0];
+				}
+
+				if (typeof currentListener === 'function') {
+					currentListener(...eventArgs);
+				}
+			};
+
+			return accumulator;
+		// eslint-disable-next-line no-unused-vars
+		}, {} as Record<string, (...eventArgs: unknown[]) => void>);
+
+	internalEvents.value = {
+		...eventListeners,
+		...updateModelListeners,
+	};
 });
 
 export type PreviewBuilderType = typeof import('./PreviewBuilder.vue')['default'];
