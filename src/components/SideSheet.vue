@@ -7,7 +7,6 @@
 	>
 		<div
 			class="side-sheet__container"
-			@click.stop
 		>
 			<header>
 				<!-- @slot Slot usado para utilização de header customizado. -->
@@ -75,6 +74,11 @@ import hexToRgb from '../utils/methods/hexToRgb';
 import { KeyCodes } from '../utils';
 import CdsButton from '../components/Button.vue';
 import CdsScrollable from '../components/Scrollable.vue';
+
+const bodyScrollLockState = {
+	lockCount: 0,
+	originalStyles: null,
+};
 
 export default {
 	name: 'CdsSideSheet',
@@ -205,6 +209,7 @@ export default {
 	data() {
 		return {
 			sassColorVariables,
+			isBodyScrollLocked: false,
 		};
 	},
 
@@ -240,37 +245,44 @@ export default {
 		modelValue(newValue) {
 			if (!newValue) {
 				this.dettachKeyupEvent();
+				this.unlockBodyScroll();
 				return;
 			}
 			this.attachKeyupEvent();
+			this.lockBodyScroll();
 		},
 	},
 
 	created() {
-		this.attachKeyupEvent();
+		if (this.modelValue) {
+			this.attachKeyupEvent();
+			this.lockBodyScroll();
+		}
 	},
 
 	beforeUnmount() {
 		this.dettachKeyupEvent();
+		this.unlockBodyScroll();
 	},
 
 	methods: {
 		hexToRgb,
 
 		shouldCloseOnBackdrop() {
+			console.log('opa', this.noCloseOnBackdrop);
 			if (!this.noCloseOnBackdrop) {
 				/**
 				* Evento utilizado para implementar o v-model.
 				* @event update:modelValue
 				* @type {Event}
 				*/
-				this.$emit('update:modelValue', !this.modelValue);
+				this.$emit('update:modelValue', false);
 			}
 		},
 
 		shouldCloseOnEsc() {
 			if (!this.noCloseOnEsc) {
-				this.$emit('update:modelValue', !this.modelValue);
+				this.$emit('update:modelValue', false);
 			}
 		},
 
@@ -286,6 +298,42 @@ export default {
 
 		dettachKeyupEvent() {
 			window.removeEventListener('keyup', this.keyupListener);
+		},
+
+		lockBodyScroll() {
+			if (this.isBodyScrollLocked || typeof window === 'undefined') {
+				return;
+			}
+
+			const { body } = document;
+			if (bodyScrollLockState.lockCount === 0) {
+				bodyScrollLockState.originalStyles = {
+					overflow: body.style.overflow,
+				};
+
+				body.style.overflow = 'hidden';
+			}
+
+			bodyScrollLockState.lockCount += 1;
+			this.isBodyScrollLocked = true;
+		},
+
+		unlockBodyScroll() {
+			if (!this.isBodyScrollLocked || typeof window === 'undefined') {
+				return;
+			}
+
+			bodyScrollLockState.lockCount = Math.max(0, bodyScrollLockState.lockCount - 1);
+
+			if (bodyScrollLockState.lockCount === 0) {
+				const { body } = document;
+				const originalStyles = bodyScrollLockState.originalStyles || {};
+
+				body.style.overflow = originalStyles.overflow || '';
+				bodyScrollLockState.originalStyles = null;
+			}
+
+			this.isBodyScrollLocked = false;
 		},
 		
 		closeHandle() {
