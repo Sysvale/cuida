@@ -128,6 +128,7 @@
 					:min-date="minDate"
 					:max-date="maxDate"
 					:variant="variant"
+					:year="currentDate.year"
 					@click="handleMonthSelection"
 				/>
 

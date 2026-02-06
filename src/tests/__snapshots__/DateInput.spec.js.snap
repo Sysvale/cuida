@@ -108,7 +108,7 @@ exports[`DateInput > renders correctly 1`] = `
         <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">nov</div>
         <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">dez</div>
       </div>
-      <div data-v-1965a21c="" data-v-fcd39cd1="" class="scroll-indicator__container" min-date="" max-date="" style="display: none;">
+      <div data-v-1965a21c="" data-v-fcd39cd1="" class="scroll-indicator__container" style="display: none;">
         <div data-v-958116c6="" data-v-1965a21c="" class="grid year-selector__grid" tabindex="0">
           <!-- @slot Slot com o conteúdo interno da grid -->
           <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2019</div>
