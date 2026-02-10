@@ -95,7 +95,7 @@ exports[`DateInput > renders correctly 1`] = `
       </div>
       <div data-v-958116c6="" data-v-44dffe1e="" data-v-fcd39cd1="" class="grid month-selector__grid" style="display: none;">
         <!-- @slot Slot com o conteúdo interno da grid -->
-        <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green month-selector__month--selected--green">jan</div>
+        <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">jan</div>
         <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">fev</div>
         <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">mar</div>
         <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">abr</div>
@@ -118,7 +118,7 @@ exports[`DateInput > renders correctly 1`] = `
           <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2023</div>
           <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2024</div>
           <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2025</div>
-          <div data-v-1965a21c="" class="year-selector__year--green year-selector__year--selected--green year-selector__year">2026</div>
+          <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2026</div>
           <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2027</div>
           <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2028</div>
           <div data-v-1965a21c="" class="year-selector__year--green year-selector__year">2029</div>
