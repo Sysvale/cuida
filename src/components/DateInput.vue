@@ -829,23 +829,13 @@ function toDateTime() {
 }
 
 function handleMonthSelection(selectedMonth) {
-	internalValue.value = internalValue.value ? internalValue.value : DateTime.now().setLocale('pt-BR').toFormat('dd/MM/yyyy');
 	showMonthPicker.value = !showMonthPicker.value;
-	let [day, month, year] = internalValue.value.split('/');
-	month = selectedMonth.index;
-	let daysInMonth = DateTime.local(+year, +month).daysInMonth;
-
-	day = daysInMonth < day ? daysInMonth : day;
-
-	currentDate.value = DateTime.fromFormat(`${day}/${month}/${year}`, 'dd/MM/yyyy');
+	currentDate.value = currentDate.value.set({ month: parseInt(selectedMonth.index) });
 }
 
 function handleYearSelection(selectedYear) {
-	internalValue.value = internalValue.value ? internalValue.value : DateTime.now().setLocale('pt-BR').toFormat('dd/MM/yyyy');
 	showYearPicker.value = !showYearPicker.value;
-	let [day, month] = internalValue.value.split('/');
-
-	currentDate.value = DateTime.fromFormat(`${day}/${month}/${selectedYear}`, 'dd/MM/yyyy');
+	currentDate.value = currentDate.value.set({ year: selectedYear });
 }
 
 function toggleMonthPickerDisplay() {
