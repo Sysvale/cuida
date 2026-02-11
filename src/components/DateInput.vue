@@ -346,7 +346,6 @@ const datePickerRef = useTemplateRef('datePicker');
 const { emitClick, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
 const { clickedOutside, setTargetElement } = useClickOutside();
 const isCalendarOpen = ref(false);
-const userHasNavigated = ref(false);
 const currentDate = ref(DateTime.now().setLocale('pt-BR'));
 const startDate = ref(null);
 const endDate = ref(null);
@@ -374,10 +373,7 @@ const currentDateISO = computed(() => {
 });
 
 const pickerSelectedDate = computed(() => {
-	if (model.value || userHasNavigated.value) {
-		return currentDateISO.value;
-	}
-	return '';
+	return currentDateISO.value;
 });
 
 const emptyDays = computed(() => {
@@ -512,10 +508,6 @@ function toggleDatePicker() {
 	dropdownDirection.value = direction(datePickerRef, 340, (props.mobile || props.floatingLabel));
 
 	if (isCalendarOpen.value) {
-		if (!model.value) {
-			userHasNavigated.value = false;
-		}
-
 		if (props.range && endDate.value) {
 			currentDate.value = endDate.value.startOf('month');
 		} else if (startDate.value) {
@@ -528,14 +520,12 @@ function toggleDatePicker() {
 
 function previousMonth() {
 	if (allowPreviousMonthNavigation.value) {
-		userHasNavigated.value = true;
 		currentDate.value = currentDate.value.minus({ months: 1 });
 	}
 }
 
 function nextMonth() {
 	if (allowNextMonthNavigation.value) {
-		userHasNavigated.value = true;
 		currentDate.value = currentDate.value.plus({ months: 1 });
 	}
 }
@@ -847,13 +837,11 @@ function toDateTime() {
 }
 
 function handleMonthSelection(selectedMonth) {
-	userHasNavigated.value = true;
 	showMonthPicker.value = !showMonthPicker.value;
 	currentDate.value = currentDate.value.set({ month: parseInt(selectedMonth.index) });
 }
 
 function handleYearSelection(selectedYear) {
-	userHasNavigated.value = true;
 	showYearPicker.value = !showYearPicker.value;
 	currentDate.value = currentDate.value.set({ year: selectedYear });
 }
