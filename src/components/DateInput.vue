@@ -368,8 +368,12 @@ const currenYear = computed(() => {
 	return currentDate.value.setLocale('pt-BR').toFormat('yyyy');
 });
 
-const pickerSelectedDate = computed(() => {
+const currentDateISO = computed(() => {
 	return currentDate.value.toFormat('yyyy-MM-dd');
+});
+
+const pickerSelectedDate = computed(() => {
+	return currentDateISO.value;
 });
 
 const emptyDays = computed(() => {
