@@ -1,4 +1,4 @@
-import { describe, test, expect, beforeEach, vi } from 'vitest';
+import { describe, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 import DateInput from '../components/DateInput.vue'; // Ajuste o caminho conforme necessário
 import CdsBaseInput from '../components/BaseInput.vue';
@@ -8,6 +8,9 @@ describe('DateInput', () => {
 	let wrapper;
 
 	beforeEach(() => {
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date('2026-01-01T00:00:00'));
+
 		wrapper = mount(DateInput, {
 			props: {
 				label: 'Selecione uma data',
@@ -92,5 +95,9 @@ describe('DateInput', () => {
 		});
 
 		expect(wrapper.findComponent(CdsBaseInput).props('floatingLabel')).toBe(true);
+	});
+
+	afterEach(() => {
+		vi.useRealTimers();
 	});
 });
