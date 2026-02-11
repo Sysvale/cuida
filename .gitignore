@@ -34,4 +34,3 @@ docs/.vitepress/*.timestamp-*.mjs
 
 # Vite/VitePress temporary timestamp files
 *.timestamp-*.mjs
-docs/.docgen/components-metadata.json
