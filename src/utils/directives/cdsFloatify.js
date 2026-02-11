@@ -1,79 +1,108 @@
 import { createPopper } from '@popperjs/core';
 
-let popperInstance = null;
-let observer = null;
-let scrollHandler = null;
-let resizeHandler = null;
+export default {
+    mounted(el, binding) {
+        let targetId, placement, offset;
 
-const CdsFloatify = {
-	mounted: (el, binding) => {
-		const target = document.querySelector(`[id='${binding.value}']`);
-		const popoverElement = document.querySelector(`[id='${el.id}']`);
-		const modifiers = binding.modifiers;
-		const position = binding.arg;
+        if (typeof binding.value === 'string') {
+            targetId = binding.value;
+            placement = binding.arg || 'bottom';
+            offset = [0, 8];
+        } else if (typeof binding.value === 'object' && binding.value !== null) {
+            targetId = binding.value.targetId;
+            placement = binding.value.placement || binding.arg || 'bottom';
+            offset = binding.value.offset || [0, 8];
+        }
 
-		if (target && popoverElement) {
-			popperInstance = createPopper(target, popoverElement, {
-				placement: position,
-				modifiers: [
-					{
-						name: 'offset',
-						options: {
-							offset: [0, -4],
-						},
-					},
-					{
-						name: 'flip',
-						enabled: !!modifiers.flip,
-					},
-				],
-			});
+        if (!targetId) return;
 
-			observer = new MutationObserver(() => {
-				if (popperInstance) {
-					popperInstance.update();
-				}
-			});
+        const startPopper = (target) => {
+            try {
+                const popperInstance = createPopper(target, el, {
+                    placement: placement,
+                    modifiers: [
+                        {
+                            name: 'offset',
+                            options: {
+                                offset: offset,
+                            },
+                        },
+                        {
+                            name: 'preventOverflow',
+                            options: {
+                                padding: 16,
+                            },
+                        },
+                    ],
+                });
 
-			observer.observe(document.body, {
-				childList: true,
-				subtree: true,
-			});
+                const mutationObserver = new MutationObserver(() => {
+                    popperInstance.update();
+                });
 
-			scrollHandler = () => {
-				if (popperInstance) {
-					popperInstance.update();
-				}
-			};
+                mutationObserver.observe(document.body, {
+                    childList: true,
+                    subtree: true,
+                });
 
-			resizeHandler = () => {
-				if (popperInstance) {
-					popperInstance.update();
-				}
-			};
+                const resizeObserver = new ResizeObserver(() => {
+                    popperInstance.update();
+                });
 
-			window.addEventListener('scroll', scrollHandler);
-			window.addEventListener('resize', resizeHandler);
-		}
-	},
-	beforeUnmount: () => {
-		if (popperInstance) {
-			popperInstance.destroy();
-			popperInstance = null;
-		}
-		if (observer) {
-			observer.disconnect();
-			observer = null;
-		}
+                resizeObserver.observe(target);
+                resizeObserver.observe(el);
 
-		if(scrollHandler) {
-			window.removeEventListener('scroll', scrollHandler);
-		}
+                el._popperInstance = popperInstance;
+                el._mutationObserver = mutationObserver;
+                el._resizeObserver = resizeObserver;
+            } catch (err) {
+                // Silently fail or log in dev
+            }
+        };
 
-		if(resizeHandler) {
-			window.removeEventListener('resize', resizeHandler);
-		}
-	},
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+            startPopper(targetElement);
+        } else {
+            const targetObserver = new MutationObserver(() => {
+                const target = document.getElementById(targetId);
+                if (target) {
+                    startPopper(target);
+                    targetObserver.disconnect();
+                }
+            });
+
+            targetObserver.observe(document.body, {
+                childList: true,
+                subtree: true,
+            });
+
+            el._targetObserver = targetObserver;
+        }
+    },
+
+    updated(el) {
+        if (el._popperInstance) {
+            el._popperInstance.update();
+        }
+    },
+
+    beforeUnmount(el) {
+        if (el._popperInstance) {
+            el._popperInstance.destroy();
+            el._popperInstance = null;
+        }
+        if (el._mutationObserver) {
+            el._mutationObserver.disconnect();
+            el._mutationObserver = null;
+        }
+        if (el._resizeObserver) {
+            el._resizeObserver.disconnect();
+            el._resizeObserver = null;
+        }
+        if (el._targetObserver) {
+            el._targetObserver.disconnect();
+            el._targetObserver = null;
+        }
+    },
 };
-
-export default CdsFloatify;
