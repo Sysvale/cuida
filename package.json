@@ -1,6 +1,6 @@
 {
 	"name": "@sysvale/cuida",
-	"version": "3.154.5",
+	"version": "3.154.6",
 	"description": "A design system built by Sysvale, using storybook and Vue components",
 	"repository": {
 		"type": "git",
@@ -20,7 +20,7 @@
 	},
 	"unpkg": "dist/@sysvale/cuida.umd.js",
 	"scripts": {
-		"build": "vue-tsc --declaration --emitDeclarationOnly && npm run generate:docs && vite build && node buildtokens.js",
+		"build": "npm run generate:docs && vue-tsc --declaration --emitDeclarationOnly && vite build && node buildtokens.js",
 		"preview": "vite preview",
 		"docs:dev": "vitepress dev docs",
 		"docs:build": "vitepress build docs",
