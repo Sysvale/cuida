@@ -61,20 +61,25 @@ const props = defineProps({
 const emits = defineEmits(['click']);
 
 /* REACTIVE DATA */
-const currentYear = ref(new Date().getFullYear());
+const todayYear = new Date().getFullYear();
+const selectedYear = computed(() => {
+	if (!props.selectedDate) return null;
+	return parseInt(props.selectedDate.split('-')[0]);
+});
+
 const minYear = computed(() => {
 	if (props.minDate) {
 		return parseInt(props.minDate.split('-')[0]);
 	}
-	return currentYear.value - 120;
+	return todayYear - 120;
 });
 const maxYear = computed(() => {
 	if (props.maxDate) {
 		return parseInt(props.maxDate.split('-')[0]);
 	}
-	return currentYear.value + 50;
+	return todayYear + 50;
 });
-const initialYear = ref(currentYear.value - 7);
+const initialYear = ref((selectedYear.value || todayYear) - 7);
 const scrollThumbHeight = ref(33);
 const isDragging = ref(false);
 const startY = ref(0);
@@ -113,7 +118,7 @@ function yearSelectorClasses(year) {
 	let classes = {
 		[`year-selector__year--${props.variant}`]: true,
 		'year-selector__year--disabled':( year < minYear.value) || (year > maxYear.value),
-		[`year-selector__year--selected--${props.variant}`]: year == currentYear.value,
+		[`year-selector__year--selected--${props.variant}`]: year == selectedYear.value,
 	}
 
 	return classes;

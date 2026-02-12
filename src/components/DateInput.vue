@@ -124,7 +124,7 @@
 				<MonthSelectorGrid
 					v-show="!range && showMonthPicker"
 					ref="monthPicker"
-					:selected-date="model"
+					:selected-date="pickerSelectedDate"
 					:min-date="minDate"
 					:max-date="maxDate"
 					:variant="variant"
@@ -135,7 +135,7 @@
 				<YearSelectorGrid
 					v-show="!range && showYearPicker"
 					ref="monthPicker"
-					:selected-date="model"
+					:selected-date="pickerSelectedDate"
 					:min-date="minDate"
 					:max-date="maxDate"
 					:variant="variant"
@@ -366,6 +366,10 @@ const currentMonth = computed(() => {
 
 const currenYear = computed(() => {
 	return currentDate.value.setLocale('pt-BR').toFormat('yyyy');
+});
+
+const pickerSelectedDate = computed(() => {
+	return currentDate.value.toFormat('yyyy-MM-dd');
 });
 
 const emptyDays = computed(() => {
@@ -829,23 +833,13 @@ function toDateTime() {
 }
 
 function handleMonthSelection(selectedMonth) {
-	internalValue.value = internalValue.value ? internalValue.value : DateTime.now().setLocale('pt-BR').toFormat('dd/MM/yyyy');
 	showMonthPicker.value = !showMonthPicker.value;
-	let [day, month, year] = internalValue.value.split('/');
-	month = selectedMonth.index;
-	let daysInMonth = DateTime.local(+year, +month).daysInMonth;
-
-	day = daysInMonth < day ? daysInMonth : day;
-
-	currentDate.value = DateTime.fromFormat(`${day}/${month}/${year}`, 'dd/MM/yyyy');
+	currentDate.value = currentDate.value.set({ month: parseInt(selectedMonth.index) });
 }
 
 function handleYearSelection(selectedYear) {
-	internalValue.value = internalValue.value ? internalValue.value : DateTime.now().setLocale('pt-BR').toFormat('dd/MM/yyyy');
 	showYearPicker.value = !showYearPicker.value;
-	let [day, month] = internalValue.value.split('/');
-
-	currentDate.value = DateTime.fromFormat(`${day}/${month}/${selectedYear}`, 'dd/MM/yyyy');
+	currentDate.value = currentDate.value.set({ year: selectedYear });
 }
 
 function toggleMonthPickerDisplay() {

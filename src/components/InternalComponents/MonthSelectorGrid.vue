@@ -58,9 +58,9 @@ const internalMaxDate = ref(props.maxDate);
 
 /* COMPUTED */
 const currentMonth = computed(() => {
-	if (!internalDate.value) return 1;
+	if (!internalDate.value) return null;
 	const month = internalDate.value.split('-')[1];
-	return month ? parseInt(month) : 1;
+	return month ? parseInt(month) : null;
 });
 
 /* WATCHERS */

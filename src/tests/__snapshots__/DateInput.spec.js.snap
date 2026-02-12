@@ -95,8 +95,8 @@ exports[`DateInput > renders correctly 1`] = `
       </div>
       <div data-v-958116c6="" data-v-44dffe1e="" data-v-fcd39cd1="" class="grid month-selector__grid" style="display: none;">
         <!-- @slot Slot com o conteúdo interno da grid -->
-        <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green month-selector__month--selected--green">jan</div>
-        <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">fev</div>
+        <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">jan</div>
+        <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green month-selector__month--selected--green">fev</div>
         <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">mar</div>
         <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">abr</div>
         <div data-v-44dffe1e="" class="month-selector__month month-selector__month--green">maio</div>
