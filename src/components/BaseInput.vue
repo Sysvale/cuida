@@ -526,6 +526,11 @@ function handleFocus(event) {
 
 function handleBlur(event) {
 	isFocused.value = false;
+
+	if (htmlInputRef.value && htmlInputRef.value.value !== undefined) {
+		internalValue.value = htmlInputRef.value.value;
+	}
+
 	/**
 	* Evento emitido quando o componente deixa de ser focado.
 	* @event blur
