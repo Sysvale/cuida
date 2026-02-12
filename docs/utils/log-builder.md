@@ -6,7 +6,7 @@ Sistema de captura e exibição de eventos em tempo real para documentação de 
 
 ## Descrição
 
-O **LogBuilder** é um componente responsável por capturar, registrar e exiber eventos emitidos pelos componentes durante a interação do usuário. Ele funciona como um console, mostrando em tempo real todos os eventos disparados com seus respectivos payloads e timestamps.
+O **LogBuilder** é um componente responsável por capturar, registrar e exibir eventos emitidos pelos componentes durante a interação do usuário. Ele funciona como um console, mostrando em tempo real todos os eventos disparados com seus respectivos payloads e timestamps.
 
 ---
 
