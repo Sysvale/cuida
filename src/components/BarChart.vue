@@ -167,12 +167,13 @@ export default {
 				this.chartOptions = {
 					...this.chartOptions,
 					indexAxis: newValue ? 'y' : 'x',
-					scales: newValue
-						? {
-							x: { beginAtZero: true },
-						}
-						: {
-							y: {
+					scales: {
+						...this.chartOptions.scales,
+						x: newValue
+							? { beginAtZero: true }
+							: { ...this.chartOptions.scales?.x },
+						y: !newValue
+							? {
 								beginAtZero: true,
 								grace: '5%',
 								ticks: {
@@ -180,8 +181,9 @@ export default {
 								},
 								categoryPercentage: 0.6,
 								barPercentage: 0.8
-							},
-						},
+							}
+							: { ...this.chartOptions.scales?.y },
+					},
 				};
 			},
 			immediate: true,

@@ -492,7 +492,7 @@ export default {
 		checkDashed() {
 			this.chartOptions = {
 				...this.chartOptions,
-				borderDash: [this.borderDash[0], this.borderDash[1]],
+				borderDash: this.isDashed ? [this.borderDash[0], this.borderDash[1]] : [],
 			};
 		}
 	}
