@@ -125,18 +125,21 @@ export default {
 	watch: {
 		labels: {
 			handler(newValue) {
-				this.localLabels = newValue
+				this.localLabels = newValue;
+				this.mergeChartDataNoSelect(this.data);
 			},
 			immediate: true,
 		},
 
 		variant: {
-			handler(newValue, oldValue) {
-				if (newValue === 'gray' || newValue === 'dark')  {
+			handler(newValue) {
+				if (newValue === 'gray' || newValue === 'dark') {
 					this.deleteFirstTwoColors = true;
 				} else {
 					this.deleteFirstTwoColors = false;
 				}
+
+				this.mergeChartDataNoSelect(this.data);
 			},
 			immediate: true,
 		},
@@ -150,11 +153,36 @@ export default {
 
 		barWidth: {
 			handler(newValue) {
-				if (newValue >= 0.1 && newValue <= 1) {
-					this.chartOptions.categoryPercentage = newValue;
-				} else {
-					this.chartOptions.categoryPercentage = 1;
-				}
+				const categoryPercentage = (newValue >= 0.1 && newValue <= 1) ? newValue : 1;
+				this.chartOptions = {
+					...this.chartOptions,
+					categoryPercentage,
+				};
+			},
+			immediate: true,
+		},
+
+		horizontalBar: {
+			handler(newValue) {
+				this.chartOptions = {
+					...this.chartOptions,
+					indexAxis: newValue ? 'y' : 'x',
+					scales: newValue
+						? {
+							x: { beginAtZero: true },
+						}
+						: {
+							y: {
+								beginAtZero: true,
+								grace: '5%',
+								ticks: {
+									precision: 0
+								},
+								categoryPercentage: 0.6,
+								barPercentage: 0.8
+							},
+						},
+				};
 			},
 			immediate: true,
 		},

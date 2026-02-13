@@ -232,18 +232,28 @@ export default {
 	watch: {
 		labels: {
 			handler(newValue) {
-				this.localLabels = newValue
+				this.localLabels = newValue;
+				this.mergeChartDataNoSelect(this.data);
 			},
 			immediate: true,
 		},
 
 		variant: {
 			handler(newValue) {
-				if (newValue === 'gray' || newValue === 'dark')  {
+				if (newValue === 'gray' || newValue === 'dark') {
 					this.deleteFirstTwoColors = true;
 				} else {
 					this.deleteFirstTwoColors = false;
 				}
+
+				this.mergeChartDataNoSelect(this.data);
+			},
+			immediate: true,
+		},
+
+		theme: {
+			handler() {
+				this.mergeChartDataNoSelect(this.data);
 			},
 			immediate: true,
 		},
@@ -255,11 +265,118 @@ export default {
 			immediate: true,
 		},
 
+		showLabelName: {
+			handler() {
+				this.mergeChartDataNoSelect(this.data);
+			},
+			immediate: true,
+		},
+
+		fill: {
+			handler(newValue) {
+				this.chartOptions = {
+					...this.chartOptions,
+					fill: newValue,
+				};
+				this.mergeChartDataNoSelect(this.data);
+			},
+			immediate: true,
+		},
+
 		isDashed: {
 			handler(newValue) {
 				if (newValue === true) {
 					this.checkDashed();
 				}
+			},
+			immediate: true,
+		},
+
+		borderDash: {
+			handler() {
+				this.checkDashed();
+			},
+			immediate: true,
+		},
+
+		scales: {
+			handler(newValue) {
+				this.chartOptions = {
+					...this.chartOptions,
+					scales: {
+						...this.chartOptions.scales,
+						...newValue,
+					},
+				};
+			},
+			immediate: true,
+		},
+
+		animation: {
+			handler(newValue) {
+				this.chartOptions = {
+					...this.chartOptions,
+					animation: {
+						...newValue,
+					},
+				};
+			},
+			immediate: true,
+		},
+
+		plugins: {
+			handler(newValue) {
+				this.chartOptions = {
+					...this.chartOptions,
+					plugins: {
+						...this.chartOptions.plugins,
+						...newValue,
+					},
+				};
+			},
+			immediate: true,
+		},
+
+		xAxisRange: {
+			handler(newValue) {
+				this.chartOptions = {
+					...this.chartOptions,
+					scales: {
+						...this.chartOptions.scales,
+						x: {
+							...this.chartOptions.scales?.x,
+							suggestedMin: newValue[0],
+							suggestedMax: newValue[1],
+						},
+					},
+				};
+			},
+			immediate: true,
+		},
+
+		yAxisRange: {
+			handler(newValue) {
+				this.chartOptions = {
+					...this.chartOptions,
+					scales: {
+						...this.chartOptions.scales,
+						y: {
+							...this.chartOptions.scales?.y,
+							suggestedMin: newValue[0],
+							suggestedMax: newValue[1],
+						},
+					},
+				};
+			},
+			immediate: true,
+		},
+
+		smoothing: {
+			handler(newValue) {
+				this.chartOptions = {
+					...this.chartOptions,
+					tension: newValue,
+				};
 			},
 			immediate: true,
 		},
@@ -373,7 +490,10 @@ export default {
 		},
 
 		checkDashed() {
-			this.chartOptions.borderDash = [this.borderDash[0], this.borderDash[1]];
+			this.chartOptions = {
+				...this.chartOptions,
+				borderDash: [this.borderDash[0], this.borderDash[1]],
+			};
 		}
 	}
 }

@@ -125,18 +125,21 @@ export default {
 	watch: {
 		labels: {
 			handler(newValue) {
-				this.localLabels = newValue
+				this.localLabels = newValue;
+				this.mergeChartDataNoSelect(this.data);
 			},
 			immediate: true,
 		},
 
 		variant: {
 			handler(newValue) {
-				if (newValue === 'gray' || newValue === 'dark')  {
+				if (newValue === 'gray' || newValue === 'dark') {
 					this.deleteFirstTwoColors = true;
 				} else {
 					this.deleteFirstTwoColors = false;
 				}
+
+				this.mergeChartDataNoSelect(this.data);
 			},
 			immediate: true,
 		},
@@ -144,6 +147,25 @@ export default {
 		data: {
 			handler(newValue) {
 				this.mergeChartDataNoSelect(newValue);
+			},
+			immediate: true,
+		},
+
+		isVisiblePointNames: {
+			handler(newValue) {
+				this.chartOptions = {
+					...this.chartOptions,
+					scales: {
+						...this.chartOptions.scales,
+						r: {
+							...this.chartOptions.scales?.r,
+							pointLabels: {
+								...this.chartOptions.scales?.r?.pointLabels,
+								display: newValue,
+							},
+						},
+					},
+				};
 			},
 			immediate: true,
 		},
