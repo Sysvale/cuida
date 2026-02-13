@@ -59,7 +59,7 @@
 					v-if="type === 'textarea'"
 					:id="componentId"
 					ref="htmlInput"
-					v-model.trim="internalValue"
+					v-model="internalValue"
 					:required="required"
 					:placeholder="placeholder"
 					:disabled="disabled"
@@ -103,7 +103,7 @@
 						:id="componentId"
 						ref="htmlInput"
 						v-bind="props"
-						v-model.trim="internalValue"
+						v-model="internalValue"
 						:required="required"
 						:readonly="readonly"
 						:placeholder="placeholder"
@@ -526,6 +526,11 @@ function handleFocus(event) {
 
 function handleBlur(event) {
 	isFocused.value = false;
+
+	if (htmlInputRef.value && htmlInputRef.value.value !== undefined) {
+		internalValue.value = htmlInputRef.value.value;
+	}
+
 	/**
 	* Evento emitido quando o componente deixa de ser focado.
 	* @event blur
