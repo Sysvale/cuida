@@ -75,6 +75,16 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Defina o texto a ser exibido para a legenda. Quando definido como verdadeiro
+		 * (true), espera-se que exiba o nome do data. Quando definido
+		 * como falso (false), será definido o nome do dataset
+		*/
+		showLabelName: {
+			type: Boolean,
+			required: true,
+			default: true,
+		},
 	},
 
 	data() {
@@ -209,7 +219,7 @@ export default {
 			data.forEach(obj => {
 				obj.datasets.forEach(state => {
 					const dataset = {
-						label: this.showLabelName ? state.name :state.label,
+						label: this.showLabelName ? state.name : state.label,
 						data: state.data,
 						name: state.name,
 						borderRadius: 6,
