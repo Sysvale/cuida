@@ -284,10 +284,8 @@ export default {
 		},
 
 		isDashed: {
-			handler(newValue) {
-				if (newValue === true) {
-					this.checkDashed();
-				}
+			handler() {
+				this.checkDashed();
 			},
 			immediate: true,
 		},
