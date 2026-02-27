@@ -21,7 +21,7 @@ Múltiplas vulnerabilidades foram encontradas em dependências (principalmente d
 - `preact` (Alta): Injeção de JSON VNode.
 - `esbuild`/`vite` (Moderada): Vulnerabilidades no servidor de desenvolvimento.
 - `vue` v2.7.16 (Baixa): Vulnerabilidade de ReDoS.
-*Nota: Corrigido via `npm audit fix` e remoção de dependência conflitante.*
+*Nota: Corrigido via `npm audit fix` e remoção de dependência conflitante. Vulnerabilidades remanescentes no servidor de desenvolvimento (`esbuild`) e ferramentas de build (`minimatch`) persistem nas versões atuais mas são mitigadas no contexto de uso desta biblioteca.*
 
 ### 1.3 Versões Mistas de Vue / Risco na Cadeia de Suprimentos (✅ Resolvido)
 A dependência `@sysvale/vue3-long-click` dependia explicitamente de `vue: ^2.5.22`. Em um projeto Vue 3, isso fazia com que uma segunda versão do Vue (Vue 2) fosse instalada.

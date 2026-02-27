@@ -77,5 +77,6 @@ exports[`ColorPicker > renders correctly 1`] = `
       </div>
     </div>
   </div>
-</div>"
+</div>
+<!--v-if-->"
 `;

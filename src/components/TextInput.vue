@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { ref, watch, useTemplateRef } from 'vue';
+import { ref, watch, useTemplateRef, computed } from 'vue';
 import {
 	nativeEvents,
 	nativeEmits,
@@ -32,7 +32,7 @@ defineOptions({ name: 'CdsTextInput' });
 
 const vFacade = facade;
 
-const componentRef = useTemplateRef('baseInput');
+const baseInputRef = useTemplateRef('baseInput');
 
 const model = defineModel('modelValue', {
 	type: String,
@@ -203,16 +203,17 @@ watch(model, (newValue, oldValue) => {
 
 watch(internalValue, (value) => {
 	model.value = value;
-	componentRef.value = componentRef.value?.componentRef;
 });
+
+const componentRef = computed(() => baseInputRef.value?.componentRef);
 
 /* EXPOSE */
 defineExpose({
 	componentRef,
-	isFocused: componentRef.value?.isFocused,
-	focus: () => componentRef.value?.focus(),
-	blur: () => componentRef.value?.blur(),
-	clear: () => componentRef.value?.clear(),
-	select: () => componentRef.value?.select(),
+	isFocused: computed(() => baseInputRef.value?.isFocused),
+	focus: () => baseInputRef.value?.focus(),
+	blur: () => baseInputRef.value?.blur(),
+	clear: () => baseInputRef.value?.clear(),
+	select: () => baseInputRef.value?.select(),
 });
 </script>

@@ -43,6 +43,10 @@ const props = defineProps({
 		default: '',
 		required: false,
 	},
+	year: {
+		type: Number,
+		default: new Date().getFullYear(),
+	},
 });
 
 const emits = defineEmits(['click']);
@@ -53,19 +57,10 @@ const internalMinDate = ref(props.minDate);
 const internalMaxDate = ref(props.maxDate);
 
 /* COMPUTED */
-const maxMonth = computed(() => {
-	if (!props.maxDate) return 12;
-	return extractMonth(props.maxDate);
-});
-
-const minMonth = computed(() => {
-	if (!props.minDate) return 1;
-	return extractMonth(props.minDate);
-});
-
 const currentMonth = computed(() => {
-	if (!internalDate.value) return 1;
-	return extractMonth(internalDate.value);
+	if (!internalDate.value) return null;
+	const month = internalDate.value.split('-')[1];
+	return month ? parseInt(month) : null;
 });
 
 /* WATCHERS */
@@ -87,27 +82,30 @@ onMounted(() => {
 });
 
 /* FUNCTIONS */
-function isMothDisabled(month) {
-	if (props.minDate && (month + 1 < minMonth.value)) {
-		return true;
+function isMonthDisabled(monthIndex) {
+	const month = monthIndex + 1;
+	const year = props.year;
+
+	if (props.minDate) {
+		const [minYear, minMonth] = props.minDate.split('-').map(Number);
+		if (year < minYear) return true;
+		if (year === minYear && month < minMonth) return true;
 	}
 
-	if (props.maxDate && (month + 1 > maxMonth.value)) {
-		return true;
+	if (props.maxDate) {
+		const [maxYear, maxMonth] = props.maxDate.split('-').map(Number);
+		if (year > maxYear) return true;
+		if (year === maxYear && month > maxMonth) return true;
 	}
 
 	return false;
 }
 
-function extractMonth(date) {
-	let month = date.split('-')[1];
-	return month < 9 ? month.replace('0', '') : month;
-}
 
 function monthSelectorClasses(index) {
 	let classes = {
 		[`month-selector__month--${props.variant}`]: true,
-		'month-selector__month--disabled': isMothDisabled(index),
+		'month-selector__month--disabled': isMonthDisabled(index),
 		[`month-selector__month--selected--${props.variant}`]: (index + 1) == currentMonth.value,
 	}
 
@@ -122,7 +120,7 @@ function payload(month, index) {
 }
 
 function handleClick(month, index) {
-	if(isMothDisabled(index)) return;
+	if(isMonthDisabled(index)) return;
 	emits('click', payload(month, index));
 }
 </script>
