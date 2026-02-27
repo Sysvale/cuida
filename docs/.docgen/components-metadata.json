@@ -1144,6 +1144,17 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "ghost",
+        "description": "Especifica se o componente deve ser exibido na sua versão ghost.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
       }
     ],
     "events": [
@@ -1403,6 +1414,17 @@
       {
         "name": "enableAutocomplete",
         "description": "Habilita autocomplete do browser.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
+      },
+      {
+        "name": "ghost",
+        "description": "Especifica se o componente deve ser exibido na sua versão ghost.",
         "type": {
           "name": "boolean"
         },
@@ -2875,6 +2897,35 @@
         "defaultValue": {
           "func": false,
           "value": "[]"
+        }
+      },
+      {
+        "name": "state",
+        "description": "Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.",
+        "tags": {},
+        "values": [
+          "default",
+          "valid",
+          "loading",
+          "invalid"
+        ],
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'default'"
+        }
+      },
+      {
+        "name": "errorMessage",
+        "description": "Especifica a mensagem de erro, que será exibida caso o estado seja inválido",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'Valor inválido'"
         }
       }
     ],
@@ -6738,6 +6789,7 @@
           "red",
           "orange",
           "amber",
+          "gray",
           "dark"
         ],
         "type": {
@@ -10951,6 +11003,17 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "ghost",
+        "description": "Especifica se o componente deve ser exibido na sua versão ghost.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
       }
     ],
     "slots": [
@@ -14683,6 +14746,16 @@
           "func": false,
           "value": "''"
         }
+      },
+      {
+        "name": "year",
+        "type": {
+          "name": "number"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "new Date().getFullYear()"
+        }
       }
     ],
     "events": [
@@ -14717,6 +14790,26 @@
           "name": "string"
         },
         "required": false,
+        "defaultValue": {
+          "func": false,
+          "value": "''"
+        }
+      },
+      {
+        "name": "minDate",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "''"
+        }
+      },
+      {
+        "name": "maxDate",
+        "type": {
+          "name": "string"
+        },
         "defaultValue": {
           "func": false,
           "value": "''"
