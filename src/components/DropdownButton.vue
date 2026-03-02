@@ -30,7 +30,7 @@
 		>
 			<div
 				v-for="(item, index) in items"
-				:key="index"
+				:key="item.id || index"
 			>
 				<!--
 					Evento emitido quando as ações do Dropdown são clicadas.
@@ -39,7 +39,7 @@
 				-->
 				<div
 					class="dropdown__container"
-					@click="handleOptionClick(item.name, index)"
+					@click="handleOptionClick(item)"
 				>
 					<CdsIcon
 						class="dropdown__icon"
@@ -47,7 +47,7 @@
 						width="22"
 						:name="item.icon"
 					/>
-					<span class="dropdown__text">{{ item.name }}</span>
+					<span class="dropdown__text">{{ item.label }}</span>
 				</div>
 			</div>
 		</div>
@@ -76,9 +76,9 @@ const emits = defineEmits([
 
 const props = defineProps({
 	/**
-	* Define a lista dos itens do DropdownButton a serem
-	* mostrados. Os itens da lista devem ser
-	* objetos com path ou route, e com uma label
+	* Define a lista dos itens do DropdownButton a serem mostrados.
+	* Os itens da lista devem ser objetos contendo as chaves:
+	* `id`, `label` e `icon`.
 	*/
 	items: {
 		type: Array,
@@ -203,9 +203,9 @@ function hide() {
 	isActive.value = false;
 }
 
-function handleOptionClick(actionName, index) {
+function handleOptionClick(item) {
 	isActive.value = !isActive.value;
-	emits('action-click', [actionName, index]);
+	emits('action-click', item.id);
 }
 
 function closeDropdownButton(event) {

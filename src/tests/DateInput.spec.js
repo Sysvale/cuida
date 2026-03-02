@@ -1,11 +1,19 @@
-import { describe, test, expect, beforeEach, vi } from 'vitest';
+import { describe, test, expect, beforeEach, beforeAll, afterAll, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 import DateInput from '../components/DateInput.vue'; // Ajuste o caminho conforme necessário
 import CdsBaseInput from '../components/BaseInput.vue';
-import { DateTime } from 'luxon';
 
 describe('DateInput', () => {
 	let wrapper;
+
+	beforeAll(() => {
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date('2026-02-01'));
+	});
+
+	afterAll(() => {
+		vi.useRealTimers();
+	});
 
 	beforeEach(() => {
 		wrapper = mount(DateInput, {
