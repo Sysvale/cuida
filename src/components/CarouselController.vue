@@ -41,6 +41,10 @@
 </template>
 
 <script>
+/**
+ * CarouselControllers são componentes utilizados para controlar a exibição
+ * de elementos em carrosséis, informando a página atual ou o intervalo de itens sendo exibidos.
+ */
 export default {
 	name: 'CdsCarouselController',
 	props: {

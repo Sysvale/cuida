@@ -29,13 +29,19 @@ O Carousel é um componente que permite a exibição de uma série de conteúdos
 
 ## Uso
 
-```js
+```html
 <CdsCarousel
-	variant="green"
-	size="md"
-	text="Lorem Ipsum"
-	@click="carouselClick = true"
-/>
+	:items="items"
+	@item-click="handleItemClick"
+>
+	<template #default="{ item }">
+		<CdsImage
+			:src="item"
+			width="300"
+			height="400"
+		/>
+	</template>
+</CdsCarousel>
 ```
 
 ---
