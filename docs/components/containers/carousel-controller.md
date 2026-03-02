@@ -18,10 +18,11 @@ CarouselControllers são componentes utilizados para controlar a exibição de e
 
 ## Uso
 
-```js
+```html
 <CdsCarouselController
 	:total="12"
 	:perPage="4"
+	property-name="itens"
 	@click-back="clickBackHandler"
 	@click-forward="clickForwardHandler"
 />

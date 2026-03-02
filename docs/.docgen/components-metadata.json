@@ -2122,10 +2122,10 @@
   },
   "CdsCarousel": {
     "name": "CdsCarousel",
+    "description": "O Carousel é um componente que permite a exibição de uma série de conteúdos\n(imagens, textos, cards, etc.) em um formato deslizante.",
+    "tags": {},
     "exportName": "default",
     "displayName": "Carousel",
-    "description": "",
-    "tags": {},
     "props": [
       {
         "name": "items",
@@ -2205,7 +2205,7 @@
         "description": "Evento emitido quando algum item do carrossel é clicado.",
         "type": {
           "names": [
-            "Event"
+            "any"
           ]
         }
       }
@@ -2233,9 +2233,9 @@
   },
   "CdsCarouselController": {
     "displayName": "CdsCarouselController",
-    "exportName": "default",
-    "description": "",
+    "description": "CarouselControllers são componentes utilizados para controlar a exibição\nde elementos em carrosséis, informando a página atual ou o intervalo de itens sendo exibidos.",
     "tags": {},
+    "exportName": "default",
     "props": [
       {
         "name": "propertyName",

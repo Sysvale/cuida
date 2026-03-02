@@ -61,6 +61,10 @@ import useIsMobile from '../utils/composables/useIsMobile';
 import { ref, computed } from 'vue';
 import Icon from './Icon.vue';
 
+/**
+ * O Carousel é um componente que permite a exibição de uma série de conteúdos
+ * (imagens, textos, cards, etc.) em um formato deslizante.
+ */
 defineOptions({ name: 'CdsCarousel' });
 
 const props = defineProps({
@@ -111,10 +115,10 @@ const props = defineProps({
 
 const emit = defineEmits([
 	/**
-		* Evento emitido quando algum item do carrossel é clicado.
-		* @event item-click
-		* @type {Event}
-	*/
+	 * Evento emitido quando algum item do carrossel é clicado.
+	 * @event item-click
+	 * @type {any}
+	 */
 	'item-click',
 ]);
 
