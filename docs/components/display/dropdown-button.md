@@ -68,15 +68,18 @@ const events = [
 
 const items = ref([
 	{
-		name: 'Cancelar solicitação',
+		id: 'cancelar',
+		label: 'Cancelar solicitação',
 		icon: 'block-outline',
 	},
 	{
-		name: 'Indeferir solicitação',
+		id: 'indeferir',
+		label: 'Indeferir solicitação',
 		icon: 'alert-outline',
 	},
 	{
-		name: 'Deferir solicitação',
+		id: 'deferir',
+		label: 'Deferir solicitação',
 		icon: 'check-outline',
 	},
 ]);
