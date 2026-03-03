@@ -38,6 +38,24 @@ async function enhanceComponentInfo(filePath, componentInfo) {
 	const hasScriptSetup = /<script\s+setup/.test(content);
 	const hasDefineModel = /defineModel\s*\(/.test(content);
 
+	const componentName = path.basename(filePath, '.vue');
+	const kebabCaseComponentName = componentName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+	const markdownPaths = await glob(`docs/components/**/${kebabCaseComponentName}.md`);
+
+	if (markdownPaths.length > 0) {
+		const markdownPath = markdownPaths[0];
+		const markdownContent = fs.readFileSync(markdownPath, 'utf-8');
+		const match = markdownContent.match(/#\s[^\n]+\n+([^\n]+)/);
+		if (match && match[1]) {
+			componentInfo.description = match[1];
+		}
+
+		const categoryMatch = markdownPath.match(/docs\/components\/([^/]+)\//);
+		if (categoryMatch && categoryMatch[1]) {
+			componentInfo.category = categoryMatch[1];
+		}
+	}
+
 	if (componentInfo.props) {
 		for (const propName in componentInfo.props) {
 			const prop = componentInfo.props[propName]
