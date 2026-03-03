@@ -34,3 +34,6 @@ docs/.vitepress/*.timestamp-*.mjs
 
 # Vite/VitePress temporary timestamp files
 *.timestamp-*.mjs
+
+/mcp/dist
+/mcp/build
