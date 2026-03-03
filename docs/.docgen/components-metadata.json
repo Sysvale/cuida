@@ -2,7 +2,7 @@
   "CdsActionBar": {
     "displayName": "CdsActionBar",
     "exportName": "default",
-    "description": "",
+    "description": "ActionBars são barras de ferramentas que podem exibir ações e informações para o usuário.",
     "tags": {},
     "props": [
       {
@@ -94,12 +94,13 @@
     ],
     "sourceFiles": [
       "src/components/ActionBar.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsActionsList": {
     "displayName": "CdsActionsList",
     "exportName": "default",
-    "description": "",
+    "description": "Actions lists são componentes usados para mostrar uma lista de ações em linha, podendo algumas delas serem ocultas.",
     "tags": {},
     "props": [
       {
@@ -166,12 +167,13 @@
     ],
     "sourceFiles": [
       "src/components/ActionsList.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsAlert": {
     "displayName": "CdsAlert",
     "exportName": "default",
-    "description": "",
+    "description": "Alerts são componentes utilizados para prover feedbacks contextuais e notificações em resposta a ações do usuário ou atividades do sistema.",
     "tags": {},
     "props": [
       {
@@ -235,12 +237,13 @@
     ],
     "sourceFiles": [
       "src/components/Alert.vue"
-    ]
+    ],
+    "category": "notificação"
   },
   "CdsAlertCard": {
     "displayName": "CdsAlertCard",
     "exportName": "default",
-    "description": "",
+    "description": "AlertCards são componentes utilizados para transmitir mensagens contextuais importantes e apresentar possíveis ações a serem tomadas em cima delas.",
     "tags": {},
     "props": [
       {
@@ -356,12 +359,13 @@
     ],
     "sourceFiles": [
       "src/components/AlertCard.vue"
-    ]
+    ],
+    "category": "notificação"
   },
   "CdsAppBar": {
     "displayName": "CdsAppBar",
     "exportName": "default",
-    "description": "",
+    "description": "AppBars são componentes de navegação horizontal para produtos Sysvale e Cidade saudável.",
     "tags": {},
     "props": [
       {
@@ -519,12 +523,13 @@
     ],
     "sourceFiles": [
       "src/components/AppBar.vue"
-    ]
+    ],
+    "category": "estrutural"
   },
   "CdsAvatar": {
     "displayName": "CdsAvatar",
     "exportName": "default",
-    "description": "",
+    "description": "Avatares são componentes utilizados para exibir representações visuais de usuários, como imagens ou nome.",
     "tags": {},
     "props": [
       {
@@ -620,12 +625,13 @@
     ],
     "sourceFiles": [
       "src/components/Avatar.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsAvatarGroup": {
     "displayName": "CdsAvatarGroup",
     "exportName": "default",
-    "description": "",
+    "description": "AvatarGroups exibem vários avatares agrupados em forma de pilha.",
     "tags": {},
     "props": [
       {
@@ -670,12 +676,13 @@
     ],
     "sourceFiles": [
       "src/components/AvatarGroup.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsBadge": {
     "displayName": "CdsBadge",
     "exportName": "default",
-    "description": "",
+    "description": "Badge são indicadores de status utilizados para tornar evidentes metadados importantes.",
     "tags": {},
     "props": [
       {
@@ -750,12 +757,13 @@
     ],
     "sourceFiles": [
       "src/components/Badge.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsBarChart": {
     "displayName": "CdsBarChart",
     "exportName": "default",
-    "description": "",
+    "description": "Um componente de gráfico reutilizável para exibir dados visualmente.",
     "tags": {},
     "props": [
       {
@@ -811,7 +819,7 @@
         },
         "defaultValue": {
           "func": false,
-          "value": "1"
+          "value": "5"
         }
       },
       {
@@ -822,19 +830,20 @@
         },
         "defaultValue": {
           "func": false,
-          "value": "false"
+          "value": "true"
         }
       }
     ],
     "sourceFiles": [
       "src/components/BarChart.vue"
-    ]
+    ],
+    "category": "charts"
   },
   "CdsBaseInput": {
     "name": "CdsBaseInput",
     "exportName": "default",
     "displayName": "BaseInput",
-    "description": "",
+    "description": "BaseInput é o componente base para todos os tipos de inputs, fornecendo a estrutura e funcionalidades comuns.",
     "tags": {},
     "expose": [
       {
@@ -1144,6 +1153,17 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "ghost",
+        "description": "Especifica se o componente deve ser exibido na sua versão ghost.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
       }
     ],
     "events": [
@@ -1167,7 +1187,8 @@
     ],
     "sourceFiles": [
       "src/components/BaseInput.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsBaseMobileInput": {
     "name": "CdsBaseMobileInput",
@@ -1410,6 +1431,17 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "ghost",
+        "description": "Especifica se o componente deve ser exibido na sua versão ghost.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
       }
     ],
     "slots": [
@@ -1428,7 +1460,7 @@
     "name": "CdsBottomSheet",
     "exportName": "default",
     "displayName": "BottomSheet",
-    "description": "",
+    "description": "BottomSheets são componentes que exibem conteúdo adicional em uma camada sobreposta na parte inferior da página atual, fornecendo acesso rápido a informações ou ações complementares sem interromper o fluxo principal da interface.",
     "tags": {},
     "props": [
       {
@@ -1482,12 +1514,13 @@
     ],
     "sourceFiles": [
       "src/components/BottomSheet.vue"
-    ]
+    ],
+    "category": "overlays"
   },
   "CdsBox": {
     "displayName": "CdsBox",
     "exportName": "default",
-    "description": "",
+    "description": "Boxes são componentes básicos de container que encapsulam conteúdo com o estilo padrão de borda, de sombra e de padding do cuida. Podem ser utilizados como componente primivo para cards, popovers, modais, etc.",
     "tags": {},
     "props": [
       {
@@ -1611,12 +1644,13 @@
     ],
     "sourceFiles": [
       "src/components/Box.vue"
-    ]
+    ],
+    "category": "containers"
   },
   "CdsBreadcrumb": {
     "displayName": "CdsBreadcrumb",
     "exportName": "default",
-    "description": "",
+    "description": "Breadcrumbs são utilizados para indicar ao usuário o caminho percorrido entre as páginas de uma aplicação até se checar na página atual.",
     "tags": {},
     "props": [
       {
@@ -1634,12 +1668,14 @@
     ],
     "sourceFiles": [
       "src/components/Breadcrumb.vue"
-    ]
+    ],
+    "category": "navegação"
   },
   "CdsButton": {
-    "displayName": "CdsButton",
+    "name": "CdsButton",
     "exportName": "default",
-    "description": "",
+    "displayName": "Button",
+    "description": "Buttons são componentes clicáveis e que indicam ao usuário que ele pode realizar uma ação ao interagir com ele.",
     "tags": {},
     "props": [
       {
@@ -1740,7 +1776,7 @@
       },
       {
         "name": "loading",
-        "description": "Especifica se a versão do Botão é a secundária.",
+        "description": "Especifica se o botão deve mostrar spinner de carregamento.\nCaso o botão seja do tipo ghost ou secondary a variante do spinner é a mesma passada na prop variant.",
         "type": {
           "name": "boolean"
         },
@@ -1788,12 +1824,13 @@
     ],
     "sourceFiles": [
       "src/components/Button.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsCalloutCard": {
     "displayName": "CdsCalloutCard",
     "exportName": "default",
-    "description": "",
+    "description": "CalloutCards são componentes usados para fornecer ao usuário informações úteis, como tutoriais, atalhos ou dicas.",
     "tags": {},
     "props": [
       {
@@ -1936,13 +1973,14 @@
     ],
     "sourceFiles": [
       "src/components/CalloutCard.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsCard": {
     "name": "CdsCard",
     "exportName": "default",
     "displayName": "Card",
-    "description": "",
+    "description": "Cards são componentes utilizados como containers de propósito geral. À partir das suas props e slots `header`, `body`, `footer`, `image`, `icon` e `extra` é possível criar variações e cards mais específicos, como o DashboardCard.",
     "tags": {},
     "props": [
       {
@@ -2095,13 +2133,14 @@
     ],
     "sourceFiles": [
       "src/components/Card.vue"
-    ]
+    ],
+    "category": "containers"
   },
   "CdsCarousel": {
     "name": "CdsCarousel",
     "exportName": "default",
     "displayName": "Carousel",
-    "description": "",
+    "description": "O Carousel é um componente que permite a exibição de uma série de conteúdos (imagens, textos, cards, etc.) em um formato deslizante, em que o usuário pode navegar entre os itens de forma sequencial.",
     "tags": {},
     "props": [
       {
@@ -2206,12 +2245,13 @@
     ],
     "sourceFiles": [
       "src/components/Carousel.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsCarouselController": {
     "displayName": "CdsCarouselController",
     "exportName": "default",
-    "description": "",
+    "description": "CarouselControllers são componentes utilizados para controlar a exibição de elementos em carrosséis.",
     "tags": {},
     "props": [
       {
@@ -2323,12 +2363,13 @@
     ],
     "sourceFiles": [
       "src/components/CarouselController.vue"
-    ]
+    ],
+    "category": "containers"
   },
   "CdsCheckbox": {
     "displayName": "CdsCheckbox",
     "exportName": "default",
-    "description": "",
+    "description": "Checkboxes são componentes de formulário que permitem seleções binárias e múltiplas.",
     "tags": {},
     "props": [
       {
@@ -2434,13 +2475,14 @@
     ],
     "sourceFiles": [
       "src/components/Checkbox.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsCheckboxGroup": {
     "name": "CdsCheckboxGroup",
     "exportName": "default",
     "displayName": "CheckboxGroup",
-    "description": "",
+    "description": "CheckboxGroups são componentes de formulário que permitem seleções binárias e múltiplas.",
     "tags": {},
     "props": [
       {
@@ -2558,12 +2600,13 @@
     ],
     "sourceFiles": [
       "src/components/CheckboxGroup.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsChevron": {
     "displayName": "CdsChevron",
     "exportName": "default",
-    "description": "",
+    "description": "Chevrons são elementos gráficos usados em interfaces para indicar possibilidade de interação.",
     "tags": {},
     "props": [
       {
@@ -2626,13 +2669,14 @@
     ],
     "sourceFiles": [
       "src/components/Chevron.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsChip": {
     "name": "CdsChip",
     "exportName": "default",
     "displayName": "Chip",
-    "description": "",
+    "description": "Chips ajudam as pessoas a inserir informações, fazer seleções, filtrar conteúdo ou disparar ações.",
     "tags": {},
     "props": [
       {
@@ -2711,12 +2755,13 @@
     ],
     "sourceFiles": [
       "src/components/Chip.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsClickable": {
     "displayName": "CdsClickable",
     "exportName": "default",
-    "description": "",
+    "description": "Componente utilizado para adicionar um wrapper cliclável a componentes que não possuem interação nativa por clique.",
     "tags": {},
     "props": [
       {
@@ -2762,12 +2807,13 @@
     ],
     "sourceFiles": [
       "src/components/Clickable.vue"
-    ]
+    ],
+    "category": "utils"
   },
   "CdsCollapsibleContainer": {
     "displayName": "CdsCollapsibleContainer",
     "exportName": "default",
-    "description": "",
+    "description": "CollapsibleContainers são componentes utilizados para reduzir o espaço vertical quando há uma grande quantidade de informações, com a possibilidade de ser expandido para exibir o conteúdo sumarizado.",
     "tags": {},
     "props": [
       {
@@ -2817,12 +2863,13 @@
     ],
     "sourceFiles": [
       "src/components/CollapsibleContainer.vue"
-    ]
+    ],
+    "category": "containers"
   },
   "CdsColorPicker": {
     "displayName": "CdsColorPicker",
     "exportName": "default",
-    "description": "",
+    "description": "ColorPickers permitem aos usuários escolherem cores de modo visual.",
     "tags": {},
     "props": [
       {
@@ -2876,6 +2923,35 @@
           "func": false,
           "value": "[]"
         }
+      },
+      {
+        "name": "state",
+        "description": "Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.",
+        "tags": {},
+        "values": [
+          "default",
+          "valid",
+          "loading",
+          "invalid"
+        ],
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'default'"
+        }
+      },
+      {
+        "name": "errorMessage",
+        "description": "Especifica a mensagem de erro, que será exibida caso o estado seja inválido",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'Valor inválido'"
+        }
       }
     ],
     "events": [
@@ -2900,7 +2976,8 @@
     ],
     "sourceFiles": [
       "src/components/ColorPicker.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsComboBox": {
     "name": "CdsComboBox",
@@ -3080,7 +3157,7 @@
   "CdsDashboardCard": {
     "displayName": "CdsDashboardCard",
     "exportName": "default",
-    "description": "",
+    "description": "DashboardCards são componentes utilizados para construir cards com informações que requeiram uma descrição curta e que possam ser classificadas em status.",
     "tags": {},
     "props": [
       {
@@ -3165,13 +3242,14 @@
     ],
     "sourceFiles": [
       "src/components/DashboardCard.vue"
-    ]
+    ],
+    "category": "containers"
   },
   "CdsDataTable": {
     "name": "CdsDataTable",
     "exportName": "default",
     "displayName": "DataTable",
-    "description": "",
+    "description": "O DataTable é um wrapper da tabela base, que adiciona funcionalidades de usabilidade e personalização para visualização e interação com dados tabulares.",
     "tags": {},
     "expose": [
       {
@@ -3452,13 +3530,14 @@
     ],
     "sourceFiles": [
       "src/components/DataTable.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsDateInput": {
     "name": "CdsDateInput",
     "exportName": "default",
     "displayName": "DateInput",
-    "description": "",
+    "description": "DateInputs permitem que o usuário selecione uma data ou um intervalo de datas através de um calendário interativo.",
     "tags": {},
     "expose": [
       {
@@ -3771,7 +3850,8 @@
     ],
     "sourceFiles": [
       "src/components/DateInput.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsDialog": {
     "displayName": "CdsDialog",
@@ -3948,7 +4028,7 @@
   "CdsDialogModal": {
     "displayName": "CdsDialogModal",
     "exportName": "default",
-    "description": "",
+    "description": "O DialogModal é um componente utilizado para interagir com o usuário em situações críticas ou informativas.",
     "tags": {},
     "props": [
       {
@@ -4073,12 +4153,13 @@
     ],
     "sourceFiles": [
       "src/components/DialogModal.vue"
-    ]
+    ],
+    "category": "notificação"
   },
   "CdsDivider": {
     "displayName": "CdsDivider",
     "exportName": "default",
-    "description": "",
+    "description": "Dividers são componentes utilizados para separar ou agrupar conteúdo.",
     "tags": {},
     "props": [
       {
@@ -4150,12 +4231,13 @@
     ],
     "sourceFiles": [
       "src/components/Divider.vue"
-    ]
+    ],
+    "category": "containers"
   },
   "CdsDonutChart": {
     "displayName": "CdsDonutChart",
     "exportName": "default",
-    "description": "",
+    "description": "Um componente de gráfico reutilizável para exibir dados visualmente, de modo um pouco mais legível que o PieChart.",
     "tags": {},
     "props": [
       {
@@ -4246,12 +4328,13 @@
     ],
     "sourceFiles": [
       "src/components/DonutChart.vue"
-    ]
+    ],
+    "category": "charts"
   },
   "CdsDropdown": {
     "displayName": "CdsDropdown",
     "exportName": "default",
-    "description": "",
+    "description": "Dropdown são componentes utilizados para ativar popovers contendo filtros para listas e views.",
     "tags": {},
     "props": [
       {
@@ -4320,12 +4403,14 @@
     ],
     "sourceFiles": [
       "src/components/Dropdown.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsDropdownButton": {
-    "displayName": "CdsDropdownButton",
+    "name": "CdsDropdownButton",
     "exportName": "default",
-    "description": "",
+    "displayName": "DropdownButton",
+    "description": "DropdownButtons são componentes utilizados para ativar popovers contendo listas de ações.",
     "tags": {},
     "props": [
       {
@@ -4424,36 +4509,48 @@
           "md",
           "lg"
         ]
+      },
+      {
+        "name": "disabled",
+        "description": "Desabilita o input.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
+      },
+      {
+        "name": "tooltipText",
+        "description": "Texto a ser exibido como tooltip com o hover do DropdownButton quando a prop disabled estiver ativa.",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "null"
+        }
       }
     ],
     "events": [
       {
-        "name": "click",
-        "description": "Evento que indica que o DropdownButton foi clicado",
-        "type": {
-          "names": [
-            "Event"
-          ]
-        }
+        "name": "button-click"
       },
       {
-        "name": "action-click",
-        "type": {
-          "names": [
-            "undefined"
-          ]
-        }
+        "name": "action-click"
       }
     ],
     "sourceFiles": [
       "src/components/DropdownButton.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsDynamicInputList": {
     "name": "CdsDynamicInputList",
     "exportName": "default",
     "displayName": "DynamicInputList",
-    "description": "",
+    "description": "Permite que o usuário adicione, remova e edite múltiplos inputs em uma lista dinâmica.",
     "tags": {},
     "expose": [
       {
@@ -4598,12 +4695,13 @@
     ],
     "sourceFiles": [
       "src/components/DynamicInputList.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsEmptyState": {
     "displayName": "CdsEmptyState",
     "exportName": "default",
-    "description": "",
+    "description": "EmptyStates são componentes utilizados em momentos instrutivos aos usuários.",
     "tags": {},
     "props": [
       {
@@ -4721,12 +4819,13 @@
     ],
     "sourceFiles": [
       "src/components/EmptyState.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsFileInput": {
     "displayName": "CdsFileInput",
     "exportName": "default",
-    "description": "",
+    "description": "FileInput é um input customizado de arquivos.",
     "tags": {},
     "props": [
       {
@@ -4834,13 +4933,14 @@
     ],
     "sourceFiles": [
       "src/components/FileInput.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsFileViewer": {
     "name": "CdsFileViewer",
     "exportName": "default",
     "displayName": "FileViewer",
-    "description": "",
+    "description": " FileViewer é um componente que permite pré-visualizar ou fazer download de um arquivo.",
     "tags": {},
     "props": [
       {
@@ -4914,12 +5014,13 @@
     ],
     "sourceFiles": [
       "src/components/FileViewer.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsFilterSelect": {
     "displayName": "CdsFilterSelect",
     "exportName": "default",
-    "description": "",
+    "description": "FilterSelect permitem que o usuário escolha opções como filtro de determinado conteúdo. São derivados dos Selects, mas têm implementação e aplicabilidade mais específicas. Ocupam menos conteúdo verticalmente e não possuem propriedades relacionadas à validação.",
     "tags": {},
     "props": [
       {
@@ -5052,13 +5153,14 @@
     ],
     "sourceFiles": [
       "src/components/FilterSelect.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsFlatButton": {
     "name": "CdsFlatButton",
     "exportName": "default",
     "displayName": "FlatButton",
-    "description": "",
+    "description": "FlatButtons são componentes semelhantes a links, mas que funcionam como botões.",
     "tags": {},
     "expose": [
       {
@@ -5126,13 +5228,14 @@
     ],
     "sourceFiles": [
       "src/components/FlatButton.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsFlexbox": {
     "name": "CdsFlexbox",
     "exportName": "default",
     "displayName": "Flexbox",
-    "description": "",
+    "description": "Flexbox é um componente que usa a API de Flexbox do CSS para fornecer controle sobre o alinhamento e distribuição de elementos em uma única dimensão (linha ou coluna).",
     "tags": {},
     "props": [
       {
@@ -5263,13 +5366,14 @@
     ],
     "sourceFiles": [
       "src/components/Flexbox.vue"
-    ]
+    ],
+    "category": "containers"
   },
   "CdsFloatingActionButton": {
     "name": "CdsFloatingActionButton",
     "exportName": "default",
     "displayName": "FloatingActionButton",
-    "description": "",
+    "description": "O FloatingActionButton é um botão que flutua sobre a interface do usuário, sempre visível, usado para promover uma ação primária ou frequente em um aplicativo.",
     "tags": {},
     "props": [
       {
@@ -5346,12 +5450,13 @@
     ],
     "sourceFiles": [
       "src/components/FloatingActionButton.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsFloatingAssistant": {
     "displayName": "CdsFloatingAssistant",
     "exportName": "default",
-    "description": "",
+    "description": "Floating Assistant é um componente flutuante que pode ser utilizado para fornecer dicas de usabilidade ou informações específicas sobre o conteúdo da página.",
     "tags": {},
     "props": [
       {
@@ -5464,12 +5569,13 @@
     ],
     "sourceFiles": [
       "src/components/FloatingAssistant.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsGaugeChart": {
     "displayName": "CdsGaugeChart",
     "exportName": "default",
-    "description": "",
+    "description": "O Gauge Chart é indicado para mostrar o progresso em direção a uma meta específica.",
     "tags": {},
     "props": [
       {
@@ -5559,13 +5665,14 @@
     ],
     "sourceFiles": [
       "src/components/GaugeChart.vue"
-    ]
+    ],
+    "category": "charts"
   },
   "CdsGrid": {
     "name": "CdsGrid",
     "exportName": "default",
     "displayName": "Grid",
-    "description": "",
+    "description": "Gris são componentes que usam a API das grids CSS para prover estruturas de organização consistentes.",
     "tags": {},
     "props": [
       {
@@ -5688,7 +5795,8 @@
     ],
     "sourceFiles": [
       "src/components/Grid.vue"
-    ]
+    ],
+    "category": "containers"
   },
   "CdsGridItem": {
     "name": "CdsGridItem",
@@ -5821,7 +5929,7 @@
   "CdsHighlight": {
     "displayName": "CdsHighlight",
     "exportName": "default",
-    "description": "",
+    "description": "Highlights são componentes utilizados para destacar palavras ou frases importantes em um determinado contexto.",
     "tags": {},
     "props": [
       {
@@ -5905,7 +6013,8 @@
     ],
     "sourceFiles": [
       "src/components/Highlight.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsIcon": {
     "displayName": "CdsIcon",
@@ -5981,7 +6090,7 @@
   "CdsIconButton": {
     "displayName": "CdsIconButton",
     "exportName": "default",
-    "description": "",
+    "description": "IconButtons são componentes que permitem que o usuário execute uma ação com um toque.",
     "tags": {},
     "props": [
       {
@@ -6094,13 +6203,14 @@
     ],
     "sourceFiles": [
       "src/components/IconButton.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsImage": {
     "name": "CdsImage",
     "exportName": "default",
     "displayName": "Image",
-    "description": "",
+    "description": "Image é um componente utilitário utilizado para renderizar imagens com fallback.",
     "tags": {},
     "props": [
       {
@@ -6213,12 +6323,13 @@
     ],
     "sourceFiles": [
       "src/components/Image.vue"
-    ]
+    ],
+    "category": "utils"
   },
   "CdsInlineDateInput": {
     "displayName": "CdsInlineDateInput",
     "exportName": "default",
-    "description": "",
+    "description": "InlineDateInput são componentes para escolha de datas e horas dentro de formulários.",
     "tags": {},
     "props": [
       {
@@ -6364,13 +6475,14 @@
     ],
     "sourceFiles": [
       "src/components/InlineDateInput.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsInnerTabs": {
     "name": "CdsInnerTabs",
     "exportName": "default",
     "displayName": "InnerTabs",
-    "description": "",
+    "description": "InnerTabs são componentes utilizados para criar soluções de navegação interas às Tabs",
     "tags": {},
     "props": [
       {
@@ -6467,13 +6579,14 @@
     ],
     "sourceFiles": [
       "src/components/InnerTabs.vue"
-    ]
+    ],
+    "category": "navegação"
   },
   "CdsInteractionBlockingOverlay": {
     "name": "CdsInteractionBlockingOverlay",
     "exportName": "default",
     "displayName": "InteractionBlockingOverlay",
-    "description": "",
+    "description": "O InteractionBlockingOverlay é um componente utilizado para bloquear a interação do usuário em situações onde o sistema não está preparado para o uso, como em telas ou módulos que não possuem responsividade adequada para dispositivos móveis ou no modo paisagem (landscape).",
     "tags": {},
     "props": [
       {
@@ -6564,13 +6677,14 @@
     ],
     "sourceFiles": [
       "src/components/InteractionBlockingOverlay.vue"
-    ]
+    ],
+    "category": "overlays"
   },
   "CdsLabel": {
     "name": "CdsLabel",
     "exportName": "default",
     "displayName": "Label",
-    "description": "",
+    "description": "Permite que o usuário adicione, remova e edite múltiplos inputs em uma lista dinâmica.",
     "tags": {},
     "props": [
       {
@@ -6670,12 +6784,13 @@
     ],
     "sourceFiles": [
       "src/components/Label.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsLineChart": {
     "displayName": "CdsLineChart",
     "exportName": "default",
-    "description": "",
+    "description": "Um componente de gráfico reutilizável para exibir dados visualmente.",
     "tags": {},
     "props": [
       {
@@ -6858,12 +6973,13 @@
     ],
     "sourceFiles": [
       "src/components/LineChart.vue"
-    ]
+    ],
+    "category": "charts"
   },
   "CdsLink": {
     "displayName": "CdsLink",
     "exportName": "default",
-    "description": "",
+    "description": "Links são componentes usados ​​para navegar para outra página e podem abrir uma nova guia.",
     "tags": {},
     "props": [
       {
@@ -6937,13 +7053,14 @@
     ],
     "sourceFiles": [
       "src/components/Link.vue"
-    ]
+    ],
+    "category": "navegação"
   },
   "CdsList": {
     "name": "CdsList",
     "exportName": "default",
     "displayName": "List",
-    "description": "",
+    "description": "O componente List é utilizado para exibir uma listagem de itens com um título e um conteúdo, permitindo personalização através de slots.",
     "tags": {},
     "props": [
       {
@@ -7037,22 +7154,24 @@
     ],
     "sourceFiles": [
       "src/components/List.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsLoadingBar": {
     "displayName": "CdsLoadingBar",
     "exportName": "default",
-    "description": "",
+    "description": "LoadingBars é um componente utilizado para indicar que o progresso de uma operação ainda não foi finalizado.",
     "tags": {},
     "sourceFiles": [
       "src/components/LoadingBar.vue"
-    ]
+    ],
+    "category": "loaders"
   },
   "CdsLoadingIndicator": {
     "name": "CdsLoadingIndicator",
     "exportName": "default",
     "displayName": "LoadingIndicator",
-    "description": "",
+    "description": "O LoadingIndicator é um componente utilizado para indicar o progresso do carregamento da página, proporcionando uma experiência de usuário mais fluida e informativa.",
     "tags": {},
     "props": [
       {
@@ -7105,13 +7224,14 @@
     ],
     "sourceFiles": [
       "src/components/LoadingIndicator.vue"
-    ]
+    ],
+    "category": "loaders"
   },
   "CdsMobileNavbar": {
     "name": "CdsMobileNavbar",
     "exportName": "default",
     "displayName": "MobileNavbar",
-    "description": "",
+    "description": "MobileNavbar é uma barra de navegação móvel localizada na parte inferior da tela.",
     "tags": {},
     "props": [
       {
@@ -7177,13 +7297,14 @@
     ],
     "sourceFiles": [
       "src/components/MobileNavbar.vue"
-    ]
+    ],
+    "category": "navegação"
   },
   "CdsMobileNavigation": {
     "name": "CdsMobileNavigation",
     "exportName": "default",
     "displayName": "MobileNavigation",
-    "description": "",
+    "description": "O MobileNavigation é uma barra lateral que proporciona acesso rápido e fácil às principais seções da aplicação no ambiente mobile.",
     "tags": {},
     "props": [
       {
@@ -7314,7 +7435,8 @@
     ],
     "sourceFiles": [
       "src/components/MobileNavigation.vue"
-    ]
+    ],
+    "category": "navegação"
   },
   "CdsMobileStepperInput": {
     "name": "CdsMobileStepperInput",
@@ -7343,7 +7465,7 @@
   "CdsModal": {
     "displayName": "CdsModal",
     "exportName": "default",
-    "description": "",
+    "description": "Modais são como dialogs personolizados, janelas que exibem um conteúdo adicional em uma camada acima da página atual, com uma sobreposição de superfície (overlay) cobrindo a página e tornando-a temporariamente inacessível.",
     "tags": {},
     "props": [
       {
@@ -7588,13 +7710,14 @@
     ],
     "sourceFiles": [
       "src/components/Modal.vue"
-    ]
+    ],
+    "category": "overlays"
   },
   "CdsMonthAndYearPicker": {
     "name": "CdsMonthAndYearPicker",
     "exportName": "default",
     "displayName": "MonthAndYearPicker",
-    "description": "",
+    "description": "MonthAndYearPickers permitem que o usuário selecione um mês e ano através de um campo de texto e um seletor interativo.",
     "tags": {},
     "props": [
       {
@@ -7814,13 +7937,14 @@
     ],
     "sourceFiles": [
       "src/components/MonthAndYearPicker.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsMultiFileInput": {
     "name": "CdsMultiFileInput",
     "exportName": "default",
     "displayName": "MultiFileInput",
-    "description": "",
+    "description": "O MultiFileInput é um componente que permite ao usuário selecionar e carregar múltiplos arquivos de forma organizada.",
     "tags": {},
     "props": [
       {
@@ -7885,12 +8009,13 @@
     ],
     "sourceFiles": [
       "src/components/MultiFileInput.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsMultiselect": {
     "displayName": "CdsMultiselect",
     "exportName": "default",
-    "description": "",
+    "description": "Multiselects são componentes que permitem ao usuário selecionar múltiplas opções divididas em categorias.",
     "tags": {},
     "props": [
       {
@@ -8129,12 +8254,13 @@
     ],
     "sourceFiles": [
       "src/components/Multiselect.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsNavBar": {
     "displayName": "CdsNavBar",
     "exportName": "default",
-    "description": "",
+    "description": "NavBars são componentes utilizados para criar soluções de navegação e menus.",
     "tags": {},
     "props": [
       {
@@ -8199,13 +8325,14 @@
     ],
     "sourceFiles": [
       "src/components/NavBar.vue"
-    ]
+    ],
+    "category": "navegação"
   },
   "CdsNumberInput": {
     "name": "CdsNumberInput",
     "exportName": "default",
     "displayName": "NumberInput",
-    "description": "",
+    "description": "O componente NumberInput permite que os usuários insiram e editem valores numéricos em uma interface.",
     "tags": {},
     "expose": [
       {
@@ -8390,7 +8517,7 @@
         },
         "defaultValue": {
           "func": false,
-          "value": "'https://cuida.framer.wiki/'"
+          "value": "null"
         }
       },
       {
@@ -8469,12 +8596,13 @@
     ],
     "sourceFiles": [
       "src/components/NumberInput.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsOverlayLoader": {
     "displayName": "CdsOverlayLoader",
     "exportName": "default",
-    "description": "",
+    "description": "OverlayLoader é utilizado para indicar o carregamento de componentes internos de páginas, como cards e gráficos.",
     "tags": {},
     "props": [
       {
@@ -8521,12 +8649,13 @@
     ],
     "sourceFiles": [
       "src/components/OverlayLoader.vue"
-    ]
+    ],
+    "category": "loaders"
   },
   "CdsPageContainer": {
     "displayName": "CdsPageContainer",
     "exportName": "default",
-    "description": "",
+    "description": "PageContainers são blocos básicos de estrutura no Cuida. Eles provêm padding e alinhamento de conteúdo.",
     "tags": {},
     "slots": [
       {
@@ -8535,12 +8664,13 @@
     ],
     "sourceFiles": [
       "src/components/PageContainer.vue"
-    ]
+    ],
+    "category": "estrutural"
   },
   "CdsPageHeader": {
     "exportName": "default",
     "displayName": "PageHeader",
-    "description": "",
+    "description": "PageHeader são componentes utilizados para adicionar título, subtítulo e ações em páginas.",
     "tags": {},
     "props": [
       {
@@ -8592,13 +8722,14 @@
     ],
     "sourceFiles": [
       "src/components/PageHeader.vue"
-    ]
+    ],
+    "category": "estrutural"
   },
   "CdsPageLayout": {
     "name": "CdsPageLayout",
     "exportName": "default",
     "displayName": "PageLayout",
-    "description": "",
+    "description": "O PageLayout é uma coleção de componentes que permite a criação de telas padronizadas com navegação primária na vertical e navegação secundária na horizontal.",
     "tags": {},
     "props": [
       {
@@ -8775,13 +8906,14 @@
     ],
     "sourceFiles": [
       "src/components/PageLayout.vue"
-    ]
+    ],
+    "category": "navegação"
   },
   "CdsPagination": {
     "name": "CdsPagination",
     "exportName": "default",
     "displayName": "Pagination",
-    "description": "",
+    "description": "Pagination são indicadores de status utilizados para tornar evidentes metadados importates.",
     "tags": {},
     "props": [
       {
@@ -8844,12 +8976,13 @@
     ],
     "sourceFiles": [
       "src/components/Pagination.vue"
-    ]
+    ],
+    "category": "navegação"
   },
   "CdsPanelCard": {
     "displayName": "CdsPanelCard",
     "exportName": "default",
-    "description": "",
+    "description": "PanelCards são componentes utilizados para agrupar informação em containers com uma estrutura mínima formada por título, subtítulo, e conteúdo.",
     "tags": {},
     "props": [
       {
@@ -8892,12 +9025,13 @@
     ],
     "sourceFiles": [
       "src/components/PanelCard.vue"
-    ]
+    ],
+    "category": "containers"
   },
   "CdsPasswordInput": {
     "displayName": "CdsPasswordInput",
     "exportName": "default",
-    "description": "",
+    "description": "PasswordInputs permitem que os usuários insiram caracteres sensíveis na interface.",
     "tags": {},
     "props": [
       {
@@ -9048,12 +9182,13 @@
     ],
     "sourceFiles": [
       "src/components/PasswordInput.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsPieChart": {
     "displayName": "CdsPieChart",
     "exportName": "default",
-    "description": "",
+    "description": "Um componente de gráfico reutilizável para exibir dados visualmente.",
     "tags": {},
     "props": [
       {
@@ -9119,13 +9254,14 @@
     ],
     "sourceFiles": [
       "src/components/PieChart.vue"
-    ]
+    ],
+    "category": "charts"
   },
   "CdsPinInput": {
     "name": "CdsPinInput",
     "exportName": "default",
     "displayName": "PinInput",
-    "description": "",
+    "description": "PinInputs são componentes utilizados para adição de one-time passwords e códigos de 2FA",
     "tags": {},
     "props": [
       {
@@ -9204,12 +9340,13 @@
     ],
     "sourceFiles": [
       "src/components/PinInput.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsPolarAreaChart": {
     "displayName": "CdsPolarAreaChart",
     "exportName": "default",
-    "description": "",
+    "description": "Um componente de gráfico reutilizável para exibir dados visualmente.",
     "tags": {},
     "props": [
       {
@@ -9275,12 +9412,13 @@
     ],
     "sourceFiles": [
       "src/components/PolarAreaChart.vue"
-    ]
+    ],
+    "category": "charts"
   },
   "CdsPopover": {
     "displayName": "CdsPopover",
     "exportName": "default",
-    "description": "",
+    "description": "Popovers são componentes flutuantes utilizados para exibir, sob interação, informações e ações relacionadas ao conteúdo da tela.",
     "tags": {},
     "props": [
       {
@@ -9380,13 +9518,14 @@
     ],
     "sourceFiles": [
       "src/components/Popover.vue"
-    ]
+    ],
+    "category": "overlays"
   },
   "CdsProgressBar": {
     "name": "CdsProgressBar",
     "exportName": "default",
     "displayName": "ProgressBar",
-    "description": "",
+    "description": "ProgressBars são componentes utilizados para indicar o status e progresso de algo aos usuários.",
     "tags": {},
     "props": [
       {
@@ -9465,12 +9604,13 @@
     ],
     "sourceFiles": [
       "src/components/ProgressBar.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsProgressCircular": {
     "displayName": "CdsProgressCircular",
     "exportName": "default",
-    "description": "",
+    "description": "ProgressCirculars são componentes que indicam o status/progresso de uma operação em andamento, em formato circular.",
     "tags": {},
     "props": [
       {
@@ -9577,12 +9717,13 @@
     ],
     "sourceFiles": [
       "src/components/ProgressCircular.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsPulsar": {
     "displayName": "CdsPulsar",
     "exportName": "default",
-    "description": "",
+    "description": "Pulsars são componentes educativos utilizados para instruir os usuários sobre novidades na interface ou no produto.",
     "tags": {},
     "props": [
       {
@@ -9650,13 +9791,14 @@
     ],
     "sourceFiles": [
       "src/components/Pulsar.vue"
-    ]
+    ],
+    "category": "notificação"
   },
   "CdsQuickActionBar": {
     "name": "CdsQuickActionBar",
     "exportName": "default",
     "displayName": "QuickActionBar",
-    "description": "",
+    "description": "O QuickActionBar é um componente de busca e ação rápida que permite ao usuário pesquisar informações em diferentes áreas do sistema, como usuários cadastrados, métricas e palavras-chave. Além da busca, ele oferece a capacidade de tomar ações, funcionando como uma barra de ação rápida que retorna as opções disponíveis, possibilitando o acesso em situações nas quais essas ações podem ser realizadas.",
     "tags": {},
     "props": [
       {
@@ -9870,12 +10012,13 @@
     ],
     "sourceFiles": [
       "src/components/QuickActionBar.vue"
-    ]
+    ],
+    "category": "overlays"
   },
   "CdsRadialBarChart": {
     "displayName": "CdsRadialBarChart",
     "exportName": "default",
-    "description": "",
+    "description": "Um RadialBarChart é uma variação do BarChart plotado em um sistema de coordenadas polares, em vez de cartesiano.",
     "tags": {},
     "props": [
       {
@@ -9963,12 +10106,13 @@
     ],
     "sourceFiles": [
       "src/components/RadialBarChart.vue"
-    ]
+    ],
+    "category": "charts"
   },
   "CdsRadio": {
     "displayName": "CdsRadio",
     "exportName": "default",
-    "description": "",
+    "description": "O Radio permite que os usuários selecionem uma opção de um conjunto.",
     "tags": {},
     "props": [
       {
@@ -10061,13 +10205,14 @@
     ],
     "sourceFiles": [
       "src/components/Radio.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsRadioButtonGroup": {
     "name": "CdsRadioButtonGroup",
     "exportName": "default",
     "displayName": "RadioButtonGroup",
-    "description": "",
+    "description": "RadioButtonsGroup são radio buttons customizados para facilitar a seleção e feedback.",
     "tags": {},
     "props": [
       {
@@ -10259,7 +10404,8 @@
     ],
     "sourceFiles": [
       "src/components/RadioButtonGroup.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsRequiredIndicator": {
     "name": "CdsRequiredIndicator",
@@ -10274,7 +10420,7 @@
   "CdsRichTooltip": {
     "displayName": "CdsRichTooltip",
     "exportName": "default",
-    "description": "",
+    "description": "RichTooltip, assim como Tooltips, são labels flutuantes usadas para explicar um da interface, entretanto provêem maior liberdade para descrição de textos estruturados e/ou mais longos.",
     "tags": {},
     "props": [
       {
@@ -10367,12 +10513,13 @@
     ],
     "sourceFiles": [
       "src/components/RichTooltip.vue"
-    ]
+    ],
+    "category": "overlays"
   },
   "CdsScrollable": {
     "displayName": "CdsScrollable",
     "exportName": "default",
-    "description": "",
+    "description": "Scrollable é um componente utilizado para o tornar o conteúdo envolvido \"scrolável\".",
     "tags": {},
     "props": [
       {
@@ -10418,13 +10565,14 @@
     ],
     "sourceFiles": [
       "src/components/Scrollable.vue"
-    ]
+    ],
+    "category": "containers"
   },
   "CdsSearchInput": {
     "name": "CdsSearchInput",
     "exportName": "default",
     "displayName": "SearchInput",
-    "description": "",
+    "description": "SearchInputs permitem que os usuários realizem buscas sobre conjuntos de dados na interface",
     "tags": {},
     "expose": [
       {
@@ -10505,7 +10653,8 @@
     ],
     "sourceFiles": [
       "src/components/SearchInput.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsSecondaryNavigation": {
     "name": "CdsSecondaryNavigation",
@@ -10557,7 +10706,7 @@
   "CdsSegmentedControl": {
     "displayName": "CdsSegmentedControl",
     "exportName": "default",
-    "description": "",
+    "description": "SegmentedControls são componentes que permitem que o usuário visualize versões alternativas de uma feature ou interface",
     "tags": {},
     "props": [
       {
@@ -10613,13 +10762,14 @@
     ],
     "sourceFiles": [
       "src/components/SegmentedControl.vue"
-    ]
+    ],
+    "category": "navegação"
   },
   "CdsSelect": {
     "name": "CdsSelect",
     "exportName": "default",
     "displayName": "Select",
-    "description": "",
+    "description": "Selects permitem que o usuário escolha uma opção a partir de uma lista de itens.",
     "tags": {},
     "expose": [
       {
@@ -10721,6 +10871,18 @@
       {
         "name": "searchable",
         "description": "Indica se vai ser possível fazer buscas no select.",
+        "type": {
+          "name": "boolean"
+        },
+        "required": false,
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
+      },
+      {
+        "name": "deepSearch",
+        "description": "Indica se a busca deve levar em consideração argumentos compostos.\nSó tem efeito se a prop `searchable` for `true`.",
         "type": {
           "name": "boolean"
         },
@@ -10927,6 +11089,17 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "ghost",
+        "description": "Especifica se o componente deve ser exibido na sua versão ghost.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
       }
     ],
     "slots": [
@@ -10952,13 +11125,14 @@
     ],
     "sourceFiles": [
       "src/components/Select.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsSideBar": {
     "name": "CdsSideBar",
     "exportName": "default",
     "displayName": "SideBar",
-    "description": "",
+    "description": "SideBars são componentes utilizados para criar soluções de navegação e menus.",
     "tags": {},
     "expose": [
       {
@@ -11163,12 +11337,13 @@
     ],
     "sourceFiles": [
       "src/components/SideBar.vue"
-    ]
+    ],
+    "category": "overlays"
   },
   "CdsSideSheet": {
     "displayName": "CdsSideSheet",
     "exportName": "default",
-    "description": "",
+    "description": "SideSheets são painéis que surgem do lado direito da tela. De modo semelhante aos Modais, são úteis quando se precisa que os usuários concluam executem ações sem perder o contexto da página atual.",
     "tags": {},
     "props": [
       {
@@ -11423,12 +11598,13 @@
     ],
     "sourceFiles": [
       "src/components/SideSheet.vue"
-    ]
+    ],
+    "category": "overlays"
   },
   "CdsSkeleton": {
     "displayName": "CdsSkeleton",
     "exportName": "default",
-    "description": "",
+    "description": "O componente Skeleton é usado para criar espaços reservados que representam conteúdo que está carregando ou sendo processado.",
     "tags": {},
     "props": [
       {
@@ -11483,12 +11659,13 @@
     ],
     "sourceFiles": [
       "src/components/Skeleton.vue"
-    ]
+    ],
+    "category": "loaders"
   },
   "CdsSkeletonText": {
     "displayName": "CdsSkeletonText",
     "exportName": "default",
-    "description": "",
+    "description": "Skeleton texts permitem exibir um estado de carregamento para vários tipos de componentes",
     "tags": {},
     "props": [
       {
@@ -11512,12 +11689,13 @@
     ],
     "sourceFiles": [
       "src/components/SkeletonText.vue"
-    ]
+    ],
+    "category": "loaders"
   },
   "CdsSlider": {
     "displayName": "CdsSlider",
     "exportName": "default",
-    "description": "",
+    "description": "Sliders são componentes utilizados para seleção de valores dentro de um intervalo.",
     "tags": {},
     "props": [
       {
@@ -11607,7 +11785,8 @@
     ],
     "sourceFiles": [
       "src/components/Slider.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsSliderNext": {
     "exportName": "default",
@@ -11703,7 +11882,7 @@
   "CdsSpacer": {
     "displayName": "CdsSpacer",
     "exportName": "default",
-    "description": "",
+    "description": "Componente auxiliar utilizado para adicionar paddings e margins seguindo o padrão de tokens do Cuida.",
     "tags": {},
     "props": [
       {
@@ -11975,12 +12154,13 @@
     ],
     "sourceFiles": [
       "src/components/Spacer.vue"
-    ]
+    ],
+    "category": "utils"
   },
   "CdsSpinner": {
     "displayName": "CdsSpinner",
     "exportName": "default",
-    "description": "",
+    "description": "Spinners é um componente utilizado para indicar que o progresso de uma operação ainda não foi finalizado.",
     "tags": {},
     "props": [
       {
@@ -12038,12 +12218,13 @@
     ],
     "sourceFiles": [
       "src/components/Spinner.vue"
-    ]
+    ],
+    "category": "loaders"
   },
   "CdsStackedBarChart": {
     "displayName": "CdsStackedBarChart",
     "exportName": "default",
-    "description": "",
+    "description": "Um componente de gráfico reutilizável para exibir dados visualmente.",
     "tags": {},
     "props": [
       {
@@ -12126,12 +12307,13 @@
     ],
     "sourceFiles": [
       "src/components/StackedBarChart.vue"
-    ]
+    ],
+    "category": "charts"
   },
   "CdsStepper": {
     "displayName": "CdsStepper",
     "exportName": "default",
-    "description": "",
+    "description": "Steppers são componentes que controlam e exibem tarefas divididas em etapas.",
     "tags": {},
     "props": [
       {
@@ -12194,13 +12376,14 @@
     ],
     "sourceFiles": [
       "src/components/Stepper.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsStepperInput": {
     "name": "CdsStepperInput",
     "exportName": "default",
     "displayName": "StepperInput",
-    "description": "",
+    "description": "StepperInputs são inputs numéricos com botões de incremento e decremento sempre visíveis.",
     "tags": {},
     "expose": [
       {
@@ -12391,13 +12574,14 @@
     ],
     "sourceFiles": [
       "src/components/StepperInput.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsSwitch": {
     "name": "CdsSwitch",
     "exportName": "default",
     "displayName": "Switch",
-    "description": "",
+    "description": "Switches são componentes utilizados para ativar ou desativar configurações ou opções específicas.",
     "tags": {},
     "expose": [
       {
@@ -12520,12 +12704,13 @@
     ],
     "sourceFiles": [
       "src/components/Switch.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsTable": {
     "displayName": "CdsTable",
     "exportName": "default",
-    "description": "",
+    "description": "Tables são componentes utilizados para exibir e organizar conteúdo, facilitando a comparação e análise de informações.",
     "tags": {},
     "props": [
       {
@@ -12673,6 +12858,17 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "loading",
+        "description": "Ativa o estado de carregamento do componente, exibindo um Skeleton para a tabela.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
       }
     ],
     "events": [
@@ -12724,12 +12920,13 @@
     ],
     "sourceFiles": [
       "src/components/Table.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsTabs": {
     "displayName": "CdsTabs",
     "exportName": "default",
-    "description": "",
+    "description": "Tabs são componentes utilizados para criar soluções de navegação internas.",
     "tags": {},
     "props": [
       {
@@ -12836,13 +13033,14 @@
     ],
     "sourceFiles": [
       "src/components/Tabs.vue"
-    ]
+    ],
+    "category": "navegação"
   },
   "CdsText": {
     "name": "CdsText",
     "exportName": "default",
     "displayName": "Text",
-    "description": "",
+    "description": "Text são indicadores de status utilizados para tornar evidentes metadados importantes.",
     "tags": {},
     "expose": [
       {
@@ -12958,13 +13156,14 @@
     ],
     "sourceFiles": [
       "src/components/Text.vue"
-    ]
+    ],
+    "category": "tipografia"
   },
   "CdsTextArea": {
     "name": "CdsTextArea",
     "exportName": "default",
     "displayName": "TextArea",
-    "description": "",
+    "description": "TextAreas permitem que os usuários insiram um texto longo em uma interface.",
     "tags": {},
     "expose": [
       {
@@ -13152,13 +13351,14 @@
     ],
     "sourceFiles": [
       "src/components/TextArea.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsTextInput": {
     "name": "CdsTextInput",
     "exportName": "default",
     "displayName": "TextInput",
-    "description": "",
+    "description": "TextInputs permitem que os usuários insiram texto em uma interface",
     "tags": {},
     "expose": [
       {
@@ -13354,7 +13554,7 @@
         },
         "defaultValue": {
           "func": false,
-          "value": "'https://cuida.framer.wiki/'"
+          "value": "null"
         }
       },
       {
@@ -13442,15 +13642,21 @@
         }
       }
     ],
+    "slots": [
+      {
+        "name": "label"
+      }
+    ],
     "sourceFiles": [
       "src/components/TextInput.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsTile": {
     "name": "CdsTile",
     "exportName": "default",
     "displayName": "Tile",
-    "description": "",
+    "description": "Tiles são componentes que funcionam como cards de navegação, permitindo que o usuário acesse diferentes seções ou funcionalidades de forma clara e intuitiva.",
     "tags": {},
     "props": [
       {
@@ -13558,12 +13764,13 @@
     ],
     "sourceFiles": [
       "src/components/Tile.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsTimeInput": {
     "displayName": "CdsTimeInput",
     "exportName": "default",
-    "description": "",
+    "description": "TimeInputs são componentes utilizados para inserir horários específicos no formato simples: hora e minutos.",
     "tags": {},
     "props": [
       {
@@ -13676,12 +13883,13 @@
     ],
     "sourceFiles": [
       "src/components/TimeInput.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsTimeline": {
     "displayName": "CdsTimeline",
     "exportName": "default",
-    "description": "",
+    "description": "Timelines são componentes utilizados para apresentar informações em ordem cronológica.",
     "tags": {},
     "props": [
       {
@@ -13704,12 +13912,13 @@
     ],
     "sourceFiles": [
       "src/components/Timeline.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsTimelineItem": {
     "displayName": "CdsTimelineItem",
     "exportName": "default",
-    "description": "",
+    "description": "TimelineItems são componentes auxiliares utilizados para montar Timelines.",
     "tags": {},
     "props": [
       {
@@ -13786,13 +13995,14 @@
     ],
     "sourceFiles": [
       "src/components/TimelineItem.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsToast": {
     "name": "CdsToast",
     "exportName": "default",
     "displayName": "Toast",
-    "description": "",
+    "description": "Toasts são componentes utilizados para prover feedback breve e notificações não intrusivas sobre o status de uma ação ou evento do sistema.",
     "tags": {},
     "props": [
       {
@@ -13895,23 +14105,25 @@
     ],
     "sourceFiles": [
       "src/components/Toast.vue"
-    ]
+    ],
+    "category": "notificação"
   },
   "CdsToastContainer": {
     "name": "CdsToastContainer",
     "exportName": "default",
     "displayName": "ToastContainer",
-    "description": "",
+    "description": "O ToastContainer é um componente global utilizado para gerenciar e exibir múltiplos Toasts na aplicação.Ele controla a posição, o enfileiramento e a animação dos Toasts.",
     "tags": {},
     "sourceFiles": [
       "src/components/ToastContainer.vue"
-    ]
+    ],
+    "category": "notificação"
   },
   "CdsTooltip": {
     "name": "CdsTooltip",
     "exportName": "default",
     "displayName": "Tooltip",
-    "description": "",
+    "description": "Tooltip são labels flutuantes não interativas usados para explicar um elemento ou recurso da interface. Podem ser acionados com hover.",
     "tags": {},
     "props": [
       {
@@ -14000,13 +14212,14 @@
     ],
     "sourceFiles": [
       "src/components/Tooltip.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsTopAppBar": {
     "name": "CdsTopAppBar",
     "exportName": "default",
     "displayName": "TopAppBar",
-    "description": "",
+    "description": "O TopAppBar é um componente de barra de aplicação responsivo que pode exibir um título, um logotipo, um botão de menu e ações personalizadas.",
     "tags": {},
     "props": [
       {
@@ -14080,12 +14293,13 @@
     ],
     "sourceFiles": [
       "src/components/TopAppBar.vue"
-    ]
+    ],
+    "category": "estrutural"
   },
   "CdsTruncate": {
     "displayName": "CdsTruncate",
     "exportName": "default",
-    "description": "",
+    "description": "Componente auxiliar utilizado para truncar texto adicionando a ele reticências",
     "tags": {},
     "props": [
       {
@@ -14108,13 +14322,14 @@
     ],
     "sourceFiles": [
       "src/components/Truncate.vue"
-    ]
+    ],
+    "category": "utils"
   },
   "CdsTruncateContainer": {
     "name": "CdsTruncateContainer",
     "exportName": "default",
     "displayName": "TruncateContainer",
-    "description": "",
+    "description": "TruncateContainer é um componente utilizado para controlar a visibilidade de conteúdos longos.",
     "tags": {},
     "props": [
       {
@@ -14207,13 +14422,14 @@
     ],
     "sourceFiles": [
       "src/components/TruncateContainer.vue"
-    ]
+    ],
+    "category": "containers"
   },
   "CdsWebcamModal": {
     "name": "CdsWebcamModal",
     "exportName": "default",
     "displayName": "WebcamModal",
-    "description": "",
+    "description": "Um componente para capturar fotos diretamente da webcam do dispositivo, ao capturar uma foto o componente emite um File.",
     "tags": {},
     "props": [
       {
@@ -14337,12 +14553,13 @@
     ],
     "sourceFiles": [
       "src/components/WebcamModal.vue"
-    ]
+    ],
+    "category": "forms"
   },
   "CdsWizard": {
     "displayName": "CdsWizard",
     "exportName": "default",
-    "description": "",
+    "description": "Wizards são componentes utilizados para um processo passo a passo que permite ao usuário inserir informações em uma ordem prescrita e na qual as etapas subsequentes podem depender das informações inseridas nas etapas anteriores.",
     "tags": {},
     "props": [
       {
@@ -14490,7 +14707,8 @@
     ],
     "sourceFiles": [
       "src/components/Wizard.vue"
-    ]
+    ],
+    "category": "display"
   },
   "CdsCustomFieldsSideSheet": {
     "name": "CustomFieldsSideSheet",
@@ -14643,6 +14861,16 @@
           "func": false,
           "value": "''"
         }
+      },
+      {
+        "name": "year",
+        "type": {
+          "name": "number"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "new Date().getFullYear()"
+        }
       }
     ],
     "events": [
@@ -14677,6 +14905,26 @@
           "name": "string"
         },
         "required": false,
+        "defaultValue": {
+          "func": false,
+          "value": "''"
+        }
+      },
+      {
+        "name": "minDate",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "''"
+        }
+      },
+      {
+        "name": "maxDate",
+        "type": {
+          "name": "string"
+        },
         "defaultValue": {
           "func": false,
           "value": "''"
