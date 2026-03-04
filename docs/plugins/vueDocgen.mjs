@@ -53,8 +53,10 @@ async function enhanceComponentInfo(filePath, componentInfo) {
 		const categoryMatch = markdownPath.match(/docs\/components\/([^/]+)\//);
 		if (categoryMatch && categoryMatch[1]) {
 			componentInfo.category = categoryMatch[1];
+			componentInfo.builtDocPath = `docs/.vitepress/dist/components/${categoryMatch[1]}/${kebabCaseComponentName}.html`;
 		}
 	}
+
 
 	if (componentInfo.props) {
 		for (const propName in componentInfo.props) {

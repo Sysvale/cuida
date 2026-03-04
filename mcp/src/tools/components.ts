@@ -1,9 +1,19 @@
 import { CallToolRequest, CallToolResult } from '@modelcontextprotocol/sdk/types.js';
 import { ComponentMetadata } from '../types/index.js';
 import { readSourceFile } from '../readers/source.js';
-import { DocsIndex, readDocFile } from '../readers/docs.js';
+import { readDocFile } from '../readers/docs.js';
 import { searchComponents } from '../indexer/search.js';
+import { logger } from '../utils/logger.js';
 
+const errorMessageBuilder = (message: string): CallToolResult => ({ content: [{ type: 'text', text: message }] });
+
+const getFirstComponent = (query: string, metadata: Record<string, ComponentMetadata>): ComponentMetadata | any => {
+	const [ component ] = searchComponents(query, metadata);
+	if(!component) {
+		return errorMessageBuilder(`Component "${query}" not found.`);
+	}
+	return component;
+}
 export function getComponentTools() {
 	return [
 		{
@@ -81,89 +91,105 @@ export function getComponentTools() {
 export async function handleComponentToolCall(
 	request: CallToolRequest,
 	metadata: Record<string, ComponentMetadata>,
-	docsIndex: DocsIndex,
 ): Promise<CallToolResult> {
-	const { name, arguments: args } = request.params;
+	try {
+		if (!request.params.arguments) {
+			throw new Error('No tool arguments provided.')
+		}
 
-	switch (name) {
-		case 'list_components': {
-			const category = args?.category as string | undefined;
-			const simplifiedComponents = Object.values(metadata).map((comp) => {
-				const componentCategory = comp?.category || 'general';
+		const { name, arguments: args } = request.params;
+
+		switch (name) {
+			case 'list_components': {
+				const category = args?.category as string | undefined;
+
+				const simplifiedComponents = Object.values(metadata).map((component) => ({
+					name: component.displayName,
+					description: component.description || 'No description available.',
+					category: component?.category || 'general',
+				})).filter(
+					(mappedComponent) => category ? mappedComponent.category.toLowerCase() === category.toLowerCase() : true
+				);
+
 				return {
-					name: comp.displayName,
-					description: comp.description || 'No description available.',
-					category: componentCategory,
+					content: [{ type: 'text', text: JSON.stringify(simplifiedComponents, null, 2) }],
 				};
-			});
-			const filteredComponents = category
-				? simplifiedComponents.filter((c) => c.category.toLowerCase() === category.toLowerCase())
-				: simplifiedComponents;
-			return {
-				content: [{ type: 'text', text: JSON.stringify(filteredComponents, null, 2) }],
-			};
+			}
+
+			case 'get_component_metadata': {
+				const componentName = args?.name as string;
+				if (!componentName) {
+					return errorMessageBuilder('Component name is required for get_component_metadata.');
+				}
+				const component = getFirstComponent(componentName, metadata);
+				return {
+					content: [{ type: 'text', text: JSON.stringify(component, null, 2) }],
+				};
+			}
+
+			case 'get_component_source': {
+				const componentName = args?.name as string;
+				if (!componentName) {
+					return errorMessageBuilder('Component name is required for get_component_source.');
+				}
+
+				const { sourceFiles } = getFirstComponent(componentName, metadata);
+				if (!sourceFiles[0]) {
+					return errorMessageBuilder(`Source file for component "${componentName}" not found.`);
+				}
+				const sourceCode = await readSourceFile(sourceFiles[0]);
+				return {
+					content: [{ type: 'text', text: sourceCode }],
+				};
+			}
+
+			case 'get_component_docs': {
+				const componentName = args?.name as string;
+				if (!componentName) {
+					return errorMessageBuilder('Component name is required for get_component_docs.');
+				}
+
+				const { builtDocPath } = getFirstComponent(componentName, metadata);
+
+				logger.debug('get_component_docs result', { builtDocPath });
+
+				if (!builtDocPath) {
+					return errorMessageBuilder(`Documentation for component "${componentName}" not found.`);
+				}
+
+				const docContent = await readDocFile(builtDocPath);
+
+				logger.debug('get_component_docs dochPath', { docContent });
+	
+				return {
+					content: [{ type: 'text', text: docContent }],
+				};
+			}
+			
+			case 'search_components': {
+				const query = args?.query as string;
+				if (!query) {
+					return errorMessageBuilder('Query is required for search_components.');
+				}
+				const searchResults = searchComponents(query, metadata);
+				return {
+					content: [{ type: 'text', text: JSON.stringify(searchResults, null, 2) }],
+				};
+			}
+			default:
+				throw new Error(`The tool "${name}" is not a known component tool.`);
 		}
 
-		case 'get_component_metadata': {
-			const componentName = args?.name as string;
-			if (!componentName) {
-				throw new Error('Component name is required for get_component_metadata.');
-			}
-			const component = Object.values(metadata).find(c => c.displayName === componentName);
-			if (!component) {
-				throw new Error(`Component "${componentName}" not found.`);
-			}
-			return {
-				content: [{ type: 'text', text: JSON.stringify(component, null, 2) }],
-			};
+	} catch (error) {
+		const errorMessage = error instanceof Error ? error.message : String(error)
+		return {
+			content: [
+				{
+					type: 'text',
+					text: `Error: ${errorMessage}`,
+				},
+			],
+			isError: true,
 		}
-
-		case 'get_component_source': {
-			const componentName = args?.name as string;
-			if (!componentName) {
-				throw new Error('Component name is required for get_component_source.');
-			}
-			const component = Object.values(metadata).find(c => c.displayName === componentName);
-			if (!component || !component.sourceFiles[0]) {
-				throw new Error(`Source file for component "${componentName}" not found.`);
-			}
-			const sourceCode = await readSourceFile(component.sourceFiles[0]);
-			return {
-				content: [{ type: 'text', text: sourceCode }],
-			};
-		}
-
-		case 'get_component_docs': {
-			const componentName = args?.name as string;
-			if (!componentName) {
-				throw new Error('Component name is required for get_component_docs.');
-			}
-
-			const docName = componentName.startsWith('Cds') ? componentName.substring(3) : componentName;
-			const docPath = docsIndex.get(docName.toLowerCase());
-			if (!docPath) {
-				throw new Error(`Documentation for component "${componentName}" not found.`);
-			}
-
-			const docContent = await readDocFile(docPath);
- 
-			return {
-				content: [{ type: 'text', text: docContent }],
-			};
-		}
-		
-		case 'search_components': {
-			const query = args?.query as string;
-			if (!query) {
-				throw new Error('Query is required for search_components.');
-			}
-			const searchResults = searchComponents(query, metadata);
-			return {
-				content: [{ type: 'text', text: JSON.stringify(searchResults, null, 2) }],
-			};
-		}
-
-		default:
-			throw new Error(`The tool "${name}" is not a known component tool.`);
 	}
 }

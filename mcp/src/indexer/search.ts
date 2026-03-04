@@ -1,15 +1,8 @@
 import { ComponentMetadata } from '../types/index.js';
 import Fuse from 'fuse.js';
 
-export interface SearchResult {
-	name: string;
-	description: string;
-	relevance: number;
-}
-
-export function searchComponents(query: string, metadata: Record<string, ComponentMetadata>): SearchResult[] {
+export function searchComponents(query: string, metadata: Record<string, ComponentMetadata>): ComponentMetadata[] {
 	const lowerCaseQuery = query.toLowerCase();
-	const results: SearchResult[] = [];
 
 	const fuse = new Fuse(Object.values(metadata), {
 		keys: ['displayName', 'description'],
@@ -17,15 +10,10 @@ export function searchComponents(query: string, metadata: Record<string, Compone
 		threshold: 0.2,
 	});
 
-	fuse
-		.search(lowerCaseQuery)
-		.forEach((result) => {
-			results.push({
-				name: result.item.displayName,
-				description: result.item.description || 'No description available.',
-				relevance: result.score || 1,
-			});
-		});
-
-	return results;
+	return fuse.search(lowerCaseQuery)
+		.map((result) => ({
+			...result.item,
+			description: result.item.description || 'No description available.',
+			searchRelevance: result.score || 1,
+		}));
 }

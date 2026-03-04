@@ -35,17 +35,13 @@ const mockMetadata: Record<string, ComponentMetadata> = {
 	},
 };
 
-const mockDocsIndex = new Map([
-	['button', '/fake/path/to/button.html']
-]);
-
 describe('Component Tools', () => {
 	describe('search_components', () => {
 		it('should return components matching the query', async () => {
 			const request: Partial<CallToolRequest> = {
 				params: { name: 'search_components', arguments: { query: 'email' } },
 			};
-			const result = await handleComponentToolCall(request as CallToolRequest, mockMetadata, mockDocsIndex);
+			const result = await handleComponentToolCall(request as CallToolRequest, mockMetadata);
 			if (result.content[0].type === 'text') {
 				const data = JSON.parse(result.content[0].text as string);
 				expect(data).toEqual(
@@ -63,7 +59,7 @@ describe('Component Tools', () => {
 			const request: Partial<CallToolRequest> = {
 				params: { name: 'search_components', arguments: { query: 'nonexistent' } },
 			};
-			const result = await handleComponentToolCall(request as CallToolRequest, mockMetadata, mockDocsIndex);
+			const result = await handleComponentToolCall(request as CallToolRequest, mockMetadata);
 			if (result.content[0].type === 'text') {
 				const data = JSON.parse(result.content[0].text as string);
 				expect(data).toEqual([]);
@@ -78,7 +74,7 @@ describe('Component Tools', () => {
 			const request: Partial<CallToolRequest> = {
 				params: { name: 'get_component_metadata', arguments: { name: 'CdsButton' } },
 			};
-			const result = await handleComponentToolCall(request as CallToolRequest, mockMetadata, mockDocsIndex);
+			const result = await handleComponentToolCall(request as CallToolRequest, mockMetadata);
 			if (result.content[0].type === 'text') {
 				const data: ComponentMetadata = JSON.parse(result.content[0].text as string);
 				expect(data.displayName).toBe('CdsButton');
@@ -92,7 +88,7 @@ describe('Component Tools', () => {
 			const request: Partial<CallToolRequest> = {
 				params: { name: 'get_component_metadata', arguments: { name: 'NonExistent' } },
 			};
-			await expect(handleComponentToolCall(request as CallToolRequest, mockMetadata, mockDocsIndex))
+			await expect(handleComponentToolCall(request as CallToolRequest, mockMetadata))
 				.rejects.toThrow('Component "NonExistent" not found.');
 		});
 	});

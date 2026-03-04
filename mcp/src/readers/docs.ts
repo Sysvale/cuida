@@ -3,11 +3,15 @@ import * as path from 'path';
 import * as fs from 'fs/promises';
 import TurndownService from 'turndown';
 import { load } from 'cheerio';
+import { fileURLToPath } from 'node:url';
+import { logger } from '../utils/logger.js';
 
 export type DocsIndex = Map<string, string>;
 
 export async function indexDocs(): Promise<DocsIndex> {
-	const docsDir = path.join(process.cwd(), '../docs/.vitepress/dist/components');
+	const __dirname = path.dirname(fileURLToPath(import.meta.url));
+	const docsDir = path.resolve(__dirname, '../../../docs/.vitepress/dist/components');
+	logger.info('Indexing docs...', { docsDir });
 	const files = await glob('**/*.html', { cwd: docsDir, nodir: true, absolute: true });
 	
 	const index: DocsIndex = new Map();
@@ -15,6 +19,7 @@ export async function indexDocs(): Promise<DocsIndex> {
 		const fileName = path.basename(file, '.html').toLowerCase();
 		index.set(fileName, file);
 	}
+	logger.info('Docs indexed.', { count: index.size, indexKeys: Array.from(index.keys()), indexValues: Array.from(index.values()) });
 	return index;
 }
 

@@ -25,7 +25,7 @@
 		"docs:dev": "vitepress dev docs",
 		"docs:build": "vitepress build docs",
 		"docs:preview": "vitepress preview docs",
-		"generate:docs": "node docs/plugins/vueDocgen.js",
+		"generate:docs": "node docs/plugins/vueDocgen.mjs",
 		"test": "vitest",
 		"test:ui": "vitest --ui"
 	},

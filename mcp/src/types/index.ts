@@ -8,6 +8,8 @@ export interface ComponentMetadata {
   slots: Slot[];
   sourceFiles: string[];
   category?: string;
+  builtDocPath?: string;
+  searchRelevance?: number;
 }
 
 export interface Prop {

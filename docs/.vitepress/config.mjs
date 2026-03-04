@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress';
 import { fileURLToPath, URL } from 'node:url';
-import vueDocgenPlugin from '../plugins/vueDocgen'
+import vueDocgenPlugin from '../plugins/vueDocgen.mjs/index.js
 
 export default defineConfig({
 	title: 'Cuida',
@@ -340,6 +340,7 @@ export default defineConfig({
 		},
 		ssr: {
 			noExternal: [
+				'vue-multiselect',
 				'@sysvale/cuida-icons',
 				'@sysvale/vue3-long-click',
 				'lodash',

@@ -6,14 +6,14 @@ import {
 	CallToolRequest,
 } from '@modelcontextprotocol/sdk/types.js';
 import { readMetadata } from './readers/metadata.js';
-import { indexDocs } from './readers/docs.js';
 import { getComponentTools, handleComponentToolCall } from './tools/components.js';
 import { getTokenTools, handleTokenToolCall as handleTokenTool } from './tools/tokens.js';
+import { logger } from './utils/logger.js';
 
 const server = new Server(
 	{
 		name: 'cuida-mcp',
-		version: '0.0.1',
+		version: '0.0.1'
 	},
 	{
 		capabilities: {
@@ -24,7 +24,6 @@ const server = new Server(
 
 export async function main() {
 	const metadata = await readMetadata();
-	const docsIndex = await indexDocs();
 
 	const componentTools = getComponentTools();
 	const tokenTools = getTokenTools();
@@ -49,6 +48,11 @@ export async function main() {
 	server.setRequestHandler(CallToolRequestSchema, async (request) => {
 		const toolName = request.params.name;
 
+		logger.info('Tool call received', { 
+			tool: request.params.name, 
+			args: request.params.arguments 
+		});
+
 		if (toolName === 'hello_mcp') {
 			const name = request.params.arguments?.name ?? 'Mundo';
 			return {
@@ -57,7 +61,7 @@ export async function main() {
 		}
 
 		if (componentToolNames.has(toolName)) {
-			return await handleComponentToolCall(request as CallToolRequest, metadata, docsIndex);
+			return await handleComponentToolCall(request as CallToolRequest, metadata);
 		}
 
 		if (tokenToolNames.has(toolName)) {
@@ -70,6 +74,7 @@ export async function main() {
 	const transport = new StdioServerTransport();
 	await server.connect(transport);
 	console.error('Servidor MCP rodando via STDIO');
+	logger.info('SERVER RODANDO' + new Date().toISOString());
 }
 
 main().catch((error) => {

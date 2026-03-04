@@ -19,6 +19,7 @@
     "glob": "^13.0.2",
     "markdown-it": "^14.1.1",
     "turndown": "^7.2.2",
+    "winston": "^3.19.0"
   },
   "devDependencies": {
     "@types/node": "^25.2.3",
