@@ -17,3 +17,5 @@ export const ShadowsInputSchema = z.object({});
 export const TransitionsInputSchema = z.object({});
 
 export const IconographyInputSchema = z.object({});
+
+export const PrinciplesInputSchema = z.object({});

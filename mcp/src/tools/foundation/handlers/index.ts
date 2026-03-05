@@ -7,6 +7,7 @@ import { GetElevationHandler } from './elevation.js';
 import { GetShadowsHandler } from './shadows.js';
 import { GetTransitionsHandler } from './transitions.js';
 import { GetIconographyHandler } from './iconography.js';
+import { GetPrinciplesHandler } from './principles.js';
 
 export {
 	GetColorsPalleteHandler,
@@ -18,4 +19,5 @@ export {
 	GetShadowsHandler,
 	GetTransitionsHandler,
 	GetIconographyHandler,
+	GetPrinciplesHandler,
 };

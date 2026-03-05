@@ -10,6 +10,7 @@ import {
 	GetShadowsHandler,
 	GetTransitionsHandler,
 	GetIconographyHandler,
+	GetPrinciplesHandler,
 } from './handlers/index.js';
 import { getToolsFromHandlers } from '../core/utils.js';
 
@@ -23,6 +24,7 @@ const handlers: Record<string, BaseTool> = {
 	get_shadows: new GetShadowsHandler(),
 	get_transitions: new GetTransitionsHandler(),
 	get_iconography: new GetIconographyHandler(),
+	get_principles: new GetPrinciplesHandler(),
 };
 
 const baseHandler = createToolCallHandler(handlers, 'token');
