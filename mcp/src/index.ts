@@ -6,9 +6,11 @@ import {
 	CallToolRequest,
 } from '@modelcontextprotocol/sdk/types.js';
 import { readMetadata } from './readers/metadata.js';
-import { getComponentTools, handleComponentToolCall } from './tools/components.js';
-import { getTokenTools, handleTokenToolCall as handleTokenTool } from './tools/tokens.js';
+import { getComponentTools, handleComponentToolCall } from './tools/components/index.js';
+import { getTokenTools, handleTokenToolCall as handleTokenTool } from './tools/tokens/index.js';
+import { getUtilsTools, handleUtilsToolCall } from './tools/utils/index.js';
 import { logger } from './utils/logger.js';
+import { getFoundationTools, handleFoundationToolCall } from './tools/foundation/index.js';
 
 const server = new Server(
 	{
@@ -27,19 +29,25 @@ export async function main() {
 
 	const componentTools = getComponentTools();
 	const tokenTools = getTokenTools();
+	const foundationTools = getFoundationTools();
+	const utilsTools = getUtilsTools();
 
 	const allTools = [
 		{
 			name: 'hello_mcp',
-			description: 'Um teste inicial para verificar a conexão do servidor.',
+			description: '>> Um teste inicial para verificar a conexão do servidor.',
 			inputSchema: { type: 'object', properties: { name: { type: 'string' } } },
 		},
 		...componentTools,
 		...tokenTools,
+		...foundationTools,
+		...utilsTools,
 	];
 
 	const componentToolNames = new Set(componentTools.map(t => t.name));
 	const tokenToolNames = new Set(tokenTools.map(t => t.name));
+	const foundationToolNames = new Set(foundationTools.map(t => t.name));
+	const utilsToolNames = new Set(utilsTools.map(t => t.name));
 
 	server.setRequestHandler(ListToolsRequestSchema, async () => {
 		return { tools: allTools };
@@ -66,6 +74,14 @@ export async function main() {
 
 		if (tokenToolNames.has(toolName)) {
 			return await handleTokenTool(request as CallToolRequest);
+		}
+
+		if (foundationToolNames.has(toolName)) {
+			return await handleFoundationToolCall(request as CallToolRequest);
+		}
+
+		if(utilsToolNames.has(toolName)) {
+			return await handleUtilsToolCall(request as CallToolRequest);
 		}
 
 		throw new Error(`Ferramenta "${toolName}" não encontrada`);

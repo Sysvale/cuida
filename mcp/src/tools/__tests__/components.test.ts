@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { handleComponentToolCall } from '../components.js';
+import { handleComponentToolCall } from '../components/index.js';
 import { CallToolRequest } from '@modelcontextprotocol/sdk/types.js';
 import { ComponentMetadata } from '../../types/index.js';
 
@@ -42,14 +42,15 @@ describe('Component Tools', () => {
 				params: { name: 'search_components', arguments: { query: 'email' } },
 			};
 			const result = await handleComponentToolCall(request as CallToolRequest, mockMetadata);
+			expect(result.isError).toBeFalsy();
 			if (result.content[0].type === 'text') {
 				const data = JSON.parse(result.content[0].text as string);
 				expect(data).toEqual(
 					expect.arrayContaining([
-						expect.objectContaining({ name: 'CdsBaseInput' })
+						expect.objectContaining({ displayName: 'CdsBaseInput' })
 					])
 				);
-				expect(data[0].relevance).toBeGreaterThan(0);
+				expect(data[0].searchRelevance).toBeGreaterThan(0);
 			} else {
 				throw new Error('Expected text content');
 			}
@@ -84,12 +85,14 @@ describe('Component Tools', () => {
 			}
 		});
 
-		it('should throw an error if the component is not found', async () => {
+		it('should return an error if the component is not found', async () => {
 			const request: Partial<CallToolRequest> = {
 				params: { name: 'get_component_metadata', arguments: { name: 'NonExistent' } },
 			};
-			await expect(handleComponentToolCall(request as CallToolRequest, mockMetadata))
-				.rejects.toThrow('Component "NonExistent" not found.');
+			const result = await handleComponentToolCall(request as CallToolRequest, mockMetadata);
+			expect(result.isError).toBe(true);
+			const textContent = result.content.find(c => c.type === 'text');
+			expect(textContent?.text).toContain('Component "NonExistent" not found.');
 		});
 	});
 });
