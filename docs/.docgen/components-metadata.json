@@ -96,7 +96,7 @@
       "src/components/ActionBar.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/action-bar.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/action-bar.html"
   },
   "CdsActionsList": {
     "displayName": "CdsActionsList",
@@ -170,7 +170,7 @@
       "src/components/ActionsList.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/actions-list.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/actions-list.html"
   },
   "CdsAlert": {
     "displayName": "CdsAlert",
@@ -241,7 +241,7 @@
       "src/components/Alert.vue"
     ],
     "category": "notificação",
-    "vitepressDistFile": "docs/.vitepress/dist/components/notificação/alert.html"
+    "builtDocPath": "docs/.vitepress/dist/components/notificação/alert.html"
   },
   "CdsAlertCard": {
     "displayName": "CdsAlertCard",
@@ -364,7 +364,7 @@
       "src/components/AlertCard.vue"
     ],
     "category": "notificação",
-    "vitepressDistFile": "docs/.vitepress/dist/components/notificação/alert-card.html"
+    "builtDocPath": "docs/.vitepress/dist/components/notificação/alert-card.html"
   },
   "CdsAppBar": {
     "displayName": "CdsAppBar",
@@ -529,7 +529,7 @@
       "src/components/AppBar.vue"
     ],
     "category": "estrutural",
-    "vitepressDistFile": "docs/.vitepress/dist/components/estrutural/app-bar.html"
+    "builtDocPath": "docs/.vitepress/dist/components/estrutural/app-bar.html"
   },
   "CdsAvatar": {
     "displayName": "CdsAvatar",
@@ -632,7 +632,7 @@
       "src/components/Avatar.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/avatar.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/avatar.html"
   },
   "CdsAvatarGroup": {
     "displayName": "CdsAvatarGroup",
@@ -684,7 +684,7 @@
       "src/components/AvatarGroup.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/avatar-group.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/avatar-group.html"
   },
   "CdsBadge": {
     "displayName": "CdsBadge",
@@ -766,7 +766,7 @@
       "src/components/Badge.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/badge.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/badge.html"
   },
   "CdsBarChart": {
     "displayName": "CdsBarChart",
@@ -846,7 +846,7 @@
       "src/components/BarChart.vue"
     ],
     "category": "charts",
-    "vitepressDistFile": "docs/.vitepress/dist/components/charts/bar-chart.html"
+    "builtDocPath": "docs/.vitepress/dist/components/charts/bar-chart.html"
   },
   "CdsBaseInput": {
     "name": "CdsBaseInput",
@@ -1198,7 +1198,7 @@
       "src/components/BaseInput.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/base-input.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/base-input.html"
   },
   "CdsBaseMobileInput": {
     "name": "CdsBaseMobileInput",
@@ -1526,7 +1526,7 @@
       "src/components/BottomSheet.vue"
     ],
     "category": "overlays",
-    "vitepressDistFile": "docs/.vitepress/dist/components/overlays/bottom-sheet.html"
+    "builtDocPath": "docs/.vitepress/dist/components/overlays/bottom-sheet.html"
   },
   "CdsBox": {
     "displayName": "CdsBox",
@@ -1657,7 +1657,7 @@
       "src/components/Box.vue"
     ],
     "category": "containers",
-    "vitepressDistFile": "docs/.vitepress/dist/components/containers/box.html"
+    "builtDocPath": "docs/.vitepress/dist/components/containers/box.html"
   },
   "CdsBreadcrumb": {
     "displayName": "CdsBreadcrumb",
@@ -1682,7 +1682,7 @@
       "src/components/Breadcrumb.vue"
     ],
     "category": "navegação",
-    "vitepressDistFile": "docs/.vitepress/dist/components/navegação/breadcrumb.html"
+    "builtDocPath": "docs/.vitepress/dist/components/navegação/breadcrumb.html"
   },
   "CdsButton": {
     "name": "CdsButton",
@@ -1839,7 +1839,7 @@
       "src/components/Button.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/button.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/button.html"
   },
   "CdsCalloutCard": {
     "displayName": "CdsCalloutCard",
@@ -1989,7 +1989,7 @@
       "src/components/CalloutCard.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/callout-card.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/callout-card.html"
   },
   "CdsCard": {
     "name": "CdsCard",
@@ -2150,7 +2150,7 @@
       "src/components/Card.vue"
     ],
     "category": "containers",
-    "vitepressDistFile": "docs/.vitepress/dist/components/containers/card.html"
+    "builtDocPath": "docs/.vitepress/dist/components/containers/card.html"
   },
   "CdsCarousel": {
     "name": "CdsCarousel",
@@ -2263,7 +2263,7 @@
       "src/components/Carousel.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/carousel.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/carousel.html"
   },
   "CdsCarouselController": {
     "displayName": "CdsCarouselController",
@@ -2382,7 +2382,7 @@
       "src/components/CarouselController.vue"
     ],
     "category": "containers",
-    "vitepressDistFile": "docs/.vitepress/dist/components/containers/carousel-controller.html"
+    "builtDocPath": "docs/.vitepress/dist/components/containers/carousel-controller.html"
   },
   "CdsCheckbox": {
     "displayName": "CdsCheckbox",
@@ -2495,7 +2495,7 @@
       "src/components/Checkbox.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/checkbox.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/checkbox.html"
   },
   "CdsCheckboxGroup": {
     "name": "CdsCheckboxGroup",
@@ -2621,7 +2621,7 @@
       "src/components/CheckboxGroup.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/checkbox-group.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/checkbox-group.html"
   },
   "CdsChevron": {
     "displayName": "CdsChevron",
@@ -2691,7 +2691,7 @@
       "src/components/Chevron.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/chevron.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/chevron.html"
   },
   "CdsChip": {
     "name": "CdsChip",
@@ -2778,7 +2778,7 @@
       "src/components/Chip.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/chip.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/chip.html"
   },
   "CdsClickable": {
     "displayName": "CdsClickable",
@@ -2831,7 +2831,7 @@
       "src/components/Clickable.vue"
     ],
     "category": "utils",
-    "vitepressDistFile": "docs/.vitepress/dist/components/utils/clickable.html"
+    "builtDocPath": "docs/.vitepress/dist/components/utils/clickable.html"
   },
   "CdsCollapsibleContainer": {
     "displayName": "CdsCollapsibleContainer",
@@ -2888,7 +2888,7 @@
       "src/components/CollapsibleContainer.vue"
     ],
     "category": "containers",
-    "vitepressDistFile": "docs/.vitepress/dist/components/containers/collapsible-container.html"
+    "builtDocPath": "docs/.vitepress/dist/components/containers/collapsible-container.html"
   },
   "CdsColorPicker": {
     "displayName": "CdsColorPicker",
@@ -3002,7 +3002,7 @@
       "src/components/ColorPicker.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/color-picker.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/color-picker.html"
   },
   "CdsComboBox": {
     "name": "CdsComboBox",
@@ -3269,7 +3269,7 @@
       "src/components/DashboardCard.vue"
     ],
     "category": "containers",
-    "vitepressDistFile": "docs/.vitepress/dist/components/containers/dashboard-card.html"
+    "builtDocPath": "docs/.vitepress/dist/components/containers/dashboard-card.html"
   },
   "CdsDataTable": {
     "name": "CdsDataTable",
@@ -3558,7 +3558,7 @@
       "src/components/DataTable.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/data-table.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/data-table.html"
   },
   "CdsDateInput": {
     "name": "CdsDateInput",
@@ -3879,7 +3879,7 @@
       "src/components/DateInput.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/date-input.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/date-input.html"
   },
   "CdsDialog": {
     "displayName": "CdsDialog",
@@ -4183,7 +4183,7 @@
       "src/components/DialogModal.vue"
     ],
     "category": "notificação",
-    "vitepressDistFile": "docs/.vitepress/dist/components/notificação/dialog-modal.html"
+    "builtDocPath": "docs/.vitepress/dist/components/notificação/dialog-modal.html"
   },
   "CdsDivider": {
     "displayName": "CdsDivider",
@@ -4262,7 +4262,7 @@
       "src/components/Divider.vue"
     ],
     "category": "containers",
-    "vitepressDistFile": "docs/.vitepress/dist/components/containers/divider.html"
+    "builtDocPath": "docs/.vitepress/dist/components/containers/divider.html"
   },
   "CdsDonutChart": {
     "displayName": "CdsDonutChart",
@@ -4360,7 +4360,7 @@
       "src/components/DonutChart.vue"
     ],
     "category": "charts",
-    "vitepressDistFile": "docs/.vitepress/dist/components/charts/donut-chart.html"
+    "builtDocPath": "docs/.vitepress/dist/components/charts/donut-chart.html"
   },
   "CdsDropdown": {
     "displayName": "CdsDropdown",
@@ -4436,7 +4436,7 @@
       "src/components/Dropdown.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/dropdown.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/dropdown.html"
   },
   "CdsDropdownButton": {
     "name": "CdsDropdownButton",
@@ -4577,7 +4577,7 @@
       "src/components/DropdownButton.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/dropdown-button.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/dropdown-button.html"
   },
   "CdsDynamicInputList": {
     "name": "CdsDynamicInputList",
@@ -4730,7 +4730,7 @@
       "src/components/DynamicInputList.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/dynamic-input-list.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/dynamic-input-list.html"
   },
   "CdsEmptyState": {
     "displayName": "CdsEmptyState",
@@ -4855,7 +4855,7 @@
       "src/components/EmptyState.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/empty-state.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/empty-state.html"
   },
   "CdsFileInput": {
     "displayName": "CdsFileInput",
@@ -4970,7 +4970,7 @@
       "src/components/FileInput.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/file-input.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/file-input.html"
   },
   "CdsFileViewer": {
     "name": "CdsFileViewer",
@@ -5052,7 +5052,7 @@
       "src/components/FileViewer.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/file-viewer.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/file-viewer.html"
   },
   "CdsFilterSelect": {
     "displayName": "CdsFilterSelect",
@@ -5192,7 +5192,7 @@
       "src/components/FilterSelect.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/filter-select.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/filter-select.html"
   },
   "CdsFlatButton": {
     "name": "CdsFlatButton",
@@ -5268,7 +5268,7 @@
       "src/components/FlatButton.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/flat-button.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/flat-button.html"
   },
   "CdsFlexbox": {
     "name": "CdsFlexbox",
@@ -5407,7 +5407,7 @@
       "src/components/Flexbox.vue"
     ],
     "category": "containers",
-    "vitepressDistFile": "docs/.vitepress/dist/components/containers/flexbox.html"
+    "builtDocPath": "docs/.vitepress/dist/components/containers/flexbox.html"
   },
   "CdsFloatingActionButton": {
     "name": "CdsFloatingActionButton",
@@ -5492,7 +5492,7 @@
       "src/components/FloatingActionButton.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/floating-action-button.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/floating-action-button.html"
   },
   "CdsFloatingAssistant": {
     "displayName": "CdsFloatingAssistant",
@@ -5612,7 +5612,7 @@
       "src/components/FloatingAssistant.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/floating-assistant.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/floating-assistant.html"
   },
   "CdsGaugeChart": {
     "displayName": "CdsGaugeChart",
@@ -5709,7 +5709,7 @@
       "src/components/GaugeChart.vue"
     ],
     "category": "charts",
-    "vitepressDistFile": "docs/.vitepress/dist/components/charts/gauge-chart.html"
+    "builtDocPath": "docs/.vitepress/dist/components/charts/gauge-chart.html"
   },
   "CdsGrid": {
     "name": "CdsGrid",
@@ -5840,7 +5840,7 @@
       "src/components/Grid.vue"
     ],
     "category": "containers",
-    "vitepressDistFile": "docs/.vitepress/dist/components/containers/grid.html"
+    "builtDocPath": "docs/.vitepress/dist/components/containers/grid.html"
   },
   "CdsGridItem": {
     "name": "CdsGridItem",
@@ -6059,7 +6059,7 @@
       "src/components/Highlight.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/highlight.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/highlight.html"
   },
   "CdsIcon": {
     "displayName": "CdsIcon",
@@ -6250,7 +6250,7 @@
       "src/components/IconButton.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/icon-button.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/icon-button.html"
   },
   "CdsImage": {
     "name": "CdsImage",
@@ -6371,7 +6371,7 @@
       "src/components/Image.vue"
     ],
     "category": "utils",
-    "vitepressDistFile": "docs/.vitepress/dist/components/utils/image.html"
+    "builtDocPath": "docs/.vitepress/dist/components/utils/image.html"
   },
   "CdsInlineDateInput": {
     "displayName": "CdsInlineDateInput",
@@ -6524,7 +6524,7 @@
       "src/components/InlineDateInput.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/inline-date-input.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/inline-date-input.html"
   },
   "CdsInnerTabs": {
     "name": "CdsInnerTabs",
@@ -6629,7 +6629,7 @@
       "src/components/InnerTabs.vue"
     ],
     "category": "navegação",
-    "vitepressDistFile": "docs/.vitepress/dist/components/navegação/inner-tabs.html"
+    "builtDocPath": "docs/.vitepress/dist/components/navegação/inner-tabs.html"
   },
   "CdsInteractionBlockingOverlay": {
     "name": "CdsInteractionBlockingOverlay",
@@ -6728,7 +6728,7 @@
       "src/components/InteractionBlockingOverlay.vue"
     ],
     "category": "overlays",
-    "vitepressDistFile": "docs/.vitepress/dist/components/overlays/interaction-blocking-overlay.html"
+    "builtDocPath": "docs/.vitepress/dist/components/overlays/interaction-blocking-overlay.html"
   },
   "CdsLabel": {
     "name": "CdsLabel",
@@ -6836,7 +6836,7 @@
       "src/components/Label.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/label.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/label.html"
   },
   "CdsLineChart": {
     "displayName": "CdsLineChart",
@@ -7026,7 +7026,7 @@
       "src/components/LineChart.vue"
     ],
     "category": "charts",
-    "vitepressDistFile": "docs/.vitepress/dist/components/charts/line-chart.html"
+    "builtDocPath": "docs/.vitepress/dist/components/charts/line-chart.html"
   },
   "CdsLink": {
     "displayName": "CdsLink",
@@ -7107,7 +7107,7 @@
       "src/components/Link.vue"
     ],
     "category": "navegação",
-    "vitepressDistFile": "docs/.vitepress/dist/components/navegação/link.html"
+    "builtDocPath": "docs/.vitepress/dist/components/navegação/link.html"
   },
   "CdsList": {
     "name": "CdsList",
@@ -7209,7 +7209,7 @@
       "src/components/List.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/list.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/list.html"
   },
   "CdsLoadingBar": {
     "displayName": "CdsLoadingBar",
@@ -7220,7 +7220,7 @@
       "src/components/LoadingBar.vue"
     ],
     "category": "loaders",
-    "vitepressDistFile": "docs/.vitepress/dist/components/loaders/loading-bar.html"
+    "builtDocPath": "docs/.vitepress/dist/components/loaders/loading-bar.html"
   },
   "CdsLoadingIndicator": {
     "name": "CdsLoadingIndicator",
@@ -7281,7 +7281,7 @@
       "src/components/LoadingIndicator.vue"
     ],
     "category": "loaders",
-    "vitepressDistFile": "docs/.vitepress/dist/components/loaders/loading-indicator.html"
+    "builtDocPath": "docs/.vitepress/dist/components/loaders/loading-indicator.html"
   },
   "CdsMobileNavbar": {
     "name": "CdsMobileNavbar",
@@ -7355,7 +7355,7 @@
       "src/components/MobileNavbar.vue"
     ],
     "category": "navegação",
-    "vitepressDistFile": "docs/.vitepress/dist/components/navegação/mobile-navbar.html"
+    "builtDocPath": "docs/.vitepress/dist/components/navegação/mobile-navbar.html"
   },
   "CdsMobileNavigation": {
     "name": "CdsMobileNavigation",
@@ -7494,7 +7494,7 @@
       "src/components/MobileNavigation.vue"
     ],
     "category": "navegação",
-    "vitepressDistFile": "docs/.vitepress/dist/components/navegação/mobile-navigation.html"
+    "builtDocPath": "docs/.vitepress/dist/components/navegação/mobile-navigation.html"
   },
   "CdsMobileStepperInput": {
     "name": "CdsMobileStepperInput",
@@ -7770,7 +7770,7 @@
       "src/components/Modal.vue"
     ],
     "category": "overlays",
-    "vitepressDistFile": "docs/.vitepress/dist/components/overlays/modal.html"
+    "builtDocPath": "docs/.vitepress/dist/components/overlays/modal.html"
   },
   "CdsMonthAndYearPicker": {
     "name": "CdsMonthAndYearPicker",
@@ -7998,7 +7998,7 @@
       "src/components/MonthAndYearPicker.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/month-and-year-picker.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/month-and-year-picker.html"
   },
   "CdsMultiFileInput": {
     "name": "CdsMultiFileInput",
@@ -8071,7 +8071,7 @@
       "src/components/MultiFileInput.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/multi-file-input.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/multi-file-input.html"
   },
   "CdsMultiselect": {
     "displayName": "CdsMultiselect",
@@ -8317,7 +8317,7 @@
       "src/components/Multiselect.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/multiselect.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/multiselect.html"
   },
   "CdsNavBar": {
     "displayName": "CdsNavBar",
@@ -8389,7 +8389,7 @@
       "src/components/NavBar.vue"
     ],
     "category": "navegação",
-    "vitepressDistFile": "docs/.vitepress/dist/components/navegação/nav-bar.html"
+    "builtDocPath": "docs/.vitepress/dist/components/navegação/nav-bar.html"
   },
   "CdsNumberInput": {
     "name": "CdsNumberInput",
@@ -8661,7 +8661,7 @@
       "src/components/NumberInput.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/number-input.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/number-input.html"
   },
   "CdsOverlayLoader": {
     "displayName": "CdsOverlayLoader",
@@ -8715,7 +8715,7 @@
       "src/components/OverlayLoader.vue"
     ],
     "category": "loaders",
-    "vitepressDistFile": "docs/.vitepress/dist/components/loaders/overlay-loader.html"
+    "builtDocPath": "docs/.vitepress/dist/components/loaders/overlay-loader.html"
   },
   "CdsPageContainer": {
     "displayName": "CdsPageContainer",
@@ -8731,7 +8731,7 @@
       "src/components/PageContainer.vue"
     ],
     "category": "estrutural",
-    "vitepressDistFile": "docs/.vitepress/dist/components/estrutural/page-container.html"
+    "builtDocPath": "docs/.vitepress/dist/components/estrutural/page-container.html"
   },
   "CdsPageHeader": {
     "exportName": "default",
@@ -8790,7 +8790,7 @@
       "src/components/PageHeader.vue"
     ],
     "category": "estrutural",
-    "vitepressDistFile": "docs/.vitepress/dist/components/estrutural/page-header.html"
+    "builtDocPath": "docs/.vitepress/dist/components/estrutural/page-header.html"
   },
   "CdsPageLayout": {
     "name": "CdsPageLayout",
@@ -8975,7 +8975,7 @@
       "src/components/PageLayout.vue"
     ],
     "category": "navegação",
-    "vitepressDistFile": "docs/.vitepress/dist/components/navegação/page-layout.html"
+    "builtDocPath": "docs/.vitepress/dist/components/navegação/page-layout.html"
   },
   "CdsPagination": {
     "name": "CdsPagination",
@@ -9046,7 +9046,7 @@
       "src/components/Pagination.vue"
     ],
     "category": "navegação",
-    "vitepressDistFile": "docs/.vitepress/dist/components/navegação/pagination.html"
+    "builtDocPath": "docs/.vitepress/dist/components/navegação/pagination.html"
   },
   "CdsPanelCard": {
     "displayName": "CdsPanelCard",
@@ -9096,7 +9096,7 @@
       "src/components/PanelCard.vue"
     ],
     "category": "containers",
-    "vitepressDistFile": "docs/.vitepress/dist/components/containers/panel-card.html"
+    "builtDocPath": "docs/.vitepress/dist/components/containers/panel-card.html"
   },
   "CdsPasswordInput": {
     "displayName": "CdsPasswordInput",
@@ -9254,7 +9254,7 @@
       "src/components/PasswordInput.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/password-input.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/password-input.html"
   },
   "CdsPieChart": {
     "displayName": "CdsPieChart",
@@ -9327,7 +9327,7 @@
       "src/components/PieChart.vue"
     ],
     "category": "charts",
-    "vitepressDistFile": "docs/.vitepress/dist/components/charts/pie-chart.html"
+    "builtDocPath": "docs/.vitepress/dist/components/charts/pie-chart.html"
   },
   "CdsPinInput": {
     "name": "CdsPinInput",
@@ -9414,7 +9414,7 @@
       "src/components/PinInput.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/pin-input.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/pin-input.html"
   },
   "CdsPolarAreaChart": {
     "displayName": "CdsPolarAreaChart",
@@ -9487,7 +9487,7 @@
       "src/components/PolarAreaChart.vue"
     ],
     "category": "charts",
-    "vitepressDistFile": "docs/.vitepress/dist/components/charts/polar-area-chart.html"
+    "builtDocPath": "docs/.vitepress/dist/components/charts/polar-area-chart.html"
   },
   "CdsPopover": {
     "displayName": "CdsPopover",
@@ -9594,7 +9594,7 @@
       "src/components/Popover.vue"
     ],
     "category": "overlays",
-    "vitepressDistFile": "docs/.vitepress/dist/components/overlays/popover.html"
+    "builtDocPath": "docs/.vitepress/dist/components/overlays/popover.html"
   },
   "CdsProgressBar": {
     "name": "CdsProgressBar",
@@ -9681,7 +9681,7 @@
       "src/components/ProgressBar.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/progress-bar.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/progress-bar.html"
   },
   "CdsProgressCircular": {
     "displayName": "CdsProgressCircular",
@@ -9795,7 +9795,7 @@
       "src/components/ProgressCircular.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/progress-circular.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/progress-circular.html"
   },
   "CdsPulsar": {
     "displayName": "CdsPulsar",
@@ -9870,7 +9870,7 @@
       "src/components/Pulsar.vue"
     ],
     "category": "notificação",
-    "vitepressDistFile": "docs/.vitepress/dist/components/notificação/pulsar.html"
+    "builtDocPath": "docs/.vitepress/dist/components/notificação/pulsar.html"
   },
   "CdsQuickActionBar": {
     "name": "CdsQuickActionBar",
@@ -10092,7 +10092,7 @@
       "src/components/QuickActionBar.vue"
     ],
     "category": "overlays",
-    "vitepressDistFile": "docs/.vitepress/dist/components/overlays/quick-action-bar.html"
+    "builtDocPath": "docs/.vitepress/dist/components/overlays/quick-action-bar.html"
   },
   "CdsRadialBarChart": {
     "displayName": "CdsRadialBarChart",
@@ -10187,7 +10187,7 @@
       "src/components/RadialBarChart.vue"
     ],
     "category": "charts",
-    "vitepressDistFile": "docs/.vitepress/dist/components/charts/radial-bar-chart.html"
+    "builtDocPath": "docs/.vitepress/dist/components/charts/radial-bar-chart.html"
   },
   "CdsRadio": {
     "displayName": "CdsRadio",
@@ -10287,7 +10287,7 @@
       "src/components/Radio.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/radio.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/radio.html"
   },
   "CdsRadioButtonGroup": {
     "name": "CdsRadioButtonGroup",
@@ -10487,7 +10487,7 @@
       "src/components/RadioButtonGroup.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/radio-button-group.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/radio-button-group.html"
   },
   "CdsRequiredIndicator": {
     "name": "CdsRequiredIndicator",
@@ -10597,7 +10597,7 @@
       "src/components/RichTooltip.vue"
     ],
     "category": "overlays",
-    "vitepressDistFile": "docs/.vitepress/dist/components/overlays/rich-tooltip.html"
+    "builtDocPath": "docs/.vitepress/dist/components/overlays/rich-tooltip.html"
   },
   "CdsScrollable": {
     "displayName": "CdsScrollable",
@@ -10650,7 +10650,7 @@
       "src/components/Scrollable.vue"
     ],
     "category": "containers",
-    "vitepressDistFile": "docs/.vitepress/dist/components/containers/scrollable.html"
+    "builtDocPath": "docs/.vitepress/dist/components/containers/scrollable.html"
   },
   "CdsSearchInput": {
     "name": "CdsSearchInput",
@@ -10739,7 +10739,7 @@
       "src/components/SearchInput.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/search-input.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/search-input.html"
   },
   "CdsSecondaryNavigation": {
     "name": "CdsSecondaryNavigation",
@@ -10849,7 +10849,7 @@
       "src/components/SegmentedControl.vue"
     ],
     "category": "navegação",
-    "vitepressDistFile": "docs/.vitepress/dist/components/navegação/segmented-control.html"
+    "builtDocPath": "docs/.vitepress/dist/components/navegação/segmented-control.html"
   },
   "CdsSelect": {
     "name": "CdsSelect",
@@ -11213,7 +11213,7 @@
       "src/components/Select.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/select.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/select.html"
   },
   "CdsSideBar": {
     "name": "CdsSideBar",
@@ -11426,7 +11426,7 @@
       "src/components/SideBar.vue"
     ],
     "category": "overlays",
-    "vitepressDistFile": "docs/.vitepress/dist/components/overlays/side-bar.html"
+    "builtDocPath": "docs/.vitepress/dist/components/overlays/side-bar.html"
   },
   "CdsSideSheet": {
     "displayName": "CdsSideSheet",
@@ -11688,7 +11688,7 @@
       "src/components/SideSheet.vue"
     ],
     "category": "overlays",
-    "vitepressDistFile": "docs/.vitepress/dist/components/overlays/side-sheet.html"
+    "builtDocPath": "docs/.vitepress/dist/components/overlays/side-sheet.html"
   },
   "CdsSkeleton": {
     "displayName": "CdsSkeleton",
@@ -11750,7 +11750,7 @@
       "src/components/Skeleton.vue"
     ],
     "category": "loaders",
-    "vitepressDistFile": "docs/.vitepress/dist/components/loaders/skeleton.html"
+    "builtDocPath": "docs/.vitepress/dist/components/loaders/skeleton.html"
   },
   "CdsSkeletonText": {
     "displayName": "CdsSkeletonText",
@@ -11781,7 +11781,7 @@
       "src/components/SkeletonText.vue"
     ],
     "category": "loaders",
-    "vitepressDistFile": "docs/.vitepress/dist/components/loaders/skeleton-text.html"
+    "builtDocPath": "docs/.vitepress/dist/components/loaders/skeleton-text.html"
   },
   "CdsSlider": {
     "displayName": "CdsSlider",
@@ -11878,7 +11878,7 @@
       "src/components/Slider.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/slider.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/slider.html"
   },
   "CdsSliderNext": {
     "exportName": "default",
@@ -12248,7 +12248,7 @@
       "src/components/Spacer.vue"
     ],
     "category": "utils",
-    "vitepressDistFile": "docs/.vitepress/dist/components/utils/spacer.html"
+    "builtDocPath": "docs/.vitepress/dist/components/utils/spacer.html"
   },
   "CdsSpinner": {
     "displayName": "CdsSpinner",
@@ -12313,7 +12313,7 @@
       "src/components/Spinner.vue"
     ],
     "category": "loaders",
-    "vitepressDistFile": "docs/.vitepress/dist/components/loaders/spinner.html"
+    "builtDocPath": "docs/.vitepress/dist/components/loaders/spinner.html"
   },
   "CdsStackedBarChart": {
     "displayName": "CdsStackedBarChart",
@@ -12403,7 +12403,7 @@
       "src/components/StackedBarChart.vue"
     ],
     "category": "charts",
-    "vitepressDistFile": "docs/.vitepress/dist/components/charts/stacked-bar-chart.html"
+    "builtDocPath": "docs/.vitepress/dist/components/charts/stacked-bar-chart.html"
   },
   "CdsStepper": {
     "displayName": "CdsStepper",
@@ -12473,7 +12473,7 @@
       "src/components/Stepper.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/stepper.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/stepper.html"
   },
   "CdsStepperInput": {
     "name": "CdsStepperInput",
@@ -12672,7 +12672,7 @@
       "src/components/StepperInput.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/stepper-input.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/stepper-input.html"
   },
   "CdsSwitch": {
     "name": "CdsSwitch",
@@ -12803,7 +12803,7 @@
       "src/components/Switch.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/switch.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/switch.html"
   },
   "CdsTable": {
     "displayName": "CdsTable",
@@ -13020,7 +13020,7 @@
       "src/components/Table.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/table.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/table.html"
   },
   "CdsTabs": {
     "displayName": "CdsTabs",
@@ -13134,7 +13134,7 @@
       "src/components/Tabs.vue"
     ],
     "category": "navegação",
-    "vitepressDistFile": "docs/.vitepress/dist/components/navegação/tabs.html"
+    "builtDocPath": "docs/.vitepress/dist/components/navegação/tabs.html"
   },
   "CdsText": {
     "name": "CdsText",
@@ -13258,7 +13258,7 @@
       "src/components/Text.vue"
     ],
     "category": "tipografia",
-    "vitepressDistFile": "docs/.vitepress/dist/components/tipografia/text.html"
+    "builtDocPath": "docs/.vitepress/dist/components/tipografia/text.html"
   },
   "CdsTextArea": {
     "name": "CdsTextArea",
@@ -13454,7 +13454,7 @@
       "src/components/TextArea.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/text-area.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/text-area.html"
   },
   "CdsTextInput": {
     "name": "CdsTextInput",
@@ -13753,7 +13753,7 @@
       "src/components/TextInput.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/text-input.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/text-input.html"
   },
   "CdsTile": {
     "name": "CdsTile",
@@ -13869,7 +13869,7 @@
       "src/components/Tile.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/tile.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/tile.html"
   },
   "CdsTimeInput": {
     "displayName": "CdsTimeInput",
@@ -13989,7 +13989,7 @@
       "src/components/TimeInput.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/time-input.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/time-input.html"
   },
   "CdsTimeline": {
     "displayName": "CdsTimeline",
@@ -14019,7 +14019,7 @@
       "src/components/Timeline.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/timeline.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/timeline.html"
   },
   "CdsTimelineItem": {
     "displayName": "CdsTimelineItem",
@@ -14103,7 +14103,7 @@
       "src/components/TimelineItem.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/timeline-item.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/timeline-item.html"
   },
   "CdsToast": {
     "name": "CdsToast",
@@ -14214,7 +14214,7 @@
       "src/components/Toast.vue"
     ],
     "category": "notificação",
-    "vitepressDistFile": "docs/.vitepress/dist/components/notificação/toast.html"
+    "builtDocPath": "docs/.vitepress/dist/components/notificação/toast.html"
   },
   "CdsToastContainer": {
     "name": "CdsToastContainer",
@@ -14226,7 +14226,7 @@
       "src/components/ToastContainer.vue"
     ],
     "category": "notificação",
-    "vitepressDistFile": "docs/.vitepress/dist/components/notificação/toast-container.html"
+    "builtDocPath": "docs/.vitepress/dist/components/notificação/toast-container.html"
   },
   "CdsTooltip": {
     "name": "CdsTooltip",
@@ -14323,7 +14323,7 @@
       "src/components/Tooltip.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/tooltip.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/tooltip.html"
   },
   "CdsTopAppBar": {
     "name": "CdsTopAppBar",
@@ -14405,7 +14405,7 @@
       "src/components/TopAppBar.vue"
     ],
     "category": "estrutural",
-    "vitepressDistFile": "docs/.vitepress/dist/components/estrutural/top-app-bar.html"
+    "builtDocPath": "docs/.vitepress/dist/components/estrutural/top-app-bar.html"
   },
   "CdsTruncate": {
     "displayName": "CdsTruncate",
@@ -14435,7 +14435,7 @@
       "src/components/Truncate.vue"
     ],
     "category": "utils",
-    "vitepressDistFile": "docs/.vitepress/dist/components/utils/truncate.html"
+    "builtDocPath": "docs/.vitepress/dist/components/utils/truncate.html"
   },
   "CdsTruncateContainer": {
     "name": "CdsTruncateContainer",
@@ -14536,7 +14536,7 @@
       "src/components/TruncateContainer.vue"
     ],
     "category": "containers",
-    "vitepressDistFile": "docs/.vitepress/dist/components/containers/truncate-container.html"
+    "builtDocPath": "docs/.vitepress/dist/components/containers/truncate-container.html"
   },
   "CdsWebcamModal": {
     "name": "CdsWebcamModal",
@@ -14668,7 +14668,7 @@
       "src/components/WebcamModal.vue"
     ],
     "category": "forms",
-    "vitepressDistFile": "docs/.vitepress/dist/components/forms/webcam-modal.html"
+    "builtDocPath": "docs/.vitepress/dist/components/forms/webcam-modal.html"
   },
   "CdsWizard": {
     "displayName": "CdsWizard",
@@ -14823,7 +14823,7 @@
       "src/components/Wizard.vue"
     ],
     "category": "display",
-    "vitepressDistFile": "docs/.vitepress/dist/components/display/wizard.html"
+    "builtDocPath": "docs/.vitepress/dist/components/display/wizard.html"
   },
   "CdsCustomFieldsSideSheet": {
     "name": "CustomFieldsSideSheet",
