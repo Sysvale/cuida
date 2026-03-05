@@ -2,7 +2,7 @@ import { glob } from 'glob';
 import * as path from 'path';
 import * as fs from 'fs/promises';
 import TurndownService from 'turndown';
-import { load } from 'cheerio';
+import { load, Cheerio } from 'cheerio';
 import { fileURLToPath } from 'node:url';
 import { logger } from '../utils/logger.js';
 
@@ -23,7 +23,7 @@ export async function indexDocs(): Promise<DocsIndex> {
 	return index;
 }
 
-export async function readDocFile(filePath: string): Promise<string> {
+export async function readDocFile(filePath: string, transform?: (virtualDom: Cheerio<any>) => void): Promise<string> {
 	const fullHtmlString = await fs.readFile(filePath, 'utf-8');
 	const $ = load(fullHtmlString);
 	const $content = $('main > div > div');
@@ -31,6 +31,10 @@ export async function readDocFile(filePath: string): Promise<string> {
 	if ($content.length === 0) {
 		console.warn('Selector "main > div > div" not found in HTML.');
 		return '# Not found';
+	}
+
+	if (transform) {
+		transform($content);
 	}
 
 	$content.find('.header-anchor').remove();
