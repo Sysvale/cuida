@@ -325,6 +325,8 @@ const selectOptions = useTemplateRef('select-options');
 const liRefs = ref({});
 const { emitClick, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
 const searchString = ref('');
+const isTyping = ref(false);
+const internalInputValue = ref('');
 
 /* COMPUTED */
 const resolveChevronTop = computed(() => {
@@ -362,7 +364,15 @@ const showAddOption = computed(() => {
 		&& !localOptions.value.some(option => option[props.optionsField]?.toLowerCase() === searchString?.value.toLowerCase());
 });
 
-const computedModel = computed(() => localValue.value[props.optionsField]);
+const computedModel = computed({
+	get() {
+		return isTyping.value ? internalInputValue.value : localValue.value?.[props.optionsField];
+	},
+	set(val) {
+		isTyping.value = true;
+		internalInputValue.value = val;
+	}
+});
 
 //NOTE: Essa computada vai ser removida junto com a descontinuação da prop width na V4
 const computedFluid = computed(() => {
@@ -394,7 +404,13 @@ watch(model, (newValue, oldValue) => {
 }, { immediate: true });
 
 watch(localValue, (currentValue) => {
-	if (currentValue === model.value) return;
+	if (JSON.stringify(currentValue) === JSON.stringify(model.value)) return;
+
+	const isValueEmpty = !currentValue || (typeof currentValue === 'object' && Object.keys(currentValue).length === 0);
+	if (isValueEmpty) {
+		model.value = props.returnValue ? '' : {};
+		return;
+	}
 
 	const compatibleOptions = localOptions.value.filter(
 		(option) => JSON.stringify(option) === JSON.stringify(currentValue),
@@ -482,14 +498,14 @@ function activateSelectionOnEnter() {
 		nextTick(() => {
 			localValue.value = props.searchable && props.addable
 				? localValue.value
-				: cloneDeep(localOptions.value[0]);
+				: localOptions.value.length ? cloneDeep(localOptions.value[0]) : {};
 		});
-
 	} else {
 		localValue.value = cloneDeep(localOptions.value[currentPos.value]);
 	}
 
 	searchString.value = '';
+	isTyping.value = false;
 	select.value.blur();
 }
 
@@ -521,6 +537,7 @@ function hide() {
 		localOptions.value = pristineOptions.value;
 		searchString.value = '';
 		active.value = false;
+		isTyping.value = false;
 	});
 
 	emitBlur();
@@ -529,6 +546,9 @@ function hide() {
 function selectItem() {
 	searchString.value = '';
 	localValue.value = cloneDeep(localOptions.value[currentPos.value]);
+	active.value = !active.value;
+	isTyping.value = false;
+	select.value.blur();
 }
 
 function getLiInDOM(position) {
