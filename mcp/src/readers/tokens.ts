@@ -1,7 +1,8 @@
 import * as fs from 'fs/promises';
 import * as path from 'path';
+import { SRC_DIR } from '../utils/paths';
 
-const tokensDir = path.join(process.cwd(), '../src/assets/sass/tokens');
+const tokensDir = path.join(`${SRC_DIR}/assets/sass/tokens`);
 
 export async function listTokenFiles(): Promise<string[]> {
 	const files = await fs.readdir(tokensDir);

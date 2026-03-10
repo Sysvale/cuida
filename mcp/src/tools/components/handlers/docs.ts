@@ -5,6 +5,7 @@ import { createErrorResult, createSuccessResult, validate } from '../../core/uti
 import { Result, CallToolResult } from '../../../utils/result.js';
 import { findComponent } from '../utils/index.js';
 import { GetComponentDocsInputSchema } from '../schemas/index.js';
+import { VITEPRESS_DIST_DIR } from '../../../utils/paths.js';
 
 export class GetComponentDocsHandler extends AbstractMcpTool<typeof GetComponentDocsInputSchema> {
 	name = 'get_component_docs';
@@ -32,7 +33,7 @@ export class GetComponentDocsHandler extends AbstractMcpTool<typeof GetComponent
 			return createErrorResult(`Documentation for component "${name}" not found.`);
 		}
 
-		const docContent = await readDocFile(builtDocPath);
+		const docContent = await readDocFile(`${VITEPRESS_DIST_DIR}/${builtDocPath}`);
 		return createSuccessResult(docContent);
 	}
 }

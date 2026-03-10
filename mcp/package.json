@@ -1,12 +1,14 @@
 {
   "name": "mcp-server",
   "version": "1.0.0",
-  "description": "",
-  "main": "build/index.js",
+  "description": "Design System MCP Server",
+  "main": "src/index.ts",
   "type": "module",
   "scripts": {
-    "build": "tsc",
-    "start": "node build/index.js",
+    "dev": "bun --watch src/index.ts",
+    "start": "bun run src/index.ts",
+    "inspect": "bunx @modelcontextprotocol/inspector bun src/index.ts",
+    "typecheck": "tsc --noEmit",
     "test": "vitest"
   },
   "keywords": [],
@@ -23,6 +25,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@types/bun": "^1.2.0",
     "@types/node": "^25.2.3",
     "@types/turndown": "^5.0.6",
     "typescript": "^5.0.0",

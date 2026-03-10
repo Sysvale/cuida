@@ -3,14 +3,13 @@ import * as path from 'path';
 import * as fs from 'fs/promises';
 import TurndownService from 'turndown';
 import { load, Cheerio } from 'cheerio';
-import { fileURLToPath } from 'node:url';
 import { logger } from '../utils/logger.js';
+import { VITEPRESS_DIST_DIR } from '../utils/paths.js';
 
 export type DocsIndex = Map<string, string>;
 
 export async function indexDocs(): Promise<DocsIndex> {
-	const __dirname = path.dirname(fileURLToPath(import.meta.url));
-	const docsDir = path.resolve(__dirname, '../../../docs/.vitepress/dist/components');
+	const docsDir = path.resolve(`${VITEPRESS_DIST_DIR}/components`);
 	logger.info('Indexing docs...', { docsDir });
 	const files = await glob('**/*.html', { cwd: docsDir, nodir: true, absolute: true });
 	
