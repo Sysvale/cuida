@@ -168,14 +168,17 @@ const argsInline = ref({
 	label: "Cor",
 	modelValue: '#2AC092',
 	state: 'default',
+	required: false,
 	errorMessage: 'Campo obrigatório',
 });
 
 const argsWithPopover = ref({
 	swatch: swatchWithPopover,
 	popoverHeight: 190,
+	label: "Cor",
 	modelValue: '#2AC092',
 	state: 'default',
+	required: false,
 	errorMessage: 'Campo obrigatório',
 });
 

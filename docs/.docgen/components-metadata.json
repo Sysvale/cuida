@@ -2868,6 +2868,17 @@
         }
       },
       {
+        "name": "required",
+        "description": "Exibe asterisco de obrigatório (obs.: não faz a validação)",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
+      },
+      {
         "name": "inline",
         "description": "Quando true passa a mostrar as opções de cores fora do popover.",
         "type": {

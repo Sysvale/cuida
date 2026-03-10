@@ -15,4 +15,16 @@ describe('ColorPicker', () => {
 
 		expect(wrapper.html()).toMatchSnapshot();
 	});
+
+	test('renders the required indicator when the required prop is true', async () => {
+		const wrapper = mount(ColorPicker, {
+			props: {
+				modelValue: '#000000',
+				required: true,
+			},
+		});
+
+		const requiredIndicator = wrapper.findComponent({ name: 'CdsRequiredIndicator' });
+		expect(requiredIndicator.exists()).toBe(true);
+	});
 });
