@@ -28,4 +28,17 @@ describe('ColorPicker', () => {
 		const requiredIndicator = wrapper.findComponent({ name: 'CdsRequiredIndicator' });
 		expect(requiredIndicator.exists()).toBe(true);
 	});
+
+	test('does not render the required indicator in popover mode even if the required prop is true', async () => {
+		const wrapper = mount(ColorPicker, {
+			props: {
+				modelValue: '#000000',
+				required: true,
+				inline: false,
+			},
+		});
+
+		const requiredIndicator = wrapper.findComponent({ name: 'CdsRequiredIndicator' });
+		expect(requiredIndicator.exists()).toBe(false);
+	});
 });
