@@ -440,6 +440,10 @@ onMounted(() => {
 
 /* FUNCTIONS */
 function filterOptions(value) {
+	if (value === localValue.value?.[props.optionsField]) {
+		return;
+	}
+
 	if (props.searchable && props.addable) {
 		searchString.value = value;
 	}
