@@ -32,11 +32,6 @@
 	</div>
 
 	<div v-else>
-		<div class="color-picker__label">
-			{{ label }}
-			<CdsRequiredIndicator v-if="required" />
-		</div>
-
 		<div
 			id="color-picker"
 			class="color-picker__trigger"

@@ -175,7 +175,6 @@ const argsInline = ref({
 const argsWithPopover = ref({
 	swatch: swatchWithPopover,
 	popoverHeight: 190,
-	label: "Cor",
 	modelValue: '#2AC092',
 	state: 'default',
 	required: false,

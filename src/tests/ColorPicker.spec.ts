@@ -21,6 +21,7 @@ describe('ColorPicker', () => {
 			props: {
 				modelValue: '#000000',
 				required: true,
+				inline: true,
 			},
 		});
 
