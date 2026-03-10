@@ -328,6 +328,8 @@ const searchString = ref('');
 const isTyping = ref(false);
 const internalInputValue = ref('');
 
+let isSelectingItem = false;
+
 /* COMPUTED */
 const resolveChevronTop = computed(() => {
 	return props.mobile ? '9px' : '6px';
@@ -369,6 +371,8 @@ const computedModel = computed({
 		return isTyping.value ? internalInputValue.value : localValue.value?.[props.optionsField];
 	},
 	set(val) {
+		if (isSelectingItem) return;
+
 		isTyping.value = true;
 		internalInputValue.value = val;
 	}
@@ -395,12 +399,17 @@ watch(() => props.options, (newValue, oldValue) => {
 
 watch(model, (newValue, oldValue) => {
 	if (newValue !== oldValue && newValue !== localValue.value) {
+		isSelectingItem = true;
 		if (newValue instanceof Object) {
 			localValue.value = newValue;
 		} else {
 			localValue.value = {id: newValue, value: newValue }
 		}
 	}
+
+	nextTick(() => {
+		isSelectingItem = false;
+	});
 }, { immediate: true });
 
 watch(localValue, (currentValue) => {
@@ -440,7 +449,7 @@ onMounted(() => {
 
 /* FUNCTIONS */
 function filterOptions(value) {
-	if (value === localValue.value?.[props.optionsField]) {
+	if (!isTyping.value) {
 		return;
 	}
 
@@ -492,18 +501,24 @@ function activeSelection() {
 function activateSelectionOnEnter() {
 	if (props.disabled) return;
 
+	if (localOptions.value.length === 0 && !(props.searchable && props.addable)) {
+		active.value = false;
+		isTyping.value = false;
+		select.value.blur();
+		return;
+	}
+
 	active.value = !active.value;
+	isSelectingItem = true;
 
 	resetActiveSelection();
 
 	if (typeof localOptions.value[currentPos.value] === 'undefined') {
 		handleAddOption();
 
-		nextTick(() => {
-			localValue.value = props.searchable && props.addable
-				? localValue.value
-				: localOptions.value.length ? cloneDeep(localOptions.value[0]) : {};
-		});
+		localValue.value = props.searchable && props.addable
+			? localValue.value
+			: localOptions.value.length ? cloneDeep(localOptions.value[0]) : {};
 	} else {
 		localValue.value = cloneDeep(localOptions.value[currentPos.value]);
 	}
@@ -511,6 +526,10 @@ function activateSelectionOnEnter() {
 	searchString.value = '';
 	isTyping.value = false;
 	select.value.blur();
+
+	nextTick(() => {
+		isSelectingItem = false;
+	});
 }
 
 function activateSelectionOnClick() {
@@ -531,6 +550,8 @@ function activateSelectionOnClick() {
 }
 
 function hide() {
+	isSelectingItem = true;
+
 	if (!searchString.value) {
 		localValue.value = localOptions.value.some(item => item[props.optionsField]?.toLowerCase() === get(localValue.value, props.optionsField)?.toLowerCase())
 			? localValue.value
@@ -542,17 +563,23 @@ function hide() {
 		searchString.value = '';
 		active.value = false;
 		isTyping.value = false;
+		isSelectingItem = false;
 	});
 
 	emitBlur();
 }
 
 function selectItem() {
+	isSelectingItem = false;
 	searchString.value = '';
 	localValue.value = cloneDeep(localOptions.value[currentPos.value]);
-	active.value = !active.value;
+	active.value = false;
 	isTyping.value = false;
 	select.value.blur();
+
+	nextTick(() => {
+		isSelectingItem = false;
+	});
 }
 
 function getLiInDOM(position) {
