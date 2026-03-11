@@ -17,7 +17,7 @@
 				:onkeypress="`return ${allowSearch};`"
 				:placeholder="placeholder"
 				:disabled="disabled"
-				:readonly="!searchable"
+				:readonly="!searchable || !active"
 				:support-link-url="supportLinkUrl || linkUrl"
 				:support-link="supportLink || linkText"
 				:floating-label="floatingLabel || mobile"
