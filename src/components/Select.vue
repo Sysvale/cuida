@@ -552,6 +552,10 @@ function activateSelectionOnClick() {
 function hide() {
 	isSelectingItem = true;
 
+	if (!searchString.value && !props.addable) {
+		model.value = null;
+	}
+
 	if (!searchString.value) {
 		localValue.value = localOptions.value.some(item => item[props.optionsField]?.toLowerCase() === get(localValue.value, props.optionsField)?.toLowerCase())
 			? localValue.value
