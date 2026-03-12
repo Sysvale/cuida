@@ -429,17 +429,8 @@ watch(localValue, (currentValue) => {
 		return;
 	}
 
-	if (props.returnValue) {
-		/**
-		* Evento que indica que o valor do Select foi alterado
-		* @event update:modelValue
-		* @type {Event}
-		*/
-		model.value = currentValue[props.optionsField];
-	} else {
-		model.value = currentValue;
-	}
-}, { deep: true });
+	model.value = props.returnValue ? compatibleOptions[0][props.optionsField] : compatibleOptions[0];
+});
 
 /* HOOKS */
 onMounted(() => {
@@ -551,12 +542,14 @@ function activateSelectionOnClick() {
 
 function hide() {
 	isSelectingItem = true;
+	const shouldClearSelection = props.searchable && !props.addable && localOptions.value.length === 0;
 
-	if (!searchString.value && !props.addable) {
+	if (shouldClearSelection) {
 		model.value = null;
+		localValue.value = null;
 	}
 
-	if (!searchString.value) {
+	if (!searchString.value && !shouldClearSelection) {
 		localValue.value = localOptions.value.some(item => item[props.optionsField]?.toLowerCase() === get(localValue.value, props.optionsField)?.toLowerCase())
 			? localValue.value
 			: {};
