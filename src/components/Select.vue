@@ -17,7 +17,7 @@
 				:onkeypress="`return ${allowSearch};`"
 				:placeholder="placeholder"
 				:disabled="disabled"
-				:readonly="!searchable"
+				:readonly="!searchable || !active"
 				:support-link-url="supportLinkUrl || linkUrl"
 				:support-link="supportLink || linkText"
 				:floating-label="floatingLabel || mobile"
@@ -325,6 +325,10 @@ const selectOptions = useTemplateRef('select-options');
 const liRefs = ref({});
 const { emitClick, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
 const searchString = ref('');
+const isTyping = ref(false);
+const internalInputValue = ref('');
+
+let isSelectingItem = false;
 
 /* COMPUTED */
 const resolveChevronTop = computed(() => {
@@ -362,7 +366,17 @@ const showAddOption = computed(() => {
 		&& !localOptions.value.some(option => option[props.optionsField]?.toLowerCase() === searchString?.value.toLowerCase());
 });
 
-const computedModel = computed(() => localValue.value[props.optionsField]);
+const computedModel = computed({
+	get() {
+		return isTyping.value ? internalInputValue.value : localValue.value?.[props.optionsField];
+	},
+	set(val) {
+		if (isSelectingItem) return;
+
+		isTyping.value = true;
+		internalInputValue.value = val;
+	}
+});
 
 //NOTE: Essa computada vai ser removida junto com a descontinuação da prop width na V4
 const computedFluid = computed(() => {
@@ -385,16 +399,27 @@ watch(() => props.options, (newValue, oldValue) => {
 
 watch(model, (newValue, oldValue) => {
 	if (newValue !== oldValue && newValue !== localValue.value) {
+		isSelectingItem = true;
 		if (newValue instanceof Object) {
 			localValue.value = newValue;
 		} else {
 			localValue.value = {id: newValue, value: newValue }
 		}
 	}
+
+	nextTick(() => {
+		isSelectingItem = false;
+	});
 }, { immediate: true });
 
 watch(localValue, (currentValue) => {
-	if (currentValue === model.value) return;
+	if (JSON.stringify(currentValue) === JSON.stringify(model.value)) return;
+
+	const isValueEmpty = !currentValue || (typeof currentValue === 'object' && Object.keys(currentValue).length === 0);
+	if (isValueEmpty) {
+		model.value = props.returnValue ? '' : {};
+		return;
+	}
 
 	const compatibleOptions = localOptions.value.filter(
 		(option) => JSON.stringify(option) === JSON.stringify(currentValue),
@@ -424,6 +449,10 @@ onMounted(() => {
 
 /* FUNCTIONS */
 function filterOptions(value) {
+	if (!isTyping.value) {
+		return;
+	}
+
 	if (props.searchable && props.addable) {
 		searchString.value = value;
 	}
@@ -472,25 +501,35 @@ function activeSelection() {
 function activateSelectionOnEnter() {
 	if (props.disabled) return;
 
+	if (localOptions.value.length === 0 && !(props.searchable && props.addable)) {
+		active.value = false;
+		isTyping.value = false;
+		select.value.blur();
+		return;
+	}
+
 	active.value = !active.value;
+	isSelectingItem = true;
 
 	resetActiveSelection();
 
 	if (typeof localOptions.value[currentPos.value] === 'undefined') {
 		handleAddOption();
 
-		nextTick(() => {
-			localValue.value = props.searchable && props.addable
-				? localValue.value
-				: cloneDeep(localOptions.value[0]);
-		});
-
+		localValue.value = props.searchable && props.addable
+			? localValue.value
+			: localOptions.value.length ? cloneDeep(localOptions.value[0]) : {};
 	} else {
 		localValue.value = cloneDeep(localOptions.value[currentPos.value]);
 	}
 
 	searchString.value = '';
+	isTyping.value = false;
 	select.value.blur();
+
+	nextTick(() => {
+		isSelectingItem = false;
+	});
 }
 
 function activateSelectionOnClick() {
@@ -511,6 +550,12 @@ function activateSelectionOnClick() {
 }
 
 function hide() {
+	isSelectingItem = true;
+
+	if (!searchString.value && !props.addable) {
+		model.value = null;
+	}
+
 	if (!searchString.value) {
 		localValue.value = localOptions.value.some(item => item[props.optionsField]?.toLowerCase() === get(localValue.value, props.optionsField)?.toLowerCase())
 			? localValue.value
@@ -521,14 +566,24 @@ function hide() {
 		localOptions.value = pristineOptions.value;
 		searchString.value = '';
 		active.value = false;
+		isTyping.value = false;
+		isSelectingItem = false;
 	});
 
 	emitBlur();
 }
 
 function selectItem() {
+	isSelectingItem = false;
 	searchString.value = '';
 	localValue.value = cloneDeep(localOptions.value[currentPos.value]);
+	active.value = false;
+	isTyping.value = false;
+	select.value.blur();
+
+	nextTick(() => {
+		isSelectingItem = false;
+	});
 }
 
 function getLiInDOM(position) {
