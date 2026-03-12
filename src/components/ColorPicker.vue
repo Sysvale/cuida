@@ -2,6 +2,7 @@
 	<div v-if="inline">
 		<div class="color-picker__label">
 			{{ label }}
+			<CdsRequiredIndicator v-if="required" />
 		</div>
 
 		<div
@@ -36,7 +37,7 @@
 			class="color-picker__trigger"
 			@click.stop="showPopover = !showPopover"
 		>
-			<div class="color-picker__preview" /> 
+			<div class="color-picker__preview" />
 		</div>
 
 		<CdsPopover
@@ -83,6 +84,7 @@
 <script>
 import CdsPopover from './Popover.vue';
 import CdsIcon from './Icon.vue';
+import CdsRequiredIndicator from './RequiredIndicator.vue';
 import sassColorVariables from '../assets/sass/tokens/colors.module.scss';
 import ContrastChecker from '../utils/methods/contrastChecker';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
@@ -92,6 +94,7 @@ export default {
 	components: {
 		CdsPopover,
 		CdsIcon,
+		CdsRequiredIndicator,
 	},
 
 	props: {
@@ -108,6 +111,13 @@ export default {
 		label: {
 			type: String,
 			default: 'Label',
+		},
+		/**
+		* Exibe asterisco de obrigatório (obs.: não faz a validação)
+		*/
+		required: {
+			type: Boolean,
+			default: false,
 		},
 		/**
 		* Quando true passa a mostrar as opções de cores fora do popover.
