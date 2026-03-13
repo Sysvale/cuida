@@ -1,12 +1,20 @@
-import { describe, test, expect, beforeEach, vi } from 'vitest';
+import { describe, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 import MonthSelectorGrid from '../components/InternalComponents/MonthSelectorGrid.vue';
 import YearSelectorGrid from '../components/InternalComponents/YearSelectorGrid.vue';
+import { Settings } from 'luxon';
 
 describe('SelectorGrid Highlight Fix', () => {
 	beforeEach(() => {
 		vi.useFakeTimers();
-		vi.setSystemTime(new Date(2026, 1, 10)); // Feb 10, 2026
+		const mockDate = new Date(2026, 1, 10); // Feb 10, 2026
+		vi.setSystemTime(mockDate);
+		Settings.now = () => mockDate.getTime();
+	});
+
+	afterEach(() => {
+		vi.useRealTimers();
+		Settings.now = () => Date.now();
 	});
 
 	describe('MonthSelectorGrid', () => {

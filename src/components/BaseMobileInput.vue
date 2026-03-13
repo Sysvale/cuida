@@ -78,7 +78,6 @@
 				ref="htmlInput"
 				v-bind="{...$attrs, ...props}"
 				v-model="internalValue"
-				placeholder=""
 				:required="required"
 				:disabled="disabled"
 				:class="inputClass"
@@ -406,18 +405,18 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	 * Texto placeholder para o input.
-	 */
-	placeholder: {
-		type: String,
-		default: '',
-	},
-	/**
 	 * Especifica se o componente deve ser exibido na sua versão ghost.
 	 */
 	ghost: {
 		type: Boolean,
 		default: false,
+	},
+	/**
+	 * Texto placeholder para o input.
+	 */
+	placeholder: {
+		type: String,
+		default: '',
 	},
 });
 
