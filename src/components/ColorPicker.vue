@@ -72,6 +72,12 @@
 			</div>
 		</CdsPopover>
 	</div>
+	<div
+		v-if="hasError"
+		class="error-text"
+	>
+		{{ errorMessage }}
+	</div>
 </template>
 
 <script>
@@ -124,6 +130,21 @@ export default {
 			type: Array,
 			default: () => ([]),
 		},
+		/**
+		* Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
+		* @values default, valid, loading, invalid
+		*/
+		state: {
+			type: String,
+			default: 'default',
+		},
+		/**
+		* Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+		*/
+		errorMessage: {
+			type: String,
+			default: 'Valor inválido',
+		},
 	},
 
 	data() {
@@ -143,6 +164,10 @@ export default {
 
 		palete() {
 			return this.paleteBuilder(this.sassColorVariables.palete);
+		},
+
+		hasError() {
+			return this.state === 'invalid';
 		},
 	},
 
@@ -170,6 +195,8 @@ export default {
 					selectedVariant = paleteColor.variantName.toLowerCase();
 				}
 			});
+
+			this.showPopover = false;
 
 			/**
 			 * **Implementa v-model**. Evento utilizado para emitir a *cor* selecionada. A cor é emitida como uma string no formato HEX.
@@ -260,5 +287,11 @@ export default {
 
 .popover__container {
 	display: flex;
+}
+
+.error-text {
+	@include tokens.caption;
+	color: tokens.$rc-600;
+	margin: tokens.mt(1);
 }
 </style>

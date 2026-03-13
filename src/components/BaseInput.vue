@@ -59,7 +59,7 @@
 					v-if="type === 'textarea'"
 					:id="componentId"
 					ref="htmlInput"
-					v-model.trim="internalValue"
+					v-model="internalValue"
 					:required="required"
 					:placeholder="placeholder"
 					:disabled="disabled"
@@ -103,7 +103,7 @@
 						:id="componentId"
 						ref="htmlInput"
 						v-bind="props"
-						v-model.trim="internalValue"
+						v-model="internalValue"
 						:required="required"
 						:readonly="readonly"
 						:placeholder="placeholder"
@@ -377,6 +377,13 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	 * Especifica se o componente deve ser exibido na sua versão ghost.
+	 */
+	ghost: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const emits = defineEmits({
@@ -399,6 +406,10 @@ const computedAutocompleteProp = computed(() => props.enableAutocomplete ? 'on' 
 
 const baseInputClass = computed(() => {
 	let inputClass = props.fluid ? 'base-input--fluid' : 'base-input';
+
+	if (props.ghost) {
+		inputClass += ' ghost';
+	}
 
 	if (!isFocused.value) {
 		inputClass +=  props.disabled
@@ -515,6 +526,11 @@ function handleFocus(event) {
 
 function handleBlur(event) {
 	isFocused.value = false;
+
+	if (htmlInputRef.value && htmlInputRef.value.value !== undefined) {
+		internalValue.value = htmlInputRef.value.value;
+	}
+
 	/**
 	* Evento emitido quando o componente deixa de ser focado.
 	* @event blur
@@ -776,5 +792,12 @@ input::-webkit-inner-spin-button {
 
 input:disabled {
 	background: none !important;
+}
+
+.base-input.ghost {
+	border: none !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	outline: none !important;
 }
 </style>

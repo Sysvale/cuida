@@ -12,7 +12,7 @@ exports[`CdsNumberInput > renders correctly 1`] = `
     <div data-v-82c69faf="" class="base-input base-input--default">
       <!--v-if-->
       <div data-v-82c69faf="" style="width: 100%;">
-        <!--v-if--><input data-v-82c69faf="" id="number-input" modelvalue="" label="Valor" hidelabel="false" state="default" type="number" placeholder="Digite aqui a informação" errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" floatinglabel="false" lazy="false" name="" enableautocomplete="false" enabletopcontent="false" class="base-input__field" autocomplete="off">
+        <!--v-if--><input data-v-82c69faf="" id="number-input" modelvalue="" label="Valor" hidelabel="false" state="default" type="number" placeholder="Digite aqui a informação" errormessage="Valor inválido" supportingtext="" fluid="false" tooltipicon="info-outline" floatinglabel="false" lazy="false" name="" enableautocomplete="false" enabletopcontent="false" ghost="false" class="base-input__field" autocomplete="off">
       </div>
       <!--v-if-->
       <!--v-if-->

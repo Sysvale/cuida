@@ -223,6 +223,7 @@
 					v-if="supportLink"
 					align="baseline"
 					gap="1"
+					tag="div"
 				>
 					<span class="base-mobile-input__supporting-text">Link: </span>
 
@@ -308,6 +309,13 @@ const props = defineProps({
 	required: {
 		type: Boolean,
 		default: false,
+	},
+	/**
+	* Especifica o placeholder do input
+	*/
+	placeholder: {
+		type: String,
+		default: '',
 	},
 	/**
 	* Especifica a mensagem de erro, que será exibida caso o estado seja inválido
@@ -405,6 +413,13 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	 * Especifica se o componente deve ser exibido na sua versão ghost.
+	 */
+	ghost: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const emits = defineEmits({
@@ -425,6 +440,10 @@ const computedAutocompleteProp = computed(() => props.enableAutocomplete ? 'on' 
 
 const baseMobileInputClass = computed(() => {
 	let mobileInputClass = props.fluid ? 'base-mobile-input--fluid' : 'base-mobile-input';
+
+	if (props.ghost) {
+		mobileInputClass += ' ghost';
+	}
 
 	if (!isFocused.value) {
 		mobileInputClass +=  props.disabled
@@ -564,6 +583,11 @@ function handleFocus(event) {
 
 function handleBlur(event) {
 	isFocused.value = false;
+
+	if (componentRef.value && componentRef.value.value !== undefined) {
+		internalValue.value = componentRef.value.value;
+	}
+
 	/**
 	* Evento emitido quando o componente deixa de ser focado.
 	* @event blur
@@ -790,5 +814,12 @@ input::-webkit-inner-spin-button {
 
 input:disabled {
 	background: none !important;
+}
+
+.base-mobile-input.ghost {
+	border: none !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	outline: none !important;
 }
 </style>

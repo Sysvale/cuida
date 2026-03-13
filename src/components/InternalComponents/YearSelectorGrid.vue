@@ -48,15 +48,38 @@ const props = defineProps({
 		default: '',
 		required: false,
 	},
+	minDate: {
+		type: String,
+		default: '',
+	},
+	maxDate: {
+		type: String,
+		default: '',
+	},
 });
 
 const emits = defineEmits(['click']);
 
 /* REACTIVE DATA */
-const currentYear = ref(new Date().getFullYear());
-const minYear = currentYear.value - 120;
-const maxYear = currentYear.value + 50;
-const initialYear = ref(currentYear.value - 7);
+const todayYear = new Date().getFullYear();
+const selectedYear = computed(() => {
+	if (!props.selectedDate) return null;
+	return parseInt(props.selectedDate.split('-')[0]);
+});
+
+const minYear = computed(() => {
+	if (props.minDate) {
+		return parseInt(props.minDate.split('-')[0]);
+	}
+	return todayYear - 120;
+});
+const maxYear = computed(() => {
+	if (props.maxDate) {
+		return parseInt(props.maxDate.split('-')[0]);
+	}
+	return todayYear + 50;
+});
+const initialYear = ref((selectedYear.value || todayYear) - 7);
 const scrollThumbHeight = ref(33);
 const isDragging = ref(false);
 const startY = ref(0);
@@ -69,8 +92,8 @@ const yearSpan = computed(() => {
 });
 
 const scrollThumbPosition = computed(() => {
-	const range = maxYear - minYear;
-	const currentProgress = (initialYear.value - minYear) / range;
+	const range = maxYear.value - minYear.value;
+	const currentProgress = (initialYear.value - minYear.value) / range;
 	return currentProgress * (100 - scrollThumbHeight.value);
 });
 
@@ -94,21 +117,21 @@ function handleScroll(event) {
 function yearSelectorClasses(year) {
 	let classes = {
 		[`year-selector__year--${props.variant}`]: true,
-		'year-selector__year--disabled':( year < minYear) || (year > maxYear),
-		[`year-selector__year--selected--${props.variant}`]: year == currentYear.value,
+		'year-selector__year--disabled':( year < minYear.value) || (year > maxYear.value),
+		[`year-selector__year--selected--${props.variant}`]: year == selectedYear.value,
 	}
 
 	return classes;
 }
 
 function incrementYear() {
-	if (initialYear.value + 11 < maxYear) {
+	if (initialYear.value + 11 < maxYear.value) {
 		initialYear.value += 3;
 	}
 }
 
 function decrementYear() {
-	if (initialYear.value > minYear) {
+	if (initialYear.value > minYear.value) {
 		initialYear.value -= 3;
 	}
 }
@@ -132,7 +155,7 @@ function handleDragScroll(event) {
 	if (yearChange !== 0) {
 		const newInitialYear = initialScrollPosition.value + (yearChange > 0 ? 3 : -3);
 
-		if (newInitialYear >= minYear && newInitialYear + 11 <= maxYear) {
+		if (newInitialYear >= minYear.value && newInitialYear + 11 <= maxYear.value) {
 			initialYear.value = newInitialYear;
 			startY.value = event.clientY;
 			initialScrollPosition.value = initialYear.value;

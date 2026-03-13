@@ -23,6 +23,7 @@
 				:floating-label="floatingLabel || mobile"
 				:class="inputClass"
 				:fluid="computedFluid"
+				:ghost="ghost"
 				@keydown.enter.prevent="activateSelectionOnEnter"
 				@keydown.arrow-down.prevent="highlightOnArrowDown"
 				@keydown.arrow-up.prevent="highlightOnArrowUp"
@@ -288,6 +289,13 @@ const props = defineProps({
 	* Indica se vai ser possível adicionar novas opções ao Select. Só tem efeito se a prop `searchable` for `true`.
 	*/
 	addable: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	 * Especifica se o componente deve ser exibido na sua versão ghost.
+	 */
+	ghost: {
 		type: Boolean,
 		default: false,
 	},

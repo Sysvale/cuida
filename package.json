@@ -1,6 +1,6 @@
 {
 	"name": "@sysvale/cuida",
-	"version": "3.152.1",
+	"version": "3.154.8",
 	"description": "A design system built by Sysvale, using storybook and Vue components",
 	"repository": {
 		"type": "git",
@@ -20,7 +20,7 @@
 	},
 	"unpkg": "dist/@sysvale/cuida.umd.js",
 	"scripts": {
-		"build": "vue-tsc --declaration --emitDeclarationOnly && npm run generate:docs && vite build && node buildtokens.js",
+		"build": "npm run generate:docs && vue-tsc --declaration --emitDeclarationOnly && vite build && node buildtokens.js",
 		"preview": "vite preview",
 		"docs:dev": "vitepress dev docs",
 		"docs:build": "vitepress build docs",
@@ -83,6 +83,5 @@
 		"url": "https://github.com/Sysvale/cuida/issues"
 	},
 	"readme": "ERROR: No README data found!",
-	"homepage": "https://github.com/Sysvale/cuida#readme",
-	"_id": "@sysvale/cuida@3.0.0-alpha.21"
+	"homepage": "https://github.com/Sysvale/cuida#readme"
 }
