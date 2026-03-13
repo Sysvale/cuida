@@ -60,7 +60,6 @@
 				ref="htmlInput"
 				tabindex="0"
 				v-bind="props"
-				:placeholder="placeholder"
 				:disabled="disabled"
 				:class="inputClass"
 				:type="type"
@@ -69,7 +68,7 @@
 				@blur="handleBlur"
 				@keydown="handleKeydown"
 			>
-				<small class="base-mobile-input__date-text">{{ internalValue || placeholder }}</small>
+				<small class="base-mobile-input__date-text">{{ internalValue }}</small>
 			</div>
 
 			<input
@@ -78,6 +77,7 @@
 				ref="htmlInput"
 				v-bind="{...$attrs, ...props}"
 				v-model="internalValue"
+				placeholder=""
 				:required="required"
 				:disabled="disabled"
 				:class="inputClass"
@@ -410,13 +410,6 @@ const props = defineProps({
 	ghost: {
 		type: Boolean,
 		default: false,
-	},
-	/**
-	 * Texto placeholder para o input.
-	 */
-	placeholder: {
-		type: String,
-		default: '',
 	},
 });
 
