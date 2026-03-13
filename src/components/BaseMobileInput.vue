@@ -60,6 +60,7 @@
 				ref="htmlInput"
 				tabindex="0"
 				v-bind="props"
+				:placeholder="placeholder"
 				:disabled="disabled"
 				:class="inputClass"
 				:type="type"
@@ -68,7 +69,7 @@
 				@blur="handleBlur"
 				@keydown="handleKeydown"
 			>
-				<small class="base-mobile-input__date-text">{{ internalValue }}</small>
+				<small class="base-mobile-input__date-text">{{ internalValue || placeholder }}</small>
 			</div>
 
 			<input

@@ -23,7 +23,6 @@
 			type="date"
 			:floating-label="floatingLabel || mobile"
 			:readonly="props.range"
-			:placeholder="placeholder"
 			@click="toggleDatePicker"
 			@focus="emitFocus"
 			@blur="handleBlur"
