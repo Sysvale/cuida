@@ -1270,6 +1270,17 @@
         }
       },
       {
+        "name": "placeholder",
+        "description": "Especifica o placeholder do input",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "''"
+        }
+      },
+      {
         "name": "errorMessage",
         "description": "Especifica a mensagem de erro, que será exibida caso o estado seja inválido",
         "type": {

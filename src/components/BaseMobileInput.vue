@@ -311,6 +311,13 @@ const props = defineProps({
 		default: false,
 	},
 	/**
+	* Especifica o placeholder do input
+	*/
+	placeholder: {
+		type: String,
+		default: '',
+	},
+	/**
 	* Especifica a mensagem de erro, que será exibida caso o estado seja inválido
 	*/
 	errorMessage: {
