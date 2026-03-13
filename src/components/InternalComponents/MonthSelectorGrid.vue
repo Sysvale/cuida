@@ -20,6 +20,7 @@
 <script setup>
 import CdsGrid from '../Grid.vue';
 import { computed, ref, onMounted, watch } from 'vue';
+import { DateTime } from 'luxon';
 
 defineOptions({ name: 'CdsMonthSelectorGrid' });
 
@@ -45,7 +46,7 @@ const props = defineProps({
 	},
 	year: {
 		type: Number,
-		default: new Date().getFullYear(),
+		default: DateTime.now().year,
 	},
 });
 

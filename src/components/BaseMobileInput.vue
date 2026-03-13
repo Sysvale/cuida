@@ -406,6 +406,13 @@ const props = defineProps({
 		default: false,
 	},
 	/**
+	 * Texto placeholder para o input.
+	 */
+	placeholder: {
+		type: String,
+		default: '',
+	},
+	/**
 	 * Especifica se o componente deve ser exibido na sua versão ghost.
 	 */
 	ghost: {

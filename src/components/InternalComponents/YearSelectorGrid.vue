@@ -34,6 +34,7 @@
 
 <script setup>
 import { ref, computed, onUnmounted } from 'vue';
+import { DateTime } from 'luxon';
 import CdsGrid from '../Grid.vue';
 
 defineOptions({ name: 'CdsYearSelectorGrid' });
@@ -61,7 +62,7 @@ const props = defineProps({
 const emits = defineEmits(['click']);
 
 /* REACTIVE DATA */
-const todayYear = new Date().getFullYear();
+const todayYear = DateTime.now().year;
 const selectedYear = computed(() => {
 	if (!props.selectedDate) return null;
 	return parseInt(props.selectedDate.split('-')[0]);

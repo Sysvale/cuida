@@ -184,7 +184,7 @@ export default {
 			inputControl: 0,
 			attributes: [
 				{
-					dates: new Date(),
+					dates: DateTime.now().toJSDate(),
 					dot: true,
 				},
 			],
