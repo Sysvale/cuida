@@ -104,7 +104,7 @@ const props = defineProps({
 const emits = defineEmits([
 	/**
 	 * Evento que indica que o Chip foi clicado.
-	 * @event icon-click
+	 * @event click
 	 * @type {Event}
 	 */
 	'click',
@@ -188,9 +188,9 @@ watch(
 
 watch(() => shouldApplyTriggerClickOnIconProp.value, (newValue) => {
 	if (newValue && internalValue.value) {
-		return internalValue.value = false;
+		internalValue.value = false;
 	}
-})
+});
 
 onMounted(() => {
 	setTimeout(() => {
@@ -319,6 +319,22 @@ function handleIconClick(event) {
 		}
 	}
 
+	&--amber {
+		color: tokens.$al-700;
+		background-color: tokens.$al-100;
+
+		&.chip__container--interactive:hover {
+			color: color.adjust(tokens.$al-700, $lightness: -10%) !important;
+			background-color: tokens.$al-100 !important;
+		}
+
+		&:not(.chip__container--interactive) .chip__content--icon--pointer:hover {
+			color: color.adjust(tokens.$al-600, $lightness: -10%) !important;
+			background-color: tokens.$n-40 !important;
+			border-radius: tokens.$border-radius-circle;
+		}
+	}
+
 	&--gray {
 		color: tokens.$n-600;
 		background-color: tokens.$n-20;
@@ -342,11 +358,28 @@ function handleIconClick(event) {
 
 		&.chip__container--interactive:hover {
 			color: color.adjust(tokens.$n-600, $lightness: -10%) !important;
-			background-color: tokens.$n-20 !important;
+			background-color: tokens.$n-0 !important;
 		}
 
 		&:not(.chip__container--interactive) .chip__content--icon--pointer:hover {
 			color: color.adjust(tokens.$n-600, $lightness: -10%) !important;
+			background-color: tokens.$n-40 !important;
+			border-radius: tokens.$border-radius-circle;
+		}
+	}
+
+	&--dark {
+		color: tokens.$n-10;
+		background-color: tokens.$n-700;
+		outline: 1px solid tokens.$n-800;
+
+		&.chip__container--interactive:hover {
+			color: color.adjust(tokens.$n-10, $lightness: -10%) !important;
+			background-color: tokens.$n-700 !important;
+		}
+
+		&:not(.chip__container--interactive) .chip__content--icon--pointer:hover {
+			color: color.adjust(tokens.$n-10, $lightness: -10%) !important;
 			background-color: tokens.$n-40 !important;
 			border-radius: tokens.$border-radius-circle;
 		}
