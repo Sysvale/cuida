@@ -127,7 +127,7 @@ const chipClasses = computed(() => {
 		predefinedSizes.value.includes(props.size) ? `chip--${props.size}` : '',
 		{
 			'chip--not-selected': !internalValue.value,
-			'chip__container--interactive': !props.triggerClickOnIcon
+			'chip__container--interactive': !shouldApplyTriggerClickOnIconProp.value
 		}
 	];
 });
