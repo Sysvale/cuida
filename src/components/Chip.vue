@@ -2,9 +2,10 @@
 <template>
 	<div
 		class="chip__container"
-		:class="classList"
+		:class="chipClasses"
 		data-testid="chip-container"
-		@click="handleClick"
+		:style="{ cursor: !shouldApplyTriggerClickOnIconProp ? 'pointer' : 'default' }"
+		@click="handleContainerClick"
 	>
 		<div :class="`chip__content--${size}`">
 			<div
@@ -16,9 +17,13 @@
 			>
 				<transition name="fade">
 					<template v-if="internalValue || props.persistantActionIcon">
-						<div 
+						<div
 							v-if="useHasSlot('icon')" 
-							class="chip__content--icon"
+							:class="[
+								'chip__content--icon',
+								{'chip__content--icon--pointer': shouldApplyTriggerClickOnIconProp}
+							]"
+							@click="handleIconClick"
 						>
 							<!-- @slot Slot utilizado para alterar o ícone mostrado na chip. -->
 							<slot name="icon" />
@@ -28,6 +33,8 @@
 							name="check-outline"
 							:height="icon.height"
 							:width="icon.width"
+							:class="[{'chip__content--icon--pointer': shouldApplyTriggerClickOnIconProp}]"
+							@click="handleIconClick"
 						/>
 					</template>
 				</transition>
@@ -41,7 +48,7 @@
 </template>
 
 <script setup>
-import { computed, ref, onMounted, useTemplateRef, watch } from 'vue';
+import { computed, onMounted, ref, useTemplateRef, watch } from 'vue';
 import { useHasSlot } from '../utils/composables/useHasSlot';
 import { colorOptions } from '../utils/constants/colors';
 import sizes from '../utils/constants/sizes';
@@ -83,35 +90,46 @@ const props = defineProps({
 	 */
 	iconLeft: {
 		type: Boolean,
-		default: true,
+		default: false,
+	},
+	/**
+	 * Especifica o evento de click deve ser disparado ao clicar no ícone ou no componente. Só funciona caso a prop persistantActionIcon seja true.
+	 */
+	triggerClickOnIcon: {
+		type: Boolean,
+		default: false,
 	},
 });
+
+const emits = defineEmits([
+	/**
+	 * Evento que indica que o Chip foi clicado.
+	 * @event icon-click
+	 * @type {Event}
+	 */
+	'click',
+]);
 
 const slotContentRef = useTemplateRef('slot-content');
 const predefinedColors = ref(colorOptions);
 const predefinedSizes = ref(sizes);
 const internalValue = ref(modelValue.value);
-const classList = ref('');
 const shouldUpdatePadding = ref(true);
 const maxWidth = ref('0px');
 
+const shouldApplyTriggerClickOnIconProp = computed(() => {
+	return props.triggerClickOnIcon && props.persistantActionIcon;
+});
 
-const predefinedStyle = computed(() => {
-	let dynamicClass = '';
-
-	if (!internalValue.value) {
-		dynamicClass += ' chip--not-selected';
-	}
-
-	if (predefinedColors.value.indexOf(props.variant) > -1) {
-		dynamicClass += ` chip--${props.variant}`;
-	}
-
-	if (predefinedSizes.value.indexOf(props.size) > -1) {
-		dynamicClass += ` chip--${props.size}`;
-	}
-
-	return dynamicClass;
+const chipClasses = computed(() => {
+	return [
+		predefinedColors.value.includes(props.variant) ? `chip--${props.variant}` : '',
+		predefinedSizes.value.includes(props.size) ? `chip--${props.size}` : '',
+		{
+			'chip--not-selected': !internalValue.value,
+			'chip__container--interactive': !props.triggerClickOnIcon
+		}
+	];
 });
 
 const icon = computed(() => {
@@ -160,12 +178,6 @@ watch(
 watch(
 	() => internalValue.value,
 	(newInternalValue) => {
-		if (!newInternalValue) {
-			classList.value += ' chip--not-selected';
-		} else {
-			classList.value = removeNotSelectedClass();
-		}
-
 		setTimeout(() => {
 			shouldUpdatePadding.value = !newInternalValue;
 		}, 300);
@@ -174,8 +186,13 @@ watch(
 	}
 );
 
+watch(() => shouldApplyTriggerClickOnIconProp.value, (newValue) => {
+	if (newValue && internalValue.value) {
+		return internalValue.value = false;
+	}
+})
+
 onMounted(() => {
-	classList.value = predefinedStyle.value;
 	setTimeout(() => {
 		maxWidth.value =
 			(slotContentRef.value?.offsetWidth || 0) + 4 + icon.value.width + 'px';
@@ -186,9 +203,19 @@ function handleClick() {
 	internalValue.value = !internalValue.value;
 }
 
-function removeNotSelectedClass() {
-	let regex = new RegExp('chip--not-selected', 'g');
-	return classList.value.replace(regex, '');
+function handleContainerClick() {
+	if (shouldApplyTriggerClickOnIconProp.value) {
+		return;
+	}
+	handleClick();
+	emits('click', true);
+}
+
+function handleIconClick(event) {
+	if(shouldApplyTriggerClickOnIconProp.value) {
+		event.stopPropagation();
+		emits('click', true);
+	}
 }
 
 </script>
@@ -200,7 +227,6 @@ function removeNotSelectedClass() {
 	&__container {
 		border-radius: 50px !important;
 		width: fit-content;
-		cursor: pointer;
 	}
 
 	&--not-selected {
@@ -236,16 +262,23 @@ function removeNotSelectedClass() {
 			@include tokens.button-1;
 			font-weight: tokens.$font-weight-semibold;
 		}
+
 		&--icon {
 			display: flex;
 			overflow: hidden;
 			align-items: center;
-			width: v-bind('icon.width');
-			height: v-bind('icon.height');
+			width: calc(v-bind('icon.width') * 1px);
+			height: calc(v-bind('icon.height') * 1px);
+
+			&--pointer {
+				cursor: pointer;
+			}
 		}
+
 		&--icon > :slotted(svg) {
 			height: 100%;
 			width: 100%;
+			pointer-events: none;
 		}
 	}
 
@@ -274,19 +307,15 @@ function removeNotSelectedClass() {
 		background-color: $shade-100;
 		outline: 1px solid $shade-600;
 
-		&:hover {
+		&.chip__container--interactive:hover {
 			color: color.adjust($shade-600, $lightness: -10%) !important;
 			background-color: $shade-100 !important;
 		}
-	}
 
-	&--amber {
-		color: tokens.$al-700;
-		background-color: tokens.$al-100;
-
-		&:hover {
-			color: color.adjust(tokens.$al-700, $lightness: -10%) !important;
-			background-color: tokens.$al-100 !important;
+		&:not(.chip__container--interactive) .chip__content--icon--pointer:hover {
+			color: color.adjust($shade-600, $lightness: -10%) !important;
+			background-color: tokens.$n-40 !important;
+			border-radius: tokens.$border-radius-circle;
 		}
 	}
 
@@ -294,9 +323,15 @@ function removeNotSelectedClass() {
 		color: tokens.$n-600;
 		background-color: tokens.$n-20;
 
-		&:hover {
+		&.chip__container--interactive:hover {
 			color: color.adjust(tokens.$n-600, $lightness: -10%) !important;
 			background-color: tokens.$n-20 !important;
+		}
+
+		&:not(.chip__container--interactive) .chip__content--icon--pointer:hover {
+			color: color.adjust(tokens.$n-600, $lightness: -10%) !important;
+			background-color: tokens.$n-40 !important;
+			border-radius: tokens.$border-radius-circle;
 		}
 	}
 
@@ -305,20 +340,15 @@ function removeNotSelectedClass() {
 		background-color: tokens.$n-0;
 		outline: 1px solid tokens.$n-100;
 
-		&:hover {
+		&.chip__container--interactive:hover {
 			color: color.adjust(tokens.$n-600, $lightness: -10%) !important;
-			background-color: tokens.$n-0 !important;
+			background-color: tokens.$n-20 !important;
 		}
-	}
 
-	&--dark {
-		color: tokens.$n-10;
-		background-color: tokens.$n-700;
-		outline: 1px solid tokens.$n-800;
-
-		&:hover {
-			color: color.adjust(tokens.$n-10, $lightness: -10%) !important;
-			background-color: tokens.$n-700 !important;
+		&:not(.chip__container--interactive) .chip__content--icon--pointer:hover {
+			color: color.adjust(tokens.$n-600, $lightness: -10%) !important;
+			background-color: tokens.$n-40 !important;
+			border-radius: tokens.$border-radius-circle;
 		}
 	}
 }

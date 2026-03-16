@@ -76,6 +76,6 @@ const events = ['click'];
 const args = ref({
 	variant: 'red',
 	persistantActionIcon: false,
-	iconLeft: true
+	iconLeft: false
 });
 </script>
