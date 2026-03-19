@@ -5,7 +5,7 @@ export function searchComponents(query: string, metadata: Record<string, Compone
 	const lowerCaseQuery = query.toLowerCase();
 
 	const fuse = new Fuse(Object.values(metadata), {
-		keys: ['displayName', 'description'],
+		keys: ['displayName', 'description', 'name'],
 		includeScore: true,
 		threshold: 0.2,
 	});
