@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress';
 import { fileURLToPath, URL } from 'node:url';
-import vueDocgenPlugin from '../plugins/vueDocgen.mjs/index.js
+import vueDocgenPlugin from '../plugins/vueDocgen.mjs';
 
 export default defineConfig({
 	title: 'Cuida',
