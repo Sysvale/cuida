@@ -114,7 +114,7 @@ const slotContentRef = useTemplateRef('slot-content');
 const predefinedColors = ref(colorOptions);
 const predefinedSizes = ref(sizes);
 const internalValue = ref(props.modelValue);
-const shouldUpdatePadding = ref(true);
+const shouldUpdatePadding = ref(!props.modelValue);
 const maxWidth = ref('0px');
 
 const shouldApplyTriggerClickOnIconProp = computed(() => {
