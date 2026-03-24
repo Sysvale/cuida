@@ -113,7 +113,7 @@ const emits = defineEmits([
 const slotContentRef = useTemplateRef('slot-content');
 const predefinedColors = ref(colorOptions);
 const predefinedSizes = ref(sizes);
-const internalValue = ref(modelValue.value);
+const internalValue = ref(props.modelValue);
 const shouldUpdatePadding = ref(true);
 const maxWidth = ref('0px');
 
@@ -169,9 +169,9 @@ const iconPosition = computed(() => {
 });
 
 watch(
-	() => modelValue,
+	modelValue,
 	(newModelValue) => {
-		internalValue.value = newModelValue.value;
+		internalValue.value = newModelValue;
 	}
 );
 
