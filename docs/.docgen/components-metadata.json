@@ -2718,7 +2718,29 @@
         },
         "defaultValue": {
           "func": false,
-          "value": "true"
+          "value": "false"
+        }
+      },
+      {
+        "name": "triggerClickOnIcon",
+        "description": "Especifica o evento de click deve ser disparado ao clicar no ícone ou no componente. Só funciona caso a prop persistantActionIcon seja true.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
+      }
+    ],
+    "events": [
+      {
+        "name": "click",
+        "description": "Evento que indica que o Chip foi clicado.",
+        "type": {
+          "names": [
+            "Event"
+          ]
         }
       }
     ],
@@ -14765,7 +14787,7 @@
         },
         "defaultValue": {
           "func": false,
-          "value": "new Date().getFullYear()"
+          "value": "DateTime.now().year"
         }
       }
     ],
