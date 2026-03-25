@@ -234,9 +234,24 @@ let cdsBrlBiding = {};
 
 /* WATCHERS */
 watch(model, (newValue, oldValue) => {
-	if (newValue !== oldValue) {
+	if (newValue === oldValue) return;
+	
+	if (!props.money) {
 		internalValue.value = newValue;
+		return;
 	}
+	
+	if (typeof newValue === 'number') {
+		internalValue.value = `R$ ${newValue.toFixed(2).replace('.', ',')}`;
+		return;
+	}
+	
+	if (typeof newValue === 'string' && newValue.startsWith('R$')) {
+		internalValue.value = newValue;
+		return;
+	}
+	
+	internalValue.value = `R$ ${newValue.replace('.', ',')}`;
 }, {immediate: true});
 
 watch(internalValue, (value, oldValue) => {
