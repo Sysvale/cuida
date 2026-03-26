@@ -24,7 +24,10 @@ export const vCdsBrl = {
 			let currentValue = String(event.target.value || '');
 
 			let onlyNumbers = currentValue.replace(/\D/g, '');
-			let number = parseFloat(onlyNumbers) / 100;
+			if (onlyNumbers.length > 1 && onlyNumbers.startsWith('0')) {
+				onlyNumbers = onlyNumbers.replace(/^0+/, '');
+			}
+			let number = parseFloat(onlyNumbers || '0') / 100;
 
 			const formattedValue = formatValue(currentValue);
 			event.target.value = formattedValue;

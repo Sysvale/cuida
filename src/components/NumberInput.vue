@@ -234,9 +234,32 @@ let cdsBrlBiding = {};
 
 /* WATCHERS */
 watch(model, (newValue, oldValue) => {
-	if (newValue !== oldValue) {
+	if (newValue === oldValue) return;
+	
+	if (!props.money) {
 		internalValue.value = newValue;
+		return;
 	}
+
+	if (!newValue) {
+		internalValue.value = `R$ 0,00`;
+		return;
+	}
+	
+	if (typeof newValue === 'number') {
+		internalValue.value = `R$ ${newValue.toFixed(2).replace('.', ',')}`;
+		return;
+	}
+	
+	if (typeof newValue === 'string' && newValue.startsWith('R$')) {
+		internalValue.value = newValue;
+		return;
+	}
+	
+	const parsed = parseFloat(newValue);
+	internalValue.value = isNaN(parsed)
+		? `R$ ${newValue.replace('.', ',')}`
+		: parsed.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }, {immediate: true});
 
 watch(internalValue, (value, oldValue) => {
