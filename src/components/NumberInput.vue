@@ -256,7 +256,10 @@ watch(model, (newValue, oldValue) => {
 		return;
 	}
 	
-	internalValue.value = `R$ ${newValue.replace('.', ',')}`;
+	const parsed = parseFloat(newValue);
+	internalValue.value = isNaN(parsed)
+		? `R$ ${newValue.replace('.', ',')}`
+		: parsed.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }, {immediate: true});
 
 watch(internalValue, (value, oldValue) => {
