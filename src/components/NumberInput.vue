@@ -240,6 +240,11 @@ watch(model, (newValue, oldValue) => {
 		internalValue.value = newValue;
 		return;
 	}
+
+	if (!newValue) {
+		internalValue.value = `R$ 0,00`;
+		return;
+	}
 	
 	if (typeof newValue === 'number') {
 		internalValue.value = `R$ ${newValue.toFixed(2).replace('.', ',')}`;
