@@ -65,6 +65,7 @@
 					:disabled="disabled"
 					:class="inputClass"
 					:type="type"
+					:style="{ minHeight: inputMinHeight }"
 					@focus="handleFocus"
 					@blur="handleBlur"
 					@keydown="handleKeydown"
@@ -384,6 +385,13 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	 * Especifica a altura mínima (min-height) do textarea.
+	 */
+	height: {
+		type: [Number, String],
+		default: null,
+	},
 });
 
 const emits = defineEmits({
@@ -429,7 +437,14 @@ const inputHeight = computed(() => {
 });
 
 const inputMinHeight = computed(() => {
-	return props.type === 'textarea' ? '120px' : 'auto';
+	if (props.type !== 'textarea') return 'auto';
+	if (!props.height) return '120px';
+
+	if (typeof props.height === 'number') {
+		return `${props.height}px`;
+	}
+
+	return props.height;
 });
 
 const inputTopPadding = computed(() => {
