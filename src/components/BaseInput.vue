@@ -65,7 +65,6 @@
 					:disabled="disabled"
 					:class="inputClass"
 					:type="type"
-					:style="{ minHeight: inputMinHeight }"
 					@focus="handleFocus"
 					@blur="handleBlur"
 					@keydown="handleKeydown"
