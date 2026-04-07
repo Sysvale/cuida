@@ -384,6 +384,13 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	 * Especifica a altura mínima (min-height) do textarea.
+	 */
+	height: {
+		type: [Number, String],
+		default: null,
+	},
 });
 
 const emits = defineEmits({
@@ -429,7 +436,14 @@ const inputHeight = computed(() => {
 });
 
 const inputMinHeight = computed(() => {
-	return props.type === 'textarea' ? '120px' : 'auto';
+	if (props.type !== 'textarea') return 'auto';
+	if (!props.height) return '120px';
+
+	if (typeof props.height === 'number') {
+		return `${props.height}px`;
+	}
+
+	return props.height;
 });
 
 const inputTopPadding = computed(() => {
@@ -648,7 +662,7 @@ defineExpose({
 		padding: tokens.pTRBL(0, 2, 3, 2);
 		padding-top: v-bind(inputTopPadding);
 		height: v-bind(inputHeight);
-		min-height: v-bind(inputMinHeight);
+		min-height: v-bind(inputMinHeight) !important;
 		border-radius: tokens.$border-radius-extra-small;
 		border: none;
 		text-align: start;

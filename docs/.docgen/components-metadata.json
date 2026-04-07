@@ -1155,6 +1155,17 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "height",
+        "description": "Especifica a altura mínima (min-height) do textarea.",
+        "type": {
+          "name": "number|string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "null"
+        }
       }
     ],
     "events": [
@@ -13278,6 +13289,17 @@
         "defaultValue": {
           "func": false,
           "value": "false"
+        }
+      },
+      {
+        "name": "height",
+        "description": "Especifica a altura mínima (min-height) do textarea.",
+        "type": {
+          "name": "number|string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "null"
         }
       }
     ],
