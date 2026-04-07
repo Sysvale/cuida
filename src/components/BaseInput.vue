@@ -662,7 +662,7 @@ defineExpose({
 		padding: tokens.pTRBL(0, 2, 3, 2);
 		padding-top: v-bind(inputTopPadding);
 		height: v-bind(inputHeight);
-		min-height: v-bind(inputMinHeight);
+		min-height: v-bind(inputMinHeight) !important;
 		border-radius: tokens.$border-radius-extra-small;
 		border: none;
 		text-align: start;

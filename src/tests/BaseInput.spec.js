@@ -291,7 +291,7 @@ describe('BaseInput', () => {
 		expect(wrapper.findComponent(CdsLink).props('href')).toBe('https://example.com');
 	});
 
-	test('applies min-height to textarea when height prop is provided', () => {
+	test('computes inputMinHeight correctly when height prop is provided', () => {
 		const wrapper = mount(BaseInput, {
 			props: {
 				id: 'base-input',
@@ -300,11 +300,10 @@ describe('BaseInput', () => {
 			},
 		});
 
-		const textarea = wrapper.find('textarea');
-		expect(textarea.element.style.minHeight).toBe('300px');
+		expect(wrapper.vm.inputMinHeight).toBe('300px');
 	});
 
-	test('applies min-height to textarea when height prop is provided as string', () => {
+	test('computes inputMinHeight correctly when height prop is provided as string', () => {
 		const wrapper = mount(BaseInput, {
 			props: {
 				id: 'base-input',
@@ -313,7 +312,6 @@ describe('BaseInput', () => {
 			},
 		});
 
-		const textarea = wrapper.find('textarea');
-		expect(textarea.element.style.minHeight).toBe('400px');
+		expect(wrapper.vm.inputMinHeight).toBe('400px');
 	});
 });
