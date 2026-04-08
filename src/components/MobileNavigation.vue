@@ -42,24 +42,73 @@
 
 				<div class="mobile-navigation__sidebar-content">
 					<div class="mobile-navigation__sidebar-items">
-						<router-link
+						<div
 							v-for="item in items"
 							:key="item.label"
-							:to="routerPushTo(item)"
-							class="mobile-navigation__sidebar-item"
-							:class="{
-								'mobile-navigation__sidebar-item--active': isActive(item),
-							}"
-							@click="handleItemClick(item)"
 						>
-							<CdsIcon
-								:name="item.icon"
-								width="24"
-								height="24"
-							/>
+							<router-link
+								v-if="!item.items || item.items.length === 0"
+								:to="routerPushTo(item)"
+								class="mobile-navigation__sidebar-item"
+								:class="{
+									'mobile-navigation__sidebar-item--active': isActive(item),
+								}"
+								@click="handleItemClick(item)"
+							>
+								<div class="mobile-navigation__sidebar-item-title">
+									<CdsIcon
+										:name="item.icon"
+										width="24"
+										height="24"
+									/>
 
-							<span>{{ item.label }}</span>
-						</router-link>
+									<span>{{ item.label }}</span>
+								</div>
+							</router-link>
+
+							<div
+								v-else
+								class="mobile-navigation__sidebar-item"
+								:class="{
+									'mobile-navigation__sidebar-item--active': isActive(item),
+								}"
+								@click="handleItemClick(item)"
+							>
+								<div class="mobile-navigation__sidebar-item-title">
+									<CdsIcon
+										:name="item.icon"
+										width="24"
+										height="24"
+									/>
+
+									<span>{{ item.label }}</span>
+								</div>
+
+								<CdsIcon
+									:name="expandedItem === item.label ? 'caret-up-outline' : 'caret-down-outline'"
+									width="16"
+									height="16"
+								/>
+							</div>
+
+							<div
+								v-if="item.items && item.items.length > 0 && expandedItem === item.label"
+								class="mobile-navigation__subitems"
+							>
+								<router-link
+									v-for="subitem in item.items"
+									:key="subitem.label"
+									:to="routerPushTo(subitem)"
+									class="mobile-navigation__sidebar-subitem"
+									:class="{
+										'mobile-navigation__sidebar-subitem--active': isActive(subitem),
+									}"
+									@click="handleItemClick(subitem)"
+								>
+									<span>{{ subitem.label }}</span>
+								</router-link>
+							</div>
+						</div>
 					</div>
 
 					<div class="mobile-navigation__sidebar-footer">
@@ -144,7 +193,7 @@ const props = defineProps({
 	*/
 	activeItem: {
 		type: Object,
-		default: () => {},
+		default: () => ({}),
 	},
 	/**
 	 * Define as informações referentes ao usuário. O objeto deve seguir a assinatura:
@@ -186,6 +235,7 @@ const emit = defineEmits([
 
 const internalActiveItem = ref(props.activeItem);
 const openSidebar = ref(false);
+const expandedItem = ref(null);
 
 const resolveMode = computed(() => {
 	return (props.light) ? 'light' : 'dark';
@@ -219,9 +269,26 @@ const handleCloseSidebar = () => {
 	openSidebar.value = false;
 };
 
-const isActive = (item) => isEqual(item, internalActiveItem.value);
+const isActive = (item) => {
+	let hasActiveSubitem = false;
+	let hasActiveItem = false;
+
+	if (!!item.items && item.items.length > 0) {
+		hasActiveSubitem = item.items.some(subitem => {
+			return isEqual(subitem, internalActiveItem.value);
+		});
+	}
+
+	hasActiveItem = isEqual(item, internalActiveItem.value);
+	return hasActiveSubitem || hasActiveItem;
+};
 
 const handleItemClick = (item) => {
+	if (item.items && item.items.length > 0) {
+		expandedItem.value = expandedItem.value === item.label ? null : item.label;
+		return;
+	}
+
 	if (isEmpty(props.activeItem)) {
 		internalActiveItem.value = item;
 	}
@@ -327,11 +394,36 @@ const mustDisableExternalScrolls = (value) => {
 		@include tokens.body-1;
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 		padding: tokens.pYX(4, 5);
 		border-radius: 10px;
 		gap: 10px;
 		background: none;
 		transition: background 0.25s ease-in-out;
+		text-decoration: none;
+
+		&--active {
+			font-weight: 700;
+		}
+	}
+
+	&__sidebar-item-title {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	&__subitems {
+		display: flex;
+		flex-direction: column;
+		gap: tokens.spacer(2);
+		padding: tokens.pTRBL(2, 0, 4, 10);
+	}
+
+	&__sidebar-subitem {
+		@include tokens.body-2;
+		padding: tokens.py(2);
+		text-decoration: none;
 
 		&--active {
 			font-weight: 700;
@@ -390,11 +482,21 @@ const mustDisableExternalScrolls = (value) => {
 		}
 
 		&__sidebar-item {
+			color: tokens.$n-0;
+
 			&--active {
 				background: #576169;
 				color: tokens.$n-0;
 				border: 1px solid #64738280;
 				transition: background 0.25s ease-in-out;
+			}
+		}
+
+		&__sidebar-subitem {
+			color: tokens.$n-100;
+
+			&--active {
+				color: tokens.$n-0;
 			}
 		}
 
@@ -425,10 +527,20 @@ const mustDisableExternalScrolls = (value) => {
 		}
 
 		&__sidebar-item {
+			color: tokens.$n-700;
+
 			&--active {
 				background: var(--system-background-variant);
 				color: var(--system-text-variant);
 				border: 1px solid var(--system-border-variant);
+			}
+		}
+
+		&__sidebar-subitem {
+			color: tokens.$n-600;
+
+			&--active {
+				color: var(--system-text-variant);
 			}
 		}
 
