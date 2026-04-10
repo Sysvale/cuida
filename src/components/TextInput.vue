@@ -8,7 +8,6 @@
 		:support-link-url="supportLinkUrl || linkUrl"
 		:support-link="supportLink || linkText"
 		:floating-label="floatingLabel || mobile"
-		:leading-icon
 		@click="emitClick"
 		@focus="emitFocus"
 		@blur="emitBlur"
