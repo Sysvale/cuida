@@ -8,6 +8,7 @@
 		:support-link-url="supportLinkUrl || linkUrl"
 		:support-link="supportLink || linkText"
 		:floating-label="floatingLabel || mobile"
+		:leading-icon
 		@click="emitClick"
 		@focus="emitFocus"
 		@blur="emitBlur"
@@ -182,6 +183,13 @@ const props = defineProps({
 	disableAutocomplete: {
 		type: Boolean,
 		default: false,
+	},
+	/**
+	* Define o ícone que será exibido à esquerda do input
+	*/
+	leadingIcon: {
+		type: [String, null],
+		default: null,
 	},
 });
 
