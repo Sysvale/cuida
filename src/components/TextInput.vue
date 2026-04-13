@@ -215,7 +215,7 @@ watch(internalValue, (value) => {
 
 const componentRef = computed(() => baseInputRef.value?.componentRef);
 const showLeadingIcon = computed(() => {
-	return !props.floatingLabel ? props.leadingIcon : '';
+	return !props.floatingLabel ? props.leadingIcon : null;
 });
 
 /* EXPOSE */
