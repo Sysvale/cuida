@@ -8,6 +8,7 @@
 		:support-link-url="supportLinkUrl || linkUrl"
 		:support-link="supportLink || linkText"
 		:floating-label="floatingLabel || mobile"
+		:leading-icon="showLeadingIcon"
 		@click="emitClick"
 		@focus="emitFocus"
 		@blur="emitBlur"
@@ -213,6 +214,9 @@ watch(internalValue, (value) => {
 });
 
 const componentRef = computed(() => baseInputRef.value?.componentRef);
+const showLeadingIcon = computed(() => {
+	return !props.floatingLabel ? props.leadingIcon : '';
+});
 
 /* EXPOSE */
 defineExpose({
