@@ -13593,6 +13593,17 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "leadingIcon",
+        "description": "Define o ícone que será exibido à esquerda do input",
+        "type": {
+          "name": "string|null"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "null"
+        }
       }
     ],
     "slots": [
