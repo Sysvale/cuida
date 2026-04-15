@@ -67,7 +67,7 @@ export default {
 			type: String,
 			default: 'info',
 			required: false,
-			validator: (value) => ['info', 'warning', 'danger'].includes(value),
+			validator: (value) => ['info', 'success', 'warning', 'danger'].includes(value),
 		},
 		/**
 		* O título do alert. O título também pode ser usado com o slot.
