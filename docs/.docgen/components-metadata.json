@@ -198,10 +198,9 @@
         "type": {
           "name": "string"
         },
-        "required": false,
         "defaultValue": {
           "func": false,
-          "value": "'Título do AlertCard'"
+          "value": "''"
         }
       },
       {
