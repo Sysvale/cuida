@@ -23,19 +23,10 @@
 					/>
 				</div>
 
-				<span
-					v-if="text.length > 0"
-					class="alert__text"
-				>
-					{{ text }}
-				</span>
-
-				<!-- @slot Slot padrão utilizado para exibir texto do alert caso não tenha sido especificado por prop -->
-				<span
-					v-else
-					class="alert__text"
-				>
-					<slot />
+				<span class="alert__text">
+					<slot>
+						{{ text }}
+					</slot>
 				</span>
 			</div>
 
@@ -76,14 +67,14 @@ export default {
 			type: String,
 			default: 'info',
 			required: false,
+			validator: (value) => ['info', 'warning', 'danger'].includes(value),
 		},
 		/**
 		* O título do alert. O título também pode ser usado com o slot.
 		*/
 		text: {
 			type: String,
-			default: 'Título do AlertCard',
-			required: false,
+			default: '',
 		},
 		/**
 		* Prop que exibe botão de fechamento do alert.
