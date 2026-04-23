@@ -43,7 +43,7 @@ Um componente de gráfico reutilizável para exibir dados visualmente.
 ## Props
 
 <APITable
-	name="CdsBarChart"
+	name="CdsPolarAreaChart"
 	section="props"
 />
 <br>

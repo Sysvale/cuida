@@ -59,16 +59,9 @@ export default {
 		* `data` (array com os valores númericos).
 		*/
 		data: {
-			type: Object,
+			type: Array,
 			required: true,
-			default: () => ({
-				datasets: [
-					{
-						label: '',
-						data: [],
-					}
-				]
-			})
+			default: () => [],
 		},
 		/**
 		* Personaliza a paleta de cores do gráfico. São 11 variantes implementadas:
@@ -173,23 +166,41 @@ export default {
 		labels: {
 			handler(newValue) {
 				this.localLabels = newValue;
+				this.mergeChartDataNoSelect(this.data);
 			},
 			immediate: true,
 		},
 
 		variant: {
 			handler(newValue) {
-				if (newValue === 'gray' || newValue === 'dark')  {
+				if (newValue === 'gray' || newValue === 'dark') {
 					this.deleteFirstTwoColors = true;
 				} else {
 					this.deleteFirstTwoColors = false;
 				}
+
+				this.mergeChartDataNoSelect(this.data);
+			},
+			immediate: true,
+		},
+
+		theme: {
+			handler() {
+				this.mergeChartDataNoSelect(this.data);
+			},
+			immediate: true,
+		},
+
+		colors: {
+			handler() {
+				this.mergeChartDataNoSelect(this.data);
 			},
 			immediate: true,
 		},
 
 		data: {
 			handler(newValue) {
+				this.updateLargestValue(newValue);
 				this.mergeChartDataNoSelect(newValue);
 			},
 			immediate: true,
@@ -197,19 +208,21 @@ export default {
 	},
 
 	mounted() {
-
-		this.data.forEach(item => {
-			if (item.datasets[0].data[0] > this.largestValue) {
-				this.largestValue = item.datasets[0].data[0];
-			}
-			
-		})
-
+		this.updateLargestValue(this.data);
 		this.mergeChartDataNoSelect(this.data);
 	},
 
 	methods: {
 		paleteBuilder,
+
+		updateLargestValue(chartData) {
+			this.largestValue = 0;
+			chartData.forEach(item => {
+				if (item.datasets[0] && item.datasets[0].data && item.datasets[0].data[0] > this.largestValue) {
+					this.largestValue = item.datasets[0].data[0];
+				}
+			});
+		},
 
 		palete() {
 			this.palletColors = this.paleteBuilder(this.sassColorVariables.palete);
