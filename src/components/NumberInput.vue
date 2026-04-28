@@ -230,22 +230,73 @@ const emits = defineEmits({
 const internalValue = ref('');
 const { emitClick, emitChange, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
 
-/* FUNCTIONS */
-function formatToBRL(value) {
-	if (typeof value === 'number') {
-		return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+/* WATCHERS */
+watch(model, (newValue) => {
+	if (props.money) {
+		if (newValue === null || newValue === undefined || newValue === '') {
+			internalValue.value = 'R$ 0,00';
+			unmaskedValue.value = 0;
+			return;
+		}
+
+		if (typeof newValue === 'number') {
+			const formatted = newValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+			internalValue.value = formatted;
+			unmaskedValue.value = newValue;
+			return;
+		}
+
+		if (typeof newValue === 'string') {
+			if (newValue.startsWith('R$')) {
+				internalValue.value = newValue;
+				unmaskedValue.value = unmaskBRL(newValue);
+				return;
+			}
+			
+			const parsed = parseFloat(newValue.replace(',', '.'));
+			if (!isNaN(parsed)) {
+				const formatted = parsed.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+				internalValue.value = formatted;
+				unmaskedValue.value = parsed;
+			} else {
+				internalValue.value = 'R$ 0,00';
+				unmaskedValue.value = 0;
+			}
+		}
+	} else {
+		internalValue.value = newValue ?? '';
 	}
-	
-	const onlyNumbers = String(value || '').replace(/\D/g, '');
+}, { immediate: true });
+
+watch(internalValue, (value) => {
+	if (props.money) return;
+
+	let stringifiedInput = String(value);
+
+	if (props.mask) {
+		model.value = stringifiedInput;
+		unmaskedValue.value = +stringifiedInput.replace(/\D/g, '');
+	} else if (stringifiedInput.length > 15) {
+		internalValue.value = +stringifiedInput.slice(0, 15);
+	} else {
+		model.value = +stringifiedInput;
+		unmaskedValue.value = +stringifiedInput;
+	}
+});
+
+/* FUNCTIONS */
+function formatDigitsToBRL(digits) {
+	const onlyNumbers = String(digits || '').replace(/\D/g, '');
 	if (!onlyNumbers) return 'R$ 0,00';
 	
 	const number = parseFloat(onlyNumbers) / 100;
 	return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
+
 function handleMoneyInput(event) {
 	const digits = event.target.value.replace(/\D/g, '');
 
-	const formattedValue = formatToBRL(digits);
+	const formattedValue = formatDigitsToBRL(digits);
 
 	
 	internalValue.value = formattedValue;
@@ -267,7 +318,7 @@ function handleMoneyInput(event) {
 
 function handleFocus(event) {
 	if (props.money) {
-		internalValue.value = (internalValue.value === 0 || internalValue.value === '')
+		internalValue.value = (internalValue.value === '')
 			? 'R$ 0,00'
 			: internalValue.value;
 
@@ -284,33 +335,6 @@ function handleChange() {
 	}
 	emitChange();
 }
-
-/* WATCHERS */
-watch(model, (newValue) => {
-	if (props.money) {
-		const formatted = formatToBRL(newValue);
-		internalValue.value = formatted;
-		unmaskedValue.value = unmaskBRL(formatted);
-	} else {
-		internalValue.value = newValue ?? '';
-	}
-}, { immediate: true });
-
-watch(internalValue, (value) => {
-	if (props.money) return;
-
-	let stringifiedInput = String(value);
-
-	if (props.mask) {
-		model.value = stringifiedInput;
-		unmaskedValue.value = +stringifiedInput.replace(/\D/g, '');
-	} else if (stringifiedInput.length > 15) {
-		internalValue.value = +stringifiedInput.slice(0, 15);
-	} else {
-		model.value = +stringifiedInput;
-		unmaskedValue.value = +stringifiedInput;
-	}
-});
 
 /* EXPOSE */
 defineExpose({
