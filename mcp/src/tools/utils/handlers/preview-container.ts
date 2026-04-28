@@ -8,7 +8,11 @@ import { fileURLToPath } from 'node:url';
 
 export class GetPreviewContainerHandler extends AbstractMcpTool<typeof PreviewContainerInputSchema> {
 	name = 'get_preview_container';
-	description = 'Get the preview container documentation';
+	audience = 'contributor';
+	description = `[DS contributor tool] Gets the previewContainer utility documentation for component preview layout.
+Use this tool when you need to create containers for component previews.
+Returns: Markdown documentation with usage examples.
+Not suitable for: getting component docs (use get_component_docs), getting other utilities.`;
 	schema = PreviewContainerInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

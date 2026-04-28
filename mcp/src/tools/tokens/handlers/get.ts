@@ -6,7 +6,10 @@ import { GetTokenGroupInputSchema } from '../schemas/index.js';
 
 export class GetTokenGroupHandler extends AbstractMcpTool<typeof GetTokenGroupInputSchema> {
 	name = 'get_token_group';
-	description = 'Gets the raw SCSS content for a specific group of design tokens.';
+	description = `Gets the raw SCSS content for a specific group of design tokens.
+Use this tool when you need the full SCSS token definitions for a token group (colors, spacing, etc.) for use in stylesheets.
+Returns: Raw SCSS content as string with $variable definitions.
+Not suitable for: listing token groups (use list_token_groups), getting token values in JSON (use get_token_value if available).`;
 	schema = GetTokenGroupInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

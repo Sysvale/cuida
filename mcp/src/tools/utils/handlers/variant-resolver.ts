@@ -8,7 +8,11 @@ import { fileURLToPath } from 'node:url';
 
 export class GetVariantResolverHandler extends AbstractMcpTool<typeof VariantResolverInputSchema> {
 	name = 'get_variant_resolver';
-	description = 'Get the variant resolver documentation';
+	audience = 'contributor';
+	description = `[DS contributor tool] Gets the variant resolver utility documentation.
+Use this tool when you need to implement variant-based rendering logic in components.
+Returns: Markdown documentation with variant resolver examples.
+Not suitable for: getting component docs (use get_component_docs), getting other utilities.`;
 	schema = VariantResolverInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

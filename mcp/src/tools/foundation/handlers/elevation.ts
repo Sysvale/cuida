@@ -8,7 +8,10 @@ import { fileURLToPath } from 'node:url';
 
 export class GetElevationHandler extends AbstractMcpTool<typeof ElevationInputSchema> {
 	name = 'get_elevation';
-	description = 'Gets the elevations tokens.';
+	description = `Gets the elevation tokens for layering and stacking.
+Use this tool when you need z-index values for modal dialogs, dropdowns, tooltips, etc.
+Returns: Markdown table with elevation values and their use cases.
+Not suitable for: getting shadows (use get_shadows), getting borders (use get_borders).`;
 	schema = ElevationInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

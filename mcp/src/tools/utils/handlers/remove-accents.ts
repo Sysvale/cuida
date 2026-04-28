@@ -8,7 +8,11 @@ import { fileURLToPath } from 'node:url';
 
 export class GetRemoveAccentsHandler extends AbstractMcpTool<typeof RemoveAccentsInputSchema> {
 	name = 'get_remove_accents';
-	description = 'Get the remove accents documentation';
+	audience = 'contributor';
+	description = `[DS contributor tool] Gets the removeAccents utility documentation for removing diacritical marks.
+Use this tool when you need to normalize text by removing accents (e.g., "São Paulo" → "Sao Paulo").
+Returns: Markdown documentation with usage examples.
+Not suitable for: getting component docs (use get_component_docs), getting other utilities.`;
 	schema = RemoveAccentsInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

@@ -6,7 +6,10 @@ import { ListTokenGroupsInputSchema } from '../schemas/index.js';
 
 export class ListTokenGroupsHandler extends AbstractMcpTool<typeof ListTokenGroupsInputSchema> {
 	name = 'list_token_groups';
-	description = 'Lists the available groups of design tokens (e.g., colors, spacing).';
+	description = `Lists the available groups of design tokens.
+Use this tool when you need to discover what token groups exist (e.g., colors, spacing, typography).
+Returns: JSON array of token group names as strings.
+Not suitable for: getting specific token values (use get_token_group), getting raw SCSS (use get_token_group).`;
 	schema = ListTokenGroupsInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

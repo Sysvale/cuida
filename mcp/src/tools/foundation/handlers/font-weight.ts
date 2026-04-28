@@ -8,7 +8,10 @@ import { fileURLToPath } from 'node:url';
 
 export class GetFontWeightHandler extends AbstractMcpTool<typeof FontWeightInputSchema> {
 	name = 'get_font_weight';
-	description = 'Gets the font weight.';
+	description = `Gets the font weight tokens.
+Use this tool when you need the available font weight values (regular, medium, bold, etc.).
+Returns: Markdown table with font weight values.
+Not suitable for: getting typography scale (use get_typography), getting color palette (use get_colors_pallete).`;
 	schema = FontWeightInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

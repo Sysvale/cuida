@@ -9,7 +9,11 @@ import { VITEPRESS_DIST_DIR } from '../../../utils/paths.js';
 
 export class GetComponentDocsHandler extends AbstractMcpTool<typeof GetComponentDocsInputSchema> {
 	name = 'get_component_docs';
-	description = 'Gets the documentation for a specific component.';
+	audience = 'consumer';
+	description = `Gets the documentation for a specific component in markdown format.
+Use this tool when you need to read the documentation for a component (usage instructions, examples, props table).
+Returns: Markdown documentation content.
+Not suitable for: getting component source code (use get_component_source), getting component metadata (use get_component_metadata).`;
 	schema = GetComponentDocsInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

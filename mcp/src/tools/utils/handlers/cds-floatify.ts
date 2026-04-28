@@ -8,7 +8,10 @@ import { fileURLToPath } from 'node:url';
 
 export class GetCdsFloatifyHandler extends AbstractMcpTool<typeof CdsFloatifyInputSchema> {
 	name = 'get_cds_floatify';
-	description = 'Get the cds floatify documentation';
+	description = `Gets the cdsFloatify utility documentation for number formatting.
+Use this tool when you need to format numbers in Brazilian locale (period as thousands separator, comma as decimal).
+Returns: Markdown documentation with usage examples.
+Not suitable for: getting typography (use get_typography), getting other utilities.`;
 	schema = CdsFloatifyInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

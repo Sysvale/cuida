@@ -22,10 +22,16 @@ export function validate(
 	return ok(result.data);
 }
 
-export function getToolsFromHandlers(handlers: Record<string, BaseTool>) {
-	return Object.values(handlers).map((handler) => ({
-		name: handler.name,
-		description: handler.description,
-		inputSchema: handler.inputSchema || { type: 'object', properties: {} },
-	}));
+export function getToolsFromHandlers(
+    handlers: Record<string, BaseTool>,
+    includeContributor: boolean = false
+) {
+    return Object.values(handlers)
+        .filter(handler => includeContributor || !handler.audience || handler.audience === 'consumer')
+        .map((handler) => ({
+            name: handler.name,
+            description: handler.description,
+            inputSchema: handler.inputSchema || { type: 'object', properties: {} },
+            audience: handler.audience,
+        }));
 }

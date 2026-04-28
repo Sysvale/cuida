@@ -7,7 +7,11 @@ import { GetComponentMetadataInputSchema } from '../schemas/index.js';
 
 export class GetComponentMetadataHandler extends AbstractMcpTool<typeof GetComponentMetadataInputSchema> {
 	name = 'get_component_metadata';
-	description = 'Gets the full metadata for a specific component.';
+	audience = 'consumer';
+	description = `Gets complete metadata for a design system component including props, events, and slots.
+Use this tool when you need to understand a component's API surface (its props, events, slots, and their types).
+Returns: JSON object with {displayName, description, props: {name, type, required, defaultValue}[], events: {name, type}[], slots: {name, scoped, bindings}[], sourceFiles: string[], category: string}.
+Not suitable for: searching components by keyword (use search_components), listing all components (use list_components with optional category filter).`;
 	schema = GetComponentMetadataInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

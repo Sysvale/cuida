@@ -8,9 +8,11 @@ import { VITEPRESS_DIST_DIR } from '../utils/paths.js';
 
 export type DocsIndex = Map<string, string>;
 
+const docsCache = new Map<string, { content: string; timestamp: number }>();
+const CACHE_TTL = 300000;
+
 export async function indexDocs(): Promise<DocsIndex> {
 	const docsDir = path.resolve(`${VITEPRESS_DIST_DIR}/components`);
-	logger.info('Indexing docs...', { docsDir });
 	const files = await glob('**/*.html', { cwd: docsDir, nodir: true, absolute: true });
 	
 	const index: DocsIndex = new Map();
@@ -18,11 +20,15 @@ export async function indexDocs(): Promise<DocsIndex> {
 		const fileName = path.basename(file, '.html').toLowerCase();
 		index.set(fileName, file);
 	}
-	logger.info('Docs indexed.', { count: index.size, indexKeys: Array.from(index.keys()), indexValues: Array.from(index.values()) });
 	return index;
 }
 
 export async function readDocFile(filePath: string, transform?: (virtualDom: Cheerio<any>) => void): Promise<string> {
+	const cached = docsCache.get(filePath);
+	if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
+		return cached.content;
+	}
+	
 	const fullHtmlString = await fs.readFile(filePath, 'utf-8');
 	const $ = load(fullHtmlString);
 	const $content = $('main > div > div');
@@ -110,7 +116,9 @@ export async function readDocFile(filePath: string, transform?: (virtualDom: Che
 		finalMarkdown = finalMarkdown.replace(placeholder, tableMarkdown);
 	}
 
-	finalMarkdown = finalMarkdown.replace(/(\*\s*\*\s*\*[\s\n]*){2,}/g, '* * *\n\n');
+	finalMarkdown = finalMarkdown.replace(/(\*\s*\*\s\*[\s\n]*){2,}/g, '* * *\n\n');
 
-	return finalMarkdown.trim();
+	const result = finalMarkdown.trim();
+	docsCache.set(filePath, { content: result, timestamp: Date.now() });
+	return result;
 }

@@ -8,7 +8,11 @@ import { fileURLToPath } from 'node:url';
 
 export class GetLogBuilderHandler extends AbstractMcpTool<typeof LogBuilderInputSchema> {
 	name = 'get_log_builder';
-	description = 'Get the log builder documentation';
+	audience = 'contributor';
+	description = `[DS contributor tool] Gets the logBuilder utility documentation for structured logging.
+Use this tool when you need to implement consistent logging across components.
+Returns: Markdown documentation with usage examples.
+Not suitable for: getting component docs (use get_component_docs), getting other utilities.`;
 	schema = LogBuilderInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

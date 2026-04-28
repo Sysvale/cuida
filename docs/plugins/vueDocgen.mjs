@@ -68,8 +68,29 @@ async function enhanceComponentInfo(filePath, componentInfo) {
 				if (prop.tags.max) {
 					prop.max = Number(prop.tags.max[0].description);
 				}
+				if (prop.tags.deprecated) {
+					prop.deprecationMessage = prop.tags.deprecated[0].description;
+				}
 			}
 		}
+	}
+
+	if (componentInfo.tags?.deprecated) {
+		componentInfo.deprecated = true;
+		componentInfo.deprecatedAt = new Date().toISOString();
+		const replacementMatch = componentInfo.tags.deprecated[0].description?.match(/@replacement\s+(\S+)/);
+		componentInfo.replacement = replacementMatch ? replacementMatch[1] : null;
+	}
+
+	if (componentInfo.tags?.example) {
+		componentInfo.usageExamples = componentInfo.tags.example.map(t => t.content);
+	}
+
+	if (componentInfo.tags?.whenToUse) {
+		componentInfo.usageGuidelines = {
+			whenToUse: componentInfo.tags.whenToUse[0].description,
+			whenNotToUse: componentInfo.tags.whenNotToUse?.[0]?.description || '',
+		};
 	}
 
 	if (hasScriptSetup && hasDefineModel) {

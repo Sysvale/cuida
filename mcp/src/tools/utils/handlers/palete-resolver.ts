@@ -8,7 +8,11 @@ import { fileURLToPath } from 'node:url';
 
 export class GetPaleteResolverHandler extends AbstractMcpTool<typeof PaleteResolverInputSchema> {
 	name = 'get_palete_resolver';
-	description = 'Get the palete resolver documentation';
+	audience = 'contributor';
+	description = `[DS contributor tool] Gets the paletteResolver utility documentation for color palette generation.
+Use this tool when you need to generate color palettes programmatically.
+Returns: Markdown documentation with usage examples.
+Not suitable for: getting component docs (use get_component_docs), getting other utilities.`;
 	schema = PaleteResolverInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

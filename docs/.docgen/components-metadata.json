@@ -3733,7 +3733,8 @@
         "defaultValue": {
           "func": false,
           "value": "false"
-        }
+        },
+        "deprecationMessage": "Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile"
       },
       {
         "name": "floatingLabel",
@@ -3762,7 +3763,8 @@
         "defaultValue": {
           "func": false,
           "value": "false"
-        }
+        },
+        "deprecationMessage": "Essa prop vai ser renomeada para prop `highlightToday` na v4. Controla a marcação do dia atual no calendário."
       },
       {
         "name": "highlightToday",
@@ -7881,7 +7883,8 @@
         "defaultValue": {
           "func": false,
           "value": "false"
-        }
+        },
+        "deprecationMessage": "Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile"
       },
       {
         "name": "floatingLabel",
@@ -8563,7 +8566,8 @@
         "defaultValue": {
           "func": false,
           "value": "null"
-        }
+        },
+        "deprecationMessage": "Define exibição e texto do link do input (localizado à direita da label)."
       },
       {
         "name": "linkUrl",
@@ -8581,7 +8585,8 @@
         "defaultValue": {
           "func": false,
           "value": "null"
-        }
+        },
+        "deprecationMessage": "Define a url a ser acessada no clique do link (no caso do link ser exibido)."
       },
       {
         "name": "supportLink",
@@ -8643,7 +8648,8 @@
         "defaultValue": {
           "func": false,
           "value": "false"
-        }
+        },
+        "deprecationMessage": "Define o tipo do input, se true será um input adaptador para o mobile"
       },
       {
         "name": "floatingLabel",
@@ -10371,7 +10377,8 @@
         "defaultValue": {
           "func": false,
           "value": "false"
-        }
+        },
+        "deprecationMessage": "Essa prop vai ser substituída pela prop `fluid` na v4. Quando verdadeiro, faz com que o button se adapte a expansão, podendo agora, adicionar uma descrição"
       },
       {
         "name": "fluid",
@@ -10995,7 +11002,8 @@
         "defaultValue": {
           "func": false,
           "value": "''"
-        }
+        },
+        "deprecationMessage": "Define a largura do Select. As opções são 'thin', 'default' e 'wide'."
       },
       {
         "name": "fluid",
@@ -11083,7 +11091,8 @@
         "defaultValue": {
           "func": false,
           "value": "null"
-        }
+        },
+        "deprecationMessage": "Essa prop vai ser substituída pela `supportLink` na v4. Define texto do link do input (localizado à direita da label)."
       },
       {
         "name": "linkUrl",
@@ -11101,7 +11110,8 @@
         "defaultValue": {
           "func": false,
           "value": "null"
-        }
+        },
+        "deprecationMessage": "Essa prop vai ser substituída pela `supportLinkUrl` na v4. Define a url a ser acessada no clique do link (no caso do link ser exibido)."
       },
       {
         "name": "supportLink",
@@ -11152,7 +11162,8 @@
         "defaultValue": {
           "func": false,
           "value": "false"
-        }
+        },
+        "deprecationMessage": "Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile"
       },
       {
         "name": "floatingLabel",
@@ -12564,7 +12575,8 @@
           "default",
           "wide",
           "fluid"
-        ]
+        ],
+        "deprecationMessage": "Define a largura do StepperInput. As opções são 'thin', 'default', 'wide' e 'fluid'."
       },
       {
         "name": "fluid",
@@ -13543,7 +13555,8 @@
         "values": [
           "text",
           "email"
-        ]
+        ],
+        "deprecationMessage": "Use o componente EmailInput caso precise de um campo para Emails. Especifica o tipo do TextInput. As opções são 'text' e 'email'."
       },
       {
         "name": "required",
@@ -13639,7 +13652,8 @@
         "defaultValue": {
           "func": false,
           "value": "null"
-        }
+        },
+        "deprecationMessage": "Essa prop vai ser substituída pela `supportLink` na v4. Define texto do link do input (localizado à direita da label)."
       },
       {
         "name": "linkUrl",
@@ -13657,7 +13671,8 @@
         "defaultValue": {
           "func": false,
           "value": "null"
-        }
+        },
+        "deprecationMessage": "Essa prop vai ser substituída pela `supportLinkUrl` na v4. Define a url a ser acessada no clique do link (no caso do link ser exibido)."
       },
       {
         "name": "supportLink",
@@ -13719,7 +13734,8 @@
         "defaultValue": {
           "func": false,
           "value": "false"
-        }
+        },
+        "deprecationMessage": "Essa prop vai ser substituída pela prop `floatingLabel` na v4. Define o tipo do input, se true será um input adaptado para o mobile"
       },
       {
         "name": "floatingLabel",

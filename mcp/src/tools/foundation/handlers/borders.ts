@@ -8,7 +8,10 @@ import { fileURLToPath } from 'node:url';
 
 export class GetBordersHandler extends AbstractMcpTool<typeof BordersInputSchema> {
 	name = 'get_borders';
-	description = 'Gets the borders tokens.';
+	description = `Gets the border tokens (border-radius, border-width).
+Use this tool when you need border radius and width values for components.
+Returns: Markdown table with border values.
+Not suitable for: getting shadows (use get_shadows), getting elevation (use get_elevation).`;
 	schema = BordersInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

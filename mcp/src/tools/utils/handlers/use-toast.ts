@@ -8,7 +8,11 @@ import { fileURLToPath } from 'node:url';
 
 export class GetUseToastHandler extends AbstractMcpTool<typeof UseToastInputSchema> {
 	name = 'get_use_toast';
-	description = 'Get the use toast documentation';
+	audience = 'consumer';
+	description = `Gets the useToast composable documentation.
+Use this tool when you need to implement toast notifications in components.
+Returns: Markdown documentation with useToast API and examples.
+Not suitable for: getting component docs (use get_component_docs), getting other utilities.`;
 	schema = UseToastInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

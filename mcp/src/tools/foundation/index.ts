@@ -29,8 +29,8 @@ const handlers: Record<string, BaseTool> = {
 
 const baseHandler = createToolCallHandler(handlers, 'token');
 
-export function getFoundationTools() {
-	return getToolsFromHandlers(handlers)
+export function getFoundationTools(includeContributor: boolean = false) {
+	return getToolsFromHandlers(handlers, includeContributor)
 };
 
 export async function handleFoundationToolCall(request: CallToolRequest): Promise<CallToolResult> {

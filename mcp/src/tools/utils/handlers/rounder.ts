@@ -8,7 +8,11 @@ import { fileURLToPath } from 'node:url';
 
 export class GetRounderHandler extends AbstractMcpTool<typeof RounderInputSchema> {
 	name = 'get_rounder';
-	description = 'Get the rounder documentation';
+	audience = 'contributor';
+	description = `[DS contributor tool] Gets the rounder utility documentation for number rounding.
+Use this tool when you need to round numbers to specific decimal places.
+Returns: Markdown documentation with usage examples.
+Not suitable for: getting component docs (use get_component_docs), getting other utilities.`;
 	schema = RounderInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

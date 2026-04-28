@@ -8,7 +8,11 @@ import { fileURLToPath } from 'node:url';
 
 export class GetIsDeviceTypeHandler extends AbstractMcpTool<typeof IsDeviceTypeInputSchema> {
 	name = 'get_is_device_type';
-	description = 'Get the is device type documentation';
+	audience = 'consumer';
+	description = `Gets the isDeviceType utility documentation for device detection.
+Use this tool when you need to detect device type (mobile, tablet, desktop) in Vue applications.
+Returns: Markdown documentation with usage examples.
+Not suitable for: getting component docs (use get_component_docs), getting other utilities.`;
 	schema = IsDeviceTypeInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

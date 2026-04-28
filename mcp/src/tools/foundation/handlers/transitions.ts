@@ -8,7 +8,10 @@ import { fileURLToPath } from 'node:url';
 
 export class GetTransitionsHandler extends AbstractMcpTool<typeof TransitionsInputSchema> {
 	name = 'get_transitions';
-	description = 'Gets the transitions tokens.';
+	description = `Gets the transition tokens for animations.
+Use this tool when you need CSS transition/duration/timing values for animations.
+Returns: Markdown table with transition values.
+Not suitable for: getting shadows (use get_shadows), getting elevation (use get_elevation).`;
 	schema = TransitionsInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

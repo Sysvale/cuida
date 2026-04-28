@@ -6,7 +6,10 @@ import { generateColorPaletteMarkdown } from '../utils/pallete-generator.js';
 
 export class GetColorsPalleteHandler extends AbstractMcpTool<typeof ColorsPalleteInputSchema> {
 	name = 'get_colors_pallete';
-	description = 'Gets the colors pallete.';
+	description = `Gets the complete color palette with hex values for each shade.
+Use this tool when you need to see all available colors in the design system with their hex codes.
+Returns: Markdown table with {Shade, Hexadecimal, Token SCSS}.
+Not suitable for: getting specific token values (use get_token_group for raw SCSS), getting typography (use get_typography).`;
 	schema = ColorsPalleteInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

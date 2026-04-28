@@ -12,6 +12,7 @@ export interface BaseTool {
 	name: string;
 	description: string;
 	inputSchema?: ToolInputSchema;
+	audience?: string;
 	execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>>;
 }
 
@@ -19,6 +20,7 @@ export abstract class AbstractMcpTool<T extends z.ZodSchema> implements BaseTool
 	abstract name: string;
 	abstract description: string;
 	protected abstract schema: T;
+	audience?: string;
 
 	get inputSchema() {
 		return z.toJSONSchema(this.schema) as ToolInputSchema;

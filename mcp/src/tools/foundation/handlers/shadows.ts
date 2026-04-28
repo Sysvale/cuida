@@ -8,7 +8,10 @@ import { fileURLToPath } from 'node:url';
 
 export class GetShadowsHandler extends AbstractMcpTool<typeof ShadowsInputSchema> {
 	name = 'get_shadows';
-	description = 'Gets shadows tokens.';
+	description = `Gets the shadow tokens for visual depth.
+Use this tool when you need box-shadow values for cards, modals, and elevated elements.
+Returns: Markdown table with shadow values.
+Not suitable for: getting elevation (use get_elevation), getting borders (use get_borders).`;
 	schema = ShadowsInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

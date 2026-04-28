@@ -8,7 +8,11 @@ import { GetComponentSourceInputSchema } from '../schemas/index.js';
 
 export class GetComponentSourceHandler extends AbstractMcpTool<typeof GetComponentSourceInputSchema> {
 	name = 'get_component_source';
-	description = 'Gets the source code for a specific component.';
+	audience = 'consumer';
+	description = `Gets the source code for a specific component.
+Use this tool when you need to view the implementation of a component (its template, script, and styles).
+Returns: Full Vue component source code as string.
+Not suitable for: getting component documentation (use get_component_docs), getting component metadata (use get_component_metadata).`;
 	schema = GetComponentSourceInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

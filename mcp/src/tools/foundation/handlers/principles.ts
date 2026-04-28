@@ -8,7 +8,10 @@ import { fileURLToPath } from 'node:url';
 
 export class GetPrinciplesHandler extends AbstractMcpTool<typeof PrinciplesInputSchema> {
 	name = 'get_principles';
-	description = 'Gets the design system principles.';
+	description = `Gets the design system principles and guiding values.
+Use this tool when you need to understand the core principles behind design decisions.
+Returns: Markdown documentation of design principles.
+Not suitable for: getting specific token values (use get_colors_pallete, get_typography), getting component docs (use get_component_docs).`;
 	schema = PrinciplesInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

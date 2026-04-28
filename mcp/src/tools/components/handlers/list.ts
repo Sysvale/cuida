@@ -2,11 +2,15 @@ import { ComponentMetadata } from '../../../types/index.js';
 import { AbstractMcpTool } from '../../core/handler.js';
 import { createErrorResult, createSuccessResult, validate } from '../../core/utils.js';
 import { Result, CallToolResult } from '../../../utils/result.js';
-import { ListComponentsInputSchema } from '../schemas/index.js';
+import { ListComponentsInputSchema, CATEGORIES } from '../schemas/index.js';
 
 export class ListComponentsHandler extends AbstractMcpTool<typeof ListComponentsInputSchema> {
 	name = 'list_components';
-	description = 'Lists available UI components, with an optional category filter.';
+	audience = 'consumer';
+	description = `Lists available UI components in the design system, with an optional category filter.
+Use this tool when you need to discover what components are available or get a list of all components.
+Returns: JSON array of {name, description, category}.
+Not suitable for: searching components by keyword (use search_components), getting specific component details (use get_component_metadata).`;
 	schema = ListComponentsInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

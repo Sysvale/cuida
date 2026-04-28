@@ -8,7 +8,10 @@ import { fileURLToPath } from 'node:url';
 
 export class GetSpacingHandler extends AbstractMcpTool<typeof SpacingInputSchema> {
 	name = 'get_spacing';
-	description = 'Gets the spacing.';
+	description = `Gets the spacing tokens.
+Use this tool when you need spacing values for margins, padding, or gaps (xs, sm, md, lg, xl, etc.).
+Returns: Markdown table with spacing values.
+Not suitable for: getting color palette (use get_colors_pallete), getting typography (use get_typography).`;
 	schema = SpacingInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

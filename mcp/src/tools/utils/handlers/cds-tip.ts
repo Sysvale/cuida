@@ -8,7 +8,10 @@ import { fileURLToPath } from 'node:url';
 
 export class GetCdsTipHandler extends AbstractMcpTool<typeof CdsTipInputSchema> {
 	name = 'get_cds_tip';
-	description = 'Get the cds tip documentation';
+	description = `Gets the cdsTip utility documentation for tooltip implementation.
+Use this tool when you need to implement tooltips in components.
+Returns: Markdown documentation with usage examples.
+Not suitable for: getting component docs (use get_component_docs), getting other utilities.`;
 	schema = CdsTipInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

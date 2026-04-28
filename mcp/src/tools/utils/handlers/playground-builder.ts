@@ -8,7 +8,11 @@ import { fileURLToPath } from 'node:url';
 
 export class GetPlaygroundBuilderHandler extends AbstractMcpTool<typeof PlaygroundBuilderInputSchema> {
 	name = 'get_playground_builder';
-	description = 'Get the playground builder documentation';
+	audience = 'contributor';
+	description = `[DS contributor tool] Gets the playgroundBuilder utility documentation for creating interactive playgrounds.
+Use this tool when you need to build live code playgrounds for documentation.
+Returns: Markdown documentation with usage examples.
+Not suitable for: getting component docs (use get_component_docs), getting other utilities.`;
 	schema = PlaygroundBuilderInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

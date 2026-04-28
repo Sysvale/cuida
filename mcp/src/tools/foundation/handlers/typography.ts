@@ -8,7 +8,10 @@ import { fileURLToPath } from 'node:url';
 
 export class GetTypographyHandler extends AbstractMcpTool<typeof TypographyInputSchema> {
 	name = 'get_typography';
-	description = 'Gets the typography tokens.';
+	description = `Gets the typography tokens including font families, sizes, and line heights.
+Use this tool when you need typography style values for CSS (font-family, font-size, line-height).
+Returns: Markdown documentation with typography scale values.
+Not suitable for: getting color palette (use get_colors_pallete), getting spacing tokens (use get_spacing).`;
 	schema = TypographyInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

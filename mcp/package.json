@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "bun --watch src/index.ts",
     "start": "bun run src/index.ts",
+    "start:contributor": "bun run src/index.ts -- --include-contributor",
     "inspect": "bunx @modelcontextprotocol/inspector bun src/index.ts",
     "typecheck": "tsc --noEmit",
     "test": "vitest"

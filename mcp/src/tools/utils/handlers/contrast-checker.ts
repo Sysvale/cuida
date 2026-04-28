@@ -8,7 +8,11 @@ import { fileURLToPath } from 'node:url';
 
 export class GetContrastCheckerHandler extends AbstractMcpTool<typeof ContrastCheckerInputSchema> {
 	name = 'get_contrast_checker';
-	description = 'Get the contrast checker documentation';
+	audience = 'contributor';
+	description = `[DS contributor tool] Gets the contrast checker utility documentation for WCAG accessibility compliance.
+Use this tool when you need to check if color combinations meet WCAG contrast requirements.
+Returns: Markdown documentation with contrast ratio calculator.
+Not suitable for: getting color palette (use get_colors_pallete), getting typography (use get_typography).`;
 	schema = ContrastCheckerInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

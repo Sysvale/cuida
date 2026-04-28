@@ -43,8 +43,8 @@ const handlers: Record<string, BaseTool> = {
 
 const baseHandler = createToolCallHandler(handlers, 'token');
 
-export function getUtilsTools() {
-	return getToolsFromHandlers(handlers)
+export function getUtilsTools(includeContributor: boolean = false) {
+	return getToolsFromHandlers(handlers, includeContributor)
 };
 
 export async function handleUtilsToolCall(request: CallToolRequest): Promise<CallToolResult> {

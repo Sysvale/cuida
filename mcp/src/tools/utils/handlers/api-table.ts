@@ -8,7 +8,11 @@ import { fileURLToPath } from 'node:url';
 
 export class GetApiTableHandler extends AbstractMcpTool<typeof ApiTableInputSchema> {
 	name = 'get_api_table';
-	description = 'Get the api table documentation';
+	audience = 'contributor';
+	description = `[DS contributor tool] Gets the API table utility documentation for generating component prop tables.
+Use this tool when you need to generate markdown tables for component props documentation.
+Returns: Markdown documentation for API table utility.
+Not suitable for: getting component docs (use get_component_docs), getting component metadata.`;
 	schema = ApiTableInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

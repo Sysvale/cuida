@@ -7,6 +7,9 @@ import {
 	GetComponentSourceHandler,
 	GetComponentDocsHandler,
 	SearchComponentsHandler,
+	GetDeprecatedComponentsHandler,
+	ListCategoriesHandler,
+	GetComponentReplacementHandler,
 } from './handlers/index.js';
 import { getToolsFromHandlers } from '../core/utils.js';
 
@@ -16,18 +19,26 @@ const handlers: Record<string, BaseTool> = {
 	get_component_source: new GetComponentSourceHandler(),
 	get_component_docs: new GetComponentDocsHandler(),
 	search_components: new SearchComponentsHandler(),
+	get_deprecated_components: new GetDeprecatedComponentsHandler(),
+	list_component_categories: new ListCategoriesHandler(),
+	get_component_replacement: new GetComponentReplacementHandler(),
 };
 
 const baseHandler = createToolCallHandler(handlers, 'component');
 
-export function getComponentTools() {
-	return getToolsFromHandlers(handlers);
+export function getComponentTools(includeContributor: boolean = false) {
+	return getToolsFromHandlers(handlers, includeContributor);
 }
 
 export async function handleComponentToolCall(
 	request: CallToolRequest,
-	metadata: Record<string, ComponentMetadata>,
+	metadataOr_fn: Record<string, ComponentMetadata> | (() => Promise<Record<string, ComponentMetadata>>),
 ): Promise<CallToolResult> {
+	const isFn = typeof metadataOr_fn === 'function';
+	const metadata = isFn 
+		? await (metadataOr_fn as () => Promise<Record<string, ComponentMetadata>>)()
+		: metadataOr_fn as Record<string, ComponentMetadata>;
+	
 	const argsWithMetadata = { ...request.params.arguments, _metadata: metadata };
 	const requestWithMetadata: CallToolRequest = {
 		...request,

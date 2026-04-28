@@ -8,7 +8,11 @@ import { fileURLToPath } from 'node:url';
 
 export class GetFigmaFrameHandler extends AbstractMcpTool<typeof FigmaFrameInputSchema> {
 	name = 'get_figma_frame';
-	description = 'Get the figma frame documentation';
+	audience = 'contributor';
+	description = `[DS contributor tool] Gets the figmaFrame utility documentation for Figma integration.
+Use this tool when you need to embed Figma frames in documentation.
+Returns: Markdown documentation with usage examples.
+Not suitable for: getting component docs (use get_component_docs), getting other utilities.`;
 	schema = FigmaFrameInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {

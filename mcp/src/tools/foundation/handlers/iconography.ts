@@ -8,7 +8,10 @@ import { fileURLToPath } from 'node:url';
 
 export class GetIconographyHandler extends AbstractMcpTool<typeof IconographyInputSchema> {
 	name = 'get_iconography';
-	description = 'Gets the icons tokens.';
+	description = `Gets the icon library with available icon names.
+Use this tool when you need to see what icons are available in the design system.
+Returns: Markdown documentation with icon names and usage.
+Not suitable for: getting color palette (use get_colors_pallete), getting typography (use get_typography).`;
 	schema = IconographyInputSchema;
 
 	async execute(args: Record<string, unknown>): Promise<Result<CallToolResult, Error>> {
@@ -20,7 +23,6 @@ export class GetIconographyHandler extends AbstractMcpTool<typeof IconographyInp
 		const filePath = path.resolve(__dirname, '../../../../../docs/.vitepress/dist/foundation/iconografia.html');
 		const fileContent = await readDocFile(filePath, (virtualDom) => {
 			virtualDom.nextAll('.source-code__title').remove();
-			virtualDom.find('.source-code__title').remove();
 		});
 		return createSuccessResult(fileContent);
 	}

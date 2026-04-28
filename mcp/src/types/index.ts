@@ -10,6 +10,15 @@ export interface ComponentMetadata {
   category?: string;
   builtDocPath?: string;
   searchRelevance?: number;
+  usageExamples?: string[];
+  usageGuidelines?: {
+    whenToUse: string;
+    whenNotToUse: string;
+  };
+  deprecated?: boolean;
+  replacement?: string;
+  deprecatedAt?: string;
+  version?: string;
 }
 
 export interface Prop {
@@ -19,6 +28,7 @@ export interface Prop {
   required: boolean;
   defaultValue: { func: boolean; value: string | null };
   tags?: Record<string, any>;
+  deprecationMessage?: string;
 }
 
 export interface Event {
