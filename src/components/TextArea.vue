@@ -134,6 +134,13 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	 * Especifica a altura mínima (min-height) do textarea.
+	 */
+	height: {
+		type: [Number, String],
+		default: null,
+	},
 });
 
 const emits = defineEmits({

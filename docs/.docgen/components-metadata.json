@@ -198,10 +198,9 @@
         "type": {
           "name": "string"
         },
-        "required": false,
         "defaultValue": {
           "func": false,
-          "value": "'Título do AlertCard'"
+          "value": "''"
         }
       },
       {
@@ -1154,6 +1153,17 @@
         "defaultValue": {
           "func": false,
           "value": "false"
+        }
+      },
+      {
+        "name": "height",
+        "description": "Especifica a altura mínima (min-height) do textarea.",
+        "type": {
+          "name": "number|string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "null"
         }
       }
     ],
@@ -13279,6 +13289,17 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "height",
+        "description": "Especifica a altura mínima (min-height) do textarea.",
+        "type": {
+          "name": "number|string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "null"
+        }
       }
     ],
     "sourceFiles": [
@@ -13570,6 +13591,17 @@
         "defaultValue": {
           "func": false,
           "value": "false"
+        }
+      },
+      {
+        "name": "leadingIcon",
+        "description": "Define o ícone que será exibido à esquerda do input",
+        "type": {
+          "name": "string|null"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "null"
         }
       }
     ],
