@@ -678,9 +678,10 @@ defineExpose({
 
 .select {
 	width: v-bind(selectContainerWidth);
-		:deep(input::placeholder) {
-			font-weight: 400 !important;
-		}
+
+	:deep(input::placeholder) {
+		font-weight: 400; 
+	}
 
 	&__input {
 		&--searchable {
