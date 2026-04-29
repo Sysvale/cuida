@@ -530,9 +530,10 @@ function handleKeydown(event) {
 			if (props.searchable && !active.value && event.key.length === 1) {
 				active.value = true;
 			}
-			emitKeydown(event);
 			break;
 	}
+
+	emitKeydown(event);
 }
 
 function activateSelectionOnEnter() {
