@@ -60,7 +60,7 @@
 						]"
 						@mousedown="selectItem(index)"
 						@mouseover="highlightOnMouseOver(index)"
-						@mouseout="currentPos = -1"
+						@mouseout="syncCurrentPos()"
 					>
 						<!--
 							@slot Slot utilizado para personalizar a lista de opções do select. Os dados do scoped slot podem ser acessados como: ```slot-scope={ 'option', 'index', 'value' }```
