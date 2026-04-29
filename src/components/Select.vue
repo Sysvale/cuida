@@ -646,23 +646,19 @@ function getLiInDOM(position) {
 	return liRefs.value[`${element[props.optionsField]}-${position}`];
 }
 
-function handleOptionVisibility(option, amount, direction) {
-	const optionDOMRect = option.getBoundingClientRect();
+function handleOptionVisibility(option) {
 	const optionsContainer = selectOptions.value;
-	const optionsContainerDOMRect = optionsContainer.getBoundingClientRect();
+	const optionTop = option.offsetTop;
+	const optionBottom = optionTop + option.offsetHeight;
+	const containerTop = optionsContainer.scrollTop;
+	const containerBottom = containerTop + optionsContainer.clientHeight;
 
-	if (
-		direction === 'up'
-		&& optionDOMRect.top <= optionsContainerDOMRect.top
-	) {
-		optionsContainer.scrollTop += amount;
+	if (optionTop < containerTop) {
+		optionsContainer.scrollTop = optionTop;
 	}
 
-	if (
-		direction === 'down'
-		&& optionDOMRect.top >= optionsContainerDOMRect.bottom
-	) {
-		optionsContainer.scrollTop += amount;
+	if (optionBottom > containerBottom) {
+		optionsContainer.scrollTop = optionBottom - optionsContainer.clientHeight;
 	}
 }
 
@@ -680,11 +676,12 @@ function highlightOnArrowDown() {
 	if (currentPos.value === localOptions.value.length - 1) return;
 
 	currentPos.value += 1;
+	localValue.value = cloneDeep(localOptions.value[currentPos.value]);
 
 	nextTick(() => {
 		const selectedOption = getLiInDOM(currentPos.value);
 		if (selectedOption) {
-			handleOptionVisibility(selectedOption, 37, 'down');
+			handleOptionVisibility(selectedOption);
 		}
 	});
 }
@@ -703,11 +700,12 @@ function highlightOnArrowUp() {
 	if (currentPos.value <= 0) return;
 
 	currentPos.value -= 1;
+	localValue.value = cloneDeep(localOptions.value[currentPos.value]);
 
 	nextTick(() => {
 		const selectedOption = getLiInDOM(currentPos.value);
 		if (selectedOption) {
-			handleOptionVisibility(selectedOption, -37, 'up');
+			handleOptionVisibility(selectedOption);
 		}
 	});
 }
@@ -902,10 +900,12 @@ defineExpose({
 		}
 
 		&--up {
+			width: 100%;
 			bottom: 40px;
 		}
 
 		&--down {
+			width: 100%;
 		}
 	}
 }
@@ -944,7 +944,7 @@ defineExpose({
 
 		&--selected {
 			background-color: tokens.$n-30;
-			font-weight: tokens.$font-weight-semibold;
+			// font-weight: tokens.$font-weight-semibold;
 		}
 	}
 
