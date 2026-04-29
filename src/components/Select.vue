@@ -566,6 +566,7 @@ function activateSelectionOnEnter() {
 	searchString.value = '';
 	isTyping.value = false;
 	active.value = false;
+	localOptions.value = pristineOptions.value;
 
 	nextTick(() => {
 		isSelectingItem = false;
@@ -587,6 +588,8 @@ function activateSelectionOnClick() {
 
 	if (active.value) {
 		syncCurrentPos();
+	} else {
+		localOptions.value = pristineOptions.value;
 	}
 
 	emitClick();
@@ -713,14 +716,6 @@ function highlightOnArrowUp() {
 
 function highlightOnMouseOver(index) {
 	currentPos.value = index;
-}
-
-function unhighlightOnMouseOut() {
-	// A lógica de remoção de classe agora é reativa via currentPos.
-}
-
-function resetActiveSelection() {
-	// Não é mais necessário com a abordagem reativa.
 }
 
 function handleAddOption() {
