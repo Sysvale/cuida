@@ -462,7 +462,7 @@ function filterOptions(value) {
 		simpleOptionSearch(sanitizedString);
 	}
 
-	currentPos.value = 0;
+	currentPos.value = localOptions.value.length > 0 ? 0 : -1;
 }
 
 function simpleOptionSearch(sanitizedSearchValue) {
