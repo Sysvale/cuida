@@ -40,12 +40,14 @@
 			:floating-label="floatingLabel || mobile"
 			:support-link="supportLink || linkText"
 			:support-link-url="supportLinkUrl || linkUrl"
-			type="number"
+			type="text"
+			inputmode="decimal"
 			@click="emitClick"
 			@change="handleChange"
 			@focus="handleFocus"
-			@blur="emitBlur"
+			@blur="handleBlur"
 			@keydown="emitKeydown"
+			@input="handleDefaultInput"
 		/>
 	</div>
 </template>
@@ -263,6 +265,25 @@ watch(model, (newValue) => {
 				unmaskedValue.value = 0;
 			}
 		}
+	} else if (!props.mask) {
+		if (newValue === null || newValue === undefined || newValue === '') {
+			internalValue.value = '';
+			unmaskedValue.value = '';
+			return;
+		}
+
+		const numericValue = typeof newValue === 'string' ? parseFloat(newValue.replace(',', '.')) : newValue;
+		const currentInternalNumeric = parseFloat(String(internalValue.value).replace(/\./g, '').replace(',', '.'));
+
+		if (numericValue !== currentInternalNumeric) {
+			const hasFractionalPart = (numericValue % 1 !== 0) || (typeof newValue === 'string' && newValue.includes(','));
+			internalValue.value = numericValue.toLocaleString('pt-BR', {
+				minimumFractionDigits: hasFractionalPart ? 2 : 0,
+				maximumFractionDigits: hasFractionalPart ? 2 : 0,
+				useGrouping: false,
+			});
+		}
+		unmaskedValue.value = numericValue;
 	} else {
 		internalValue.value = newValue ?? '';
 	}
@@ -279,8 +300,9 @@ watch(internalValue, (value) => {
 	} else if (stringifiedInput.length > 15) {
 		internalValue.value = +stringifiedInput.slice(0, 15);
 	} else {
-		model.value = +stringifiedInput;
-		unmaskedValue.value = +stringifiedInput;
+		const numericValue = parseFloat(stringifiedInput.replace(/\./g, '').replace(',', '.'));
+		model.value = isNaN(numericValue) ? '' : numericValue;
+		unmaskedValue.value = model.value;
 	}
 });
 
@@ -316,6 +338,27 @@ function handleMoneyInput(event) {
 	}
 }
 
+function handleDefaultInput(event) {
+	let value = event.target.value;
+
+	// Permitir apenas números e uma vírgula (substituindo ponto por vírgula)
+	value = value.replace(/\./g, ',');
+	value = value.replace(/[^\d,]/g, '');
+
+	// Garantir apenas uma vírgula
+	const parts = value.split(',');
+	if (parts.length > 2) {
+		value = parts[0] + ',' + parts.slice(1).join('');
+	}
+
+	// Limitar a 2 casas decimais
+	if (parts.length === 2 && parts[1].length > 2) {
+		value = parts[0] + ',' + parts[1].slice(0, 2);
+	}
+
+	internalValue.value = value;
+}
+
 function handleFocus(event) {
 	if (props.money) {
 		internalValue.value = (internalValue.value === '')
@@ -327,6 +370,22 @@ function handleFocus(event) {
 		}, 0);
 	}
 	emitFocus(event);
+}
+
+function handleBlur(event) {
+	if (!props.money && !props.mask && internalValue.value !== '') {
+		const stringValue = String(internalValue.value);
+		const hasComma = stringValue.includes(',');
+		const numericValue = parseFloat(stringValue.replace(/\./g, '').replace(',', '.'));
+		if (!isNaN(numericValue)) {
+			internalValue.value = numericValue.toLocaleString('pt-BR', {
+				minimumFractionDigits: hasComma ? 2 : 0,
+				maximumFractionDigits: hasComma ? 2 : 0,
+				useGrouping: false,
+			});
+		}
+	}
+	emitBlur(event);
 }
 
 function handleChange() {
