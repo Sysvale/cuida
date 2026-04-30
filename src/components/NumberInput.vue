@@ -268,7 +268,7 @@ watch(model, (newValue) => {
 	} else if (!props.mask) {
 		if (newValue === null || newValue === undefined || newValue === '') {
 			internalValue.value = '';
-			unmaskedValue.value = '';
+			unmaskedValue.value = null;
 			return;
 		}
 
@@ -303,7 +303,7 @@ watch(internalValue, (value) => {
 		internalValue.value = +stringifiedInput.slice(0, 15);
 	} else {
 		const numericValue = parseFloat(stringifiedInput.replace(',', '.'));
-		model.value = isNaN(numericValue) ? '' : numericValue;
+		model.value = isNaN(numericValue) ? null : numericValue;
 		unmaskedValue.value = model.value;
 	}
 });
@@ -322,7 +322,7 @@ function handleMoneyInput(event) {
 
 	const formattedValue = formatDigitsToBRL(digits);
 
-	
+
 	internalValue.value = formattedValue;
 	unmaskedValue.value = unmaskBRL(formattedValue);
 	model.value = formattedValue;
@@ -391,7 +391,10 @@ function handleBlur(event) {
 }
 
 function handleChange() {
-	if (!props.money) {
+	if (!props.money && !props.mask) {
+		const numericValue = parseFloat(String(internalValue.value).replace(',', '.'));
+		model.value = isNaN(numericValue) ? null : numericValue;
+	} else if (!props.money) {
 		model.value = internalValue.value;
 	}
 	emitChange();
