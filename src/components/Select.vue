@@ -679,10 +679,6 @@ defineExpose({
 .select {
 	width: v-bind(selectContainerWidth);
 
-	:deep(input::placeholder) {
-		font-weight: 400; 
-	}
-
 	&__input {
 		&--searchable {
 			caret-color: tokens.$n-700;
@@ -882,7 +878,7 @@ defineExpose({
 .highlight{
 	background-color: tokens.$n-10;
 	cursor: pointer;
-	font-weight: tokens.$font-weight-bold;
+	font-weight: tokens.$font-weight-semibold;
 }
 
 .add-button-searchstring {
