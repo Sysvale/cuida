@@ -954,6 +954,7 @@ defineExpose({
 .highlight {
 	background-color: tokens.$n-30;
 	cursor: pointer;
+	font-weight: tokens.$font-weight-semibold;
 }
 
 .add-button-searchstring {
