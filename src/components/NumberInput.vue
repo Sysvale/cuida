@@ -273,15 +273,17 @@ watch(model, (newValue) => {
 		}
 
 		const numericValue = typeof newValue === 'string' ? parseFloat(newValue.replace(',', '.')) : newValue;
-		const currentInternalNumeric = parseFloat(String(internalValue.value).replace(/\./g, '').replace(',', '.'));
+		const currentInternalNumeric = parseFloat(String(internalValue.value).replace(',', '.'));
 
-		if (numericValue !== currentInternalNumeric) {
-			const hasFractionalPart = (numericValue % 1 !== 0) || (typeof newValue === 'string' && newValue.includes(','));
-			internalValue.value = numericValue.toLocaleString('pt-BR', {
-				minimumFractionDigits: hasFractionalPart ? 2 : 0,
-				maximumFractionDigits: hasFractionalPart ? 2 : 0,
-				useGrouping: false,
-			});
+		const hasDecimalIntent = (numericValue % 1 !== 0) || (typeof newValue === 'string' && (newValue.includes(',') || newValue.includes('.')));
+		const formattedValue = numericValue.toLocaleString('pt-BR', {
+			minimumFractionDigits: hasDecimalIntent ? 2 : 0,
+			maximumFractionDigits: hasDecimalIntent ? 2 : 0,
+			useGrouping: false,
+		});
+
+		if (formattedValue !== internalValue.value && numericValue !== currentInternalNumeric) {
+			internalValue.value = formattedValue;
 		}
 		unmaskedValue.value = numericValue;
 	} else {
@@ -300,7 +302,7 @@ watch(internalValue, (value) => {
 	} else if (stringifiedInput.length > 15) {
 		internalValue.value = +stringifiedInput.slice(0, 15);
 	} else {
-		const numericValue = parseFloat(stringifiedInput.replace(/\./g, '').replace(',', '.'));
+		const numericValue = parseFloat(stringifiedInput.replace(',', '.'));
 		model.value = isNaN(numericValue) ? '' : numericValue;
 		unmaskedValue.value = model.value;
 	}
@@ -375,12 +377,12 @@ function handleFocus(event) {
 function handleBlur(event) {
 	if (!props.money && !props.mask && internalValue.value !== '') {
 		const stringValue = String(internalValue.value);
-		const hasComma = stringValue.includes(',');
-		const numericValue = parseFloat(stringValue.replace(/\./g, '').replace(',', '.'));
+		const hasSeparator = stringValue.includes(',') || stringValue.includes('.');
+		const numericValue = parseFloat(stringValue.replace(',', '.'));
 		if (!isNaN(numericValue)) {
 			internalValue.value = numericValue.toLocaleString('pt-BR', {
-				minimumFractionDigits: hasComma ? 2 : 0,
-				maximumFractionDigits: hasComma ? 2 : 0,
+				minimumFractionDigits: hasSeparator ? 2 : 0,
+				maximumFractionDigits: hasSeparator ? 2 : 0,
 				useGrouping: false,
 			});
 		}
