@@ -446,10 +446,6 @@ function filterOptions(value) {
 		return;
 	}
 
-	if (props.searchable && !active.value) {
-		active.value = true;
-	}
-
 	if (props.searchable && props.addable) {
 		searchString.value = value;
 	}
