@@ -17,17 +17,14 @@
 				:onkeypress="`return ${allowSearch};`"
 				:placeholder="placeholder"
 				:disabled="disabled"
-				:readonly="!searchable || !active"
+				:readonly="!searchable"
 				:support-link-url="supportLinkUrl || linkUrl"
 				:support-link="supportLink || linkText"
 				:floating-label="floatingLabel || mobile"
 				:class="inputClass"
 				:fluid="computedFluid"
 				:ghost
-				@keydown.enter.prevent="activateSelectionOnEnter"
-				@keydown.arrow-down.prevent="highlightOnArrowDown"
-				@keydown.arrow-up.prevent="highlightOnArrowUp"
-				@keydown="emitKeydown"
+				@keydown="handleKeydown"
 				@click="activateSelectionOnClick"
 				@update:model-value="filterOptions"
 				@focus="activeSelection"
@@ -54,10 +51,16 @@
 						v-for="(option, index) in localOptions"
 						:key="option.id || option"
 						:ref="(el) => { liRefs[`${option[optionsField]}-${index}`] = el }"
-						class="option__text"
-						@mousedown="selectItem"
+						:class="[
+							'option__text',
+							{
+								highlight: index === currentPos,
+								'option__text--selected': isSelected(option)
+							}
+						]"
+						@mousedown="selectItem(index)"
 						@mouseover="highlightOnMouseOver(index)"
-						@mouseout="unhighlightOnMouseOut()"
+						@mouseout="syncCurrentPos()"
 					>
 						<!--
 							@slot Slot utilizado para personalizar a lista de opções do select. Os dados do scoped slot podem ser acessados como: ```slot-scope={ 'option', 'index', 'value' }```
@@ -306,16 +309,13 @@ const emits = defineEmits({
 });
 
 /* REACTIVE DATA */
-const currentPos = ref(0);
+const currentPos = ref(-1);
 const active = ref(false);
 const id = ref(null);
 const allowSearch = ref(false);
 const localOptions = ref([]);
 const pristineOptions = ref([]);
-const localValue = ref({
-	value: '',
-	id: '',
-});
+const localValue = ref({});
 const selectElement = ref('');
 const direction = ref('down');
 const uniqueKey = ref(generateKey());
@@ -413,6 +413,8 @@ watch(model, (newValue, oldValue) => {
 }, { immediate: true });
 
 watch(localValue, (currentValue) => {
+	syncCurrentPos();
+
 	if (JSON.stringify(currentValue) === JSON.stringify(model.value)) return;
 
 	const isValueEmpty = !currentValue || (typeof currentValue === 'object' && Object.keys(currentValue).length === 0);
@@ -455,6 +457,8 @@ function filterOptions(value) {
 	} else {
 		simpleOptionSearch(sanitizedString);
 	}
+
+	currentPos.value = localOptions.value.length > 0 ? 0 : -1;
 }
 
 function simpleOptionSearch(sanitizedSearchValue) {
@@ -480,43 +484,85 @@ function deepOptionSearch(sanitizedSearchValue) {
 function activeSelection() {
 	if (props.disabled) return;
 
-	resetActiveSelection();
-
-	nextTick().then(() => {
-		const element = localOptions.value[currentPos.value];
-		liRefs.value[`${get(element, props.optionsField)}-${currentPos.value}`]?.classList.add('highlight');
-	});
+	syncCurrentPos();
 	emitFocus();
+}
+
+function syncCurrentPos() {
+	const valueToFind = get(localValue.value, props.optionsField);
+	const index = localOptions.value.findIndex(option => option[props.optionsField] === valueToFind);
+
+	if (index !== -1) {
+		currentPos.value = index;
+	} else {
+		currentPos.value = -1;
+	}
+}
+
+function handleKeydown(event) {
+	if (props.disabled) return;
+
+	switch (event.key) {
+		case 'Enter':
+			event.preventDefault();
+			activateSelectionOnEnter();
+			break;
+		case 'ArrowDown':
+		case 'Down':
+			event.preventDefault();
+			highlightOnArrowDown();
+			break;
+		case 'ArrowUp':
+		case 'Up':
+			event.preventDefault();
+			highlightOnArrowUp();
+			break;
+		case 'Escape':
+		case 'Esc':
+			active.value = false;
+			select.value.blur();
+			break;
+		default:
+			if (props.searchable && !active.value && event.key.length === 1) {
+				active.value = true;
+			}
+			break;
+	}
+
+	emitKeydown(event);
 }
 
 function activateSelectionOnEnter() {
 	if (props.disabled) return;
 
-	if (localOptions.value.length === 0 && !(props.searchable && props.addable)) {
-		active.value = false;
-		isTyping.value = false;
-		select.value.blur();
+	if (!active.value) {
+		active.value = true;
+		syncCurrentPos();
 		return;
 	}
 
-	active.value = !active.value;
+	if (localOptions.value.length === 0 && !(props.searchable && props.addable)) {
+		active.value = false;
+		isTyping.value = false;
+		return;
+	}
+
 	isSelectingItem = true;
 
-	resetActiveSelection();
-
-	if (typeof localOptions.value[currentPos.value] === 'undefined') {
-		handleAddOption();
-
-		localValue.value = props.searchable && props.addable
-			? localValue.value
-			: localOptions.value.length ? cloneDeep(localOptions.value[0]) : {};
+	if (currentPos.value === -1 || typeof localOptions.value[currentPos.value] === 'undefined') {
+		if (props.searchable && props.addable) {
+			handleAddOption();
+		} else {
+			localValue.value = localOptions.value.length ? cloneDeep(localOptions.value[0]) : {};
+		}
 	} else {
 		localValue.value = cloneDeep(localOptions.value[currentPos.value]);
 	}
 
 	searchString.value = '';
 	isTyping.value = false;
-	select.value.blur();
+	active.value = false;
+	localOptions.value = pristineOptions.value;
 
 	nextTick(() => {
 		isSelectingItem = false;
@@ -535,6 +581,12 @@ function activateSelectionOnClick() {
 	if (props.disabled) return;
 
 	active.value = !active.value;
+
+	if (active.value) {
+		syncCurrentPos();
+	} else {
+		localOptions.value = pristineOptions.value;
+	}
 
 	emitClick();
 	select.value.focus();
@@ -561,91 +613,105 @@ function hide() {
 		active.value = false;
 		isTyping.value = false;
 		isSelectingItem = false;
+		currentPos.value = -1;
 	});
 
 	emitBlur();
 }
 
-function selectItem() {
+function selectItem(index) {
+	const position = (typeof index === 'number') ? index : currentPos.value;
+	if (position === -1 || !localOptions.value[position]) return;
+
 	isSelectingItem = false;
 	searchString.value = '';
-	localValue.value = cloneDeep(localOptions.value[currentPos.value]);
+	localValue.value = cloneDeep(localOptions.value[position]);
 	active.value = false;
 	isTyping.value = false;
 	select.value.blur();
 
 	nextTick(() => {
 		isSelectingItem = false;
+		currentPos.value = -1;
 	});
 }
 
+function isSelected(option) {
+	return option[props.optionsField] === localValue.value?.[props.optionsField];
+}
+
 function getLiInDOM(position) {
+	if (position < 0 || position >= localOptions.value.length) return null;
 	const element = localOptions.value[position];
 	return liRefs.value[`${element[props.optionsField]}-${position}`];
 }
 
-function handleOptionVisibility(option, amount, direction) {
-	const optionDOMRect = option.getBoundingClientRect();
+function handleOptionVisibility(option) {
 	const optionsContainer = selectOptions.value;
-	const optionsContainerDOMRect = optionsContainer.getBoundingClientRect();
+	const optionTop = option.offsetTop;
+	const optionBottom = optionTop + option.offsetHeight;
+	const containerTop = optionsContainer.scrollTop;
+	const containerBottom = containerTop + optionsContainer.clientHeight;
 
-	if (
-		direction === 'up'
-		&& optionDOMRect.top <= optionsContainerDOMRect.top
-	) {
-		optionsContainer.scrollTop += amount;
+	if (optionTop < containerTop) {
+		optionsContainer.scrollTop = optionTop;
 	}
 
-	if (
-		direction === 'down'
-		&& optionDOMRect.top >= optionsContainerDOMRect.bottom
-	) {
-		optionsContainer.scrollTop += amount;
+	if (optionBottom > containerBottom) {
+		optionsContainer.scrollTop = optionBottom - optionsContainer.clientHeight;
 	}
 }
 
 function highlightOnArrowDown() {
-	if (!active.value) return;
+	if (props.disabled) return;
+
+	if (!active.value) {
+		if (currentPos.value < localOptions.value.length - 1) {
+			currentPos.value += 1;
+			localValue.value = cloneDeep(localOptions.value[currentPos.value]);
+		}
+		return;
+	}
+
 	if (currentPos.value === localOptions.value.length - 1) return;
 
 	currentPos.value += 1;
-	const selectedOption = getLiInDOM(currentPos.value);
-	const previousOption = getLiInDOM(currentPos.value - 1);
+	localValue.value = cloneDeep(localOptions.value[currentPos.value]);
 
-	selectedOption.classList.add('highlight');
-	previousOption.classList.remove('highlight');
-
-	handleOptionVisibility(selectedOption, 37, 'down');
+	nextTick(() => {
+		const selectedOption = getLiInDOM(currentPos.value);
+		if (selectedOption) {
+			handleOptionVisibility(selectedOption);
+		}
+	});
 }
 
 function highlightOnArrowUp() {
-	if (!active.value) return;
-	if (currentPos.value === 0) return;
+	if (props.disabled) return;
 
-	const selectedOption = getLiInDOM(currentPos.value);
-	const previousOption = getLiInDOM(currentPos.value - 1);
+	if (!active.value) {
+		if (currentPos.value > 0) {
+			currentPos.value -= 1;
+			localValue.value = cloneDeep(localOptions.value[currentPos.value]);
+		}
+		return;
+	}
 
-	selectedOption.classList.remove('highlight');
-	previousOption.classList.add('highlight');
+	if (currentPos.value <= 0) return;
 
-	handleOptionVisibility(selectedOption, -37, 'up');
 	currentPos.value -= 1;
+	localValue.value = cloneDeep(localOptions.value[currentPos.value]);
+
+	nextTick(() => {
+		const selectedOption = getLiInDOM(currentPos.value);
+		if (selectedOption) {
+			handleOptionVisibility(selectedOption);
+		}
+	});
 }
 
 function highlightOnMouseOver(index) {
 	currentPos.value = index;
-	getLiInDOM(currentPos.value).classList.add('highlight');
-}
-
-function unhighlightOnMouseOut() {
-	getLiInDOM(currentPos.value).classList.remove('highlight');
-}
-
-function resetActiveSelection() {
-	localOptions.value.forEach((option, index) => {
-		const element = localOptions.value[index];
-		liRefs.value[`${element[props.optionsField]}-${index}`].classList.remove('highlight');
-	})
 }
 
 function handleAddOption() {
@@ -826,8 +892,8 @@ defineExpose({
 		}
 
 		&--up {
-			bottom: 40px;
 			width: 100%;
+			bottom: 40px;
 		}
 
 		&--down {
@@ -861,10 +927,16 @@ defineExpose({
 	&__text {
 		padding: tokens.pa(3);
 		text-overflow: ellipsis;
+		transition: all 100ms ease-in-out;
 
 		&--muted {
 			@extend .option__text;
 			color: tokens.$n-400;
+		}
+
+		&--selected {
+			background-color: tokens.$n-30;
+			// font-weight: tokens.$font-weight-semibold;
 		}
 	}
 
@@ -875,8 +947,8 @@ defineExpose({
 	}
 }
 
-.highlight{
-	background-color: tokens.$n-10;
+.highlight {
+	background-color: tokens.$n-30;
 	cursor: pointer;
 	font-weight: tokens.$font-weight-semibold;
 }
