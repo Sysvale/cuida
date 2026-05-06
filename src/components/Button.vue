@@ -2,6 +2,7 @@
 <template>
 	<button
 		v-cdstip="tooltipDisabled"
+		:type="type"
 		class="button__container"
 		:class="computedStyle"
 		@click.stop="clickHandler"
@@ -121,6 +122,14 @@ const props = defineProps({
 	ghost: {
 		type: Boolean,
 		default: false,
+	},
+	/**
+	 * O tipo do botão.
+	 * @values 'button', 'submit', 'reset'
+	 */
+	type: {
+		type: String,
+		default: 'button',
 	},
 });
 
