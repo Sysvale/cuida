@@ -126,7 +126,7 @@
 						:option="option"
 						:option-field="optionsField"
 					>
-						{{ option[optionsField] }}
+						{{ option?.[optionsField] }}
 					</slot>
 				</div>
 			</template>
@@ -312,7 +312,7 @@ export default {
 		selectedFancyMessage() {
 			return (qty) => {
 				if (qty === 1) {
-					return this.selectedValue[0][this.optionsField];
+					return this.selectedValue?.[0]?.[this.optionsField];
 				}
 				return `${qty} opções selecionadas`;
 			};
@@ -366,6 +366,8 @@ export default {
 	},
 	watch: {
 		selectedValue(values) {
+			if (!Array.isArray(values)) return;
+
 			const cleanedValues = clone(values);
 			cleanedValues.forEach((val) => delete val.isSelected);
 			this.indeterminate = values.length > 0 && values.length < this.options.length;
@@ -400,12 +402,28 @@ export default {
 			const input = document.getElementById(`select-all-input-id-${this.uniqueKey}`);
 			input.indeterminate = newValue;
 		},
+
+		options: {
+			handler(newOptions) {
+				this.internalOptions = clone(newOptions || []);
+
+				if (this.selectedValue?.length) {
+					this.updateRenderOptions();
+				}
+			},
+			deep: true,
+			immediate: true,
+		},
 	},
 
 	mounted() {
+		console.log('entrou no mounted');
 		if (!this.modelValue || this.modelValue.length === 0) return;
 
-		this.selectedValue = this.modelValue;
+		this.selectedValue = Array.isArray(this.modelValue)
+			? this.modelValue
+			: [];
+
 		this.updateRenderOptions();
 		this.indeterminate = this.hasSelectedValues && this.selectedValue.length < this.options.length;
 	},
