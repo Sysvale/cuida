@@ -417,7 +417,6 @@ export default {
 	},
 
 	mounted() {
-		console.log('entrou no mounted');
 		if (!this.modelValue || this.modelValue.length === 0) return;
 
 		this.selectedValue = Array.isArray(this.modelValue)
