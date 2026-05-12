@@ -288,7 +288,6 @@ export default {
 
 	data() {
 		return {
-			selectedValue: this.$attrs.modelValue || [],
 			internalOptions: clone(this.options),
 			groupValues: null,
 			groupLabel: null,
@@ -301,6 +300,33 @@ export default {
 	},
 
 	computed: {
+		selectedValue: {
+			get() {
+				return this.modelValue || [];
+			},
+			set(value) {
+				if (!Array.isArray(value)) return;
+
+				const cleaned = clone(value);
+				cleaned.forEach(val => delete val.isSelected);
+				this.indeterminate = value.length > 0 && value.length < this.options.length;
+
+				/**
+				 * Evento utilizado para implementar o v-model.
+				* @event input
+				* @type {Event}
+				*/
+				this.$emit('input', cleaned);
+
+				/**
+				* Evento que indica que o valor do Multiselect foi alterado
+				* @event update:modelValue
+				* @type {Event}
+				*/
+				this.$emit('update:modelValue', cleaned);   
+			}
+		},
+
 		hasSlots() {
 			return !!Object.keys(this.$slots).length;
 		},
@@ -365,25 +391,13 @@ export default {
 		},
 	},
 	watch: {
-		selectedValue(values) {
-			if (!Array.isArray(values)) return;
-
-			const cleanedValues = clone(values);
-			cleanedValues.forEach((val) => delete val.isSelected);
-			this.indeterminate = values.length > 0 && values.length < this.options.length;
-			/**
-			 * Evento utilizado para implementar o v-model.
-			* @event input
-			* @type {Event}
-			*/
-			this.$emit('input', cleanedValues);
-
-			/**
-			* Evento que indica que o valor do Multiselect foi alterado
-			* @event update:modelValue
-			* @type {Event}
-			*/
-			this.$emit('update:modelValue', cleanedValues);
+		modelValue: {
+			handler(newValue) {
+				if (!newValue || newValue.length === 0) {
+					this.updateRenderOptions();
+				}
+			},
+			deep: true
 		},
 
 		isAllItemsSelected(newValue) {
@@ -536,6 +550,9 @@ export default {
 
 				this.groupValues = null;
 				this.groupLabel = null;
+
+				this.selectAllValue = false;
+				this.indeterminate = false;
 				return;
 			}
 
