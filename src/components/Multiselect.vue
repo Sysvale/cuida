@@ -501,10 +501,19 @@ export default {
 
 		addItemViaCustomCheckbox(option) {
 			option.isSelected = !option.isSelected;
-			this.selectedValue = [
-				...this.selectedValue,
-				option,
-			];
+
+			const isAlreadySelected = this.selectedValue.some(
+				item => item[this.optionsField] === option[this.optionsField]
+			);
+
+			if (isAlreadySelected) {
+				this.selectedValue = this.selectedValue.filter(
+					item => item[this.optionsField] !== option[this.optionsField]
+				);
+				return;
+			}
+
+			this.selectedValue = [...this.selectedValue, option];
 		},
 
 		handleClose() {
