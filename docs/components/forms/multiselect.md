@@ -43,6 +43,7 @@ leitura da documentação.
 	:args
 	:events
 	:component="CdsMultiselect"
+	@update:modelValue="handleUpdate"
 />
 
 ---
@@ -101,4 +102,8 @@ const args = ref({
 	trackBy: 'title',
 	variant: 'green',
 });
+
+const handleUpdate = (value) => {
+	args.value.modelValue = value;
+};
 </script>
