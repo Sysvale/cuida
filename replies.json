@@ -1,0 +1,6 @@
+[
+    {
+        "comment_id": "3243544833",
+        "reply": "The documentation has been updated to include the new `type` prop in `CdsButton`. I have also verified that the metadata reflects this change."
+    }
+]

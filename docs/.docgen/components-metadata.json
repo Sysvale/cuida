@@ -1792,6 +1792,23 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "type",
+        "description": "O tipo do botão.",
+        "tags": {},
+        "values": [
+          "'button'",
+          "'submit'",
+          "'reset'"
+        ],
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'button'"
+        }
       }
     ],
     "events": [
