@@ -2,9 +2,17 @@ version: '3.7'
 
 services:
   cuida:
-    container_name: main
-    image: sysvaleops/cuida:dev-1.0
+    container_name: cuida-dev
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
     volumes:
       - .:/usr/src/app
+      - /usr/src/app/node_modules
     ports:
-      - 6006:6006
+      - "5173:5173"
+    environment:
+      - NODE_ENV=development
+    stdin_open: true
+    tty: true
+    command: ["npm", "run", "docs:dev", "--", "--host", "0.0.0.0"]

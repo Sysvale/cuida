@@ -1,3 +1,39 @@
-*
-!bin/
-!Dockerfile
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation build
+docs/.vitepress/dist/
+
+# Test coverage
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Docker
+.docker/
+docker-compose.yml
+Dockerfile*
+
+# Misc
+*.md
+!package.json
+!package-lock.json
