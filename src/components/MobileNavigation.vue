@@ -81,6 +81,7 @@
 						</div>
 
 						<button
+							type="button"
 							class="mobile-navigation__sidebar-logout"
 							@click="emit('logout')"
 						>

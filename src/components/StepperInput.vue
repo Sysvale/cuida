@@ -57,6 +57,7 @@
 				<button
 					v-long-click="() => changeValue(step)"
 					:disabled="disabled"
+					type="button"
 					class="stepper-input__icon--plus"
 					tabindex="-1"
 					@focus="handleFocus"
@@ -73,6 +74,7 @@
 				<button
 					v-long-click="() => changeValue(-step)"
 					:disabled="disabled"
+					type="button"
 					class="stepper-input__icon--minus"
 					tabindex="-1"
 					@focus="handleFocus"
