@@ -28,12 +28,10 @@ coverage/
 *.log
 npm-debug.log*
 
-# Docker
-.docker/
-docker-compose.yml
-Dockerfile*
-
 # Misc
 *.md
 !package.json
 !package-lock.json
+
+# Local docs assets (optional exclusion)
+docs/.vitepress/cache/

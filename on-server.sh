@@ -1,1 +1,1 @@
-docker-compose exec cuida $*
+docker compose exec cuida-dev $*
