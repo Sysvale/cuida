@@ -2,17 +2,21 @@ version: '3.7'
 
 services:
   cuida:
-    container_name: cuida-dev
+    container_name: cuida_dev
     build:
       context: .
       dockerfile: .docker/Dockerfile
     volumes:
       - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - node_modules:/usr/src/app/node_modules
     ports:
       - "5173:5173"
     environment:
       - NODE_ENV=development
     stdin_open: true
     tty: true
+    working_dir: /usr/src/app
     command: ["npm", "run", "docs:dev", "--", "--host", "0.0.0.0"]
+
+volumes:
+  node_modules:
