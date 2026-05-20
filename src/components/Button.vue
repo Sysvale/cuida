@@ -130,6 +130,7 @@ const props = defineProps({
 	type: {
 		type: String,
 		default: 'button',
+		validator: (value) => ['button', 'submit', 'reset'].includes(value),
 	},
 });
 
