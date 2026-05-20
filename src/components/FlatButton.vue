@@ -1,6 +1,7 @@
 <template>
 	<button
 		ref="componentRef"
+		type="button"
 		class="flat-button__container"
 		:class="computedStyle"
 		@click="clickHandler"
