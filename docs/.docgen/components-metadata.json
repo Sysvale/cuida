@@ -10679,13 +10679,15 @@
     ]
   },
   "CdsSegmentedControl": {
-    "displayName": "CdsSegmentedControl",
+    "name": "CdsSegmentedControl",
     "exportName": "default",
+    "displayName": "SegmentedControl",
     "description": "",
     "tags": {},
     "props": [
       {
         "name": "segments",
+        "description": "Array de strings que serão exibidos como opções do componente.",
         "type": {
           "name": "array"
         },
@@ -10696,6 +10698,7 @@
       },
       {
         "name": "withIcon",
+        "description": "Se verdadeiro, exibe ícones no lugar de texto.",
         "type": {
           "name": "boolean"
         },
@@ -10706,6 +10709,7 @@
       },
       {
         "name": "segmentsTooltipText",
+        "description": "Array de strings que serão exibidos como tooltip quando o mouse estiver sobre o ícone.",
         "type": {
           "name": "array"
         },
@@ -10718,21 +10722,7 @@
     "events": [
       {
         "name": "click",
-        "type": {
-          "names": [
-            "undefined"
-          ]
-        },
-        "properties": [
-          {
-            "type": {
-              "names": [
-                "undefined"
-              ]
-            },
-            "name": "<anonymous1>"
-          }
-        ]
+        "description": "Evento emitido quando o componente é clicado."
       }
     ],
     "sourceFiles": [
