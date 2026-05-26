@@ -450,6 +450,10 @@ const inputTopPadding = computed(() => {
 	return props.type === 'textarea' ? '8px' : '14px';
 });
 
+const resizeType = computed(() => {
+	return props.type === 'textarea' ? 'vertical' : 'none';
+});
+
 const hasError = computed(() => {
 	return props.state === 'invalid';
 });
@@ -668,7 +672,7 @@ defineExpose({
 		text-align: start;
 		color: tokens.$n-600;
 		width: 100%;
-		resize: vertical;
+		resize: v-bind(resizeType);
 		cursor: v-bind(computedCursor);
 		background-color: transparent;
 		line-height: 1.5;
