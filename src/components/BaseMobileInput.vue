@@ -532,6 +532,10 @@ const shouldShowLink = computed(() => (
 	&& props.supportLinkUrl.length
 ));
 
+const resizeType = computed(() => {
+	return props.type === 'textarea' ? 'vertical' : 'none';
+});
+
 /* WATCHERS */
 watch(model, (newValue, oldValue) => {
 	if (newValue !== oldValue) {
@@ -694,7 +698,7 @@ defineExpose({
 		text-align: start;
 		color: tokens.$n-700;
 		width: 100%;
-		resize: vertical;
+		resize: v-bind(resizeType);
 		font-size: 14.5px;
 		cursor: v-bind(computedCursor);
 
