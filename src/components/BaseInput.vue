@@ -451,7 +451,9 @@ const inputTopPadding = computed(() => {
 });
 
 const resizeType = computed(() => {
-	return props.type === 'textarea' ? 'vertical' : 'none';
+	return props.type === 'textarea'
+		? 'vertical'
+		: 'none';
 });
 
 const hasError = computed(() => {
