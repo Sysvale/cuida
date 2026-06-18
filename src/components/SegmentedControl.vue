@@ -70,10 +70,15 @@ const props = defineProps({
 
 const emit = defineEmits([
 	/**
-	 * Evento emitido quando o componente é clicado.
+	 * Evento emitido quando o usuário clica em algum segmento.
 	 * @event click
 	 */
 	'click',
+	/**
+	 * Evento emitido quando o usuário clica em algum segmento.
+	 * @event update:model-value
+	 */
+	'update:model-value',
 ]);
 
 onMounted(() => {
