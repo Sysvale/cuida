@@ -1,7 +1,7 @@
-import { describe, test, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
-import Select from '../components/Select.vue';
+import { describe, expect, test } from 'vitest';
 import CdsBaseInput from '../components/BaseInput.vue';
+import Select from '../components/Select.vue';
 
 describe('Select', () => {
 	test('renders correctly', () => {
@@ -216,5 +216,26 @@ describe('Select', () => {
 
 		expect(wrapper.emitted('update:modelValue')).toBeUndefined();
 		expect(wrapper.vm.localValue).toEqual({ value: 'Option 1' });
+	});
+
+	test('set modelValue to null when blurred with active filtered search that does not find any items (searchable: true)', async () => {
+		const wrapper = mount(Select, {
+			props: {
+				label: 'label',
+				id: 'select-input',
+				options: [{ value: 'Option 1' }, { value: 'Option 2' }],
+				searchable: true,
+				modelValue: { value: 'Option 1' },
+			},
+		});
+
+		await wrapper.find('input').trigger('focus');
+		await wrapper.find('input').setValue('Not an option');
+		await wrapper.findComponent(CdsBaseInput).trigger('input');
+
+		await wrapper.find('input').trigger('blur');
+
+		expect(wrapper.emitted('update:modelValue')).toStrictEqual([[ null ]]);
+		expect(wrapper.vm.localValue).toBeNull();
 	});
 });
