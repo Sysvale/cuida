@@ -180,4 +180,41 @@ describe('Select', () => {
 		await wrapper.find('input').trigger('blur');
 		expect(wrapper.vm.active).toBe(false);
 	});
+
+	test('does not emit update:modelValue when focused and blurred without changes (when modelValue is empty)', async () => {
+		const wrapper = mount(Select, {
+			props: {
+				label: 'label',
+				id: 'select-input',
+				options: [{ value: 'Option 1' }, { value: 'Option 2' }],
+				modelValue: undefined,
+			},
+		});
+
+		await wrapper.find('input').trigger('focus');
+		await wrapper.find('input').trigger('blur');
+
+		expect(wrapper.emitted('update:modelValue')).toBeUndefined();
+	});
+
+	test('does not reset modelValue when blurred with active filtered search (searchable: true)', async () => {
+		const wrapper = mount(Select, {
+			props: {
+				label: 'label',
+				id: 'select-input',
+				options: [{ value: 'Option 1' }, { value: 'Option 2' }],
+				searchable: true,
+				modelValue: { value: 'Option 1' },
+			},
+		});
+
+		await wrapper.find('input').trigger('focus');
+		await wrapper.find('input').setValue('Option 2');
+		await wrapper.findComponent(CdsBaseInput).trigger('input');
+
+		await wrapper.find('input').trigger('blur');
+
+		expect(wrapper.emitted('update:modelValue')).toBeUndefined();
+		expect(wrapper.vm.localValue).toEqual({ value: 'Option 1' });
+	});
 });
