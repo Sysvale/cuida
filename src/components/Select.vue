@@ -446,7 +446,7 @@ function filterOptions(value) {
 		return;
 	}
 
-	if (props.searchable && props.addable) {
+	if (props.searchable) {
 		searchString.value = value;
 	}
 
@@ -601,11 +601,6 @@ function hide() {
 		localValue.value = null;
 	}
 
-	if (!searchString.value && !shouldClearSelection) {
-		localValue.value = localOptions.value.some(item => item[props.optionsField]?.toLowerCase() === get(localValue.value, props.optionsField)?.toLowerCase())
-			? localValue.value
-			: {};
-	}
 
 	nextTick(() => {
 		localOptions.value = pristineOptions.value;
