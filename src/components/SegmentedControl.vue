@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, watch } from 'vue';
 import CdsIcon from './Icon.vue';
 import CdsTooltip from './Tooltip.vue';
 
@@ -81,9 +81,15 @@ const emit = defineEmits([
 	'update:model-value',
 ]);
 
+watch(() => props.segments, (newValue, oldValue) => {
+	if (newValue !== oldValue && newValue.length > 0) {
+		model.value = props.segments.find((v) => v === model.value) ?? props.segments[0]
+	}
+});
+
 onMounted(() => {
-	if (!model.value && props.segments.length > 0) {
-		model.value = props.segments[0];
+	if (props.segments.length > 0) {
+		model.value = props.segments.find((v) => v === model.value) ?? props.segments[0];
 	}
 });
 
