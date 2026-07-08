@@ -34,6 +34,7 @@
 		</label>
 
 		<div
+			v-if="$slots.append"
 			class="cds-checkbox__append"
 		>
 			<!-- @slot Slot para renderizar elementos adicionais à direita da etiqueta do checkbox. -->
