@@ -21,7 +21,20 @@
 				:label="option.label"
 				:disabled="disabled"
 				:variant="variant"
-			/>
+			>
+				<template
+					v-if="$slots.append"
+					#append
+				>
+					<!-- @slot Slot para renderizar elementos adicionais à direita de cada opção do grupo. -->
+					<slot
+						name="append"
+						:option="option"
+					>
+						{{ option.append }}
+					</slot>
+				</template>
+			</CdsCheckbox>
 		</div>
 		<div
 			v-if="isInvalid && !disabled"
@@ -33,10 +46,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, watch } from 'vue';
-import CdsCheckbox from './Checkbox.vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import variantClassResolver from '../utils/methods/variantClassResolver';
 import variantValidator from '../utils/validators/variant';
+import CdsCheckbox from './Checkbox.vue';
 
 defineOptions({ name: 'CdsCheckboxGroup' });
 

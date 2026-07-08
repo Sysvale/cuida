@@ -51,4 +51,36 @@ describe('CheckboxGroup', () => {
 		expect(checkboxArray.length).toBe(2);
 		expect(checkedCheckbox?.vm.modelValue).toBeTruthy();
 	});
+
+	test('renders custom content in append slot using scoped slot', () => {
+		const wrapper = mount(CheckboxGroup, {
+			props: {
+				modelValue: [],
+				label: 'Checkbox Group Test',
+				options: [
+					{
+						value: 'test-1',
+						label: 'Teste 1',
+						customData: 'Custom 1',
+					},
+					{
+						value: 'test-2',
+						label: 'Teste 2',
+						customData: 'Custom 2',
+					},
+				],
+			},
+			slots: {
+				append: `<template #append="{ option }">
+					<span class="custom-append">{{ option.customData }}</span>
+				</template>`,
+			},
+		});
+
+		const customAppends = wrapper.findAll('.custom-append');
+		expect(customAppends.length).toBe(2);
+		expect(customAppends[0].text()).toBe('Custom 1');
+		expect(customAppends[1].text()).toBe('Custom 2');
+	});
 });
+

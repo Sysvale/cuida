@@ -3,16 +3,18 @@
 CheckboxGroups são componentes de formulário que permitem seleções binárias e múltiplas.
 
 ---
+
 <br>
 
 ## Quando usar:
+
 - Quando precisar de um componente de formulário para seleções binárias com várias opções.
 
 <br>
 
 ## Quando não usar:
-- Quando for preciso que o efeito da interação com o Checkbox seja imediato. Checkboxes devem ser usados sempre em conjunto com um botão de submissão. Para contornar casos como esse, use Switches.
 
+- Quando for preciso que o efeito da interação com o Checkbox seja imediato. Checkboxes devem ser usados sempre em conjunto com um botão de submissão. Para contornar casos como esse, use Switches.
 
 ---
 
@@ -39,7 +41,17 @@ CheckboxGroups são componentes de formulário que permitem seleções binárias
 		},
 	]"
 	:disabled="false"
-/>
+>
+	<template #append="{ option }">
+		<CdsBadge
+			v-if="option.value === 'test-2'"
+			variant="red"
+			size="md"
+		>
+			Badge
+		</CdsBadge>
+	</template>
+</CdsCheckboxGroup>
 ```
 
 ---
@@ -67,6 +79,14 @@ CheckboxGroups são componentes de formulário que permitem seleções binárias
 <APITable
 	name="CdsCheckboxGroup"
 	section="events"
+/>
+<br>
+
+## Slots
+
+<APITable
+	name="CdsCheckboxGroup"
+	section="slots"
 />
 <br>
 
