@@ -32,6 +32,16 @@
 		>
 			{{ label }}
 		</label>
+
+		<div
+			v-if="$slots.append"
+			class="cds-checkbox__append"
+		>
+			<!-- @slot Slot para renderizar elementos adicionais à direita da etiqueta do checkbox. -->
+			<slot
+				name="append"
+			/>
+		</div>
 	</div>
 </template>
 
@@ -252,6 +262,10 @@ export default {
 			font-weight: tokens.$font-weight-semibold;
 			color: tokens.$n-800;
 		}
+	}
+
+	.cds-checkbox__append {
+		margin-left: auto;
 	}
 }
 </style>

@@ -58,6 +58,13 @@ Checkboxes são componentes de formulário que permitem seleções binárias e m
 	section="events"
 />
 
+## Slots
+
+<APITable
+	name="CdsCheckbox"
+	section="slots"
+/>
+
 ---
 
 <script setup>
