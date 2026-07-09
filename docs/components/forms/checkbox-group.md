@@ -20,9 +20,10 @@ CheckboxGroups são componentes de formulário que permitem seleções binárias
 
 ## Uso
 
-### Slot de append com escopo (Scoped Slot)
-Permite customizar o append de todas as opções de forma genérica a partir do objeto `option`:
+### Customização com Slot de Escopo (Scoped Slot)
+O `CheckboxGroup` expõe um único slot com escopo chamado `#append`. Ele permite customizar a área à direita de cada checkbox individual do grupo usando o objeto `option` atual.
 
+#### Exemplo 1: Exibindo um elemento padrão em todas as opções
 ```js
 <CdsCheckboxGroup
 	v-model="value"
@@ -47,7 +48,6 @@ Permite customizar o append de todas as opções de forma genérica a partir do 
 >
 	<template #append="{ option }">
 		<CdsBadge
-			v-if="option.value === 'test-2'"
 			variant="red"
 			size="md"
 		>
@@ -57,8 +57,8 @@ Permite customizar o append de todas as opções de forma genérica a partir do 
 </CdsCheckboxGroup>
 ```
 
-### Slots de append específicos por opção (Dynamic Slots)
-Permite customizar o append de uma opção específica informando o valor da opção (`value`) no nome do slot:
+#### Exemplo 2: Renderização condicional para opções específicas
+Para customizar de forma exclusiva apenas determinados checkboxes, você pode utilizar a renderização condicional baseada na propriedade `option.value`:
 
 ```js
 <CdsCheckboxGroup
@@ -75,12 +75,14 @@ Permite customizar o append de uma opção específica informando o valor da op�
 		},
 	]"
 >
-	<template #append-test-1>
-		<span>Texto exclusivo 1</span>
-	</template>
+	<template #append="{ option }">
+		<span v-if="option.value === 'test-1'">
+			Texto exclusivo 1
+		</span>
 
-	<template #append-test-2>
-		<span>Texto exclusivo 2</span>
+		<span v-if="option.value === 'test-2'">
+			Texto exclusivo 2
+		</span>
 	</template>
 </CdsCheckboxGroup>
 ```

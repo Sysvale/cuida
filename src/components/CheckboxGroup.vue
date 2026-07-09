@@ -23,18 +23,11 @@
 				:variant="variant"
 			>
 				<template
-					v-if="$slots.append || $slots[`append-${option.value}`]"
+					v-if="$slots.append"
 					#append
 				>
-					<!-- @slot Slot para renderizar elementos adicionais à direita de cada checkbox específico utilizando o valor da opção como sufixo (e.g. `append-optionValue`). -->
+					<!-- @slot Slot com escopo para renderizar elementos adicionais à direita de cada checkbox do grupo. -->
 					<slot
-						v-if="$slots[`append-${option.value}`]"
-						:name="`append-${option.value}`"
-						:option="option"
-					/>
-					<!-- @slot Slot genérico com escopo para renderizar elementos adicionais à direita de todos os checkboxes do grupo. -->
-					<slot
-						v-else
 						name="append"
 						:option="option"
 					/>

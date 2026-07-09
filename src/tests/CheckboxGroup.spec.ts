@@ -52,7 +52,7 @@ describe('CheckboxGroup', () => {
 		expect(checkedCheckbox?.vm.modelValue).toBeTruthy();
 	});
 
-	test('renders dynamic append slots for specific checkboxes', async () => {
+	test('renders custom content dynamically using scoped slot and option value', async () => {
 		const wrapper = mount(CheckboxGroup, {
 			props: {
 				modelValue: [],
@@ -69,7 +69,11 @@ describe('CheckboxGroup', () => {
 				],
 			},
 			slots: {
-				'append-test-1': '<span class="custom-append-1">Append 1</span>',
+				append: `
+					<template #append="{ option }">
+						<span v-if="option.value === 'test-1'" class="custom-append-1">Append 1</span>
+					</template>
+				`,
 			},
 		});
 
