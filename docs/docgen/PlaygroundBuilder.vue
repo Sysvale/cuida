@@ -97,7 +97,7 @@
 						<CdsText class="prop-name">
 							{{ capitalize(data.name) }}
 						</CdsText>
-		
+
 						<CdsSwitch
 							v-if="Object.keys(normalizedPropsData).length > 0"
 							v-model="normalizedPropsData[index][data.name]"
@@ -144,7 +144,7 @@ function formatOptions(val: string[]) {
 	})
 }
 
-watch(model, () => {
+watch(propsData, () => {
 	nextTick(() => {
 		if (!propsData.value || !Array.isArray(propsData.value)) {
 			normalizedPropsData.value = [];
@@ -195,7 +195,7 @@ watch(model, () => {
 		}
 	});
 
-}, { immediate: true, deep: true})
+}, { immediate: true, deep: true })
 
 function capitalize(str: string) {
 	return str ? str[0].toUpperCase() + str.slice(1) : '';
@@ -205,12 +205,12 @@ watch(normalizedPropsData, () => {
 	if (normalizedPropsData.value && Array.isArray(normalizedPropsData.value)) {
 		normalizedPropsData.value.forEach((item) => {
 			const [key, value] = Object.entries(item)[0];
-			if (model.value) {
+			if (model.value && model.value !== value) {
 				(model.value as any)[key] = value;
 			}
 		});
 	}
-}, { deep: true})
+}, { deep: true })
 
 
 export type PlaygroundBuilderType = typeof import('./PlaygroundBuilder.vue')['default'];

@@ -154,18 +154,28 @@ export default {
 	watch: {
 		labels: {
 			handler(newValue) {
-				this.localLabels = newValue
+				this.localLabels = newValue;
+				this.mergeChartDataNoSelect(this.data);
 			},
 			immediate: true,
 		},
 
 		variant: {
 			handler(newValue) {
-				if (newValue === 'gray' || newValue === 'dark')  {
+				if (newValue === 'gray' || newValue === 'dark') {
 					this.deleteFirstTwoColors = true;
 				} else {
 					this.deleteFirstTwoColors = false;
 				}
+
+				this.mergeChartDataNoSelect(this.data);
+			},
+			immediate: true,
+		},
+
+		theme: {
+			handler() {
+				this.mergeChartDataNoSelect(this.data);
 			},
 			immediate: true,
 		},
@@ -179,11 +189,11 @@ export default {
 
 		barWidth: {
 			handler(newValue) {
-				if (newValue >= 0.1 && newValue <= 1) {
-					this.chartOptions.categoryPercentage = newValue;
-				} else {
-					this.chartOptions.categoryPercentage = 1;
-				}
+				const categoryPercentage = (newValue >= 0.1 && newValue <= 1) ? newValue : 1;
+				this.chartOptions = {
+					...this.chartOptions,
+					categoryPercentage,
+				};
 			},
 			immediate: true,
 		},
