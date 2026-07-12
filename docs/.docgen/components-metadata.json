@@ -7374,8 +7374,8 @@
           "name": "object"
         },
         "defaultValue": {
-          "func": true,
-          "value": "() => {}"
+          "func": false,
+          "value": "{}"
         }
       },
       {
