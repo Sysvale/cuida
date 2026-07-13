@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<div
-		v-cdstip="tooltipConfig"
+		v-cdstip="hasText && tooltipConfig"
 		class="tooltip-width"
 		:data-tippy-placement="position"
 		:data-tippy-allowHTML="true"
@@ -88,6 +88,8 @@ const tooltipConfig = computed(() => {
 		},
 	};
 });
+
+const hasText = computed(() => props.text && props.text.length > 0);
 </script>
 
 <style lang="scss">

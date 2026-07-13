@@ -47,4 +47,18 @@ describe('ProgressBar', () => {
 
 		expect(wrapper.html()).toMatchSnapshot();
 	});
+
+	test('applies aside classes when textAside is true', async () => {
+		const wrapper = mount(ProgressBar, {
+			props: {
+				value: 0.5,
+				showText: true,
+				textAside: true,
+			},
+		});
+
+		const textElement = wrapper.find('.progress-bar__text');
+		expect(textElement.classes()).toContain('progress-bar__text--aside');
+		expect(wrapper.classes()).toContain('progress-bar--aside');
+	});
 });

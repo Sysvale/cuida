@@ -290,4 +290,28 @@ describe('BaseInput', () => {
 		expect(wrapper.findComponent(CdsLink).props('text')).toBe('Support Link');
 		expect(wrapper.findComponent(CdsLink).props('href')).toBe('https://example.com');
 	});
+
+	test('computes inputMinHeight correctly when height prop is provided', () => {
+		const wrapper = mount(BaseInput, {
+			props: {
+				id: 'base-input',
+				type: 'textarea',
+				height: 300,
+			},
+		});
+
+		expect(wrapper.vm.inputMinHeight).toBe('300px');
+	});
+
+	test('computes inputMinHeight correctly when height prop is provided as string', () => {
+		const wrapper = mount(BaseInput, {
+			props: {
+				id: 'base-input',
+				type: 'textarea',
+				height: '400px',
+			},
+		});
+
+		expect(wrapper.vm.inputMinHeight).toBe('400px');
+	});
 });

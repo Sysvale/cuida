@@ -33,6 +33,7 @@
 					v-if="withSearch"
 					gap="2"
 					fluid
+					align="center"
 					wrap="no-wrap"
 				>
 					<CdsSearchInput
@@ -508,14 +509,17 @@ function handleOk(fieldsList) {
 
 function handleSearchInput(value, source) {
 	if (source === 'button') {
+		clearTimeout(searchTimeout.value);
 		emits('search-button-click', value);
 		return;
 	}
 
-	clearTimeout(searchTimeout.value);
-	searchTimeout.value = setTimeout(() => {
-		emits('search', value);
-	}, props.searchInputDelay);
+	if (!props.withSearchButton && source === 'input') {
+		clearTimeout(searchTimeout.value);
+		searchTimeout.value = setTimeout(() => {
+			emits('search', value);
+		}, props.searchInputDelay);
+	}
 }
 
 function handleUpdatePreset(presetName) {

@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { ref, watch, useTemplateRef } from 'vue';
+import { ref, watch, useTemplateRef, computed } from 'vue';
 import {
 	nativeEvents,
 	nativeEmits,
@@ -134,6 +134,13 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	 * Especifica a altura mínima (min-height) do textarea.
+	 */
+	height: {
+		type: [Number, String],
+		default: null,
+	},
 });
 
 const emits = defineEmits({
@@ -155,8 +162,8 @@ watch(internalValue, (value) => {
 
 /* EXPOSE */
 defineExpose({
-	componentRef: baseInputRef.value?.componentRef,
-	isFocused: baseInputRef.value?.isFocused,
+	componentRef: computed(() => baseInputRef.value?.componentRef),
+	isFocused: computed(() => baseInputRef.value?.isFocused),
 	focus: () => baseInputRef.value?.focus(),
 	blur: () => baseInputRef.value?.blur(),
 	clear: () => baseInputRef.value?.clear(),

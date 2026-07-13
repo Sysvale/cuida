@@ -107,7 +107,7 @@
 							:to="routerPushTo(item)"
 							class="side-bar__item"
 							:class="isActive(item) ? 'side-bar__item--active' : 'side-bar__item--inactive'"
-							@click="(event) => handleClick(event, item)"
+							@click.stop="(event) => handleClick(event, item)"
 						>
 							<div>
 								<CdsIcon
@@ -532,6 +532,7 @@ function handleClick(event, item) {
 		internalActiveItem.value = item;
 		showUncollapsedItems.value = true;
 		expandItemControl.value += 1;
+		emit('sidebar-click', internalActiveItem.value);
 		return;
 	}
 
@@ -736,6 +737,8 @@ defineExpose({
 
 		&__item-container {
 			cursor: pointer !important;
+			display: flex;
+			align-items: center;
 
 			&--active {
 				background-color: tokens.$n-600;
@@ -755,6 +758,7 @@ defineExpose({
 				border-radius: tokens.$border-radius-extra-small;
 				padding: tokens.pTRBL(3, 4, 3, 4);
 				transition: tokens.$opening;
+				width: 100%;
 			}
 		}
 
@@ -780,6 +784,7 @@ defineExpose({
 			text-overflow: ellipsis;
 			text-align: center;
 			text-decoration: none !important;
+			width: 100%;
 
 			&--active {
 				color: tokens.$n-0;

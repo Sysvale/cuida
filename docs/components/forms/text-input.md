@@ -53,6 +53,14 @@ TextInputs permitem que os usuários insiram texto em uma interface
 />
 <br>
 
+## Slots
+
+<APITable
+	name="CdsTextInput"
+	section="slots"
+/>
+<br>
+
 ---
 
 <script setup>
@@ -80,6 +88,7 @@ const args = ref({
 	floatingLabel: false,
 	lazy: false,
 	disableAutocomplete: false,
+	leadingIcon: null,
 	label: 'Texto',
 	placeholder: 'Digite algo...',
 	errorMessage: 'Campo obrigatório',

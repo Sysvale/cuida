@@ -1,13 +1,18 @@
-import { describe, test, expect, beforeEach, vi } from 'vitest';
+import { describe, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 import DateInput from '../components/DateInput.vue'; // Ajuste o caminho conforme necessário
 import CdsBaseInput from '../components/BaseInput.vue';
-import { DateTime } from 'luxon';
+import { DateTime, Settings } from 'luxon';
 
 describe('DateInput', () => {
 	let wrapper;
 
 	beforeEach(() => {
+		vi.useFakeTimers();
+		const mockDate = new Date(2026, 1, 1);
+		vi.setSystemTime(mockDate);
+		Settings.now = () => mockDate.getTime();
+
 		wrapper = mount(DateInput, {
 			props: {
 				label: 'Selecione uma data',
@@ -15,6 +20,11 @@ describe('DateInput', () => {
 				id: 'text-input',
 			},
 		});
+	});
+
+	afterEach(() => {
+		vi.useRealTimers();
+		Settings.now = () => Date.now();
 	});
 
 	test('renders correctly', () => {

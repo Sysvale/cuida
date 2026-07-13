@@ -120,4 +120,15 @@ describe('TextArea', () => {
 		await baseInput.setValue('new value');
 		expect(wrapper.vm.internalValue).toBe('new value');
 	});
+
+	test('passes the height prop to CdsBaseInput', () => {
+		const wrapper = mount(TextArea, {
+			props: {
+				id: 'text-area',
+				height: 200,
+			},
+		});
+
+		expect(wrapper.findComponent(CdsBaseInput).props('height')).toBe(200);
+	});
 });

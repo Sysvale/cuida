@@ -6,9 +6,7 @@
 
 <div align="center">
   <p align="center">A design system built by Sysvale, using Vue components</p>
-  <p align="center">https://cuida.framer.wiki/</p>
-  <p align="center">https://main--6168a1779cac8c003ab99c2d.chromatic.com</p>
-  <p align="center">Preview da migração da documentação em VitePress: https://cuida.sysvale.com/</p
+  <p align="center">https://cuida.sysvale.com/</p>
 </div>
 
 ## Instalando
@@ -75,13 +73,18 @@ e importe o arquivo de tokens na sua tag script.
 git clone https://github.com/Sysvale/cuida.git
 ```
 
-- Instale as dependências e suba o container docker:
+- Suba o container docker:
 
 ```bash
-docker-compose up -d
+./setup.sh
 ```
 
-A documentação estará disponível na porta `5173`, em [http://localhost:5173/](http://localhost:5173).
+A porta onde o projeto estará disponível será exibida no terminal.
+
+- Instale as dependências no container:
+```bash
+./on-server.sh npm i
+```
 
 - Caso não queira usar docker, instale as dependências com:
 
@@ -97,15 +100,16 @@ npm i
 npm run docs:dev
 ```
 
+- Usando o container docker:
+
+
+```bash
+./on-server.sh npm run docs:dev
+```
+
 ### Testando-o
 
 - Utilizando o docker:
-
-```bash
-docker-compose exec cuida npm run test
-```
-
-ou
 
 ```bash
 ./on-server.sh npm run test

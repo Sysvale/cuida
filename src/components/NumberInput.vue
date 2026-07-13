@@ -9,10 +9,10 @@
 			:support-link="supportLink || linkText"
 			:support-link-url="supportLinkUrl || linkUrl"
 			@click="emitClick"
-			@change="handleChange"
 			@focus="handleFocus"
 			@blur="emitBlur"
 			@keydown="emitKeydown"
+			@input="handleMoneyInput"
 		/>
 
 		<CdsBaseInput
@@ -40,24 +40,26 @@
 			:floating-label="floatingLabel || mobile"
 			:support-link="supportLink || linkText"
 			:support-link-url="supportLinkUrl || linkUrl"
-			type="number"
+			type="text"
+			inputmode="decimal"
 			@click="emitClick"
 			@change="handleChange"
 			@focus="handleFocus"
-			@blur="emitBlur"
+			@blur="handleBlur"
 			@keydown="emitKeydown"
+			@input="handleDefaultInput"
 		/>
 	</div>
 </template>
 
 <script setup>
-import { ref, watch, onMounted, useTemplateRef } from 'vue';
-import {
-	nativeEvents,
-	nativeEmits,
-} from '../utils/composables/useComponentEmits.js';
-import { vCdsBrl, unmaskBRL } from '../utils/directives/cdsBRL';
+import { nextTick, ref, useTemplateRef, watch } from 'vue';
 import { facade } from 'vue-input-facade';
+import {
+	nativeEmits,
+	nativeEvents,
+} from '../utils/composables/useComponentEmits.js';
+import { unmaskBRL } from '../utils/directives/cdsBRL';
 import CdsBaseInput from './BaseInput.vue';
 
 defineOptions({ name: 'CdsNumberInput' });
@@ -175,7 +177,7 @@ const props = defineProps({
 	 */
 	linkUrl: {
 		type: String,
-		default: 'https://cuida.framer.wiki/',
+		default: null,
 	},
 	/**
 	* Controla a exibição e o conteúdo do link de suporte exibido ao lado da label.
@@ -229,73 +231,172 @@ const emits = defineEmits({
 /* REACTIVE DATA */
 const internalValue = ref('');
 const { emitClick, emitChange, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
-let cdsBrlBiding = {};
-
 
 /* WATCHERS */
-watch(model, (newValue, oldValue) => {
-	if (newValue !== oldValue) {
-		internalValue.value = newValue;
-	}
-}, {immediate: true});
-
-watch(internalValue, (value, oldValue) => {
-	if (value !== oldValue) {
-		let stringifiedInput = String(value);
-
-		if (props.money) {
-			/**
-			* Evento utilizado para implementar o v-model para atualização
-			* de valores sem máscara de dinheiro.
-			* @event update:unmaskedValue
-			* @type {Event}
-			*/
-			unmaskedValue.value = unmaskBRL(stringifiedInput);
-			/**
-			* Evento utilizado para implementar o v-model padrão do componente.
-			* @event update:modelValue
-			* @type {Event}
-			*/
-			model.value = stringifiedInput;
-		} else if (props.mask) {
-			internalValue.value = stringifiedInput;
-			model.value = stringifiedInput;
-			unmaskedValue.value = +stringifiedInput.replace(/\D/g, '');
-		} else if (stringifiedInput.length > 15) {
-			internalValue.value = +stringifiedInput.slice(0, 15);
-		} else {
-			model.value = +stringifiedInput;
-			unmaskedValue.value = +stringifiedInput;
+watch(model, (newValue) => {
+	if (props.money) {
+		if (newValue === null || newValue === undefined || newValue === '') {
+			internalValue.value = 'R$ 0,00';
+			unmaskedValue.value = 0;
+			return;
 		}
-	}
-});
 
-/* HOOKS */
-onMounted(() => {
-	if (props.money && baseInputRef.value && baseInputRef.value.componentRef) {
-		cdsBrlBiding =  {
-			value: model.value,
-			oldValue: '',
-			instance: baseInputRef.value.componentRef,
-			modifiers: {},
-			arg: null,
-		};
-		vCdsBrl.mounted(baseInputRef.value.componentRef, cdsBrlBiding);
+		if (typeof newValue === 'number') {
+			const formatted = newValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+			internalValue.value = formatted;
+			unmaskedValue.value = newValue;
+			return;
+		}
+
+		if (typeof newValue === 'string') {
+			if (newValue.startsWith('R$')) {
+				internalValue.value = newValue;
+				unmaskedValue.value = unmaskBRL(newValue);
+				return;
+			}
+			
+			const parsed = parseFloat(newValue.replace(',', '.'));
+			if (!isNaN(parsed)) {
+				const formatted = parsed.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+				internalValue.value = formatted;
+				unmaskedValue.value = parsed;
+			} else {
+				internalValue.value = 'R$ 0,00';
+				unmaskedValue.value = 0;
+			}
+		}
+	} else if (!props.mask) {
+		if (newValue === null || newValue === undefined || newValue === '') {
+			internalValue.value = '';
+			unmaskedValue.value = null;
+			return;
+		}
+
+		const numericValue = typeof newValue === 'string' ? parseFloat(newValue.replace(',', '.')) : newValue;
+		const currentInternalNumeric = parseFloat(String(internalValue.value).replace(',', '.'));
+
+		const hasDecimalIntent = (numericValue % 1 !== 0) || (typeof newValue === 'string' && (newValue.includes(',') || newValue.includes('.')));
+		const formattedValue = numericValue.toLocaleString('pt-BR', {
+			minimumFractionDigits: hasDecimalIntent ? 2 : 0,
+			maximumFractionDigits: hasDecimalIntent ? 2 : 0,
+			useGrouping: false,
+		});
+
+		if (formattedValue !== internalValue.value && numericValue !== currentInternalNumeric) {
+			internalValue.value = formattedValue;
+		}
+		unmaskedValue.value = numericValue;
+	} else {
+		internalValue.value = newValue ?? '';
+	}
+}, { immediate: true });
+
+watch(internalValue, (value) => {
+	if (props.money) return;
+
+	let stringifiedInput = String(value);
+
+	if (props.mask) {
+		model.value = stringifiedInput;
+		unmaskedValue.value = +stringifiedInput.replace(/\D/g, '');
+	} else if (stringifiedInput.length > 15) {
+		internalValue.value = +stringifiedInput.slice(0, 15);
+	} else {
+		const numericValue = parseFloat(stringifiedInput.replace(',', '.'));
+		model.value = isNaN(numericValue) ? null : numericValue;
+		unmaskedValue.value = model.value;
 	}
 });
 
 /* FUNCTIONS */
-function handleFocus() {
+function formatDigitsToBRL(digits) {
+	const onlyNumbers = String(digits || '').replace(/\D/g, '');
+	if (!onlyNumbers) return 'R$ 0,00';
+	
+	const number = parseFloat(onlyNumbers) / 100;
+	return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+}
+
+function handleMoneyInput(event) {
+	const digits = event.target.value.replace(/\D/g, '');
+
+	const formattedValue = formatDigitsToBRL(digits);
+
+
+	internalValue.value = formattedValue;
+	unmaskedValue.value = unmaskBRL(formattedValue);
+	model.value = formattedValue;
+
+	/*
+	*  Dadas as diferenças entre as engines do Chrome e Firefox
+	*  essa validação foi adicionada para forçar a renderização do DOM
+	*  e evitar que o valor padrão (R$ 0,00) pudesse ser visualmente
+	*  alterado para R$ 0,0 no Firefox.
+	*/
+	if (event.target.value !== formattedValue) {
+		nextTick(() => {
+			event.target.value = formattedValue;
+		});
+	}
+}
+
+function handleDefaultInput(event) {
+	let value = event.target.value;
+
+	// Permitir apenas números e uma vírgula (substituindo ponto por vírgula)
+	value = value.replace(/\./g, ',');
+	value = value.replace(/[^\d,]/g, '');
+
+	// Garantir apenas uma vírgula
+	const parts = value.split(',');
+	if (parts.length > 2) {
+		value = parts[0] + ',' + parts.slice(1).join('');
+	}
+
+	// Limitar a 2 casas decimais
+	if (parts.length === 2 && parts[1].length > 2) {
+		value = parts[0] + ',' + parts[1].slice(0, 2);
+	}
+
+	internalValue.value = value;
+}
+
+function handleFocus(event) {
 	if (props.money) {
-		internalValue.value = (internalValue.value == 0 || internalValue.value == '') 
+		internalValue.value = (internalValue.value === '')
 			? 'R$ 0,00'
 			: internalValue.value;
+
+		setTimeout(() => {
+			baseInputRef.value?.select();
+		}, 0);
 	}
-	emitFocus();
+	emitFocus(event);
+}
+
+function handleBlur(event) {
+	if (!props.money && !props.mask && internalValue.value !== '') {
+		const stringValue = String(internalValue.value);
+		const hasSeparator = stringValue.includes(',') || stringValue.includes('.');
+		const numericValue = parseFloat(stringValue.replace(',', '.'));
+		if (!isNaN(numericValue)) {
+			internalValue.value = numericValue.toLocaleString('pt-BR', {
+				minimumFractionDigits: hasSeparator ? 2 : 0,
+				maximumFractionDigits: hasSeparator ? 2 : 0,
+				useGrouping: false,
+			});
+		}
+	}
+	emitBlur(event);
 }
 
 function handleChange() {
-	model.value = internalValue.value;
+	if (!props.money && !props.mask) {
+		const numericValue = parseFloat(String(internalValue.value).replace(',', '.'));
+		model.value = isNaN(numericValue) ? null : numericValue;
+	} else if (!props.money) {
+		model.value = internalValue.value;
+	}
 	emitChange();
 }
 

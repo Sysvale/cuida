@@ -198,10 +198,9 @@
         "type": {
           "name": "string"
         },
-        "required": false,
         "defaultValue": {
           "func": false,
-          "value": "'Título do AlertCard'"
+          "value": "''"
         }
       },
       {
@@ -811,7 +810,7 @@
         },
         "defaultValue": {
           "func": false,
-          "value": "1"
+          "value": "5"
         }
       },
       {
@@ -822,7 +821,7 @@
         },
         "defaultValue": {
           "func": false,
-          "value": "false"
+          "value": "true"
         }
       }
     ],
@@ -1144,6 +1143,28 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "ghost",
+        "description": "Especifica se o componente deve ser exibido na sua versão ghost.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
+      },
+      {
+        "name": "height",
+        "description": "Especifica a altura mínima (min-height) do textarea.",
+        "type": {
+          "name": "number|string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "null"
+        }
       }
     ],
     "events": [
@@ -1410,6 +1431,17 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "ghost",
+        "description": "Especifica se o componente deve ser exibido na sua versão ghost.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
       }
     ],
     "slots": [
@@ -1637,8 +1669,9 @@
     ]
   },
   "CdsButton": {
-    "displayName": "CdsButton",
+    "name": "CdsButton",
     "exportName": "default",
+    "displayName": "Button",
     "description": "",
     "tags": {},
     "props": [
@@ -1740,7 +1773,7 @@
       },
       {
         "name": "loading",
-        "description": "Especifica se a versão do Botão é a secundária.",
+        "description": "Especifica se o botão deve mostrar spinner de carregamento.\nCaso o botão seja do tipo ghost ou secondary a variante do spinner é a mesma passada na prop variant.",
         "type": {
           "name": "boolean"
         },
@@ -1758,6 +1791,23 @@
         "defaultValue": {
           "func": false,
           "value": "false"
+        }
+      },
+      {
+        "name": "type",
+        "description": "O tipo do botão.",
+        "tags": {},
+        "values": [
+          "'button'",
+          "'submit'",
+          "'reset'"
+        ],
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'button'"
         }
       }
     ],
@@ -2695,7 +2745,29 @@
         },
         "defaultValue": {
           "func": false,
-          "value": "true"
+          "value": "false"
+        }
+      },
+      {
+        "name": "triggerClickOnIcon",
+        "description": "Especifica o evento de click deve ser disparado ao clicar no ícone ou no componente. Só funciona caso a prop persistantActionIcon seja true.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
+      }
+    ],
+    "events": [
+      {
+        "name": "click",
+        "description": "Evento que indica que o Chip foi clicado.",
+        "type": {
+          "names": [
+            "Event"
+          ]
         }
       }
     ],
@@ -2845,6 +2917,17 @@
         }
       },
       {
+        "name": "required",
+        "description": "Exibe asterisco de obrigatório (obs.: não faz a validação)",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
+      },
+      {
         "name": "inline",
         "description": "Quando true passa a mostrar as opções de cores fora do popover.",
         "type": {
@@ -2875,6 +2958,35 @@
         "defaultValue": {
           "func": false,
           "value": "[]"
+        }
+      },
+      {
+        "name": "state",
+        "description": "Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.",
+        "tags": {},
+        "values": [
+          "default",
+          "valid",
+          "loading",
+          "invalid"
+        ],
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'default'"
+        }
+      },
+      {
+        "name": "errorMessage",
+        "description": "Especifica a mensagem de erro, que será exibida caso o estado seja inválido",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'Valor inválido'"
         }
       }
     ],
@@ -4323,8 +4435,9 @@
     ]
   },
   "CdsDropdownButton": {
-    "displayName": "CdsDropdownButton",
+    "name": "CdsDropdownButton",
     "exportName": "default",
+    "displayName": "DropdownButton",
     "description": "",
     "tags": {},
     "props": [
@@ -4424,25 +4537,36 @@
           "md",
           "lg"
         ]
+      },
+      {
+        "name": "disabled",
+        "description": "Desabilita o input.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
+      },
+      {
+        "name": "tooltipText",
+        "description": "Texto a ser exibido como tooltip com o hover do DropdownButton quando a prop disabled estiver ativa.",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "null"
+        }
       }
     ],
     "events": [
       {
-        "name": "click",
-        "description": "Evento que indica que o DropdownButton foi clicado",
-        "type": {
-          "names": [
-            "Event"
-          ]
-        }
+        "name": "button-click"
       },
       {
-        "name": "action-click",
-        "type": {
-          "names": [
-            "undefined"
-          ]
-        }
+        "name": "action-click"
       }
     ],
     "sourceFiles": [
@@ -8390,7 +8514,7 @@
         },
         "defaultValue": {
           "func": false,
-          "value": "'https://cuida.framer.wiki/'"
+          "value": "null"
         }
       },
       {
@@ -9122,16 +9246,19 @@
     ]
   },
   "CdsPinInput": {
-    "displayName": "CdsPinInput",
+    "name": "CdsPinInput",
     "exportName": "default",
+    "displayName": "PinInput",
     "description": "",
     "tags": {},
     "props": [
       {
         "name": "modelValue",
+        "description": "O conteúdo do PIN.",
         "type": {
           "name": "string"
         },
+        "required": true,
         "defaultValue": {
           "func": false,
           "value": "''"
@@ -9139,6 +9266,7 @@
       },
       {
         "name": "length",
+        "description": "Especifica a quantidade de caracteres no PIN.",
         "type": {
           "name": "number"
         },
@@ -9149,7 +9277,7 @@
       },
       {
         "name": "state",
-        "description": "Especifica o estado do TextInput. As opções são 'default', 'valid' e 'invalid'.",
+        "description": "Especifica o estado do componente.",
         "tags": {},
         "values": [
           "default",
@@ -9166,6 +9294,7 @@
       },
       {
         "name": "visible",
+        "description": "Especifica se os caracteres do PIN são visíveis.",
         "type": {
           "name": "boolean"
         },
@@ -9176,7 +9305,7 @@
       },
       {
         "name": "mobile",
-        "description": "Especifica se o PinInput deve ser versão mobile.",
+        "description": "Especifica se o PinInput deve estar na versão mobile.",
         "type": {
           "name": "boolean"
         },
@@ -9189,9 +9318,10 @@
     "events": [
       {
         "name": "update:modelValue",
+        "description": "Evento disparado com a modificação do v-model.",
         "type": {
           "names": [
-            "undefined"
+            "Event"
           ]
         }
       }
@@ -10725,6 +10855,18 @@
         }
       },
       {
+        "name": "deepSearch",
+        "description": "Indica se a busca deve levar em consideração argumentos compostos.\nSó tem efeito se a prop `searchable` for `true`.",
+        "type": {
+          "name": "boolean"
+        },
+        "required": false,
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
+      },
+      {
         "name": "width",
         "tags": {
           "deprecated": [
@@ -10914,6 +11056,17 @@
       {
         "name": "addable",
         "description": "Indica se vai ser possível adicionar novas opções ao Select. Só tem efeito se a prop `searchable` for `true`.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
+      },
+      {
+        "name": "ghost",
+        "description": "Especifica se o componente deve ser exibido na sua versão ghost.",
         "type": {
           "name": "boolean"
         },
@@ -12667,6 +12820,17 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "loading",
+        "description": "Ativa o estado de carregamento do componente, exibindo um Skeleton para a tabela.",
+        "type": {
+          "name": "boolean"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "false"
+        }
       }
     ],
     "events": [
@@ -13142,6 +13306,17 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "height",
+        "description": "Especifica a altura mínima (min-height) do textarea.",
+        "type": {
+          "name": "number|string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "null"
+        }
       }
     ],
     "sourceFiles": [
@@ -13348,7 +13523,7 @@
         },
         "defaultValue": {
           "func": false,
-          "value": "'https://cuida.framer.wiki/'"
+          "value": "null"
         }
       },
       {
@@ -13434,6 +13609,22 @@
           "func": false,
           "value": "false"
         }
+      },
+      {
+        "name": "leadingIcon",
+        "description": "Define o ícone que será exibido à esquerda do input",
+        "type": {
+          "name": "string|null"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "null"
+        }
+      }
+    ],
+    "slots": [
+      {
+        "name": "label"
       }
     ],
     "sourceFiles": [
@@ -14637,6 +14828,16 @@
           "func": false,
           "value": "''"
         }
+      },
+      {
+        "name": "year",
+        "type": {
+          "name": "number"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "DateTime.now().year"
+        }
       }
     ],
     "events": [
@@ -14671,6 +14872,26 @@
           "name": "string"
         },
         "required": false,
+        "defaultValue": {
+          "func": false,
+          "value": "''"
+        }
+      },
+      {
+        "name": "minDate",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "''"
+        }
+      },
+      {
+        "name": "maxDate",
+        "type": {
+          "name": "string"
+        },
         "defaultValue": {
           "func": false,
           "value": "''"
