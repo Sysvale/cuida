@@ -34,7 +34,7 @@
 					min="0"
 					max="23"
 					step="1"
-					placeholder="00"
+					:placeholder="hourPlaceholder"
 					@keyup.up="startHour++"
 					@keyup.down="startHour > 0 ? startHour-- : null"
 					@input="handleTimeInput"
@@ -50,7 +50,7 @@
 					min="0"
 					max="59"
 					step="1"
-					placeholder="00"
+					:placeholder="minutePlaceholder"
 					@keyup.up="startMinute++"
 					@keyup.down="startMinute > 0 ? startMinute-- : null"
 					@input="handleTimeInput"
@@ -73,7 +73,7 @@
 					min="0"
 					max="23"
 					step="1"
-					placeholder="00"
+					:placeholder="hourPlaceholder"
 					@keyup.up="endHour++"
 					@keyup.down="endHour > 0 ? endHour-- : null"
 					@input="handleTimeInput"
@@ -89,7 +89,7 @@
 					min="0"
 					max="59"
 					step="1"
-					placeholder="00"
+					:placeholder="minutePlaceholder"
 					@keyup.up="endMinute++"
 					@keyup.down="endMinute > 0 ? endMinute-- : null"
 					@input="handleTimeInput"
@@ -203,6 +203,22 @@ export default {
 		errorMessage: {
 			type: String,
 			default: 'Horário inválido',
+		},
+		/**
+		 * Texto exibido como placeholder nos campos de hora.
+		 * Por padrão, exibe '00'.
+		 */
+		hourPlaceholder: {
+			type: String,
+			default: '00',
+		},
+		/**
+		 * Texto exibido como placeholder nos campos de minuto.
+		 * Por padrão, exibe '00'.
+		 */
+		minutePlaceholder: {
+			type: String,
+			default: '00',
 		},
 	},
 
