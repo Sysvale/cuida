@@ -20,7 +20,7 @@ Sanitiza strings removendo acentos.
 
 #### Retorno
 
-**(Strgin):** String sem acentos.
+**(String):** String sem acentos.
 
 <br />
 

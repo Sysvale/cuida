@@ -1,6 +1,6 @@
 # v-cds-tip
 
-Os v-cds-tip é uma diretiva do Cuida utilizada para implementar tooltips. O hover no componente dispara a exibição do tooptip. Para parar a exibição do tooptip basta enviar null como texto.
+Os v-cds-tip é uma diretiva do Cuida utilizada para implementar tooltips. O hover no componente dispara a exibição do tooltip. Para parar a exibição do tooltip basta enviar null como texto.
 
 <hr>
 
