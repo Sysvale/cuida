@@ -8,8 +8,8 @@
 			type="button"
 			class="segment-control__button"
 			:class="{
-				'segment-control__button--active': segment === activeSegment,
-				'segment-control__button--inactive': segment !== activeSegment,
+				'segment-control__button--active': segment === model,
+				'segment-control__button--inactive': segment !== model,
 			}"
 			@click="handleClick(segment, index)"
 		>
@@ -28,48 +28,80 @@
 		</button>
 	</div>
 </template>
-<script>
+
+<script setup>
+import { onMounted, watch } from 'vue';
 import CdsIcon from './Icon.vue';
 import CdsTooltip from './Tooltip.vue';
 
-export default {
-	name: 'CdsSegmentedControl',
-	components: {
-		CdsIcon,
-		CdsTooltip,
-	},
-	props: {
-		segments: {
-			type: Array,
-			default: () => [],
-		},
-		withIcon: {
-			type: Boolean,
-			default: false,
-		},
-		segmentsTooltipText: {
-			type: Array,
-			default: () => [],
-		},
-	},
+defineOptions({ name: 'CdsSegmentedControl' });
 
-	data() {
-		return {
-			activeSegment: '',
-		};
-	},
+/**
+ * Prop utilizada como v-model do componente.
+ */
+const model = defineModel({
+	type: String,
+	default: '',
+});
 
-	mounted() {
-		this.activeSegment = this.segments[0];
+const props = defineProps({
+	/**
+	 * Array de strings que serão exibidos como opções do componente.
+	 */
+	segments: {
+		type: Array,
+		default: () => [],
 	},
+	/**
+	 * Se verdadeiro, exibe ícones no lugar de texto.
+	 */
+	withIcon: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	 * Array de strings que serão exibidos como tooltip quando o mouse estiver sobre o ícone.
+	 */
+	segmentsTooltipText: {
+		type: Array,
+		default: () => [],
+	},
+});
 
-	methods: {
-		handleClick(segment, index) {
-			this.activeSegment = segment;
-			this.$emit('click', this.activeSegment, index);
-		},
-	},
-}
+const emit = defineEmits([
+	/**
+	 * Evento emitido quando o usuário clica em algum segmento.
+	 * @event click
+	 */
+	'click',
+	/**
+	 * Evento emitido quando o usuário clica em algum segmento.
+	 * @event update:model-value
+	 */
+	'update:model-value',
+]);
+
+watch(() => props.segments, (newValue, oldValue) => {
+	if (newValue !== oldValue && newValue.length > 0) {
+		model.value = props.segments.find((v) => v === model.value) ?? props.segments[0]
+	}
+});
+
+onMounted(() => {
+	if (props.segments.length > 0) {
+		model.value = props.segments.find((v) => v === model.value) ?? props.segments[0];
+	}
+});
+
+const handleClick = (segment, index) => {
+	model.value = segment;
+	/**
+	 * Evento emitido quando o componente é clicado.
+	 * @event click
+	 * @type {Event}
+	 */
+	emit('click', segment, index);
+};
 </script>
 
 <style lang="scss">
