@@ -280,7 +280,7 @@ export default {
 	background: tokens.$n-0;
 
 	input {
-		font-family: 'Satoshi';
+		font-family: Satoshi, Inter, Avenir, Helvetica, Arial, sans-serif;
 	}
 
 	&--fluid {
