@@ -375,7 +375,7 @@ export default {
 		align-items: center;
 
 		input {
-			font-family: 'Satoshi';
+			font-family: Satoshi, Inter, Avenir, Helvetica, Arial, sans-serif;
 		}
 	}
 

@@ -112,7 +112,7 @@ watch(model, (newValue) => {
 		gap: tokens.spacer(2);
 
 		input {
-			font-family: 'Satoshi';
+			font-family: Satoshi, Inter, Avenir, Helvetica, Arial, sans-serif;
 		}
 	}
 
