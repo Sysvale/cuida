@@ -64,8 +64,8 @@
 		"babel-loader": "^8.2.5",
 		"concat": "^1.0.3",
 		"esbuild-linux-64": "^0.15.18",
-		"eslint": "^9.36.0",
-		"eslint-plugin-vue": "^9.9.0",
+		"eslint": "^10.7.0",
+		"eslint-plugin-vue": "^10.10.0",
 		"fast-glob": "^3.3.3",
 		"globals": "^16.4.0",
 		"jsdom": "^20.0.0",
@@ -78,7 +78,7 @@
 		"vue-docgen-api": "^4.79.2",
 		"vue-eslint-parser": "^10.2.0",
 		"vue-loader": "^16.8.3",
-		"vue-tsc": "^2.1.10"
+		"vue-tsc": "^3.3.8"
 	},
 	"bugs": {
 		"url": "https://github.com/Sysvale/cuida/issues"
