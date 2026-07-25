@@ -135,17 +135,34 @@ export default {
 		labels: {
 			handler(newValue) {
 				this.localLabels = newValue;
+				this.mergeChartDataNoSelect(this.data);
 			},
 			immediate: true,
 		},
 
 		variant: {
 			handler(newValue) {
-				if (newValue === 'gray' || newValue === 'dark')  {
+				if (newValue === 'gray' || newValue === 'dark') {
 					this.deleteFirstTwoColors = true;
 				} else {
 					this.deleteFirstTwoColors = false;
 				}
+
+				this.mergeChartDataNoSelect(this.data);
+			},
+			immediate: true,
+		},
+
+		theme: {
+			handler() {
+				this.mergeChartDataNoSelect(this.data);
+			},
+			immediate: true,
+		},
+
+		colors: {
+			handler() {
+				this.mergeChartDataNoSelect(this.data);
 			},
 			immediate: true,
 		},

@@ -48,7 +48,7 @@ Um componente de gráfico reutilizável para exibir dados visualmente.
 ## Props
 
 <APITable
-	name="CdsBarChart"
+	name="CdsPieChart"
 	section="props"
 />
 <br>
