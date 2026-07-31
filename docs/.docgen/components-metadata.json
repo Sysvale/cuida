@@ -2482,6 +2482,12 @@
         }
       }
     ],
+    "slots": [
+      {
+        "name": "append",
+        "description": "Slot para renderizar elementos adicionais à direita da etiqueta do checkbox."
+      }
+    ],
     "sourceFiles": [
       "src/components/Checkbox.vue"
     ]
@@ -2604,6 +2610,19 @@
     "events": [
       {
         "name": "update:modelValue"
+      }
+    ],
+    "slots": [
+      {
+        "name": "append",
+        "scoped": true,
+        "description": "Slot com escopo para renderizar elementos adicionais à direita de cada checkbox do grupo.",
+        "bindings": [
+          {
+            "name": "option",
+            "title": "binding"
+          }
+        ]
       }
     ],
     "sourceFiles": [
@@ -13845,6 +13864,28 @@
         "defaultValue": {
           "func": false,
           "value": "'Horário inválido'"
+        }
+      },
+      {
+        "name": "hourPlaceholder",
+        "description": "Texto exibido como placeholder nos campos de hora.\nPor padrão, exibe '00'.",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'00'"
+        }
+      },
+      {
+        "name": "minutePlaceholder",
+        "description": "Texto exibido como placeholder nos campos de minuto.\nPor padrão, exibe '00'.",
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'00'"
         }
       }
     ],
