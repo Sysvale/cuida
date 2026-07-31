@@ -250,8 +250,6 @@ export default {
 				const variantLowercase = dataset.variant;
 				const palletColor = this.palletColors.find(color => color.variantName.toLowerCase().includes(variantLowercase));
 
-				console.log(palletColor?.color400, colors[objectName]);
-
 				dataset.backgroundColor = palletColor ? palletColor.color400 : colors[objectName];
 				dataset.borderRadius = 6;
 			});
