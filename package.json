@@ -51,7 +51,7 @@
 		"vue-multiselect": "^3.0.0-alpha.2"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.18.10",
+		"@babel/core": "^8.0.1",
 		"@rollup/plugin-typescript": "^8.4.0",
 		"@types/vue": "^2.0.0",
 		"@typescript-eslint/eslint-plugin": "^8.38.0",
@@ -61,7 +61,7 @@
 		"@vitest/ui": "^3.2.1",
 		"@vue/eslint-config-typescript": "^14.6.0",
 		"@vue/test-utils": "^2.0.2",
-		"babel-loader": "^8.2.5",
+		"babel-loader": "^10.1.1",
 		"concat": "^1.0.3",
 		"esbuild-linux-64": "^0.15.18",
 		"eslint": "^9.36.0",
