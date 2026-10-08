@@ -67,7 +67,7 @@
 					v-for="(item, index) in items"
 					:key="`${index}-${item.name}-item`"
 					role="presentation"
-					@mouseleave="itemsWithVisibilityController[index].show = false"
+					@mouseleave="handleMouseLeave(index, false)"
 				>
 					<div
 						class="side-bar__item-container"
@@ -80,7 +80,7 @@
 							v-cdstip="(collapsed && item.type === 'link') ? item.label : null"
 							class="side-bar__item"
 							:class="isActive(item) ? 'side-bar__item--active' : 'side-bar__item--inactive'"
-							@mouseover="itemsWithVisibilityController[index].show = true"
+							@mouseover="handleMouseLeave(index, true)"
 						>
 							<div>
 								<CdsIcon
@@ -613,6 +613,12 @@ function handleLogoClick() {
 	* @type {Event}
 	*/
 	emit('logo-click');
+}
+
+function handleMouseLeave(index, state) {
+	if (!itemsWithVisibilityController.value[index]) return;
+
+	itemsWithVisibilityController.value[index].show = state;
 }
 
 defineExpose({
