@@ -65,7 +65,7 @@
 		"concat": "^1.0.3",
 		"esbuild-linux-64": "^0.15.18",
 		"eslint": "^9.36.0",
-		"eslint-plugin-vue": "^9.9.0",
+		"eslint-plugin-vue": "^10.11.1",
 		"fast-glob": "^3.3.3",
 		"globals": "^16.4.0",
 		"jsdom": "^20.0.0",

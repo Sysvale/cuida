@@ -31,6 +31,7 @@ export default [
 			sourceType: 'module',
 			globals: {
 				...globals.node,
+				...globals.browser,
 			},
 		},
 	},
@@ -47,6 +48,7 @@ export default [
 				},
 			],
 			'vue/require-explicit-emits': 'off',
+			'vue/no-required-prop-with-default': 'off',
 			'no-tabs': 'off',
 			indent: [
 				'error',
