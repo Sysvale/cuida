@@ -75,7 +75,6 @@
 		"vue": "^3.5.16",
 		"vue-docgen-api": "^4.79.2",
 		"vue-eslint-parser": "^10.2.0",
-		"vue-loader": "^16.8.3",
 		"vue-tsc": "^2.1.10"
 	},
 	"bugs": {
