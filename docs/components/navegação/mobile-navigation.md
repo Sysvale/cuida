@@ -104,10 +104,22 @@ const items = [
 		label: 'Vigilância sanitária',
 		icon: 'shield-outline',
 		type: 'route',
-		route: {
-			path: '/visa',
-			name: 'visa'
-		},
+		items: [
+			{
+				label: 'Categorias',
+				route: {
+					path: '/categories',
+					name: 'index-categories',
+				},
+			},
+			{
+				label: 'Processos',
+				route: {
+					path: '/processes',
+					name: 'index-processes',
+				},
+			},
+		],
 	},
 	{
 		label: 'Central de marcação',

@@ -20,9 +20,18 @@ exports[`MobileNavigation > renders correctly 1`] = `
       </div>
       <div data-v-c1f5c1c8="" class="mobile-navigation__sidebar-content">
         <div data-v-c1f5c1c8="" class="mobile-navigation__sidebar-items">
-          <router-link-stub data-v-c1f5c1c8="" to="/home" class="mobile-navigation__sidebar-item"></router-link-stub>
-          <router-link-stub data-v-c1f5c1c8="" to="/visa" class="mobile-navigation__sidebar-item mobile-navigation__sidebar-item--active"></router-link-stub>
-          <router-link-stub data-v-c1f5c1c8="" to="/regulation" class="mobile-navigation__sidebar-item"></router-link-stub>
+          <div data-v-c1f5c1c8="">
+            <router-link-stub data-v-c1f5c1c8="" to="/home" class="mobile-navigation__sidebar-item"></router-link-stub>
+            <!--v-if-->
+          </div>
+          <div data-v-c1f5c1c8="">
+            <router-link-stub data-v-c1f5c1c8="" to="/visa" class="mobile-navigation__sidebar-item mobile-navigation__sidebar-item--active"></router-link-stub>
+            <!--v-if-->
+          </div>
+          <div data-v-c1f5c1c8="">
+            <router-link-stub data-v-c1f5c1c8="" to="/regulation" class="mobile-navigation__sidebar-item"></router-link-stub>
+            <!--v-if-->
+          </div>
         </div>
         <div data-v-c1f5c1c8="" class="mobile-navigation__sidebar-footer">
           <div data-v-c1f5c1c8="" class="mobile-navigation__sidebar-user-info">
