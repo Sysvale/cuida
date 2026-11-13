@@ -341,7 +341,6 @@ export default defineConfig({
 		ssr: {
 			noExternal: [
 				'@sysvale/cuida-icons',
-				'@sysvale/vue3-long-click',
 				'lodash',
 			]
 		}
