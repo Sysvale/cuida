@@ -6,7 +6,6 @@ PinInputs são componentes utilizados para adição de one-time passwords e cód
 
 <br>
 
-
 ## Uso
 
 ```js
@@ -34,6 +33,13 @@ PinInputs são componentes utilizados para adição de one-time passwords e cód
 	section="props"
 />
 <br>
+
+## Eventos
+
+<APITable
+	name="CdsPinInput"
+	section="events"
+/>
 
 <script setup>
 import { ref } from 'vue';

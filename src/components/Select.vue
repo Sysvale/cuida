@@ -23,10 +23,8 @@
 				:floating-label="floatingLabel || mobile"
 				:class="inputClass"
 				:fluid="computedFluid"
-				@keydown.enter.prevent="activateSelectionOnEnter"
-				@keydown.arrow-down.prevent="highlightOnArrowDown"
-				@keydown.arrow-up.prevent="highlightOnArrowUp"
-				@keydown="emitKeydown"
+				:ghost
+				@keydown="handleKeydown"
 				@click="activateSelectionOnClick"
 				@update:model-value="filterOptions"
 				@focus="activeSelection"
@@ -53,10 +51,16 @@
 						v-for="(option, index) in localOptions"
 						:key="option.id || option"
 						:ref="(el) => { liRefs[`${option[optionsField]}-${index}`] = el }"
-						class="option__text"
-						@mousedown="selectItem"
+						:class="[
+							'option__text',
+							{
+								highlight: index === currentPos,
+								'option__text--selected': isSelected(option)
+							}
+						]"
+						@mousedown="selectItem(index)"
 						@mouseover="highlightOnMouseOver(index)"
-						@mouseout="unhighlightOnMouseOut()"
+						@mouseout="syncCurrentPos()"
 					>
 						<!--
 							@slot Slot utilizado para personalizar a lista de opções do select. Os dados do scoped slot podem ser acessados como: ```slot-scope={ 'option', 'index', 'value' }```
@@ -166,6 +170,15 @@ const props = defineProps({
 	 * Indica se vai ser possível fazer buscas no select.
 	 */
 	searchable: {
+		type: Boolean,
+		default: false,
+		required: false,
+	},
+	/**
+	 * Indica se a busca deve levar em consideração argumentos compostos.
+	 * Só tem efeito se a prop `searchable` for `true`.
+	 */
+	deepSearch: {
 		type: Boolean,
 		default: false,
 		required: false,
@@ -282,6 +295,13 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	 * Especifica se o componente deve ser exibido na sua versão ghost.
+	 */
+	ghost: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const emits = defineEmits({
@@ -289,16 +309,13 @@ const emits = defineEmits({
 });
 
 /* REACTIVE DATA */
-const currentPos = ref(0);
+const currentPos = ref(-1);
 const active = ref(false);
 const id = ref(null);
 const allowSearch = ref(false);
 const localOptions = ref([]);
 const pristineOptions = ref([]);
-const localValue = ref({
-	value: '',
-	id: '',
-});
+const localValue = ref({});
 const selectElement = ref('');
 const direction = ref('down');
 const uniqueKey = ref(generateKey());
@@ -308,6 +325,10 @@ const selectOptions = useTemplateRef('select-options');
 const liRefs = ref({});
 const { emitClick, emitFocus, emitBlur, emitKeydown } = nativeEmits(emits);
 const searchString = ref('');
+const isTyping = ref(false);
+const internalInputValue = ref('');
+
+let isSelectingItem = false;
 
 /* COMPUTED */
 const resolveChevronTop = computed(() => {
@@ -345,7 +366,17 @@ const showAddOption = computed(() => {
 		&& !localOptions.value.some(option => option[props.optionsField]?.toLowerCase() === searchString?.value.toLowerCase());
 });
 
-const computedModel = computed(() => localValue.value[props.optionsField]);
+const computedModel = computed({
+	get() {
+		return isTyping.value ? internalInputValue.value : localValue.value?.[props.optionsField];
+	},
+	set(val) {
+		if (isSelectingItem) return;
+
+		isTyping.value = true;
+		internalInputValue.value = val;
+	}
+});
 
 //NOTE: Essa computada vai ser removida junto com a descontinuação da prop width na V4
 const computedFluid = computed(() => {
@@ -368,16 +399,29 @@ watch(() => props.options, (newValue, oldValue) => {
 
 watch(model, (newValue, oldValue) => {
 	if (newValue !== oldValue && newValue !== localValue.value) {
+		isSelectingItem = true;
 		if (newValue instanceof Object) {
 			localValue.value = newValue;
 		} else {
 			localValue.value = {id: newValue, value: newValue }
 		}
 	}
+
+	nextTick(() => {
+		isSelectingItem = false;
+	});
 }, { immediate: true });
 
 watch(localValue, (currentValue) => {
-	if (currentValue === model.value) return;
+	syncCurrentPos();
+
+	if (JSON.stringify(currentValue) === JSON.stringify(model.value)) return;
+
+	const isValueEmpty = !currentValue || (typeof currentValue === 'object' && Object.keys(currentValue).length === 0);
+	if (isValueEmpty) {
+		model.value = props.returnValue ? '' : {};
+		return;
+	}
 
 	const compatibleOptions = localOptions.value.filter(
 		(option) => JSON.stringify(option) === JSON.stringify(currentValue),
@@ -387,17 +431,8 @@ watch(localValue, (currentValue) => {
 		return;
 	}
 
-	if (props.returnValue) {
-		/**
-		* Evento que indica que o valor do Select foi alterado
-		* @event update:modelValue
-		* @type {Event}
-		*/
-		model.value = currentValue[props.optionsField];
-	} else {
-		model.value = currentValue;
-	}
-}, { deep: true });
+	model.value = props.returnValue ? compatibleOptions[0][props.optionsField] : compatibleOptions[0];
+});
 
 /* HOOKS */
 onMounted(() => {
@@ -407,52 +442,131 @@ onMounted(() => {
 
 /* FUNCTIONS */
 function filterOptions(value) {
-	if (props.searchable && props.addable) {
+	if (!isTyping.value) {
+		return;
+	}
+
+	if (props.searchable) {
 		searchString.value = value;
 	}
 
 	const sanitizedString = removeAccents(String(value) || '');
-	const regexExp = new RegExp(sanitizedString, 'i');
+
+	if (props.deepSearch) {
+		deepOptionSearch(sanitizedString);
+	} else {
+		simpleOptionSearch(sanitizedString);
+	}
+
+	currentPos.value = localOptions.value.length > 0 ? 0 : -1;
+}
+
+function simpleOptionSearch(sanitizedSearchValue) {
+	const regexExp = new RegExp(sanitizedSearchValue, 'i');
 
 	localOptions.value = pristineOptions.value.filter(
 		(option) => removeAccents(option[props.optionsField]).search(regexExp) >= 0,
 	);
 }
 
+function deepOptionSearch(sanitizedSearchValue) {
+	const searchArray = sanitizedSearchValue.toLowerCase().split(' ');
+
+	localOptions.value = pristineOptions.value.filter(
+		(option) => {
+			return searchArray.reduce((acc, curr) => (
+				acc = acc && removeAccents(option[props.optionsField]).toLowerCase().includes(curr)
+			), true);
+		}
+	)
+}
+
 function activeSelection() {
 	if (props.disabled) return;
 
-	resetActiveSelection();
-
-	nextTick().then(() => {
-		const element = localOptions.value[currentPos.value];
-		liRefs.value[`${get(element, props.optionsField)}-${currentPos.value}`]?.classList.add('highlight');
-	});
+	syncCurrentPos();
 	emitFocus();
+}
+
+function syncCurrentPos() {
+	const valueToFind = get(localValue.value, props.optionsField);
+	const index = localOptions.value.findIndex(option => option[props.optionsField] === valueToFind);
+
+	if (index !== -1) {
+		currentPos.value = index;
+	} else {
+		currentPos.value = -1;
+	}
+}
+
+function handleKeydown(event) {
+	if (props.disabled) return;
+
+	switch (event.key) {
+		case 'Enter':
+			event.preventDefault();
+			activateSelectionOnEnter();
+			break;
+		case 'ArrowDown':
+		case 'Down':
+			event.preventDefault();
+			highlightOnArrowDown();
+			break;
+		case 'ArrowUp':
+		case 'Up':
+			event.preventDefault();
+			highlightOnArrowUp();
+			break;
+		case 'Escape':
+		case 'Esc':
+			active.value = false;
+			select.value.blur();
+			break;
+		default:
+			if (props.searchable && !active.value && event.key.length === 1) {
+				active.value = true;
+			}
+			break;
+	}
+
+	emitKeydown(event);
 }
 
 function activateSelectionOnEnter() {
 	if (props.disabled) return;
 
-	active.value = !active.value;
+	if (!active.value) {
+		active.value = true;
+		syncCurrentPos();
+		return;
+	}
 
-	resetActiveSelection();
+	if (localOptions.value.length === 0 && !(props.searchable && props.addable)) {
+		active.value = false;
+		isTyping.value = false;
+		return;
+	}
 
-	if (typeof localOptions.value[currentPos.value] === 'undefined') {
-		handleAddOption();
+	isSelectingItem = true;
 
-		nextTick(() => {
-			localValue.value = props.searchable && props.addable
-				? localValue.value
-				: cloneDeep(localOptions.value[0]);
-		});
-
+	if (currentPos.value === -1 || typeof localOptions.value[currentPos.value] === 'undefined') {
+		if (props.searchable && props.addable) {
+			handleAddOption();
+		} else {
+			localValue.value = localOptions.value.length ? cloneDeep(localOptions.value[0]) : {};
+		}
 	} else {
 		localValue.value = cloneDeep(localOptions.value[currentPos.value]);
 	}
 
 	searchString.value = '';
-	select.value.blur();
+	isTyping.value = false;
+	active.value = false;
+	localOptions.value = pristineOptions.value;
+
+	nextTick(() => {
+		isSelectingItem = false;
+	});
 }
 
 function activateSelectionOnClick() {
@@ -468,98 +582,131 @@ function activateSelectionOnClick() {
 
 	active.value = !active.value;
 
+	if (active.value) {
+		syncCurrentPos();
+	} else {
+		localOptions.value = pristineOptions.value;
+	}
+
 	emitClick();
 	select.value.focus();
 }
 
 function hide() {
-	if (!searchString.value) {
-		localValue.value = localOptions.value.some(item => item[props.optionsField]?.toLowerCase() === get(localValue.value, props.optionsField)?.toLowerCase())
-			? localValue.value
-			: {};
+	isSelectingItem = true;
+	const shouldClearSelection = props.searchable && !props.addable && localOptions.value.length === 0;
+
+	if (shouldClearSelection) {
+		model.value = null;
+		localValue.value = null;
 	}
+
 
 	nextTick(() => {
 		localOptions.value = pristineOptions.value;
 		searchString.value = '';
 		active.value = false;
+		isTyping.value = false;
+		isSelectingItem = false;
+		currentPos.value = -1;
 	});
 
 	emitBlur();
 }
 
-function selectItem() {
+function selectItem(index) {
+	const position = (typeof index === 'number') ? index : currentPos.value;
+	if (position === -1 || !localOptions.value[position]) return;
+
+	isSelectingItem = false;
 	searchString.value = '';
-	localValue.value = cloneDeep(localOptions.value[currentPos.value]);
+	localValue.value = cloneDeep(localOptions.value[position]);
+	active.value = false;
+	isTyping.value = false;
+	select.value.blur();
+
+	nextTick(() => {
+		isSelectingItem = false;
+		currentPos.value = -1;
+	});
+}
+
+function isSelected(option) {
+	return option[props.optionsField] === localValue.value?.[props.optionsField];
 }
 
 function getLiInDOM(position) {
+	if (position < 0 || position >= localOptions.value.length) return null;
 	const element = localOptions.value[position];
 	return liRefs.value[`${element[props.optionsField]}-${position}`];
 }
 
-function handleOptionVisibility(option, amount, direction) {
-	const optionDOMRect = option.getBoundingClientRect();
+function handleOptionVisibility(option) {
 	const optionsContainer = selectOptions.value;
-	const optionsContainerDOMRect = optionsContainer.getBoundingClientRect();
+	const optionTop = option.offsetTop;
+	const optionBottom = optionTop + option.offsetHeight;
+	const containerTop = optionsContainer.scrollTop;
+	const containerBottom = containerTop + optionsContainer.clientHeight;
 
-	if (
-		direction === 'up'
-		&& optionDOMRect.top <= optionsContainerDOMRect.top
-	) {
-		optionsContainer.scrollTop += amount;
+	if (optionTop < containerTop) {
+		optionsContainer.scrollTop = optionTop;
 	}
 
-	if (
-		direction === 'down'
-		&& optionDOMRect.top >= optionsContainerDOMRect.bottom
-	) {
-		optionsContainer.scrollTop += amount;
+	if (optionBottom > containerBottom) {
+		optionsContainer.scrollTop = optionBottom - optionsContainer.clientHeight;
 	}
 }
 
 function highlightOnArrowDown() {
-	if (!active.value) return;
+	if (props.disabled) return;
+
+	if (!active.value) {
+		if (currentPos.value < localOptions.value.length - 1) {
+			currentPos.value += 1;
+			localValue.value = cloneDeep(localOptions.value[currentPos.value]);
+		}
+		return;
+	}
+
 	if (currentPos.value === localOptions.value.length - 1) return;
 
 	currentPos.value += 1;
-	const selectedOption = getLiInDOM(currentPos.value);
-	const previousOption = getLiInDOM(currentPos.value - 1);
+	localValue.value = cloneDeep(localOptions.value[currentPos.value]);
 
-	selectedOption.classList.add('highlight');
-	previousOption.classList.remove('highlight');
-
-	handleOptionVisibility(selectedOption, 37, 'down');
+	nextTick(() => {
+		const selectedOption = getLiInDOM(currentPos.value);
+		if (selectedOption) {
+			handleOptionVisibility(selectedOption);
+		}
+	});
 }
 
 function highlightOnArrowUp() {
-	if (!active.value) return;
-	if (currentPos.value === 0) return;
+	if (props.disabled) return;
 
-	const selectedOption = getLiInDOM(currentPos.value);
-	const previousOption = getLiInDOM(currentPos.value - 1);
+	if (!active.value) {
+		if (currentPos.value > 0) {
+			currentPos.value -= 1;
+			localValue.value = cloneDeep(localOptions.value[currentPos.value]);
+		}
+		return;
+	}
 
-	selectedOption.classList.remove('highlight');
-	previousOption.classList.add('highlight');
+	if (currentPos.value <= 0) return;
 
-	handleOptionVisibility(selectedOption, -37, 'up');
 	currentPos.value -= 1;
+	localValue.value = cloneDeep(localOptions.value[currentPos.value]);
+
+	nextTick(() => {
+		const selectedOption = getLiInDOM(currentPos.value);
+		if (selectedOption) {
+			handleOptionVisibility(selectedOption);
+		}
+	});
 }
 
 function highlightOnMouseOver(index) {
 	currentPos.value = index;
-	getLiInDOM(currentPos.value).classList.add('highlight');
-}
-
-function unhighlightOnMouseOut() {
-	getLiInDOM(currentPos.value).classList.remove('highlight');
-}
-
-function resetActiveSelection() {
-	localOptions.value.forEach((option, index) => {
-		const element = localOptions.value[index];
-		liRefs.value[`${element[props.optionsField]}-${index}`].classList.remove('highlight');
-	})
 }
 
 function handleAddOption() {
@@ -740,8 +887,8 @@ defineExpose({
 		}
 
 		&--up {
-			bottom: 40px;
 			width: 100%;
+			bottom: 40px;
 		}
 
 		&--down {
@@ -775,10 +922,16 @@ defineExpose({
 	&__text {
 		padding: tokens.pa(3);
 		text-overflow: ellipsis;
+		transition: all 100ms ease-in-out;
 
 		&--muted {
 			@extend .option__text;
 			color: tokens.$n-400;
+		}
+
+		&--selected {
+			background-color: tokens.$n-30;
+			// font-weight: tokens.$font-weight-semibold;
 		}
 	}
 
@@ -789,9 +942,10 @@ defineExpose({
 	}
 }
 
-.highlight{
-	background-color: tokens.$n-10;
+.highlight {
+	background-color: tokens.$n-30;
 	cursor: pointer;
+	font-weight: tokens.$font-weight-semibold;
 }
 
 .add-button-searchstring {

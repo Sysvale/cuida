@@ -1,6 +1,9 @@
 <template>
 	<div
 		class="dashboard-card"
+		:class="{
+			'dashboard-card--fluid': fluid,
+		}"
 	>
 		<div>
 			<div

@@ -184,7 +184,7 @@ export default {
 			inputControl: 0,
 			attributes: [
 				{
-					dates: new Date(),
+					dates: DateTime.now().toJSDate(),
 					dot: true,
 				},
 			],
@@ -375,7 +375,7 @@ export default {
 		align-items: center;
 
 		input {
-			font-family: 'Satoshi';
+			font-family: Satoshi, Inter, Avenir, Helvetica, Arial, sans-serif;
 		}
 	}
 

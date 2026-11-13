@@ -405,6 +405,13 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	 * Especifica se o componente deve ser exibido na sua versão ghost.
+	 */
+	ghost: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const emits = defineEmits({
@@ -425,6 +432,10 @@ const computedAutocompleteProp = computed(() => props.enableAutocomplete ? 'on' 
 
 const baseMobileInputClass = computed(() => {
 	let mobileInputClass = props.fluid ? 'base-mobile-input--fluid' : 'base-mobile-input';
+
+	if (props.ghost) {
+		mobileInputClass += ' ghost';
+	}
 
 	if (!isFocused.value) {
 		mobileInputClass +=  props.disabled
@@ -521,6 +532,10 @@ const shouldShowLink = computed(() => (
 	&& props.supportLinkUrl.length
 ));
 
+const resizeType = computed(() => {
+	return props.type === 'textarea' ? 'vertical' : 'none';
+});
+
 /* WATCHERS */
 watch(model, (newValue, oldValue) => {
 	if (newValue !== oldValue) {
@@ -564,6 +579,11 @@ function handleFocus(event) {
 
 function handleBlur(event) {
 	isFocused.value = false;
+
+	if (componentRef.value && componentRef.value.value !== undefined) {
+		internalValue.value = componentRef.value.value;
+	}
+
 	/**
 	* Evento emitido quando o componente deixa de ser focado.
 	* @event blur
@@ -678,7 +698,7 @@ defineExpose({
 		text-align: start;
 		color: tokens.$n-700;
 		width: 100%;
-		resize: vertical;
+		resize: v-bind(resizeType);
 		font-size: 14.5px;
 		cursor: v-bind(computedCursor);
 
@@ -790,5 +810,12 @@ input::-webkit-inner-spin-button {
 
 input:disabled {
 	background: none !important;
+}
+
+.base-mobile-input.ghost {
+	border: none !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	outline: none !important;
 }
 </style>

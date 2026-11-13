@@ -5,7 +5,7 @@
 			class="responsive-container"
 		>
 			<Bar
-				:is="'bar'"
+				is="bar"
 				:data="localChartData"
 				:options="chartOptions"
 				:plugins="plugins"
@@ -107,6 +107,11 @@ export default {
 					},
 					y: {
 						stacked: true,
+						beginAtZero: true,
+						grace: '10%',
+						ticks: {
+							precision: 0
+						},
 						grid: {
 							color: '#DFE5EC',
 						},

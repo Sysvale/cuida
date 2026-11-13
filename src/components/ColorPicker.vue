@@ -2,6 +2,7 @@
 	<div v-if="inline">
 		<div class="color-picker__label">
 			{{ label }}
+			<CdsRequiredIndicator v-if="required" />
 		</div>
 
 		<div
@@ -36,7 +37,7 @@
 			class="color-picker__trigger"
 			@click.stop="showPopover = !showPopover"
 		>
-			<div class="color-picker__preview" /> 
+			<div class="color-picker__preview" />
 		</div>
 
 		<CdsPopover
@@ -72,11 +73,18 @@
 			</div>
 		</CdsPopover>
 	</div>
+	<div
+		v-if="hasError"
+		class="error-text"
+	>
+		{{ errorMessage }}
+	</div>
 </template>
 
 <script>
 import CdsPopover from './Popover.vue';
 import CdsIcon from './Icon.vue';
+import CdsRequiredIndicator from './RequiredIndicator.vue';
 import sassColorVariables from '../assets/sass/tokens/colors.module.scss';
 import ContrastChecker from '../utils/methods/contrastChecker';
 import paleteBuilder from '../utils/methods/paleteBuilder.js';
@@ -86,6 +94,7 @@ export default {
 	components: {
 		CdsPopover,
 		CdsIcon,
+		CdsRequiredIndicator,
 	},
 
 	props: {
@@ -102,6 +111,13 @@ export default {
 		label: {
 			type: String,
 			default: 'Label',
+		},
+		/**
+		* Exibe asterisco de obrigatório (obs.: não faz a validação)
+		*/
+		required: {
+			type: Boolean,
+			default: false,
 		},
 		/**
 		* Quando true passa a mostrar as opções de cores fora do popover.
@@ -124,6 +140,21 @@ export default {
 			type: Array,
 			default: () => ([]),
 		},
+		/**
+		* Especifica o estado do TextInput. As opções são 'default', 'valid', 'loading' e 'invalid'.
+		* @values default, valid, loading, invalid
+		*/
+		state: {
+			type: String,
+			default: 'default',
+		},
+		/**
+		* Especifica a mensagem de erro, que será exibida caso o estado seja inválido
+		*/
+		errorMessage: {
+			type: String,
+			default: 'Valor inválido',
+		},
 	},
 
 	data() {
@@ -143,6 +174,10 @@ export default {
 
 		palete() {
 			return this.paleteBuilder(this.sassColorVariables.palete);
+		},
+
+		hasError() {
+			return this.state === 'invalid';
 		},
 	},
 
@@ -170,6 +205,8 @@ export default {
 					selectedVariant = paleteColor.variantName.toLowerCase();
 				}
 			});
+
+			this.showPopover = false;
 
 			/**
 			 * **Implementa v-model**. Evento utilizado para emitir a *cor* selecionada. A cor é emitida como uma string no formato HEX.
@@ -260,5 +297,11 @@ export default {
 
 .popover__container {
 	display: flex;
+}
+
+.error-text {
+	@include tokens.caption;
+	color: tokens.$rc-600;
+	margin: tokens.mt(1);
 }
 </style>

@@ -64,6 +64,7 @@ const args = ref({
 				{
 					label: 'Realizado',
 					data: [50, 50, 50, 50, 50],
+					variant: 'amber',
 				},
 				{
 					label: 'Pendente',

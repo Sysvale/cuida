@@ -174,7 +174,7 @@ watch(model, () => {
 				parsedValue = rawValue;
 			}
 
-			if (!isNaN(parsedValue) && !isNaN(parseFloat(parsedValue)) && isFinite(parsedValue)) {
+			if (propData.type.name.includes('number') && !isNaN(parsedValue) && !isNaN(parseFloat(parsedValue)) && isFinite(parsedValue)) {
 				parsedValue = Number(parsedValue);
 			}
 

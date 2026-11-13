@@ -1,11 +1,10 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
 	<span>
 		<div
 			class="responsive-container"
 		>
 			<Bar
-				:is="'bar'"
+				is="bar"
 				:data="localChartData"
 				:options="chartOptions"
 			/>
@@ -32,8 +31,8 @@ export default {
 		/**
 		 * Define o conjunto de dados a serem mostrados no gráfico.
 		 * O objeto deve conter o parâmetro `name` (para identificar o conjunto de dados)
-		 * e `datasets`, array de objetos que apresentará `label` (indicar o rótulo do dado) e
-		 * `data` (array com os valores númericos).
+		 * e `datasets`, array de objetos que apresentará `label` (indicar o rótulo do dado),
+		 * `data` (array com os valores númericos) e, opcionalmente, `variant` (variante de cor do cuida específica para o dataset).
 		 */
 		data: {
 			type: Array,
@@ -64,7 +63,7 @@ export default {
 		 */
 		barWidth: {
 			type: Number,
-			default: 1,
+			default: 5,
 		},
 
 		/**
@@ -72,7 +71,7 @@ export default {
 		 */
 		horizontalBar: {
 			type: Boolean,
-			default: false,
+			default: true,
 		},
 	},
 
@@ -87,6 +86,22 @@ export default {
 				responsive: true,
 				maintainAspectRatio: false, // NOTE: Caso true manterá aspecto de proporção original, caso false, será dimensionado para preencher completamente o contêiner (Isso pode fazer com que o gráfico pareça distorcido se o container tiver proporção de aspecto diferente do gráfico original)
 				categoryPercentage: null, //NOTE: Configura a porcentagem ocupada pela barra do gráfico. (0-1)
+				indexAxis: this.horizontalBar ? 'y' : 'x',
+				scales: this.horizontalBar
+					? {
+						x: { beginAtZero: true },
+					}
+					: {
+						y: {
+							beginAtZero: true,
+							grace: '5%',
+							ticks: {
+								precision: 0
+							},
+							categoryPercentage: 0.6,
+							barPercentage: 0.8
+						},
+					},
 				plugins: {
 					tooltip: {
 						callbacks: {
@@ -144,20 +159,6 @@ export default {
 			immediate: true,
 		},
 	},
-	
-	mounted() {
-		if(this.horizontalBar) {
-			this.chartOptions = {
-				...this.chartOptions,
-				indexAxis: 'y',
-				scales: {
-					y: {
-						beginAtZero: true
-					}
-				},
-			};
-		}
-	},
 
 	methods: {
 		paleteBuilder,
@@ -201,6 +202,7 @@ export default {
 						data: state.data,
 						name: state.name,
 						borderRadius: 6,
+						variant: state.variant,
 					};
 					mergedData.datasets.push(dataset);
 				});
@@ -243,8 +245,12 @@ export default {
 					colorIndex = Object.keys(colors).length % backgroundColor.length;
 					colors[objectName] = backgroundColor[colorIndex];
 				}
+				
 
-				dataset.backgroundColor = colors[objectName];
+				const variantLowercase = dataset.variant;
+				const palletColor = this.palletColors.find(color => color.variantName.toLowerCase().includes(variantLowercase));
+
+				dataset.backgroundColor = palletColor ? palletColor.color400 : colors[objectName];
 				dataset.borderRadius = 6;
 			});
 		},

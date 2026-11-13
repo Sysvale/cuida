@@ -1,11 +1,15 @@
 <template>
 	<div
 		class="progress-bar"
-		:class="textLeft ? 'progress-bar__left' : ''"
+		:class="[
+			textLeft && !textAside ? 'progress-bar__left' : '',
+			textAside ? 'progress-bar--aside' : '',
+		]"
 	>
 		<span
 			v-if="showText"
 			class="progress-bar__text"
+			:class="textAside ? 'progress-bar__text--aside' : ''"
 		>
 			<!-- @slot Slot padrão da progressBar. Pode ser utilizado para sobrescrever o valor de progresso. -->
 			<slot>
@@ -132,6 +136,10 @@ watch(() => props.value, () => {
 	display: flex;
 	flex-direction: v-bind(textDirection);
 
+	&--aside {
+		gap: 4px;
+	}
+
 	&__content {
 		background-color: tokens.$n-40;
 		border-radius: tokens.$border-radius-extra-large;
@@ -150,7 +158,7 @@ watch(() => props.value, () => {
 
 	&__text--aside {
 		font-weight: tokens.$font-weight-semibold;
-		margin: tokens.ml(3);
+		margin: 0 !important;
 	}
 
 	&__text {

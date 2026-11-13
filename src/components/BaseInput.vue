@@ -22,25 +22,20 @@
 		</CdsBaseMobileInput>
 	
 		<template v-else>
-			<template
-				v-if="useHasSlot('label')"
-			>
-				<slot name="label" />
-			</template>
-	
-			<CdsLabel
-				v-if="!hideLabelInput"
-				:text="label"
-				:fluid="fluid"
-				:for="componentId"
-				:required="required"
-				:tooltip="tooltip"
-				:tooltip-icon="tooltipIcon"
-				:support-link="supportLink"
-				:support-link-url="supportLinkUrl"
-				@support-link-click="emits('supportLinkClick')"
-			/>
-	
+			<slot name="label">
+				<CdsLabel
+					v-if="!hideLabelInput"
+					:text="label"
+					:fluid="fluid"
+					:for="componentId"
+					:required="required"
+					:tooltip="tooltip"
+					:tooltip-icon="tooltipIcon"
+					:support-link="supportLink"
+					:support-link-url="supportLinkUrl"
+					@support-link-click="emits('supportLinkClick')"
+				/>
+			</slot>
 			<div
 				:class="baseInputClass"
 				@click="handleClick"
@@ -64,7 +59,7 @@
 					v-if="type === 'textarea'"
 					:id="componentId"
 					ref="htmlInput"
-					v-model.trim="internalValue"
+					v-model="internalValue"
 					:required="required"
 					:placeholder="placeholder"
 					:disabled="disabled"
@@ -108,7 +103,7 @@
 						:id="componentId"
 						ref="htmlInput"
 						v-bind="props"
-						v-model.trim="internalValue"
+						v-model="internalValue"
 						:required="required"
 						:readonly="readonly"
 						:placeholder="placeholder"
@@ -382,6 +377,20 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	 * Especifica se o componente deve ser exibido na sua versão ghost.
+	 */
+	ghost: {
+		type: Boolean,
+		default: false,
+	},
+	/**
+	 * Especifica a altura mínima (min-height) do textarea.
+	 */
+	height: {
+		type: [Number, String],
+		default: null,
+	},
 });
 
 const emits = defineEmits({
@@ -405,6 +414,10 @@ const computedAutocompleteProp = computed(() => props.enableAutocomplete ? 'on' 
 const baseInputClass = computed(() => {
 	let inputClass = props.fluid ? 'base-input--fluid' : 'base-input';
 
+	if (props.ghost) {
+		inputClass += ' ghost';
+	}
+
 	if (!isFocused.value) {
 		inputClass +=  props.disabled
 			? ' base-input--disabled'
@@ -423,11 +436,24 @@ const inputHeight = computed(() => {
 });
 
 const inputMinHeight = computed(() => {
-	return props.type === 'textarea' ? '120px' : 'auto';
+	if (props.type !== 'textarea') return 'auto';
+	if (!props.height) return '120px';
+
+	if (typeof props.height === 'number') {
+		return `${props.height}px`;
+	}
+
+	return props.height;
 });
 
 const inputTopPadding = computed(() => {
 	return props.type === 'textarea' ? '8px' : '14px';
+});
+
+const resizeType = computed(() => {
+	return props.type === 'textarea'
+		? 'vertical'
+		: 'none';
 });
 
 const hasError = computed(() => {
@@ -520,6 +546,11 @@ function handleFocus(event) {
 
 function handleBlur(event) {
 	isFocused.value = false;
+
+	if (htmlInputRef.value && htmlInputRef.value.value !== undefined) {
+		internalValue.value = htmlInputRef.value.value;
+	}
+
 	/**
 	* Evento emitido quando o componente deixa de ser focado.
 	* @event blur
@@ -637,13 +668,13 @@ defineExpose({
 		padding: tokens.pTRBL(0, 2, 3, 2);
 		padding-top: v-bind(inputTopPadding);
 		height: v-bind(inputHeight);
-		min-height: v-bind(inputMinHeight);
+		min-height: v-bind(inputMinHeight) !important;
 		border-radius: tokens.$border-radius-extra-small;
 		border: none;
 		text-align: start;
 		color: tokens.$n-600;
 		width: 100%;
-		resize: vertical;
+		resize: v-bind(resizeType);
 		cursor: v-bind(computedCursor);
 		background-color: transparent;
 		line-height: 1.5;
@@ -781,5 +812,12 @@ input::-webkit-inner-spin-button {
 
 input:disabled {
 	background: none !important;
+}
+
+.base-input.ghost {
+	border: none !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	outline: none !important;
 }
 </style>

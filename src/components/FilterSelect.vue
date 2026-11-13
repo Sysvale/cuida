@@ -443,7 +443,7 @@ export default {
 		}
 
 		input {
-			font-family: 'Satoshi';
+			font-family: Satoshi, Inter, Avenir, Helvetica, Arial, sans-serif;
 		}
 	}
 
