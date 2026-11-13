@@ -104,7 +104,6 @@ function routerPushTo(item) {
 @use '../assets/sass/tokens/index' as tokens;
 
 .breadcrumb {
-	@include tokens.caption;
 	display: flex;
 	align-items: center;
 	padding: tokens.pa(0);
@@ -115,6 +114,7 @@ function routerPushTo(item) {
 
 	&__link {
 		@extend .breadcrumb;
+		@include tokens.caption;
 		border-radius: tokens.$border-radius-lil;
 		padding: tokens.pa(1);
 		transition: tokens.$hover;
