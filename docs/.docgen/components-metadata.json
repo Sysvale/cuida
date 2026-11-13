@@ -1646,8 +1646,9 @@
     ]
   },
   "CdsBreadcrumb": {
-    "displayName": "CdsBreadcrumb",
+    "name": "CdsBreadcrumb",
     "exportName": "default",
+    "displayName": "Breadcrumb",
     "description": "",
     "tags": {},
     "props": [
@@ -1661,6 +1662,30 @@
         "defaultValue": {
           "func": false,
           "value": "[]"
+        }
+      },
+      {
+        "name": "variant",
+        "description": "A variante de cor. São 10 variantes:",
+        "tags": {},
+        "values": [
+          "green",
+          "teal",
+          "blue",
+          "indigo",
+          "violet",
+          "pink",
+          "red",
+          "orange",
+          "amber",
+          "dark"
+        ],
+        "type": {
+          "name": "string"
+        },
+        "defaultValue": {
+          "func": false,
+          "value": "'blue'"
         }
       }
     ],
