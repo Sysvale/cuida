@@ -8,6 +8,7 @@
 		:support-link-url="supportLinkUrl || linkUrl"
 		:support-link="supportLink || linkText"
 		:floating-label="floatingLabel || mobile"
+		:leading-icon="showLeadingIcon"
 		@click="emitClick"
 		@focus="emitFocus"
 		@blur="emitBlur"
@@ -20,7 +21,7 @@
 </template>
 
 <script setup>
-import { ref, watch, useTemplateRef } from 'vue';
+import { ref, watch, useTemplateRef, computed } from 'vue';
 import {
 	nativeEvents,
 	nativeEmits,
@@ -32,7 +33,7 @@ defineOptions({ name: 'CdsTextInput' });
 
 const vFacade = facade;
 
-const componentRef = useTemplateRef('baseInput');
+const baseInputRef = useTemplateRef('baseInput');
 
 const model = defineModel('modelValue', {
 	type: String,
@@ -183,6 +184,13 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	/**
+	* Define o ícone que será exibido à esquerda do input
+	*/
+	leadingIcon: {
+		type: [String, null],
+		default: null,
+	},
 });
 
 const emits = defineEmits({
@@ -203,16 +211,20 @@ watch(model, (newValue, oldValue) => {
 
 watch(internalValue, (value) => {
 	model.value = value;
-	componentRef.value = componentRef.value?.componentRef;
+});
+
+const componentRef = computed(() => baseInputRef.value?.componentRef);
+const showLeadingIcon = computed(() => {
+	return !props.floatingLabel ? props.leadingIcon : null;
 });
 
 /* EXPOSE */
 defineExpose({
 	componentRef,
-	isFocused: componentRef.value?.isFocused,
-	focus: () => componentRef.value?.focus(),
-	blur: () => componentRef.value?.blur(),
-	clear: () => componentRef.value?.clear(),
-	select: () => componentRef.value?.select(),
+	isFocused: computed(() => baseInputRef.value?.isFocused),
+	focus: () => baseInputRef.value?.focus(),
+	blur: () => baseInputRef.value?.blur(),
+	clear: () => baseInputRef.value?.clear(),
+	select: () => baseInputRef.value?.select(),
 });
 </script>

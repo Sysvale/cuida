@@ -33,6 +33,7 @@
 					v-if="withSearch"
 					gap="2"
 					fluid
+					align="center"
 					wrap="no-wrap"
 				>
 					<CdsSearchInput

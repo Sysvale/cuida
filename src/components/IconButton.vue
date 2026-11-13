@@ -5,6 +5,7 @@
 			:text="innerTooltipText"
 		>
 			<button
+				type="button"
 				class="CdsIcon-button__container"
 				:class="computedModifiers"
 				@click="clickHandler"

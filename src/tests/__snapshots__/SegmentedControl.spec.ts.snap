@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SegmentedControl > renders correctly 1`] = `"<div class="segment-control"><button type="button" class="segment-control__button segment-control__button--inactive"><span>Segment 1</span></button><button type="button" class="segment-control__button segment-control__button--inactive"><span>Segment 2</span></button></div>"`;

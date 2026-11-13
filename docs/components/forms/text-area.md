@@ -68,5 +68,6 @@ const args = ref({
 	supportingText: 'supportingTex',
 	supportLink: '',
 	supportLinkUrl: '',
+	height: null,
 });
 </script>

@@ -31,8 +31,8 @@ export default {
 		/**
 		 * Define o conjunto de dados a serem mostrados no gráfico.
 		 * O objeto deve conter o parâmetro `name` (para identificar o conjunto de dados)
-		 * e `datasets`, array de objetos que apresentará `label` (indicar o rótulo do dado) e
-		 * `data` (array com os valores númericos).
+		 * e `datasets`, array de objetos que apresentará `label` (indicar o rótulo do dado),
+		 * `data` (array com os valores númericos) e, opcionalmente, `variant` (variante de cor do cuida específica para o dataset).
 		 */
 		data: {
 			type: Array,
@@ -131,7 +131,7 @@ export default {
 		},
 
 		variant: {
-			handler(newValue, oldValue) {
+			handler(newValue) {
 				if (newValue === 'gray' || newValue === 'dark')  {
 					this.deleteFirstTwoColors = true;
 				} else {
@@ -202,6 +202,7 @@ export default {
 						data: state.data,
 						name: state.name,
 						borderRadius: 6,
+						variant: state.variant,
 					};
 					mergedData.datasets.push(dataset);
 				});
@@ -244,8 +245,12 @@ export default {
 					colorIndex = Object.keys(colors).length % backgroundColor.length;
 					colors[objectName] = backgroundColor[colorIndex];
 				}
+				
 
-				dataset.backgroundColor = colors[objectName];
+				const variantLowercase = dataset.variant;
+				const palletColor = this.palletColors.find(color => color.variantName.toLowerCase().includes(variantLowercase));
+
+				dataset.backgroundColor = palletColor ? palletColor.color400 : colors[objectName];
 				dataset.borderRadius = 6;
 			});
 		},

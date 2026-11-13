@@ -109,16 +109,15 @@
 					<div class="option__checkbox">
 						<input
 							:id="`input-${option[optionsField]}-${uniqueKey}`"
-							v-model="option.isSelected"
+							:checked="option.isSelected"
 							type="checkbox"
 							:name="`input-${option[optionsField]}-${uniqueKey}`"
-							:value="true"
+							@click.stop.prevent
 						>
 						<label
 							:id="`checkbox-${option[optionsField]}`"
 							:for="`input-${option[optionsField]}-${uniqueKey}`"
 							:class="option.isSelected ? `option__checkbox--${variant}` : ''"
-							@click="addItemViaCustomCheckbox(option)"
 						/>
 					</div>
 					<slot
@@ -480,14 +479,6 @@ export default {
 					}));
 				}
 			});
-		},
-
-		addItemViaCustomCheckbox(option) {
-			option.isSelected = !option.isSelected;
-			this.selectedValue = [
-				...this.selectedValue,
-				option,
-			];
 		},
 
 		handleClose() {

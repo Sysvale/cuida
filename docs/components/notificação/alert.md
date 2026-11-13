@@ -21,7 +21,7 @@ Alerts s√£o componentes utilizados para prover feedbacks contextuais e notifica√
 
 ```js
 <CdsAlert
-	variant="green"
+	variant="info"
 	text="Link Button"
 />
 ```
